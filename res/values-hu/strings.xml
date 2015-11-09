@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tartsa névjegyeit biztonságban akkor is, ha elveszíti a telefont: szinkronizáljon egy online szolgáltatással."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Fiók hozzáadása"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Az új névjegyről nem készül biztonsági másolat. Hozzáad egy olyan fiókot, amelyik online biztonsági másolatot készít a névjegyekről?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Az új névjegyet a következő fiókkal fogjuk szinkronizálni: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Az új névjegyek mentésének helye: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Válasszon ki egy alapértelmezett fiókot az új névjegyek számára"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Névjegy hozzáadása"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Névjegy szerkesztése"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Fénykép lecserélése"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Nem sikerült megnyitni a szerkesztőt."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Mentés ide"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Jelenleg a(z) <xliff:g id="ACCOUNT_NAME">%s</xliff:g>fiókba menti a névjegyet. Koppintson duplán másik fiók kiválasztásához."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Társított névjegyek (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Társított névjegy</item>
@@ -319,4 +318,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"Az összes fotó"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Fotó kiválasztása"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Innen: <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"A(z) <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> törlése"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"A(z) <xliff:g id="DATA_KIND">%s</xliff:g> törlése"</string>
 </resources>

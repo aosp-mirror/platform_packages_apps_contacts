@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"আপনার ফোন হারিয়ে গেলেও আপনার পরিচিতিগুলিকে নিরাপদ রাখুন: একটি অনলাইন পরিষেবার সাথে সিংক্রোনাইজ করুন৷"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"একটি অ্যাকাউন্ট যোগ করুন"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"আপনার নতুন পরিচিতিটির ব্যাকআপ নেওয়া হবে না৷ পরিচিতিগুলিকে অনলাইনে ব্যাকআপ নেওয়ার জন্য একটি অ্যাকাউন্ট যুক্ত করবেন?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"আপনার নতুন পরিচিতি <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> এর সাথে সিংক্রোনাইজ করা হবে৷"</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"নতুন পরিচিতিগুলি <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> এ সংরক্ষণ করা হবে৷"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"নতুন পরিচিতিগুলির জন্য একটি ডিফল্ট অ্যাকাউন্ট চয়ন করুন:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"নতুন পরিচিতি জুড়ুন"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"পরিচিতি সম্পাদনা করুন"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ফটো পরিবর্তন করুন"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"সম্পাদক খুলতে ব্যর্থ হচ্ছে৷"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"এ সংরক্ষণ করা হচ্ছে"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"বর্তমানে <xliff:g id="ACCOUNT_NAME">%s</xliff:g> এ সংরক্ষণ করা হচ্ছে৷ কোনো আলাদা অ্যাকাউন্ট চয়ন করার জন্য দুবার আলতো চপুন৷"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>
       <item quantity="other">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>
@@ -319,4 +318,8 @@
     <string name="all_photos_button" msgid="1943122929420111351">"সকল ফটো"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ফটো চয়ন করুন"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> থেকে"</string>
+    <!-- no translation found for editor_delete_view_description (8583095381562991959) -->
+    <skip />
+    <!-- no translation found for editor_delete_view_description_short (7335518371270844912) -->
+    <skip />
 </resources>

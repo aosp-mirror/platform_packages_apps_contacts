@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Skydda dina kontakter även om du förlorar mobilen. Synkronisera med en onlinetjänst."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Lägg till ett konto"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Din nya kontakt kommer inte att säkerhetskopieras. Vill du lägga till ett konto så att kontakterna säkerhetskopieras online?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Din nya kontakt kommer att synkroniseras med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Nya kontakter sparas i <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Välj ett standardkonto för nya kontakter:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Lägg till ny kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Redigera kontakt"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Byt bild"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Det gick inte att öppna redigeringsappen."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Sparas till"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Kontakterna sparas för närvarande i <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Tryck snabbt två gånger om du vill använda ett annat konto."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Länkade kontakter (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Länkad kontakt</item>
@@ -319,4 +318,8 @@
     <string name="all_photos_button" msgid="1943122929420111351">"Alla foton"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Välj foto"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Från <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <!-- no translation found for editor_delete_view_description (8583095381562991959) -->
+    <skip />
+    <!-- no translation found for editor_delete_view_description_short (7335518371270844912) -->
+    <skip />
 </resources>

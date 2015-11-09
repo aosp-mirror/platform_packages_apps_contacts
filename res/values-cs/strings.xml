@@ -251,7 +251,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mějte kontakty v bezpečí, i když telefon ztratíte: synchronizujte je s některou online službou."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Přidat účet"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nový kontakt nebude zálohován. Chcete přidat účet pro zálohování kontaktů online?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nový kontakt bude synchronizován s účtem <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Nové kontakty se uloží do účtu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Zvolte výchozí účet pro nové kontakty:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Přidat nový kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Upravit kontakt"</string>
@@ -301,8 +301,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Změnit fotografii"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Editor nelze otevřít."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Uložit do účtu"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Momentálně se ukládá do účtu <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Dvojitým klepnutím můžete vybrat jiný účet."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="few">Propojené kontakty (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="many">Propojené kontakty (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -341,4 +340,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"Všechny fotky"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Výběr fotky"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Z účtu <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"Smazat <xliff:g id="DATA_KIND">%s</xliff:g> (<xliff:g id="DATA_TYPE">%s </xliff:g>)"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Smazat <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
 </resources>
