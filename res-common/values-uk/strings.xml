@@ -109,7 +109,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"Чат"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Організація"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Зв’язки"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"Особливі дати"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"Спеціальна дата"</string>
     <string name="sms" msgid="8086289395154598654">"Текстове повідомлення"</string>
     <string name="postal_address" msgid="7692926530081579786">"Адреса"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Компанія"</string>
@@ -163,7 +163,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Контакти в обліковому записі <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Користувацький фільтр"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Один контакт"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Створити контакт в обліковому записі"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"Зберегти імпортовані контакти в обліковий запис:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Імпорт із SIM-карти"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Імпортувати із SIM-карти \"<xliff:g id="SIM_NAME">^1</xliff:g>\" – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Імпортувати із SIM-карти \"<xliff:g id="SIM_NAME">%1$s</xliff:g>\""</string>
@@ -227,6 +227,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Ім’я спочатку"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Прізвище спочатку"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Обліковий запис за умовчанням для нових контактів"</string>
+    <string name="setting_about" msgid="1864724372154478151">"Інформація"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Надіслати видимі контакти"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Не вдалося поділитись видимими контактами."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Імпорт/експорт контактів"</string>
@@ -266,4 +267,12 @@
       <item quantity="many"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> непрочитаних елементів. </item>
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> непрочитаного елемента. </item>
     </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"Версія складання"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Ліцензії відкритого коду"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Деталі ліцензії для програмного забезпечення з відкритим кодом"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Політика конфіденційності"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"Умови використання"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Ліцензії відкритого коду"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> вибрано"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> не вибрано"</string>
 </resources>

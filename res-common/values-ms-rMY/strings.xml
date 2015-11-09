@@ -107,7 +107,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organisasi"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Hubungan"</string>
-    <string name="eventLabelsGroup" msgid="5633007096910029346">"Tarikh istimewa"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"Tarikh khas"</string>
     <string name="sms" msgid="8086289395154598654">"Mesej teks"</string>
     <string name="postal_address" msgid="7692926530081579786">"Alamat"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Syarikat"</string>
@@ -161,7 +161,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kenalan dalam <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Kenalan dalam paparan tersuai"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Kenalan tunggal"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Wujudkan kenalan di bawah akaun"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"Simpan kenalan yang diimport ke:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Import daripada kad SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Import dari SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Import dari SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
@@ -227,6 +227,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nama pertama dahulu"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nama keluarga dahulu"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Akaun lalai untuk kenalan baharu"</string>
+    <string name="setting_about" msgid="1864724372154478151">"Perihal"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Kongsi kenalan yang kelihatan"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Gagal berkongsi kenalan yang kelihatan"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Import/eksport kenalan"</string>
@@ -264,4 +265,12 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> item belum dibaca. </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> item belum dibaca. </item>
     </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"Versi binaan"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Lesen sumber terbuka"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Butiran lesen untuk perisian sumber terbuka"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Dasar privasi"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"Syarat perkhidmatan"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Lesen sumber terbuka"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> disemak"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> tidak disemak"</string>
 </resources>
