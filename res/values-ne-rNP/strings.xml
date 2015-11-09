@@ -55,9 +55,9 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"मेट्नुहोस्"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"सम्पर्क थप्नुहोस्"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"समूह थप्नुहोस्"</string>
-    <string name="splitConfirmation" msgid="7342030840130187290">"यस सम्पर्क ठेगाना बहुल सम्पर्क ठेगानाहरूमा अनलिंक गर्न चाहनुहुन्छ?"</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"यस सम्पर्क बहु सम्पर्कमा अनलिंक गर्न चाहनुहुन्छ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"अनलिकं गर्नुहोस्"</string>
-    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"तपाईँले पहिल्यै गरेका परिवर्तनहरू सुरक्षित गर्न र यस सम्पर्क ठेगाना बहुल सम्पर्क ठेगानाहरूमा अनलिंक गर्न चाहनुहुन्छ?"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"तपाईँले पहिल्यै गरेका परिवर्तनहरू सुरक्षित गर्न र यस सम्पर्क बहु सम्पर्कहरूमा अनलिंक गर्न चाहनुहुन्छ?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"सुरक्षित गरी अनलिकं गर्नुहोस्"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"तपाईँले पहिलेनै गरिएका परिवर्तनहरूलाई तपाईँले चयन गरेका सम्पर्क ठेगाना सँग सुरक्षित गरी लिंक गर्न चाहनुहुन्छ?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"सुरक्षित गर्नुहोस् र लिंक गर्नुहोस्"</string>
@@ -75,18 +75,18 @@
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिङ्टोन मिलाउनुहोस्"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"भ्वाइसमेलमा सम्पूर्ण कल"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"तपाईँको पढ्ने-मात्र मिल्ने खाताहरूबाट सम्पर्क ठेगानाहरू मेटाउन सकिँदैन, तर तिनीहरूलाई लुकाउन सकिन्छ।"</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"तपाईँको पढ्ने-मात्र मिल्ने खाताहरूबाट सम्पर्क मेटाउन सकिँदैन, तर तिनीहरूलाई लुकाउन सकिन्छ।"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"लुकाउनुहोस्"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"मेटाउनु पर्ने सम्पर्क ठेगानाको बहुल खाताहरूबाट विवरणहरू छन्। पढ्ने-मात्र मिल्ने खाताहरूबाट विवरणहरू लुकाइनेछन्, मेटाइने छैनन्।"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"मेटाउनु पर्ने सम्पर्कको विवरण बहु खाताहरूबाट छन्। पढ्ने-मात्र मिल्ने खाताहरूबाट विवरणहरू लुकाइनेछन्, मेटाइने छैनन्।"</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"तपाईँले लिंक गर्नको लागि कम्तीमा दुई सम्पर्क ठेगानाहरू चयन गर्न आवश्यक छ।"</string>
     <string name="batch_link_confirmation" msgid="5845237114309114908">"चयन गरिएका सम्पर्क ठेगानाहरू लिंक गर्ने हो?"</string>
     <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"लिंक"</string>
-    <string name="single_delete_confirmation" msgid="3106905986948679720">"यो सम्पर्क ठेगाना मेटाउने हो?"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"यो सम्पर्क मेटाउने हो?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"चयन गरिएका सम्पर्क ठेगानाहरू मेटाउने हो?"</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"आफ्नो पढ्ने-मात्र मिल्ने खाताहरूबाट सम्पर्क ठेगानाहरू मेटाउन सकिँदैन, तर तिनीहरूलाई लुकाउन सकिन्छ।"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"तपाईँका पढ्ने-मात्र मिल्ने खाताहरूबाट सम्पर्क ठेगानाहरू मेटाउन सकिँदैन, तर तिनीहरूलाई लुकाउन सकिन्छ।"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"मेटाउनु पर्ने सम्पर्क ठेगानाको बहु खाताहरूमा विवरणहरू छन्। पढ्न-मात्र मिल्ने खाताहरूबाट विवरणहरू लुकाइनेछन्, मेटाइनेछैनन्।"</string>
-    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"यो सम्पर्क ठेगाना हटाउँदा बहुल खातहरूबाट विवरणहरू मेटाइनेछन्।"</string>
-    <string name="deleteConfirmation" msgid="3512271779086656043">"यो सम्पर्क ठेगाना मेटाउने?"</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"यो सम्पर्क ठेगाना हटाउँदा बहु खाताहरूबाट विवरणहरू मेटाइनेछन्।"</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"यो सम्पर्क ठेगाना मेटाउने हो?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"मेटाउनुहोस्"</string>
     <string name="menu_discard" msgid="6854657936970228164">"परिवर्तनहरू रद्द गर्नुहोस्"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"सम्पर्क उपलब्ध छैन।"</string>
@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"तपाईँले फोन नै हराउनु भएको अवस्थामा पनि आफ्ना सम्पर्कहरूलाई सुरक्षित राख्नुहोस्: कुनै अनलाइन सेवासँग सिन्क्रोनाइज गर्नुहोस्।"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"एउटा खाता थप्नुहोस्"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"तपाईँको नयाँ सम्पर्क अद्यावधि गरिने छैन। अनलाइन अद्यावधिक गर्ने एउटा खाता थप्ने हो?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>सँग तपाईँको नयाँ सम्पर्क सिन्क्रोनाइज गरिने छ।"</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"नयाँ सम्पर्कहरू <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> मा सुरक्षित गरिनेछन्।"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"नयाँ सम्पर्क ठेगानाहरूका लागि पूर्वनिर्धारित खाता छान्‍नुहोस्:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"नयाँ सम्पर्क थप्ने"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"सम्पर्क सम्पादन"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"तस्बिर परिवर्तन गर्नुहोस्"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"सम्पादक खोल्न असफल भयो।"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"यसमा सुरक्षित गर्दै"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> मा हाल सुरक्षित गर्दै। भिन्‍न खाता परिवर्तन गर्न डबल ट्याप गर्नुहोस्।"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">लिंक गरिएका सम्पर्क ठेगानाहरू (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">लिंक गरिएको सम्पर्क ठेगाना</item>
@@ -312,11 +311,13 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"यो सम्पर्क ठेगाना"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"सम्भावित दोहोरिएका प्रतिलिपिहरू"</string>
-    <string name="suggestion_card_help_message" msgid="4474061044387181093">"यी सम्पर्क ठेगानाहरू एउटै व्यक्तिको हुन सक्छ। तपाईँले एउटै सम्पर्क ठेगानाझैँ तिनीहरूलाई सँगै लिंक गर्न सक्नुहुन्छ।"</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"यी सम्पर्कहरू एउटै व्यक्तिको हुन सक्छ। तपाईँले एउटै सम्पर्कको रूपमा तिनीहरूलाई सँगै लिंक गर्न सक्नुहुन्छ।"</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"लिंक गरिएका सम्पर्क ठेगानाहरू"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"तपाईंका खाताहरूबाट"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"तस्बिर खिच्नुहोस्"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"सबै तस्बिरहरू"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"तस्बिर छान्‍नुहोस्"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> बाट"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> मेट्नुहोस्"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> मेट्नुहोस्"</string>
 </resources>

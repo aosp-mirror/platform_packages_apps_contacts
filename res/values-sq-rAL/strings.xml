@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mbaji kontaktet e tua të sigurta edhe nëse të humbet telefoni. Sinkronizoji me një shërbim në linjë."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Shto një llogari"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kontakti yt i ri nuk do të rezervohet. Të shtohet një llogari që i rezervon kontaktet në linjë?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Kontakti yt i ri do të sinkronizohet me <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Kontaktet e reja do të ruhen në <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Zgjidh një llogari të parazgjedhur për kontaktet e reja:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Shto një kontakt të ri"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Redakto"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Ndrysho fotografinë"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Dështoi në hapjen e redaktorit"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Po ruhet në"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Po ruhet aktualisht në <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Trokit dy herë për të zgjedhur një llogari tjetër."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Kontakte të lidhura (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Kontakt i lidhur</item>
@@ -319,4 +318,8 @@
     <string name="all_photos_button" msgid="1943122929420111351">"Të gjitha fotografitë"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Zgjidh fotografinë"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Nga <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <!-- no translation found for editor_delete_view_description (8583095381562991959) -->
+    <skip />
+    <!-- no translation found for editor_delete_view_description_short (7335518371270844912) -->
+    <skip />
 </resources>

@@ -56,7 +56,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"افزودن مخاطب"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"افزودن گروه"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"این مخاطب به چند مخاطب لغو پیوند شود؟"</string>
-    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"لغو ارتباط"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"لغو پیوند"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"می‌خواهید تغییراتی را که قبلاً ایجاد کرده‌اید، ذخیره کنید و این مخاطب را به چند مخاطب لغو پیوند کنید؟"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"ذخیره و لغو پیوند"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"می‌خواهید تغییراتی را که قبلاً ایجاد کرده‌اید، ذخیره کنید و با مخاطب انتخاب‌شده پیوند دهید؟"</string>
@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"مخاطبین خود را ایمن نگهدارید حتی اگر گوشی شما گم شود: با یک سرویس آنلاین همگام‌سازی کنید."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"افزودن یک حساب"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"از مخاطب جدید شما نسخه پشتبان تهیه نمی‌شود. حسابی را اضافه می‌کنید که از مخاطبین به‌صورت آنلاین نسخه پشتبان تهیه کند؟"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"مخاطب جدید شما با <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> همگام‌سازی خواهد شد."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"مخاطب‌های جدید در <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ذخیره می‌شوند."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"انتخاب حساب پیش‌فرض برای مخاطبین جدید:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"افزودن مخاطب جدید"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ویرایش مخاطب"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"تغییر عکس"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ویرایشگر باز نشد."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"ذخیره در"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"درحال‌ حاضر در <xliff:g id="ACCOUNT_NAME">%s</xliff:g> ذخیره می‌شود. برای انتخاب حساب دیگری، دوضربه سریع بزنید."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">مخاطبین پیوند داده شده (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">مخاطبین پیوند داده شده (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -319,4 +318,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"همه عکس‌ها"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"انتخاب عکس"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"از <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"حذف <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"حذف <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
 </resources>

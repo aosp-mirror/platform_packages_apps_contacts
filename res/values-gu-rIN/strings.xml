@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"તમે તમારો ફોન ગુમાવી દો તો પણ તમારા સંપર્કોને સુરક્ષિત રાખો: ઓનલાઇન સેવા સાથે સમન્વયિત કરો."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"એક એકાઉન્ટ ઉમેરો"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"તમારા નવા સંપર્કનો બેક અપ લેવાશે નહીં. સંપર્કોનો ઓનલાઇન બેક અપ લેતાં એકાઉન્ટને ઉમેરીએ?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> સાથે તમારો નવો સંપર્ક સમન્વયિત કરવામાં આવશે."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"નવા સંપર્કોને <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> પર સાચવવામાં આવશે."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"નવા સંપર્કો માટે એક ડીફોલ્ટ એકાઉન્ટ પસંદ કરો:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"નવો સંપર્ક ઉમેરો"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"સંપર્ક સંપાદિત કરો"</string>
@@ -318,4 +318,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"બધા ફોટા"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ફોટો પસંદ કરો"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> માંથી"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> કાઢી નાખો"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> કાઢી નાખો"</string>
 </resources>

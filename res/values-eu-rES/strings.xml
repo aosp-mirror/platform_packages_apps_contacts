@@ -113,7 +113,7 @@
     <string name="contactSavedToast" msgid="9171862279493213075">"Gorde da kontaktua"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kendu da kontaktuen lotura"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ezin izan dira gorde kontaktuari egindako aldaketak."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Ezin izan da desestekatu kontaktua."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Ezin izan da kendu kontaktuaren lotura."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Ezin izan da lotu kontaktua."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Errore bat gertatu da kontaktua gordetzean."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Ezin izan dira gorde kontaktuaren argazkiari egindako aldaketak."</string>
@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Izan kontaktuak seguru telefonoa galduta ere: sinkronizatu sareko zerbitzu batekin."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Gehitu kontu bat"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Ez da kontaktu berriaren babeskopiarik egingo. Kontaktuen babeskopia sarean gordetzeko kontua gehitu nahi duzu?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Kontaktu berria <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> kontuarekin sinkronizatuko da."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> kontuan gordeko dira kontaktu berriak."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Aukeratu kontaktu berriak gordetzeko erabili nahi duzun kontua:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Gehitu kontaktu berria"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editatu kontaktua"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Aldatu argazkia"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Ezin izan da ireki editorea."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Gorde hemen:"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> kontuan gordetzen dira kontaktuak. Beste kontu bat hautatzeko, sakatu birritan."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Lotutako kontaktuak (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Lotutako kontaktu bat</item>
@@ -319,4 +318,8 @@
     <string name="all_photos_button" msgid="1943122929420111351">"Argazki guztiak"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Aukeratu argazkia"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Kontua: <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <!-- no translation found for editor_delete_view_description (8583095381562991959) -->
+    <skip />
+    <!-- no translation found for editor_delete_view_description_short (7335518371270844912) -->
+    <skip />
 </resources>

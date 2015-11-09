@@ -237,7 +237,8 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手机丢了，也能确保您的联系人信息的安全性：与在线服务同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"添加帐户"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系统不会备份您的新联系人。要添加用于在线备份联系人的帐户吗？"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"您的新联系人将会同步到<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>。"</string>
+    <!-- no translation found for contact_editor_prompt_one_account (3087691056345099310) -->
+    <skip />
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"选择用来保存新建联系人的默认帐号："</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增联系人"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"修改联系人"</string>
@@ -287,8 +288,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"更换照片"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"无法开启编辑器。"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"保存到"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"目前正在保存到 <xliff:g id="ACCOUNT_NAME">%s</xliff:g>。点按两次可选择其他帐号。"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">已关联的联系人（<xliff:g id="COUNT">%d</xliff:g> 位）</item>
       <item quantity="one">已关联的联系人</item>
@@ -319,4 +319,8 @@
     <string name="all_photos_button" msgid="1943122929420111351">"所有照片"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"选择照片"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"来源：<xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <!-- no translation found for editor_delete_view_description (8583095381562991959) -->
+    <skip />
+    <!-- no translation found for editor_delete_view_description_short (7335518371270844912) -->
+    <skip />
 </resources>

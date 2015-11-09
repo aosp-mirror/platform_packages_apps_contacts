@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Hoidke oma kontaktid turvalisena ka siis, kui kaotate telefoni: sünkroonige need võrguteenusega."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto lisamine"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Teie uut kontakti ei varundata. Kas lisada konto, mis varundab kontakte veebis?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Teie uut kontakti sünkroonitakse kontoga <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Uued kontaktid salvestatakse kontole <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Valige uute kontaktide jaoks vaikekonto:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Kontakti lisamine"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Kontakti muutmine"</string>
@@ -318,4 +318,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"Kõik fotod"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Foto valimine"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Kontolt <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"Kustuta <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Kustuta <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
 </resources>
