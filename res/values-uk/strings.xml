@@ -251,7 +251,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Збережіть свої контакти на випадок втрати свого телефону: синхронізуйте їх з онлайновою службою."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додати обліковий запис"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Для вашого нового контакта не буде створено резервні копії. Додати обліковий запис, у якому буде збережено резервні копії контактів в Інтернеті?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Новий контакт буде синхронізовано з обліковим записом <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Нові контакти буде збережено в обліковому записі <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Виберіть обліковий запис за умовчанням для нових контактів:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додати контакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Змінити контакт"</string>
@@ -340,4 +340,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"Усі фотографії"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Вибрати фотографію"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"З облікового запису <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"Видалити <xliff:g id="DATA_TYPE">%s </xliff:g> <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Видалити <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
 </resources>

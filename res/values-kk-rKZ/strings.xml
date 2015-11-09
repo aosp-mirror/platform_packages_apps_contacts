@@ -237,8 +237,8 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Телефоныңыз жоғалған жағдайда контактілеріңізді сақтап қалыңыз: желі қызметімен синхрондаңыз."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Есептік жазба қосу"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Жаңа контактінің сақтық көшірмесі жасалмайды. Контактілердің желі арқылы көшірмесін жасайтын есептік жазба қосуды қалайсыз ба?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Жаңа контактіңіз <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> есептік жазбасымен синхрондалады."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Жаңа контактілерге арналған әдепкі есептік жазбаны таңдау"</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Жаңа контактілер <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> есептік жазбасында сақталады."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Жаңа контактілерге арналған әдепкі есептік жазбаны таңдаңыз:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Жаңа контакт қосу"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Контактіні өңдеу"</string>
     <string name="keep_local" msgid="1258761699192993322">"Жергілікті сақтау"</string>
@@ -283,12 +283,11 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"жақындағы қоңырау. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. кері қоңырау шалу үшін басыңыз"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Сіз: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts қолданбасы электрондық пошта өрісіне немесе телефон өрісіне адамның Hangouts идентификаторын енгізгенде жақсырақ жұмыс істейді."</string>
-    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Қосымша өрістер"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Қалған өрістер"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Фотосуретті өзгерту"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Өңдегішті ашу сәтсіз аяқталды."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Келесіге сақтау"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Қазіргі уақытта <xliff:g id="ACCOUNT_NAME">%s</xliff:g> есептік жазбасына сақталуда. Басқа есептік жазбаны таңдау үшін екі рет түртіңіз."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Байланыстырылған контактілер (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Байланыстырылған контакт</item>
@@ -312,11 +311,13 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Осы контакт"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Ықтимал көшірмелер"</string>
-    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Бұл контактілер бір адам болуы мүмкін. Оларды бір контактіге байланыстыруға болады."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Бұл контактілер бір адам болуы мүмкін. Оларды бір контактіге біріктіруге болады."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Байланыстырылған контактілер"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Есептік жазбаларыңыздан"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Фотосурет түсіру"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Барлық фотосуреттер"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Фотосуретті таңдау"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Кімнен: <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> жою"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> жою"</string>
 </resources>

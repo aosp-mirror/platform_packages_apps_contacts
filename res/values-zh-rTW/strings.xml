@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手機遺失，聯絡人資訊依然萬無一失：與線上服務保持同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"新增帳戶"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系統不會備份您新增的聯絡人資料。您是否要新建一個帳戶，將您的聯絡人資料另存在線上？"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"您新增的聯絡人資料將會同步儲存在 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> 的帳戶中。"</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"新聯絡人將儲存至 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"為新建立的聯絡人選擇一個預設帳戶："</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增聯絡人"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"編輯聯絡人"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"更換相片"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"無法開啟編輯器。"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"儲存到"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"正在儲存到 <xliff:g id="ACCOUNT_NAME">%s</xliff:g>。輕按兩下即可選擇其他帳戶。"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">已連結的聯絡人 (<xliff:g id="COUNT">%d</xliff:g> 位)</item>
       <item quantity="one">已連結的聯絡人</item>
@@ -319,4 +318,8 @@
     <string name="all_photos_button" msgid="1943122929420111351">"所有相片"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"選擇相片"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"來自<xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <!-- no translation found for editor_delete_view_description (8583095381562991959) -->
+    <skip />
+    <!-- no translation found for editor_delete_view_description_short (7335518371270844912) -->
+    <skip />
 </resources>

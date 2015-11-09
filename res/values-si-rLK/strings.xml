@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"ඔබගේ දුරකථනය නොමැති වුවත් සම්බන්ධතා සුරක්ෂිතව තබන්න: සබැඳි සේවාවක් සමඟ සමමුහුර්ත කරන්න."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ගිණුමක් එක් කරන්න"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ඔබගේ නව සම්බන්ධතාවය උපස්ථ නොවනු ඇත. ඔබගේ සම්බන්ධතා සබැඳිව උපස්ථ කරන ගිණුමක් එක් කරන්නද?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"ඔබගේ නව සම්බන්ධතාවය <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> සමඟ සමමුහුර්ත වනු ඇත."</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"නව සම්බන්ධතා <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> වෙත සුරකිනු ඇත."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"නව සම්බන්ධතා සඳහා පෙරනිමි ගිණුමක් තෝරන්න:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"නව සම්බන්ධතාව එක් කරන්න"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"සම්බන්ධතාව සංස්කරණය කරන්න"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ඡායාරූපය වෙනස් කරන්න"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"සංස්කාරකය විවෘත කිරීමට නොහැකි විය."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"සුරැකීම"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"දැනට <xliff:g id="ACCOUNT_NAME">%s</xliff:g> වෙත සුරැකේ. වෙනත් ගිණුමක් තේරීමට දෙවරක් තට්ටු කරන්න."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">සබැඳි කළ සම්බන්ධතා (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">සබැඳි කළ සම්බන්ධතා (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -319,4 +318,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"සියලු ඡායාරූප"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ඡායාරූපය තෝරන්න"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> වෙතින්"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> මැකීම"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> මැකීම"</string>
 </resources>

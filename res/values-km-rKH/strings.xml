@@ -237,7 +237,7 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"រក្សាទុក​ទំនាក់ទំនង​របស់​អ្នក​យ៉ាង​មាន​សុវត្ថិភាព ទោះបីជា​អ្នក​បាត់​ទូរស័ព្ទ​ក៏ដោយ៖ ធ្វើ​សមកាលកម្ម​ជាមួយ​សេវាកម្ម​លើ​បណ្ដាញ។"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"បន្ថែម​គណនី"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"នឹង​មិន​បម្រុងទុក​ទំនាក់ទំនង​ថ្មី​របស់​អ្នក​ទេ។ បន្ថែម​គណនី​ដើម្បី​បម្រុងទុក​ទំនាក់ទំនង​នៅ​លើ​បណ្ដាញ?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"នឹង​ធ្វើ​សមកាលកម្ម​ទំនាក់ទំនង​ថ្មី​របស់​អ្នក​ជាមួយ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ។"</string>
+    <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ទំនាក់ទំនងថ្មីនឹងត្រូវបានរក្សាទុកទៅក្នុង <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ជ្រើសគណនីលំនាំដើមសម្រាប់ទំនាក់ទំនងថ្មី៖"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"បន្ថែមទំនាក់ទំនងថ្មី"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"កែ​ទំនាក់ទំនង"</string>
@@ -287,8 +287,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ប្ដូររូបថត"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"បានបរាជ័យក្នុងការបើកកម្មវិធីកែ"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"កំពុងរក្សាទុកទៅ"</string>
-    <!-- no translation found for compact_editor_account_selector_description (2127184829759350507) -->
-    <skip />
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"បច្ចុប្បន្នកំពុងរក្សាទុកទៅ <xliff:g id="ACCOUNT_NAME">%s</xliff:g>។ សូូមប៉ះពីរដងដើម្បីជ្រើសគណនីផ្សេងទៀត។"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">ទំនាក់ទំនងដែលបានតភ្ជាប់ (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">ទំនាក់ទំនងដែលបានតភ្ជាប់ 1</item>
@@ -319,4 +318,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"រូបថតទាំងអស់"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ជ្រើសរូបថត"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"ពី <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"លុប <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"លុប <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
 </resources>
