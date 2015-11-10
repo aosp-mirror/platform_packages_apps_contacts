@@ -664,7 +664,7 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <string name="default_editor_account">Default account for new contacts</string>
 
     <!-- Label of the "About" setting -->
-    <string name="setting_about">About</string>
+    <string name="setting_about">About Contacts</string>
 
     <!-- Action that shares visible contacts -->
     <string name="share_visible_contacts">Share visible contacts</string>
