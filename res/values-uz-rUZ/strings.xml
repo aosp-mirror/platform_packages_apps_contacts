@@ -318,8 +318,6 @@
     <string name="all_photos_button" msgid="1943122929420111351">"Barcha rasmlar"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Rasm tanlash"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> tomonidan"</string>
-    <!-- no translation found for editor_delete_view_description (8583095381562991959) -->
-    <skip />
-    <!-- no translation found for editor_delete_view_description_short (7335518371270844912) -->
-    <skip />
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>ni o‘chirish"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g>ni o‘chirish"</string>
 </resources>
