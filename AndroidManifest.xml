@@ -260,7 +260,7 @@
 
         <activity
             android:name=".quickcontact.QuickContactActivity"
-            android:label="@string/launcherActivityLabel"
+            android:label="@string/quickContactActivityLabel"
             android:theme="@style/Theme.QuickContact"
             android:launchMode="singleTop"
             android:excludeFromRecents="true"
@@ -345,7 +345,7 @@
         <!-- Edit or create a contact with only the most important fields displayed initially. -->
         <activity
             android:name=".activities.CompactContactEditorActivity"
-            android:label="@string/launcherActivityLabel"
+            android:label="@string/editContactActivityLabel"
             android:theme="@style/EditorActivityTheme"
             android:windowSoftInputMode="stateHidden|adjustResize">
 
@@ -368,7 +368,7 @@
         <!-- Edit or create a contact with all fields displayed. -->
         <activity
             android:name=".activities.ContactEditorActivity"
-            android:label="@string/launcherActivityLabel"
+            android:label="@string/editContactActivityLabel"
             android:theme="@style/EditorActivityTheme"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:exported="false">
