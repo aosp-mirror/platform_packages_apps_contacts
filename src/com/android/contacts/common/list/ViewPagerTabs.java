@@ -237,14 +237,28 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
     }
 
     /**
+     * Remove a tab at a certain index.
+     *
+     * @param index The index of the tab view we wish to remove.
+     */
+    public void removeTab(int index) {
+        View view = mTabStrip.getChildAt(index);
+        if (view != null) {
+            mTabStrip.removeView(view);
+        }
+    }
+
+    /**
      * Refresh a tab at a certain index by removing it and reconstructing it.
      *
      * @param index The index of the tab view we wish to update.
      */
     public void updateTab(int index) {
-        View view = mTabStrip.getChildAt(index);
-        mTabStrip.removeView(view);
-        addTab(mPager.getAdapter().getPageTitle(index), index);
+        removeTab(index);
+
+        if (index < mPager.getAdapter().getCount()) {
+            addTab(mPager.getAdapter().getPageTitle(index), index);
+        }
     }
 
     @Override
