@@ -23,6 +23,12 @@
          used in the Launcher icon. -->
     <string name="launcherActivityLabel">Contacts</string>
 
+    <!-- Title for Quick Contact activity. -->
+    <string name="quickContactActivityLabel">View Contact</string>
+
+    <!-- Title for Edit Contact activity. -->
+    <string name="editContactActivityLabel">Edit Contact</string>
+
     <!-- Directory partition name -->
     <string name="contactsList">Contacts</string>
 
