@@ -139,6 +139,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         // Turn off the Spinner's own state management. We do this ourselves on rotation
         mLabel.setId(View.NO_ID);
         mLabel.setOnItemSelectedListener(mSpinnerListener);
+        ViewSelectedFilter.suppressViewSelectedEvent(mLabel);
         mLabel.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
