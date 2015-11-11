@@ -890,4 +890,12 @@
     type. For example: Delete Website, Delete SIP, etc [CHAR LIMIT=30]-->
     <string name="editor_delete_view_description_short">Delete <xliff:g id="data_kind">%s</xliff:g></string>
 
+    <!-- Content description of photo in photo picker indicating a photo from a specific account is *not* selected.
+         For example: Photo from Google abc@gmail.com not checked. [CHAR LIMIT=30]-->
+    <string name="photo_view_description_not_checked">Photo from <xliff:g id="account_type">%s </xliff:g><xliff:g id="user_name">%s </xliff:g>not checked</string>
+
+    <!-- Content description of photo in photo picker indicating a photo from a specific account is selected.
+         For example: Photo from Google abc@gmail.com checked. [CHAR LIMIT=30]-->
+    <string name="photo_view_description_checked">Photo from <xliff:g id="account_type">%s </xliff:g><xliff:g id="user_name">%s </xliff:g>checked</string>
+
 </resources>

@@ -34,6 +34,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -94,6 +95,9 @@ public class CompactPhotoSelectionFragment extends Fragment {
         public int titleRes;
         public int iconRes;
         public String syncAdapterPackageName;
+        // Account type and user name of a photo
+        public String accountType;
+        public String accountName;
 
         public ValuesDelta valuesDelta;
 
@@ -248,6 +252,12 @@ public class CompactPhotoSelectionFragment extends Fragment {
             final ImageView checkImageView = (ImageView) photoItemView.findViewById(R.id.check);
             checkImageView.setVisibility(photo.primary ? View.VISIBLE : View.GONE);
 
+            final String contentDescription = getString(photo.primary ?
+                    R.string.photo_view_description_checked :
+                    R.string.photo_view_description_not_checked,
+                    photo.accountType, photo.accountName);
+            photoItemView.setContentDescription(contentDescription);
+
             return photoItemView;
         }
     }
@@ -255,6 +265,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
     private ArrayList<Photo> mPhotos;
     private int mPhotoMode;
     private Listener mListener;
+    private GridView mGridView;
 
     public void setListener(Listener listener) {
         mListener = listener;
@@ -263,6 +274,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
     public void setPhotos(ArrayList<Photo> photos, int photoMode) {
         mPhotos = photos;
         mPhotoMode = photoMode;
+        mGridView.setAccessibilityDelegate(new View.AccessibilityDelegate() {});
     }
 
     @Override
@@ -282,9 +294,9 @@ public class CompactPhotoSelectionFragment extends Fragment {
 
         final View view = inflater.inflate(R.layout.compact_photo_selection_fragment,
                 container, false);
-        final GridView gridView = (GridView) view.findViewById(R.id.grid_view);
-        gridView.setAdapter(photoAdapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mGridView = (GridView) view.findViewById(R.id.grid_view);
+        mGridView.setAdapter(photoAdapter);
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final PhotoSourceDialogFragment.Listener listener = (PhotoSourceDialogFragment.Listener)
                         getActivity();
@@ -298,6 +310,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
                     if (mListener != null) {
                         mListener.onPhotoSelected(photo);
                     }
+                    handleAccessibility(photo, position);
                 }
             }
         });
@@ -314,9 +327,28 @@ public class CompactPhotoSelectionFragment extends Fragment {
         float density  = getResources().getDisplayMetrics().density;
         float dpColumnWidth  = (outMetrics.widthPixels - paddingWidth * (mNumberOfColumns - 1) *
                 density) / mNumberOfColumns;
-        gridView.setColumnWidth((int) dpColumnWidth);
+        mGridView.setColumnWidth((int) dpColumnWidth);
 
         return view;
+    }
+
+    private void handleAccessibility(Photo photo, int position) {
+        // Use custom AccessibilityDelegate when closing this fragment to suppress event.
+        mGridView.setAccessibilityDelegate(new View.AccessibilityDelegate() {
+            @Override
+            public boolean onRequestSendAccessibilityEvent(
+                    ViewGroup host, View child,AccessibilityEvent event) {
+                if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED) {
+                    return false;
+                }
+                return super.onRequestSendAccessibilityEvent(host, child, event);
+            }
+        });
+        final ViewGroup clickedView = (ViewGroup) mGridView.getChildAt(position);
+        final String contentDescription = getString(
+                R.string.photo_view_description_checked,
+                photo.accountType, photo.accountName);
+        clickedView.announceForAccessibility(contentDescription);
     }
 
     @Override

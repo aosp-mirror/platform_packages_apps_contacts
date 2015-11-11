@@ -548,6 +548,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 photo.primary = valuesDelta.isSuperPrimary();
                 photo.kindSectionDataListIndex = i;
                 photo.valuesDeltaListIndex = j;
+                photo.accountType = accountType.getDisplayLabel(getContext()).toString();
+                photo.accountName = kindSectionData.getRawContactDelta().getAccountName();
 
                 if (updatedPhotos != null) {
                     photo.updatedPhotoUri = (Uri) updatedPhotos.get(String.valueOf(
