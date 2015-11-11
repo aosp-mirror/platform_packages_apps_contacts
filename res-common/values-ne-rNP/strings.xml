@@ -225,7 +225,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाम पहिले"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"थर पहिला"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"नयाँ सम्पर्कहरूका लागि पूर्वनिर्धारित खाता"</string>
-    <string name="setting_about" msgid="1864724372154478151">"बारेमा"</string>
+    <!-- no translation found for setting_about (3926137653588942297) -->
+    <skip />
     <string name="share_visible_contacts" msgid="2150662668080757107">"देखिने सम्पर्कहरू साझेदारी गर्नुहोस्"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"देख्न सकिने सम्पर्कहरू साझेदारी गर्न असफल भयो।"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"आयात/निर्यात सम्पर्कहरू"</string>
@@ -263,7 +264,7 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> पढ्न बाँकी वस्तुहरू। </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> पढ्न बाँकी वस्तु। </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"संस्करण बनाउनुहोस्"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"बिल्ड संस्करण"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"खुला स्रोत इजाजतपत्रहरू"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"खुला स्रोत सफ्टवेयरका लागि इजाजतपत्र विवरणहरू"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"गोपनीयता नीति"</string>
