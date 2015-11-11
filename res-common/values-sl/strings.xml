@@ -109,8 +109,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"Neposredno sporočanje"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizacija"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Razmerje"</string>
-    <!-- no translation found for eventLabelsGroup (4801419345682462171) -->
-    <skip />
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"Posebni datum"</string>
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Naslov"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Podjetje"</string>
@@ -228,7 +227,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Najprej ime"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Najprej priimek"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Privzeti račun za nove stike"</string>
-    <string name="setting_about" msgid="1864724372154478151">"Vizitka"</string>
+    <!-- no translation found for setting_about (3926137653588942297) -->
+    <skip />
     <string name="share_visible_contacts" msgid="2150662668080757107">"Vidne stike deli z drugimi"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Deljenje vidnih stikov z drugimi ni uspelo."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Uvoz/izvoz stikov"</string>
@@ -273,10 +273,7 @@
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Podrobnosti o licenci za odprtokodno programsko opremo"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Pravilnik o zasebnosti"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Pogoji storitve"</string>
-    <!-- no translation found for activity_title_licenses (7812517458691564230) -->
-    <skip />
-    <!-- no translation found for account_filter_view_checked (4368757211136754319) -->
-    <skip />
-    <!-- no translation found for account_filter_view_not_checked (5652044086126815700) -->
-    <skip />
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Odprtokodne licence"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> – označeno"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> – ni označeno"</string>
 </resources>

@@ -107,8 +107,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"ഓര്‍ഗനൈസേഷന്‍"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"ബന്ധം"</string>
-    <!-- no translation found for eventLabelsGroup (4801419345682462171) -->
-    <skip />
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"പ്രത്യേക തീയതി"</string>
     <string name="sms" msgid="8086289395154598654">"വാചക സന്ദേശം"</string>
     <string name="postal_address" msgid="7692926530081579786">"വിലാസം"</string>
     <string name="ghostData_company" msgid="22470841482615409">"കമ്പനി"</string>
@@ -226,7 +225,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"പേരിന്റെ ആദ്യഭാഗം ആദ്യം"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"പേരിന്റെ അവസാന ഭാഗം ആദ്യം"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"പുതിയ കോൺടാക്റ്റുകൾക്കായുള്ള ഡിഫോൾട്ട് അക്കൗണ്ട്"</string>
-    <string name="setting_about" msgid="1864724372154478151">"വിവരം"</string>
+    <!-- no translation found for setting_about (3926137653588942297) -->
+    <skip />
     <string name="share_visible_contacts" msgid="2150662668080757107">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുക"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുന്നത് പരാജയപ്പെട്ടു."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"കോൺടാക്റ്റ് ഡൗൺലോഡ്/അപ്‌ലോഡ്"</string>
@@ -269,10 +269,7 @@
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ഓപ്പൺ സോഴ്‌സ് സോഫ്റ്റ്‌വെയറിനായുള്ള ലൈസൻസ് വിശദാംശങ്ങൾ"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"സ്വകാര്യതാ നയം"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"സേവന നിബന്ധനകള്‍"</string>
-    <!-- no translation found for activity_title_licenses (7812517458691564230) -->
-    <skip />
-    <!-- no translation found for account_filter_view_checked (4368757211136754319) -->
-    <skip />
-    <!-- no translation found for account_filter_view_not_checked (5652044086126815700) -->
-    <skip />
+    <string name="activity_title_licenses" msgid="7812517458691564230">"ഓപ്പൺ സോഴ്‌സ് ലൈസൻസ്"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ചെക്കുചെയ്തു"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ചെക്കുചെയ്തില്ല"</string>
 </resources>
