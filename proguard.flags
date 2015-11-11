@@ -9,6 +9,8 @@
   public void *(android.view.MenuItem);
 }
 
+-keep class com.android.contacts.common.** { *;}
+
 # Any class or method annotated with NeededForTesting or NeededForReflection.
 -keep @com.android.contacts.common.testing.NeededForTesting class *
 -keep @com.android.contacts.test.NeededForReflection class *
