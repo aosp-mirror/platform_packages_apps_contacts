@@ -95,7 +95,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
         public int titleRes;
         public int iconRes;
         public String syncAdapterPackageName;
-        // Account type and user name of a photo
+
         public String accountType;
         public String accountName;
 
@@ -255,7 +255,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
             final String contentDescription = getString(photo.primary ?
                     R.string.photo_view_description_checked :
                     R.string.photo_view_description_not_checked,
-                    photo.accountType, photo.accountName);
+                    photo.accountType, photo.accountName == null ? "" : photo.accountName);
             photoItemView.setContentDescription(contentDescription);
 
             return photoItemView;
@@ -347,7 +347,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
         final ViewGroup clickedView = (ViewGroup) mGridView.getChildAt(position);
         final String contentDescription = getString(
                 R.string.photo_view_description_checked,
-                photo.accountType, photo.accountName);
+                photo.accountType, photo.accountName == null ? "" : photo.accountName);
         clickedView.announceForAccessibility(contentDescription);
     }
 
