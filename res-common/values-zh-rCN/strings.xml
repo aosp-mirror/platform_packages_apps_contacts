@@ -160,7 +160,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> 中的联系人"</string>
     <string name="listCustomView" msgid="1915154113477432033">"自定义视图中的联系人"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"单个联系人"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"在以下帐户中创建联系人："</string>
+    <string name="dialog_new_contact_account" msgid="4107520273478326011">"在以下帐号中创建联系人："</string>
     <string name="import_from_sim" msgid="4749894687871835873">"从 SIM 卡导入"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"从 SIM 卡“<xliff:g id="SIM_NAME">^1</xliff:g>” - <xliff:g id="SIM_NUMBER">^2</xliff:g> 导入"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"从 SIM 卡“<xliff:g id="SIM_NAME">%1$s</xliff:g>”导入"</string>
@@ -240,16 +240,16 @@
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>中没有联系人"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"清除常用联系人"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"选择SIM卡"</string>
-    <string name="menu_accounts" msgid="795417468541517082">"帐户"</string>
+    <string name="menu_accounts" msgid="795417468541517082">"帐号"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"导入/导出"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"来源：<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>，来源：<xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"停止搜索"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"清除搜索内容"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"联系人显示选项"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"帐户"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"帐号"</string>
     <string name="set_default_account" msgid="3865970860434642695">"一律使用这张卡进行通话"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"用于外拨电话的帐户"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"用于外拨电话的帐号"</string>
     <string name="call_with_a_note" msgid="8453800473226831257">"拨打电话时发送记事"</string>
     <string name="call_subject_hint" msgid="2270115162050853866">"输入可在拨打电话时发送的记事…"</string>
     <string name="send_and_call_button" msgid="7459507823002185202">"发送记事并拨打电话"</string>
