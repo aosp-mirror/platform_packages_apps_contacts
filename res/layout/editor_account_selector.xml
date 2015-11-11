@@ -51,17 +51,17 @@
             android:textSize="16sp"
             android:singleLine="true"
             android:textColor="@color/primary_text_color"
+            android:textAlignment="viewStart"
             android:ellipsize="end" />
 
         <TextView
              android:id="@+id/account_name_selector"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:paddingRight="8dip"
-             android:paddingEnd="8dip"
              android:textSize="14sp"
              android:singleLine="true"
              android:textColor="@color/secondary_text_color"
+             android:textAlignment="viewStart"
              android:ellipsize="end" />
 
     </LinearLayout>
