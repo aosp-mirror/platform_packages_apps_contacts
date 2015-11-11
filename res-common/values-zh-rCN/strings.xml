@@ -107,8 +107,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"聊天工具"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"公司或组织"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"关系"</string>
-    <!-- no translation found for eventLabelsGroup (4801419345682462171) -->
-    <skip />
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"特别的日子"</string>
     <string name="sms" msgid="8086289395154598654">"发送短信"</string>
     <string name="postal_address" msgid="7692926530081579786">"地址"</string>
     <string name="ghostData_company" msgid="22470841482615409">"公司"</string>
@@ -162,8 +161,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> 中的联系人"</string>
     <string name="listCustomView" msgid="1915154113477432033">"自定义视图中的联系人"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"单个联系人"</string>
-    <!-- no translation found for dialog_new_contact_account (32435918254518570) -->
-    <skip />
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"将导入的联系人保存到："</string>
     <string name="import_from_sim" msgid="4749894687871835873">"从 SIM 卡导入"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"从 SIM 卡“<xliff:g id="SIM_NAME">^1</xliff:g>” - <xliff:g id="SIM_NUMBER">^2</xliff:g> 导入"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"从 SIM 卡“<xliff:g id="SIM_NAME">%1$s</xliff:g>”导入"</string>
@@ -227,7 +225,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"名字在前"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"姓氏在前"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"用于保存新联系人的默认帐号"</string>
-    <!-- no translation found for setting_about (1864724372154478151) -->
+    <!-- no translation found for setting_about (3926137653588942297) -->
     <skip />
     <string name="share_visible_contacts" msgid="2150662668080757107">"分享所显示的联系人"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"无法分享所显示的联系人。"</string>
@@ -254,9 +252,9 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"停止搜索"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"清除搜索内容"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"联系人显示选项"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"帐户"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"帐号"</string>
     <string name="set_default_account" msgid="3865970860434642695">"一律使用这张卡进行通话"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"用于外拨电话的帐户"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"用于外拨电话的帐号"</string>
     <string name="call_with_a_note" msgid="8453800473226831257">"拨打电话时发送记事"</string>
     <string name="call_subject_hint" msgid="2270115162050853866">"输入可在拨打电话时发送的记事…"</string>
     <string name="send_and_call_button" msgid="7459507823002185202">"发送记事并拨打电话"</string>
@@ -266,20 +264,12 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>。<xliff:g id="COUNT_3">%2$d</xliff:g> 项未读内容。</item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>。<xliff:g id="COUNT_1">%2$d</xliff:g> 项未读内容。</item>
     </plurals>
-    <!-- no translation found for about_build_version (4221971683776635130) -->
-    <skip />
-    <!-- no translation found for about_open_source_licenses (3224958101863814649) -->
-    <skip />
-    <!-- no translation found for about_open_source_licenses_summary (3009343539281606716) -->
-    <skip />
-    <!-- no translation found for about_privacy_policy (8458337666582973913) -->
-    <skip />
-    <!-- no translation found for about_terms_of_service (628537491496465267) -->
-    <skip />
-    <!-- no translation found for activity_title_licenses (7812517458691564230) -->
-    <skip />
-    <!-- no translation found for account_filter_view_checked (4368757211136754319) -->
-    <skip />
-    <!-- no translation found for account_filter_view_not_checked (5652044086126815700) -->
-    <skip />
+    <string name="about_build_version" msgid="4221971683776635130">"版本号"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"开放源代码许可"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"开放源代码软件的许可详情"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"隐私权政策"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"服务条款"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"开放源代码许可"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"已选中 <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"未选中 <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
 </resources>

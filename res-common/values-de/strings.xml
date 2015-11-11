@@ -107,8 +107,7 @@
     <string name="imLabelsGroup" msgid="8733603247535725786">"Chat"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Unternehmen"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Art der Beziehung"</string>
-    <!-- no translation found for eventLabelsGroup (4801419345682462171) -->
-    <skip />
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"Besonderes Datum"</string>
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adresse"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Unternehmen"</string>
@@ -226,7 +225,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Vorname zuerst"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nachname zuerst"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Standardkonto für neue Kontakte"</string>
-    <string name="setting_about" msgid="1864724372154478151">"Info"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Über \"Kontakte\""</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Sichtbare Kontakte teilen"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Die sichtbaren Kontakte konnten nicht geteilt werden."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontakte importieren/exportieren"</string>
@@ -269,10 +268,7 @@
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Lizenzdetails für Open-Source-Software"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Datenschutzerklärung"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Nutzungsbedingungen"</string>
-    <!-- no translation found for activity_title_licenses (7812517458691564230) -->
-    <skip />
-    <!-- no translation found for account_filter_view_checked (4368757211136754319) -->
-    <skip />
-    <!-- no translation found for account_filter_view_not_checked (5652044086126815700) -->
-    <skip />
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Open-Source-Lizenzen"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ausgewählt"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> nicht ausgewählt"</string>
 </resources>
