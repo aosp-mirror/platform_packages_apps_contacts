@@ -105,11 +105,13 @@ public class KindSectionDataList extends ArrayList<KindSectionData> {
         // Just return the first writable entry.
         for (KindSectionData kindSectionData : this) {
             if (kindSectionData.getAccountType().areContactsWritable()) {
-                RawContactModifier.ensureKindExists(kindSectionData.getRawContactDelta(),
-                        kindSectionData.getAccountType(),
-                        ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE);
                 vlog(mimeType + ": falling back to first kind section data to write");
-                return new Pair<>(kindSectionData, kindSectionData.getValuesDeltas().get(0));
+                RawContactModifier.ensureKindExists(kindSectionData.getRawContactDelta(),
+                        kindSectionData.getAccountType(), mimeType);
+                if (kindSectionData.getValuesDeltas() != null &&
+                        !kindSectionData.getValuesDeltas().isEmpty()) {
+                    return new Pair<>(kindSectionData, kindSectionData.getValuesDeltas().get(0));
+                }
             }
         }
 
