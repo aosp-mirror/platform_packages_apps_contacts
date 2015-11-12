@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.test.AndroidTestCase;
+import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -31,7 +32,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 @MediumTest
-public class ContactsPreferencesTest extends AndroidTestCase {
+public class ContactsPreferencesTest extends InstrumentationTestCase {
 
     private static final String ACCOUNT_KEY = "ACCOUNT_KEY";
 
@@ -44,6 +45,8 @@ public class ContactsPreferencesTest extends AndroidTestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
+        System.setProperty("dexmaker.dexcache",
+                getInstrumentation().getTargetContext().getCacheDir().getPath());
         MockitoAnnotations.initMocks(this);
 
         Mockito.when(mContext.getResources()).thenReturn(mResources);

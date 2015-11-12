@@ -30,6 +30,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+import android.test.suitebuilder.annotation.Suppress;
 import android.util.Log;
 
 import com.android.contacts.common.model.dataitem.DataKind;
@@ -46,6 +47,8 @@ import java.util.List;
  */
 @SmallTest
 public class ExternalAccountTypeTest extends InstrumentationTestCase {
+
+    @Suppress
     public void testResolveExternalResId() {
         final Context c = getInstrumentation().getTargetContext();
         // In this test we use the test package itself as an external package.
@@ -80,6 +83,7 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
     /**
      * Initialize with the test package itself and see if EditSchema is correctly parsed.
      */
+    @Suppress
     public void testEditSchema() {
         final ExternalAccountType type = new ExternalAccountType(getInstrumentation().getTargetContext(),
                 getInstrumentation().getContext().getPackageName(), false);
