@@ -464,7 +464,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     public void updatePhoto(Uri photoUri) {
         mPhotoValuesDelta.setFromTemplate(false);
         // Unset primary for all photos
-        unsetSuperPrimary();
+        unsetSuperPrimaryFromAllWritablePhotos();
         // Mark the currently displayed photo as primary
         mPhotoValuesDelta.setSuperPrimary(true);
 
@@ -487,13 +487,14 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mPhotoView.setFullSizedPhoto(photoUri);
     }
 
-    private void unsetSuperPrimary() {
+    private void unsetSuperPrimaryFromAllWritablePhotos() {
         final List<KindSectionData> kindSectionDataList =
                 mKindSectionDataMap.get(Photo.CONTENT_ITEM_TYPE);
         for (KindSectionData kindSectionData : kindSectionDataList) {
-            final List<ValuesDelta> valuesDeltaList = kindSectionData.getValuesDeltas();
-            for (ValuesDelta valuesDelta : valuesDeltaList) {
-                valuesDelta.setSuperPrimary(false);
+            if (kindSectionData.getAccountType().areContactsWritable()) {
+                for (ValuesDelta valuesDelta : kindSectionData.getNonEmptyValuesDeltas()) {
+                    valuesDelta.setSuperPrimary(false);
+                }
             }
         }
     }
@@ -532,10 +533,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         for (int i = 0; i < kindSectionDataList.size(); i++) {
             final KindSectionData kindSectionData = kindSectionDataList.get(i);
             final AccountType accountType = kindSectionData.getAccountType();
-            final List<ValuesDelta> valuesDeltaList = kindSectionData.getValuesDeltas();
-            if (valuesDeltaList == null || valuesDeltaList.isEmpty()) continue;
-            for (int j = 0; j < valuesDeltaList.size(); j++) {
-                final ValuesDelta valuesDelta = valuesDeltaList.get(j);
+            final List<ValuesDelta> valuesDeltas = kindSectionData.getNonEmptyValuesDeltas();
+            if (valuesDeltas.isEmpty()) continue;
+            for (int j = 0; j < valuesDeltas.size(); j++) {
+                final ValuesDelta valuesDelta = valuesDeltas.get(j);
                 final Bitmap bitmap = EditorUiUtils.getPhotoBitmap(valuesDelta);
                 if (bitmap == null) continue;
 
@@ -578,7 +579,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
         final KindSectionData kindSectionData =
                 kindSectionDataList.get(photo.kindSectionDataListIndex);
-        final List<ValuesDelta> valuesDeltaList = kindSectionData.getValuesDeltas();
+        final List<ValuesDelta> valuesDeltaList = kindSectionData.getNonEmptyValuesDeltas();
         if (photo.valuesDeltaListIndex >= valuesDeltaList.size()) {
             wlog("Invalid values delta list index");
             return;
@@ -586,7 +587,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         final ValuesDelta valuesDelta = valuesDeltaList.get(photo.valuesDeltaListIndex);
         valuesDelta.setFromTemplate(false);
         // Unset primary for all photos
-        unsetSuperPrimary();
+        unsetSuperPrimaryFromAllWritablePhotos();
         // Mark the currently displayed photo as primary
         valuesDelta.setSuperPrimary(true);
         // Update the UI
@@ -708,7 +709,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 kindSectionDataList.add(kindSectionData);
 
                 vlog("parse: " + i + " " + dataKind.mimeType + " " +
-                        kindSectionData.getValuesDeltas().size() + " value(s)");
+                        kindSectionData.getValuesDeltas().size() + " value(s) " +
+                        kindSectionData.getNonEmptyValuesDeltas().size() + " non-empty value(s)" +
+                        kindSectionData.getVisibleNonEmptyValuesDeltas().size() +
+                        " visible value(s)");
             }
         }
     }

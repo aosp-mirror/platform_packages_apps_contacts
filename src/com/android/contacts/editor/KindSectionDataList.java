@@ -21,7 +21,6 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.RawContactModifier;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.util.Pair;
 
@@ -105,11 +104,12 @@ public class KindSectionDataList extends ArrayList<KindSectionData> {
         // Just return the first writable entry.
         for (KindSectionData kindSectionData : this) {
             if (kindSectionData.getAccountType().areContactsWritable()) {
-                vlog(mimeType + ": falling back to first kind section data to write");
+                // Create an entry if necessary
                 RawContactModifier.ensureKindExists(kindSectionData.getRawContactDelta(),
                         kindSectionData.getAccountType(), mimeType);
-                if (kindSectionData.getValuesDeltas() != null &&
-                        !kindSectionData.getValuesDeltas().isEmpty()) {
+
+                if (!kindSectionData.getValuesDeltas().isEmpty()) {
+                    vlog(mimeType + ": falling back to first kind section data to write");
                     return new Pair<>(kindSectionData, kindSectionData.getValuesDeltas().get(0));
                 }
             }
@@ -164,7 +164,7 @@ public class KindSectionDataList extends ArrayList<KindSectionData> {
 
         for (KindSectionData kindSectionData : this) {
             final List<ValuesDelta> valuesDeltaList = kindSectionData.getValuesDeltas();
-            if (valuesDeltaList != null && !valuesDeltaList.isEmpty()) {
+            if (!valuesDeltaList.isEmpty()) {
                 vlog(mimeType + ": falling back to first empty entry to display");
                 final ValuesDelta valuesDelta = valuesDeltaList.get(0);
                 return new Pair<>(kindSectionData, valuesDelta);

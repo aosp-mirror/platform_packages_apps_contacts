@@ -22,11 +22,9 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountType.EditField;
 import com.android.contacts.common.model.dataitem.DataKind;
 
-import android.provider.ContactsContract.CommonDataKinds.Nickname;
-import android.provider.ContactsContract.CommonDataKinds.StructuredName;
-import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.text.TextUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +33,6 @@ import java.util.List;
 public final class KindSectionData {
 
     private final AccountType mAccountType;
-    private final List<ValuesDelta> mValuesDeltas;
     private final DataKind mDataKind;
     private final RawContactDelta mRawContactDelta;
 
@@ -44,20 +41,44 @@ public final class KindSectionData {
         mAccountType = accountType;
         mDataKind = dataKind;
         mRawContactDelta = rawContactDelta;
-        mValuesDeltas = mRawContactDelta.getMimeEntries(dataKind.mimeType, /* lazyCreate= */ true);
     }
 
     public AccountType getAccountType() {
         return mAccountType;
     }
 
+    /** Returns all ValuesDeltas for the data kind this section represents.*/
     public List<ValuesDelta> getValuesDeltas() {
-        return mValuesDeltas;
+        final List<ValuesDelta> valuesDeltas = mRawContactDelta.getMimeEntries(mDataKind.mimeType);
+        return valuesDeltas == null ? new ArrayList<ValuesDelta>() : valuesDeltas;
+    }
+
+    /** Returns visible and non empty ValuesDeltas for the data kind this section represents. */
+    public List<ValuesDelta> getVisibleNonEmptyValuesDeltas() {
+        final ArrayList<ValuesDelta> valuesDeltas = new ArrayList<> ();
+        for (ValuesDelta valuesDelta : getValuesDeltas()) {
+            // Same conditions as KindSectionView#rebuildFromState
+            if (valuesDelta.isVisible() && !valuesDelta.isNoop() && !isEmpty(valuesDelta)) {
+                valuesDeltas.add(valuesDelta);
+            }
+        }
+        return valuesDeltas;
+    }
+
+    /** Returns non-empty ValuesDeltas for the data kind this section represents. */
+    public List<ValuesDelta> getNonEmptyValuesDeltas() {
+        final ArrayList<ValuesDelta> valuesDeltas = new ArrayList<> ();
+        for (ValuesDelta valuesDelta : getValuesDeltas()) {
+            if (!isEmpty(valuesDelta)) {
+                valuesDeltas.add(valuesDelta);
+            }
+        }
+        return valuesDeltas;
     }
 
     /** Returns the super primary ValuesDelta for the data kind this section represents. */
     public ValuesDelta getSuperPrimaryValuesDelta() {
-        for (ValuesDelta valuesDelta : mValuesDeltas) {
+        for (ValuesDelta valuesDelta : getValuesDeltas()) {
             if (valuesDelta.isSuperPrimary()) return valuesDelta;
         }
         return null;
@@ -65,7 +86,7 @@ public final class KindSectionData {
 
     /** Returns the ValuesDelta with the given ID. */
     public ValuesDelta getValuesDeltaById(Long id) {
-        for (ValuesDelta valuesDelta : mValuesDeltas) {
+        for (ValuesDelta valuesDelta : getValuesDeltas()) {
             if (valuesDelta.getId().equals(id)) return valuesDelta;
         }
         return null;
@@ -73,24 +94,21 @@ public final class KindSectionData {
 
     /** Returns the first non empty ValuesDelta for the data kind this section represents. */
     public ValuesDelta getFirstNonEmptyValuesDelta() {
-        for (ValuesDelta valuesDelta : mValuesDeltas) {
+        for (ValuesDelta valuesDelta : getValuesDeltas()) {
             if (!isEmpty(valuesDelta)) return valuesDelta;
         }
         return null;
     }
 
-    /** Whether the given ValuesDelta is empty for the data kind this section represents. */
-    public boolean isEmpty(ValuesDelta valuesDelta) {
-        if (valuesDelta.isNoop()) return true;
-
+    private boolean isEmpty(ValuesDelta valuesDelta) {
         if (mDataKind.fieldList != null) {
             for (EditField editField : mDataKind.fieldList) {
                 final String column = editField.column;
                 final String value = valuesDelta.getAsString(column);
-                if (TextUtils.isEmpty(value)) return true;
+                if (!TextUtils.isEmpty(value)) return false;
             }
         }
-        return false;
+        return true;
     }
 
     public DataKind getDataKind() {
@@ -99,13 +117,5 @@ public final class KindSectionData {
 
     public RawContactDelta getRawContactDelta() {
         return mRawContactDelta;
-    }
-
-    public String toString() {
-        return String.format("%s<accountType=%s dataSet=%s values=%s>",
-                KindSectionData.class.getSimpleName(),
-                mAccountType.accountType,
-                mAccountType.dataSet,
-                getValuesDeltas().size());
     }
 }
