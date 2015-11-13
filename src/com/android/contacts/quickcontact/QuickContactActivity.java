@@ -1396,6 +1396,12 @@ public class QuickContactActivity extends ContactsActivity
             mSuggestionList.removeAllViews();
         }
 
+        // Do not show the card when it's directory contact or invisible.
+        if (DirectoryContactUtil.isDirectoryContact(mContactData)
+                || InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)) {
+            return;
+        }
+
         if (mAggregationSuggestionEngine == null) {
             mAggregationSuggestionEngine = new AggregationSuggestionEngine(this);
             mAggregationSuggestionEngine.setListener(this);
