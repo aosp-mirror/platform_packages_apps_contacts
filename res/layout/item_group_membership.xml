@@ -33,6 +33,8 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/editor_min_line_item_height"
         android:textSize="@dimen/editor_form_text_size"
+        android:singleLine="true"
+        android:ellipsize="end"
         android:focusable="true"
         android:layout_marginEnd="@dimen/editor_delete_button_size"
         android:layout_marginBottom="@dimen/editor_padding_between_editor_views"
