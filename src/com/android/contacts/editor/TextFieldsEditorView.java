@@ -260,8 +260,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 fieldView.setText(value);
             }
 
-            // Show the delete button if we have a non-null value
-            setDeleteButtonVisible(value != null);
+            // Show the delete button if we have a non-empty value
+            setDeleteButtonVisible(!TextUtils.isEmpty(value));
 
             // Prepare listener for writing changes
             fieldView.addTextChangedListener(new TextWatcher() {
