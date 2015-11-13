@@ -330,7 +330,7 @@ public class CompactKindSectionView extends LinearLayout {
                 } else {
                     editorListener = new NonNameEditorListener();
                 }
-                for (ValuesDelta valuesDelta : kindSectionData.getValuesDeltas()) {
+                for (ValuesDelta valuesDelta : kindSectionData.getVisibleNonEmptyValuesDeltas()) {
                     addNonNameEditorView(kindSectionData.getRawContactDelta(),
                             kindSectionData.getDataKind(), valuesDelta, editorListener);
                 }
