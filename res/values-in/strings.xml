@@ -18,6 +18,8 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontak"</string>
     <string name="launcherActivityLabel" msgid="6497230399032392417">"Kontak"</string>
+    <string name="quickContactActivityLabel" msgid="7985456650689347268">"Lihat Kontak"</string>
+    <string name="editContactActivityLabel" msgid="1129944572070802839">"Edit Kontak"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontak"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontak"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Panggilan langsung"</string>
@@ -320,4 +322,6 @@
     <string name="contact_from_account_name" msgid="2078526819634079406">"Dari <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"Hapus <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Hapus <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
+    <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Foto dari <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>tidak dicentang"</string>
+    <string name="photo_view_description_checked" msgid="3906597168607472795">"Foto dari <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>dicentang"</string>
 </resources>
