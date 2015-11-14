@@ -18,6 +18,8 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontaktai"</string>
     <string name="launcherActivityLabel" msgid="6497230399032392417">"Kontaktai"</string>
+    <string name="quickContactActivityLabel" msgid="7985456650689347268">"Žiūrėti kontaktą"</string>
+    <string name="editContactActivityLabel" msgid="1129944572070802839">"Redaguoti kontaktą"</string>
     <string name="contactsList" msgid="8661624236494819731">"Adresinė"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Adresatas"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Tiesioginis numerio rinkimas"</string>
@@ -342,4 +344,6 @@
     <string name="contact_from_account_name" msgid="2078526819634079406">"Iš <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"Ištrinti <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Ištrinti <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
+    <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Nuotrauka iš <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> <xliff:g id="USER_NAME">%s </xliff:g> nepažymėta"</string>
+    <string name="photo_view_description_checked" msgid="3906597168607472795">"Nuotrauka iš <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> <xliff:g id="USER_NAME">%s </xliff:g> pažymėta"</string>
 </resources>
