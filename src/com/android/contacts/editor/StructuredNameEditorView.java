@@ -221,8 +221,13 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
      */
     public void setDisplayName(String name) {
         // For now, assume the first text field is the name.
-        // TODO: Find a better way to get a hold of the name field.
+        // TODO: Find a better way to get a hold of the name field,
+        // including given_name and family_name.
         super.setValue(0, name);
+        getValues().setDisplayName(name);
+        rebuildStructuredName(getValues());
+        super.setValue(1, getValues().getAsString(StructuredName.GIVEN_NAME));
+        super.setValue(3, getValues().getAsString(StructuredName.FAMILY_NAME));
     }
 
     /**
@@ -230,6 +235,7 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
      */
     public String getDisplayName() {
         final ValuesDelta valuesDelta = getValues();
+        rebuildFullName(valuesDelta);
         if (hasShortAndLongForms() && areOptionalFieldsVisible()) {
             final Map<String, String> structuredNameMap = valuesToStructuredNameMap(valuesDelta);
             final String displayName = NameConverter.structuredNameToDisplayName(
