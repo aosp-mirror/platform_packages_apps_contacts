@@ -46,10 +46,11 @@ public class EditorIntents {
      * existing contact.
      */
     public static Intent createCompactEditContactIntent(Uri contactLookupUri,
-            MaterialPalette materialPalette, long photoId) {
+            MaterialPalette materialPalette, long photoId, String photoUri) {
         final Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri);
         putMaterialPalette(intent, materialPalette);
         putPhotoId(intent, photoId);
+        putPhotoUri(intent, photoUri);
         return intent;
     }
 
@@ -156,6 +157,12 @@ public class EditorIntents {
     private static void putPhotoId(Intent intent, long photoId) {
         if (photoId >= 0) {
             intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_PHOTO_ID, photoId);
+        }
+    }
+
+    private static void putPhotoUri(Intent intent, String photoUri) {
+        if (!Uri.EMPTY.toString().equals(photoUri)) {
+            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_PHOTO_URI, photoUri);
         }
     }
 
