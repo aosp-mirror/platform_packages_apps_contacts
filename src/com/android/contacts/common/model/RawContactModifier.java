@@ -182,11 +182,11 @@ public class RawContactModifier {
 
         // Build list of valid types
         final int overallCount = typeCount.get(FREQUENCY_TOTAL);
+        final boolean validOverall = (kind.typeOverallMax == -1 ? true
+                : overallCount <= kind.typeOverallMax);
         for (EditType type : kind.typeList) {
-            final boolean validOverall = (kind.typeOverallMax == -1 ? true
-                    : overallCount < kind.typeOverallMax);
             final boolean validSpecific = (type.specificMax == -1 ? true : typeCount
-                    .get(type.rawValue) < type.specificMax);
+                    .get(type.rawValue) <= type.specificMax);
             final boolean validSecondary = (includeSecondary ? true : !type.secondary);
             final boolean forcedInclude = type.equals(forceInclude);
             if (forcedInclude || (validOverall && validSpecific && validSecondary)) {
