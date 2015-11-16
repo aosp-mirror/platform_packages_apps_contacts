@@ -134,6 +134,7 @@ public class GroupMembershipView extends LinearLayout
 
     private RawContactDelta mState;
     private Cursor mGroupMetaData;
+    private boolean mAccountHasGroups;
     private String mAccountName;
     private String mAccountType;
     private String mDataSet;
@@ -207,6 +208,14 @@ public class GroupMembershipView extends LinearLayout
         return mGroupMetaData != null;
     }
 
+    /**
+     * Return true if the account has groups to edit group membership for contacts
+     * belong to the account.
+     */
+    public boolean accountHasGroups() {
+        return mAccountHasGroups;
+    }
+
     public void setState(RawContactDelta state) {
         mState = state;
         mAccountType = mState.getAccountType();
@@ -224,7 +233,6 @@ public class GroupMembershipView extends LinearLayout
             return;
         }
 
-        boolean accountHasGroups = false;
         mFavoritesGroupId = 0;
         mDefaultGroupId = 0;
 
@@ -244,7 +252,7 @@ public class GroupMembershipView extends LinearLayout
                             && mGroupMetaData.getInt(GroupMetaDataLoader.AUTO_ADD) != 0) {
                     mDefaultGroupId = groupId;
                 } else {
-                    accountHasGroups = true;
+                    mAccountHasGroups = true;
                 }
 
                 // Exclude favorites from the list - they are handled with special UI (star)
@@ -262,7 +270,7 @@ public class GroupMembershipView extends LinearLayout
             }
         }
 
-        if (!accountHasGroups) {
+        if (!mAccountHasGroups) {
             setVisibility(GONE);
             return;
         }
