@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Текстът е копиран"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Копиране в буферната памет"</string>
     <string name="call_custom" msgid="2786306789889210756">"Обаждане на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Обаждане на домашен"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Обаждане на мобилен"</string>
@@ -87,7 +88,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Всички контакти с телефонни номера"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Преглед на актуализациите"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Само в таблета, несинхронизиран"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Само в телефона, несинхронизиран"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Само в тел., несинхрон."</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псевдоним"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>
@@ -96,16 +97,16 @@
     <string name="name_prefix" msgid="8219879405071462309">"Обръщение"</string>
     <string name="name_middle" msgid="3951610314424632183">"Презиме"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Титла"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Име, както се произнася"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Собствено име, както се произнася"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Презиме, както се произнася"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Фамилно име, както се произнася"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Име (фонетично)"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Собствено име (фонетично)"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Презиме (фонетично)"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Фамилно име (фонетично)"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Имейл"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Адрес"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"Незабавни съобщения"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Организация"</string>
-    <string name="relationLabelsGroup" msgid="3585294036166325520">"Взаимоотношения"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Връзки"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Специални дати"</string>
     <string name="sms" msgid="8086289395154598654">"Текстово съобщение"</string>
     <string name="postal_address" msgid="7692926530081579786">"Адрес"</string>
@@ -157,13 +158,13 @@
     <string name="menu_done" msgid="32470053723443112">"Готово"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Отказ"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Контакти във: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Контакти в персонализиран изглед"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Контакти в персонал. изглед"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Един контакт"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Създаване на контакт в профил"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Импортиране от SIM карта"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Импортиране от SIM картата „<xliff:g id="SIM_NAME">^1</xliff:g>“ – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Импортиране от SIM картата „<xliff:g id="SIM_NAME">%1$s</xliff:g>“"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Импорт. от хранилището"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Импортиране от .vcf файл"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Да се анулира ли импортирането на „<xliff:g id="FILENAME">%s</xliff:g>“?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Да се анулира ли експортирането на „<xliff:g id="FILENAME">%s</xliff:g>“?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Импорт./експорт. не можа да се анулира"</string>
@@ -171,6 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"„<xliff:g id="FILE_NAME">%s</xliff:g>“ не можа да се отвори: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Експортирането не можа да започне: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Няма контакт, позволяващ експортиране."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Деактивирахте задължително разрешение."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"При експортирането възникна грешка: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Поисканото име на файла е твърде дълго („<xliff:g id="FILENAME">%s</xliff:g>“)."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"В хранилището има твърде много vCard файлове."</string>
@@ -182,6 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Метаинформацията от даден/и vCard файл/ове не можа да бъде събрана."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Един или повече файла не можаха да бъдат импортирани (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Експортирането на „<xliff:g id="FILENAME">%s</xliff:g>“ завърши."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Експортирането на контактите завърши."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Експортирането на „<xliff:g id="FILENAME">%s</xliff:g>“ е анулирано."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Експортиране на данни за контакти"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Данните за контактите ви се експортират във: „<xliff:g id="FILE_NAME">%s</xliff:g>“."</string>
@@ -191,9 +194,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"Създателят на vCard не се стартира правилно."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Не се експортираха"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Данните за контакта не бяха експортирани.\nПричина: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Не бе намерено хранилище."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Не бе намерена SD карта."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Списъкът ви с контакти ще се експортира във файла: „<xliff:g id="VCARD_FILENAME">%s</xliff:g>“."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> се импортира"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Данните от vCard не бяха прочетени"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Четенето на данни от vCard е анулирано"</string>
@@ -203,6 +203,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Файлът ще се импортира скоро."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Заявката за импортиране на vCard бе отхвърлена. Опитайте отново по-късно."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"„<xliff:g id="FILENAME">%s</xliff:g>“ ще се експортира скоро."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Файлът ще се експортира скоро."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Заявката за експортиране на vCard бе отхвърлена. Опитайте отново по-късно."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard се кешира/т във временно локално хранилище. Самото импортиране ще започне скоро."</string>
@@ -211,31 +212,26 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"На SD картата не бе намерен vCard файл."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Контакти от КБП"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Да се експортират ли контактите?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"Избиране на vCard файл"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"Импортиране на един vCard файл"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Импортиране на няколко vCard файла"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"Импортиране на всички vCard файлове"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Търсят се данни от vCard в хранилището…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Търсят се данни от vCard в SD картата…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кешира се"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Хранилището не можа да бъде сканирано. (Причина: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD картата не можа да бъде сканирана. (Причина: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импортира/т се <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Експорт. в хранилището"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Експорт. като .vcf файл"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортиране по"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Собствено име"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Фамилно име"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Формат на името"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Собственото име първо"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Фамилното име първо"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Първо собственото име"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Първо фамилното име"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Споделяне на видимите контакти"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Споделянето на видимите контакти не бе успешно."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Импортиране/eкспортиране на контакти"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Импортиране на контактите"</string>
     <string name="share_error" msgid="665756457151793108">"Този контакт не може да бъде споделен."</string>
     <string name="menu_search" msgid="7464453023659824700">"Търсене"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Контакти за показване"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Контакти за показване"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Определяне на персонализиран изглед"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Определяне на изглед"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Намиране на контакти"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Любими"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Няма контакти."</string>
@@ -254,4 +250,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Профил"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Винаги да се използва за обаждания"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Обаждане чрез"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Обаждане, включващо бележка"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Напишете придружаваща бележка, която ще се изпрати при извършване на обаждането..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"ИЗПРАЩАНЕ И ОБАЖДАНЕ"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>
