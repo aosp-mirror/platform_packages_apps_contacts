@@ -16,8 +16,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/view_pager_tab_background"
-    android:importantForAccessibility="no">
+    android:background="@drawable/view_pager_tab_background">
     <!-- The tab icon -->
     <ImageView
         android:id="@+id/icon"
