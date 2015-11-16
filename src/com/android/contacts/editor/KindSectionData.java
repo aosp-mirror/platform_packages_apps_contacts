@@ -53,12 +53,12 @@ public final class KindSectionData {
         return valuesDeltas == null ? new ArrayList<ValuesDelta>() : valuesDeltas;
     }
 
-    /** Returns visible and non no-op ValuesDeltas for the data kind this section represents. */
+    /** Returns visible and non deleted ValuesDeltas for the data kind this section represents. */
     public List<ValuesDelta> getVisibleValuesDeltas() {
         final ArrayList<ValuesDelta> valuesDeltas = new ArrayList<> ();
         for (ValuesDelta valuesDelta : getValuesDeltas()) {
             // Same conditions as KindSectionView#rebuildFromState
-            if (valuesDelta.isVisible() && !valuesDelta.isNoop()) {
+            if (valuesDelta.isVisible() && !valuesDelta.isDelete()) {
                 valuesDeltas.add(valuesDelta);
             }
         }

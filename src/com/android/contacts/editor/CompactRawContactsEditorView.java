@@ -708,7 +708,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
                 vlog("parse: " + i + " " + dataKind.mimeType + " " +
                         kindSectionData.getValuesDeltas().size() + " value(s) " +
-                        kindSectionData.getNonEmptyValuesDeltas().size() + " non-empty value(s)" +
+                        kindSectionData.getNonEmptyValuesDeltas().size() + " non-empty value(s) " +
                         kindSectionData.getVisibleValuesDeltas().size() +
                         " visible value(s)");
             }
