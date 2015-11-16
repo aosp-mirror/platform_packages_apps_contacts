@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Teksti u kopjua"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Kopjo në kujtesën e fragmenteve"</string>
     <string name="call_custom" msgid="2786306789889210756">"Telefono <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Telefono numrin e shtëpisë"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Telefono numrin celular"</string>
@@ -62,7 +63,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Dërgo mesazh te numri i MMS-së"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Bëj një telefonatë me video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Të pastrohen kontaktet e shpeshta?"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Do ta pastrosh listën e kontakteve të shpeshta në aplikacionet Kontaktet dhe Telefoni dhe do t\'i detyrosh aplikacionet e emailit të mësojnë preferencat e tua të adresimit nga e para."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Do ta pastrosh listën e kontakteve të shpeshta në aplikacionet \"Kontaktet\" dhe \"Telefoni\" dhe do t\'i detyrosh aplikacionet e mail-it të mësojnë preferencat e tua të adresimit nga e para."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Po pastron kontaktet e shpeshta…"</string>
     <string name="status_available" msgid="4832569677396634846">"I gatshëm"</string>
     <string name="status_away" msgid="6267905184545881094">"I larguar"</string>
@@ -103,7 +104,7 @@
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefoni"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Mail-i"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresa"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"Mesazh i çastit"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizata"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Marrëdhënia"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Datat e veçanta"</string>
@@ -157,13 +158,13 @@
     <string name="menu_done" msgid="32470053723443112">"U krye!"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Anulo"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontaktet në <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kontaktet në pamjen e personalizuar"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Pamja e personalizuar"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Një kontakt i vetëm"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Krijo një kontakt nën llogari"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importo nga karta SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importo nga karta SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importo nga karta SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importo nga hapësira ruajtëse"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importo nga skedar .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Të anulohet importimi i <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Të anulohet eksportimi i <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Importimi/eksportimi i vCard nuk mund të anulohej"</string>
@@ -171,6 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" nuk mund të hapej: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Eksportuesi nuk mund të nisej: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Nuk ka asnjë kontakt që mund të eksportohet."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Ke çaktivizuar një leje e cila është të detyrueshme."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Ndodhi një gabim gjatë eksportimit: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Emri i kërkuar i skedarit është shumë i gjatë (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Ka shumë skedarë vCard në hapësirën ruajtëse."</string>
@@ -182,6 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Informacionet e skedarit(ëve) të dhënë të vCard nuk mund të mblidheshin."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Një ose më shumë skedarë nuk mundën të importoheshin (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Eksportimi i <xliff:g id="FILENAME">%s</xliff:g> përfundoi."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Eksportimi i kontakteve përfundoi."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Eksportimi i <xliff:g id="FILENAME">%s</xliff:g> u anulua."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Po eksporton të dhënat e kontaktit"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Të dhënat e kontaktit po eksportohen te: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -191,9 +194,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"Kompozitori i vCard nuk u nis si duhet."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Nuk mund të eksportoheshin"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Të dhënat e kontaktit nuk u eksportuan.\nArsyeja: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Nuk u gjet asnjë hapësirë ruajtëse."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Nuk u gjet asnjë kartë SD."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Lista jote e kontakteve do të eksportohet te skedari: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Po importon <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Të dhënat e vCard nuk mund të lexoheshin"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Leximi i të dhënave të vCard u anulua."</string>
@@ -203,6 +203,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Skedari do të importohet së shpejti."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Kërkesa e importit të vCard u refuzua. Provo përsëri më vonë."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> do të eksportohet së shpejti."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Skedari do të eksportohet së shpejti."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Kërkesa e eksportimit të vCard u refuzua. Provo përsëri më vonë."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakti"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Po ruan vCard në hapësirën ruajtëse lokale të përkohshme. Importimi aktual do të nisë së shpejti."</string>
@@ -211,17 +212,11 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Nuk u gjet asnjë skedar vCard në kartën SD."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakti u mor nëpërmjet NFC-së"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Të eksportohen kontaktet?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"Zgjidh skedarin vCard"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"Importo një skedar vCard"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Importo shumë skedarë vCard"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"Importo të gjithë skedarët vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Po kërkon për të dhënat e vCard në hapësirën ruajtëse…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Po kërkon për të dhënat e vCard në kartën SD…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Po ruan memorien e përkohshme"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Hapësira ruajtëse nuk mund të skanohej. (Arsyeja: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Karta SD nuk mund të skanohej. (Arsyeja: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Po importon <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Eksporto te hapësira ruajtëse"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Eksporto në skedar .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Rendit sipas"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Emri"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Mbiemri"</string>
@@ -229,13 +224,14 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Emri në fillim"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Mbiemri në fillim"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Shpërnda kontaktet e dukshme"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Ndarja e kontakteve të dukshme dështoi."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importo/eksporto kontaktet"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importo kontaktet"</string>
     <string name="share_error" msgid="665756457151793108">"Ky kontakt nuk mund të shpërndahet"</string>
     <string name="menu_search" msgid="7464453023659824700">"Kërko"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Kontaktet për t\'u paraqitur"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontaktet për t\'u paraqitur"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Përcakto pamjen e personalizuar"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakte për t\'u shfaqur"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakte për t\'u shfaqur"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Pamja e personalizuar"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Gjej kontaktet"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Të preferuarat"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nuk ka asnjë kontakt."</string>
@@ -254,4 +250,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Llogaria"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Përdor gjithmonë këtë për telefonatat"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Telefono me"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Telefono me shënim"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Shkruaj një shënim për të dërguar një telefonatë..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"DËRGO DHE TELEFONO"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>

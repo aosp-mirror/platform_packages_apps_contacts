@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Мәтін көшірілді"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Аралық сақтағышқа көшіру"</string>
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> нөміріне қоңырау шалу"</string>
     <string name="call_home" msgid="1479549630992276827">"Үйге қоңырау шалу"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Ұялы телефонға қоңырау шалу"</string>
@@ -87,7 +88,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Телефон нөмірі бар барлық контактілер"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Жаңартуларды көру"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Планшет-қана, синхрондалмаған"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Телефон-ғана, синхрондалмаған"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Телефон ғана, синхрондалмайды"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Аты-жөні"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Қысқа аты"</string>
     <string name="full_name" msgid="885420216812981202">"Аты-жөні"</string>
@@ -113,7 +114,7 @@
     <string name="ghostData_title" msgid="6221293237772204604">"Атауы"</string>
     <string name="label_notes" msgid="3997277594846722699">"Ескертулер"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Вебсайт"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Веб-сайт"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Топтар"</string>
     <string name="email_home" msgid="2230967805906450693">"Үй э-поштасына хат жіберу"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Ұялы телефонға хат жіберу"</string>
@@ -154,7 +155,7 @@
     <string name="display_more_groups" msgid="6304997485733158224">"Басқа топтар..."</string>
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" синрондаудан алу топталмаған контактілердің синхрондаудан алынуына себеп болады."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Дисплей опцияларын сақтау…"</string>
-    <string name="menu_done" msgid="32470053723443112">"Орындалды"</string>
+    <string name="menu_done" msgid="32470053723443112">"Дайын"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Өшіру"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> ішіндегі контактілер"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Контактілердің жеке көрінісі"</string>
@@ -163,7 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"SIM картадан импорттау"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g> SIM картасынан импорттау"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM картасынан импорттау"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Жадтан импорттау"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">".vcf файлынан импорттау"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> импорттау тоқтатылсын ба?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> экспорттау тоқтатылсын ба?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vКартасын импорттау/экспорттауды тоқтату мүмкін болмады"</string>
@@ -171,6 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" файлын аша алмады: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Экспорттаушыны бастау мүмкін болмады: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Экспортталатын контакт жоқ."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Сіз міндетті рұқсатты өшірдіңіз."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Экспорттау кезінде қателік орын алды: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Қажетті файл атауы тым ұзақ (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Жадта тым көп vКарта файлдары."</string>
@@ -182,6 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Осы vКарта файлдары туралы мета ақпарат жинай алмады."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Бір немесе бірнеше карталарды импорттау мүмкін болмады (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> экспорттау аяқталды."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Контактілер экспортталып болды."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> экспорттау тоқтатылды."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Контакт дерекқор экспортталуда"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Контакт дерекқорыңыз келесі файлға экспортталуда: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -191,9 +194,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"vКарта жасақтаушы дұрыс басталмады."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Экспорттай алмады"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Контакт деректері экспортталмады. \nСебебі: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Ешқандай жад табылмады."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Ешқандай SD картасы табылмады."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Контактілер тізімі келесі файлға экспортталады: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> импортталуда"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vКарта дерекқорын оқи алмады"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vКарта дерекқорын оқу тоқтатылды"</string>
@@ -203,35 +203,31 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Файл жуық арада импортталады."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vКартасын импорттау өтініші қабылданбады. Кейінірек қайта әрекеттеніп көріңіз."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> жуық арада экспортталады."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Файл қысқа уақыттан кейін экспортталады."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vКартасын экспорттау өтініші қабылданбады. Кейінірек қайта әрекеттеніп көріңіз."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vКарталарын жергілікті уақытша жадқа кэштеу. Импорттау жуық арада басталады."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vКартасын экспорттау мүмкін болмады."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Жадта ешқандай vКарта табылмады."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD картада ешқандай vКарта табылмады."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD картада ешқандай vCard файлы жоқ."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"ЖӨБ контактісі"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Контактілер экспортталсын ба?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"vКарта файлын таңдау"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"Бір vКарта файлын импорттау"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Бірнеше vКарта файлдарын импорттау"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"Барлық vКарта файлдарын импорттау"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Жадтан vКарта дерекқорын іздеуде…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SD картасынан vКарта дерекқорын іздеуде…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кэштеу"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Ешқандай жадты скандау мүмкін болмады. (Себеп: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD картасын скандау мүмкін болмады. (Себеп: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> импорттауда: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Жадқа экспорттау"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf файлына экспорттау"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сұрыптау шарты"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Аты"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Тегі"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Ат пішімі"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Алдымен аты"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Алдымен тегі"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"Көрінетін контактілермен бөлісу"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Көрінетін контактілерді бөлісу"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Көрінетін контактілерді бөлісу сәтсіз аяқталды."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Контактілерді импорттау/экспорттау"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Контактілерді импорттау"</string>
-    <string name="share_error" msgid="665756457151793108">"Бұл контактімен бөлісу мүмкін болмады"</string>
+    <string name="share_error" msgid="665756457151793108">"Бұл контактіні бөлісу мүмкін болмады"</string>
     <string name="menu_search" msgid="7464453023659824700">"Іздеу"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Көрсетілетін контактілер"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Көрсетілетін контактілер"</string>
@@ -240,7 +236,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Сүйіктілер"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ешқандай контактілер жоқ."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ешқандай көрінетін контактілер жоқ."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Ешқандай сүйіктілер жоқ."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Таңдаулылар жоқ."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> контактілер жоқ"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Жиі қолданылғандары өшіру"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM картасын таңдау"</string>
@@ -254,4 +250,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Есептік жазба"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Осыны қоңыраулар үшін әрқашан пайд."</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Келесімен қоңырау шалу"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Ескертпе бар қоңырау"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Қоңыраумен жіберу үшін ескертпе теріңіз ..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"ЖІБЕРУ ЖӘНЕ ҚОҢЫРАУ СОҒУ"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>

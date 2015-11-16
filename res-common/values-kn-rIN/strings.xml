@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"ಪಠ್ಯವನ್ನು ನಕಲಿಸಲಾಗಿದೆ"</string>
+    <string name="copy_text" msgid="3424081789297978355">"ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸಿ"</string>
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> ಕರೆ ಮಾಡಿ"</string>
     <string name="call_home" msgid="1479549630992276827">"ಮನೆಗೆ ಕರೆ ಮಾಡಿ"</string>
     <string name="call_mobile" msgid="8618334085824709009">"ಮೊಬೈಲ್‌‌ಗೆ ಕರೆ ಮಾಡಿ"</string>
@@ -96,10 +97,10 @@
     <string name="name_prefix" msgid="8219879405071462309">"ಹೆಸರಿನ ಪೂರ್ವಪ್ರತ್ಯಯ"</string>
     <string name="name_middle" msgid="3951610314424632183">"ಮಧ್ಯದ ಹೆಸರು"</string>
     <string name="name_suffix" msgid="5436984808550075931">"ಹೆಸರಿನ ಪ್ರತ್ಯಯ"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"ಉಚ್ಚಾರಣೆ ಹೆಸರು"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"ಉಚ್ಛಾರಣಾನುರೂಪವಾದ ಮೊದಲ ಹೆಸರು"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"ಉಚ್ಚಾರಣಾನುರೂಪವಾಗಿ ಮಧ್ಯದ ಹೆಸರು"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"ಉಚ್ಛಾರಣಾನುರೂಪವಾದ ಕೊನೆಯ ಹೆಸರು"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"ಫೋನೆಟಿಕ್‌‌ ಹೆಸರು"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"ಫೋನೆಟಿಕ್‌ ಮೊದಲ ಹೆಸರು"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"ಫೋನೆಟಿಕ್‌‌ ಮಧ್ಯ ಹೆಸರು"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"ಫೋನೆಟಿಕ್‌‌ ಕೊನೆಯ ಹೆಸರು"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ಫೋನ್"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ಇಮೇಲ್"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"ವಿಳಾಸ"</string>
@@ -145,7 +146,7 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"ಹೆಸರಿನ ಕ್ಷೇತ್ರಗಳನ್ನು ವಿಸ್ತರಿಸಿ ಅಥವಾ ಸಂಕುಚಿಸಿ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳು"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"ನಕ್ಷತ್ರ ಹಾಕಿರುವುದು"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"ಕಸ್ಟಮೈಜ್‌ ಮಾಡಿ"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"ಕಸ್ಟಮೈಜ್‌"</string>
     <string name="list_filter_single" msgid="4553809449379139446">"ಸಂಪರ್ಕ"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"ಇತರ ಎಲ್ಲ ಸಂಪರ್ಕಗಳು"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳು"</string>
@@ -163,7 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> SIM ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"ಸಂಗ್ರಹಣೆಯಿಂದ ಆಮದು ಮಾಡಿ"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">".vcf ಫೈಲ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> ಆಮದು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> ಅನ್ನು ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard ಆಮದು/ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ"</string>
@@ -171,6 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ಅನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"ರಫ್ತುದಾರರನ್ನು ಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ಯಾವುದೇ ರಫ್ತುಮಾಡಬಹುದಾದ ಸಂಪರ್ಕವಿಲ್ಲ."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"ನೀವು ಅಗತ್ಯವಿರುವ ಅನುಮತಿಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿರುವಿರಿ."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"ರಫ್ತು ಮಾಡುವ ಸಂದರ್ಭದಲ್ಲಿ ದೋಷವೊಂದು ಕಂಡುಬಂದಿದೆ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ಅಗತ್ಯವಿರುವ ಫೈಲ್‌‌ ಹೆಸರು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"ಸಂಗ್ರಹಣೆಯಲ್ಲಿ ಹಲವಾರು vCard ಫೈಲ್‌ಗಳಿವೆ."</string>
@@ -182,6 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"ನೀಡಿದ vCard ಫೈಲ್‌(ಗಳ) ಮೆಟಾ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಫೈಲ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗುವುದಿಲ್ಲ (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮುಗಿದಿದೆ."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"ಸಂಪರ್ಕಗಳ ರಫ್ತು ಮಾಡುವಿಕೆ ಮುಗಿದಿದೆ."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ರಫ್ತುಮಾಡಲಾಗುತ್ತಿದೆ"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"ನಿಮ್ಮ ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ಇದಕ್ಕೆ ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -191,9 +194,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard ಸಂಯೋಜಕ ಸರಿಯಾಗಿ ಪ್ರಾರಂಭವಾಗಿಲ್ಲ."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ರಫ್ತು ಮಾಡಲಾಗುವುದಿಲ್ಲ"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ರಫ್ತು ಮಾಡಲಿಲ್ಲ.\nಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"ಯಾವುದೇ ಸಂಗ್ರಹಣೆ ಪತ್ತೆಯಾಗಿಲ್ಲ."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"ಯಾವುದೇ SD ಕಾರ್ಡ್‌ ಪತ್ತೆಯಾಗಿಲ್ಲ."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"ನಿಮ್ಮ ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ಫೈಲ್‌ಗೆ ರಫ್ತುಮಾಡಲಾಗುತ್ತದೆ: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard ಡೇಟಾವನ್ನು ಓದಲಾಗಲಿಲ್ಲ"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard ಡೇಟಾ ಓದುವಿಕೆ ರದ್ದಗೊಳಿಸಲಾಗಿದೆ"</string>
@@ -203,6 +203,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"ಫೈಲ್‌ ಅನ್ನು ಸ್ವಲ್ಪ ಸಮಯದಲ್ಲಿ ಆಮದು ಮಾಡಲಾಗುತ್ತದೆ."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard ಆಮದು ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ. ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> ಸ್ವಲ್ಪ ಸಮಯದಲ್ಲಿ ರಫ್ತು ಮಾಡಲಾಗುತ್ತದೆ."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ಫೈಲ್‌ ಅನ್ನು ಸ್ವಲ್ಪ ಸಮಯದಲ್ಲಿ ರಪ್ತು ಮಾಡಲಾಗುತ್ತದೆ."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard ರಫ್ತು ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"ಸಂಪರ್ಕ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ಗಳು) ಅನ್ನು ಸ್ಥಳೀಯ ತಾತ್ಕಾಲಿಕ ಸಂಗ್ರಹಣೆಗೆ ಸಂಗ್ರಹ ಮಾಡಲಾಗುತ್ತಿದೆ. ನಿಜವಾದ ಆಮದು ಶೀಘ್ರದಲ್ಲೇ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ."</string>
@@ -210,26 +211,21 @@
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"ಸಂಗ್ರಹಣೆಯಲ್ಲಿ ಯಾವುದೇ vCard ಫೈಲ್‌ ಕಂಡುಬಂದಿಲ್ಲ."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD ಕಾರ್ಡ್‌ನಲ್ಲಿ ಯಾವುದೇ vCard ಫೈಲ್‌ ಕಂಡುಬಂದಿಲ್ಲ."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC ಮೂಲಕ ಸ್ವೀಕರಿಸಲಾದ ಸಂಪರ್ಕ"</string>
-    <string name="confirm_export_title" msgid="3240899428149018226">"ಸಂಪರ್ಕಗಳನ್ನು ರಫ್ತು ಮಾಡುವುದೇ?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"vCard ಫೈಲ್‌ ಆಯ್ಕೆಮಾಡಿ"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"ಒಂದು vCard ಫೈಲ್‌ ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"ಬಹು vCard ಫೈಲ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"ಎಲ್ಲ vCard ಫೈಲ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"ಸಂಗ್ರಹಣೆಯಲ್ಲಿ vCard ಡೇಟಾಗಾಗಿ ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SD ಕಾರ್ಡ್‌ನಲ್ಲಿ vCard ಡೇಟಾಗಾಗಿ ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"ಸಂಪರ್ಕಗಳನ್ನು ರವಾನಿಸುವುದೇ?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"ಸಂಗ್ರಹಿಸಲಾಗುತ್ತಿದೆ"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"ಸಂಗ್ರಹಣೆಯನ್ನು ಸ್ಕ್ಯಾನ್‌ ಮಾಡಲಾಗಲಿಲ್ಲ. (ಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD ಕಾಡ್‌ ಸ್ಕ್ಯಾನ್‌ ಮಾಡಲಾಗಲಿಲ್ಲ. (ಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"ಸಂಗ್ರಹಣೆಗೆ ರಫ್ತುಮಾಡಿ"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ಫೈಲ್‌ಗೆ ರಫ್ತು ಮಾಡಿ"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ಈ ಪ್ರಕಾರ ವಿಂಗಡಿಸು"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ಮೊದಲ ಹೆಸರು"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"ಕೊನೆಯ ಹೆಸರು"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"ಹೆಸರು ಸ್ವರೂಪ"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"ಹೆಸರಿನ ಫಾರ್ಮ್ಯಾಟ್‌"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ಮೊದಲ ಹೆಸರು ಮೊದಲು"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ಕೊನೆಯ ಹೆಸರು ಮೊದಲು"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ಗೋಚರಿಸುವ ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು/ರಫ್ತು ಮಾಡಿ"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ಗೋಚರಿಸುವ ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ವಿಫಲವಾಗಿದೆ."</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು/ರವಾನೆ ಮಾಡಿ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
     <string name="share_error" msgid="665756457151793108">"ಈ ಸಂಪರ್ಕವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>
     <string name="menu_search" msgid="7464453023659824700">"ಹುಡುಕು"</string>
@@ -245,7 +241,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"ಪುನರಾವರ್ತನೆಗಳನ್ನು ತೆರುವುಗೊಳಿಸಿ"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"ಸಿಮ್‌ ಕಾರ್ಡ್ ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="menu_accounts" msgid="795417468541517082">"ಖಾತೆಗಳು"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"ಆಮದು/ರಫ್ತು ಮಾಡಿ"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"ಆಮದು/ರವಾನೆ ಮಾಡು"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> ಮೂಲಕ"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> <xliff:g id="SOURCE">%2$s</xliff:g> ಮೂಲಕ"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"ಹುಡುಕಾಟವನ್ನು ನಿಲ್ಲಿಸಿ"</string>
@@ -254,4 +250,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"ಖಾತೆ"</string>
     <string name="set_default_account" msgid="3865970860434642695">"ಕರೆಗಳನ್ನು ಮಾಡಲು ಯಾವಾಗಲೂ ಇದನ್ನು ಬಳಸಿ"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"ಇದರೊಂದಿಗೆ ಕರೆ ಮಾಡಿ"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"ಟಿಪ್ಪಣಿಯೊಂದಿಗೆ ಕರೆ"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"ಕರೆ ಕಳುಹಿಸಲು ಟಿಪ್ಪಣಿಯನ್ನು ಟೈಪ್ ಮಾಡಿ ..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"ಕಳುಹಿಸು ಮತ್ತು ಕರೆಮಾಡು"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>
