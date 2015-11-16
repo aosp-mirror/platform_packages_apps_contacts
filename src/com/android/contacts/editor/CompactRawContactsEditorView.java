@@ -464,7 +464,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     public void updatePhoto(Uri photoUri) {
         mPhotoValuesDelta.setFromTemplate(false);
         // Unset primary for all photos
-        unsetSuperPrimaryFromAllWritablePhotos();
+        unsetSuperPrimaryFromAllPhotos();
         // Mark the currently displayed photo as primary
         mPhotoValuesDelta.setSuperPrimary(true);
 
@@ -487,14 +487,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mPhotoView.setFullSizedPhoto(photoUri);
     }
 
-    private void unsetSuperPrimaryFromAllWritablePhotos() {
+    private void unsetSuperPrimaryFromAllPhotos() {
         final List<KindSectionData> kindSectionDataList =
                 mKindSectionDataMap.get(Photo.CONTENT_ITEM_TYPE);
         for (KindSectionData kindSectionData : kindSectionDataList) {
-            if (kindSectionData.getAccountType().areContactsWritable()) {
-                for (ValuesDelta valuesDelta : kindSectionData.getNonEmptyValuesDeltas()) {
-                    valuesDelta.setSuperPrimary(false);
-                }
+            for (ValuesDelta valuesDelta : kindSectionData.getNonEmptyValuesDeltas()) {
+                valuesDelta.setSuperPrimary(false);
             }
         }
     }
@@ -587,7 +585,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         final ValuesDelta valuesDelta = valuesDeltaList.get(photo.valuesDeltaListIndex);
         valuesDelta.setFromTemplate(false);
         // Unset primary for all photos
-        unsetSuperPrimaryFromAllWritablePhotos();
+        unsetSuperPrimaryFromAllPhotos();
         // Mark the currently displayed photo as primary
         valuesDelta.setSuperPrimary(true);
         // Update the UI
