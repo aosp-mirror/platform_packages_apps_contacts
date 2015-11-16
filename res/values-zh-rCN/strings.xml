@@ -18,10 +18,8 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"通讯录"</string>
     <string name="launcherActivityLabel" msgid="6497230399032392417">"通讯录"</string>
-    <!-- no translation found for quickContactActivityLabel (7985456650689347268) -->
-    <skip />
-    <!-- no translation found for editContactActivityLabel (1129944572070802839) -->
-    <skip />
+    <string name="quickContactActivityLabel" msgid="7985456650689347268">"查看联系人"</string>
+    <string name="editContactActivityLabel" msgid="1129944572070802839">"修改联系人"</string>
     <string name="contactsList" msgid="8661624236494819731">"联系人"</string>
     <string name="shortcutContact" msgid="749243779392912958">"联系人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接拨打电话"</string>
@@ -324,8 +322,6 @@
     <string name="contact_from_account_name" msgid="2078526819634079406">"来源：<xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"删除<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"删除<xliff:g id="DATA_KIND">%s</xliff:g>"</string>
-    <!-- no translation found for photo_view_description_not_checked (8876314195990885177) -->
-    <skip />
-    <!-- no translation found for photo_view_description_checked (3906597168607472795) -->
-    <skip />
+    <string name="photo_view_description_not_checked" msgid="8876314195990885177">"未选中来自 <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> 的照片"</string>
+    <string name="photo_view_description_checked" msgid="3906597168607472795">"已选中来自 <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> 的照片"</string>
 </resources>
