@@ -449,10 +449,12 @@ public class CompactKindSectionView extends LinearLayout {
             // Check whether metadata has been bound for all group views
             for (int i = 0; i < mEditors.getChildCount(); i++) {
                 final View view = mEditors.getChildAt(i);
-                if (view instanceof GroupMembershipView
-                        && !((GroupMembershipView) view).wasGroupMetaDataBound()) {
-                    setVisibility(GONE);
-                    return;
+                if (view instanceof GroupMembershipView) {
+                    final GroupMembershipView groupView = (GroupMembershipView) view;
+                    if (!groupView.wasGroupMetaDataBound() || !groupView.accountHasGroups()) {
+                        setVisibility(GONE);
+                        return;
+                    }
                 }
             }
             // Check that the user has selected to display all fields
