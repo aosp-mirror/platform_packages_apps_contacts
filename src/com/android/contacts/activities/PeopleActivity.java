@@ -35,6 +35,7 @@ import android.preference.PreferenceActivity;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
+import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
@@ -955,10 +956,17 @@ public class PeopleActivity extends ContactsActivity implements
         }
 
         @Override
-        public void onViewContactAction(Uri contactLookupUri) {
-            final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(contactLookupUri,
-                    QuickContactActivity.MODE_FULLY_EXPANDED);
-            ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
+        public void onViewContactAction(Uri contactLookupUri, boolean isEnterpriseContact) {
+            if (isEnterpriseContact) {
+                // No implicit intent as user may have a different contacts app in work profile.
+                QuickContact.showQuickContact(PeopleActivity.this, new Rect(), contactLookupUri,
+                        QuickContactActivity.MODE_FULLY_EXPANDED, null);
+            } else {
+                final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
+                        contactLookupUri,
+                        QuickContactActivity.MODE_FULLY_EXPANDED);
+                ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
+            }
         }
 
         @Override

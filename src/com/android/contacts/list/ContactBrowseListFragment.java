@@ -600,9 +600,9 @@ public abstract class ContactBrowseListFragment extends
         mListener = listener;
     }
 
-    public void viewContact(Uri contactUri) {
+    public void viewContact(Uri contactUri, boolean isEnterpriseContact) {
         setSelectedContactUri(contactUri, false, false, true, false);
-        if (mListener != null) mListener.onViewContactAction(contactUri);
+        if (mListener != null) mListener.onViewContactAction(contactUri, isEnterpriseContact);
     }
 
     public void deleteContact(Uri contactUri) {
