@@ -303,8 +303,7 @@
         <activity-alias android:name="alias.DialShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutDialContact"
-            android:icon="@drawable/logo_quick_contacts_dialer_color_44in48dp"
-            android:enabled="@*android:bool/config_voice_capable">
+            android:icon="@drawable/logo_quick_contacts_dialer_color_44in48dp">
 
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
@@ -317,8 +316,7 @@
         <activity-alias android:name="alias.MessageShortcut"
             android:targetActivity=".activities.ContactSelectionActivity"
             android:label="@string/shortcutMessageContact"
-            android:icon="@drawable/logo_quick_contacts_mail_color_44in48dp"
-            android:enabled="@*android:bool/config_voice_capable">
+            android:icon="@drawable/logo_quick_contacts_mail_color_44in48dp">
 
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
