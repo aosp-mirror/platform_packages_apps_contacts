@@ -108,8 +108,6 @@ public class CompactPhotoSelectionFragment extends Fragment {
          */
         public boolean primary;
 
-        public long rawContactId;
-
         /**
          * Pointer back to the KindSectionDataList this photo came from.
          * See {@link CompactRawContactsEditorView#getPhotos}
@@ -120,6 +118,8 @@ public class CompactPhotoSelectionFragment extends Fragment {
 
         /** Newly taken or selected photo that has not yet been saved to CP2. */
         public Uri updatedPhotoUri;
+
+        public long photoId;
 
         @Override
         public int describeContents() {
@@ -136,6 +136,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
             dest.writeInt(kindSectionDataListIndex);
             dest.writeInt(valuesDeltaListIndex);
             dest.writeParcelable(updatedPhotoUri, flags);
+            dest.writeLong(photoId);
         }
 
         private void readFromParcel(Parcel source) {
@@ -148,6 +149,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
             kindSectionDataListIndex = source.readInt();
             valuesDeltaListIndex = source.readInt();
             updatedPhotoUri = source.readParcelable(classLoader);
+            photoId = source.readLong();
         }
     }
 
@@ -197,18 +199,14 @@ public class CompactPhotoSelectionFragment extends Fragment {
                 if (convertView == null || convertView.findViewById(R.id.account_type) != null) {
                     return mLayoutInflater.inflate(R.layout.take_a_photo_button, /* root =*/ null);
                 }
-                else{
-                    return convertView;
-                }
+                return convertView;
             }
 
             if (getItemViewType(position) == 1) {
                 if (convertView == null || convertView.findViewById(R.id.account_type) != null) {
                     return mLayoutInflater.inflate(R.layout.all_photos_button, /* root =*/ null);
                 }
-                else {
-                    return convertView;
-                }
+                return convertView;
             }
 
             // when position greater than 1, we should make sure account_type *is* in convertView
@@ -298,8 +296,8 @@ public class CompactPhotoSelectionFragment extends Fragment {
         mGridView.setAdapter(photoAdapter);
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final PhotoSourceDialogFragment.Listener listener = (PhotoSourceDialogFragment.Listener)
-                        getActivity();
+                final PhotoSourceDialogFragment.Listener listener =
+                        (PhotoSourceDialogFragment.Listener) getActivity();
                 if (position == 0){
                     listener.onTakePhotoChosen();
                 } else if (position == 1) {

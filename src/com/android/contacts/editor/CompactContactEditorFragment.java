@@ -215,6 +215,9 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
     public void setPrimaryPhoto(CompactPhotoSelectionFragment.Photo photo) {
         getContent().setPrimaryPhoto(photo);
+
+        // Update the photo ID we will try to match when selecting the photo to display
+        mPhotoId = photo.photoId;
     }
 
     @Override
