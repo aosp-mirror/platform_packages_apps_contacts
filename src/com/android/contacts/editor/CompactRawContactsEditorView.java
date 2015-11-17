@@ -549,6 +549,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 photo.valuesDeltaListIndex = j;
                 photo.accountType = accountType.getDisplayLabel(getContext()).toString();
                 photo.accountName = kindSectionData.getRawContactDelta().getAccountName();
+                photo.photoId = valuesDelta.getId();
 
                 if (updatedPhotos != null) {
                     photo.updatedPhotoUri = (Uri) updatedPhotos.get(String.valueOf(
@@ -582,12 +583,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             wlog("Invalid values delta list index");
             return;
         }
+
+        // Update values delta
         final ValuesDelta valuesDelta = valuesDeltaList.get(photo.valuesDeltaListIndex);
         valuesDelta.setFromTemplate(false);
-        // Unset primary for all photos
         unsetSuperPrimaryFromAllPhotos();
-        // Mark the currently displayed photo as primary
         valuesDelta.setSuperPrimary(true);
+
         // Update the UI
         mPhotoView.setPhoto(valuesDelta, mMaterialPalette);
     }
@@ -944,15 +946,15 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mPhotoView.setPhoto(photoToDisplay.second, mMaterialPalette);
 
         // Find the raw contact ID and values delta that will be written when the photo is edited
-        final Pair<KindSectionData, ValuesDelta> pair = kindSectionDataList.getEntryToWrite(
+        final Pair<KindSectionData, ValuesDelta> photoToWrite = kindSectionDataList.getEntryToWrite(
                 mPhotoId, mPrimaryAccount, mIsUserProfile);
-        if (pair == null) {
+        if (photoToWrite == null) {
             mPhotoView.setReadOnly(true);
             return;
         }
         mPhotoView.setReadOnly(false);
-        mPhotoRawContactId = pair.first.getRawContactDelta().getRawContactId();
-        mPhotoValuesDelta = pair.second;
+        mPhotoRawContactId = photoToWrite.first.getRawContactDelta().getRawContactId();
+        mPhotoValuesDelta = photoToWrite.second;
     }
 
     private void addKindSectionViews() {
