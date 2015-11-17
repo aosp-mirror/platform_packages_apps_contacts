@@ -208,7 +208,6 @@ public class QuickContactActivity extends ContactsActivity
     private static final String KEY_SELECTED_SUGGESTION_CONTACTS = "selected_suggestion_contacts";
     private static final String KEY_PREVIOUS_CONTACT_ID = "previous_contact_id";
     private static final String KEY_SUGGESTIONS_AUTO_SELECTED = "suggestions_auto_seleted";
-    private static final String KEY_SELECTED_SUGGESTION_NUMBER = "selected_suggestion_number";
 
     private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 150;
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
@@ -961,7 +960,6 @@ public class QuickContactActivity extends ContactsActivity
         mSuggestionList = (LinearLayout) findViewById(R.id.suggestion_list);
         mSuggestionsCancelButton= (Button) findViewById(R.id.cancel_button);
         mSuggestionsLinkButton = (Button) findViewById(R.id.link_button);
-        final int previousSelectedSuggestion;
         if (savedInstanceState != null) {
             mIsSuggestionListCollapsed = savedInstanceState.getBoolean(
                     KEY_IS_SUGGESTION_LIST_COLLAPSED, true);
@@ -970,16 +968,14 @@ public class QuickContactActivity extends ContactsActivity
                     KEY_SUGGESTIONS_AUTO_SELECTED, true);
             mSelectedAggregationIds = (TreeSet<Long>)
                     savedInstanceState.getSerializable(KEY_SELECTED_SUGGESTION_CONTACTS);
-            previousSelectedSuggestion = savedInstanceState.getInt(KEY_SELECTED_SUGGESTION_NUMBER);
         } else {
             mIsSuggestionListCollapsed = true;
             mSelectedAggregationIds.clear();
-            previousSelectedSuggestion = -1;
         }
-        if (previousSelectedSuggestion == -1 || previousSelectedSuggestion > 0) {
-            enableLinkButton();
-        } else {
+        if (mSelectedAggregationIds.isEmpty()) {
             disableLinkButton();
+        } else {
+            enableLinkButton();
         }
         mCollapasedSuggestionHeader.setOnClickListener(new OnClickListener() {
             @Override
@@ -1136,13 +1132,6 @@ public class QuickContactActivity extends ContactsActivity
                 KEY_SUGGESTIONS_AUTO_SELECTED, mSuggestionsShouldAutoSelected);
         savedInstanceState.putSerializable(
                 KEY_SELECTED_SUGGESTION_CONTACTS, mSelectedAggregationIds);
-        final int selectedSuggestion;
-        if (mSelectedAggregationIds.contains(mContactData.getId())) {
-            selectedSuggestion = mSelectedAggregationIds.size() - 1;
-        } else {
-            selectedSuggestion = mSelectedAggregationIds.size();
-        }
-        savedInstanceState.putInt(KEY_SELECTED_SUGGESTION_NUMBER, selectedSuggestion);
     }
 
     private void processIntent(Intent intent) {
