@@ -1398,7 +1398,10 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR),
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR));
             }
-            mPhotoId = mIntentExtras.getLong(INTENT_EXTRA_PHOTO_ID);
+            // If the user selected a different photo, don't restore the one from the Intent
+            if (mPhotoId < 0) {
+                mPhotoId = mIntentExtras.getLong(INTENT_EXTRA_PHOTO_ID);
+            }
             mRawContactIdToDisplayAlone = mIntentExtras.getLong(
                     INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE, -1);
             mRawContactDisplayAloneIsReadOnly = mIntentExtras.getBoolean(
