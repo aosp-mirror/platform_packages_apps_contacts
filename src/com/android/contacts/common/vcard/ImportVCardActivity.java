@@ -96,6 +96,8 @@ public class ImportVCardActivity extends Activity {
     private static final String SOURCE_URI_DISPLAY_NAME =
             "com.android.contacts.common.vcard.SOURCE_URI_DISPLAY_NAME";
 
+    private static final String GMAIL_VCARD_URI_PREFIX = "content://gmail-ls/";
+
     private AccountWithDataSet mAccount;
 
     private ProgressDialog mProgressDialogForCachingVCard;
@@ -522,11 +524,21 @@ public class ImportVCardActivity extends Activity {
         return Uri.parse(getFileStreamPath(fileName).toURI().toString());
     }
 
+    // Returns true if uri is from Gmail app.
+    private static boolean isGmailUri(Uri uri) {
+        return uri != null && uri.toString().startsWith(GMAIL_VCARD_URI_PREFIX);
+    }
+
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
         Uri sourceUri = getIntent().getData();
+        if (!isGmailUri(sourceUri) &&
+                RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
+            return;
+        }
+
         String sourceDisplayName = null;
         if (sourceUri != null) {
             // Read the uri to local first.
@@ -544,10 +556,6 @@ public class ImportVCardActivity extends Activity {
                 getIntent().putExtra(SOURCE_URI_DISPLAY_NAME, sourceDisplayName);
             }
             sourceUri = Uri.parse(getFileStreamPath(localTmpFileName).toURI().toString());
-        }
-
-        if (RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
-            return;
         }
 
         String accountName = null;
