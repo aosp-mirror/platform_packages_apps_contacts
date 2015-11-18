@@ -16,6 +16,7 @@
 package com.android.contacts.list;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.provider.ContactsContract.ProviderStatus;
@@ -156,5 +157,10 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 mMessageView.setVisibility(View.GONE);
             }
         }
+    }
+
+    @Override
+    public Context getContext() {
+        return getActivity();
     }
 }
