@@ -103,7 +103,8 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CREATE_DOCUMENT) {
-            if (resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+            if (resultCode == Activity.RESULT_OK && mService != null &&
+                    data != null && data.getData() != null) {
                 final Uri mTargetFileName = data.getData();
                 if (DEBUG) Log.d(LOG_TAG, "exporting to " + mTargetFileName);
                 final ExportRequest request = new ExportRequest(mTargetFileName);
@@ -111,7 +112,11 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
                 mService.handleExportRequest(request, new NotificationImportExportListener(
                         ExportVCardActivity.this));
             } else if (DEBUG) {
-                Log.d(LOG_TAG, "create document cancelled or no data returned");
+                if (mService == null) {
+                    Log.d(LOG_TAG, "No vCard service.");
+                } else {
+                    Log.d(LOG_TAG, "create document cancelled or no data returned");
+                }
             }
             unbindAndFinish();
         }
