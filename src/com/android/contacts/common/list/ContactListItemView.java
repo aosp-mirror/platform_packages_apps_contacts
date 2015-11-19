@@ -63,6 +63,8 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.android.contacts.common.compat.CompatUtils;
+
 /**
  * A custom view for an item in the contact list.
  * The view contains the contact's photo, a set of text views (for name, status, etc...) and
@@ -1517,8 +1519,8 @@ public class ContactListItemView extends ViewGroup
         ImageView photo = getPhotoView();
         photo.setScaleType(ImageView.ScaleType.CENTER);
         photo.setImageDrawable(getContext().getDrawable(drawableId));
-        photo.setImageTintList(ColorStateList.valueOf(
-                getContext().getColor(R.color.search_shortcut_icon_color)));
+        photo.setImageTintList(ColorStateList.valueOf(CompatUtils.getColorCompat(
+                        getContext(), R.color.search_shortcut_icon_color)));
     }
 
     @Override
