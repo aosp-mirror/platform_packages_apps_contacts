@@ -44,6 +44,8 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
 import com.android.contacts.list.ContactsRequest;
 
+import com.android.contacts.common.compat.CompatUtils;
+
 /**
  * Adapter for the action bar at the top of the Contacts activity.
  */
@@ -502,11 +504,12 @@ public class ActionBarAdapter implements OnCloseListener {
 
     private void updateStatusBarColor() {
         if (mSelectionMode) {
-            int cabStatusBarColor = mActivity.getResources().getColor(
+            final int cabStatusBarColor = mActivity.getResources().getColor(
                     R.color.contextual_selection_bar_status_bar_color);
             mActivity.getWindow().setStatusBarColor(cabStatusBarColor);
         } else {
-            int normalStatusBarColor = mActivity.getColor(R.color.primary_color_dark);
+            final int normalStatusBarColor = CompatUtils.getColorCompat
+                    (mActivity, R.color.primary_color_dark);
             mActivity.getWindow().setStatusBarColor(normalStatusBarColor);
         }
     }
