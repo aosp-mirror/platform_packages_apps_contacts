@@ -1700,6 +1700,7 @@ public class QuickContactActivity extends ContactsActivity
         Drawable textIcon = null;
         StringBuilder primaryContentDescription = new StringBuilder();
         Spannable phoneContentDescription = null;
+        Spannable smsContentDescription = null;
         Intent intent = null;
         boolean shouldApplyColor = true;
         Drawable alternateIcon = null;
@@ -1857,6 +1858,8 @@ public class QuickContactActivity extends ContactsActivity
 
                 alternateIcon = res.getDrawable(R.drawable.ic_message_24dp);
                 alternateContentDescription.append(res.getString(R.string.sms_custom, header));
+                smsContentDescription = com.android.contacts.common.util.ContactDisplayUtils
+                        .getTelephoneTtsSpannable(alternateContentDescription.toString(), header);
 
                 if (CallUtil.isCallWithSubjectSupported(context)) {
                     thirdIcon = res.getDrawable(R.drawable.ic_call_note_white_24dp);
@@ -2082,7 +2085,10 @@ public class QuickContactActivity extends ContactsActivity
                         ? new SpannableString(primaryContentDescription.toString())
                         : phoneContentDescription,
                 intent, alternateIcon, alternateIntent,
-                alternateContentDescription.toString(), shouldApplyColor, isEditable,
+                smsContentDescription == null
+                        ? new SpannableString(alternateContentDescription.toString())
+                        : smsContentDescription,
+                shouldApplyColor, isEditable,
                 entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription, thirdAction,
                 thirdExtras, iconResourceId);
     }
