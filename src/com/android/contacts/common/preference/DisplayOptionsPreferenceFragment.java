@@ -16,6 +16,7 @@
 
 package com.android.contacts.common.preference;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -67,6 +68,11 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         final Preference licensePreference = findPreference(
                 getString(R.string.pref_open_source_licenses_key));
         licensePreference.setIntent(new Intent(getActivity(), LicenseActivity.class));
+    }
+
+    @Override
+    public Context getContext() {
+        return getActivity();
     }
 }
 
