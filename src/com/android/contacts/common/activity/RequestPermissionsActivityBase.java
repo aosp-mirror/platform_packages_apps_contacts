@@ -25,6 +25,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Trace;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,7 +39,8 @@ import java.util.Arrays;
  * NOTE: As a result of b/22095159, this can behave oddly in the case where the final permission
  * you are requesting causes an application restart.
  */
-public abstract class RequestPermissionsActivityBase extends Activity {
+public abstract class RequestPermissionsActivityBase extends Activity
+        implements ActivityCompat.OnRequestPermissionsResultCallback {
     public static final String PREVIOUS_ACTIVITY_INTENT = "previous_intent";
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
@@ -137,7 +140,8 @@ public abstract class RequestPermissionsActivityBase extends Activity {
                 throw new RuntimeException("Request permission activity was called even"
                         + " though all permissions are satisfied.");
             }
-            requestPermissions(
+            ActivityCompat.requestPermissions(
+                    this,
                     unsatisfiedPermissions.toArray(new String[unsatisfiedPermissions.size()]),
                     PERMISSIONS_REQUEST_ALL_PERMISSIONS);
         } finally {
@@ -145,11 +149,16 @@ public abstract class RequestPermissionsActivityBase extends Activity {
         }
     }
 
+    @Override
+    public int checkSelfPermission(String permission) {
+        return ContextCompat.checkSelfPermission(this, permission);
+    }
+
     protected static boolean hasPermissions(Context context, String[] permissions) {
         Trace.beginSection("hasPermission");
         try {
             for (String permission : permissions) {
-                if (context.checkSelfPermission(permission)
+                if (ContextCompat.checkSelfPermission(context, permission)
                         != PackageManager.PERMISSION_GRANTED) {
                     return false;
                 }
