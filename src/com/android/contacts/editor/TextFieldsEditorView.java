@@ -21,7 +21,6 @@ import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
-import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -39,6 +38,7 @@ import android.widget.LinearLayout;
 
 import com.android.contacts.R;
 import com.android.contacts.common.model.RawContactDelta;
+import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType.EditField;
@@ -255,7 +255,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
             final String column = field.column;
             final String value = entry.getAsString(column);
             if (ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(kind.mimeType)) {
-                fieldView.setText(PhoneNumberUtils.createTtsSpannable(value));
+                fieldView.setText(PhoneNumberUtilsCompat.createTtsSpannable(value));
             } else {
                 fieldView.setText(value);
             }
