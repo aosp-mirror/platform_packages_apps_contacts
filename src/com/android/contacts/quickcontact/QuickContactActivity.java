@@ -67,6 +67,7 @@ import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.telecom.PhoneAccount;
@@ -182,8 +183,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
-
-import com.android.contacts.common.compat.CompatUtils;
 
 /**
  * Mostly translucent {@link Activity} that shows QuickContact dialog. It loads
@@ -644,10 +643,10 @@ public class QuickContactActivity extends ContactsActivity
     private void enableLinkButton() {
         mSuggestionsLinkButton.setClickable(true);
         mSuggestionsLinkButton.getBackground().setColorFilter(
-                CompatUtils.getColorCompat(this, R.color.primary_color),
+                ContextCompat.getColor(this, R.color.primary_color),
                 PorterDuff.Mode.SRC_ATOP);
         mSuggestionsLinkButton.setTextColor(
-                CompatUtils.getColorCompat(this, android.R.color.white));
+                ContextCompat.getColor(this, android.R.color.white));
         mSuggestionsLinkButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -669,10 +668,10 @@ public class QuickContactActivity extends ContactsActivity
     private void disableLinkButton() {
         mSuggestionsLinkButton.setClickable(false);
         mSuggestionsLinkButton.getBackground().setColorFilter(
-                CompatUtils.getColorCompat(this, R.color.disabled_button_background),
+                ContextCompat.getColor(this, R.color.disabled_button_background),
                 PorterDuff.Mode.SRC_ATOP);
         mSuggestionsLinkButton.setTextColor(
-                CompatUtils.getColorCompat(this, R.color.disabled_button_text));
+                ContextCompat.getColor(this, R.color.disabled_button_text));
     }
 
     private interface ContextMenuIds {
