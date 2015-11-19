@@ -226,14 +226,14 @@ public class CompactPhotoSelectionFragment extends Fragment {
             // Bind the photo
             final ImageView imageView = (ImageView) photoItemView.findViewById(R.id.image);
             if (photo.updatedPhotoUri != null) {
-                EditorUiUtils.loadPhoto(ContactPhotoManager.getInstance(getContext()),
+                EditorUiUtils.loadPhoto(ContactPhotoManager.getInstance(mContext),
                         imageView, photo.updatedPhotoUri);
             } else {
                 final Long photoFileId = EditorUiUtils.getPhotoFileId(photo.valuesDelta);
                 if (photoFileId != null) {
                     final Uri photoUri = ContactsContract.DisplayPhoto.CONTENT_URI.buildUpon()
                             .appendPath(photoFileId.toString()).build();
-                    EditorUiUtils.loadPhoto(ContactPhotoManager.getInstance(getContext()),
+                    EditorUiUtils.loadPhoto(ContactPhotoManager.getInstance(mContext),
                             imageView, photoUri);
                 } else {
                     imageView.setImageBitmap(EditorUiUtils.getPhotoBitmap(photo.valuesDelta));
@@ -365,5 +365,10 @@ public class CompactPhotoSelectionFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public Context getContext() {
+        return getActivity();
     }
 }

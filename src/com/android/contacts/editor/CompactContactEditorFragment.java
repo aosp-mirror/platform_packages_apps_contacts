@@ -205,7 +205,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
     public void updatePhoto(Uri uri) throws FileNotFoundException {
         final Bitmap bitmap = ContactPhotoUtils.getBitmapFromUri(getActivity(), uri);
         if (bitmap == null || bitmap.getHeight() <= 0 || bitmap.getWidth() <= 0) {
-            Toast.makeText(getContext(), R.string.contactPhotoSavedErrorToast,
+            Toast.makeText(mContext, R.string.contactPhotoSavedErrorToast,
                     Toast.LENGTH_SHORT).show();
             return;
         }
