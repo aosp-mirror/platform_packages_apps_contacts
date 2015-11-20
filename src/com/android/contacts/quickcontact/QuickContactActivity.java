@@ -982,7 +982,6 @@ public class QuickContactActivity extends ContactsActivity
                 mCollapsedSuggestionCardView.setVisibility(View.GONE);
                 mExpandSuggestionCardView.setVisibility(View.VISIBLE);
                 mIsSuggestionListCollapsed = false;
-                mSuggestionsShouldAutoSelected = true;
             }
         });
 
@@ -1381,6 +1380,7 @@ public class QuickContactActivity extends ContactsActivity
             mCollapsedSuggestionCardView.setVisibility(View.GONE);
             mExpandSuggestionCardView.setVisibility(View.GONE);
             mIsSuggestionListCollapsed = true;
+            mSuggestionsShouldAutoSelected = true;
             mSuggestionList.removeAllViews();
         }
 
