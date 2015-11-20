@@ -29,6 +29,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.support.v4.content.ContextCompat;
 import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -62,8 +63,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.android.contacts.common.compat.CompatUtils;
 
 /**
  * A custom view for an item in the contact list.
@@ -1519,8 +1518,8 @@ public class ContactListItemView extends ViewGroup
         ImageView photo = getPhotoView();
         photo.setScaleType(ImageView.ScaleType.CENTER);
         photo.setImageDrawable(getContext().getDrawable(drawableId));
-        photo.setImageTintList(ColorStateList.valueOf(CompatUtils.getColorCompat(
-                        getContext(), R.color.search_shortcut_icon_color)));
+        photo.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(
+                getContext(), R.color.search_shortcut_icon_color)));
     }
 
     @Override
