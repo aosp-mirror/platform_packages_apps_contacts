@@ -21,11 +21,11 @@ import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 import android.os.Process;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
@@ -39,6 +39,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
 import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.util.AggregationSuggestionsCompat;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -228,19 +229,32 @@ public class AggregationSuggestionEngine extends HandlerThread {
             return null;
         }
 
-        Builder builder = new AggregationSuggestions.Builder()
+        // AggregationSuggestions.Builder() became visible in API level 23, so use it if applicable.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            final Builder uriBuilder = new AggregationSuggestions.Builder()
+                    .setLimit(mSuggestionsLimit)
+                    .setContactId(mContactId);
+            if (nameSb.length() != 0) {
+                uriBuilder.addNameParameter(nameSb.toString());
+            }
+            if (phoneticNameSb.length() != 0) {
+                uriBuilder.addNameParameter(phoneticNameSb.toString());
+            }
+            return uriBuilder.build();
+        }
+
+        // For previous SDKs, use the backup plan.
+        final AggregationSuggestionsCompat.Builder uriBuilder =
+                new AggregationSuggestionsCompat.Builder()
                 .setLimit(mSuggestionsLimit)
                 .setContactId(mContactId);
-
         if (nameSb.length() != 0) {
-            builder.addNameParameter(nameSb.toString());
+            uriBuilder.addNameParameter(nameSb.toString());
         }
-
         if (phoneticNameSb.length() != 0) {
-            builder.addNameParameter(phoneticNameSb.toString());
+            uriBuilder.addNameParameter(phoneticNameSb.toString());
         }
-
-        return builder.build();
+        return uriBuilder.build();
     }
 
     private void appendValue(StringBuilder sb, ValuesDelta values, String column) {
