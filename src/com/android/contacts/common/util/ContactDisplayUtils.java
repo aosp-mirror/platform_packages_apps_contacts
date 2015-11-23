@@ -22,7 +22,6 @@ import com.google.common.base.Preconditions;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -31,8 +30,8 @@ import android.util.Log;
 import android.util.Patterns;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.preference.ContactsPreferences;
-import com.android.contacts.common.testing.NeededForTesting;
 
 /**
  * Methods for handling various contact data labels.
@@ -218,7 +217,7 @@ public class ContactDisplayUtils {
         int start = phoneNumber == null ? -1 : message.indexOf(phoneNumber);
         while (start >= 0) {
             final int end = start + phoneNumber.length();
-            final TtsSpan ttsSpan = PhoneNumberUtils.createTtsSpan(phoneNumber);
+            final TtsSpan ttsSpan = PhoneNumberUtilsCompat.createTtsSpan(phoneNumber);
             spannable.setSpan(ttsSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);             // this is consistenly done in a misleading way..
             start = message.indexOf(phoneNumber, end);
         }

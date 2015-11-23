@@ -30,7 +30,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.support.v4.content.ContextCompat;
-import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -51,6 +50,7 @@ import android.widget.TextView;
 import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.common.ContactStatusUtil;
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.format.TextHighlighter;
 import com.android.contacts.common.util.ContactDisplayUtils;
 import com.android.contacts.common.util.SearchUtil;
@@ -1106,7 +1106,8 @@ public class ContactListItemView extends ViewGroup
             mSnippetView.setVisibility(VISIBLE);
             if (ContactDisplayUtils.isPossiblePhoneNumber(text)) {
                 // Give the text-to-speech engine a hint that it's a phone number
-                mSnippetView.setContentDescription(PhoneNumberUtils.createTtsSpannable(text));
+                mSnippetView.setContentDescription(
+                        PhoneNumberUtilsCompat.createTtsSpannable(text));
             } else {
                 mSnippetView.setContentDescription(null);
             }
@@ -1227,7 +1228,7 @@ public class ContactListItemView extends ViewGroup
             // Give the text-to-speech engine a hint that it's a phone number
             mNameTextView.setTextDirection(View.TEXT_DIRECTION_LTR);
             mNameTextView.setContentDescription(
-                    PhoneNumberUtils.createTtsSpannable(name.toString()));
+                    PhoneNumberUtilsCompat.createTtsSpannable(name.toString()));
         } else {
             mNameTextView.setContentDescription(null);
         }
