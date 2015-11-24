@@ -58,8 +58,10 @@ public class DefaultAccountPreference extends ListPreference {
         setEntries(accountNamesArray);
         setEntryValues(accountNamesArray);
         final String defaultAccount = String.valueOf(mPreferences.getDefaultAccount());
-        if (accountNames.contains(defaultAccount)) {
-            setValue(String.valueOf(mPreferences.getDefaultAccount()));
+        if (accounts.size() == 1) {
+            setValue(accounts.get(0).name);
+        } else if (accountNames.contains(defaultAccount)) {
+            setValue(defaultAccount);
         } else {
             setValue(null);
         }
