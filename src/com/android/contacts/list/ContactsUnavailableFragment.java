@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.R;
+import com.android.contacts.util.ProviderStatusCompat;
 
 /**
  * Fragment shown when contacts are unavailable. It contains provider status
@@ -94,25 +95,39 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
             // The view hasn't been inflated yet.
             return;
         }
-        switch (providerStatus) {
-            case ProviderStatus.STATUS_EMPTY:
-                setTabInfo(mNoContactsMsgResId, mLastTab);
-                if (mLastTab == TabState.ALL) {
-                    mAddAccountButton.setVisibility(View.VISIBLE);
-                    mImportContactsButton.setVisibility(View.VISIBLE);
-                }
-                mProgress.setVisibility(View.GONE);
-                break;
-
-            case ProviderStatus.STATUS_BUSY:
-                mMessageView.setText(R.string.upgrade_in_progress);
-                mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
-                mMessageView.setVisibility(View.VISIBLE);
-                mAddAccountButton.setVisibility(View.GONE);
-                mImportContactsButton.setVisibility(View.GONE);
-                mProgress.setVisibility(View.VISIBLE);
-                break;
+        if (providerStatus == ProviderStatusCompat.STATUS_EMPTY) {
+            updateViewsForEmptyStatus();
+        } else if (providerStatus == ProviderStatusCompat.STATUS_BUSY) {
+            updateViewsForBusyStatus(R.string.upgrade_in_progress);
+        } else if (providerStatus == ProviderStatusCompat.STATUS_CHANGING_LOCALE){
+            updateViewsForBusyStatus(R.string.locale_change_in_progress);
         }
+    }
+
+    /**
+     * Update views in the fragment when provider status is empty.
+     */
+    private void updateViewsForEmptyStatus() {
+        setTabInfo(mNoContactsMsgResId, mLastTab);
+        if (mLastTab == TabState.ALL) {
+            mAddAccountButton.setVisibility(View.VISIBLE);
+            mImportContactsButton.setVisibility(View.VISIBLE);
+        }
+        mProgress.setVisibility(View.GONE);
+    }
+
+    /**
+     * Update views in the fragment when provider status is busy.
+     *
+     * @param resId resource ID of the string to show in mMessageView.
+     */
+    private void updateViewsForBusyStatus(int resId) {
+        mMessageView.setText(resId);
+        mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
+        mMessageView.setVisibility(View.VISIBLE);
+        mAddAccountButton.setVisibility(View.GONE);
+        mImportContactsButton.setVisibility(View.GONE);
+        mProgress.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -138,7 +153,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mNoContactsMsgResId = resId;
         mLastTab = callerTab;
         if ((mMessageView != null) && (mProviderStatus != null) &&
-                (mProviderStatus.equals(ProviderStatus.STATUS_EMPTY))) {
+                mProviderStatus.equals(ProviderStatusCompat.STATUS_EMPTY)) {
             if (resId != -1) {
                 mMessageView.setText(mNoContactsMsgResId);
                 mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
