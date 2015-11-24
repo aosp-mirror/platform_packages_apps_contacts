@@ -108,7 +108,7 @@ public class ExpandingEntryCardView extends CardView {
         private final Intent mIntent;
         private final Drawable mAlternateIcon;
         private final Intent mAlternateIntent;
-        private final String mAlternateContentDescription;
+        private Spannable mAlternateContentDescription;
         private final boolean mShouldApplyColor;
         private final boolean mIsEditable;
         private final EntryContextMenuInfo mEntryContextMenuInfo;
@@ -122,8 +122,8 @@ public class ExpandingEntryCardView extends CardView {
         public Entry(int id, Drawable mainIcon, String header, String subHeader,
                 Drawable subHeaderIcon, String text, Drawable textIcon,
                 Spannable primaryContentDescription, Intent intent,
-                Drawable alternateIcon, Intent alternateIntent, String alternateContentDescription,
-                boolean shouldApplyColor, boolean isEditable,
+                Drawable alternateIcon, Intent alternateIntent,
+                Spannable alternateContentDescription, boolean shouldApplyColor, boolean isEditable,
                 EntryContextMenuInfo entryContextMenuInfo, Drawable thirdIcon, Intent thirdIntent,
                 String thirdContentDescription, int thirdAction, Bundle thirdExtras,
                 int iconResourceId) {
@@ -190,7 +190,7 @@ public class ExpandingEntryCardView extends CardView {
             return mAlternateIntent;
         }
 
-        String getAlternateContentDescription() {
+        Spannable getAlternateContentDescription() {
             return mAlternateContentDescription;
         }
 
