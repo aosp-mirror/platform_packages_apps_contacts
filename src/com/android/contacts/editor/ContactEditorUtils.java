@@ -148,6 +148,11 @@ public class ContactEditorUtils {
      * Also note that the returned account may have been removed already.
      */
     public AccountWithDataSet getDefaultAccount() {
+        final List<AccountWithDataSet> currentWritableAccounts = getWritableAccounts();
+        if (currentWritableAccounts.size() == 1) {
+            return currentWritableAccounts.get(0);
+        }
+
         final String saved = mPrefs.getString(mDefaultAccountKey, null);
         if (TextUtils.isEmpty(saved)) {
             return null;
