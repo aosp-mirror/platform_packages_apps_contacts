@@ -98,6 +98,8 @@ public class ImportVCardActivity extends Activity {
 
     private static final String GMAIL_VCARD_URI_PREFIX = "content://gmail-ls/";
 
+    private static final String DOWNLOAD_VCARD_URI_PREFIX = "content://downloads";
+
     private AccountWithDataSet mAccount;
 
     private ProgressDialog mProgressDialogForCachingVCard;
@@ -529,12 +531,19 @@ public class ImportVCardActivity extends Activity {
         return uri != null && uri.toString().startsWith(GMAIL_VCARD_URI_PREFIX);
     }
 
+    private static boolean isDownloadUri(Uri uri) {
+        return uri != null && uri.toString().startsWith(DOWNLOAD_VCARD_URI_PREFIX);
+    }
+
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
         Uri sourceUri = getIntent().getData();
-        if (!isGmailUri(sourceUri) &&
+        // Reading uris from Gmail and Download needs the permission granted from the source intent,
+        // instead of permissions from RequestImportVCardPermissionActivity. So skipping requesting
+        // permissions from RequestImportVCardPermissionActivity for uris from Gmail and Download.
+        if (!isGmailUri(sourceUri) && !isDownloadUri(sourceUri) &&
                 RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
             return;
         }
