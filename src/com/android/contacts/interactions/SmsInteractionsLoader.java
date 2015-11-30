@@ -24,6 +24,8 @@ import android.database.DatabaseUtils;
 import android.provider.Telephony;
 import android.util.Log;
 
+import com.android.contacts.common.compat.TelephonyThreadsCompat;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -70,7 +72,7 @@ public class SmsInteractionsLoader extends AsyncTaskLoader<List<ContactInteracti
             // original formatting since TalkBack is not reading the normalized numbers correctly
             try {
                 threadIdStrings.add(String.valueOf(
-                        Telephony.Threads.getOrCreateThreadId(getContext(), phone)));
+                        TelephonyThreadsCompat.getOrCreateThreadId(getContext(), phone)));
             } catch (Exception e) {
                 // Do nothing. Telephony.Threads.getOrCreateThreadId() throws exceptions when
                 // it can't find/create a threadId (b/17657656).
