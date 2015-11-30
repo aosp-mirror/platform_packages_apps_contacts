@@ -324,4 +324,5 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"I-delete ang <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Hindi napili ang larawan sa <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Napili na ang larawan mula sa <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"Ina-update ang listahan ng contact upang ipakita ang pagbabago ng wika.\n\nPakihintay..."</string>
 </resources>
