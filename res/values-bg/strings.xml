@@ -324,4 +324,5 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Изтриване на <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Снимката от <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> е без отметка"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Снимката от <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> е с отметка"</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"Списъкът с контакти се актуализира, за да отрази промяната на езика.\n\nМоля, изчакайте..."</string>
 </resources>

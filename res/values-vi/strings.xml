@@ -324,4 +324,5 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Xóa <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Ảnh từ <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>không được chọn"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Ảnh từ <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>được chọn"</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"Danh bạ đang được cập nhật để phản ánh thay đổi ngôn ngữ.\n\nVui lòng đợi..."</string>
 </resources>
