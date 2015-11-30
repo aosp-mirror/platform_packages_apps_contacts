@@ -324,4 +324,5 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Избриши <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Фотографијата од <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>не е избрана"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Фотографијата од <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>е избрана"</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"Списокот со контакти се ажурира за да ја одрази промената на јазикот.\n\nПочекајте..."</string>
 </resources>

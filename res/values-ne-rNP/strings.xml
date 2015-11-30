@@ -324,4 +324,5 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> मेट्नुहोस्"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> बाट तस्बिर जाँच गरिएको छैन"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> बाट तस्बिर जाँच गरियो"</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"भाषा परिवर्तन प्रतिविम्ब गराउन सम्पर्क सूची अद्यावधिक भइरहेको छ। \n \n कृपया प्रतीक्षा गर्नुहोस्..."</string>
 </resources>
