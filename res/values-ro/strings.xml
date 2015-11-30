@@ -52,13 +52,13 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plasați în ecranul de pornire"</string>
     <string name="menu_call" msgid="3992595586042260618">"Apelaţi persoana din agendă"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Trimiteți mesaj text către o persoană din agendă"</string>
-    <string name="menu_splitAggregate" msgid="2627252205317945563">"Separați"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Disociați"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Editați"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Ștergeţi"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Adăugați o persoană de contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Adăugați un grup"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Separați această persoană de contact în mai multe persoane de contact?"</string>
-    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Separați"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Disociați"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Doriți să salvați modificările pe care le-ați făcut deja și să separați această persoană de contact în mai multe persoane de contact?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Salvați și separați"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Doriți să salvați modificările pe care le-ați făcut deja și să asociați această persoană cu persoana de contact selectată?"</string>
