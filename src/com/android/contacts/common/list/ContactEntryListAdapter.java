@@ -38,6 +38,7 @@ import android.widget.TextView;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.util.SearchUtil;
 
 import java.util.HashSet;
@@ -723,10 +724,12 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         QuickContactBadge quickContact = view.getQuickContact();
         quickContact.assignContactUri(
                 getContactUri(partitionIndex, cursor, contactIdColumn, lookUpKeyColumn));
-        // The Contacts app never uses the QuickContactBadge. Therefore, it is safe to assume
-        // that only Dialer will use this QuickContact badge. This means prioritizing the phone
-        // mimetype here is reasonable.
-        quickContact.setPrioritizedMimeType(Phone.CONTENT_ITEM_TYPE);
+        if (CompatUtils.hasPrioritizedMimeType()) {
+            // The Contacts app never uses the QuickContactBadge. Therefore, it is safe to assume
+            // that only Dialer will use this QuickContact badge. This means prioritizing the phone
+            // mimetype here is reasonable.
+            quickContact.setPrioritizedMimeType(Phone.CONTENT_ITEM_TYPE);
+        }
 
         if (photoId != 0 || photoUriColumn == -1) {
             getPhotoLoader().loadThumbnail(quickContact, photoId, mDarkTheme, mCircularPhotos,
