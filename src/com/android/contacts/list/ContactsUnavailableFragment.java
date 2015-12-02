@@ -17,9 +17,9 @@ package com.android.contacts.list;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.provider.ContactsContract.ProviderStatus;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -47,6 +47,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
     private Button mAddAccountButton;
     private Button mImportContactsButton;
     private ProgressBar mProgress;
+    private View mButtonsContainer;
     private int mNoContactsMsgResId = -1;
     private int mLastTab = -1;
 
@@ -70,12 +71,16 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mAddAccountButton = (Button) mView.findViewById(R.id.add_account_button);
         mAddAccountButton.setOnClickListener(this);
         mAddAccountButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R
-                .color.primary_color), PorterDuff.Mode.MULTIPLY);
+                .color.primary_color), PorterDuff.Mode.SRC_ATOP);
         mImportContactsButton = (Button) mView.findViewById(R.id.import_contacts_button);
         mImportContactsButton.setOnClickListener(this);
         mImportContactsButton.getBackground().setColorFilter(ContextCompat.getColor(getContext(),
-                R.color.primary_color), PorterDuff.Mode.MULTIPLY);
+                R.color.primary_color), PorterDuff.Mode.SRC_ATOP);
         mProgress = (ProgressBar) mView.findViewById(R.id.progress);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mButtonsContainer = mView.findViewById(R.id.buttons_container);
+        }
 
         if (mProviderStatus != null) {
             updateStatus(mProviderStatus);
@@ -99,7 +104,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
             updateViewsForEmptyStatus();
         } else if (providerStatus == ProviderStatusCompat.STATUS_BUSY) {
             updateViewsForBusyStatus(R.string.upgrade_in_progress);
-        } else if (providerStatus == ProviderStatusCompat.STATUS_CHANGING_LOCALE){
+        } else if (providerStatus == ProviderStatusCompat.STATUS_CHANGING_LOCALE) {
             updateViewsForBusyStatus(R.string.locale_change_in_progress);
         }
     }
@@ -110,8 +115,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
     private void updateViewsForEmptyStatus() {
         setTabInfo(mNoContactsMsgResId, mLastTab);
         if (mLastTab == TabState.ALL) {
-            mAddAccountButton.setVisibility(View.VISIBLE);
-            mImportContactsButton.setVisibility(View.VISIBLE);
+            updateButtonVisibilty(View.VISIBLE);
         }
         mProgress.setVisibility(View.GONE);
     }
@@ -125,9 +129,18 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mMessageView.setText(resId);
         mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
         mMessageView.setVisibility(View.VISIBLE);
-        mAddAccountButton.setVisibility(View.GONE);
-        mImportContactsButton.setVisibility(View.GONE);
+        updateButtonVisibilty(View.GONE);
         mProgress.setVisibility(View.VISIBLE);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            final ViewGroup.MarginLayoutParams lp =
+                    (ViewGroup.MarginLayoutParams) mMessageView.getLayoutParams();
+            final int marginTop =
+                    (int) getResources().getDimension(R.dimen.update_contact_list_top_margin);
+            lp.setMargins(0, marginTop, 0, 0);
+            mImageView.setVisibility(View.GONE);
+        } else {
+            mImageView.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -144,6 +157,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 break;
         }
     }
+
     /**
      * Set the message to be shown if no data is available for the selected tab
      *
@@ -160,17 +174,26 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 mMessageView.setVisibility(View.VISIBLE);
                 if (callerTab == TabState.FAVORITES) {
                     mImageView.setImageResource(R.drawable.ic_star_black_128dp);
-                    mAddAccountButton.setVisibility(View.GONE);
-                    mImportContactsButton.setVisibility(View.GONE);
                     mProgress.setVisibility(View.GONE);
+                    updateButtonVisibilty(View.GONE);
                 } else if (callerTab == TabState.ALL) {
                     mImageView.setImageResource(R.drawable.ic_person_black_128dp);
-                    mAddAccountButton.setVisibility(View.VISIBLE);
-                    mImportContactsButton.setVisibility(View.VISIBLE);
+                    updateButtonVisibilty(View.VISIBLE);
                 }
             } else {
                 mMessageView.setVisibility(View.GONE);
             }
+        }
+    }
+
+    private void updateButtonVisibilty(int visibility) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mAddAccountButton.setVisibility(visibility);
+            mImportContactsButton.setVisibility(visibility);
+            mButtonsContainer.setVisibility(visibility);
+        } else {
+            mAddAccountButton.setVisibility(visibility);
+            mImportContactsButton.setVisibility(visibility);
         }
     }
 
