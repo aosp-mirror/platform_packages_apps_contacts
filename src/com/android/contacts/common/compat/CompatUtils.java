@@ -27,4 +27,15 @@ public final class CompatUtils {
         return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.M)
                 >= Build.VERSION_CODES.M;
     }
+
+    /**
+     * Determines if this version is compatible with multi-SIM and the phone account APIs.
+     * Can also force the version to be lower through SdkVersionOverride.
+     *
+     * @return {@code true} if multi-SIM capability is available, {@code false} otherwise.
+     */
+    public static boolean isMSIMCompatible() {
+        return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
+                >= Build.VERSION_CODES.LOLLIPOP_MR1;
+    }
 }
