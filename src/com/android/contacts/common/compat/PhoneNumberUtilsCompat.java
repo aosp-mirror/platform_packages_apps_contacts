@@ -42,7 +42,7 @@ public class PhoneNumberUtilsCompat {
                 >= Build.VERSION_CODES.M) {
             return PhoneNumberUtils.createTtsSpannable(phoneNumber);
         } else {
-            return createTtsSpannablePrivate(phoneNumber);
+            return createTtsSpannableInternal(phoneNumber);
         }
     }
 
@@ -51,14 +51,14 @@ public class PhoneNumberUtilsCompat {
                 >= Build.VERSION_CODES.M) {
             return PhoneNumberUtils.createTtsSpan(phoneNumber);
         } else {
-            return createTtsSpanPrivate(phoneNumber);
+            return createTtsSpanInternal(phoneNumber);
         }
     }
 
     /**
      * Copied from {@link PhoneNumberUtils#createTtsSpannable}
      */
-    private static CharSequence createTtsSpannablePrivate(CharSequence phoneNumber) {
+    private static CharSequence createTtsSpannableInternal(CharSequence phoneNumber) {
         if (phoneNumber == null) {
             return null;
         }
@@ -85,7 +85,7 @@ public class PhoneNumberUtilsCompat {
     /**
      * Copied from {@link PhoneNumberUtils#createTtsSpan}
      */
-    private static TtsSpan createTtsSpanPrivate(String phoneNumberString) {
+    private static TtsSpan createTtsSpanInternal(String phoneNumberString) {
         if (phoneNumberString == null) {
             return null;
         }
