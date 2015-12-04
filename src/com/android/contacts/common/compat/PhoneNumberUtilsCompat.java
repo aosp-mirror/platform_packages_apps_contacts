@@ -16,16 +16,14 @@
 
 package com.android.contacts.common.compat;
 
-import android.os.Build;
-import android.text.Spannable;
-import android.text.style.TtsSpan;
-import android.telephony.PhoneNumberUtils;
-
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
-import com.google.i18n.phonenumbers.ShortNumberUtil;
+
+import android.os.Build;
+import android.telephony.PhoneNumberUtils;
+import android.text.Spannable;
+import android.text.style.TtsSpan;
 
 /**
  * This class contains static utility methods extracted from PhoneNumberUtils, and the
