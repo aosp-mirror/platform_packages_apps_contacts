@@ -29,7 +29,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
-import android.telephony.PhoneNumberUtils;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -43,6 +42,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -320,7 +320,7 @@ public class ImportExportDialogFragment extends DialogFragment
         return TextUtils.expandTemplate(
                 getString(R.string.import_from_sim_summary),
                 name,
-                PhoneNumberUtils.createTtsSpannable(record.getNumber()));
+                PhoneNumberUtilsCompat.createTtsSpannable(record.getNumber()));
     }
 
     private static class AdapterEntry {
