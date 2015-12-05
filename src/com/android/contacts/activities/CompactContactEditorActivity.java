@@ -44,6 +44,7 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
     private static final String STATE_PHOTO_MODE = "photo_mode";
     private static final String STATE_IS_PHOTO_SELECTION = "is_photo_selection";
     private static final String STATE_ACTION_BAR_TITLE = "action_bar_title";
+    private static final String STATE_PHOTO_URI = "photo_uri";
 
     /**
      * Displays a PopupWindow with photo edit options.
@@ -147,6 +148,7 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
             mPhotoMode = savedState.getInt(STATE_PHOTO_MODE);
             mIsPhotoSelection = savedState.getBoolean(STATE_IS_PHOTO_SELECTION);
             mActionBarTitleResId = savedState.getInt(STATE_ACTION_BAR_TITLE);
+            mPhotoUri = Uri.parse(savedState.getString(STATE_PHOTO_URI));
 
             // Show/hide the editor and photo selection fragments (w/o animations)
             mFragment = (CompactContactEditorFragment) getFragmentManager()
@@ -179,12 +181,16 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
         outState.putInt(STATE_PHOTO_MODE, mPhotoMode);
         outState.putBoolean(STATE_IS_PHOTO_SELECTION, mIsPhotoSelection);
         outState.putInt(STATE_ACTION_BAR_TITLE, mActionBarTitleResId);
+        outState.putString(STATE_PHOTO_URI,
+                mPhotoUri != null ? mPhotoUri.toString() : Uri.EMPTY.toString());
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (mPhotoSelectionHandler != null &&
-                mPhotoSelectionHandler.handlePhotoActivityResult(requestCode, resultCode, data)) {
+        if (mPhotoSelectionHandler == null) {
+            mPhotoSelectionHandler = (CompactPhotoSelectionHandler) getPhotoSelectionHandler();
+        }
+        if (mPhotoSelectionHandler.handlePhotoActivityResult(requestCode, resultCode, data)) {
             return;
         }
         super.onActivityResult(requestCode, resultCode, data);
