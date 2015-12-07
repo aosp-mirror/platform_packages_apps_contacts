@@ -18,8 +18,31 @@ package com.android.contacts.common.compat;
 import android.os.Build;
 
 import com.android.contacts.common.compat.SdkVersionOverride;
+import com.android.contacts.common.model.CPOWrapper;
 
 public final class CompatUtils {
+    /**
+     * These 4 variables are copied from ContentProviderOperation for compatibility.
+     */
+    public final static int TYPE_INSERT = 1;
+
+    public final static int TYPE_UPDATE = 2;
+
+    public final static int TYPE_DELETE = 3;
+
+    public final static int TYPE_ASSERT = 4;
+
+    /**
+     * Returns whether the operation in CPOWrapper is of TYPE_INSERT;
+     */
+    public static boolean isInsertCompat(CPOWrapper cpoWrapper) {
+        if (SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.M) >= Build.VERSION_CODES.M) {
+            return cpoWrapper.getOperation().isInsert();
+        } else {
+            return (cpoWrapper.getType() == TYPE_INSERT);
+        }
+    }
+
     /**
      * PrioritizedMimeType is added in API level 23.
      */
