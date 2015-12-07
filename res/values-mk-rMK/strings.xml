@@ -103,7 +103,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Не се достапни слики на таблетот."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Не се достапни слики на телефонот."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Фотографија за контакт"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Прилагоди име на етикета"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Приспособи име на етикета"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Испрати повици директно на говорна пошта"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Отстрани фотографија"</string>
     <string name="noContacts" msgid="4955659076981974652">"Нема контакти"</string>
