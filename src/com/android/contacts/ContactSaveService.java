@@ -49,8 +49,10 @@ import android.provider.ContactsContract.RawContactsEntity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.database.ContactUpdateUtils;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.CPOWrapper;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
@@ -385,7 +387,13 @@ public class ContactSaveService extends IntentService {
         while (tries++ < PERSIST_TRIES) {
             try {
                 // Build operations and try applying
-                final ArrayList<ContentProviderOperation> diff = state.buildDiff();
+                final ArrayList<CPOWrapper> diffWrapper = state.buildDiffWrapper();
+
+                final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+
+                for (CPOWrapper cpoWrapper : diffWrapper) {
+                    diff.add(cpoWrapper.getOperation());
+                }
 
                 if (DEBUG) {
                     Log.v(TAG, "Content Provider Operations:");
@@ -413,13 +421,13 @@ public class ContactSaveService extends IntentService {
                     continue;
                 }
 
-                final long rawContactId = getRawContactId(state, diff, results);
+                final long rawContactId = getRawContactId(state, diffWrapper, results);
                 if (rawContactId == -1) {
                     throw new IllegalStateException("Could not determine RawContact ID after save");
                 }
                 // We don't have to check to see if the value is still -1.  If we reach here,
                 // the previous loop iteration didn't succeed, so any ID that we obtained is bogus.
-                insertedRawContactId = getInsertedRawContactId(diff, results);
+                insertedRawContactId = getInsertedRawContactId(diffWrapper, results);
                 if (isProfile) {
                     // Since the profile supports local raw contacts, which may have been completely
                     // removed if all information was removed, we need to do a special query to
@@ -574,31 +582,31 @@ public class ContactSaveService extends IntentService {
      * Find the ID of an existing or newly-inserted raw-contact.  If none exists, return -1.
      */
     private long getRawContactId(RawContactDeltaList state,
-            final ArrayList<ContentProviderOperation> diff,
+            final ArrayList<CPOWrapper> diffWrapper,
             final ContentProviderResult[] results) {
         long existingRawContactId = state.findRawContactId();
         if (existingRawContactId != -1) {
             return existingRawContactId;
         }
 
-        return getInsertedRawContactId(diff, results);
+        return getInsertedRawContactId(diffWrapper, results);
     }
 
     /**
      * Find the ID of a newly-inserted raw-contact.  If none exists, return -1.
      */
     private long getInsertedRawContactId(
-            final ArrayList<ContentProviderOperation> diff,
-            final ContentProviderResult[] results) {
+            final ArrayList<CPOWrapper> diffWrapper, final ContentProviderResult[] results) {
         if (results == null) {
             return -1;
         }
-        final int diffSize = diff.size();
+        final int diffSize = diffWrapper.size();
         final int numResults = results.length;
         for (int i = 0; i < diffSize && i < numResults; i++) {
-            ContentProviderOperation operation = diff.get(i);
-            if (operation.isInsert() && operation.getUri().getEncodedPath().contains(
-                            RawContacts.CONTENT_URI.getEncodedPath())) {
+            final CPOWrapper cpoWrapper = diffWrapper.get(i);
+            final boolean isInsert = CompatUtils.isInsertCompat(cpoWrapper);
+            if (isInsert && cpoWrapper.getOperation().getUri().getEncodedPath().contains(
+                    RawContacts.CONTENT_URI.getEncodedPath())) {
                 return ContentUris.parseId(results[i].uri);
             }
         }
