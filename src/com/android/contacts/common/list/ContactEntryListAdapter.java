@@ -39,6 +39,7 @@ import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.compat.DirectoryCompat;
 import com.android.contacts.common.util.SearchUtil;
 
 import java.util.HashSet;
@@ -416,7 +417,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             if (getPartitionByDirectoryId(id) == -1) {
                 DirectoryPartition partition = new DirectoryPartition(false, true);
                 partition.setDirectoryId(id);
-                if (isRemoteDirectory(id)) {
+                if (DirectoryCompat.isRemoteDirectory(id)) {
                     partition.setLabel(mContext.getString(R.string.directory_search_label));
                 } else {
                     partition.setLabel(mDefaultFilterHeaderText.toString());
@@ -621,7 +622,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         TextView labelTextView = (TextView)view.findViewById(R.id.label);
         TextView displayNameTextView = (TextView)view.findViewById(R.id.display_name);
         labelTextView.setText(directoryPartition.getLabel());
-        if (!isRemoteDirectory(directoryId)) {
+        if (!DirectoryCompat.isRemoteDirectory(directoryId)) {
             displayNameTextView.setText(null);
         } else {
             String directoryName = directoryPartition.getDisplayName();
@@ -775,11 +776,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(directoryId)).build();
         }
         return uri;
-    }
-
-    public static boolean isRemoteDirectory(long directoryId) {
-        return directoryId != Directory.DEFAULT
-                && directoryId != Directory.LOCAL_INVISIBLE;
     }
 
     /**

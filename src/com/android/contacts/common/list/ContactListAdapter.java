@@ -172,6 +172,15 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         return uri;
     }
 
+    public boolean isEnterpriseContact(int position) {
+        final Cursor cursor = (Cursor) getItem(position);
+        if (cursor != null) {
+            final long contactId = cursor.getLong(ContactQuery.CONTACT_ID);
+            return Contacts.isEnterpriseContactId(contactId);
+        }
+        return false;
+    }
+
     /**
      * Returns true if the specified contact is selected in the list. For a
      * contact to be shown as selected, we need both the directory and and the
