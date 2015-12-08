@@ -165,28 +165,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
                 ((Activity) mContext).getClass(),
                 CompactContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos,
                 JOIN_CONTACT_ID_EXTRA_KEY, joinContactId);
-        try {
-            mContext.startService(intent);
-        } catch (Exception exception) {
-            final int resId;
-            switch (saveMode) {
-                case ContactEditorBaseActivity.ContactEditor.SaveMode.SPLIT:
-                    resId = R.string.contactUnlinkErrorToast;
-                    break;
-                case ContactEditorBaseActivity.ContactEditor.SaveMode.RELOAD:
-                    resId = R.string.contactJoinErrorToast;
-                    break;
-                case ContactEditorBaseActivity.ContactEditor.SaveMode.CLOSE:
-                    resId = R.string.contactSavedErrorToast;
-                    break;
-                default:
-                    resId = R.string.contactGenericErrorToast;
-            }
-            Toast.makeText(mContext, resId, Toast.LENGTH_SHORT).show();
-            onCancelEditConfirmed();
-            return false;
-        }
-        return true;
+        return startSaveService(mContext, intent, saveMode);
     }
 
     @Override

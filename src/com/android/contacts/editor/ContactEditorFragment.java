@@ -426,8 +426,7 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 ((Activity) mContext).getClass(), ContactEditorActivity.ACTION_SAVE_COMPLETED,
                 mUpdatedPhotos, JOIN_CONTACT_ID_EXTRA_KEY, joinContactId);
-        mContext.startService(intent);
-        return true;
+        return startSaveService(mContext, intent, saveMode);
     }
 
     @Override
