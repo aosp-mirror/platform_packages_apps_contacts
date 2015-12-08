@@ -28,15 +28,15 @@ import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.R;
-import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.extensions.ExtendedPhoneDirectoriesManager;
 import com.android.contacts.common.extensions.ExtensionsFactory;
 import com.android.contacts.common.preference.ContactsPreferences;
@@ -175,9 +175,19 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             if (isSearchMode()) {
                 final Uri baseUri;
                 if (isRemoteDirectoryQuery) {
-                    baseUri = Phone.CONTENT_FILTER_URI;
+                    if (ContactsUtils.FLAG_N_FEATURE) {
+                        //TODO(b/26056939): Phone.ENTERPRISE_CONTENT_FILTER_URI
+                        baseUri = Uri.withAppendedPath(Phone.CONTENT_URI, "filter_enterprise");
+                    } else {
+                        baseUri = Phone.CONTENT_FILTER_URI;
+                    }
                 } else if (mUseCallableUri) {
-                    baseUri = Callable.CONTENT_FILTER_URI;
+                    if (ContactsUtils.FLAG_N_FEATURE) {
+                        //TODO(b/26056939): Callable.ENTERPRISE_CONTENT_FILTER_URI
+                        baseUri = Uri.withAppendedPath(Callable.CONTENT_URI, "filter_enterprise");
+                    } else {
+                        baseUri = Callable.CONTENT_FILTER_URI;
+                    }
                 } else {
                     baseUri = Phone.CONTENT_FILTER_URI;
                 }
@@ -190,7 +200,16 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                             String.valueOf(getDirectoryResultLimit(getDirectoryById(directoryId))));
                 }
             } else {
-                final Uri baseUri = mUseCallableUri ? Callable.CONTENT_URI : Phone.CONTENT_URI;
+                Uri baseUri = mUseCallableUri ? Callable.CONTENT_URI : Phone.CONTENT_URI;
+                if (ContactsUtils.FLAG_N_FEATURE) {
+                    if (mUseCallableUri) {
+                        //TODO(b/26056939): Callable.ENTERPRISE_CONTENT_FILTER_URI
+                        baseUri = Uri.withAppendedPath(Callable.CONTENT_URI, "filter_enterprise");
+                    } else {
+                        //TODO(b/26056939): Phone.ENTERPRISE_CONTENT_FILTER_URI
+                        baseUri = Uri.withAppendedPath(Phone.CONTENT_URI, "filter_enterprise");
+                    }
+                }
                 builder = baseUri.buildUpon().appendQueryParameter(
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
                 if (isSectionHeaderDisplayEnabled()) {
@@ -556,6 +575,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
     }
 
+    @Override
     protected Uri getContactUri(int partitionIndex, Cursor cursor,
             int contactIdColumn, int lookUpKeyColumn) {
         final DirectoryPartition directory = (DirectoryPartition) getPartition(partitionIndex);
