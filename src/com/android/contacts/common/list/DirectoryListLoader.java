@@ -23,10 +23,12 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.R;
 
 /**
@@ -42,7 +44,10 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
     public static final int SEARCH_MODE_DATA_SHORTCUT = 3;
 
     private static final class DirectoryQuery {
-        public static final Uri URI = Directory.CONTENT_URI;
+        // TODO(b/26056939): Directory.ENTERPRISE_CONTENT_URI;
+        public static final Uri URI = ContactsUtils.FLAG_N_FEATURE
+                ? Uri.withAppendedPath(ContactsContract.AUTHORITY_URI, "directories_enterprise")
+                : Directory.CONTENT_URI;
         public static final String ORDER_BY = Directory._ID;
 
         public static final String[] PROJECTION = {
@@ -101,7 +106,7 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
     @Override
     protected void onStartLoading() {
         getContext().getContentResolver().
-                registerContentObserver(Directory.CONTENT_URI, false, mObserver);
+                registerContentObserver(DirectoryQuery.URI, false, mObserver);
         forceLoad();
     }
 

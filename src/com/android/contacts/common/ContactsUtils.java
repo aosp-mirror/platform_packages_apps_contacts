@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.telephony.PhoneNumberUtils;
@@ -44,6 +45,11 @@ public class ContactsUtils {
     private static final int DEFAULT_THUMBNAIL_SIZE = 96;
 
     private static int sThumbnailSize = -1;
+
+    public static final boolean FLAG_N_FEATURE =
+            false // Enforce Pre-N behavior in release build
+            && (Build.VERSION.SDK_INT > Build.VERSION_CODES.M
+                    || Build.VERSION.CODENAME.startsWith("N"));
 
     // TODO find a proper place for the canonical version of these
     public interface ProviderNames {
