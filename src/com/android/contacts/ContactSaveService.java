@@ -49,6 +49,7 @@ import android.provider.ContactsContract.RawContactsEntity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.database.ContactUpdateUtils;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -172,6 +173,45 @@ public class ContactSaveService extends IntentService {
 
     public static void unregisterListener(Listener listener) {
         sListeners.remove(listener);
+    }
+
+    /**
+     * Returns true if the ContactSaveService was started successfully and false if an exception
+     * was thrown and a Toast error message was displayed.
+     */
+    public static boolean startService(Context context, Intent intent, int saveMode) {
+        try {
+            context.startService(intent);
+        } catch (Exception exception) {
+            final int resId;
+            switch (saveMode) {
+                case ContactEditorBaseActivity.ContactEditor.SaveMode.SPLIT:
+                    resId = R.string.contactUnlinkErrorToast;
+                    break;
+                case ContactEditorBaseActivity.ContactEditor.SaveMode.RELOAD:
+                    resId = R.string.contactJoinErrorToast;
+                    break;
+                case ContactEditorBaseActivity.ContactEditor.SaveMode.CLOSE:
+                    resId = R.string.contactSavedErrorToast;
+                    break;
+                default:
+                    resId = R.string.contactGenericErrorToast;
+            }
+            Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Utility method that starts service and handles exception.
+     */
+    public static void startService(Context context, Intent intent) {
+        try {
+            context.startService(intent);
+        } catch (Exception exception) {
+            Toast.makeText(context, R.string.contactGenericErrorToast, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
