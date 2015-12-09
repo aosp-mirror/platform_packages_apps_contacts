@@ -30,6 +30,7 @@ import android.provider.ContactsContract.SearchSnippets;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.android.contacts.common.compat.ContactsCompat;
 import com.android.contacts.common.preference.ContactsPreferences;
 
 import java.util.ArrayList;
@@ -67,15 +68,15 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setProjection(getProjection(false));
                 loader.setSelection("0");
             } else {
-                Builder builder = Contacts.CONTENT_FILTER_URI.buildUpon();
-                builder.appendPath(query);      // Builder will encode the query
+                final Builder builder = ContactsCompat.getContentUri().buildUpon();
+                builder.appendPath(query); // Builder will encode the query
                 builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                         String.valueOf(directoryId));
                 if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE) {
                     builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
                             String.valueOf(getDirectoryResultLimit(getDirectoryById(directoryId))));
                 }
-                builder.appendQueryParameter(SearchSnippets.DEFERRED_SNIPPETING_KEY,"1");
+                builder.appendQueryParameter(SearchSnippets.DEFERRED_SNIPPETING_KEY, "1");
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
             }

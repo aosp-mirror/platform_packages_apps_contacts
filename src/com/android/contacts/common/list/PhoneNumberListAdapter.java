@@ -37,6 +37,9 @@ import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.CallableCompat;
+import com.android.contacts.common.compat.DirectoryCompat;
+import com.android.contacts.common.compat.PhoneCompat;
 import com.android.contacts.common.extensions.ExtendedPhoneDirectoriesManager;
 import com.android.contacts.common.extensions.ExtensionsFactory;
 import com.android.contacts.common.preference.ContactsPreferences;
@@ -170,26 +173,16 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             loader.setUri(builder.build());
             loader.setProjection(PhoneQuery.PROJECTION_PRIMARY);
         } else {
-            final boolean isRemoteDirectoryQuery = isRemoteDirectory(directoryId);
+            final boolean isRemoteDirectoryQuery = DirectoryCompat.isRemoteDirectory(directoryId);
             final Builder builder;
             if (isSearchMode()) {
                 final Uri baseUri;
                 if (isRemoteDirectoryQuery) {
-                    if (ContactsUtils.FLAG_N_FEATURE) {
-                        //TODO(b/26056939): Phone.ENTERPRISE_CONTENT_FILTER_URI
-                        baseUri = Uri.withAppendedPath(Phone.CONTENT_URI, "filter_enterprise");
-                    } else {
-                        baseUri = Phone.CONTENT_FILTER_URI;
-                    }
+                    baseUri = PhoneCompat.getContentFilterUri();
                 } else if (mUseCallableUri) {
-                    if (ContactsUtils.FLAG_N_FEATURE) {
-                        //TODO(b/26056939): Callable.ENTERPRISE_CONTENT_FILTER_URI
-                        baseUri = Uri.withAppendedPath(Callable.CONTENT_URI, "filter_enterprise");
-                    } else {
-                        baseUri = Callable.CONTENT_FILTER_URI;
-                    }
+                    baseUri = CallableCompat.getContentFilterUri();
                 } else {
-                    baseUri = Phone.CONTENT_FILTER_URI;
+                    baseUri = PhoneCompat.getContentFilterUri();
                 }
                 builder = baseUri.buildUpon();
                 builder.appendPath(query);      // Builder will encode the query
@@ -200,16 +193,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                             String.valueOf(getDirectoryResultLimit(getDirectoryById(directoryId))));
                 }
             } else {
-                Uri baseUri = mUseCallableUri ? Callable.CONTENT_URI : Phone.CONTENT_URI;
-                if (ContactsUtils.FLAG_N_FEATURE) {
-                    if (mUseCallableUri) {
-                        //TODO(b/26056939): Callable.ENTERPRISE_CONTENT_FILTER_URI
-                        baseUri = Uri.withAppendedPath(Callable.CONTENT_URI, "filter_enterprise");
-                    } else {
-                        //TODO(b/26056939): Phone.ENTERPRISE_CONTENT_FILTER_URI
-                        baseUri = Uri.withAppendedPath(Phone.CONTENT_URI, "filter_enterprise");
-                    }
-                }
+                Uri baseUri = mUseCallableUri ? CallableCompat.getContentFilterUri()
+                        : PhoneCompat.getContentFilterUri();
                 builder = baseUri.buildUpon().appendQueryParameter(
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
                 if (isSectionHeaderDisplayEnabled()) {
@@ -320,7 +305,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     public Uri getDataUri(int partitionIndex, Cursor cursor) {
         final long directoryId =
                 ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
-        if (!isRemoteDirectory(directoryId)) {
+        if (!DirectoryCompat.isRemoteDirectory(directoryId)) {
             final long phoneId = cursor.getLong(PhoneQuery.PHONE_ID);
             return ContentUris.withAppendedId(Data.CONTENT_URI, phoneId);
         }
@@ -555,7 +540,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                 if (id > maxId) {
                     maxId = id;
                 }
-                if (!isRemoteDirectory(id)) {
+                if (!DirectoryCompat.isRemoteDirectory(id)) {
                     // assuming remote directories come after local, we will end up with the index
                     // where we should insert extended directories. This also works if there are no
                     // remote directories at all.
