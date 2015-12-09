@@ -337,7 +337,7 @@ public class AttachPhotoActivity extends ContactsActivity {
                 raw.getRawContactId() != null ? raw.getRawContactId() : -1,
                 mCroppedPhotoUri
         );
-        startService(intent);
+        ContactSaveService.startService(this, intent);
         finish();
     }
 

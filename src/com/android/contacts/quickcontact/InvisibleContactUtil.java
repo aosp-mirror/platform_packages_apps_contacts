@@ -96,7 +96,7 @@ public class InvisibleContactUtil {
                 contactDeltaList, "", 0, false, QuickContactActivity.class,
                 Intent.ACTION_VIEW, null, /* joinContactIdExtraKey =*/ null,
                 /* joinContactId =*/ null);
-        context.startService(intent);
+        ContactSaveService.startService(context, intent);
     }
 
     /** return default group id or -1 if no group or several groups are marked as default */
