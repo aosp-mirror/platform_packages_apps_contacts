@@ -92,7 +92,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         if (uri == null) {
             return;
         }
-        viewContact(uri);
+        viewContact(uri, getAdapter().isEnterpriseContact(position));
     }
 
     @Override
