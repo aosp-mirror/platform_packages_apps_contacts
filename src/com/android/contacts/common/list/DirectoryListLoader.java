@@ -30,6 +30,7 @@ import android.util.Log;
 
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.DirectoryCompat;
 
 /**
  * A specialized loader for the list of directories, see {@link Directory}.
@@ -44,10 +45,7 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
     public static final int SEARCH_MODE_DATA_SHORTCUT = 3;
 
     private static final class DirectoryQuery {
-        // TODO(b/26056939): Directory.ENTERPRISE_CONTENT_URI;
-        public static final Uri URI = ContactsUtils.FLAG_N_FEATURE
-                ? Uri.withAppendedPath(ContactsContract.AUTHORITY_URI, "directories_enterprise")
-                : Directory.CONTENT_URI;
+        public static final Uri URI = DirectoryCompat.getContentUri();
         public static final String ORDER_BY = Directory._ID;
 
         public static final String[] PROJECTION = {
@@ -127,22 +125,17 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
         String selection;
         switch (mDirectorySearchMode) {
             case SEARCH_MODE_DEFAULT:
-                selection = mLocalInvisibleDirectoryEnabled ? null
-                        : (Directory._ID + "!=" + Directory.LOCAL_INVISIBLE);
+                selection = null;
                 break;
 
             case SEARCH_MODE_CONTACT_SHORTCUT:
-                selection = Directory.SHORTCUT_SUPPORT + "=" + Directory.SHORTCUT_SUPPORT_FULL
-                        + (mLocalInvisibleDirectoryEnabled ? ""
-                                : (" AND " + Directory._ID + "!=" + Directory.LOCAL_INVISIBLE));
+                selection = Directory.SHORTCUT_SUPPORT + "=" + Directory.SHORTCUT_SUPPORT_FULL;
                 break;
 
             case SEARCH_MODE_DATA_SHORTCUT:
                 selection = Directory.SHORTCUT_SUPPORT + " IN ("
                         + Directory.SHORTCUT_SUPPORT_FULL + ", "
-                        + Directory.SHORTCUT_SUPPORT_DATA_ITEMS_ONLY + ")"
-                        + (mLocalInvisibleDirectoryEnabled ? ""
-                                : (" AND " + Directory._ID + "!=" + Directory.LOCAL_INVISIBLE));
+                        + Directory.SHORTCUT_SUPPORT_DATA_ITEMS_ONLY + ")";
                 break;
 
             default:
@@ -160,6 +153,10 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
 
             while(cursor.moveToNext()) {
                 long directoryId = cursor.getLong(DirectoryQuery.ID);
+                if (!mLocalInvisibleDirectoryEnabled
+                        && DirectoryCompat.isInvisibleDirectory(directoryId)) {
+                    continue;
+                }
                 String directoryType = null;
 
                 String packageName = cursor.getString(DirectoryQuery.PACKAGE_NAME);
