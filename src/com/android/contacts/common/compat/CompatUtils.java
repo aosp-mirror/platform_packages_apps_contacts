@@ -38,4 +38,26 @@ public final class CompatUtils {
         return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
                 >= Build.VERSION_CODES.LOLLIPOP_MR1;
     }
+
+    /**
+     * Determines if this version is compatible with video calling. Can also force the version to be
+     * lower through SdkVersionOverride.
+     *
+     * @return {@code true} if video calling is allowed, {@code false} otherwise.
+     */
+    public static boolean isVideoCompatible() {
+        return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
+                >= Build.VERSION_CODES.M;
+    }
+
+    /**
+     * Determines if this version is compatible with call subject. Can also force the version to
+     * be lower through SdkVersionOverride.
+     *
+     * @return {@code true} if call subject is a feature on this device, {@code false} otherwise.
+     */
+    public static boolean isCallSubjectCompatible() {
+        return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
+                >= Build.VERSION_CODES.M;
+    }
 }
