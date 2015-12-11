@@ -16,6 +16,7 @@
 
 package com.android.contacts.common;
 
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.common.util.PhoneNumberHelper;
 import com.android.phone.common.PhoneConstants;
@@ -109,7 +110,8 @@ public class CallUtil {
      *      {@code false} otherwise.
      */
     public static boolean isVideoEnabled(Context context) {
-        if (!PermissionsUtil.hasPermission(context, android.Manifest.permission.READ_PHONE_STATE)) {
+        if (!PermissionsUtil.hasPermission(context, android.Manifest.permission.READ_PHONE_STATE)
+                || !CompatUtils.isVideoCompatible()) {
             return false;
         }
         TelecomManager telecommMgr = (TelecomManager)
@@ -137,7 +139,8 @@ public class CallUtil {
      *      subject specified, {@code false} otherwise.
      */
     public static boolean isCallWithSubjectSupported(Context context) {
-        if (!PermissionsUtil.hasPermission(context, android.Manifest.permission.READ_PHONE_STATE)) {
+        if (!PermissionsUtil.hasPermission(context, android.Manifest.permission.READ_PHONE_STATE)
+                || !CompatUtils.isCallSubjectCompatible()) {
             return false;
         }
         TelecomManager telecommMgr = (TelecomManager)
