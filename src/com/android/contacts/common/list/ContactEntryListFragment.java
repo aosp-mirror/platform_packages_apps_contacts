@@ -888,6 +888,15 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         removePendingDirectorySearchRequests();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Restore the selection of the list view. See b/19982820.
+        // This has to be done manually because if the list view has its emptyView set,
+        // the scrolling state will be reset when clearPartitions() is called on the adapter.
+        mListView.setSelectionFromTop(mListViewTopIndex, mListViewTopOffset);
+    }
+
     /**
      * Restore the list state after the adapter is populated.
      */
@@ -895,11 +904,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (mListState != null) {
             mListView.onRestoreInstanceState(mListState);
             mListState = null;
-        } else {
-            // Restore the scrolling state of the list view.
-            // This has to be done manually be cause if the list view have its' emptyView set,
-            // the scrolling state will be reset when clearPartitions() is called on the adapter.
-            mListView.setSelectionFromTop(mListViewTopIndex, mListViewTopOffset);
         }
     }
 
