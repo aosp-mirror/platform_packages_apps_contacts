@@ -42,6 +42,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -126,33 +127,41 @@ public class ImportExportDialogFragment extends DialogFragment
 
         final TelephonyManager manager =
                 (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-
-        mSubscriptionManager = SubscriptionManager.from(getActivity());
-
         if (res.getBoolean(R.bool.config_allow_import_from_vcf_file)) {
             adapter.add(new AdapterEntry(getString(R.string.import_from_vcf_file),
                     R.string.import_from_vcf_file));
         }
-        if (manager != null && res.getBoolean(R.bool.config_allow_sim_import)) {
-            List<SubscriptionInfo> subInfoRecords = null;
-            try {
-                subInfoRecords =  mSubscriptionManager.getActiveSubscriptionInfoList();
-            } catch (SecurityException e) {
-                Log.w(TAG, "SecurityException thrown, lack permission for"
-                        + " getActiveSubscriptionInfoList", e);
-            }
-            if (subInfoRecords != null) {
-                if (subInfoRecords.size() == 1) {
-                    adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
-                            R.string.import_from_sim, subInfoRecords.get(0).getSubscriptionId()));
-                } else {
-                    for (SubscriptionInfo record : subInfoRecords) {
-                        adapter.add(new AdapterEntry(getSubDescription(record),
-                                R.string.import_from_sim, record.getSubscriptionId()));
+
+        if (CompatUtils.isMSIMCompatible()) {
+            mSubscriptionManager = SubscriptionManager.from(getActivity());
+            if (manager != null && res.getBoolean(R.bool.config_allow_sim_import)) {
+                List<SubscriptionInfo> subInfoRecords = null;
+                try {
+                    subInfoRecords =  mSubscriptionManager.getActiveSubscriptionInfoList();
+                } catch (SecurityException e) {
+                    Log.w(TAG, "SecurityException thrown, lack permission for"
+                            + " getActiveSubscriptionInfoList", e);
+                }
+                if (subInfoRecords != null) {
+                    if (subInfoRecords.size() == 1) {
+                        adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
+                                R.string.import_from_sim, subInfoRecords.get(0).getSubscriptionId()));
+                    } else {
+                        for (SubscriptionInfo record : subInfoRecords) {
+                            adapter.add(new AdapterEntry(getSubDescription(record),
+                                    R.string.import_from_sim, record.getSubscriptionId()));
+                        }
                     }
                 }
             }
+        } else {
+            if (manager != null && manager.hasIccCard()
+                    && res.getBoolean(R.bool.config_allow_sim_import)) {
+                adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
+                        R.string.import_from_sim, -1));
+            }
         }
+
         if (res.getBoolean(R.bool.config_allow_export)) {
             if (contactsAreAvailable) {
                 adapter.add(new AdapterEntry(getString(R.string.export_to_vcf_file),
@@ -288,7 +297,8 @@ public class ImportExportDialogFragment extends DialogFragment
         }
 
         AccountSelectionUtil.doImport(getActivity(), resId,
-                (size == 1 ? accountList.get(0) : null), subscriptionId);
+                (size == 1 ? accountList.get(0) : null),
+                (CompatUtils.isMSIMCompatible() ? subscriptionId : -1));
         return true; // Close the dialog.
     }
 
