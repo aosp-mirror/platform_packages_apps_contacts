@@ -542,10 +542,11 @@ public class CompactKindSectionView extends LinearLayout {
         }
         // Determine if we should add a new empty editor
         final DataKind dataKind = mKindSectionDataList.get(0).getDataKind();
+        final RawContactDelta rawContactDelta =
+                mKindSectionDataList.get(0).getRawContactDelta();
         if (dataKind == null // There is nothing we can do.
                 // We have already reached the maximum number of editors, don't add any more.
-                || (dataKind.typeOverallMax == mEditors.getChildCount()
-                        && dataKind.typeOverallMax != 0)
+                || !RawContactModifier.canInsert(rawContactDelta, dataKind)
                 // We have already reached the maximum number of empty editors, don't add any more.
                 || emptyEditors.size() == 1) {
             return;
@@ -556,8 +557,6 @@ public class CompactKindSectionView extends LinearLayout {
             if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType) && mEditors.getChildCount() > 0) {
                 return;
             }
-            final RawContactDelta rawContactDelta =
-                    mKindSectionDataList.get(0).getRawContactDelta();
             final ValuesDelta values = RawContactModifier.insertChild(rawContactDelta, dataKind);
             final Editor.EditorListener editorListener = Event.CONTENT_ITEM_TYPE.equals(mimeType)
                     ? new EventEditorListener() : new NonNameEditorListener();
