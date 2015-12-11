@@ -249,7 +249,7 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         } else if (isReadOnly()) {
             // We don't show empty editors for read only data kinds.
             return;
-        } else if (mKind.typeOverallMax == getEditorCount() && mKind.typeOverallMax != 0) {
+        } else if (!RawContactModifier.canInsert(mState, mKind)) {
             // We have already reached the maximum number of editors. Lets not add any more.
             return;
         } else if (emptyEditors.size() == 1) {
