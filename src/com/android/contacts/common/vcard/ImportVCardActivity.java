@@ -405,6 +405,9 @@ public class ImportVCardActivity extends Activity {
     }
 
     private String getDisplayName(Uri sourceUri) {
+        if (sourceUri == null) {
+            return null;
+        }
         final ContentResolver resolver = ImportVCardActivity.this.getContentResolver();
         String displayName = null;
         Cursor cursor = null;
@@ -658,8 +661,8 @@ public class ImportVCardActivity extends Activity {
                     if (uri != null) {
                         Log.i(LOG_TAG, "vCard selected for import: " + uri);
                         final Uri localUri = readUriToLocalUri(uri);
-                        final String sourceDisplayName = getDisplayName(uri);
                         if (localUri != null) {
+                            final String sourceDisplayName = getDisplayName(uri);
                             importVCard(localUri, sourceDisplayName);
                         } else {
                             Log.w(LOG_TAG, "No local URI for vCard import");
