@@ -523,6 +523,9 @@ public class ImportVCardActivity extends Activity {
 
     private Uri readUriToLocalUri(Uri sourceUri) {
         final String fileName = readUriToLocalFile(sourceUri);
+        if (fileName == null) {
+            return null;
+        }
         return Uri.parse(getFileStreamPath(fileName).toURI().toString());
     }
 
@@ -635,9 +638,11 @@ public class ImportVCardActivity extends Activity {
                         final Uri uri = item.getUri();
                         if (uri != null) {
                             final Uri localUri = readUriToLocalUri(uri);
-                            final String sourceDisplayName = getDisplayName(uri);
-                            uris.add(localUri);
-                            sourceDisplayNames.add(sourceDisplayName);
+                            if (localUri != null) {
+                                final String sourceDisplayName = getDisplayName(uri);
+                                uris.add(localUri);
+                                sourceDisplayNames.add(sourceDisplayName);
+                            }
                         }
                     }
                     if (uris.isEmpty()) {
@@ -654,7 +659,12 @@ public class ImportVCardActivity extends Activity {
                         Log.i(LOG_TAG, "vCard selected for import: " + uri);
                         final Uri localUri = readUriToLocalUri(uri);
                         final String sourceDisplayName = getDisplayName(uri);
-                        importVCard(localUri, sourceDisplayName);
+                        if (localUri != null) {
+                            importVCard(localUri, sourceDisplayName);
+                        } else {
+                            Log.w(LOG_TAG, "No local URI for vCard import");
+                            finish();
+                        }
                     } else {
                         Log.w(LOG_TAG, "No vCard was selected for import");
                         finish();
