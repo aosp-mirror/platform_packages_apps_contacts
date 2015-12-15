@@ -904,6 +904,12 @@
          For example: Photo from Google abc@gmail.com checked. [CHAR LIMIT=60]-->
     <string name="photo_view_description_checked">Photo from <xliff:g id="account_type">%s </xliff:g><xliff:g id="user_name">%s </xliff:g>checked</string>
 
+    <!-- Content description of photo in photo picker indicating a photo from unknown account is *not* selected.-->
+    <string name="photo_view_description_not_checked_no_info">Photo from unknown account not checked</string>
+
+    <!-- Content description of photo in photo picker indicating a photo from unknown account is selected. -->
+    <string name="photo_view_description_checked_no_info">Photo from unknown account checked</string>
+
     <!-- Text shown in the contacts app while the background process updates contacts after a locale change [CHAR LIMIT=150]-->
     <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.\n\nPlease wait...</string>
 

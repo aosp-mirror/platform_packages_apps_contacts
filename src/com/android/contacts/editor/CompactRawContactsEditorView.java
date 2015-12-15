@@ -547,13 +547,33 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 photo.primary = valuesDelta.isSuperPrimary();
                 photo.kindSectionDataListIndex = i;
                 photo.valuesDeltaListIndex = j;
-                photo.accountType = accountType.getDisplayLabel(getContext()).toString();
-                photo.accountName = kindSectionData.getRawContactDelta().getAccountName();
                 photo.photoId = valuesDelta.getId();
 
                 if (updatedPhotos != null) {
                     photo.updatedPhotoUri = (Uri) updatedPhotos.get(String.valueOf(
                             kindSectionData.getRawContactDelta().getRawContactId()));
+                }
+
+                // set content descriptions of the photo
+                final CharSequence accountTypeText = accountType.getDisplayLabel(getContext());
+                if (accountTypeText != null) {
+                    final String accountNameText =
+                            kindSectionData.getRawContactDelta().getAccountName();
+                    photo.contentDescription = getResources().getString(photo.primary ?
+                                    R.string.photo_view_description_checked :
+                                    R.string.photo_view_description_not_checked,
+                            accountTypeText,
+                            accountNameText == null ? "" : accountNameText);
+                    photo.contentDescriptionChecked = getResources().getString(
+                            R.string.photo_view_description_checked,
+                            accountTypeText,
+                            accountNameText == null ? "" : accountNameText);
+                } else {
+                    photo.contentDescription = getResources().getString(photo.primary ?
+                            R.string.photo_view_description_checked_no_info :
+                            R.string.photo_view_description_not_checked_no_info);
+                    photo.contentDescriptionChecked = getResources().getString(
+                            R.string.photo_view_description_checked_no_info);
                 }
 
                 photos.add(photo);
