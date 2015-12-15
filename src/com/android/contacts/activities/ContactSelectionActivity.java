@@ -483,7 +483,7 @@ public class ContactSelectionActivity extends ContactsActivity
     private final class PhoneNumberPickerActionListener implements
             OnPhoneNumberPickerActionListener {
         @Override
-        public void onPickDataUri(Uri dataUri, int callInitiationType) {
+        public void onPickDataUri(Uri dataUri, boolean isVideoCall, int callInitiationType) {
             returnPickerResult(dataUri);
         }
 
