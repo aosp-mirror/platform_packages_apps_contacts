@@ -1518,7 +1518,7 @@ public class ContactListItemView extends ViewGroup
     public void setDrawableResource(int drawableId) {
         ImageView photo = getPhotoView();
         photo.setScaleType(ImageView.ScaleType.CENTER);
-        photo.setImageDrawable(getContext().getDrawable(drawableId));
+        photo.setImageDrawable(ContextCompat.getDrawable(getContext(), drawableId));
         photo.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(
                 getContext(), R.color.search_shortcut_icon_color)));
     }

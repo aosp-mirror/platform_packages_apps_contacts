@@ -28,6 +28,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
+import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import com.android.contacts.common.R;
@@ -220,7 +221,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 .appendQueryParameter(CancelActivity.TYPE, String.valueOf(type)).build();
         intent.setData(uri);
 
-        final Notification.Builder builder = new Notification.Builder(context);
+        final NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setOngoing(true)
                 .setProgress(totalCount, currentCount, totalCount == - 1)
                 .setTicker(tickerText)
@@ -246,7 +247,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
      */
     /* package */ static Notification constructCancelNotification(
             Context context, String description) {
-        return new Notification.Builder(context)
+        return new NotificationCompat.Builder(context)
                 .setAutoCancel(true)
                 .setSmallIcon(android.R.drawable.stat_notify_error)
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
@@ -268,7 +269,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
      */
     /* package */ static Notification constructFinishNotification(
             Context context, String title, String description, Intent intent) {
-        return new Notification.Builder(context)
+        return new NotificationCompat.Builder(context)
                 .setAutoCancel(true)
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
                 .setSmallIcon(android.R.drawable.stat_sys_download_done)
@@ -290,7 +291,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
      */
     /* package */ static Notification constructImportFailureNotification(
             Context context, String reason) {
-        return new Notification.Builder(context)
+        return new NotificationCompat.Builder(context)
                 .setAutoCancel(true)
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
                 .setSmallIcon(android.R.drawable.stat_notify_error)
