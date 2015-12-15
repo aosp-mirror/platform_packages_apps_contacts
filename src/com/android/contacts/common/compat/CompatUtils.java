@@ -83,4 +83,15 @@ public final class CompatUtils {
         return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
                 >= Build.VERSION_CODES.M;
     }
+
+    /**
+     * Determines if this version is compatible with Marshmallow-specific APIs. Can also force the
+     * version to be lower through SdkVersionOverride.
+     *
+     * @return {@code true} if call subject is a feature on this device, {@code false} otherwise.
+     */
+    public static boolean isMarshmallowCompatible() {
+        return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
+                >= Build.VERSION_CODES.M;
+    }
 }
