@@ -198,7 +198,7 @@ public class CallSubjectDialog extends Activity {
             };
 
     /**
-     * Show the call subhect dialog given a phone number to dial (e.g. from the dialpad).
+     * Show the call subject dialog given a phone number to dial (e.g. from the dialpad).
      *
      * @param activity The activity.
      * @param number The number to dial.
