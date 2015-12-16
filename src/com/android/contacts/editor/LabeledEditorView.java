@@ -458,7 +458,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 final String customText = editText.getText().toString().trim();
                 if (ContactsUtils.isGraphic(customText)) {
                     final List<EditType> allTypes =
-                            RawContactModifier.getValidTypes(mState, mKind, null);
+                            RawContactModifier.getValidTypes(mState, mKind, null, true, null, true);
                     mType = null;
                     for (EditType editType : allTypes) {
                         if (editType.customColumn != null) {
@@ -598,7 +598,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                 }
             }
 
-            addAll(RawContactModifier.getValidTypes(mState, mKind, mType));
+            addAll(RawContactModifier.getValidTypes(mState, mKind, mType, true, null, false));
         }
 
         public boolean hasCustomSelection() {
