@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -96,8 +97,8 @@ public class CompactPhotoSelectionFragment extends Fragment {
         public int iconRes;
         public String syncAdapterPackageName;
 
-        public String accountType;
-        public String accountName;
+        public String contentDescription;
+        public String contentDescriptionChecked; // Talkback announcement when the photo is checked
 
         public ValuesDelta valuesDelta;
 
@@ -250,11 +251,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
             final ImageView checkImageView = (ImageView) photoItemView.findViewById(R.id.check);
             checkImageView.setVisibility(photo.primary ? View.VISIBLE : View.GONE);
 
-            final String contentDescription = getString(photo.primary ?
-                    R.string.photo_view_description_checked :
-                    R.string.photo_view_description_not_checked,
-                    photo.accountType, photo.accountName == null ? "" : photo.accountName);
-            photoItemView.setContentDescription(contentDescription);
+            photoItemView.setContentDescription(photo.contentDescription);
 
             return photoItemView;
         }
@@ -343,10 +340,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
             }
         });
         final ViewGroup clickedView = (ViewGroup) mGridView.getChildAt(position);
-        final String contentDescription = getString(
-                R.string.photo_view_description_checked,
-                photo.accountType, photo.accountName == null ? "" : photo.accountName);
-        clickedView.announceForAccessibility(contentDescription);
+        clickedView.announceForAccessibility(photo.contentDescriptionChecked);
     }
 
     @Override
