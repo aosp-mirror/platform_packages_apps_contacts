@@ -217,7 +217,7 @@ public class RawContactModifierTests extends AndroidTestCase {
         RawContactModifier.insertChild(state, kindPhone, typeWork);
 
         // Expecting home, other
-        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null);
+        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null, true, null, true);
         assertContains(validTypes, typeHome);
         assertNotContains(validTypes, typeWork);
         assertContains(validTypes, typeOther);
@@ -226,7 +226,7 @@ public class RawContactModifierTests extends AndroidTestCase {
         RawContactModifier.insertChild(state, kindPhone, typeHome);
 
         // Expecting other
-        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null);
+        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null, true, null, true);
         assertNotContains(validTypes, typeHome);
         assertNotContains(validTypes, typeWork);
         assertContains(validTypes, typeOther);
@@ -236,10 +236,47 @@ public class RawContactModifierTests extends AndroidTestCase {
         RawContactModifier.insertChild(state, kindPhone, typeHome);
 
         // Expecting none
-        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null);
+        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null, true, null, true);
         assertNotContains(validTypes, typeHome);
         assertNotContains(validTypes, typeWork);
         assertNotContains(validTypes, typeOther);
+    }
+
+    /**
+     * Test which valid types there are when trying to update the editor type.
+     * {@link RawContactModifier#getValidTypes(RawContactDelta, DataKind, EditType, Boolean)}
+     */
+    public void testValidTypesWhenUpdating() {
+        // Build a source and pull specific types
+        final AccountType source = getAccountType();
+        final DataKind kindPhone = source.getKindForMimetype(Phone.CONTENT_ITEM_TYPE);
+        final EditType typeHome = RawContactModifier.getType(kindPhone, Phone.TYPE_HOME);
+        final EditType typeWork = RawContactModifier.getType(kindPhone, Phone.TYPE_WORK);
+        final EditType typeOther = RawContactModifier.getType(kindPhone, Phone.TYPE_OTHER);
+
+        List<EditType> validTypes;
+
+        // Add first home, first work
+        final RawContactDelta state = getRawContact(TEST_ID);
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
+        RawContactModifier.insertChild(state, kindPhone, typeWork);
+
+        // Update editor type for home.
+        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null, true, null, false);
+        assertContains(validTypes, typeHome);
+        assertNotContains(validTypes, typeWork);
+        assertContains(validTypes, typeOther);
+
+        // Add another 3 types. Overall limit is 5.
+        RawContactModifier.insertChild(state, kindPhone, typeHome);
+        RawContactModifier.insertChild(state, kindPhone, typeOther);
+        RawContactModifier.insertChild(state, kindPhone, typeOther);
+
+        // "Other" is valid when updating the editor type.
+        validTypes = RawContactModifier.getValidTypes(state, kindPhone, null, true, null, false);
+        assertNotContains(validTypes, typeHome);
+        assertNotContains(validTypes, typeWork);
+        assertContains(validTypes, typeOther);
     }
 
     /**
