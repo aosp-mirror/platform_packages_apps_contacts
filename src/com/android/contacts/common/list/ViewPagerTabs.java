@@ -34,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.CompatUtils;
 
 /**
  * Lightweight implementation of ViewPager tabs. This looks similar to traditional actionBar tabs,
@@ -61,13 +62,19 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
     // For displaying the unread count next to the tab icon.
     private int[] mUnreadCounts;
 
-    private static final ViewOutlineProvider VIEW_BOUNDS_OUTLINE_PROVIDER =
-            new ViewOutlineProvider() {
-        @Override
-        public void getOutline(View view, Outline outline) {
-            outline.setRect(0, 0, view.getWidth(), view.getHeight());
+    private static final ViewOutlineProvider VIEW_BOUNDS_OUTLINE_PROVIDER;
+    static {
+        if (CompatUtils.isLollipopCompatible()) {
+            VIEW_BOUNDS_OUTLINE_PROVIDER = new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRect(0, 0, view.getWidth(), view.getHeight());
+                }
+            };
+        } else {
+            VIEW_BOUNDS_OUTLINE_PROVIDER = null;
         }
-    };
+    }
 
     private static final int TAB_SIDE_PADDING_IN_DPS = 10;
 
@@ -136,8 +143,10 @@ public class ViewPagerTabs extends HorizontalScrollView implements ViewPager.OnP
                 new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
         a.recycle();
 
-        // enable shadow casting from view bounds
-        setOutlineProvider(VIEW_BOUNDS_OUTLINE_PROVIDER);
+        if (CompatUtils.isLollipopCompatible()) {
+            // enable shadow casting from view bounds
+            setOutlineProvider(VIEW_BOUNDS_OUTLINE_PROVIDER);
+        }
     }
 
     public void setViewPager(ViewPager viewPager) {

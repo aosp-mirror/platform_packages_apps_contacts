@@ -47,6 +47,7 @@ import android.widget.TextView;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.util.UriUtils;
 import com.android.phone.common.animation.AnimUtils;
 
@@ -386,7 +387,9 @@ public class CallSubjectDialog extends Activity {
     private void setPhoto(long photoId, Uri photoUri, Uri contactUri, String displayName,
             boolean isBusiness) {
         mContactPhoto.assignContactUri(contactUri);
-        mContactPhoto.setOverlay(null);
+        if (CompatUtils.isLollipopCompatible()) {
+            mContactPhoto.setOverlay(null);
+        }
 
         int contactType;
         if (isBusiness) {
