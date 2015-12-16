@@ -16,11 +16,16 @@
 package com.android.contacts.common.compat;
 
 import android.os.Build;
+import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.android.contacts.common.compat.SdkVersionOverride;
 import com.android.contacts.common.model.CPOWrapper;
 
 public final class CompatUtils {
+
+    private static final String TAG = CompatUtils.class.getSimpleName();
+
     /**
      * These 4 variables are copied from ContentProviderOperation for compatibility.
      */
@@ -93,5 +98,28 @@ public final class CompatUtils {
     public static boolean isMarshmallowCompatible() {
         return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
                 >= Build.VERSION_CODES.M;
+    }
+
+    /**
+     * Determines if the given class is available. Can be used to check if system apis exist at
+     * runtime.
+     *
+     * @param className the name of the class to look for.
+     * @return {@code true} if the given class is available, {@code false} otherwise or if className
+     *    is null.
+     */
+    public static boolean isClassAvailable(@Nullable String className) {
+        if (className == null) {
+            return false;
+        }
+        try {
+            Class.forName(className);
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        } catch (Throwable t) {
+            Log.e(TAG, "Unexpected exception when checking if class exists at runtime", t);
+            return false;
+        }
     }
 }
