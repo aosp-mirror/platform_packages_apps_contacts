@@ -1,6 +1,7 @@
 package com.android.contacts.widget;
 
 import com.android.contacts.R;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.quickcontact.ExpandingEntryCardView;
 import com.android.contacts.test.NeededForReflection;
 import com.android.contacts.util.SchedulingUtils;
@@ -20,6 +21,8 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.GradientDrawable;
 import android.hardware.display.DisplayManager;
 import android.os.Trace;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.animation.PathInterpolatorCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Display;
@@ -31,7 +34,6 @@ import android.view.ViewGroup;
 import android.view.ViewConfiguration;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
-import android.view.animation.PathInterpolator;
 import android.widget.EdgeEffect;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -177,8 +179,8 @@ public class MultiShrinkScroller extends FrameLayout {
             0, 0, 0, 1, 0
     };
 
-    private final PathInterpolator mTextSizePathInterpolator
-            = new PathInterpolator(0.16f, 0.4f, 0.2f, 1);
+    private final Interpolator mTextSizePathInterpolator =
+            PathInterpolatorCompat.create(0.16f, 0.4f, 0.2f, 1);
 
     private final int[] mGradientColors = new int[] {0,0x88000000};
     private GradientDrawable mTitleGradientDrawable = new GradientDrawable(
@@ -526,10 +528,12 @@ public class MultiShrinkScroller extends FrameLayout {
     public void setHeaderTintColor(int color) {
         mHeaderTintColor = color;
         updatePhotoTintAndDropShadow();
-        // We want to use the same amount of alpha on the new tint color as the previous tint color.
-        final int edgeEffectAlpha = Color.alpha(mEdgeGlowBottom.getColor());
-        mEdgeGlowBottom.setColor((color & 0xffffff) | Color.argb(edgeEffectAlpha, 0, 0, 0));
-        mEdgeGlowTop.setColor(mEdgeGlowBottom.getColor());
+        if (CompatUtils.isLollipopCompatible()) {
+            // Use the same amount of alpha on the new tint color as the previous tint color.
+            final int edgeEffectAlpha = Color.alpha(mEdgeGlowBottom.getColor());
+            mEdgeGlowBottom.setColor((color & 0xffffff) | Color.argb(edgeEffectAlpha, 0, 0, 0));
+            mEdgeGlowTop.setColor(mEdgeGlowBottom.getColor());
+        }
     }
 
     /**
@@ -1117,9 +1121,9 @@ public class MultiShrinkScroller extends FrameLayout {
         final int toolbarHeight = getToolbarHeight();
 
         if (toolbarHeight <= mMinimumHeaderHeight && !mIsTwoPanel) {
-            mPhotoViewContainer.setElevation(mToolbarElevation);
+            ViewCompat.setElevation(mPhotoViewContainer, mToolbarElevation);
         } else {
-            mPhotoViewContainer.setElevation(0);
+            ViewCompat.setElevation(mPhotoViewContainer, 0);
         }
 
         // Reuse an existing mColorFilter (to avoid GC pauses) to change the photo's tint.

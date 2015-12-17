@@ -108,6 +108,7 @@ import com.android.contacts.common.Collapser;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.dialog.CallSubjectDialog;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.interactions.TouchPointManager;
@@ -928,7 +929,9 @@ public class QuickContactActivity extends ContactsActivity
             return;
         }
 
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        if (CompatUtils.isLollipopCompatible()) {
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
 
         processIntent(getIntent());
 
@@ -2309,7 +2312,7 @@ public class QuickContactActivity extends ContactsActivity
     }
 
     private void updateStatusBarColor() {
-        if (mScroller == null) {
+        if (mScroller == null || !CompatUtils.isLollipopCompatible()) {
             return;
         }
         final int desiredStatusBarColor;
