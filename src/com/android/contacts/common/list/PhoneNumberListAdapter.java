@@ -33,8 +33,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
-import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CallableCompat;
@@ -59,6 +59,10 @@ import java.util.List;
 public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     private static final String TAG = PhoneNumberListAdapter.class.getSimpleName();
+
+    public interface Listener {
+        void onVideoCallIconClicked(int position);
+    }
 
     // A list of extended directories to add to the directories from the database
     private final List<DirectoryPartition> mExtendedDirectories;
@@ -98,6 +102,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             Phone.PHOTO_ID,                     // 6
             Phone.DISPLAY_NAME_PRIMARY,         // 7
             Phone.PHOTO_THUMBNAIL_URI,          // 8
+            Phone.CARRIER_PRESENCE,             // 9
         };
 
         public static final String[] PROJECTION_ALTERNATIVE = new String[] {
@@ -110,6 +115,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             Phone.PHOTO_ID,                     // 6
             Phone.DISPLAY_NAME_ALTERNATIVE,     // 7
             Phone.PHOTO_THUMBNAIL_URI,          // 8
+            Phone.CARRIER_PRESENCE,             // 9
         };
 
         public static final int PHONE_ID                = 0;
@@ -121,6 +127,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         public static final int PHOTO_ID                = 6;
         public static final int DISPLAY_NAME            = 7;
         public static final int PHOTO_URI               = 8;
+        public static final int CARRIER_PRESENCE        = 9;
     }
 
     private static final String IGNORE_NUMBER_TOO_LONG_CLAUSE =
@@ -132,6 +139,11 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     private ContactListItemView.PhotoPosition mPhotoPosition;
 
     private boolean mUseCallableUri;
+
+    private Listener mListener;
+
+    private boolean mIsVideoEnabled;
+    private boolean mIsPresenceEnabled;
 
     public PhoneNumberListAdapter(Context context) {
         super(context);
@@ -147,6 +159,10 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             // Empty list to avoid sticky NPE's
             mExtendedDirectories = new ArrayList<DirectoryPartition>();
         }
+
+        int videoCapabilities = CallUtil.getVideoCallingAvailability(context);
+        mIsVideoEnabled = (videoCapabilities & CallUtil.VIDEO_CALLING_ENABLED) != 0;
+        mIsPresenceEnabled = (videoCapabilities & CallUtil.VIDEO_CALLING_PRESENCE) != 0;
     }
 
     protected CharSequence getUnknownNameText() {
@@ -413,10 +429,11 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         }
 
         final DirectoryPartition directory = (DirectoryPartition) getPartition(partition);
-        bindPhoneNumber(view, cursor, directory.isDisplayNumber());
+        bindPhoneNumber(view, cursor, directory.isDisplayNumber(), position);
     }
 
-    protected void bindPhoneNumber(ContactListItemView view, Cursor cursor, boolean displayNumber) {
+    protected void bindPhoneNumber(ContactListItemView view, Cursor cursor, boolean displayNumber,
+            int position) {
         CharSequence label = null;
         if (displayNumber &&  !cursor.isNull(PhoneQuery.PHONE_TYPE)) {
             final int type = cursor.getInt(PhoneQuery.PHONE_TYPE);
@@ -440,6 +457,14 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             }
         }
         view.setPhoneNumber(text, mCountryIso);
+
+        // Determine if carrier presence indicates the number supports video calling.
+        int carrierPresence = cursor.getInt(PhoneQuery.CARRIER_PRESENCE);
+        boolean isPresent = (carrierPresence & Phone.CARRIER_PRESENCE_VT_CAPABLE) != 0;
+
+        boolean isVideoIconShown = mIsVideoEnabled && (
+                mIsPresenceEnabled && isPresent || !mIsPresenceEnabled);
+        view.setShowVideoCallIcon(isVideoIconShown, mListener, position);
     }
 
     protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
@@ -575,5 +600,13 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                         String.valueOf(directoryId))
                 .encodedFragment(cursor.getString(lookUpKeyColumn))
                 .build();
+    }
+
+    public Listener getListener() {
+        return mListener;
+    }
+
+    public void setListener(Listener listener) {
+        mListener = listener;
     }
 }
