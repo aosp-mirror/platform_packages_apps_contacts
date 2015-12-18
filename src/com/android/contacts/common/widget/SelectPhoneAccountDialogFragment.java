@@ -21,6 +21,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
@@ -40,6 +41,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.PhoneAccountCompat;
 import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 
 import java.util.ArrayList;
@@ -257,8 +259,8 @@ public class SelectPhoneAccountDialogFragment extends DialogFragment {
                         PhoneNumberUtilsCompat.createTtsSpannable(
                                 account.getAddress().getSchemeSpecificPart()));
             }
-            holder.imageView.setImageDrawable(account.getIcon() != null
-                    ? account.getIcon().loadDrawable(getContext()) : null);
+            holder.imageView.setImageDrawable(PhoneAccountCompat.createIconDrawable(account,
+                    getContext()));
             return rowView;
         }
 
