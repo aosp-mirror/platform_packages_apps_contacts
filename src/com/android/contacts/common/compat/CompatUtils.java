@@ -19,7 +19,6 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.android.contacts.common.compat.SdkVersionOverride;
 import com.android.contacts.common.model.CPOWrapper;
 
 public final class CompatUtils {
@@ -87,6 +86,17 @@ public final class CompatUtils {
     public static boolean isCallSubjectCompatible() {
         return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
                 >= Build.VERSION_CODES.M;
+    }
+
+    /**
+     * Determines if this version is compatible with Lollipop Mr1-specific APIs. Can also force the
+     * version to be lower through SdkVersionOverride.
+     *
+     * @return {@code true} if call subject is a feature on this device, {@code false} otherwise.
+     */
+    public static boolean isLollipopMr1Compatible() {
+        return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP_MR1)
+                >= Build.VERSION_CODES.LOLLIPOP_MR1;
     }
 
     /**
