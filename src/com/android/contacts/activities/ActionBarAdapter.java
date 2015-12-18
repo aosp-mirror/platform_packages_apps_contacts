@@ -43,8 +43,8 @@ import android.widget.Toolbar;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.list.ContactsRequest;
-
 
 /**
  * Adapter for the action bar at the top of the Contacts activity.
@@ -503,6 +503,9 @@ public class ActionBarAdapter implements OnCloseListener {
     }
 
     private void updateStatusBarColor() {
+        if (!CompatUtils.isLollipopCompatible()) {
+            return; // we can't change the status bar color prior to Lollipop
+        }
         if (mSelectionMode) {
             final int cabStatusBarColor = mActivity.getResources().getColor(
                     R.color.contextual_selection_bar_status_bar_color);
