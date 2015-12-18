@@ -828,4 +828,10 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          accounts list filter. For example: Google abc@gmail.com not checked, etc [CHAR LIMIT=30]-->
     <string name="account_filter_view_not_checked"><xliff:g id="account_info">%s</xliff:g> not checked</string>
 
+    <!-- Description string for an action button to initiate a video call from search results.
+         Note: AccessibilityServices use this attribute to announce what the view represents.
+         This is especially valuable for views without textual representation like ImageView.
+
+         [CHAR LIMIT=NONE]-->
+    <string name="description_search_video_call">Place video call</string>
 </resources>
