@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -50,6 +51,7 @@ import android.widget.TextView;
 import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.common.ContactStatusUtil;
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.format.TextHighlighter;
 import com.android.contacts.common.util.ContactDisplayUtils;
@@ -804,7 +806,9 @@ public class ContactListItemView extends ViewGroup
         }
         if (mQuickContact == null) {
             mQuickContact = new QuickContactBadge(getContext());
-            mQuickContact.setOverlay(null);
+            if (CompatUtils.isLollipopCompatible()) {
+                mQuickContact.setOverlay(null);
+            }
             mQuickContact.setLayoutParams(getDefaultPhotoLayoutParams());
             if (mNameTextView != null) {
                 mQuickContact.setContentDescription(getContext().getString(
@@ -915,7 +919,9 @@ public class ContactListItemView extends ViewGroup
             mNameTextView.setGravity(Gravity.CENTER_VERTICAL);
             mNameTextView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             mNameTextView.setId(R.id.cliv_name_textview);
-            mNameTextView.setElegantTextHeight(false);
+            if (CompatUtils.isLollipopCompatible()) {
+                mNameTextView.setElegantTextHeight(false);
+            }
             addView(mNameTextView);
         }
         return mNameTextView;
@@ -1087,7 +1093,9 @@ public class ContactListItemView extends ViewGroup
             mDataView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             mDataView.setActivated(isActivated());
             mDataView.setId(R.id.cliv_data_view);
-            mDataView.setElegantTextHeight(false);
+            if (CompatUtils.isLollipopCompatible()) {
+                mDataView.setElegantTextHeight(false);
+            }
             addView(mDataView);
         }
         return mDataView;
@@ -1518,9 +1526,17 @@ public class ContactListItemView extends ViewGroup
     public void setDrawableResource(int drawableId) {
         ImageView photo = getPhotoView();
         photo.setScaleType(ImageView.ScaleType.CENTER);
-        photo.setImageDrawable(ContextCompat.getDrawable(getContext(), drawableId));
-        photo.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(
-                getContext(), R.color.search_shortcut_icon_color)));
+        final Drawable drawable = ContextCompat.getDrawable(getContext(), drawableId);
+        final int iconColor =
+                ContextCompat.getColor(getContext(), R.color.search_shortcut_icon_color);
+        if (CompatUtils.isLollipopCompatible()) {
+            photo.setImageDrawable(drawable);
+            photo.setImageTintList(ColorStateList.valueOf(iconColor));
+        } else {
+            final Drawable drawableWrapper = DrawableCompat.wrap(drawable).mutate();
+            DrawableCompat.setTint(drawableWrapper, iconColor);
+            photo.setImageDrawable(drawableWrapper);
+        }
     }
 
     @Override
