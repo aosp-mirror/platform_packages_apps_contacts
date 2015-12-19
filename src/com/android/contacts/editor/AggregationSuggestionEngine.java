@@ -39,7 +39,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
 import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.util.AggregationSuggestionsCompat;
+import com.android.contacts.compat.AggregationSuggestionsCompat;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
