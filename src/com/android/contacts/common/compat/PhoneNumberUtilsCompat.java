@@ -36,8 +36,7 @@ public class PhoneNumberUtilsCompat {
     private PhoneNumberUtilsCompat() {}
 
     public static CharSequence createTtsSpannable(CharSequence phoneNumber) {
-        if (SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
-                >= Build.VERSION_CODES.M) {
+        if (CompatUtils.isMarshmallowCompatible()) {
             return PhoneNumberUtils.createTtsSpannable(phoneNumber);
         } else {
             return createTtsSpannableInternal(phoneNumber);
@@ -45,11 +44,12 @@ public class PhoneNumberUtilsCompat {
     }
 
     public static TtsSpan createTtsSpan(String phoneNumber) {
-        if (SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
-                >= Build.VERSION_CODES.M) {
+        if (CompatUtils.isMarshmallowCompatible()) {
             return PhoneNumberUtils.createTtsSpan(phoneNumber);
+        } else if (CompatUtils.isLollipopCompatible()) {
+            return createTtsSpanLollipop(phoneNumber);
         } else {
-            return createTtsSpanInternal(phoneNumber);
+            return null;
         }
     }
 
@@ -83,7 +83,7 @@ public class PhoneNumberUtilsCompat {
     /**
      * Copied from {@link PhoneNumberUtils#createTtsSpan}
      */
-    private static TtsSpan createTtsSpanInternal(String phoneNumberString) {
+    private static TtsSpan createTtsSpanLollipop(String phoneNumberString) {
         if (phoneNumberString == null) {
             return null;
         }
