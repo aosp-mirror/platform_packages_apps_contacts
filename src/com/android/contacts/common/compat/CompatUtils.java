@@ -17,6 +17,7 @@ package com.android.contacts.common.compat;
 
 import android.os.Build;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.common.model.CPOWrapper;
@@ -116,10 +117,10 @@ public final class CompatUtils {
      *
      * @param className the name of the class to look for.
      * @return {@code true} if the given class is available, {@code false} otherwise or if className
-     *    is null.
+     *    is empty.
      */
     public static boolean isClassAvailable(@Nullable String className) {
-        if (className == null) {
+        if (TextUtils.isEmpty(className)) {
             return false;
         }
         try {
@@ -128,7 +129,36 @@ public final class CompatUtils {
         } catch (ClassNotFoundException e) {
             return false;
         } catch (Throwable t) {
-            Log.e(TAG, "Unexpected exception when checking if class exists at runtime", t);
+            Log.e(TAG, "Unexpected exception when checking if class:" + className + " exists at "
+                    + "runtime", t);
+            return false;
+        }
+    }
+
+    /**
+     * Determines if the given class's method is available to call. Can be used to check if system
+     * apis exist at runtime.
+     *
+     * @param className the name of the class to look for
+     * @param methodName the name of the method to look for
+     * @param parameterTypes the needed parameter types for the method to look for
+     * @return {@code true} if the given class is available, {@code false} otherwise or if className
+     *    or methodName are empty.
+     */
+    public static boolean isMethodAvailable(@Nullable String className, @Nullable String methodName,
+            Class<?>... parameterTypes) {
+        if (TextUtils.isEmpty(className) || TextUtils.isEmpty(methodName)) {
+            return false;
+        }
+
+        try {
+            Class.forName(className).getMethod(methodName, parameterTypes);
+            return true;
+        } catch (ClassNotFoundException | NoSuchMethodException e) {
+            return false;
+        } catch (Throwable t) {
+            Log.e(TAG, "Unexpected exception when checking if method: " + className + "#"
+                    + methodName + " exists at runtime", t);
             return false;
         }
     }
