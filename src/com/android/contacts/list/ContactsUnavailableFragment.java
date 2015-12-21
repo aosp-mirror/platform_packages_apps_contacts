@@ -31,9 +31,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.R;
-import com.android.contacts.util.ProviderStatusCompat;
+import com.android.contacts.activities.ActionBarAdapter.TabState;
+import com.android.contacts.compat.ProviderStatusCompat;
 
 /**
  * Fragment shown when contacts are unavailable. It contains provider status

@@ -27,6 +27,7 @@ import android.provider.MediaStore;
 import android.provider.Telephony;
 
 import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.compat.TelephonyManagerCompat;
 
 import java.util.List;
 
