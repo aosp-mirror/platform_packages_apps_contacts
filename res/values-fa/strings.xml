@@ -324,5 +324,7 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"حذف <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"عکس <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> انتخاب نشد"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"عکس <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> انتخاب شد"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"عکس از حساب نامشخص انتخاب نشده است"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"عکس از حساب نامشخص انتخاب شده است"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"لیست مخاطبین جهت اعمال تغییر زبان در حال به‌روزرسانی است.\n\nلطفاً منتظر بمانید..."</string>
 </resources>

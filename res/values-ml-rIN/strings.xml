@@ -324,5 +324,7 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> ഇല്ലാതാക്കുക"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> എന്നതിൽ നിന്നുള്ള ഫോട്ടോ ചെക്കുചെയ്തില്ല"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> എന്നതിൽ നിന്നുള്ള ഫോട്ടോ ചെക്കുചെയ്തു"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തിട്ടില്ല"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തു"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ഭാഷാ മാറ്റം പ്രതിഫലിപ്പിക്കുന്നതിന് കോൺടാക്റ്റ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്തുകൊണ്ടിരിക്കുന്നു.\n\nകാക്കുക..."</string>
 </resources>
