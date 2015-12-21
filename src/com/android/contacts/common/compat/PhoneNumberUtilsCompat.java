@@ -20,9 +20,9 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
-import android.os.Build;
 import android.telephony.PhoneNumberUtils;
 import android.text.Spannable;
+import android.text.TextUtils;
 import android.text.style.TtsSpan;
 
 /**
@@ -33,7 +33,52 @@ import android.text.style.TtsSpan;
  * here, so we need make sure the application behavior is preserved.
  */
 public class PhoneNumberUtilsCompat {
+    /**
+     * Not instantiable.
+     */
     private PhoneNumberUtilsCompat() {}
+
+    public static String normalizeNumber(String phoneNumber) {
+        if (CompatUtils.isLollipopCompatible()) {
+            return PhoneNumberUtils.normalizeNumber(phoneNumber);
+        } else {
+            return normalizeNumberInternal(phoneNumber);
+        }
+    }
+
+    /**
+     * Implementation copied from {@link PhoneNumberUtils#normalizeNumber}
+     */
+    private static String normalizeNumberInternal(String phoneNumber) {
+        if (TextUtils.isEmpty(phoneNumber)) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        int len = phoneNumber.length();
+        for (int i = 0; i < len; i++) {
+            char c = phoneNumber.charAt(i);
+            // Character.digit() supports ASCII and Unicode digits (fullwidth, Arabic-Indic, etc.)
+            int digit = Character.digit(c, 10);
+            if (digit != -1) {
+                sb.append(digit);
+            } else if (sb.length() == 0 && c == '+') {
+                sb.append(c);
+            } else if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+                return normalizeNumber(PhoneNumberUtils.convertKeypadLettersToDigits(phoneNumber));
+            }
+        }
+        return sb.toString();
+    }
+
+    public static String formatNumber(
+            String phoneNumber, String phoneNumberE164, String defaultCountryIso) {
+        if (CompatUtils.isLollipopCompatible()) {
+            return PhoneNumberUtils.formatNumber(phoneNumber, phoneNumberE164, defaultCountryIso);
+        } else {
+            // This method was deprecated in API level 21, so it's only used on pre-L SDKs.
+            return PhoneNumberUtils.formatNumber(phoneNumber);
+        }
+    }
 
     public static CharSequence createTtsSpannable(CharSequence phoneNumber) {
         if (CompatUtils.isMarshmallowCompatible()) {
