@@ -20,8 +20,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.telephony.PhoneNumberUtils;
 
+import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.model.dataitem.DataKind;
 
 /**
@@ -58,7 +58,7 @@ public class PhoneDataItem extends DataItem {
     public void computeFormattedPhoneNumber(String defaultCountryIso) {
         final String phoneNumber = getNumber();
         if (phoneNumber != null) {
-            final String formattedPhoneNumber = PhoneNumberUtils.formatNumber(phoneNumber,
+            final String formattedPhoneNumber = PhoneNumberUtilsCompat.formatNumber(phoneNumber,
                     getNormalizedNumber(), defaultCountryIso);
             getContentValues().put(KEY_FORMATTED_PHONE_NUMBER, formattedPhoneNumber);
         }
