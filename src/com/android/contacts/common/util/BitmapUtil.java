@@ -134,7 +134,8 @@ public class BitmapUtil {
         final Paint paint = new Paint();
         canvas.drawARGB(0, 0, 0, 0);
         paint.setAntiAlias(true);
-        canvas.drawOval(0, 0, targetWidth, targetHeight, paint);
+        final RectF dst = new RectF(0, 0, targetWidth, targetHeight);
+        canvas.drawOval(dst, paint);
 
         // Specifies that only pixels present in the destination (i.e. the drawn oval) should
         // be overwritten with pixels from the input bitmap.
@@ -157,7 +158,6 @@ public class BitmapUtil {
                 inputWidth / 2 + xCropAmountHalved,
                 inputHeight / 2 + yCropAmountHalved);
 
-        final RectF dst = new RectF(0, 0, targetWidth, targetHeight);
         canvas.drawBitmap(input, src, dst, paint);
         return result;
     }

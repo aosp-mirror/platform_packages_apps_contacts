@@ -30,6 +30,7 @@ import android.widget.ListView;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.ContactsCompat;
 import com.android.contacts.common.preference.ContactsPreferences;
 
 /**
@@ -176,7 +177,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         final Cursor cursor = (Cursor) getItem(position);
         if (cursor != null) {
             final long contactId = cursor.getLong(ContactQuery.CONTACT_ID);
-            return Contacts.isEnterpriseContactId(contactId);
+            return ContactsCompat.isEnterpriseContactId(contactId);
         }
         return false;
     }
