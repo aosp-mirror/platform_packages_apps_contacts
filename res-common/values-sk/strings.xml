@@ -270,7 +270,7 @@
     <string name="about_build_version" msgid="4221971683776635130">"Verzia zostavy"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"Licencie Open source"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Podrobnosti o licencii pre softvér open source"</string>
-    <string name="about_privacy_policy" msgid="8458337666582973913">"Pravidlá ochrany osobných údajov"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Pravidlá ochrany súkromia"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Zmluvné podmienky"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licencie open source"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> – skontrolované"</string>
