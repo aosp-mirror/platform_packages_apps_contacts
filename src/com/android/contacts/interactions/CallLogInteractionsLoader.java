@@ -23,11 +23,11 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.provider.CallLog.Calls;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
 import com.google.common.annotations.VisibleForTesting;
 
+import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.util.PermissionsUtil;
 
 import java.util.ArrayList;
@@ -107,9 +107,7 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
     }
 
     private List<ContactInteraction> getCallLogInteractions(String phoneNumber) {
-        // TODO: the phone number added to the ContactInteractions result should retain their
-        // original formatting since TalkBack is not reading the normalized number correctly
-        final String normalizedNumber = PhoneNumberUtils.normalizeNumber(phoneNumber);
+        final String normalizedNumber = PhoneNumberUtilsCompat.normalizeNumber(phoneNumber);
         // If the number contains only symbols, we can skip it
         if (TextUtils.isEmpty(normalizedNumber)) {
             return Collections.emptyList();
