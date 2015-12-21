@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.util;
+package com.android.contacts.compat;
 
 import android.os.Build;
 import android.provider.ContactsContract.ProviderStatus;

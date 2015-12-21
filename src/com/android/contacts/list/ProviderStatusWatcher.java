@@ -25,7 +25,7 @@ import android.os.Handler;
 import android.provider.ContactsContract.ProviderStatus;
 import android.util.Log;
 
-import com.android.contacts.util.ProviderStatusCompat;
+import com.android.contacts.compat.ProviderStatusCompat;
 
 import com.google.common.collect.Lists;
 

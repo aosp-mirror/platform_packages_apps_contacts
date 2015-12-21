@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.contacts.util;
+package com.android.contacts.compat;
 
 import android.net.Uri;
 import android.provider.ContactsContract;
