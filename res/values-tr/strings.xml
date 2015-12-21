@@ -324,5 +324,7 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Sil: <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Fotoğraf: <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> <xliff:g id="USER_NAME">%s </xliff:g> işaretlenmedi"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Fotoğraf: <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> <xliff:g id="USER_NAME">%s </xliff:g> işaretlendi"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Bilinmeyen hesaptan fotoğraf işaretlenmedi"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Bilinmeyen hesaptan fotoğraf işaretlendi"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Kişi listesi, dil değişikliğini yansıtmak üzere güncelleniyor.\n\nLütfen bekleyin..."</string>
 </resources>

@@ -324,5 +324,7 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g>ን ሰርዝ"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"ከ<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> የመጣ ፎቶ አልተረጋገጠም"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"ከ<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> የመጣ ፎቶ ተረጋግጧል"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ካልታወቀ መለያ የመጣ ፎቶ ምልክት አልተደረገበትም"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ካልታወቀ መለያ የመጣ ፎቶ ምልክት ተደርጎበታል"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"የእውቅያ ዝርዝር የቋንቋ ለውጥን ለማንፀባረቅ ዘምኗል።\n\nእባክዎ ይጠብቁ....."</string>
 </resources>

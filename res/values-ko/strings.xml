@@ -227,7 +227,7 @@
     <string name="clear_default" msgid="7193185801596678067">"기본 설정 지우기"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"텍스트 복사됨"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"변경사항을 삭제하시겠습니까?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"취소"</string>
+    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"삭제"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"내 프로필 설정"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"이름 입력"</string>
@@ -324,5 +324,7 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> 삭제"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>의 사진 선택 안됨"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>의 사진 선택됨"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"알 수 없는 계정의 사진이 선택되지 않음"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"알 수 없는 계정의 사진이 선택됨"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"변경된 언어를 반영하도록 연락처 목록을 업데이트하는 중입니다.\n\n잠시 기다려 주세요."</string>
 </resources>

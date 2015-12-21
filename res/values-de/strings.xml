@@ -324,5 +324,7 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> löschen"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Foto von <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>nicht ausgewählt"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Foto von <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>ausgewählt"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto aus unbekanntem Konto nicht ausgewählt"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto aus unbekanntem Konto ausgewählt"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Die Kontaktliste wird an die geänderte Sprache angepasst.\n\nBitte warten..."</string>
 </resources>

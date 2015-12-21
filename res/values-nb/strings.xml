@@ -324,5 +324,7 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Slett <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Bilde fra <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> er ikke markert"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Bilde fra <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> er markert"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Det er ikke merket av for noe bilde fra en ukjent konto"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Det er merket av for et bilde fra en ukjent konto"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaktlisten er oppdatert med nytt språk.\n\nVent litt ..."</string>
 </resources>

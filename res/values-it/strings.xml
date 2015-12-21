@@ -324,5 +324,7 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Elimina <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Foto di <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> non selezionata"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Foto di <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> selezionata"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto di un account sconosciuto non selezionata"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto di un account sconosciuto selezionata"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"L\'elenco contatti verrà aggiornato per rispecchiare il cambio di lingua.\n\nAttendi..."</string>
 </resources>

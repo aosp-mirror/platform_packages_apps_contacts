@@ -346,5 +346,7 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Izbriši <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Fotografija iz <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> ni označena"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Fotografija iz <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> je označena"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Fotografija iz neznanega računa ni izbrana"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotografija iz neznanega računa je izbrana"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Seznam stikov se posodablja po spremembi jezika.\n\nPočakajte ..."</string>
 </resources>
