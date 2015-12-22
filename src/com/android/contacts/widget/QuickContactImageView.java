@@ -36,12 +36,7 @@ public class QuickContactImageView extends ImageView {
     }
 
     public QuickContactImageView(Context context, AttributeSet attrs, int defStyleAttr) {
-        this(context, attrs, defStyleAttr, 0);
-    }
-
-    public QuickContactImageView(Context context, AttributeSet attrs, int defStyleAttr,
-            int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+        super(context, attrs, defStyleAttr);
     }
 
     public void setTint(int color) {
