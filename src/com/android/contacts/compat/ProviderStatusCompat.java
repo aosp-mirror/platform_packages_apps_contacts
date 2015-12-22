@@ -18,6 +18,8 @@ package com.android.contacts.compat;
 
 import android.os.Build;
 import android.provider.ContactsContract.ProviderStatus;
+
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.SdkVersionOverride;
 
 /**
@@ -33,8 +35,7 @@ public class ProviderStatusCompat {
     private ProviderStatusCompat() {
     }
 
-    public static final boolean USE_CURRENT_VERSION =
-            SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP) >= Build.VERSION_CODES.M;
+    public static final boolean USE_CURRENT_VERSION = CompatUtils.isMarshmallowCompatible();
 
     public static final int STATUS_EMPTY = USE_CURRENT_VERSION ?
             ProviderStatus.STATUS_EMPTY : ProviderStatusCompat.STATUS_NO_ACCOUNTS_NO_CONTACTS;

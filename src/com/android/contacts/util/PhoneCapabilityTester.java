@@ -25,9 +25,10 @@ import android.net.Uri;
 import android.net.sip.SipManager;
 import android.provider.MediaStore;
 import android.provider.Telephony;
+import android.telephony.TelephonyManager;
 
 import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.compat.TelephonyManagerCompat;
+import com.android.contacts.common.compat.TelephonyManagerCompat;
 
 import java.util.List;
 
@@ -61,7 +62,8 @@ public final class PhoneCapabilityTester {
     }
 
     private static void initialize(Context context) {
-        sIsPhone = TelephonyManagerCompat.isVoiceCapable(context);
+        sIsPhone = TelephonyManagerCompat.isVoiceCapable(
+                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE));
         sIsSipPhone = sIsPhone && SipManager.isVoipSupported(context);
         sIsInitialized = true;
     }
