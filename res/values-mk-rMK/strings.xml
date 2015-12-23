@@ -190,8 +190,8 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Додај во Мои контакти"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Адресар <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Прилагодено"</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"Подесувања"</string>
-    <string name="menu_settings" msgid="377929915873428211">"Подесувања"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Поставки"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Поставки"</string>
     <string name="menu_help" msgid="1680178646764069976">"Помош и повратни информации"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Опции за екран"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
