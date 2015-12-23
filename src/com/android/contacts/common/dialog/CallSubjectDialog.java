@@ -48,6 +48,7 @@ import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.compat.telecom.TelecomManagerCompat;
 import com.android.contacts.common.util.UriUtils;
 import com.android.phone.common.animation.AnimUtils;
 
@@ -161,9 +162,10 @@ public class CallSubjectDialog extends Activity {
             Intent intent = CallUtil.getCallWithSubjectIntent(mNumber, mPhoneAccountHandle,
                     subject);
 
-            final TelecomManager tm =
-                    (TelecomManager) getSystemService(Context.TELECOM_SERVICE);
-            tm.placeCall(intent.getData(), intent.getExtras());
+            TelecomManagerCompat.placeCall(
+                    CallSubjectDialog.this,
+                    (TelecomManager) getSystemService(Context.TELECOM_SERVICE),
+                    intent);
 
             mSubjectHistory.add(subject);
             saveSubjectHistory(mSubjectHistory);

@@ -22,6 +22,9 @@ import android.util.Log;
 
 import com.android.contacts.common.model.CPOWrapper;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public final class CompatUtils {
 
     private static final String TAG = CompatUtils.class.getSimpleName();
@@ -90,6 +93,16 @@ public final class CompatUtils {
     }
 
     /**
+     * Determines if this version is compatible with a default dialer. Can also force the version to
+     * be lower through {@link SdkVersionOverride}.
+     *
+     * @return {@code true} if default dialer is a feature on this device, {@code false} otherwise.
+     */
+    public static boolean isDefaultDialerCompatible() {
+        return isMarshmallowCompatible();
+    }
+
+    /**
      * Determines if this version is compatible with Lollipop Mr1-specific APIs. Can also force the
      * version to be lower through SdkVersionOverride.
      *
@@ -155,11 +168,45 @@ public final class CompatUtils {
             Class.forName(className).getMethod(methodName, parameterTypes);
             return true;
         } catch (ClassNotFoundException | NoSuchMethodException e) {
+            Log.v(TAG, "Could not find method: " + className + "#" + methodName);
             return false;
         } catch (Throwable t) {
             Log.e(TAG, "Unexpected exception when checking if method: " + className + "#"
                     + methodName + " exists at runtime", t);
             return false;
+        }
+    }
+
+    /**
+     * Invokes a given class's method using reflection. Can be used to call system apis that exist
+     * at runtime but not in the SDK.
+     *
+     * @param instance The instance of the class to invoke the method on.
+     * @param methodName The name of the method to invoke.
+     * @param parameterTypes The needed parameter types for the method.
+     * @param parameters The parameter values to pass into the method.
+     * @return The result of the invocation or {@code null} if instance or methodName are
+     * empty, or if the reflection fails.
+     */
+    @Nullable
+    public static Object invokeMethod(@Nullable Object instance, @Nullable String methodName,
+            Class<?>[] parameterTypes, Object[] parameters) {
+        if (instance == null || TextUtils.isEmpty(methodName)) {
+            return null;
+        }
+
+        String className = instance.getClass().getName();
+        try {
+            return Class.forName(className).getMethod(methodName, parameterTypes)
+                    .invoke(instance, parameters);
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalArgumentException
+                | IllegalAccessException | InvocationTargetException e) {
+            Log.v(TAG, "Could not invoke method: " + className + "#" + methodName);
+            return null;
+        } catch (Throwable t) {
+            Log.e(TAG, "Unexpected exception when invoking method: " + className
+                    + "#" + methodName + " at runtime", t);
+            return null;
         }
     }
 
