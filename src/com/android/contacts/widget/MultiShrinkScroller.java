@@ -2,6 +2,7 @@ package com.android.contacts.widget;
 
 import com.android.contacts.R;
 import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.compat.EdgeEffectCompat;
 import com.android.contacts.quickcontact.ExpandingEntryCardView;
 import com.android.contacts.test.NeededForReflection;
 import com.android.contacts.util.SchedulingUtils;
@@ -501,7 +502,8 @@ public class MultiShrinkScroller extends FrameLayout {
                     if (delta > distanceFromMaxScrolling) {
                         // The ScrollView is being pulled upwards while there is no more
                         // content offscreen, and the view port is already fully expanded.
-                        mEdgeGlowBottom.onPull(delta / getHeight(), 1 - event.getX() / getWidth());
+                        EdgeEffectCompat.onPull(mEdgeGlowBottom, delta / getHeight(),
+                                1 - event.getX() / getWidth());
                     }
 
                     if (!mEdgeGlowBottom.isFinished()) {

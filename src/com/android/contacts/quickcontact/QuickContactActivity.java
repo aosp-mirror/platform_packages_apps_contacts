@@ -109,6 +109,7 @@ import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.compat.EventCompat;
 import com.android.contacts.common.dialog.CallSubjectDialog;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.interactions.TouchPointManager;
@@ -1803,7 +1804,7 @@ public class QuickContactActivity extends ContactsActivity
             }
             header = res.getString(R.string.header_event_entry);
             if (event.hasKindTypeColumn(kind)) {
-                subHeader = Event.getTypeLabel(res, event.getKindTypeColumn(kind),
+                subHeader = EventCompat.getTypeLabel(res, event.getKindTypeColumn(kind),
                         event.getLabel()).toString();
             }
             text = DateUtils.formatDate(context, dataString);
