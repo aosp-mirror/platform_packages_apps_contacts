@@ -30,6 +30,7 @@ import android.util.Pair;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.ImDataItem;
 import com.android.contacts.common.testing.NeededForTesting;
+import com.android.contacts.common.compat.SdkSelectionUtils;
 import com.android.contacts.common.model.AccountTypeManager;
 
 import java.util.List;
@@ -46,10 +47,9 @@ public class ContactsUtils {
 
     private static int sThumbnailSize = -1;
 
-    public static final boolean FLAG_N_FEATURE =
-            false // Enforce Pre-N behavior in release build
-            && (Build.VERSION.SDK_INT > Build.VERSION_CODES.M
-                    || Build.VERSION.CODENAME.startsWith("N"));
+    public static final boolean FLAG_N_FEATURE = SdkSelectionUtils.TARGET_N_SDK // build-time flag
+            && (Build.VERSION.SDK_INT > Build.VERSION_CODES.M // runtime flag
+                    || Build.VERSION.CODENAME.startsWith("N")); // TODO: remove startsWith("N")
 
     // TODO find a proper place for the canonical version of these
     public interface ProviderNames {
