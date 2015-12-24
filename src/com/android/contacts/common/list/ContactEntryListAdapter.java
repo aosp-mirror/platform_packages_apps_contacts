@@ -418,9 +418,17 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
                 DirectoryPartition partition = new DirectoryPartition(false, true);
                 partition.setDirectoryId(id);
                 if (DirectoryCompat.isRemoteDirectory(id)) {
-                    partition.setLabel(mContext.getString(R.string.directory_search_label));
+                    if (DirectoryCompat.isEnterpriseDirectoryId(id)) {
+                        partition.setLabel(mContext.getString(R.string.directory_search_label_work));
+                    } else {
+                        partition.setLabel(mContext.getString(R.string.directory_search_label));
+                    }
                 } else {
-                    partition.setLabel(mDefaultFilterHeaderText.toString());
+                    if (DirectoryCompat.isEnterpriseDirectoryId(id)) {
+                        partition.setLabel(mContext.getString(R.string.list_filter_phones_work));
+                    } else {
+                        partition.setLabel(mDefaultFilterHeaderText.toString());
+                    }
                 }
                 partition.setDirectoryType(cursor.getString(directoryTypeColumnIndex));
                 partition.setDisplayName(cursor.getString(displayNameColumnIndex));

@@ -35,6 +35,7 @@ import android.view.ViewGroup;
 
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CallableCompat;
@@ -321,11 +322,20 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     public Uri getDataUri(int partitionIndex, Cursor cursor) {
         final long directoryId =
                 ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
-        if (!DirectoryCompat.isRemoteDirectory(directoryId)) {
+        if (DirectoryCompat.isRemoteDirectory(directoryId)) {
+            return null;
+        } else if (DirectoryCompat.isEnterpriseDirectoryId(directoryId)) {
+            /*
+             * ContentUris.withAppendedId(Data.CONTENT_URI, phoneId), is invalid if
+             * isEnterpriseDirectoryId returns true, because the uri itself will fail since the
+             * ContactsProvider in Android Framework currently doesn't support it. return null until
+             * Android framework has enterprise version of Data.CONTENT_URI
+             */
+            return null;
+        } else {
             final long phoneId = cursor.getLong(PhoneQuery.PHONE_ID);
             return ContentUris.withAppendedId(Data.CONTENT_URI, phoneId);
         }
-        return null;
     }
 
     /**
@@ -427,6 +437,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
             view.removePhotoView(true, false);
         }
+        bindWorkProfileIcon(view, partition);
 
         final DirectoryPartition directory = (DirectoryPartition) getPartition(partition);
         bindPhoneNumber(view, cursor, directory.isDisplayNumber(), position);
@@ -483,6 +494,13 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
     protected void unbindName(final ContactListItemView view) {
         view.hideDisplayName();
+    }
+
+    private void bindWorkProfileIcon(final ContactListItemView view, int partition) {
+        final DirectoryPartition directory = (DirectoryPartition) getPartition(partition);
+        final long directoryId = directory.getDirectoryId();
+        final long userType = ContactsUtils.determineUserType(directoryId, null);
+        view.setWorkProfileIconEnabled(userType == ContactsUtils.USER_TYPE_WORK);
     }
 
     protected void bindPhoto(final ContactListItemView view, int partitionIndex, Cursor cursor) {
