@@ -21,13 +21,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.telecom.PhoneAccount;
-
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.android.contacts.common.compat.CompatUtils;
 
@@ -167,7 +165,7 @@ public class TelecomManagerCompat {
      * Return whether a given phone number is the configured voicemail number for a
      * particular phone account.
      *
-     * @param telecomManager the {@link TelecomManager} to use
+     * @param telecomManager the {@link TelecomManager} to use for checking the number.
      * @param accountHandle The handle for the account to check the voicemail number against
      * @param number The number to look up.
      */
@@ -186,8 +184,8 @@ public class TelecomManagerCompat {
      * resources which can be used in a user interface.
      *
      * @param telecomManager the {@link TelecomManager} used for method calls, if possible.
-     * @param accountHandle The PhoneAccountHandle.
-     * @return The PhoneAccount object or null if it doesn't exist.
+     * @param account The {@link PhoneAccountHandle}.
+     * @return The {@link PhoneAccount} object or null if it doesn't exist.
      */
     @Nullable
     public static PhoneAccount getPhoneAccount(@Nullable TelecomManager telecomManager,
@@ -257,12 +255,28 @@ public class TelecomManagerCompat {
      * Silences the ringer if a ringing call exists. Noop if {@link TelecomManager#silenceRinger()}
      * is unavailable.
      *
-     * @param telecomManager the TelecomManager to use to silence the ringer
+     * @param telecomManager the TelecomManager to use to silence the ringer.
      */
     public static void silenceRinger(@Nullable TelecomManager telecomManager) {
         if (telecomManager != null && (CompatUtils.isMarshmallowCompatible() || CompatUtils
                 .isMethodAvailable(TELECOM_MANAGER_CLASS, "silenceRinger"))) {
             telecomManager.silenceRinger();
         }
+    }
+
+    /**
+     * Returns the current SIM call manager. Apps must be prepared for this method to return null,
+     * indicating that there currently exists no registered SIM call manager.
+     *
+     * @param telecomManager the {@link TelecomManager} to use to fetch the SIM call manager.
+     * @return The phone account handle of the current sim call manager.
+     */
+    @Nullable
+    public static PhoneAccountHandle getSimCallManager(TelecomManager telecomManager) {
+        if (telecomManager != null && (CompatUtils.isMarshmallowCompatible() || CompatUtils
+                .isMethodAvailable(TELECOM_MANAGER_CLASS, "getSimCallManager"))) {
+            return telecomManager.getSimCallManager();
+        }
+        return null;
     }
 }
