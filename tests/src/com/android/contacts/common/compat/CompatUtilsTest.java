@@ -80,15 +80,58 @@ public class CompatUtilsTest extends AndroidTestCase {
                 Boolean.TYPE));
     }
 
+    public void testInvokeMethod_NullMethodName() {
+        assertNull(CompatUtils.invokeMethod(new BaseClass(), null, null, null));
+    }
+
+    public void testInvokeMethod_EmptyMethodName() {
+        assertNull(CompatUtils.invokeMethod(new BaseClass(), "", null, null));
+    }
+
+    public void testInvokeMethod_NullClassInstance() {
+        assertNull(CompatUtils.invokeMethod(null, "", null, null));
+    }
+
+    public void testInvokeMethod_NonexistentMethod() {
+        assertNull(CompatUtils.invokeMethod(new BaseClass(), "derivedMethod", null, null));
+    }
+
+    public void testInvokeMethod_MethodWithNoParameters() {
+        assertEquals(1, CompatUtils.invokeMethod(new DerivedClass(), "overloadedMethod", null, null));
+    }
+
+    public void testInvokeMethod_MethodWithNoParameters_WithParameters() {
+        assertNull(CompatUtils.invokeMethod(new DerivedClass(), "derivedMethod",
+                new Class<?>[] {Integer.TYPE}, new Object[] {1}));
+    }
+
+    public void testInvokeMethod_MethodWithParameters_WithEmptyParameterList() {
+        assertNull(CompatUtils.invokeMethod(new DerivedClass(), "overloadedMethod",
+                new Class<?>[] {Integer.TYPE}, new Object[] {}));
+    }
+
+    public void testInvokeMethod_InvokeSimpleMethod() {
+        assertEquals(2, CompatUtils.invokeMethod(new DerivedClass(), "overloadedMethod",
+                new Class<?>[] {Integer.TYPE}, new Object[] {2}));
+    }
+
     private class BaseClass {
         public void baseMethod() {}
     }
 
     private class DerivedClass extends BaseClass {
-        public void derivedMethod() {}
+        public int derivedMethod() {
+            // This method needs to return something to differentiate a successful invocation from
+            // an unsuccessful one.
+            return 0;
+        }
 
-        public void overloadedMethod() {}
+        public int overloadedMethod() {
+            return 1;
+        }
 
-        public void overloadedMethod(int i) {}
+        public int overloadedMethod(int i) {
+            return i;
+        }
     }
 }

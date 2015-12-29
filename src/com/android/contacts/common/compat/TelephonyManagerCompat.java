@@ -21,6 +21,7 @@ import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
 
 public class TelephonyManagerCompat {
+    public static final String TELEPHONY_MANAGER_CLASS = "android.telephony.TelephonyManager";
 
     /**
      * @param telephonyManager The telephony manager instance to use for method calls.
@@ -41,7 +42,8 @@ public class TelephonyManagerCompat {
         if (telephonyManager == null) {
             return false;
         }
-        if (CompatUtils.isLollipopMr1Compatible()) {
+        if (CompatUtils.isLollipopMr1Compatible()
+                || CompatUtils.isMethodAvailable(TELEPHONY_MANAGER_CLASS, "isVoiceCapable")) {
             // isVoiceCapable was unhidden in L-MR1
             return telephonyManager.isVoiceCapable();
         }
@@ -64,7 +66,7 @@ public class TelephonyManagerCompat {
             return 1;
         }
         if (CompatUtils.isMarshmallowCompatible() || CompatUtils
-                .isMethodAvailable("android.telephony.TelephonyManager", "getPhoneCount")) {
+                .isMethodAvailable(TELEPHONY_MANAGER_CLASS, "getPhoneCount")) {
             return telephonyManager.getPhoneCount();
         }
         return 1;
@@ -85,7 +87,7 @@ public class TelephonyManagerCompat {
             return null;
         }
         if (CompatUtils.isMarshmallowCompatible()
-                || CompatUtils.isMethodAvailable("android.telephony.TelephonyManager",
+                || CompatUtils.isMethodAvailable(TELEPHONY_MANAGER_CLASS,
                         "getDeviceId", Integer.class)) {
             return telephonyManager.getDeviceId(slotId);
         }
@@ -104,8 +106,7 @@ public class TelephonyManagerCompat {
             return false;
         }
         if (CompatUtils.isMarshmallowCompatible()
-                || CompatUtils.isMethodAvailable("android.telephony.TelephonyManager",
-                        "isTtyModeSupported")) {
+                || CompatUtils.isMethodAvailable(TELEPHONY_MANAGER_CLASS, "isTtyModeSupported")) {
             return telephonyManager.isTtyModeSupported();
         }
         return false;
@@ -124,8 +125,8 @@ public class TelephonyManagerCompat {
             return false;
         }
         if (CompatUtils.isMarshmallowCompatible()
-                || CompatUtils.isMethodAvailable("android.telephony.TelephonyManager",
-                        "isTtyModeSupported")) {
+                || CompatUtils.isMethodAvailable(TELEPHONY_MANAGER_CLASS,
+                        "isHearingAidCompatibilitySupported")) {
             return telephonyManager.isHearingAidCompatibilitySupported();
         }
         return false;
