@@ -33,7 +33,7 @@
     <string name="starredList" msgid="4817256136413959463">"已加星號"</string>
     <string name="frequentList" msgid="7154768136473953056">"經常聯絡"</string>
     <string name="strequentList" msgid="5640192862059373511">"我的收藏"</string>
-    <string name="viewContactTitle" msgid="7989394521836644384">"聯絡人詳細資料"</string>
+    <string name="viewContactTitle" msgid="7989394521836644384">"聯絡資訊"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"編輯聯絡人"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"建立聯絡人"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"編輯群組"</string>
