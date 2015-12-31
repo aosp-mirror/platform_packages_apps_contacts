@@ -203,7 +203,7 @@
 
         <!-- Used to set options -->
         <activity
-            android:name=".preference.ContactsPreferenceActivity"
+            android:name=".common.preference.ContactsPreferenceActivity"
             android:label="@string/activity_title_settings"
             android:theme="@style/ContactsPreferencesTheme"
             android:exported="false"/>
