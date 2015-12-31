@@ -17,18 +17,12 @@
 package com.android.contacts.common.preference;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
 
 import com.android.contacts.common.R;
-import com.android.contacts.common.activity.LicenseActivity;
 import com.android.contacts.common.compat.MetadataSyncEnabledCompat;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -37,7 +31,7 @@ import com.android.contacts.common.model.account.GoogleAccountType;
 import java.util.List;
 
 /**
- * This fragment shows the preferences for the first header.
+ * This fragment shows the preferences for "display options"
  */
 public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
 
@@ -50,20 +44,14 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
 
         removeUnsupportedPreferences();
 
-        // Set build version of Contacts App.
-        final PackageManager manager = getActivity().getPackageManager();
-        try {
-            final PackageInfo info = manager.getPackageInfo(getActivity().getPackageName(), 0);
-            final Preference versionPreference = findPreference(
-                    getString(R.string.pref_build_version_key));
-            versionPreference.setSummary(info.versionName);
-        } catch (PackageManager.NameNotFoundException e) {
-            // Nothing
-        }
-
-        final Preference licensePreference = findPreference(
-                getString(R.string.pref_open_source_licenses_key));
-        licensePreference.setIntent(new Intent(getActivity(), LicenseActivity.class));
+        final Preference aboutPreference = findPreference("about");
+        aboutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                ((ContactsPreferenceActivity) getActivity()).showAboutFragment();
+                return true;
+            }
+        });
     }
 
     private void removeUnsupportedPreferences() {
