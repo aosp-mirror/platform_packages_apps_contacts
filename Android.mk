@@ -18,6 +18,7 @@ asset_dirs := $(contacts_common_dir)/assets
 
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs)) \
+    $(support_library_root_dir)/v7/appcompat/res \
     $(support_library_root_dir)/v7/cardview/res
 LOCAL_ASSET_DIR := $(addprefix $(LOCAL_PATH)/, $(asset_dirs))
 
@@ -25,6 +26,7 @@ LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
     --extra-packages com.android.contacts.common \
     --extra-packages com.android.phone.common \
+    --extra-packages android.support.v7.appcompat \
     --extra-packages android.support.v7.cardview
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
@@ -32,6 +34,7 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     android-common \
     guava \
     android-support-v13 \
+    android-support-v7-appcompat \
     android-support-v7-cardview \
     android-support-v7-palette \
     android-support-v4 \
