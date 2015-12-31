@@ -678,6 +678,9 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Label of the "About" setting -->
     <string name="setting_about">About Contacts</string>
 
+    <!-- Title of the settings activity [CHAR LIMIT=64] -->
+    <string name="activity_title_settings">Settings</string>
+
     <!-- Action that shares visible contacts -->
     <string name="share_visible_contacts">Share visible contacts</string>
 

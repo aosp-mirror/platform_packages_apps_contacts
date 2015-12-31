@@ -39,35 +39,8 @@
             android:title="@string/sync_contact_metadata_title"
             android:dialogTitle="@string/sync_contact_metadata_dialog_title" />
 
-    <PreferenceScreen
+    <Preference
         android:icon="@null"
         android:key="about"
-        android:title="@string/setting_about">
-        <Preference
-                android:icon="@null"
-                android:key="@string/pref_build_version_key"
-                android:title="@string/about_build_version"/>
-
-        <Preference
-                android:icon="@null"
-                android:key="@string/pref_open_source_licenses_key"
-                android:title="@string/about_open_source_licenses"
-                android:summary="@string/about_open_source_licenses_summary"/>
-
-        <Preference
-                android:icon="@null"
-                android:key="@string/pref_privacy_policy_key"
-                android:title="@string/about_privacy_policy">
-            <intent android:action="android.intent.action.VIEW"
-                    android:data="http://www.google.com/policies/privacy" />
-        </Preference>
-
-        <Preference
-                android:icon="@null"
-                android:key="@string/pref_terms_of_service_key"
-                android:title="@string/about_terms_of_service">
-            <intent android:action="android.intent.action.VIEW"
-                    android:data="http://www.google.com/policies/terms" />
-        </Preference>
-    </PreferenceScreen>
+        android:title="@string/setting_about"/>
 </PreferenceScreen>
