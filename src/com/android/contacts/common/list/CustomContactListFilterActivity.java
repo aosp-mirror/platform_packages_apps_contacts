@@ -16,8 +16,6 @@
 
 package com.android.contacts.common.list;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.app.ProgressDialog;
@@ -39,6 +37,8 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Settings;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -73,7 +73,7 @@ import java.util.Iterator;
  * Shows a list of all available {@link Groups} available, letting the user
  * select which ones they want to be visible.
  */
-public class CustomContactListFilterActivity extends Activity
+public class CustomContactListFilterActivity extends AppCompatActivity
         implements View.OnClickListener, ExpandableListView.OnChildClickListener,
         LoaderCallbacks<CustomContactListFilterActivity.AccountSet>
 {
@@ -106,7 +106,7 @@ public class CustomContactListFilterActivity extends Activity
 
         mList.setAdapter(mAdapter);
 
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             // android.R.id.home will be triggered in onOptionsItemSelected()
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -852,16 +852,16 @@ public class CustomContactListFilterActivity extends Activity
      * showing spinner dialog to user while updating.
      */
     public static class UpdateTask extends
-            WeakAsyncTask<ArrayList<ContentProviderOperation>, Void, Void, Activity> {
+            WeakAsyncTask<ArrayList<ContentProviderOperation>, Void, Void, AppCompatActivity> {
         private ProgressDialog mProgress;
 
-        public UpdateTask(Activity target) {
+        public UpdateTask(AppCompatActivity target) {
             super(target);
         }
 
         /** {@inheritDoc} */
         @Override
-        protected void onPreExecute(Activity target) {
+        protected void onPreExecute(AppCompatActivity target) {
             final Context context = target;
 
             mProgress = ProgressDialog.show(
@@ -875,7 +875,7 @@ public class CustomContactListFilterActivity extends Activity
         /** {@inheritDoc} */
         @Override
         protected Void doInBackground(
-                Activity target, ArrayList<ContentProviderOperation>... params) {
+                AppCompatActivity target, ArrayList<ContentProviderOperation>... params) {
             final Context context = target;
             final ContentValues values = new ContentValues();
             final ContentResolver resolver = context.getContentResolver();
@@ -894,7 +894,7 @@ public class CustomContactListFilterActivity extends Activity
 
         /** {@inheritDoc} */
         @Override
-        protected void onPostExecute(Activity target, Void result) {
+        protected void onPostExecute(AppCompatActivity target, Void result) {
             final Context context = target;
 
             try {
@@ -915,7 +915,7 @@ public class CustomContactListFilterActivity extends Activity
         switch (item.getItemId()) {
             case android.R.id.home:
                 // Pretend cancel.
-                setResult(Activity.RESULT_CANCELED);
+                setResult(AppCompatActivity.RESULT_CANCELED);
                 finish();
                 return true;
             default:
