@@ -1865,12 +1865,16 @@ public class QuickContactActivity extends ContactsActivity
                 smsContentDescription = com.android.contacts.common.util.ContactDisplayUtils
                         .getTelephoneTtsSpannable(alternateContentDescription.toString(), header);
 
+                int videoCapability = CallUtil.getVideoCallingAvailability(context);
+                boolean isPresenceEnabled =
+                        (videoCapability & CallUtil.VIDEO_CALLING_PRESENCE) != 0;
+                boolean isVideoEnabled = (videoCapability & CallUtil.VIDEO_CALLING_ENABLED) != 0;
+
                 if (CallUtil.isCallWithSubjectSupported(context)) {
                     thirdIcon = res.getDrawable(R.drawable.ic_call_note_white_24dp);
                     thirdAction = Entry.ACTION_CALL_WITH_SUBJECT;
                     thirdContentDescription =
                             res.getString(R.string.call_with_a_note);
-
                     // Create a bundle containing the data the call subject dialog requires.
                     thirdExtras = new Bundle();
                     thirdExtras.putLong(CallSubjectDialog.ARG_PHOTO_ID,
@@ -1888,14 +1892,19 @@ public class QuickContactActivity extends ContactsActivity
                             phone.getFormattedPhoneNumber());
                     thirdExtras.putString(CallSubjectDialog.ARG_NUMBER_LABEL,
                             phoneLabel);
-                } else if (CallUtil.isVideoEnabled(context)) {
-                    // Add video call button if supported
-                    thirdIcon = res.getDrawable(R.drawable.ic_videocam);
-                    thirdAction = Entry.ACTION_INTENT;
-                    thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
-                            CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
-                    thirdContentDescription =
-                            res.getString(R.string.description_video_call);
+                } else if (isVideoEnabled) {
+                    // Check to ensure carrier presence indicates the number supports video calling.
+                    int carrierPresence = dataItem.getCarrierPresence();
+                    boolean isPresent = (carrierPresence & Phone.CARRIER_PRESENCE_VT_CAPABLE) != 0;
+
+                    if ((isPresenceEnabled && isPresent) || !isPresenceEnabled) {
+                        thirdIcon = res.getDrawable(R.drawable.ic_videocam);
+                        thirdAction = Entry.ACTION_INTENT;
+                        thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
+                                CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
+                        thirdContentDescription =
+                                res.getString(R.string.description_video_call);
+                    }
                 }
             }
         } else if (dataItem instanceof EmailDataItem) {

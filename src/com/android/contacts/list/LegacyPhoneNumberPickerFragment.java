@@ -60,7 +60,7 @@ public class LegacyPhoneNumberPickerFragment extends PhoneNumberPickerFragment {
     }
 
     @Override
-    protected void startPhoneNumberShortcutIntent(Uri uri) {
+    protected void startPhoneNumberShortcutIntent(Uri uri, boolean isVideoCall) {
         throw new UnsupportedOperationException();
     }
 
