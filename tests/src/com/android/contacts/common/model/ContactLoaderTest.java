@@ -154,6 +154,7 @@ public class ContactLoaderTest extends LoaderTestCase {
         assertEquals(lookupUri, contact.getLookupUri());
         assertEquals(1, contact.getRawContacts().size());
         assertEquals(1, contact.getStatuses().size());
+        assertEquals(1, contact.getRawContacts().get(0).getDataItems().get(0).getCarrierPresence());
         mContactsProvider.verify();
     }
 
@@ -342,6 +343,7 @@ public class ContactLoaderTest extends LoaderTestCase {
 
                         Data.TIMES_USED,
                         Data.LAST_TIME_USED,
+                        Data.CARRIER_PRESENCE
                     })
                     .withSortOrder(Contacts.Entity.RAW_CONTACT_ID)
                     .returnRow(
@@ -382,7 +384,8 @@ public class ContactLoaderTest extends LoaderTestCase {
                         0,
 
                         0,
-                        0
+                        0,
+                        Data.CARRIER_PRESENCE_VT_CAPABLE
                     );
         }
 

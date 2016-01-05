@@ -82,6 +82,17 @@ public final class CompatUtils {
     }
 
     /**
+     * Determines if this version is capable of using presence checking for video calling.
+     * Support for video call presence indication is added in SDK 24.
+     *
+     * @return {@code true} if video presence checking is allowed, {@code false} otherwise.
+     */
+    public static boolean isVideoPresenceCompatible() {
+        return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.M)
+                > Build.VERSION_CODES.M;
+    }
+
+    /**
      * Determines if this version is compatible with call subject. Can also force the version to
      * be lower through SdkVersionOverride.
      *

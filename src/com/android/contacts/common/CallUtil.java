@@ -41,6 +41,22 @@ import java.util.List;
 public class CallUtil {
 
     /**
+     * Indicates that the video calling is not available.
+     */
+    public static final int VIDEO_CALLING_DISABLED = 0;
+
+    /**
+     * Indicates that video calling is enabled, regardless of presence status.
+     */
+    public static final int VIDEO_CALLING_ENABLED = 1;
+
+    /**
+     * Indicates that video calling is enabled, but the availability of video call affordances is
+     * determined by the presence status associated with contacts.
+     */
+    public static final int VIDEO_CALLING_PRESENCE = 2;
+
+    /**
      * Return an Intent for making a phone call. Scheme (e.g. tel, sip) will be determined
      * automatically.
      */
@@ -103,6 +119,49 @@ public class CallUtil {
     }
 
     /**
+     * Determines if video calling is available, and if so whether presence checking is available
+     * as well.
+     *
+     * Returns a bitmask with {@link #VIDEO_CALLING_ENABLED} to indicate that video calling is
+     * available, and {@link #VIDEO_CALLING_PRESENCE} if presence indication is also available.
+     *
+     * @param context The context
+     * @return A bit-mask describing the current video capabilities.
+     */
+    public static int getVideoCallingAvailability(Context context) {
+        if (!PermissionsUtil.hasPermission(context, android.Manifest.permission.READ_PHONE_STATE)
+                || !CompatUtils.isVideoCompatible()) {
+            return VIDEO_CALLING_DISABLED;
+        }
+        TelecomManager telecommMgr = (TelecomManager)
+                context.getSystemService(Context.TELECOM_SERVICE);
+        if (telecommMgr == null) {
+            return VIDEO_CALLING_DISABLED;
+        }
+
+        List<PhoneAccountHandle> accountHandles = telecommMgr.getCallCapablePhoneAccounts();
+        for (PhoneAccountHandle accountHandle : accountHandles) {
+            PhoneAccount account = telecommMgr.getPhoneAccount(accountHandle);
+            if (account != null) {
+                if (account.hasCapabilities(PhoneAccount.CAPABILITY_VIDEO_CALLING)) {
+                    // Builds prior to N do not have presence support.
+                    if (!CompatUtils.isVideoPresenceCompatible()) {
+                        return VIDEO_CALLING_ENABLED;
+                    }
+
+                    int videoCapabilities = VIDEO_CALLING_ENABLED;
+                    if (account.hasCapabilities(
+                            PhoneAccount.CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE)) {
+                        videoCapabilities |= VIDEO_CALLING_PRESENCE;
+                    }
+                    return videoCapabilities;
+                }
+            }
+        }
+        return VIDEO_CALLING_DISABLED;
+    }
+
+    /**
      * Determines if one of the call capable phone accounts defined supports video calling.
      *
      * @param context The context.
@@ -110,24 +169,7 @@ public class CallUtil {
      *      {@code false} otherwise.
      */
     public static boolean isVideoEnabled(Context context) {
-        if (!PermissionsUtil.hasPermission(context, android.Manifest.permission.READ_PHONE_STATE)
-                || !CompatUtils.isVideoCompatible()) {
-            return false;
-        }
-        TelecomManager telecommMgr = (TelecomManager)
-                context.getSystemService(Context.TELECOM_SERVICE);
-        if (telecommMgr == null) {
-            return false;
-        }
-
-        List<PhoneAccountHandle> accountHandles = telecommMgr.getCallCapablePhoneAccounts();
-        for (PhoneAccountHandle accountHandle : accountHandles) {
-            PhoneAccount account = telecommMgr.getPhoneAccount(accountHandle);
-            if (account != null && account.hasCapabilities(PhoneAccount.CAPABILITY_VIDEO_CALLING)) {
-                return true;
-            }
-        }
-        return false;
+        return (getVideoCallingAvailability(context) & VIDEO_CALLING_ENABLED) != 0;
     }
 
     /**

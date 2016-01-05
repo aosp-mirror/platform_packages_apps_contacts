@@ -40,7 +40,7 @@ import org.json.JSONObject;
  * Fragment containing a phone number list for picking.
  */
 public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactEntryListAdapter>
-        implements OnShortcutIntentCreatedListener {
+        implements OnShortcutIntentCreatedListener, PhoneNumberListAdapter.Listener {
     private static final String TAG = PhoneNumberPickerFragment.class.getSimpleName();
 
     private static final int REQUEST_CODE_ACCOUNT_FILTER = 1;
@@ -68,6 +68,16 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     private ContactListItemView.PhotoPosition mPhotoPosition =
             ContactListItemView.getDefaultPhotoPosition(false /* normal/non opposite */);
+
+    /**
+     * Handles a click on the video call icon for a row in the list.
+     *
+     * @param position The position in the list where the click ocurred.
+     */
+    @Override
+    public void onVideoCallIconClicked(int position) {
+        callNumber(position, true /* isVideoCall */);
+    }
 
     private class FilterHeaderClickListener implements OnClickListener {
         @Override
@@ -187,15 +197,26 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     @Override
     protected void onItemClick(int position, long id) {
+        callNumber(position, false /* isVideoCall */);
+    }
+
+    /**
+     * Initiates a call to the number at the specified position.
+     *
+     * @param position The position.
+     * @param isVideoCall {@code true} if the call should be initiated as a video call,
+     *      {@code false} otherwise.
+     */
+    private void callNumber(int position, boolean isVideoCall) {
         final Uri phoneUri = getPhoneUri(position);
 
         if (phoneUri != null) {
-            pickPhoneNumber(phoneUri);
+            pickPhoneNumber(phoneUri, isVideoCall);
         } else {
             final String number = getPhoneNumber(position);
             if (!TextUtils.isEmpty(number)) {
                 cacheContactInfo(position);
-                mListener.onPickPhoneNumber(number, false /* isVideoCall */,
+                mListener.onPickPhoneNumber(number, isVideoCall,
                         getCallInitiationType(true /* isRemoteDirectory */));
             } else {
                 Log.w(TAG, "Item at " + position + " was clicked before"
@@ -284,16 +305,16 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         return inflater.inflate(R.layout.contact_list_content, null);
     }
 
-    public void pickPhoneNumber(Uri uri) {
+    public void pickPhoneNumber(Uri uri, boolean isVideoCall) {
         if (mShortcutAction == null) {
-            mListener.onPickDataUri(uri,
+            mListener.onPickDataUri(uri, isVideoCall,
                     getCallInitiationType(false /* isRemoteDirectory */));
         } else {
-            startPhoneNumberShortcutIntent(uri);
+            startPhoneNumberShortcutIntent(uri, isVideoCall);
         }
     }
 
-    protected void startPhoneNumberShortcutIntent(Uri uri) {
+    protected void startPhoneNumberShortcutIntent(Uri uri, boolean isVideoCall) {
         ShortcutIntentBuilder builder = new ShortcutIntentBuilder(getActivity(), this);
         builder.createPhoneNumberShortcutIntent(uri, mShortcutAction);
     }
@@ -305,7 +326,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
 
     @Override
     public void onPickerResult(Intent data) {
-        mListener.onPickDataUri(data.getData(),
+        mListener.onPickDataUri(data.getData(), false /* isVideoCall */,
                 getCallInitiationType(false /* isRemoteDirectory */));
     }
 

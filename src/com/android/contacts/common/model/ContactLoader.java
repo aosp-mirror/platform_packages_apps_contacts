@@ -184,6 +184,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
 
                 Data.TIMES_USED,
                 Data.LAST_TIME_USED,
+                Data.CARRIER_PRESENCE
         };
 
         public static final int NAME_RAW_CONTACT_ID = 0;
@@ -256,6 +257,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
 
         public static final int TIMES_USED = 62;
         public static final int LAST_TIME_USED = 63;
+        public static final int CARRIER_PRESENCE = 64;
     }
 
     /**
@@ -714,6 +716,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         cursorColumnToContentValues(cursor, cv, ContactQuery.CHAT_CAPABILITY);
         cursorColumnToContentValues(cursor, cv, ContactQuery.TIMES_USED);
         cursorColumnToContentValues(cursor, cv, ContactQuery.LAST_TIME_USED);
+        cursorColumnToContentValues(cursor, cv, ContactQuery.CARRIER_PRESENCE);
 
         return cv;
     }
