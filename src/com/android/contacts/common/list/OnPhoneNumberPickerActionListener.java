@@ -28,7 +28,7 @@ public interface OnPhoneNumberPickerActionListener  {
     /**
      * Returns the selected phone number uri to the requester.
      */
-    void onPickDataUri(Uri dataUri, int callInitiationType);
+    void onPickDataUri(Uri dataUri, boolean isVideoCall, int callInitiationType);
 
     /**
      * Returns the specified phone number to the requester.
