@@ -156,10 +156,10 @@
     <!-- Text color used for character counter when the max limit has been exceeded -->
     <color name="call_subject_limit_exceeded">#d1041c</color>
 
-    <!-- Tint color for the call subhect history icon. -->
+    <!-- Tint color for the call subject history icon. -->
     <color name="call_subject_history_icon">#000000</color>
 
-    <!-- Divider line on the call subhect dialog. -->
+    <!-- Divider line on the call subject dialog. -->
     <color name="call_subject_divider">#d8d8d8</color>
 
     <!-- Text color for the SEND & CALL button on the call subject dialog. -->
@@ -167,4 +167,5 @@
 
     <!-- Background color for the call subject history view. -->
     <color name="call_subject_history_background">#ffffff</color>
+    <color name="search_video_call_icon_tint">@color/searchbox_hint_text_color</color>
 </resources>
