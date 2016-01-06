@@ -222,7 +222,7 @@
       <item quantity="one">Mtu <xliff:g id="COUNT_0">%1$d</xliff:g></item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Andika jina ya anwani kabla ya kuiunganisha na nyingine."</string>
-    <string name="copy_text" msgid="3257145021583508761">"Nakili kwenye ubao wa klipu"</string>
+    <string name="copy_text" msgid="3257145021583508761">"Nakili kwenye ubao wa kunakili"</string>
     <string name="set_default" msgid="4417505153468300351">"Weka chaguo-msingi"</string>
     <string name="clear_default" msgid="7193185801596678067">"Ondoa chaguo-msingi"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Maandishi yamenakiliwa"</string>
