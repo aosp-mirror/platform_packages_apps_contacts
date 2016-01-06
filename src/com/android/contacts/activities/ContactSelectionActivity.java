@@ -16,8 +16,6 @@
 
 package com.android.contacts.activities;
 
-import android.app.ActionBar;
-import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
@@ -27,6 +25,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.Insert;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.LayoutParams;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,12 +37,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.SearchView;
-import android.widget.SearchView.OnCloseListener;
-import android.widget.SearchView.OnQueryTextListener;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnCloseListener;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
-import com.android.contacts.ContactsActivity;
+import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -70,7 +70,7 @@ import java.util.Set;
  * Displays a list of contacts (or phone numbers or postal addresses) for the
  * purposes of selecting one.
  */
-public class ContactSelectionActivity extends ContactsActivity
+public class ContactSelectionActivity extends AppCompatContactsActivity
         implements View.OnCreateContextMenuListener, OnQueryTextListener, OnClickListener,
                 OnCloseListener, OnFocusChangeListener {
     private static final String TAG = "ContactSelectionActivity";
@@ -138,7 +138,7 @@ public class ContactSelectionActivity extends ContactsActivity
     }
 
     private void prepareSearchViewAndActionBar() {
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         mSearchViewContainer = LayoutInflater.from(actionBar.getThemedContext())
                 .inflate(R.layout.custom_action_bar, null);
         mSearchView = (SearchView) mSearchViewContainer.findViewById(R.id.search_view);
@@ -181,7 +181,7 @@ public class ContactSelectionActivity extends ContactsActivity
     }
 
     private void configureSearchMode() {
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (mIsSearchMode) {
             actionBar.setDisplayShowTitleEnabled(false);
             mSearchViewContainer.setVisibility(View.VISIBLE);

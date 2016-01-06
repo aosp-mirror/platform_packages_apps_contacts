@@ -108,6 +108,15 @@
         <item name="favorites_padding_bottom">0dip</item>
     </style>
 
+    <style name="PeopleActivityTheme" parent="@style/PeopleThemeAppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
+    </style>
+
+    <style name="ContactsUnavailableButtonStyle" parent="@style/Widget.AppCompat.Button.Colored">
+    </style>
+
     <style name="PeopleThemeAppCompat" parent="Theme.AppCompat.Light">
         <!-- Styles that require AppCompat compatibility, remember to update both sets -->
         <item name="android:actionBarStyle">@style/ContactsActionBarStyleAppCompat</item>
@@ -123,6 +132,7 @@
         <item name="homeAsUpIndicator">@drawable/ic_back_arrow</item>
         <!-- Style for the overflow button in the actionbar. -->
         <item name="android:actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
+        <item name="actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_close_lt</item>
         <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_thumb</item>
         <item name="android:fastScrollTrackDrawable">@null</item>
@@ -194,8 +204,8 @@
         <!-- Styles that require AppCompat compatibility, remember to update both sets -->
         <item name="android:background">@color/actionbar_background_color</item>
         <item name="background">@color/actionbar_background_color</item>
-        <item name="android:titleTextStyle">@style/ContactsActionBarTitleText</item>
-        <item name="titleTextStyle">@style/ContactsActionBarTitleText</item>
+        <item name="android:titleTextStyle">@style/ContactsActionBarTitleTextAppCompat</item>
+        <item name="titleTextStyle">@style/ContactsActionBarTitleTextAppCompat</item>
         <item name="android:backgroundStacked">@color/actionbar_background_color</item>
         <item name="backgroundStacked">@color/actionbar_background_color</item>
         <!-- Empty icon -->
@@ -209,25 +219,34 @@
 
     <!-- When this style was added, android:toolbarStyle was private. Therefore, this style
          must be directly applied to every toolbar -->
-    <style name="ContactsToolbarStyle" parent="@android:style/Widget.Toolbar">
-        <item name="android:titleTextAppearance">@style/ContactsActionBarTitleText</item>
+    <style name="ContactsToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
+        <!-- Styles that require AppCompat compatibility, remember to update both sets -->
+        <item name="android:titleTextAppearance">@style/ContactsActionBarTitleTextAppCompat</item>
+        <item name="titleTextAppearance">@style/ContactsActionBarTitleTextAppCompat</item>
     </style>
 
-    <style name="ContactsPickerActionBarStyle" parent="@style/ContactsActionBarStyle">
+    <style name="ContactsPickerActionBarStyle" parent="@style/ContactsActionBarStyleAppCompat">
         <!-- when first loading, don't show title or up button -->
         <item name="android:displayOptions"></item>
     </style>
 
-    <style name="ContactPickerSearchTheme" parent="@style/PeopleTheme">
+    <style name="ContactPickerSearchTheme" parent="@style/PeopleThemeAppCompat">
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorHint">?android:textColorHintInverse</item>
+        <!-- Styles that require AppCompat compatibility, remember to update both sets -->
         <item name="android:colorControlActivated">?android:textColorHintInverse</item>
+        <item name="colorControlActivated">?android:textColorHintInverse</item>
         <item name="android:colorControlNormal">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
     </style>
 
     <!-- Text in the action bar at the top of the screen -->
     <style name="ContactsActionBarTitleText"
            parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/actionbar_text_color</item>
+    </style>
+
+    <style name="ContactsActionBarTitleTextAppCompat" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textColor">@color/actionbar_text_color</item>
     </style>
 
@@ -249,7 +268,7 @@
 
     <!-- Action bar overflow menu icon. -->
     <style name="ContactsActionBarOverflowQP"
-           parent="@android:style/Widget.Material.Light.ActionButton.Overflow">
+           parent="Widget.AppCompat.Light.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_menu_overflow_lt</item>
     </style>
 
@@ -268,8 +287,11 @@
         <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
-    <style name="ContactPickerTheme" parent="@style/PeopleTheme" >
+    <style name="ContactPickerTheme" parent="@style/PeopleThemeAppCompat">
+        <!-- Styles that require AppCompat compatibility, remember to update both sets -->
         <item name="android:actionBarStyle">@style/ContactsPickerActionBarStyle</item>
+        <item name="actionBarStyle">@style/ContactsPickerActionBarStyle</item>
+        <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
     <style name="ContactPickerLayout" parent="ContactPickerTheme">
