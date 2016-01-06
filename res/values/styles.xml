@@ -108,6 +108,73 @@
         <item name="favorites_padding_bottom">0dip</item>
     </style>
 
+    <style name="PeopleThemeAppCompat" parent="Theme.AppCompat.Light">
+        <!-- Styles that require AppCompat compatibility, remember to update both sets -->
+        <item name="android:actionBarStyle">@style/ContactsActionBarStyleAppCompat</item>
+        <item name="actionBarStyle">@style/ContactsActionBarStyleAppCompat</item>
+        <!-- Style for the tab bar (for the divider between tabs) -->
+        <item name="android:actionBarTabBarStyle">@style/ContactsActionBarTabBarStyle</item>
+        <item name="actionBarTabBarStyle">@style/ContactsActionBarTabBarStyle</item>
+        <!-- Style for the tab bar text (for text on tabs) -->
+        <item name="android:actionBarTabTextStyle">@style/ContactsActionBarTabTextStyle</item>
+        <item name="actionBarTabTextStyle">@style/ContactsActionBarTabTextStyle</item>
+        <!--  Drawable for the back button -->
+        <item name="android:homeAsUpIndicator">@drawable/ic_back_arrow</item>
+        <item name="homeAsUpIndicator">@drawable/ic_back_arrow</item>
+        <!-- Style for the overflow button in the actionbar. -->
+        <item name="android:actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
+        <item name="android:actionModeCloseDrawable">@drawable/ic_close_lt</item>
+        <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_thumb</item>
+        <item name="android:fastScrollTrackDrawable">@null</item>
+        <item name="android:textColorPrimary">@color/primary_text_color</item>
+        <item name="android:textColorSecondary">@color/secondary_text_color</item>
+        <item name="android:icon">@android:color/transparent</item>
+        <item name="android:listViewStyle">@style/ListViewStyle</item>
+        <item name="android:windowBackground">@color/background_primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_color_dark</item>
+        <item name="colorPrimaryDark">@color/primary_color_dark</item>
+        <item name="android:colorPrimary">@color/primary_color</item>
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="android:colorAccent">@color/primary_color</item>
+        <item name="colorAccent">@color/primary_color</item>
+        <item name="android:alertDialogTheme">@style/ContactsAlertDialogTheme</item>
+        <item name="alertDialogTheme">@style/ContactsAlertDialogTheme</item>
+        <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
+        <item name="activated_background">@drawable/list_item_activated_background</item>
+        <item name="section_header_background">@drawable/list_title_holo</item>
+        <item name="list_section_header_height">24dip</item>
+        <item name="list_item_padding_top">
+            @dimen/contact_browser_list_item_padding_top_or_bottom
+        </item>
+        <item name="list_item_padding_right">32dp</item>
+        <item name="list_item_padding_bottom">
+            @dimen/contact_browser_list_item_padding_top_or_bottom
+        </item>
+        <item name="list_item_padding_left">16dip</item>
+        <item name="list_item_gap_between_image_and_text">
+            @dimen/contact_browser_list_item_gap_between_image_and_text
+        </item>
+        <item name="list_item_gap_between_label_and_data">5dip</item>
+        <item name="list_item_presence_icon_margin">4dip</item>
+        <item name="list_item_presence_icon_size">16dip</item>
+        <item name="list_item_photo_size">@dimen/contact_browser_list_item_photo_size</item>
+        <item name="list_item_profile_photo_size">70dip</item>
+        <item name="list_item_prefix_highlight_color">@color/people_app_theme_color</item>
+        <item name="list_item_background_color">@color/list_item_pinned_header_color</item>
+        <item name="list_item_header_text_color">@color/people_app_theme_color</item>
+        <item name="list_item_header_text_size">14sp</item>
+        <item name="list_item_header_height">30dip</item>
+        <item name="list_item_data_width_weight">5</item>
+        <item name="list_item_label_width_weight">3</item>
+        <item name="list_item_header_text_indent">8dip</item>
+        <item name="contact_browser_list_padding_left">0dip</item>
+        <item name="contact_browser_list_padding_right">0dip</item>
+        <item name="contact_browser_background">@color/background_primary</item>
+        <item name="list_item_text_indent">@dimen/contact_browser_list_item_text_indent</item>
+        <!-- Favorites -->
+        <item name="favorites_padding_bottom">0dip</item>
+    </style>
+
     <style name="ContactsActionBarOverflow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_overflow_menu</item>
     </style>
@@ -120,6 +187,20 @@
         <item name="android:backgroundStacked">@color/actionbar_background_color</item>
         <!-- Empty icon -->
         <item name="android:icon">@android:color/transparent</item>
+    </style>
+
+    <style name="ContactsActionBarStyleAppCompat"
+           parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <!-- Styles that require AppCompat compatibility, remember to update both sets -->
+        <item name="android:background">@color/actionbar_background_color</item>
+        <item name="background">@color/actionbar_background_color</item>
+        <item name="android:titleTextStyle">@style/ContactsActionBarTitleText</item>
+        <item name="titleTextStyle">@style/ContactsActionBarTitleText</item>
+        <item name="android:backgroundStacked">@color/actionbar_background_color</item>
+        <item name="backgroundStacked">@color/actionbar_background_color</item>
+        <!-- Empty icon -->
+        <item name="android:icon">@android:color/transparent</item>
+        <item name="icon">@android:color/transparent</item>
     </style>
 
     <style name="EditorActionBarStyle" parent="@style/ContactsActionBarStyle">
@@ -200,8 +281,9 @@
         <item name="android:listViewStyle">@style/ListViewStyle</item>
     </style>
 
-    <style name="ContactListFilterTheme" parent="@style/PeopleTheme">
-        <item name="android:listViewStyle">@style/ListViewStyle</item>
+    <style name="ContactListFilterTheme" parent="@style/PeopleThemeAppCompat">
+        <!-- Make the shadow when pressing a list item transparent rather than yellow. -->
+        <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
     <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent.NoTitleBar">
