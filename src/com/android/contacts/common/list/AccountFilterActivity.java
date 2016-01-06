@@ -16,8 +16,6 @@
 
 package com.android.contacts.common.list;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
@@ -25,6 +23,8 @@ import android.content.Intent;
 import android.content.Loader;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -47,7 +47,8 @@ import java.util.List;
  * Shows a list of all available accounts, letting the user select under which account to view
  * contacts.
  */
-public class AccountFilterActivity extends Activity implements AdapterView.OnItemClickListener {
+public class AccountFilterActivity extends AppCompatActivity
+        implements AdapterView.OnItemClickListener {
 
     private static final String TAG = AccountFilterActivity.class.getSimpleName();
 
@@ -70,7 +71,7 @@ public class AccountFilterActivity extends Activity implements AdapterView.OnIte
         mListView = (ListView) findViewById(android.R.id.list);
         mListView.setOnItemClickListener(this);
 
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
@@ -182,14 +183,14 @@ public class AccountFilterActivity extends Activity implements AdapterView.OnIte
             listFilterView.announceForAccessibility(listFilterView.generateContentDescription());
             final Intent intent = new Intent();
             intent.putExtra(KEY_EXTRA_CONTACT_LIST_FILTER, filter);
-            setResult(Activity.RESULT_OK, intent);
+            setResult(AppCompatActivity.RESULT_OK, intent);
             finish();
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) {
+        if (resultCode != AppCompatActivity.RESULT_OK) {
             return;
         }
 
@@ -199,7 +200,7 @@ public class AccountFilterActivity extends Activity implements AdapterView.OnIte
                 ContactListFilter filter = ContactListFilter.createFilterWithType(
                         ContactListFilter.FILTER_TYPE_CUSTOM);
                 intent.putExtra(KEY_EXTRA_CONTACT_LIST_FILTER, filter);
-                setResult(Activity.RESULT_OK, intent);
+                setResult(AppCompatActivity.RESULT_OK, intent);
                 finish();
                 break;
             }
