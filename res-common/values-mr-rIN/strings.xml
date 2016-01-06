@@ -80,7 +80,7 @@
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> आढळला</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> आढळले</item>
     </plurals>
-    <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> साठी दृत संपर्क"</string>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> साठी द्रुत संपर्क"</string>
     <string name="missing_name" msgid="2633118852693000081">"(नाव नाही)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"वारंवार कॉल केलेले"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"वारंवार संपर्क केलेले"</string>
@@ -271,4 +271,5 @@
     <string name="activity_title_licenses" msgid="7812517458691564230">"मुक्त स्त्रोत परवाने"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> चेक केले"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> चेक केले नाही"</string>
+    <string name="description_search_video_call" msgid="1699305143973045516">"व्हिडिओ कॉल करा"</string>
 </resources>
