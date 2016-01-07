@@ -15,9 +15,11 @@
   -->
 
 <resources>
-    <style name="ContactListFilterTheme" parent="@android:Theme.Holo.Light.Dialog">
+    <style name="ContactListFilterTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:listViewStyle">@style/ListViewStyle</item>
+        <item name="android:colorAccent">@color/primary_color</item>
+        <item name="colorAccent">@color/primary_color</item>
     </style>
 
     <style name="CustomContactListFilterView" parent="ContactListFilterTheme">
