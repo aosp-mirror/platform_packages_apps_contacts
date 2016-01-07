@@ -64,6 +64,7 @@
             android:theme="@style/PeopleTheme"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTop"
+            android:resizeableActivity="true"
         >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
