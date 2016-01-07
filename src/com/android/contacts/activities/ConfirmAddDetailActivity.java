@@ -16,7 +16,6 @@
 
 package com.android.contacts.activities;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.AsyncQueryHandler;
@@ -47,6 +46,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
+import android.support.v7.app.AppCompatActivity;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
@@ -102,7 +102,7 @@ import java.util.List;
  * Note when there's no accounts, it *is* okay to show the picker / dialog, because the local-only
  * contacts are writable.
  */
-public class ConfirmAddDetailActivity extends Activity implements
+public class ConfirmAddDetailActivity extends AppCompatActivity implements
         DialogManager.DialogShowingViewActivity {
 
     private static final String TAG = "ConfirmAdd"; // The class name is too long to be a tag.
