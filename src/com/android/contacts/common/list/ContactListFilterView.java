@@ -78,6 +78,10 @@ public class ContactListFilterView extends LinearLayout {
         setContentDescription(generateContentDescription());
     }
 
+    public boolean isChecked() {
+        return mRadioButton.isChecked();
+    }
+
     public void bindView(AccountTypeManager accountTypes) {
         if (mAccountType == null) {
             mIcon = (ImageView) findViewById(R.id.icon);
