@@ -48,6 +48,7 @@ import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.compat.PhoneAccountSdkCompat;
 import com.android.contacts.common.compat.telecom.TelecomManagerCompat;
 import com.android.contacts.common.util.UriUtils;
 import com.android.phone.common.animation.AnimUtils;
@@ -593,17 +594,18 @@ public class CallSubjectDialog extends Activity {
                 (TelecomManager) getSystemService(Context.TELECOM_SERVICE);
         final PhoneAccount account = telecomManager.getPhoneAccount(mPhoneAccountHandle);
 
-        Bundle phoneAccountExtras = account.getExtras();
+        Bundle phoneAccountExtras = PhoneAccountSdkCompat.getExtras(account);
         if (phoneAccountExtras == null) {
             return;
         }
 
         // Get limit, if provided; otherwise default to existing value.
-        mLimit = phoneAccountExtras.getInt(PhoneAccount.EXTRA_CALL_SUBJECT_MAX_LENGTH, mLimit);
+        mLimit = phoneAccountExtras
+                .getInt(PhoneAccountSdkCompat.EXTRA_CALL_SUBJECT_MAX_LENGTH, mLimit);
 
         // Get charset; default to none (e.g. count characters 1:1).
         String charsetName = phoneAccountExtras.getString(
-                PhoneAccount.EXTRA_CALL_SUBJECT_CHARACTER_ENCODING);
+                PhoneAccountSdkCompat.EXTRA_CALL_SUBJECT_CHARACTER_ENCODING);
 
         if (!TextUtils.isEmpty(charsetName)) {
             try {

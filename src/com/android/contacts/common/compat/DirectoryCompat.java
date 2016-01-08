@@ -17,7 +17,6 @@
 package com.android.contacts.common.compat;
 
 import android.net.Uri;
-import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
 
@@ -47,7 +46,7 @@ public class DirectoryCompat {
     public static boolean isRemoteDirectory(long directoryId) {
         // TODO: Use N APIs
         if (ContactsUtils.FLAG_N_FEATURE && android.os.Build.VERSION.CODENAME.startsWith("N")) {
-            return Directory.isRemoteDirectory(directoryId);
+            return DirectorySdkCompat.isRemoteDirectory(directoryId);
         }
         return !(directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE);
     }
