@@ -63,6 +63,10 @@ public class AccountFilterActivity extends AppCompatActivity
 
     private ContactListFilter mCurrentFilter;
 
+    private ContactListFilterView mCustomFilterView; // the "Customize" filter
+
+    private boolean mIsCustomFilterViewSelected;
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -170,6 +174,8 @@ public class AccountFilterActivity extends AppCompatActivity
         final ContactListFilter filter = (ContactListFilter) view.getTag();
         if (filter == null) return; // Just in case
         if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+            mCustomFilterView = listFilterView;
+            mIsCustomFilterViewSelected = listFilterView.isChecked();
             final Intent intent = new Intent(this,
                     CustomContactListFilterActivity.class);
             listFilterView.setActivated(true);
@@ -190,6 +196,12 @@ public class AccountFilterActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == AppCompatActivity.RESULT_CANCELED && mCustomFilterView != null &&
+                !mIsCustomFilterViewSelected) {
+            mCustomFilterView.setActivated(false);
+            return;
+        }
+
         if (resultCode != AppCompatActivity.RESULT_OK) {
             return;
         }
