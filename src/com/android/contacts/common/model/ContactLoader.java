@@ -40,6 +40,7 @@ import android.util.Log;
 
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.GroupMetaData;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountTypeWithDataSet;
 import com.android.contacts.common.util.Constants;
@@ -51,6 +52,7 @@ import com.android.contacts.common.model.dataitem.PhoneDataItem;
 import com.android.contacts.common.model.dataitem.PhotoDataItem;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
@@ -113,7 +115,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
      * social stream items).
      */
     private static class ContactQuery {
-        static final String[] COLUMNS = new String[] {
+        static final String[] COLUMNS_INTERNAL = new String[] {
                 Contacts.NAME_RAW_CONTACT_ID,
                 Contacts.DISPLAY_NAME_SOURCE,
                 Contacts.LOOKUP_KEY,
@@ -183,9 +185,18 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 Contacts.IS_USER_PROFILE,
 
                 Data.TIMES_USED,
-                Data.LAST_TIME_USED,
-                Data.CARRIER_PRESENCE
+                Data.LAST_TIME_USED
         };
+
+        static final String[] COLUMNS;
+
+        static {
+            List<String> projectionList = Lists.newArrayList(COLUMNS_INTERNAL);
+            if (CompatUtils.isMarshmallowCompatible()) {
+                projectionList.add(Data.CARRIER_PRESENCE);
+            }
+            COLUMNS = projectionList.toArray(new String[projectionList.size()]);
+        }
 
         public static final int NAME_RAW_CONTACT_ID = 0;
         public static final int DISPLAY_NAME_SOURCE = 1;
@@ -716,7 +727,9 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         cursorColumnToContentValues(cursor, cv, ContactQuery.CHAT_CAPABILITY);
         cursorColumnToContentValues(cursor, cv, ContactQuery.TIMES_USED);
         cursorColumnToContentValues(cursor, cv, ContactQuery.LAST_TIME_USED);
-        cursorColumnToContentValues(cursor, cv, ContactQuery.CARRIER_PRESENCE);
+        if (CompatUtils.isMarshmallowCompatible()) {
+            cursorColumnToContentValues(cursor, cv, ContactQuery.CARRIER_PRESENCE);
+        }
 
         return cv;
     }
