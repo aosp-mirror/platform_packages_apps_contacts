@@ -29,16 +29,13 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 
-import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.list.ContactListFilterController;
-import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.testing.InjectedServices;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.commonbind.analytics.AnalyticsUtil;
 
 import com.google.common.annotations.VisibleForTesting;
 
-public final class ContactsApplication extends Application {
+public class ContactsApplication extends Application {
     private static final boolean ENABLE_LOADER_LOG = false; // Don't submit with true
     private static final boolean ENABLE_FRAGMENT_LOG = false; // Don't submit with true
 
@@ -48,8 +45,6 @@ public final class ContactsApplication extends Application {
      * To enable: adb shell setprop log.tag.ContactsStrictMode DEBUG
      */
     public static final String STRICT_MODE_TAG = "ContactsStrictMode";
-    private ContactPhotoManager mContactPhotoManager;
-    private ContactListFilterController mContactListFilterController;
 
     /**
      * Overrides the system services with mocks for testing.

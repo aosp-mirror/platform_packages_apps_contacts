@@ -47,7 +47,7 @@ import android.widget.Toast;
 
 import com.android.contacts.tests.R;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 
 /**
  * An activity that provides access to various modes of the contacts application.
@@ -631,6 +631,10 @@ public class AllIntentsActivity extends ListActivity
         row2.put(Email.LABEL, "Green Bot");
         row2.put(Email.ADDRESS, "android@android.com");
 
-        intent.putParcelableArrayListExtra(Insert.DATA, Lists.newArrayList(row1, row2));
+        final ArrayList<ContentValues> rows = new ArrayList<>();
+        rows.add(row1);
+        rows.add(row2);
+
+        intent.putParcelableArrayListExtra(Insert.DATA, rows);
     }
 }
