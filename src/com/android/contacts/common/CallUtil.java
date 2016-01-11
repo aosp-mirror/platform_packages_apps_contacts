@@ -17,6 +17,7 @@
 package com.android.contacts.common;
 
 import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.compat.PhoneAccountSdkCompat;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.common.util.PhoneNumberHelper;
 import com.android.phone.common.PhoneConstants;
@@ -151,7 +152,7 @@ public class CallUtil {
 
                     int videoCapabilities = VIDEO_CALLING_ENABLED;
                     if (account.hasCapabilities(
-                            PhoneAccount.CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE)) {
+                            PhoneAccountSdkCompat.CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE)) {
                         videoCapabilities |= VIDEO_CALLING_PRESENCE;
                     }
                     return videoCapabilities;
