@@ -31,6 +31,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -610,6 +611,12 @@ public class QuickContactActivity extends ContactsActivity
         }
 
         final CheckBox checkbox = (CheckBox) suggestionView.findViewById(R.id.suggestion_checkbox);
+        final int[][] stateSet = new int[][] {
+                new int[] { android.R.attr.state_checked },
+                new int[] { -android.R.attr.state_checked }
+        };
+        final int[] colors = new int[] { mColorFilterColor, mColorFilterColor };
+        checkbox.setButtonTintList(new ColorStateList(stateSet, colors));
         checkbox.setChecked(mSuggestionsShouldAutoSelected ||
                 mSelectedAggregationIds.contains(suggestion.contactId));
         if (checkbox.isChecked()) {
@@ -644,9 +651,7 @@ public class QuickContactActivity extends ContactsActivity
 
     private void enableLinkButton() {
         mSuggestionsLinkButton.setClickable(true);
-        mSuggestionsLinkButton.getBackground().setColorFilter(
-                ContextCompat.getColor(this, R.color.primary_color),
-                PorterDuff.Mode.SRC_ATOP);
+        mSuggestionsLinkButton.getBackground().setColorFilter(mColorFilter);
         mSuggestionsLinkButton.setTextColor(
                 ContextCompat.getColor(this, android.R.color.white));
         mSuggestionsLinkButton.setOnClickListener(new OnClickListener() {
@@ -2319,6 +2324,7 @@ public class QuickContactActivity extends ContactsActivity
         mContactCard.setColorAndFilter(mColorFilterColor, mColorFilter);
         mRecentCard.setColorAndFilter(mColorFilterColor, mColorFilter);
         mAboutCard.setColorAndFilter(mColorFilterColor, mColorFilter);
+        mSuggestionsCancelButton.setTextColor(mColorFilterColor);
     }
 
     private void updateStatusBarColor() {
