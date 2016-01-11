@@ -271,4 +271,5 @@
     <string name="activity_title_licenses" msgid="7812517458691564230">"ใบอนุญาตโอเพนซอร์ส"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"เลือก <xliff:g id="ACCOUNT_INFO">%s</xliff:g> แล้ว"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"ไม่ได้เลือก <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="description_search_video_call" msgid="1699305143973045516">"เริ่มแฮงเอาท์วิดีโอ"</string>
 </resources>

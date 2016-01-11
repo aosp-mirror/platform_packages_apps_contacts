@@ -273,4 +273,5 @@
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licence otvorenog koda"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"Označeno: <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Nije označeno: <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="description_search_video_call" msgid="1699305143973045516">"Uputi video poziv"</string>
 </resources>
