@@ -271,6 +271,5 @@
     <string name="activity_title_licenses" msgid="7812517458691564230">"Llicències de programari lliure"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"S\'ha marcat <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"No s\'ha marcat <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
-    <!-- no translation found for description_search_video_call (1699305143973045516) -->
-    <skip />
+    <string name="description_search_video_call" msgid="1699305143973045516">"Fa una videotrucada"</string>
 </resources>

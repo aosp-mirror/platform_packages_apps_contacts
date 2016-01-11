@@ -271,6 +271,5 @@
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licencias de código abierto"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> está marcado"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> no está marcado"</string>
-    <!-- no translation found for description_search_video_call (1699305143973045516) -->
-    <skip />
+    <string name="description_search_video_call" msgid="1699305143973045516">"Hacer una videollamada"</string>
 </resources>
