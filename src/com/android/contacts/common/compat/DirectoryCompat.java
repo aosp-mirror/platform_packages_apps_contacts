@@ -24,30 +24,31 @@ import com.android.contacts.common.ContactsUtils;
 
 public class DirectoryCompat {
 
-    // TODO: Use N APIs
-    private static final Uri ENTERPRISE_CONTENT_URI =
-            Uri.withAppendedPath(ContactsContract.AUTHORITY_URI, "directories_enterprise");
-    // TODO: Use N APIs
-    private static final long ENTERPRISE_LOCAL_INVISIBLE = 1000000000L + Directory.LOCAL_INVISIBLE;
-
     public static Uri getContentUri() {
-        // TODO: Use N APIs
-        if (ContactsUtils.FLAG_N_FEATURE && android.os.Build.VERSION.CODENAME.startsWith("N")) {
-            return ENTERPRISE_CONTENT_URI;
+        if (ContactsUtils.FLAG_N_FEATURE) {
+            return DirectorySdkCompat.ENTERPRISE_CONTENT_URI;
         }
         return Directory.CONTENT_URI;
     }
 
     public static boolean isInvisibleDirectory(long directoryId) {
-        return (directoryId == Directory.LOCAL_INVISIBLE
-                || directoryId == ENTERPRISE_LOCAL_INVISIBLE);
+        if (ContactsUtils.FLAG_N_FEATURE) {
+            return (directoryId == Directory.LOCAL_INVISIBLE
+                    || directoryId == DirectorySdkCompat.ENTERPRISE_LOCAL_INVISIBLE);
+        }
+        return directoryId == Directory.LOCAL_INVISIBLE;
     }
 
     public static boolean isRemoteDirectory(long directoryId) {
-        // TODO: Use N APIs
-        if (ContactsUtils.FLAG_N_FEATURE && android.os.Build.VERSION.CODENAME.startsWith("N")) {
+        if (ContactsUtils.FLAG_N_FEATURE) {
             return DirectorySdkCompat.isRemoteDirectory(directoryId);
         }
         return !(directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE);
+    }
+
+    public static boolean isEnterpriseDirectoryId(long directoryId) {
+        return ContactsUtils.FLAG_N_FEATURE
+                ? DirectorySdkCompat.isEnterpriseDirectoryId(directoryId)
+                : false;
     }
 }
