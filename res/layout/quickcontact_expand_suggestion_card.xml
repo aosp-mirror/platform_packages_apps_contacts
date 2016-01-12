@@ -155,6 +155,8 @@
                 android:id="@+id/link_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:lines="1"
+                android:ellipsize="end"
                 android:text="@string/quickcontact_suggestion_link_button"/>
         </LinearLayout>
     </LinearLayout>
