@@ -28,8 +28,7 @@ public class PhoneCompat {
             Uri.withAppendedPath(Phone.CONTENT_URI, "filter_enterprise");
 
     public static Uri getContentFilterUri() {
-        // TODO: Use N APIs
-        if (ContactsUtils.FLAG_N_FEATURE && android.os.Build.VERSION.CODENAME.startsWith("N")) {
+        if (ContactsUtils.FLAG_N_FEATURE) {
             return ENTERPRISE_CONTENT_FILTER_URI;
         }
         return Phone.CONTENT_FILTER_URI;

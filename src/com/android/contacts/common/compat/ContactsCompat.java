@@ -40,8 +40,7 @@ public class ContactsCompat {
     private static final long ENTERPRISE_CONTACT_ID_BASE = 1000000000;
 
     public static Uri getContentUri() {
-        // TODO: Use N APIs
-        if (ContactsUtils.FLAG_N_FEATURE && android.os.Build.VERSION.CODENAME.startsWith("N")) {
+        if (ContactsUtils.FLAG_N_FEATURE) {
             return ENTERPRISE_CONTENT_FILTER_URI;
         }
         return Contacts.CONTENT_FILTER_URI;
