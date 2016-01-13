@@ -16,18 +16,28 @@
 
 package com.android.contacts.common.preference;
 
+import android.accounts.Account;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.text.TextUtils;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.common.model.AccountTypeManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Manages user preferences for contacts.
@@ -61,6 +71,10 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
     public static final String PREF_DISPLAY_ONLY_PHONES = "only_phones";
 
     public static final boolean PREF_DISPLAY_ONLY_PHONES_DEFAULT = false;
+
+    public static final String DO_NOT_SYNC_CONTACT_METADATA_MSG = "Do not sync contact metadata.";
+
+    public static final String CONTACT_METADATA_AUTHORITY = "com.android.contacts.metadata";
 
     /**
      * Value to use when a preference is unassigned and needs to be read from the shared preferences
@@ -177,6 +191,80 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
         }
         editor.putBoolean(mDefaultAccountSavedKey, true);
         editor.commit();
+    }
+
+    public String getContactMetadataSyncAccount() {
+        for (Account account : getFocusGoogleAccounts()) {
+            if (ContentResolver.getIsSyncable(account, CONTACT_METADATA_AUTHORITY) == 1
+                    && ContentResolver.getSyncAutomatically(account, CONTACT_METADATA_AUTHORITY)) {
+                return account.name;
+            }
+        }
+        return DO_NOT_SYNC_CONTACT_METADATA_MSG;
+    }
+
+    public void setContactMetadataSyncAccount(AccountWithDataSet accountWithDataSet) {
+        final String mContactMetadataSyncAccount =
+                accountWithDataSet == null ? null : accountWithDataSet.name;
+        toggleContactMetadata(mContactMetadataSyncAccount);
+    }
+
+    private void toggleContactMetadata(String syncAccount) {
+        mContext.getContentResolver().delete(getMetadataSyncUri(), null, null);
+        mContext.getContentResolver().delete(getMetadataSyncStateUri(), null, null);
+        requestMetadataSyncForAccount(syncAccount);
+    }
+
+    /**
+     * Turn on contact metadata sync for this {@param accountName} and turn off automatic sync
+     * for other accounts. If accountName is null, then turn off automatic sync for all accounts.
+     */
+    private void requestMetadataSyncForAccount(String accountName) {
+        for (Account account : getFocusGoogleAccounts()) {
+            if (!TextUtils.isEmpty(accountName) && accountName.equals(account.name)) {
+                ContentResolver.setIsSyncable(account, CONTACT_METADATA_AUTHORITY, 1 /*syncable*/);
+                ContentResolver.setSyncAutomatically(account, CONTACT_METADATA_AUTHORITY, true);
+
+                // Request sync.
+                final Bundle b = new Bundle();
+                b.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+                ContentResolver.requestSync(account, CONTACT_METADATA_AUTHORITY, b);
+            } else {
+                // Turn off automatic sync for all other accounts.
+                ContentResolver.setSyncAutomatically(account, CONTACT_METADATA_AUTHORITY, false);
+            }
+        }
+    }
+
+    /**
+     * @return google accounts with "com.google" account type and null data set.
+     */
+    private List<Account> getFocusGoogleAccounts() {
+        List<Account> focusGoogleAccounts = new ArrayList<Account>();
+        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
+        List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(true);
+        for (AccountWithDataSet account : accounts) {
+            if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type) && account.dataSet == null) {
+                focusGoogleAccounts.add(account.getAccountOrNull());
+            }
+        }
+        return focusGoogleAccounts;
+    }
+
+    private static Uri getMetadataSyncUri() {
+        final Uri metadataUri = Uri.parse("content://" + CONTACT_METADATA_AUTHORITY);
+        return metadataUri.buildUpon()
+                .appendPath("metadata_sync")
+                .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true")
+                .build();
+    }
+
+    private static Uri getMetadataSyncStateUri() {
+        final Uri metadataUri = Uri.parse("content://" + CONTACT_METADATA_AUTHORITY);
+        return metadataUri.buildUpon()
+                .appendPath("metadata_sync_state")
+                .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true")
+                .build();
     }
 
     public void registerChangeListener(ChangeListener listener) {
