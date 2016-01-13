@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.support.annotation.IntDef;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -30,9 +31,13 @@ import android.util.Pair;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.ImDataItem;
 import com.android.contacts.common.testing.NeededForTesting;
+import com.android.contacts.common.compat.ContactsCompat;
+import com.android.contacts.common.compat.DirectoryCompat;
 import com.android.contacts.common.compat.SdkSelectionUtils;
 import com.android.contacts.common.model.AccountTypeManager;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 
 public class ContactsUtils {
@@ -95,6 +100,20 @@ public class ContactsUtils {
         }
         return null;
     }
+
+
+    public static final long USER_TYPE_CURRENT = 0;
+    public static final long USER_TYPE_WORK = 1;
+
+    /**
+     * UserType indicates the user type of the contact. If the contact is from Work User (Work
+     * Profile in Android Multi-User System), it's {@link #USER_TYPE_WORK}, otherwise,
+     * {@link #USER_TYPE_CURRENT}. Please note that current user can be in work profile, where the
+     * dialer is running inside Work Profile.
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({USER_TYPE_CURRENT, USER_TYPE_WORK})
+    public @interface UserType {}
 
     /**
      * Test if the given {@link CharSequence} contains any graphic characters,
@@ -222,5 +241,50 @@ public class ContactsUtils {
             intent = getCustomImIntent(im, protocol);
         }
         return new Pair<>(intent, secondaryIntent);
+    }
+
+    /**
+     * Determine UserType from directory id and contact id.
+     *
+     * 3 types of query
+     *
+     * 1. 2 profile query: content://com.android.contacts/phone_lookup_enterprise/1234567890
+     * personal and work contact are mixed into one cursor. no directory id. contact_id indicates if
+     * it's work contact
+     *
+     * 2. work local query:
+     * content://com.android.contacts/phone_lookup_enterprise/1234567890?directory=1000000000
+     * either directory_id or contact_id is enough to identify work contact
+     *
+     * 3. work remote query:
+     * content://com.android.contacts/phone_lookup_enterprise/1234567890?directory=1000000003
+     * contact_id is random. only directory_id is available
+     *
+     * Summary: If directory_id is not null, always use directory_id to identify work contact.
+     * (which is the case here) Otherwise, use contact_id.
+     *
+     * @param directoryId directory id of ContactsProvider query
+     * @param contactId contact id
+     * @return UserType indicates the user type of the contact. A directory id or contact id larger
+     *         than a thredshold indicates that the contact is stored in Work Profile, but not in
+     *         current user. It's a contract by ContactsProvider and check by
+     *         Contacts.isEnterpriseDirectoryId and Contacts.isEnterpriseContactId. Currently, only
+     *         2 kinds of users can be detected from the directoryId and contactId as
+     *         ContactsProvider can only access current and work user's contacts
+     */
+    public static @UserType long determineUserType(Long directoryId, Long contactId) {
+        // First check directory id
+        if (directoryId != null) {
+            return DirectoryCompat.isEnterpriseDirectoryId(directoryId) ? USER_TYPE_WORK
+                    : USER_TYPE_CURRENT;
+        }
+        // Only check contact id if directory id is null
+        if (contactId != null && contactId != 0L
+                && ContactsCompat.isEnterpriseContactId(contactId)) {
+            return USER_TYPE_WORK;
+        } else {
+            return USER_TYPE_CURRENT;
+        }
+
     }
 }
