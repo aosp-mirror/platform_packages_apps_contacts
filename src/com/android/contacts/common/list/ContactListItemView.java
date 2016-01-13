@@ -187,6 +187,7 @@ public class ContactListItemView extends ViewGroup
     private ImageView mPresenceIcon;
     private AppCompatCheckBox mCheckBox;
     private ImageView mVideoCallIcon;
+    private ImageView mWorkProfileIcon;
 
     private ColorStateList mSecondaryTextColor;
 
@@ -537,6 +538,14 @@ public class ContactListItemView extends ViewGroup
                     MeasureSpec.makeMeasureSpec(mVideoCallIconSize, MeasureSpec.EXACTLY));
         }
 
+        if (isVisible(mWorkProfileIcon)) {
+            mWorkProfileIcon.measure(
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+            mNameTextViewHeight =
+                    Math.max(mNameTextViewHeight, mWorkProfileIcon.getMeasuredHeight());
+        }
+
         if (isVisible(mStatusView)) {
             // Presence and status are in a same row, so status will be affected by icon size.
             final int statusWidth;
@@ -706,11 +715,32 @@ public class ContactListItemView extends ViewGroup
                 mLabelAndDataViewMaxHeight + mSnippetTextViewHeight + mStatusTextViewHeight;
         int textTopBound = (bottomBound + topBound - totalTextHeight) / 2 + mTextOffsetTop;
 
+        // Work Profile icon align top
+        int workProfileIconWidth = 0;
+        if (isVisible(mWorkProfileIcon)) {
+            workProfileIconWidth = mWorkProfileIcon.getMeasuredWidth();
+            final int distanceFromEnd = mCheckBoxWidth > 0
+                    ? mCheckBoxWidth + mGapBetweenImageAndText : 0;
+            if (mPhotoPosition == PhotoPosition.LEFT) {
+                // When photo is on left, label is placed on the right edge of the list item.
+                mWorkProfileIcon.layout(rightBound - workProfileIconWidth - distanceFromEnd,
+                        textTopBound,
+                        rightBound - distanceFromEnd,
+                        textTopBound + mNameTextViewHeight);
+            } else {
+                // When photo is on right, label is placed on the left of data view.
+                mWorkProfileIcon.layout(leftBound + distanceFromEnd,
+                        textTopBound,
+                        leftBound + workProfileIconWidth + distanceFromEnd,
+                        textTopBound + mNameTextViewHeight);
+            }
+        }
+
         // Layout all text view and presence icon
         // Put name TextView first
         if (isVisible(mNameTextView)) {
-            final int distanceFromEnd = mCheckBoxWidth > 0
-                    ? mCheckBoxWidth + mGapBetweenImageAndText : 0;
+            final int distanceFromEnd = workProfileIconWidth
+                    + (mCheckBoxWidth > 0 ? mCheckBoxWidth + mGapBetweenImageAndText : 0);
             if (mPhotoPosition == PhotoPosition.LEFT) {
                 mNameTextView.layout(leftBound,
                         textTopBound,
@@ -722,6 +752,9 @@ public class ContactListItemView extends ViewGroup
                         rightBound,
                         textTopBound + mNameTextViewHeight);
             }
+        }
+
+        if (isVisible(mNameTextView) || isVisible(mWorkProfileIcon)) {
             textTopBound += mNameTextViewHeight;
         }
 
@@ -1315,6 +1348,23 @@ public class ContactListItemView extends ViewGroup
             if (mPresenceIcon != null) {
                 mPresenceIcon.setVisibility(View.GONE);
             }
+        }
+    }
+
+    /**
+     * Set to display work profile icon or not
+     *
+     * @param enabled set to display work profile icon or not
+     */
+    public void setWorkProfileIconEnabled(boolean enabled) {
+        if (mWorkProfileIcon != null) {
+            mWorkProfileIcon.setVisibility(enabled ? View.VISIBLE : View.GONE);
+        } else if (enabled) {
+            mWorkProfileIcon = new ImageView(getContext());
+            addView(mWorkProfileIcon);
+            mWorkProfileIcon.setImageResource(R.drawable.ic_work_profile);
+            mWorkProfileIcon.setScaleType(ScaleType.CENTER_INSIDE);
+            mWorkProfileIcon.setVisibility(View.VISIBLE);
         }
     }
 
