@@ -37,7 +37,7 @@
     <string name="call_telex" msgid="2909886619224843563">"Gọi số telex"</string>
     <string name="call_tty_tdd" msgid="6704940636171078852">"Gọi số điện thoại TTY/TDD"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"Gọi số điện thoại di động tại cơ quan"</string>
-    <string name="call_work_pager" msgid="3036932765279753793">"Gọi số máy nhắn tin tại cơ quan"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Gọi số máy nhắn tin cơ quan"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Gọi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Gọi MMS"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Nhắn tin tới <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -58,7 +58,7 @@
     <string name="sms_telex" msgid="5469333785775443999">"Nhắn tin tới số telex"</string>
     <string name="sms_tty_tdd" msgid="5057886576150816002">"Nhắn tới số TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="8426872094268475047">"Nhắn tới số điện thoại di động tại cơ quan"</string>
-    <string name="sms_work_pager" msgid="499303540738557836">"Nhắn tin tới số máy nhắn tin tại cơ quan"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Nhắn tin tới số máy nhắn tin cơ quan"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Nhắn tin tới <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Nhắn tin tới số điện thoại MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Gọi điện video"</string>

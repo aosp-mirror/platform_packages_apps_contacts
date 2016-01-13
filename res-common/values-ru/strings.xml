@@ -220,8 +220,8 @@
     <string name="progress_notifier_message" msgid="359931715339778107">"Импорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>..."</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Экспортировать в файл VCF"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортировка"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Имя"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Фамилия"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"По имени"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"По фамилии"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Формат имени"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Сначала имя"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Сначала фамилия"</string>

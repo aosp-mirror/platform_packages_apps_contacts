@@ -61,7 +61,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Enviar SMS para pager comercial"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Enviar SMS para <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Enviar SMS para MMS"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"Fazer vídeo chamada"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Fazer videochamada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Apagar contatos frequentes?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Você apagará a lista de contatos frequentes nos apps Contatos e Telefone, fazendo com que os apps de e-mail tenham que redefinir suas preferências de endereçamento."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Apagando contatos frequentes…"</string>

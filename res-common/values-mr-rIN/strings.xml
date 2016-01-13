@@ -80,7 +80,7 @@
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> आढळला</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> आढळले</item>
     </plurals>
-    <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> साठी दृत संपर्क"</string>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> साठी द्रुत संपर्क"</string>
     <string name="missing_name" msgid="2633118852693000081">"(नाव नाही)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"वारंवार कॉल केलेले"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"वारंवार संपर्क केलेले"</string>

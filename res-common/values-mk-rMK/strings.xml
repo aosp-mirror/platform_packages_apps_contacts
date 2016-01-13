@@ -146,7 +146,7 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Отвори или затвори полиња со име"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Сите контакти"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Со ѕвезда"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"Прилагоди"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Приспособи"</string>
     <string name="list_filter_single" msgid="4553809449379139446">"Контакт"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"Сите други контакти"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"Сите контакти"</string>
