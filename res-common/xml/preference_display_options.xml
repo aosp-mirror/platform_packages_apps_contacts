@@ -33,6 +33,12 @@
         android:title="@string/default_editor_account"
         android:dialogTitle="@string/default_editor_account" />
 
+    <com.android.contacts.common.preference.ContactMetadataSyncAccountPreference
+            android:icon="@null"
+            android:key="contactMetadata"
+            android:title="@string/contact_metadata_sync_account"
+            android:dialogTitle="@string/contact_metadata_sync_account" />
+
     <PreferenceScreen
         android:icon="@null"
         android:key="about"
