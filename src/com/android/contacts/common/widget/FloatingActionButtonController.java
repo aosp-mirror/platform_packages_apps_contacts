@@ -111,7 +111,6 @@ public class FloatingActionButtonController {
         // moves along with it.
         mFloatingActionButtonContainer.setTranslationX(
                 (int) (positionOffset * getTranslationXForAlignment(ALIGN_END)));
-        mFloatingActionButtonContainer.setTranslationY(0);
     }
 
     /**
