@@ -21,7 +21,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.commonbind.analytics.AnalyticsUtil;
-import com.android.contactsbind.ClearcutLoggerHelper;
 
 /**
  * Logs analytics events.
@@ -30,7 +29,7 @@ public abstract class Logger {
     public static final String TAG = "Logger";
 
     public static Logger getInstance() {
-        return ClearcutLoggerHelper.getInstance();
+        return null;
     }
 
     /**
