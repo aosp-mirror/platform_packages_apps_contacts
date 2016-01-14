@@ -19,14 +19,19 @@ package com.android.contacts.list;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
+import com.android.contacts.common.logging.SearchState;
 import com.android.contacts.list.MultiSelectEntryContactListAdapter.SelectedContactsListener;
+import com.android.contacts.common.logging.Logger;
 
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.accessibility.AccessibilityEvent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeSet;
 
 /**
@@ -44,10 +49,29 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
 
     private static final String EXTRA_KEY_SELECTED_CONTACTS = "selected_contacts";
 
+    private static final String KEY_SEARCH_RESULT_CLICKED = "search_result_clicked";
+
     private OnCheckBoxListActionListener mCheckBoxListListener;
+    private boolean mSearchResultClicked;
 
     public void setCheckBoxListListener(OnCheckBoxListActionListener checkBoxListListener) {
         mCheckBoxListListener = checkBoxListListener;
+    }
+
+    /**
+     * Whether a search result was clicked by the user. Tracked so that we can distinguish
+     * between exiting the search mode after a result was clicked from existing w/o clicking
+     * any search result.
+     */
+    public boolean wasSearchResultClicked() {
+        return mSearchResultClicked;
+    }
+
+    /**
+     * Resets whether a search result was clicked by the user to false.
+     */
+    public void resetSearchResultClicked() {
+        mSearchResultClicked = false;
     }
 
     @Override
@@ -77,6 +101,7 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
             if (mCheckBoxListListener != null) {
                 mCheckBoxListListener.onSelectedContactIdsChanged();
             }
+            mSearchResultClicked = savedInstanceState.getBoolean(KEY_SEARCH_RESULT_CLICKED);
         }
     }
 
@@ -100,6 +125,7 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(EXTRA_KEY_SELECTED_CONTACTS, getSelectedContactIds());
+        outState.putBoolean(KEY_SEARCH_RESULT_CLICKED, mSearchResultClicked);
     }
 
     public void displayCheckBoxes(boolean displayCheckBoxes) {
@@ -157,11 +183,82 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
                 getAdapter().toggleSelectionOfContactId(Long.valueOf(contactId));
             }
         } else {
+            mSearchResultClicked = true;
+            Logger.getInstance().logSearchEventImpl(
+                    createSearchStateForSearchResultClick(position));
+
             super.onItemClick(position, id);
         }
         if (mCheckBoxListListener != null && getAdapter().getSelectedContactIds().size() == 0) {
             mCheckBoxListListener.onStopDisplayingCheckBoxes();
         }
+    }
+
+    /**
+     * Returns the state of the search results currently presented to the user.
+     */
+    public SearchState createSearchState() {
+        return createSearchState(/* selectedPosition */ -1);
+    }
+
+    /**
+     * Returns the state of the search results presented to the user
+     * at the time the result in the given position was clicked.
+     */
+    public SearchState createSearchStateForSearchResultClick(int selectedPosition) {
+        return createSearchState(selectedPosition);
+    }
+
+    private SearchState createSearchState(int selectedPosition) {
+        final MultiSelectEntryContactListAdapter adapter = getAdapter();
+        if (adapter == null) {
+            return null;
+        }
+        final SearchState searchState = new SearchState();
+        searchState.queryLength = adapter.getQueryString() == null
+                ? 0 : adapter.getQueryString().length();
+        searchState.numPartitions = adapter.getPartitionCount();
+
+        // Set the number of results displayed to the user.  Note that the adapter.getCount(),
+        // value does not always match the number of results actually displayed to the user,
+        // which is why we calculate it manually.
+        final List<Integer> numResultsInEachPartition = new ArrayList<>();
+        for (int i = 0; i < adapter.getPartitionCount(); i++) {
+            final Cursor cursor = adapter.getCursor(i);
+            if (cursor == null || cursor.isClosed()) {
+                // Something went wrong, abort.
+                numResultsInEachPartition.clear();
+                break;
+            }
+            numResultsInEachPartition.add(cursor.getCount());
+        }
+        if (!numResultsInEachPartition.isEmpty()) {
+            int numResults = 0;
+            for (int i = 0; i < numResultsInEachPartition.size(); i++) {
+                numResults += numResultsInEachPartition.get(i);
+            }
+            searchState.numResults = numResults;
+        }
+
+        // If a selection was made, set additional search state
+        if (selectedPosition >= 0) {
+            searchState.selectedPartition = adapter.getPartitionForPosition(selectedPosition);
+            searchState.selectedIndexInPartition = adapter.getOffsetInPartition(selectedPosition);
+            final Cursor cursor = adapter.getCursor(searchState.selectedPartition);
+            searchState.numResultsInSelectedPartition =
+                    cursor == null || cursor.isClosed() ? -1 : cursor.getCount();
+
+            // Calculate the index across all partitions
+            if (!numResultsInEachPartition.isEmpty()) {
+                int selectedIndex = 0;
+                for (int i = 0; i < searchState.selectedPartition; i++) {
+                    selectedIndex += numResultsInEachPartition.get(i);
+                }
+                selectedIndex += searchState.selectedIndexInPartition;
+                searchState.selectedIndex = selectedIndex;
+            }
+        }
+        return searchState;
     }
 
     @Override
