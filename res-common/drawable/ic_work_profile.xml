@@ -5,7 +5,7 @@
     android:viewportWidth="48"
     android:viewportHeight="48">
 
-    <!-- https://storage.googleapis.com/icons.google.com.a.appspot.com/google-assets/system_icons/quantum/proprietary/res-export/ic_enterprise_48px.svg -->
+    <!-- //java/com/google/android/assets/quantum:ic_enterprise_grey600_16 -->
 
     <path
         android:fillColor="#757575"
