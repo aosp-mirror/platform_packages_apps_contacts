@@ -54,6 +54,11 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
             preferenceScreen.removePreference((ListPreference) findPreference("accounts"));
         }
 
+        // STOPSHIP Show this option when 1) metadata sync is enabled and 2) at least one
+        // focus google account.
+        final PreferenceScreen preferenceScreen = getPreferenceScreen();
+        preferenceScreen.removePreference((ListPreference) findPreference("contactMetadata"));
+
         // Set build version of Contacts App.
         final PackageManager manager = getActivity().getPackageManager();
         try {
