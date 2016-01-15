@@ -30,7 +30,7 @@ public class FallbackAccountType extends BaseAccountType {
         this.accountType = null;
         this.dataSet = null;
         this.titleRes = R.string.account_phone;
-        this.iconRes = R.mipmap.ic_contacts_clr_48cv_44dp;
+        this.iconRes = R.mipmap.ic_contacts_launcher;
 
         // Note those are only set for unit tests.
         this.resourcePackageName = resPackageName;
