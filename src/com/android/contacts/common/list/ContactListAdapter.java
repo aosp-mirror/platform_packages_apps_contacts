@@ -23,11 +23,9 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippets;
 import android.text.TextUtils;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.ContactsCompat;
@@ -72,7 +70,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.PHOTO_THUMBNAIL_URI,           // 5
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
-            SearchSnippets.SNIPPET,           // 8
+            Contacts.TIMES_CONTACTED,               // 8
+            Contacts.STARRED,                       // 9
+            SearchSnippets.SNIPPET,                 // 10
         };
 
         private static final String[] FILTER_PROJECTION_ALTERNATIVE = new String[] {
@@ -84,7 +84,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.PHOTO_THUMBNAIL_URI,           // 5
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
-            SearchSnippets.SNIPPET,           // 8
+            Contacts.TIMES_CONTACTED,               // 8
+            Contacts.STARRED,                       // 9
+            SearchSnippets.SNIPPET,                 // 10
         };
 
         public static final int CONTACT_ID               = 0;
@@ -95,7 +97,52 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         public static final int CONTACT_PHOTO_URI        = 5;
         public static final int CONTACT_LOOKUP_KEY       = 6;
         public static final int CONTACT_IS_USER_PROFILE  = 7;
-        public static final int CONTACT_SNIPPET          = 8;
+        public static final int CONTACT_TIMES_CONTACTED  = 8;
+        public static final int CONTACT_STARRED          = 9;
+        public static final int CONTACT_SNIPPET          = 10;
+    }
+
+    protected static class StrequentQuery {
+
+        private static final String[] FILTER_PROJECTION_PRIMARY = new String[] {
+                Contacts._ID,                           // 0
+                Contacts.DISPLAY_NAME_PRIMARY,          // 1
+                Contacts.CONTACT_PRESENCE,              // 2
+                Contacts.CONTACT_STATUS,                // 3
+                Contacts.PHOTO_ID,                      // 4
+                Contacts.PHOTO_THUMBNAIL_URI,           // 5
+                Contacts.LOOKUP_KEY,                    // 6
+                Contacts.IS_USER_PROFILE,               // 7
+                Contacts.TIMES_CONTACTED,               // 8
+                Contacts.STARRED,                       // 9
+                // SearchSnippets.SNIPPET not supported
+        };
+
+        private static final String[] FILTER_PROJECTION_ALTERNATIVE = new String[] {
+                Contacts._ID,                           // 0
+                Contacts.DISPLAY_NAME_ALTERNATIVE,      // 1
+                Contacts.CONTACT_PRESENCE,              // 2
+                Contacts.CONTACT_STATUS,                // 3
+                Contacts.PHOTO_ID,                      // 4
+                Contacts.PHOTO_THUMBNAIL_URI,           // 5
+                Contacts.LOOKUP_KEY,                    // 6
+                Contacts.IS_USER_PROFILE,               // 7
+                Contacts.TIMES_CONTACTED,               // 8
+                Contacts.STARRED,                       // 9
+                // SearchSnippets.SNIPPET not supported
+        };
+
+        public static final int CONTACT_ID               = 0;
+        public static final int CONTACT_DISPLAY_NAME     = 1;
+        public static final int CONTACT_PRESENCE_STATUS  = 2;
+        public static final int CONTACT_CONTACT_STATUS   = 3;
+        public static final int CONTACT_PHOTO_ID         = 4;
+        public static final int CONTACT_PHOTO_URI        = 5;
+        public static final int CONTACT_LOOKUP_KEY       = 6;
+        public static final int CONTACT_IS_USER_PROFILE  = 7;
+        public static final int CONTACT_TIMES_CONTACTED  = 8;
+        public static final int CONTACT_STARRED          = 9;
+        // SearchSnippets.SNIPPET not supported
     }
 
     private CharSequence mUnknownNameText;
@@ -383,5 +430,12 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 return ContactQuery.CONTACT_PROJECTION_ALTERNATIVE;
             }
         }
+    }
+
+    protected final String[] getStrequentProjection() {
+        final int sortOrder = getContactNameDisplayOrder();
+        return sortOrder == ContactsPreferences.DISPLAY_ORDER_PRIMARY
+                ? StrequentQuery.FILTER_PROJECTION_PRIMARY
+                : StrequentQuery.FILTER_PROJECTION_ALTERNATIVE;
     }
 }
