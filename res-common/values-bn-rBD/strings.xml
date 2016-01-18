@@ -71,6 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"পরিচিতিগুলি"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"অন্যান্য"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ডিরেক্টরি"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"কাজের সংগ্রহ"</string>
     <string name="local_search_label" msgid="9094584931063745728">"সকল পরিচিতি"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"আমি"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"অনুসন্ধান করছে..."</string>
@@ -86,6 +87,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"ঘন ঘন যোগাযোগ করা হয়েছে"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"পরিচিতি দেখুন"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ফোন নম্বর সহ সমস্ত পরিচিতি"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"কর্মস্থলের প্রোফাইলের পরিচিতিগুলি"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"আপডেটগুলি দেখুন"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"শুধুমাত্র ট্যাবলেট, সমন্বয় করা নেই"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"শুধুমাত্র ফোন, সমন্বয় করা নেই"</string>
@@ -225,6 +227,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"প্রথমে আদ্য নাম"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"প্রথমে পারিবারিক নাম"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"নতুন পরিচিতিগুলির জন্য ডিফল্ট অ্যাকাউন্ট"</string>
+    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
+    <skip />
     <string name="setting_about" msgid="3926137653588942297">"পরিচিতি সম্পর্কিত"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"দৃশ্যমান পরিচিতিগুলিকে ভাগ করুন"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"দৃশ্যমান পরিচিতিগুলি ভাগ করতে ব্যর্থ হয়েছে৷"</string>

@@ -71,6 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Agendă"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Altele"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Director"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Directorul de serviciu"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Toată Agenda"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Eu"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Se caută…"</string>
@@ -87,6 +88,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactate frecvent"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Afişaţi persoana de contact"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Toate persoanele de contact cu numere de telefon"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Persoane de contact din profilul de serviciu"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Afişaţi actualizări"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Numai pe tabletă, nesincronizată"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Numai pe telefon, nesincronizată"</string>
@@ -226,6 +228,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Întâi prenumele"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Întâi numele"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Contul prestabilit pentru persoanele de contact noi"</string>
+    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
+    <skip />
     <string name="setting_about" msgid="3926137653588942297">"Despre Agendă"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Distribuiți persoanele de contact vizibile"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Persoanele de contact vizibile nu au putut fi trimise."</string>

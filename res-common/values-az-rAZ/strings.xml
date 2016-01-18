@@ -71,6 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Kontaktlar"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Digər"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Kataloq"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"İş Kataloqu"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Bütün kontaktlar"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Mən"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Axtarılır..."</string>
@@ -86,6 +87,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Tez-tez əlaqə saxlanılan"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Kontakta baxın"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Telefon nömrələri olan bütün kontaktlar"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"İş Profili kontaktları"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Güncəlləşmələri göstər"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Yalnız planşet, sinxronsuz"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Yalnız telefon, sinxronsuz"</string>
@@ -225,6 +227,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Ad ilk yazılsın"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Soyad ilk yazılsın"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Yeni kontaktlar üçün defolt hesab"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Metadata sinxronizasiya hesabı kontaktı"</string>
     <string name="setting_about" msgid="3926137653588942297">"Kontaktlar Haqqında"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Görünən kontaktları paylaşın"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Görünən kontaktları paylaşmaq olmadı"</string>

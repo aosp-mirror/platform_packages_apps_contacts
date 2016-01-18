@@ -71,6 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"വിലാസങ്ങൾ"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"മറ്റുള്ളവ"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ഡയറക്‌ടറി"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"ഔദ്യോഗിക ഡയറക്ടറി"</string>
     <string name="local_search_label" msgid="9094584931063745728">"എല്ലാ കോൺടാക്റ്റുകളും"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"ഞാന്‍"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"തിരയുന്നു…"</string>
@@ -86,6 +87,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവർ"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"കോൺടാക്റ്റ് കാണുക"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ഫോൺ നമ്പറുകളുള്ള എല്ലാ കോൺടാക്റ്റുകളും"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"ഔദ്യോഗിക പ്രൊഫൈൽ കോണ്‍‌ടാക്റ്റുകള്‍‌"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"അപ്‌ഡേറ്റുകള്‍ കാണുക"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"ടാബ്‌ലെറ്റിൽ മാത്രമുള്ളത്, സമന്വയിപ്പിക്കില്ല"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"ഫോണിൽ മാത്രം, സമന്വയിപ്പിക്കില്ല"</string>
@@ -225,6 +227,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"പേരിന്റെ ആദ്യഭാഗം ആദ്യം"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"പേരിന്റെ അവസാന ഭാഗം ആദ്യം"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"പുതിയ കോൺടാക്റ്റുകൾക്കായുള്ള ഡിഫോൾട്ട് അക്കൗണ്ട്"</string>
+    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
+    <skip />
     <string name="setting_about" msgid="3926137653588942297">"കോണ്‍ടാക്റ്റുകളെ കുറിച്ച്"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുക"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുന്നത് പരാജയപ്പെട്ടു."</string>
