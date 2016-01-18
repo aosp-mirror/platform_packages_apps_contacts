@@ -71,6 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"สมุดโทรศัพท์"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"อื่นๆ"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ไดเรกทอรี"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"ไดเรกทอรีที่ทำงาน"</string>
     <string name="local_search_label" msgid="9094584931063745728">"รายชื่อติดต่อทั้งหมด"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"ฉัน"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"กำลังค้นหา…"</string>
@@ -86,6 +87,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"ติดต่อบ่อยครั้ง"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"ดูรายชื่อติดต่อ"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"รายชื่อติดต่อทั้งหมดที่มีหมายเลขโทรศัพท์"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"รายชื่อติดต่อในโปรไฟล์งาน"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"ดูการอัปเดต"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"แท็บเล็ตเท่านั้น ไม่ซิงค์"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"โทรศัพท์เท่านั้น ไม่ซิงค์"</string>
@@ -225,6 +227,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ชื่อขึ้นก่อน"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"นามสกุลขึ้นก่อน"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"บัญชีเริ่มต้นสำหรับรายชื่อติดต่อใหม่"</string>
+    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
+    <skip />
     <string name="setting_about" msgid="3926137653588942297">"เกี่ยวกับ \"รายชื่อติดต่อ\""</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"แชร์รายชื่อติดต่อที่มองเห็น"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ไม่สามารถแชร์รายชื่อติดต่อที่มองเห็นได้"</string>

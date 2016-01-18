@@ -71,6 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"संपर्क"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"अन्य"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"निर्देशिका"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"कार्य निर्देशिका"</string>
     <string name="local_search_label" msgid="9094584931063745728">"सभी संपर्क"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"मुझे"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"खोज रहा है…"</string>
@@ -86,6 +87,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"बार-बार संपर्क किए गए"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"संपर्क देखें"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"फ़ोन नंबरों वाले सभी संपर्क"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"कार्य प्रोफ़ाइल के संपर्क"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"नई जानकारी देखें"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"केवल टेबलेट पर, असमन्वयित"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"केवल-फ़ोन पर, असमन्वयित"</string>
@@ -225,6 +227,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाम पहले"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"उपनाम पहले"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"नए संपर्कों के लिए डिफ़ॉल्ट खाता"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"मेटाडेटा समन्वयन खाते से संपर्क करें"</string>
     <string name="setting_about" msgid="3926137653588942297">"संपर्क के बारे में"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"दिखाई देने वाले संपर्क साझा करें"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"दृश्‍यमान संपर्क साझा करने में विफल रहा."</string>

@@ -71,6 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Contactos"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Otros"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Directorio"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Directorio de trabajo"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Todos los contactos"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Yo"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Buscando..."</string>
@@ -86,6 +87,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactos frecuentes"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ver contacto"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos los contactos con número"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Contactos del perfil de trabajo"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ver actualizaciones"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Solo en el tablet (sin sincronizar)"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Solo en teléfono, no sincronizar"</string>
@@ -225,6 +227,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nombre primero"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Apellido primero"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Cuenta predeterminada para nuevos contactos"</string>
+    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
+    <skip />
     <string name="setting_about" msgid="3926137653588942297">"Información sobre Contactos"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Compartir contactos visibles"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"No ha sido posible compartir los contactos visibles."</string>

@@ -71,6 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"주소록"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"기타"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"디렉토리"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"직장 디렉토리"</string>
     <string name="local_search_label" msgid="9094584931063745728">"모든 주소록"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"나"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"검색 중…"</string>
@@ -86,6 +87,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"자주 연락하는 사람들"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"연락처 보기"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"전화번호가 포함된 모든 연락처"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"직장 프로필 연락처"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"업데이트 보기"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"태블릿 전용(동기화되지 않음)"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"휴대전화 전용(동기화되지 않음)"</string>
@@ -225,6 +227,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"이름 먼저"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"성 먼저"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"새 연락처에 대한 기본 계정"</string>
+    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
+    <skip />
     <string name="setting_about" msgid="3926137653588942297">"주소록 정보"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"표시되는 연락처 모두 공유"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"표시되는 연락처를 공유하지 못했습니다."</string>
