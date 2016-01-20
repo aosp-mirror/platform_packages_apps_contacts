@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -46,7 +45,19 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preference_display_options);
 
-        removeUnsupportedPreferences();
+        // Remove "Default account" setting if no writable accounts.
+        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(getContext());
+        final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(
+                /* contactWritableOnly */ true);
+        if (accounts.isEmpty()) {
+            final PreferenceScreen preferenceScreen = getPreferenceScreen();
+            preferenceScreen.removePreference((ListPreference) findPreference("accounts"));
+        }
+
+        // STOPSHIP Show this option when 1) metadata sync is enabled and 2) at least one
+        // focus google account.
+        final PreferenceScreen preferenceScreen = getPreferenceScreen();
+        preferenceScreen.removePreference((ListPreference) findPreference("contactMetadata"));
 
         // Set build version of Contacts App.
         final PackageManager manager = getActivity().getPackageManager();
@@ -62,31 +73,6 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         final Preference licensePreference = findPreference(
                 getString(R.string.pref_open_source_licenses_key));
         licensePreference.setIntent(new Intent(getActivity(), LicenseActivity.class));
-    }
-
-    private void removeUnsupportedPreferences() {
-        // Disable sort order for CJK locales where it is not supported
-        final Resources resources = getResources();
-        if (!resources.getBoolean(R.bool.config_sort_order_user_changeable)) {
-            getPreferenceScreen().removePreference(findPreference("sortOrder"));
-        }
-
-        // Disable display order for CJK locales as well
-        if (!resources.getBoolean(R.bool.config_display_order_user_changeable)) {
-            getPreferenceScreen().removePreference(findPreference("displayOrder"));
-        }
-
-        // Remove the "Default account" setting if there aren't any writable accounts
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(getContext());
-        final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(
-                /* contactWritableOnly */ true);
-        if (accounts.isEmpty()) {
-            getPreferenceScreen().removePreference(findPreference("accounts"));
-        }
-
-        // STOPSHIP Show this option when 1) metadata sync is enabled
-        // and 2) there is at least one focus google account
-        getPreferenceScreen().removePreference(findPreference("contactMetadata"));
     }
 
     @Override
