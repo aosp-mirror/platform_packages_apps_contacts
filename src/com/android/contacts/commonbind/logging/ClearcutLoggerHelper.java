@@ -16,6 +16,7 @@
 package com.android.contacts.commonbind.logging;
 
 import com.android.contacts.common.logging.Logger;
+import com.android.contacts.common.logging.SearchState;
 
 /**
  * No-op clearcut logger implementation.
@@ -36,5 +37,9 @@ public class ClearcutLoggerHelper extends Logger {
 
     @Override
     public void logScreenViewImpl(int screenType) {
+    }
+
+    @Override
+    public void logSearchEventImpl(SearchState searchState) {
     }
 }
