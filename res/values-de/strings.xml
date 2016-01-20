@@ -77,7 +77,7 @@
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Klingeltonwahl"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle Anrufe an Mailbox"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontakte aus Ihren schreibgeschützten Konten können nicht gelöscht, sondern nur ausgeblendet werden."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontakte aus deinen schreibgeschützten Konten können nicht gelöscht, sondern nur ausgeblendet werden."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Ausblenden"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Der zu löschende Kontakt enthält Informationen aus mehreren Konten. Informationen aus schreibgeschützten Konten werden nicht gelöscht, sondern nur ausgeblendet."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Wähle für eine Verknüpfung mindestens zwei Kontakte aus."</string>
@@ -85,7 +85,7 @@
     <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Verknüpfen"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Diesen Kontakt löschen?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Ausgewählte Kontakte löschen?"</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontakte aus Ihren schreibgeschützten Konten können nicht gelöscht, sondern nur ausgeblendet werden."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontakte aus deinen schreibgeschützten Konten können nicht gelöscht, sondern nur ausgeblendet werden."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Die zu löschenden Kontakte enthalten Informationen aus mehreren Konten. Informationen aus schreibgeschützten Konten werden nicht gelöscht, sondern nur ausgeblendet."</string>
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Wenn du diesen Kontakt löschst, werden Informationen aus mehreren Konten gelöscht."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Diesen Kontakt löschen?"</string>
@@ -238,7 +238,7 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"Die App \"Kontakte\" funktioniert am besten mit einem Google-Konto.\n\n• Du kannst über alle Webbrowser darauf zugreifen.\n• Sichere und schütze deine Kontakte."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Synchronisierung mit einem Online-Service: Deine Kontakte sind dann auch sicher, wenn du dein Telefon verlierst."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto hinzufügen"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Ihr neuer Kontakt wird nicht gesichert. Konto für die Online-Sicherung von Kontakten hinzufügen?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Dein neuer Kontakt wird nicht gesichert. Konto für die Online-Sicherung von Kontakten hinzufügen?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Neue Kontakte werden in <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> gespeichert."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Wähle ein Standardkonto für neue Kontakte:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Kontakt hinzufügen"</string>
