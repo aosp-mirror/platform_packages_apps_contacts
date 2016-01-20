@@ -227,8 +227,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ابتدا نام"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ابتدا نام خانوادگی"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"حساب پیش‌فرض برای مخاطبین جدید"</string>
-    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
-    <skip />
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"حساب همگام‌سازی فراداده مخاطب"</string>
     <string name="setting_about" msgid="3926137653588942297">"درباره مخاطبین"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"اشتراک‌گذاری مخاطبین قابل مشاهده"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"مخاطبین قابل مشاهده به اشتراک گذاشته نشدند."</string>

@@ -227,8 +227,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"이름 먼저"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"성 먼저"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"새 연락처에 대한 기본 계정"</string>
-    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
-    <skip />
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"연락처 메타데이터 동기화 계정"</string>
     <string name="setting_about" msgid="3926137653588942297">"주소록 정보"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"표시되는 연락처 모두 공유"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"표시되는 연락처를 공유하지 못했습니다."</string>

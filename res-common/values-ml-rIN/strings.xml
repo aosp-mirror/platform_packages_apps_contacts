@@ -227,8 +227,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"പേരിന്റെ ആദ്യഭാഗം ആദ്യം"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"പേരിന്റെ അവസാന ഭാഗം ആദ്യം"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"പുതിയ കോൺടാക്റ്റുകൾക്കായുള്ള ഡിഫോൾട്ട് അക്കൗണ്ട്"</string>
-    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
-    <skip />
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"കോൺടാക്റ്റ് മെറ്റാഡാറ്റ സമന്വയ അക്കൗണ്ട്"</string>
     <string name="setting_about" msgid="3926137653588942297">"കോണ്‍ടാക്റ്റുകളെ കുറിച്ച്"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുക"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുന്നത് പരാജയപ്പെട്ടു."</string>

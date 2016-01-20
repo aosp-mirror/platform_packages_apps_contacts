@@ -227,8 +227,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Primeiro o nome"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Primeiro os apelidos"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Conta predeterminada para novos contactos"</string>
-    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
-    <skip />
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Conta de sincronización de metadatos de contacto"</string>
     <string name="setting_about" msgid="3926137653588942297">"Acerca dos contactos"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Compartir contactos visibles"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Produciuse un erro ao compartir os contactos visibles."</string>
