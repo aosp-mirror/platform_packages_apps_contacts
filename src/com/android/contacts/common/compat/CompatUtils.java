@@ -16,6 +16,7 @@
 package com.android.contacts.common.compat;
 
 import android.os.Build;
+import android.os.Build.VERSION;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -40,6 +41,8 @@ public final class CompatUtils {
 
     public final static int TYPE_ASSERT = 4;
 
+    private final static Boolean CODENAME_STARTS_WITH_N = VERSION.CODENAME.startsWith("N");
+
     /**
      * Returns whether the operation in CPOWrapper is of TYPE_INSERT;
      */
@@ -60,8 +63,8 @@ public final class CompatUtils {
     }
 
     /**
-     * Determines if this version is compatible with multi-SIM and the phone account APIs.
-     * Can also force the version to be lower through SdkVersionOverride.
+     * Determines if this version is compatible with multi-SIM and the phone account APIs. Can also
+     * force the version to be lower through SdkVersionOverride.
      *
      * @return {@code true} if multi-SIM capability is available, {@code false} otherwise.
      */
@@ -82,8 +85,8 @@ public final class CompatUtils {
     }
 
     /**
-     * Determines if this version is capable of using presence checking for video calling.
-     * Support for video call presence indication is added in SDK 24.
+     * Determines if this version is capable of using presence checking for video calling. Support
+     * for video call presence indication is added in SDK 24.
      *
      * @return {@code true} if video presence checking is allowed, {@code false} otherwise.
      */
@@ -93,8 +96,8 @@ public final class CompatUtils {
     }
 
     /**
-     * Determines if this version is compatible with call subject. Can also force the version to
-     * be lower through SdkVersionOverride.
+     * Determines if this version is compatible with call subject. Can also force the version to be
+     * lower through SdkVersionOverride.
      *
      * @return {@code true} if call subject is a feature on this device, {@code false} otherwise.
      */
@@ -117,7 +120,7 @@ public final class CompatUtils {
      * Determines if this version is compatible with Lollipop Mr1-specific APIs. Can also force the
      * version to be lower through SdkVersionOverride.
      *
-     * @return {@code true} if call subject is a feature on this device, {@code false} otherwise.
+     * @return {@code true} if runtime sdk is compatible with Lollipop MR1, {@code false} otherwise.
      */
     public static boolean isLollipopMr1Compatible() {
         return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -128,11 +131,26 @@ public final class CompatUtils {
      * Determines if this version is compatible with Marshmallow-specific APIs. Can also force the
      * version to be lower through SdkVersionOverride.
      *
-     * @return {@code true} if call subject is a feature on this device, {@code false} otherwise.
+     * @return {@code true} if runtime sdk is compatible with Marshmallow, {@code false} otherwise.
      */
     public static boolean isMarshmallowCompatible() {
         return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.LOLLIPOP)
                 >= Build.VERSION_CODES.M;
+    }
+
+    /**
+     * Determines if this version is compatible with N-specific APIs.
+     *
+     * @return {@code true} if runtime sdk is compatible with N and the app is built with N, {@code
+     * false} otherwise.
+     */
+    public static boolean isNCompatible() {
+        // SdkVersionOverride doesn't work here because VERSION.SDK_INT remains 23 (same as M)
+        // before N is release
+
+        // TODO: remove build time check and use proper runtime check once N is released.
+        return SdkSelectionUtils.TARGET_N_SDK // Build time flag
+                && CODENAME_STARTS_WITH_N;  // Run time flag
     }
 
     /**
@@ -141,7 +159,7 @@ public final class CompatUtils {
      *
      * @param className the name of the class to look for.
      * @return {@code true} if the given class is available, {@code false} otherwise or if className
-     *    is empty.
+     * is empty.
      */
     public static boolean isClassAvailable(@Nullable String className) {
         if (TextUtils.isEmpty(className)) {
@@ -167,7 +185,7 @@ public final class CompatUtils {
      * @param methodName the name of the method to look for
      * @param parameterTypes the needed parameter types for the method to look for
      * @return {@code true} if the given class is available, {@code false} otherwise or if className
-     *    or methodName are empty.
+     * or methodName are empty.
      */
     public static boolean isMethodAvailable(@Nullable String className, @Nullable String methodName,
             Class<?>... parameterTypes) {
@@ -196,8 +214,8 @@ public final class CompatUtils {
      * @param methodName The name of the method to invoke.
      * @param parameterTypes The needed parameter types for the method.
      * @param parameters The parameter values to pass into the method.
-     * @return The result of the invocation or {@code null} if instance or methodName are
-     * empty, or if the reflection fails.
+     * @return The result of the invocation or {@code null} if instance or methodName are empty, or
+     * if the reflection fails.
      */
     @Nullable
     public static Object invokeMethod(@Nullable Object instance, @Nullable String methodName,
