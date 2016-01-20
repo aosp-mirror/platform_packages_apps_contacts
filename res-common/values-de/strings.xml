@@ -190,10 +190,10 @@
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Kontakte wurden exportiert"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Export von <xliff:g id="FILENAME">%s</xliff:g> abgebrochen"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontaktdaten werden exportiert..."</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Ihre Kontaktdaten werden in \"<xliff:g id="FILE_NAME">%s</xliff:g>\" exportiert..."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Deine Kontaktdaten werden in \"<xliff:g id="FILE_NAME">%s</xliff:g>\" exportiert..."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Datenbankinformationen konnten nicht abgerufen werden."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Es sind keine exportierbaren Kontakte vorhanden. Falls sich Kontakte auf Ihrem Tablet befinden, ist das Exportieren der Kontakte eventuell durch den Datenanbieter gesperrt."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Es sind keine exportierbaren Kontakte vorhanden. Falls sich Kontakte auf Ihrem Telefon befinden, ist das Exportieren der Kontakte eventuell durch den Datenanbieter gesperrt."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Es sind keine exportierbaren Kontakte vorhanden. Falls sich Kontakte auf deinem Tablet befinden, ist das Exportieren der Kontakte eventuell durch den Datenanbieter gesperrt."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Es sind keine exportierbaren Kontakte vorhanden. Falls sich Kontakte auf deinem Telefon befinden, ist das Exportieren der Kontakte eventuell durch den Datenanbieter gesperrt."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Das Programm zum Erstellen der vCard wurde nicht richtig gestartet."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Export nicht möglich"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Die Kontaktdaten wurden nicht exportiert.\nGrund: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
@@ -227,8 +227,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Vorname zuerst"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nachname zuerst"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Standardkonto für neue Kontakte"</string>
-    <!-- no translation found for contact_metadata_sync_account (1787463969598716702) -->
-    <skip />
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Synchronisierungskonto für Kontakt-Metadaten"</string>
     <string name="setting_about" msgid="3926137653588942297">"Über \"Kontakte\""</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Sichtbare Kontakte teilen"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Die sichtbaren Kontakte konnten nicht geteilt werden."</string>
