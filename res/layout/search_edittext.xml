@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view class="com.android.contacts.widget.SearchEditTextLayout"
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/search_view_container"
+      android:orientation="horizontal"
+      android:layout_marginTop="0dp"
+      android:layout_marginBottom="0dp"
+      android:layout_marginLeft="0dp"
+      android:layout_marginRight="0dp"
+      android:background="@drawable/rounded_corner"
+      android:elevation="3dp">
+
+    <include layout="@layout/search_bar_expanded" />
+
+</view>

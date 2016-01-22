@@ -287,4 +287,21 @@
     <!-- Top margin for "Saving to" account header text field. -->
     <dimen name="compact_editor_account_header_top_margin">3dp</dimen>
 
+    <!-- Dimensions used in blocked numbers -->
+    <dimen name="blocked_number_settings_description_text_size">14sp</dimen>
+    <dimen name="blocked_number_container_padding">16dp</dimen>
+    <dimen name="blocked_number_top_margin">16dp</dimen>
+    <dimen name="blocked_number_bottom_margin">16dp</dimen>
+    <dimen name="blocked_number_add_top_margin">8dp</dimen>
+    <dimen name="blocked_number_add_bottom_margin">8dp</dimen>
+    <dimen name="blocked_number_horizontal_margin">16dp</dimen>
+    <dimen name="blocked_number_primary_text_size">16sp</dimen>
+    <dimen name="blocked_number_add_number_icon_size">40dp</dimen>
+    <dimen name="blocked_number_delete_icon_size">32dp</dimen>
+    <dimen name="empty_list_message_text_size">16sp</dimen>
+    <dimen name="call_log_action_height">48dp</dimen>
+    <dimen name="call_log_action_horizontal_padding">24dp</dimen>
+    <dimen name="search_list_padding_top">16dp</dimen>
+    <dimen name="blocked_number_search_text_size">14sp</dimen>
+    <dimen name="button_horizontal_padding">16dp</dimen>
 </resources>

@@ -34,6 +34,10 @@
         android:title="@string/menu_clear_frequents" />
 
     <item
+        android:id="@+id/menu_blocked_numbers"
+        android:title="@string/menu_blocked_numbers"/>
+
+    <item
         android:id="@+id/menu_accounts"
         android:title="@string/menu_accounts" />
 
