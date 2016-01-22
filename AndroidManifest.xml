@@ -418,6 +418,17 @@
             </intent-filter>
         </activity>
 
+        <!-- Blocked numbers activity -->
+        <activity android:name=".activities.BlockedNumbersActivity"
+                  android:label="@string/blocked_numbers_title"
+                  android:theme="@style/BlockedNumbersStyle">
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+                <data android:mimeType="blocked_numbers/*" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <!-- vCard related -->
         <activity android:name=".common.vcard.ImportVCardActivity"
             android:label="@string/launcherActivityLabel"

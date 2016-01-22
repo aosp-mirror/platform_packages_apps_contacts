@@ -27,6 +27,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.UserManager;
@@ -92,6 +93,7 @@ import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.common.util.Constants;
+import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.DialogManager;
 import com.android.contactsbind.HelpUtils;
 
@@ -1119,9 +1121,15 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             helpMenu.setVisible(HelpUtils.isHelpAndFeedbackAvailable());
         }
         final boolean showMiscOptions = !isSearchOrSelectionMode;
+        //TODO use ContactsUtils.FLAG_N_FEATURE
+        final boolean isBlockedNumbersCompatible =
+                Build.VERSION.SDK_INT > Build.VERSION_CODES.M;
+        final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this) &&
+                isBlockedNumbersCompatible;
         makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_import_export, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
+        makeMenuItemVisible(menu, R.id.menu_blocked_numbers, showMiscOptions && showBlockedNumbers);
         makeMenuItemVisible(menu, R.id.menu_settings,
                 showMiscOptions && !ContactsPreferenceActivity.isEmpty(this));
 
@@ -1237,6 +1245,12 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 });
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 ImplicitIntentsUtil.startActivityInAppIfPossible(this, intent);
+                return true;
+            }
+            case R.id.menu_blocked_numbers: {
+                final Intent intent = new Intent("android.intent.action.EDIT");
+                intent.setType("blocked_numbers/*");
+                ImplicitIntentsUtil.startActivityInApp(this, intent);
                 return true;
             }
             case R.id.export_database: {
