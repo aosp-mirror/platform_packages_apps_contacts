@@ -21,12 +21,17 @@ import android.text.TextUtils;
  * Stores constants identifying individual screens/dialogs/fragments in the application, and also
  * provides a mapping of integer id -> screen name mappings for analytics purposes.
  */
-public class ScreenEvent {
+public final class ScreenEvent {
     private static final String FRAGMENT_TAG_SEPARATOR = "#";
 
+    // Should match ContactsExtension.ScreenEvent.ScreenType values in
+    // http://cs/google3/logs/proto/wireless/android/contacts/contacts_extensions.proto
     public static final int UNKNOWN = 0;
-
     public static final int SEARCH = 1;
+    public static final int SEARCH_EXIT = 2;
+
+    public static final String TAG_SEARCH = "Search";
+    public static final String TAG_SEARCH_EXIT = "SearchExit";
 
     /**
      * Build a tagged version of the provided screenName if the tag is non-empty.

@@ -42,11 +42,11 @@ public abstract class Logger {
         if (logger != null) {
             logger.logScreenViewImpl(screenType);
         }
-
         final String screenName = ScreenEvent.getScreenNameWithTag(
                 activity.getClass().getSimpleName(), tag);
         AnalyticsUtil.sendScreenView(screenName, activity, tag);
     }
 
     public abstract void logScreenViewImpl(int screenType);
+    public abstract void logSearchEventImpl(SearchState searchState);
 }
