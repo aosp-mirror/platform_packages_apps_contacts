@@ -51,7 +51,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -87,6 +86,8 @@ import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusWatcher;
 import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.common.list.ViewPagerTabs;
+import com.android.contacts.common.logging.Logger;
+import com.android.contacts.common.logging.ScreenEvent;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.ViewUtil;
@@ -564,13 +565,14 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         switch (action) {
             case ActionBarAdapter.Listener.Action.START_SELECTION_MODE:
                 mAllFragment.displayCheckBoxes(true);
-                // Fall through:
+                startSearchOrSelectionMode();
+                break;
             case ActionBarAdapter.Listener.Action.START_SEARCH_MODE:
-                // Tell the fragments that we're in the search mode or selection mode
-                configureFragments(false /* from request */);
-                updateFragmentsVisibility();
-                invalidateOptionsMenu();
-                showFabWithAnimation(/* showFabWithAnimation = */ false);
+                if (!mIsRecreatedInstance) {
+                    Logger.getInstance().logScreenView(
+                            ScreenEvent.SEARCH, this, ScreenEvent.TAG_SEARCH);
+                }
+                startSearchOrSelectionMode();
                 break;
             case ActionBarAdapter.Listener.Action.BEGIN_STOPPING_SEARCH_AND_SELECTION_MODE:
                 showFabWithAnimation(/* showFabWithAnimation = */ true);
@@ -590,6 +592,13 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             default:
                 throw new IllegalStateException("Unkonwn ActionBarAdapter action: " + action);
         }
+    }
+
+    private void startSearchOrSelectionMode() {
+        configureFragments(false /* from request */);
+        updateFragmentsVisibility();
+        invalidateOptionsMenu();
+        showFabWithAnimation(/* showFabWithAnimation = */ false);
     }
 
     @Override
@@ -1315,6 +1324,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         ImplicitIntentsUtil.startActivityOutsideApp(this, intent);
     }
+
     private void joinSelectedContacts() {
         JoinContactsDialogFragment.start(this, mAllFragment.getSelectedContactIds());
     }
@@ -1396,6 +1406,14 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             mAllFragment.displayCheckBoxes(false);
         } else if (mActionBarAdapter.isSearchMode()) {
             mActionBarAdapter.setSearchMode(false);
+
+            if (mAllFragment.wasSearchResultClicked()) {
+                mAllFragment.resetSearchResultClicked();
+            } else {
+                Logger.getInstance().logScreenView(
+                        ScreenEvent.SEARCH_EXIT, this, ScreenEvent.TAG_SEARCH_EXIT);
+                Logger.getInstance().logSearchEventImpl(mAllFragment.createSearchState());
+            }
         } else {
             super.onBackPressed();
         }
