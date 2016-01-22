@@ -82,7 +82,7 @@ public class BlockNumberDialogFragment extends DialogFragment {
     private Callback mCallback;
 
     public static void show(
-            Integer blockId,
+            Long blockId,
             String number,
             String countryIso,
             String displayNumber,
@@ -97,7 +97,7 @@ public class BlockNumberDialogFragment extends DialogFragment {
     }
 
     private static BlockNumberDialogFragment newInstance(
-            Integer blockId,
+            Long blockId,
             String number,
             String countryIso,
             String displayNumber,

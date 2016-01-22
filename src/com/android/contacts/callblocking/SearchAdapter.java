@@ -20,12 +20,10 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.telephony.PhoneNumberUtils;
-import android.text.BidiFormatter;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.contacts.callblocking.FilteredNumberAsyncQueryHandler;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.list.ContactListItemView;
@@ -40,18 +38,14 @@ public class SearchAdapter extends PhoneNumberListAdapter {
     private String mCountryIso;
 
     public final static int SHORTCUT_INVALID = -1;
-    public final static int SHORTCUT_DIRECT_CALL = 0;
     public final static int SHORTCUT_CREATE_NEW_CONTACT = 1;
     public final static int SHORTCUT_ADD_TO_EXISTING_CONTACT = 2;
-    public final static int SHORTCUT_SEND_SMS_MESSAGE = 3;
-    public final static int SHORTCUT_MAKE_VIDEO_CALL = 4;
     public final static int SHORTCUT_BLOCK_NUMBER = 5;
 
     public final static int SHORTCUT_COUNT = 6;
 
     private final boolean[] mShortcutEnabled = new boolean[SHORTCUT_COUNT];
 
-    private final BidiFormatter mBidiFormatter = BidiFormatter.getInstance();
     private boolean mVideoCallingEnabled = false;
 
     protected boolean mIsQuerySipAddress;
@@ -236,7 +230,7 @@ public class SearchAdapter extends PhoneNumberListAdapter {
         return false;
     }
 
-    public void setViewBlocked(ContactListItemView view, Integer id) {
+    public void setViewBlocked(ContactListItemView view, Long id) {
         view.setTag(R.id.block_id, id);
         final int textColor = mResources.getColor(R.color.blocked_number_block_color);
         view.getDataView().setTextColor(textColor);
@@ -265,7 +259,7 @@ public class SearchAdapter extends PhoneNumberListAdapter {
         final FilteredNumberAsyncQueryHandler.OnCheckBlockedListener onCheckListener =
                 new FilteredNumberAsyncQueryHandler.OnCheckBlockedListener() {
                     @Override
-                    public void onCheckComplete(Integer id) {
+                    public void onCheckComplete(Long id) {
                         if (id != null) {
                             setViewBlocked(view, id);
                         }
