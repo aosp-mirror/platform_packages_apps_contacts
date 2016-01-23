@@ -75,14 +75,11 @@ public class ActionBarAdapter implements OnCloseListener {
     private static final String EXTRA_KEY_QUERY = "navBar.query";
     private static final String EXTRA_KEY_SELECTED_TAB = "navBar.selectedTab";
     private static final String EXTRA_KEY_SELECTED_MODE = "navBar.selectionMode";
-    private static final String EXTRA_KEY_SHOULD_OPEN_OVERFLOW = "navBar.shouldOpenOverflow";
 
     private static final String PERSISTENT_LAST_TAB = "actionBarAdapter.lastTab";
 
     private boolean mSelectionMode;
     private boolean mSearchMode;
-    private boolean mShouldOverflowOpen;
-    private boolean mIsOverflowOpen;
     private String mQueryString;
 
     private EditText mSearchView;
@@ -203,12 +200,11 @@ public class ActionBarAdapter implements OnCloseListener {
             mQueryString = request.getQueryString();
             mCurrentTab = loadLastTabPreference();
             mSelectionMode = false;
-            setShouldOpenOverflow(false);
         } else {
             mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
             mSelectionMode = savedState.getBoolean(EXTRA_KEY_SELECTED_MODE);
             mQueryString = savedState.getString(EXTRA_KEY_QUERY);
-            setShouldOpenOverflow(savedState.getBoolean(EXTRA_KEY_SHOULD_OPEN_OVERFLOW));
+
             // Just set to the field here.  The listener will be notified by update().
             mCurrentTab = savedState.getInt(EXTRA_KEY_SELECTED_TAB);
         }
@@ -323,22 +319,6 @@ public class ActionBarAdapter implements OnCloseListener {
             mSelectionMode = flag;
             update(false /* skipAnimation */);
         }
-    }
-
-    public void setShouldOpenOverflow(boolean shouldOpenOverflow) {
-        mShouldOverflowOpen = shouldOpenOverflow;
-    }
-
-    public boolean shouldOpenOverflow() {
-        return mShouldOverflowOpen;
-    }
-
-    public void setOverflowOpen(boolean isOverflowOpen) {
-        mIsOverflowOpen = isOverflowOpen;
-    }
-
-    public boolean isOverflowOpen() {
-        return mIsOverflowOpen;
     }
 
     public String getQueryString() {
@@ -573,7 +553,6 @@ public class ActionBarAdapter implements OnCloseListener {
     public void onSaveInstanceState(Bundle outState) {
         outState.putBoolean(EXTRA_KEY_SEARCH_MODE, mSearchMode);
         outState.putBoolean(EXTRA_KEY_SELECTED_MODE, mSelectionMode);
-        outState.putBoolean(EXTRA_KEY_SHOULD_OPEN_OVERFLOW, mShouldOverflowOpen);
         outState.putString(EXTRA_KEY_QUERY, mQueryString);
         outState.putInt(EXTRA_KEY_SELECTED_TAB, mCurrentTab);
     }
