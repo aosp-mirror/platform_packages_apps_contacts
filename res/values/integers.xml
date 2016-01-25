@@ -27,7 +27,4 @@
     <!-- Max suggestions limit showing in quick contact suggestion card [CHAR LIMIT=30]-->
     <integer name="quickcontact_suggestions_limit">10</integer>
 
-    <!-- The delay (in milliseconds) until the overflow options menu is shown automatically -->
-    <integer name="open_overflow_menu_delay_millis">250</integer>
-
 </resources>
