@@ -72,7 +72,7 @@ public final class ContactsPreferences implements OnSharedPreferenceChangeListen
 
     public static final boolean PREF_DISPLAY_ONLY_PHONES_DEFAULT = false;
 
-    public static final String DO_NOT_SYNC_CONTACT_METADATA_MSG = "Do not sync contact metadata.";
+    public static final String DO_NOT_SYNC_CONTACT_METADATA_MSG = "Do not sync metadata";
 
     public static final String CONTACT_METADATA_AUTHORITY = "com.android.contacts.metadata";
 
