@@ -327,4 +327,39 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Photo d\'un compte inconnu non sélectionnée"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Photo d\'un compte inconnu sélectionnée"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Mise à jour de la liste des contacts en cours suite au changement de langue.\n\nVeuillez patienter..."</string>
+    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
+    <skip />
+    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
+    <skip />
+    <string name="addBlockedNumber" msgid="6064812257482886526">"Ajouter un numéro"</string>
+    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Bloquer le numéro"</string>
+    <string name="block_number_search_hint" msgid="5409571607043872758">"Ajouter num. ou rech. contacts"</string>
+    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
+    <skip />
+    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Débloquer le numéro \"<xliff:g id="NUMBER">%1$s</xliff:g>\" ?"</string>
+    <string name="unblock_number_ok" msgid="6449899182699684786">"DÉBLOQUER"</string>
+    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Bloquer le numéro \"<xliff:g id="NUMBER">%1$s</xliff:g>\" ?"</string>
+    <string name="block_number_ok" msgid="770551992296781873">"BLOQUER"</string>
+    <string name="snackbar_number_blocked" msgid="939830142765936021">"Le numéro \"<xliff:g id="NUMBER">%1$s</xliff:g>\" est bloqué."</string>
+    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"Le numéro \"<xliff:g id="NUMBER">%1$s</xliff:g>\" est débloqué."</string>
+    <string name="invalidNumber" msgid="619058581062192851">"Le numéro \"<xliff:g id="NUMBER">%1$s</xliff:g>\" n\'est pas valide."</string>
+    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Blocage appels désactivé temporairement"</string>
+    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Le blocage des appels a été désactivé, car vous avez contacté les services d\'urgence à l\'aide de ce téléphone au cours des dernières 48 heures. Le blocage sera réactivé automatiquement après 48 heures."</string>
+    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
+    <skip />
+    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Importer"</string>
+    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Afficher les numéros"</string>
+    <string name="addBlockedNumber" msgid="6064812257482886526">"Ajouter un numéro"</string>
+    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Blocage des appels désactivé pendant 48 heures"</string>
+    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Désactivé, car un appel d\'urgence a été effectué"</string>
+    <string name="block_number_undo" msgid="591338370336724156">"ANNULER"</string>
+    <string name="alreadyBlocked" msgid="282340105563646876">"Le numéro \"<xliff:g id="NUMBER">%1$s</xliff:g>\" est déjà bloqué."</string>
+    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Débloquer le numéro"</string>
+    <string name="description_contact_details" msgid="51229793651342809">"Coordonnées associées à <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
+    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Échec lors de l\'importation."</string>
+    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Importer les numéros"</string>
+    <string name="permission_no_search" msgid="84152933267902056">"Pour rechercher vos contacts, activez l\'autorisation Contacts."</string>
+    <string name="permission_single_turn_on" msgid="1543391076065465464">"Activer"</string>
+    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
+    <skip />
 </resources>
