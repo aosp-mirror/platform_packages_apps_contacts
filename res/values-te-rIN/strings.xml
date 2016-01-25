@@ -327,4 +327,39 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"తెలియని ఖాతా నుండి అందించబడిన ఫోటో ఎంచుకోబడలేదు"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"తెలియని ఖాతా నుండి అందించబడిన ఫోటో ఎంచుకోబడింది"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"భాష మార్పుని చూపడానికి పరిచయ జాబితా నవీకరించబడుతోంది.\n\nదయచేసి వేచి ఉండండి..."</string>
+    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
+    <skip />
+    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
+    <skip />
+    <string name="addBlockedNumber" msgid="6064812257482886526">"నంబర్‌ను జోడించు"</string>
+    <string name="search_shortcut_block_number" msgid="4787156645163436072">"నంబర్‌ను బ్లాక్ చేయి"</string>
+    <string name="block_number_search_hint" msgid="5409571607043872758">"నంబర్ జోడించండి లేదా పరిచయాల్లో శోధించండి"</string>
+    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
+    <skip />
+    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g>ని అన్‌బ్లాక్ చేయాలా?"</string>
+    <string name="unblock_number_ok" msgid="6449899182699684786">"అన్‌బ్లాక్ చేయి"</string>
+    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g>ని బ్లాక్ చేయాలా?"</string>
+    <string name="block_number_ok" msgid="770551992296781873">"బ్లాక్ చేయి"</string>
+    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> బ్లాక్ చేయబడింది"</string>
+    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> అన్‌బ్లాక్ చేయబడింది"</string>
+    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> చెల్లదు."</string>
+    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"కాల్ బ్లాకింగ్ తాత్కాలికంగా ఆఫ్ అయ్యింది"</string>
+    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"మీరు గత 48 గంటల వ్యవధిలో ఈ ఫోన్ నుండి అత్యవసర సేవలను సంప్రదించినందున కాల్ బ్లాకింగ్ నిలిపివేయబడింది. 48 గంటల వ్యవధి ముగిసిన తర్వాత ఇది స్వయంచాలకంగా పునఃప్రారంభించబడుతుంది."</string>
+    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
+    <skip />
+    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"దిగుమతి చేయి"</string>
+    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"నంబర్‌లను వీక్షించండి"</string>
+    <string name="addBlockedNumber" msgid="6064812257482886526">"నంబర్‌ను జోడించు"</string>
+    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"48 గంటల పాటు కాల్ బ్లాకింగ్ నిలిపివేయబడింది"</string>
+    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"అత్యవసర కాల్ చేసినందున నిలిపివేయబడింది."</string>
+    <string name="block_number_undo" msgid="591338370336724156">"రద్దు చేయి"</string>
+    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ఇప్పటికే బ్లాక్ చేయబడింది."</string>
+    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"నంబర్‌ను అన్‌బ్లాక్ చేయి"</string>
+    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> యొక్క సంప్రదింపు వివరాలు"</string>
+    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"దిగుమతి విఫలమైంది"</string>
+    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"నంబర్‌లను దిగుమతి చేయి"</string>
+    <string name="permission_no_search" msgid="84152933267902056">"మీ పరిచయాలను శోధించడానికి, పరిచయాల అనుమతులను ఆన్ చేయండి."</string>
+    <string name="permission_single_turn_on" msgid="1543391076065465464">"ఆన్ చేయి"</string>
+    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
+    <skip />
 </resources>

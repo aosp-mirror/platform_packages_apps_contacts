@@ -338,4 +338,39 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Fotografie neselectată dintr-un cont necunoscut"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotografie selectată dintr-un cont necunoscut"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Se actualizează lista de persoane din agendă pentru a reflecta modificarea limbii.\n\n Aşteptaţi..."</string>
+    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
+    <skip />
+    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
+    <skip />
+    <string name="addBlockedNumber" msgid="6064812257482886526">"Adăugați un număr"</string>
+    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Blocați numărul"</string>
+    <string name="block_number_search_hint" msgid="5409571607043872758">"Adăugați număr/căutați contacte"</string>
+    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
+    <skip />
+    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Deblocați <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
+    <string name="unblock_number_ok" msgid="6449899182699684786">"DEBLOCAȚI"</string>
+    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Blocați <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
+    <string name="block_number_ok" msgid="770551992296781873">"BLOCAȚI"</string>
+    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> a fost blocat"</string>
+    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> a fost deblocat"</string>
+    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> nu este valid."</string>
+    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Blocarea apelurilor e dezactivată temporar"</string>
+    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Blocarea apelurilor a fost dezactivată, deoarece ați contactat serviciile de urgență de pe acest telefon în ultimele 48 de ore. Funcția va fi reactivată automat după ce perioada de 48 de ore va expira."</string>
+    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
+    <skip />
+    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Importați"</string>
+    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Vedeți numerele"</string>
+    <string name="addBlockedNumber" msgid="6064812257482886526">"Adăugați un număr"</string>
+    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Blocarea apelurilor este dezactivată pentru 48 de ore"</string>
+    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Dezactivată din cauza efectuării unui apel de urgență."</string>
+    <string name="block_number_undo" msgid="591338370336724156">"ANULAȚI"</string>
+    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> este deja blocat."</string>
+    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Deblocați numărul"</string>
+    <string name="description_contact_details" msgid="51229793651342809">"Detalii de contact pentru <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
+    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Importul nu a reușit"</string>
+    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Importați numere"</string>
+    <string name="permission_no_search" msgid="84152933267902056">"Pentru a căuta în persoanele de contact, activați permisiunea Agendă."</string>
+    <string name="permission_single_turn_on" msgid="1543391076065465464">"Activați"</string>
+    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
+    <skip />
 </resources>

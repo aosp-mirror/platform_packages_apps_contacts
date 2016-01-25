@@ -59,14 +59,14 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Gruppe hinzufügen"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Verknüpfung dieses Kontakts aufheben, um mehrere Kontakte zu erstellen?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Verknüpfung aufheben"</string>
-    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Möchten Sie die vorgenommenen Änderungen speichern und die Verknüpfung dieses Kontakts aufheben, um mehrere Kontakte zu erstellen?"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Möchtest du die vorgenommenen Änderungen speichern und die Verknüpfung dieses Kontakts aufheben, um mehrere Kontakte zu erstellen?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Speichern und Verknüpfung aufheben"</string>
-    <string name="joinConfirmation" msgid="8262614843581924365">"Möchten Sie die vorgenommenen Änderungen speichern und diesen Kontakt mit dem ausgewählten Kontakt verknüpfen?"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Möchtest du die vorgenommenen Änderungen speichern und diesen Kontakt mit dem ausgewählten Kontakt verknüpfen?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Speichern und verknüpfen"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Verknüpfen"</string>
     <string name="menu_save" msgid="1727844363591825909">"Speichern"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Kontakte verknüpfen"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Wählen Sie einen Kontakt aus, den Sie mit <xliff:g id="NAME">%s</xliff:g> verknüpfen möchten:"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Wähle einen Kontakt aus, den du mit <xliff:g id="NAME">%s</xliff:g> verknüpfen möchtest:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Alle Kontakte anzeigen"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Vorgeschlagene Kontakte"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle Kontakte"</string>
@@ -77,17 +77,17 @@
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Klingeltonwahl"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle Anrufe an Mailbox"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontakte aus Ihren schreibgeschützten Konten können nicht gelöscht, sondern nur ausgeblendet werden."</string>
+    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontakte aus deinen schreibgeschützten Konten können nicht gelöscht, sondern nur ausgeblendet werden."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Ausblenden"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Der zu löschende Kontakt enthält Informationen aus mehreren Konten. Informationen aus schreibgeschützten Konten werden nicht gelöscht, sondern nur ausgeblendet."</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Wählen Sie für eine Verknüpfung mindestens zwei Kontakte aus."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Wähle für eine Verknüpfung mindestens zwei Kontakte aus."</string>
     <string name="batch_link_confirmation" msgid="5845237114309114908">"Ausgewählte Kontakte verknüpfen?"</string>
     <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Verknüpfen"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Diesen Kontakt löschen?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Ausgewählte Kontakte löschen?"</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontakte aus Ihren schreibgeschützten Konten können nicht gelöscht, sondern nur ausgeblendet werden."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontakte aus deinen schreibgeschützten Konten können nicht gelöscht, sondern nur ausgeblendet werden."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Die zu löschenden Kontakte enthalten Informationen aus mehreren Konten. Informationen aus schreibgeschützten Konten werden nicht gelöscht, sondern nur ausgeblendet."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Wenn Sie diesen Kontakt löschen, werden Informationen aus mehreren Konten gelöscht."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Wenn du diesen Kontakt löschst, werden Informationen aus mehreren Konten gelöscht."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Diesen Kontakt löschen?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Löschen"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Änderungen verwerfen"</string>
@@ -108,9 +108,9 @@
     <string name="removePhoto" msgid="4898105274130284565">"Foto entfernen"</string>
     <string name="noContacts" msgid="4955659076981974652">"Keine Kontakte"</string>
     <string name="noGroups" msgid="8614664663561385253">"Keine Gruppen"</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Sie benötigen ein Konto, um Gruppen erstellen zu können."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Du benötigst ein Konto, um Gruppen erstellen zu können."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Keine Personen in dieser Gruppe"</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Bearbeiten Sie die Gruppe, um Personen hinzuzufügen."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Bearbeite die Gruppe, um Personen hinzuzufügen."</string>
     <string name="savingContact" msgid="4075751076741924939">"Kontakt wird gespeichert..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt gespeichert"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Verknüpfung der Kontakte wurde aufgehoben."</string>
@@ -146,7 +146,7 @@
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> von <xliff:g id="TOTAL_NUMBER">%s</xliff:g> Kontakten"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Namen meiner Kontakte"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Für diese Aktion wurde keine App gefunden."</string>
-    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klicken Sie hier, um zum vorherigen Bildschirm zurückzukehren."</string>
+    <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klicke hier, um zum vorherigen Bildschirm zurückzukehren."</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Telefonnummer hinzufügen"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"E-Mail-Adresse hinzufügen"</string>
     <string name="missing_app" msgid="1466111003546611387">"Für diese Aktion wurde keine App gefunden."</string>
@@ -221,7 +221,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> Personen</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> Person</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Geben Sie einen Namen für den Kontakt ein, bevor Sie ihn mit einem anderen Kontakt verknüpfen."</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Gib einen Namen für den Kontakt ein, bevor du ihn mit einem anderen Kontakt verknüpfst."</string>
     <string name="copy_text" msgid="3257145021583508761">"In Zwischenablage kopieren"</string>
     <string name="set_default" msgid="4417505153468300351">"Als Standard festlegen"</string>
     <string name="clear_default" msgid="7193185801596678067">"Als Standard löschen"</string>
@@ -235,12 +235,12 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Mein lokales Profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mein <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-Profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle Kontakte werden angezeigt."</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Die App \"Kontakte\" funktioniert am besten mit einem Google-Konto.\n\n• Sie können über alle Webbrowser darauf zugreifen.\n• Sichern und schützen Sie Ihre Kontakte."</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Synchronisierung mit einem Online-Service: Ihre Kontakte sind dann auch sicher, wenn Sie Ihr Telefon verlieren."</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"Die App \"Kontakte\" funktioniert am besten mit einem Google-Konto.\n\n• Du kannst über alle Webbrowser darauf zugreifen.\n• Sichere und schütze deine Kontakte."</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Synchronisierung mit einem Online-Service: Deine Kontakte sind dann auch sicher, wenn du dein Telefon verlierst."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto hinzufügen"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Ihr neuer Kontakt wird nicht gesichert. Konto für die Online-Sicherung von Kontakten hinzufügen?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Dein neuer Kontakt wird nicht gesichert. Konto für die Online-Sicherung von Kontakten hinzufügen?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Neue Kontakte werden in <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> gespeichert."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Wählen Sie ein Standardkonto für neue Kontakte:"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Wähle ein Standardkonto für neue Kontakte:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Kontakt hinzufügen"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Kontakt bearbeiten"</string>
     <string name="keep_local" msgid="1258761699192993322">"Lokal speichern"</string>
@@ -284,12 +284,12 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"Verpasst"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"Letzter Anruf. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. Für Rückruf klicken."</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ich: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funktioniert besser, wenn Sie die Hangouts-ID der Person in das E-Mail- oder Telefonfeld eingeben."</string>
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funktioniert besser, wenn du die Hangouts-ID der Person in das E-Mail- oder Telefonfeld eingibst."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Weitere Felder"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Foto ändern"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Fehler beim Öffnen des Editors."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Speichern in"</string>
-    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Wird derzeit in <xliff:g id="ACCOUNT_NAME">%s</xliff:g> gespeichert. Doppeltippen Sie, um ein anderes Konto auszuwählen."</string>
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Wird derzeit in <xliff:g id="ACCOUNT_NAME">%s</xliff:g> gespeichert. Tippe doppelt, um ein anderes Konto auszuwählen."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Verknüpfte Kontakte (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Verknüpfter Kontakt</item>
@@ -313,7 +313,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Dieser Kontakt"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Mögliche Duplikate"</string>
-    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Bei diesen Kontakten könnte es sich um dieselbe Person handeln. Sie können sie zu einem einzigen Kontakt verknüpfen."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Bei diesen Kontakten könnte es sich um dieselbe Person handeln. Du kannst sie zu einem einzigen Kontakt verknüpfen."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Verknüpfte Kontakte"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Aus meinen Konten"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Foto aufnehmen"</string>
@@ -327,4 +327,39 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto aus unbekanntem Konto nicht ausgewählt"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto aus unbekanntem Konto ausgewählt"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Die Kontaktliste wird an die geänderte Sprache angepasst.\n\nBitte warten..."</string>
+    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
+    <skip />
+    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
+    <skip />
+    <string name="addBlockedNumber" msgid="6064812257482886526">"Nummer hinzufügen"</string>
+    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Nummer blockieren"</string>
+    <string name="block_number_search_hint" msgid="5409571607043872758">"Nummer hinzufügen oder in Kontakten suchen"</string>
+    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
+    <skip />
+    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Blockierung von <xliff:g id="NUMBER">%1$s</xliff:g> aufheben?"</string>
+    <string name="unblock_number_ok" msgid="6449899182699684786">"BLOCKIERUNG AUFHEBEN"</string>
+    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> blockieren?"</string>
+    <string name="block_number_ok" msgid="770551992296781873">"BLOCKIEREN"</string>
+    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> blockiert"</string>
+    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"Blockierung von <xliff:g id="NUMBER">%1$s</xliff:g> aufgehoben"</string>
+    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> ist ungültig."</string>
+    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Anrufblockierung vorübergehend aus"</string>
+    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Die Anrufblockierung wurde deaktiviert, weil du innerhalb der letzten 48 Stunden mit diesem Telefon den Notruf gewählt hast. Nach Ablauf dieser 48-Stunden-Frist wird die Blockierung automatisch wieder aktiviert."</string>
+    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
+    <skip />
+    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Importieren"</string>
+    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Nummern anzeigen"</string>
+    <string name="addBlockedNumber" msgid="6064812257482886526">"Nummer hinzufügen"</string>
+    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Anrufblockierung für 48 Stunden deaktiviert"</string>
+    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Deaktiviert, da ein Notruf getätigt wurde."</string>
+    <string name="block_number_undo" msgid="591338370336724156">"Rückgängig"</string>
+    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ist bereits blockiert."</string>
+    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Blockierung der Nummer aufheben"</string>
+    <string name="description_contact_details" msgid="51229793651342809">"Kontaktdetails für <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
+    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Import fehlgeschlagen"</string>
+    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Nummern importieren"</string>
+    <string name="permission_no_search" msgid="84152933267902056">"Aktiviere die Berechtigungen \"Kontakte\", um deine Kontakte zu suchen."</string>
+    <string name="permission_single_turn_on" msgid="1543391076065465464">"Aktivieren"</string>
+    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
+    <skip />
 </resources>

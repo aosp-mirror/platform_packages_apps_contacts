@@ -327,4 +327,39 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"未选中来自未知帐号的照片"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"已选中来自未知帐号的照片"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"正在更新联系人列表，以反映语言的变更。\n\n请稍候..."</string>
+    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
+    <skip />
+    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
+    <skip />
+    <string name="addBlockedNumber" msgid="6064812257482886526">"添加号码"</string>
+    <string name="search_shortcut_block_number" msgid="4787156645163436072">"屏蔽号码"</string>
+    <string name="block_number_search_hint" msgid="5409571607043872758">"添加号码或搜索联系人"</string>
+    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
+    <skip />
+    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"要取消屏蔽 <xliff:g id="NUMBER">%1$s</xliff:g> 吗？"</string>
+    <string name="unblock_number_ok" msgid="6449899182699684786">"取消屏蔽"</string>
+    <string name="block_number_confirmation_title" msgid="6862219558186931304">"要屏蔽 <xliff:g id="NUMBER">%1$s</xliff:g> 吗？"</string>
+    <string name="block_number_ok" msgid="770551992296781873">"屏蔽"</string>
+    <string name="snackbar_number_blocked" msgid="939830142765936021">"已屏蔽 <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
+    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"已取消屏蔽 <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
+    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> 无效。"</string>
+    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"来电拦截功能已暂时关闭"</string>
+    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"来电拦截功能已停用，因为您在过去 48 小时内使用该手机拨打了紧急服务电话。系统会在 48 小时的期限结束后自动重新启用该功能。"</string>
+    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
+    <skip />
+    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"导入"</string>
+    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"查看号码"</string>
+    <string name="addBlockedNumber" msgid="6064812257482886526">"添加号码"</string>
+    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"来电拦截功能将停用 48 小时"</string>
+    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"此功能已停用，因为您拨打了紧急呼救电话。"</string>
+    <string name="block_number_undo" msgid="591338370336724156">"撤消"</string>
+    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> 已被屏蔽。"</string>
+    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"取消屏蔽号码"</string>
+    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g>的详细联系信息"</string>
+    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"导入失败"</string>
+    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"导入号码"</string>
+    <string name="permission_no_search" msgid="84152933267902056">"要搜索您的联系人，请开启“通讯录”权限。"</string>
+    <string name="permission_single_turn_on" msgid="1543391076065465464">"开启"</string>
+    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
+    <skip />
 </resources>
