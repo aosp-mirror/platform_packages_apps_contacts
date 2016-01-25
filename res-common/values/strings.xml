@@ -669,8 +669,11 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!--Label of the "default account" setting option to set default editor account. [CHAR LIMIT=80]-->
     <string name="default_editor_account">Default account for new contacts</string>
 
-    <!--Label of the "Contact metadata sync account" setting option to set sync account for Lychee. [CHAR LIMIT=80]-->
-    <string name="contact_metadata_sync_account">Contact metadata sync account</string>
+    <!--Label of the "Sync contact metadata" setting option to set sync account for Lychee. [CHAR LIMIT=80]-->
+    <string name="sync_contact_metadata_title">Sync contact metadata [DOGFOOD]</string>
+
+    <!--Label of the "Sync contact metadata" setting dialog to set sync account for Lychee. [CHAR LIMIT=80]-->
+    <string name="sync_contact_metadata_dialog_title">Sync contact metadata</string>
 
     <!-- Label of the "About" setting -->
     <string name="setting_about">About Contacts</string>

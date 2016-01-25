@@ -36,8 +36,8 @@
     <com.android.contacts.common.preference.ContactMetadataSyncAccountPreference
             android:icon="@null"
             android:key="contactMetadata"
-            android:title="@string/contact_metadata_sync_account"
-            android:dialogTitle="@string/contact_metadata_sync_account" />
+            android:title="@string/sync_contact_metadata_title"
+            android:dialogTitle="@string/sync_contact_metadata_dialog_title" />
 
     <PreferenceScreen
         android:icon="@null"
