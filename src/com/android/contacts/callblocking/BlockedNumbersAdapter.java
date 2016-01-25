@@ -19,13 +19,13 @@ package com.android.contacts.callblocking;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.BlockedNumberContract.BlockedNumbers;
 import android.telephony.PhoneNumberUtils;
 import android.view.View;
 
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.R;
-import com.android.contacts.callblocking.FilteredNumberContract.FilteredNumberColumns;
 
 public class BlockedNumbersAdapter extends NumbersAdapter {
     private BlockedNumbersAdapter(
@@ -48,10 +48,10 @@ public class BlockedNumbersAdapter extends NumbersAdapter {
     @Override
     public void bindView(View view, final Context context, Cursor cursor) {
         super.bindView(view, context, cursor);
-        final Integer id = cursor.getInt(cursor.getColumnIndex(FilteredNumberColumns._ID));
-        final String countryIso = cursor.getString(cursor.getColumnIndex(
-                FilteredNumberColumns.COUNTRY_ISO));
-        final String number = cursor.getString(cursor.getColumnIndex(FilteredNumberColumns.NUMBER));
+        final Long id = cursor.getLong(cursor.getColumnIndex(BlockedNumbers.COLUMN_ID));
+        final String countryIso = GeoUtil.getCurrentCountryIso(context);
+        final String number = cursor.getString(
+                cursor.getColumnIndex(BlockedNumbers.COLUMN_ORIGINAL_NUMBER));
 
         final View deleteButton = view.findViewById(R.id.delete_button);
         deleteButton.setOnClickListener(new View.OnClickListener() {
