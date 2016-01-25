@@ -29,8 +29,10 @@ import android.preference.PreferenceScreen;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.activity.LicenseActivity;
+import com.android.contacts.common.compat.MetadataSyncEnabledCompat;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.GoogleAccountType;
 
 import java.util.List;
 
@@ -84,9 +86,19 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
             getPreferenceScreen().removePreference(findPreference("accounts"));
         }
 
-        // STOPSHIP Show this option when 1) metadata sync is enabled
+        // Show Contact metadata sync option when 1) metadata sync is enabled
         // and 2) there is at least one focus google account
-        getPreferenceScreen().removePreference(findPreference("contactMetadata"));
+        boolean hasFocusGoogleAccount = false;
+        for (AccountWithDataSet account : accounts) {
+            if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type) && account.dataSet == null) {
+                hasFocusGoogleAccount = true;
+                break;
+            }
+        }
+        if (!hasFocusGoogleAccount
+                || !MetadataSyncEnabledCompat.isMetadataSyncEnabled(getContext())) {
+            getPreferenceScreen().removePreference(findPreference("contactMetadata"));
+        }
     }
 
     @Override
