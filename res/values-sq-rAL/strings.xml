@@ -327,4 +327,39 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Nuk është zgjedhur fotografi nga llogari e panjohur"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Është zgjedhur fotografi nga llogari e panjohur"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Lista e kontakteve po përditësohet për të pasqyruar ndryshimin e gjuhës.\n\nQëndro në pritje..."</string>
+    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
+    <skip />
+    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
+    <skip />
+    <string name="addBlockedNumber" msgid="6064812257482886526">"Shto një numër"</string>
+    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Blloko numrin"</string>
+    <string name="block_number_search_hint" msgid="5409571607043872758">"Shto një numër ose kërko te kontaktet"</string>
+    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
+    <skip />
+    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Zhblloko <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
+    <string name="unblock_number_ok" msgid="6449899182699684786">"ZHBLLOKO"</string>
+    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Blloko <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
+    <string name="block_number_ok" msgid="770551992296781873">"BLLOKO"</string>
+    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> u bllokua"</string>
+    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> u zhbllokua"</string>
+    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> është i pavlefshëm."</string>
+    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Bllokimi i telefonatave është përkohësisht joaktiv"</string>
+    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Bllokimi i telefonatave është çaktivizuar sepse kontaktove me shërbimet e urgjencës nga ky telefon brenda 48 orëve të fundit. Ai do të riaktivizohet automatikisht pas skadimit të periudhës prej 48 orë."</string>
+    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
+    <skip />
+    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Importo"</string>
+    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Shiko numrat"</string>
+    <string name="addBlockedNumber" msgid="6064812257482886526">"Shto një numër"</string>
+    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Bllokimi i thirrjeve është çaktivizuar për 48 orë"</string>
+    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Është e çaktivizuar për shkak se është kryer një telefonatë urgjence."</string>
+    <string name="block_number_undo" msgid="591338370336724156">"ZHBËJ"</string>
+    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> është i bllokuar tashmë."</string>
+    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Zhblloko numrin"</string>
+    <string name="description_contact_details" msgid="51229793651342809">"Detajet e kontaktit për <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
+    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Importimi dështoi"</string>
+    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Importo numrat"</string>
+    <string name="permission_no_search" msgid="84152933267902056">"Për të kërkuar kontaktet, aktivizo lejet e Kontakteve"</string>
+    <string name="permission_single_turn_on" msgid="1543391076065465464">"Aktivizo"</string>
+    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
+    <skip />
 </resources>
