@@ -327,4 +327,39 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തിട്ടില്ല"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തു"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ഭാഷാ മാറ്റം പ്രതിഫലിപ്പിക്കുന്നതിന് കോൺടാക്റ്റ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്തുകൊണ്ടിരിക്കുന്നു.\n\nകാക്കുക..."</string>
+    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
+    <skip />
+    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
+    <skip />
+    <string name="addBlockedNumber" msgid="6064812257482886526">"നമ്പർ ചേർക്കുക"</string>
+    <string name="search_shortcut_block_number" msgid="4787156645163436072">"നമ്പർ ബ്ലോക്കുചെയ്യുക"</string>
+    <string name="block_number_search_hint" msgid="5409571607043872758">"നമ്പർ ചേർക്കുക അല്ലെങ്കിൽ കോൺടാക്റ്റുകൾ തിരയുക"</string>
+    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
+    <skip />
+    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> അൺബ്ലോക്കുചെയ്യണോ?"</string>
+    <string name="unblock_number_ok" msgid="6449899182699684786">"അൺബ്ലോക്കുചെയ്യുക"</string>
+    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> ബ്ലോക്കുചെയ്യണോ?"</string>
+    <string name="block_number_ok" msgid="770551992296781873">"ബ്ലോക്കുചെയ്യുക"</string>
+    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> ബ്ലോക്കുചെയ്തു"</string>
+    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> അൺബ്ലോക്കുചെയ്തു"</string>
+    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> അസാധുവാണ്."</string>
+    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"കോൾ ബ്ലോക്കുചെയ്യൽ താൽക്കാലികമായി ഓഫാണ്"</string>
+    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"കഴിഞ്ഞ 48 മണിക്കൂറിനുള്ളിൽ നിങ്ങൾ ഈ ഫോണിൽ നിന്ന് അടിയന്തിര സേവനങ്ങളുമായി ബന്ധപ്പെട്ടതിനാൽ കോൾ ബ്ലോക്കുചെയ്യൽ പ്രവർത്തനരഹിതമാക്കി. 48 മണിക്കൂർ സമയപരിധി കഴിഞ്ഞയുടൻ ഇത് സ്വയമേവ പ്രവർത്തനക്ഷമമാക്കപ്പെടും."</string>
+    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
+    <skip />
+    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"ഇമ്പോർട്ടുചെയ്യുക"</string>
+    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"നമ്പറുകൾ കാണുക"</string>
+    <string name="addBlockedNumber" msgid="6064812257482886526">"നമ്പർ ചേർക്കുക"</string>
+    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"48 മണിക്കൂർ നേരത്തേക്ക് കോൾ ബ്ലോക്കുചെയ്യൽ പ്രവർത്തനരഹിതമാക്കി"</string>
+    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"എമർജൻസി കോൾ നടത്തിയതിനാൽ പ്രവർത്തനരഹിതമാക്കി."</string>
+    <string name="block_number_undo" msgid="591338370336724156">"പഴയപടിയാക്കുക"</string>
+    <string name="alreadyBlocked" msgid="282340105563646876">"ഇതിനകം തന്നെ <xliff:g id="NUMBER">%1$s</xliff:g> ബ്ലോക്കുചെയ്തിരിക്കുന്നു"</string>
+    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"നമ്പർ അൺബ്ലോക്കുചെയ്യുക"</string>
+    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> എന്നതിന്റെ കോൺ‌ടാക്റ്റ് വിശദാംശങ്ങൾ"</string>
+    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"ഇമ്പോർട്ടുചെയ്യൽ പരാജയപ്പെട്ടു"</string>
+    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"നമ്പറുകൾ ഇമ്പോർട്ടുചെയ്യുക"</string>
+    <string name="permission_no_search" msgid="84152933267902056">"നിങ്ങളുടെ കോൺടാക്റ്റുകൾ തിരയുന്നതിന് കോൺടാക്റ്റുകൾക്കുള്ള അനുമതികൾ ഓണാക്കുക."</string>
+    <string name="permission_single_turn_on" msgid="1543391076065465464">"ഓണാക്കുക"</string>
+    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
+    <skip />
 </resources>

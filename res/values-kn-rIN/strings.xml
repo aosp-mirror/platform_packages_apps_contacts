@@ -327,4 +327,39 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ಅಜ್ಞಾತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿಲ್ಲ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ಅಜ್ಞಾತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿದೆ"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ಭಾಷೆಯ ಬದಲಾವಣೆಯನ್ನು ಪ್ರತಿಬಿಂಬಿಸಲು ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ.\n\nದಯವಿಟ್ಟು ಕಾಯಿರಿ..."</string>
+    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
+    <skip />
+    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
+    <skip />
+    <string name="addBlockedNumber" msgid="6064812257482886526">"ಸಂಖ್ಯೆಯನ್ನು ಸೇರಿಸಿ"</string>
+    <string name="search_shortcut_block_number" msgid="4787156645163436072">"ಸಂಖ್ಯೆಯನ್ನು ನಿರ್ಬಂಧಿಸು"</string>
+    <string name="block_number_search_hint" msgid="5409571607043872758">"ಸಂ. ಸೇರಿಸಿ ಅಥವಾ ಸಂಪರ್ಕ ಹುಡುಕಿ"</string>
+    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
+    <skip />
+    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?"</string>
+    <string name="unblock_number_ok" msgid="6449899182699684786">"ನಿರ್ಬಂಧ ತೆಗೆ"</string>
+    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> ನಿರ್ಬಂಧಿಸುವುದೇ?"</string>
+    <string name="block_number_ok" msgid="770551992296781873">"ನಿರ್ಬಂಧಿಸು"</string>
+    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ"</string>
+    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> ನಿರ್ಬಂಧ ತೆಗೆಯಲಾಗಿದೆ"</string>
+    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> ಅಮಾನ್ಯವಾಗಿದೆ."</string>
+    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"ಕರೆ ನಿರ್ಬಂಧಿಸುವಿಕೆ ತಾತ್ಕಾಲಿಕ ಆಫ್ ಮಾಡಲಾಗಿದೆ"</string>
+    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"ನೀವು ಕಳೆದ 48 ಗಂಟೆಗಳಲ್ಲಿ ಈ ಫೋನ್‌ನಿಂದ ತುರ್ತು ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸಿರುವ ಕಾರಣದಿಂದ ಕರೆ ನಿರ್ಬಂಧಿಸುವಿಕೆಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ಒಮ್ಮೆ 48 ಗಂಟೆಗಳ ಅವಧಿಯು ಮುಕ್ತಾಯಗೊಂಡ ನಂತರ ಅದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರುಸಕ್ರಿಯಗೊಳಿಸಲಾಗುವುದು."</string>
+    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
+    <skip />
+    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"ಆಮದು ಮಾಡಿ"</string>
+    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"ಸಂಖ್ಯೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"</string>
+    <string name="addBlockedNumber" msgid="6064812257482886526">"ಸಂಖ್ಯೆಯನ್ನು ಸೇರಿಸಿ"</string>
+    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"ಕರೆ ನಿರ್ಬಂಧಿಸುವಿಕೆ 48 ಗಂಟೆಗಳವರೆಗೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"</string>
+    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"ತುರ್ತು ಕರೆಯನ್ನು ಮಾಡಿರುವ ಕಾರಣದಿಂದ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."</string>
+    <string name="block_number_undo" msgid="591338370336724156">"ರದ್ದುಮಾಡು"</string>
+    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ಈಗಾಗಲೇ ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ."</string>
+    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"ಸಂಖ್ಯೆಯನ್ನು ಅನಿರ್ಬಂಧಿಸು"</string>
+    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> ಗೆ ಸಂಪರ್ಕ ವಿವರಗಳು"</string>
+    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"ಆಮದು ವಿಫಲವಾಗಿದೆ"</string>
+    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"ಸಂಖ್ಯೆಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
+    <string name="permission_no_search" msgid="84152933267902056">"ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಲು, ಸಂಪರ್ಕಗಳ ಅನುಮತಿಗಳನ್ನು ಆನ್ ಮಾಡಿ."</string>
+    <string name="permission_single_turn_on" msgid="1543391076065465464">"ಆನ್ ಮಾಡು"</string>
+    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
+    <skip />
 </resources>
