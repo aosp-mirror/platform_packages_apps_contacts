@@ -24,9 +24,6 @@ import android.view.View;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.R;
-import com.android.contacts.callblocking.ContactInfoHelper;
-import com.android.contacts.callblocking.FilteredNumbersUtil;
-import com.android.contacts.callblocking.NumbersAdapter;
 
 public class ViewNumbersToImportAdapter extends NumbersAdapter {
 

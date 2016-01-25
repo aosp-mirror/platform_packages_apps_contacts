@@ -1,8 +1,5 @@
 package com.android.contacts.callblocking;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -53,11 +50,7 @@ public class SearchFragment extends PhoneNumberPickerFragment
 
     public static final int PERMISSION_REQUEST_CODE = 1;
     private static final int SEARCH_DIRECTORY_RESULT_LIMIT = 5;
-    // copied from packages/apps/InCallUI/src/com/android/incallui/Call.java
-    public static final int INITIATION_REMOTE_DIRECTORY = 4;
-    public static final int INITIATION_REGULAR_SEARCH = 6;
 
-    private OnListFragmentScrolledListener mActivityScrollListener;
     private View.OnTouchListener mActivityOnTouchListener;
     private FilteredNumberAsyncQueryHandler mFilteredNumberAsyncQueryHandler;
     private EditText mSearchView;
@@ -90,7 +83,6 @@ public class SearchFragment extends PhoneNumberPickerFragment
      * Stores the untouched user-entered string that is used to populate the add to contacts
      * intent.
      */
-    private String mAddToContactNumber;
     private int mActionBarHeight;
     private int mShadowHeight;
     private int mPaddingTop;
@@ -190,13 +182,6 @@ public class SearchFragment extends PhoneNumberPickerFragment
         setDarkTheme(false);
         setPhotoPosition(ContactListItemView.getDefaultPhotoPosition(false /* opposite */));
         setUseCallableUri(true);
-
-        try {
-            mActivityScrollListener = (OnListFragmentScrolledListener) activity;
-        } catch (ClassCastException e) {
-            Log.d(TAG, activity.toString() + " doesn't implement OnListFragmentScrolledListener. " +
-                    "Ignoring.");
-        }
     }
 
     @Override
@@ -236,9 +221,6 @@ public class SearchFragment extends PhoneNumberPickerFragment
         listView.setOnScrollListener(new OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (mActivityScrollListener != null) {
-                    mActivityScrollListener.onListFragmentScrollStateChange(scrollState);
-                }
             }
 
             @Override
@@ -260,26 +242,6 @@ public class SearchFragment extends PhoneNumberPickerFragment
     }
 
     @Override
-    public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
-        Animator animator = null;
-        if (nextAnim != 0) {
-            animator = AnimatorInflater.loadAnimator(getActivity(), nextAnim);
-        }
-        if (animator != null) {
-            final View view = getView();
-            final int oldLayerType = view.getLayerType();
-            view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            animator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    view.setLayerType(oldLayerType, null);
-                }
-            });
-        }
-        return animator;
-    }
-
-    @Override
     protected void setSearchMode(boolean flag) {
         super.setSearchMode(flag);
         // This hides the "All contacts with phone numbers" header in the search fragment
@@ -287,10 +249,6 @@ public class SearchFragment extends PhoneNumberPickerFragment
         if (adapter != null) {
             adapter.setHasHeader(0, false);
         }
-    }
-
-    public void setAddToContactNumber(String addToContactNumber) {
-        mAddToContactNumber = addToContactNumber;
     }
 
     @Override
@@ -353,7 +311,7 @@ public class SearchFragment extends PhoneNumberPickerFragment
         final int adapterPosition = position - getListView().getHeaderViewsCount();
         final SearchAdapter adapter = (SearchAdapter) getAdapter();
         final int shortcutType = adapter.getShortcutTypeFromPosition(adapterPosition);
-        final Integer blockId = (Integer) view.getTag(R.id.block_id);
+        final Long blockId = (Long) view.getTag(R.id.block_id);
         final String number;
         switch (shortcutType) {
             case SearchAdapter.SHORTCUT_INVALID:
@@ -376,7 +334,7 @@ public class SearchFragment extends PhoneNumberPickerFragment
         final String countryIso = GeoUtil.getCurrentCountryIso(getContext());
         final OnCheckBlockedListener onCheckListener = new OnCheckBlockedListener() {
             @Override
-            public void onCheckComplete(Integer id) {
+            public void onCheckComplete(Long id) {
                 if (id == null) {
                     BlockNumberDialogFragment.show(
                             id,
@@ -497,11 +455,6 @@ public class SearchFragment extends PhoneNumberPickerFragment
     }
 
     @Override
-    protected int getCallInitiationType(boolean isRemoteDirectory) {
-        return isRemoteDirectory ? INITIATION_REMOTE_DIRECTORY : INITIATION_REGULAR_SEARCH;
-    }
-
-    @Override
     public void onFilterNumberSuccess() {
         goBack();
     }
@@ -525,7 +478,7 @@ public class SearchFragment extends PhoneNumberPickerFragment
         getAdapter().notifyDataSetChanged();
     }
 
-    private void blockContactNumber(final String number, final Integer blockId) {
+    private void blockContactNumber(final String number, final Long blockId) {
         if (blockId != null) {
             Toast.makeText(getContext(), ContactDisplayUtils.getTtsSpannedPhoneNumber(
                             getResources(), R.string.alreadyBlocked, number),
@@ -533,10 +486,10 @@ public class SearchFragment extends PhoneNumberPickerFragment
             return;
         }
 
-        com.android.contacts.callblocking.BlockNumberDialogFragment.show(
+        BlockNumberDialogFragment.show(
                 blockId,
                 number,
-                com.android.contacts.common.GeoUtil.getCurrentCountryIso(getContext()),
+                GeoUtil.getCurrentCountryIso(getContext()),
                 number,
                 R.id.blocked_numbers_activity_container,
                 getFragmentManager(),

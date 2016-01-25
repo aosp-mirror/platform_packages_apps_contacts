@@ -24,6 +24,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.BlockedNumberContract.BlockedNumbers;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -141,16 +142,12 @@ public class BlockedNumbersFragment extends ListFragment
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         final String[] projection = {
-            FilteredNumberContract.FilteredNumberColumns._ID,
-            FilteredNumberContract.FilteredNumberColumns.COUNTRY_ISO,
-            FilteredNumberContract.FilteredNumberColumns.NUMBER,
-            FilteredNumberContract.FilteredNumberColumns.NORMALIZED_NUMBER
+            BlockedNumbers.COLUMN_ID,
+            BlockedNumbers.COLUMN_ORIGINAL_NUMBER,
+            BlockedNumbers.COLUMN_E164_NUMBER
         };
-        final String selection = FilteredNumberContract.FilteredNumberColumns.TYPE
-                + "=" + FilteredNumberContract.FilteredNumberTypes.BLOCKED_NUMBER;
         final CursorLoader cursorLoader = new CursorLoader(
-                getContext(), FilteredNumberContract.FilteredNumber.CONTENT_URI, projection,
-                selection, null, null);
+                getContext(), BlockedNumbers.CONTENT_URI, projection, null, null, null);
         return cursorLoader;
     }
 
