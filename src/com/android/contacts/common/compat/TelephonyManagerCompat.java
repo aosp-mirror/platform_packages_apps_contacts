@@ -16,9 +16,12 @@
 
 package com.android.contacts.common.compat;
 
-import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.telecom.PhoneAccountHandle;
 import android.telephony.TelephonyManager;
+
+import com.android.contacts.common.ContactsUtils;
 
 public class TelephonyManagerCompat {
     public static final String TELEPHONY_MANAGER_CLASS = "android.telephony.TelephonyManager";
@@ -130,5 +133,41 @@ public class TelephonyManagerCompat {
             return telephonyManager.isHearingAidCompatibilitySupported();
         }
         return false;
+    }
+
+    /**
+     * Returns the URI for the per-account voicemail ringtone set in Phone settings.
+     *
+     * @param telephonyManager The telephony manager instance to use for method calls.
+     * @param accountHandle The handle for the {@link android.telecom.PhoneAccount} for which to
+     * retrieve the voicemail ringtone.
+     * @return The URI for the ringtone to play when receiving a voicemail from a specific
+     * PhoneAccount.
+     */
+    @Nullable
+    public static Uri getVoicemailRingtoneUri(TelephonyManager telephonyManager,
+            PhoneAccountHandle accountHandle) {
+        if (!CompatUtils.isNCompatible()) {
+            return null;
+        }
+        return TelephonyManagerSdkCompat
+                .getVoicemailRingtoneUri(telephonyManager, accountHandle);
+    }
+
+    /**
+     * Returns whether vibration is set for voicemail notification in Phone settings.
+     *
+     * @param telephonyManager The telephony manager instance to use for method calls.
+     * @param accountHandle The handle for the {@link android.telecom.PhoneAccount} for which to
+     * retrieve the voicemail vibration setting.
+     * @return {@code true} if the vibration is set for this PhoneAccount, {@code false} otherwise.
+     */
+    public static boolean isVoicemailVibrationEnabled(TelephonyManager telephonyManager,
+            PhoneAccountHandle accountHandle) {
+        if (!CompatUtils.isNCompatible()) {
+            return true;
+        }
+        return TelephonyManagerSdkCompat
+                .isVoicemailVibrationEnabled(telephonyManager, accountHandle);
     }
 }
