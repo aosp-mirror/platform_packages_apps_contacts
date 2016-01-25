@@ -87,7 +87,7 @@ import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.common.list.ViewPagerTabs;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent;
-import com.android.contacts.preference.ContactsPreferenceActivity;
+import com.android.contacts.common.preference.ContactsPreferenceActivity;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.quickcontact.QuickContactActivity;
@@ -1192,18 +1192,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 return true;
             }
             case R.id.menu_settings: {
-                final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
-                // Since there is only one section right now, make sure it is selected on
-                // small screens.
-                intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,
-                        DisplayOptionsPreferenceFragment.class.getName());
-                // By default, the title of the activity should be equivalent to the fragment
-                // title. We set this argument to avoid this. Because of a bug, the following
-                // line isn't necessary. But, once the bug is fixed this may become necessary.
-                // b/5045558 refers to this issue, as well as another.
-                intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,
-                        R.string.activity_title_settings);
-                startActivity(intent);
+                startActivity(new Intent(this, ContactsPreferenceActivity.class));
                 return true;
             }
             case R.id.menu_contacts_filter: {
