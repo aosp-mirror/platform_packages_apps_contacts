@@ -299,8 +299,10 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="ContactsPreferencesTheme" parent="@style/PeopleTheme">
-        <item name="android:listViewStyle">@style/ListViewStyle</item>
+    <style name="ContactsPreferencesTheme" parent="@style/PeopleThemeAppCompat">
+        <!-- Styles that require AppCompat compatibility, remember to update both sets -->
+        <item name="android:alertDialogTheme">@style/ContactsAlertDialogThemeAppCompat</item>
+        <item name="alertDialogTheme">@style/ContactsAlertDialogThemeAppCompat</item>
     </style>
 
     <style name="ContactListFilterTheme" parent="@style/PeopleThemeAppCompat">
@@ -418,6 +420,11 @@
         since the Alert dialog is private. They are identical anyway. -->
     <style name="ContactsAlertDialogTheme" parent="@android:style/Theme.Material.Light.Dialog">
         <item name="android:colorAccent">@color/primary_color</item>
+    </style>
+
+    <style name="ContactsAlertDialogThemeAppCompat" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:colorAccent">@color/primary_color</item>
+        <item name="colorAccent">@color/primary_color</item>
     </style>
 
     <style name="EditKindIconStyle">
