@@ -29,6 +29,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.SearchSnippets;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -1481,7 +1482,8 @@ public class ContactListItemView extends ViewGroup
      * Shows search snippet.
      */
     public void showSnippet(Cursor cursor, int summarySnippetColumnIndex) {
-        if (cursor.getColumnCount() <= summarySnippetColumnIndex) {
+        if (cursor.getColumnCount() <= summarySnippetColumnIndex
+            || !SearchSnippets.SNIPPET.equals(cursor.getColumnName(summarySnippetColumnIndex))) {
             setSnippet(null);
             return;
         }
