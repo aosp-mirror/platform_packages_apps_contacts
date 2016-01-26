@@ -46,7 +46,7 @@ public class CancelEditDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setMessage(R.string.cancel_confirmation_dialog_message)
-                .setPositiveButton(R.string.cancel_confirmation_dialog_message_positive_button,
+                .setPositiveButton(R.string.cancel_confirmation_dialog_cancel_editing_button,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
@@ -55,7 +55,7 @@ public class CancelEditDialogFragment extends DialogFragment {
                             }
                         }
                 )
-                .setNegativeButton(android.R.string.cancel, null)
+                .setNegativeButton(R.string.cancel_confirmation_dialog_keep_editing_button, null)
                 .create();
     }
 
