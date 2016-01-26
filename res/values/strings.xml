@@ -641,10 +641,17 @@
     <string name="toast_text_copied">Text copied</string>
 
     <!-- Contents of the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=128] -->
-    <string name="cancel_confirmation_dialog_message">Discard your changes?</string>
+    <string name="cancel_confirmation_dialog_message">Discard your changes and quit editing?</string>
 
-    <!-- Positive button text of the alert dialog when the user hits the Cancel button in the editor [CHAR LIMIT=40] -->
-    <string name="cancel_confirmation_dialog_message_positive_button">Discard</string>
+    <!-- Positive button text for the cancel editing confirmation dialog.
+      Pushing this button indicates that the user wishes to discard the changes they have already
+      made and close the editor. [CHAR LIMIT=50] -->
+    <string name="cancel_confirmation_dialog_cancel_editing_button">Discard changes</string>
+
+    <!-- Negative button text for the cancel editing confirmation dialog.
+      Pushing this button indicates that the user wishes to continue editing
+      and return to the editor [CHAR LIMIT=40] -->
+    <string name="cancel_confirmation_dialog_keep_editing_button">Keep editing</string>
 
     <!-- Description of a call log entry, made of a call type and a date -->
     <string name="call_type_and_date">
