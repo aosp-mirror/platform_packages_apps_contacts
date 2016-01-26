@@ -20,7 +20,9 @@ import android.content.CursorLoader;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Profile;
 
 import com.google.common.collect.Lists;
@@ -34,7 +36,10 @@ import java.util.List;
 public class ProfileAndContactsLoader extends CursorLoader {
 
     private boolean mLoadProfile;
+    private boolean mLoadStrequent;
     private String[] mProjection;
+    private String[] mStrequentProjection;
+    private Uri mStrequentUri;
 
     public ProfileAndContactsLoader(Context context) {
         super(context);
@@ -44,9 +49,21 @@ public class ProfileAndContactsLoader extends CursorLoader {
         mLoadProfile = flag;
     }
 
+    public void setLoadStrequent(boolean flag) {
+        mLoadStrequent = flag;
+    }
+
     public void setProjection(String[] projection) {
         super.setProjection(projection);
         mProjection = projection;
+    }
+
+    public void setStrequentProjection(String[] projection) {
+        mStrequentProjection = projection;
+    }
+
+    public void setStrequentUri(Uri uri) {
+        mStrequentUri = uri;
     }
 
     @Override
@@ -55,6 +72,9 @@ public class ProfileAndContactsLoader extends CursorLoader {
         List<Cursor> cursors = Lists.newArrayList();
         if (mLoadProfile) {
             cursors.add(loadProfile());
+        }
+        if (mLoadStrequent) {
+            cursors.add(loadStrequent());
         }
         // ContactsCursor.loadInBackground() can return null; MergeCursor
         // correctly handles null cursors.
@@ -100,5 +120,13 @@ public class ProfileAndContactsLoader extends CursorLoader {
         } finally {
             cursor.close();
         }
+    }
+
+    /**
+     * Loads starred and frequently contacted contacts
+     */
+    private Cursor loadStrequent() {
+        return getContext().getContentResolver().query(
+                mStrequentUri, mStrequentProjection, null, null, null);
     }
 }
