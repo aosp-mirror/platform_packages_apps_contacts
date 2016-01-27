@@ -645,12 +645,12 @@
 
     <!-- Positive button text for the cancel editing confirmation dialog.
       Pushing this button indicates that the user wishes to discard the changes they have already
-      made and close the editor. [CHAR LIMIT=50] -->
-    <string name="cancel_confirmation_dialog_cancel_editing_button">Discard changes</string>
+      made and close the editor. [CHAR LIMIT=20] -->
+    <string name="cancel_confirmation_dialog_cancel_editing_button">Discard</string>
 
     <!-- Negative button text for the cancel editing confirmation dialog.
       Pushing this button indicates that the user wishes to continue editing
-      and return to the editor [CHAR LIMIT=40] -->
+      and return to the editor [CHAR LIMIT=30] -->
     <string name="cancel_confirmation_dialog_keep_editing_button">Keep editing</string>
 
     <!-- Description of a call log entry, made of a call type and a date -->
