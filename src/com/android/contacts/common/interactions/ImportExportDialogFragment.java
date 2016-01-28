@@ -168,10 +168,16 @@ public class ImportExportDialogFragment extends DialogFragment
                         R.string.export_to_vcf_file));
             }
         }
-        if (res.getBoolean(R.bool.config_allow_share_visible_contacts)) {
-            if (contactsAreAvailable) {
-                adapter.add(new AdapterEntry(getString(R.string.share_visible_contacts),
-                        R.string.share_visible_contacts));
+        if (res.getBoolean(R.bool.config_allow_share_contacts) && contactsAreAvailable) {
+            if (mExportMode == EXPORT_MODE_FAVORITES) {
+                // share "visible" contacts (favorite and frequent contacts) from Favorites tab
+                adapter.add(new AdapterEntry(getString(R.string.share_favorite_contacts),
+                        R.string.share_contacts));
+            } else {
+                // share "all" contacts (in groups selected in "Customize") from All tab for now
+                // TODO: change the string to share_visible_contacts if implemented
+                adapter.add(new AdapterEntry(getString(R.string.share_contacts),
+                        R.string.share_contacts));
             }
         }
 
@@ -196,9 +202,9 @@ public class ImportExportDialogFragment extends DialogFragment
                         getActivity().startActivity(exportIntent);
                         break;
                     }
-                    case R.string.share_visible_contacts: {
+                    case R.string.share_contacts: {
                         dismissDialog = true;
-                        doShareVisibleContacts();
+                        doShareContacts();
                         break;
                     }
                     default: {
@@ -220,7 +226,7 @@ public class ImportExportDialogFragment extends DialogFragment
                 .create();
     }
 
-    private void doShareVisibleContacts() {
+    private void doShareContacts() {
         try {
             // TODO move the query into a loader and do this in a background thread
             final Cursor cursor;
@@ -261,8 +267,8 @@ public class ImportExportDialogFragment extends DialogFragment
                 }
             }
         } catch (Exception e) {
-            Log.e(TAG, "Sharing visible contacts failed", e);
-            Toast.makeText(getContext(), R.string.share_visible_contacts_failure,
+            Log.e(TAG, "Sharing contacts failed", e);
+            Toast.makeText(getContext(), R.string.share_contacts_failure,
                     Toast.LENGTH_SHORT).show();
         }
     }
