@@ -2638,7 +2638,8 @@ public class QuickContactActivity extends ContactsActivity
                 mContactData.getLookupUri(),
                 mHasComputedThemeColor
                         ? new MaterialPalette(mColorFilterColor, mStatusBarColor) : null,
-                mContactData.getPhotoId());
+                mContactData.getPhotoId(),
+                mContactData.getPhotoUri());
     }
 
     private void editContact() {
