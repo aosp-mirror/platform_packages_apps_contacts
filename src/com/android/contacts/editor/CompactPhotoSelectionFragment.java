@@ -50,6 +50,8 @@ public class CompactPhotoSelectionFragment extends Fragment {
 
     private static final String STATE_PHOTOS = "photos";
     private static final String STATE_PHOTO_MODE = "photoMode";
+    private static final String STATE_HAS_PRIMARY = "hasPrimary";
+    private static final String STATE_PHOTO_URI = "photoUri";
     private final int VIEW_TYPE_TAKE_PHOTO = 0;
     private final int VIEW_TYPE_ALL_PHOTOS = 1;
     private final int VIEW_TYPE_IMAGE = 2;
@@ -223,16 +225,18 @@ public class CompactPhotoSelectionFragment extends Fragment {
             }
 
             final Photo photo = mPhotos.get(position);
+            Uri photoUri = Uri.EMPTY;
 
             // Bind the photo
             final ImageView imageView = (ImageView) photoItemView.findViewById(R.id.image);
             if (photo.updatedPhotoUri != null) {
+                photoUri = photo.updatedPhotoUri;
                 EditorUiUtils.loadPhoto(ContactPhotoManager.getInstance(mContext),
-                        imageView, photo.updatedPhotoUri);
+                        imageView, photoUri);
             } else {
                 final Long photoFileId = EditorUiUtils.getPhotoFileId(photo.valuesDelta);
                 if (photoFileId != null) {
-                    final Uri photoUri = ContactsContract.DisplayPhoto.CONTENT_URI.buildUpon()
+                    photoUri = ContactsContract.DisplayPhoto.CONTENT_URI.buildUpon()
                             .appendPath(photoFileId.toString()).build();
                     EditorUiUtils.loadPhoto(ContactPhotoManager.getInstance(mContext),
                             imageView, photoUri);
@@ -249,7 +253,9 @@ public class CompactPhotoSelectionFragment extends Fragment {
 
             // Display a check icon over the primary photo
             final ImageView checkImageView = (ImageView) photoItemView.findViewById(R.id.check);
-            checkImageView.setVisibility(photo.primary ? View.VISIBLE : View.GONE);
+            checkImageView.setVisibility(
+                    photo.primary || photoUri.toString().equals(mEditorPhotoUri)
+                            ? View.VISIBLE : View.GONE);
 
             photoItemView.setContentDescription(photo.contentDescription);
 
@@ -261,6 +267,8 @@ public class CompactPhotoSelectionFragment extends Fragment {
     private int mPhotoMode;
     private Listener mListener;
     private GridView mGridView;
+    private String mEditorPhotoUri;
+    private boolean mHasPrimary;
 
     public void setListener(Listener listener) {
         mListener = listener;
@@ -270,6 +278,13 @@ public class CompactPhotoSelectionFragment extends Fragment {
         mPhotos = photos;
         mPhotoMode = photoMode;
         mGridView.setAccessibilityDelegate(new View.AccessibilityDelegate() {});
+        mHasPrimary = false;
+        for (Photo photo : mPhotos) {
+            if (photo.primary) {
+                mHasPrimary = true;
+                break;
+            }
+        }
     }
 
     @Override
@@ -278,6 +293,12 @@ public class CompactPhotoSelectionFragment extends Fragment {
         if (savedInstanceState != null) {
             mPhotos = savedInstanceState.getParcelableArrayList(STATE_PHOTOS);
             mPhotoMode = savedInstanceState.getInt(STATE_PHOTO_MODE, 0);
+            mEditorPhotoUri = savedInstanceState.getString(STATE_PHOTO_URI);
+            mHasPrimary = savedInstanceState.getBoolean(STATE_HAS_PRIMARY);
+        }
+        if (TextUtils.isEmpty(mEditorPhotoUri)) {
+            mEditorPhotoUri = getArguments().getString(
+                    ContactEditorBaseFragment.INTENT_EXTRA_PHOTO_URI);
         }
     }
 
@@ -315,8 +336,8 @@ public class CompactPhotoSelectionFragment extends Fragment {
         display.getMetrics(outMetrics);
 
         // portrait -- 3 columns; landscape -- 5 columns.
-        mNumberOfColumns = outMetrics.heightPixels > outMetrics.widthPixels ?
-                NUMBER_OF_COLUMNS_PORTRAIT : NUMBER_OF_COLUMNS_LANDSCAPE;
+        mNumberOfColumns = outMetrics.heightPixels > outMetrics.widthPixels
+                ? NUMBER_OF_COLUMNS_PORTRAIT : NUMBER_OF_COLUMNS_LANDSCAPE;
         final int paddingWidth = (int) getResources().getDimension(R.dimen
                 .photo_picker_column_padding_width);
         float density  = getResources().getDisplayMetrics().density;
@@ -347,6 +368,8 @@ public class CompactPhotoSelectionFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList(STATE_PHOTOS, mPhotos);
         outState.putInt(STATE_PHOTO_MODE, mPhotoMode);
+        outState.putString(STATE_PHOTO_URI, mEditorPhotoUri);
+        outState.putBoolean(STATE_HAS_PRIMARY, mHasPrimary);
         super.onSaveInstanceState(outState);
     }
 
