@@ -84,7 +84,7 @@
     <bool name="config_allow_export">true</bool>
 
     <!-- Flag indicating whether Contacts app is allowed to share contacts with devices outside -->
-    <bool name="config_allow_share_visible_contacts">true</bool>
+    <bool name="config_allow_share_contacts">true</bool>
 
     <string name="pref_build_version_key">pref_build_version</string>
     <string name="pref_open_source_licenses_key">pref_open_source_licenses</string>
