@@ -687,6 +687,15 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- A framework exception (ie, transaction too large) can be thrown while attempting to share all visible contacts. If so, show this toast. -->
     <string name="share_visible_contacts_failure">Failed to share visible contacts.</string>
 
+    <!-- Action that shares favorite contacts [CHAR LIMIT=40]-->
+    <string name="share_favorite_contacts">Share favorite contacts</string>
+
+    <!-- Action that shares contacts [CHAR LIMIT=30]-->
+    <string name="share_contacts">Share all contacts</string>
+
+    <!-- A framework exception can be thrown while attempting to share all contacts. If so, show this toast. [CHAR LIMIT=40]-->
+    <string name="share_contacts_failure">Failed to share contacts.</string>
+
     <!-- Dialog title when selecting the bulk operation to perform from a list. [CHAR LIMIT=36] -->
     <string name="dialog_import_export">Import/export contacts</string>
 
