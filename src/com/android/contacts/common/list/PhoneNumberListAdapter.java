@@ -500,7 +500,11 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         final DirectoryPartition directory = (DirectoryPartition) getPartition(partition);
         final long directoryId = directory.getDirectoryId();
         final long userType = ContactsUtils.determineUserType(directoryId, null);
-        view.setWorkProfileIconEnabled(userType == ContactsUtils.USER_TYPE_WORK);
+        // Work directory must not be a extended directory. An extended directory is custom
+        // directory in the app, but not a directory provided by framework. So it can't be
+        // USER_TYPE_WORK.
+        view.setWorkProfileIconEnabled(
+                !isExtendedDirectory(directoryId) && userType == ContactsUtils.USER_TYPE_WORK);
     }
 
     protected void bindPhoto(final ContactListItemView view, int partitionIndex, Cursor cursor) {
