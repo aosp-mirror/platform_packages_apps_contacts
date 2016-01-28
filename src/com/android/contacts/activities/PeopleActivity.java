@@ -1119,11 +1119,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             helpMenu.setVisible(HelpUtils.isHelpAndFeedbackAvailable());
         }
         final boolean showMiscOptions = !isSearchOrSelectionMode;
-        //TODO use ContactsUtils.FLAG_N_FEATURE
-        final boolean isBlockedNumbersCompatible =
-                Build.VERSION.SDK_INT > Build.VERSION_CODES.M;
-        final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this) &&
-                isBlockedNumbersCompatible;
+        final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this)
+                && ContactsUtils.FLAG_N_FEATURE;
         makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_import_export, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
