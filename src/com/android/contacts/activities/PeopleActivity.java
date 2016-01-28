@@ -61,40 +61,40 @@ import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
-import com.android.contacts.editor.EditorIntents;
-import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
-import com.android.contacts.interactions.ContactMultiDeletionInteraction;
-import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiContactDeleteListener;
-import com.android.contacts.interactions.JoinContactsDialogFragment;
-import com.android.contacts.interactions.JoinContactsDialogFragment.JoinContactsListener;
-import com.android.contacts.list.MultiSelectContactsListFragment;
-import com.android.contacts.list.MultiSelectContactsListFragment.OnCheckBoxListActionListener;
-import com.android.contacts.list.ContactTileListFragment;
-import com.android.contacts.list.ContactsIntentResolver;
-import com.android.contacts.list.ContactsRequest;
-import com.android.contacts.list.ContactsUnavailableFragment;
 import com.android.contacts.common.list.DirectoryListLoader;
-import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment;
-import com.android.contacts.list.OnContactBrowserActionListener;
-import com.android.contacts.list.OnContactsUnavailableActionListener;
-import com.android.contacts.list.ProviderStatusWatcher;
-import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.common.list.ViewPagerTabs;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent;
 import com.android.contacts.common.preference.ContactsPreferenceActivity;
+import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.common.util.AccountFilterUtil;
+import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ViewUtil;
+import com.android.contacts.editor.EditorIntents;
+import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.interactions.ContactMultiDeletionInteraction;
+import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiContactDeleteListener;
+import com.android.contacts.interactions.JoinContactsDialogFragment;
+import com.android.contacts.interactions.JoinContactsDialogFragment.JoinContactsListener;
+import com.android.contacts.list.ContactTileListFragment;
+import com.android.contacts.list.ContactsIntentResolver;
+import com.android.contacts.list.ContactsRequest;
+import com.android.contacts.list.ContactsUnavailableFragment;
+import com.android.contacts.list.MultiSelectContactsListFragment;
+import com.android.contacts.list.MultiSelectContactsListFragment.OnCheckBoxListActionListener;
+import com.android.contacts.list.OnContactBrowserActionListener;
+import com.android.contacts.list.OnContactsUnavailableActionListener;
+import com.android.contacts.list.ProviderStatusWatcher;
+import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.AccountPromptUtils;
-import com.android.contacts.common.util.Constants;
-import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contactsbind.HelpUtils;
 
 import java.util.List;
@@ -1024,10 +1024,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         @Override
         public void onAddAccountAction() {
-            Intent intent = new Intent(Settings.ACTION_ADD_ACCOUNT);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-            intent.putExtra(Settings.EXTRA_AUTHORITIES,
-                    new String[]{ContactsContract.AUTHORITY});
+            final Intent intent = AccountPromptUtils.getIntentForAddingAccount();
             ImplicitIntentsUtil.startActivityOutsideApp(PeopleActivity.this, intent);
         }
 

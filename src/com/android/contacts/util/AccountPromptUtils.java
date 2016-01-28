@@ -24,9 +24,12 @@ import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.android.contacts.R;
@@ -98,6 +101,18 @@ public class AccountPromptUtils {
         options.putBoolean(KEY_ALLOW_SKIP_ACCOUNT_SETUP, true);
         AccountManager.get(activity).addAccount(GoogleAccountType.ACCOUNT_TYPE, null, null, options,
                 activity, getAccountManagerCallback(activity), null);
+    }
+
+    /**
+     * When adding account
+     * open the same UI screen for user to choose account
+     */
+    public static Intent getIntentForAddingAccount() {
+         final Intent intent = new Intent(Settings.ACTION_ADD_ACCOUNT);
+         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+         intent.putExtra(Settings.EXTRA_AUTHORITIES,
+                 new String[]{ContactsContract.AUTHORITY});
+         return intent;
     }
 
     private static AccountManagerCallback<Bundle> getAccountManagerCallback(
