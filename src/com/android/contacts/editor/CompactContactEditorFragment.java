@@ -19,7 +19,6 @@ package com.android.contacts.editor;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.CompactContactEditorActivity;
-import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -237,6 +236,7 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         if (isEditingMultipleRawContacts()) {
             final ArrayList<CompactPhotoSelectionFragment.Photo> photos = getContent().getPhotos();
             if (photos.size() > 1) {
+                updatePrimaryForSelection(photos);
                 // For aggregate contacts, the user may select a new super primary photo from among
                 // the (non-default) raw contact photos, or source a new photo.
                 getEditorActivity().selectPhoto(photos, getPhotoMode());
@@ -246,6 +246,22 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         // For contacts composed of a single writable raw contact, or raw contacts have no more
         // than 1 photo, clicking the photo view simply opens the source photo dialog
         getEditorActivity().changePhoto(getPhotoMode());
+    }
+
+    // This method override photo's primary flag based on photoId and set the photo currently
+    // shown in the editor to be the new primary no matter how many primary photos there are in
+    // the photo picker. This is because the photos returned by "getPhoto" may contain 0, 1,
+    // or 2+ primary photos and when we link contacts in the editor, the photos returned may change.
+    // We need to put check mark on the photo currently shown in editor, so we override "primary".
+    // This doesn't modify anything in the database,so there would be no pending changes.
+    private void updatePrimaryForSelection(ArrayList<CompactPhotoSelectionFragment.Photo> photos) {
+        for (CompactPhotoSelectionFragment.Photo photo : photos) {
+            if (photo.photoId == mPhotoId) {
+                photo.primary = true;
+            } else {
+                photo.primary = false;
+            }
+        }
     }
 
     @Override
