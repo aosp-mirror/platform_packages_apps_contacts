@@ -494,6 +494,9 @@ public class QuickContactActivity extends ContactsActivity
 
     @Override
     public void onAggregationSuggestionChange() {
+        if (mAggregationSuggestionEngine == null) {
+            return;
+        }
         mSuggestions = mAggregationSuggestionEngine.getSuggestions();
         mCollapsedSuggestionCardView.setVisibility(View.GONE);
         mExpandSuggestionCardView.setVisibility(View.GONE);
@@ -2307,6 +2310,8 @@ public class QuickContactActivity extends ContactsActivity
                 if (imageViewDrawable == mPhotoView.getDrawable()) {
                     mHasComputedThemeColor = true;
                     setThemeColor(palette);
+                    // update color and photo in suggestion card
+                    onAggregationSuggestionChange();
                 }
             }
         }.execute();
