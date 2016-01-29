@@ -191,11 +191,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     public static final String INTENT_EXTRA_PHOTO_ID = "photo_id";
 
     /**
-     * Intent key to pass the URI of the photo to display on the editor.
-     */
-    public static final String INTENT_EXTRA_PHOTO_URI = "photo_uri";
-
-    /**
      * Intent key to pass the ID of the raw contact id that should be displayed in the full editor
      * by itself.
      */
