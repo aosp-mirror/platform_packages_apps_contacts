@@ -22,7 +22,6 @@ import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.CompactContactEditorFragment;
 import com.android.contacts.editor.CompactPhotoSelectionFragment;
-import com.android.contacts.editor.ContactEditorBaseFragment;
 import com.android.contacts.editor.PhotoSourceDialogFragment;
 
 import android.app.FragmentTransaction;
@@ -139,7 +138,6 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
             // Create the editor and photo selection fragments
             mFragment = new CompactContactEditorFragment();
             mPhotoSelectionFragment = new CompactPhotoSelectionFragment();
-            mPhotoSelectionFragment.setArguments(getIntent().getExtras());
             getFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, getEditorFragment(), TAG_COMPACT_EDITOR)
                     .add(R.id.fragment_container, mPhotoSelectionFragment, TAG_PHOTO_SELECTION)
@@ -157,10 +155,6 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
                     .findFragmentByTag(TAG_COMPACT_EDITOR);
             mPhotoSelectionFragment = (CompactPhotoSelectionFragment) getFragmentManager()
                     .findFragmentByTag(TAG_PHOTO_SELECTION);
-            final Bundle bundle = mPhotoSelectionFragment.getArguments();
-            bundle.putString(ContactEditorBaseFragment.INTENT_EXTRA_PHOTO_URI,
-                    getIntent().getExtras().getString(
-                            ContactEditorBaseFragment.INTENT_EXTRA_PHOTO_URI));
             final FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             if (mIsPhotoSelection) {
                 fragmentTransaction.hide(getEditorFragment()).show(mPhotoSelectionFragment);
