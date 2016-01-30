@@ -144,12 +144,6 @@ public class ContactsUtils {
         return TextUtils.equals(a.getAction(), b.getAction());
     }
 
-    public static boolean areContactWritableAccountsAvailable(Context context) {
-        final List<AccountWithDataSet> accounts =
-                AccountTypeManager.getInstance(context).getAccounts(true /* writeable */);
-        return !accounts.isEmpty();
-    }
-
     public static boolean areGroupWritableAccountsAvailable(Context context) {
         final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(context).getGroupWritableAccounts();
