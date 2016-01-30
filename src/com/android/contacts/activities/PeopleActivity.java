@@ -59,8 +59,6 @@ import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.common.widget.FloatingActionButtonController;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
@@ -74,7 +72,9 @@ import com.android.contacts.common.preference.ContactsPreferenceActivity;
 import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.Constants;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
+import com.android.contacts.common.widget.FloatingActionButtonController;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction;
@@ -92,7 +92,6 @@ import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusWatcher;
 import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
-import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contactsbind.HelpUtils;
@@ -194,10 +193,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     public boolean areContactsAvailable() {
         return (mProviderStatus != null) && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
-    }
-
-    private boolean areContactWritableAccountsAvailable() {
-        return ContactsUtils.areContactWritableAccountsAvailable(this);
     }
 
     private boolean areGroupWritableAccountsAvailable() {
@@ -899,24 +894,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 mAllFragment.setEnabled(true);
             }
         } else {
-            // If there are no accounts on the device and we should show the "no account" prompt
-            // (based on {@link SharedPreferences}), then launch the account setup activity so the
-            // user can sign-in or create an account.
-            //
-            // Also check for ability to modify accounts.  In limited user mode, you can't modify
-            // accounts so there is no point sending users to account setup activity.
-            final UserManager userManager = (UserManager) getSystemService(Context.USER_SERVICE);
-            final boolean disallowModifyAccounts = userManager.getUserRestrictions().getBoolean(
-                    UserManager.DISALLOW_MODIFY_ACCOUNTS);
-            if (!disallowModifyAccounts && !areContactWritableAccountsAvailable() &&
-                    AccountPromptUtils.shouldShowAccountPrompt(this)) {
-                AccountPromptUtils.neverShowAccountPromptAgain(this);
-                AccountPromptUtils.launchAccountPrompt(this);
-                return;
-            }
-
-            // Otherwise, continue setting up the page so that the user can still use the app
-            // without an account.
+            // Setting up the page so that the user can still use the app
+            // even without an account.
             if (mAllFragment != null) {
                 mAllFragment.setEnabled(false);
             }
@@ -1024,7 +1003,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         @Override
         public void onAddAccountAction() {
-            final Intent intent = AccountPromptUtils.getIntentForAddingAccount();
+            final Intent intent = ImplicitIntentsUtil.getIntentForAddingAccount();
             ImplicitIntentsUtil.startActivityOutsideApp(PeopleActivity.this, intent);
         }
 
