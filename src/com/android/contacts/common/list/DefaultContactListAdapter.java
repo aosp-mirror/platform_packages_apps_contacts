@@ -30,8 +30,10 @@ import android.provider.ContactsContract.SearchSnippets;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.ContactsCompat;
 import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.commonbind.experiments.Flags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +45,6 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
     public static final char SNIPPET_START_MATCH = '[';
     public static final char SNIPPET_END_MATCH = ']';
-
-    // Whether to show strequent contacts before the normal type-to-filter search results.
-    // TODO(wjang): set this using phenotype
-    private final boolean mShowStrequentsSearchResultsFirst = false;
 
     public DefaultContactListAdapter(Context context) {
         super(context);
@@ -76,7 +74,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 appendSearchParameters(builder, query, directoryId);
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
-                if (mShowStrequentsSearchResultsFirst) {
+                if (Flags.getInstance(mContext).getBoolean(
+                        Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
                     // Filter out starred and frequently contacted contacts from the main loader
                     // query results
                     loader.setSelection(Contacts.TIMES_CONTACTED + "=0 AND "
