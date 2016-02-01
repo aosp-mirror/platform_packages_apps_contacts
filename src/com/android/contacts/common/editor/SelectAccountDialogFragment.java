@@ -105,6 +105,12 @@ public final class SelectAccountDialogFragment extends DialogFragment {
         }
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle b) {
+        setTargetFragment(null, -1);
+        super.onSaveInstanceState(b);
+    }
+
     /**
      * Calls {@link Listener#onAccountChosen} of {@code targetFragment}.
      */
