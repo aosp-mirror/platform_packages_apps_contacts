@@ -34,10 +34,13 @@ public final class PhoneNumberFormatter {
             AsyncTask<Void, Void, PhoneNumberFormattingTextWatcher> {
         private final String mCountryCode;
         private final TextView mTextView;
+        private final boolean mFormatAfterWatcherSet;
 
-        public TextWatcherLoadAsyncTask(String countryCode, TextView textView) {
+        public TextWatcherLoadAsyncTask(
+                String countryCode, TextView textView, boolean formatAfterWatcherSet) {
             mCountryCode = countryCode;
             mTextView = textView;
+            mFormatAfterWatcherSet = formatAfterWatcherSet;
         }
 
         @Override
@@ -50,16 +53,14 @@ public final class PhoneNumberFormatter {
             if (watcher == null || isCancelled()) {
                 return; // May happen if we cancel the task.
             }
+
             // Setting a text changed listener is safe even after the view is detached.
             mTextView.addTextChangedListener(watcher);
 
-            // Note changes the user made before onPostExecute() will not be formatted, but
-            // once they type the next letter we format the entire text, so it's not a big deal.
-            // (And loading PhoneNumberFormattingTextWatcher is usually fast enough.)
-            // We could use watcher.afterTextChanged(mTextView.getEditableText()) to force format
-            // the existing content here, but that could cause unwanted results.
-            // (e.g. the contact editor thinks the user changed the content, and would save
-            // when closed even when the user didn't make other changes.)
+            // Forcing formatting the existing phone number
+            if (mFormatAfterWatcherSet) {
+                watcher.afterTextChanged(mTextView.getEditableText());
+            }
         }
     }
 
@@ -68,7 +69,21 @@ public final class PhoneNumberFormatter {
      */
     public static final void setPhoneNumberFormattingTextWatcher(Context context,
             TextView textView) {
-        new TextWatcherLoadAsyncTask(GeoUtil.getCurrentCountryIso(context), textView)
+        setPhoneNumberFormattingTextWatcher(context, textView,
+                /* formatAfterWatcherSet =*/ false);
+    }
+
+    /**
+     * Delay-sets {@link PhoneNumberFormattingTextWatcher} to a {@link TextView}
+     * and formats the number immediately if formatAfterWaterSet is true.
+     * In some cases, formatting before user editing might cause unwanted results
+     * (e.g. the editor thinks the user changed the content, and would save
+     * when closed even when the user didn't make other changes.)
+     */
+    public static final void setPhoneNumberFormattingTextWatcher(
+            Context context, TextView textView, boolean formatAfterWatcherSet) {
+        new TextWatcherLoadAsyncTask(GeoUtil.getCurrentCountryIso(context),
+                textView, formatAfterWatcherSet)
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void[]) null);
     }
 }
