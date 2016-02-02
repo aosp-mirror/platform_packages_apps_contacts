@@ -18,7 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Maandishi yamenakiliwa"</string>
-    <string name="copy_text" msgid="3424081789297978355">"Nakili kwenye ubao klipu"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Nakili kwenye ubao wa kunakili"</string>
     <string name="call_custom" msgid="2786306789889210756">"Pia simu <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Piga simu nyumbani"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Pigia simu ya mkononi"</string>

@@ -63,7 +63,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Send sms til mms"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Foretag videoopkald"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vil du rydde de ofte kontaktede?"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Hvis du gør dette, rydder du listen over personer, som du ofte kontakter, i appene Kontaktpersoner og Telefon. Du vil samtidig tvinge e-mailapps til at lære dine adressepræferencer fra bunden."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Hvis du gør dette, rydder du listen over personer, som du ofte kontakter, i appene Kontaktpersoner og Opkald. Du vil samtidig tvinge e-mailapps til at lære dine adressepræferencer fra bunden."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Ofte kontaktede personer ryddes…"</string>
     <string name="status_available" msgid="4832569677396634846">"Tilgængelig"</string>
     <string name="status_away" msgid="6267905184545881094">"Ikke til stede"</string>

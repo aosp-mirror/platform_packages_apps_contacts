@@ -63,7 +63,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"SMS an MMS senden"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Videoanruf starten"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Liste \"Häufig kontaktiert\" löschen?"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Sie löschen die Liste \"Häufig kontaktiert\" in den Apps \"Kontakte\" und \"Telefon\" und bewirken so ein Zurücksetzen Ihrer Adresseinstellungen für E-Mail-Apps."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Du löschst die Liste \"Häufig kontaktiert\" in den Apps \"Kontakte\" und \"Telefon\" und bewirkst so ein Zurücksetzen deiner Adresseinstellungen für E-Mail-Apps."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"\"Häufig kontaktiert\" wird gelöscht…"</string>
     <string name="status_available" msgid="4832569677396634846">"Verfügbar"</string>
     <string name="status_away" msgid="6267905184545881094">"Abwesend"</string>
@@ -172,7 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" konnte nicht geöffnet werden. Grund: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Exportprogramm konnte nicht gestartet werden. Grund: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Es ist kein exportierbarer Kontakt vorhanden."</string>
-    <string name="missing_required_permission" msgid="3120850759881656369">"Sie haben eine erforderliche Berechtigung deaktiviert."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Du hast eine erforderliche Berechtigung deaktiviert."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Beim Export ist ein Fehler aufgetreten: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Erforderlicher Dateiname ist zu lang (<xliff:g id="FILENAME">%s</xliff:g>)."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Zu viele vCard-Dateien im Speicher"</string>
@@ -187,10 +187,10 @@
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Kontakte wurden exportiert"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Export von <xliff:g id="FILENAME">%s</xliff:g> abgebrochen"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontaktdaten werden exportiert..."</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Ihre Kontaktdaten werden in \"<xliff:g id="FILE_NAME">%s</xliff:g>\" exportiert..."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Deine Kontaktdaten werden in \"<xliff:g id="FILE_NAME">%s</xliff:g>\" exportiert..."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Datenbankinformationen konnten nicht abgerufen werden."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Es sind keine exportierbaren Kontakte vorhanden. Falls sich Kontakte auf Ihrem Tablet befinden, ist das Exportieren der Kontakte eventuell durch den Datenanbieter gesperrt."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Es sind keine exportierbaren Kontakte vorhanden. Falls sich Kontakte auf Ihrem Telefon befinden, ist das Exportieren der Kontakte eventuell durch den Datenanbieter gesperrt."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Es sind keine exportierbaren Kontakte vorhanden. Falls sich Kontakte auf deinem Tablet befinden, ist das Exportieren der Kontakte eventuell durch den Datenanbieter gesperrt."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Es sind keine exportierbaren Kontakte vorhanden. Falls sich Kontakte auf deinem Telefon befinden, ist das Exportieren der Kontakte eventuell durch den Datenanbieter gesperrt."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Das Programm zum Erstellen der vCard wurde nicht richtig gestartet."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Export nicht möglich"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Die Kontaktdaten wurden nicht exportiert.\nGrund: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
@@ -201,10 +201,10 @@
     <string name="importing_vcard_canceled_title" msgid="556913863250769870">"Import von <xliff:g id="FILENAME">%s</xliff:g> abgebrochen"</string>
     <string name="vcard_import_will_start_message" msgid="7184603116300604514">"<xliff:g id="FILENAME">%s</xliff:g> wird in Kürze importiert."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Die Datei wird in Kürze importiert."</string>
-    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Die vCard-Importanfrage wurde abgelehnt. Bitte versuchen Sie es später erneut."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Die vCard-Importanfrage wurde abgelehnt. Bitte versuche es später erneut."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> wird in Kürze exportiert."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Die Datei wird in Kürze exportiert."</string>
-    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Die vCard-Exportanfrage wurde abgelehnt. Bitte versuchen Sie es später erneut."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Die vCard-Exportanfrage wurde abgelehnt. Bitte versuche es später erneut."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"Kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Caching der vCard(s) in lokalen temporären Speicher wird durchgeführt. Der eigentliche Import beginnt gleich."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Importieren der vCard nicht möglich"</string>
