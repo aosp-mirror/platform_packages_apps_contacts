@@ -1176,6 +1176,12 @@ public class QuickContactActivity extends ContactsActivity
             destroyInteractionLoaders();
             mContactLoader = (ContactLoader) getLoaderManager().restartLoader(
                     LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
+            // mContactLoader may not be in the state of "started". If not, onContentChanged() will
+            // not call forceLoad(), so QuickContact will not get the newly updated hi-res
+            // photo. If this is the case, we call forceLoad explicitly. See b/25204200.
+            if (!mContactLoader.isStarted()) {
+                mContactLoader.forceLoad();
+            }
             mCachedCp2DataCardModel = null;
         }
 
