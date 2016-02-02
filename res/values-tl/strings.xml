@@ -50,14 +50,15 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Ilagay sa Home screen"</string>
     <string name="menu_call" msgid="3992595586042260618">"Tawagan ang contact"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Mag-text sa contact"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Hiwalay"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Ihiwalay"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"I-edit"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"I-delete"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Magdagdag ng Contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Magdagdag ng Pangkat"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Ihiwalay ang contact?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Paghihiwa-hiwalayin ang contact na ito patungo sa maramihang contact."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"I-merge"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Ilalagay ang contact na ito sa maraming contact."</string>
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"Pagsamahin"</string>
+    <string name="menu_save" msgid="1727844363591825909">"I-save"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Sumali sa mga contact"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Piliin ang contact na gusto mong isama sa/kay <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Ipakita ang lahat ng mga contact"</string>
@@ -68,14 +69,14 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Itakda ang ringtone"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Lahat ng tawag sa voicemail"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Hindi ka makakapagtanggal ng mga contact mula sa mga read-only na account, ngunit maitatago mo ang mga ito sa iyong mga listahan ng mga contact."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Naglalaman ang contact na ito ng impormasyon mula sa maramihang account. Itatago ang impormasyon mula sa mga account na read-only sa mga listahan ng iyong mga contact, hindi tatanggalin."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Naglalaman ang contact na ito ng impormasyon mula sa maramihang account. Itatago ang impormasyon mula sa mga account na read-only sa mga listahan ng iyong mga contact, hindi idi-delete."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Kailangan mo ng kahit dalawang piniling contact upang gumawa ng pag-merge."</string>
-    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Ime-merge sa iisang contact ang mga piniling contact."</string>
+    <string name="batch_merge_confirmation" msgid="8551299480317422420">"Pagsasamahin sa iisang contact ang mga piniling contact."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"Ide-delete ang mga piniling contact."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Itatago sa iyong mga listahan ng contact ang impormasyon mula sa mga read-only na account, hindi ide-delete."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Naglalaman ng impormasyon mula sa maraming account ang mga contact na ito. Itatago sa iyong mga listahan ng contact ang impormasyon mula sa mga read-only na account, hindi ide-delete."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Tatanggalin ng pagtanggal sa account na ito ang impormasyon mula sa maramihang account."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Tatanggalin ang contact na ito."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Idi-delete ang contact na ito."</string>
     <string name="menu_discard" msgid="6854657936970228164">"I-discard ang mga pagbabago"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Hindi umiiral ang contact."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Idinagdag sa Home screen ang widget ng contact."</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Nagse-save ng contact…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Na-save ang contact."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Hindi ma-save ang mga pagbabago sa contact."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Hindi ma-save ang mga pagbabago sa larawan ng contact."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Na-save ang pangkat."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Hindi ma-save ang mga pagbabago sa pangkat."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"Kamakailan"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Mga kamakailang update"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> contact"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> account"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Hindi maaaring i-edit mula sa app na ito."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Kumuha ng bagong larawan"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Pumili ng larawan"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Pumili ng bagong larawan"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Ina-update ang listahan ng contact upang maipakita ang pagbabago ng wika."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Ina-update ang listahan ng contact."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Naghahanap…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Ipakita ang napili"</string>
@@ -191,7 +193,7 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Mag-sign in sa isang account"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Mag-import ng mga contact"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Lumikha ng bagong pangkat"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"Lumikha ng bagong pangkat"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"Bagong pangkat"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
       <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> pangkat</item>
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> na pangkat</item>
@@ -212,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Kinopya ang teksto"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"I-discard ang iyong mga pagbabago?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"I-set up ang aking profile"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"I-set up ang profile"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"I-type ang pangalan ng tao"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Pangalan ng pangkat"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Aking lokal na profile"</string>
@@ -224,8 +226,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Hindi maba-back up ang iyong bagong contact. Magdagdag ng account na nagba-back up ng mga contact online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Masi-synchronize ang iyong bagong contact sa <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Masi-synchronize mo ang iyong bagong contact sa isa sa iyong mga sumusunod na account. Alin ang gusto mong gamitin?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Magdagdag ng contact"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"I-edit ang contact"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Mag-add ng contact"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"I-edit"</string>
     <string name="keep_local" msgid="1258761699192993322">"Panatilihing lokal"</string>
     <string name="add_account" msgid="8201790677994503186">"Magdagdag ng account"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Magdagdag ng bagong account"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ikaw: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Gagana nang mas maayos ang Hangouts kapag inilagay mo ang identifier sa Hangouts ng isang tao sa field ng email o sa field ng telepono."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Higit Pang Mga Field"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Palitan ang larawan"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

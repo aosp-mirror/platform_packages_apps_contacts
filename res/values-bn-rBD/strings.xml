@@ -55,9 +55,10 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"মুছুন"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"পরিচিতি যুক্ত করুন"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"গোষ্ঠী যোগ করুন"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"পরিচিতি বিভক্ত করবেন?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"এই পরিচিতি একাধিক পরিচিতিগুলির মধ্যে বিভক্ত করা হবে৷"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"পরিচিতি আদালা করবেন?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"এই পরিচিতিটি একাধিক পরিচিতিগুলির মধ্যে বিভক্ত করা হবে৷"</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"মার্জ করুন"</string>
+    <string name="menu_save" msgid="1727844363591825909">"সংরক্ষণ করুন"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"পরিচিতিগুলিকে যোগ করুন"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> এর সাথে যোগ করতে চান সেই পরিচিতিটি চয়ন করুন:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"সকল পরিচিতি দেখান"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"পরিচিতি সংরক্ষণ করা হচ্ছে…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"পরিচিতি সংরক্ষিত হয়েছে৷"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"পরিচিতির পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"পরিচিতির ফটোর পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"গোষ্ঠী সংরক্ষিত হয়েছে৷"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"গোষ্ঠীর পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"সাম্প্রতিক"</string>
     <string name="recent_updates" msgid="4267258535615860710">"সাম্প্রতিক আপডেটগুলি"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>টি পরিচিতি"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> অ্যাকাউন্ট"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"এই অ্যাপ্লিকেশন থেকে সম্পাদনাযোগ্য নয়৷"</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"নতুন ফটো তুলুন"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ফটো চয়ন করুন"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"নতুন ফটো নির্বাচন করুন"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"যোগাযোগ তালিকার ভাষা পরিবর্তন প্রতিফলিত করতে আপডেট করা হচ্ছে৷"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"পরিচিতি তালিকা আপডেট করা হচ্ছে৷"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"অনুসন্ধান করছে..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"নির্বাচিত দেখান"</string>
@@ -212,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"পাঠ্য অনুলিপি হয়েছে"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"আপনার পরিবর্তনগুলি বাতিল করতে চান?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"আমার প্রোফাইল সেট আপ করুন"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"আমার প্রোফাইল সেট করা"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"ব্যক্তির নাম লিখুন"</string>
     <string name="group_name_hint" msgid="238359485263401293">"গোষ্ঠীর নাম"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"আমার স্থানীয় প্রোফাইল"</string>
@@ -224,13 +226,13 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"আপনার নতুন পরিচিতিটির ব্যাকআপ নেওয়া হবে না৷ পরিচিতিগুলিকে অনলাইনে ব্যাকআপ নেওয়ার জন্য একটি অ্যাকাউন্ট যুক্ত করবেন?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"আপনার নতুন পরিচিতি <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> এর সাথে সিংক্রোনাইজ করা হবে৷"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"আপনি নিম্নলিখিত অ্যাকাউন্টগুলির মধ্যে যেকোনো একটির সাথে আপনার নতুন পরিচিতি সিংক্রোনাইজ করতে পারেন৷ আপনি কোনটি ব্যবহার করতে চান?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"নতুন পরিচিতি যোগ করুন"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"নতুন পরিচিতি জুড়ুন"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"পরিচিতি সম্পাদনা করুন"</string>
     <string name="keep_local" msgid="1258761699192993322">"স্থানীয় ভাবে রাখুন"</string>
     <string name="add_account" msgid="8201790677994503186">"অ্যাকাউন্ট জুড়ুন"</string>
     <string name="add_new_account" msgid="5748627740680940264">"নতুন অ্যাকাউন্ট যোগ করুন"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ডেটাবেস ফাইলগুলি রপ্তানি করুন"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"নতুন পরিচিতি যোগ করুন"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"নতুন পরিচিতি জুড়ুন"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"আরো দেখুন"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"আরো কম"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"সবগুলো দেখুন"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"আপনি: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"আপনি যখন ইমেল বা ফোন নম্বর লেখার ক্ষেত্রটিতে ব্যক্তির Hangouts সনাক্তকারী লেখেন তখন Hangouts আরো ভালো কাজ করে৷"</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"আরো ফিল্ড"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ফটো পরিবর্তন করুন"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

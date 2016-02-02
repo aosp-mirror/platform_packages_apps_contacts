@@ -55,9 +55,10 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Suprimeix"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Afegeix el contacte"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Afegeix un grup"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Dividir contacte?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Aquest contacte es dividirà en diversos contactes."</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Separar contacte?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Aquest contacte se separarà en diversos contactes."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Combina"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Desa"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Unió de contactes"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Tria el contacte que vols unir amb <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostra tots els contactes"</string>
@@ -67,7 +68,7 @@
     <string name="contacts_deleted_toast" msgid="286851430992788215">"S\'han suprimit els contactes"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Estableix so"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Trucades a la bústia de veu"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"No pots suprimir cap contacte dels comptes de només lectura, però pots amagar-los a les llistes de contactes."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"No pots suprimir cap contacte dels comptes només de lectura, però pots amagar-los a les llistes de contactes."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Aquest contacte inclou informació de diversos comptes. La informació dels comptes només de lectura s\'ocultarà a les llistes de contactes, però no se suprimirà."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Has de tenir com a mínim dos contactes seleccionats per combinar-los."</string>
     <string name="batch_merge_confirmation" msgid="8551299480317422420">"Els contactes seleccionats es combinaran i se\'n crearà un de sol."</string>
@@ -89,7 +90,7 @@
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"No hi ha cap imatge disponible al telèfon."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacte"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nom de camp personalitzat"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Envia les trucades directament al correu de veu"</string>
+    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Envia les trucades directament a la bústia de veu"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Elimina la foto"</string>
     <string name="noContacts" msgid="8579310973261953559">"No hi ha contactes."</string>
     <string name="noGroups" msgid="8614664663561385253">"Cap grup"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"S\'està desant el contacte..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"S\'ha desat el contacte."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"No s\'han pogut desar els canvis al contacte."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"No s\'han pogut desar els canvis de la foto de contacte."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grup desat."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"No s\'han pogut desar els canvis al grup."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -117,7 +119,7 @@
     </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Tots els contactes"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Preferits"</string>
-    <string name="callBack" msgid="5498224409038809224">"Torna la trucada"</string>
+    <string name="callBack" msgid="5498224409038809224">"Truca"</string>
     <string name="callAgain" msgid="3197312117049874778">"Torna a trucar"</string>
     <string name="returnCall" msgid="8171961914203617813">"Retorna la trucada"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Voleu afegir \"<xliff:g id="EMAIL">%s</xliff:g>\" als contactes?"</string>
@@ -127,8 +129,8 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Noms dels contactes"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"No s\'ha trobat cap aplicació per processar aquesta acció."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Fes clic per tornar a la pantalla anterior"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Afegeix un número de telèfon."</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"Afegeix una adreça electrònica."</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Afegeix un número de telèfon"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Afegeix una adreça electrònica"</string>
     <string name="missing_app" msgid="1466111003546611387">"No s\'ha trobat cap aplicació per processar aquesta acció."</string>
     <string name="menu_share" msgid="943789700636542260">"Comparteix"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Afegeix als contactes"</string>
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"Recent"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Actualitzac. recents"</string>
     <string name="account_type_format" msgid="718948015590343010">"Contacte de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"Compte de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"No es pot editar des d\'aquesta aplicació."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Fes una foto nova"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Tria una foto"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Selecciona una foto nova"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"S\'actualitza la llista de contactes per reflectir el canvi d\'idioma."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"S\'actualitza la llista de contactes."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"S\'està cercant..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Mostra la selecció"</string>
@@ -163,7 +165,7 @@
     <string name="change_photo" msgid="8530597935483526383">"Canvia"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Foto principal"</string>
     <string name="description_star" msgid="2605854427360036550">"preferit"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Edita el contacte"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Edita contacte"</string>
     <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
       <item quantity="other">combinats de <xliff:g id="COUNT">%0$d</xliff:g> fonts</item>
       <item quantity="one">no combinat</item>
@@ -184,11 +186,11 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Afegeix al contacte"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Tanca"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"Especifica un any"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Especifica l\'any"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Contacte"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"S\'està carregant…"</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Crea un contacte nou"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Inicia la sessió a un compte"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Crea un contacte"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Inicia sessió en un compte"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importa contactes"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Creació d\'un grup nou"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Crea un grup nou"</string>
@@ -212,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Text copiat"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Vols descartar els canvis?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Configura el meu perfil"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Configura el perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Escriu el nom de la persona"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nom del grup"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"El meu perfil local"</string>
@@ -220,15 +222,15 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
     <string name="no_account_prompt" msgid="6424883302325061025">"La funció Contactes funciona millor amb un compte de Google.\n\n• Accedeix-hi des de qualsevol navegador.\n• Fes còpies de seguretat dels contactes de manera segura."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén els contactes segurs encara que perdis el telèfon: sincronitza\'ls amb un servidor en línia."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Afegeix un compte"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte que faci còpies de seguretat dels contactes en línia?"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Afegeix compte"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte per fer còpies de seguretat en línia dels contactes?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"El teu contacte nou se sincronitzarà amb <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pots sincronitzar el teu contacte nou amb un dels comptes següents. Quin vols utilitzar?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Afegir un contacte"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar un contacte"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Conserva localment"</string>
-    <string name="add_account" msgid="8201790677994503186">"Afegeix un compte"</string>
-    <string name="add_new_account" msgid="5748627740680940264">"Afegeix un compte nou"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Afegeix un contacte"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edita el contacte"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Còpia local"</string>
+    <string name="add_account" msgid="8201790677994503186">"Afegeix compte"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Afegeix compte"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exporta els fitxers de la base de dades"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"afegeix un contacte nou"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Mostra\'n més"</string>
@@ -245,7 +247,7 @@
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"Demà a les <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Esdeveniment sense títol)"</string>
-    <string name="date_time_set" msgid="4761419824439606690">"Configura"</string>
+    <string name="date_time_set" msgid="4761419824439606690">"Estableix"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"MI"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organització"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Àlies"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Usuari: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funciona millor si introdueixes l\'identificador de Hangouts de la persona corresponent al camp de l\'adreça electrònica o del telèfon."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Més camps"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Canvia la foto"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

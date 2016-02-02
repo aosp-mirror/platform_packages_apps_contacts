@@ -56,8 +56,9 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Добавяне на контакт"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Добавяне на група"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Да се раздели ли контактът?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Този контакт ще бъдат разделен на няколко."</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Този контакт ще бъде разделен на няколко."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Обединяване"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Запазване"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Сливане на контакти"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Изберете контакт, който да слеете с <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Показване на всички контакти"</string>
@@ -65,7 +66,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Всички контакти"</string>
     <string name="contactsJoinedMessage" msgid="656936718666768589">"Контактите са обединени"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Контактите са изтрити"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Мелодия: Задав."</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Задаване на мелодия"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Всички обаждания до гл. поща"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Не можете да изтриете контакти от профили само за четене, но можете да ги скриете в списъците си с контакти."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Този контакт съдържа информация от няколко профила. Тази от профили само за четене ще бъде скрита, а не изтрита."</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Контактът се запазва..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контактът е запазен."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Промените в контакта не можаха да бъдат запазени."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Промените в снимката на контакта не можаха да се запазят."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Групата е запазена."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Промените в групата не можаха да бъдат запазени."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"Скорошни"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Скорошни актуал."</string>
     <string name="account_type_format" msgid="718948015590343010">"Контакт от <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"Профил в <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Не може да се редактира от приложението."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Заснемане на нова снимка"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Избор на снимка"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Избор на нова снимка"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Списъкът с контакти се актуализира, за да отрази промяната на езика."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Списъкът с контакти се актуализира."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Търси се..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Показване на избраните"</string>
@@ -191,7 +193,7 @@
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Вход в профил"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Импортиране на контактите"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Създаване на нова група"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"Създаване на нова група"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"Нова група"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> групи</item>
       <item quantity="one">1 група</item>
@@ -224,10 +226,10 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"За новия ви контакт няма да бъде създадено резервно копие. Да се добави ли профил, в който да се създават такива копия на контактите онлайн?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Новият ви контакт ще бъде синхронизиран със: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Можете да синхронизирате новия си контакт с един от следните профили. Кой от тях искате да използвате?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Нов контакт: Добав."</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Контакт: Редактиране"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Добавяне"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Редактиране"</string>
     <string name="keep_local" msgid="1258761699192993322">"Съхраняване локално"</string>
-    <string name="add_account" msgid="8201790677994503186">"Добавяне на профил"</string>
+    <string name="add_account" msgid="8201790677994503186">"Добавяне"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Добавяне на нов профил"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Експортиране на файловете на базата от данни"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"добавяне на нов контакт"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Вие: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts работи по-добре, когато въведете съответния идентификатор на човека в полето за имейл или телефон."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Още полета"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Промяна на снимката"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

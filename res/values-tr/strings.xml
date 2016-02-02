@@ -56,8 +56,9 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Kişi Ekle"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Grup Ekle"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Kişi ayrılsın mı?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Kişi birden çok kişiye ayrılacak."</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Bu kişi birden çok kişiye ayrılacak."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Birleştir"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Kaydet"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Kişileri birleştir"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> ile birleştirmek istediğiniz kişiyi seçin:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Tüm kişileri göster"</string>
@@ -91,7 +92,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Özel etiket adı"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Çağrıları doğrudan sesli mesaja gönder"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fotoğrafı kaldır"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Hiçbir kişi yok."</string>
+    <string name="noContacts" msgid="8579310973261953559">"Kişi listesi boş."</string>
     <string name="noGroups" msgid="8614664663561385253">"Grup yok."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Grup oluşturmanız için hesap gerekir."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Bu grupta hiç kimse yok."</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Kişi kaydediliyor..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kişi kaydedildi."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kişi değişiklikleri kaydedilemedi."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Kişi fotoğrafı değişiklikleri kaydedilmedi."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grup kaydedildi."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Grup değişiklikleri kaydedilemedi."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"Son"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Son güncellemeler"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kişi"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> hesabı"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Bu uygulamadan düzenlenemez."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Yeni fotoğraf çek"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Fotoğraf seç"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Yeni fotoğraf seç"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Kişi listesi, dil değişikliğini yansıtmak üzere güncelleniyor."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kişi listesi güncelleniyor."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Aranıyor…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Seçileni göster"</string>
@@ -184,7 +186,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Kişiye ekle"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Kapat"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"Yıl girin"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Yıl girilsin"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kişi"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Yükleniyor..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Yeni kişi oluştur"</string>
@@ -260,7 +262,7 @@
     <string name="header_photo_entry" msgid="4438023151411853238">"Fotoğraf"</string>
     <string name="content_description_expand_editor" msgid="1111381475901897470">"Kişi düzenleyiciyi genişletmek için tıklayın."</string>
     <string name="content_description_collapse_editor" msgid="7598061318022977825">"Kişi düzenleyiciyi daraltmak için tıklayın."</string>
-    <string name="content_description_directions" msgid="2686791825798189335">"konum için yol tarifleri"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"konum için yol tarifi"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"son gelen sms. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. yanıtlamak için dokunun"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"gelen"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"giden"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Siz: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Kişinin Hangouts tanımlayıcısını e-posta veya telefon alanına girdiğinizde Hangouts daha iyi çalışır."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Diğer Alanlar"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Fotoğrafı değiştir"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

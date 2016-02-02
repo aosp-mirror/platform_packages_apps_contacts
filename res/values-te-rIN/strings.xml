@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"పరిచయాన్ని వేరు చేయాలా?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"ఈ పరిచయం బహుళ పరిచయాలుగా వేరు చేయబడుతుంది."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"విలీనం చేయి"</string>
+    <string name="menu_save" msgid="1727844363591825909">"సేవ్ చేయి"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"పరిచయాలను కలపండి"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"మీరు <xliff:g id="NAME">%s</xliff:g>తో కలపాలనుకుంటున్న పరిచయాన్ని ఎంచుకోండి:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"అన్ని పరిచయాలను చూపు"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"పరిచయాన్ని సేవ్ చేస్తోంది…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"పరిచయం సేవ్ చేయబడింది."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"పరిచయ మార్పులను సేవ్ చేయడం సాధ్యపడలేదు."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"పరిచయం ఫోటో మార్పులను సేవ్ చేయలేకపోయింది."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"సమూహం సేవ్ చేయబడింది."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"సమూహ మార్పులను సేవ్ చేయడం సాధ్యపడలేదు."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -117,7 +119,7 @@
     </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"అన్ని పరిచయాలు"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"ఇష్టమైనవి"</string>
-    <string name="callBack" msgid="5498224409038809224">"తిరిగి కాల్ చేయి"</string>
+    <string name="callBack" msgid="5498224409038809224">"కాల్ చేయి"</string>
     <string name="callAgain" msgid="3197312117049874778">"మళ్లీ కాల్ చేయి"</string>
     <string name="returnCall" msgid="8171961914203617813">"కాల్‌ను తిరిగి చేయి"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\"ని పరిచయాలకు జోడించాలా?"</string>
@@ -141,15 +143,15 @@
     <string name="recent" msgid="2659189233141493004">"ఇటీవలివి"</string>
     <string name="recent_updates" msgid="4267258535615860710">"ఇటీవలి నవీకరణలు"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> పరిచయం"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> ఖాతా"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"ఈ అనువర్తనం నుండి సవరించడం కుదరదు."</string>
     <string name="group_read_only" msgid="1061762906115697637">"ఈ పరికరంలో సవరించడం కుదరదు."</string>
-    <string name="take_photo" msgid="7496128293167402354">"ఫోటో తీసుకోండి"</string>
+    <string name="take_photo" msgid="7496128293167402354">"ఫోటో తీయండి"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"కొత్త ఫోటో తీసుకోండి"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ఫోటోను ఎంచుకోండి"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"కొత్త ఫోటోను ఎంచుకోండి"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"భాష మార్పును ప్రతిబింబించడానికి పరిచయ జాబితా నవీకరించబడుతోంది."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"పరిచయ జాబితా నవీకరించబడుతోంది."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"శోధిస్తోంది..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ఎంచుకున్న వాటిని చూపు"</string>
@@ -190,8 +192,8 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"కొత్త పరిచయాన్ని సృష్టించు"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ఖాతాకు సైన్ ఇన్ చేయి"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"పరిచయాలను దిగుమతి చేయి"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"కొత్త సమూహాన్ని సృష్టించండి"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"కొత్త సమూహాన్ని సృష్టించండి"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"సమూహాన్ని సృష్టించండి"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"సమూహాన్ని సృష్టించండి"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> సమూహాలు</item>
       <item quantity="one">1 సమూహం</item>
@@ -225,7 +227,7 @@
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"మీ కొత్త పరిచయం <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>తో సమకాలీకరించబడుతుంది."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"మీరు క్రింది ఖాతాల్లో ఒకదానితో మీ కొత్త పరిచయాన్ని సమకాలీకరించవచ్చు. మీరు దేన్ని ఉపయోగించాలనుకుంటున్నారు?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"కొత్త పరిచయం చేర్చు"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"పరిచయాన్ని సవరించండి"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"సవరించండి"</string>
     <string name="keep_local" msgid="1258761699192993322">"స్థానికంగా ఉంచండి"</string>
     <string name="add_account" msgid="8201790677994503186">"ఖాతాను జోడించు"</string>
     <string name="add_new_account" msgid="5748627740680940264">"కొత్త ఖాతాను జోడించు"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"మీరు: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"మీరు ఇమెయిల్ ఫీల్డ్ లేదా ఫోన్ ఫీల్డ్‌లో వ్యక్తి యొక్క Hangouts ఐడెంటిఫైయర్‌ని నమోదు చేసినప్పుడు Hangouts ఉత్తమంగా పని చేస్తాయి."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"మరిన్ని ఫీల్డ్‌లు"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ఫోటోను మార్చండి"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

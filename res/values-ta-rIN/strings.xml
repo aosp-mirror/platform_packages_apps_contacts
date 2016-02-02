@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"தொடர்பைப் பிரிக்கவா?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"இந்தத் தொடர்பு பல தொடர்புகளாகப் பிரிக்கப்படும்."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"ஒன்றிணை"</string>
+    <string name="menu_save" msgid="1727844363591825909">"சேமி"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"தொடர்புகளில் இணை"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> உடன் இணைய விரும்பும் தொடர்பைத் தேர்வுசெய்யவும்:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"எல்லா தொடர்புகளையும் காட்டு"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"தொடர்பைச் சேமிக்கிறது…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"தொடர்பு சேமிக்கப்பட்டது."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"தொடர்பின் மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"தொடர்பின் பட மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"குழு சேமிக்கப்பட்டது."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"குழு மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -116,8 +118,8 @@
       <item quantity="one">1 கண்டறியப்பட்டது</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"எல்லா தொடர்புகளும்"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"விருப்பங்கள்"</string>
-    <string name="callBack" msgid="5498224409038809224">"திருப்பி அழை"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"பிடித்தவை"</string>
+    <string name="callBack" msgid="5498224409038809224">"அழை"</string>
     <string name="callAgain" msgid="3197312117049874778">"மீண்டும் அழை"</string>
     <string name="returnCall" msgid="8171961914203617813">"திரும்பி அழை"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" ஐத் தொடர்புகளில் சேர்க்கவா?"</string>
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"சமீபத்தியவை"</string>
     <string name="recent_updates" msgid="4267258535615860710">"சமீபத்திய புதுப்பிப்புகள்"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> தொடர்பு"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> கணக்கு"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"இந்தப் பயன்பாட்டிலிருந்து திருத்த முடியாது."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"புதிய படத்தை எடு"</string>
     <string name="pick_photo" msgid="2129509985223564942">"படத்தைத் தேர்வுசெய்யவும்"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"புதிய படத்தைத் தேர்ந்தெடுக்கவும்"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"மொழியின் மாற்றத்தைப் பிரதிபலிக்கத் தொடர்பு பட்டியல் புதுப்பிக்கப்படுகிறது."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"தொடர்பு பட்டியல் புதுப்பிக்கப்படுகிறது."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"தேடுகிறது..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"தேர்ந்தெடுத்தவற்றைக் காட்டு"</string>
@@ -184,14 +186,14 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"தொடர்பில் சேர்"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"மூடு"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"ஆண்டை வழங்கு"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"ஆண்டைக் காட்டு"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"தொடர்பு"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ஏற்றுகிறது..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"புதிய தொடர்பை உருவாக்கு"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"கணக்கில் உள்நுழைக"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"தொடர்புகளை இறக்குமதி செய்"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"புதிய குழுவை உருவாக்கு"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"புதிய குழுவை உருவாக்கு"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"புதிய குழு"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> குழுக்கள்</item>
       <item quantity="one">1 குழு</item>
@@ -268,5 +270,7 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"சமீபத்திய அழைப்பு. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. திரும்ப அழைக்க, கிளிக் செய்க"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"நீங்கள்: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"பிறரின் Hangouts அடையாளத்தை மின்னஞ்சல் அல்லது ஃபோன் புலத்தில் உள்ளிடும் போது, Hangouts இன்னும் சிறப்பாகச் செயல்படும்."</string>
-    <string name="compact_editor_more_fields" msgid="2874181192382284115">"மேலும் புலங்கள்"</string>
+    <string name="compact_editor_more_fields" msgid="2874181192382284115">"மேலும்  விவரங்கள்"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"படத்தை மாற்றவும்"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

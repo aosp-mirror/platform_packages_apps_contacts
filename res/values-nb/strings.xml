@@ -50,14 +50,15 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plassér på startsiden"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send SMS til kontakt"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Del"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Adskill"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Rediger"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Slett"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Legg til kontakt"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Legg til gruppe"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Dele opp kontakt?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Denne kontakten kommer til å deles opp i flere kontakter."</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Vil du adskille?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Denne kontakten blir delt opp i flere kontakter."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Slå sammen"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Lagre"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Slå sammen kontakter"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Velg kontakten du vil slå sammen med <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Vis alle kontakter"</string>
@@ -75,7 +76,7 @@
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Informasjon fra skrivebeskyttede kontoer blir skjult i kontaktlistene dine, ikke slettet."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Disse kontaktene inneholder informasjon fra flere kontoer. Informasjon fra skrivebeskyttede kontoer blir skjult i kontaktlistene dine, ikke slettet."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Sletter du denne kontakten, vil du slette informasjon fra flere kontoer."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Denne kontakten vil bli slettet."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Denne kontakten blir slettet."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Forkast endringene"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakten finnes ikke."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontaktmodulen ble lagt til på startsiden."</string>
@@ -97,8 +98,9 @@
     <string name="emptyGroup" msgid="7502116218697177370">"Det er ingen personer i denne gruppen."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Rediger gruppen for å legge til noen."</string>
     <string name="savingContact" msgid="4075751076741924939">"Lagrer kontakt…"</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt lagret."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Kontakten er lagret."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kunne ikke lagre kontaktendringene."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Kunne ikke lagre endringene av kontaktbildene."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Gruppe er lagret."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Kunne ikke lagre gruppeendringer."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -115,7 +117,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> er funnet</item>
       <item quantity="one">1 er funnet</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Alle kontaktene"</string>
+    <string name="all_contacts_tab_label" msgid="6250372293594147703">"Alle kontakter"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Favoritter"</string>
     <string name="callBack" msgid="5498224409038809224">"Ring tilbake"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ring på nytt"</string>
@@ -132,7 +134,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Kunne ikke finne noen app som kan håndtere denne handlingen."</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Legg til i kontakter"</string>
-    <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
+    <string name="share_via" msgid="563121028023030093">"Del kontakten via"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Opprett gruppe under konto"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Taleprat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videonettprat"</string>
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"Nylige"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Nylige oppdateringer"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-kontakt"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-konto"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Kan ikke redigeres fra denne appen."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Ta nytt bilde"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Velg et bilde"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Velg et nytt bilde"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktlisten er oppdatert med nytt språk."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktlisten er under oppdatering."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Søker …"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Vis valgte"</string>
@@ -212,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst kopiert"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Vil du forkaste endringene?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Konfigurer profilen min"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Konfigurer profilen"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Tast inn personens navn"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Gruppens navn"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
@@ -225,7 +227,7 @@
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Den nye kontakten din blir synkronisert med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisere den nye kontakten din med én av de følgende kontoene. Hvilken vil du bruke?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Legg til ny kontakt"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Rediger kontakten"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Rediger"</string>
     <string name="keep_local" msgid="1258761699192993322">"Behold lokalt"</string>
     <string name="add_account" msgid="8201790677994503186">"Legg til konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Legg til ny konto"</string>
@@ -245,7 +247,7 @@
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"I morgen kl.<xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Aktivitet uten navn)"</string>
-    <string name="date_time_set" msgid="4761419824439606690">"Still inn"</string>
+    <string name="date_time_set" msgid="4761419824439606690">"Angi"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"Nettprat"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organisasjon"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Kallenavn"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Du: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts fungerer bedre når du går inn i personenes Hangouts-identifikatorer i e-postfeltet eller telefonfeltet."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Flere felt"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Endre bilde"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>
