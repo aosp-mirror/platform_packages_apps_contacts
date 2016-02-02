@@ -47,17 +47,18 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Uredi"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Izbriši"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Promijeni fotografiju"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Mjesto na početnom zaslonu"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Stavi na početni zaslon"</string>
     <string name="menu_call" msgid="3992595586042260618">"Nazovi kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Poruka kontaktu"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Zasebno"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Razdvoji"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Uredi"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Izbriši"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Dodavanje kontakta"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Dodavanje grupe"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Odvojiti kontakt?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Ovaj će se kontakt razdvojiti na više kontakata."</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Razdvojiti kontakt?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Kontakt će se razdvojiti na više kontakata."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Spoji"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Spremi"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Pridruži kontakte"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Odaberite kontakt koji želite pridružiti imenu <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Prikaži sve kontakte"</string>
@@ -75,7 +76,7 @@
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Podaci s računa koji su samo za čitanje bit će skriveni na popisu kontakata, a ne izbrisani."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Ti kontakti sadrže podatke s više računa. Podaci s računa koji su samo za čitanje bit će skriveni na popisu kontakata, a ne izbrisani."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Brisanjem ovog kontakta izbrisat ćete podatke s više računa."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Ovaj će kontakt biti izbrisan."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Kontakt će se izbrisati."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Odbaci promjene"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakt ne postoji."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget za kontakte dodan je na vaš početni zaslon."</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Spremanje kontakta..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt je spremljen."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Promjene kontakta nije moguće spremiti."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Promjene fotografije kontakta nisu spremljene."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Skupina spremljena."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Promjene grupe nije moguće spremiti."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -144,15 +146,15 @@
     <string name="recent" msgid="2659189233141493004">"Nedavni"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Nedavna ažuriranja"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakt"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> račun"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Iz ove aplikacije ne može se uređivati."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Na ovom uređaju ne može se uređivati"</string>
     <string name="take_photo" msgid="7496128293167402354">"Snimi fotografiju"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Snimi novu fotografiju"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"Odaberite fotografiju"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Odaberi fotografiju"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Odaberite novu fotografiju"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Popis kontakata ažurira se da bi se pokazala promjena jezika."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Popis kontakata ažurira se."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Pretraživanje..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Prikaži odabrano"</string>
@@ -276,4 +278,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vi: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funkcionira bolje kada unesete njegov identifikator osobe u polje e-adrese ili telefona."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Više polja"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Promijeni fotografiju"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

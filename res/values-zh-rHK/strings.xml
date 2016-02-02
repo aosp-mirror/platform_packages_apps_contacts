@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"要分拆聯絡人記錄嗎？"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"這個聯絡人記錄即將分拆為多個。"</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"合併"</string>
+    <string name="menu_save" msgid="1727844363591825909">"儲存"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"合併聯絡人"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"選擇要與<xliff:g id="NAME">%s</xliff:g>合併的聯絡人："</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"顯示所有聯絡人"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"正在儲存聯絡人…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"聯絡人已儲存。"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"無法儲存聯絡人變更。"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"無法儲存聯絡人相片變更。"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"群組已儲存。"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"無法儲存群組變更。"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"近況"</string>
     <string name="recent_updates" msgid="4267258535615860710">"近期動態"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 聯絡人"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> 帳戶"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"無法以這個應用程式編輯。"</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"拍攝新相片"</string>
     <string name="pick_photo" msgid="2129509985223564942">"選擇相片"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"選取新相片"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"正在更新聯絡人名單，以反映語言變更。"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"正在更新聯絡人清單。"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"正在搜尋..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"顯示已選取的項目"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"當您在電郵欄或手機欄中輸入個人的 Hangouts 識別碼時，Hangouts 會提供更卓越的服務。"</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"更多欄位"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"變更相片"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

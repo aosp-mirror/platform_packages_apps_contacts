@@ -50,14 +50,15 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Placer sur l\'écran d\'accueil"</string>
     <string name="menu_call" msgid="3992595586042260618">"Appeler le contact"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Envoyer un SMS au contact"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Séparer"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Dissocier"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Modifier"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Supprimer"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Ajouter un contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Ajouter un groupe"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Séparer le contact ?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Dissocier le contact ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Ce contact va être séparé en plusieurs contacts."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Fusionner"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Enregistrer"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Joindre les contacts"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Sélectionnez le contact que vous voulez associer à \"<xliff:g id="NAME">%s</xliff:g>\" :"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Afficher tous les contacts"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Enregistrement du contact…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contact enregistré."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Impossible d\'enregistrer les modifications apportées au contact."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Impossible d\'enregistrer les modifications apportées à la photo du contact."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Groupe enregistré"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Impossible d\'enregistrer les modifications apportées au groupe."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"Récentes"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Mises à jour récentes"</string>
     <string name="account_type_format" msgid="718948015590343010">"Contact <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"Compte <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Non modifiable depuis cette application."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Prendre une autre photo"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Sélectionner une photo"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Sélectionner une nouvelle photo"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Mise à jour de la liste des contacts en cours suite au changement de langue."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"La liste de contacts est en cours de mise à jour."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Recherche…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Afficher la sélection"</string>
@@ -210,7 +212,7 @@
     <string name="set_default" msgid="4417505153468300351">"Définir par défaut"</string>
     <string name="clear_default" msgid="7193185801596678067">"Effacer les valeurs par défaut"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texte copié"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Annuler les modifications ?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Supprimer les modifications ?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Configurer mon profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Saisissez le nom de la personne"</string>
@@ -225,7 +227,7 @@
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Votre nouveau contact va être synchronisé avec <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Vous pouvez synchroniser votre nouveau contact avec l\'un des comptes suivants. Lequel souhaitez-vous utiliser ?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ajouter un contact"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier le contact"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier contact"</string>
     <string name="keep_local" msgid="1258761699192993322">"Enregistrer localement"</string>
     <string name="add_account" msgid="8201790677994503186">"Ajouter un compte"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ajouter un compte"</string>
@@ -248,7 +250,7 @@
     <string name="date_time_set" msgid="4761419824439606690">"Définir"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"Messagerie instantanée"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organisation"</string>
-    <string name="header_nickname_entry" msgid="6743561883967451485">"Pseudo"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"Surnom"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"Note"</string>
     <string name="header_website_entry" msgid="1411467850000824745">"Site Web"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Événement"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vous : <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Les Hangouts fonctionnent mieux si vous saisissez l\'identifiant Hangouts de la personne concernée dans le champ de l\'adresse e-mail ou du numéro de téléphone."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Autres champs"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Changer de photo"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

@@ -47,7 +47,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Szerkesztés"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Törlés"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Fénykép lecserélése"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Helyezze el a kezdőképernyőn"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Kezdőképernyőre"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ismerős hívása"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS küldése ismerősnek"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Szétválasztás"</string>
@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Szétválasztja?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Ezt a névjegyet több névjegyre osztja."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Egyesítés"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Mentés"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Névjegyek összekapcsolása"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Válassza ki azt a névjegyet, amelyet össze kíván kapcsolni ezzel a névjeggyel: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Az összes névjegy megjelenítése"</string>
@@ -75,7 +76,7 @@
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Az írásvédett fiókokból származó adatok nem jelennek meg a névjegyek között, de nem kerülnek törlésre."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Ezek a névjegyek több fiókból is tartalmaznak adatokat. Az írásvédett fiókokból származó adatok nem jelennek meg a névjegyek között, de nem kerülnek törlésre."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"A névjegy törlésével több fiókból is töröl adatokat."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"A névjegy törlésre kerül."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Törölni fogja a névjegyet."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Módosítások elvetése"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"A névjegy nem létezik."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"A Névjegy modul felkerült a kezdőképernyőre."</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Névjegy mentése..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Névjegy mentve."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nem sikerült menteni a névjegymódosításokat."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Nem sikerült menteni a névjegyfotó módosításait."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Csoport mentve."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nem sikerült menteni a csoportmódosításokat."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"Legújabbak"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Legújabb frissítések"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> névjegy"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-fiók"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Nem szerkeszthető ezen alkalmazásból."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Új fénykép készítése"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Fotó kiválasztása"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Új fotó kiválasztása"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Az ismerőslista frissítése folyamatban van, hogy tükrözze a nyelv módosítását."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Az ismerőslista frissítése folyamatban van."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Keresés..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Kiválasztottak megjelenítése"</string>
@@ -188,7 +190,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Névjegy"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Betöltés..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Új névjegy létrehozása"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Jelentkezzen be fiókjába"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Bejelentkezés egy fiókba"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Névjegyek importálása"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Új csoport létrehozása"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Új csoport létrehozása"</string>
@@ -221,13 +223,13 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"A Névjegyek alkalmazás jobban működik egy Google-fiókkal.\n\n• Bármilyen böngészőből elérheti.\n• Biztonsági másolatot készíthet névjegyeiről."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tartsa névjegyeit biztonságban akkor is, ha elveszíti a telefont: szinkronizáljon egy online szolgáltatással."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Fiók hozzáadása"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Az Ön új névjegyéről nem készül biztonsági másolat. Hozzáad egy olyan fiókot, amelyik online biztonsági másolatot készít a névjegyekről?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Az új névjegyről nem készül biztonsági másolat. Hozzáad egy olyan fiókot, amelyik online biztonsági másolatot készít a névjegyekről?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Az új névjegyet a következő fiókkal fogjuk szinkronizálni: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Szinkronizálhatja az új névjegyet a következő fiókok valamelyikével. Melyiket kívánja használni?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Névjegy hozzáadása"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Névjegy szerkesztése"</string>
     <string name="keep_local" msgid="1258761699192993322">"Tárolás helyben"</string>
-    <string name="add_account" msgid="8201790677994503186">"Fiók hozzáadása"</string>
+    <string name="add_account" msgid="8201790677994503186">"Fiók megadása"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Új fiók hozzáadása"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Adatbázisfájlok exportálása"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"új névjegy hozzáadása"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ön: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"A Hangouts jobban működik, ha a személy Hangouts-azonosítóját adja meg az e-mail vagy telefonszám mezőben."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"További mezők"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Fénykép lecserélése"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

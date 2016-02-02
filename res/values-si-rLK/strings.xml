@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"සම්බන්ධතාව වෙන් කරන්නද?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"මෙම සම්බන්ධතාවය සම්බන්ධතා කිහිපයකට වෙන් කෙරෙනු ඇත."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"ඒකාබද්ධ කරන්න"</string>
+    <string name="menu_save" msgid="1727844363591825909">"සුරකින්න"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"සම්බන්ධතා එකතු කරන්න"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> සමඟ එක් කළ යුතු සම්බන්ධතාවය තෝරන්න:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"සියලු සම්බන්ධතා පෙන්වන්න"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"සම්බන්ධතාවය සුරකමින්…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"සම්බන්ධතාවය සුරකින ලදි."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"සම්බන්ධතා වෙනස්කම් සුරැකීමට නොහැක."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"සම්බන්ධතා ඡායාරූපය වෙනස් කිරීම් සුරැකිය නොහැකි විය."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"කණ්ඩායම සුරකින ලදි."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"කණ්ඩායම් වෙනස්කම් සුරැකීමට නොහැක."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"මෑත"</string>
     <string name="recent_updates" msgid="4267258535615860710">"මෑත යාවත්කාලීන"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> සම්බන්ධතාව"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> ගිණුම"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"මෙම යෙදුමෙන් සංස්කරණය කළ නොහැක."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"නව ඡායාරූපයක් ගන්න"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ඡායාරූපය තෝරන්න"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"අලුත් ඡායාරූපය තෝරන්න"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"භාෂා වෙනස්වීම පෙන්වීමට සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන වෙමින් පවතී"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන වෙමින් පවතී."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"සොයමින්..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"තෝරාගත් ඒවා පෙන්වන්න"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"ඔබ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ඔබ පුද්ගලයාගේ Hangouts හඳුන්වනය ඊ-තැපැල් හෝ දුරකථන ක්ෂේත්‍රයට ඇතුළත් කළ විටHangouts වඩා හොඳින් ක්‍රියා කරයි."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"තව ක්ෂේත්‍ර"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ඡායාරූපය වෙනස් කරන්න"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

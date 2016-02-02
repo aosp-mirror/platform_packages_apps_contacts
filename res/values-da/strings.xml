@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Opdel kontaktperson?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Denne kontaktperson opdeles i flere kontaktpersoner."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Flet"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Gem"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Føj til kontakter"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Vælg den kontaktperson, som du vil knytte til <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Vis alle kontakter"</string>
@@ -79,7 +80,7 @@
     <string name="menu_discard" msgid="6854657936970228164">"Kassér ændringer"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontaktpersonen findes ikke."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontaktwidgetten føjes til startskærmen."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Opret ny kontakt"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Opret ny kontaktperson"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Opret ny kontaktperson"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organisation"</item>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Gemmer kontakt..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakten er gemt."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Der kunne ikke gemmes ændringer i kontaktpersoner."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Det ændrede billede af kontaktpersonen kunne ikke gemmes."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Gruppen er gemt."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Gruppeændringerne kunne ikke gemmes."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -127,7 +129,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Navne på dine kontakter"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Der blev ikke fundet nogen app, der kan håndtere denne handling."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klik for at gå tilbage til forrige skærmbillede"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Tilføj mobiltelefonnummer"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Tilføj telefonnummer"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Tilføj e-mail"</string>
     <string name="missing_app" msgid="1466111003546611387">"Der blev ikke fundet nogen app, der kan håndtere denne handling."</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"Seneste"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Seneste opdateringer"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontaktperson"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-konto"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Kan ikke redigeres fra denne app."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Tag nyt billede"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Vælg billede"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Vælg et nyt billede"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Listen over kontaktpersoner opdateres for at afspejle det nye sprog."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Listen over kontaktpersoner opdateres."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Søger..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Vis valgte"</string>
@@ -187,7 +189,7 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"Angiv et år"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kontaktperson"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Indlæser…"</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Opret ny kontakt"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Opret ny kontaktperson"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Log ind på en konto"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer kontaktpersoner"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Opret en ny gruppe"</string>
@@ -212,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Kopieret tekst"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Skal ændringerne slettes?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Opret min profil"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Konfigurer min profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Indtast personens navn"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Gruppens navn"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
@@ -224,9 +226,9 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Din nye kontaktperson bliver ikke sikkerhedskopieret. Vil du tilføje en konto, der sikkerhedskopierer kontaktpersoner online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Din nye kontaktperson vil blive synkroniseret med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisere din nye kontaktperson med en af de ​​følgende konti. Hvilken vil du bruge?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Tilføj ny kontaktperson"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Tilføj ny kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Rediger kontaktperson"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Gem lokalt"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Gem kun lokalt"</string>
     <string name="add_account" msgid="8201790677994503186">"Tilføj konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tilføj ny konto"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksportér databasefiler"</string>
@@ -245,7 +247,7 @@
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"I morgen kl. <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Ikke-navngiven begivenhed)"</string>
-    <string name="date_time_set" msgid="4761419824439606690">"Indstil"</string>
+    <string name="date_time_set" msgid="4761419824439606690">"Angiv"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"Chat"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organisation"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Kaldenavn"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Dig: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts fungerer bedre, når du indtaster personens Hangouts-id i e-mailfeltet eller telefonfeltet."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Flere felter"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Skift billede"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

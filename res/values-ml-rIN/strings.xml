@@ -27,12 +27,12 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"സന്ദേശമയയ്‌ക്കാൻ ഒരു നമ്പർ തിരഞ്ഞെടുക്കുക"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"കോണ്‍‌ടാക്റ്റിലേക്ക് ചേര്‍ക്കുക"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ഒരു കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കുക"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയ കോൺടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
     <string name="starredList" msgid="4817256136413959463">"നക്ഷത്രമിട്ടവ"</string>
     <string name="frequentList" msgid="7154768136473953056">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവർ"</string>
     <string name="strequentList" msgid="5640192862059373511">"പ്രിയപ്പെട്ടവർ"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"കോൺടാക്റ്റ് വിശദാംശങ്ങൾ"</string>
-    <string name="editContactDescription" msgid="2947202828256214947">"കോൺടാക്റ്റ് എഡിറ്റുചെയ്യുക"</string>
+    <string name="editContactDescription" msgid="2947202828256214947">"കോൺടാ‌ക്‌റ്റ് തിരുത്തുക"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"കോൺടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"ഗ്രൂപ്പ് സൃഷ്ടിക്കുക"</string>
@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"കോൺടാക്റ്റ് വിഭജിക്കണോ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"ഈ കോൺടാക്റ്റ് ഒന്നിലധികം കോൺടാക്റ്റുകളായി വിഭജിക്കപ്പെടും."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"ലയിപ്പിക്കുക"</string>
+    <string name="menu_save" msgid="1727844363591825909">"സംരക്ഷിക്കുക"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"കോൺടാക്റ്റുകൾ ബന്ധിപ്പിക്കുക"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> എന്നതുമായി കൂട്ടിച്ചേർക്കേണ്ട കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കുക:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"എല്ലാ കോൺടാക്റ്റുകളും കാണിക്കുക"</string>
@@ -66,7 +67,7 @@
     <string name="contactsJoinedMessage" msgid="656936718666768589">"കോൺടാക്റ്റുകൾ ലയിപ്പിച്ചു"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"കോൺടാക്റ്റുകൾ ഇല്ലാതാക്കി"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"റിംഗ്‌ടോൺ സജ്ജമാക്കുക"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"വോയ്‌സ്‌മെയിലിലേക്കുള്ള എല്ലാ കോളുകളും"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"എല്ലാം വോയ്‌സ്‌മെയിലിലേക്ക്"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"വായന-മാത്രം അക്കൗണ്ടുകളിൽ നിന്നുള്ള കോൺടാക്റ്റുകൾ നിങ്ങൾക്ക് ഇല്ലാതാക്കാനാകില്ലെങ്കിലും കോൺടാക്റ്ററ്റ് ലിസ്റ്റുകളിൽ നിന്ന് അവ മറയ്‌ക്കാനാകും."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"ഈ കോൺടാക്റ്റിൽ ഒന്നിലധികം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിവരം അടങ്ങിയിരിക്കുന്നു. വായന-മാത്രം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിവരം നിങ്ങളുടെ കോൺടാക്റ്റുകളുടെ ലിസ്റ്റിൽ നിന്നും മറയ്‌ക്കുമെങ്കിലും അവ ഇല്ലാതാക്കില്ല."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"ലയിപ്പിക്കാനായി രണ്ട് കോൺടാക്‌റ്റുകളെങ്കിലും തിരഞ്ഞെടുക്കണം."</string>
@@ -79,8 +80,8 @@
     <string name="menu_discard" msgid="6854657936970228164">"മാറ്റങ്ങള്‍‌ നിരാകരിക്കുക"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"കോൺടാക്റ്റ് നിലവിലില്ല."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"ഹോം സ്‌ക്രീനിൽ കോൺടാക്റ്റ് വിജറ്റ് ചേർത്തു."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"പുതിയ കോൺടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"പുതിയ കോൺടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"ഓര്‍ഗനൈസേഷന്‍"</item>
     <item msgid="7196592230748086755">"കുറിപ്പ്"</item>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"കോൺടാക്റ്റ് സംരക്ഷിക്കുന്നു…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"കോൺടാക്റ്റ് സംരക്ഷിച്ചു."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"കോൺടാക്റ്റ് മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"കോൺടാക്റ്റ് ഫോട്ടോ മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"ഗ്രൂപ്പ് സംരക്ഷിച്ചു."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"ഗ്രൂപ്പ് മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"പുതിയത്"</string>
     <string name="recent_updates" msgid="4267258535615860710">"പുതിയ അപ്‌ഡേറ്റുകൾ"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> കോൺടാക്റ്റ്"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> അക്കൗണ്ട്"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"ഈ അപ്ലിക്കേഷനിൽ നിന്നും എഡിറ്റുചെയ്യാനാകില്ല."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"പുതിയ ഫോട്ടോ എടുക്കുക"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ഫോട്ടോ തിരഞ്ഞെടുക്കുക"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"പുതിയ ഫോട്ടോ തിരഞ്ഞെടുക്കുക"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"ഭാഷാമാറ്റം പ്രതിഫലിക്കുന്നതിനായി കോൺടാക്റ്റ് ലിസ്റ്റ് അപ്‌ഡേറ്റുചെയ്യുന്നു."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"കോൺടാക്റ്റ് ലിസ്റ്റ് അപ്‌ഡേറ്റുചെയ്യുന്നു."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"തിരയുന്നു…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"തിരഞ്ഞെടുത്തവ കാണിക്കുക"</string>
@@ -163,7 +165,7 @@
     <string name="change_photo" msgid="8530597935483526383">"മാറ്റുക"</string>
     <string name="primary_photo" msgid="8517942231868516999">"പ്രാഥമിക ഫോട്ടോ"</string>
     <string name="description_star" msgid="2605854427360036550">"പ്രിയപ്പെട്ടതാക്കുക"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"കോൺടാക്റ്റ് എഡിറ്റുചെയ്യുക"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"കോൺടാ‌ക്‌റ്റ് തിരുത്തുക"</string>
     <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> ഉറവിടങ്ങളിൽ നിന്ന് ലയിപ്പിച്ചവ</item>
       <item quantity="one">ലയിപ്പിച്ചിട്ടില്ല</item>
@@ -187,11 +189,11 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"ഒരു വർഷം നൽകുക"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"കോൺടാക്റ്റ്"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ലോഡുചെയ്യുന്നു..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ഒരു പുതിയ കോൺടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"ഒരു അക്കൗണ്ടിൽ സൈൻ ഇൻ ചെയ്യുക"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യുക"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"പുതിയ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുക"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"പുതിയ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുക"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"പുതുഗ്രൂപ്പ് സൃഷ്‌ടിക്കൂ"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"പുതുഗ്രൂപ്പ് സൃഷ്‌ടിക്കൂ"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> ഗ്രൂപ്പുകൾ</item>
       <item quantity="one">ഒരു ഗ്രൂപ്പ്</item>
@@ -212,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"വാചകം പകർത്തി"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"നിങ്ങളുടെ മാറ്റങ്ങൾ നിരസിക്കണോ?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"എന്റെ പ്രൊഫൈൽ സജ്ജീകരിക്കുക"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"പ്രൊഫൈൽ സജ്ജമാക്കൂ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"വ്യക്തിയുടെ പേര് ടൈപ്പുചെയ്യുക"</string>
     <string name="group_name_hint" msgid="238359485263401293">"ഗ്രൂപ്പിന്റെ പേര്"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"എന്റെ പ്രാദേശിക പ്രൊഫൈൽ"</string>
@@ -222,15 +224,15 @@
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"നിങ്ങൾക്ക് ഫോൺ നഷ്‌ടമാകുകയാണെങ്കിൽപ്പോലും നിങ്ങളുടെ കോൺടാക്റ്റുകൾ സുരക്ഷിതമായി സൂക്ഷിക്കുക: ഒരു ഓൺലൈൻ സേവനവുമായി സമന്വയിപ്പിക്കുക."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ഒരു അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"നിങ്ങളുടെ പുതിയ കോൺടാക്റ്റ് ബാക്കപ്പുചെയ്യില്ല. കോൺടാക്റ്റുകളെ ഓൺലൈനിൽ ബാക്കപ്പുചെയ്യുന്ന ഒരു അക്കൗണ്ട് ചേർക്കണോ?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"നിങ്ങളുടെ പുതിയ കോൺടാക്റ്റ് <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> എന്നതിൽ സമന്വയിപ്പിക്കും."</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"നിങ്ങളുടെ പുതിയ കോൺടാക്റ്റ് <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> -ൽ സമന്വയിപ്പിക്കും."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"നിങ്ങൾക്ക് പുതിയ കോൺടാക്റ്റ് ഇനിപ്പറയുന്ന അക്കൗണ്ടുകളിൽ ഒന്നുമായി സമന്വയിപ്പിക്കാം. ഏതാണ് ഉപയോഗിക്കേണ്ടത്?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"പുതിയ കോൺടാക്‌റ്റ് ചേർക്കുക"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"കോൺടാക്റ്റ് എഡിറ്റുചെയ്യുക"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"പുതിയവ ചേർക്കൂ"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"എഡിറ്റുചെയ്യുക"</string>
     <string name="keep_local" msgid="1258761699192993322">"പ്രാദേശികമായി സൂക്ഷിക്കുക"</string>
     <string name="add_account" msgid="8201790677994503186">"അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="add_new_account" msgid="5748627740680940264">"പുതിയ അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ഡാറ്റാബേസ് ഫയലുകൾ എക്‌സ്‌പോർട്ടുചെയ്യുക"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"പുതിയ കോൺടാക്‌റ്റ് ചേർക്കുക"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"പുതിയവ ചേർക്കൂ"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"കൂടുതല്‍ കാണുക"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"കുറച്ച് കാണുക"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"എല്ലാം കാണുക"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"നിങ്ങൾ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ഇമെയിൽ ഫീൽഡിലോ ഫോൺ ഫീൽഡിലോ വ്യക്തിയുടെ Hangouts ഐഡന്റിഫയർ നൽകുമ്പോൾ, Hangouts മികച്ചതായി പ്രവർത്തിക്കുന്നു."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"കൂടുതൽ ഫീൽഡുകൾ"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ഫോട്ടോ മാറ്റുക"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

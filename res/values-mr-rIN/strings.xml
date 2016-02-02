@@ -47,7 +47,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"संपादित करा"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"हटवा"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"फोटो बदला"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"मुख्‍यपृष्‍ठ स्क्रीन वर ठेवा"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"मुख्‍य स्क्रीन वर ठेवा"</string>
     <string name="menu_call" msgid="3992595586042260618">"संपर्कास कॉल करा"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"संपर्कास मजकूर पाठवा"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"वेगळे"</string>
@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"संपर्क विभाजित करायचा?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"हा संपर्क एकाधिक संपर्कांमध्‍ये विभाजित केला जाईल."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"विलीन करा"</string>
+    <string name="menu_save" msgid="1727844363591825909">"जतन करा"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"संपर्कांमध्‍ये सामील व्हा"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"आपण <xliff:g id="NAME">%s</xliff:g> सह सामील होऊ इच्‍छिता तो संपर्क निवडा:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सर्व संपर्क दर्शवा"</string>
@@ -78,7 +79,7 @@
     <string name="deleteConfirmation" msgid="811706994761610640">"हा संपर्क हटविला जाईल."</string>
     <string name="menu_discard" msgid="6854657936970228164">"बदल टाकून द्या"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"संपर्क अस्तित्वात नाही."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"मुख्‍यपृष्‍ठ स्‍क्रीनवर संपर्क विजेट जोडले."</string>
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"मुख्‍य स्‍क्रीनवर संपर्क विजेट जोडले."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"नवीन संपर्क तयार करा"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"नवीन संपर्क तयार करा"</string>
   <string-array name="otherLabels">
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"संपर्क जतन करीत आहे..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"संपर्क जतन केला."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"संपर्क बदल जतन करू शकलो नाही."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"संपर्क फोटो बदल जतन करणे शक्य झाले नाही."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"गट जतन केला."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"गट बदल जतन करू शकलो नाही."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"अलीकडील"</string>
     <string name="recent_updates" msgid="4267258535615860710">"अलीकडील अद्यतने"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> संपर्क"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> खाते"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"या अ‍ॅप वरून संपादन करण्‍यायोग्‍य नाही."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"नवीन फोटो घ्या"</string>
     <string name="pick_photo" msgid="2129509985223564942">"फोटो निवडा"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"नवीन फोटो निवडा"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"भाषेचा बदल प्रतिबिंबित करण्यासाठी संपर्क सूची सुधारित केली जात आहे."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची अद्यतनित केली जात आहे."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"शोधत आहे..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"निवडलेले दर्शवा"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"आपण: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"आपण ईमेल फिल्डमध्ये किंवा फोन फिल्डमध्ये एखाद्या व्यक्तीचे Hangouts अभिज्ञापक प्रविष्ट करता तेव्हा Hangouts उत्कृष्ट कार्य करते."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"अधिक फील्ड"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"फोटो बदला"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

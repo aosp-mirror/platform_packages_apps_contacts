@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Разделение контакта"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Этот контакт будет разделен."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Объединить"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Сохранить"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Объединить контакты"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Выберите контакт, который нужно объединить с \"<xliff:g id="NAME">%s</xliff:g>\":"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Показать все контакты"</string>
@@ -76,7 +77,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Эти контакты содержат данные из нескольких аккаунтов. Информация из аккаунтов, доступных только для чтения, будет скрыта в списках контактов, но не удалена."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Удаление этого контакта приведет к потере данных из нескольких аккаунтов."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Этот контакт будет удален."</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Отмена"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Удалить изменения"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Нет такого контакта."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Виджет \"Контакты\" добавлен на главный экран."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
@@ -91,14 +92,15 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Название"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Направлять вызовы в голосовую почту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Удалить фото"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Нет контактов."</string>
+    <string name="noContacts" msgid="8579310973261953559">"Нет контактов"</string>
     <string name="noGroups" msgid="8614664663561385253">"Нет групп."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Для создания групп нужен аккаунт."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Здесь пока никого нет."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Чтобы добавить участников, откройте меню и нажмите \"Изменить\"."</string>
     <string name="savingContact" msgid="4075751076741924939">"Контакт сохраняется..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Контакт сохранен."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Контакт сохранен"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не удалось сохранить изменения."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Не удалось сохранить изменения"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Группа сохранена."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Не удалось сохранить изменения."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -147,6 +149,7 @@
     <string name="recent" msgid="2659189233141493004">"Недавние"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Недавние обновления"</string>
     <string name="account_type_format" msgid="718948015590343010">"Контакт <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"Аккаунт <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Здесь доступно только для чтения."</string>
@@ -155,7 +158,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Сфотографировать"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Выбрать фото"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Выбрать другое фото"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Список контактов обновляется после смены языка интерфейса."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Список контактов обновляется..."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Поиск…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Показать выбранные"</string>
@@ -224,7 +226,7 @@
     <string name="set_default" msgid="4417505153468300351">"Установить по умолчанию"</string>
     <string name="clear_default" msgid="7193185801596678067">"Удалить настройки по умолчанию"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текст скопирован"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Отменить изменения?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Удалить изменения?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> (<xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>)"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Настроить профиль"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Имя контакта"</string>
@@ -283,4 +285,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Вы: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Чтобы обеспечить надежную работу Hangouts, указывайте вместо адреса электронной почты или номера телефона идентификатор пользователя в Hangouts."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Другие поля"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Сменить фото"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

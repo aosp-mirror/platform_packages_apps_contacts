@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Rozdělit kontakt?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Tento kontakt bude rozdělen do několika kontaktů."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Sloučit"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Uložit"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Spojit kontakty"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Vyberte kontakt, který chcete spojit s kontaktem <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Zobrazit všechny kontakty"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Ukládání kontaktu…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Kontakt byl uložen"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Změny kontaktů nelze uložit."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Změny fotografií kontaktů nelze uložit."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Skupina byla uložena."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Změny skupiny nelze uložit."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -144,9 +146,10 @@
     <string name="video_chat" msgid="1872255818640336072">"Videochat"</string>
     <string name="connections" msgid="8098440723172028350">"Spojení"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Přidat spojení"</string>
-    <string name="recent" msgid="2659189233141493004">"Poslední"</string>
+    <string name="recent" msgid="2659189233141493004">"Nedávné"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Poslední aktualizace"</string>
     <string name="account_type_format" msgid="718948015590343010">"Kontakt ze zdroje <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"Účet <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Nelze upravit v této aplikaci."</string>
@@ -155,7 +158,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Pořídit novou fotografii"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Vybrat fotku"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Vybrat novou fotku"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Probíhá aktualizace seznamu kontaktů související se změnou jazyka."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Probíhá aktualizace seznamu kontaktů."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Vyhledávání..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Zobrazit vybrané"</string>
@@ -220,7 +222,7 @@
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> člověk</item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Před spojením s jiným kontaktem je třeba zadat jméno kontaktu."</string>
-    <string name="copy_text" msgid="3257145021583508761">"Zkopírovat do schránky"</string>
+    <string name="copy_text" msgid="3257145021583508761">"Zkopírovat do schránky"</string>
     <string name="set_default" msgid="4417505153468300351">"Výchozí nastavení"</string>
     <string name="clear_default" msgid="7193185801596678067">"Vymazat výchozí nastavení"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text zkopírován"</string>
@@ -240,7 +242,7 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nový kontakt můžete synchronizovat s jedním z následujících účtů. Který z nich chcete použít?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Přidat nový kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Upravit kontakt"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Zachovat jako místní"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Ponechat místně"</string>
     <string name="add_account" msgid="8201790677994503186">"Přidat účet"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Přidat nový účet"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportovat soubory databáze"</string>
@@ -283,4 +285,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vy: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Aplikace Hangouts funguje lépe, když do pole pro e-mail nebo pro telefon zadáte identifikátor osoby ve službě Hangouts."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Další pole"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Změnit fotografii"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

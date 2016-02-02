@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Բաժանե՞լ կոնտակտը"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Այս կոնտակտը կբաժանվի մի քանի կոնտակտների:"</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Միավորել"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Պահել"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Միացնել կոնտակտները"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Ընտրեք կոնտակտը, որը ցանկանում եք միացնել <xliff:g id="NAME">%s</xliff:g>-ին"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Ցույց տալ բոլոր կոնտակտները"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Կոնտակտի պահվում է..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Կոնտակտը պահվեց:"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Հնարավոր չէ պահել կոնտակտային փոփոխությունները:"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Չհաջողվեց պահել կոնտակտի լուսանկարի փոփոխությունները:"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Խումբը պահվեց:"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Հնարավոր չէ պահել խմբի փոփոխությունները:"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"Վերջին"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Վերջին թարմացումները"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> կոնտակտ"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> հաշիվ"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Ենթակա չէ խմբագրման այս ծրագրով:"</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Լուսանկարել նորը"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Ընտրել լուսանկար"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Ընտրել նոր լուսանկար"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Կոնտակտների ցանկը թարմացվում է՝ լեզվի փոփոխություններն արտացոլելու համար:"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Կոնտակտների ցանկը թարմացվում է:"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Որոնում..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Ցույց տալ ընտրվածները"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Դուք՝ <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts-ն ավելի լավ կաշխատի, եթե էլփոստի կամ հեռախոսի դաշտում մուտքագրեք Hangouts-ի օգտվողի նույնացուցիչը:"</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Լրացուցիչ դաշտեր"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Փոխել լուսանկարը"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>
