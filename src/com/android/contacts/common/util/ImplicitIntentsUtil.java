@@ -22,7 +22,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.QuickContact;
+import android.provider.Settings;
 import android.text.TextUtils;
 
 import java.util.List;
@@ -98,6 +100,18 @@ public class ImplicitIntentsUtil {
         intent.putExtra(QuickContact.EXTRA_MODE, extraMode);
         // Make sure not to show QuickContacts on top of another QuickContacts.
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        return intent;
+    }
+
+    /**
+     * When adding account
+     * open the same UI screen for user to choose account
+     */
+    public static Intent getIntentForAddingAccount() {
+        final Intent intent = new Intent(Settings.ACTION_ADD_ACCOUNT);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        intent.putExtra(Settings.EXTRA_AUTHORITIES,
+                new String[]{ContactsContract.AUTHORITY});
         return intent;
     }
 
