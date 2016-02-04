@@ -45,7 +45,7 @@ import com.android.contacts.common.activity.RequestImportVCardPermissionsActivit
 public class ExportVCardActivity extends Activity implements ServiceConnection,
         DialogInterface.OnClickListener, DialogInterface.OnCancelListener {
     private static final String LOG_TAG = "VCardExport";
-    private static final boolean DEBUG = VCardService.DEBUG;
+    protected static final boolean DEBUG = VCardService.DEBUG;
     private static final int REQUEST_CREATE_DOCUMENT = 100;
 
     /**
@@ -53,7 +53,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
      *
      * Should be touched inside synchronized block.
      */
-    private boolean mConnected;
+    protected boolean mConnected;
 
     /**
      * True when users need to do something and this Activity should not disconnect from
@@ -62,7 +62,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
      */
     private volatile boolean mProcessOngoing = true;
 
-    private VCardService mService;
+    protected VCardService mService;
     private static final BidiFormatter mBidiFormatter = BidiFormatter.getInstance();
 
     // String for storing error reason temporarily.
@@ -105,9 +105,9 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
         if (requestCode == REQUEST_CREATE_DOCUMENT) {
             if (resultCode == Activity.RESULT_OK && mService != null &&
                     data != null && data.getData() != null) {
-                final Uri mTargetFileName = data.getData();
-                if (DEBUG) Log.d(LOG_TAG, "exporting to " + mTargetFileName);
-                final ExportRequest request = new ExportRequest(mTargetFileName);
+                final Uri targetFileName = data.getData();
+                if (DEBUG) Log.d(LOG_TAG, "exporting to " + targetFileName);
+                final ExportRequest request = new ExportRequest(targetFileName);
                 // The connection object will call finish().
                 mService.handleExportRequest(request, new NotificationImportExportListener(
                         ExportVCardActivity.this));
@@ -223,7 +223,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
         return null;
     }
 
-    private synchronized void unbindAndFinish() {
+    protected synchronized void unbindAndFinish() {
         if (mConnected) {
             unbindService(this);
             mConnected = false;
