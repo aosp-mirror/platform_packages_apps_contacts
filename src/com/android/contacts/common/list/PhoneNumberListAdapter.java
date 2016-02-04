@@ -68,8 +68,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     // A list of extended directories to add to the directories from the database
     private final List<DirectoryPartition> mExtendedDirectories;
 
-    // Extended directories will have ID's that are higher than any of the id's from the database.
-    // Thi sis so that we can identify them and set them up properly. If no extended directories
+    // Extended directories will have ID's that are higher than any of the id's from the database,
+    // so that we can identify them and set them up properly. If no extended directories
     // exist, this will be Long.MAX_VALUE
     private long mFirstExtendedDirectoryId = Long.MAX_VALUE;
 
@@ -210,8 +210,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                             String.valueOf(getDirectoryResultLimit(getDirectoryById(directoryId))));
                 }
             } else {
-                Uri baseUri = mUseCallableUri ? CallableCompat.getContentFilterUri()
-                        : PhoneCompat.getContentFilterUri();
+                Uri baseUri = mUseCallableUri ? Callable.CONTENT_URI : Phone.CONTENT_URI;
                 builder = baseUri.buildUpon().appendQueryParameter(
                         ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
                 if (isSectionHeaderDisplayEnabled()) {
