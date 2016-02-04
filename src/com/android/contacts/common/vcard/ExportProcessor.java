@@ -22,10 +22,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.contacts.common.R;
 import com.android.vcard.VCardComposer;
@@ -53,9 +56,20 @@ public class ExportProcessor extends ProcessorBase {
     private final int mJobId;
     private final String mCallingActivity;
 
-
     private volatile boolean mCanceled;
     private volatile boolean mDone;
+
+    private final int SHOW_READY_TOAST = 1;
+    private final Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            if (msg.arg1 == SHOW_READY_TOAST) {
+                // This message is long, so we set the duration to LENGTH_LONG.
+                Toast.makeText(mService,
+                        R.string.exporting_vcard_finished_toast, Toast.LENGTH_LONG).show();
+            }
+
+        }
+    };
 
     public ExportProcessor(VCardService service, ExportRequest exportRequest, int jobId,
             String callingActivity) {
@@ -198,10 +212,22 @@ public class ExportProcessor extends ProcessorBase {
 
             successful = true;
             final String filename = ExportVCardActivity.getOpenableUriDisplayName(mService, uri);
-            final String title = filename == null
-                    ? mService.getString(R.string.exporting_vcard_finished_title_fallback)
-                    : mService.getString(R.string.exporting_vcard_finished_title, filename);
-            doFinishNotification(title, null);
+            // If it is a local file (i.e. not a file from Drive), we need to allow user to share
+            // the file by pressing the notification; otherwise, it would be a file in Drive, we
+            // don't need to enable this action in notification since the file is already uploaded.
+            if (isLocalFile(uri)) {
+                final Message msg = handler.obtainMessage();
+                msg.arg1 = SHOW_READY_TOAST;
+                handler.sendMessage(msg);
+                doFinishNotificationWithShareAction(
+                        mService.getString(R.string.exporting_vcard_finished_title_fallback),
+                        mService.getString(R.string.touch_to_share_contacts), uri);
+            } else {
+                final String title = filename == null
+                        ? mService.getString(R.string.exporting_vcard_finished_title_fallback)
+                        : mService.getString(R.string.exporting_vcard_finished_title, filename);
+                doFinishNotification(title, null);
+            }
         } finally {
             if (composer != null) {
                 composer.terminate();
@@ -215,6 +241,11 @@ public class ExportProcessor extends ProcessorBase {
             }
             mService.handleFinishExportNotification(mJobId, successful);
         }
+    }
+
+    private boolean isLocalFile(Uri uri) {
+        final String authority = uri.getAuthority();
+        return mService.getString(R.string.contacts_file_provider_authority).equals(authority);
     }
 
     private String translateComposerError(String errorMessage) {
@@ -261,6 +292,23 @@ public class ExportProcessor extends ProcessorBase {
         final Notification notification =
                 NotificationImportExportListener.constructFinishNotification(mService, title,
                         description, intent);
+        mNotificationManager.notify(NotificationImportExportListener.DEFAULT_NOTIFICATION_TAG,
+                mJobId, notification);
+    }
+
+    /**
+     * Pass intent with ACTION_SEND to notification so that user can press the notification to
+     * share contacts.
+     */
+    private void doFinishNotificationWithShareAction(final String title, final String
+            description, Uri uri) {
+        if (DEBUG) Log.d(LOG_TAG, "send finish notification: " + title + ", " + description);
+        final Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType(Contacts.CONTENT_VCARD_TYPE);
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        final Notification notification =
+                NotificationImportExportListener.constructFinishNotificationWithFlags(
+                        mService, title, description, intent, Intent.FLAG_ACTIVITY_NEW_TASK);
         mNotificationManager.notify(NotificationImportExportListener.DEFAULT_NOTIFICATION_TAG,
                 mJobId, notification);
     }
