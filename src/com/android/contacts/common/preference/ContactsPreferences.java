@@ -42,7 +42,7 @@ import java.util.List;
 /**
  * Manages user preferences for contacts.
  */
-public final class ContactsPreferences implements OnSharedPreferenceChangeListener {
+public class ContactsPreferences implements OnSharedPreferenceChangeListener {
 
     /**
      * The value for the DISPLAY_ORDER key to show the given name first.
