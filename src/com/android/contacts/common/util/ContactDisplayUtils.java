@@ -22,6 +22,7 @@ import com.google.common.base.Preconditions;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -240,26 +241,26 @@ public class ContactDisplayUtils {
     }
 
     /**
-     * Returns either namePrimary or nameAlternative based on the value of displayOrderPreference
+     * Returns either namePrimary or nameAlternative based on the {@link ContactsPreferences}.
+     * Defaults to the name that is non-null.
      *
-     * In the event that nameAlternative is empty or displayOrderPreference is neither
-     * {@link ContactsPreferences#DISPLAY_ORDER_PRIMARY} nor
-     * {@link ContactsPreferences#DISPLAY_ORDER_ALTERNATIVE}, namePrimary is returned
-     *
-     * @param namePrimary the primary name
-     * @param nameAlternative the alternative name
-     * @param displayOrderPreference one of {@link ContactsPreferences#DISPLAY_ORDER_PRIMARY} or
-     *          {@link ContactsPreferences#DISPLAY_ORDER_ALTERNATIVE}
-     * @return namePrimary or nameAlternative depending on the value of displayOrderPreference
+     * @param namePrimary the primary name.
+     * @param nameAlternative the alternative name.
+     * @param contactsPreferences the ContactsPreferences used to determine the preferred
+     * display name.
+     * @return namePrimary or nameAlternative depending on the value of displayOrderPreference.
      */
     public static String getPreferredDisplayName(String namePrimary, String nameAlternative,
-            int displayOrderPreference) {
-        if (displayOrderPreference == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
+            @Nullable ContactsPreferences contactsPreferences) {
+        if (contactsPreferences == null) {
+            return namePrimary != null ? namePrimary : nameAlternative;
+        }
+        if (contactsPreferences.getDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
             return namePrimary;
         }
 
-        if (displayOrderPreference == ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE &&
-                !TextUtils.isEmpty(nameAlternative)) {
+        if (contactsPreferences.getDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE
+                && !TextUtils.isEmpty(nameAlternative)) {
             return nameAlternative;
         }
 
@@ -267,25 +268,26 @@ public class ContactDisplayUtils {
     }
 
     /**
-     * Returns either namePrimary or nameAlternative based on the value of sortOrderPreference
+     * Returns either namePrimary or nameAlternative based on the {@link ContactsPreferences}.
+     * Defaults to the name that is non-null.
      *
-     * In the event that nameAlternative is empty or sortOrderPreference is neither
-     * {@link ContactsPreferences#SORT_ORDER_PRIMARY} nor
-     * {@link ContactsPreferences#SORT_ORDER_ALTERNATIVE}, namePrimary is returned
-     *
-     * @param namePrimary the primary name
-     * @param nameAlternative the alternative name
-     * @param sortOrderPreference one of {@link ContactsPreferences#SORT_ORDER_PRIMARY} or
-     *          {@link ContactsPreferences#SORT_ORDER_ALTERNATIVE}
-     * @return namePrimary or nameAlternative depending on the value of displayOrderPreference
+     * @param namePrimary the primary name.
+     * @param nameAlternative the alternative name.
+     * @param contactsPreferences the ContactsPreferences used to determine the preferred sort
+     * order.
+     * @return namePrimary or nameAlternative depending on the value of displayOrderPreference.
      */
     public static String getPreferredSortName(String namePrimary, String nameAlternative,
-            int sortOrderPreference) {
-        if (sortOrderPreference == ContactsPreferences.SORT_ORDER_PRIMARY) {
+            @Nullable ContactsPreferences contactsPreferences) {
+        if (contactsPreferences == null) {
+            return namePrimary != null ? namePrimary : nameAlternative;
+        }
+
+        if (contactsPreferences.getSortOrder() == ContactsPreferences.SORT_ORDER_PRIMARY) {
             return namePrimary;
         }
 
-        if (sortOrderPreference == ContactsPreferences.SORT_ORDER_ALTERNATIVE &&
+        if (contactsPreferences.getSortOrder() == ContactsPreferences.SORT_ORDER_ALTERNATIVE &&
                 !TextUtils.isEmpty(nameAlternative)) {
             return nameAlternative;
         }
