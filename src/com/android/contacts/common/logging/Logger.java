@@ -17,8 +17,8 @@ package com.android.contacts.common.logging;
 
 import android.app.Activity;
 
+import com.android.contacts.commonbind.ObjectFactory;
 import com.android.contacts.commonbind.analytics.AnalyticsUtil;
-import com.android.contacts.commonbind.logging.ClearcutLoggerHelper;
 
 /**
  * Logs analytics events.
@@ -27,7 +27,7 @@ public abstract class Logger {
     public static final String TAG = "Logger";
 
     public static Logger getInstance() {
-        return ClearcutLoggerHelper.getInstance();
+        return ObjectFactory.getLogger();
     }
 
     /**
@@ -45,6 +45,16 @@ public abstract class Logger {
         final String screenName = ScreenEvent.getScreenNameWithTag(
                 activity.getClass().getSimpleName(), tag);
         AnalyticsUtil.sendScreenView(screenName, activity, tag);
+    }
+
+    /**
+     * Logs the results of a user search for a particular contact.
+     */
+    public static void logSearchEvent(SearchState searchState) {
+        final Logger logger = getInstance();
+         if (logger != null) {
+            logger.logSearchEventImpl(searchState);
+        }
     }
 
     public abstract void logScreenViewImpl(int screenType);
