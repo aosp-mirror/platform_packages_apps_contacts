@@ -184,9 +184,7 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
             }
         } else {
             mSearchResultClicked = true;
-            Logger.getInstance().logSearchEventImpl(
-                    createSearchStateForSearchResultClick(position));
-
+            Logger.logSearchEvent(createSearchStateForSearchResultClick(position));
             super.onItemClick(position, id);
         }
         if (mCheckBoxListListener != null && getAdapter().getSelectedContactIds().size() == 0) {
