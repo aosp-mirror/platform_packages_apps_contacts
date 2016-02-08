@@ -150,9 +150,9 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ফোন নম্বর জুড়ুন"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ইমেল জুড়ুন"</string>
     <string name="missing_app" msgid="1466111003546611387">"এই ক্রিয়াটিকে চালনা করার জন্য কোনো অ্যাপ্লিকেশান পাওয়া যায়নি৷"</string>
-    <string name="menu_share" msgid="943789700636542260">"ভাগ করুন"</string>
+    <string name="menu_share" msgid="943789700636542260">"শেয়ার করুন"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"পরিচিতিগুলিতে জুড়ুন"</string>
-    <string name="share_via" msgid="563121028023030093">"এর মাধ্যমে পরিচিতি ভাগ করুন"</string>
+    <string name="share_via" msgid="563121028023030093">"এর মাধ্যমে পরিচিতি শেয়ার করুন"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"অ্যাকাউন্টের অধীনে গোষ্ঠী তৈরি করুন"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ভয়েস চ্যাট"</string>
     <string name="video_chat" msgid="1872255818640336072">"ভিডিও চ্যাট"</string>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"ডিফল্ট সেট করুন"</string>
     <string name="clear_default" msgid="7193185801596678067">"ডিফল্ট সাফ করুন"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"পাঠ্য অনুলিপি হয়েছে"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"আপনার পরিবর্তনগুলি বাতিল করতে চান?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"বাতিল করুন"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"আপনার পরিবর্তনগুলি বাতিল করতে এবং সম্পাদনা থেকে প্রস্থান করতে চান?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"বাতিল করুন"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"সম্পাদনা করা চালিয়ে যান"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"আমার প্রোফাইল সেট করা"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"ব্যক্তির নাম লিখুন"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"আমার স্থানীয় প্রোফাইল"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"আমার <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> প্রোফাইল"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"সমস্ত পরিচিতি দেখানো হচ্ছে"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Google অ্যাকাউন্টের সাথে পরিচিতিগুলি ভাল কাজ করে।\n \n যে কোনো ওয়েব ব্রাউজার থেকে অ্যাক্সেস করুন।\n • নিরাপদভাবে আপনার পরিচিতিগুলির ব্যাক আপ নিন।"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"আপনার ফোন হারিয়ে গেলেও আপনার পরিচিতিগুলিকে নিরাপদ রাখুন: একটি অনলাইন পরিষেবার সাথে সিংক্রোনাইজ করুন৷"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"একটি অ্যাকাউন্ট যোগ করুন"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"আপনার নতুন পরিচিতিটির ব্যাকআপ নেওয়া হবে না৷ পরিচিতিগুলিকে অনলাইনে ব্যাকআপ নেওয়ার জন্য একটি অ্যাকাউন্ট যুক্ত করবেন?"</string>
@@ -327,15 +327,12 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়নি"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়েছে"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ভাষা পরিবর্তন দেখানোর জন্য পরিচিতির তালিকা আপডেট করা হচ্ছে৷\n\nঅনুগ্রহ করে অপেক্ষা করুন..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
+    <string name="blocked_numbers_title" msgid="6350716762304498682">"অবরোধ করা নম্বরগুলি"</string>
+    <string name="blocked_number_header_message" msgid="7296377056254430077">"এই নম্বরগুলি থেকে আসা কল এবং পাঠ্যবার্তাগুলিকে অবরোধ করা হবে৷"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"একটি নম্বর যোগ করুন"</string>
     <string name="search_shortcut_block_number" msgid="4787156645163436072">"নম্বর অবরোধ করুন"</string>
     <string name="block_number_search_hint" msgid="5409571607043872758">"সংখ্যা যোগ করুন বা পরিচিতিগুলি অনুসন্ধান করুন"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
+    <string name="block_number_confirmation_message" msgid="4425497283298329703">"এই নম্বর থেকে আসা কল এবং পাঠ্যবার্তাগুলিকে অবরোধ করা হবে৷"</string>
     <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> অবরোধ মুক্ত করবেন?"</string>
     <string name="unblock_number_ok" msgid="6449899182699684786">"অবরোধ মুক্ত করুন"</string>
     <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> অবরোধ করবেন?"</string>
@@ -345,8 +342,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> অবৈধ৷"</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"কল অবরোধ সাময়িকভাবে বন্ধ রয়েছে"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"কল অবরোধ অক্ষম করা হয়েছে কারণ আপনি গত ২৮ ঘন্টার মধ্যে এই ফোন থেকে জরুরি পরিষেবায় যোগাযোগ করেছেন। ২৮ ঘন্টার সময়সীমা পেরিয়ে গেলেই এটি স্বয়ংক্রিয়ভাবে পুনরায় সক্ষম হবে।"</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"আপনি আগে থেকেই স্বয়ংক্রিয়ভাবে ভয়েস মেলে পাঠানোর জন্য কিছু পরিচিতিকে চিহ্নিত করেছেন৷ কল এবং পাঠ্যবার্তা উভয়ই অবরোধ করার জন্য এখানে সেই নম্বরগুলিকে আমদানি করুন৷"</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"আমদানি করুন"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"নম্বরগুলি দেখুন"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"একটি নম্বর যোগ করুন"</string>
@@ -360,6 +356,5 @@
     <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"নম্বরগুলি আমদানি করুন"</string>
     <string name="permission_no_search" msgid="84152933267902056">"আপনার পরিচিতিগুলি অনুসন্ধান করতে, পরিচিতির অনুমতিগুলি চালু করুন।"</string>
     <string name="permission_single_turn_on" msgid="1543391076065465464">"চালু করুন"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"অবরোধ করা নম্বরগুলি"</string>
 </resources>

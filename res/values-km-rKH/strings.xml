@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"កំណត់​លំនាំដើម"</string>
     <string name="clear_default" msgid="7193185801596678067">"សម្អាត​លំនាំដើម"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"បាន​ចម្លង​អត្ថបទ"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"បោះបង់​ការ​ប្ដូរ​រ​របស់​អ្នក?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"បោះបង់"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"បោះបង់ការប្ដូររបស់អ្នក ហើយបញ្ឈប់ការកែសម្រួលមែនទេ?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"បោះបង់"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"នៅ​បន្ត​កែសម្រួល"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"រៀបចំ​ប្រវត្តិរូប​របស់​ខ្ញុំ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"វាយ​ឈ្មោះ​មនុស្ស"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"ប្រវត្តិរូប​មូលដ្ឋាន​របស់​ខ្ញុំ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ប្រវត្តិរូប <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> របស់​ខ្ញុំ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"បង្ហាញ​ទំនាក់ទំនង​ទាំងអស់"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"ទំនាក់ទំនង​ដំណើរការ​កាន់តែ​ល្អ​ជា​មួយ​គណនី Google ។\n\n• ចូល​ដំណើរការ​ពី​កម្មវិធី​រុករក​បណ្ដាញ។\n• បម្រុងទុក​ទំនាក់ទំនង​របស់​អ្នក​ដោយ​សុវត្ថិភាព។"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"រក្សាទុក​ទំនាក់ទំនង​របស់​អ្នក​យ៉ាង​មាន​សុវត្ថិភាព ទោះបីជា​អ្នក​បាត់​ទូរស័ព្ទ​ក៏ដោយ៖ ធ្វើ​សមកាលកម្ម​ជាមួយ​សេវាកម្ម​លើ​បណ្ដាញ។"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"បន្ថែម​គណនី"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"នឹង​មិន​បម្រុងទុក​ទំនាក់ទំនង​ថ្មី​របស់​អ្នក​ទេ។ បន្ថែម​គណនី​ដើម្បី​បម្រុងទុក​ទំនាក់ទំនង​នៅ​លើ​បណ្ដាញ?"</string>
@@ -327,15 +327,12 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"មិនបានជ្រើសរូបថតពីគណនីមិនស្គាល់ទេ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"បានជ្រើសរូបថតពីគណនីមិនស្គាល់"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"កំពុង​ធ្វើ​បច្ចុប្បន្នភាព​ទំនាក់ទំនង​ដើម្បី​ឆ្លុះបញ្ចាំង​ការ​ប្ដូរ​ភាសា។\n\nសូម​រង់ចាំ..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
+    <string name="blocked_numbers_title" msgid="6350716762304498682">"លេខបានរារាំង"</string>
+    <string name="blocked_number_header_message" msgid="7296377056254430077">"ការហៅ និងការផ្ញើសារចេញពីលេខទាំងនេះនឹងត្រូវបានរារាំង"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"បន្ថែមលេខ"</string>
     <string name="search_shortcut_block_number" msgid="4787156645163436072">"រារាំងលេខ"</string>
     <string name="block_number_search_hint" msgid="5409571607043872758">"បន្ថែមលេខទូរស័ព្ទ ឬស្វែងរកទំនាក់ទំនង"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
+    <string name="block_number_confirmation_message" msgid="4425497283298329703">"ការហៅ និងការផ្ញើសារចេញពីលេខនេះនឹងត្រូវបានរារាំង"</string>
     <string name="unblock_number_confirmation_title" msgid="252824779504084354">"ឈប់រារាំង <xliff:g id="NUMBER">%1$s</xliff:g> ឬ?"</string>
     <string name="unblock_number_ok" msgid="6449899182699684786">"ឈប់រារាំង"</string>
     <string name="block_number_confirmation_title" msgid="6862219558186931304">"រារាំង <xliff:g id="NUMBER">%1$s</xliff:g> ឬ?"</string>
@@ -345,8 +342,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> មិនត្រឹមត្រូវទេ"</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"ការរារាំងការហៅត្រូវបានបិទជាបណ្តោះអាសន្ន"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"ការរារាំងការហៅត្រូវបានបិទដំណើរការ ដោយសារតែអ្នកបានទាក់ទងទៅសេវាអាសន្នចេញពីទូរស័ព្ទនេះក្នុងចន្លោះពេល 48 ម៉ោងកន្លងមកនេះ។ វានឹងបើកដំណើរការឡើងវិញ បន្ទាប់ពីរយៈពេល 48 ម៉ោងផុតកំណត់។"</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"កាលពីមុនអ្នកបានដាក់សម្គាល់ឲ្យបញ្ជូនលេខទំនាក់ទំនងមួយចំនួនដោយស្វ័យប្រវត្តិទៅកាន់សារជាសំឡេង។ នាំចូលលេខទាំងនោះមកទីនេះដើម្បីរារាំងទាំងការហៅ និងការផ្ញើសារ។"</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"នាំចូល"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"មើលលេខ"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"បន្ថែមលេខ"</string>
@@ -360,6 +356,5 @@
     <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"នាំចូលលេខ"</string>
     <string name="permission_no_search" msgid="84152933267902056">"ដើម្បីស្វែងរកទំនាក់ទំនងរបស់អ្នក សូមបើកសិទ្ធិអនុញ្ញាតទំនាក់ទំនង។"</string>
     <string name="permission_single_turn_on" msgid="1543391076065465464">"បើក"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"លេខបានរារាំង"</string>
 </resources>

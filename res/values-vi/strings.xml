@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"Đặt mặc định"</string>
     <string name="clear_default" msgid="7193185801596678067">"Xóa mặc định"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Đã sao chép văn bản"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Hủy các thay đổi của bạn?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Hủy"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Hủy các thay đổi của bạn và thoát chỉnh sửa?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Hủy"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Tiếp tục chỉnh sửa"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Thiết lập hồ sơ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Nhập tên của người này"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"T.sử cục bộ của tôi"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Tiểu sử <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> của tôi"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Đang hiển thị tất cả liên hệ"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Danh bạ hoạt động tốt hơn với tài khoản Google.\n\n• Truy cập từ bất kỳ trình duyệt web nào.\n• Sao lưu danh bạ của bạn một cách an toàn."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Đảm bảo an toàn cho danh sách liên hệ của bạn ngay cả khi bạn mất điện thoại: hãy đồng bộ hóa với một dịch vụ trực tuyến."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Thêm tài khoản"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Liên hệ mới của bạn sẽ không được sao lưu. Thêm tài khoản sao lưu danh bạ trực tuyến?"</string>
@@ -327,15 +327,12 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Chưa chọn ảnh từ tài khoản không xác định"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Đã chọn ảnh từ tài khoản không xác định"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Danh bạ đang được cập nhật để phản ánh thay đổi ngôn ngữ.\n\nVui lòng đợi..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
+    <string name="blocked_numbers_title" msgid="6350716762304498682">"Số bị chặn"</string>
+    <string name="blocked_number_header_message" msgid="7296377056254430077">"Các cuộc gọi và tin nhắn từ những số này sẽ bị chặn."</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"Thêm số"</string>
     <string name="search_shortcut_block_number" msgid="4787156645163436072">"Chặn số"</string>
     <string name="block_number_search_hint" msgid="5409571607043872758">"Thêm số hoặc tìm kiếm danh bạ"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
+    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Các cuộc gọi và tin nhắn từ số này sẽ bị chặn."</string>
     <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Bỏ chặn <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
     <string name="unblock_number_ok" msgid="6449899182699684786">"BỎ CHẶN"</string>
     <string name="block_number_confirmation_title" msgid="6862219558186931304">"Chặn <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
@@ -345,8 +342,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> không hợp lệ."</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Tạm thời tắt chặn cuộc gọi"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Tính năng chặn cuộc gọi đã bị tắt vì bạn đã liên hệ với dịch vụ khẩn cấp từ điện thoại này trong vòng 48 giờ qua. Tính năng này sẽ được bật lại tự động sau khi khoảng thời gian 48 giờ kết thúc."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Trước đây bạn đã đánh dấu một số liên hệ sẽ được tự động gửi tới thư thoại. Hãy nhập các số đó vào đây để chặn cả cuộc gọi và tin nhắn."</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Nhập"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Xem số"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"Thêm số"</string>
@@ -360,6 +356,5 @@
     <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Nhập số"</string>
     <string name="permission_no_search" msgid="84152933267902056">"Để tìm kiếm liên hệ của bạn, hãy bật quyền đối với Danh bạ."</string>
     <string name="permission_single_turn_on" msgid="1543391076065465464">"Bật"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Số bị chặn"</string>
 </resources>

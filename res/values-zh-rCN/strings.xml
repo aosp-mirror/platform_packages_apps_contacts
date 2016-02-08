@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"设置默认值"</string>
     <string name="clear_default" msgid="7193185801596678067">"清除默认值"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"文本已复制"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"要舍弃您所做的更改吗？"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"舍弃"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"要舍弃您所做的更改并停止修改吗？"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"舍弃"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"继续修改"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"设置我的个人资料"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"键入联系人的姓名"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"我的本地个人资料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>个人资料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"显示所有联系人"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"登录Google帐号可获得更棒的通讯录使用体验。\n\n• 可通过任意浏览器访问。\n• 安全妥善地备份您的联系人数据。"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手机丢了，也能确保您的联系人信息的安全性：与在线服务同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"添加帐号"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系统不会备份您的新联系人。要添加用于在线备份联系人的帐号吗？"</string>
@@ -327,15 +327,12 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"未选中来自未知帐号的照片"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"已选中来自未知帐号的照片"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"正在更新联系人列表，以反映语言的变更。\n\n请稍候..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
+    <string name="blocked_numbers_title" msgid="6350716762304498682">"已屏蔽的号码"</string>
+    <string name="blocked_number_header_message" msgid="7296377056254430077">"系统将屏蔽这些号码的来电和短信。"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"添加号码"</string>
     <string name="search_shortcut_block_number" msgid="4787156645163436072">"屏蔽号码"</string>
     <string name="block_number_search_hint" msgid="5409571607043872758">"添加号码或搜索联系人"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
+    <string name="block_number_confirmation_message" msgid="4425497283298329703">"系统将屏蔽该号码的来电和短信。"</string>
     <string name="unblock_number_confirmation_title" msgid="252824779504084354">"要取消屏蔽 <xliff:g id="NUMBER">%1$s</xliff:g> 吗？"</string>
     <string name="unblock_number_ok" msgid="6449899182699684786">"取消屏蔽"</string>
     <string name="block_number_confirmation_title" msgid="6862219558186931304">"要屏蔽 <xliff:g id="NUMBER">%1$s</xliff:g> 吗？"</string>
@@ -345,8 +342,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> 无效。"</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"来电拦截功能已暂时关闭"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"来电拦截功能已停用，因为您在过去 48 小时内使用该手机拨打了紧急服务电话。系统会在 48 小时的期限结束后自动重新启用该功能。"</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"您之前曾将某些联系人设为自动转到语音信箱。您可以在此处导入这些号码，以便屏蔽这些号码的来电和短信。"</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"导入"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"查看号码"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"添加号码"</string>
@@ -360,6 +356,5 @@
     <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"导入号码"</string>
     <string name="permission_no_search" msgid="84152933267902056">"要搜索您的联系人，请开启“通讯录”权限。"</string>
     <string name="permission_single_turn_on" msgid="1543391076065465464">"开启"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"已屏蔽的号码"</string>
 </resources>
