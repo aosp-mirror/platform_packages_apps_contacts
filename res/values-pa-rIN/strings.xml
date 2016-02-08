@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"ਡਿਫੌਲਟ ਸੈਟ ਕਰੋ"</string>
     <string name="clear_default" msgid="7193185801596678067">"ਡਿਫੌਲਟ ਹਟਾਓ"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"ਟੈਕਸਟ ਕਾਪੀ ਕੀਤਾ"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"ਕੀ ਬਦਲਾਵ ਬਰਖਾਸਤ ਕਰਨੇ ਹਨ?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"ਰੱਦ ਕਰੋ"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"ਕੀ ਆਪਣੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਛੱਡਣਾ ਅਤੇ ਸੰਪਾਦਨ ਨੂੰ ਰੱਦ ਕਰਨਾ ਹੈ?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ਛੱਡੋ"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"ਸੋਧ ਕਰਦੇ ਰਹੋ"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"ਮੇਰੀ ਪ੍ਰੋਫਾਈਲ ਸੈਟ ਅਪ ਕਰੋ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"ਵਿਅਕਤੀ ਦਾ ਨਾਮ ਟਾਈਪ ਕਰੋ"</string>
@@ -327,15 +328,12 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ਅਗਿਆਤ ਖਾਤੇ ਦੀ ਫੋਟੋ ਨਹੀਂ ਜਾਂਚੀ ਗਈ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ਅਗਿਆਤ ਖਾਤੇ ਦੀ ਫੋਟੋ ਜਾਂਚੀ ਗਈ"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ਭਾਸ਼ਾ ਵਿੱਚ ਕੀਤੀ ਤਬਦੀਲੀ ਨੂੰ ਦਰਸਾਉਣ ਲਈ ਸੰਪਰਕ ਸੂਚੀ ਅੱਪਡੇਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ।\n\nਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
+    <string name="blocked_numbers_title" msgid="6350716762304498682">"ਬਲੌਕ ਕੀਤੇ ਨੰਬਰ"</string>
+    <string name="blocked_number_header_message" msgid="7296377056254430077">"ਇਹਨਾਂ ਨੰਬਰਾਂ ਤੋਂ ਕਾਲਾਂ ਅਤੇ ਟੈਕਸਟ ਬਲੌਕ ਕੀਤੇ ਜਾਣਗੇ।"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"ਨੰਬਰ ਜੋੜੋ"</string>
     <string name="search_shortcut_block_number" msgid="4787156645163436072">"ਨੰਬਰ ਨੂੰ ਬਲੌਕ ਕਰੋ"</string>
     <string name="block_number_search_hint" msgid="5409571607043872758">"ਨੰਬਰ ਜੋੜੋ ਜਾਂ ਸੰਪਰਕ ਖੋਜੋ"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
+    <string name="block_number_confirmation_message" msgid="4425497283298329703">"ਇਸ ਨੰਬਰ ਤੋਂ ਕਾਲਾਂ ਅਤੇ ਟੈਕਸਟ ਨੂੰ ਬਲੌਕ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।"</string>
     <string name="unblock_number_confirmation_title" msgid="252824779504084354">"ਕੀ <xliff:g id="NUMBER">%1$s</xliff:g> ਅਨਲੌਕ ਕਰਨਾ ਹੈ?"</string>
     <string name="unblock_number_ok" msgid="6449899182699684786">"ਅਨਬਲੌਕ ਕਰੋ"</string>
     <string name="block_number_confirmation_title" msgid="6862219558186931304">"ਕੀ <xliff:g id="NUMBER">%1$s</xliff:g> ਬਲੌਕ ਕਰਨਾ ਹੈ?"</string>
@@ -345,8 +343,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> ਅਪ੍ਰਮਾਣਿਕ ਹੈ।"</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"ਕਾਲ ਬਲੌਕਿੰਗ ਆਰਜ਼ੀ ਤੌਰ ਤੇ ਬੰਦ ਹੈ"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"ਕਾਲ ਬਲੌਕਿੰਗ ਅਸਮਰੱਥ ਕਰ ਦਿੱਤੀ ਗਈ ਹੈ ਕਿਉਂਕਿ ਤੁਸੀਂ ਇਸ ਫੋਨ ਦੁਆਰਾ ਪਿਛਲੇ 48 ਘੰਟਿਆਂ ਤੋਂ ਐਮਰਜੈਂਸੀ ਸੇਵਾਵਾਂ ਨਾਲ ਕਨੈਕਟ ਕੀਤਾ ਹੋਇਆ ਹੈ। ਇਹ 48 ਘੰਟਿਆਂ ਦਾ ਸਮਾਂ ਪੂਰਾ ਹੋਣ ਤੇੋਂ ਬਾਅਦ ਆਟੋਮੈਟਿਕਲੀ ਮੁੜ-ਸਮਰੱਥ ਹੋ ਜਾਵੇਗੀ।"</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"ਤੁਸੀਂ ਪਹਿਲਾਂ ਕੁਝ ਸੰਪਰਕਾਂ ਨੂੰ ਸਵੈਚਾਲਿਤ ਤੌਰ \'ਤੇ ਵੌਇਸਮੇਲ ਨੂੰ ਭੇਜਣ ਲਈ ਚਿੰਨ੍ਹਿਤ ਕੀਤਾ। ਕਾਲਾਂ ਅਤੇ ਟੈਕਸਟ ਦੋਵਾਂ ਨੂੰ ਬਲੌਕ ਕਰਨ ਲਈ ਉਹਨਾਂ ਨੰਬਰਾਂ ਨੂੰ ਇੱਥੇ ਆਯਾਤ ਕਰੋ।"</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"ਆਯਾਤ ਕਰੋ"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"ਨੰਬਰ ਵਿਖਾਓ"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"ਨੰਬਰ ਜੋੜੋ"</string>
@@ -360,6 +357,5 @@
     <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"ਆਯਾਤ ਨੰਬਰ"</string>
     <string name="permission_no_search" msgid="84152933267902056">"ਆਪਣੇ ਸੰਪਰਕਾਂ ਦੀ ਖੋਜ ਕਰਨ ਲਈ,, ਸੰਪਰਕ ਅਨੁਮਤੀਆਂ ਨੂੰ ਚਾਲੂ ਕਰੋ।"</string>
     <string name="permission_single_turn_on" msgid="1543391076065465464">"ਚਾਲੂ ਕਰੋ"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ਬਲੌਕ ਕੀਤੇ ਨੰਬਰ"</string>
 </resources>

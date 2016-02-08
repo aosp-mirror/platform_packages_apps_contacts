@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"සුපුරුදු ලෙස සකසන්න"</string>
     <string name="clear_default" msgid="7193185801596678067">"සුපුරුදු හිස් කරන්න"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"පෙළ පිටපත් කරන ලදී"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"ඔබගේ වෙනස්කම් ඉවතලන්නද?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"ඉවත ලන්න"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"ඔබේ වෙනස් කිරීම් ඉවත දමා සංස්කරණය කිරීමෙන් ඉවත් වන්නද?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ඉවතලන්න"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"සංස්කරණය කරගෙන යන්න"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"මගේ පැතිකඩ සකසන්න"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"පුද්ගලයාගේ නම ටයිප් කරන්න"</string>
@@ -327,15 +328,12 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"නොදන්නා ගිණුම වෙතින් වන ඡායාරූපය ලකුණු නොකරන ලදී"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"නොදන්නා ගිණුම වෙතින් වන ඡායාරූපය ලකුණු කරන ලදී"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"භාෂා වෙනස්වීම පෙන්වීමට සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන වෙමින් පවතී.\n\nකරුණාකර රැඳී සිටින්න..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
+    <string name="blocked_numbers_title" msgid="6350716762304498682">"අවහිර කළ අංක"</string>
+    <string name="blocked_number_header_message" msgid="7296377056254430077">"මෙම අංක වෙතින් වන ඇමතුම් හා පෙළ පණිවිඩ අවහිර කරනු ඇත."</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"අංකයක් එක් කරන්න"</string>
     <string name="search_shortcut_block_number" msgid="4787156645163436072">"අංකය අවහිර කරන්න"</string>
     <string name="block_number_search_hint" msgid="5409571607043872758">"අංකය එක් කරන්න හෝ සම්බන්ධතා සොයන්න"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
+    <string name="block_number_confirmation_message" msgid="4425497283298329703">"මෙම අංකය වෙතින් වන ඇමතුම් හා පෙළ පණිවිඩ අවහිර කරනු ඇත."</string>
     <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> අවහිර නොකරන්නද?"</string>
     <string name="unblock_number_ok" msgid="6449899182699684786">"අවහිර නොකරන්න"</string>
     <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> අවහිර කරන්නද?"</string>
@@ -345,8 +343,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> වලංගු නැත."</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"ඇමතුම් අවහිර කිරීම තාවකාලිකව අක්‍රියයි"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"ඔබ පසුගිය පැය 48 ඇතුළත මෙම දුරකථනයෙන් හදිසි අවස්ථා සේවා ඇමතූ බැව්න් ඇමතුම් අවහිර කිරීම අබල කර ඇත. පැය 48ක කාල සීමාව ඉකුත් වූ විට එය ස්වයංක්‍රියව යළි සබල කෙරේ."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"ඔබ පෙරදී සමහර සම්බන්ධතා ස්වයංක්‍රියව හඬ තැපැල් යැවීමට ලකුණු කරන ලදී. ඇමතුම් සහ පෙළ පණිවිඩ යන දෙකම අවහිර කිරීමට එම අංක මෙතැනට ආයාත කරන්න."</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"ආයාත කරන්න"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"අංක බලන්න"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"අංකයක් එක් කරන්න"</string>
@@ -360,6 +357,5 @@
     <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"අංක ආයාත කරන්න"</string>
     <string name="permission_no_search" msgid="84152933267902056">"ඔබේ සම්බන්ධතා සෙවීමට, සම්බන්ධතා අවසර ක්‍රියාත්මක කරන්න."</string>
     <string name="permission_single_turn_on" msgid="1543391076065465464">"ක්‍රියාත්මක කරන්න"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"අවහිර කළ අංක"</string>
 </resources>
