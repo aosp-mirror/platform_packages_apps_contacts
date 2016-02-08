@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"Подеси стандарден метод"</string>
     <string name="clear_default" msgid="7193185801596678067">"Исчисти стандарден метод"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текстот е копиран"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Отфрли ги своите промени?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Отфрли"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Дали да се отфрлат промените и да се прекине уредувањето?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Отфрли"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Продолжи со уредување"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Подеси мој профил"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Впиши име на лице"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Мој локален профил"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мој профил на <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Прикажување на сите контакти"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Апликацијата Контакти работи подобро со сметка на Google.\n\n• Пристапете од кој било прелистувач.\n• Направете резервна копија од контактите безбедно."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Чувајте ги вашите контакти безбедни дури и ако го изгубите вашиот телефон: синхронизирајте се со онлајн услуга."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додај сметка"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Нема да се направи резервна копија на вашиот нов контакт. Додадете сметка што прави резервна копија на контакти онлајн?"</string>
@@ -327,15 +327,12 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Не е избрана фотографија од непозната сметка"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Избрана е фотографија од непозната сметка"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Списокот со контакти се ажурира за да ја одрази промената на јазикот.\n\nПочекајте..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
+    <string name="blocked_numbers_title" msgid="6350716762304498682">"Блокирани броеви"</string>
+    <string name="blocked_number_header_message" msgid="7296377056254430077">"Повиците и пораките од овие броеви ќе се блокираат."</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"Додај број"</string>
     <string name="search_shortcut_block_number" msgid="4787156645163436072">"Блокирај го бројот"</string>
     <string name="block_number_search_hint" msgid="5409571607043872758">"Додајте број или побарајте контакти"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
+    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Повиците и пораките од овој број ќе се блокираат."</string>
     <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Деблокирај го <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
     <string name="unblock_number_ok" msgid="6449899182699684786">"ДЕБЛОКИРАЈ"</string>
     <string name="block_number_confirmation_title" msgid="6862219558186931304">"Блокирај го <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
@@ -345,8 +342,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> не е важечки."</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Блокирањето повик е привремено исклучено"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Блокирањето повици е исклучено бидејќи ја контактиравте службата за итни случаи од телефонов во изминатите 48 часа. Повторно ќе се овозможи автоматски откако ќе истече периодот од 48 часа."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Претходно означивте неколку контакти да се праќаат автоматски кон говорната пошта. Увезете ги тие броеви тука за да се блокираат повиците и пораките."</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Увези"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Прикажи броеви"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"Додај број"</string>
@@ -360,6 +356,5 @@
     <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Увези броеви"</string>
     <string name="permission_no_search" msgid="84152933267902056">"За да ги пребарувате контактите, вклучете ги дозволите за контакти."</string>
     <string name="permission_single_turn_on" msgid="1543391076065465464">"Вклучи"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Блокирани броеви"</string>
 </resources>
