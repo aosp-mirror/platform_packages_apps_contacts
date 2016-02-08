@@ -227,10 +227,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"پہلا نام پہلے"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"آخری نام پہلے"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"نئے رابطوں کیلئے ڈیفالٹ اکاؤنٹ"</string>
-    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"رابطہ میٹا ڈیٹا کیلئے مطابقت پذیر اکاؤنٹ"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"‏رابطہ میٹا ڈیٹا مطابقت پذیر بنائیں [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"رابطہ میٹا ڈیٹا مطابقت پذیر بنائیں"</string>
     <string name="setting_about" msgid="3926137653588942297">"رابطوں کے بارے میں"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"ترتیبات"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"مرئی رابطوں کا اشتراک کریں"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"مرئی رابطوں کا اشتراک کرنے میں ناکام ہو گیا۔"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"پسندیدہ رابطوں کا اشتراک کریں"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"سارے رابطوں کا اشتراک کریں"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"رابطوں کا اشتراک کرنے میں ناکام۔"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"رابطے درآمد/برآمد کریں"</string>
     <string name="dialog_import" msgid="5177004290082451296">"رابطے درآمد کریں"</string>
     <string name="share_error" msgid="665756457151793108">"اس رابطہ کا اشتراک نہیں کیا جا سکتا۔"</string>
