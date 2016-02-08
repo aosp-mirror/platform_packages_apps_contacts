@@ -299,8 +299,9 @@
     <string name="clear_default" msgid="7193185801596678067">"Негизгини тазалоо"</string>
     <!-- no translation found for toast_text_copied (5143776250008541719) -->
     <skip />
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Өзгөртүүлөр жокко чыгарылсынбы?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Жокко чыгаруу"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Өзгөртүүлөр жарактан чыгарылып, түзөтүү жабылсынбы?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Жарактан чыгаруу"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Түзөтө берүү"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Профайлымды тууралоо"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Кишинин атын киргизиңиз"</string>
@@ -401,15 +402,12 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Белгисиз каттоо эсебинен келген сүрөт тандалды"</string>
     <!-- no translation found for locale_change_in_progress (1124266507671178413) -->
     <skip />
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
+    <string name="blocked_numbers_title" msgid="6350716762304498682">"Бөгөттөлгөн номерлер"</string>
+    <string name="blocked_number_header_message" msgid="7296377056254430077">"Бул номерлерден келген чалуулар менен SMS билдирүүлөр бөгөттөлөт."</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"Номер кошуу"</string>
     <string name="search_shortcut_block_number" msgid="4787156645163436072">"Номерди бөгөттөө"</string>
     <string name="block_number_search_hint" msgid="5409571607043872758">"Номер кошуңуз же байлнш издңз"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
+    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Бул номерден келген чалуулар менен SMS билдирүүлөр бөгөттөлөт."</string>
     <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> бөгөттөн чыгарылсынбы?"</string>
     <string name="unblock_number_ok" msgid="6449899182699684786">"БӨГӨТТӨН ЧЫГАРУУ"</string>
     <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> бөгөттөлсүнбү?"</string>
@@ -419,8 +417,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> - жараксыз."</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Чалууну бөгөттөө убактылуу өчүрүлгөн"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Акыркы 48 саат ичинде бул телефондон өзгөчө кырдаал кызматына байланышкандыктан чалууну бөгөттөө өчүрүлдү. 48 сааттык мөөнөтү аяктагандан кийин ал автоматтык түрдө кайра иштетилет."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Мурда айрым байланыштарга автоматтык түрдө үн почтасы жөнөтүлгүдөй кылып белгилегенсиз. Чалуулар менен SMS билдирүүлөрдү бөгөттөө үчүн ошол номерлерди импорттоңуз."</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Импорттоо"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Номерлерди көрүү"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"Номер кошуу"</string>
@@ -434,6 +431,5 @@
     <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Номерлерди импорттоо"</string>
     <string name="permission_no_search" msgid="84152933267902056">"Байланыштарыңызды издөө үчүн, Байланыштарга уруксатты күйгүзүңүз."</string>
     <string name="permission_single_turn_on" msgid="1543391076065465464">"Күйгүзүү"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Бөгөттөлгөн номерлер"</string>
 </resources>

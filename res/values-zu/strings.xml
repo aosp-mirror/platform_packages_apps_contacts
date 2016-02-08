@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"Hlela okuzenzakalelayo"</string>
     <string name="clear_default" msgid="7193185801596678067">"Sula okuzenzakalelayo"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Umbhalo okopishiwe"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Lahla izinguquko ozenzile?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Lahla"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Lahla izinguquko zakho bese uyeke ukuhlela?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Lahla"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Qhubeka uhlela"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Misa iphrofayli yami"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Thayipha igama lomuntu"</string>
@@ -327,15 +328,12 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Isithombe esivela ku-akhawunti engaziwa asithikhiwe"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Isithombe esivela ku-akhawunti engaziwa sithikhiwe"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Uhlu lothintana naye luyabuyekezwa ukubonisa ushintsho lolimi.\n\nSicela ulinde..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
+    <string name="blocked_numbers_title" msgid="6350716762304498682">"Izinombolo ezivinjiwe"</string>
+    <string name="blocked_number_header_message" msgid="7296377056254430077">"Amakholi kusuka kulezi zinombolo azovinjelwa."</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"Engeza inombolo"</string>
     <string name="search_shortcut_block_number" msgid="4787156645163436072">"Vimba inombolo"</string>
     <string name="block_number_search_hint" msgid="5409571607043872758">"Engeza inombolo noma useshe oxhumana nabo"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
+    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Amakholi nemibhalo kusuka kule nombolo kuzovinjelwa."</string>
     <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Vulela i-<xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
     <string name="unblock_number_ok" msgid="6449899182699684786">"VULELA"</string>
     <string name="block_number_confirmation_title" msgid="6862219558186931304">"Vimba <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
@@ -345,8 +343,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> ayivumelekile."</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Ukuvimbela ikholi kuvalwe isikhashana"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Ukuvimbela ikholi kukhutshaziwe ngoba uxhumane nabosizo oluphuthumayo kusukela kule foni phakathi kwamahora angu-48 wokugcina. Kuzophinda kunikwe amandla ngokuzenzakalela uma sokuphele isikhathi samahora angu-48."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Ngaphambilini umake abanye oxhumana nabo ukuthi bathunyelwe ngokuzenzakalela kuvoyisimeyili. Ngenisa lezo zinombolo lapha ukuze uvimbele kokubili amakholi nemibhalo."</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Ngenisa"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Buka izinombolo"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"Engeza inombolo"</string>
@@ -360,6 +357,5 @@
     <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Ngenisa izinombolo"</string>
     <string name="permission_no_search" msgid="84152933267902056">"Ukuze useshe oxhumana nabo, vula izimvume zoxhumana nabo."</string>
     <string name="permission_single_turn_on" msgid="1543391076065465464">"Vula"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Izinombolo ezivinjiwe"</string>
 </resources>

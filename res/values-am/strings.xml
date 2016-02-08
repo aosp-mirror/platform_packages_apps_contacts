@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"ነባሪ አዘጋጅ"</string>
     <string name="clear_default" msgid="7193185801596678067">"ነባሪ አጽዳ"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"ፅሁፍ ገልብጧል"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"ለውጦችዎ ይጣሉ?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"አስወግድ"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"ለውጦችዎ ይወገዱ እና ማርትዕ ይቁም?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"አስወግድ"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"አርትዖቱን ቀጥል"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"መገለጫዬን አዘጋጅ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"የግለሰቡን ስም ተይብ"</string>
@@ -327,15 +328,12 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ካልታወቀ መለያ የመጣ ፎቶ ምልክት አልተደረገበትም"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ካልታወቀ መለያ የመጣ ፎቶ ምልክት ተደርጎበታል"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"የእውቅያ ዝርዝር የቋንቋ ለውጥን ለማንፀባረቅ ዘምኗል።\n\nእባክዎ ይጠብቁ....."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
+    <string name="blocked_numbers_title" msgid="6350716762304498682">"የታገዱ ቁጥሮች"</string>
+    <string name="blocked_number_header_message" msgid="7296377056254430077">"ከእነዚህ ቁጥሮች የሚመጡ ጥሪዎች እና ጽሑፎች ይታገዳሉ።"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"ቁጥር አክል"</string>
     <string name="search_shortcut_block_number" msgid="4787156645163436072">"ቁጥርን አግድ"</string>
     <string name="block_number_search_hint" msgid="5409571607043872758">"ቁጥር ያክሉ ወይም እውቂያዎችን ይፈልጉ"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
+    <string name="block_number_confirmation_message" msgid="4425497283298329703">"ከዚህ ቁጥር የሚመጡ ጥሪዎች እና ጽሑፎች ይታገዳሉ።"</string>
     <string name="unblock_number_confirmation_title" msgid="252824779504084354">"የ<xliff:g id="NUMBER">%1$s</xliff:g> እግድ ይነሳ?"</string>
     <string name="unblock_number_ok" msgid="6449899182699684786">"እገዳ አንሳ"</string>
     <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> ይታገድ?"</string>
@@ -345,8 +343,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> ልክ ያልኾነ ነው።"</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"ጥሪን ማገድ ለጊዜው ተሰናክሏል"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"ባለፉት 48 ሰዓቶች ውስጥ ከዚህ ስልክ ሆነው የአስቸኳይ አደጋ አገልግሎቶችን ስላነጋገሩ ጥሪን ማገድ ተሰናክሏል። አንዴ የ48 ሰዓቱ ጊዜ ካለፈ በኋላ በራስ-ሰር ዳግም ይነቃል።"</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"ከዚህ ቀደም አንዳንድ እውቂያዎች በራስ-ሰር ወደ የድምፅ መልእክት እንዲላኩ ምልክት አድርገውባቸው ነበር። ሁለቱንም ጥሪዎች እና ጽሑፎች ለማገድ እነዚህን ቁጥሮች ወደዚህ ያስመጡ።"</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"አስመጣ"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"ቁጥሮችን ይመልከቱ"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"ቁጥር አክል"</string>
@@ -360,6 +357,5 @@
     <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"ቁጥሮችን አስመጣ"</string>
     <string name="permission_no_search" msgid="84152933267902056">"የእርስዎን እውቂያዎች ለመከታተል የእውቂያዎች ፍቃዶችን ያብሩ።"</string>
     <string name="permission_single_turn_on" msgid="1543391076065465464">"አብራ"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"የታገዱ ቁጥሮች"</string>
 </resources>
