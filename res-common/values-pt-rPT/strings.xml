@@ -227,10 +227,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nome próprio em primeiro lugar"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Apelido em primeiro lugar"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Conta predefinida para novos contactos"</string>
-    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Conta de sincronização de metadados de contactos"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronizar metadados de contactos [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronizar metadados de contactos"</string>
     <string name="setting_about" msgid="3926137653588942297">"Acerca dos Contactos"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"Definições"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partilhar contactos visíveis"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Falha ao partilhar os contactos visíveis."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Partilhar contactos favoritos"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Partilhar todos os contactos"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Falha ao partilhar os contactos."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importar/exportar contactos"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importar contactos"</string>
     <string name="share_error" msgid="665756457151793108">"Não é possível partilhar este contacto."</string>

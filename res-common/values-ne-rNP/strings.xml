@@ -227,10 +227,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाम पहिले"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"थर पहिला"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"नयाँ सम्पर्कहरूका लागि पूर्वनिर्धारित खाता"</string>
-    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"मेटाडेटा सिंकको खातामा सम्पर्क गर्नुहोस्"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"सम्पर्क मेटाडाटा [DOGFOOD]लाई सिंक गर्नुहोस्"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"सम्पर्क मेटाडाटालाई सिंक गर्नुहोस्"</string>
     <string name="setting_about" msgid="3926137653588942297">"सम्पर्कहरूको बारेमा"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"सेटिङहरू"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"देखिने सम्पर्कहरू साझेदारी गर्नुहोस्"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"देख्न सकिने सम्पर्कहरू साझेदारी गर्न असफल भयो।"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"मनपर्ने सम्पर्क साझेदारी गर्नुहोस्"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"सबै सम्पर्क साझेदारी गर्नुहोस्"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"सम्पर्कहरू साझेदारी गर्न असफल भयो।"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"आयात/निर्यात सम्पर्कहरू"</string>
     <string name="dialog_import" msgid="5177004290082451296">"सम्पर्क आयात गर्नुहोस्"</string>
     <string name="share_error" msgid="665756457151793108">"यस सम्पर्कलाई साझेदारी गर्न सकिँदैन।"</string>
