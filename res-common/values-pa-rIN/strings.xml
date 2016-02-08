@@ -227,15 +227,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ਪਹਿਲਾਂ ਪਹਿਲਾ ਨਾਮ"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ਪਹਿਲਾਂ ਆਖ਼ਰੀ ਨਾਮ"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"ਨਵੇਂ ਸੰਪਰਕਾਂ ਲਈ ਪੂਰਵ-ਨਿਰਧਾਰਤ ਖਾਤਾ"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"ਸੰਪਰਕ ਮੈਟਾਡੈਟੇ ਨੂੰ ਸਮਕਾਲੀ ਕਰੋ [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ਸੰਪਰਕ ਮੈਟਾਡੈਟੇ ਨੂੰ ਸਮਕਾਲੀ ਕਰੋ"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"ਸੰਪਰਕ ਮੈਟਾਡੈਟਾ ਸਮਕਾਲੀਕਰਨ ਖਾਤਾ"</string>
     <string name="setting_about" msgid="3926137653588942297">"ਸੰਪਰਕਾਂ ਬਾਰੇ"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"ਸੈਟਿੰਗਾਂ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ਦਿੱਸਦੇ ਸੰਪਰਕ ਸ਼ੇਅਰ ਕਰੋ"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ਦ੍ਰਿਸ਼ਮਾਨ ਸੰਪਰਕ ਸ਼ੇਅਰ ਕਰਨ ਵਿੱਚ ਅਸਫਲ।"</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"ਮਨਪਸੰਦ ਸੰਪਰਕਾਂ ਨੂੰ ਸਾਂਝਾ ਕਰੋ"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"ਸਾਰੇ ਸੰਪਰਕ ਸਾਂਝੇ ਕਰੋ"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"ਸੰਪਰਕ ਸਾਂਝੇ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ।"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"ਸੰਪਰਕ ਆਯਾਤ/ਨਿਰਯਾਤ ਕਰੋ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"ਸੰਪਰਕ ਆਯਾਤ ਕਰੋ"</string>
     <string name="share_error" msgid="665756457151793108">"ਇਸ ਸੰਪਰਕ ਸ਼ੇਅਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"</string>

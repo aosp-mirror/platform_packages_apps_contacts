@@ -229,15 +229,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Najprej ime"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Najprej priimek"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Privzeti račun za nove stike"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinhronizacija metapodatkov stikov [PRESKUSNA INTERNA UPORABA]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinhronizacija metapodatkov stikov"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Račun za sinhronizacijo metapodatkov za stike"</string>
     <string name="setting_about" msgid="3926137653588942297">"O programu za stike"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"Nastavitve"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Vidne stike deli z drugimi"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Deljenje vidnih stikov z drugimi ni uspelo."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Skupna raba priljubljenih stikov"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Skupna raba vseh stikov"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"Dajanje stikov v skupno rabo ni uspelo."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Uvoz/izvoz stikov"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Uvozi stike"</string>
     <string name="share_error" msgid="665756457151793108">"Tega stika ni mogoče dati v skupno rabo."</string>

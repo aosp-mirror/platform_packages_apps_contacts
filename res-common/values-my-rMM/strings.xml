@@ -227,15 +227,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ပထမ အမည် ဦးစွာ"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"နောက်ဆုံး အမည် ဦးစွာ"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"အဆက်အသွယ် အသစ်များအတွက် မူရင်း အကောင့်"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"အဆက်အသွယ် မက်တာဒေတာကို စင့်ခ်လုပ်ပါ [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"အဆက်အသွယ် မက်တာဒေတာကို စင့်ခ်လုပ်ပါ"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"မက်တာဒေတာ ပြိုင်တူညိမှု အကောင့်ကို ဆက်သွယ်ပါ"</string>
     <string name="setting_about" msgid="3926137653588942297">"အဆက်အသွယ်များ အကြောင်း"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"ဆက်တင်များ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"မြင်နိုင်သော အဆက်အသွယ်များအား မျှဝေပါ"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"မြင်သာသော အဆက်အသွယ်တွေကိုဝေမျှခြင်းမပြုနိုင်ခဲ့ပါ။"</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"အကြိုက်ဆုံးအဆက်အသွယ်များကို မျှဝေပါ"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"အဆက်အသွယ်များအားလုံးကို မျှဝေပါ"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"အဆက်အသွယ်များကို မျှဝေခြင်းမအောင်မြင်ပါ။"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"အဆက်အသွယ်များ သွင်းယူ၊ ထုတ်ယူရန်"</string>
     <string name="dialog_import" msgid="5177004290082451296">"အဆက်အသွယ်များ တင်သွင်းပါ"</string>
     <string name="share_error" msgid="665756457151793108">"ဒီလိပ်စာအား မျှဝေလို့ မရပါ"</string>

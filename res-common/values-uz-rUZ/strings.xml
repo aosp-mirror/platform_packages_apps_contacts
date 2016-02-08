@@ -227,15 +227,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Avval ismi"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Avval familiyasi"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Yangi kontaktlar uchun birlamchi hisob"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Kontakt meta-ma’lumotlarini sinxronlash [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Kontakt meta-ma’lumotlarini sinxronlash"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Hisobni sinxronlash kontakt meta-ma’lumotlari"</string>
     <string name="setting_about" msgid="3926137653588942297">"Kontaktlar haqida"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"Sozlamalar"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Ko‘rinadigan kontaktlarni yuborish"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Ko‘rinadigan kontaktlarni yuborib bo‘lmadi."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Sevimli kontaktlarni ulashish"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Barcha kontaktlarni ulashish"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"Kontaktlarni ulashib bo‘lmadi."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktlarni import/eksport qilish"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktlarni import qilish"</string>
     <string name="share_error" msgid="665756457151793108">"Kontaktni yuborib bo‘lmadi."</string>

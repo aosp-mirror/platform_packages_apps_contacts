@@ -231,15 +231,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"الاسم الأول أولاً"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"اسم العائلة /الاسم الأول"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"الحساب الافتراضي لجهات الاتصال الجديدة"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"‏مزامنة البيانات الوصفية لجهات الاتصال [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"مزامنة البيانات الوصفية لجهات الاتصال"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"حساب مزامنة البيانات الوصفية لجهات الاتصال"</string>
     <string name="setting_about" msgid="3926137653588942297">"حول جهات الاتصال"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"الإعدادات"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"مشاركة جهات الاتصال المرئية"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"أخفقت مشاركة جهات الاتصال المرئية."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"مشاركة جهات الاتصال المفضلة"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"مشاركة جميع جهات الاتصال"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"أخفقت مشاركة جهات الاتصال."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"استيراد/تصدير جهات اتصال"</string>
     <string name="dialog_import" msgid="5177004290082451296">"استيراد جهات الاتصال"</string>
     <string name="share_error" msgid="665756457151793108">"لا يمكن مشاركة جهة الاتصال هذه."</string>

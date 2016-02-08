@@ -228,15 +228,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Vispirms rādīt vārdu"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Vispirms rādīt uzvārdu"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Noklusējuma konts jaunām kontaktpersonām"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinhronizēt kontaktpersonu metadatus [IZSTRĀDES PROGRAMMATŪRA]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Kontaktpersonu metadatu sinhronizācija"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Kontaktpersonu metadatu sinhronizācijas konts"</string>
     <string name="setting_about" msgid="3926137653588942297">"Par lietotni Kontaktpersonas"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"Iestatījumi"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Kopīgot redzamo kontaktpersonu datus"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Neizdevās kopīgot redzamās kontaktpersonas."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Kopīgot izlases kontaktpersonas"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Kopīgot visas kontaktpersonas"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"Neizdevās kopīgot kontaktpersonas."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktpersonu importēšana/eksportēšana"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktpersonu datu importēšana"</string>
     <string name="share_error" msgid="665756457151793108">"Šīs kontaktpersonas datus nevar kopīgot."</string>

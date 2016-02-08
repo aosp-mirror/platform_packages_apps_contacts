@@ -227,15 +227,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Pangalan muna"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Apelyido muna"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Default na account para sa mga bagong contact"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"I-sync ang metadata ng contact [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"I-sync ang metadata ng contact"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Account ng pag-sync ng metadata ng contact"</string>
     <string name="setting_about" msgid="3926137653588942297">"Tungkol sa Mga Contact"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"Mga Setting"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Magbahagi ng mga nakikitang contact"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Hindi naibahagi ang mga nakikitang contact."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Ibahagi ang mga paboritong contact"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Ibahagi ang lahat ng contact"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"Hindi naibahagi ang mga contact."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Mag-import/mag-export ng mga contact"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Mag-import ng mga contact"</string>
     <string name="share_error" msgid="665756457151793108">"Hindi maibabahagi ang contact na ito."</string>

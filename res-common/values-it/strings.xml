@@ -227,15 +227,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Prima il nome"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Prima il cognome"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Account predefinito per i nuovi contatti"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronizza i metadati dei contatti [VERSIONE SPERIMENTALE]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronizza i metadati dei contatti"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Account di sincronizzazione metadati di contatto"</string>
     <string name="setting_about" msgid="3926137653588942297">"Informazioni sull\'applicazione Contatti"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"Impostazioni"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Condividi contatti visibili"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Impossibile condividere i contatti visibili."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Condividi i contatti preferiti"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Condividi tutti i contatti"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"Impossibile condividere i contatti."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importa/esporta contatti"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importa contatti"</string>
     <string name="share_error" msgid="665756457151793108">"Questo contatto non può essere condiviso."</string>
