@@ -227,10 +227,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Fornafn fyrst"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Eftirnafn fyrst"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Sjálfgefinn reikningur fyrir nýja tengiliði"</string>
-    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Hafa samband við samhæfðan lýsigagnareikning"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Samstilla lýsigögn tengiliða [INNANHÚSSÚTGÁFA]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Samstilla lýsigögn tengiliða"</string>
     <string name="setting_about" msgid="3926137653588942297">"Um tengiliði"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"Stillingar"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Deila sýnilegum tengiliðum"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Mistókst að deila sýnilegum tengiliðum."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Deila eftirlætistengiliðum"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Deila öllum tengiliðum"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Ekki tókst að deila tengiliðum."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Tengiliðir fluttir inn/út"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Flytja tengiliði inn"</string>
     <string name="share_error" msgid="665756457151793108">"Ekki er hægt að deila þessum tengilið."</string>
