@@ -14,6 +14,9 @@
 package com.android.contacts.commonbind;
 
 import com.android.contacts.common.logging.Logger;
+import com.android.contacts.common.preference.PreferenceManager;
+
+import android.content.Context;
 
 /**
  * Creates default bindings for overlays.
@@ -23,4 +26,6 @@ public class ObjectFactory {
     public static Logger getLogger() {
         return null;
     }
+
+    public static PreferenceManager getPreferenceManager(Context context) { return null; }
 }

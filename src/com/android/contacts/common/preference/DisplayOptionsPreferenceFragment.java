@@ -23,10 +23,10 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
 import com.android.contacts.common.R;
-import com.android.contacts.common.compat.MetadataSyncEnabledCompat;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.commonbind.ObjectFactory;
 
 import java.util.List;
 
@@ -43,6 +43,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.preference_display_options);
 
         removeUnsupportedPreferences();
+        addExtraPreferences();
 
         final Preference aboutPreference = findPreference("about");
         aboutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -73,19 +74,15 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         if (accounts.isEmpty()) {
             getPreferenceScreen().removePreference(findPreference("accounts"));
         }
+    }
 
-        // Show Contact metadata sync option when 1) metadata sync is enabled
-        // and 2) there is at least one focus google account
-        boolean hasFocusGoogleAccount = false;
-        for (AccountWithDataSet account : accounts) {
-            if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type) && account.dataSet == null) {
-                hasFocusGoogleAccount = true;
-                break;
+    private void addExtraPreferences() {
+        final PreferenceManager preferenceManager = ObjectFactory.getPreferenceManager(
+                getContext());
+        if (preferenceManager != null) {
+            for (Preference preference : preferenceManager.getPreferences()) {
+                getPreferenceScreen().addPreference(preference);
             }
-        }
-        if (!hasFocusGoogleAccount
-                || !MetadataSyncEnabledCompat.isMetadataSyncEnabled(getContext())) {
-            getPreferenceScreen().removePreference(findPreference("contactMetadata"));
         }
     }
 
