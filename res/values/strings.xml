@@ -805,9 +805,6 @@
     <!-- Prefix for messages that you sent [CHAR LIMIT=40] -->
     <string name="message_from_you_prefix">You: <xliff:g id="sms_body">%s</xliff:g></string>
 
-    <!-- File Authority for the photo picker -->
-    <string name="photo_file_provider_authority" translatable="false">com.android.contacts.files</string>
-
     <!-- When a user tries to create an IM Hangouts field, an alert dialog pops up displaying this message. We don't want users entering email addresses of phone numbers into the IM field. [CHAR LIMIT=200] -->
     <string name="contact_editor_hangouts_im_alert">Hangouts works better when you enter the person\'s Hangouts identifier into the email field or phone field.</string>
 
