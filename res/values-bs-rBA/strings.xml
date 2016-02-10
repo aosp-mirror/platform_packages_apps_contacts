@@ -382,7 +382,7 @@
     <skip />
     <!-- no translation found for toast_text_copied (5143776250008541719) -->
     <skip />
-    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Želite li da odbacite napravljenje promjene i prekinete uređivanje?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Želite li odbaciti napravljene promjene i prekinuti uređivanje?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Odbaci"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Nastavi uređivanje"</string>
     <!-- no translation found for call_type_and_date (747163730039311423) -->
@@ -580,7 +580,7 @@
     <skip />
     <!-- no translation found for blocked_numbers_disabled_emergency_desc (7755803249073401381) -->
     <skip />
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Neke kontakte ste prethodno označili da automatski budu poslani u govornu poštu. Uvezite te brojeve ovdje da biste blokirali pozive i poruke."</string>
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Za neke kontakte ste već naznačili da se automatski šalju u govornu poštu. Uvezite te brojeve ovdje da biste blokirali pozive i poruke."</string>
     <!-- no translation found for blocked_call_settings_import_button (178821255125295473) -->
     <skip />
     <!-- no translation found for blocked_call_settings_view_numbers_button (6698986720875955935) -->

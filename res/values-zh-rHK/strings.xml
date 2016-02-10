@@ -342,7 +342,7 @@
     <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> 無效。"</string>
     <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"暫時關閉來電封鎖功能"</string>
     <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"您在過去 48 小時內曾經使用此手機聯絡緊急服務，因此來電封鎖功能已停用。系統會在 48 小時期限結束後自動重新啟用功能。"</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"您之前曾將某些聯絡人標記為自動轉駁至留言信箱。在此匯入這些號碼，即可封鎖對方的來電和短訊。"</string>
+    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"您之前曾將某些聯絡人設定為自動轉駁至留言信箱。在此匯入這些號碼，即可封鎖對方的來電和短訊。"</string>
     <string name="blocked_call_settings_import_button" msgid="178821255125295473">"匯入"</string>
     <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"查看電話號碼"</string>
     <string name="addBlockedNumber" msgid="6064812257482886526">"新增電話號碼"</string>
