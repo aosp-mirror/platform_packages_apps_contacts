@@ -36,7 +36,7 @@ public final class Flags {
     }
 
     public boolean getBoolean(String flagName, boolean defValue) {
-        return false;
+        return defValue;
     }
 
     public float getFloat(String flagName, float defValue) {

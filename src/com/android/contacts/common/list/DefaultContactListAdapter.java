@@ -27,6 +27,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippets;
+import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -56,12 +57,11 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             ((ProfileAndContactsLoader) loader).setLoadProfile(shouldIncludeProfile());
         }
 
-        ContactListFilter filter = getFilter();
+        String sortOrder = null;
         if (isSearchMode()) {
+            final Flags flags = Flags.getInstance(mContext);
             String query = getQueryString();
-            if (query == null) {
-                query = "";
-            }
+            if (query == null) query = "";
             query = query.trim();
             if (TextUtils.isEmpty(query)) {
                 // Regardless of the directory, we don't want anything returned,
@@ -69,55 +69,120 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setUri(Contacts.CONTENT_URI);
                 loader.setProjection(getProjection(false));
                 loader.setSelection("0");
+            } else if (flags.getBoolean(Experiments.FLAG_SEARCH_DISPLAY_NAME_QUERY, false)) {
+                final String displayNameColumn =
+                        getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
+                                ? Contacts.DISPLAY_NAME_PRIMARY : Contacts.DISPLAY_NAME_ALTERNATIVE;
+
+                final Builder builder = Contacts.CONTENT_URI.buildUpon();
+                appendSearchDirectoryParameters(builder, directoryId);
+                loader.setUri(builder.build());
+                loader.setProjection(getExperimentProjection());
+                loader.setSelection(getDisplayNameSelection(query, displayNameColumn));
+                loader.setSelectionArgs(getDisplayNameSelectionArgs(query));
+                if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
+                    sortOrder = String.format("%s DESC, %s DESC",
+                            Contacts.TIMES_CONTACTED, Contacts.STARRED);
+                }
             } else {
                 final Builder builder = ContactsCompat.getContentUri().buildUpon();
                 appendSearchParameters(builder, query, directoryId);
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
-                if (Flags.getInstance(mContext).getBoolean(
-                        Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
+                if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
                     // Filter out starred and frequently contacted contacts from the main loader
                     // query results
                     loader.setSelection(Contacts.TIMES_CONTACTED + "=0 AND "
                             + Contacts.STARRED + "=0");
 
-                    // Strequent contacts will be merged back in before the main loader query
-                    // results and after the profile (ME).
+                    // Strequent contacts will be merged back in after the profile (ME) and before
+                    // the main loader query results.
                     final ProfileAndContactsLoader profileAndContactsLoader =
                             (ProfileAndContactsLoader) loader;
-                    profileAndContactsLoader.setLoadStrequent(true);
                     final Builder strequentBuilder =
                             Contacts.CONTENT_STREQUENT_FILTER_URI.buildUpon();
                     appendSearchParameters(strequentBuilder, query, directoryId);
-                    profileAndContactsLoader.setStrequentUri(strequentBuilder.build());
-                    profileAndContactsLoader.setStrequentProjection(getStrequentProjection());
+                    profileAndContactsLoader.setLoadStrequents(
+                            strequentBuilder.build(), getExperimentProjection());
                 }
             }
         } else {
+            final ContactListFilter filter = getFilter();
             configureUri(loader, directoryId, filter);
             loader.setProjection(getProjection(false));
             configureSelection(loader, directoryId, filter);
         }
 
-        String sortOrder;
         if (getSortOrder() == ContactsPreferences.SORT_ORDER_PRIMARY) {
-            sortOrder = Contacts.SORT_KEY_PRIMARY;
+            if (sortOrder == null) {
+                sortOrder = Contacts.SORT_KEY_PRIMARY;
+            } else {
+                sortOrder += ", " + Contacts.SORT_KEY_PRIMARY;
+            }
         } else {
-            sortOrder = Contacts.SORT_KEY_ALTERNATIVE;
+            if (sortOrder == null) {
+                sortOrder = Contacts.SORT_KEY_ALTERNATIVE;
+            } else {
+                sortOrder += ", " + Contacts.SORT_KEY_ALTERNATIVE;
+            }
         }
-
         loader.setSortOrder(sortOrder);
+    }
+
+    /**
+     * Splits the given query by whitespace and adds a display name and phonetic name selection
+     * clause once for each token.
+     *
+     * @param displayNameColumn The display name column to use in the returned selection String
+     */
+    @VisibleForTesting
+    static String getDisplayNameSelection(String query, String displayNameColumn) {
+        final String[] tokens = getDisplayNameSearchSelectionTokens(query);
+        if (tokens == null) return null;
+        final StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < tokens.length; i++) {
+            if (builder.length() > 0) builder.append(" OR ");
+            final String param = "?" + (i + 1);
+            builder.append("(" + displayNameColumn + " LIKE " + param +
+                    " OR " + Contacts.PHONETIC_NAME + " LIKE " + param + ")");
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Splits the given query by whitespace and returns the resulting tokens, each one
+     * wrapped with "%" on either side.
+     */
+    @VisibleForTesting
+    static String[] getDisplayNameSelectionArgs(String query) {
+        final String[] tokens = getDisplayNameSearchSelectionTokens(query);
+        if (tokens == null) return null;
+        for (int i = 0; i < tokens.length; i++) {
+            tokens[i] = "%" + tokens[i] + "%";
+        }
+        return tokens;
+    }
+
+    private static String[] getDisplayNameSearchSelectionTokens(String query) {
+        if (query == null) return null;
+        query = query.trim();
+        if (query.length() == 0) return null;
+        return query.split("\\s+");
     }
 
     private void appendSearchParameters(Builder builder, String query, long directoryId) {
         builder.appendPath(query); // Builder will encode the query
+        appendSearchDirectoryParameters(builder, directoryId);
+        builder.appendQueryParameter(SearchSnippets.DEFERRED_SNIPPETING_KEY, "1");
+    }
+
+    private void appendSearchDirectoryParameters(Builder builder, long directoryId) {
         builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                 String.valueOf(directoryId));
         if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE) {
             builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
                     String.valueOf(getDirectoryResultLimit(getDirectoryById(directoryId))));
         }
-        builder.appendQueryParameter(SearchSnippets.DEFERRED_SNIPPETING_KEY, "1");
     }
 
     protected void configureUri(CursorLoader loader, long directoryId, ContactListFilter filter) {

@@ -16,9 +16,16 @@
 package com.android.contacts.common;
 
 /**
- * Experiment flag name constants.
+ * Experiment flag names.
  */
 public final class Experiments {
+
+    /**
+     * Search study boolean indicating whether to perform a simple display name query, instead of
+     * the normal type-to-filter query.
+     */
+    public static final String FLAG_SEARCH_DISPLAY_NAME_QUERY =
+            "Search__display_name_query";
 
     /**
      * Search study boolean indicating whether to order starred and frequently occurring
