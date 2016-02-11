@@ -520,6 +520,12 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- The title shown when exporting vCard has finished successfully but the destination filename could not be resolved. [CHAR LIMIT=NONE] -->
     <string name="exporting_vcard_finished_title_fallback">Finished exporting contacts.</string>
 
+    <!-- The toast message shown when exporting vCard has finished and vCards are ready to be shared [CHAR LIMIT=150]-->
+    <string name="exporting_vcard_finished_toast">Finished exporting contacts, click the notification to share contacts.</string>
+
+    <!-- The message on notification shown when exporting vCard has finished and vCards are ready to be shared [CHAR LIMIT=60]-->
+    <string name="touch_to_share_contacts">Tap to share contacts.</string>
+
     <!-- The title shown when exporting vCard is canceled (probably by a user)
          The argument is file name the user canceled importing.
          [CHAR LIMIT=40] -->
@@ -529,7 +535,7 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <string name="exporting_contact_list_title">Exporting contact data</string>
 
     <!-- Message shown when the application is exporting contact data outside -->
-    <string name="exporting_contact_list_message">Your contact data is being exported to: <xliff:g id="file_name">%s</xliff:g>.</string>
+    <string name="exporting_contact_list_message">Contact data is being exported.</string>
 
     <!-- The error reason the vCard composer "may" emit when database is corrupted or
          something is going wrong. Usually users should not see this text. [CHAR LIMIT=NONE] -->
@@ -596,6 +602,9 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- The message shown when a vCard export request is accepted but the destination filename could not be resolved. [CHAR LIMIT=NONE] -->
     <string name="vcard_export_will_start_message_fallback">The file will be exported shortly.</string>
+
+    <!-- The message shown when a vCard export request is accepted and contacts will be exported shortly. [CHAR LIMIT=70]-->
+    <string name="contacts_export_will_start_message">Contacts will be exported shortly.</string>
 
     <!-- The message shown when a given vCard export request is rejected by the system. [CHAR LIMIT=NONE] -->
     <string name="vcard_export_request_rejected_message">vCard export request was rejected. Try again later.</string>
