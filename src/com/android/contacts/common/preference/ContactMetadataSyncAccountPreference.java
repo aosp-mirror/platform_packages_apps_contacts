@@ -61,7 +61,7 @@ public class ContactMetadataSyncAccountPreference extends ListPreference {
         final String[] accountNamesArray = accountNames.toArray(new String[accountNames.size()]);
         setEntries(accountNamesArray);
         setEntryValues(accountNamesArray);
-        setValue(mPreferences.getContactMetadataSyncAccount());
+        setValue(mPreferences.getContactMetadataSyncAccountName());
     }
 
     @Override
@@ -71,16 +71,16 @@ public class ContactMetadataSyncAccountPreference extends ListPreference {
 
     @Override
     public CharSequence getSummary() {
-        return mPreferences.getContactMetadataSyncAccount();
+        return mPreferences.getContactMetadataSyncAccountName();
     }
 
     @Override
     protected boolean persistString(String value) {
-        if (value == null && mPreferences.getContactMetadataSyncAccount() == null) {
+        if (value == null && mPreferences.getContactMetadataSyncAccountName() == null) {
             return true;
         }
-        if (value == null || mPreferences.getContactMetadataSyncAccount() == null
-                || !value.equals(mPreferences.getContactMetadataSyncAccount())) {
+        if (value == null || mPreferences.getContactMetadataSyncAccountName() == null
+                || !value.equals(mPreferences.getContactMetadataSyncAccountName())) {
             mPreferences.setContactMetadataSyncAccount(mAccountMap.get(value));
             notifyChanged();
         }
