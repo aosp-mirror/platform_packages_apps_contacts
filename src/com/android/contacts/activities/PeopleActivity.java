@@ -1095,12 +1095,11 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             helpMenu.setVisible(HelpUtils.isHelpAndFeedbackAvailable());
         }
         final boolean showMiscOptions = !isSearchOrSelectionMode;
-        final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this)
-                && ContactsUtils.FLAG_N_FEATURE;
         makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_import_export, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
-        makeMenuItemVisible(menu, R.id.menu_blocked_numbers, showMiscOptions && showBlockedNumbers);
+        // TODO make menu_blocked_numbers visible by using UI in framework
+        makeMenuItemVisible(menu, R.id.menu_blocked_numbers, false);
         makeMenuItemVisible(menu, R.id.menu_settings,
                 showMiscOptions && !ContactsPreferenceActivity.isEmpty(this));
 
@@ -1208,9 +1207,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 return true;
             }
             case R.id.menu_blocked_numbers: {
-                final Intent intent = new Intent("android.intent.action.EDIT");
-                intent.setType("blocked_numbers/*");
-                ImplicitIntentsUtil.startActivityInApp(this, intent);
                 return true;
             }
             case R.id.export_database: {

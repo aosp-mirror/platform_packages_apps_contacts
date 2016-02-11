@@ -76,18 +76,4 @@
 
     <!-- Color of background of disabled link contacts button, 15% black. -->
     <color name="disabled_button_background">#26000000</color>
-
-    <!-- Color used in blocked numbers -->
-    <color name="blocked_number_background">#FFFFFF</color>
-    <color name="add_blocked_number_icon_color">#bdbdbd</color>
-    <color name="blocked_number_secondary_text_color">#636363</color>
-    <color name="blocked_number_header_color">@color/primary_color</color>
-    <color name="blocked_number_divider_line_color">#D8D8D8</color>
-    <color name="blocked_number_primary_text_color">#333333</color>
-    <color name="empty_list_text_color">#b2b2b2</color>
-    <color name="background_contacts_results">#f9f9f9</color>
-    <color name="blocked_number_block_color">#F44336</color>
-    <color name="contacts_snackbar_action_text_color">@color/primary_color</color>
-    <color name="blocked_number_disabled_emergency_background_color">#E0E0E0</color>
-    <color name="blocked_number_icon_tint">#616161</color>
 </resources>
