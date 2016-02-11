@@ -22,7 +22,6 @@ import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Profile;
 
 import com.google.common.collect.Lists;
@@ -36,10 +35,11 @@ import java.util.List;
 public class ProfileAndContactsLoader extends CursorLoader {
 
     private boolean mLoadProfile;
-    private boolean mLoadStrequent;
+
     private String[] mProjection;
-    private String[] mStrequentProjection;
+
     private Uri mStrequentUri;
+    private String[] mStrequentProjection;
 
     public ProfileAndContactsLoader(Context context) {
         super(context);
@@ -49,21 +49,14 @@ public class ProfileAndContactsLoader extends CursorLoader {
         mLoadProfile = flag;
     }
 
-    public void setLoadStrequent(boolean flag) {
-        mLoadStrequent = flag;
-    }
-
     public void setProjection(String[] projection) {
         super.setProjection(projection);
         mProjection = projection;
     }
 
-    public void setStrequentProjection(String[] projection) {
-        mStrequentProjection = projection;
-    }
-
-    public void setStrequentUri(Uri uri) {
+    public void setLoadStrequents(Uri uri, String[] projection) {
         mStrequentUri = uri;
+        mStrequentProjection = projection;
     }
 
     @Override
@@ -73,7 +66,7 @@ public class ProfileAndContactsLoader extends CursorLoader {
         if (mLoadProfile) {
             cursors.add(loadProfile());
         }
-        if (mLoadStrequent) {
+        if (mStrequentUri != null && mStrequentProjection != null) {
             cursors.add(loadStrequent());
         }
         // ContactsCursor.loadInBackground() can return null; MergeCursor

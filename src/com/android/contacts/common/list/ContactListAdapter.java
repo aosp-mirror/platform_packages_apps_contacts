@@ -48,6 +48,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.PHOTO_THUMBNAIL_URI,           // 5
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
+            Contacts.PHONETIC_NAME,                 // 8
         };
 
         private static final String[] CONTACT_PROJECTION_ALTERNATIVE = new String[] {
@@ -59,6 +60,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.PHOTO_THUMBNAIL_URI,           // 5
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
+            Contacts.PHONETIC_NAME,                 // 8
         };
 
         private static final String[] FILTER_PROJECTION_PRIMARY = new String[] {
@@ -70,9 +72,10 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.PHOTO_THUMBNAIL_URI,           // 5
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
-            Contacts.TIMES_CONTACTED,               // 8
-            Contacts.STARRED,                       // 9
-            SearchSnippets.SNIPPET,                 // 10
+            Contacts.PHONETIC_NAME,                 // 8
+            Contacts.TIMES_CONTACTED,               // 9
+            Contacts.STARRED,                       // 10
+            SearchSnippets.SNIPPET,                 // 11
         };
 
         private static final String[] FILTER_PROJECTION_ALTERNATIVE = new String[] {
@@ -84,9 +87,10 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.PHOTO_THUMBNAIL_URI,           // 5
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
-            Contacts.TIMES_CONTACTED,               // 8
-            Contacts.STARRED,                       // 9
-            SearchSnippets.SNIPPET,                 // 10
+            Contacts.PHONETIC_NAME,                 // 8
+            Contacts.TIMES_CONTACTED,               // 9
+            Contacts.STARRED,                       // 10
+            SearchSnippets.SNIPPET,                 // 11
         };
 
         public static final int CONTACT_ID               = 0;
@@ -97,12 +101,15 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         public static final int CONTACT_PHOTO_URI        = 5;
         public static final int CONTACT_LOOKUP_KEY       = 6;
         public static final int CONTACT_IS_USER_PROFILE  = 7;
-        public static final int CONTACT_TIMES_CONTACTED  = 8;
-        public static final int CONTACT_STARRED          = 9;
-        public static final int CONTACT_SNIPPET          = 10;
+        public static final int CONTACT_PHONETIC_NAME    = 8;
+        public static final int CONTACT_TIMES_CONTACTED  = 9;
+        public static final int CONTACT_STARRED          = 10;
+        public static final int CONTACT_SNIPPET          = 11;
     }
 
-    protected static class StrequentQuery {
+    // NOTE: These projections must match those in ContactQuery above expect we omit the
+    // SearchSnippers.SNIPPET column since that is only supported with Contacts.CONTENT_FILTER_URI.
+    protected static class ExperimentQuery {
 
         private static final String[] FILTER_PROJECTION_PRIMARY = new String[] {
                 Contacts._ID,                           // 0
@@ -113,8 +120,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 Contacts.PHOTO_THUMBNAIL_URI,           // 5
                 Contacts.LOOKUP_KEY,                    // 6
                 Contacts.IS_USER_PROFILE,               // 7
-                Contacts.TIMES_CONTACTED,               // 8
-                Contacts.STARRED,                       // 9
+                Contacts.PHONETIC_NAME,                 // 8
+                Contacts.TIMES_CONTACTED,               // 9
+                Contacts.STARRED,                       // 10
                 // SearchSnippets.SNIPPET not supported
         };
 
@@ -127,8 +135,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 Contacts.PHOTO_THUMBNAIL_URI,           // 5
                 Contacts.LOOKUP_KEY,                    // 6
                 Contacts.IS_USER_PROFILE,               // 7
-                Contacts.TIMES_CONTACTED,               // 8
-                Contacts.STARRED,                       // 9
+                Contacts.PHONETIC_NAME,                 // 8
+                Contacts.TIMES_CONTACTED,               // 9
+                Contacts.STARRED,                       // 10
                 // SearchSnippets.SNIPPET not supported
         };
 
@@ -140,8 +149,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         public static final int CONTACT_PHOTO_URI        = 5;
         public static final int CONTACT_LOOKUP_KEY       = 6;
         public static final int CONTACT_IS_USER_PROFILE  = 7;
-        public static final int CONTACT_TIMES_CONTACTED  = 8;
-        public static final int CONTACT_STARRED          = 9;
+        public static final int CONTACT_PHONETIC_NAME    = 8;
+        public static final int CONTACT_TIMES_CONTACTED  = 9;
+        public static final int CONTACT_STARRED          = 10;
         // SearchSnippets.SNIPPET not supported
     }
 
@@ -432,10 +442,13 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         }
     }
 
-    protected final String[] getStrequentProjection() {
+    /**
+     * Returns the projection useful for search experiments.
+     */
+    protected final String[] getExperimentProjection() {
         final int sortOrder = getContactNameDisplayOrder();
         return sortOrder == ContactsPreferences.DISPLAY_ORDER_PRIMARY
-                ? StrequentQuery.FILTER_PROJECTION_PRIMARY
-                : StrequentQuery.FILTER_PROJECTION_ALTERNATIVE;
+                ? ExperimentQuery.FILTER_PROJECTION_PRIMARY
+                : ExperimentQuery.FILTER_PROJECTION_ALTERNATIVE;
     }
 }
