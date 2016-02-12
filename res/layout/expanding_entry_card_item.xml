@@ -96,6 +96,8 @@
          android:background="?android:attr/selectableItemBackgroundBorderless"
          android:paddingTop="@dimen/expanding_entry_card_item_icon_margin_top"
          android:paddingBottom="@dimen/expanding_entry_card_item_alternate_icon_margin_bottom"
+         android:paddingLeft="@dimen/expanding_entry_card_item_alternate_icon_margin_left"
+         android:paddingRight="@dimen/expanding_entry_card_item_alternate_icon_margin_right"
          android:layout_marginStart="@dimen/expanding_entry_card_item_alternate_icon_start_margin" />
 
      <ImageView
