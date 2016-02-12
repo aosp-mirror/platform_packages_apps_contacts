@@ -1102,7 +1102,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_import_export, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
-        makeMenuItemVisible(menu, R.id.menu_blocked_numbers, showBlockedNumbers);
+        makeMenuItemVisible(menu, R.id.menu_blocked_numbers, showMiscOptions && showBlockedNumbers);
         makeMenuItemVisible(menu, R.id.menu_settings,
                 showMiscOptions && !ContactsPreferenceActivity.isEmpty(this));
 
