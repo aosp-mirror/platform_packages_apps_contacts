@@ -69,13 +69,15 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setUri(Contacts.CONTENT_URI);
                 loader.setProjection(getProjection(false));
                 loader.setSelection("0");
-            } else if (flags.getBoolean(Experiments.FLAG_SEARCH_DISPLAY_NAME_QUERY, false)) {
+            } else if (flags.getBoolean(Experiments.FLAG_SEARCH_DISPLAY_NAME_QUERY, false)
+                && directoryId == Directory.DEFAULT) {
                 final String displayNameColumn =
                         getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
                                 ? Contacts.DISPLAY_NAME_PRIMARY : Contacts.DISPLAY_NAME_ALTERNATIVE;
 
                 final Builder builder = Contacts.CONTENT_URI.buildUpon();
-                appendSearchDirectoryParameters(builder, directoryId);
+                builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
+                        String.valueOf(directoryId));
                 loader.setUri(builder.build());
                 loader.setProjection(getExperimentProjection());
                 loader.setSelection(getDisplayNameSelection(query, displayNameColumn));
@@ -172,17 +174,13 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
     private void appendSearchParameters(Builder builder, String query, long directoryId) {
         builder.appendPath(query); // Builder will encode the query
-        appendSearchDirectoryParameters(builder, directoryId);
-        builder.appendQueryParameter(SearchSnippets.DEFERRED_SNIPPETING_KEY, "1");
-    }
-
-    private void appendSearchDirectoryParameters(Builder builder, long directoryId) {
         builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                 String.valueOf(directoryId));
         if (directoryId != Directory.DEFAULT && directoryId != Directory.LOCAL_INVISIBLE) {
             builder.appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY,
                     String.valueOf(getDirectoryResultLimit(getDirectoryById(directoryId))));
         }
+        builder.appendQueryParameter(SearchSnippets.DEFERRED_SNIPPETING_KEY, "1");
     }
 
     protected void configureUri(CursorLoader loader, long directoryId, ContactListFilter filter) {
