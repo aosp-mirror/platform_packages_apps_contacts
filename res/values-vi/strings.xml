@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Chưa chọn ảnh từ tài khoản không xác định"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Đã chọn ảnh từ tài khoản không xác định"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Danh bạ đang được cập nhật để phản ánh thay đổi ngôn ngữ.\n\nVui lòng đợi..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Số bị chặn"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"Các cuộc gọi và tin nhắn từ những số này sẽ bị chặn."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Thêm số"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Chặn số"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Thêm số hoặc tìm kiếm danh bạ"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Các cuộc gọi và tin nhắn từ số này sẽ bị chặn."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Bỏ chặn <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"BỎ CHẶN"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Chặn <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"CHẶN"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"Đã chặn <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"Đã bỏ chặn <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> không hợp lệ."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Tạm thời tắt chặn cuộc gọi"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Tính năng chặn cuộc gọi đã bị tắt vì bạn đã liên hệ với dịch vụ khẩn cấp từ điện thoại này trong vòng 48 giờ qua. Tính năng này sẽ được bật lại tự động sau khi khoảng thời gian 48 giờ kết thúc."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Trước đây bạn đã đánh dấu một số liên hệ sẽ được tự động gửi tới thư thoại. Hãy nhập các số đó vào đây để chặn cả cuộc gọi và tin nhắn."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Nhập"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Xem số"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Thêm số"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Đã tắt tính năng chặn cuộc gọi trong 48 giờ"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Bị tắt vì bạn đã thực hiện cuộc gọi khẩn cấp."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"HOÀN TÁC"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> đã bị chặn."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Bỏ chặn số"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Chi tiết liên lạc cho <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Nhập không thành công"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Nhập số"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Để tìm kiếm liên hệ của bạn, hãy bật quyền đối với Danh bạ."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Bật"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Số bị chặn"</string>
 </resources>

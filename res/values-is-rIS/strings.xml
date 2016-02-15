@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Mynd af óþekktum reikningi ekki valin"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Mynd af óþekktum reikningi valin"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Verið er að uppfæra tengiliðalistann í samræmi við nýja tungumálið.\n\nAugnablik..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Númer á bannlista"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"Lokað verður fyrir símtöl og skilaboð úr þessum númerum."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Bæta númeri við"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Setja númer á bannlista"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Bættu við númeri eða tengilið"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Lokað verður fyrir símtöl og skilaboð úr þessu númeri."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Taka <xliff:g id="NUMBER">%1$s</xliff:g> af bannlista?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"TAKA AF BANNLISTA"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Setja <xliff:g id="NUMBER">%1$s</xliff:g> á bannlista?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"SETJA Á BANNLISTA"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"Lokað fyrir <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> tekið af bannlista"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> er ógilt."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Tímabundið slökkt á lokun fyrir símtöl"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Lokun fyrir símtöl hefur verið gerð óvirk vegna þess að þú hafðir samband við neyðarþjónustu úr þessum síma á undanförnum tveimur sólarhringum. Lokunin verður aftur virk að þessum tveimur sólarhringum liðnum."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Þú merktir áður nokkra tengiliði þannig að þeir verða sjálfkrafa sendir í talhólfið. Flyttu inn þessi númer hér til að loka fyrir bæði símtöl og skilaboð."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Flytja inn"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Skoða tölur"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Bæta númeri við"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Slökkt á lokun símtala í 48 klukkustundir"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Óvirkt vegna þess að neyðarsímtal var hringt."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"AFTURKALLA"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> er nú þegar á bannlista."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Taka númer af bannlista"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Tengiliðaupplýsingar um <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Innflutningur mistókst"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Flytja inn númer"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Kveiktu á heimildunum fyrir tengiliði til að leita að tengiliðum."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Kveikja"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Númer á bannlista"</string>
 </resources>

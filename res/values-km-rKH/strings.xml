@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"មិនបានជ្រើសរូបថតពីគណនីមិនស្គាល់ទេ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"បានជ្រើសរូបថតពីគណនីមិនស្គាល់"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"កំពុង​ធ្វើ​បច្ចុប្បន្នភាព​ទំនាក់ទំនង​ដើម្បី​ឆ្លុះបញ្ចាំង​ការ​ប្ដូរ​ភាសា។\n\nសូម​រង់ចាំ..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"លេខបានរារាំង"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"ការហៅ និងការផ្ញើសារចេញពីលេខទាំងនេះនឹងត្រូវបានរារាំង"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"បន្ថែមលេខ"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"រារាំងលេខ"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"បន្ថែមលេខទូរស័ព្ទ ឬស្វែងរកទំនាក់ទំនង"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"ការហៅ និងការផ្ញើសារចេញពីលេខនេះនឹងត្រូវបានរារាំង"</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"ឈប់រារាំង <xliff:g id="NUMBER">%1$s</xliff:g> ឬ?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ឈប់រារាំង"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"រារាំង <xliff:g id="NUMBER">%1$s</xliff:g> ឬ?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"រារាំង"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"បានរារាំង <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"បានឈប់រារាំង <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> មិនត្រឹមត្រូវទេ"</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"ការរារាំងការហៅត្រូវបានបិទជាបណ្តោះអាសន្ន"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"ការរារាំងការហៅត្រូវបានបិទដំណើរការ ដោយសារតែអ្នកបានទាក់ទងទៅសេវាអាសន្នចេញពីទូរស័ព្ទនេះក្នុងចន្លោះពេល 48 ម៉ោងកន្លងមកនេះ។ វានឹងបើកដំណើរការឡើងវិញ បន្ទាប់ពីរយៈពេល 48 ម៉ោងផុតកំណត់។"</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"កាលពីមុនអ្នកបានដាក់សម្គាល់ឲ្យបញ្ជូនលេខទំនាក់ទំនងមួយចំនួនដោយស្វ័យប្រវត្តិទៅកាន់សារជាសំឡេង។ នាំចូលលេខទាំងនោះមកទីនេះដើម្បីរារាំងទាំងការហៅ និងការផ្ញើសារ។"</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"នាំចូល"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"មើលលេខ"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"បន្ថែមលេខ"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"ការរារាំងការហៅត្រូវបានបិទដំណើរការរយៈពេល 48 ម៉ោង"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"បានបិទដំណើរការពីព្រោះការហៅបន្ទាន់ត្រូវបានធ្វើឡើង"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"មិនធ្វើវិញ"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ត្រូវបានទប់ស្កាត់រួចហើយ"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"ឈប់ទប់ស្កាត់លេខ"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"ព័ត៌មាន​លម្អិត​ទំនាក់ទំនង​សម្រាប់ <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"ការនាំចូលបានបរាជ័យ"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"នាំចូលលេខ"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"ដើម្បីស្វែងរកទំនាក់ទំនងរបស់អ្នក សូមបើកសិទ្ធិអនុញ្ញាតទំនាក់ទំនង។"</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"បើក"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"លេខបានរារាំង"</string>
 </resources>
