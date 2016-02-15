@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto dari akun tak dikenal tidak dicentang"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto dari akun tak dikenal dicentang"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Daftar kontak sedang diperbarui untuk mencerminkan perubahan bahasa.\n\nHarap tunggu..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Nomor yang diblokir"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"Panggilan telepon dan SMS dari nomor ini akan diblokir."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Tambahkan nomor"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Blokir nomor"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Tambahkan nomor atau telusuri kontak"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Panggilan telepon dan SMS dari nomor ini akan diblokir."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Bebaskan <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"BEBASKAN"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Blokir <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"BLOKIR"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> diblokir"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> dibebaskan"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> tidak valid."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Blokir panggilan dinonaktifkan sementara"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Pemblokiran panggilan telepon telah dinonaktifkan karena Anda menghubungi layanan darurat dari telepon ini dalam 48 jam terakhir. Akan diaktifkan kembali secara otomatis setelah masa 48 jam berakhir."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Anda sebelumnya menandai beberapa kontak agar dialihkan secara otomatis ke pesan suara. Impor nomor tersebut di sini untuk memblokir panggilan telepon dan SMS."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Impor"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Lihat Nomor"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Tambahkan nomor"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Pemblokiran panggilan dinonaktifkan selama 48 jam"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Dinonaktifkan karena panggilan darurat dilakukan."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"URUNGKAN"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> sudah diblokir."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Bebaskan nomor"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Detail kontak untuk <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Impor gagal"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Impor nomor"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Untuk menelusuri kontak, aktifkan izin Kontak."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Aktifkan"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Nomor yang diblokir"</string>
 </resources>

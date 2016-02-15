@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ਅਗਿਆਤ ਖਾਤੇ ਦੀ ਫੋਟੋ ਨਹੀਂ ਜਾਂਚੀ ਗਈ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ਅਗਿਆਤ ਖਾਤੇ ਦੀ ਫੋਟੋ ਜਾਂਚੀ ਗਈ"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ਭਾਸ਼ਾ ਵਿੱਚ ਕੀਤੀ ਤਬਦੀਲੀ ਨੂੰ ਦਰਸਾਉਣ ਲਈ ਸੰਪਰਕ ਸੂਚੀ ਅੱਪਡੇਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ।\n\nਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"ਬਲੌਕ ਕੀਤੇ ਨੰਬਰ"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"ਇਹਨਾਂ ਨੰਬਰਾਂ ਤੋਂ ਕਾਲਾਂ ਅਤੇ ਟੈਕਸਟ ਬਲੌਕ ਕੀਤੇ ਜਾਣਗੇ।"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"ਨੰਬਰ ਜੋੜੋ"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"ਨੰਬਰ ਨੂੰ ਬਲੌਕ ਕਰੋ"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"ਨੰਬਰ ਜੋੜੋ ਜਾਂ ਸੰਪਰਕ ਖੋਜੋ"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"ਇਸ ਨੰਬਰ ਤੋਂ ਕਾਲਾਂ ਅਤੇ ਟੈਕਸਟ ਨੂੰ ਬਲੌਕ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।"</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"ਕੀ <xliff:g id="NUMBER">%1$s</xliff:g> ਅਨਲੌਕ ਕਰਨਾ ਹੈ?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ਅਨਬਲੌਕ ਕਰੋ"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"ਕੀ <xliff:g id="NUMBER">%1$s</xliff:g> ਬਲੌਕ ਕਰਨਾ ਹੈ?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"ਬਲੌਕ ਕਰੋ"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> ਬਲੌਕ ਕੀਤਾ"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> ਅਨਬਲੌਕ ਕੀਤਾ"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> ਅਪ੍ਰਮਾਣਿਕ ਹੈ।"</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"ਕਾਲ ਬਲੌਕਿੰਗ ਆਰਜ਼ੀ ਤੌਰ ਤੇ ਬੰਦ ਹੈ"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"ਕਾਲ ਬਲੌਕਿੰਗ ਅਸਮਰੱਥ ਕਰ ਦਿੱਤੀ ਗਈ ਹੈ ਕਿਉਂਕਿ ਤੁਸੀਂ ਇਸ ਫੋਨ ਦੁਆਰਾ ਪਿਛਲੇ 48 ਘੰਟਿਆਂ ਤੋਂ ਐਮਰਜੈਂਸੀ ਸੇਵਾਵਾਂ ਨਾਲ ਕਨੈਕਟ ਕੀਤਾ ਹੋਇਆ ਹੈ। ਇਹ 48 ਘੰਟਿਆਂ ਦਾ ਸਮਾਂ ਪੂਰਾ ਹੋਣ ਤੇੋਂ ਬਾਅਦ ਆਟੋਮੈਟਿਕਲੀ ਮੁੜ-ਸਮਰੱਥ ਹੋ ਜਾਵੇਗੀ।"</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"ਤੁਸੀਂ ਪਹਿਲਾਂ ਕੁਝ ਸੰਪਰਕਾਂ ਨੂੰ ਸਵੈਚਾਲਿਤ ਤੌਰ \'ਤੇ ਵੌਇਸਮੇਲ ਨੂੰ ਭੇਜਣ ਲਈ ਚਿੰਨ੍ਹਿਤ ਕੀਤਾ। ਕਾਲਾਂ ਅਤੇ ਟੈਕਸਟ ਦੋਵਾਂ ਨੂੰ ਬਲੌਕ ਕਰਨ ਲਈ ਉਹਨਾਂ ਨੰਬਰਾਂ ਨੂੰ ਇੱਥੇ ਆਯਾਤ ਕਰੋ।"</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"ਆਯਾਤ ਕਰੋ"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"ਨੰਬਰ ਵਿਖਾਓ"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"ਨੰਬਰ ਜੋੜੋ"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"ਕਾਲ ਬਲੋੌਕਿੰਗ 48 ਘੰਟਿਆਂ ਲਈ ਅਯੋਗ ਕੀਤੀ ਗਈ"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"ਆਯੋਗ ਕੀਤਾ ਕਿਉਂਕਿ ਇੱਕ ਸੰਕਟ ਕਾਲ ਕੀਤੀ ਗਈ ਸੀ।"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"ਪਹਿਲਾਂ ਵਰਗਾ ਕਰੋ"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ਪਹਿਲਾਂ ਹੀ ਬਲੌਕ ਕੀਤਾ ਹੋਇਆ ਹੈ।"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"ਨੰਬਰ ਨੂੰ ਅਨਬਲੌਕ ਕਰੋ"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> ਲਈ ਸੰਪਰਕ ਵੇਰਵੇ"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"ਆਯਾਤ ਅਸਫਲ ਹੋਇਆ"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"ਆਯਾਤ ਨੰਬਰ"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"ਆਪਣੇ ਸੰਪਰਕਾਂ ਦੀ ਖੋਜ ਕਰਨ ਲਈ,, ਸੰਪਰਕ ਅਨੁਮਤੀਆਂ ਨੂੰ ਚਾਲੂ ਕਰੋ।"</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"ਚਾਲੂ ਕਰੋ"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"ਬਲੌਕ ਕੀਤੇ ਨੰਬਰ"</string>
 </resources>

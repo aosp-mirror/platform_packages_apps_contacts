@@ -371,34 +371,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"لم يتم تحديد صورة من حساب غير معروف"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"تم تحديد صورة من حساب غير معروف"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"يتم تحديث قائمة جهات الاتصال لتعكس التغيير الذي حدث في اللغة.\n\nالرجاء الانتظار..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"الأرقام المحظورة"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"سيتم حظر المكالمات والرسائل النصية الواردة من هذه الأرقام."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"إضافة رقم"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"حظر الرقم"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"إضافة رقم أو البحث في جهات الاتصال"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"سيتم حظر المكالمات والرسائل النصية الواردة من هذا الرقم."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"هل تريد إزالة حظر <xliff:g id="NUMBER">%1$s</xliff:g>؟"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"إلغاء الحظر"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"هل تريد حظر الرقم <xliff:g id="NUMBER">%1$s</xliff:g>؟"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"حظر"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"تم حظر <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"تم إلغاء حظر <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> غير صالح."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"حظر المكالمات معطّل مؤقتًا"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"تم تعطيل حظر المكالمات لأنك اتصلت بخدمات الطوارئ خلال 48 ساعة ماضية. وستتم إعادة تمكينه تلقائيًا بعد انتهاء هذه الفترة التي تبلغ 48 ساعة."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"سبق لك تعيين بعض جهات الاتصال على الإرسال تلقائيًا إلى البريد الصوتي، فاسترد هذه الأرقام هنا لحظر المكالمات والرسائل النصية."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"استيراد"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"عرض الأرقام"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"إضافة رقم"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"تم تعطيل حظر المكالمات لمدة 48 ساعة."</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"تم التعطيل نظرًا لإجراء مكالمة طوارئ."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"تراجع"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"تم حظر <xliff:g id="NUMBER">%1$s</xliff:g>."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"إلغاء حظر الرقم"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"تفاصيل جهة الاتصال بـ <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"أخفق الاستيراد"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"استيراد الأرقام"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"للبحث عن جهات الاتصال، عليك تشغيل أذونات جهات الاتصال."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"تشغيل"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"الأرقام المحظورة"</string>
 </resources>

@@ -553,59 +553,5 @@
     <skip />
     <!-- no translation found for locale_change_in_progress (1124266507671178413) -->
     <skip />
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Blokirani brojevi"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"Pozivi i poruke s ovih brojeva bit će blokirani."</string>
-    <!-- no translation found for addBlockedNumber (6064812257482886526) -->
-    <skip />
-    <!-- no translation found for search_shortcut_block_number (4787156645163436072) -->
-    <skip />
-    <!-- no translation found for block_number_search_hint (5409571607043872758) -->
-    <skip />
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Pozivi i poruke s ovog broja bit će blokirani."</string>
-    <!-- no translation found for unblock_number_confirmation_title (252824779504084354) -->
-    <skip />
-    <!-- no translation found for unblock_number_ok (6449899182699684786) -->
-    <skip />
-    <!-- no translation found for block_number_confirmation_title (6862219558186931304) -->
-    <skip />
-    <!-- no translation found for block_number_ok (770551992296781873) -->
-    <skip />
-    <!-- no translation found for snackbar_number_blocked (939830142765936021) -->
-    <skip />
-    <!-- no translation found for snackbar_number_unblocked (4854738171099045912) -->
-    <skip />
-    <!-- no translation found for invalidNumber (619058581062192851) -->
-    <skip />
-    <!-- no translation found for blocked_numbers_disabled_emergency_header_label (7870947220238070418) -->
-    <skip />
-    <!-- no translation found for blocked_numbers_disabled_emergency_desc (7755803249073401381) -->
-    <skip />
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Za neke kontakte ste već naznačili da se automatski šalju u govornu poštu. Uvezite te brojeve ovdje da biste blokirali pozive i poruke."</string>
-    <!-- no translation found for blocked_call_settings_import_button (178821255125295473) -->
-    <skip />
-    <!-- no translation found for blocked_call_settings_view_numbers_button (6698986720875955935) -->
-    <skip />
-    <!-- no translation found for addBlockedNumber (6064812257482886526) -->
-    <skip />
-    <!-- no translation found for call_blocking_disabled_notification_title (8185193413377920194) -->
-    <skip />
-    <!-- no translation found for call_blocking_disabled_notification_text (5330772013626378526) -->
-    <skip />
-    <!-- no translation found for block_number_undo (591338370336724156) -->
-    <skip />
-    <!-- no translation found for alreadyBlocked (282340105563646876) -->
-    <skip />
-    <!-- no translation found for description_blocked_number_list_delete (3240093199107796792) -->
-    <skip />
-    <!-- no translation found for description_contact_details (51229793651342809) -->
-    <skip />
-    <!-- no translation found for send_to_voicemail_import_failed (5547202002133560069) -->
-    <skip />
-    <!-- no translation found for import_send_to_voicemail_numbers_label (1606601823746799926) -->
-    <skip />
-    <!-- no translation found for permission_no_search (84152933267902056) -->
-    <skip />
-    <!-- no translation found for permission_single_turn_on (1543391076065465464) -->
-    <skip />
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokirani brojevi"</string>
 </resources>

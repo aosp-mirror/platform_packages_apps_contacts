@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"عکس از حساب نامشخص انتخاب نشده است"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"عکس از حساب نامشخص انتخاب شده است"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"لیست مخاطبین جهت اعمال تغییر زبان در حال به‌روزرسانی است.\n\nلطفاً منتظر بمانید..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"شماره‌های مسدودشده"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"تماس‌ها و پیامک‌های این شماره‌ها مسدود خواهند شد."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"افزودن شماره"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"مسدود کردن شماره"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"افزودن شماره یا جستجوی مخاطب"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"تماس‌ها و پیامک‌ها از این شماره مسدود خواهند شد."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> گشوده شود؟"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"گشودن"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> مسدود شود؟"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"مسدود کردن"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> مسدود شد"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> گشوده شد"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> نامعتبر است."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"انسداد تماس موقتاً خاموش است"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"چون در ۴۸ ساعت گذشته با این تلفن با سرویس‌های اضطراری تماس گرفتید، انسداد تماس غیرفعال شده است. پس از گذشت ۴۸ ساعت، این قابلیت دوباره فعال می‌شود."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"قبلاً برخی از مخاطبین را علامت‌گذاری کردید تا به‌طور خودکار به پست‌ صوتی ارسال شوند. آن شماره‌ها را اینجا وارد کنید تا هم تماس‌ها و هم پیامک‌های آن‌ها مسدود شود."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"وارد کردن"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"مشاهده شماره‌ها"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"افزودن شماره"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"مسدود کردن تماس برای ۴۸ ساعت غیرفعال شد"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"به علت برقرار شدن تماس اضطراری، غیرفعال شد."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"واگرد"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> درحال‌حاضر مسدود شده است."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"گشودن شماره"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"جزئیات تماس برای <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"وارد کردن انجام نشد"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"وارد کردن شماره‌ها"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"برای جستجوی مخاطبینتان، مجوزهای مخاطبین را روشن کنید."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"روشن کردن"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"شماره‌های مسدودشده"</string>
 </resources>

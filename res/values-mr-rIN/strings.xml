@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"अज्ञात खात्यामधील फोटो चेक केला नाही"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"अज्ञात खात्यामधील फोटो चेक केला"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"भाषेचे बदल प्रतिबिंबित करण्यासाठी संपर्क सूची अद्यतनित केली जात आहे. \n\nकृपया प्रतीक्षा करा..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"अवरोधित केलेले नंबर"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"या नंबरवरील कॉल आणि मजकूर अवरोधित केले जातील."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"नंबर जोडा"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"नंबर अवरोधित करा"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"नंबर जोडा किंवा संपर्क शोधा"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"या नंबरवरील कॉल आणि मजकूर अवरोधित केले जातील."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> ला अनावरोधित करायचे?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"अनावरोधित करा"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> अवरोधित करायचा?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"अवरोधित करा"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> अवरोधित केला"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> अनावरोधित केला"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> अवैध आहे."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"कॉल अवरोधित करणे तात्पुरते बंद"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"आपण मागील 48 तासात या फोनवरून आणीबाणी सेवांशी संपर्क साधला असल्याने कॉल अवरोधित करणे अक्षम केले गेले आहे. एकदा 48 तासांचा कालावधी कालबाह्य झाला की ते स्वयंचलितपणे पुन्हा सक्षम केले जाईल."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"आपण पूर्वी काही संपर्कांना व्हॉइसमेलकडे स्वयंचलितपणे पाठविले जाण्यासाठी चिन्हांकित केले. कॉल आणि मजकूर दोन्हीना अवरोधित करण्यासाठी ते नंबर येथे आयात करा."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"आयात करा"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"नंबर पहा"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"नंबर जोडा"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"कॉल अवरोधित करणे 48 तासांसाठी अक्षम केले"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"एक आणीबाणीचा कॉल केल्‍याने अक्षम केले."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"पूर्ववत करा"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> आधीच अवरोधित केलेला आहे."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"नंबर अनावरोधित करा"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> साठी संपर्क तपशील"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"आयात अयशस्वी झाले"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"नंबर अायात करा"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"आपले संपर्क शोधण्‍यासाठी, संपर्क परवानग्या चालू करा."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"चालू करा"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"अवरोधित केलेले नंबर"</string>
 </resources>

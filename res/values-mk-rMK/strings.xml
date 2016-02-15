@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Не е избрана фотографија од непозната сметка"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Избрана е фотографија од непозната сметка"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Списокот со контакти се ажурира за да ја одрази промената на јазикот.\n\nПочекајте..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Блокирани броеви"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"Повиците и пораките од овие броеви ќе се блокираат."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Додај број"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Блокирај го бројот"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Додајте број или побарајте контакти"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Повиците и пораките од овој број ќе се блокираат."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Деблокирај го <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ДЕБЛОКИРАЈ"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Блокирај го <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"БЛОКИРАЈ"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> е блокиран"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> е деблокиран"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> не е важечки."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Блокирањето повик е привремено исклучено"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Блокирањето повици е исклучено бидејќи ја контактиравте службата за итни случаи од телефонов во изминатите 48 часа. Повторно ќе се овозможи автоматски откако ќе истече периодот од 48 часа."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Претходно означивте неколку контакти да се праќаат автоматски кон говорната пошта. Увезете ги тие броеви тука за да се блокираат повиците и пораките."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Увези"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Прикажи броеви"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Додај број"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Блокирањето на повикот е оневозможено 48 часа"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Оневозможено е затоа што беше направен итен повик."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"ВРАТИ"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> веќе е блокиран."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Деблокирај го бројот"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Детали за контакт за <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Увоз не успеа"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Увези броеви"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"За да ги пребарувате контактите, вклучете ги дозволите за контакти."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Вклучи"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Блокирани броеви"</string>
 </resources>

@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"અજાણ્યાં એકાઉન્ટનો ફોટો ચેક ન કર્યો"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"અજાણ્યાં એકાઉન્ટનો ફોટો ચેક કર્યો"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ભાષામાં ફેરફાર પ્રતિબિંબિત કરવા માટે સંપર્ક સૂચિને અપડેટ કરવામાં આવી રહી છે.\n\nકૃપા કરીને રાહ જુઓ..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"અવરોધિત નંબરો"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"આ નંબરથી આવનારા કૉલ્સ અને ટેક્સ્ટ અવરોધિત કરવામાં આવશે."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"નંબર ઉમેરો"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"નંબર અવરોધિત કરો"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"નંબર ઉમેરો અથવા સંપર્કો શોધો"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"આ નંબરથી આવનારા કૉલ્સ અને ટેક્સ્ટ અવરોધિત કરવામાં આવશે."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> ને અનાવરોધિત કરીએ?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"અનાવરોધિત કરો"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> ને અવરોધિત કરીએ?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"અવરોધિત કરો"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> અવરોધિત કર્યો"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> અનાવરોધિત કર્યો"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> અમાન્ય છે."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"કૉલ અવરોધિત કરવાનું અસ્થાયીરૂપે બંધ છે"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"કૉલ અવરોધિત કરવાનું અક્ષમ કરવામાં આવ્યું છે કારણ કે તમે આ ફોનમાંથી છેલ્લા 48 કલાકમાં કટોકટીની સેવાઓનો સંપર્ક કર્યો હતો. એકવાર 48 કલાકનો સમયગાળો સમાપ્ત થાય, પછી તે આપમેળે ફરીથી સક્ષમ કરવામાં આવશે."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"તમે પહેલા કેટલાક સંપર્કોને વૉઇસમેઇલ પર આપમેળે મોકલવા માટે ચિહ્નિત કરેલા. કૉલ્સ અને ટેક્સ્ટ બંનેને અવરોધિત કરવા માટે તે નંબરોને અહીં આયાત કરો."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"આયાત કરો"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"સંખ્યા જુઓ"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"નંબર ઉમેરો"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"કૉલ અવરોધિત કરવાનું 48 કલાક માટે અક્ષમ કરાયું"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"અક્ષમ કરાયું કારણ કે એક કટોકટીનો કૉલ કરવામાં આવ્યો હતો."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"પૂર્વવત્ કરો"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ને પહેલેથી અવરોધિત કરવામાં આવ્યો છે."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"નંબર અનાવરોધિત કરો"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> માટે સંપર્ક વિગતો"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"આયાત નિષ્ફળ થયું"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"નંબર્સ આયાત કરો"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"તમારા સંપર્કો શોધવા માટે, સંપર્કોની પરવાનગીઓ ચાલુ કરો."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"ચાલુ કરો"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"અવરોધિત નંબરો"</string>
 </resources>

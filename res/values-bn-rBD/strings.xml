@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়নি"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়েছে"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ভাষা পরিবর্তন দেখানোর জন্য পরিচিতির তালিকা আপডেট করা হচ্ছে৷\n\nঅনুগ্রহ করে অপেক্ষা করুন..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"অবরোধ করা নম্বরগুলি"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"এই নম্বরগুলি থেকে আসা কল এবং পাঠ্যবার্তাগুলিকে অবরোধ করা হবে৷"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"একটি নম্বর যোগ করুন"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"নম্বর অবরোধ করুন"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"সংখ্যা যোগ করুন বা পরিচিতিগুলি অনুসন্ধান করুন"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"এই নম্বর থেকে আসা কল এবং পাঠ্যবার্তাগুলিকে অবরোধ করা হবে৷"</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> অবরোধ মুক্ত করবেন?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"অবরোধ মুক্ত করুন"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> অবরোধ করবেন?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"অবরোধ করুন"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> অবরোধ করা হয়েছে"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> অবরোধ মুক্ত করা হয়েছে"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> অবৈধ৷"</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"কল অবরোধ সাময়িকভাবে বন্ধ রয়েছে"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"কল অবরোধ অক্ষম করা হয়েছে কারণ আপনি গত ২৮ ঘন্টার মধ্যে এই ফোন থেকে জরুরি পরিষেবায় যোগাযোগ করেছেন। ২৮ ঘন্টার সময়সীমা পেরিয়ে গেলেই এটি স্বয়ংক্রিয়ভাবে পুনরায় সক্ষম হবে।"</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"আপনি আগে থেকেই স্বয়ংক্রিয়ভাবে ভয়েস মেলে পাঠানোর জন্য কিছু পরিচিতিকে চিহ্নিত করেছেন৷ কল এবং পাঠ্যবার্তা উভয়ই অবরোধ করার জন্য এখানে সেই নম্বরগুলিকে আমদানি করুন৷"</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"আমদানি করুন"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"নম্বরগুলি দেখুন"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"একটি নম্বর যোগ করুন"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"৪৮ ঘন্টার জন্য কল অবরোধ করা অক্ষম করা হয়েছে"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"কোনো জরুরি কল করার কারণে অক্ষম করা হয়েছে৷"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"পূর্বাবস্থায় ফিরুন"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ইতিমধ্যেই অববোধ করা রয়েছে৷"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"নম্বর অবরোধ মুক্ত করুন"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> পরিচিতির বিশদ বিবরণ"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"আমদানি ব্যর্থ হয়েছে"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"নম্বরগুলি আমদানি করুন"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"আপনার পরিচিতিগুলি অনুসন্ধান করতে, পরিচিতির অনুমতিগুলি চালু করুন।"</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"চালু করুন"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"অবরোধ করা নম্বরগুলি"</string>
 </resources>

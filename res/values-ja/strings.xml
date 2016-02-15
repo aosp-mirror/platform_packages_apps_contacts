@@ -327,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"不明なアカウントの写真は選択されていません"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"不明なアカウントの写真が選択されています"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"言語の変更に伴い連絡先リストを更新しています。\n\nしばらくお待ちください..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"ブロックした番号"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"この番号からの着信とテキスト メッセージがブロックされます。"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"電話番号を追加"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"番号をブロック"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"番号を追加するか連絡先を検索"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"この番号からの着信とテキスト メッセージがブロックされます。"</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g>のブロックを解除しますか？"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ブロックを解除"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g>をブロックしますか？"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"ブロック"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g>をブロックしました"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g>のブロックを解除しました"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g>は無効な番号です。"</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"通話のブロックは一時的にOFFです"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"このスマートフォンから緊急通報番号への発信が過去48時間以内に行われているため、通話のブロックは無効になっています。48時間経過すると、通話のブロックは自動的に有効になります。"</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"以前に一部の連絡先について自動的にボイスメールに転送するよう設定しています。ここにその番号をインポートすると、着信とテキスト メッセージの両方をブロックできます。"</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"インポート"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"番号を表示"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"電話番号を追加"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"通話のブロックは48時間経過するまで無効になりました"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"緊急通報を行ったため無効になりました。"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"元に戻す"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g>は既にブロックしています。"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"番号のブロックを解除"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g>の連絡先の詳細"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"インポートに失敗しました"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"番号をインポート"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"連絡先を検索するには、連絡先権限をONにしてください。"</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"ONにする"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"ブロックした番号"</string>
 </resources>
