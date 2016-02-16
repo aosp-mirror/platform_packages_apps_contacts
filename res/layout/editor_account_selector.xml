@@ -17,14 +17,15 @@
 <!-- Header at the top of a raw contact editor. This allows users to change the account that
     the raw contact is saved in. -->
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/account_selector_container"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:minHeight="@dimen/editor_min_line_item_height"
-    android:orientation="horizontal"
-    android:layout_marginBottom="@dimen/compact_editor_name_top_margin"
-    android:visibility="gone" >
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/account_selector_container"
+        android:focusable="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="@dimen/editor_min_line_item_height"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/compact_editor_name_top_margin"
+        android:visibility="gone">
 
     <ImageView
         android:id="@+id/kind_icon"
@@ -41,8 +42,7 @@
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
         android:layout_marginStart="4dp"
-        android:layout_marginEnd="48dp"
-        >
+        android:layout_marginEnd="48dp">
 
         <TextView
             android:id="@+id/account_type_selector"
