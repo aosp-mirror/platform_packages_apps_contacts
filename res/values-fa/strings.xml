@@ -202,7 +202,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"سال لحاظ شود"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"مخاطب"</string>
-    <string name="social_widget_loading" msgid="5327336597364074608">"در حال بارگیری..."</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"در حال بارکردن…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ایجاد مخاطب جدید"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"افزودن حساب"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"وارد کردن مخاطبین"</string>
