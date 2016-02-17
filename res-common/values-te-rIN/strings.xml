@@ -188,9 +188,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ఒకటి లేదా అంతకంటే ఎక్కువ ఫైల్‌లను (%s) దిగుమతి చేయడం సాధ్యపడలేదు."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>ని ఎగుమతి చేయడం పూర్తయింది."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"పరిచయాలను ఎగుమతి చేయడం పూర్తయింది."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"పరిచయాలను ఎగుమతి చేయడం పూర్తయింది, పరిచయాలను భాగస్వామ్యం చేయడానికి నోటిఫికేషన్‌ను క్లిక్ చేయండి."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"పరిచయాలను భాగస్వామ్యం చేయడానికి నొక్కండి."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>ని ఎగుమతి చేయడం రద్దు చేయబడింది."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"పరిచయ డేటాను ఎగుమతి చేస్తోంది"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"మీ పరిచయ డేటా దీనికి ఎగుమతి చేయబడుతోంది: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"పరిచయ డేటా ఎగుమతి చేయబడుతోంది."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"డేటాబేస్ సమాచారాన్ని పొందడం సాధ్యపడలేదు."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"ఎగుమతి చేయదగిన పరిచయాలు ఏవీ లేవు. మీరు మీ టాబ్లెట్‌లో పరిచయాలు కలిగి ఉన్నప్పటికీ, కొందరు డేటా ప్రదాతలు పరిచయాలను టాబ్లెట్ నుండి ఎగుమతి చేయడానికి అనుమతించకపోవచ్చు."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"ఎగుమతి చేయదగిన పరిచయాలు ఏవీ లేవు. మీరు మీ ఫోన్‌లో పరిచయాలు కలిగి ఉన్నప్పటికీ, కొందరు డేటా ప్రదాతలు పరిచయాలను ఫోన్ నుండి ఎగుమతి చేయడానికి అనుమతించకపోవచ్చు."</string>
@@ -207,6 +209,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard దిగుమతి అభ్యర్థన తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> కొద్దిసేపట్లో ఎగుమతి చేయబడుతుంది."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ఫైల్ కాసేపట్లో ఎగుమతి చేయబడుతుంది."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"పరిచయాలు త్వరలో ఎగుమతి చేయబడతాయి."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard ఎగుమతి అభ్యర్థన తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"పరిచయం"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ల)ను స్థానిక తాత్కాలిక నిల్వకు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>

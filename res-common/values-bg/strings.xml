@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Един или повече файла не можаха да бъдат импортирани (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Експортирането на „<xliff:g id="FILENAME">%s</xliff:g>“ завърши."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Експортирането на контактите завърши."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Експортирането на „<xliff:g id="FILENAME">%s</xliff:g>“ е анулирано."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Експортиране на данни за контакти"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Данните за контактите ви се експортират във: „<xliff:g id="FILE_NAME">%s</xliff:g>“."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Информацията за базата от данни не можа да бъде получена."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Няма контакти, позволяващи експортиране. Ако в таблета си имате контакти, е възможно някои доставчици на данни да не позволяват експортирането им извън него."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Няма контакти, позволяващи експортиране. Ако в телефона си имате контакти, е възможно някои доставчици на данни да не позволяват експортирането им извън него."</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Заявката за импортиране на vCard бе отхвърлена. Опитайте отново по-късно."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"„<xliff:g id="FILENAME">%s</xliff:g>“ ще се експортира скоро."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Файлът ще се експортира скоро."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Заявката за експортиране на vCard бе отхвърлена. Опитайте отново по-късно."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard се кешира/т във временно локално хранилище. Самото импортиране ще започне скоро."</string>

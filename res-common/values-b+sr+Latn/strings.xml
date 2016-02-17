@@ -189,9 +189,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Nije moguć uvoz jedne ili više datoteka (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> je završen."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Izvoz kontakata je završen."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> je otkazan."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Izvoz podataka o kontaktima je u toku"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Podaci o kontaktima se izvoze u: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Preuzimanje informacija iz baze podataka nije moguće."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Nema kontakata za izvoz. Ako imate kontakte na tabletu, neki dobavljači podataka možda neće dozvoliti izvoz kontakata sa tableta."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nema kontakata za izvoz. Ako imate kontakte na telefonu, neki dobavljači podataka možda neće dozvoliti da se kontakti izvoze sa telefona."</string>
@@ -208,6 +213,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Zahtev za uvoz vCard datoteke je odbijen. Pokušajte ponovo kasnije."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Datoteka <xliff:g id="FILENAME">%s</xliff:g> će uskoro biti izvezena."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Datoteka će uskoro biti izvezena."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Zahtev za izvoz vCard datoteke je odbijen. Pokušajte ponovo kasnije."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Keširanje vCard datoteka u lokalnu privremenu memoriju. Uvoz će uskoro započeti."</string>

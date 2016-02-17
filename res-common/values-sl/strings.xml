@@ -190,9 +190,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Ene ali več datotek ni bilo mogoče uvoziti (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> je končan."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Izvoz stikov je končan."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Izvoz stikov je dokončan. Kliknite obvestilo, če želite dati stike v skupno rabo."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Dotaknite se, če želite dati stike v skupno rabo."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> je preklican."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Izvažanje podatkov o stikih"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Podatki o stikih se izvažajo v to datoteko: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Podatki o stikih se izvažajo."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Informacij o zbirki podatkov ni bilo mogoče dobiti."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Ni stikov za izvoz. Če imate v tabličnem računalniku stike, nekateri ponudniki podatkov morda ne omogočajo izvoza stikov iz njega."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Ni stikov za izvoz. Če imate v telefonu stike, nekateri ponudniki podatkov morda ne omogočajo izvoza stikov iz telefona."</string>
@@ -209,6 +211,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Zahteva za uvoz datoteke vCard je bila zavrnjena. Poskusite znova pozneje."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Datoteka <xliff:g id="FILENAME">%s</xliff:g> bo kmalu izvožena."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Datoteka bo kmalu izvožena."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Stiki bodo kmalu izvoženi."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Zahteva za izvoz datoteke vCard je bila zavrnjena. Poskusite znova pozneje."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"stik"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Predpomnjenje datotek vCard v lokalno začasno shrambo. Dejanski uvoz se bo začel kmalu."</string>

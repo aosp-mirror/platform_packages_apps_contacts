@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"하나 이상의 파일을 가져오지 못했습니다(%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> 내보내기 완료됨"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"연락처 내보내기 완료"</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> 내보내기 취소됨"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"연락처 데이터 내보내기"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"연락처 데이터를 <xliff:g id="FILE_NAME">%s</xliff:g>(으)로 내보내고 있습니다."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"데이터베이스 정보를 가져오지 못했습니다."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"내보낼 수 있는 연락처가 없습니다. 태블릿에 연락처가 있다면 일부 데이터 제공업체에서 연락처를 태블릿에서 내보내지 못하도록 했기 때문일 수 있습니다."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 연락처가 있다면 일부 데이터 제공업체에서 연락처를 휴대전화에서 내보내지 못하도록 했기 때문일 수 있습니다."</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard 가져오기 요청이 거부되었습니다. 나중에 다시 시도해 주세요."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g>을(를) 곧 내보냅니다."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"파일을 곧 내보냅니다."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard 내보내기 요청이 거부되었습니다. 나중에 다시 시도해 주세요."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"연락처"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard를 로컬 임시 저장공간에 캐시하는 중입니다. 곧 가져오기가 시작됩니다."</string>

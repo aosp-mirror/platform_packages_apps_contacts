@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Δεν ήταν δυνατή η εισαγωγή ενός ή περισσότερων αρχείων (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Η εξαγωγή του αρχείου <xliff:g id="FILENAME">%s</xliff:g> ολοκληρώθηκε."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Ολοκλήρωση εξαγωγής επαφών."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Η εξαγωγή του αρχείου <xliff:g id="FILENAME">%s</xliff:g> ακυρώθηκε."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Εξαγωγή δεδομένων επαφών"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Γίνεται εξαγωγή των δεδομένων επαφών σας στο αρχείο: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Δεν ήταν δυνατή η λήψη πληροφοριών βάσης δεδομένων."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Δεν υπάρχουν επαφές προς εξαγωγή. Αν υπάρχουν επαφές στο tablet, ορισμένοι πάροχοι δεδομένων ενδέχεται να μην επιτρέπουν την εξαγωγή επαφών από το tablet."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Δεν υπάρχουν επαφές προς εξαγωγή. Αν υπάρχουν επαφές στο τηλέφωνό σας, ορισμένοι πάροχοι δεδομένων ενδέχεται να μην επιτρέπουν την εξαγωγή των επαφών από το τηλέφωνο."</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Το αίτημα εισαγωγής vCard απορρίφθηκε. Δοκιμάστε ξανά αργότερα."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Η εξαγωγή του αρχείου <xliff:g id="FILENAME">%s</xliff:g> θα γίνει σύντομα."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Η εξαγωγή του αρχείου θα γίνει σύντομα."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Το αίτημα εξαγωγής vCard απορρίφθηκε. Δοκιμάστε ξανά αργότερα."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"επαφή"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Αλλαγή vCard σε τοπικό χώρο προσωρινής αποθήκευσης. Η εισαγωγή θα ξεκινήσει σύντομα."</string>

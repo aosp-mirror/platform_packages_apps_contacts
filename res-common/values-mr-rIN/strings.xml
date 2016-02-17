@@ -188,9 +188,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"एक किंवा अधिक फायली आयात केल्‍या जाऊ शकत नाहीत(%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> निर्यात करणे समाप्त झाले."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"संपर्क आयात करणे समाप्त झाले"</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"संपर्क निर्यात करणे समाप्त झाले, संपर्क सामायिक करण्यासाठी सूचनेवर क्लिक करा."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"संपर्क सामायिक करण्यासाठी टॅप करा."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> निर्यात करणे रद्द केले."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"संपर्क डेटा निर्यात करीत आहे"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"आपला संपर्क डेटा यावर निर्यात केला जात आहे: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"संपर्क डेटा निर्यात केला जात आहे."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"डेटाबेस माहिती मिळवू शकलो नाही."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"निर्यात करण्‍यायोग्‍य संपर्क नाहीत. आपल्‍या टॅब्‍लेटवर संपर्क असल्‍यास, काही डेटा प्रदाते टॅब्‍लेटवरून संपर्क निर्यात करण्‍यास कदाचित अनुमती देणार नाहीत."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"निर्यात करण्‍यायोग्‍य संपर्क नाहीत. आपल्‍या फोनवर संपर्क असल्‍यास, काही डेटा प्रदाते फोनवरून संपर्क निर्यात करण्‍यास कदाचित अनुमती देणार नाहीत."</string>
@@ -207,6 +209,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard आयात विनंती नाकारली. नंतर पुन्हा प्रयत्न करा."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> लवकरच निर्यात केली जाईल."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"फाईल लवकरच निर्यात केली जाईल."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"संपर्क लवकरच निर्यात केले जातील."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard निर्यात विनंती नाकारली. नंतर पुन्हा प्रयत्न करा."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"संपर्क"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"स्‍थानिक तात्‍पुरत्‍या संचयनावर vCard(s) कॅशे करीत आहे. वास्‍तविक आयात लवकरच प्रारंभ होईल."</string>

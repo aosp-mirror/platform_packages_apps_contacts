@@ -188,9 +188,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"एक या अधिक फ़ाइलें आयात नहीं की जा सकीं (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> का निर्यात पूरा हो गया."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"संपर्कों का निर्यात किया जाना समाप्त हो गया."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"संपर्कों को निर्यात करना पूरा हो गया है, संपर्क साझा करने के लिए नोटिफिकेशन क्लिक करें."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"संपर्क साझा करने के लिए टैप करें."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> को निर्यात करना रद्द कर दिया गया."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"संपर्क डेटा निर्यात हो रहा है"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"आपका संपर्क डेटा इस पर निर्यात किया जा रहा है: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"संपर्क डेटा निर्यात किया जा रहा है."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"डेटाबेस जानकारी नहीं मिल सकी."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"कोई भी निर्यात-योग्‍य संपर्क नहीं है. यदि आपके पास अपने टेबलेट पर संपर्क हों, तो हो सकता है कि कुछ डेटा प्रदाता संपर्कों को टेबलेट से निर्यात न करने दें."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"कोई भी निर्यात-योग्‍य संपर्क नहीं है. यदि आपके पास अपने फ़ोन पर संपर्क  हों, तो हो सकता है कि कुछ डेटा प्रदाता संपर्कों को फ़ोन से निर्यात न करने दें."</string>
@@ -207,6 +209,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard आयात अनुरोध अस्‍वीकार हो गया था. बाद में पुन: प्रयास करें."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> को जल्‍दी ही निर्यात किया जाएगा."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"फ़ाइल शीघ्र ही निर्यात की जाएगी."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"संपर्कों को शीघ्र ही निर्यात किया जाएगा."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard निर्यात अनुरोध अस्‍वीकार हो गया था. बाद में पुन: प्रयास करें."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"संपर्क"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard को स्‍थानीय अस्‍थायी मेमोरी में संचित कर रहा है. वास्‍तविक आयात जल्‍दी ही प्रारंभ होगा."</string>

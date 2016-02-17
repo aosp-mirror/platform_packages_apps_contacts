@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Ainakin yhden tiedoston tuominen epäonnistui (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Kohde <xliff:g id="FILENAME">%s</xliff:g> on viety."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Yhteystiedot on viety."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Kohteen <xliff:g id="FILENAME">%s</xliff:g> vienti peruutettiin."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Viedään yhteystietoja"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Yhteystietosi viedään kohteeseen <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Tietokannan tietojen hakeminen epäonnistui."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Vietäviä yhteystietoja ei ole. Jos tablet-laitteellasi on yhteystietoja, tietojen tarjoaja on saattanut estää niiden viemisen tablet-laitteen ulkopuolelle."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Vietäviä yhteystietoja ei ole. Jos puhelimessasi on yhteystietoja, tietojen tarjoaja on saattanut estää niiden viemisen puhelimen ulkopuolelle."</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard-tuontipyyntö hylättiin. Yritä myöhemmin uudelleen."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> viedään pian."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Tiedosto viedään pian."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard-vientipyyntö hylättiin. Yritä myöhemmin uudelleen."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"yhteystieto"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Lisätään vCard-tietojen välimuistiversiot paikalliseen väliaikaistallennustilaan. Tuonti alkaa pian."</string>

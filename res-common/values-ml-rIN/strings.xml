@@ -188,9 +188,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ഒന്നോ അതിലധികമോ ഫയലുകൾ ഇമ്പോർട്ടുചെയ്യാനായില്ല (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി, കോൺടാക്റ്റുകൾ പങ്കിടുന്നതിന് അറിയിപ്പിൽ ക്ലിക്കുചെയ്യുക."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"കോൺടാക്റ്റുകൾ പങ്കിടാൻ ടാപ്പുചെയ്യുക."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> എക്‌സ്‌പോർട്ടുചെയ്യൽ റദ്ദാക്കി."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"കോൺടാക്റ്റ് ഡാറ്റ എക്‌സ്‌പോർട്ടുചെയ്യുന്നു"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"നിങ്ങളുടെ കോൺടാക്റ്റ് ഡാറ്റ ഇതിലേക്ക് എക്‌സ്‌പോർട്ടുചെയ്യുന്നു: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"കോൺടാക്റ്റ് ഡാറ്റ എക്സ്പോർട്ടുചെയ്യുകയാണ്."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ഡാറ്റാബേസ് വിവരം നേടാനായില്ല."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"എക്‌സ്‌പോർട്ടുചെയ്യാനാകുന്ന കോൺടാക്റ്റുകളൊന്നുമില്ല. നിങ്ങളുടെ ടാബ്‌ലെറ്റിൽ കോൺടാക്റ്റുകളുണ്ടെങ്കിൽ, ടാബ്‌ലെറ്റിൽ നിന്നും കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യാൻ ചില സേവന ദാതാക്കൾ അനുവദിക്കാനിടയില്ല."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"എക്‌സ്‌പോർട്ടുചെയ്യാനാകുന്ന കോൺടാക്റ്റുകളൊന്നുമില്ല. നിങ്ങളുടെ ഫോണിൽ കോൺടാക്റ്റുകളുണ്ടെങ്കിൽ, ഫോണിൽ നിന്നും കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യാൻ ചില സേവന ദാതാക്കൾ അനുവദിക്കാനിടയില്ല."</string>
@@ -207,6 +209,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard ഇമ്പോർട്ടുചെയ്യൽ അഭ്യർത്ഥന നിരസിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് ഉടൻ എക്‌സ്‌പോർട്ടുചെയ്യും."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ഫയൽ ഉടൻ എക്സ്പോർട്ടുചെയ്യും."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"കോൺടാക്റ്റുകൾ താമസിയാതെ എക്സ്പോർട്ടുചെയ്യും."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard എക്‌സ്‌പോർട്ടുചെയ്യൽ അഭ്യർത്ഥന നിരസിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"കോൺടാക്റ്റ്"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"പ്രാദേശിക താൽക്കാലിക സംഭരണത്തിലേക്ക് vCard (vCard-കൾ) കാഷെ ചെയ്യുന്നു. യഥാർത്ഥ ഇമ്പോർട്ടുചെയ്യൽ ഉടൻ ആരംഭിക്കും."</string>

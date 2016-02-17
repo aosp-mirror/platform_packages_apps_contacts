@@ -188,9 +188,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"একটি বা একাধিক (%s) ফাইল আমদানি করা যাবে না৷"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> রপ্তানি করা সম্পন্ন হয়েছে৷"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"পরিচিতি রপ্তানি করা সম্পন্ন হয়েছে৷"</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"পরিচিতিগুলি রপ্তানি করা হয়েছে, পরিচিতিগুলিকে শেয়ার করতে বিজ্ঞপ্তিটিতে ক্লিক করুন৷"</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"পরিচিতিগুলিকে শেয়ার করতে আলতো চাপ দিন৷"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> রপ্তানি করা বাতিল হয়েছে৷"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"পরিচিতির তথ্য রপ্তানি করা হচ্ছে"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"আপনার পরিচিতির ডেটা রপ্তানি করা হচ্ছে: <xliff:g id="FILE_NAME">%s</xliff:g>৷"</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"পরিচিতির ডেটা রপ্তানি করা হচ্ছে৷"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ডেটাবেসের তথ্য পাওয়া যায়নি৷"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"এখানে রপ্তানিযোগ্য কোনো পরিচিতি নেই৷ আপনার ট্যাবলেটে পরিচিতি থাকলে, কিছু ডেটা সরবরাহকারী আপনার ট্যাবলেট থেকে সেই পরিচিতিগুলিকে রপ্তানি করা মঞ্জুর নাও করতে পারে৷"</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"এখানে রপ্তানিযোগ্য কোনো পরিচিতি নেই৷ আপনার ফোনে পরিচিতি থাকলে, কিছু ডেটা সরবরাহকারী আপনার ফোন থেকে সেই পরিচিতিগুলিকে রপ্তানি করা মঞ্জুর নাও করতে পারে৷"</string>
@@ -207,6 +209,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard আমদানি করার অনুরোধ প্রত্যাখ্যাত হয়েছে৷ পরে আবার চেষ্টা করুন৷"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> শীঘ্রই রপ্তানি করা হবে৷"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ফাইলটি শীঘ্রই রপ্তানি করা হবে৷"</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"পরিচিতিগুলি শীঘ্রই রপ্তানি করা হবে৷"</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard রপ্তানি করার অনুরোধ প্রত্যাখ্যাত হয়েছে৷ পরে আবার চেষ্টা করুন৷"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"পরিচিতি"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"স্থানীয় অস্থায়ী সংগ্রহস্থলে vCard(গুলি)কে ক্যাশ করা হচ্ছে৷ প্রকৃত আমদানি শীঘ্রই শুরু হবে৷"</string>

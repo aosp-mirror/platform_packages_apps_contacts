@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Impossible d\'importer un ou plusieurs fichiers (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Exportation du fichier <xliff:g id="FILENAME">%s</xliff:g> terminée"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Les contacts ont bien été exportés"</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Exportation du fichier <xliff:g id="FILENAME">%s</xliff:g> annulée"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Exportation des données des contacts"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Vos données de contact sont en cours d\'exportation vers le fichier <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Impossible d\'obtenir les informations concernant la base de données."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Aucun contact ne peut être exporté. Si des contacts sont enregistrés sur votre tablette, il est possible qu\'un fournisseur de données n\'autorise pas l\'exportation de contacts vers un autre appareil."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Aucun contact ne peut être exporté. Si des contacts sont enregistrés sur votre téléphone, il est possible qu\'un fournisseur de données n\'autorise pas l\'exportation de contacts vers un autre appareil."</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"La demande d\'importation du fichier vCard a été rejetée. Veuillez réessayer ultérieurement."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Le fichier <xliff:g id="FILENAME">%s</xliff:g> va bientôt être exporté."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Le fichier va bientôt être exporté."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"La demande d\'exportation du fichier vCard a été rejetée. Veuillez réessayer ultérieurement."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contact"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Mise en cache des fichiers vCard dans l\'espace de stockage temporaire local. L\'importation va bientôt démarrer."</string>

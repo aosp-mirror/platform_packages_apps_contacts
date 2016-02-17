@@ -188,9 +188,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Vähemalt ühe faili importimine ebaõnnestus (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Faili <xliff:g id="FILENAME">%s</xliff:g> eksportimine on lõpetatud."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Kontaktide eksportimine on lõpetatud."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Kontaktide eksportimine lõpetati. Kontaktide jagamiseks klõpsake märguandel."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Puudutage kontaktide jagamiseks."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Faili <xliff:g id="FILENAME">%s</xliff:g> eksportimine tühistati."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontaktandmete eksportimine"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Teie kontaktandmed eksporditakse faili: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Kontaktide andmed eksporditakse."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Andmebaasiteabe hankimine ebaõnnestus."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Eksporditavaid kontakte pole. Kui teil siiski on tahvelarvutis kontakte, ei pruugi mõned andmesidepakkujad kontaktide eksportimist tahvelarvutist lubada."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Eksporditavaid kontakte pole. Kui teil siiski on telefonis kontakte, ei pruugi mõned andmesidepakkujad kontaktide eksportimist telefonist lubada."</string>
@@ -207,6 +209,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCardi importimistaotlus lükati tagasi. Proovige hiljem uuesti."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Fail <xliff:g id="FILENAME">%s</xliff:g> eksporditakse peagi."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Fail eksporditakse peagi."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Kontaktid eksporditakse peagi."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCardi eksportimistaotlus lükati tagasi. Proovige hiljem uuesti."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCardi(de) vahemälustamine kohalikku ajutisse mäluruumi. Tegelik importimine algab peagi."</string>

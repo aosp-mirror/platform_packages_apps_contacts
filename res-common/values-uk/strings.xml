@@ -190,9 +190,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Не вдалось імпортувати один або декілька файлів (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Експорт файлу <xliff:g id="FILENAME">%s</xliff:g> завершено."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Контакти експортовано."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Експорт файлу <xliff:g id="FILENAME">%s</xliff:g> скасовано."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Експортувати контактні дані"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Ваші контактні дані експортуються у файл: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Не вдалось отримати інформацію бази даних."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Немає контактів, які можна експортувати. Якщо у вашому планшетному ПК є контакти, можливо, якийсь постачальник даних заборонив експорт контактів із планшетного ПК."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Немає контактів, які можна експортувати. Якщо у вашому телефоні є контакти, можливо, якийсь постачальник даних заборонив експорт контактів із телефону."</string>
@@ -209,6 +214,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Запит на імпорт файлу vCard відхилено. Повторіть спробу пізніше."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Файл <xliff:g id="FILENAME">%s</xliff:g> незабаром буде експортовано."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Невдовзі файл буде експортовано."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Запит на експорт файлу vCard відхилено. Повторіть спробу пізніше."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Кешування файлів vCard у локальну тимчасову пам’ять. Імпорт почнеться незабаром."</string>

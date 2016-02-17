@@ -19,27 +19,27 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Text copiat"</string>
     <string name="copy_text" msgid="3424081789297978355">"Copiați în clipboard"</string>
-    <string name="call_custom" msgid="2786306789889210756">"Apelaţi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1479549630992276827">"Apelaţi numărul de domiciliu"</string>
-    <string name="call_mobile" msgid="8618334085824709009">"Apelaţi numărul de mobil"</string>
-    <string name="call_work" msgid="8299062439076337075">"Apelaţi numărul de serviciu"</string>
-    <string name="call_fax_work" msgid="3770754834467992571">"Apelaţi numărul de fax de serviciu"</string>
-    <string name="call_fax_home" msgid="6219051113573396065">"Apelaţi numărul de fax de domiciliu"</string>
-    <string name="call_pager" msgid="3038080882899955112">"Apelaţi numărul de pager"</string>
-    <string name="call_other" msgid="4472141328347894937">"Apelaţi"</string>
-    <string name="call_callback" msgid="687494744634190411">"Apelaţi un număr cu apelare inversă"</string>
-    <string name="call_car" msgid="9078083109758282133">"Apelaţi numărul de maşină"</string>
-    <string name="call_company_main" msgid="8768047233970315359">"Apelaţi numărul principal al companiei"</string>
-    <string name="call_isdn" msgid="3342482563847537747">"Apelaţi ISDN"</string>
-    <string name="call_main" msgid="4640261071249938558">"Apelaţi numărul principal"</string>
-    <string name="call_other_fax" msgid="2536328553125487877">"Apelaţi numărul de fax"</string>
-    <string name="call_radio" msgid="9055749313292712021">"Apelaţi un număr radio"</string>
-    <string name="call_telex" msgid="2909886619224843563">"Apelaţi un număr de telex"</string>
-    <string name="call_tty_tdd" msgid="6704940636171078852">"Apelaţi TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="4408630608955148641">"Apelaţi numărul de mobil de la serviciu"</string>
-    <string name="call_work_pager" msgid="3036932765279753793">"Apelaţi numărul de pager de serviciu"</string>
-    <string name="call_assistant" msgid="5188990854852312696">"Apelaţi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="8998771923464696960">"Apelaţi MMS"</string>
+    <string name="call_custom" msgid="2786306789889210756">"Apelați <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1479549630992276827">"Apelați numărul de domiciliu"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Apelați numărul de mobil"</string>
+    <string name="call_work" msgid="8299062439076337075">"Apelați numărul de serviciu"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"Apelați numărul de fax de serviciu"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Apelați numărul de fax de domiciliu"</string>
+    <string name="call_pager" msgid="3038080882899955112">"Apelați numărul de pager"</string>
+    <string name="call_other" msgid="4472141328347894937">"Apelați"</string>
+    <string name="call_callback" msgid="687494744634190411">"Apelați un număr cu apelare inversă"</string>
+    <string name="call_car" msgid="9078083109758282133">"Apelați numărul de maşină"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Apelați numărul principal al companiei"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"Apelați ISDN"</string>
+    <string name="call_main" msgid="4640261071249938558">"Apelați numărul principal"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"Apelați numărul de fax"</string>
+    <string name="call_radio" msgid="9055749313292712021">"Apelați un număr radio"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Apelați un număr de telex"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"Apelați TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Apelați numărul de mobil de la serviciu"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Apelați numărul de pager de serviciu"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"Apelați <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="8998771923464696960">"Apelați MMS"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Trimiteți un mesaj text către <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Trimiteți un mesaj text către telefonul de domiciliu"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Trimiteți un mesaj text către numărul de mobil"</string>
@@ -86,10 +86,10 @@
     <string name="missing_name" msgid="2633118852693000081">"(Fără nume)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Apelate frecvent"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactate frecvent"</string>
-    <string name="description_view_contact_detail" msgid="2756753096193839285">"Afişaţi persoana de contact"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Afișați persoana de contact"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Toate persoanele de contact cu numere de telefon"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Persoane de contact din profilul de serviciu"</string>
-    <string name="view_updates_from_group" msgid="3310864388165884352">"Afişaţi actualizări"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Afișați actualizări"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Numai pe tabletă, nesincronizată"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Numai pe telefon, nesincronizată"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nume"</string>
@@ -109,7 +109,7 @@
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adrese poștale"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizație"</string>
-    <string name="relationLabelsGroup" msgid="3585294036166325520">"Relaţie"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Relație"</string>
     <string name="eventLabelsGroup" msgid="4801419345682462171">"Dată specială"</string>
     <string name="sms" msgid="8086289395154598654">"Mesaj text"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adresă poştală"</string>
@@ -146,7 +146,7 @@
     <string name="chat_jabber" msgid="4525546665986350869">"Conversaţi prin Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"Conversaţi prin chat"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"ștergeți"</string>
-    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Extindeţi sau restrângeți câmpurile pentru nume"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Extindeți sau restrângeți câmpurile pentru nume"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Extindeți sau restrângeți câmpurile pentru nume fonetice"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Toată agenda"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Cu stea"</string>
@@ -189,9 +189,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Unul sau mai multe fișiere nu s-au putut importa (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"S-a finalizat exportul fișierului <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Persoanele de contact au fost exportate."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Exportul fișierului <xliff:g id="FILENAME">%s</xliff:g> a fost anulat."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Se exportă datele persoanelor de contact"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Datele persoanelor de contact se exportă în fișierul: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nu s-au putut obține informații din baza de date."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Nu există persoane de contact care să poată fi exportate. Dacă aveți persoane de contact pe tabletă, este posibil ca exportul acestora de pe tabletă să fie interzis de unii furnizori de date."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nu există persoane de contact care să poată fi exportate. Dacă aveți persoane de contact pe telefon, este posibil ca exportul acestora de pe telefon să fie interzis de unii furnizori de date."</string>
@@ -208,6 +213,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Solicitarea de import a fișierului vCard a fost respinsă. Încercați din nou mai târziu."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> va fi exportat în curând."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Fișierul va fi exportat în curând."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Solicitarea de export a fișierului vCard a fost respinsă. Încercați din nou mai târziu."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"persoană de contact"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Fișierele vCard se stochează în memoria cache într-un spațiu de stocare local temporar. Importul propriu-zis va începe în curând."</string>
