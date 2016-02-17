@@ -28,7 +28,6 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -53,9 +52,6 @@ public class CompactPhotoSelectionFragment extends Fragment {
     private final int VIEW_TYPE_TAKE_PHOTO = 0;
     private final int VIEW_TYPE_ALL_PHOTOS = 1;
     private final int VIEW_TYPE_IMAGE = 2;
-    private final int NUMBER_OF_COLUMNS_PORTRAIT = 3;
-    private final int NUMBER_OF_COLUMNS_LANDSCAPE = 5;
-    private int mNumberOfColumns;
 
     /**
      * Callbacks hosts this Fragment.
@@ -295,7 +291,7 @@ public class CompactPhotoSelectionFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final PhotoSourceDialogFragment.Listener listener =
                         (PhotoSourceDialogFragment.Listener) getActivity();
-                if (position == 0){
+                if (position == 0) {
                     listener.onTakePhotoChosen();
                 } else if (position == 1) {
                     listener.onPickFromGalleryChosen();
@@ -312,17 +308,11 @@ public class CompactPhotoSelectionFragment extends Fragment {
 
         final Display display = getActivity().getWindowManager().getDefaultDisplay();
         final DisplayMetrics outMetrics = new DisplayMetrics ();
-        display.getMetrics(outMetrics);
+        display.getRealMetrics(outMetrics); // real metrics include the navigation Bar
 
-        // portrait -- 3 columns; landscape -- 5 columns.
-        mNumberOfColumns = outMetrics.heightPixels > outMetrics.widthPixels ?
-                NUMBER_OF_COLUMNS_PORTRAIT : NUMBER_OF_COLUMNS_LANDSCAPE;
-        final int paddingWidth = (int) getResources().getDimension(R.dimen
-                .photo_picker_column_padding_width);
-        float density  = getResources().getDisplayMetrics().density;
-        float dpColumnWidth  = (outMetrics.widthPixels - paddingWidth * (mNumberOfColumns - 1) *
-                density) / mNumberOfColumns;
-        mGridView.setColumnWidth((int) dpColumnWidth);
+        final float numColumns = outMetrics.widthPixels /
+                getResources().getDimension(R.dimen.photo_picker_item_ideal_width);
+        mGridView.setNumColumns(Math.round(numColumns));
 
         return view;
     }
