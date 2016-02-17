@@ -67,7 +67,7 @@
     <string name="menu_save" msgid="1727844363591825909">"Salvați"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Asociați persoanele de contact"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Alegeți persoana de contact pe care doriți să o asociați cu <xliff:g id="NAME">%s</xliff:g>:"</string>
-    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Afişaţi toate persoanele din agendă"</string>
+    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Afișați toate persoanele din agendă"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Persoane din agendă sugerate"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Toate persoanele din agendă"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Persoanele de contact au fost asociate"</string>
@@ -149,7 +149,7 @@
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> din <xliff:g id="TOTAL_NUMBER">%s</xliff:g> (de) persoane din agendă"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Numele persoanelor din agenda dvs."</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"Nu s-a găsit o aplicație care să gestioneze această acţiune."</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"Nu s-a găsit o aplicație care să gestioneze această acțiune."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Dați clic pentru a reveni la ecranul anterior"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Adăugați un număr de telefon"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Adăugați o adresă de e-mail"</string>
@@ -176,7 +176,7 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"Selectați o fotografie nouă"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Se actualizează lista de persoane din agendă."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Se caută..."</string>
-    <string name="menu_display_selected" msgid="6470001164297969034">"Afişaţi elementele selectate"</string>
+    <string name="menu_display_selected" msgid="6470001164297969034">"Afișați elementele selectate"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Afișați-i pe toți"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Selectaţi-le pe toate"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Deselectați-le pe toate"</string>
@@ -244,7 +244,7 @@
     <string name="external_profile_title" msgid="8034998767621359438">"Profilul meu <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Se afișează toată agenda"</string>
     <string name="no_account_prompt" msgid="6424883302325061025">"Agenda funcționează mai bine cu un Cont Google.\n\n• O puteți accesa din orice browser web.\n• Creați în siguranță backup pentru persoanele de contact."</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Păstraţi agenda dvs. în condiții de siguranţă, chiar dacă pierdeți telefonul, prin sincronizarea acesteia cu un serviciu online."</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Păstraţi agenda dvs. în condiții de siguranță, chiar dacă pierdeți telefonul, prin sincronizarea acesteia cu un serviciu online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adăugați un cont"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Pentru noul contact nu se va crea o copie de rezervă. Adăugați un cont care creează online copii de rezervă pentru contacte?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Persoanele noi de contact vor fi salvate în <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
@@ -277,7 +277,7 @@
     <string name="header_note_entry" msgid="4320190426480612344">"Notă"</string>
     <string name="header_website_entry" msgid="1411467850000824745">"Site web"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Eveniment"</string>
-    <string name="header_relation_entry" msgid="1520292958088146460">"Relaţie"</string>
+    <string name="header_relation_entry" msgid="1520292958088146460">"Relație"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"Cont"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"Nume"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"E-mail"</string>
