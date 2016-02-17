@@ -89,7 +89,6 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Tất cả người liên hệ có số điện thoại"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Danh bạ trên Hồ sơ công việc"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Xem thông tin cập nhật"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Chỉ trên máy tính bảng, chưa được đồng bộ hóa"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Chỉ trên điện thoại, ko đồng bộ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Tên"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Biệt hiệu"</string>
@@ -178,8 +177,6 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Bạn đã tắt quyền được yêu cầu."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Đã xảy ra lỗi khi xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Tên tệp yêu cầu quá dài (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Quá nhiều tệp vCard trong bộ nhớ."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"Quá nhiều tệp vCard trên thẻ SD."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"Lỗi I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Không đủ bộ nhớ. Tệp có thể quá lớn."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Không thể phân tích cú pháp vCard vì lý do không mong muốn."</string>
@@ -197,7 +194,6 @@
     <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
     <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Không thể nhận thông tin cơ sở dữ liệu."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Không thể xuất liên hệ nào. Nếu bạn có danh bạ trên máy tính bảng của mình, một số nhà cung cấp dữ liệu có thể không cho phép xuất danh bạ từ máy tính bảng."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Không thể xuất liên hệ nào. Nếu bạn có danh bạ trên điện thoại của mình, một số nhà cung cấp dữ liệu không cho phép xuất danh bạ từ điện thoại."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Trình soạn vCard không khởi động đúng."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Không thể xuất"</string>
@@ -218,13 +214,9 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"liên hệ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Đang lưu vào bộ nhớ cache các tệp vCard sẽ được nhập vào bộ nhớ cục bộ tạm thời. Thao tác nhập thực sự sẽ sớm bắt đầu."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Không thể nhập vCard."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Không tìm thấy tệp vCard nào trong bộ nhớ."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Không tìm thấy tệp vCard trên thẻ SD."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"L.h nhận qua NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Xuất danh bạ?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Đang lưu vào bộ nhớ cache"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Không thể quét bộ nhớ. (Lý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Không thể quét thẻ SD. (Lý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Đang nhập <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Xuất sang tệp .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sắp xếp theo"</string>

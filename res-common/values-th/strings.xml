@@ -89,7 +89,6 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"รายชื่อติดต่อทั้งหมดที่มีหมายเลขโทรศัพท์"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"รายชื่อติดต่อในโปรไฟล์งาน"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"ดูการอัปเดต"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"แท็บเล็ตเท่านั้น ไม่ซิงค์"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"โทรศัพท์เท่านั้น ไม่ซิงค์"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ชื่อ"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ชื่อเล่น"</string>
@@ -178,8 +177,6 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"คุณได้ปิดใช้สิทธิ์ที่จำเป็น"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"เกิดข้อผิดพลาดระหว่างส่งออก: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ชื่อไฟล์ที่ต้องระบุยาวเกินไป (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"มีไฟล์ vCard ในที่จัดเก็บข้อมูลมากเกินไป"</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"มีไฟล์ vCard บนการ์ด SD มากเกินไป"</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"ข้อผิดพลาด I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"หน่วยความจำไม่เพียงพอ ไฟล์อาจใหญ่เกินไป"</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"ไม่สามารถแยกวิเคราะห์ vCard ด้วยเหตุผลที่ไม่คาดคิด"</string>
@@ -197,7 +194,6 @@
     <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
     <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ไม่สามารถดึงข้อมูลจากฐานข้อมูล"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"ไม่มีรายชื่อติดต่อที่สามารถส่งออกได้ หากคุณมีรายชื่อติดต่ออยู่ในแท็บเล็ตของคุณจริงๆ อาจเป็นเพราะผู้ให้บริการข้อมูลบางรายไม่อนุญาตให้ส่งออกรายชื่อติดต่อจากแท็บเล็ต"</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"ไม่มีรายชื่อติดต่อที่สามารถส่งออกได้ หากคุณมีรายชื่อติดต่ออยู่ในโทรศัพท์ของคุณจริงๆ อาจเป็นเพราะผู้ให้บริการข้อมูลบางรายไม่อนุญาตให้ส่งออกรายชื่อติดต่อจากโทรศัพท์"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"โปรแกรมเขียนข้อความ vCard เริ่มการทำงานไม่ถูกต้อง"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ไม่สามารถส่งออก"</string>
@@ -218,13 +214,9 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"รายชื่อติดต่อ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"กำลังแคช vCard ไปยังที่จัดเก็บข้อมูลชั่วคราวในตัวเครื่อง การนำเข้าจริงจะเริ่มต้นในอีกสักครู่"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"ไม่สามารถนำเข้า vCard"</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"ไม่พบไฟล์ vCard ในที่จัดเก็บข้อมูล"</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"ไม่พบไฟล์ vCard บนการ์ด SD"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"รับรายชื่อผ่าน NFC แล้ว"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"ส่งออกรายชื่อติดต่อ"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"กำลังแคช"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"ไม่สามารถสแกนที่จัดเก็บข้อมูล (สาเหตุ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"ไม่สามารถสแกนการ์ด SD (สาเหตุ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"กำลังนำเข้า <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"ส่งออกเป็นไฟล์ .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"จัดเรียงตาม"</string>

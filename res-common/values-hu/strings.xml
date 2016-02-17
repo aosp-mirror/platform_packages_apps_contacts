@@ -89,7 +89,6 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Minden névjegy telefonszámokkal"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Munkaprofilnévjegyek"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Frissítések megtekintése"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Csak a táblagépen, nem szinkronizált"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Csak a telefonon, nem szinkronizált"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Név"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Becenév"</string>
@@ -178,8 +177,6 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Letiltott egy szükséges engedélyt."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Hiba történt az exportálás során: „<xliff:g id="EXACT_REASON">%s</xliff:g>”."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"A fájlnév túl hosszú („<xliff:g id="FILENAME">%s</xliff:g>”)."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Túl sok vCard fájl van a tárhelyen."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"Túl sok vCard fájl van az SD-kártyán."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O hiba"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Nincs elég memória. Lehet, hogy túl nagy a fájl."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Váratlan ok miatt nem sikerült a vCard szintaktikai elemzése."</string>
@@ -194,7 +191,6 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Névjegyadatok exportálása"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"A névjegyadatok exportálása folyamatban van."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nem sikerült lekérni az adatbázis-információkat."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Nincsenek exportálható névjegyek. Ha vannak névjegyek a táblagépén, akkor elképzelhető, hogy az adatszolgáltatója nem teszi lehetővé a névjegyek exportálását a táblagépről."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nincsenek exportálható névjegyek. Ha vannak névjegyek a telefonján, akkor előfordulhat, hogy az adatszolgáltató nem teszi lehetővé a névjegyek exportálását a telefonról."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"A vCard-készítő nem megfelelően indult el."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Sikertelen export"</string>
@@ -214,13 +210,9 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"névjegy"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ok) mentése az ideiglenes helyi tárolóba. A tényleges importálás hamarosan megkezdődik."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Nem sikerült a vCard importálása."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Nem található vCard fájl a tárhelyen."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Nem található vCard fájl az SD-kártyán"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC-n kapott név"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Exportálja a névjegyeket?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Gyorsítótárazás"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"A tárhelyet nem lehet beolvasni. (Ok: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Az SD-kártyát nem lehet beolvasni. (Ok: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importálás – <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Exportálás .vcf fájlba"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Rendezés"</string>
