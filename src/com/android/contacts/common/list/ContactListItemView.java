@@ -38,7 +38,6 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -56,6 +55,7 @@ import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.format.TextHighlighter;
+import com.android.contacts.common.list.ContactListAdapter.ExperimentQuery;
 import com.android.contacts.common.util.ContactDisplayUtils;
 import com.android.contacts.common.util.SearchUtil;
 import com.android.contacts.common.util.ViewUtil;
@@ -1476,6 +1476,31 @@ public class ContactListItemView extends ViewGroup
             statusMessage = ContactStatusUtil.getStatusString(getContext(), presence);
         }
         setStatus(statusMessage);
+    }
+
+    /**
+     * Shows search snippet for email and phone number matches.
+     */
+    public void showSnippet(Cursor cursor, String query, int snippetColumn) {
+        // TODO: this does not properly handle phone numbers with control characters
+        // For example if the phone number is 444-5555, the search query 4445 will match the
+        // number since we normalize it before querying CP2 but the snippet will fail since
+        // the portion to be highlighted is 444-5 not 4445.
+        final String snippet = cursor.getString(snippetColumn);
+        if (snippet == null) {
+            setSnippet(null);
+            return;
+        }
+        final String displayName = cursor.getColumnIndex(Contacts.DISPLAY_NAME) >= 0
+                ? cursor.getString(cursor.getColumnIndex(Contacts.DISPLAY_NAME)) : null;
+        if (snippet.equals(displayName)) {
+            // If the snippet exactly matches the display name (i.e. the phone number or email
+            // address is being used as the display name) then no snippet is necessary
+            setSnippet(null);
+            return;
+        }
+        // Show the snippet with the part of the query that matched it
+        setSnippet(updateSnippet(snippet, query, displayName));
     }
 
     /**

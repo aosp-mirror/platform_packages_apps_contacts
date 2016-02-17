@@ -20,6 +20,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippets;
 import android.text.TextUtils;
@@ -27,9 +29,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.common.Experiments;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.ContactsCompat;
 import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.common.util.ContactDisplayUtils;
+import com.android.contacts.commonbind.experiments.Flags;
 
 /**
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
@@ -107,8 +112,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         public static final int CONTACT_SNIPPET          = 11;
     }
 
-    // NOTE: These projections must match those in ContactQuery above expect we omit the
-    // SearchSnippers.SNIPPET column since that is only supported with Contacts.CONTENT_FILTER_URI.
+    // The projection columns should match those in ContactQuery above expect we must omit the
+    // columns which are not supported
     protected static class ExperimentQuery {
 
         private static final String[] FILTER_PROJECTION_PRIMARY = new String[] {
@@ -123,7 +128,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 Contacts.PHONETIC_NAME,                 // 8
                 Contacts.TIMES_CONTACTED,               // 9
                 Contacts.STARRED,                       // 10
-                // SearchSnippets.SNIPPET not supported
+                // SearchSnippets.SNIPPET not supported for Contacts.CONTENT_URI
         };
 
         private static final String[] FILTER_PROJECTION_ALTERNATIVE = new String[] {
@@ -138,21 +143,48 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 Contacts.PHONETIC_NAME,                 // 8
                 Contacts.TIMES_CONTACTED,               // 9
                 Contacts.STARRED,                       // 10
-                // SearchSnippets.SNIPPET not supported
+                // SearchSnippets.SNIPPET not supported for Contacts.CONTENT_URI
         };
 
-        public static final int CONTACT_ID               = 0;
-        public static final int CONTACT_DISPLAY_NAME     = 1;
-        public static final int CONTACT_PRESENCE_STATUS  = 2;
-        public static final int CONTACT_CONTACT_STATUS   = 3;
-        public static final int CONTACT_PHOTO_ID         = 4;
-        public static final int CONTACT_PHOTO_URI        = 5;
-        public static final int CONTACT_LOOKUP_KEY       = 6;
-        public static final int CONTACT_IS_USER_PROFILE  = 7;
-        public static final int CONTACT_PHONETIC_NAME    = 8;
-        public static final int CONTACT_TIMES_CONTACTED  = 9;
-        public static final int CONTACT_STARRED          = 10;
-        // SearchSnippets.SNIPPET not supported
+        public static final String[] FILTER_PROJECTION_PRIMARY_EMAIL = new String[] {
+                Contacts._ID,                           // 0
+                Contacts.DISPLAY_NAME_PRIMARY,          // 1
+                Contacts.CONTACT_PRESENCE,              // 2
+                Contacts.CONTACT_STATUS,                // 3
+                Contacts.PHOTO_ID,                      // 4
+                Contacts.PHOTO_THUMBNAIL_URI,           // 5
+                Contacts.LOOKUP_KEY,                    // 6
+                // Contacts.IS_USER_PROFILE not supported for Data.CONTENT_URI
+                Contacts.IN_VISIBLE_GROUP,              // 7
+                Contacts.PHONETIC_NAME,                 // 8
+                Contacts.TIMES_CONTACTED,               // 9
+                Contacts.STARRED,                       // 10
+                // SearchSnippets.SNIPPET not supported for Data.CONTENT_URI
+                Email.ADDRESS,                          // 11
+        };
+
+        public static final int EMAIL_ADDRESS = 11;
+
+        public static final String[] FILTER_PROJECTION_PRIMARY_PHONE = new String[] {
+                Contacts._ID,                           // 0
+                Contacts.DISPLAY_NAME_PRIMARY,          // 1
+                Contacts.CONTACT_PRESENCE,              // 2
+                Contacts.CONTACT_STATUS,                // 3
+                Contacts.PHOTO_ID,                      // 4
+                Contacts.PHOTO_THUMBNAIL_URI,           // 5
+                Contacts.LOOKUP_KEY,                    // 6
+                // Contacts.IS_USER_PROFILE not supported for Data.CONTENT_URI
+                Contacts.IN_VISIBLE_GROUP,              // 7
+                Contacts.PHONETIC_NAME,                 // 8
+                Contacts.TIMES_CONTACTED,               // 9
+                Contacts.STARRED,                       // 10
+                // SearchSnippets.SNIPPET not supported for Data.CONTENT_URI
+                Phone.NUMBER,                           // 11
+                Phone.NORMALIZED_NUMBER,                // 12
+        };
+
+        public static final int NUMBER = 11;
+        public static final int NORMAILIZED_NUMBER = 12;
     }
 
     private CharSequence mUnknownNameText;
@@ -328,6 +360,21 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindSearchSnippet(final ContactListItemView view, Cursor cursor) {
+        if (Flags.getInstance(mContext).getBoolean(
+                Experiments.FLAG_SEARCH_DISPLAY_NAME_QUERY, false)) {
+            final String queryString = getQueryString();
+            if (ContactDisplayUtils.isPossiblePhoneNumber(queryString)
+                    && cursor.getColumnCount() > ExperimentQuery.NUMBER
+                    && Phone.NUMBER.equals(cursor.getColumnName(ExperimentQuery.NUMBER))) {
+                view.showSnippet(cursor, queryString, ExperimentQuery.NUMBER);
+                return;
+            }
+            if (cursor.getColumnCount() > ExperimentQuery.EMAIL_ADDRESS
+                    && Email.ADDRESS.equals(cursor.getColumnName(ExperimentQuery.EMAIL_ADDRESS))) {
+                view.showSnippet(cursor, queryString, ExperimentQuery.EMAIL_ADDRESS);
+                return;
+            }
+        }
         view.showSnippet(cursor, ContactQuery.CONTACT_SNIPPET);
     }
 
