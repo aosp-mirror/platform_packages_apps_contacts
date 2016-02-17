@@ -25,6 +25,9 @@ import android.net.Uri.Builder;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippets;
 import android.support.annotation.VisibleForTesting;
@@ -33,7 +36,9 @@ import android.view.View;
 
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.ContactsCompat;
+import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.common.util.ContactDisplayUtils;
 import com.android.contacts.commonbind.experiments.Flags;
 
 import java.util.ArrayList;
@@ -71,10 +76,10 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setSelection("0");
             } else if (flags.getBoolean(Experiments.FLAG_SEARCH_DISPLAY_NAME_QUERY, false)
                 && directoryId == Directory.DEFAULT) {
+                // Configure the loader to match display and phonetic names
                 final String displayNameColumn =
                         getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
                                 ? Contacts.DISPLAY_NAME_PRIMARY : Contacts.DISPLAY_NAME_ALTERNATIVE;
-
                 final Builder builder = Contacts.CONTENT_URI.buildUpon();
                 builder.appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                         String.valueOf(directoryId));
@@ -82,6 +87,30 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setProjection(getExperimentProjection());
                 loader.setSelection(getDisplayNameSelection(query, displayNameColumn));
                 loader.setSelectionArgs(getDisplayNameSelectionArgs(query));
+
+                // Configure an extra query to show email and phone number matches and merge
+                // them in after the display name loader query result.
+                final ProfileAndContactsLoader profileAndContactsLoader =
+                        (ProfileAndContactsLoader) loader;
+                final Builder extraBuilder = Data.CONTENT_URI.buildUpon();
+                if (ContactDisplayUtils.isPossiblePhoneNumber(query)) {
+                    final String normalizedQuery = PhoneNumberUtilsCompat.normalizeNumber(query);
+                    profileAndContactsLoader.setLoadExtraContactsLast(
+                            extraBuilder.build(),
+                            ExperimentQuery.FILTER_PROJECTION_PRIMARY_PHONE,
+                            Data.MIMETYPE + "=? AND " + Phone.NORMALIZED_NUMBER + " LIKE ? AND " +
+                                    Contacts.IN_VISIBLE_GROUP + "=?",
+                            new String[]{Phone.CONTENT_ITEM_TYPE, "%" + normalizedQuery + "%",
+                                    "1"});
+                } else {
+                    final Builder emailBuilder = Data.CONTENT_URI.buildUpon();
+                    profileAndContactsLoader.setLoadExtraContactsLast(
+                            emailBuilder.build(),
+                            ExperimentQuery.FILTER_PROJECTION_PRIMARY_EMAIL,
+                            Data.MIMETYPE + "=? AND " + Email.ADDRESS + " LIKE ? AND " +
+                                    Contacts.IN_VISIBLE_GROUP + "=?",
+                            new String[]{Email.CONTENT_ITEM_TYPE, "%" + query + "%", "1"});
+                }
                 if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
                     sortOrder = String.format("%s DESC, %s DESC",
                             Contacts.TIMES_CONTACTED, Contacts.STARRED);
@@ -97,14 +126,14 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                     loader.setSelection(Contacts.TIMES_CONTACTED + "=0 AND "
                             + Contacts.STARRED + "=0");
 
-                    // Strequent contacts will be merged back in after the profile (ME) and before
-                    // the main loader query results.
+                    // Configure an extra query to load strequent contacts and merge them in
+                    // before the main loader query results.
                     final ProfileAndContactsLoader profileAndContactsLoader =
                             (ProfileAndContactsLoader) loader;
                     final Builder strequentBuilder =
                             Contacts.CONTENT_STREQUENT_FILTER_URI.buildUpon();
                     appendSearchParameters(strequentBuilder, query, directoryId);
-                    profileAndContactsLoader.setLoadStrequents(
+                    profileAndContactsLoader.setLoadExtraContactsFirst(
                             strequentBuilder.build(), getExperimentProjection());
                 }
             }
@@ -139,7 +168,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
      */
     @VisibleForTesting
     static String getDisplayNameSelection(String query, String displayNameColumn) {
-        final String[] tokens = getDisplayNameSearchSelectionTokens(query);
+        final String[] tokens = getDisplayNameSelectionTokens(query);
         if (tokens == null) return null;
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < tokens.length; i++) {
@@ -157,7 +186,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
      */
     @VisibleForTesting
     static String[] getDisplayNameSelectionArgs(String query) {
-        final String[] tokens = getDisplayNameSearchSelectionTokens(query);
+        final String[] tokens = getDisplayNameSelectionTokens(query);
         if (tokens == null) return null;
         for (int i = 0; i < tokens.length; i++) {
             tokens[i] = "%" + tokens[i] + "%";
@@ -165,7 +194,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         return tokens;
     }
 
-    private static String[] getDisplayNameSearchSelectionTokens(String query) {
+    private static String[] getDisplayNameSelectionTokens(String query) {
         if (query == null) return null;
         query = query.trim();
         if (query.length() == 0) return null;
