@@ -1147,18 +1147,13 @@ public class QuickContactActivity extends ContactsActivity
                     LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
         } else if (oldLookupUri != mLookupUri) {
             // After copying a directory contact, the contact URI changes. Therefore,
-            // we need to restart the loader and reload the new contact.
+            // we need to reload the new contact.
             destroyInteractionLoaders();
-            mContactLoader = (ContactLoader) getLoaderManager().restartLoader(
-                    LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
-            // mContactLoader may not be in the state of "started". If not, onContentChanged() will
-            // not call forceLoad(), so QuickContact will not get the newly updated hi-res
-            // photo. If this is the case, we call forceLoad explicitly. See b/25204200.
-            if (!mContactLoader.isStarted()) {
-                mContactLoader.forceLoad();
-            }
+            mContactLoader = (ContactLoader) (Loader<?>) getLoaderManager().getLoader(
+                    LOADER_CONTACT_ID);
             mCachedCp2DataCardModel = null;
         }
+        mContactLoader.forceLoad();
 
         NfcHandler.register(this, mLookupUri);
     }
