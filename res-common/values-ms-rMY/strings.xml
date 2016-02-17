@@ -190,9 +190,14 @@
     <skip />
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Selesai mengeksport <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Selesai mengeksport kenalan."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Mengeksport <xliff:g id="FILENAME">%s</xliff:g> dibatalkan."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Mengeksport data kenalan"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Data kenalan anda sedang dieksport ke: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Tidak boleh mendapatkan maklumat pangkalan data."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Tiada kenalan dieksport. Jika anda mempunyai kenalan pada tablet anda, sesetengah pembekal data mungkin tidak membenarkan kenalan dieksport daripada tablet."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Tiada kenalan boleh dieksport. Jika anda mempunyai kenalan pada telefon anda, sesetengah pembekal data tidak boleh membenarkan kenalan dieksport dari telefon."</string>
@@ -209,6 +214,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Permintaan import vCard telah ditolak. Cuba lagi nanti."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g>akan dieksport sebentar lagi."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Fail akan dieksport sebentar lagi."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Permintaan eksport vCard telah ditolak. Cuba lagi nanti."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kenalan"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Membuat cache vCard ke storan sementara setempat. Pengimportan sebenar akan bermula tidak lama lagi."</string>

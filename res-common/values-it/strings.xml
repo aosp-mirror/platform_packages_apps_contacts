@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Importazione di uno o più file non riuscita (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Esportazione di <xliff:g id="FILENAME">%s</xliff:g> terminata."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Esportazione dei contatti terminata."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Esportazione di <xliff:g id="FILENAME">%s</xliff:g> annullata."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Esportazione dati contatti"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"I dati dei contatti sono in fase di esportazione in: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Recupero informazioni database non riuscito."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Non sono presenti contatti esportabili. Se hai contatti sul tablet, è possibile che alcuni fornitori di dati non consentano l\'esportazione dei contatti dal tablet."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Non sono presenti contatti esportabili. Se hai contatti sul telefono, è possibile che alcuni fornitori di dati non consentano l\'esportazione dei contatti dal telefono."</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Richiesta importazione vCard rifiutata. Riprova più tardi."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"La vCard <xliff:g id="FILENAME">%s</xliff:g> verrà esportata a breve."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Il file verrà esportato a breve."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Richiesta esportazione vCard rifiutata. Riprova più tardi."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contatto"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Memorizzazione delle vCard nella cache di archiviazione temporanea locale. L\'importazione reale inizierà a breve."</string>

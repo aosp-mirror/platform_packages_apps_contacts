@@ -190,9 +190,14 @@
     <skip />
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>-г экспорт хийж дууссан."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Харилцагчийн жагсаалтыг экспортолж дууслаа."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>-г экспорт хийхийг цуцлав."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Харилцагчийн өгөгдлийг экспорт хийж байна"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Таны харилцагчийн өгөгдлийг дараах руу экспорт хийж байна: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Өгөгдлийн сангийн мэдээллийг авч чадсангүй"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Экспорт хийж болох харилцагчид алга байна. Хэрэв та таблетдаа харилцагчидтай байгаа бол зарим өгөгдөл нийлүүлэгчээс харилцагчдын мэдээллийг таблетаас экспорт хийхийг зөвшөөрөхгүй байж магадгүй."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Экспорт хийж болох харилцагчид алга байна. Хэрэв та утсандаа харилцагчидтай байгаа бол зарим өгөгдөл нийлүүлэгчээс харилцагчдын мэдээллийг утаснаас экспорт хийхийг зөвшөөрөхгүй байж магадгүй."</string>
@@ -209,6 +214,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard импорт хийх хүсэлтийг зөвшөөрсөнгүй. Дараа дахин оролдоно уу."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g>-г удахгүй экспорт хийх болно."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Энэ файлыг удахгүй экспортлох болно."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard экспорт хийх хүсэлтийг зөвшөөрсөнгүй. Дараа дахин оролдоно уу."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"харилцагч"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard-г дотоод түр санд кеш хийж байна. Удахгүй бодитоор импорт хийж эхлэх болно."</string>

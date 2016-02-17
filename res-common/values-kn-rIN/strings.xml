@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಫೈಲ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗುವುದಿಲ್ಲ (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮುಗಿದಿದೆ."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"ಸಂಪರ್ಕಗಳ ರಫ್ತು ಮಾಡುವಿಕೆ ಮುಗಿದಿದೆ."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ರಫ್ತುಮಾಡಲಾಗುತ್ತಿದೆ"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"ನಿಮ್ಮ ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ಇದಕ್ಕೆ ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ಡೇಟಾಬೇಸ್ ಮಾಹಿತಿಯನ್ನು ಪಡೆಯಲಾಗಲಿಲ್ಲ."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"ಯಾವುದೇ ರಫ್ತುಮಾಡಿದ ಸಂಪರ್ಕಗಳಿಲ್ಲ. ನಿಮ್ಮ ಟ್ಯಾಬ್ಲೆಟ್‌‌ನಲ್ಲಿ ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿದ್ದರೆ, ಟ್ಯಾಬ್ಲೆಟ್‌‌‌‌ನಿಂದ ರಫ್ತು ಮಾಡಲಿರುವ ಸಂಪರ್ಕಗಳಿಗೆ ಕೆಲವು ಡೇಟಾ ಪೂರೈಕೆದಾರರು ಅನುಮತಿ ನೀಡದಿರಬಹುದು."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"ಯಾವುದೇ ರಫ್ತುಮಾಡಿದ ಸಂಪರ್ಕಗಳಿಲ್ಲ. ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ನೀವು ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿದ್ದರೆ, ಫೋನ್‌ನಿಂದ ರಫ್ತು ಮಾಡಲಿರುವ ಸಂಪರ್ಕಗಳಿಗೆ ಕೆಲವು ಡೇಟಾ ಪೂರೈಕೆದಾರರು ಅನುಮತಿ ನೀಡದಿರಬಹುದು."</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard ಆಮದು ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ. ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> ಸ್ವಲ್ಪ ಸಮಯದಲ್ಲಿ ರಫ್ತು ಮಾಡಲಾಗುತ್ತದೆ."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ಫೈಲ್‌ ಅನ್ನು ಸ್ವಲ್ಪ ಸಮಯದಲ್ಲಿ ರಪ್ತು ಮಾಡಲಾಗುತ್ತದೆ."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard ರಫ್ತು ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"ಸಂಪರ್ಕ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ಗಳು) ಅನ್ನು ಸ್ಥಳೀಯ ತಾತ್ಕಾಲಿಕ ಸಂಗ್ರಹಣೆಗೆ ಸಂಗ್ರಹ ಮಾಡಲಾಗುತ್ತಿದೆ. ನಿಜವಾದ ಆಮದು ಶೀಘ್ರದಲ್ಲೇ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ."</string>

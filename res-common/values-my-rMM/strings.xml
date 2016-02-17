@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ဖိုင်တစ်ခု သို့မဟုတ် တစ်ခုထက်ပိုသော ဖိုင်များအား အထဲသို့သွင်းလို့မရပါ(%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> ကို အပြင်ထုတ်ခြင်းပြီးစီးပါပြီး"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"အဆက်အသွယ်များ တင်ပို့ခြင်း ပြီးပါပြီ။"</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> ကို အပြင်ထုတ်ခြင်းအား ပယ်ဖျက်ပြီး"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"အဆက်အသွယ်ဒေတာများအား အပြင်သို့ထုတ်နေစဉ်"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"သင့်အဆက်အသွယ်အချက်အလက်များကို ဖော်ပြပါထံထုတ်လိုက်ပါပြီ: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ဒေတာဘေ့စ်အချက်အလက်အား မရရှိနိုင်ပါ"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"အပြင်သို့ထုတ်ယူရနိုင်သော လိပ်စာမရှိပါ။ သင့်ဖုန်းခေါ်မှာ လိပ်စာများရှိပါက တချို့ ဒေတာဝန်ဆောင်မှုက  အဲလိပ်စာများအား တက်ဘလက်ထဲမှ အပြင်သို့ ထုတ်ခွင့်ပေးခွင့် မပေးတာမျိုးဖြစ်နိုင်ပါသည်"</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"အပြင်သို့ထုတ်ယူရနိုင်သော လိပ်စာမရှိပါ။ သင့်ဖုန်းထဲမှာ လိပ်စာများရှိပါက တချို့ ဒေတာဝန်ဆောင်မှုက ထိုလိပ်စာများအား ဖုန်းထဲမှအပြင်သို့ ထုတ်ခွင့်ပေးခွင့် မပေးတာမျိုးဖြစ်နိုင်ပါသည်"</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"လိပ်စာကဒ်အား အထဲသွင်းရန် တောင်းဆိုမှု ငြင်းဆန်ခံရပါသည်။ နောင်မှ ပြန်လည်ကြိုးစားပါ"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> ကို မကြာမီ အပြင်သို့ ထုတ်ပါမည်"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ဖိုင်အား မကြာမီ တင်ပို့ပါလိမ့်မည်။"</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"လိပ်စာကဒ်အား အပြင်ထုတ်ရန် တောင်းဆိုမှု ငြင်းဆန်ခံရပါသည်။ နောင်မှ ပြန်လည်ကြိုးစားပါ"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"အဆက်အသွယ်"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"လိပ်စာကဒ်(များ)ကို စက်တွင်း ခဏသိမ်းဆည်းရာနေရာသို့ ပို့နေပါသည်။ အမှန်တကယ် တင်သွင်းခြင်း မကြာခင် စပါမည်။"</string>

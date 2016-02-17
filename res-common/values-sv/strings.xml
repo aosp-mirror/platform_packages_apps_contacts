@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"En eller flera filer kunde inte importeras (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> har exporterats."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Kontakterna har exporterats."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Exporten av <xliff:g id="FILENAME">%s</xliff:g> avbröts."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontaktuppgifter exporteras"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Kontaktuppgifterna exporteras till: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Det gick inte att hämta databasinformation."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Det finns inga kontakter att exportera. Om du har kontakter på surfplattan kanske vissa dataleverantörer inte tillåter att kontakterna exporteras från surfplattan."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Det finns inga kontakter att exportera. Om du har kontakter på mobilen kanske vissa dataleverantörer inte tillåter att kontakterna exporteras från mobilen."</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Begäran om vCard-import avvisades. Försök igen vid ett senare tillfälle."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> exporteras snart."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Filen kommer snart att exporteras."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Begäran om vCard-export avvisades. Försök igen vid ett senare tillfälle."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard-fil(er) cachelagras till en lokal tillfällig lagringsenhet. Den faktiska importen börjar snart."</string>

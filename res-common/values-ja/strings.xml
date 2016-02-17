@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"1つ以上のファイルをインポートできませんでした（%s）。"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートの完了"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"連絡先のエクスポートの完了"</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートのキャンセル"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"連絡先データのエクスポート"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"連絡先データを<xliff:g id="FILE_NAME">%s</xliff:g>にエクスポートします。"</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"データベース情報を取得できませんでした。"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"エクスポートできる連絡先がありません。タブレットに連絡先がある場合でも、データプロバイダによってはタブレットから連絡先をエクスポートできないことがあります。"</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"エクスポートできる連絡先がありません。携帯端末に連絡先がある場合でも、データプロバイダによっては携帯端末から連絡先をエクスポートできないことがあります。"</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCardのインポートリクエストは拒否されました。しばらくしてからもう一度お試しください。"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g>はまもなくエクスポートされます。"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ファイルはまもなくエクスポートされます。"</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCardのエクスポートリクエストは拒否されました。しばらくしてからもう一度お試しください。"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"連絡先"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCardをローカル一時ストレージにキャッシュしています。まもなくインポート処理を開始します。"</string>

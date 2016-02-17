@@ -188,9 +188,14 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Ezin izan da fitxategi bat edo gehiago inportatu (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Amaitu <xliff:g id="FILENAME">%s</xliff:g> esportatzen."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Esportatu dira kontaktuak."</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> fitxategia esportatzeari utzi zaio."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontaktatzeko datuak esportatzen"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Zurekin kontaktatzeko datuak fitxategi honetara esportatzen ari dira: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Ezin izan da datu-baseko informazioa lortu."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Ez dago esporta daitekeen kontakturik. Tabletan kontaktuak badituzu, baliteke datu-hornitzaileek kontaktuak telefonotik esportatzen ez uztea."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Ez dago esporta daitekeen kontakturik. Telefonoan kontaktuak badituzu, baliteke datu-hornitzaileek kontaktuak telefonotik esportatzen ez uztea."</string>
@@ -207,6 +212,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard fitxategia inportatzeko eskaera ukatu da. Saiatu geroago."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> fitxategia laster esportatuko da."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Laster esportatuko da fitxategia."</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard fitxategia esportatzeko eskaera ukatu da. Saiatu berriro geroago."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontaktua"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard-ak aldi baterako biltegi lokalaren cachean gordetzen ari dira. Inportazioa bera laster hasiko da."</string>

@@ -354,11 +354,15 @@
     <skip />
     <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
     <skip />
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <!-- no translation found for exporting_vcard_canceled_title (6993607802553630980) -->
     <skip />
     <!-- no translation found for exporting_contact_list_title (5663945499580026953) -->
     <skip />
-    <!-- no translation found for exporting_contact_list_message (3955619563572081300) -->
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
     <skip />
     <!-- no translation found for composer_failed_to_get_database_infomation (7801276776746351694) -->
     <skip />
@@ -391,6 +395,8 @@
     <!-- no translation found for vcard_export_will_start_message (2168853666316526278) -->
     <skip />
     <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
+    <skip />
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
     <skip />
     <!-- no translation found for vcard_export_request_rejected_message (8044599716727705282) -->
     <skip />
