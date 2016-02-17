@@ -76,6 +76,10 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
 
     public static final String CONTACT_METADATA_AUTHORITY = "com.android.contacts.metadata";
 
+    public static final String SHOULD_CLEAR_METADATA_BEFORE_SYNCING =
+            "should_clear_metadata_before_syncing";
+
+    public static final String ONLY_CLEAR_DONOT_SYNC = "only_clear_donot_sync";
     /**
      * Value to use when a preference is unassigned and needs to be read from the shared preferences
      */
@@ -193,26 +197,25 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         editor.commit();
     }
 
-    public String getContactMetadataSyncAccount() {
-        for (Account account : getFocusGoogleAccounts()) {
-            if (ContentResolver.getIsSyncable(account, CONTACT_METADATA_AUTHORITY) == 1
-                    && ContentResolver.getSyncAutomatically(account, CONTACT_METADATA_AUTHORITY)) {
-                return account.name;
-            }
-        }
-        return DO_NOT_SYNC_CONTACT_METADATA_MSG;
+    public String getContactMetadataSyncAccountName() {
+        final Account syncAccount = getContactMetadataSyncAccount();
+        return syncAccount == null ? DO_NOT_SYNC_CONTACT_METADATA_MSG : syncAccount.name;
     }
 
     public void setContactMetadataSyncAccount(AccountWithDataSet accountWithDataSet) {
         final String mContactMetadataSyncAccount =
                 accountWithDataSet == null ? null : accountWithDataSet.name;
-        toggleContactMetadata(mContactMetadataSyncAccount);
+        requestMetadataSyncForAccount(mContactMetadataSyncAccount);
     }
 
-    private void toggleContactMetadata(String syncAccount) {
-        mContext.getContentResolver().delete(getMetadataSyncUri(), null, null);
-        mContext.getContentResolver().delete(getMetadataSyncStateUri(), null, null);
-        requestMetadataSyncForAccount(syncAccount);
+    private Account getContactMetadataSyncAccount() {
+        for (Account account : getFocusGoogleAccounts()) {
+            if (ContentResolver.getIsSyncable(account, CONTACT_METADATA_AUTHORITY) == 1
+                    && ContentResolver.getSyncAutomatically(account, CONTACT_METADATA_AUTHORITY)) {
+                return account;
+            }
+        }
+        return null;
     }
 
     /**
@@ -222,16 +225,27 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
     private void requestMetadataSyncForAccount(String accountName) {
         for (Account account : getFocusGoogleAccounts()) {
             if (!TextUtils.isEmpty(accountName) && accountName.equals(account.name)) {
-                ContentResolver.setIsSyncable(account, CONTACT_METADATA_AUTHORITY, 1 /*syncable*/);
-                ContentResolver.setSyncAutomatically(account, CONTACT_METADATA_AUTHORITY, true);
-
                 // Request sync.
                 final Bundle b = new Bundle();
+                b.putBoolean(SHOULD_CLEAR_METADATA_BEFORE_SYNCING, true);
+                b.putBoolean(ONLY_CLEAR_DONOT_SYNC, false);
                 b.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+                b.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
                 ContentResolver.requestSync(account, CONTACT_METADATA_AUTHORITY, b);
-            } else {
-                // Turn off automatic sync for all other accounts.
+
+                ContentResolver.setSyncAutomatically(account, CONTACT_METADATA_AUTHORITY, true);
+            } else if (ContentResolver.getSyncAutomatically(account, CONTACT_METADATA_AUTHORITY)) {
+                // Turn off automatic sync for previous sync account.
                 ContentResolver.setSyncAutomatically(account, CONTACT_METADATA_AUTHORITY, false);
+                if (TextUtils.isEmpty(accountName)) {
+                    // Request sync to clear old data.
+                    final Bundle b = new Bundle();
+                    b.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+                    b.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+                    b.putBoolean(SHOULD_CLEAR_METADATA_BEFORE_SYNCING, true);
+                    b.putBoolean(ONLY_CLEAR_DONOT_SYNC, true);
+                    ContentResolver.requestSync(account, CONTACT_METADATA_AUTHORITY, b);
+                }
             }
         }
     }
@@ -249,22 +263,6 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
             }
         }
         return focusGoogleAccounts;
-    }
-
-    private static Uri getMetadataSyncUri() {
-        final Uri metadataUri = Uri.parse("content://" + CONTACT_METADATA_AUTHORITY);
-        return metadataUri.buildUpon()
-                .appendPath("metadata_sync")
-                .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true")
-                .build();
-    }
-
-    private static Uri getMetadataSyncStateUri() {
-        final Uri metadataUri = Uri.parse("content://" + CONTACT_METADATA_AUTHORITY);
-        return metadataUri.buildUpon()
-                .appendPath("metadata_sync_state")
-                .appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true")
-                .build();
     }
 
     public void registerChangeListener(ChangeListener listener) {
