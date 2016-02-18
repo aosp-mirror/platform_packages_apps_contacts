@@ -33,14 +33,9 @@
         android:title="@string/default_editor_account"
         android:dialogTitle="@string/default_editor_account" />
 
-    <com.android.contacts.common.preference.ContactMetadataSyncAccountPreference
-            android:icon="@null"
-            android:key="contactMetadata"
-            android:title="@string/sync_contact_metadata_title"
-            android:dialogTitle="@string/sync_contact_metadata_dialog_title" />
-
     <Preference
         android:icon="@null"
         android:key="about"
-        android:title="@string/setting_about"/>
+        android:title="@string/setting_about"
+        android:order="@integer/about_contacts_order_number"/>
 </PreferenceScreen>
