@@ -72,6 +72,15 @@ public final class CompatUtils {
         }
         return (cpoWrapper.getType() == TYPE_DELETE);
     }
+    /**
+     * Returns whether the operation in CPOWrapper is of TYPE_ASSERT;
+     */
+    public static boolean isAssertQueryCompat(CPOWrapper cpoWrapper) {
+        if (SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.M) >= Build.VERSION_CODES.M) {
+            return cpoWrapper.getOperation().isAssertQuery();
+        }
+        return (cpoWrapper.getType() == TYPE_ASSERT);
+    }
 
     /**
      * PrioritizedMimeType is added in API level 23.
