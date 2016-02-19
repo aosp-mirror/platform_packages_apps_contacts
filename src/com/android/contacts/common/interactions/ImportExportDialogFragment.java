@@ -25,6 +25,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.telephony.SubscriptionInfo;
@@ -37,6 +39,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CompatUtils;
@@ -46,6 +49,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountSelectionUtil;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.vcard.ExportVCardActivity;
 import com.android.contacts.common.vcard.VCardCommonArguments;
 import com.android.contacts.common.vcard.ShareVCardActivity;
@@ -167,7 +171,7 @@ public class ImportExportDialogFragment extends DialogFragment
         }
         if (res.getBoolean(R.bool.config_allow_share_contacts) && contactsAreAvailable) {
             if (mExportMode == EXPORT_MODE_FAVORITES) {
-                // share "visible" contacts (favorite and frequent contacts) from Favorites tab
+                // share favorite and frequently contacted contacts from Favorites tab
                 adapter.add(new AdapterEntry(getString(R.string.share_favorite_contacts),
                         R.string.share_contacts));
             } else {
@@ -202,11 +206,15 @@ public class ImportExportDialogFragment extends DialogFragment
                     }
                     case R.string.share_contacts: {
                         dismissDialog = true;
-                        final Intent exportIntent = new Intent(
-                                getActivity(), ShareVCardActivity.class);
-                        exportIntent.putExtra(VCardCommonArguments.ARG_CALLING_ACTIVITY,
-                                callingActivity);
-                        getActivity().startActivity(exportIntent);
+                        if (mExportMode == EXPORT_MODE_FAVORITES) {
+                            doShareFavoriteContacts();
+                        } else { // EXPORT_MODE_ALL_CONTACTS
+                            final Intent exportIntent = new Intent(
+                                    getActivity(), ShareVCardActivity.class);
+                            exportIntent.putExtra(VCardCommonArguments.ARG_CALLING_ACTIVITY,
+                                    callingActivity);
+                            getActivity().startActivity(exportIntent);
+                        }
                         break;
                     }
                     default: {
@@ -226,6 +234,52 @@ public class ImportExportDialogFragment extends DialogFragment
                         : R.string.dialog_import)
                 .setSingleChoiceItems(adapter, -1, clickListener)
                 .create();
+    }
+
+    private void doShareFavoriteContacts() {
+        try{
+            final Cursor cursor = getActivity().getContentResolver().query(
+                    Contacts.CONTENT_STREQUENT_URI, LOOKUP_PROJECTION, null, null,
+                    Contacts.DISPLAY_NAME + " COLLATE NOCASE ASC");
+            if (cursor != null) {
+                try {
+                    if (!cursor.moveToFirst()) {
+                        Toast.makeText(getActivity(), R.string.no_contact_to_share,
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    // Build multi-vcard Uri for sharing
+                    final StringBuilder uriListBuilder = new StringBuilder();
+                    int index = 0;
+                    do {
+                        if (index != 0)
+                            uriListBuilder.append(':');
+                        uriListBuilder.append(cursor.getString(0));
+                        index++;
+                    } while (cursor.moveToNext());
+                    final Uri uri = Uri.withAppendedPath(
+                            Contacts.CONTENT_MULTI_VCARD_URI,
+                            Uri.encode(uriListBuilder.toString()));
+
+                    final Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType(Contacts.CONTENT_VCARD_TYPE);
+                    intent.putExtra(Intent.EXTRA_STREAM, uri);
+                    ImplicitIntentsUtil.startActivityOutsideApp(getActivity(), intent);
+                } finally {
+                    cursor.close();
+                }
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Sharing contacts failed", e);
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), R.string.share_contacts_failure,
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     /**
