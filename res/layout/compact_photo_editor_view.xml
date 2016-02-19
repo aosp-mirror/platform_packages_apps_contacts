@@ -47,6 +47,7 @@
 
     <View
             android:id="@+id/photo_touch_intercept_overlay"
+            android:focusable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/item_background_material_dark"
