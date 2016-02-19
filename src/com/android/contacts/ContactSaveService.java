@@ -60,6 +60,7 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
+import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor.SaveMode;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import com.google.common.collect.Lists;
@@ -374,10 +375,14 @@ public class ContactSaveService extends IntentService {
             String saveModeExtraKey, int saveMode, boolean isProfile,
             Class<? extends Activity> callbackActivity, String callbackAction,
             Bundle updatedPhotos, String joinContactIdExtraKey, Long joinContactId) {
+
         // Don't pass read-only RawContactDeltas in RawContactDeltaList to contact save service,
         // because 1. read-only RawContactDeltas are not writable anyway; 2. read-only
         // RawContactDeltas may be problematic, see b/23896510.
-        removeReadOnlyContacts(context, state);
+        // Except when we must create aggregation exceptions between the raw contacts
+        if (!(saveMode == SaveMode.JOIN || saveMode == SaveMode.SPLIT)) {
+            removeReadOnlyContacts(context, state);
+        }
 
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_SAVE_CONTACT);
