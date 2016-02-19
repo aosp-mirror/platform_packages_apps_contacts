@@ -29,15 +29,21 @@ import android.provider.ContactsContract.StatusUpdates;
 import android.test.LoaderTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.test.mocks.ContactsMockContext;
-import com.android.contacts.common.test.mocks.MockContentProvider;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.BaseAccountType;
 import com.android.contacts.common.testing.InjectedServices;
+import com.android.contacts.common.test.mocks.ContactsMockContext;
+import com.android.contacts.common.test.mocks.MockContentProvider;
+import com.android.contacts.common.test.mocks.MockContentProvider.Query;
 import com.android.contacts.common.test.mocks.MockAccountTypeManager;
 import com.android.contacts.common.util.Constants;
+
+import com.google.common.collect.Lists;
+
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -154,7 +160,10 @@ public class ContactLoaderTest extends LoaderTestCase {
         assertEquals(lookupUri, contact.getLookupUri());
         assertEquals(1, contact.getRawContacts().size());
         assertEquals(1, contact.getStatuses().size());
-        assertEquals(1, contact.getRawContacts().get(0).getDataItems().get(0).getCarrierPresence());
+        if (CompatUtils.isMarshmallowCompatible()) {
+            assertEquals(
+                    1, contact.getRawContacts().get(0).getDataItems().get(0).getCarrierPresence());
+        }
         mContactsProvider.verify();
     }
 
@@ -302,91 +311,105 @@ public class ContactLoaderTest extends LoaderTestCase {
     class ContactQueries {
         public void fetchAllData(
                 Uri baseUri, long contactId, long rawContactId, long dataId, String encodedLookup) {
+            final String[] COLUMNS_INTERNAL = new String[] {
+                    Contacts.NAME_RAW_CONTACT_ID, Contacts.DISPLAY_NAME_SOURCE,
+                    Contacts.LOOKUP_KEY, Contacts.DISPLAY_NAME,
+                    Contacts.DISPLAY_NAME_ALTERNATIVE, Contacts.PHONETIC_NAME,
+                    Contacts.PHOTO_ID, Contacts.STARRED, Contacts.CONTACT_PRESENCE,
+                    Contacts.CONTACT_STATUS, Contacts.CONTACT_STATUS_TIMESTAMP,
+                    Contacts.CONTACT_STATUS_RES_PACKAGE, Contacts.CONTACT_STATUS_LABEL,
+
+                    Contacts.Entity.CONTACT_ID,
+                    Contacts.Entity.RAW_CONTACT_ID,
+
+                    RawContacts.ACCOUNT_NAME, RawContacts.ACCOUNT_TYPE,
+                    RawContacts.DATA_SET,
+                    RawContacts.DIRTY, RawContacts.VERSION, RawContacts.SOURCE_ID,
+                    RawContacts.SYNC1, RawContacts.SYNC2, RawContacts.SYNC3, RawContacts.SYNC4,
+                    RawContacts.DELETED,
+
+                    Contacts.Entity.DATA_ID,
+
+                    Data.DATA1, Data.DATA2, Data.DATA3, Data.DATA4, Data.DATA5,
+                    Data.DATA6, Data.DATA7, Data.DATA8, Data.DATA9, Data.DATA10,
+                    Data.DATA11, Data.DATA12, Data.DATA13, Data.DATA14, Data.DATA15,
+                    Data.SYNC1, Data.SYNC2, Data.SYNC3, Data.SYNC4,
+                    Data.DATA_VERSION, Data.IS_PRIMARY,
+                    Data.IS_SUPER_PRIMARY, Data.MIMETYPE,
+
+                    GroupMembership.GROUP_SOURCE_ID,
+
+                    Data.PRESENCE, Data.CHAT_CAPABILITY,
+                    Data.STATUS, Data.STATUS_RES_PACKAGE, Data.STATUS_ICON,
+                    Data.STATUS_LABEL, Data.STATUS_TIMESTAMP,
+
+                    Contacts.PHOTO_URI,
+
+                    Contacts.SEND_TO_VOICEMAIL,
+                    Contacts.CUSTOM_RINGTONE,
+                    Contacts.IS_USER_PROFILE,
+
+                    Data.TIMES_USED,
+                    Data.LAST_TIME_USED
+            };
+
+            List<String> projectionList = Lists.newArrayList(COLUMNS_INTERNAL);
+            if (CompatUtils.isMarshmallowCompatible()) {
+                projectionList.add(Data.CARRIER_PRESENCE);
+            }
+            final String[] COLUMNS = projectionList.toArray(new String[projectionList.size()]);
+
+            final Object[] ROWS_INTERNAL = new Object[] {
+                    rawContactId, 40,
+                    "aa%12%@!", "John Doe", "Doe, John", "jdo",
+                    0, 0, StatusUpdates.AVAILABLE,
+                    "Having lunch", 0,
+                    "mockPkg1", 10,
+
+                    contactId,
+                    rawContactId,
+
+                    "mockAccountName", "mockAccountType", null,
+                    0, 1, 0,
+                    "sync1", "sync2", "sync3", "sync4",
+                    0,
+
+                    dataId,
+
+                    "dat1", "dat2", "dat3", "dat4", "dat5",
+                    "dat6", "dat7", "dat8", "dat9", "dat10",
+                    "dat11", "dat12", "dat13", "dat14", "dat15",
+                    "syn1", "syn2", "syn3", "syn4",
+
+                    0, 0,
+                    0, StructuredName.CONTENT_ITEM_TYPE,
+
+                    "groupId",
+
+                    StatusUpdates.INVISIBLE, null,
+                    "Having dinner", "mockPkg3", 0,
+                    20, 0,
+
+                    "content:some.photo.uri",
+
+                    0,
+                    null,
+                    0,
+
+                    0,
+                    0
+            };
+
+            List<Object> rowsList = Lists.newArrayList(ROWS_INTERNAL);
+            if (CompatUtils.isMarshmallowCompatible()) {
+                rowsList.add(Data.CARRIER_PRESENCE_VT_CAPABLE);
+            }
+            final Object[] ROWS = rowsList.toArray(new Object[rowsList.size()]);
+
             mContactsProvider.expectQuery(baseUri)
-                    .withProjection(new String[] {
-                        Contacts.NAME_RAW_CONTACT_ID, Contacts.DISPLAY_NAME_SOURCE,
-                        Contacts.LOOKUP_KEY, Contacts.DISPLAY_NAME,
-                        Contacts.DISPLAY_NAME_ALTERNATIVE, Contacts.PHONETIC_NAME,
-                        Contacts.PHOTO_ID, Contacts.STARRED, Contacts.CONTACT_PRESENCE,
-                        Contacts.CONTACT_STATUS, Contacts.CONTACT_STATUS_TIMESTAMP,
-                        Contacts.CONTACT_STATUS_RES_PACKAGE, Contacts.CONTACT_STATUS_LABEL,
-
-                        Contacts.Entity.CONTACT_ID,
-                        Contacts.Entity.RAW_CONTACT_ID,
-
-                        RawContacts.ACCOUNT_NAME, RawContacts.ACCOUNT_TYPE,
-                        RawContacts.DATA_SET,
-                        RawContacts.DIRTY, RawContacts.VERSION, RawContacts.SOURCE_ID,
-                        RawContacts.SYNC1, RawContacts.SYNC2, RawContacts.SYNC3, RawContacts.SYNC4,
-                        RawContacts.DELETED,
-
-                        Contacts.Entity.DATA_ID,
-
-                        Data.DATA1, Data.DATA2, Data.DATA3, Data.DATA4, Data.DATA5,
-                        Data.DATA6, Data.DATA7, Data.DATA8, Data.DATA9, Data.DATA10,
-                        Data.DATA11, Data.DATA12, Data.DATA13, Data.DATA14, Data.DATA15,
-                        Data.SYNC1, Data.SYNC2, Data.SYNC3, Data.SYNC4,
-                        Data.DATA_VERSION, Data.IS_PRIMARY,
-                        Data.IS_SUPER_PRIMARY, Data.MIMETYPE,
-
-                        GroupMembership.GROUP_SOURCE_ID,
-
-                        Data.PRESENCE, Data.CHAT_CAPABILITY,
-                        Data.STATUS, Data.STATUS_RES_PACKAGE, Data.STATUS_ICON,
-                        Data.STATUS_LABEL, Data.STATUS_TIMESTAMP,
-
-                        Contacts.PHOTO_URI,
-
-                        Contacts.SEND_TO_VOICEMAIL,
-                        Contacts.CUSTOM_RINGTONE,
-                        Contacts.IS_USER_PROFILE,
-
-                        Data.TIMES_USED,
-                        Data.LAST_TIME_USED,
-                        Data.CARRIER_PRESENCE
-                    })
+                    .withProjection(COLUMNS)
                     .withSortOrder(Contacts.Entity.RAW_CONTACT_ID)
-                    .returnRow(
-                        rawContactId, 40,
-                        "aa%12%@!", "John Doe", "Doe, John", "jdo",
-                        0, 0, StatusUpdates.AVAILABLE,
-                        "Having lunch", 0,
-                        "mockPkg1", 10,
-
-                        contactId,
-                        rawContactId,
-
-                        "mockAccountName", "mockAccountType", null,
-                        0, 1, 0,
-                        "sync1", "sync2", "sync3", "sync4",
-                        0,
-
-                        dataId,
-
-                        "dat1", "dat2", "dat3", "dat4", "dat5",
-                        "dat6", "dat7", "dat8", "dat9", "dat10",
-                        "dat11", "dat12", "dat13", "dat14", "dat15",
-                        "syn1", "syn2", "syn3", "syn4",
-
-                        0, 0,
-                        0, StructuredName.CONTENT_ITEM_TYPE,
-
-                        "groupId",
-
-                        StatusUpdates.INVISIBLE, null,
-                        "Having dinner", "mockPkg3", 0,
-                        20, 0,
-
-                        "content:some.photo.uri",
-
-                        0,
-                        null,
-                        0,
-
-                        0,
-                        0,
-                        Data.CARRIER_PRESENCE_VT_CAPABLE
-                    );
+                    .returnRow(ROWS);
         }
 
         void fetchLookupAndId(final Uri sourceUri, final long expectedContactId,

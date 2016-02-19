@@ -30,6 +30,8 @@ import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
 import com.android.contacts.common.RawContactModifierTests.MockContactsSource;
+import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.model.CPOWrapper;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
@@ -292,13 +294,14 @@ public class RawContactDeltaListTests extends AndroidTestCase {
 
     /**
      * Count number of {@link AggregationExceptions} updates contained in the
-     * given list of {@link ContentProviderOperation}.
+     * given list of {@link CPOWrapper}.
      */
-    static int countExceptionUpdates(ArrayList<ContentProviderOperation> diff) {
+    static int countExceptionUpdates(ArrayList<CPOWrapper> diff) {
         int updateCount = 0;
-        for (ContentProviderOperation oper : diff) {
+        for (CPOWrapper cpoWrapper : diff) {
+            final ContentProviderOperation oper = cpoWrapper.getOperation();
             if (AggregationExceptions.CONTENT_URI.equals(oper.getUri())
-                    && oper.isUpdate()) {
+                    && CompatUtils.isUpdateCompat(cpoWrapper)) {
                 updateCount++;
             }
         }
@@ -310,7 +313,7 @@ public class RawContactDeltaListTests extends AndroidTestCase {
         final RawContactDeltaList set = buildSet(insert);
 
         // Inserting single shouldn't create rules
-        final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+        final ArrayList<CPOWrapper> diff = set.buildDiffWrapper();
         final int exceptionCount = countExceptionUpdates(diff);
         assertEquals("Unexpected exception updates", 0, exceptionCount);
     }
@@ -321,7 +324,7 @@ public class RawContactDeltaListTests extends AndroidTestCase {
         final RawContactDeltaList set = buildSet(updateFirst, updateSecond);
 
         // Updating two existing shouldn't create rules
-        final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+        final ArrayList<CPOWrapper> diff = set.buildDiffWrapper();
         final int exceptionCount = countExceptionUpdates(diff);
         assertEquals("Unexpected exception updates", 0, exceptionCount);
     }
@@ -332,7 +335,7 @@ public class RawContactDeltaListTests extends AndroidTestCase {
         final RawContactDeltaList set = buildSet(update, insert);
 
         // New insert should only create one rule
-        final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+        final ArrayList<CPOWrapper> diff = set.buildDiffWrapper();
         final int exceptionCount = countExceptionUpdates(diff);
         assertEquals("Unexpected exception updates", 1, exceptionCount);
     }
@@ -344,7 +347,7 @@ public class RawContactDeltaListTests extends AndroidTestCase {
         final RawContactDeltaList set = buildSet(insertFirst, update, insertSecond);
 
         // Two inserts should create two rules to bind against single existing
-        final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+        final ArrayList<CPOWrapper> diff = set.buildDiffWrapper();
         final int exceptionCount = countExceptionUpdates(diff);
         assertEquals("Unexpected exception updates", 2, exceptionCount);
     }
@@ -356,7 +359,7 @@ public class RawContactDeltaListTests extends AndroidTestCase {
         final RawContactDeltaList set = buildSet(insertFirst, insertSecond, insertThird);
 
         // Three new inserts should create only two binding rules
-        final ArrayList<ContentProviderOperation> diff = set.buildDiff();
+        final ArrayList<CPOWrapper> diff = set.buildDiffWrapper();
         final int exceptionCount = countExceptionUpdates(diff);
         assertEquals("Unexpected exception updates", 2, exceptionCount);
     }

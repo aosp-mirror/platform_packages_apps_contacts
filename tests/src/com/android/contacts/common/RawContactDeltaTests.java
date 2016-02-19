@@ -17,9 +17,9 @@
 package com.android.contacts.common;
 
 import android.content.ContentProviderOperation;
-import android.content.ContentProviderOperation.Builder;
 import android.content.ContentValues;
 import android.content.Context;
+import android.os.Build;
 import android.os.Parcel;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
@@ -27,6 +27,9 @@ import android.provider.ContactsContract.RawContacts;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.model.BuilderWrapper;
+import com.android.contacts.common.model.CPOWrapper;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
@@ -147,8 +150,10 @@ public class RawContactDeltaTests extends AndroidTestCase {
         values.markDeleted();
 
         // Should produce a delete action
-        final Builder builder = values.buildDiff(Data.CONTENT_URI);
-        final boolean isDelete = builder.build().isDelete();
+        final BuilderWrapper builderWrapper = values.buildDiffWrapper(Data.CONTENT_URI);
+        final boolean isDelete = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                ? builderWrapper.getBuilder().build().isDelete()
+                : builderWrapper.getType() == CompatUtils.TYPE_DELETE;
         assertTrue("Didn't produce delete action", isDelete);
     }
 
@@ -316,14 +321,15 @@ public class RawContactDeltaTests extends AndroidTestCase {
         final ValuesDelta values = ValuesDelta.fromAfter(after);
         final RawContactDelta source = new RawContactDelta(values);
 
-        // Assert two operations: delete Contact and enforce version
-        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
-        source.buildAssert(diff);
-        source.buildDiff(diff);
+        // Assert two operations: insert Contact and enforce version
+        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
+        source.buildAssertWrapper(diff);
+        source.buildDiffWrapper(diff);
         assertEquals("Unexpected operations", 2, diff.size());
         {
-            final ContentProviderOperation oper = diff.get(0);
-            assertTrue("Incorrect type", oper.isInsert());
+            final CPOWrapper cpoWrapper = diff.get(0);
+            final ContentProviderOperation oper = cpoWrapper.getOperation();
+            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -345,18 +351,20 @@ public class RawContactDeltaTests extends AndroidTestCase {
         source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Assert two operations: delete Contact and enforce version
-        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
-        source.buildAssert(diff);
-        source.buildDiff(diff);
+        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
+        source.buildAssertWrapper(diff);
+        source.buildDiffWrapper(diff);
         assertEquals("Unexpected operations", 3, diff.size());
         {
-            final ContentProviderOperation oper = diff.get(0);
-            assertTrue("Incorrect type", oper.isInsert());
+            final CPOWrapper cpoWrapper = diff.get(0);
+            final ContentProviderOperation oper = cpoWrapper.getOperation();
+            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final ContentProviderOperation oper = diff.get(1);
-            assertTrue("Incorrect type", oper.isInsert());
+            final CPOWrapper cpoWrapper = diff.get(1);
+            final ContentProviderOperation oper = cpoWrapper.getOperation();
+            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
 
         }
