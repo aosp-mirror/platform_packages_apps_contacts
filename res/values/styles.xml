@@ -299,10 +299,8 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="ContactsPreferencesTheme" parent="@style/PeopleThemeAppCompat">
-        <!-- Styles that require AppCompat compatibility, remember to update both sets -->
-        <item name="android:alertDialogTheme">@style/ContactsAlertDialogThemeAppCompat</item>
-        <item name="alertDialogTheme">@style/ContactsAlertDialogThemeAppCompat</item>
+    <style name="ContactsPreferencesTheme" parent="@style/PeopleTheme">
+        <item name="android:listViewStyle">@style/ListViewStyle</item>
     </style>
 
     <style name="ContactListFilterTheme" parent="@style/PeopleThemeAppCompat">
