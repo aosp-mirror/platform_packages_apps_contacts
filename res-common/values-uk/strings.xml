@@ -91,7 +91,6 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Усі контакти з номерами телефону"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Контакти в робочому профілі"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Переглянути оновлення"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Лише на пристрої, не синхронізується"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Лише в телефоні, не синхронізується"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Ім’я"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псевдонім"</string>
@@ -180,8 +179,6 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Ви вимкнули обов’язковий дозвіл."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Під час експорту сталася помилка: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Потрібна назва файлу задовга (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"У пам’яті забагато файлів vCard."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"На карті SD забагато файлів vCard."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"Помилка вводу/виводу"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Недостатньо пам’яті. Можливо, файл завеликий."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Не вдалося проаналізувати vCard через неочікувану причину."</string>
@@ -199,7 +196,6 @@
     <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
     <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Не вдалось отримати інформацію бази даних."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Немає контактів, які можна експортувати. Якщо у вашому планшетному ПК є контакти, можливо, якийсь постачальник даних заборонив експорт контактів із планшетного ПК."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Немає контактів, які можна експортувати. Якщо у вашому телефоні є контакти, можливо, якийсь постачальник даних заборонив експорт контактів із телефону."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Майстер vCard не запущено належним чином."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Помилка експорту"</string>
@@ -220,13 +216,9 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Кешування файлів vCard у локальну тимчасову пам’ять. Імпорт почнеться незабаром."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Не вдалось імпортувати файл vCard."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"У пам’яті не знайдено жодного файлу vCard."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"На карті SD не знайдено жодного файлу vCard."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Контакт через NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Експортувати контакти?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кешування"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Не вдалося просканувати пам’ять. (Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Не вдалося просканувати карту SD. (Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Імпорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> з <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Експортувати у файл .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Параметри сортування"</string>

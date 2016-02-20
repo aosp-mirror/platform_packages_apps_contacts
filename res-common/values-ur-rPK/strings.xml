@@ -89,7 +89,6 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"فون نمبرز کے ساتھ سبھی رابطے"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"دفتری پروفائل رابطے"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"اپ ڈیٹس دیکھیں"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"صرف ٹیبلٹ، غیر مطابقت پذیر"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"صرف فون، غیر مطابقت پذیر"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"نام"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"عرفی نام"</string>
@@ -178,8 +177,6 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"آپ نے ایک درکار اجازت غیر فعال کر دی ہے۔"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"برآمد کرنے کے دوران ایک غلطی ہوگئی: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"۔"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"مطلوبہ فائل کا نام کافی لمبا (\"<xliff:g id="FILENAME">%s</xliff:g>\") ہے۔"</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"اسٹوریج میں بہت زیادہ وی کارڈ فائلیں ہیں۔"</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"‏SD کارڈ میں بہت زیادہ وی کارڈ فائلیں ہیں۔"</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"‏I/O غلطی"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"کافی میموری نہیں ہے۔ فائل کافی بڑی ہو سکتی ہے۔"</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"ایک غیر متوقع وجہ سے وی کارڈ کو پارس نہیں کرسکا۔"</string>
@@ -197,7 +194,6 @@
     <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
     <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ڈیٹابیس کی معلومات حاصل نہیں ہو سکی۔"</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"برآمد کرنے لائق کوئی رابطے نہیں ہیں۔ اگر آپ کے ٹیبلیٹ پر واقعی رابطے ہیں تو ممکن ہے کچھ ڈیٹا فراہم کنندگان رابطوں کو ٹیبلیٹ سے برآمد کیے جانے کی اجازت نہ دیتے ہوں۔"</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"برآمد کرنے لائق کوئی رابطے نہیں ہیں۔ اگر آپ کے فون پر واقعی رابطے ہیں تو ممکن ہے کچھ ڈیٹا فراہم کنندگان رابطوں کو فون سے برآمد کیے جانے کی اجازت نہ دیتے ہوں۔"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"وی کارڈ کمپوزر مناسب طریقے سے شروع نہیں ہوا۔"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"برآمد نہیں کیا جاسکا"</string>
@@ -218,13 +214,9 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"رابطہ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"وی کارڈ (کارڈز) کو مقامی عارضی اسٹوریج میں ذخیرہ کر رہا ہے۔ اصل درآمد جلد ہی شروع ہوگی۔"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"وی کارڈ درآمد نہیں کرسکا۔"</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"‏اسٹوریج میں کوئی vCard فائل نہیں ملی۔"</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏SD کارڈ میں کوئی vCard فائل نہیں ملی۔"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"‏NFC پر موصولہ رابطہ"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"رابطے برآمد کریں؟"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"ذخیرہ کر رہا ہے"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"اسٹوریج کو اسکین نہیں کیا جا سکا۔ (وجہ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏SD کارڈ کو اسکین نہیں کیا جا سکا۔ (وجہ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g> درآمد کر رہا ہے"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"‏‎.vcf فائل میں برآمد کریں"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ترتیب دیں بلحاظ"</string>

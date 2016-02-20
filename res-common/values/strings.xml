@@ -208,15 +208,10 @@
     <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=25] -->
     <string name="view_updates_from_group">View updates</string>
 
-
     <!-- Title for data source when creating or editing a contact that doesn't
          belong to a specific account.  This contact will only exist on the phone
          and will not be synced. -->
-    <string name="account_phone" product="tablet">Tablet-only, unsynced</string>
-    <!-- Title for data source when creating or editing a contact that doesn't
-         belong to a specific account.  This contact will only exist on the phone
-         and will not be synced. -->
-    <string name="account_phone" product="default">Phone-only, unsynced</string>
+    <string name="account_phone">Phone-only, unsynced</string>
 
     <!-- Header that expands to list all name types when editing a structured name of a contact
          [CHAR LIMIT=20] -->
@@ -483,13 +478,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          mention it here. [CHAR LIMIT=NONE] -->
     <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\").</string>
 
-    <!-- The failed reason shown when vCard exporter could not create a file for the vCard since
-         there are too many files relevant to vCard. [CHAR LIMIT=NONE] -->
-    <string name="fail_reason_too_many_vcard" product="nosdcard">Too many vCard files are in the storage.</string>
-    <!-- The failed reason shown when vCard exporter could not create a file for the vCard since
-         there are too many files relevant to vCard. -->
-    <string name="fail_reason_too_many_vcard" product="default">Too many vCard files are on the SD card.</string>
-
     <!-- The failed reason shown when Contacts app (especially vCard importer/exporter)
          emitted some I/O error. Exact reason will be appended by the system. [CHAR LIMIT=NONE] -->
     <string name="fail_reason_io_error">I/O error</string>
@@ -544,11 +532,7 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- This error message shown when the user actually have no contact
          (e.g. just after data-wiping), or, data providers of the contact list prohibits their
          contacts from being exported to outside world via vcard exporter, etc. [CHAR LIMIT=NONE] -->
-    <string name="composer_has_no_exportable_contact" product="tablet">There are no exportable contacts. If you do have contacts on your tablet, some data providers may not allow the contacts to be exported from the tablet.</string>
-    <!-- This error message shown when the user actually have no contact
-         (e.g. just after data-wiping), or, data providers of the contact list prohibits their
-         contacts from being exported to outside world via vcard exporter, etc. [CHAR LIMIT=NONE] -->
-    <string name="composer_has_no_exportable_contact" product="default">There are no exportable contacts. If you do have contacts on your phone, some data providers may not allow the contacts to be exported from the phone.</string>
+    <string name="composer_has_no_exportable_contact">There are no exportable contacts. If you do have contacts on your phone, some data providers may not allow the contacts to be exported from the phone.</string>
 
     <!-- The error reason the vCard composer may emit when vCard composer is not initialized
          even when needed.
@@ -619,15 +603,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Message used when vCard import has failed. [CHAR LIMIT=40] -->
     <string name="vcard_import_failed">Couldn\'t import vCard.</string>
 
-    <!-- The failure message shown when the system could not find any vCard file.
-         (with extension ".vcf" in (USB) storage.)
-         [CHAR LIMIT=128] -->
-    <string name="import_failure_no_vcard_file" product="nosdcard">No vCard file found in storage.</string>
-    <!-- The failure message shown when the system could not find any vCard file.
-         (with extension ".vcf" in SDCard.)
-         [CHAR LIMIT=128] -->
-    <string name="import_failure_no_vcard_file" product="default">No vCard file found on the SD card.</string>
-
     <!-- The "file name" displayed for vCards received directly via NFC [CHAR LIMIT=16] -->
     <string name="nfc_vcard_file_name">Contact received over NFC</string>
 
@@ -637,13 +612,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- The title shown when vCard importer is caching files to be imported into local temporary
          data storage.  [CHAR LIMIT=40] -->
     <string name="caching_vcard_title">Caching</string>
-
-    <!-- Dialog message shown when searching VCard data failed.
-         An exact reason for the failure should [CHAR LIMIT=NONE] -->
-    <string name="scanning_sdcard_failed_message" product="nosdcard">The storage couldn\'t be scanned. (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
-    <!-- Dialog message shown when searching VCard data failed.
-         An exact reason for the failure should [CHAR LIMIT=NONE] -->
-    <string name="scanning_sdcard_failed_message" product="default">The SD card couldn\'t be scanned. (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
 
     <!-- The message shown while importing vCard(s).
          First argument is current index of contacts to be imported.
