@@ -89,7 +89,6 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Tutti i contatti con numeri di telefono"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Contatti del profilo di lavoro"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Visualizza aggiornamenti"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Solo su tablet, non sincronizzato"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Solo su telefono, non sincronizzato"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nome"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nickname"</string>
@@ -178,8 +177,6 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Hai disattivato un\'autorizzazione obbligatoria."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Si è verificato un errore durante l\'esportazione: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Il nome file richiesto è troppo lungo (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Troppi file vCard nell\'archivio."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"Troppi file vCard sulla scheda SD."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"Errore I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Memoria insufficiente. Il file potrebbe essere troppo grande."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Analisi vCard non riuscita per motivo imprevisto."</string>
@@ -192,7 +189,6 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Esportazione dati contatti"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"I dati dei contatti sono in fase di esportazione in: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Recupero informazioni database non riuscito."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Non sono presenti contatti esportabili. Se hai contatti sul tablet, è possibile che alcuni fornitori di dati non consentano l\'esportazione dei contatti dal tablet."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Non sono presenti contatti esportabili. Se hai contatti sul telefono, è possibile che alcuni fornitori di dati non consentano l\'esportazione dei contatti dal telefono."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Il compositore di vCard non si è avviato correttamente."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Impossibile esportare"</string>
@@ -211,13 +207,9 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contatto"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Memorizzazione delle vCard nella cache di archiviazione temporanea locale. L\'importazione reale inizierà a breve."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Importazione vCard non riuscita."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Nessun file vCard trovato nell\'archivio."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Nessun file vCard trovato sulla scheda SD."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Contatto via NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Esportare contatti?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Memorizzazione nella cache"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Scansione dell\'archivio non riuscita. Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Scansione della scheda SD non riuscita. Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importazione di <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Esporta  in file .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ordina per"</string>

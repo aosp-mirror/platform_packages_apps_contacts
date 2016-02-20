@@ -89,7 +89,6 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Всички контакти с телефонни номера"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Контакти в служебния потребителски профил"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Преглед на актуализациите"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Само в таблета, несинхронизиран"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Само в тел., несинхрон."</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псевдоним"</string>
@@ -178,8 +177,6 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Деактивирахте задължително разрешение."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"При експортирането възникна грешка: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Поисканото име на файла е твърде дълго („<xliff:g id="FILENAME">%s</xliff:g>“)."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"В хранилището има твърде много vCard файлове."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"На SD картата има твърде много vCard файлове."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O грешка"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Няма достатъчно памет. Файлът може да е твърде голям."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"vCard не можа да се анализира по неочаквана причина."</string>
@@ -192,7 +189,6 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Експортиране на данни за контакти"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Данните за контактите ви се експортират във: „<xliff:g id="FILE_NAME">%s</xliff:g>“."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Информацията за базата от данни не можа да бъде получена."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Няма контакти, позволяващи експортиране. Ако в таблета си имате контакти, е възможно някои доставчици на данни да не позволяват експортирането им извън него."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Няма контакти, позволяващи експортиране. Ако в телефона си имате контакти, е възможно някои доставчици на данни да не позволяват експортирането им извън него."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Създателят на vCard не се стартира правилно."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Не се експортираха"</string>
@@ -211,13 +207,9 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard се кешира/т във временно локално хранилище. Самото импортиране ще започне скоро."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCard не можа да се импортира."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"В хранилището не бе намерен vCard файл."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"На SD картата не бе намерен vCard файл."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Контакти от КБП"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Да се експортират ли контактите?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кешира се"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Хранилището не можа да бъде сканирано. (Причина: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD картата не можа да бъде сканирана. (Причина: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импортира/т се <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Експорт. като .vcf файл"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортиране по"</string>

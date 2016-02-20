@@ -89,7 +89,6 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ફોન નંબર્સ સાથેના તમામ સંપર્કો"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"કાર્ય પ્રોફાઇલના સંપર્કો"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"અપડેટ્સ જુઓ"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"ફક્ત ટેબ્લેટ, અસમન્વયિત"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"ફક્ત ફોન, અસમન્વયિત"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"નામ"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ઉપનામ"</string>
@@ -178,8 +177,6 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"તમે આવશ્યક પરવાનગી અક્ષમ કરી છે."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"નિકાસ દરમિયાન ભૂલ આવી: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"જરૂરી ફાઇલનું નામ ખૂબ લાંબું છે (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"સ્ટોરેજમાં ઘણી બધી vCard ફાઇલો છે."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD કાર્ડ પર ઘણી બધી vCard ફાઇલો છે."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O ભૂલ"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"પર્યાપ્ત મેમરી નથી. આ ફાઇલ ખૂબ મોટી હોઈ શકે છે."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"અનપેક્ષિત કારણસર vCard નું વિશ્લેષણ કરી શકાયું નથી."</string>
@@ -192,7 +189,6 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"સંપર્ક ડેટા નિકાસ કરી રહ્યાં છે"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"તમારો સંપર્ક ડેટા આ પર નિકાસ કરવામાં આવશે: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ડેટાબેસ જાણકારી મેળવી શકાઈ નથી."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"કોઈ નિકાસયોગ્ય સંપર્કો નથી. જો તમારી પાસે તમારા ટેબ્લેટ પર કોઈ સંપર્કો નથી, તો કેટલાક ડેટા પ્રદાતા ટેબ્લેટ પરથી સંપર્કોને નિકાસ કરવાની મંજૂરી આપી શકશે નહીં."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"કોઈ નિકાસયોગ્ય સંપર્કો નથી. જો તમારી પાસે તમારા ફોન પર કોઈ સંપર્કો નથી, તો કેટલાક ડેટા પ્રદાતા ફોન પરથી સંપર્કોને નિકાસ કરવાની મંજૂરી આપી શકશે નહીં."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard કમ્પોઝર ઠીકથી પ્રારંભ થયું નથી."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"નિકાસ કરી શક્યાં નથી"</string>
@@ -211,13 +207,9 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"સંપર્ક"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"સ્થાનિક અસ્થાયી સ્ટોરેજ પર vCard કેશ કરી રહ્યાં છે. વાસ્તવિક આયાત જલ્દી જ શરૂ થશે."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCard આયાત કરી શકાયો નથી."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"સ્ટોરેજમાં કોઈ vCard ફાઇલ મળી નથી."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD કાર્ડમાં કોઈ vCard ફાઇલ મળી નથી."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC પર સંપર્ક પ્રાપ્ત"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"સંપર્કો નિકાસ કરીએ?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"કેશ કરી રહ્યાં છે"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"સ્ટોરેજ સ્કેન કરી શકાયું નથી. (કારણ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD કાર્ડ સ્કેન કરી શકાયું નથી. (કારણ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> આયાત કરે છે: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ફાઇલ પર નિકાસ કરો"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"આ પ્રમાણે સૉર્ટ કરો"</string>

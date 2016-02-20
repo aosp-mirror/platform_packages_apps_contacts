@@ -89,7 +89,6 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"전화번호가 포함된 모든 연락처"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"직장 프로필 연락처"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"업데이트 보기"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"태블릿 전용(동기화되지 않음)"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"휴대전화 전용(동기화되지 않음)"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"이름"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"닉네임"</string>
@@ -178,8 +177,6 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"필수 권한을 사용 중지했습니다."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"내보내는 중에 오류가 발생했습니다. 이유: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"필수 파일 이름이 너무 깁니다(\'<xliff:g id="FILENAME">%s</xliff:g>\')."</string>
-    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"저장공간에 vCard 파일이 너무 많습니다."</string>
-    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD 카드에 vCard 파일이 너무 많습니다."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O 오류"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"메모리가 부족합니다. 파일이 너무 크기 때문일 수 있습니다."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"예기치 못한 이유로 인해 vCard를 파싱하지 못했습니다."</string>
@@ -192,7 +189,6 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"연락처 데이터 내보내기"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"연락처 데이터를 <xliff:g id="FILE_NAME">%s</xliff:g>(으)로 내보내고 있습니다."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"데이터베이스 정보를 가져오지 못했습니다."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"내보낼 수 있는 연락처가 없습니다. 태블릿에 연락처가 있다면 일부 데이터 제공업체에서 연락처를 태블릿에서 내보내지 못하도록 했기 때문일 수 있습니다."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 연락처가 있다면 일부 데이터 제공업체에서 연락처를 휴대전화에서 내보내지 못하도록 했기 때문일 수 있습니다."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard 작성기가 제대로 시작되지 않았습니다."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"내보내기 실패"</string>
@@ -211,13 +207,9 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"연락처"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard를 로컬 임시 저장공간에 캐시하는 중입니다. 곧 가져오기가 시작됩니다."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCard를 가져오지 못했습니다."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"저장공간에 vCard 파일이 없습니다."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD 카드에 vCard 파일이 없습니다."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC를 통해 받은 연락처"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"주소록을 내보내시겠습니까?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"캐시"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"저장공간을 검색하지 못했습니다. 이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
-    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD 카드를 검색하지 못했습니다. 이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> 가져오는 중: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".VCF 파일로 내보내기"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"정렬 기준:"</string>
