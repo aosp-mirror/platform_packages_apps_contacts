@@ -153,27 +153,16 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
 
     @Override
     protected Dialog onCreateDialog(int id, Bundle bundle) {
-        switch (id) {
-            case R.string.fail_reason_too_many_vcard: {
-                mProcessOngoing = false;
-                return new AlertDialog.Builder(this)
-                        .setTitle(R.string.exporting_contact_failed_title)
-                        .setMessage(getString(R.string.exporting_contact_failed_message,
-                                getString(R.string.fail_reason_too_many_vcard)))
-                        .setPositiveButton(android.R.string.ok, this)
-                        .create();
-            }
-            case R.id.dialog_fail_to_export_with_reason: {
-                mProcessOngoing = false;
-                return new AlertDialog.Builder(this)
-                        .setTitle(R.string.exporting_contact_failed_title)
-                        .setMessage(getString(R.string.exporting_contact_failed_message,
-                                mErrorReason != null ? mErrorReason :
-                                        getString(R.string.fail_reason_unknown)))
-                        .setPositiveButton(android.R.string.ok, this)
-                        .setOnCancelListener(this)
-                        .create();
-            }
+        if (id == R.id.dialog_fail_to_export_with_reason) {
+            mProcessOngoing = false;
+            return new AlertDialog.Builder(this)
+                    .setTitle(R.string.exporting_contact_failed_title)
+                    .setMessage(getString(R.string.exporting_contact_failed_message,
+                            mErrorReason != null ? mErrorReason :
+                                    getString(R.string.fail_reason_unknown)))
+                    .setPositiveButton(android.R.string.ok, this)
+                    .setOnCancelListener(this)
+                    .create();
         }
         return super.onCreateDialog(id, bundle);
     }
