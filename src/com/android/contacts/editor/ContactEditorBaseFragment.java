@@ -979,7 +979,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     abstract protected boolean doSaveAction(int saveMode, Long joinContactId);
 
     protected boolean startSaveService(Context context, Intent intent, int saveMode) {
-        final boolean result = ContactSaveService.startService(context, intent, saveMode);
+        final boolean result = ContactSaveService.startService(
+                context, intent, saveMode);
         if (!result) {
             onCancelEditConfirmed();
         }

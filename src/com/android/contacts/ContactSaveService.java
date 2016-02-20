@@ -56,7 +56,6 @@ import com.android.contacts.common.model.CPOWrapper;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
-import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
@@ -68,7 +67,6 @@ import com.google.common.collect.Sets;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -375,16 +373,8 @@ public class ContactSaveService extends IntentService {
             String saveModeExtraKey, int saveMode, boolean isProfile,
             Class<? extends Activity> callbackActivity, String callbackAction,
             Bundle updatedPhotos, String joinContactIdExtraKey, Long joinContactId) {
-
-        // Don't pass read-only RawContactDeltas in RawContactDeltaList to contact save service,
-        // because 1. read-only RawContactDeltas are not writable anyway; 2. read-only
-        // RawContactDeltas may be problematic, see b/23896510.
-        // Except when we must create aggregation exceptions between the raw contacts
-        if (!(saveMode == SaveMode.JOIN || saveMode == SaveMode.SPLIT)) {
-            removeReadOnlyContacts(context, state);
-        }
-
-        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        Intent serviceIntent = new Intent(
+                context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_SAVE_CONTACT);
         serviceIntent.putExtra(EXTRA_CONTACT_STATE, (Parcelable) state);
         serviceIntent.putExtra(EXTRA_SAVE_IS_PROFILE, isProfile);
@@ -407,26 +397,6 @@ public class ContactSaveService extends IntentService {
             serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
         }
         return serviceIntent;
-    }
-
-    private static void removeReadOnlyContacts(Context context, RawContactDeltaList state) {
-        if (Log.isLoggable(TAG, Log.VERBOSE)) {
-            Log.v(TAG, "Before trimming: " + state.size());
-        }
-        int countReadOnly = 0;
-        final Iterator<RawContactDelta> iterator = state.iterator();
-        while (iterator.hasNext()) {
-            final RawContactDelta rawContactDelta = iterator.next();
-            final AccountType accountType = rawContactDelta.getRawContactAccountType(context);
-            if (accountType != null && !accountType.areContactsWritable()) {
-                countReadOnly++;
-                iterator.remove();
-            }
-        }
-        if (Log.isLoggable(TAG, Log.VERBOSE)) {
-            Log.v(TAG, "# of read-only removed: " + countReadOnly);
-            Log.v(TAG, "After trimming: " + state.size());
-        }
     }
 
     private void saveContact(Intent intent) {
