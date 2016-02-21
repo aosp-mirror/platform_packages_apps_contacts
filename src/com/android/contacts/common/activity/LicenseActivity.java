@@ -17,8 +17,8 @@ package com.android.contacts.common.activity;
 
 import com.android.contacts.common.R;
 
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.app.ActionBar;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -26,7 +26,7 @@ import android.webkit.WebView;
 /**
  * Displays the licenses for all open source libraries.
  */
-public class LicenseActivity extends AppCompatActivity {
+public class LicenseActivity extends Activity {
     private static final String LICENSE_FILE = "file:///android_asset/licenses.html";
     private WebView mWebView;
 
@@ -36,7 +36,7 @@ public class LicenseActivity extends AppCompatActivity {
         setContentView(R.layout.licenses);
         mWebView = (WebView) findViewById(R.id.webview);
         mWebView.loadUrl(LICENSE_FILE);
-        final ActionBar actionBar = getSupportActionBar();
+        final ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
         }
