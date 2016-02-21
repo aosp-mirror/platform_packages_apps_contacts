@@ -40,7 +40,6 @@ import android.provider.Settings;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -51,10 +50,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
-import com.android.contacts.AppCompatContactsActivity;
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
@@ -105,7 +106,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Displays a list to browse contacts.
  */
-public class PeopleActivity extends AppCompatContactsActivity implements
+public class PeopleActivity extends ContactsActivity implements
         View.OnCreateContextMenuListener,
         View.OnClickListener,
         ActionBarAdapter.Listener,
@@ -299,6 +300,10 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     private void createViewsAndFragments(Bundle savedState) {
+        // Disable the ActionBar so that we can use a Toolbar. This needs to be called before
+        // setContentView().
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.people_activity);
 
         final FragmentManager fragmentManager = getFragmentManager();
@@ -314,9 +319,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         mTabPager.setAdapter(mTabPagerAdapter);
         mTabPager.setOnPageChangeListener(mTabPagerListener);
 
-        // Configure toolbar and toolbar tabs. If in landscape mode, we configure tabs differently.
+        // Configure toolbar and toolbar tabs. If in landscape mode, we  configure tabs differntly.
         final Toolbar toolbar = getView(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setActionBar(toolbar);
         final ViewPagerTabs portraitViewPagerTabs
                 = (ViewPagerTabs) findViewById(R.id.lists_pager_header);
         ViewPagerTabs landscapeViewPagerTabs = null;
@@ -367,7 +372,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         // Setting Properties after fragment is created
         mFavoritesFragment.setDisplayType(DisplayType.STREQUENT);
 
-        mActionBarAdapter = new ActionBarAdapter(this, this, getSupportActionBar(),
+        mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar(),
                 portraitViewPagerTabs, landscapeViewPagerTabs, toolbar);
         mActionBarAdapter.initialize(savedState, mRequest);
 
