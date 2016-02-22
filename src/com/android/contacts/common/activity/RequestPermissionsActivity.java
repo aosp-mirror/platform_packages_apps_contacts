@@ -16,8 +16,12 @@
 
 package com.android.contacts.common.activity;
 
+import com.android.contacts.common.R;
+
 import android.Manifest.permission;
 import android.app.Activity;
+import android.content.Intent;
+import android.widget.Toast;
 
 /**
  * Activity that requests permissions needed for activities exported from Contacts.
@@ -48,8 +52,24 @@ public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
                 permission.READ_SMS, // SMS group
         };
     }
+
     public static boolean startPermissionActivity(Activity activity) {
         return startPermissionActivity(activity, REQUIRED_PERMISSIONS,
                 RequestPermissionsActivity.class);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode, String permissions[], int[] grantResults) {
+        if (permissions != null && permissions.length > 0
+                && isAllGranted(permissions, grantResults)) {
+            mPreviousActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(mPreviousActivityIntent);
+            finish();
+            overridePendingTransition(0, 0);
+        } else {
+            Toast.makeText(this, R.string.missing_required_permission, Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 }
