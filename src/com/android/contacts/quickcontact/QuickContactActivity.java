@@ -108,6 +108,7 @@ import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.common.activity.RequestDesiredPermissionsActivity;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.EventCompat;
@@ -909,7 +910,8 @@ public class QuickContactActivity extends ContactsActivity
         Trace.beginSection("onCreate()");
         super.onCreate(savedInstanceState);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+        if (RequestPermissionsActivity.startPermissionActivity(this) ||
+                RequestDesiredPermissionsActivity.startPermissionActivity(this)) {
             return;
         }
 
