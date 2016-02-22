@@ -436,7 +436,6 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
 
             view.removePhotoView(true, false);
         }
-        bindWorkProfileIcon(view, partition);
 
         final DirectoryPartition directory = (DirectoryPartition) getPartition(partition);
         bindPhoneNumber(view, cursor, directory.isDisplayNumber(), position);
@@ -495,7 +494,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
         view.hideDisplayName();
     }
 
-    private void bindWorkProfileIcon(final ContactListItemView view, int partition) {
+    @Override
+    protected void bindWorkProfileIcon(final ContactListItemView view, int partition) {
         final DirectoryPartition directory = (DirectoryPartition) getPartition(partition);
         final long directoryId = directory.getDirectoryId();
         final long userType = ContactsUtils.determineUserType(directoryId, null);
