@@ -233,12 +233,6 @@
             android:exported="false"/>
 
         <activity
-            android:name=".common.activity.RequestDesiredPermissionsActivity"
-            android:label="@string/launcherActivityLabel"
-            android:theme="@style/PeopleTheme"
-            android:exported="false"/>
-
-        <activity
             android:name=".common.activity.RequestImportVCardPermissionsActivity"
             android:label="@string/launcherActivityLabel"
             android:theme="@style/PeopleTheme"
