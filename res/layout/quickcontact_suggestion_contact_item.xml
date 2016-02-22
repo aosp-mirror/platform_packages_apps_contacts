@@ -62,8 +62,8 @@
         android:id="@+id/suggestion_checkbox"
         android:layout_gravity="center_vertical|end"
         android:layout_alignParentEnd="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:shadowColor="@color/divider_line_color_light"
         android:layout_marginEnd="@dimen/quickcontact_suggestion_card_checkbox_right_margin"/>
 
