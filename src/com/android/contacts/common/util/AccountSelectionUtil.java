@@ -160,15 +160,10 @@ public class AccountSelectionUtil {
 
     public static void doImport(Context context, int resId, AccountWithDataSet account,
             int subscriptionId) {
-        switch (resId) {
-            case R.string.import_from_sim: {
-                doImportFromSim(context, account, subscriptionId);
-                break;
-            }
-            case R.string.import_from_vcf_file: {
-                doImportFromVcfFile(context, account);
-                break;
-            }
+        if (resId == R.string.import_from_sim) {
+            doImportFromSim(context, account, subscriptionId);
+        } else if (resId == R.string.import_from_vcf_file) {
+            doImportFromVcfFile(context, account);
         }
     }
 

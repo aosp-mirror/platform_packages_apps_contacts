@@ -82,8 +82,7 @@ public class CancelActivity extends Activity implements ServiceConnection {
 
     @Override
     protected Dialog onCreateDialog(int id, Bundle bundle) {
-        switch (id) {
-        case R.id.dialog_cancel_confirmation: {
+        if (id == R.id.dialog_cancel_confirmation) {
             final String message;
             if (mType == VCardService.TYPE_IMPORT) {
                 message = getString(R.string.cancel_import_confirmation_message, mDisplayName);
@@ -96,8 +95,7 @@ public class CancelActivity extends Activity implements ServiceConnection {
                     .setOnCancelListener(mCancelListener)
                     .setNegativeButton(android.R.string.cancel, mCancelListener);
             return builder.create();
-        }
-        case R.id.dialog_cancel_failed:
+        } else if (id == R.id.dialog_cancel_failed) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this)
                     .setTitle(R.string.cancel_vcard_import_or_export_failed)
                     .setIconAttribute(android.R.attr.alertDialogIcon)
@@ -105,11 +103,10 @@ public class CancelActivity extends Activity implements ServiceConnection {
                     .setOnCancelListener(mCancelListener)
                     .setPositiveButton(android.R.string.ok, mCancelListener);
             return builder.create();
-        default:
+        } else {
             Log.w(LOG_TAG, "Unknown dialog id: " + id);
-            break;
+            return super.onCreateDialog(id, bundle);
         }
-        return super.onCreateDialog(id, bundle);
     }
 
     @Override

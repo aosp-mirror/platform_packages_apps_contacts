@@ -699,34 +699,31 @@ public class ImportVCardActivity extends Activity {
 
     @Override
     protected Dialog onCreateDialog(int resId, Bundle bundle) {
-        switch (resId) {
-            case R.id.dialog_cache_vcard: {
-                if (mProgressDialogForCachingVCard == null) {
-                    final String title = getString(R.string.caching_vcard_title);
-                    final String message = getString(R.string.caching_vcard_message);
-                    mProgressDialogForCachingVCard = new ProgressDialog(this);
-                    mProgressDialogForCachingVCard.setTitle(title);
-                    mProgressDialogForCachingVCard.setMessage(message);
-                    mProgressDialogForCachingVCard.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                    mProgressDialogForCachingVCard.setOnCancelListener(mVCardCacheThread);
-                    startVCardService();
-                }
-                return mProgressDialogForCachingVCard;
+        if (resId == R.id.dialog_cache_vcard) {
+            if (mProgressDialogForCachingVCard == null) {
+                final String title = getString(R.string.caching_vcard_title);
+                final String message = getString(R.string.caching_vcard_message);
+                mProgressDialogForCachingVCard = new ProgressDialog(this);
+                mProgressDialogForCachingVCard.setTitle(title);
+                mProgressDialogForCachingVCard.setMessage(message);
+                mProgressDialogForCachingVCard.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                mProgressDialogForCachingVCard.setOnCancelListener(mVCardCacheThread);
+                startVCardService();
             }
-            case R.id.dialog_error_with_message: {
-                String message = mErrorMessage;
-                if (TextUtils.isEmpty(message)) {
-                    Log.e(LOG_TAG, "Error message is null while it must not.");
-                    message = getString(R.string.fail_reason_unknown);
-                }
-                final AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.reading_vcard_failed_title))
-                    .setIconAttribute(android.R.attr.alertDialogIcon)
-                    .setMessage(message)
-                    .setOnCancelListener(mCancelListener)
-                    .setPositiveButton(android.R.string.ok, mCancelListener);
-                return builder.create();
+            return mProgressDialogForCachingVCard;
+        } else if (resId == R.id.dialog_error_with_message) {
+            String message = mErrorMessage;
+            if (TextUtils.isEmpty(message)) {
+                Log.e(LOG_TAG, "Error message is null while it must not.");
+                message = getString(R.string.fail_reason_unknown);
             }
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.reading_vcard_failed_title))
+                .setIconAttribute(android.R.attr.alertDialogIcon)
+                .setMessage(message)
+                .setOnCancelListener(mCancelListener)
+                .setPositiveButton(android.R.string.ok, mCancelListener);
+            return builder.create();
         }
 
         return super.onCreateDialog(resId, bundle);

@@ -687,15 +687,10 @@ public class CustomContactListFilterActivity extends Activity
 
     /** {@inheritDoc} */
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_done: {
-                this.doSaveAction();
-                break;
-            }
-            case R.id.btn_discard: {
-                this.finish();
-                break;
-            }
+        if (view.getId() == R.id.btn_done) {
+            this.doSaveAction();
+        } else if (view.getId() == R.id.btn_discard) {
+            this.finish();
         }
     }
 
