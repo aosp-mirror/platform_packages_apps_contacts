@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Všetky kontakty s telefónnymi číslami"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Kontakty v pracovnom profile"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Zobraziť aktualizácie"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Iba v telefóne, nesynchronizované"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Iba v telefóne, nesynchronizované"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Meno"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Prezývka"</string>
     <string name="full_name" msgid="885420216812981202">"Meno"</string>
@@ -187,16 +187,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Nepodaril sa import jedného alebo viacerých súborov (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Exportovanie súboru <xliff:g id="FILENAME">%s</xliff:g> bolo dokončené."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Exportovanie kontaktov bolo dokončené"</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Exportovanie kontaktov sa skončilo. Zdieľajte ich kliknutím na upozornenie."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Klepnutím zdieľajte kontakty."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Exportovanie súboru <xliff:g id="FILENAME">%s</xliff:g> bolo zrušené."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Export údajov kontaktov"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Kontaktné informácie sa exportujú."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nepodarilo sa získať informácie z databázy."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nenašli sa žiadne kontakty, ktoré by bolo možné exportovať. Ak v telefóne skutočne máte kontakty, problém môže byť spôsobený tým, že niektorí poskytovatelia údajov neumožňujú export kontaktov z telefónu."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Nenašli sa žiadne kontakty, ktoré by bolo možné exportovať. Ak v telefóne skutočne máte kontakty, problém môže byť spôsobený tým, že niektorí poskytovatelia údajov neumožňujú export kontaktov z telefónu."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Nástroj na tvorbu vizitiek vCard sa nespustil správne."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Exportovanie zlyhalo"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Údaje o kontaktoch sa neexportovali.\nDôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
@@ -210,8 +207,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Žiadosť o import vizitky vCard bola odmietnutá. Skúste to znova neskôr."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Vizitka <xliff:g id="FILENAME">%s</xliff:g> bude čoskoro exportovaná."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Súbor bude čoskoro exportovaný."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Kontakty budú čoskoro exportované."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Žiadosť o exportovanie vizitky vCard bola odmietnutá. Skúste to znova neskôr."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Prebieha načítavanie vizitiek vCard do vyrovnávacej pamäte miestneho dočasného úložiska. Samotné importovanie začne o chvíľu."</string>

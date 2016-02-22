@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Të gjitha kontaktet me numra telefoni"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Kontaktet e profilit të punës"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Shiko përditësimet"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Vetëm në telefon, i pasinkronizuar"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Vetëm në telefon, i pasinkronizuar"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Emri"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Pseudonimi"</string>
     <string name="full_name" msgid="885420216812981202">"Emri"</string>
@@ -185,16 +185,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Një ose më shumë skedarë nuk mundën të importoheshin (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Eksportimi i <xliff:g id="FILENAME">%s</xliff:g> përfundoi."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Eksportimi i kontakteve përfundoi."</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Eksportimi i kontakteve përfundoi, kliko njoftimin për të ndarë kontaktet."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Trokit për të ndarë kontaktet."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Eksportimi i <xliff:g id="FILENAME">%s</xliff:g> u anulua."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Po eksporton të dhënat e kontaktit"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Të dhënat e kontaktit po eksportohen."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Informacionet e bazës së të dhënave nuk mund të merreshin."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nuk ka kontakte që mund të eksportohen. Nëse ke kontakte në telefonin tënd, disa ofrues të të dhënave mund të mos lejojnë që kontaktet të eksportohen nga telefoni."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Nuk ka kontakte që mund të eksportohen. Nëse ke kontakte në telefonin tënd, disa ofrues të të dhënave mund të mos lejojnë që kontaktet të eksportohen nga telefoni."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Kompozitori i vCard nuk u nis si duhet."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Nuk mund të eksportoheshin"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Të dhënat e kontaktit nuk u eksportuan.\nArsyeja: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -208,8 +205,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Kërkesa e importit të vCard u refuzua. Provo përsëri më vonë."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> do të eksportohet së shpejti."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Skedari do të eksportohet së shpejti."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Kontaktet do të eksportohen së shpejti."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Kërkesa e eksportimit të vCard u refuzua. Provo përsëri më vonë."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakti"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Po ruan vCard në hapësirën ruajtëse lokale të përkohshme. Importimi aktual do të nisë së shpejti."</string>

@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Minden névjegy telefonszámokkal"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Munkaprofilnévjegyek"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Frissítések megtekintése"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Csak a telefonon, nem szinkronizált"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Csak a telefonon, nem szinkronizált"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Név"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Becenév"</string>
     <string name="full_name" msgid="885420216812981202">"Név"</string>
@@ -185,16 +185,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Egy vagy több fájl nem importálható (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"A(z) <xliff:g id="FILENAME">%s</xliff:g> exportálása befejeződött."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"A névjegyek exportálása befejeződött."</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Az exportálás befejeződött. A névjegyek megosztásához kattintson az értesítésre."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Koppintson rá a névjegyek megosztásához."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"A(z) <xliff:g id="FILENAME">%s</xliff:g> exportálása megszakítva."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Névjegyadatok exportálása"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"A névjegyadatok exportálása folyamatban van."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nem sikerült lekérni az adatbázis-információkat."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nincsenek exportálható névjegyek. Ha vannak névjegyek a telefonján, akkor előfordulhat, hogy az adatszolgáltató nem teszi lehetővé a névjegyek exportálását a telefonról."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Nincsenek exportálható névjegyek. Ha vannak névjegyek a telefonján, akkor előfordulhat, hogy az adatszolgáltató nem teszi lehetővé a névjegyek exportálását a telefonról."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"A vCard-készítő nem megfelelően indult el."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Sikertelen export"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Nem sikerült a névjegyadatok exportálása.\nOk: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
@@ -208,8 +205,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"A vCard-importálási kérelem elutasítva. Próbálja újra később."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"A(z) <xliff:g id="FILENAME">%s</xliff:g> hamarosan exportálva lesz."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"A fájl exportálása hamarosan megtörténik."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"A névjegyek exportálása hamarosan megtörténik."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"A vCard-exportálási kérelem elutasítva. Próbálja újra később."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"névjegy"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ok) mentése az ideiglenes helyi tárolóba. A tényleges importálás hamarosan megkezdődik."</string>

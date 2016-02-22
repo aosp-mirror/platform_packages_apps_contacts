@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Tots els contactes que tenen números de telèfon"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Contactes del perfil professional"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Mostra les actualitzacions"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Només telèfon, sense sincronitzar"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Només telèfon, sense sincronitzar"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nom"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Àlies"</string>
     <string name="full_name" msgid="885420216812981202">"Nom"</string>
@@ -185,16 +185,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"No s\'ha pogut importar un dels fitxers com a mínim (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Exportació de <xliff:g id="FILENAME">%s</xliff:g> finalitzada."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"S\'han acabat d\'exportar els contactes."</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"S\'han acabat d\'exportar els contactes; fes clic a la notificació per compartir-los."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Toca per compartir els contactes."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"S\'ha cancel·lat l\'exportació de: <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"S\'estan exportant les dades de contacte"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"S\'estan exportant les dades de contacte."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"No s\'ha pogut obtenir informació de la base de dades."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"No hi ha cap contacte que es pugui exportar. Si en tens algun al telèfon, és possible que hi hagi proveïdors de dades que no permetin que els contactes s\'exportin des del telèfon."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"No hi ha cap contacte que es pugui exportar. Si en tens algun al telèfon, és possible que hi hagi proveïdors de dades que no permetin que els contactes s\'exportin des del telèfon."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"No s\'ha iniciat correctament el creador de vCard."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Error en exportar"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"No s\'han exportat les dades de contacte.\nMotiu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -208,8 +205,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"S\'ha rebutjat la sol·licitud per importar la vCard. Torna-ho a provar més tard."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> s\'exportarà en breu."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"El fitxer s\'exportarà en breu."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Aviat s\'exportaran els contactes."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"S\'ha rebutjat la sol·licitud per exportar la vCard. Torna-ho a provar més tard."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contacte"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"S\'estan desant les vCard a l\'emmagatzematge temporal local. La importació real començarà aviat."</string>

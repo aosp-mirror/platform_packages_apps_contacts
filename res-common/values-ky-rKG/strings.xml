@@ -94,7 +94,7 @@
     <skip />
     <string name="list_filter_phones_work" msgid="484839599760375521">"Жумуш профилиндеги байланыштар"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Жаңыртууларды көрүү"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Телефон үчүн гана, сихрондоштурулбаган"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Телефон үчүн гана, сихрондоштурулбаган"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Аты"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Каймана аты"</string>
     <string name="full_name" msgid="885420216812981202">"Аты"</string>
@@ -190,16 +190,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Бир же эки файл импорттолбой жатат (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> экспорттоо аяктады."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Байланыштар өткөрүлүп бүттү."</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Байланыштар өткөрүлүп берилди, байланыштар менен бөлүшүү үчүн эскертмени басыңыз."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Байланыштар менен бөлүшүү үчүн таптап коюңуз."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> экспортто токтотулду."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Байланыш берилиштери экспорттолууда"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Байланыштын дайындары өткөрүлүп берилүүдө."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Берилиштер корунун маалыматтарын алуу мүмкүн эмес."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Экспортко жарактуу байланыштар жок. Эгер байланыштар телефонуңузда болсо, айрым берилиштер камсыздоочулары байланыштарды телефондон экспорттоого жол бербеши мүмкүн."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Экспортко жарактуу байланыштар жок. Эгер байланыштар телефонуңузда болсо, айрым берилиштер камсыздоочулары байланыштарды телефондон экспорттоого жол бербеши мүмкүн."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard түзүүчү туура эмес иштеп баштады."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Экспорттоо мүмкүн эмес"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Байланыш маалыматтары экспорттолгон жок.\nСебеби: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -213,8 +210,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard импорттоо талабы четке кагылды. Кийинчерээк кайра аракеттениңиз."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> жакынкы убакытта экспорттолот."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Файл бир аздан кийин өткөрүлүп берилет."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Байланыштар жакында экспорттолот."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard экспорттоо талабы четке кагылды. Кийинчерээк кайра аракеттениңиз."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"байланыш"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(дар) жергиликтүү убактылуу жайга топтолууда. Чыныгы импорт жакында башталат."</string>

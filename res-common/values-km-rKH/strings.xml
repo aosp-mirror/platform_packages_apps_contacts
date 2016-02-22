@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ទំនាក់ទំនង​ទាំងអស់​ដែល​មាន​លេខ​ទូរស័ព្ទ"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"ទំនាក់ទំនងប្រវត្តិរូបការងារ"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"មើល​បច្ចុប្បន្នភាព"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"តែ​ទូរស័ព្ទ, មិន​បាន​ធ្វើ​សមកាលកម្ម"</string>
+    <string name="account_phone" msgid="6104157990869081962">"តែ​ទូរស័ព្ទ, មិន​បាន​ធ្វើ​សមកាលកម្ម"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ឈ្មោះ"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ឈ្មោះ​ហៅ​ក្រៅ"</string>
     <string name="full_name" msgid="885420216812981202">"ឈ្មោះ"</string>
@@ -185,16 +185,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"មាន​ឯកសារ​មួយ ឬ​ច្រើន​ដែល​មិន​អាច​នាំចូល (%s​) បាន​។"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"បាន​បញ្ចប់​ការ​នាំ​ចេញ <xliff:g id="FILENAME">%s</xliff:g> ។"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"បានបញ្ចប់ការនាំចេញទំនាក់ទំនង។"</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"បានបញ្ចប់ការនាំចេញទំនាក់ទំនង សូមចុចការជូនដំណឹងនោះដើម្បីចែករំលែកទំនាក់ទំនង"</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"ប៉ះដើម្បីចែករំលែកទំនាក់ទំនង"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"បាន​បោះបង់​ការ​នាំចេញ <xliff:g id="FILENAME">%s</xliff:g> ។"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"កំពុង​នាំចេញ​ព័ត៌មាន​ទំនាក់ទំនង"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"ទិន្នន័យចំណាំកំពុងត្រូវបាននាំចេញ"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"មិន​អាច​យក​ព័ត៌មាន​មូលដ្ឋាន​ទិន្នន័យ។"</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"មិន​មាន​ទំនាក់​ទំនង​ដើម្បី​នាំចេញ​ទេ។ ប្រសិនបើ​អ្នក​ពិតជា​មាន​ទំនាក់ទំនង​នៅ​ក្នុង​ទូរស័ព្ទ​របស់​អ្នក​មែន នោះ​ទំនាក់ទំនង​ទាំងអស់​អាច​បាន​ហាម​មិន​ឲ្យ​នាំចេញ​ដោយ​ក្រុមហ៊ុន​ផ្ដល់​ទិន្នន័យ​មួយ​ចំនួន។"</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"មិន​មាន​ទំនាក់​ទំនង​ដើម្បី​នាំចេញ​ទេ។ ប្រសិនបើ​អ្នក​ពិតជា​មាន​ទំនាក់ទំនង​នៅ​ក្នុង​ទូរស័ព្ទ​របស់​អ្នក​មែន នោះ​ទំនាក់ទំនង​ទាំងអស់​អាច​បាន​ហាម​មិន​ឲ្យ​នាំចេញ​ដោយ​ក្រុមហ៊ុន​ផ្ដល់​ទិន្នន័យ​មួយ​ចំនួន។"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"កម្មវិធី​តែង​របស់ vCard មិន​បាន​ចាប់ផ្ដើម​ត្រឹមត្រូវ​ទេ។"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"មិន​អាច​នាំចេញ"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"មិន​បាន​នាំចេញ​ព័ត៌មាន​ទំនាក់ទំនង។\nមូលហេតុ៖ \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -208,8 +205,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"បាន​បដិសេធ​សំណើ​នាំចូល vCard ។ សូម​ព្យាយាម​ម្ដងទៀត​នៅ​ពេល​ក្រោយ​។"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"នឹង​នាំចេញ <xliff:g id="FILENAME">%s</xliff:g> ក្នុង​ពេល​ឆាប់ៗ។"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"នឺងនាំចេញឯកសារក្នុងពេលឆាប់ៗ។"</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"ទំនាក់ទំនងនឹងត្រូវបាននាំចេញក្នុងពេលបន្តិចទៀតនេះ"</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"បាន​បដិសេធ​សំណើ​នាំចេញ vCard ។ សូម​ព្យាយាម​ម្ដងទៀត​នៅ​ពេល​ក្រោយ​។"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"ទំនាក់ទំនង"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"ការ​ផ្ទុក vCard(s​) ទៅកាន់​ឧបករណ៍​ផ្ទុក​បណ្ដោះអាសន្ន​មូលដ្ឋាន។ ការ​នាំ​ចូល​ពិតប្រាកដ​នឹង​ចាប់ផ្ដើម​ក្នុង​ពេល​ឆាប់ៗ។"</string>

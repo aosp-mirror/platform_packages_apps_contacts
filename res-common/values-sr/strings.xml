@@ -90,7 +90,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Сви контакти са бројевима телефона"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Контакти профила за Work"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Прикажи ажурирања"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Само на телефону, без синхронизације"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Само на телефону, без синхронизације"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Надимак"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>
@@ -186,16 +186,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Није могућ увоз једне или више датотека (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Извоз датотеке <xliff:g id="FILENAME">%s</xliff:g> је завршен."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Извоз контаката је завршен."</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Извожење контаката је завршено. Кликните на обавештење да бисте делили контакте."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Додирните да бисте делили контакте."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Извоз датотеке <xliff:g id="FILENAME">%s</xliff:g> је отказан."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Извоз података о контактима је у току"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Подаци о контактима се извозе."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Преузимање информација из базе података није могуће."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Нема контаката за извоз. Ако имате контакте на телефону, неки добављачи података можда неће дозволити да се контакти извозе са телефона."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Нема контаката за извоз. Ако имате контакте на телефону, неки добављачи података можда неће дозволити да се контакти извозе са телефона."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Програм за израду vCard датотека се није исправно покренуо."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Извоз није могућ"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Подаци о контактима низу извезени.\nРазлог: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
@@ -209,8 +206,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Захтев за увоз vCard датотеке је одбијен. Покушајте поново касније."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Датотека <xliff:g id="FILENAME">%s</xliff:g> ће ускоро бити извезена."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Датотека ће ускоро бити извезена."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Контакти ће ускоро бити извезени."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Захтев за извоз vCard датотеке је одбијен. Покушајте поново касније."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Кеширање vCard датотекa у локалну привремену меморију. Увоз ће ускоро започети."</string>

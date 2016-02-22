@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ລາຍຊື່ຜູ່ຕິດຕໍ່ທັງໝົດທີ່ມີເບີໂທລະສັບ"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"ລາຍຊື່ຜູ້ຕິດຕໍ່ຂອງໂປຣໄຟລ໌ບ່ອນເຮັດວຽກ"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"ເບິ່ງອັບເດດ"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"ໂທລະສັບເທົ່ານັ້ນ, ບໍ່ຊິ້ງຂໍ້ມູນ"</string>
+    <string name="account_phone" msgid="6104157990869081962">"ໂທລະສັບເທົ່ານັ້ນ, ບໍ່ຊິ້ງຂໍ້ມູນ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ຊື່"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ຊື່ຫຼິ້ນ"</string>
     <string name="full_name" msgid="885420216812981202">"ຊື່"</string>
@@ -185,16 +185,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ມີໄຟລ໌ນຶ່ງ ຫຼືຫຼາຍກວ່ານັ້ນບໍ່ສາມາດນຳເຂົ້າໄດ້ (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"ສິ້ນສຸດການສົ່ງອອກແລ້ວ <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"ສຳ​ເລັດ​ການ​ສົ່ງ​ອອກລາຍ​ຊື່​ອ​ແລ້ວ."</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"ເມື່ອສຳເລັດການສົ່ງອອກລາຍຊື່ຜູ້ຕິດຕໍ່ແລ້ວ, ໃຫ້ຄລິກການແຈ້ງເຕືອນເພື່ອແບ່ງປັນລາຍຊື່ຜູ້ຕິດຕໍ່."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"ແຕະເພື່ອແບ່ງປັນລາຍຊື່ຜູ້ຕິດຕໍ່."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"ການສົ່ງອອກ <xliff:g id="FILENAME">%s</xliff:g> ຖືກຍົກເລີກແລ້ວ."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"ກຳລັງສົ່ງອອກຂໍ້ມູນລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"ຂໍ້ມູນລາຍຊື່ຜູ້ຕິດຕໍ່ກຳລັງຖືກສົ່ງອອກ."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ບໍ່ສາມາດດຶງຂໍ້ມູນຖານຂໍ້ມູນໄດ້."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ສາມາດສົ່ງອອກໄດ້. ຫາກທ່ານມີລາຍຊື່ຜູ່ຕິດຕໍ່ໃນໂທລະສັບຂອງທ່ານ ແຕ່ບໍ່ສາມາດສົ່ງອອກໄດ້ ກໍອາດເປັນເພາະບາງຜູ່ໃຫ້ບໍລິການຂໍ້ມູນບໍ່ອະນຸຍາດ ໃຫ້ສົ່ງລາຍຊື່ຜູ່ຕິດຕໍ່ອອກຈາກໂທລະສັບໄດ້."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ສາມາດສົ່ງອອກໄດ້. ຫາກທ່ານມີລາຍຊື່ຜູ່ຕິດຕໍ່ໃນໂທລະສັບຂອງທ່ານ ແຕ່ບໍ່ສາມາດສົ່ງອອກໄດ້ ກໍອາດເປັນເພາະບາງຜູ່ໃຫ້ບໍລິການຂໍ້ມູນບໍ່ອະນຸຍາດ ໃຫ້ສົ່ງລາຍຊື່ຜູ່ຕິດຕໍ່ອອກຈາກໂທລະສັບໄດ້."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"ໂປຣແກຣມຂຽນ vCard ຖືກເລີ່ມຢ່າງບໍ່ຖືກຕ້ອງ."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ບໍ່ສາມາດສົ່ງອອກໄດ້"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"ຂໍ້ມູນລາຍຊື່ຜູ່ຕິດຕໍ່ຍັງບໍ່ໄດ້ຖືກສົ່ງອອກເທື່ອ.\nເຫດຜົນ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -208,8 +205,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"ການຮ້ອງຂໍການນຳເຂົ້າ vCard​ ຖືກປະຕິເສດ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> ຈະຖືກສົ່ງອອກໃນໄວໆນີ້."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ໄຟ​ລ໌​ຈະ​ຖືກ​ສົ່ງ​ອອກ​ໄວໆ​ນີ້."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"ລາຍຊື່ຜູ້ຕິດຕໍ່ຈະຖືກສົ່ງອອກໃນໄວໆນີ້."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"ຄຳຂໍການສົ່ງອອກ vCard ຖືກປະຕິເສດ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"ກຳລັງເກັບຂໍ້ມູນ vCard ໃສ່ບ່ອນຈັດເກັບຂໍ້ມູນຊົ່ວຄາວໃນອຸປະກອນ. ການນຳເຂົ້າຈະເລີ່ມຂຶ້ນໃນໄວໆນີ້."</string>
