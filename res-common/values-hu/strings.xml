@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Minden névjegy telefonszámokkal"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Munkaprofilnévjegyek"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Frissítések megtekintése"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Csak a telefonon, nem szinkronizált"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Csak a telefonon, nem szinkronizált"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Név"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Becenév"</string>
     <string name="full_name" msgid="885420216812981202">"Név"</string>
@@ -191,7 +191,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Névjegyadatok exportálása"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"A névjegyadatok exportálása folyamatban van."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nem sikerült lekérni az adatbázis-információkat."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nincsenek exportálható névjegyek. Ha vannak névjegyek a telefonján, akkor előfordulhat, hogy az adatszolgáltató nem teszi lehetővé a névjegyek exportálását a telefonról."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Nincsenek exportálható névjegyek. Ha vannak névjegyek a telefonján, akkor előfordulhat, hogy az adatszolgáltató nem teszi lehetővé a névjegyek exportálását a telefonról."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"A vCard-készítő nem megfelelően indult el."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Sikertelen export"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Nem sikerült a névjegyadatok exportálása.\nOk: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>

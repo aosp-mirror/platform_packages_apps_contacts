@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Телефон нөмірі бар барлық контактілер"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Жұмыс профилінің контактілері"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Жаңартуларды көру"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Телефон ғана, синхрондалмайды"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Телефон ғана, синхрондалмайды"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Аты-жөні"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Қысқа аты"</string>
     <string name="full_name" msgid="885420216812981202">"Аты-жөні"</string>
@@ -194,7 +194,7 @@
     <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
     <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Дерекқор ақпаратын ала алмады."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Экспорттауға болатын контактілер жоқ. Телефоныңызда контактілер болса, кейбір дерекқор жадбықтаушылар контактілердің телефоннан экспортталуына рұқсат бермейді."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Экспорттауға болатын контактілер жоқ. Телефоныңызда контактілер болса, кейбір дерекқор жадбықтаушылар контактілердің телефоннан экспортталуына рұқсат бермейді."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vКарта жасақтаушы дұрыс басталмады."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Экспорттай алмады"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Контакт деректері экспортталмады. \nСебебі: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

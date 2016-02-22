@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Telefon nömrələri olan bütün kontaktlar"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"İş Profili kontaktları"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Güncəlləşmələri göstər"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Yalnız telefon, sinxronsuz"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Yalnız telefon, sinxronsuz"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Ad"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nik"</string>
     <string name="full_name" msgid="885420216812981202">"Ad"</string>
@@ -191,7 +191,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontakt datası eksport olunur"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"Kontakt datası eksport olunur."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Verilənlər bazası məlumatları əldə oluna bilmədi."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Eksport edilə bilən kontakt yoxdur. Əgər telefonunuzda kontaktlarınız varsa, bəzi data provayderləri kontaktların telefondan eksport olunmasına icazə verməyə bilər."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Eksport edilə bilən kontakt yoxdur. Əgər telefonunuzda kontaktlarınız varsa, bəzi data provayderləri kontaktların telefondan eksport olunmasına icazə verməyə bilər."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Vizit kart tərtibçisi düzgün başlamadı."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Eksport edilə bilmədi"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Kontakt datası eksport edilmədi.\nSəbəb: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"फ़ोन नंबरों वाले सभी संपर्क"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"कार्य प्रोफ़ाइल के संपर्क"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"नई जानकारी देखें"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"केवल-फ़ोन पर, असमन्वयित"</string>
+    <string name="account_phone" msgid="6104157990869081962">"केवल-फ़ोन पर, असमन्वयित"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"नाम"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"प्रचलित नाम"</string>
     <string name="full_name" msgid="885420216812981202">"नाम"</string>
@@ -185,13 +185,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"एक या अधिक फ़ाइलें आयात नहीं की जा सकीं (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> का निर्यात पूरा हो गया."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"संपर्कों का निर्यात किया जाना समाप्त हो गया."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"संपर्कों को निर्यात करना पूरा हो गया है, संपर्क साझा करने के लिए नोटिफिकेशन क्लिक करें."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"संपर्कों का निर्यात पूरा हो गया है, संपर्क साझा करने के लिए नोटिफिकेशन क्लिक करें."</string>
     <string name="touch_to_share_contacts" msgid="3237211496215699092">"संपर्क साझा करने के लिए टैप करें."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> को निर्यात करना रद्द कर दिया गया."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"संपर्क डेटा निर्यात हो रहा है"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"संपर्क डेटा निर्यात किया जा रहा है."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"डेटाबेस जानकारी नहीं मिल सकी."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"कोई भी निर्यात-योग्‍य संपर्क नहीं है. यदि आपके पास अपने फ़ोन पर संपर्क  हों, तो हो सकता है कि कुछ डेटा प्रदाता संपर्कों को फ़ोन से निर्यात न करने दें."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"कोई भी निर्यात-योग्‍य संपर्क नहीं है. यदि आपके पास अपने फ़ोन पर संपर्क  हों, तो हो सकता है कि कुछ डेटा प्रदाता संपर्कों को फ़ोन से निर्यात न करने दें."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard कंपोज़र ठीक से प्रारंभ नहीं हुआ."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"निर्यात नहीं कर सका"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"संपर्क डेटा निर्या‍त नहीं किया गया था.\nकारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

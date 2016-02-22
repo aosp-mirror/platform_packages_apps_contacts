@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Vsi stiki s telefonskimi številkami"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Stiki za delovni profil"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Prikaži posodobitve"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Samo v telefonu, nesinhroniziran"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Samo v telefonu, nesinhroniziran"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Ime"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Vzdevek"</string>
     <string name="full_name" msgid="885420216812981202">"Ime"</string>
@@ -193,7 +193,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Izvažanje podatkov o stikih"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"Podatki o stikih se izvažajo."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Informacij o zbirki podatkov ni bilo mogoče dobiti."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Ni stikov za izvoz. Če imate v telefonu stike, nekateri ponudniki podatkov morda ne omogočajo izvoza stikov iz telefona."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Ni stikov za izvoz. Če imate v telefonu stike, nekateri ponudniki podatkov morda ne omogočajo izvoza stikov iz telefona."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Urejevalnik za vCard se ni pravilno zagnal."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Izvoz ni mogoč"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Podatki stika niso bili izvoženi.\nRazlog: »<xliff:g id="FAIL_REASON">%s</xliff:g>«"</string>

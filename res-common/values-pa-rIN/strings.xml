@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ਫੋਨ ਨੰਬਰਾਂ ਵਾਲੇ ਸਾਰੇ ਸੰਪਰਕ"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"ਕੰਮ ਪ੍ਰੋਫਾਈਲ ਸੰਪਰਕ"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"ਅਪਡੇਟਾਂ ਦੇਖੋ"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"ਫੋਨ-ਓਨਲੀ, ਅਣਸਿੰਕਡ"</string>
+    <string name="account_phone" msgid="6104157990869081962">"ਫੋਨ-ਓਨਲੀ, ਅਣਸਿੰਕਡ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ਨਾਮ"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ਉਪਨਾਮ"</string>
     <string name="full_name" msgid="885420216812981202">"ਨਾਮ"</string>
@@ -191,7 +191,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"ਸੰਪਰਕ ਡਾਟਾ ਨਿਰਯਾਤ ਕਰ ਰਿਹਾ ਹੈ"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"ਸੰਪਰਕ ਡੈਟੇ ਨੂੰ ਨਿਰਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ਡਾਟਾਬੇਸ ਜਾਣਕਾਰੀ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕਿਆ।"</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"ਨਿਰਯਾਤ ਕਰਨ ਯੋਗ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ। ਜੇਕਰ ਤੁਹਾਡੇ ਫੋਨ ਤੇ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ, ਤਾਂ ਕੁਝ ਡਾਟਾ ਪ੍ਰਦਾਤਾ ਸੰਪਰਕਾਂ ਨੂੰ ਫੋਨ ਤੋਂ ਨਿਰਯਾਤ ਕੀਤੇ ਜਾਣ ਦੀ ਆਗਿਆ ਨਹੀਂ ਵੀ ਦੇ ਸਕਦੇ।"</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"ਨਿਰਯਾਤ ਕਰਨ ਯੋਗ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ। ਜੇਕਰ ਤੁਹਾਡੇ ਫੋਨ ਤੇ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ, ਤਾਂ ਕੁਝ ਡਾਟਾ ਪ੍ਰਦਾਤਾ ਸੰਪਰਕਾਂ ਨੂੰ ਫੋਨ ਤੋਂ ਨਿਰਯਾਤ ਕੀਤੇ ਜਾਣ ਦੀ ਆਗਿਆ ਨਹੀਂ ਵੀ ਦੇ ਸਕਦੇ।"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard ਕੰਪੋਜ਼ਰ ਸਹੀ ਢੰਗ ਨਾਲ ਚਾਲੂ ਨਹੀਂ ਹੋਇਆ।"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ਨਿਰਯਾਤ ਨਹੀਂ ਕਰ ਸਕਿਆ"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"ਸੰਪਰਕ ਡਾਟਾ ਨਿਰਯਾਤ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਸੀ।\nਕਾਰਨ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

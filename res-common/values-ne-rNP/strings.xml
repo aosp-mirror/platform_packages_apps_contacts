@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"फोन नम्बर भएका सबै सम्पर्कहरू"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"कार्य प्रोफाइलको सम्पर्कहरू"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"अद्यावधिकहरू अवलोकन गर्नुहोस्"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"फोन मात्र, सिङ्क नभएको"</string>
+    <string name="account_phone" msgid="6104157990869081962">"फोन मात्र, सिङ्क नभएको"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"नाम"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"उपनाम"</string>
     <string name="full_name" msgid="885420216812981202">"नाम"</string>
@@ -194,7 +194,7 @@
     <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
     <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"डेटाबेस जानकारी पाउन सकेन।"</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"निर्यात योग्य सम्पर्कहरू छैनन्। यदि तपाईँसँग फोनमा सम्पर्कहरू छन् भने केही डेटा प्रदायकहरूले फोनबाट सम्पर्कहरू निर्यात गर्ने अनुमति दिँदैनन्।"</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"निर्यात योग्य सम्पर्कहरू छैनन्। यदि तपाईँसँग फोनमा सम्पर्कहरू छन् भने केही डेटा प्रदायकहरूले फोनबाट सम्पर्कहरू निर्यात गर्ने अनुमति दिँदैनन्।"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard रचनाकार राम्ररी सुरु भएन।"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"निर्यात गर्न सकेन"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"सम्पर्क डेटा निर्यात गरिएको थिएन \n कारण: \" <xliff:g id="FAIL_REASON">%s</xliff:g> \""</string>

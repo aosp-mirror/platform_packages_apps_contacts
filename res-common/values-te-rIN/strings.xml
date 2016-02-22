@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ఫోన్ నంబర్‌లు గల అన్ని పరిచయాలు"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"కార్యాలయ ప్రొఫైల్ పరిచయాలు"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"నవీకరణలను వీక్షించండి"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"ఫోన్-మాత్రమే, సమకాలీకరించబడలేదు"</string>
+    <string name="account_phone" msgid="6104157990869081962">"ఫోన్-మాత్రమే, సమకాలీకరించబడలేదు"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"పేరు"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"మారుపేరు"</string>
     <string name="full_name" msgid="885420216812981202">"పేరు"</string>
@@ -191,7 +191,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"పరిచయ డేటాను ఎగుమతి చేస్తోంది"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"పరిచయ డేటా ఎగుమతి చేయబడుతోంది."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"డేటాబేస్ సమాచారాన్ని పొందడం సాధ్యపడలేదు."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"ఎగుమతి చేయదగిన పరిచయాలు ఏవీ లేవు. మీరు మీ ఫోన్‌లో పరిచయాలు కలిగి ఉన్నప్పటికీ, కొందరు డేటా ప్రదాతలు పరిచయాలను ఫోన్ నుండి ఎగుమతి చేయడానికి అనుమతించకపోవచ్చు."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"ఎగుమతి చేయదగిన పరిచయాలు ఏవీ లేవు. మీరు మీ ఫోన్‌లో పరిచయాలు కలిగి ఉన్నప్పటికీ, కొందరు డేటా ప్రదాతలు పరిచయాలను ఫోన్ నుండి ఎగుమతి చేయడానికి అనుమతించకపోవచ్చు."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard కంపోజర్ సరిగ్గా ప్రారంభించబడలేదు."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ఎగుమతి చేయడం సాధ్యపడలేదు"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"పరిచయ డేటా ఎగుమతి చేయబడలేదు.\nకారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

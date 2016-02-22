@@ -90,7 +90,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Svi kontakti s telefonskim brojevima"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Kontakti radnog profila"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Prikaži ažuriranja"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Samo telefon, bez sinkronizacije"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Samo telefon, bez sinkronizacije"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Ime"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nadimak"</string>
     <string name="full_name" msgid="885420216812981202">"Ime"</string>
@@ -195,7 +195,7 @@
     <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
     <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Dohvaćanje podataka iz baze podataka nije uspjelo."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nema kontakata koji se mogu izvoziti. Ako na svojem telefonu imate kontakte, neki davatelji podataka možda ne dopuštaju izvoz kontakata s tog telefona."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Nema kontakata koji se mogu izvoziti. Ako na svojem telefonu imate kontakte, neki davatelji podataka možda ne dopuštaju izvoz kontakata s tog telefona."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Sastavljač za vCard nije se ispravno pokrenuo."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Izvoz nije uspio"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Podaci o kontaktu nisu izvezeni.\nRazlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

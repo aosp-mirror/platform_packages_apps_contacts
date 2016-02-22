@@ -156,8 +156,6 @@
     <skip />
     <!-- no translation found for view_updates_from_group (3310864388165884352) -->
     <skip />
-    <!-- no translation found for account_phone (1143884271396601338) -->
-    <skip />
     <!-- no translation found for account_phone (6104157990869081962) -->
     <skip />
     <!-- no translation found for nameLabelsGroup (1817502703362057154) -->
@@ -334,10 +332,6 @@
     <skip />
     <!-- no translation found for fail_reason_too_long_filename (3996610741248972232) -->
     <skip />
-    <!-- no translation found for fail_reason_too_many_vcard (8720294715223591581) -->
-    <skip />
-    <!-- no translation found for fail_reason_too_many_vcard (3793454448838716962) -->
-    <skip />
     <!-- no translation found for fail_reason_io_error (7736686553669161933) -->
     <skip />
     <!-- no translation found for fail_reason_low_memory_during_import (3277485820827338116) -->
@@ -365,8 +359,6 @@
     <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
     <skip />
     <!-- no translation found for composer_failed_to_get_database_infomation (7801276776746351694) -->
-    <skip />
-    <!-- no translation found for composer_has_no_exportable_contact (1534625366506752907) -->
     <skip />
     <!-- no translation found for composer_has_no_exportable_contact (7063040740576745307) -->
     <skip />
@@ -406,19 +398,11 @@
     <skip />
     <!-- no translation found for vcard_import_failed (4105296876768072508) -->
     <skip />
-    <!-- no translation found for import_failure_no_vcard_file (2066107150525521097) -->
-    <skip />
-    <!-- no translation found for import_failure_no_vcard_file (1748300468382501403) -->
-    <skip />
     <!-- no translation found for nfc_vcard_file_name (305679412445157370) -->
     <skip />
     <!-- no translation found for confirm_export_title (3240899428149018226) -->
     <skip />
     <!-- no translation found for caching_vcard_title (9185299351381102305) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (8442457519490864500) -->
-    <skip />
-    <!-- no translation found for scanning_sdcard_failed_message (1409798274361146091) -->
     <skip />
     <!-- no translation found for progress_notifier_message (359931715339778107) -->
     <skip />

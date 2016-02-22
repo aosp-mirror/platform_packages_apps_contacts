@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Tất cả người liên hệ có số điện thoại"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Danh bạ trên Hồ sơ công việc"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Xem thông tin cập nhật"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Chỉ trên điện thoại, ko đồng bộ"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Chỉ trên điện thoại, ko đồng bộ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Tên"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Biệt hiệu"</string>
     <string name="full_name" msgid="885420216812981202">"Tên"</string>
@@ -194,7 +194,7 @@
     <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
     <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Không thể nhận thông tin cơ sở dữ liệu."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Không thể xuất liên hệ nào. Nếu bạn có danh bạ trên điện thoại của mình, một số nhà cung cấp dữ liệu không cho phép xuất danh bạ từ điện thoại."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Không thể xuất liên hệ nào. Nếu bạn có danh bạ trên điện thoại của mình, một số nhà cung cấp dữ liệu không cho phép xuất danh bạ từ điện thoại."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Trình soạn vCard không khởi động đúng."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Không thể xuất"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Không xuất được dữ liệu liên hệ.\nLý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

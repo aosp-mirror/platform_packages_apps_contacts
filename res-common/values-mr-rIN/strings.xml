@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"फोन नंबरसह सर्व संपर्क"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"कार्य प्रोफाईल संपर्क"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"अद्यतने पहा"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"केवळ-फोन, संकालित न केलेले"</string>
+    <string name="account_phone" msgid="6104157990869081962">"केवळ-फोन, संकालित न केलेले"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"नाव"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"टोपणनाव"</string>
     <string name="full_name" msgid="885420216812981202">"नाव"</string>
@@ -191,7 +191,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"संपर्क डेटा निर्यात करीत आहे"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"संपर्क डेटा निर्यात केला जात आहे."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"डेटाबेस माहिती मिळवू शकलो नाही."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"निर्यात करण्‍यायोग्‍य संपर्क नाहीत. आपल्‍या फोनवर संपर्क असल्‍यास, काही डेटा प्रदाते फोनवरून संपर्क निर्यात करण्‍यास कदाचित अनुमती देणार नाहीत."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"निर्यात करण्‍यायोग्‍य संपर्क नाहीत. आपल्‍या फोनवर संपर्क असल्‍यास, काही डेटा प्रदाते फोनवरून संपर्क निर्यात करण्‍यास कदाचित अनुमती देणार नाहीत."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard रचनाकाराने योग्‍यरित्‍या प्रारंभ केला नाही."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"निर्यात करू शकलो नाही"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"संपर्क डेटा निर्यात केला नाही.\nकारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

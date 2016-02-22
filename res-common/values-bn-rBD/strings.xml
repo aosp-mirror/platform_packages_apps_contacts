@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ফোন নম্বর সহ সমস্ত পরিচিতি"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"কর্মস্থলের প্রোফাইলের পরিচিতিগুলি"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"আপডেটগুলি দেখুন"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"শুধুমাত্র ফোন, সমন্বয় করা নেই"</string>
+    <string name="account_phone" msgid="6104157990869081962">"শুধুমাত্র ফোন, সমন্বয় করা নেই"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"নাম"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ডাকনাম"</string>
     <string name="full_name" msgid="885420216812981202">"নাম"</string>
@@ -191,7 +191,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"পরিচিতির তথ্য রপ্তানি করা হচ্ছে"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"পরিচিতির ডেটা রপ্তানি করা হচ্ছে৷"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ডেটাবেসের তথ্য পাওয়া যায়নি৷"</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"এখানে রপ্তানিযোগ্য কোনো পরিচিতি নেই৷ আপনার ফোনে পরিচিতি থাকলে, কিছু ডেটা সরবরাহকারী আপনার ফোন থেকে সেই পরিচিতিগুলিকে রপ্তানি করা মঞ্জুর নাও করতে পারে৷"</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"এখানে রপ্তানিযোগ্য কোনো পরিচিতি নেই৷ আপনার ফোনে পরিচিতি থাকলে, কিছু ডেটা সরবরাহকারী আপনার ফোন থেকে সেই পরিচিতিগুলিকে রপ্তানি করা মঞ্জুর নাও করতে পারে৷"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard কম্পোজার সঠিকভাবে শুরু করা হয়নি৷"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"রপ্তানি করা যায়নি"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"পরিচিতির তথ্য রপ্তানি করা যায়নি৷\nকারণ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

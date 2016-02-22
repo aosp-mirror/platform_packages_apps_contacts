@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Të gjitha kontaktet me numra telefoni"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Kontaktet e profilit të punës"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Shiko përditësimet"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Vetëm në telefon, i pasinkronizuar"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Vetëm në telefon, i pasinkronizuar"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Emri"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Pseudonimi"</string>
     <string name="full_name" msgid="885420216812981202">"Emri"</string>
@@ -191,7 +191,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Po eksporton të dhënat e kontaktit"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"Të dhënat e kontaktit po eksportohen."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Informacionet e bazës së të dhënave nuk mund të merreshin."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nuk ka kontakte që mund të eksportohen. Nëse ke kontakte në telefonin tënd, disa ofrues të të dhënave mund të mos lejojnë që kontaktet të eksportohen nga telefoni."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Nuk ka kontakte që mund të eksportohen. Nëse ke kontakte në telefonin tënd, disa ofrues të të dhënave mund të mos lejojnë që kontaktet të eksportohen nga telefoni."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Kompozitori i vCard nuk u nis si duhet."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Nuk mund të eksportoheshin"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Të dhënat e kontaktit nuk u eksportuan.\nArsyeja: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"فون نمبرز کے ساتھ سبھی رابطے"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"دفتری پروفائل رابطے"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"اپ ڈیٹس دیکھیں"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"صرف فون، غیر مطابقت پذیر"</string>
+    <string name="account_phone" msgid="6104157990869081962">"صرف فون، غیر مطابقت پذیر"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"نام"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"عرفی نام"</string>
     <string name="full_name" msgid="885420216812981202">"نام"</string>
@@ -185,16 +185,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"‏ایک یا مزید فائلیں درآمد نہیں ہوسکیں (%s)۔"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> کی برآمد پوری ہوگئی۔"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"رابطوں کی برآمدگی مکمل ہو گئی۔"</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"رابطوں کی برآمدگی مکمل ہو گئی، رابطوں کا اشتراک کرنے کیلئے اطلاع پر کلک کریں۔"</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"رابطوں کا اشتراک کرنے کے لئے تھپتھپائیں۔"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> کی برآمد منسوخ ہوگئی۔"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"رابطہ کا ڈیٹا برآمد کر رہا ہے"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"رابطہ ڈیٹا برآمد ہو رہا ہے۔"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ڈیٹابیس کی معلومات حاصل نہیں ہو سکی۔"</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"برآمد کرنے لائق کوئی رابطے نہیں ہیں۔ اگر آپ کے فون پر واقعی رابطے ہیں تو ممکن ہے کچھ ڈیٹا فراہم کنندگان رابطوں کو فون سے برآمد کیے جانے کی اجازت نہ دیتے ہوں۔"</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"برآمد کرنے لائق کوئی رابطے نہیں ہیں۔ اگر آپ کے فون پر واقعی رابطے ہیں تو ممکن ہے کچھ ڈیٹا فراہم کنندگان رابطوں کو فون سے برآمد کیے جانے کی اجازت نہ دیتے ہوں۔"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"وی کارڈ کمپوزر مناسب طریقے سے شروع نہیں ہوا۔"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"برآمد نہیں کیا جاسکا"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"رابطہ کا ڈیٹا برآمد نہیں ہوا۔\nوجہ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -208,8 +205,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"وی کارڈ درآمد کرنے کی درخواست مسترد ہوگئی تھی۔ بعد میں دوبارہ کوشش کریں۔"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> جلد ہی برآمد کی جائے گی۔"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"فائل تھوڑی دیر میں برآمد کر دی جائے گی۔"</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"رابطے جلد ہی برآمد ہو جائیں گے۔"</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"وی کارڈ برآمد کرنے کی درخواست مسترد ہوگئی تھی۔ بعد میں دوبارہ کوشش کریں۔"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"رابطہ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"وی کارڈ (کارڈز) کو مقامی عارضی اسٹوریج میں ذخیرہ کر رہا ہے۔ اصل درآمد جلد ہی شروع ہوگی۔"</string>

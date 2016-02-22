@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"All contacts with phone numbers"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"Work Profile contacts"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"View updates"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Phone-only, unsynced"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Phone-only, unsynced"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Name"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nickname"</string>
     <string name="full_name" msgid="885420216812981202">"Name"</string>
@@ -191,7 +191,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Exporting contact data"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"Contact data is being exported."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Couldn\'t get database information."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"There are no exportable contacts. If you do have contacts on your phone, some data providers may not allow the contacts to be exported from the phone."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"There are no exportable contacts. If you do have contacts on your phone, some data providers may not allow the contacts to be exported from the phone."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"The vCard composer didn\'t start properly."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Couldn\'t export"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"The contact data wasn\'t exported.\nReason: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>

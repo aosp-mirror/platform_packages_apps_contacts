@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"전화번호가 포함된 모든 연락처"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"직장 프로필 연락처"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"업데이트 보기"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"휴대전화 전용(동기화되지 않음)"</string>
+    <string name="account_phone" msgid="6104157990869081962">"휴대전화 전용(동기화되지 않음)"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"이름"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"닉네임"</string>
     <string name="full_name" msgid="885420216812981202">"이름"</string>
@@ -185,16 +185,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"하나 이상의 파일을 가져오지 못했습니다(%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> 내보내기 완료됨"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"연락처 내보내기 완료"</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"연락처 내보내기가 끝나면 알림을 클릭하여 연락처를 공유하세요."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"연락처를 공유하려면 탭하세요."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> 내보내기 취소됨"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"연락처 데이터 내보내기"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"연락처 데이터를 내보내는 중입니다."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"데이터베이스 정보를 가져오지 못했습니다."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 연락처가 있다면 일부 데이터 제공업체에서 연락처를 휴대전화에서 내보내지 못하도록 했기 때문일 수 있습니다."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"내보낼 수 있는 연락처가 없습니다. 휴대전화에 연락처가 있다면 일부 데이터 제공업체에서 연락처를 휴대전화에서 내보내지 못하도록 했기 때문일 수 있습니다."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard 작성기가 제대로 시작되지 않았습니다."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"내보내기 실패"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"주소록 데이터를 내보내지 못했습니다.\n(이유: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\')"</string>
@@ -208,8 +205,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard 가져오기 요청이 거부되었습니다. 나중에 다시 시도해 주세요."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g>을(를) 곧 내보냅니다."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"파일을 곧 내보냅니다."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"곧 연락처를 내보냅니다."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard 내보내기 요청이 거부되었습니다. 나중에 다시 시도해 주세요."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"연락처"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard를 로컬 임시 저장공간에 캐시하는 중입니다. 곧 가져오기가 시작됩니다."</string>

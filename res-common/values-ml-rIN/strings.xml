@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ഫോൺ നമ്പറുകളുള്ള എല്ലാ കോൺടാക്റ്റുകളും"</string>
     <string name="list_filter_phones_work" msgid="484839599760375521">"ഔദ്യോഗിക പ്രൊഫൈൽ കോണ്‍‌ടാക്റ്റുകള്‍‌"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"അപ്‌ഡേറ്റുകള്‍ കാണുക"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"ഫോണിൽ മാത്രം, സമന്വയിപ്പിക്കില്ല"</string>
+    <string name="account_phone" msgid="6104157990869081962">"ഫോണിൽ മാത്രം, സമന്വയിപ്പിക്കില്ല"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"പേര്"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"വിളിപ്പേര്"</string>
     <string name="full_name" msgid="885420216812981202">"പേര്"</string>
@@ -191,7 +191,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"കോൺടാക്റ്റ് ഡാറ്റ എക്‌സ്‌പോർട്ടുചെയ്യുന്നു"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"കോൺടാക്റ്റ് ഡാറ്റ എക്സ്പോർട്ടുചെയ്യുകയാണ്."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ഡാറ്റാബേസ് വിവരം നേടാനായില്ല."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"എക്‌സ്‌പോർട്ടുചെയ്യാനാകുന്ന കോൺടാക്റ്റുകളൊന്നുമില്ല. നിങ്ങളുടെ ഫോണിൽ കോൺടാക്റ്റുകളുണ്ടെങ്കിൽ, ഫോണിൽ നിന്നും കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യാൻ ചില സേവന ദാതാക്കൾ അനുവദിക്കാനിടയില്ല."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"എക്‌സ്‌പോർട്ടുചെയ്യാനാകുന്ന കോൺടാക്റ്റുകളൊന്നുമില്ല. നിങ്ങളുടെ ഫോണിൽ കോൺടാക്റ്റുകളുണ്ടെങ്കിൽ, ഫോണിൽ നിന്നും കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യാൻ ചില സേവന ദാതാക്കൾ അനുവദിക്കാനിടയില്ല."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard കമ്പോസർ ശരിയായി ആരംഭിച്ചില്ല."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"എക്‌സ്‌പോർട്ടുചെയ്യാനായില്ല"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"കോൺടാക്റ്റ് ഡാറ്റ എക്‌സ്‌പോർട്ടുചെയ്‌തില്ല.\nകാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
