@@ -13,13 +13,12 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:contacts="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_ab_search"
         android:title="@string/menu_search"
-        contacts:showAsAction="ifRoom" />
+        android:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_contacts_filter"

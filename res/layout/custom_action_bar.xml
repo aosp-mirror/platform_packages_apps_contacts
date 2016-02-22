@@ -28,7 +28,7 @@
         android:layout_height="1px" >
         <requestFocus />
     </View>
-    <android.support.v7.widget.SearchView
+    <SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
