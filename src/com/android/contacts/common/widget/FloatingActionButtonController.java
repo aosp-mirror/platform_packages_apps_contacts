@@ -24,9 +24,8 @@ import android.view.animation.Interpolator;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.android.contacts.common.R;
-import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.util.ViewUtil;
+import com.android.contacts.common.R;
 import com.android.phone.common.animation.AnimUtils;
 
 /**
@@ -51,14 +50,8 @@ public class FloatingActionButtonController {
 
     public FloatingActionButtonController(Activity activity, View container, ImageButton button) {
         Resources resources = activity.getResources();
-        if (CompatUtils.isLollipopCompatible()) {
-            mFabInterpolator = AnimationUtils.loadInterpolator(activity,
-                    android.R.interpolator.fast_out_slow_in);
-        } else {
-            // Use linear to avoid crash on Kitkat since fast_out_slow_in was added in API level 21
-            mFabInterpolator = AnimationUtils.loadInterpolator(activity,
-                    android.R.interpolator.linear);
-        }
+        mFabInterpolator = AnimationUtils.loadInterpolator(activity,
+                android.R.interpolator.fast_out_slow_in);
         mFloatingActionButtonWidth = resources.getDimensionPixelSize(
                 R.dimen.floating_action_button_width);
         mFloatingActionButtonMarginRight = resources.getDimensionPixelOffset(
