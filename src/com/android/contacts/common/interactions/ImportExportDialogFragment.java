@@ -188,40 +188,31 @@ public class ImportExportDialogFragment extends DialogFragment
             public void onClick(DialogInterface dialog, int which) {
                 boolean dismissDialog;
                 final int resId = adapter.getItem(which).mChoiceResourceId;
-                switch (resId) {
-                    case R.string.import_from_sim:
-                    case R.string.import_from_vcf_file: {
+                if (resId == R.string.import_from_sim || resId == R.string.import_from_vcf_file) {
                         dismissDialog = handleImportRequest(resId,
                                 adapter.getItem(which).mSubscriptionId);
-                        break;
-                    }
-                    case R.string.export_to_vcf_file: {
-                        dismissDialog = true;
+                } else if (resId == R.string.export_to_vcf_file) {
+                    dismissDialog = true;
+                    final Intent exportIntent = new Intent(
+                            getActivity(), ExportVCardActivity.class);
+                    exportIntent.putExtra(VCardCommonArguments.ARG_CALLING_ACTIVITY,
+                            callingActivity);
+                    getActivity().startActivity(exportIntent);
+                } else if (resId == R.string.share_contacts) {
+                    dismissDialog = true;
+                    if (mExportMode == EXPORT_MODE_FAVORITES) {
+                        doShareFavoriteContacts();
+                    } else { // EXPORT_MODE_ALL_CONTACTS
                         final Intent exportIntent = new Intent(
-                                getActivity(), ExportVCardActivity.class);
+                                getActivity(), ShareVCardActivity.class);
                         exportIntent.putExtra(VCardCommonArguments.ARG_CALLING_ACTIVITY,
                                 callingActivity);
                         getActivity().startActivity(exportIntent);
-                        break;
                     }
-                    case R.string.share_contacts: {
-                        dismissDialog = true;
-                        if (mExportMode == EXPORT_MODE_FAVORITES) {
-                            doShareFavoriteContacts();
-                        } else { // EXPORT_MODE_ALL_CONTACTS
-                            final Intent exportIntent = new Intent(
-                                    getActivity(), ShareVCardActivity.class);
-                            exportIntent.putExtra(VCardCommonArguments.ARG_CALLING_ACTIVITY,
-                                    callingActivity);
-                            getActivity().startActivity(exportIntent);
-                        }
-                        break;
-                    }
-                    default: {
-                        dismissDialog = true;
-                        Log.e(TAG, "Unexpected resource: "
-                                + getActivity().getResources().getResourceEntryName(resId));
-                    }
+                } else {
+                    dismissDialog = true;
+                    Log.e(TAG, "Unexpected resource: "
+                            + getActivity().getResources().getResourceEntryName(resId));
                 }
                 if (dismissDialog) {
                     dialog.dismiss();
