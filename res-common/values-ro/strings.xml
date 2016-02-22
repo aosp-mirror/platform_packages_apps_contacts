@@ -28,7 +28,7 @@
     <string name="call_pager" msgid="3038080882899955112">"Apelați numărul de pager"</string>
     <string name="call_other" msgid="4472141328347894937">"Apelați"</string>
     <string name="call_callback" msgid="687494744634190411">"Apelați un număr cu apelare inversă"</string>
-    <string name="call_car" msgid="9078083109758282133">"Apelați numărul de maşină"</string>
+    <string name="call_car" msgid="9078083109758282133">"Apelați numărul de mașină"</string>
     <string name="call_company_main" msgid="8768047233970315359">"Apelați numărul principal al companiei"</string>
     <string name="call_isdn" msgid="3342482563847537747">"Apelați ISDN"</string>
     <string name="call_main" msgid="4640261071249938558">"Apelați numărul principal"</string>
@@ -49,7 +49,7 @@
     <string name="sms_pager" msgid="5664381349583724906">"Trimiteți un mesaj text către un număr de pager"</string>
     <string name="sms_other" msgid="910895193552957097">"Trimiteți un mesaj text"</string>
     <string name="sms_callback" msgid="728414485478941361">"Trimiteți un mesaj text către un număr cu apelare inversă"</string>
-    <string name="sms_car" msgid="8543669230270954512">"Trimiteți un mesaj text către un număr de telefon de maşină"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Trimiteți un mesaj text către un număr de telefon de mașină"</string>
     <string name="sms_company_main" msgid="5441902128445061862">"Trimiteți un mesaj text către numărul principal al companiei"</string>
     <string name="sms_isdn" msgid="7142483128948042667">"Trimiteți un mesaj text către un număr ISDN"</string>
     <string name="sms_main" msgid="6815987840926184815">"Trimiteți un mesaj text către numărul principal"</string>
@@ -62,9 +62,9 @@
     <string name="sms_assistant" msgid="2677586547377136683">"Trimiteți un mesaj text către <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Trimiteți un mesaj text către un număr MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Inițiați un apel video"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Ștergeţi pers. frecvent contactate?"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Ștergeți pers. frecvent contactate?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Veți șterge lista persoanelor contactate frecvent din aplicațiile Agendă și Telefon și veți forța aplicațiile de e-mail să vă învețe preferințele pentru adrese de la zero."</string>
-    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Se şterg pers. frecvent contactate…"</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Se șterg pers. frecvent contactate…"</string>
     <string name="status_available" msgid="4832569677396634846">"Disponibil(ă)"</string>
     <string name="status_away" msgid="6267905184545881094">"Plecat(ă)"</string>
     <string name="status_busy" msgid="7111912905211403545">"Ocupat(ă)"</string>
@@ -112,7 +112,7 @@
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Relație"</string>
     <string name="eventLabelsGroup" msgid="4801419345682462171">"Dată specială"</string>
     <string name="sms" msgid="8086289395154598654">"Mesaj text"</string>
-    <string name="postal_address" msgid="7692926530081579786">"Adresă poştală"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Adresă poștală"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Companie"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Titlu"</string>
     <string name="label_notes" msgid="3997277594846722699">"Note"</string>
@@ -126,25 +126,25 @@
     <string name="email_custom" msgid="5777583741581538870">"Trimiteți un e-mail la <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="email" msgid="5624424151176351591">"Trimiteți un e-mail"</string>
     <string name="postal_street" msgid="881349814077356134">"Stradă"</string>
-    <string name="postal_pobox" msgid="1799978742074885091">"Căsuţă poştală"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Căsuță poștală"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"Cartier"</string>
-    <string name="postal_city" msgid="3173008531169519309">"Oraş"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Oraș"</string>
     <string name="postal_region" msgid="1695206048198921115">"Stat"</string>
-    <string name="postal_postcode" msgid="6542806670034753265">"Cod poştal"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Cod poștal"</string>
     <string name="postal_country" msgid="3988452247038791892">"Țară"</string>
     <string name="map_home" msgid="1221397355014741634">"Vizualizați adresa de domiciliu"</string>
     <string name="map_work" msgid="9015981646907637207">"Vizualizați adresa de serviciu"</string>
-    <string name="map_other" msgid="55098598855607997">"Vizualizați adresa poştală"</string>
+    <string name="map_other" msgid="55098598855607997">"Vizualizați adresa poștală"</string>
     <string name="map_custom" msgid="4943554530347163288">"Vizualizați adresa <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="chat_aim" msgid="6479001490307452172">"Conversaţi prin AIM"</string>
-    <string name="chat_msn" msgid="627481952525245054">"Conversaţi prin Windows Live"</string>
-    <string name="chat_yahoo" msgid="5542489454092719897">"Conversaţi prin Yahoo"</string>
-    <string name="chat_skype" msgid="3145166404699830256">"Conversaţi prin Skype"</string>
-    <string name="chat_qq" msgid="2811762660890755082">"Conversaţi prin QQ"</string>
-    <string name="chat_gtalk" msgid="6043734883347741789">"Conversaţi prin Google Talk"</string>
-    <string name="chat_icq" msgid="7538190395602030726">"Conversaţi prin ICQ"</string>
-    <string name="chat_jabber" msgid="4525546665986350869">"Conversaţi prin Jabber"</string>
-    <string name="chat" msgid="6297650784873558837">"Conversaţi prin chat"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Conversați prin AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Conversați prin Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Conversați prin Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Conversați prin Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Conversați prin QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Conversați prin Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Conversați prin ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Conversați prin Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Conversați prin chat"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"ștergeți"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Extindeți sau restrângeți câmpurile pentru nume"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Extindeți sau restrângeți câmpurile pentru nume fonetice"</string>
