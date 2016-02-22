@@ -27,7 +27,6 @@ import android.os.Bundle;
 import android.os.Trace;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +40,12 @@ import java.util.Arrays;
  */
 public abstract class RequestPermissionsActivityBase extends Activity
         implements ActivityCompat.OnRequestPermissionsResultCallback {
+
     public static final String PREVIOUS_ACTIVITY_INTENT = "previous_intent";
+
+    /** Whether the permissions activity was already started. */
+    protected static final String STARTED_PERMISSIONS_ACTIVITY = "started_permissions_activity";
+
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
     /**
@@ -56,7 +60,7 @@ public abstract class RequestPermissionsActivityBase extends Activity
      */
     protected abstract String[] getDesiredPermissions();
 
-    private Intent mPreviousActivityIntent;
+    protected Intent mPreviousActivityIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +83,9 @@ public abstract class RequestPermissionsActivityBase extends Activity
      */
     protected static boolean startPermissionActivity(Activity activity,
             String[] requiredPermissions, Class<?> newActivityClass) {
-        if (!RequestPermissionsActivity.hasPermissions(activity, requiredPermissions)) {
+        if (!hasPermissions(activity, requiredPermissions)) {
             final Intent intent = new Intent(activity,  newActivityClass);
+            activity.getIntent().putExtra(STARTED_PERMISSIONS_ACTIVITY, true);
             intent.putExtra(PREVIOUS_ACTIVITY_INTENT, activity.getIntent());
             activity.startActivity(intent);
             activity.finish();
@@ -96,22 +101,7 @@ public abstract class RequestPermissionsActivityBase extends Activity
         return false;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[],
-            int[] grantResults) {
-        if (permissions != null && permissions.length > 0
-                && isAllGranted(permissions, grantResults)) {
-            mPreviousActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(mPreviousActivityIntent);
-            finish();
-            overridePendingTransition(0, 0);
-        } else {
-            Toast.makeText(this, R.string.missing_required_permission, Toast.LENGTH_SHORT).show();
-            finish();
-        }
-    }
-
-    private boolean isAllGranted(String permissions[], int[] grantResult) {
+    protected boolean isAllGranted(String permissions[], int[] grantResult) {
         for (int i = 0; i < permissions.length; i++) {
             if (grantResult[i] != PackageManager.PERMISSION_GRANTED
                     && isPermissionRequired(permissions[i])) {
