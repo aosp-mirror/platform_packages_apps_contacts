@@ -37,7 +37,6 @@ import android.widget.TextView;
 
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
-import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.DirectoryCompat;
@@ -131,7 +130,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         final ContactListItemView view = (ContactListItemView) itemView;
         view.setIsSectionHeaderEnabled(isSectionHeaderDisplayEnabled());
-        bindWorkProfileIcon(view, partition);
     }
 
     @Override
@@ -618,13 +616,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             view.setBackground(null);
         }
         return view;
-    }
-
-    protected void bindWorkProfileIcon(final ContactListItemView view, int partition) {
-        final DirectoryPartition directory = (DirectoryPartition) getPartition(partition);
-        final long directoryId = directory.getDirectoryId();
-        final long userType = ContactsUtils.determineUserType(directoryId, null);
-        view.setWorkProfileIconEnabled(userType == ContactsUtils.USER_TYPE_WORK);
     }
 
     @Override
