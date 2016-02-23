@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Đã sao chép văn bản"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Sao chép vào khay nhớ tạm"</string>
     <string name="call_custom" msgid="2786306789889210756">"Gọi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Gọi số điện thoại nhà riêng"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Gọi số điện thoại di động"</string>
@@ -36,7 +37,7 @@
     <string name="call_telex" msgid="2909886619224843563">"Gọi số telex"</string>
     <string name="call_tty_tdd" msgid="6704940636171078852">"Gọi số điện thoại TTY/TDD"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"Gọi số điện thoại di động tại cơ quan"</string>
-    <string name="call_work_pager" msgid="3036932765279753793">"Gọi số máy nhắn tin tại cơ quan"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Gọi số máy nhắn tin cơ quan"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Gọi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Gọi MMS"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Nhắn tin tới <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -57,7 +58,7 @@
     <string name="sms_telex" msgid="5469333785775443999">"Nhắn tin tới số telex"</string>
     <string name="sms_tty_tdd" msgid="5057886576150816002">"Nhắn tới số TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="8426872094268475047">"Nhắn tới số điện thoại di động tại cơ quan"</string>
-    <string name="sms_work_pager" msgid="499303540738557836">"Nhắn tin tới số máy nhắn tin tại cơ quan"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Nhắn tin tới số máy nhắn tin cơ quan"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Nhắn tin tới <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Nhắn tin tới số điện thoại MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Gọi điện video"</string>
@@ -87,7 +88,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Tất cả người liên hệ có số điện thoại"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Xem thông tin cập nhật"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Chỉ trên máy tính bảng, chưa được đồng bộ hóa"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Chỉ trên điện thoại, chưa đồng bộ hóa"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Chỉ trên điện thoại, ko đồng bộ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Tên"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Biệt hiệu"</string>
     <string name="full_name" msgid="885420216812981202">"Tên"</string>
@@ -163,7 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Nhập từ thẻ SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Nhập từ SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Nhập từ SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Nhập từ bộ nhớ"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Nhập từ tệp .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Hủy nhập <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Hủy xuất <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Không thể nhập/xuất vCard"</string>
@@ -171,6 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Không thể mở \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Không thể chạy trình xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Không thể xuất liên hệ nào."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Bạn đã tắt quyền được yêu cầu."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Đã xảy ra lỗi khi xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Tên tệp yêu cầu quá dài (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Quá nhiều tệp vCard trong bộ nhớ."</string>
@@ -182,6 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Không thể thu thập thông tin meta của (các) tệp vCard cụ thể."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Không thể nhập một hoặc nhiều tệp (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Đã xuất xong <xliff:g id="FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Đã xuất xong danh bạ."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Quá trình xuất <xliff:g id="FILENAME">%s</xliff:g> bị hủy."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Đang xuất dữ liệu liên hệ"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Dữ liệu liên hệ của bạn đang được xuất sang: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -191,9 +194,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"Trình soạn vCard không khởi động đúng."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Không thể xuất"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Không xuất được dữ liệu liên hệ.\nLý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Không tìm thấy bộ nhớ nào."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Không tìm thấy thẻ SD nào."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Danh bạ của bạn sẽ được xuất sang tệp: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Đang nhập <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Không thể đọc dữ liệu vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Thao tác đọc dữ liệu vCard bị hủy"</string>
@@ -203,6 +203,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Tệp sẽ sớm được nhập."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Yêu cầu nhập vCard bị từ chối. Hãy thử lại sau."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> sẽ sớm được xuất."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Tệp sẽ sớm được xuất."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Yêu cầu xuất vCard bị từ chối. Hãy thử lại sau."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"liên hệ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Đang lưu vào bộ nhớ cache các tệp vCard sẽ được nhập vào bộ nhớ cục bộ tạm thời. Thao tác nhập thực sự sẽ sớm bắt đầu."</string>
@@ -211,17 +212,11 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Không tìm thấy tệp vCard trên thẻ SD."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"L.h nhận qua NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Xuất danh bạ?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"Chọn tệp vCard"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"Nhập một tệp vCard"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Nhập nhiều tệp vCard"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"Nhập tất cả tệp vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Đang tìm kiếm dữ liệu vCard trong bộ nhớ..."</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Đang tìm kiếm dữ liệu vCard trên thẻ SD..."</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Đang lưu vào bộ nhớ cache"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Không thể quét bộ nhớ. (Lý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Không thể quét thẻ SD. (Lý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Đang nhập <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Xuất sang bộ nhớ"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Xuất sang tệp .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sắp xếp theo"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Tên"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Họ"</string>
@@ -229,18 +224,19 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Tên trước"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Họ trước"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Chia sẻ liên hệ hiển thị"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Không chia sẻ được liên hệ được hiển thị."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Nhập/xuất danh bạ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Nhập danh bạ"</string>
     <string name="share_error" msgid="665756457151793108">"Không thể chia sẻ liên hệ này."</string>
     <string name="menu_search" msgid="7464453023659824700">"Tìm kiếm"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Danh bạ để hiển thị"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"DS liên hệ để hiển thị"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Xác định chế độ xem tùy chỉnh"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Tìm địa chỉ liên hệ"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Danh bạ hiển thị"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Danh bạ hiển thị"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Xác định kiểu xem tùy chỉnh"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Tìm liên hệ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Mục yêu thích"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Không có địa chỉ liên hệ nào."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Không có địa chỉ liên hệ nào hiển thị."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Không có địa chỉ liên hệ yêu thích nào."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Không có liên hệ yêu thích nào."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Không có địa chỉ liên hệ nào trong <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Xóa DS liên hệ thường xuyên"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Chọn thẻ SIM"</string>
@@ -254,4 +250,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Tài khoản"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Luôn sử dụng SIM này để gọi"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Gọi bằng"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Gọi điện kèm theo ghi chú"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Nhập ghi chú để gửi kèm cuộc gọi..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"GỬI VÀ GỌI"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>

@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"लेख की प्रतिलिपि बनाई गई"</string>
+    <string name="copy_text" msgid="3424081789297978355">"क्‍लिपबोर्ड पर कॉपी बनाएं"</string>
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> पर कॉल करें"</string>
     <string name="call_home" msgid="1479549630992276827">"घर के फ़ोन नंबर पर कॉल करें"</string>
     <string name="call_mobile" msgid="8618334085824709009">"मोबाइल पर कॉल करें"</string>
@@ -163,7 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"सिम कार्ड से आयात करें"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> सिम से आयात करें"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> सिम से आयात करें"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"मेमोरी से आयात करें"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">".vcf फ़ाइल से आयात करें"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> का आयात रहने दें?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> का निर्यात रहने दें?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard आयात/निर्यात रद्द नहीं हो सका"</string>
@@ -171,6 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" नहीं खोली जा सकी: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"निर्यातकर्ता प्रारंभ नहीं किया जा सका: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"कोई भी निर्यात-योग्‍य संपर्क नहीं है."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"आपने एक आवश्यक अनुमति को अक्षम कर दिया है."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"निर्यात करते समय कोई त्रुटि हुई: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"आवश्‍यक फ़ाइल नाम बहुत बड़ा है (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"मेमोरी में बहुत अधिक vCard फ़ाइलें हैं."</string>
@@ -182,6 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"दी गई vCard फ़ाइल (फ़ाइलों) की मेटा जानकारी एकत्र नहीं की जा सकी."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"एक या अधिक फ़ाइलें आयात नहीं की जा सकीं (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> का निर्यात पूरा हो गया."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"संपर्कों का निर्यात किया जाना समाप्त हो गया."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> को निर्यात करना रद्द कर दिया गया."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"संपर्क डेटा निर्यात हो रहा है"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"आपका संपर्क डेटा इस पर निर्यात किया जा रहा है: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -191,9 +194,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard कंपोज़र ठीक से प्रारंभ नहीं हुआ."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"निर्यात नहीं कर सका"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"संपर्क डेटा निर्या‍त नहीं किया गया था.\nकारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"कोई मेमोरी नहीं मिला."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"कोई SD कार्ड नहीं मिला."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"आपकी संपर्क सूची इस फ़ाइल में निर्यात कर दी जाएगी: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> आयात कर रहा है"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard डेटा नहीं पढ़ा जा सका"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard डेटा को पढ़ना रद्द कर दिया गया"</string>
@@ -203,6 +203,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"फ़ाइल शीघ्र ही आयात की जाएगी."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard आयात अनुरोध अस्‍वीकार हो गया था. बाद में पुन: प्रयास करें."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> को जल्‍दी ही निर्यात किया जाएगा."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"फ़ाइल शीघ्र ही निर्यात की जाएगी."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard निर्यात अनुरोध अस्‍वीकार हो गया था. बाद में पुन: प्रयास करें."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"संपर्क"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard को स्‍थानीय अस्‍थायी मेमोरी में संचित कर रहा है. वास्‍तविक आयात जल्‍दी ही प्रारंभ होगा."</string>
@@ -211,17 +212,11 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD कार्ड पर कोई vCard फ़ाइल नहीं मिली."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC पर प्राप्त संपर्क"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"संपर्कों को निर्यात करें?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"vCard फ़ाइल चुनें"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"एक vCard फ़ाइल आयात करें"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"एकाधिक vCard फ़ाइलें आयात करें"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"सभी vCard फ़ाइलें आयात करें"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"मेमोरी में vCard डेटा खोज रहा है..."</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SD कार्ड पर vCard डेटा खोज रहा है…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"संचय कर रहा है"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"मेमोरी स्‍कैन नहीं किया जा सका. (कारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD कार्ड स्कैन नहीं किया जा सका. (कारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> आयात कर रहा है: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"मेमोरी में निर्यात करें"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf फाइल में निर्यात करें"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"इससे क्रमित करें"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"नाम"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"उपनाम"</string>
@@ -229,6 +224,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाम पहले"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"उपनाम पहले"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"दिखाई देने वाले संपर्क साझा करें"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"दृश्‍यमान संपर्क साझा करने में विफल रहा."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"संपर्कों को आयात/निर्यात करें"</string>
     <string name="dialog_import" msgid="5177004290082451296">"संपर्कों को आयात करें"</string>
     <string name="share_error" msgid="665756457151793108">"यह संपर्क साझा नहीं किया जा सकता."</string>
@@ -254,4 +250,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"खाता"</string>
     <string name="set_default_account" msgid="3865970860434642695">"कॉल के लिए हमेशा इसका उपयोग करें"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"इस सिम से कॉल करें"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"नोट के साथ कॉल करें"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"कॉल के साथ भेजने के लिए नोट लिखें ..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"भेजें और कॉल करें"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>

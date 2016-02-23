@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"உரை நகலெடுக்கப்பட்டது"</string>
+    <string name="copy_text" msgid="3424081789297978355">"கிளிப்போர்டுக்கு நகலெடு"</string>
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> மொபைல் எண்ணில் அழை"</string>
     <string name="call_home" msgid="1479549630992276827">"வீட்டு தொலைபேசி எண்ணில் அழை"</string>
     <string name="call_mobile" msgid="8618334085824709009">"மொபைல் எண்ணில் அழை"</string>
@@ -96,7 +97,7 @@
     <string name="name_prefix" msgid="8219879405071462309">"பெயரின் முன்னொட்டு"</string>
     <string name="name_middle" msgid="3951610314424632183">"பெயரின் நடுப்பகுதி"</string>
     <string name="name_suffix" msgid="5436984808550075931">"பெயரின் பின்னொட்டு"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"ஒலிப்புமுறைப் பெயர்"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"ஒலிப்புமுறை பெயர்"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"ஒலிப்புமுறை முதல் பெயர்"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"ஒலிப்புமுறையில் பெயரின் நடுப்பகுதி"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"ஒலிப்புமுறை இறுதிப் பெயர்"</string>
@@ -105,7 +106,7 @@
     <string name="postalLabelsGroup" msgid="3727124282406728557">"முகவரி"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"நிறுவனம்"</string>
-    <string name="relationLabelsGroup" msgid="3585294036166325520">"தொடர்புமுறை"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"உறவுமுறை"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"முக்கிய தேதிகள்"</string>
     <string name="sms" msgid="8086289395154598654">"உரைச் செய்தி"</string>
     <string name="postal_address" msgid="7692926530081579786">"முகவரி"</string>
@@ -163,7 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"சிம் கார்டிலிருந்து இறக்குமதிசெய்"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> என்ற SIM இல் இருந்து இறக்குமதிசெய்"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"<xliff:g id="SIM_NAME">%1$s</xliff:g> என்ற SIM இல் இருந்து இறக்குமதிசெய்"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"சேமிப்பிடத்திலிருந்து இறக்குமதிசெய்"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">".vcf கோப்பிலிருந்து இறக்கு"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> இன் இறக்குமதியை ரத்துசெய்யவா?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> இன் ஏற்றுமதியை ரத்துசெய்யவா?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"vCard இன் இறக்குமதி/ஏற்றுமதியை ரத்துசெய்ய முடியவில்லை"</string>
@@ -171,6 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ஐத் திறக்க முடியவில்லை: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"ஏற்றுமதியைத் தொடங்க முடியவில்லை: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ஏற்றுமதி செய்யக்கூடிய தொடர்பு இல்லை."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"தேவைப்படும் அனுமதியை முடக்கியுள்ளீர்கள்."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"ஏற்றுமதி செய்யும்போது பிழை: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"தேவையான கோப்பின் பெயர் மிகவும் நீளமாக உள்ளது (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"சேமிப்பிடத்தில் அதிகமான vCard கோப்புகள் உள்ளன."</string>
@@ -182,6 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"வழங்கப்பட்ட vCard கோப்பின்(களின்) மெட்டா தகவலைச் சேகரிக்க முடியவில்லை."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ஒன்று அல்லது அதற்கு மேற்பட்ட கோப்புகளை ஏற்றுமதி செய்ய முடியவில்லை (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> ஐ ஏற்றுமதி செய்வது முடிந்தது."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"தொடர்புகளை ஏற்றுவது முடிந்தது."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> ஐ ஏற்றுமதி செய்வது ரத்துசெய்யப்பட்டது."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"தொடர்பு தரவை ஏற்றுமதி செய்கிறது"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"தொடர்பின் தரவு ஏற்றுமதி செய்யப்படுகிறது: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -191,9 +194,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard தொகுப்பான் முறையாகத் தொடங்கவில்லை."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ஏற்றுமதி செய்ய முடியவில்லை"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"தொடர்பு தரவு ஏற்றுமதி செய்யப்படவில்லை.\nகாரணம்: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"சேமிப்பிடம் இல்லை."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD கார்டு கண்டறியப்படவில்லை."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"உங்கள் தொடர்பு பட்டியல் பின்வரும் கோப்பிற்கு ஏற்றுமதி செய்யப்படும்: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> ஐ இறக்குமதி செய்கிறது"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard தரவைப் படிக்க முடியவில்லை"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard தரவைப் படிப்பது ரத்துசெய்யப்பட்டது"</string>
@@ -203,6 +203,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"கோப்பு விரைவில் இறக்குமதி செய்யப்படும்."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard இன் இறக்குமதி கோரிக்கை நிராகரிக்கப்பட்டது. பிறகு முயற்சிக்கவும்."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> விரைவில் ஏற்றுமதி செய்யப்படும்."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"கோப்பு விரைவில் ஏற்றப்படும்."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard இன் ஏற்றுமதி கோரிக்கை நிராகரிக்கப்பட்டது. பிறகு முயற்சிக்கவும்."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"தொடர்பு"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(களை) ஐ அகச் சேமிப்பிடத்தில் தற்காலிகமாகச் சேமிக்கிறது. அசல் இறக்குமதி உடனடியாக தொடங்கப்படும்."</string>
@@ -210,18 +211,12 @@
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"சேமிப்பிடத்தில் vCard கோப்பு இல்லை."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD கார்டில் vCard கோப்பு இல்லை."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC வழியாக தொடர்பு பெறப்பட்டது"</string>
-    <string name="confirm_export_title" msgid="3240899428149018226">"தொடர்புகளை ஏற்றுமதி செய்யவா?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"vCard கோப்பைத் தேர்வுசெய்யவும்"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"ஒரு vCard கோப்பை இறக்குமதிசெய்"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"பல vCard கோப்புகளை இறக்குமதிசெய்"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"எல்லா vCard கோப்புகளையும் இறக்குமதி செய்யவும்"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"சேமிப்பிடத்தில் உள்ள vCard தரவைத் தேடுகிறது…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SD கார்டில் உள்ள vCard தரவைத் தேடுகிறது…"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"தொடர்புகளை இறக்கவா?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"தற்காலிகமாகச் சேமித்தல்"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"சேமிப்பிடம் ஸ்கேன் செய்யப்படவில்லை. (காரணம்: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD கார்டு ஸ்கேன் செய்யப்படவில்லை. (காரணம்: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ஐ இறக்குமதி செய்கிறது: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"சேமிப்பிடத்திற்கு ஏற்றுமதி செய்"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf கோப்பிற்கு ஏற்று"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"வரிசைப்படுத்து"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"முதல் பெயர்"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"இறுதிப் பெயர்"</string>
@@ -229,6 +224,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"முதல் பெயர் முதலில்"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"இறுதிப் பெயர் முதலில்"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"தெரியும் தொடர்புகளைப் பகிர்"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"தெரியும் தொடர்புகளைப் பகிர்வதில் தோல்வி."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"தொடர்புகளை இறக்கு/ஏற்று"</string>
     <string name="dialog_import" msgid="5177004290082451296">"தொடர்புகளை இறக்குமதி செய்தல்"</string>
     <string name="share_error" msgid="665756457151793108">"தொடர்பைப் பகிர முடியவில்லை."</string>
@@ -250,8 +246,13 @@
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> வழியாக <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"தேடுவதை நிறுத்து"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"தேடலை அழி"</string>
-    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"தொடர்பின் காட்சி விருப்பங்கள்"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"தொடர்பின் காட்சி விருப்பத்தேர்வு"</string>
     <string name="select_account_dialog_title" msgid="5509088895267310568">"கணக்கு"</string>
     <string name="set_default_account" msgid="3865970860434642695">"அழைப்புகளுக்கு எப்போதும் இதைப் பயன்படுத்து"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"இதன் மூலம் அழை"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"குறிப்புடன் அழைக்கவும்"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"அழைப்புடன் சேர்த்து அனுப்ப, குறிப்பை உள்ளிடவும்..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"அனுப்பு &amp; அழை"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>

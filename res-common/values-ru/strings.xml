@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Текст скопирован"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Копировать в буфер обмена"</string>
     <string name="call_custom" msgid="2786306789889210756">"Вызов:<xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Домашний"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Мобильный"</string>
@@ -165,7 +166,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Импорт с SIM-карты"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Импорт с SIM-карты <xliff:g id="SIM_NAME">^1</xliff:g> (<xliff:g id="SIM_NUMBER">^2</xliff:g>)"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Импорт с SIM-карты <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Импорт с накопителя"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Импортировать из файла VCF"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Отменить импорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\"?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Отменить экспорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\"?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Не удалось отменить импорт/экспорт vCard"</string>
@@ -173,6 +174,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Не удалось открыть файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\". <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Не удалось запустить инструмент экспорта. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Нет контактов для экспорта."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Отсутствует необходимое разрешение."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Произошла ошибка экспорта. <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Слишком длинное название файла (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Слишком много файлов vCard на накопителе."</string>
@@ -184,6 +186,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Не удалось собрать метаданные файлов vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Не удалось импортировать один или несколько файлов (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Экспорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\" завершен"</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Экспорт контактов завершен."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Экспорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\" отменен"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Экспорт данных контакта"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Данные экспортируются в файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\"."</string>
@@ -193,9 +196,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"Сбой при запуске редактора vCard."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Ошибка экспорта"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Не удалось экспортировать данные.\nПричина: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Накопитель не обнаружен"</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD-карта не обнаружена"</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Список контактов будет экспортирован в файл \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Импорт файла \"<xliff:g id="NAME">%s</xliff:g>\"…"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Данные файла vCard не прочитаны"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Чтение данных vCard отменено"</string>
@@ -205,6 +205,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Импорт файла скоро начнется."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Запрос на импорт данных vCard отклонен. Повторите попытку позже."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Экспорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\" скоро начнется."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Файл будет экспортирован в ближайшее время."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Запрос на экспорт данных vCard отклонен. Повторите попытку позже."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Выполняется кеширование файлов vCard в локальное временное хранилище, после чего начнется импорт."</string>
@@ -213,31 +214,26 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"На SD-карте нет файлов vCard."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Получено по NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Экспортировать контакты?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"Выберите файл vCard"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"Импорт одного файла vCard"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Импорт нескольких файлов vCard"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"Импорт всех файлов vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Поиск данных vCard на накопителе…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Поиск данных vCard на SD-карте…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кеширование…"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Не удалось сканировать накопитель. <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Не удалось сканировать SD-карту. <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>..."</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Экспорт на накопитель"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Экспортировать в файл VCF"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортировка"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Имя"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Фамилия"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"По имени"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"По фамилии"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Формат имени"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Сначала имя"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Сначала фамилия"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Передать видимые контакты"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Не удалось поделиться видимыми контактами."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Импорт/экспорт контактов"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Импорт контактов"</string>
     <string name="share_error" msgid="665756457151793108">"Не удалось передать данные"</string>
     <string name="menu_search" msgid="7464453023659824700">"Поиск"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Фильтр контактов"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Фильтр контактов"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Выберите группы контактов"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Выберите группы"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Поиск контактов"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Избранное"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Нет контактов"</string>
@@ -256,4 +252,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Аккаунт"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Всегда использовать для звонков"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Аккаунт для звонка"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Написать сообщение абоненту"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Введите текст…"</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"ОТПРАВИТЬ СООБЩЕНИЕ И ПОЗВОНИТЬ"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>

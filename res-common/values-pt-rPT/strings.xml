@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Texto copiado"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Copiar para a área de transferência"</string>
     <string name="call_custom" msgid="2786306789889210756">"Telefonar para <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Telefonar para casa"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Telefonar para telemóvel"</string>
@@ -93,12 +94,12 @@
     <string name="full_name" msgid="885420216812981202">"Nome"</string>
     <string name="name_given" msgid="4153709115654909377">"Nome próprio"</string>
     <string name="name_family" msgid="5317387657540738981">"Apelido"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Título académico ou profissional"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Prefixo do nome"</string>
     <string name="name_middle" msgid="3951610314424632183">"Primeiro apelido"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Título honorífico ou eclesiástico"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Sufixo do nome"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Nome (fonética)"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Nome próprio fonético"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Primeiro apelido (fonética)"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Nome do meio fonético"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Apelido fonético"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefone"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Email"</string>
@@ -163,7 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Importar do cartão SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importar do SIM <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importar do SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importar do armazenamento"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importar de ficheiro .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Cancelar a importação de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Cancelar a exportação de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Imposs. cancel. import./export. do vCard"</string>
@@ -171,6 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Não foi possível abrir \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Não foi possível iniciar o exportador: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Não existe um contacto exportável."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Desativou uma autorização obrigatória."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Ocorreu um erro durante a exportação: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Nome de ficheiro demasiado longo (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Existem demasiados ficheiros vCard no armazenamento."</string>
@@ -182,6 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Não foi possível recolher meta informações de determinado(s) ficheiro(s) vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Não foi possível importar um ou mais ficheiros (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"A exportação de <xliff:g id="FILENAME">%s</xliff:g> terminou."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Exportação de contactos concluída."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"A exportação de <xliff:g id="FILENAME">%s</xliff:g> foi cancelada."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"A exportar dados do contacto"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Os dados de contactos estão a ser exportados para: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -191,9 +194,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"O compositor vCard não iniciou corretamente."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Impossível exportar"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Os dados de contactos não foram exportados.\nMotivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Nenhum armazen. encontrado."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Não foi encontrado nenhum cartão SD."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"A sua lista de contactos será exportada para o ficheiro: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"A importar <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Não foi possível ler dados do vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"A leitura de dados vCard foi cancelada"</string>
@@ -203,6 +203,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"O ficheiro será importado em breve."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"O pedido de importação do vCard foi rejeitado. Tente novamente mais tarde."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"O <xliff:g id="FILENAME">%s</xliff:g> será exportado em breve."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"O ficheiro é exportado em breve."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"O pedido de exportação do vCard foi rejeitado. Tente novamente mais tarde."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contacto"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"A colocar vCard(s) em cache no armazenamento temporário local. A importação efetiva começará brevemente."</string>
@@ -211,17 +212,11 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Não foi encontrado nenhum ficheiro vCard no cartão SD."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Contacto recebido através de NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Exportar contactos?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"Escolher fich. vCard"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"Importar um ficheiro VCard"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Importar vários ficheiros vCard"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"Importar todos os ficheiros VCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"A pesquisar dados de vCard no armazenamento..."</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"A pesquisar dados de vCard no cartão SD..."</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"A colocar em cache"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Não foi possível analisar o armazenamento. (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Não foi possível analisar o cartão SD. (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"A importar <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exportar para o armazenamento"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Exportar p/ ficheiro .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ordenar por"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Nome próprio"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Apelido"</string>
@@ -229,6 +224,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nome próprio em primeiro lugar"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Apelido em primeiro lugar"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partilhar contactos visíveis"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Falha ao partilhar os contactos visíveis."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importar/exportar contactos"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importar contactos"</string>
     <string name="share_error" msgid="665756457151793108">"Não é possível partilhar este contacto."</string>
@@ -254,4 +250,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Conta"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Utilizar sempre este para chamadas"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Ao telefone com"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Ligar com uma nota"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Escrever uma nota para enviar com a chamada..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"ENVIAR E LIGAR"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>

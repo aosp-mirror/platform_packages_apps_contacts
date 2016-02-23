@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Текст скопійовано"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Копіювати в буфер обміну"</string>
     <string name="call_custom" msgid="2786306789889210756">"Набрати <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Набрати домашній номер телефону"</string>
     <string name="call_mobile" msgid="8618334085824709009">"Набрати номер мобільного телефону"</string>
@@ -96,11 +97,11 @@
     <string name="name_given" msgid="4153709115654909377">"Ім’я"</string>
     <string name="name_family" msgid="5317387657540738981">"Прізвище"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Префікс імені"</string>
-    <string name="name_middle" msgid="3951610314424632183">"По-батькові"</string>
+    <string name="name_middle" msgid="3951610314424632183">"По батькові"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Суфікс імені"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Вимова імені"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Вимова імені"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Вимова по-батькові"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Вимова по батькові"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Вимова прізвища"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Електронна адреса"</string>
@@ -159,13 +160,13 @@
     <string name="menu_done" msgid="32470053723443112">"Готово"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Скасувати"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Контакти в обліковому записі <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Контакти в спеціальному перегляді"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Користувацький фільтр"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Один контакт"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Створити контакт в обліковому записі"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Імпорт із SIM-карти"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Імпортувати із SIM-карти \"<xliff:g id="SIM_NAME">^1</xliff:g>\" – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Імпортувати із SIM-карти \"<xliff:g id="SIM_NAME">%1$s</xliff:g>\""</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Імпорт із носія"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Імпортувати з файлу .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Скасувати імпорт файлу <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Скасувати експорт файлу <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Не вдалося скасув. імпорт/експорт vCard"</string>
@@ -173,6 +174,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Не вдалося відкрити файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Не вдалося запустити експортер: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Немає контактів, які можна експортувати."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Ви вимкнули обов’язковий дозвіл."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Під час експорту сталася помилка: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Потрібна назва файлу задовга (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"У пам’яті забагато файлів vCard."</string>
@@ -184,6 +186,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Не вдалося зібрати мета-інформацію файлів цієї vCard."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Не вдалось імпортувати один або декілька файлів (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Експорт файлу <xliff:g id="FILENAME">%s</xliff:g> завершено."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Контакти експортовано."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Експорт файлу <xliff:g id="FILENAME">%s</xliff:g> скасовано."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Експортувати контактні дані"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Ваші контактні дані експортуються у файл: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -193,9 +196,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"Майстер vCard не запущено належним чином."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Помилка експорту"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Контактні дані не експортовано.\nПричина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Пам’ять не знайдено."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Карту SD не знайдено."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Ваш список контактів буде експортовано у файл: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Імпорт контакта <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Не вдалося прочитати дані vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Читання даних vCard скасовано"</string>
@@ -205,6 +205,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Файл незабаром буде імпортовано."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Запит на імпорт файлу vCard відхилено. Повторіть спробу пізніше."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Файл <xliff:g id="FILENAME">%s</xliff:g> незабаром буде експортовано."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Невдовзі файл буде експортовано."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Запит на експорт файлу vCard відхилено. Повторіть спробу пізніше."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Кешування файлів vCard у локальну тимчасову пам’ять. Імпорт почнеться незабаром."</string>
@@ -213,17 +214,11 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"На карті SD не знайдено жодного файлу vCard."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Контакт через NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Експортувати контакти?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"Вибрати файл vCard"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"Імпортувати 1 файл vCard"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"Імпортувати декілька файлів vCard"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"Імпортувати всі файли vCard"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Пошук даних vCard у пам’яті…"</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Пошук даних vCard на карті SD…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кешування"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Не вдалося просканувати пам’ять. (Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Не вдалося просканувати карту SD. (Причина: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Імпорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> з <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Експорт на носій"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Експортувати у файл .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Параметри сортування"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ім’я"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Прізвище"</string>
@@ -231,13 +226,14 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Ім’я спочатку"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Прізвище спочатку"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Надіслати видимі контакти"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Не вдалося поділитись видимими контактами."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Імпорт/експорт контактів"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Імпорт контактів"</string>
     <string name="share_error" msgid="665756457151793108">"Цей контакт неможливо надіслати."</string>
     <string name="menu_search" msgid="7464453023659824700">"Пошук"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Контакти для показу"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Контакти для показу"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Налаштувати спеціальний перегляд"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Вибрати групи"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Пошук контактів"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Вибране"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Контактів немає."</string>
@@ -256,4 +252,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Обліковий запис"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Завжди використовувати для дзвінків"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Телефонувати за допомогою"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Зателефонувати й надіслати нотатку"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Введіть нотатку, яку хочете надіслати під час дзвінка…"</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"ЗАТЕЛЕФОНУВАТИ Й НАДІСЛАТИ"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> з <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>

@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"文本已复制"</string>
+    <string name="copy_text" msgid="3424081789297978355">"复制到剪贴板"</string>
     <string name="call_custom" msgid="2786306789889210756">"拨打<xliff:g id="CUSTOM">%s</xliff:g>的电话号码"</string>
     <string name="call_home" msgid="1479549630992276827">"拨打家庭电话号码"</string>
     <string name="call_mobile" msgid="8618334085824709009">"拨打手机号码"</string>
@@ -159,11 +160,11 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> 中的联系人"</string>
     <string name="listCustomView" msgid="1915154113477432033">"自定义视图中的联系人"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"单个联系人"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"在以下帐户中创建联系人："</string>
+    <string name="dialog_new_contact_account" msgid="4107520273478326011">"在以下帐号中创建联系人："</string>
     <string name="import_from_sim" msgid="4749894687871835873">"从 SIM 卡导入"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"从 SIM 卡“<xliff:g id="SIM_NAME">^1</xliff:g>” - <xliff:g id="SIM_NUMBER">^2</xliff:g> 导入"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"从 SIM 卡“<xliff:g id="SIM_NAME">%1$s</xliff:g>”导入"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"从存储设备导入"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"从 .vcf 文件导入"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"要取消导入“<xliff:g id="FILENAME">%s</xliff:g>”吗？"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"要取消导出“<xliff:g id="FILENAME">%s</xliff:g>”吗？"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"无法取消导入/导出 vCard"</string>
@@ -171,6 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"无法打开“<xliff:g id="FILE_NAME">%s</xliff:g>”：<xliff:g id="EXACT_REASON">%s</xliff:g>。"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"无法启动导出程序：“<xliff:g id="EXACT_REASON">%s</xliff:g>”。"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"没有可导出的联系人。"</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"您已停用某项必需权限。"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"导出时出错：“<xliff:g id="EXACT_REASON">%s</xliff:g>”。"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"指定的文件名过长（“<xliff:g id="FILENAME">%s</xliff:g>”）。"</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"存储设备中的 vCard 文件过多。"</string>
@@ -182,6 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"无法收集指定 vCard 文件的元信息。"</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"一个或多个文件无法导入 (%s)。"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"已顺利导出“<xliff:g id="FILENAME">%s</xliff:g>”。"</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"已成功导出联系人。"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"已取消导出“<xliff:g id="FILENAME">%s</xliff:g>”。"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"正在导出联系人数据"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"正在将您的联系人数据导出到以下文件：<xliff:g id="FILE_NAME">%s</xliff:g>。"</string>
@@ -191,9 +194,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard 制作程序未正确启动。"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"无法导出"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"未导出联系人数据。\n原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"找不到任何存储设备。"</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"找不到SD卡。"</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"系统会将您的联系人列表导出到以下文件：<xliff:g id="VCARD_FILENAME">%s</xliff:g>。"</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"正在导入<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"无法读取 vCard 数据"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"已取消读取 vCard 数据"</string>
@@ -203,6 +203,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"该文件将在稍后导入。"</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard 导入请求遭拒，请稍后重试。"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"“<xliff:g id="FILENAME">%s</xliff:g>”将在稍后导出。"</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"该文件将在稍后导出。"</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard 导出请求遭拒，请稍后重试。"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"联系人"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"正在将 vCard 缓存到本地临时存储空间。实际导入操作即将开始。"</string>
@@ -211,17 +212,11 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"未在SD卡上找到 vCard 文件。"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"通过NFC收到的联系人"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"要导出联系人吗？"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"选择 vCard 文件"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"导入一个 vCard 文件"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"导入多个 vCard 文件"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"导入所有 vCard 文件"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"正在搜索存储设备中的 vCard 数据..."</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"正在搜索SD卡中的 vCard 数据..."</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"正在缓存"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"无法扫描存储设备（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）。"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"无法扫描SD卡（原因：“<xliff:g id="FAIL_REASON">%s</xliff:g>”）。"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"正在导入 - <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>：<xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"导出到存储设备"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"导出为 .vcf 文件"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"排序方式"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"名字"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"姓氏"</string>
@@ -229,6 +224,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"名字在前"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"姓氏在前"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"分享所显示的联系人"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"无法分享所显示的联系人。"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"导入/导出联系人"</string>
     <string name="dialog_import" msgid="5177004290082451296">"导入联系人"</string>
     <string name="share_error" msgid="665756457151793108">"无法分享此联系人。"</string>
@@ -244,14 +240,19 @@
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>中没有联系人"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"清除常用联系人"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"选择SIM卡"</string>
-    <string name="menu_accounts" msgid="795417468541517082">"帐户"</string>
+    <string name="menu_accounts" msgid="795417468541517082">"帐号"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"导入/导出"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"来源：<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>，来源：<xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"停止搜索"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"清除搜索内容"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"联系人显示选项"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"帐户"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"帐号"</string>
     <string name="set_default_account" msgid="3865970860434642695">"一律使用这张卡进行通话"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"用于外拨电话的帐户"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"用于外拨电话的帐号"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"拨打电话并发送备注"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"输入要在拨打电话时发送的备注…"</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"发送记事并拨打电话"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>

@@ -18,6 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"ສຳເນົາຂໍ້ຄວາມແລ້ວ"</string>
+    <string name="copy_text" msgid="3424081789297978355">"ສຳເນົາໄວ້ໃນຄລິບບອດ"</string>
     <string name="call_custom" msgid="2786306789889210756">"ໂທຫາ <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"ໂທຫາເບີບ້ານ"</string>
     <string name="call_mobile" msgid="8618334085824709009">"ໂທຫາເບີມືຖື"</string>
@@ -163,7 +164,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"ນຳເຂົ້າຈາກ SD card"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"ນຳ​ເຂົ້າ​ຈາກ SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"​ນຳ​ເຂົ້າ​ຈາກ SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"ນຳເຂົ້າຈາກບ່ອນຈັດເກັບຂໍ້ມູນ"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"ນຳ​ເຂົ້າ​ຈາກ​ໄຟ​ລ໌ .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"ຍົກເລີກການນຳເຂົ້າ <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"ຍົກເລີກການສົ່ງອອກ <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"ບໍ່ສາມາດຍົກເລີກ ການນຳເຂົ້າ/ສົ່ງອອກ vCard ໄດ້"</string>
@@ -171,6 +172,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"ບໍ່ສາມາດເປີດ \"<xliff:g id="FILE_NAME">%s</xliff:g>\" ໄດ້: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"ບໍ່ສາມາດເລີ່ມໂປຣແກຣມສົ່ງອອກໄດ້: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ສາມາດສົ່ງອອກໄດ້."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"ທ່ານ​ປິດ​ໃຊ້​ງານ​ການ​ອະ​ນຸ​ຍາດ​ທີ່​ຕ້ອງ​ການ​ແລ້ວ."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"ເກີດຄວາມຜິດພາດໃນລະຫວ່າງການສົ່ງອອກ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ຊື່ໄຟລ໌ທີ່ຕ້ອງການຍາວເກີນໄປ (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"ມີໄຟລ໌ vCard ໃນບ່ອນຈັດເກັບຂໍ້ມູນຫຼາຍເກີນໄປ."</string>
@@ -182,6 +184,7 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"ບໍ່ສາມາດເກັບກຳຂໍ້ມູນ meta ຂອງໄຟລ໌ vCard ທີ່ລະບຸໄດ້."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ມີໄຟລ໌ນຶ່ງ ຫຼືຫຼາຍກວ່ານັ້ນບໍ່ສາມາດນຳເຂົ້າໄດ້ (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"ສິ້ນສຸດການສົ່ງອອກແລ້ວ <xliff:g id="FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"ສຳ​ເລັດ​ການ​ສົ່ງ​ອອກລາຍ​ຊື່​ອ​ແລ້ວ."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"ການສົ່ງອອກ <xliff:g id="FILENAME">%s</xliff:g> ຖືກຍົກເລີກແລ້ວ."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"ກຳລັງສົ່ງອອກຂໍ້ມູນລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"ຂໍ້ມູນລາຍຊື່ລາຍຊື່ຜູ່ຕິດຕໍ່ຂອງທ່ານ ກຳລັງຖືກສົ່ງອອກເປັນ: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
@@ -191,9 +194,6 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"ໂປຣແກຣມຂຽນ vCard ຖືກເລີ່ມຢ່າງບໍ່ຖືກຕ້ອງ."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ບໍ່ສາມາດສົ່ງອອກໄດ້"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"ຂໍ້ມູນລາຍຊື່ຜູ່ຕິດຕໍ່ຍັງບໍ່ໄດ້ຖືກສົ່ງອອກເທື່ອ.\nເຫດຜົນ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"ບໍ່ພົບບ່ອນຈັດເກັບຂໍ້ມູນ."</string>
-    <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"ບໍ່ພົບ SD card."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"ລາຍການລາຍຊື່ຜູ່ຕິດຕໍ່ຂອງທ່ານ ຈະຖືກສົ່ງອອກເປັນໄຟລ໌: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"ກຳລັງນຳເຂົ້າ <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"ບໍ່ສາມາດອ່ານຂໍ້ມູນ vCard ໄດ້"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"ການອ່ານຂໍ້ມູນ vCard ຖືກຍົກເລີກແລ້ວ"</string>
@@ -203,6 +203,7 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"ໄຟລ໌ຈະຖືກນຳເຂົ້າໃນໄວໆນີ້."</string>
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"ການຮ້ອງຂໍການນຳເຂົ້າ vCard​ ຖືກປະຕິເສດ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> ຈະຖືກສົ່ງອອກໃນໄວໆນີ້."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ໄຟ​ລ໌​ຈະ​ຖືກ​ສົ່ງ​ອອກ​ໄວໆ​ນີ້."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"ຄຳຂໍການສົ່ງອອກ vCard ຖືກປະຕິເສດ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"ກຳລັງເກັບຂໍ້ມູນ vCard ໃສ່ບ່ອນຈັດເກັບຂໍ້ມູນຊົ່ວຄາວໃນອຸປະກອນ. ການນຳເຂົ້າຈະເລີ່ມຂຶ້ນໃນໄວໆນີ້."</string>
@@ -211,17 +212,11 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"ບໍ່ພົບໄຟລ໌ vCard ໃນ SD card."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"ລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ໄດ້ຮັບຜ່ານ NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"ສົ່ງອອກລາຍຊື່ຜູ່ຕິດຕໍ່?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"ເລືອກໄຟລ໌ vCard"</string>
-    <string name="import_one_vcard_string" msgid="6199149175802496361">"ນຳເຂົ້າໄຟລ໌ vCard ອັນດຽວ"</string>
-    <string name="import_multiple_vcard_string" msgid="8931879029943141122">"ນຳເຂົ້າໄຟລ໌ vCard ຫຼາຍໆໄຟລ໌ພ້ອມກັນ"</string>
-    <string name="import_all_vcard_string" msgid="1037495558362397535">"ນຳເຂົ້າໄຟລ໌ vCard ທັງໝົດ"</string>
-    <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"ກຳລັງຊອກຫາຂໍ້ມູນ vCard ໃນບ່ອນຈັດເກັບຂໍ້ມູນ..."</string>
-    <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"ກຳລັງຊອກຫາຂໍ້ມູນ vCard ໃນ SD card..."</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"ກຳລັງຈັດເກັບຂໍ້ມູນ"</string>
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"ບໍ່ສາມາດສະແກນບ່ອນຈັດເກັບຂໍ້ມູນໄດ້. (ສາຍເຫດ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"ບໍ່ສາມາດສະແກນ SD card ໄດ້. (ເຫດຜົນ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"ກຳລັງນຳເຂົ້າ <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"ສົ່ງອອກໃສ່ບ່ອນຈັດເກັບຂໍ້ມູນ"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"ສົ່ງ​ອອກ​ຫາ​ໄຟ​ລ໌ .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ຮຽງຕາມ"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ຊື່"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"ນາມສະກຸນ"</string>
@@ -229,6 +224,7 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"​ຊື່​ກ່ອນ"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"​ນາມ​ສະ​ກຸນ​ກ່ອນ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ແບ່ງປັນລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ເບິ່ງເຫັນໄດ້"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ແບ່ງ​ປັນ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ສາ​ມາດ​ເຫັນ​ໄດ້​ບໍ່​ສຳ​ເລັດ."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"ນຳເຂົ້າ/ສົ່ງອອກ ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="dialog_import" msgid="5177004290082451296">"ນຳເຂົ້າລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="share_error" msgid="665756457151793108">"ບໍ່ສາມາດແບ່ງປັນລາຍຊື່ລາຍຊື່ຜູ່ຕິດຕໍ່ນີ້ໄດ້."</string>
@@ -254,4 +250,9 @@
     <string name="select_account_dialog_title" msgid="5509088895267310568">"ບັນຊີ"</string>
     <string name="set_default_account" msgid="3865970860434642695">"ໃຊ້​ຊິມ​ນີ້​ເພື່ອ​ການໂທທຸກ​ເທື່ອ"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"ໂທ​ດ້ວຍ"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"ໂທ​ດ້ວຍ​ບັນ​ທຶກ"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"ພິມ​ບັນ​ທຶກ ເພື່ອ​ສົ່ງ​ກັບ​ການ​ໂທ ..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"ສົ່ງ ແລະ ໂທ"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
 </resources>
