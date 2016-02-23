@@ -55,9 +55,10 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"삭제"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"연락처 추가"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"그룹 추가"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"주소록을 분리하시겠습니까?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"연락처가 여러 주소록으로 분리됩니다."</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"연락처를 분리하시겠습니까?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"여러 연락처로 분리됩니다."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"병합"</string>
+    <string name="menu_save" msgid="1727844363591825909">"저장"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"연락처 통합"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g>와(과) 통합할 연락처를 선택하세요."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"모든 연락처 표시"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"연락처 저장 중..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"연락처를 저장했습니다."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"연락처 변경사항을 저장할 수 없습니다."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"연락처 사진 변경사항을 저장하지 못했습니다."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"그룹이 저장되었습니다."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"그룹 변경사항을 저장할 수 없습니다."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"날짜순"</string>
     <string name="recent_updates" msgid="4267258535615860710">"최근 업데이트"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 연락처"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> 계정"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"이 앱에서 수정할 수 없습니다."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"새 사진 찍기"</string>
     <string name="pick_photo" msgid="2129509985223564942">"사진 선택"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"새 사진 선택"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"변경된 언어를 반영하도록 주소록을 업데이트하는 중입니다. 잠시 기다려 주세요."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"주소록을 업데이트하고 있습니다."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"검색 중…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"선택한 항목 표시"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"내가 보낸 메시지: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"사용자의 행아웃 식별자를 이메일 입력란 또는 휴대전화 입력란에 입력하면 행아웃이 더 잘 작동합니다."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"입력란 더보기"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"사진 변경"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g>(<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

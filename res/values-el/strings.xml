@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Διαχωρισμός επαφής;"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Αυτή η επαφή θα διαχωριστεί σε πολλαπλές επαφές."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Συγχώνευση"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Aποθήκευση"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Ένωση επαφών"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Επιλέξτε την επαφή που θέλετε να ενώσετε με τον χρήστη <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Εμφάνιση όλων των επαφών"</string>
@@ -66,7 +67,7 @@
     <string name="contactsJoinedMessage" msgid="656936718666768589">"Οι επαφές συγχωνεύτηκαν"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Οι επαφές διαγράφηκαν"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ήχος κλήσης"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Κλήσεις στον τηλεφωνητή"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Όλες οι κλήσ. στον τηλεφωνητή"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Δεν μπορείτε να διαγράψετε επαφές από λογαριασμούς οι οποίοι προορίζονται μόνο για ανάγνωση, αλλά μπορείτε να τις αποκρύψετε στις λίστες επαφών σας."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Αυτή η επαφή περιέχει πληροφορίες από πολλούς λογαριασμούς. Θα γίνει απόκρυψη και όχι διαγραφή των πληροφοριών που προέρχονται από λογαριασμούς μόνο για ανάγνωση στις λίστες επαφών σας."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Θα πρέπει να έχουν επιλεγεί τουλάχιστον δύο επαφές για να πραγματοποιηθεί μια συγχώνευση."</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Αποθήκευση επαφής…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Η επαφή αποθηκεύτηκε."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στις επαφές."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στη φωτογραφία της επαφής."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Η ομάδα αποθηκεύτηκε."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στην ομάδα."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -132,7 +134,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Δεν βρέθηκε εφαρμογή για τη διαχείριση αυτής της ενέργειας."</string>
     <string name="menu_share" msgid="943789700636542260">"Κοινοποίηση"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Προσθήκη στις επαφές"</string>
-    <string name="share_via" msgid="563121028023030093">"Κοινή επαφή μέσω"</string>
+    <string name="share_via" msgid="563121028023030093">"Κοινοποίηση μέσω"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Δημιουργία ομάδας στο λογαριασμό"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Φωνητική συνομιλία"</string>
     <string name="video_chat" msgid="1872255818640336072">"Συζήτηση μέσω βίντεο"</string>
@@ -140,7 +142,8 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Προσθ. σύνδεσης"</string>
     <string name="recent" msgid="2659189233141493004">"Πρόσφατες"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Πρόσφατες ενημερώσεις"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> επαφή"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Επαφή <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"Λογαριασμός <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Αδυναμία επεξεργασ. από αυτήν την εφαρμ."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Λήψη νέας φωτογραφίας"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Επιλογή φωτογραφίας"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Επιλογή νέας φωτογραφίας"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Γίνεται ενημέρωση της λίστας επαφών για να αντικατοπτριστεί η αλλαγή γλώσσας."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Γίνεται ενημέρωση της λίστας επαφών."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Αναζήτηση…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Εμφάνιση επιλεγμένων"</string>
@@ -163,7 +165,7 @@
     <string name="change_photo" msgid="8530597935483526383">"Αλλαγή"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Κύρια φωτογραφία"</string>
     <string name="description_star" msgid="2605854427360036550">"αγαπημένο"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Επεξεργασία επαφής"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Επεξεργασία"</string>
     <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
       <item quantity="other">συγχωνεύτηκαν από <xliff:g id="COUNT">%0$d</xliff:g> πηγές</item>
       <item quantity="one">δεν συγχωνεύτηκαν</item>
@@ -184,7 +186,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Προσθ.σε επαφή"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Κλείσιμο"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"Εισαγάγετε έτος"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Επιλέξτε έτος"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Επαφή"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Φόρτωση…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Δημιουργία νέας επαφής"</string>
@@ -226,7 +228,7 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Μπορείτε να συγχρονίσετε τη νέα επαφή με έναν από τους παρακάτω λογαριασμούς. Ποιον θέλετε να χρησιμοποιήσετε;"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Προσθήκης επαφής"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Επεξεργασία επαφής"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Αποθήκευση τοπικά"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Αποθ. τοπικά"</string>
     <string name="add_account" msgid="8201790677994503186">"Προσθήκη λογαριασμού"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Προσθήκη νέου λογαριασμού"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Εξαγωγή αρχείων βάσης δεδομένων"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Εσείς: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Το Hangouts λειτουργεί καλύτερα όταν εισάγετε το αναγνωριστικό Hangouts του ατόμου στο πεδίο ηλεκτρονικού ταχυδρομείου ή τηλεφώνου."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Περισσότερα πεδία"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Αλλαγή φωτογραφίας"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

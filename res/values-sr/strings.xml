@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Раздвојити контакт?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Овај контакт ће бити раздвојен у више контаката."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Обједини"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Сачувај"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Придруживање контаката"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Изаберите контакт који желите да придружите контакту <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Прикажи све контакте"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"Чување контакта је у току..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Контакт је сачуван."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Није могуће сачувати измене контаката."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Чување измена слике контакта није успело."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Група је сачувана."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Није могуће сачувати измене група."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -144,17 +146,17 @@
     <string name="recent" msgid="2659189233141493004">"Недавно"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Недавна ажурирања"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контакт"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> налог"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Не може да се измени из ове апликације."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Не може да се мења на овом уређају."</string>
     <string name="take_photo" msgid="7496128293167402354">"Сними фотографију"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Направи нову фотографију"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"Изаберите слику"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Изабери слику"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Изаберите нову слику"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Контакт листа се ажурира у складу са променом језика."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Контакт листа се ажурира."</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"Претраживање..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Претражује се..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Прикажи изабрано"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Прикажи све"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Изабери све"</string>
@@ -190,7 +192,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Наведите годину"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Контакт"</string>
-    <string name="social_widget_loading" msgid="5327336597364074608">"Учитавање…"</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"Учитава се…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Направи нови контакт"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Пријавите се на налог"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Увези контакте"</string>
@@ -228,7 +230,7 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"Контакти боље функционишу са Google налогом.\n\n• Приступајте из било ког веб-прегледача.\n• Безбедно направите резервне копије контаката."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Очувајте безбедност контаката чак и ако изгубите телефон – синхронизујте са услугом на мрежи."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додавање налога"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Неће бити направљена резервна копија новог контакта. Желите ли да додате налог који прави резервну копију контаката на мрежи?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Неће бити направљена резервна копија новог контакта. Желите ли да додате налог који прави резервну копију контаката онлајн?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Нови контакт ће бити синхронизован са налогом <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Можете да синхронизујете нови контакт са једним од следећих налога. Који желите да користите?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додај нови контакт"</string>
@@ -276,4 +278,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ви: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts ради боље кад унесете Hangouts идентификатор особе у поље за имејл адресу или број телефона."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Још поља"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Промените слику"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

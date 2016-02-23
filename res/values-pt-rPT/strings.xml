@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Separar contacto?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Este contacto será separado em vários contactos."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Unir"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Guardar"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Associar contactos"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Escolha o contacto que pretende associar a <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos os contactos"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"A guardar contacto..."</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"Contacto guardado."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Não foi possível guardar as alterações do contacto."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Não foi possível guardar as alterações à foto do contacto."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupo guardado."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Não foi possível guardar as alterações do grupo."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -140,7 +142,8 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Adicionar ligação"</string>
     <string name="recent" msgid="2659189233141493004">"Recentes"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Atualiz. recentes"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Contacto de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Contacto do <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"Conta <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Não editável a partir desta aplicação."</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Tirar nova fotografia"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Escolher fotografia"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Selecionar nova fotografia"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"A lista de contactos está a ser atualizada para reflectir a alteração do idioma."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"A lista de contactos está a ser atualizada."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"A pesquisar..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Mostrar seleccionados"</string>
@@ -210,9 +212,9 @@
     <string name="set_default" msgid="4417505153468300351">"Definir a predefinição"</string>
     <string name="clear_default" msgid="7193185801596678067">"Limpar predefinição"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texto copiado"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Rejeitar as suas alterações?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Rejeitar as alterações?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Configurar o meu perfil"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Config. o perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Introduza o nome da pessoa"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nome do Grupo"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"O meu perfil local"</string>
@@ -224,7 +226,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será efetuada cópia de segurança do novo contacto. Adicionar uma conta que efetua a cópia de segurança dos contactos on-line?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"O novo contacto será sincronizado com <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pode sincronizar o novo contacto com uma das seguintes contas. Qual a conta que deseja utilizar?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adicionar novo contacto"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adic. novo contacto"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar contacto"</string>
     <string name="keep_local" msgid="1258761699192993322">"Manter localmente"</string>
     <string name="add_account" msgid="8201790677994503186">"Adicionar conta"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"O utilizador: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"O Hangouts funciona melhor quando introduz o identificador do Hangouts da pessoa no campo do email ou no campo do telefone."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Mais campos"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Alterar foto"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

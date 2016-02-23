@@ -58,6 +58,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"แยกรายชื่อหรือไม่"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"รายชื่อติดต่อนี้จะถูกแยกออกเป็นหลายรายชื่อ"</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"รวม"</string>
+    <string name="menu_save" msgid="1727844363591825909">"บันทึก"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"รวมรายชื่อ"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"เลือกรายชื่อติดต่อที่คุณต้องการรวมกับ <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"แสดงรายชื่อในสมุดโทรศัพท์ทั้งหมด"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"กำลังบันทึกรายชื่อ…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"บันทึกรายชื่อ"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ไม่สามารถบันทึกการเปลี่ยนแปลงรายชื่อติดต่อ"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"ไม่สามารถบันทึกการเปลี่ยนแปลงในรูปภาพรายชื่อติดต่อ"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"บันทึกกลุ่มแล้ว"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"ไม่สามารถบันทึกการเปลี่ยนแปลงในกลุ่ม"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"ล่าสุด"</string>
     <string name="recent_updates" msgid="4267258535615860710">"การอัปเดตล่าสุด"</string>
     <string name="account_type_format" msgid="718948015590343010">"รายชื่อในสมุดโทรศัพท์จาก <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"บัญชี <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"ไม่สามารถแก้ไขได้จากแอปพลิเคชันนี้"</string>
@@ -149,7 +152,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"ถ่ายภาพใหม่"</string>
     <string name="pick_photo" msgid="2129509985223564942">"เลือกรูปภาพ"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"เลือกรูปภาพใหม่"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"กำลังอัปเดตรายการรายชื่อติดต่อตามการเปลี่ยนภาษา"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"กำลังอัปเดตรายการรายชื่อติดต่อ"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"กำลังค้นหา..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"แสดงรายการที่เลือก"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"คุณ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"แฮงเอาท์ทำงานได้ดียิ่งขึ้นเมื่อคุณป้อนตัวระบุแฮงเอาท์ของบุคคลที่ต้องการลงในช่องอีเมลหรือช่องโทรศัพท์"</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"ช่องเพิ่มเติม"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"เปลี่ยนรูปภาพ"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

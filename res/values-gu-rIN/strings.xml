@@ -58,9 +58,10 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"સંપર્ક અલગ કરીએ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"આ સંપર્ક બહુવિધ સંપર્કોમાં અલગ કરવામાં આવશે."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"મર્જ કરો"</string>
+    <string name="menu_save" msgid="1727844363591825909">"સાચવો"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"સંપર્કો જોડો"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"તમે <xliff:g id="NAME">%s</xliff:g> ને જેની સાથે જોડવા માગો છો તે સંપર્ક:"</string>
-    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"તમામ સંપર્કો દર્શાવો"</string>
+    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"તમામ સંપર્કો બતાવો"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"સૂચવેલા સંપર્કો"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"તમામ સંપર્કો"</string>
     <string name="contactsJoinedMessage" msgid="656936718666768589">"સંપર્કો મર્જ કર્યા"</string>
@@ -99,6 +100,7 @@
     <string name="savingContact" msgid="4075751076741924939">"સંપર્ક સાચવી રહ્યાં છે…"</string>
     <string name="contactSavedToast" msgid="7152589189385441091">"સંપર્ક સાચવ્યો."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ફેરફારો સાચવી શકાયાં નથી."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"સંપર્ક ફોટાના ફેરફારો સાચવી શક્યાં નથી."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"જૂથ સાચવ્યુ."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"જૂથ ફેરફારો સાચવી શકાયાં નથી."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -141,6 +143,7 @@
     <string name="recent" msgid="2659189233141493004">"તાજેતરના"</string>
     <string name="recent_updates" msgid="4267258535615860710">"તાજેતરનાં અપડેટ્સ"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> સંપર્ક"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> એકાઉન્ટ"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"આ એપ્લિકેશનથી સંપાદનયોગ્ય નથી."</string>
@@ -149,11 +152,10 @@
     <string name="take_new_photo" msgid="7341354729436576304">"નવો ફોટો લો"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ફોટો પસંદ કરો"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"નવો ફોટો પસંદ કરો"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"ભાષાના ફેરફાર પ્રતિબિંબિત કરવા માટે સંપર્ક સૂચિ અપડેટ કરવામાં આવી રહી છે."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"સંપર્ક સૂચિ અપડેટ કરવામાં આવી રહી છે."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"શોધી રહ્યું છે..."</string>
-    <string name="menu_display_selected" msgid="6470001164297969034">"પસંદ કરેલ દર્શાવો"</string>
-    <string name="menu_display_all" msgid="8887488642609786198">"બધું દર્શાવો"</string>
+    <string name="menu_display_selected" msgid="6470001164297969034">"પસંદ કરેલ બતાવો"</string>
+    <string name="menu_display_all" msgid="8887488642609786198">"બધું બતાવો"</string>
     <string name="menu_select_all" msgid="621719255150713545">"બધા પસંદ કરો"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"બધા નાપસંદ કરો"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"નવું ઉમેરો"</string>
@@ -269,4 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"તમે: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"જ્યારે તમે વ્યક્તિના Hangouts ઓળખકર્તાને ઇમેઇલ ફીલ્ડ અથવા ફોન ફીલ્ડમાં દાખલ કરો છો ત્યારે Hangouts વધુ સારું કામ કરે છે."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"વધુ ફીલ્ડ્સ"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ફોટો બદલો"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

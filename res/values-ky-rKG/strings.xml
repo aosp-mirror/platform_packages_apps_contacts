@@ -82,6 +82,7 @@
     <string name="splitConfirmation_title" msgid="633640935430370530">"Байланыш бөлүнсүнбү?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Бул байланыш бир нече байланыштарга бөлүнөт."</string>
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Бириктирүү"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Сактоо"</string>
     <!-- no translation found for titleJoinContactDataWith (7684875775798635354) -->
     <skip />
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> менен бириктиргиңиз келген байланышты тандаңыз."</string>
@@ -139,6 +140,7 @@
     <!-- no translation found for contactSavedToast (7152589189385441091) -->
     <skip />
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Байланыштын өзгөрүүлөрү сакталган жок."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Байланыштын сүрөт өзгөрүүлөрү сакталган жок."</string>
     <!-- no translation found for groupSavedToast (1168756874239833756) -->
     <skip />
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Топтун өзгөртүүлөрү сакталган жок."</string>
@@ -195,6 +197,7 @@
     <string name="recent_updates" msgid="4267258535615860710">"Акыркы жаңыртуулар"</string>
     <!-- no translation found for account_type_format (718948015590343010) -->
     <skip />
+    <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> каттоо эсеби"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Бул колдонмодон өзгөртүлбөйт."</string>
@@ -205,8 +208,6 @@
     <skip />
     <string name="pick_photo" msgid="2129509985223564942">"Сүрөт тандаңыз"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Жаңы сүрөт тандоо"</string>
-    <!-- no translation found for locale_change_in_progress (7583992153091537467) -->
-    <skip />
     <!-- no translation found for upgrade_in_progress (474511436863451061) -->
     <skip />
     <string name="search_results_searching" msgid="3984833028938569930">"Изделүүдө…"</string>
@@ -248,7 +249,7 @@
     <!-- no translation found for menu_settings (377929915873428211) -->
     <!-- no translation found for menu_settings (377929915873428211) -->
     <skip />
-    <string name="menu_help" msgid="1680178646764069976">"Жардам &amp; жооп пикир"</string>
+    <string name="menu_help" msgid="1680178646764069976">"Жардам жана жооп пикир"</string>
     <!-- no translation found for preference_displayOptions (1341720270148252393) -->
     <skip />
     <!-- no translation found for organization_company_and_title (6718207751363732025) -->
@@ -353,4 +354,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Сиз: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Кимдир-бирөөнүн Hangouts аныктагычы электрондук почта же телефон талаасына киргизилгенде Hangouts жакшыраак иштейт."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Көбүрөөк талаа"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Сүрөттү өзгөртүү"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

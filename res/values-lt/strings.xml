@@ -57,7 +57,8 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Pridėti grupę"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"Išskirti kontaktą?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Šis kontaktas bus suskaidytas į kelis kontaktus."</string>
-    <string name="menu_joinAggregate" msgid="4050157483569357666">"Sujungti"</string>
+    <string name="menu_joinAggregate" msgid="4050157483569357666">"Susieti"</string>
+    <string name="menu_save" msgid="1727844363591825909">"Išsaugoti"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Jungti adresatus"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Pasirinkite kontaktą, kurį norite susieti su <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Rodyti visus adresatus"</string>
@@ -75,7 +76,7 @@
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Tik skaitomų paskyrų informacija kontaktų sąrašuose bus paslėpta, bet neištrinta."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Šiems kontaktams priskirta kelių paskyrų informacija. Tik skaitomų paskyrų informacija kontaktų sąrašuose bus paslėpta, bet neištrinta."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Ištrynus šią informaciją, bus ištrinta kelių paskyrų informacija."</string>
-    <string name="deleteConfirmation" msgid="811706994761610640">"Šis adresatas bus ištrintas."</string>
+    <string name="deleteConfirmation" msgid="811706994761610640">"Šis kontaktas bus ištrintas."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Atmesti pakeitimus"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontaktas neegzistuoja."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Kontaktų valdiklis pridėtas prie pagrindinio ekrano."</string>
@@ -88,17 +89,18 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Jokie paveikslėliai nepasiekiami naudojant planšetinį kompiuterį."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Telefone nėra galimų paveikslėlių."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontakto nuotrauka"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Priskirtas etiketės pavadinimas"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Tinkintas etiketės pavadinimas"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Skambinti tiesiogiai į balso paštą"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Pašalinti nuotrauką"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Adresatų nėra."</string>
+    <string name="noContacts" msgid="8579310973261953559">"Kontaktų nėra."</string>
     <string name="noGroups" msgid="8614664663561385253">"Nėra grupių."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Jums reikia paskyros, kad galėtumėte kurti grupes."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Šioje grupėje nėra žmonių."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Jei norite jų pridėti, redaguokite grupę."</string>
     <string name="savingContact" msgid="4075751076741924939">"Išsaugomas adresatas..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Adresatas išsaugotas."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Kontaktas išsaugotas."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nepavyko išsaugoti kontakto pakeitimų."</string>
+    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Nepavyko išsaugoti kontakto nuotraukos pakeitimų."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupė išsaugota."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nepavyko išsaugoti grupės pakeitimų."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -138,7 +140,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Nerasta jokių programų šiam veiksmui apdoroti."</string>
     <string name="menu_share" msgid="943789700636542260">"Bendrinti"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Pridėti prie kontaktų"</string>
-    <string name="share_via" msgid="563121028023030093">"Bendrinti adresatą naudojant"</string>
+    <string name="share_via" msgid="563121028023030093">"Bendrinti kontaktą naudojant"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Kurti grupę paskyroje"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Balso pokalbis"</string>
     <string name="video_chat" msgid="1872255818640336072">"Vaizdo pokalbis"</string>
@@ -146,7 +148,8 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Pridėti ryšį"</string>
     <string name="recent" msgid="2659189233141493004">"Naujausi"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Vėliausi naujiniai"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> adresatas"</string>
+    <string name="account_type_format" msgid="718948015590343010">"„<xliff:g id="SOURCE">%1$s</xliff:g>“ kontaktas"</string>
+    <string name="google_account_type_format" msgid="5283997303922067997">"„<xliff:g id="SOURCE">%1$s</xliff:g>“ paskyra"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Iš šios programos redaguoti negalima."</string>
@@ -155,7 +158,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Iš naujo fotografuoti"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Pasirinkti nuotrauką"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Pasirinkti naują nuotrauką"</string>
-    <string name="locale_change_in_progress" msgid="7583992153091537467">"Kontaktų sąrašas yra atnaujinamas, kad atspindėtų kalbos pakeitimą."</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Atnaujinamas kontaktų sąrašas."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Ieškoma…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Rodyti pasirinktus"</string>
@@ -283,4 +285,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Jūs: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"„Hangout“ veikia geriau įvedus asmens „Hangout“ identifikatorių el. pašto ar telefono numerio lauke."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Daugiau laukų"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Keisti nuotrauką"</string>
+    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>
