@@ -49,9 +49,28 @@ public final class CompatUtils {
     public static boolean isInsertCompat(CPOWrapper cpoWrapper) {
         if (SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.M) >= Build.VERSION_CODES.M) {
             return cpoWrapper.getOperation().isInsert();
-        } else {
-            return (cpoWrapper.getType() == TYPE_INSERT);
         }
+        return (cpoWrapper.getType() == TYPE_INSERT);
+    }
+
+    /**
+     * Returns whether the operation in CPOWrapper is of TYPE_UPDATE;
+     */
+    public static boolean isUpdateCompat(CPOWrapper cpoWrapper) {
+        if (SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.M) >= Build.VERSION_CODES.M) {
+            return cpoWrapper.getOperation().isUpdate();
+        }
+        return (cpoWrapper.getType() == TYPE_UPDATE);
+    }
+
+    /**
+     * Returns whether the operation in CPOWrapper is of TYPE_DELETE;
+     */
+    public static boolean isDeleteCompat(CPOWrapper cpoWrapper) {
+        if (SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.M) >= Build.VERSION_CODES.M) {
+            return cpoWrapper.getOperation().isDelete();
+        }
+        return (cpoWrapper.getType() == TYPE_DELETE);
     }
 
     /**
