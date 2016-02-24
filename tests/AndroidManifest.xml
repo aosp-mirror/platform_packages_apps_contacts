@@ -18,7 +18,7 @@
     package="com.android.contacts.tests">
 
     <uses-sdk
-        android:minSdkVersion="23"
+        android:minSdkVersion="21"
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
