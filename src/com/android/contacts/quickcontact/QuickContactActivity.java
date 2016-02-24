@@ -595,6 +595,10 @@ public class QuickContactActivity extends ContactsActivity
                 new int[] { -android.R.attr.state_checked }
         };
         final int[] colors = new int[] { mColorFilterColor, mColorFilterColor };
+        if (suggestion != null && suggestion.name != null) {
+            checkbox.setContentDescription(suggestion.name + " " +
+                    getResources().getString(R.string.contact_from_account_name, accountName));
+        }
         checkbox.setButtonTintList(new ColorStateList(stateSet, colors));
         checkbox.setChecked(mSuggestionsShouldAutoSelected ||
                 mSelectedAggregationIds.contains(suggestion.contactId));
