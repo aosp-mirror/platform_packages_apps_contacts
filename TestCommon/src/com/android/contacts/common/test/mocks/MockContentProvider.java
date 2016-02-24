@@ -16,27 +16,28 @@
 
 package com.android.contacts.common.test.mocks;
 
-import android.content.ContentProvider;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Maps;
+
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
-import android.text.TextUtils;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import android.util.Log;
 
 import junit.framework.Assert;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * A programmable mock content provider.
  */
-public class MockContentProvider extends ContentProvider {
+public class MockContentProvider extends android.test.mock.MockContentProvider {
     private static final String TAG = "MockContentProvider";
 
     public static class Query {
@@ -47,7 +48,7 @@ public class MockContentProvider extends ContentProvider {
         private String mSelection;
         private String[] mSelectionArgs;
         private String mSortOrder;
-        private ArrayList<Object> mRows = new ArrayList<Object>();
+        private List<Object> mRows = new ArrayList<>();
         private boolean mAnyProjection;
         private boolean mAnySelection;
         private boolean mAnySortOrder;
@@ -126,52 +127,22 @@ public class MockContentProvider extends ContentProvider {
                 return false;
             }
 
-            if (!mAnyProjection && !equals(projection, mProjection)) {
+            if (!mAnyProjection && !Arrays.equals(projection, mProjection)) {
                 return false;
             }
 
-            if (!mAnySelection && !equals(selection, mSelection)) {
+            if (!mAnySelection && !Objects.equals(selection, mSelection)) {
                 return false;
             }
 
-            if (!mAnySelection && !equals(selectionArgs, mSelectionArgs)) {
+            if (!mAnySelection && !Arrays.equals(selectionArgs, mSelectionArgs)) {
                 return false;
             }
 
-            if (!mAnySortOrder && !equals(sortOrder, mSortOrder)) {
+            if (!mAnySortOrder && !Objects.equals(sortOrder, mSortOrder)) {
                 return false;
             }
 
-            return true;
-        }
-
-        private boolean equals(String string1, String string2) {
-            if (TextUtils.isEmpty(string1)) {
-                string1 = null;
-            }
-            if (TextUtils.isEmpty(string2)) {
-                string2 = null;
-            }
-            return TextUtils.equals(string1, string2);
-        }
-
-        private static boolean equals(String[] array1, String[] array2) {
-            boolean empty1 = array1 == null || array1.length == 0;
-            boolean empty2 = array2 == null || array2.length == 0;
-            if (empty1 && empty2) {
-                return true;
-            }
-            if (empty1 != empty2 && (empty1 || empty2)) {
-                return false;
-            }
-
-            if (array1.length != array2.length) return false;
-
-            for (int i = 0; i < array1.length; i++) {
-                if (!array1[i].equals(array2[i])) {
-                    return false;
-                }
-            }
             return true;
         }
 
@@ -227,8 +198,75 @@ public class MockContentProvider extends ContentProvider {
         }
     }
 
-    private ArrayList<Query> mExpectedQueries = new ArrayList<Query>();
-    private HashMap<Uri, String> mExpectedTypeQueries = Maps.newHashMap();
+    public static class Insert {
+        private final Uri mUri;
+        private final ContentValues mContentValues;
+        private final Uri mResultUri;
+        private boolean mAnyNumberOfTimes;
+        private boolean mIsExecuted;
+
+        /**
+         * Creates a new Insert to expect.
+         *
+         * @param uri the uri of the insertion request.
+         * @param contentValues the ContentValues to insert.
+         * @param resultUri the {@link Uri} for the newly inserted item.
+         * @throws NullPointerException if any parameter is {@code null}.
+         */
+        public Insert(Uri uri, ContentValues contentValues, Uri resultUri) {
+            mUri = Preconditions.checkNotNull(uri);
+            mContentValues = Preconditions.checkNotNull(contentValues);
+            mResultUri = Preconditions.checkNotNull(resultUri);
+        }
+
+        /**
+         * Causes this insert expectation to be useable for mutliple calls to insert, rather than
+         * just one.
+         *
+         * @return this
+         */
+        public Insert anyNumberOfTimes() {
+            mAnyNumberOfTimes = true;
+            return this;
+        }
+
+        private boolean equals(Uri uri, ContentValues contentValues) {
+            return mUri.equals(uri) && mContentValues.equals(contentValues);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+
+            Insert insert = (Insert) o;
+
+            return mUri.equals(insert.mUri) && mContentValues.equals(insert.mContentValues)
+                    && mResultUri.equals(insert.mResultUri);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(mUri, mContentValues, mResultUri);
+        }
+
+        @Override
+        public String toString() {
+            return "Insert{"
+                    + "mUri=" + mUri
+                    + ", mContentValues=" + mContentValues
+                    + ", mResultUri=" + mResultUri
+                    +'}';
+        }
+    }
+
+    private List<Query> mExpectedQueries = new ArrayList<>();
+    private Map<Uri, String> mExpectedTypeQueries = Maps.newHashMap();
+    private List<Insert> mExpectedInserts = new ArrayList<>();
 
     @Override
     public boolean onCreate() {
@@ -245,9 +283,17 @@ public class MockContentProvider extends ContentProvider {
         mExpectedTypeQueries.put(uri, type);
     }
 
+    public void expectInsert(Uri contentUri, ContentValues contentValues, Uri resultUri) {
+        mExpectedInserts.add(new Insert(contentUri, contentValues, resultUri));
+    }
+
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
             String sortOrder) {
+        if (mExpectedQueries.isEmpty()) {
+            Assert.fail("Unexpected query: Actual:"
+                    + queryToString(uri, projection, selection, selectionArgs, sortOrder));
+        }
 
         for (Iterator<Query> iterator = mExpectedQueries.iterator(); iterator.hasNext();) {
             Query query = iterator.next();
@@ -260,24 +306,9 @@ public class MockContentProvider extends ContentProvider {
             }
         }
 
-        if (mExpectedQueries.isEmpty()) {
-            Assert.fail("Unexpected query: "
-                    + queryToString(uri, projection, selection, selectionArgs, sortOrder));
-        } else {
-            StringBuilder sb = new StringBuilder();
-            sb.append(mExpectedQueries.get(0));
-            for (int i = 1; i < mExpectedQueries.size(); i++) {
-                sb.append("\n              ").append(mExpectedQueries.get(i));
-            }
-            Assert.fail("Incorrect query.\n    Expected: " + sb + "\n      Actual: " +
-                    queryToString(uri, projection, selection, selectionArgs, sortOrder));
-        }
+        Assert.fail("Incorrect query. Expected one of: " + mExpectedQueries + ". Actual: " +
+                queryToString(uri, projection, selection, selectionArgs, sortOrder));
         return null;
-    }
-
-    @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
-        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -297,12 +328,27 @@ public class MockContentProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        throw new UnsupportedOperationException();
+        if (mExpectedInserts.isEmpty()) {
+            Assert.fail("Unexpected insert. Actual: " + insertToString(uri, values));
+        }
+        for (Iterator<Insert> iterator = mExpectedInserts.iterator(); iterator.hasNext(); ) {
+            Insert insert = iterator.next();
+            if (insert.equals(uri, values)) {
+                insert.mIsExecuted = true;
+                if (!insert.mAnyNumberOfTimes) {
+                    iterator.remove();
+                }
+                return insert.mResultUri;
+            }
+        }
+
+        Assert.fail("Incorrect insert. Expected one of: " + mExpectedInserts + ". Actual: "
+                + insertToString(uri, values));
+        return null;
     }
 
-    @Override
-    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        throw new UnsupportedOperationException();
+    private String insertToString(Uri uri, ContentValues contentValues) {
+        return "Insert { mUri=" + uri + ", mContentValues=" + contentValues + '}';
     }
 
     private static String queryToString(Uri uri, String[] projection, String selection,
@@ -329,13 +375,29 @@ public class MockContentProvider extends ContentProvider {
     }
 
     public void verify() {
-        ArrayList<Query> mMissedQueries = Lists.newArrayList();
+        verifyQueries();
+        verifyInserts();
+    }
+
+    private void verifyQueries() {
+        List<Query> missedQueries = new ArrayList<>();
         for (Query query : mExpectedQueries) {
             if (!query.mExecuted) {
-                mMissedQueries.add(query);
+                missedQueries.add(query);
             }
         }
-        Assert.assertTrue("Not all expected queries have been called: " +
-                mMissedQueries, mMissedQueries.isEmpty());
+        Assert.assertTrue("Not all expected queries have been called: " + missedQueries,
+                missedQueries.isEmpty());
+    }
+
+    private void verifyInserts() {
+        List<Insert> missedInserts = new ArrayList<>();
+        for (Insert insert : mExpectedInserts) {
+            if (!insert.mIsExecuted) {
+                missedInserts.add(insert);
+            }
+        }
+        Assert.assertTrue("Not all expected inserts have been called: " + missedInserts,
+                missedInserts.isEmpty());
     }
 }
