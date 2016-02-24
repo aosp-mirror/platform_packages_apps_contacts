@@ -22,7 +22,7 @@ import android.app.Activity;
 /**
  * Activity that requests permissions needed for ImportVCardActivity.
  */
-public class RequestImportVCardPermissionsActivity extends RequestPermissionsActivityBase {
+public class RequestImportVCardPermissionsActivity extends RequestPermissionsActivity {
 
     private static final String[] REQUIRED_PERMISSIONS = new String[] {
             permission.READ_CONTACTS,
