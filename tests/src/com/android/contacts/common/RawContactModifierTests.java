@@ -439,7 +439,7 @@ public class RawContactModifierTests extends AndroidTestCase {
         RawContactDeltaListTests.assertDiffPattern(state,
                 RawContactDeltaListTests.buildAssertVersion(VER_FIRST),
                 RawContactDeltaListTests.buildUpdateAggregationSuspended(),
-                RawContactDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                RawContactDeltaListTests.buildCPOWrapper(Data.CONTENT_URI, TYPE_INSERT,
                         RawContactDeltaListTests.buildDataInsert(values, TEST_ID)),
                 RawContactDeltaListTests.buildUpdateAggregationDefault());
 
@@ -465,7 +465,7 @@ public class RawContactModifierTests extends AndroidTestCase {
         RawContactDeltaListTests.assertDiffPattern(state,
                 RawContactDeltaListTests.buildAssertVersion(VER_FIRST),
                 RawContactDeltaListTests.buildUpdateAggregationSuspended(),
-                RawContactDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                RawContactDeltaListTests.buildCPOWrapper(Data.CONTENT_URI, TYPE_INSERT,
                         RawContactDeltaListTests.buildDataInsert(values, TEST_ID)),
                 RawContactDeltaListTests.buildUpdateAggregationDefault());
 
@@ -474,7 +474,7 @@ public class RawContactModifierTests extends AndroidTestCase {
         RawContactDeltaListTests.assertDiffPattern(state,
                 RawContactDeltaListTests.buildAssertVersion(VER_FIRST),
                 RawContactDeltaListTests.buildUpdateAggregationSuspended(),
-                RawContactDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
+                RawContactDeltaListTests.buildCPOWrapper(Data.CONTENT_URI, TYPE_INSERT,
                         RawContactDeltaListTests.buildDataInsert(values, TEST_ID)),
                 RawContactDeltaListTests.buildUpdateAggregationDefault());
     }
