@@ -560,8 +560,7 @@ public class PeopleActivity extends ContactsActivity implements
                 break;
             case ActionBarAdapter.Listener.Action.START_SEARCH_MODE:
                 if (!mIsRecreatedInstance) {
-                    Logger.getInstance().logScreenView(
-                            ScreenEvent.SEARCH, this, ScreenEvent.TAG_SEARCH);
+                    Logger.logScreenView(ScreenEvent.SEARCH, this, ScreenEvent.TAG_SEARCH);
                 }
                 startSearchOrSelectionMode();
                 break;
@@ -1367,9 +1366,8 @@ public class PeopleActivity extends ContactsActivity implements
             if (mAllFragment.wasSearchResultClicked()) {
                 mAllFragment.resetSearchResultClicked();
             } else {
-                Logger.getInstance().logScreenView(
-                        ScreenEvent.SEARCH_EXIT, this, ScreenEvent.TAG_SEARCH_EXIT);
-                Logger.getInstance().logSearchEventImpl(mAllFragment.createSearchState());
+                Logger.logScreenView(ScreenEvent.SEARCH_EXIT, this, ScreenEvent.TAG_SEARCH_EXIT);
+                Logger.logSearchEvent(mAllFragment.createSearchState());
             }
         } else {
             super.onBackPressed();
