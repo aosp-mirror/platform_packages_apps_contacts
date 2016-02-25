@@ -58,10 +58,10 @@ public class DefaultContactListAdapterTest extends AndroidTestCase {
         assertNull(getDisplayNameSelectionArgs("\t"));
         assertNull(getDisplayNameSelectionArgs("\t "));
 
-        String[] expected = new String[]{"%foo%"};
+        String[] expected = new String[]{"foo%"};
         assertArrayEquals(expected, getDisplayNameSelectionArgs("foo"));
 
-        expected = new String[]{"%foo%","%bar%"};
+        expected = new String[]{"foo%","bar%"};
         assertArrayEquals(expected, getDisplayNameSelectionArgs("foo bar"));
         assertArrayEquals(expected, getDisplayNameSelectionArgs(" foo bar "));
         assertArrayEquals(expected, getDisplayNameSelectionArgs("foo\t bar"));

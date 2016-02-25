@@ -38,7 +38,6 @@ import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.ContactsCompat;
 import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.preference.ContactsPreferences;
-import com.android.contacts.common.util.ContactDisplayUtils;
 import com.android.contacts.commonbind.experiments.Flags;
 
 import java.util.ArrayList;
@@ -76,7 +75,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setSelection("0");
             } else if (flags.getBoolean(Experiments.FLAG_SEARCH_DISPLAY_NAME_QUERY, false)
                 && directoryId == Directory.DEFAULT) {
-                // Configure the loader to match display and phonetic names
+                // Configure the loader to prefix match display names and phonetic names
                 final String displayNameColumn =
                         getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
                                 ? Contacts.DISPLAY_NAME_PRIMARY : Contacts.DISPLAY_NAME_ALTERNATIVE;
@@ -89,28 +88,20 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setSelectionArgs(getDisplayNameSelectionArgs(query));
 
                 // Configure an extra query to show email and phone number matches and merge
-                // them in after the display name loader query result.
+                // them in after the display name loader query results. Emails are prefix matched
+                // but phone numbers are matched anywhere in the normalized phone number string.
                 final ProfileAndContactsLoader profileAndContactsLoader =
                         (ProfileAndContactsLoader) loader;
-                final Builder extraBuilder = Data.CONTENT_URI.buildUpon();
-                if (ContactDisplayUtils.isPossiblePhoneNumber(query)) {
-                    final String normalizedQuery = PhoneNumberUtilsCompat.normalizeNumber(query);
-                    profileAndContactsLoader.setLoadExtraContactsLast(
-                            extraBuilder.build(),
-                            ExperimentQuery.FILTER_PROJECTION_PRIMARY_PHONE,
-                            Data.MIMETYPE + "=? AND " + Phone.NORMALIZED_NUMBER + " LIKE ? AND " +
-                                    Contacts.IN_VISIBLE_GROUP + "=?",
-                            new String[]{Phone.CONTENT_ITEM_TYPE, "%" + normalizedQuery + "%",
-                                    "1"});
-                } else {
-                    final Builder emailBuilder = Data.CONTENT_URI.buildUpon();
-                    profileAndContactsLoader.setLoadExtraContactsLast(
-                            emailBuilder.build(),
-                            ExperimentQuery.FILTER_PROJECTION_PRIMARY_EMAIL,
-                            Data.MIMETYPE + "=? AND " + Email.ADDRESS + " LIKE ? AND " +
-                                    Contacts.IN_VISIBLE_GROUP + "=?",
-                            new String[]{Email.CONTENT_ITEM_TYPE, "%" + query + "%", "1"});
-                }
+                final String normalizedNumberQuery = PhoneNumberUtilsCompat.normalizeNumber(query);
+                profileAndContactsLoader.setLoadExtraContactsLast(
+                        Data.CONTENT_URI,
+                        ExperimentQuery.FILTER_PROJECTION_PRIMARY_EXTRA,
+                        Contacts.IN_VISIBLE_GROUP + "=? AND " +
+                        "((" + Data.MIMETYPE + "=? AND " + Phone.NORMALIZED_NUMBER + " LIKE ?) OR " +
+                        "(" + Data.MIMETYPE + "=? AND " + Email.ADDRESS + " LIKE ?))",
+                        new String[]{"1",
+                                Phone.CONTENT_ITEM_TYPE, "%" + normalizedNumberQuery + "%",
+                                Email.CONTENT_ITEM_TYPE, query + "%"});
                 if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
                     sortOrder = String.format("%s DESC, %s DESC",
                             Contacts.TIMES_CONTACTED, Contacts.STARRED);
@@ -182,14 +173,14 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
     /**
      * Splits the given query by whitespace and returns the resulting tokens, each one
-     * wrapped with "%" on either side.
+     * with a "%" added to the end.
      */
     @VisibleForTesting
     static String[] getDisplayNameSelectionArgs(String query) {
         final String[] tokens = getDisplayNameSelectionTokens(query);
         if (tokens == null) return null;
         for (int i = 0; i < tokens.length; i++) {
-            tokens[i] = "%" + tokens[i] + "%";
+            tokens[i] = tokens[i] + "%";
         }
         return tokens;
     }

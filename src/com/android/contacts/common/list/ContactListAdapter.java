@@ -146,7 +146,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 // SearchSnippets.SNIPPET not supported for Contacts.CONTENT_URI
         };
 
-        public static final String[] FILTER_PROJECTION_PRIMARY_EMAIL = new String[] {
+        public static final String[] FILTER_PROJECTION_PRIMARY_EXTRA = new String[] {
                 Contacts._ID,                           // 0
                 Contacts.DISPLAY_NAME_PRIMARY,          // 1
                 Contacts.CONTACT_PRESENCE,              // 2
@@ -161,30 +161,13 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 Contacts.STARRED,                       // 10
                 // SearchSnippets.SNIPPET not supported for Data.CONTENT_URI
                 Email.ADDRESS,                          // 11
+                Phone.NUMBER,                           // 12
+                Phone.NORMALIZED_NUMBER,                // 13
         };
 
         public static final int EMAIL_ADDRESS = 11;
-
-        public static final String[] FILTER_PROJECTION_PRIMARY_PHONE = new String[] {
-                Contacts._ID,                           // 0
-                Contacts.DISPLAY_NAME_PRIMARY,          // 1
-                Contacts.CONTACT_PRESENCE,              // 2
-                Contacts.CONTACT_STATUS,                // 3
-                Contacts.PHOTO_ID,                      // 4
-                Contacts.PHOTO_THUMBNAIL_URI,           // 5
-                Contacts.LOOKUP_KEY,                    // 6
-                // Contacts.IS_USER_PROFILE not supported for Data.CONTENT_URI
-                Contacts.IN_VISIBLE_GROUP,              // 7
-                Contacts.PHONETIC_NAME,                 // 8
-                Contacts.TIMES_CONTACTED,               // 9
-                Contacts.STARRED,                       // 10
-                // SearchSnippets.SNIPPET not supported for Data.CONTENT_URI
-                Phone.NUMBER,                           // 11
-                Phone.NORMALIZED_NUMBER,                // 12
-        };
-
-        public static final int NUMBER = 11;
-        public static final int NORMAILIZED_NUMBER = 12;
+        public static final int NUMBER = 12;
+        public static final int NORMAILIZED_NUMBER = 13;
     }
 
     private CharSequence mUnknownNameText;
