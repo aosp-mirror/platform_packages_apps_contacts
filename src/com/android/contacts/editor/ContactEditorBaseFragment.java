@@ -16,6 +16,7 @@
 
 package com.android.contacts.editor;
 
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
@@ -1469,6 +1470,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                             mContext, contactLookupUri, mLookupUri);
                     resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(lookupUri,
                             QuickContactActivity.MODE_FULLY_EXPANDED);
+                    resultIntent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
+                            ScreenType.EDITOR);
                 } else {
                     resultIntent = null;
                 }
