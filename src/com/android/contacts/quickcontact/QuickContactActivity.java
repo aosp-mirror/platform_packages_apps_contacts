@@ -118,6 +118,8 @@ import com.android.contacts.common.interactions.TouchPointManager;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.list.ShortcutIntentBuilder;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
+import com.android.contacts.common.logging.Logger;
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
@@ -202,6 +204,9 @@ public class QuickContactActivity extends ContactsActivity
      * should only be used by the Contacts app.
      */
     public static final int MODE_FULLY_EXPANDED = 4;
+
+    /** Used to pass the screen where the user came before launching this Activity. */
+    public static final String EXTRA_PREVIOUS_SCREEN_TYPE = "previous_screen_type";
 
     private static final String TAG = "QuickContact";
 
@@ -918,6 +923,10 @@ public class QuickContactActivity extends ContactsActivity
                 RequestDesiredPermissionsActivity.startPermissionActivity(this)) {
             return;
         }
+
+        final int previousScreenType = getIntent().getExtras()
+                .getInt(EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
+        Logger.logScreenView(this, ScreenType.QUICK_CONTACT, previousScreenType);
 
         if (CompatUtils.isLollipopCompatible()) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
