@@ -16,7 +16,10 @@
 package com.android.contacts.common.logging;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.text.TextUtils;
 
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.commonbind.ObjectFactory;
 import com.android.contacts.commonbind.analytics.AnalyticsUtil;
 
@@ -26,7 +29,7 @@ import com.android.contacts.commonbind.analytics.AnalyticsUtil;
 public abstract class Logger {
     public static final String TAG = "Logger";
 
-    public static Logger getInstance() {
+    private static Logger getInstance() {
         return ObjectFactory.getLogger();
     }
 
@@ -35,16 +38,26 @@ public abstract class Logger {
      *
      * @param screenType integer identifier of the displayed screen
      * @param activity Parent activity of the displayed screen.
-     * @param tag Optional description of the displayed screen.
      */
-    public static void logScreenView(int screenType, Activity activity, String tag) {
+    public static void logScreenView(Activity activity, int screenType) {
+        logScreenView(activity, screenType, ScreenType.UNKNOWN);
+    }
+
+    /**
+     * @param previousScreenType integer identifier of the displayed screen the user came from.
+     */
+    public static void logScreenView(Activity activity, int screenType, int previousScreenType) {
         final Logger logger = getInstance();
         if (logger != null) {
-            logger.logScreenViewImpl(screenType);
+            logger.logScreenViewImpl(screenType, previousScreenType);
         }
-        final String screenName = ScreenEvent.getScreenNameWithTag(
-                activity.getClass().getSimpleName(), tag);
-        AnalyticsUtil.sendScreenView(screenName, activity, tag);
+        // We prepend the friendly screen name with "From" and use it as the tag to indicate the
+        // screen where the user was previously when they initiated the screen view being logged
+        String tag = ScreenType.getFriendlyName(previousScreenType);
+        if (!TextUtils.isEmpty(tag)) {
+            tag = "From" + tag;
+        }
+        AnalyticsUtil.sendScreenView(/* fragmentName */ (String) null, activity, tag);
     }
 
     /**
@@ -57,6 +70,6 @@ public abstract class Logger {
         }
     }
 
-    public abstract void logScreenViewImpl(int screenType);
+    public abstract void logScreenViewImpl(int screenType, int previousScreenType);
     public abstract void logSearchEventImpl(SearchState searchState);
 }

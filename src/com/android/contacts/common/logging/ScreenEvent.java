@@ -15,36 +15,43 @@
  */
 package com.android.contacts.common.logging;
 
-import android.text.TextUtils;
+import android.app.Activity;
+import com.android.contacts.commonbind.analytics.AnalyticsUtil;
 
 /**
  * Stores constants identifying individual screens/dialogs/fragments in the application, and also
  * provides a mapping of integer id -> screen name mappings for analytics purposes.
  */
 public final class ScreenEvent {
-    private static final String FRAGMENT_TAG_SEPARATOR = "#";
 
     // Should match ContactsExtension.ScreenEvent.ScreenType values in
     // http://cs/google3/logs/proto/wireless/android/contacts/contacts_extensions.proto
-    public static final int UNKNOWN = 0;
-    public static final int SEARCH = 1;
-    public static final int SEARCH_EXIT = 2;
+    public static final class ScreenType {
+        public static final int UNKNOWN = 0;
+        public static final int SEARCH = 1;
+        public static final int SEARCH_EXIT = 2;
+        public static final int FAVORITES = 3;
+        public static final int ALL_CONTACTS = 4;
+        public static final int QUICK_CONTACT = 5;
+        public static final int EDITOR = 6;
 
-    public static final String TAG_SEARCH = "Search";
-    public static final String TAG_SEARCH_EXIT = "SearchExit";
-
-    /**
-     * Build a tagged version of the provided screenName if the tag is non-empty.
-     *
-     * @param screenName Name of the screen.
-     * @param tag Optional tag describing the screen.
-     * @return the unchanged screenName if the tag is {@code null} or empty, the tagged version of
-     *         the screenName otherwise.
-     */
-    public static String getScreenNameWithTag(String screenName, String tag) {
-        if (TextUtils.isEmpty(tag)) {
-            return screenName;
+        private ScreenType() {
         }
-        return screenName + FRAGMENT_TAG_SEPARATOR + tag;
+
+        public static String getFriendlyName(int screenType) {
+            switch (screenType) {
+                case SEARCH: // fall-through
+                case SEARCH_EXIT: return "Search";
+                case FAVORITES: return "Favorites";
+                case ALL_CONTACTS: return "AllContacts";
+                case QUICK_CONTACT: return "QuickContact";
+                case EDITOR: return "Editor";
+                case UNKNOWN: // fall-through
+                default: return null;
+            }
+        }
+    }
+
+    private ScreenEvent() {
     }
 }
