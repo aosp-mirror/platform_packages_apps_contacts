@@ -23,7 +23,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
-import android.util.Log;
+import android.support.annotation.Nullable;
 
 import junit.framework.Assert;
 
@@ -242,31 +242,106 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
             if (o == null || getClass() != o.getClass()) {
                 return false;
             }
-
             Insert insert = (Insert) o;
-
-            return mUri.equals(insert.mUri) && mContentValues.equals(insert.mContentValues)
-                    && mResultUri.equals(insert.mResultUri);
+            return mAnyNumberOfTimes == insert.mAnyNumberOfTimes &&
+                    mIsExecuted == insert.mIsExecuted &&
+                    Objects.equals(mUri, insert.mUri) &&
+                    Objects.equals(mContentValues, insert.mContentValues) &&
+                    Objects.equals(mResultUri, insert.mResultUri);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(mUri, mContentValues, mResultUri);
+            return Objects.hash(mUri, mContentValues, mResultUri, mAnyNumberOfTimes, mIsExecuted);
         }
 
         @Override
         public String toString() {
-            return "Insert{"
-                    + "mUri=" + mUri
-                    + ", mContentValues=" + mContentValues
-                    + ", mResultUri=" + mResultUri
-                    +'}';
+            return "Insert{" +
+                    "mUri=" + mUri +
+                    ", mContentValues=" + mContentValues +
+                    ", mResultUri=" + mResultUri +
+                    ", mAnyNumberOfTimes=" + mAnyNumberOfTimes +
+                    ", mIsExecuted=" + mIsExecuted +
+                    '}';
+        }
+    }
+
+    public static class Delete {
+        private final Uri mUri;
+
+        private boolean mAnyNumberOfTimes;
+        private boolean mAnySelection;
+        @Nullable private String mSelection;
+        @Nullable private String[] mSelectionArgs;
+        private boolean mIsExecuted;
+        private int mRowsAffected;
+
+        /**
+         * Creates a new Delete to expect.
+         * @param uri the uri of the delete request.
+         * @throws NullPointerException if uri is {@code null}.
+         */
+        public Delete(Uri uri) {
+            mUri = Preconditions.checkNotNull(uri);
+        }
+
+        /**
+         * Sets the given information as expected selection arguments.
+         *
+         * @param selection The selection to expect.
+         * @param selectionArgs The selection args to expect.
+         * @return this.
+         */
+        public Delete withSelection(String selection, @Nullable String[] selectionArgs) {
+            mSelection = Preconditions.checkNotNull(selection);
+            mSelectionArgs = selectionArgs;
+            mAnySelection = false;
+            return this;
+        }
+
+        /**
+         * Sets this delete to expect any selection arguments.
+         *
+         * @return this.
+         */
+        public Delete withAnySelection() {
+            mAnySelection = true;
+            return this;
+        }
+
+        /**
+         * Sets this delete to return the given number of rows affected.
+         *
+         * @param rowsAffected The value to return when this expected delete is executed.
+         * @return this.
+         */
+        public Delete returnRowsAffected(int rowsAffected) {
+            mRowsAffected = rowsAffected;
+            return this;
+        }
+
+        /**
+         * Causes this delete expectation to be useable for multiple calls to delete, rather than
+         * just one.
+         *
+         * @return this.
+         */
+        public Delete anyNumberOfTimes() {
+            mAnyNumberOfTimes = true;
+            return this;
+        }
+
+        private boolean equals(Uri uri, String selection, String[] selectionArgs) {
+            return mUri.equals(uri) && Objects.equals(mSelection, selection)
+                    && Arrays.equals(mSelectionArgs, selectionArgs);
         }
     }
 
     private List<Query> mExpectedQueries = new ArrayList<>();
     private Map<Uri, String> mExpectedTypeQueries = Maps.newHashMap();
     private List<Insert> mExpectedInserts = new ArrayList<>();
+    private List<Delete> mExpectedDeletes = new ArrayList<>();
 
     @Override
     public boolean onCreate() {
@@ -285,6 +360,12 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
 
     public void expectInsert(Uri contentUri, ContentValues contentValues, Uri resultUri) {
         mExpectedInserts.add(new Insert(contentUri, contentValues, resultUri));
+    }
+
+    public Delete expectDelete(Uri contentUri) {
+        Delete delete = new Delete(contentUri);
+        mExpectedDeletes.add(delete);
+        return delete;
     }
 
     @Override
@@ -348,7 +429,33 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
     }
 
     private String insertToString(Uri uri, ContentValues contentValues) {
-        return "Insert { mUri=" + uri + ", mContentValues=" + contentValues + '}';
+        return "Insert { uri=" + uri + ", contentValues=" + contentValues + '}';
+    }
+
+    @Override
+    public int delete(Uri uri, String selection, String[] selectionArgs) {
+        if (mExpectedDeletes.isEmpty()) {
+            Assert.fail("Unexpected delete. Actual: " + deleteToString(uri, selection,
+                    selectionArgs));
+        }
+        for (Iterator<Delete> iterator = mExpectedDeletes.iterator(); iterator.hasNext(); ) {
+            Delete delete = iterator.next();
+            if (delete.equals(uri, selection, selectionArgs)) {
+                delete.mIsExecuted = true;
+                if (!delete.mAnyNumberOfTimes) {
+                    iterator.remove();
+                }
+                return delete.mRowsAffected;
+            }
+        }
+        Assert.fail("Incorrect delete. Expected one of: " + mExpectedDeletes + ". Actual: "
+                + deleteToString(uri, selection, selectionArgs));
+        return -1;
+    }
+
+    private String deleteToString(Uri uri, String selection, String[] selectionArgs) {
+        return "Delete { uri=" + uri + ", selection=" + selection + ", selectionArgs"
+                + Arrays.toString(selectionArgs) + '}';
     }
 
     private static String queryToString(Uri uri, String[] projection, String selection,
@@ -377,6 +484,7 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
     public void verify() {
         verifyQueries();
         verifyInserts();
+        verifyDeletes();
     }
 
     private void verifyQueries() {
@@ -399,5 +507,16 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
         }
         Assert.assertTrue("Not all expected inserts have been called: " + missedInserts,
                 missedInserts.isEmpty());
+    }
+
+    private void verifyDeletes() {
+        List<Delete> missedDeletes = new ArrayList<>();
+        for (Delete delete : mExpectedDeletes) {
+            if (!delete.mIsExecuted) {
+                missedDeletes.add(delete);
+            }
+        }
+        Assert.assertTrue("Not all expected deletes have been called: " + missedDeletes,
+                missedDeletes.isEmpty());
     }
 }
