@@ -213,7 +213,7 @@
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Λήψη επαφής μέσω ΕΚΠ"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Εξαγωγή επαφών;"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Προσωρινή αποθήκευση"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Δεν ήταν δυνατή η σάρωση του χώρου αποθήκευσης. (Αιτία: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Δεν ήταν δυνατή η σάρωση του αποθηκευτικού χώρου. (Αιτία: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Δεν ήταν δυνατή η σάρωση της κάρτας SD. (Αιτία: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Εισαγωγή <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Εξαγωγή σε αρχείο .vcf"</string>
