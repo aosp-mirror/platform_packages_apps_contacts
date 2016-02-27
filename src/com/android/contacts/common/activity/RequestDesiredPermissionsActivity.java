@@ -19,6 +19,7 @@ package com.android.contacts.common.activity;
 import android.Manifest.permission;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 
 /**
  * Requests permissions that are not absolutely required by the calling Activity;
@@ -54,7 +55,8 @@ public class RequestDesiredPermissionsActivity extends RequestPermissionsActivit
      * This is designed to be called inside {@link android.app.Activity#onCreate}
      */
     public static boolean startPermissionActivity(Activity activity) {
-        if (activity.getIntent().getExtras().getBoolean(STARTED_PERMISSIONS_ACTIVITY, false)) {
+        final Bundle extras = activity.getIntent().getExtras();
+        if (extras != null && extras.getBoolean(STARTED_PERMISSIONS_ACTIVITY, false)) {
             return false;
         }
         return startPermissionActivity(activity, DESIRED_PERMISSIONS,
