@@ -17,6 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"僅儲存在平板電腦中 (不同步處理)"</string>
-    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"沒有可匯出的聯絡人。如果您的平板電腦中確實有聯絡人資料，那麼可能是部分資料提供者不允許您將聯絡人資料從平板電腦匯出。"</string>
+    <string name="account_phone" msgid="4804592866198643905">"僅儲存在平板電腦，不會同步處理"</string>
+    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"沒有聯絡人資料可以匯出。如果您的平板電腦中確實有聯絡人資料，則可能是部分資料提供者不允許您將聯絡人資料從平板電腦匯出。"</string>
 </resources>

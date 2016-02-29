@@ -17,6 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"Лише на мобільному пристрої, не синхронізується"</string>
-    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"Немає контактів, які можна експортувати. Якщо на вашому планшеті є контакти, можливо, постачальник даних заборонив їх експортувати."</string>
+    <string name="account_phone" msgid="4804592866198643905">"டேப்லெட் மட்டும், ஒத்திசைக்கப்படவில்லை"</string>
+    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"ஏற்றுமதி செய்யத்தக்க தொடர்புகள் இல்லை. டேப்லெட்டில் தொடர்புகள் இருந்தால், டேப்லெட்டிலிருந்து தொடர்புகளை ஏற்றுமதி செய்வதற்குச் சில தரவு வழங்குநர்கள் அனுமதிக்காமல் போகலாம்."</string>
 </resources>

@@ -18,5 +18,5 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="account_phone" msgid="4804592866198643905">"ጡባዊ-ብቻ፣ ያልተሰመረ"</string>
-    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"ወደ ውጭ ሊላኩ የሚችሉ እውቂያዎች የሉም። በጡባዊዎ ውስጥ እውቂያዎች ካሉዎት አንዳንድ የውሂብ አቅራቢዎች እውቂያዎቹ ከጡባዊው ወደ ውጭ እንዲላኩ አይፈቅዱም።"</string>
+    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"ወደ ውጭ ሊላኩ የሚችሉ እውቂያዎች የሉም። በጡባዊዎ ውስጥ እውቂያዎች ካለዎት አንዳንድ የውሂብ አቅራቢዎች እውቂያዎቹ ከጡባዊው ወደ ውጭ እንዲላኩ አይፈቅዱም።"</string>
 </resources>

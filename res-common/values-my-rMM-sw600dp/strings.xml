@@ -17,6 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"Лише на мобільному пристрої, не синхронізується"</string>
-    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"Немає контактів, які можна експортувати. Якщо на вашому планшеті є контакти, можливо, постачальник даних заборонив їх експортувати."</string>
+    <string name="account_phone" msgid="4804592866198643905">"တက်ဘလက်−အတွက်သာ၊  စင့်ခ်မလုပ်ရသေးပါ"</string>
+    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"တင်ပို့၍ရသော အဆက်အသွယ်များမရှိပါ။ သင့်တက်ဘလက်ပေါ်တွင် အဆက်အသွယ်မရှိပါက၊  အချို့ ဒေတာထောက်ပံ့ပေးသူတို့သည် အဆက်အသွယ်များကို တက်ဘလက်မှ တင်ပို့ခွင့်ပေးမည် မဟုတ်ပါ။"</string>
 </resources>

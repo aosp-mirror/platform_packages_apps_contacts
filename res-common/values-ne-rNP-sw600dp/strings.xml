@@ -17,6 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"Лише на мобільному пристрої, не синхронізується"</string>
-    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"Немає контактів, які можна експортувати. Якщо на вашому планшеті є контакти, можливо, постачальник даних заборонив їх експортувати."</string>
+    <string name="account_phone" msgid="4804592866198643905">"ट्याब्लेट मात्र, सिंक नगरिएको"</string>
+    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"कुनै पनि निर्यात गर्ने मिल्ने सम्पर्कहरू छैनन्। यदि तपाईँको ट्याब्लेटमा सच्चिकै सम्पर्कहरू छन् भने केही डेटा प्रदायकहरूले ट्याब्लेटबाट सम्पर्कहरू निर्यात गर्ने अनुमति दिँदैनन् होला।"</string>
 </resources>
