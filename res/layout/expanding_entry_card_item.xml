@@ -41,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:paddingTop="5dp"
         android:layout_toEndOf="@+id/icon"
         android:layout_toStartOf="@+id/icon_alternate"
         android:textColor="@color/quickcontact_entry_header_text_color"
