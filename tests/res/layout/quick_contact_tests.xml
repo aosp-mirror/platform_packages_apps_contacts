@@ -91,5 +91,11 @@
             style="?android:attr/quickContactBadgeStyleSmallWindowLarge"
             android:layout_marginLeft="4dip" />
     </LinearLayout>
+    <Button
+        android:id="@android:id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quickContactIntent"
+        android:enabled="false"/>
 </LinearLayout>
 

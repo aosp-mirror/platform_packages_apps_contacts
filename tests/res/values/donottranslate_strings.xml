@@ -86,6 +86,7 @@
     <string name="pinnedHeaderList">Pinned Headers</string>
     <string name="quickContactTests">Quick Contact modes</string>
     <string name="pickContact">Pick contact</string>
+    <string name="quickContactIntent">Start with Intent</string>
     <string name="fillCallLogTest">Fill call log test</string>
     <string name="addToCallLogButton">Add</string>
     <string name="numberOfCallLogEntries">Number of call log entries to add:</string>

@@ -924,8 +924,8 @@ public class QuickContactActivity extends ContactsActivity
             return;
         }
 
-        final int previousScreenType = getIntent().getExtras()
-                .getInt(EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
+        final int previousScreenType = getIntent().getIntExtra
+                (EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
         Logger.logScreenView(this, ScreenType.QUICK_CONTACT, previousScreenType);
 
         if (CompatUtils.isLollipopCompatible()) {
