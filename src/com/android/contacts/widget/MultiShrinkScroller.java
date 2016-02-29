@@ -408,16 +408,27 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     public void setPhoneticName(String phoneticName) {
+        // Set phonetic name only when it was gone before or got changed.
+        if (mPhoneticNameView.getVisibility() == View.VISIBLE
+                && phoneticName.equals(mPhoneticNameView.getText())) {
+            return;
+        }
         mPhoneticNameView.setText(phoneticName);
         // Every time the phonetic name is changed, set mPhoneticNameView as visible,
         // in case it just changed from Visibility=GONE.
         mPhoneticNameView.setVisibility(View.VISIBLE);
+        // TODO try not using initialize() to refresh phonetic name view: b/27410518
         initialize(mListener, mIsOpenContactSquare);
     }
 
     public void setPhoneticNameGone() {
+        // Remove phonetic name only when it was visible before.
+        if (mPhoneticNameView.getVisibility() == View.GONE) {
+            return;
+        }
         mPhoneticNameView.setVisibility(View.GONE);
         // Initialize to make Visibility work.
+        // TODO try not using initialize() to refresh phonetic name view: b/27410518
         initialize(mListener, mIsOpenContactSquare);
     }
 
