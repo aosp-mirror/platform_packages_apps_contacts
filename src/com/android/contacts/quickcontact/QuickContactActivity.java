@@ -90,6 +90,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -984,6 +985,9 @@ public class QuickContactActivity extends ContactsActivity
                 mCollapsedSuggestionCardView.setVisibility(View.GONE);
                 mExpandSuggestionCardView.setVisibility(View.VISIBLE);
                 mIsSuggestionListCollapsed = false;
+                mExpandSuggestionCardTitle.requestFocus();
+                mExpandSuggestionCardTitle.sendAccessibilityEvent(
+                        AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
             }
         });
 
