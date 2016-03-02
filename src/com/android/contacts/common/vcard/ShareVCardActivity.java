@@ -25,6 +25,9 @@ import com.android.contacts.common.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * This activity connects to VCardService, creates a .vcf file in cache directory and send export
@@ -32,7 +35,7 @@ import java.io.IOException;
  */
 public class ShareVCardActivity extends ExportVCardActivity {
     private static final String LOG_TAG = "VCardShare";
-    private final String EXPORT_FILE_PREFIX = "export_";
+    private final String EXPORT_FILE_PREFIX = "vcards_";
     private final long A_DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
 
     @Override
@@ -81,20 +84,9 @@ public class ShareVCardActivity extends ExportVCardActivity {
     }
 
     private File getLocalFile() {
-        int cache_index = 0;
-        String localFilename;
-        File file;
-        while (true) {
-            localFilename = EXPORT_FILE_PREFIX + cache_index + ".vcf";
-            file = new File(getCacheDir(), localFilename);
-            if (!file.exists()) {
-                break;
-            }
-            if (cache_index == Integer.MAX_VALUE) {
-                throw new RuntimeException("Exceeded cache limit");
-            }
-            cache_index++;
-        }
-        return file;
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
+        final String currentDateString = dateFormat.format(new Date()).toString();
+        final String localFilename = EXPORT_FILE_PREFIX + currentDateString + ".vcf";
+        return new File(getCacheDir(), localFilename);
     }
 }

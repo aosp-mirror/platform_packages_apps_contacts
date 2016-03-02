@@ -306,6 +306,9 @@ public class ExportProcessor extends ProcessorBase {
         final Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType(Contacts.CONTENT_VCARD_TYPE);
         intent.putExtra(Intent.EXTRA_STREAM, uri);
+        // Securely grant access using temporary access permissions
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        // Build notification
         final Notification notification =
                 NotificationImportExportListener.constructFinishNotificationWithFlags(
                         mService, title, description, intent, Intent.FLAG_ACTIVITY_NEW_TASK);
