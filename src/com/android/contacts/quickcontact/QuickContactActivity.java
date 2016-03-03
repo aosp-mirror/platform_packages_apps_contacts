@@ -1276,7 +1276,7 @@ public class QuickContactActivity extends ContactsActivity
 
     private void bindDataToCards(Cp2DataCardModel cp2DataCardModel) {
         startInteractionLoaders(cp2DataCardModel);
-        populateContactAndAboutCard(cp2DataCardModel);
+        populateContactAndAboutCard(cp2DataCardModel, /* shouldAddPhoneticName */ true);
         populateSuggestionCard();
     }
 
@@ -1369,7 +1369,7 @@ public class QuickContactActivity extends ContactsActivity
         // If returning from a launched activity, repopulate the contact and about card
         if (mHasIntentLaunched) {
             mHasIntentLaunched = false;
-            populateContactAndAboutCard(mCachedCp2DataCardModel);
+            populateContactAndAboutCard(mCachedCp2DataCardModel, /* shouldAddPhoneticName */ false);
         }
 
         // When exiting the activity and resuming, we want to force a full reload of all the
@@ -1425,7 +1425,8 @@ public class QuickContactActivity extends ContactsActivity
         mAggregationSuggestionEngine.onNameChange(ValuesDelta.fromBefore(values));
     }
 
-    private void populateContactAndAboutCard(Cp2DataCardModel cp2DataCardModel) {
+    private void populateContactAndAboutCard(Cp2DataCardModel cp2DataCardModel,
+            boolean shouldAddPhoneticName) {
         mCachedCp2DataCardModel = cp2DataCardModel;
         if (mHasIntentLaunched || cp2DataCardModel == null) {
             return;
@@ -1456,8 +1457,11 @@ public class QuickContactActivity extends ContactsActivity
 
         Trace.beginSection("bind about card");
         // Phonetic name is not a data item, so the entry needs to be created separately
+        // But if mCachedCp2DataCardModel is passed to this method (e.g. returning from editor
+        // without saving any changes), then it should include phoneticName and the phoneticName
+        // shouldn't be changed. If this is the case, we shouldn't add it again. b/27459294
         final String phoneticName = mContactData.getPhoneticName();
-        if (!TextUtils.isEmpty(phoneticName)) {
+        if (shouldAddPhoneticName && !TextUtils.isEmpty(phoneticName)) {
             Entry phoneticEntry = new Entry(/* viewId = */ -1,
                     /* icon = */ null,
                     getResources().getString(R.string.name_phonetic),
