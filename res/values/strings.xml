@@ -83,14 +83,6 @@
          creating a new contact. This string represents the built in way to create the contact. -->
     <string name="insertContactDescription">Create contact</string>
 
-    <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
-         editing a group. This string represents the built in way to edit the group. [CHAR LIMIT=NONE] -->
-    <string name="editGroupDescription">Edit group</string>
-
-    <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
-         creating a new group. This string represents the built in way to create the group. [CHAR LIMIT=NONE] -->
-    <string name="insertGroupDescription">Create group</string>
-
     <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=15] -->
     <string name="contactDetailAbout">About</string>
 
@@ -299,12 +291,6 @@
 
     <!-- The text displayed when the groups list is empty and no accounts are set on the device while displaying all groups [CHAR LIMIT=NONE] -->
     <string name="noAccounts">To create groups you need an account.</string>
-
-    <!-- The text displayed when there are no members in the group while displaying the group detail page [CHAR LIMIT=40] -->
-    <string name="emptyGroup">No people in this group.</string>
-
-    <!-- The text displayed to instruct users to add members to a group (when viewing a group detail page for a group with no members) [CHAR LIMIT=50] -->
-    <string name="addPeopleToGroup">To add some, edit the group.</string>
 
     <!-- Displayed in a spinner dialog after the user creates a contact and it's being saved to the database -->
     <string name="savingContact">Saving contact\u2026</string>
@@ -597,12 +583,6 @@
 
     <!-- An item in the popup list of groups that triggers creation of a contact group [CHAR LIMIT=128] -->
     <string name="create_group_item_label">Create new group</string>
-
-    <!-- Shows how many groups are from the specified account [CHAR LIMIT=15] -->
-    <plurals name="num_groups_in_account">
-        <item quantity="one">1 group</item>
-        <item quantity="other"><xliff:g id="count">%0$d</xliff:g> groups</item>
-    </plurals>
 
     <!-- Confirmation message of the dialog that allows deletion of a contact group  [CHAR LIMIT=256] -->
     <string name="delete_group_dialog_message">Delete the group
