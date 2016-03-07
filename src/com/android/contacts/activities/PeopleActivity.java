@@ -1213,8 +1213,11 @@ public class PeopleActivity extends ContactsActivity implements
                 return true;
             }
             case R.id.menu_blocked_numbers: {
-                TelecomManagerUtil.launchBlockedNumbersActivity(
+                final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
                         (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
+                if (intent != null) {
+                    startActivity(intent);
+                }
                 return true;
             }
             case R.id.export_database: {
