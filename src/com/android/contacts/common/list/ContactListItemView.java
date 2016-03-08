@@ -1418,7 +1418,9 @@ public class ContactListItemView extends ViewGroup
             mNameTextView.setContentDescription(
                     PhoneNumberUtilsCompat.createTtsSpannable(name.toString()));
         } else {
-            mNameTextView.setContentDescription(null);
+            // Remove span tags of highlighting for talkback to avoid reading highlighting and rest
+            // of the name into two separate parts.
+            mNameTextView.setContentDescription(name.toString());
         }
     }
 

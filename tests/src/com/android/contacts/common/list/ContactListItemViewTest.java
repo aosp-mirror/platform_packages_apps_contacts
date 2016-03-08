@@ -82,6 +82,9 @@ public class ContactListItemViewTest extends AndroidTestCase {
         CharSequence seq = view.getNameTextView().getText();
         assertEquals("John Doe", seq.toString());
         SpannedTestUtils.assertPrefixSpan(seq, 5, 7);
+        // Talback should be without span tags.
+        assertEquals("John Doe", view.getNameTextView().getContentDescription());
+        assertFalse("John Doe".equals(seq));
     }
 
     public void testShowDisplayName_WithPrefixReversed() {
