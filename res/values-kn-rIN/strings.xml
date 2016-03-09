@@ -36,8 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"ಸಂಪರ್ಕ ವಿವರಗಳು"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"ಸಂಪರ್ಕವನ್ನು ಸಂಪಾದಿಸು"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"ಸಂಪರ್ಕವನ್ನು ರಚಿಸಿ"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"ಗುಂಪು ಸಂಪಾದಿಸು"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"ಗುಂಪು ರಚಿಸಿ"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"ಕುರಿತು"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"ಅಪ್‌ಡೇಟ್‌ಗಳು"</string>
     <string name="searchHint" msgid="8482945356247760701">"ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ"</string>
@@ -109,8 +107,6 @@
     <string name="noContacts" msgid="4955659076981974652">"ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ"</string>
     <string name="noGroups" msgid="8614664663561385253">"ಯಾವುದೇ ಗುಂಪುಗಳಿಲ್ಲ."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ಗುಂಪುಗಳನ್ನು ರಚಿಸಲು ನಿಮಗೆ ಖಾತೆಯ ಅಗತ್ಯವಿದೆ."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"ಈ ಗುಂಪಿನಲ್ಲಿ ಜನರಿಲ್ಲ."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"ಕೆಲವೊಂದು ಸೇರಿಸಲು, ಗುಂಪನ್ನು ಸಂಪಾದಿಸಿ."</string>
     <string name="savingContact" msgid="4075751076741924939">"ಸಂಪರ್ಕವನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"ಸಂಪರ್ಕ‌ವನ್ನು ಉಳಿಸಲಾಗಿದೆ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ಸಂಪರ್ಕಗಳನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>
@@ -208,10 +204,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"ಹೊಸ ಗುಂಪು ರಚಿಸಿ"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"ಹೊಸ ಗುಂಪು ರಚಿಸಿ"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> ಗುಂಪುಗಳು</item>
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> ಗುಂಪುಗಳು</item>
-    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ಗುಂಪನ್ನು ಅಳಿಸುವುದೇ? (ಸಂಪರ್ಕಗಳನ್ನೇ ಅಳಿಸಲಾಗುವುದಿಲ್ಲ.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> ರಿಂದ ಜನರು</item>

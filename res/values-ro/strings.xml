@@ -36,8 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Detalii ale persoanei din agendă"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Modificați informațiile despre persoana din agendă"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Creați persoana din agendă"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Editați grupul"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Creați grupul"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Despre"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Actualizări"</string>
     <string name="searchHint" msgid="8482945356247760701">"Căutați în Agendă"</string>
@@ -110,8 +108,6 @@
     <string name="noContacts" msgid="4955659076981974652">"Nu există persoane în agendă"</string>
     <string name="noGroups" msgid="8614664663561385253">"Nu există grupuri."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Pentru a crea grupuri aveți nevoie de un cont."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"Nu există persoane în acest grup."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Pentru a adăuga persoane, editați grupul."</string>
     <string name="savingContact" msgid="4075751076741924939">"Se salvează persoana din agendă..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Persoana din agendă a fost salvată"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Persoanele de contact au fost separate"</string>
@@ -212,11 +208,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importați Agenda"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Creați un grup nou"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Creați un grup nou"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="few"><xliff:g id="COUNT">%0$d</xliff:g> grupuri</item>
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> de grupuri</item>
-      <item quantity="one">Un grup</item>
-    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Ștergeți grupul „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? (Agenda nu va fi ștearsă.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="few"><xliff:g id="COUNT_2">%1$d</xliff:g> persoane din <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
