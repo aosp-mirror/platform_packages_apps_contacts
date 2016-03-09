@@ -39,7 +39,15 @@ public final class Flags {
         return defValue;
     }
 
-    public float getFloat(String flagName, float defValue) {
+    public byte[] getBytes(String flagName, byte[] defValue) {
+        return defValue;
+    }
+
+    public double getDouble(String flagName, double defValue) {
+        return defValue;
+    }
+
+    public int getInt(String flagName, int defValue) {
         return defValue;
     }
 
