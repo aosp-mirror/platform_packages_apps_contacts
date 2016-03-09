@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Chi tiết liên hệ"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Chỉnh sửa liên hệ"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Tạo liên hệ"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"Chỉnh sửa nhóm"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Tạo nhóm"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Giới thiệu"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Cập nhật"</string>
     <string name="searchHint" msgid="8482945356247760701">"Tìm kiếm trong danh bạ"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"Không có địa chỉ liên hệ nào"</string>
     <string name="noGroups" msgid="8614664663561385253">"Không có nhóm nào."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Để tạo nhóm, bạn cần có tài khoản."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Không có người nào trong nhóm này."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Để thêm thành viên, chỉnh sửa nhóm."</string>
     <string name="savingContact" msgid="4075751076741924939">"Đang lưu liên hệ…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Đã lưu địa chỉ liên hệ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Đã hủy liên kết liên hệ"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Nhập danh bạ"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Tạo nhóm mới"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Tạo nhóm mới"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> nhóm</item>
+      <item quantity="one">1 nhóm</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Xóa nhóm \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Danh bạ sẽ không bị xóa.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> người từ <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

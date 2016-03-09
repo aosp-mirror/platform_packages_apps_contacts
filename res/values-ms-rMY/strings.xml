@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Butiran kenalan"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Edit kenalan"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Wujudkan kenalan"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"Edit kumpulan"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Buat kumpulan"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Perihal"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Kemas kini"</string>
     <string name="searchHint" msgid="8482945356247760701">"Cari dalam kenalan"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"Tiada kenalan"</string>
     <string name="noGroups" msgid="8614664663561385253">"Tiada kumpulan."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Anda memerlukan akaun untuk membuat kumpulan."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Tiada orang dalam kumpulan ini."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Untuk menambah beberapa orang, edit kumpulan itu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Simpan kenalan..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kenalan disimpan."</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kenalan dinyahpaut"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Import kenalan"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Buat kumpulan baru"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Buat kumpulan baharu"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> kumpulan</item>
+      <item quantity="one">1 kumpulan</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Padamkan kumpulan \" <xliff:g id="GROUP_LABEL">%1$s</xliff:g> \"? (Kenalan itu sendiri tidak akan dipadamkan.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> orang daripada <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
