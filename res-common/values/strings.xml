@@ -821,6 +821,9 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Title for the activity that displays licenses for open source libraries. [CHAR LIMIT=100]-->
     <string name="activity_title_licenses">Open source licenses</string>
 
+    <!-- Toast message showing when failed to open the url. [CHAR LIMIT=100]-->
+    <string name="url_open_error_toast">Failed to open the url.</string>
+
     <!-- Content description of entries (including that radio button is checked) in contact
          accounts list filter. For example: Google abc@gmail.com checked, etc [CHAR LIMIT=30]-->
     <string name="account_filter_view_checked"><xliff:g id="account_info">%s</xliff:g> checked</string>
