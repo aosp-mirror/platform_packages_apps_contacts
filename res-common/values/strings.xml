@@ -149,7 +149,7 @@
     <string name="directory_search_label">Directory</string>
 
     <!-- The label in section header in the contact list for a work contact directory [CHAR LIMIT=128] -->
-    <string name="directory_search_label_work">Work Directory</string>
+    <string name="directory_search_label_work">Work directory</string>
 
     <!-- The label in section header in the contact list for a local contacts [CHAR LIMIT=128] -->
     <string name="local_search_label">All contacts</string>
@@ -203,7 +203,7 @@
     <string name="list_filter_phones">All contacts with phone numbers</string>
 
     <!-- Contact list filter selection indicating that the list shows all work contacts with phone numbers [CHAR LIMIT=64] -->
-    <string name="list_filter_phones_work">Work Profile contacts</string>
+    <string name="list_filter_phones_work">Work profile contacts</string>
 
     <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=25] -->
     <string name="view_updates_from_group">View updates</string>
