@@ -36,8 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Podrobnosti o stiku"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Urejanje stika"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Ustvari stik"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Uredi skupino"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Ustvari skupino"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Vizitka"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Posodobitve"</string>
     <string name="searchHint" msgid="8482945356247760701">"Iskanje stikov"</string>
@@ -111,8 +109,6 @@
     <string name="noContacts" msgid="4955659076981974652">"Ni stikov"</string>
     <string name="noGroups" msgid="8614664663561385253">"Ni skupin."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Če želite ustvariti skupine, potrebujete račun."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"V tej skupini ni ljudi."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Če jih želite dodati, uredite skupino."</string>
     <string name="savingContact" msgid="4075751076741924939">"Shranjevanje stika..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Stik je shranjen"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Povezava stikov odstranjena"</string>
@@ -216,12 +212,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Uvozi stike"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Ustvarjanje nove skupine"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Ustvari novo skupino"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> skupina</item>
-      <item quantity="two"><xliff:g id="COUNT">%0$d</xliff:g> skupini</item>
-      <item quantity="few"><xliff:g id="COUNT">%0$d</xliff:g> skupine</item>
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> skupin</item>
-    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Želite izbrisati skupino »<xliff:g id="GROUP_LABEL">%1$s</xliff:g>«? (Stiki ne bodo izbrisani.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> oseba iz skupine <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

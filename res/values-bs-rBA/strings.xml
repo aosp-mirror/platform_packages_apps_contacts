@@ -56,10 +56,6 @@
     <skip />
     <!-- no translation found for insertContactDescription (4709878105452681987) -->
     <skip />
-    <!-- no translation found for editGroupDescription (6321161304201540561) -->
-    <skip />
-    <!-- no translation found for insertGroupDescription (5658512271662210139) -->
-    <skip />
     <!-- no translation found for contactDetailAbout (5430408883907061400) -->
     <skip />
     <!-- no translation found for contactDetailUpdates (3780588624763446941) -->
@@ -188,10 +184,6 @@
     <!-- no translation found for noGroups (8614664663561385253) -->
     <skip />
     <!-- no translation found for noAccounts (7768267764545265909) -->
-    <skip />
-    <!-- no translation found for emptyGroup (7502116218697177370) -->
-    <skip />
-    <!-- no translation found for addPeopleToGroup (7879585947222263516) -->
     <skip />
     <!-- no translation found for savingContact (4075751076741924939) -->
     <skip />
@@ -367,7 +359,6 @@
     <skip />
     <!-- no translation found for create_group_item_label (4411981763169654825) -->
     <skip />
-    <!-- no translation found for num_groups_in_account (6189297639209663469) -->
     <!-- no translation found for delete_group_dialog_message (7586856514337560529) -->
     <skip />
     <!-- no translation found for num_contacts_in_group (5520734553286350341) -->
