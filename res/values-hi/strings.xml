@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"संपर्क विवरण"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"संपर्क संपादित करें"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"संपर्क बनाएं"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"समूह संपादित करें"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"समूह बनाएं"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"इस बारे में"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"नई जानकारी"</string>
     <string name="searchHint" msgid="8482945356247760701">"संपर्क खोजें"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"कोई संपर्क नहीं"</string>
     <string name="noGroups" msgid="8614664663561385253">"कोई समूह नहीं."</string>
     <string name="noAccounts" msgid="7768267764545265909">"समूह बनाने के लिए आपको किसी खाते की आवश्‍यकता होती है."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"इस समूह में कोई व्‍यक्ति नहीं."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"कुछ जोड़ने के लिए, समूह संपादित करें."</string>
     <string name="savingContact" msgid="4075751076741924939">"संपर्क सहेज रहा है…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"संपर्क सहेजा गया"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"संपर्क अनलिंक किए गए"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"संपर्क आयात करें"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"नया समूह बनाएं"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"नया समूह बनाएं"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> समूह</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> समूह</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"समूह \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" को हटाएं? (संपर्क स्वयं नहीं हटाए जाएंगे.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> से <xliff:g id="COUNT_2">%1$d</xliff:g> लोग</item>

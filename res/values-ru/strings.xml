@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Сведения о контакте"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Изменить контакт"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Создать контакт"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"Изменение группы"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Создание группы"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Контактные данные"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Лента активности"</string>
     <string name="searchHint" msgid="8482945356247760701">"Поиск в контактах"</string>
@@ -109,6 +111,8 @@
     <string name="noContacts" msgid="4955659076981974652">"Нет контактов"</string>
     <string name="noGroups" msgid="8614664663561385253">"Нет групп."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Для создания групп нужен аккаунт."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Здесь пока никого нет."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Чтобы добавить участников, откройте меню и нажмите \"Изменить\"."</string>
     <string name="savingContact" msgid="4075751076741924939">"Контакт сохраняется..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Контакт сохранен"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Контакты разделены"</string>
@@ -212,6 +216,12 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Импортировать контакты"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Создание новой группы"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Создать группу"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> группа</item>
+      <item quantity="few"><xliff:g id="COUNT">%0$d</xliff:g> группы</item>
+      <item quantity="many"><xliff:g id="COUNT">%0$d</xliff:g> групп</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> групп</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Действительно удалить группу \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Контакты не будут удалены.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> человек из <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

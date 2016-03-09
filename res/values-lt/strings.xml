@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Išsami adresato informacija"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Redaguoti adresatą"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Sukurti adresatą"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"Redaguoti grupę"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Kurti grupę"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Apie"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Naujiniai"</string>
     <string name="searchHint" msgid="8482945356247760701">"Ieškoti adresatų"</string>
@@ -109,6 +111,8 @@
     <string name="noContacts" msgid="4955659076981974652">"Kontaktų nėra"</string>
     <string name="noGroups" msgid="8614664663561385253">"Nėra grupių."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Jums reikia paskyros, kad galėtumėte kurti grupes."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Šioje grupėje nėra žmonių."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Jei norite jų pridėti, redaguokite grupę."</string>
     <string name="savingContact" msgid="4075751076741924939">"Išsaugomas adresatas..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontaktas išsaugotas"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktai atsieti"</string>
@@ -212,6 +216,12 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importuoti kontaktus"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Sukurti naują grupę"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Sukurti naują grupę"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> grupė</item>
+      <item quantity="few"><xliff:g id="COUNT">%0$d</xliff:g> grupės</item>
+      <item quantity="many"><xliff:g id="COUNT">%0$d</xliff:g> grupės</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupių</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Ištrinti grupę „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“? (Kontaktai nebus ištrinti.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> žmogus iš <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

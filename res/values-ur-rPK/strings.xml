@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"رابطہ کی تفصیلات"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"رابطہ میں ترمیم کریں"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"رابطہ بنائیں"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"گروپ میں ترمیم کریں"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"گروپ بنائیں"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"تفصیل"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"اپ ڈیٹس"</string>
     <string name="searchHint" msgid="8482945356247760701">"رابطے تلاش کریں"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"کوئی رابطے نہیں ہیں"</string>
     <string name="noGroups" msgid="8614664663561385253">"کوئی گروپس نہیں ہیں۔"</string>
     <string name="noAccounts" msgid="7768267764545265909">"گروپس بنانے کیلئے آپ کو ایک اکاؤنٹ درکار ہے۔"</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"اس گروپ میں کوئی لوگ نہیں ہیں۔"</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"کچھ شامل کرنے کیلئے، گروپ میں ترمیم کریں۔"</string>
     <string name="savingContact" msgid="4075751076741924939">"رابطہ محفوظ ہو رہا ہے…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"رابطہ محفوظ ہوگیا"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"رابطے اَن لنک ہو گئے"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"رابطے درآمد کریں"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"نیا گروپ بنائیں"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"نیا گروپ بنائیں"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> گروپس</item>
+      <item quantity="one">1 گروپ</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"گروپ \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" کو حذف کریں؟ (رابطے بذات خود حذف نہیں ہوں گے۔)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> میں سے <xliff:g id="COUNT_2">%1$d</xliff:g> لوگ</item>
