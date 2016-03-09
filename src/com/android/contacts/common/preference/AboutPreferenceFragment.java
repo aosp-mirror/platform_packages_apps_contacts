@@ -16,13 +16,16 @@
 
 package com.android.contacts.common.preference;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.widget.Toast;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.activity.LicenseActivity;
@@ -31,6 +34,9 @@ import com.android.contacts.common.activity.LicenseActivity;
  * This fragment shows the preferences for "about".
  */
 public class AboutPreferenceFragment extends PreferenceFragment {
+
+    private static final String PRIVACY_POLICY_URL = "http://www.google.com/policies/privacy";
+    private static final String TERMS_OF_SERVICE_URL = "http://www.google.com/policies/terms";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,11 +59,42 @@ public class AboutPreferenceFragment extends PreferenceFragment {
         final Preference licensePreference = findPreference(
                 getString(R.string.pref_open_source_licenses_key));
         licensePreference.setIntent(new Intent(getActivity(), LicenseActivity.class));
+
+        final Preference privacyPolicyPreference = findPreference("pref_privacy_policy");
+        final Preference termsOfServicePreference = findPreference("pref_terms_of_service");
+
+        final Preference.OnPreferenceClickListener listener =
+                new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                try {
+                    if (preference == privacyPolicyPreference) {
+                        startActivityForUrl(PRIVACY_POLICY_URL);
+                    } else if (preference == termsOfServicePreference) {
+                        startActivityForUrl(TERMS_OF_SERVICE_URL);
+                    }
+                } catch (ActivityNotFoundException ex) {
+                    Toast.makeText(getContext(), getString(R.string.url_open_error_toast),
+                            Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        };
+
+        privacyPolicyPreference.setOnPreferenceClickListener(listener);
+        termsOfServicePreference.setOnPreferenceClickListener(listener);
     }
 
     @Override
     public Context getContext() {
         return getActivity();
+    }
+
+    private void startActivityForUrl(String urlString) {
+        final Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(urlString));
+        startActivity(intent);
     }
 }
 
