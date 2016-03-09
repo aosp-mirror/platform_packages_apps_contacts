@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"연락처 세부정보"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"연락처 수정"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"연락처 만들기"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"그룹 수정"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"그룹 만들기"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"정보"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"업데이트"</string>
     <string name="searchHint" msgid="8482945356247760701">"주소록 검색"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"주소록이 없습니다."</string>
     <string name="noGroups" msgid="8614664663561385253">"그룹 없음"</string>
     <string name="noAccounts" msgid="7768267764545265909">"그룹을 만들려면 계정이 필요합니다."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"이 그룹에 사람이 없습니다."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"사람을 추가하려면 그룹을 수정하세요."</string>
     <string name="savingContact" msgid="4075751076741924939">"연락처 저장 중..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"연락처가 저장되었습니다."</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"연락처 연결 해제됨"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"주소록 가져오기"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"새 그룹 만들기"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"새 그룹 만들기"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other">그룹 <xliff:g id="COUNT">%0$d</xliff:g>개</item>
+      <item quantity="one">그룹 1개</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"\'<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\' 그룹을 삭제하시겠습니까? (연락처는 삭제되지 않음)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> 소속 <xliff:g id="COUNT_2">%1$d</xliff:g>명</item>
