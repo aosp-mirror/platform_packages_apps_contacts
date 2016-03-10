@@ -26,8 +26,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CallLog;
-import android.provider.CallLog.Calls;
 import android.provider.Contacts.ContactMethods;
 import android.provider.Contacts.People;
 import android.provider.Contacts.Phones;
@@ -46,6 +44,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.contacts.tests.R;
+import com.android.contacts.tests.quickcontact.QuickContactTestsActivity;
 
 import java.util.ArrayList;
 
@@ -91,7 +90,6 @@ public class AllIntentsActivity extends ListActivity
         ACTION_SEARCH_EMAIL,
         ACTION_SEARCH_PHONE,
         SEARCH_SUGGESTION_CLICKED_CONTACT,
-        JOIN_CONTACT,
         EDIT_CONTACT,
         EDIT_CONTACT_LOOKUP,
         EDIT_CONTACT_LOOKUP_ID,
@@ -108,19 +106,7 @@ public class AllIntentsActivity extends ListActivity
         VIEW_CONTACT_LOOKUP_ID,
         VIEW_RAW_CONTACT,
         VIEW_LEGACY,
-        DIAL,
-        DIAL_phone,
-        DIAL_person,
-        DIAL_voicemail,
-        CALL_BUTTON,
-        DIAL_tel,
-        VIEW_tel,
-        VIEW_CALLLOG,
-        VIEW_CALLLOG_MISSED,
-        VIEW_CALLLOG_VOICEMAIL,
-        VIEW_CALLLOG_ENTRY,
-        LEGACY_CALL_DETAILS_ACTIVITY,
-        LEGACY_CALL_LOG_ACTIVITY;
+        QUICK_CONTACT_TESTS_ACTIVITY;
 
         public static ContactsIntent get(int ordinal) {
             return values()[ordinal];
@@ -130,6 +116,7 @@ public class AllIntentsActivity extends ListActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setListAdapter(new ArrayAdapter<String>(this, R.layout.intent_list_item,
                 getResources().getStringArray(R.array.allIntents)));
         mContactsPackageName = getResources().getString(
@@ -287,10 +274,6 @@ public class AllIntentsActivity extends ListActivity
                 }
                 break;
             }
-            case JOIN_CONTACT: {
-                // TODO
-                break;
-            }
             case EDIT_CONTACT: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
                 final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
@@ -409,93 +392,8 @@ public class AllIntentsActivity extends ListActivity
                 startActivity(intent);
                 break;
             }
-            case DIAL: {
-                startActivity(new Intent(Intent.ACTION_DIAL));
-                break;
-            }
-            case DIAL_phone: {
-                // This is the legacy URI (there is no >2.0 way to call a phone data item)
-                final long dataId = findArbitraryPhoneDataId();
-                if (dataId != -1) {
-                    final Uri legacyContentUri = Uri.parse("content://contacts/phones");
-                    final Uri uri = ContentUris.withAppendedId(legacyContentUri, dataId);
-                    startActivity(new Intent(Intent.ACTION_DIAL, uri));
-                }
-                break;
-            }
-            case DIAL_person: {
-                // This is the legacy URI (there is no >2.0 way to call a person)
-                final long contactId = findArbitraryContactWithPhoneNumber();
-                if (contactId != -1) {
-                    final Uri legacyContentUri = Uri.parse("content://contacts/people");
-                    final long rawContactId = findArbitraryRawContactOfContact(contactId);
-                    final Uri uri = ContentUris.withAppendedId(legacyContentUri, rawContactId);
-                    startActivity(new Intent(Intent.ACTION_DIAL, uri));
-                }
-                break;
-            }
-            case DIAL_voicemail: {
-                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("voicemail:")));
-                break;
-            }
-            case CALL_BUTTON: {
-                startActivity(new Intent(Intent.ACTION_CALL_BUTTON));
-                break;
-            }
-            case DIAL_tel: {
-                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:555-123-4567")));
-                break;
-            }
-            case VIEW_tel: {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel:555-123-4567")));
-                break;
-            }
-            case VIEW_CALLLOG: {
-                final Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setType(CallLog.Calls.CONTENT_TYPE);
-                startActivity(intent);
-                break;
-            }
-            case VIEW_CALLLOG_MISSED: {
-                final Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setType(CallLog.Calls.CONTENT_TYPE);
-                intent.putExtra(CallLog.Calls.EXTRA_CALL_TYPE_FILTER, CallLog.Calls.MISSED_TYPE);
-                startActivity(intent);
-                break;
-            }
-            case VIEW_CALLLOG_VOICEMAIL: {
-                final Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setType(CallLog.Calls.CONTENT_TYPE);
-                intent.putExtra(CallLog.Calls.EXTRA_CALL_TYPE_FILTER, CallLog.Calls.VOICEMAIL_TYPE);
-                startActivity(intent);
-                break;
-            }
-            case VIEW_CALLLOG_ENTRY: {
-                Uri uri = getCallLogUri();
-                if (uri == null) {
-                    Toast.makeText(this, "Call log is empty", Toast.LENGTH_LONG).show();
-                    break;
-                }
-                final Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(uri);
-                startActivity(intent);
-                break;
-            }
-            case LEGACY_CALL_DETAILS_ACTIVITY: {
-                Uri uri = getCallLogUri();
-                if (uri == null) {
-                    Toast.makeText(this, "Call log is empty", Toast.LENGTH_LONG).show();
-                    break;
-                }
-                final Intent intent = new Intent("android.intent.action.VIEW");
-                intent.setData(uri);
-                bindIntentToClass(intent, "com.android.dialer.CallDetailActivity");
-                startActivity(intent);
-                break;
-            }
-            case LEGACY_CALL_LOG_ACTIVITY: {
-                startActivity(bindIntentToClass(new Intent(),
-                        "com.android.contacts.activities.CallLogActivity"));
+            case QUICK_CONTACT_TESTS_ACTIVITY: {
+                startActivity(new Intent(this, QuickContactTestsActivity.class));
                 break;
             }
 
@@ -503,17 +401,6 @@ public class AllIntentsActivity extends ListActivity
                 Toast.makeText(this, "Sorry, we forgot to write this...", Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    /** Returns the URI of one of the items in the call log, or null if the call log is empty. */
-    private Uri getCallLogUri() {
-        Cursor cursor = getContentResolver().query(
-                Calls.CONTENT_URI, new String[]{ Calls._ID }, null, null,
-                Calls.DEFAULT_SORT_ORDER);
-        if (!cursor.moveToNext()) {
-            return null;
-        }
-        return ContentUris.withAppendedId(Calls.CONTENT_URI, cursor.getLong(0));
     }
 
     /** Creates an intent that is bound to a specific activity by name. */
@@ -550,22 +437,6 @@ public class AllIntentsActivity extends ListActivity
         final Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
                 new String[] { Contacts._ID },
                 Contacts.HAS_PHONE_NUMBER + "!=0 AND " + Contacts.STARRED + "!=0" ,
-                null, "RANDOM() LIMIT 1");
-        try {
-            if (cursor.moveToFirst()) {
-                return cursor.getLong(0);
-            }
-        } finally {
-            cursor.close();
-        }
-
-        return -1;
-    }
-
-    private long findArbitraryPhoneDataId() {
-        final Cursor cursor = getContentResolver().query(Data.CONTENT_URI,
-                new String[] { Data._ID },
-                Data.MIMETYPE + "=" + Phone.MIMETYPE,
                 null, "RANDOM() LIMIT 1");
         try {
             if (cursor.moveToFirst()) {

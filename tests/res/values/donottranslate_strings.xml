@@ -15,8 +15,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="contactsIntents">Contacts Intents</string>
-    <string name="result">Result returned by activity</string>
+    <string name="applicationLabel">Contacts Test</string>
 
     <string-array name="allIntents">
         <!-- List modes -->
@@ -45,7 +44,6 @@
         <item>ACTION_SEARCH: email</item>
         <item>ACTION_SEARCH: phone</item>
         <item>SEARCH_SUGGESTION_CLICKED: contact</item>
-        <item>TODO: JOIN_CONTACT</item>
 
         <!-- Edit Contact -->
         <item>EDIT (content uri with only id)</item>
@@ -68,23 +66,9 @@
         <item>VIEW (legacy style uri)</item>
 
         <!-- Various ways to start Contacts -->
-        <item>DIAL</item>
-        <item>DIAL phone (deprecated)</item>
-        <item>DIAL person (deprecated)</item>
-        <item>DIAL voicemail</item>
-        <item>CALL BUTTON</item>
-        <item>DIAL tel</item>
-        <item>VIEW tel</item>
-        <item>VIEW calls (call-log after a phone call)</item>
-        <item>VIEW missed calls</item>
-        <item>VIEW voicemails</item>
-        <item>VIEW calls item</item>
-        <item>CallDetailActivity (legacy)</item>
-        <item>CallLogActivity (legacy)</item>
+        <item>QuickContactTestsActivity</item>
     </string-array>
 
-    <string name="pinnedHeaderList">Pinned Headers</string>
-    <string name="quickContactTests">Quick Contact modes</string>
     <string name="pickContact">Pick contact</string>
     <string name="quickContactIntent">Start with Intent</string>
     <string name="fillCallLogTest">Fill call log test</string>
