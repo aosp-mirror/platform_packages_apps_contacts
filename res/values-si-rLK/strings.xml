@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"සම්බන්ධතා විස්තර"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"සම්බන්ධතාව සංස්කරණය කරන්න"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"සම්බන්ධතාවයක් සාදන්න"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"කණ්ඩායම සංස්කරණය කරන්න"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"කණ්ඩායමක් සාදන්න"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"පිළිබඳ"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"යාවත්කාලීන කිරීම්"</string>
     <string name="searchHint" msgid="8482945356247760701">"සම්බන්ධතා සෙවීම"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"සම්බන්ධතා නැත"</string>
     <string name="noGroups" msgid="8614664663561385253">"කණ්ඩායම් නොමැත."</string>
     <string name="noAccounts" msgid="7768267764545265909">"කණ්ඩායම් නිර්මාණය කිරීමට ඔබට ගිණුමක් අවශ්‍ය වේ."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"මෙම කණ්ඩායම තුළ පුද්ගලයින් නොමැත."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"කිහිපයක් එක් කිරීමට, කණ්ඩායම සංස්කරණය කරන්න."</string>
     <string name="savingContact" msgid="4075751076741924939">"සම්බන්ධතාවය සුරකමින්…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"සම්බන්ධතාවය සුරකින ලදි"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"සම්බන්ධතා සබැඳි ඉවත් කරන ලදී"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"සම්බන්ධතා ආයාත කරන්න"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"නව කණ්ඩායමක් නිර්මාණය කරන්න"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"නව කණ්ඩායමක් නිර්මාණය කිරීම"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one">කණ්ඩායම් <xliff:g id="COUNT">%0$d</xliff:g></item>
+      <item quantity="other">කණ්ඩායම් <xliff:g id="COUNT">%0$d</xliff:g></item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" කණ්ඩායම මකා දමන්නද? (සම්බන්ධතා මකා දමන්නේ නැත.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> වෙතින් පුද්ගලයන් <xliff:g id="COUNT_2">%1$d</xliff:g> යි</item>
