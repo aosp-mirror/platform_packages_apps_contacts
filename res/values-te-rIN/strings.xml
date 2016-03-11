@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"పరిచయ వివరాలు"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"పరిచయాన్ని సవరించు"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"పరిచయాన్ని సృష్టించండి"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"సమూహాన్ని సవరించు"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"సమూహాన్ని సృష్టించండి"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"గురించి"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"నవీకరణలు"</string>
     <string name="searchHint" msgid="8482945356247760701">"పరిచయాలను శోధించు"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"పరిచయాలు లేవు"</string>
     <string name="noGroups" msgid="8614664663561385253">"సమూహాలు లేవు."</string>
     <string name="noAccounts" msgid="7768267764545265909">"సమూహాలను సృష్టించడానికి మీకు ఖాతా అవసరం."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"ఈ సమూహంలో వ్యక్తులు లేరు."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"కొంతమందిని జోడించడానికి, సమూహాన్ని సవరించండి."</string>
     <string name="savingContact" msgid="4075751076741924939">"పరిచయాన్ని సేవ్ చేస్తోంది…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"పరిచయం సేవ్ చేయబడింది"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"పరిచయాలు వేరు చేయబడ్డాయి"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"పరిచయాలను దిగుమతి చేయి"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"సమూహాన్ని సృష్టించండి"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"సమూహాన్ని సృష్టించండి"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> సమూహాలు</item>
+      <item quantity="one">1 సమూహం</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"సమూహం \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"ని తొలగించాలా? (పరిచయాలు వాటంతట అవే తొలగించబడవు.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> నుండి <xliff:g id="COUNT_2">%1$d</xliff:g> మంది వ్యక్తులు</item>

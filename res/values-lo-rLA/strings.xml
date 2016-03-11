@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"ລາຍລະອຽດລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"ແກ້ໄຂລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"ສ້າງລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"ແກ້ໄຂກຸ່ມ"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"ສ້າງກຸ່ມ"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"ກ່ຽວ​ກັບ"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"ອັບເດດ"</string>
     <string name="searchHint" msgid="8482945356247760701">"ຊອກຫາລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="noGroups" msgid="8614664663561385253">"ບໍ່ມີກຸ່ມ."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ເພື່ອສ້າງກຸ່ມ ທ່ານຈະຕ້ອງມີບັນຊີກ່ອນ."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"ບໍ່ມີຄົນໃນກຸ່ມນີ້."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"ເພື່ອເພີ່ມລາຍຊື່, ກະລຸນາແກ້ໄຂກຸ່ມ."</string>
     <string name="savingContact" msgid="4075751076741924939">"ກຳລັງບັນທຶກລາຍຊື່ຜູ່ຕິດຕໍ່..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"ບັນທຶກລາຍຊື່ຜູ່ຕິດຕໍ່ແລ້ວ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ຖອນ​ລິ້ງ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ແລ້ວ"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"ນຳເຂົ້າລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"ສ້າງ​ກຸ່ມ​ໃໝ່"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"ສ້າງ​ກຸ່ມ​ໃໝ່"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> ກຸ່ມ</item>
+      <item quantity="one">1 ກຸ່ມ</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"ລຶບກຸ່ມ \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (ລາຍຊື່ຜູ່ຕິດຕໍ່ຈະບໍ່ຖືກລຶບອອກ.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> ຄົນຈາກ <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

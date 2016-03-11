@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Dettagli contatto"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Modifica contatto"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Crea contatto"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"Modifica gruppo"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Crea gruppo"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Informazioni"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Aggiornamenti"</string>
     <string name="searchHint" msgid="8482945356247760701">"Cerca contatti"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"Nessun contatto"</string>
     <string name="noGroups" msgid="8614664663561385253">"Nessun gruppo."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Per creare gruppi è necessario un account."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Nessuna persona in questo gruppo."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Per aggiungerne qualcuno, modifica il gruppo."</string>
     <string name="savingContact" msgid="4075751076741924939">"Salvataggio contatto..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Contatto salvato"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Contatti scollegati"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importa contatti"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Crea nuovo gruppo"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Crea nuovo gruppo"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> gruppi</item>
+      <item quantity="one">1 gruppo</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Eliminare il gruppo \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (I contatti non verranno eliminati)."</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> persone di <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

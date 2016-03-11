@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"اطلاعات تماس"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"ویرایش مخاطب"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"ایجاد مخاطب"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"ویرایش گروه"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"ایجاد گروه"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"درباره"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"نسخه‌های به روز"</string>
     <string name="searchHint" msgid="8482945356247760701">"جستجوی مخاطبین"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"مخاطبی موجود نیست"</string>
     <string name="noGroups" msgid="8614664663561385253">"گروهی وجود ندارد."</string>
     <string name="noAccounts" msgid="7768267764545265909">"برای ایجاد گروه‌ها، نیاز به یک حساب دارید."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"هیچ فردی در این گروه نیست."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"برای افزودن چند عضو، گروه را ویرایش کنید."</string>
     <string name="savingContact" msgid="4075751076741924939">"در حال ذخیره مخاطب..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"مخاطب ذخیره شد"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ارتباط مخاطبین لغو شد."</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"وارد کردن مخاطبین"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"ایجاد گروه جدید"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"ایجاد گروه جدید"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> گروه</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> گروه</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"مطمئنید می‌خواهید گروه \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" حذف شود؟ (مخاطبین خودشان حذف نخواهند شد.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> نفر از <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

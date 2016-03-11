@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"รายละเอียดของรายชื่อ"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"แก้ไขรายชื่อในสมุดโทรศัพท์"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"สร้างรายชื่อ"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"แก้ไขกลุ่ม"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"สร้างกลุ่ม"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"เกี่ยวกับ"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"อัปเดต"</string>
     <string name="searchHint" msgid="8482945356247760701">"ค้นหารายชื่อติดต่อ"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"ไม่มีรายชื่อติดต่อ"</string>
     <string name="noGroups" msgid="8614664663561385253">"ไม่มีกลุ่ม"</string>
     <string name="noAccounts" msgid="7768267764545265909">"คุณจำเป็นต้องมีบัญชีเพื่อสร้างกลุ่ม"</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"ไม่มีสมาชิกในกลุ่มนี้"</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"หากต้องการเพิ่มสมาชิก ให้แก้ไขกลุ่ม"</string>
     <string name="savingContact" msgid="4075751076741924939">"กำลังบันทึกรายชื่อ…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"บันทึกรายชื่อติดต่อแล้ว"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ยกเลิกการลิงก์รายชื่อติดต่อแล้ว"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"นำเข้าสมุดโทรศัพท์"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"สร้างกลุ่มใหม่"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"สร้างกลุ่มใหม่"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> กลุ่ม</item>
+      <item quantity="one">1 กลุ่ม</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"ลบกลุ่ม \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" หรือไม่ (รายชื่อติดต่อจะไม่ถูกลบ)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> คนจาก <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

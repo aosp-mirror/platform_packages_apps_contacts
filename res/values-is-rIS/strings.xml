@@ -36,6 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Upplýsingar um tengilið"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Breyta tengilið"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Búa til tengilið"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"Breyta hóp"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Búa til hóp"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Um"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Uppfærslur"</string>
     <string name="searchHint" msgid="8482945356247760701">"Leita í tengiliðum"</string>
@@ -107,6 +109,8 @@
     <string name="noContacts" msgid="4955659076981974652">"Engir tengiliðir"</string>
     <string name="noGroups" msgid="8614664663561385253">"Engir hópar."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Þú þarft að vera með reikning til að geta búið til hópa."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Það er enginn í þessum hóp."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Breyttu hópnum til að bæta fólki við hann."</string>
     <string name="savingContact" msgid="4075751076741924939">"Vistar tengilið…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Tengiliður vistaður"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Tengiliðir aðskildir"</string>
@@ -204,6 +208,10 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Flytja tengiliði inn"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Búa til nýjan hóp"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Búa til nýjan hóp"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> hópur</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> hópar</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Eyða hópnum „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“? (Tengiliðunum sjálfum verður ekki eytt.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> aðili úr <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
