@@ -36,8 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"ព័ត៌មាន​លម្អិត​របស់​ទំនាក់ទំនង"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"កែ​ទំនាក់ទំនង"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"បង្កើត​ទំនាក់ទំនង"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"កែ​ក្រុម"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"បង្កើត​ក្រុម"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"អំពី"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"បច្ចុប្បន្នភាព"</string>
     <string name="searchHint" msgid="8482945356247760701">"រក​ទំនាក់ទំនង"</string>
@@ -109,8 +107,6 @@
     <string name="noContacts" msgid="4955659076981974652">"គ្មាន​ទំនាក់ទំនង"</string>
     <string name="noGroups" msgid="8614664663561385253">"មិន​មាន​ក្រុម។"</string>
     <string name="noAccounts" msgid="7768267764545265909">"ដើម្បី​បង្កើត​ក្រុម​អ្នក​ចាំបាច់​ត្រូវ​មាន​គណនី​មួយ។"</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"មិន​មាន​មនុស្ស​នៅ​ក្នុង​ក្រុម​នេះ​ទេ។"</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"ដើម្បី​បន្ថែម, កែ​សម្រួល​ក្រុម។"</string>
     <string name="savingContact" msgid="4075751076741924939">"កំពុង​រក្សាទុក​ទំនាក់ទំនង..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"បាន​រក្សាទុក​ទំនាក់ទំនង"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ទំនាក់ទំនងដែលមិនបានតភ្ជាប់"</string>
@@ -208,10 +204,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"នាំចូល​ទំនាក់ទំនង"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"បង្កើត​ក្រុម​ថ្មី"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"បង្កើត​ក្រុម​ថ្មី"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> ក្រុម</item>
-      <item quantity="one">1 ក្រុម</item>
-    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"លុប​ក្រុម \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (ទំនាក់ទំនង​របស់​វា​នឹង​មិន​លុប​ទេ)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other">មនុស្ស <xliff:g id="COUNT_2">%1$d</xliff:g> នាក់ពី <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

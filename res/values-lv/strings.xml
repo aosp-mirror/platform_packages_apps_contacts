@@ -36,8 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Informācija par kontaktpersonu"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Rediģēt kontaktpersonu"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Izveidot kontaktpersonu"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Rediģēt grupu"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Izveidot grupu"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Par"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Atjaunināj."</string>
     <string name="searchHint" msgid="8482945356247760701">"Meklēt kontaktpersonas"</string>
@@ -110,8 +108,6 @@
     <string name="noContacts" msgid="4955659076981974652">"Nav kontaktpersonu"</string>
     <string name="noGroups" msgid="8614664663561385253">"Nav grupu."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Lai izveidotu grupas, ir nepieciešams konts."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"Šajā grupā nav personu."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Lai pievienotu personas, rediģējiet grupu."</string>
     <string name="savingContact" msgid="4075751076741924939">"Notiek kontaktpersonas saglabāšana…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontaktpersona ir saglabāta."</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktpersonas ir atsaistītas"</string>
@@ -212,11 +208,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importēt kontaktpersonas"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Jaunas grupas izveide"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Izveidot jaunu grupu"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="zero"><xliff:g id="COUNT">%0$d</xliff:g> grupu</item>
-      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> grupa</item>
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupas</item>
-    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Vai dzēst grupu <xliff:g id="GROUP_LABEL">%1$s</xliff:g>? (Kontaktpersonas netiks dzēstas.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="zero"><xliff:g id="COUNT_2">%1$d</xliff:g> personu grupā <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

@@ -36,8 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Kontakt tafsilotlari"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Kontaktni tahrirlash"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Kontakt yaratish"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Guruhni tahrirlash"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Guruh yaratish"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Aloqa ma’lumoti"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Yangilanishlar"</string>
     <string name="searchHint" msgid="8482945356247760701">"Kontaktlarni izlash"</string>
@@ -109,8 +107,6 @@
     <string name="noContacts" msgid="4955659076981974652">"Hech qanday kontakt yo‘q"</string>
     <string name="noGroups" msgid="8614664663561385253">"Guruhlar yo‘q."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Guruh yaratish uchun hisobingiz bo‘lishi kerak."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"Ushbu guruhda odam yo‘q."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Bir nechtani qo‘shish uchun guruhni tahrirlang."</string>
     <string name="savingContact" msgid="4075751076741924939">"Kontakt saqlanmoqda…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt saqlandi"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktlar ajratildi"</string>
@@ -208,10 +204,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Kontaktlarni import qilish"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Yangi guruh yaratish"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Yangi guruh yaratish"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> ta guruh</item>
-      <item quantity="one">1 ta guruh</item>
-    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" guruhi o‘chirilsinmi? (Kontaktlarning o‘zi o‘chirilmaydi.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> guruhidan <xliff:g id="COUNT_2">%1$d</xliff:g> ta odam</item>

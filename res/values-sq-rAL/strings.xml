@@ -36,8 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Detajet e kontaktit"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Redakto kontaktin"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Krijo një kontakt"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Redakto grupin"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Krijo një grup"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Informacion rreth"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Përditësimet"</string>
     <string name="searchHint" msgid="8482945356247760701">"Kërko për kontakte"</string>
@@ -109,8 +107,6 @@
     <string name="noContacts" msgid="4955659076981974652">"Nuk ka asnjë kontakt"</string>
     <string name="noGroups" msgid="8614664663561385253">"Nuk ka asnjë grup."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Për të krijuar grupe të duhet një llogari."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"Nuk ka persona në këtë grup."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Për të shtuar disa anëtarë, redakto grupin."</string>
     <string name="savingContact" msgid="4075751076741924939">"Po ruan kontaktin…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakti u ruajt"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktet u shkëputën"</string>
@@ -208,10 +204,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importo kontaktet"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Krijo një grup të ri"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Krijo një grup të ri"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupe</item>
-      <item quantity="one">1 grup</item>
-    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Të fshihet grupi \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Kontaktet nuk do të fshihen.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> persona nga <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
