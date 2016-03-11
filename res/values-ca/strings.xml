@@ -36,8 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Dades de contacte"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Edita el contacte"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Crea un contacte"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Edita el grup"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Crea un grup"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Quant a"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Actualitz."</string>
     <string name="searchHint" msgid="8482945356247760701">"Cerca als contactes"</string>
@@ -109,8 +107,6 @@
     <string name="noContacts" msgid="4955659076981974652">"No hi ha cap contacte"</string>
     <string name="noGroups" msgid="8614664663561385253">"Cap grup"</string>
     <string name="noAccounts" msgid="7768267764545265909">"Per crear grups necessites un compte."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"No hi ha persones en aquest grup."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Per afegir-ne, edita el grup."</string>
     <string name="savingContact" msgid="4075751076741924939">"S\'està desant el contacte..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"S\'ha desat el contacte"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Els contactes s\'han desenllaçat"</string>
@@ -208,10 +204,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importa contactes"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Creació d\'un grup nou"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Crea un grup nou"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grups</item>
-      <item quantity="one">1 grup</item>
-    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Vols suprimir el grup \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (No se\'n suprimiran els contactes.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> persones de <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>

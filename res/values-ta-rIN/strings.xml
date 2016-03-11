@@ -36,8 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"தொடர்பு விவரங்கள்"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"தொடர்பைத் திருத்து"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"தொடர்பை உருவாக்கு"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"குழுவைத் திருத்து"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"குழுவை உருவாக்கு"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"அறிமுகம்"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"புதுப்பிப்புகள்"</string>
     <string name="searchHint" msgid="8482945356247760701">"தொடர்புகளைத் தேடு"</string>
@@ -109,8 +107,6 @@
     <string name="noContacts" msgid="4955659076981974652">"தொடர்புகள் இல்லை"</string>
     <string name="noGroups" msgid="8614664663561385253">"குழுக்கள் இல்லை."</string>
     <string name="noAccounts" msgid="7768267764545265909">"குழுக்களை உருவாக்க கணக்கு அவசியம்."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"குழுவில் யாரும் இல்லை."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"சிலவற்றைச் சேர்க்க, குழுவைத் திருத்தவும்."</string>
     <string name="savingContact" msgid="4075751076741924939">"தொடர்பைச் சேமிக்கிறது…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"தொடர்பு சேமிக்கப்பட்டது"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"தொடர்புகள் பிரிக்கப்பட்டன"</string>
@@ -208,10 +204,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"தொடர்புகளை இறக்குமதி செய்"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"புதிய குழுவை உருவாக்கு"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"புதிய குழு"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> குழுக்கள்</item>
-      <item quantity="one">1 குழு</item>
-    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" குழுவை நீக்கவா? (அதன் தொடர்புகள் நீக்கப்படாது.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> இலிருந்து <xliff:g id="COUNT_2">%1$d</xliff:g> பேர்</item>

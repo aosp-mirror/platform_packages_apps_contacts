@@ -36,8 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Maelezo ya anwani"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Hariri anwani"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Unda anwani"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Hariri kikundi"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Unda kikundi"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Kuhusu"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Masasisho"</string>
     <string name="searchHint" msgid="8482945356247760701">"Tafuta anwani"</string>
@@ -109,8 +107,6 @@
     <string name="noContacts" msgid="4955659076981974652">"Hakuna anwani"</string>
     <string name="noGroups" msgid="8614664663561385253">"Hakuna vikundi."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Ili kuunda vikundi unahitaji akaunti"</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"Hakuna watu katika kikundi hiki."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Kuongeza baadhi, hariri kikundi."</string>
     <string name="savingContact" msgid="4075751076741924939">"Inahifadhi anwani..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Anwani imehifadhiwa"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Imetenganisha anwani"</string>
@@ -208,10 +204,6 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Ingiza anwani"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Unda kikundi kipya"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Unda kikundi kipya"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other">Makundi <xliff:g id="COUNT">%0$d</xliff:g></item>
-      <item quantity="one">Kundi kimoja</item>
-    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Futa kikundi \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Anwani zenyewe hazitafutwa.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other">Watu <xliff:g id="COUNT_2">%1$d</xliff:g> kutoka <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
