@@ -71,7 +71,8 @@
     <string name="contactsList" msgid="7140022347217602605">"Контакти"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Інше"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Каталог"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"Робочий каталог"</string>
+    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
+    <skip />
     <string name="local_search_label" msgid="9094584931063745728">"Усі контакти"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Я"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Пошук…"</string>
@@ -89,7 +90,8 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Часті контакти"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Переглянути контакт"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Усі контакти з номерами телефону"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"Контакти в робочому профілі"</string>
+    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
+    <skip />
     <string name="view_updates_from_group" msgid="3310864388165884352">"Переглянути оновлення"</string>
     <string name="account_phone" msgid="6104157990869081962">"Лише в телефоні, не синхронізується"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Ім’я"</string>
@@ -276,6 +278,8 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Політика конфіденційності"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Умови використання"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Ліцензії відкритого коду"</string>
+    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
+    <skip />
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> вибрано"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> не вибрано"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Почати відеодзвінок"</string>

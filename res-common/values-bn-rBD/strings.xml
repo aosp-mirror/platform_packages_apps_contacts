@@ -71,7 +71,8 @@
     <string name="contactsList" msgid="7140022347217602605">"পরিচিতিগুলি"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"অন্যান্য"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ডিরেক্টরি"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"কাজের সংগ্রহ"</string>
+    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
+    <skip />
     <string name="local_search_label" msgid="9094584931063745728">"সকল পরিচিতি"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"আমি"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"অনুসন্ধান করছে..."</string>
@@ -87,7 +88,8 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"ঘন ঘন যোগাযোগ করা হয়েছে"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"পরিচিতি দেখুন"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ফোন নম্বর সহ সমস্ত পরিচিতি"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"কর্মস্থলের প্রোফাইলের পরিচিতিগুলি"</string>
+    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
+    <skip />
     <string name="view_updates_from_group" msgid="3310864388165884352">"আপডেটগুলি দেখুন"</string>
     <string name="account_phone" msgid="6104157990869081962">"শুধুমাত্র ফোন, সমন্বয় করা নেই"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"নাম"</string>
@@ -272,6 +274,8 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"গোপনীয়তা নীতি"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"পরিষেবার শর্তাবলী"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"মুক্ত উৎস লাইসেন্সগুলি"</string>
+    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
+    <skip />
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> এ টিক চিহ্ন দেওয়া হয়েছে"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> এ টিক চিহ্ন দেওয়া হয়নি"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"ভিডিও কল করুন"</string>

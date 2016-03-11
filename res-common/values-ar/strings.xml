@@ -71,7 +71,8 @@
     <string name="contactsList" msgid="7140022347217602605">"جهات الاتصال"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"غير ذلك"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"الدليل"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"دليل العمل"</string>
+    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
+    <skip />
     <string name="local_search_label" msgid="9094584931063745728">"جميع جهات الاتصال"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"أنا"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"جارٍ البحث..."</string>
@@ -91,7 +92,8 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"يتم الاتصال بها بشكل متكرر"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"عرض جهة الاتصال"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"جميع جهات الاتصال التي لها أرقام هواتف"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"جهات الاتصال للملف الشخصي للعمل"</string>
+    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
+    <skip />
     <string name="view_updates_from_group" msgid="3310864388165884352">"عرض التحديثات"</string>
     <string name="account_phone" msgid="6104157990869081962">"الهاتف فقط، غير متزامنة"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"الاسم"</string>
@@ -280,6 +282,8 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"سياسة الخصوصية"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"بنود الخدمة"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"تراخيص البرامج مفتوحة المصدر"</string>
+    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
+    <skip />
     <string name="account_filter_view_checked" msgid="4368757211136754319">"تم تحديد <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"لم يتم تحديد <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"إجراء مكالمة فيديو"</string>

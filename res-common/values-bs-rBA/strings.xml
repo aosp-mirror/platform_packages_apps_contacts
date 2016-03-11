@@ -125,7 +125,7 @@
     <skip />
     <!-- no translation found for directory_search_label (4484648822765516947) -->
     <skip />
-    <!-- no translation found for directory_search_label_work (8927844610764999234) -->
+    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
     <skip />
     <!-- no translation found for local_search_label (9094584931063745728) -->
     <skip />
@@ -152,7 +152,7 @@
     <skip />
     <!-- no translation found for list_filter_phones (3692815632088465422) -->
     <skip />
-    <!-- no translation found for list_filter_phones_work (484839599760375521) -->
+    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
     <skip />
     <!-- no translation found for view_updates_from_group (3310864388165884352) -->
     <skip />
@@ -508,6 +508,8 @@
     <!-- no translation found for about_terms_of_service (628537491496465267) -->
     <skip />
     <!-- no translation found for activity_title_licenses (7812517458691564230) -->
+    <skip />
+    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
     <skip />
     <!-- no translation found for account_filter_view_checked (4368757211136754319) -->
     <skip />

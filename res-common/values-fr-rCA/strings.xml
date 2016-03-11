@@ -71,7 +71,8 @@
     <string name="contactsList" msgid="7140022347217602605">"Contacts"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Autre"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Répertoire"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"Répertoire professionnel"</string>
+    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
+    <skip />
     <string name="local_search_label" msgid="9094584931063745728">"Tous les contacts"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Moi"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Recherche en cours..."</string>
@@ -87,7 +88,8 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contacts fréquents"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Afficher le contact"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Tous les contacts disposant d\'un numéro de téléphone"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"Contacts du profil professionnel"</string>
+    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
+    <skip />
     <string name="view_updates_from_group" msgid="3310864388165884352">"Afficher les mises à jour"</string>
     <string name="account_phone" msgid="6104157990869081962">"Téléphone uniquement, sans synchronisation"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nom"</string>
@@ -272,6 +274,8 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Politique de confidentialité"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Modalités"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licences de logiciels libres"</string>
+    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
+    <skip />
     <string name="account_filter_view_checked" msgid="4368757211136754319">"Élément « <xliff:g id="ACCOUNT_INFO">%s</xliff:g> » coché"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Élément « <xliff:g id="ACCOUNT_INFO">%s</xliff:g> » non coché"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Faire un appel vidéo"</string>
