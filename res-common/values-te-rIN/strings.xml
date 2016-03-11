@@ -71,7 +71,8 @@
     <string name="contactsList" msgid="7140022347217602605">"పరిచయాలు"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"ఇతరం"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"డైరెక్టరీ"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"కార్యాలయ డైరెక్టరీ"</string>
+    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
+    <skip />
     <string name="local_search_label" msgid="9094584931063745728">"అన్ని పరిచయాలు"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"నేను"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"శోధిస్తోంది..."</string>
@@ -87,7 +88,8 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"తరచుగా సంప్రదించబడినవి"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"పరిచయాన్ని వీక్షించండి"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ఫోన్ నంబర్‌లు గల అన్ని పరిచయాలు"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"కార్యాలయ ప్రొఫైల్ పరిచయాలు"</string>
+    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
+    <skip />
     <string name="view_updates_from_group" msgid="3310864388165884352">"నవీకరణలను వీక్షించండి"</string>
     <string name="account_phone" msgid="6104157990869081962">"ఫోన్-మాత్రమే, సమకాలీకరించబడలేదు"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"పేరు"</string>
@@ -272,6 +274,8 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"గోప్యతా విధానం"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"సేవా నిబంధనలు"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
+    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
+    <skip />
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ఎంచుకోబడింది"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ఎంచుకోబడలేదు"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"వీడియో కాల్ చేస్తుంది"</string>

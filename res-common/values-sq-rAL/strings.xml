@@ -71,7 +71,8 @@
     <string name="contactsList" msgid="7140022347217602605">"Kontaktet"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Tjetër"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Direktoria"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"Direktoria e punës"</string>
+    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
+    <skip />
     <string name="local_search_label" msgid="9094584931063745728">"Të gjitha kontaktet"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Unë"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Po kërkon..."</string>
@@ -87,7 +88,8 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Të kontaktuara shpesh"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Shiko kontaktin"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Të gjitha kontaktet me numra telefoni"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"Kontaktet e profilit të punës"</string>
+    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
+    <skip />
     <string name="view_updates_from_group" msgid="3310864388165884352">"Shiko përditësimet"</string>
     <string name="account_phone" msgid="6104157990869081962">"Vetëm në telefon, i pasinkronizuar"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Emri"</string>
@@ -272,6 +274,8 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Politika e privatësisë"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Kushtet e shërbimit"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licencat me burim të hapur"</string>
+    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
+    <skip />
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> u shënua"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> nuk u shënua"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Kryej një telefonatë me video"</string>
