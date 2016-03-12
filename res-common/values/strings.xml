@@ -67,6 +67,8 @@
     </string>
     <!-- Action string for calling a MMS phone number -->
     <string name="call_mms">Call MMS</string>
+    <!-- Action string for calling a contact by shortcut -->
+    <string name="call_by_shortcut"><xliff:g id="contact_name">%s</xliff:g> (Call)</string>
 
     <!-- Action string for sending an SMS to a custom phone number -->
     <string name="sms_custom">Text
@@ -114,6 +116,8 @@
     </string>
     <!-- Action string for sending an SMS to a MMS phone number -->
     <string name="sms_mms">Text MMS</string>
+    <!-- Action string for sending an SMS to a contact by shortcut -->
+    <string name="sms_by_shortcut"><xliff:g id="contact_name">%s</xliff:g> (Message)</string>
 
     <!-- Description string for an action button to initiate a video call. -->
     <string name="description_video_call">Make video call</string>
