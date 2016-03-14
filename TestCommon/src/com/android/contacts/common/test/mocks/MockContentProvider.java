@@ -338,10 +338,105 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
         }
     }
 
+    public static class Update {
+        private final Uri mUri;
+        private final ContentValues mContentValues;
+        @Nullable private String mSelection;
+        @Nullable private String[] mSelectionArgs;
+        private boolean mAnyNumberOfTimes;
+        private boolean mIsExecuted;
+        private int mRowsAffected;
+
+        /**
+         * Creates a new Update to expect.
+         *
+         * @param uri the uri of the update request.
+         * @param contentValues the ContentValues to update.
+         *
+         * @throws NullPointerException if any parameter is {@code null}.
+         */
+        public Update(Uri uri,
+                      ContentValues contentValues,
+                      @Nullable String selection,
+                      @Nullable String[] selectionArgs) {
+            mUri = Preconditions.checkNotNull(uri);
+            mContentValues = Preconditions.checkNotNull(contentValues);
+            mSelection = selection;
+            mSelectionArgs = selectionArgs;
+        }
+
+        /**
+         * Causes this update expectation to be useable for mutliple calls to update, rather than
+         * just one.
+         *
+         * @return this
+         */
+        public Update anyNumberOfTimes() {
+            mAnyNumberOfTimes = true;
+            return this;
+        }
+
+        /**
+         * Sets this update to return the given number of rows affected.
+         *
+         * @param rowsAffected The value to return when this expected update is executed.
+         * @return this.
+         */
+        public Update returnRowsAffected(int rowsAffected) {
+            mRowsAffected = rowsAffected;
+            return this;
+        }
+
+        private boolean equals(Uri uri,
+                               ContentValues contentValues,
+                               @Nullable String selection,
+                               @Nullable String[] selectionArgs) {
+            return mUri.equals(uri) && mContentValues.equals(contentValues) &&
+                    Objects.equals(mSelection, selection) &&
+                    Objects.equals(mSelectionArgs, selectionArgs);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Update update = (Update) o;
+            return mAnyNumberOfTimes == update.mAnyNumberOfTimes &&
+                    mIsExecuted == update.mIsExecuted &&
+                    Objects.equals(mUri, update.mUri) &&
+                    Objects.equals(mContentValues, update.mContentValues) &&
+                    Objects.equals(mSelection, update.mSelection) &&
+                    Objects.equals(mSelectionArgs, update.mSelectionArgs);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(mUri, mContentValues, mAnyNumberOfTimes, mIsExecuted, mSelection,
+                    mSelectionArgs);
+        }
+
+        @Override
+        public String toString() {
+            return "Update{" +
+                    "mUri=" + mUri +
+                    ", mContentValues=" + mContentValues +
+                    ", mAnyNumberOfTimes=" + mAnyNumberOfTimes +
+                    ", mIsExecuted=" + mIsExecuted +
+                    ", mSelection=" + mSelection +
+                    ", mSelectionArgs=" + mSelectionArgs +
+                    '}';
+        }
+    }
+
     private List<Query> mExpectedQueries = new ArrayList<>();
     private Map<Uri, String> mExpectedTypeQueries = Maps.newHashMap();
     private List<Insert> mExpectedInserts = new ArrayList<>();
     private List<Delete> mExpectedDeletes = new ArrayList<>();
+    private List<Update> mExpectedUpdates = new ArrayList<>();
 
     @Override
     public boolean onCreate() {
@@ -360,6 +455,15 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
 
     public void expectInsert(Uri contentUri, ContentValues contentValues, Uri resultUri) {
         mExpectedInserts.add(new Insert(contentUri, contentValues, resultUri));
+    }
+
+    public Update expectUpdate(Uri contentUri,
+                               ContentValues contentValues,
+                               @Nullable String selection,
+                               @Nullable String[] selectionArgs) {
+        Update update = new Update(contentUri, contentValues, selection, selectionArgs);
+        mExpectedUpdates.add(update);
+        return update;
     }
 
     public Delete expectDelete(Uri contentUri) {
@@ -430,6 +534,39 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
 
     private String insertToString(Uri uri, ContentValues contentValues) {
         return "Insert { uri=" + uri + ", contentValues=" + contentValues + '}';
+    }
+
+    @Override
+    public int update(Uri uri,
+                      ContentValues values,
+                      @Nullable String selection,
+                      @Nullable String[] selectionArgs) {
+        if (mExpectedUpdates.isEmpty()) {
+            Assert.fail("Unexpected update. Actual: "
+                    + updateToString(uri, values, selection, selectionArgs));
+        }
+        for (Iterator<Update> iterator = mExpectedUpdates.iterator(); iterator.hasNext(); ) {
+            Update update = iterator.next();
+            if (update.equals(uri, values, selection, selectionArgs)) {
+                update.mIsExecuted = true;
+                if (!update.mAnyNumberOfTimes) {
+                    iterator.remove();
+                }
+                return update.mRowsAffected;
+            }
+        }
+
+        Assert.fail("Incorrect update. Expected one of: " + mExpectedUpdates + ". Actual: "
+                + updateToString(uri, values, selection, selectionArgs));
+        return - 1;
+    }
+
+    private String updateToString(Uri uri,
+                                  ContentValues contentValues,
+                                  @Nullable String selection,
+                                  @Nullable String[] selectionArgs) {
+        return "Update { uri=" + uri + ", contentValues=" + contentValues + ", selection=" +
+                selection + ", selectionArgs" + Arrays.toString(selectionArgs) + '}';
     }
 
     @Override
