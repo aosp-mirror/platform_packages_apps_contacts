@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Ipigie peja ya kazini"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Piga simu <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Piga simu kwa MMS"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"Tumia ujumbe wa maandishi kwa <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Tuma ujumbe wa maandishi nyumbani"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Tumia simu ya mkononi ujumbe wa maandishi"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Itumie peja ya kazini ya kazini ujumbe"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Tuma ujumbe wa maandishi kwa <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Tumia MMS ujmbe wa maandishi"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"Piga Hangout ya video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Futa unaowasiliana nao mara kwa mara?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Utafuta orodha ya unaowasiliana nao mara kwa mara katika programu za Anwani na Simu, na ulazimishe programu za barua pepe zitambue mapendeleo yako ya anwani kutoka mwanzo."</string>
@@ -71,8 +75,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Anwani"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Kingine"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Saraka"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Anwani za kazi"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Anwani zote"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Mimi"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Inatafuta…"</string>
@@ -88,8 +91,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Unaowasiliana nao zaidi"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Angalia anwani"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Anwani zote zilizo na nambari ya simu"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Anwani za watu wa kazini"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ona sasisho"</string>
     <string name="account_phone" msgid="6104157990869081962">"Simu pekee, haijalandanishwa"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Jina"</string>

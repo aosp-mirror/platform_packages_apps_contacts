@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Appeler le téléavertisseur professionnel"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Appeler le <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Appeler le numéro de téléphone MMS"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"Envoyer un SMS au <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Envoyer un SMS au numéro de téléphone du domicile"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Envoyer un SMS au numéro de téléphone mobile"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Envoyer un SMS au téléavertisseur professionnel"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Envoyer un SMS au <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Envoyer un SMS au numéro de téléphone MMS"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"Passer un appel vidéo"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Effacer les contacts fréquents ?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Cette opération efface la liste des personnes que vous contactez le plus souvent dans les applications Contacts et Téléphone, et entraîne une réinitialisation des adresses mémorisées comme celles que vous utilisez le plus fréquemment dans vos applications de messagerie électronique."</string>

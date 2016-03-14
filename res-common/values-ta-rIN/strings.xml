@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"பணியிடத்தின் பேஜர் எண்ணில் அழை"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> ஐ அழை"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS தொலைபேசி எண்ணில் அழை"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> க்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_home" msgid="7765831490534280540">"வீட்டு தொலைபேசி எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"மொபைல் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"பணியிட பேஜர் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> க்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS மொபைல் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"வீடியோவில் அழை"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"அடிக்கடி தொடர்புகொண்ட தொடர்பை அழிக்கவா?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"தொடர்புகள் மற்றும் ஃபோன் பயன்பாடுகளில் உள்ள அடிக்கடி தொடர்பு கொண்டவர்களின் பட்டியல் அழிக்கப்பட்டு, தொடக்கத்திலிருந்து மீண்டும் உங்கள் முகவரியிடல் விருப்பத்தேர்வுகளை மின்னஞ்சல் பயன்பாடுகள் அறியும்படி செய்யப்படும்."</string>

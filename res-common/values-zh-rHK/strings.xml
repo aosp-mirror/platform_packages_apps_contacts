@@ -40,6 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"撥打公司傳呼機號碼"</string>
     <string name="call_assistant" msgid="5188990854852312696">"撥打<xliff:g id="ASSISTANT">%s</xliff:g>的電話號碼"</string>
     <string name="call_mms" msgid="8998771923464696960">"撥打 MMS 電話號碼"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (通話)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"傳送短訊至<xliff:g id="CUSTOM">%s</xliff:g>電話"</string>
     <string name="sms_home" msgid="7765831490534280540">"傳送短訊至住家電話"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"傳送短訊至手機"</string>
@@ -61,6 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"傳送短訊至公司傳呼機"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"傳送短訊至<xliff:g id="ASSISTANT">%s</xliff:g>的電話"</string>
     <string name="sms_mms" msgid="4887206338311086612">"傳送短訊至 MMS 電話號碼"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (訊息)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"進行視像通話"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"清除常用聯絡人？"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"您將清除「通訊錄」應用程式和「電話」應用程式中的常用聯絡人名單，並強制電子郵件應用程式重新取得您的寄件喜好設定。"</string>
@@ -71,8 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"通訊錄"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"其他"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"名錄"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"工作目錄"</string>
     <string name="local_search_label" msgid="9094584931063745728">"所有聯絡人"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"我本人"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"正在搜尋..."</string>
@@ -88,8 +89,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"常用聯絡人"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"查看聯絡人資料"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"所有附有電話號碼的聯絡人"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"工作設定檔通訊錄"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"瀏覽更新資訊"</string>
     <string name="account_phone" msgid="6104157990869081962">"只限手機，不會保持同步"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"姓名"</string>
@@ -274,8 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"私隱權政策"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"服務條款"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"開放原始碼授權"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"無法開啟網址。"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"已選取 <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"未選取 <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"開始視像通話"</string>

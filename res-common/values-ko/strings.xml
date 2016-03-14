@@ -40,6 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"직장 호출기로 전화 걸기"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g>(으)로 전화걸기"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS로 전화걸기"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g>(전화)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g>에 문자 보내기"</string>
     <string name="sms_home" msgid="7765831490534280540">"집으로 문자 보내기"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"휴대전화로 문자 보내기"</string>
@@ -61,6 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"직장 호출기로 문자 보내기"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>(으)로 문자 보내기"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS로 문자 보내기"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g>(메시지)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"화상 통화하기"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"자주 연락하는 사람들 목록을 삭제하시겠습니까?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"주소록 및 휴대전화 앱에서 자주 연락하는 사람의 목록을 삭제하고 이메일 앱이 주소록 환경설정을 처음부터 다시 반영하도록 합니다."</string>
@@ -71,8 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"주소록"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"기타"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"디렉토리"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"직장 디렉토리"</string>
     <string name="local_search_label" msgid="9094584931063745728">"모든 주소록"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"나"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"검색 중…"</string>
@@ -88,8 +89,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"자주 연락하는 사람들"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"연락처 보기"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"전화번호가 포함된 모든 연락처"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"직장 프로필 연락처"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"업데이트 보기"</string>
     <string name="account_phone" msgid="6104157990869081962">"휴대전화 전용(동기화되지 않음)"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"이름"</string>

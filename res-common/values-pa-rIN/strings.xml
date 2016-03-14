@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"ਦਫ਼ਤਰ ਦੇ ਪੇਜ਼ਰ ਤੇ ਕਾਲ ਕਰੋ"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> ਨੂੰ ਕਾਲ ਕਰੋ"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS ਕਾਲ ਕਰੋ"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> ਤੇ ਟੈਕਸਟ ਕਰੋ"</string>
     <string name="sms_home" msgid="7765831490534280540">"ਘਰ ਦੇ ਨੰਬਰ ਤੇ ਟੈਕਸਟ ਕਰੋ"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"ਮੋਬਾਈਲ ਤੇ ਟੈਕਸਟ ਕਰੋ"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ਦਫ਼ਤਰ ਦੇ ਪੇਜ਼ਰ ਤੇ ਟੈਕਸਟ ਕਰੋ"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> ਨੂੰ ਟੈਕਸਟ ਕਰੋ"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS ਤੇ ਟੈਕਸਟ ਕਰੋ"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"ਵੀਡੀਓ ਕਾਲ ਕਰੋ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ਕੀ ਅਕਸਰ ਸੰਪਰਕ ਕੀਤੇ ਜਾਣ ਵਾਲੇ ਹਟਾਉਣੇ ਹਨ?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"ਤੁਸੀਂ ਵਾਰੀ-ਵਾਰੀ ਸੰਪਰਕ ਅਤੇ ਫੋਨ ਐਪਸ ਵਿੱਚ ਸੰਪਰਕ ਕੀਤੀ ਸੂਚੀ ਹਟਾਓਗੇ ਅਤੇ ਈਮੇਲ ਐਪਸ ਤੇ ਸਕ੍ਰੈਚ ਨਾਲ ਤੁਹਾਡੀਆਂ ਪਤਾ ਲਗਾਉਣ ਦੀਆਂ ਤਰਜੀਹਾਂ ਜਾਣਨ ਲਈ ਜ਼ੋਰ ਪਾਓਗੇ।"</string>

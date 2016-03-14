@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"ഔദ്യോഗിക പേജറിലേക്ക് വിളിക്കുക"</string>
     <string name="call_assistant" msgid="5188990854852312696">"വിളിക്കുക <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS ഫോണിലേക്ക് വിളിക്കുക"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> എന്നതിലേക്ക് വാചക സന്ദേശമയയ്‌ക്കുക"</string>
     <string name="sms_home" msgid="7765831490534280540">"വീട്ടിലെ ഫോണിലേക്ക് വാചകസന്ദേശമയയ്‌ക്കുക"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"മൊബൈലിലേക്ക് വാചകസന്ദേശമയയ്‌ക്കുക"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ഔദ്യോഗിക പേജറിലേക്ക് വാചകസന്ദേശമയയ്‌ക്കുക"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> എന്നതിലേക്ക് വാചക സന്ദേശമയയ്‌ക്കുക"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS നമ്പറിലേക്ക് വാചകസന്ദേശമയയ്‌ക്കുക"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"വീഡിയോ കോൾ ചെയ്യുക"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"സ്ഥിരംവിളിക്കുന്നവരെ മായ്‌ക്കണോ?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"നിങ്ങൾ കോൺടാക്‌റ്റുകളുടെയും ഫോണിന്റെയും അപ്ലിക്കേഷനുകളിലെ പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവരുടെ ലിസ്റ്റ് മായ്‌ക്കുകയും സ്‌ക്രാച്ചിൽ നിന്നും ബന്ധപ്പെടൽ മുൻഗണനകൾ അറിയാൻ ഇമെയിൽ അപ്ലിക്കേഷനുകളെ പ്രേരിപ്പിക്കുകയും ചെയ്യും."</string>

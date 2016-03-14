@@ -40,6 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"התקשר לזימונית של העבודה"</string>
     <string name="call_assistant" msgid="5188990854852312696">"התקשר אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"‏התקשר ל-MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (שיחה)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"שלח הודעת טקסט אל <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"שלח הודעת טקסט לבית"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"שלח הודעת טקסט לנייד"</string>
@@ -61,6 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"שלח הודעת טקסט לזימונית של עבודה"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"שלח הודעת טקסט אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"‏שלח הודעת טקסט ל-MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (הודעה)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"בצע שיחת וידאו"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"האם למחוק אנשי קשר קבועים?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"הפעולה הזו תמחק מהאפליקציות \'אנשים\' ו\'טלפון\' את רשימת אנשי הקשר שאיתם אתה יוצר קשר בתדירות גבוהה, ויהיה עליך ללמד מחדש את אפליקציות האימייל את הכתובות המועדפות עליך."</string>
@@ -71,8 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"אנשי קשר"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"אחר"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ספריה"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"ספריית עבודה"</string>
     <string name="local_search_label" msgid="9094584931063745728">"כל אנשי הקשר"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"אני"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"מחפש…"</string>
@@ -90,8 +91,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"בקשר לעתים קרובות"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"הצג איש קשר"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"כל אנשי הקשר עם מספרי טלפון"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"אנשי הקשר של פרופיל העבודה"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"הצג עדכונים"</string>
     <string name="account_phone" msgid="6104157990869081962">"טלפון בלבד, לא מסונכרן"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"שם"</string>

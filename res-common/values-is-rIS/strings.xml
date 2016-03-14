@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Hringja í vinnusímboða"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Hringja í <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Hringja í MMS-númer"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"Senda textaskilaboð í <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Senda textaskilaboð heim"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Senda textaskilaboð í farsíma"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Senda textaskilaboð í vinnusímboða"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Senda textaskilaboð til <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Senda textaskilaboð í MMS-númer"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"Hringja myndsímtal"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Hreinsa mest notaða tengiliði?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Þetta hreinsar tengiliðina sem þú hefur mest samskipti við úr forritunum Tengiliðir og Sími og þvingar tölvupóstforrit til að læra upp á nýtt hvernig þú notar netföng."</string>

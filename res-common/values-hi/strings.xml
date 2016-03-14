@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"कार्यालय के पेजर पर कॉल करें"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> पर कॉल करें"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS पर कॉल करें"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> पर लेख संदेश भेजें"</string>
     <string name="sms_home" msgid="7765831490534280540">"घर के फ़ोन नंबर पर लेख संदेश भेजें"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"मोबाइल पर लेख संदेश भेजें"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"कार्यालय के पेजर पर लेख संदेश भेजें"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> पर लेख संदेश भेजें"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS पर लेख संदेश भेजें"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"वीडियो कॉल करें"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"अक्‍सर किए जाने वाले संपर्क साफ करें?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"आपको संपर्क और फ़ोन ऐप्स से अक्सर संपर्क किए जाने वाली सूची साफ़ करनी होगी, और अपने ईमेल ऐप्स को आपकी पता प्राथमिकताओं को प्रारंभ से जानने के लिए बाध्य करना होगा."</string>

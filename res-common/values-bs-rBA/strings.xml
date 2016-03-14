@@ -63,6 +63,8 @@
     <skip />
     <!-- no translation found for call_mms (8998771923464696960) -->
     <skip />
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <!-- no translation found for sms_custom (4601748252470175865) -->
     <skip />
     <!-- no translation found for sms_home (7765831490534280540) -->
@@ -105,6 +107,8 @@
     <skip />
     <!-- no translation found for sms_mms (4887206338311086612) -->
     <skip />
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <!-- no translation found for description_video_call (4907306403398614909) -->
     <skip />
     <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
@@ -125,8 +129,7 @@
     <skip />
     <!-- no translation found for directory_search_label (4484648822765516947) -->
     <skip />
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Poslovni imenik"</string>
     <!-- no translation found for local_search_label (9094584931063745728) -->
     <skip />
     <!-- no translation found for user_profile_contacts_list_header (8436133790234197565) -->
@@ -152,8 +155,7 @@
     <skip />
     <!-- no translation found for list_filter_phones (3692815632088465422) -->
     <skip />
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Kontakti radnog profila"</string>
     <!-- no translation found for view_updates_from_group (3310864388165884352) -->
     <skip />
     <!-- no translation found for account_phone (6104157990869081962) -->

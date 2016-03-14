@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Truca al cercapersones de la feina"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Truca al <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Truca al número MMS"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"Envia SMS al <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Envia un SMS a casa"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Envia un SMS al mòbil"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Envia un SMS al cercapersones de la feina"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Envia un SMS a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Envia un MMS"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"Fes una videotrucada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vols esborrar els contactes freqüents?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"S\'esborrarà la llista de contactes més freqüents a les aplicacions Contactes i Telèfon i es forçarà les aplicacions de correu electrònic a obtenir informació nova sobre les teves preferències pel que fa a adreces."</string>

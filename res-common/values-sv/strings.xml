@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Ring upp jobbpersonsökare"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Ring <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Ring upp MMS"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"Skicka SMS till <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Skicka SMS till hem"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Skicka SMS till mobil"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Skicka SMS till jobbpersonsökare"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Skicka SMS till <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Skicka SMS till MMS"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"Ring videosamtal"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vill du rensa listan?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Du rensar listan över personer som du kontaktar ofta i apparna Kontakter och Telefon. E-postappar tvingas lära sig dina mottagarinställningar från början."</string>

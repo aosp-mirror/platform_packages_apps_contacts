@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"撥打公司呼叫器號碼"</string>
     <string name="call_assistant" msgid="5188990854852312696">"撥打<xliff:g id="ASSISTANT">%s</xliff:g>電話號碼"</string>
     <string name="call_mms" msgid="8998771923464696960">"撥打 MMS 電話號碼"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"傳送簡訊至<xliff:g id="CUSTOM">%s</xliff:g>電話"</string>
     <string name="sms_home" msgid="7765831490534280540">"傳送簡訊至住家電話"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"傳送簡訊至手機"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"傳送簡訊至公司呼叫器"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"傳送簡訊至<xliff:g id="ASSISTANT">%s</xliff:g>電話"</string>
     <string name="sms_mms" msgid="4887206338311086612">"傳送簡訊至 MMS 電話"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"進行視訊通話"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"清除常用聯絡人？"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"您即將清除「聯絡人」應用程式和「電話」應用程式中的常用聯絡人清單，並設定讓電子郵件應用程式重新熟悉您的寄件偏好設定。"</string>
