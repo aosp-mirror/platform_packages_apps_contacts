@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"కార్యాలయ పేజర్‌కు కాల్ చేయండి"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g>కు కాల్ చేయండి"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMSకు కాల్ చేయండి"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g>కు వచనం పంపండి"</string>
     <string name="sms_home" msgid="7765831490534280540">"ఇంటికి వచనం పంపండి"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"మొబైల్‌కు వచనం పంపండి"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"కార్యాలయ పేజర్‌కు వచనం పంపండి"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>కు వచనం పంపండి"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMSకు వచనం పంపండి"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"వీడియో కాల్ చేయి"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేయాలా?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"మీరు పరిచయాలు మరియు ఫోన్ అనువర్తనాల్లో తరచుగా సంప్రదించిన పరిచయాల జాబితాను తీసివేస్తారు మరియు స్క్రాచ్ నుండి మీ చిరునామా ప్రాధాన్యతలను తెలుసుకునేలా ఇమెయిల్ అనువర్తనాలను నిర్బంధిస్తారు."</string>
@@ -71,8 +75,7 @@
     <string name="contactsList" msgid="7140022347217602605">"పరిచయాలు"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"ఇతరం"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"డైరెక్టరీ"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"కార్యాలయ డైరెక్టరీ"</string>
     <string name="local_search_label" msgid="9094584931063745728">"అన్ని పరిచయాలు"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"నేను"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"శోధిస్తోంది..."</string>
@@ -88,8 +91,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"తరచుగా సంప్రదించబడినవి"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"పరిచయాన్ని వీక్షించండి"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ఫోన్ నంబర్‌లు గల అన్ని పరిచయాలు"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"కార్యాలయ ప్రొఫైల్ పరిచయాలు"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"నవీకరణలను వీక్షించండి"</string>
     <string name="account_phone" msgid="6104157990869081962">"ఫోన్-మాత్రమే, సమకాలీకరించబడలేదు"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"పేరు"</string>

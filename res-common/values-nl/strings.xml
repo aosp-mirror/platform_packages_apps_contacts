@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Pager werk bellen"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> bellen"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS bellen"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"Sms\'en naar <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Sms\'en naar huis"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Sms\'en naar mobiel"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Sms\'en naar pager werk"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Sms\'en naar <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Sms\'en naar MMS"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"Videogesprek starten"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Lijst regelmatige contacten wissen?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Je wist de lijst met contacten waarmee je regelmatig contact opneemt in de apps Contacten en Telefoon, en e-mailapps moeten je voorkeursadressen weer opnieuw leren."</string>

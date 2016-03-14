@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Позови пословни пејџер"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Позови <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Позови број за MMS"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"Пошаљи SMS на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Пошаљи SMS на кућни телефон"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Пошаљи SMS на мобилни телефон"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Пошаљи SMS на пословни пејџер"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Пошаљи SMS на <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Пошаљи SMS на број за MMS"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"Упути видео позив"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Бришете често контактиране?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Обрисаћете листу често контактираних у апликацијама Контакти и Телефон, па ће имејл апликације морати поново да прикупе информације о адресирању."</string>

@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"დარეკვა სამსახურის პეიჯერზე"</string>
     <string name="call_assistant" msgid="5188990854852312696">"დარეკვა <xliff:g id="ASSISTANT">%s</xliff:g>-თან"</string>
     <string name="call_mms" msgid="8998771923464696960">"დარეკვა MMS-ის ნომერზე"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"ტექსტური შეტყობინების გაგზავნა <xliff:g id="CUSTOM">%s</xliff:g>-ზე"</string>
     <string name="sms_home" msgid="7765831490534280540">"ტექსტური შეტყობინების გაგზავნა სახლში"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"ტექსტური შეტყობინების გაგზავნა მობილურზე"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ტექსტური შეტყობინების გაგზავნა სამსახურის პეიჯერზე"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"ტექსტური შეტყობინების გაგზავნა <xliff:g id="ASSISTANT">%s</xliff:g>-ისთვის"</string>
     <string name="sms_mms" msgid="4887206338311086612">"ტექსტური შეტყობინების გაგზავნა MMS ნომერზე"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"ვიდეოზარის განხორციელება"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"გსურთ ხშირი კონტაქტების წაშლა?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"თქვენ წაშლით ხშირად დაკავშირებულთა სიას კონტაქტებიდან და ტელეფონის აპლიკაციიდან და აიძულებთ ელ-ფოსტის აპლიკაციებს შეისწავლონ თქვენი ადრესატების პრიორიტეტები ნულიდან."</string>

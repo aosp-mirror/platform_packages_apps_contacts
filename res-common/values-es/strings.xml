@@ -40,6 +40,8 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Llamar al busca del trabajo"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Llamar al <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Llamar a MMS"</string>
+    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
+    <skip />
     <string name="sms_custom" msgid="4601748252470175865">"Enviar SMS a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Enviar SMS a casa"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Enviar SMS al móvil"</string>
@@ -61,6 +63,8 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Enviar SMS al busca del trabajo"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Enviar SMS al <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Enviar SMS a MMS"</string>
+    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
+    <skip />
     <string name="description_video_call" msgid="4907306403398614909">"Hacer videollamada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"¿Borrar contactos frecuentes?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Vas a borrar la lista de contactos frecuentes de las aplicaciones Contactos y Teléfono y obligarás a las aplicaciones de correo electrónico a que memoricen tus preferencias de nuevo."</string>
