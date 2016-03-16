@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Soita hakulaitteeseen (työ)"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Soita: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Soita MMS-numeroon"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (soita)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Lähetä tekstiviesti: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Lähetä tekstiviesti kotinumeroon"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Lähetä tekstiviesti matkapuhelimeen"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Lähetä tekstiviesti hakulaitteeseen (työ)"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Lähetä tekstiviesti: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Lähetä tekstiviesti MMS-numeroon"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (lähetä viesti)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Soita videopuhelu"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Tyhjennetäänkö usein käytetyt?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Toiminto tyhjentää Yhteystiedot- ja Puhelin-sovellusten usein käytettyjen kontaktien luettelon. Lisäksi sähköpostisovellukset pakotetaan opettelemaan osoiteasetuksesi uudestaan."</string>
@@ -276,8 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Tietosuojakäytäntö"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Käyttöehdot"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Avoimen lähdekoodin käyttöluvat"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"URL-osoitteen avaus epäonnistui."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> valittu"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ei valittu"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Soita videopuhelu"</string>

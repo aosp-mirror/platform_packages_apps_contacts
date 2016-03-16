@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"কর্মক্ষেত্রের পেজার নম্বরে কল করুন"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> এ কল করুন"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS নম্বরে কল করুন"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (কল)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> নম্বরে পাঠ্য বার্তা পাঠান"</string>
     <string name="sms_home" msgid="7765831490534280540">"ঘরের ফোন নম্বরে পাঠ্য বার্তা পাঠান"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"মোবাইল নম্বরে পাঠ্য বার্তা পাঠান"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"কর্মক্ষেত্রের পেজারে পাঠ্য বার্তা পাঠান"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> নম্বরে পাঠ্য বার্তা পাঠান"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS ফোন নম্বরে পাঠ্য বার্তা পাঠান"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (বার্তা)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"ভিডিও কল করুন"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ঘন ঘন যোগাযোগ করা হয়েছে এমন পরিচিতিগুলিকে সাফ করবেন?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"পরিচিতি এবং ফোন অ্যাপ্লিকেশানগুলি থেকে আপনি ঘন ঘন যোগাযোগ করা পরিচিতির তালিকা সাফ করবেন, এবং ইমেল অ্যাপ্লিকেশানগুলিকে আবার শুরু থেকে আপনার ঠিকানা অভিরুচি জানতে বাধ্য করবেন৷"</string>
@@ -75,8 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"পরিচিতিগুলি"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"অন্যান্য"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ডিরেক্টরি"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"কাজের সংগ্রহ"</string>
     <string name="local_search_label" msgid="9094584931063745728">"সকল পরিচিতি"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"আমি"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"অনুসন্ধান করছে..."</string>
@@ -92,8 +89,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"ঘন ঘন যোগাযোগ করা হয়েছে"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"পরিচিতি দেখুন"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ফোন নম্বর সহ সমস্ত পরিচিতি"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"কর্মস্থলের প্রোফাইলের পরিচিতিগুলি"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"আপডেটগুলি দেখুন"</string>
     <string name="account_phone" msgid="6104157990869081962">"শুধুমাত্র ফোন, সমন্বয় করা নেই"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"নাম"</string>

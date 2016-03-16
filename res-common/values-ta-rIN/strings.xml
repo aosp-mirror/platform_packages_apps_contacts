@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"பணியிடத்தின் பேஜர் எண்ணில் அழை"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> ஐ அழை"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS தொலைபேசி எண்ணில் அழை"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (அழை)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> க்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_home" msgid="7765831490534280540">"வீட்டு தொலைபேசி எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"மொபைல் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"பணியிட பேஜர் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> க்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS மொபைல் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (செய்தி அனுப்பு)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"வீடியோவில் அழை"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"அடிக்கடி தொடர்புகொண்ட தொடர்பை அழிக்கவா?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"தொடர்புகள் மற்றும் ஃபோன் பயன்பாடுகளில் உள்ள அடிக்கடி தொடர்பு கொண்டவர்களின் பட்டியல் அழிக்கப்பட்டு, தொடக்கத்திலிருந்து மீண்டும் உங்கள் முகவரியிடல் விருப்பத்தேர்வுகளை மின்னஞ்சல் பயன்பாடுகள் அறியும்படி செய்யப்படும்."</string>
@@ -75,8 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"தொடர்புகள்"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"பிற"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"கோப்பகம்"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"பணிக் கோப்பகம்"</string>
     <string name="local_search_label" msgid="9094584931063745728">"எல்லா தொடர்புகளும்"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"நான்"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"தேடுகிறது..."</string>
@@ -92,8 +89,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"அடிக்கடி தொடர்புகொண்டவர்கள்"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"தொடர்பைக் காட்டு"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"மொபைல் எண்களுடனான எல்லா தொடர்புகளும்"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"பணிச் சுயவிவரத் தொடர்புகள்"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"புதுப்பிப்புகளைக் காட்டு"</string>
     <string name="account_phone" msgid="6104157990869081962">"மொபைல் மட்டும், ஒத்திசைக்கப்படவில்லை"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"பெயர்"</string>

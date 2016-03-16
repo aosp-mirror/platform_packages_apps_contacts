@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"කාර්යාල පේජරය අමතන්න"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> අමතන්න"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS අමතන්න"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (ඇමතුම)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> ට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="sms_home" msgid="7765831490534280540">"නිවසට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"ජංගම දුරකථනයට කෙටි පණිවිඩයක් යවන්න"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"කාර්යාල පේජරයට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> ට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS වෙත කෙටි පණිවිඩයක් යවන්න"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (පණිවිඩය)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"වීඩියෝ ඇමතුමක් ලබාගන්න"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"නිතරම සම්බන්ධ වන අය හිස් කරන්නද?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"ඔබ සම්බන්ධතා සහ දුරකථන යෙදුම්වලින් නිතරම සම්බන්ධ වුණු අයගේ ලැයිස්තුව හිස් කර, මුල සිටම ඔබගේ ලිපින අභිරුචි ඉගෙනීමට ඊ-තැපැල් යෙදුම්වලට බල කරයි."</string>
@@ -276,8 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"රහස්‍යතා ප්‍රතිපත්තිය"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"සේවා නියම"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"විවෘත මූලාශ්‍ර බලපත්‍ර"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"url විවෘත කිරීමට අසමත් විය."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ලකුණු කරන ලදී"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ලකුණු කර නැත"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"වීඩියෝ ඇමතුම සිදු කිරීම"</string>

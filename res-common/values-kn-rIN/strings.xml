@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"ಕೆಲಸದ ಪೇಜರ್‌‌ಗೆ ಕರೆ ಮಾಡಿ"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> ಕರೆ ಮಾಡಿ"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS ಕರೆ ಮಾಡಿ"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (ಕರೆ ಮಾಡಿ)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> ಗೆ ಸಂದೇಶ ಮಾಡಿ"</string>
     <string name="sms_home" msgid="7765831490534280540">"ನಿವಾಸಕ್ಕೆ ಸಂದೇಶ ಮಾಡಿ"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"ಮೊಬೈಲ್‌‌ಗೆ ಸಂದೇಶ ಮಾಡಿ"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ಕೆಲಸದ ಪೇಜರ್‌‌ಗೆ ಸಂದೇಶ ಮಾಡಿ"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> ಗೆ ಸಂದೇಶ ಮಾಡಿ"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS ಸಂದೇಶ ಮಾಡಿ"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (ಸಂದೇಶ ಕಳುಹಿಸಿ)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"ವೀಡಿಯೊ ಕರೆ ಮಾಡಿ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ಪದೇ ಪದೇ ಸಂಪರ್ಕಿಸಿರುವುದನ್ನು ತೆರುವುಗೊಳಿಸುವುದೇ?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"ಸಂಪರ್ಕಗಳು ಮತ್ತು ಫೋನ್‌ ಅಪ್ಲಿಕೇಶನ್‌ಗಳಲ್ಲಿ ಪದೇ ಪದೇ ಸಂಪರ್ಕಪಡಿಸಿರುವ ಪಟ್ಟಿಯನ್ನು ನೀವು ತೆರುವುಗೊಳಿಸುತ್ತೀರಿ ಮತ್ತು ಮೊದಲಿನಿಂದ ನಿಮ್ಮ ವಿಳಾಸ ಪ್ರಾಶಸ್ತ್ಯಗಳನ್ನು ತಿಳಿಯಲು ಇಮೇಲ್‌ ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ಒತ್ತಾಯಿಸಿ."</string>
@@ -75,8 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"ಸಂಪರ್ಕಗಳು"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"ಇತರೆ"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ಡೈರೆಕ್ಟರಿ"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"ಕೆಲಸದ ಡೈರೆಕ್ಟರಿ"</string>
     <string name="local_search_label" msgid="9094584931063745728">"ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳು"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"ನಾನು"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
@@ -92,8 +89,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"ಪದೇ ಪದೇ ಸಂಪರ್ಕಿಸಿರುವುದು"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"ಸಂಪರ್ಕವನ್ನು ವೀಕ್ಷಿಸಿ"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ ಎಲ್ಲ ಸಂಪರ್ಕಗಳು"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"ಕೆಲಸದ ಪ್ರೊಫೈಲ್ ಸಂಪರ್ಕಗಳು"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"ನವೀಕರಣಗಳನ್ನು ವೀಕ್ಷಿಸಿ"</string>
     <string name="account_phone" msgid="6104157990869081962">"ಫೋನ್‌ ಮಾತ್ರ, ಅನ್‌ಸಿಂಕ್‌‌ ಮಾಡಲಾಗಿದೆ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ಹೆಸರು"</string>

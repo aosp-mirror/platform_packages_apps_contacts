@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Ish peyjeriga qo‘ng‘iroq qilish"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Qo‘ng‘iroq: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS raqamga qo‘ng‘iroq qilish"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Qo‘ng‘iroq qilish)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g>ga sms jo‘natish"</string>
     <string name="sms_home" msgid="7765831490534280540">"Uy telefoniga sms jo‘natish"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"SMS: mobil"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Ish peyjeriga sms jo‘natish"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> telefoniga qo‘ng‘iroq qilish"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS telefonga sms jo‘natish"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Xabar yozish)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Videoqo‘ng‘iroq qilish"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Ko‘p gaplashilganlar tozalansinmi?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Kontaktlar va Telefon ilovalaridagi tez-tez aloqa qilingan kontaktlar ro‘yxati tozalanadi hamda e-pochta ilovalari sizning shaxsiy sozlamalaringizga moslashadi."</string>
@@ -276,8 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Maxfiylik siyosati"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Foydalanish shartlari"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Ochiq kodli dasturiy ta’minot litsenziyalari"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"URLni ochishda xatolik yuz berdi."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> belgilandi"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> belgilanmadi"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Video qo‘ng‘iroq qilish"</string>

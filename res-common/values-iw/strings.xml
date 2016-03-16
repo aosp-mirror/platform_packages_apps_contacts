@@ -278,8 +278,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"מדיניות פרטיות"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"תנאים והגבלות"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"רישיונות קוד פתוח"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"לא ניתן לפתוח את כתובת האתר."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> מסומן"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> לא מסומן"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"בצע שיחת וידאו"</string>

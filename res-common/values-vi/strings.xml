@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Gọi số máy nhắn tin cơ quan"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Gọi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Gọi MMS"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Gọi)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Nhắn tin tới <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Nhắn tin tới số điện thoại nhà riêng"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Nhắn tin tới số điện thoại di động"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Nhắn tin tới số máy nhắn tin cơ quan"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Nhắn tin tới <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Nhắn tin tới số điện thoại MMS"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Tin nhắn)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Gọi điện video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Xóa danh sách liên hệ thường xuyên?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Bạn sẽ xóa danh sách liên hệ thường xuyên trong ứng dụng Danh bạ và điện thoại cũng như buộc các ứng dụng email phải tìm hiểu các tùy chọn gửi của bạn lại từ đầu."</string>
@@ -280,8 +278,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Chính sách bảo mật"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Điều khoản dịch vụ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Giấy phép nguồn mở"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Không mở được url."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"Đã kiểm tra <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Chưa kiểm tra <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Gọi điện video"</string>

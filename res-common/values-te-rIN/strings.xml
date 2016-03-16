@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"కార్యాలయ పేజర్‌కు కాల్ చేయండి"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g>కు కాల్ చేయండి"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMSకు కాల్ చేయండి"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (కాల్ చేయి)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g>కు వచనం పంపండి"</string>
     <string name="sms_home" msgid="7765831490534280540">"ఇంటికి వచనం పంపండి"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"మొబైల్‌కు వచనం పంపండి"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"కార్యాలయ పేజర్‌కు వచనం పంపండి"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>కు వచనం పంపండి"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMSకు వచనం పంపండి"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (సందేశం పంపు)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"వీడియో కాల్ చేయి"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేయాలా?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"మీరు పరిచయాలు మరియు ఫోన్ అనువర్తనాల్లో తరచుగా సంప్రదించిన పరిచయాల జాబితాను తీసివేస్తారు మరియు స్క్రాచ్ నుండి మీ చిరునామా ప్రాధాన్యతలను తెలుసుకునేలా ఇమెయిల్ అనువర్తనాలను నిర్బంధిస్తారు."</string>
