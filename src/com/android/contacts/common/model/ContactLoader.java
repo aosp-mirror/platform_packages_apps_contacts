@@ -318,6 +318,7 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
 
     @Override
     public Contact loadInBackground() {
+        Log.e(TAG, "loadInBackground=" + mLookupUri);
         try {
             final ContentResolver resolver = getContext().getContentResolver();
             final Uri uriCurrentFormat = ContactLoaderUtils.ensureIsContactUri(

@@ -50,6 +50,7 @@ public class FallbackAccountType extends BaseAccountType {
             addDataKindNote(context);
             addDataKindWebsite(context);
             addDataKindSipAddress(context);
+            addDataKindGroupMembership(context);
 
             mIsInitialized = true;
         } catch (DefinitionException e) {
