@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Sesli arama yap (iş çağrı cihazı)"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Sesli arama yap (<xliff:g id="ASSISTANT">%s</xliff:g>)"</string>
     <string name="call_mms" msgid="8998771923464696960">"Sesli arama yap (MMS)"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Telefon et)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"SMS gönder (<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
     <string name="sms_home" msgid="7765831490534280540">"SMS gönder (ev)"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"SMS gönder (mobil)"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"SMS gönder (iş çağrı cihazı)"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"SMS gönder (<xliff:g id="ASSISTANT">%s</xliff:g>)"</string>
     <string name="sms_mms" msgid="4887206338311086612">"SMS gönder (MMS)"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Mesaj gönder)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Video görüşmesi yap"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Sık iletişim kurulanlar silinsin mi?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Kişiler ve Telefon uygulamalarındaki sık iletişim kurulanlar listesini temizleyecek ve e-posta uygulamalarını adres tercihlerinizi en baştan öğrenmeye zorlayacaksınız."</string>
@@ -75,8 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Kişiler"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Diğer"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Dizin"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"İş dizini"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Tüm kişiler"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ben"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Aranıyor…"</string>
@@ -92,8 +89,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Sık iletişim kurulanlar"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Kişiyi görüntüle"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Telefon numarası olan tüm kişiler"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"İş profili kişileri"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Güncellemeleri görüntüle"</string>
     <string name="account_phone" msgid="6104157990869081962">"Yalnızca telefonda saklanan, senkronize olmayan"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Adı"</string>

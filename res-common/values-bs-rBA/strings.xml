@@ -17,506 +17,267 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for toast_text_copied (8327159932780920627) -->
-    <skip />
-    <!-- no translation found for copy_text (3424081789297978355) -->
-    <skip />
-    <!-- no translation found for call_custom (2786306789889210756) -->
-    <skip />
-    <!-- no translation found for call_home (1479549630992276827) -->
-    <skip />
-    <!-- no translation found for call_mobile (8618334085824709009) -->
-    <skip />
-    <!-- no translation found for call_work (8299062439076337075) -->
-    <skip />
-    <!-- no translation found for call_fax_work (3770754834467992571) -->
-    <skip />
-    <!-- no translation found for call_fax_home (6219051113573396065) -->
-    <skip />
-    <!-- no translation found for call_pager (3038080882899955112) -->
-    <skip />
-    <!-- no translation found for call_other (4472141328347894937) -->
-    <skip />
-    <!-- no translation found for call_callback (687494744634190411) -->
-    <skip />
-    <!-- no translation found for call_car (9078083109758282133) -->
-    <skip />
-    <!-- no translation found for call_company_main (8768047233970315359) -->
-    <skip />
-    <!-- no translation found for call_isdn (3342482563847537747) -->
-    <skip />
-    <!-- no translation found for call_main (4640261071249938558) -->
-    <skip />
-    <!-- no translation found for call_other_fax (2536328553125487877) -->
-    <skip />
-    <!-- no translation found for call_radio (9055749313292712021) -->
-    <skip />
-    <!-- no translation found for call_telex (2909886619224843563) -->
-    <skip />
-    <!-- no translation found for call_tty_tdd (6704940636171078852) -->
-    <skip />
-    <!-- no translation found for call_work_mobile (4408630608955148641) -->
-    <skip />
-    <!-- no translation found for call_work_pager (3036932765279753793) -->
-    <skip />
-    <!-- no translation found for call_assistant (5188990854852312696) -->
-    <skip />
-    <!-- no translation found for call_mms (8998771923464696960) -->
-    <skip />
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
-    <!-- no translation found for sms_custom (4601748252470175865) -->
-    <skip />
-    <!-- no translation found for sms_home (7765831490534280540) -->
-    <skip />
-    <!-- no translation found for sms_mobile (8387632124165893103) -->
-    <skip />
-    <!-- no translation found for sms_work (3910570578912367742) -->
-    <skip />
-    <!-- no translation found for sms_fax_work (909086167151248212) -->
-    <skip />
-    <!-- no translation found for sms_fax_home (4145442497939634875) -->
-    <skip />
-    <!-- no translation found for sms_pager (5664381349583724906) -->
-    <skip />
-    <!-- no translation found for sms_other (910895193552957097) -->
-    <skip />
-    <!-- no translation found for sms_callback (728414485478941361) -->
-    <skip />
-    <!-- no translation found for sms_car (8543669230270954512) -->
-    <skip />
-    <!-- no translation found for sms_company_main (5441902128445061862) -->
-    <skip />
-    <!-- no translation found for sms_isdn (7142483128948042667) -->
-    <skip />
-    <!-- no translation found for sms_main (6815987840926184815) -->
-    <skip />
-    <!-- no translation found for sms_other_fax (8649822154879781466) -->
-    <skip />
-    <!-- no translation found for sms_radio (8750339218480745940) -->
-    <skip />
-    <!-- no translation found for sms_telex (5469333785775443999) -->
-    <skip />
-    <!-- no translation found for sms_tty_tdd (5057886576150816002) -->
-    <skip />
-    <!-- no translation found for sms_work_mobile (8426872094268475047) -->
-    <skip />
-    <!-- no translation found for sms_work_pager (499303540738557836) -->
-    <skip />
-    <!-- no translation found for sms_assistant (2677586547377136683) -->
-    <skip />
-    <!-- no translation found for sms_mms (4887206338311086612) -->
-    <skip />
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
-    <!-- no translation found for description_video_call (4907306403398614909) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation_title (1482750234535491083) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (1117709667923254374) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (3738406170865048982) -->
-    <skip />
-    <!-- no translation found for status_available (4832569677396634846) -->
-    <skip />
-    <!-- no translation found for status_away (6267905184545881094) -->
-    <skip />
-    <!-- no translation found for status_busy (7111912905211403545) -->
-    <skip />
-    <!-- no translation found for contactsList (7140022347217602605) -->
-    <skip />
-    <!-- no translation found for local_invisible_directory (8934840494825588347) -->
-    <skip />
-    <!-- no translation found for directory_search_label (4484648822765516947) -->
-    <skip />
+    <string name="toast_text_copied" msgid="8327159932780920627">"Tekst je kopiran"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Kopiraj u međumemoriju"</string>
+    <string name="call_custom" msgid="2786306789889210756">"Pozovi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1479549630992276827">"Pozovi kuću"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Pozovi mobitel"</string>
+    <string name="call_work" msgid="8299062439076337075">"Pozovi posao"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"Pozovi poslovni faks"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Pozovi kućni faks"</string>
+    <string name="call_pager" msgid="3038080882899955112">"Pozovi pejdžer"</string>
+    <string name="call_other" msgid="4472141328347894937">"Pozovi"</string>
+    <string name="call_callback" msgid="687494744634190411">"Uzvrati poziv"</string>
+    <string name="call_car" msgid="9078083109758282133">"Pozovi automobil"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Pozovi glavni broj kompanije"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"Pozovi ISDN"</string>
+    <string name="call_main" msgid="4640261071249938558">"Pozovi glavni broj"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"Pozovi faks"</string>
+    <string name="call_radio" msgid="9055749313292712021">"Pozovi radio"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Pozovi teleks"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"Pozovi TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Pozovi poslovni mobitel"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Pozovi poslovni pejdžer"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"Pozovi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="8998771923464696960">"Pozovi MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Poziv)"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"Pošalji SMS na <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"Pošalji SMS na kućni broj"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"Pošalji SMS na mobilni"</string>
+    <string name="sms_work" msgid="3910570578912367742">"Pošalji SMS na poslovni broj"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"Pošalji SMS na poslovni faks"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Pošalji SMS na kućni faks"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"Pošalji SMS na pejdžer"</string>
+    <string name="sms_other" msgid="910895193552957097">"Pošalji SMS"</string>
+    <string name="sms_callback" msgid="728414485478941361">"Pošalji SMS na povratni"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Pošalji SMS na automobil"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Pošalji SMS na glavni broj kompanije"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"Pošalji SMS na ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"Pošalji SMS na glavni broj"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"Pošalji SMS na faks"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"Pošalji SMS na radio"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"Pošalji SMS na teleks"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"Pošalji SMS na TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"Pošalji SMS na poslovni mobitel"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Pošalji SMS na poslovni pejdžer"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"Pošalji tekstualnu poruku <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"Pošalji MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Poruka)"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Uputi videopoziv"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Obrisati često kontaktirane osobe?"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Obrisat ćete listu često kontaktiranih osoba u aplikaciji Kontakti i Aplikaciji za telefon, pa će aplikacije za e-poštu morati ispočetka učiti vaše postavke adresa."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Brisanje često kontaktiranih osoba…"</string>
+    <string name="status_available" msgid="4832569677396634846">"Dostupno"</string>
+    <string name="status_away" msgid="6267905184545881094">"Odsutan"</string>
+    <string name="status_busy" msgid="7111912905211403545">"Zauzeto"</string>
+    <string name="contactsList" msgid="7140022347217602605">"Kontakti"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Ostalo"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"Imenik"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"Poslovni imenik"</string>
-    <!-- no translation found for local_search_label (9094584931063745728) -->
-    <skip />
-    <!-- no translation found for user_profile_contacts_list_header (8436133790234197565) -->
-    <!-- no translation found for user_profile_contacts_list_header (9154761216179882405) -->
-    <skip />
-    <!-- no translation found for search_results_searching (9022794597388306615) -->
-    <skip />
-    <!-- no translation found for foundTooManyContacts (3060037437459313616) -->
-    <skip />
-    <!-- no translation found for listFoundAllContactsZero (4406036083994138930) -->
-    <skip />
-    <!-- no translation found for searchFoundContacts (4016164064185890420) -->
-    <!-- no translation found for description_quick_contact_for (6355240770807101947) -->
-    <skip />
-    <!-- no translation found for missing_name (2633118852693000081) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentCalled (6600127125011757687) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentContacted (2849493314447751970) -->
-    <skip />
-    <!-- no translation found for description_view_contact_detail (2756753096193839285) -->
-    <!-- no translation found for description_view_contact_detail (2795575601596468581) -->
-    <skip />
-    <!-- no translation found for list_filter_phones (3692815632088465422) -->
-    <skip />
+    <string name="local_search_label" msgid="9094584931063745728">"Svi kontakti"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ja"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Pretraživanje…"</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"Pronađeno je više od <xliff:g id="COUNT">%d</xliff:g>."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Nema kontakata"</string>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontakt pronađen</item>
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> kontakta pronađena</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontakata pronađeno</item>
+    </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"Brzi kontakt za <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(Bez imena)"</string>
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Često pozivane osobe"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Često kontaktirane osobe"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Prikaži kontakt"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Svi kontaktima s brojevima telefona"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Kontakti radnog profila"</string>
-    <!-- no translation found for view_updates_from_group (3310864388165884352) -->
-    <skip />
-    <!-- no translation found for account_phone (6104157990869081962) -->
-    <skip />
-    <!-- no translation found for nameLabelsGroup (1817502703362057154) -->
-    <skip />
-    <!-- no translation found for nicknameLabelsGroup (6312795212164843246) -->
-    <skip />
-    <!-- no translation found for full_name (885420216812981202) -->
-    <skip />
-    <!-- no translation found for name_given (4153709115654909377) -->
-    <skip />
-    <!-- no translation found for name_family (5317387657540738981) -->
-    <skip />
-    <!-- no translation found for name_prefix (8219879405071462309) -->
-    <skip />
-    <!-- no translation found for name_middle (3951610314424632183) -->
-    <skip />
-    <!-- no translation found for name_suffix (5436984808550075931) -->
-    <skip />
-    <!-- no translation found for name_phonetic (2249169131785620210) -->
-    <skip />
-    <!-- no translation found for name_phonetic_given (2863316331175661852) -->
-    <skip />
-    <!-- no translation found for name_phonetic_middle (5970174427249235577) -->
-    <skip />
-    <!-- no translation found for name_phonetic_family (1572398622239414464) -->
-    <skip />
-    <!-- no translation found for phoneLabelsGroup (7913782787902007482) -->
-    <skip />
-    <!-- no translation found for emailLabelsGroup (4696310712601184208) -->
-    <skip />
-    <!-- no translation found for postalLabelsGroup (3727124282406728557) -->
-    <skip />
-    <!-- no translation found for imLabelsGroup (8733603247535725786) -->
-    <skip />
-    <!-- no translation found for organizationLabelsGroup (961008074745871784) -->
-    <skip />
-    <!-- no translation found for relationLabelsGroup (3585294036166325520) -->
-    <skip />
-    <!-- no translation found for eventLabelsGroup (4801419345682462171) -->
-    <skip />
-    <!-- no translation found for sms (8086289395154598654) -->
-    <skip />
-    <!-- no translation found for postal_address (7692926530081579786) -->
-    <skip />
-    <!-- no translation found for ghostData_company (22470841482615409) -->
-    <skip />
-    <!-- no translation found for ghostData_title (6221293237772204604) -->
-    <skip />
-    <!-- no translation found for label_notes (3997277594846722699) -->
-    <skip />
-    <!-- no translation found for label_sip_address (3754551597798479318) -->
-    <skip />
-    <!-- no translation found for websiteLabelsGroup (8620657380165071493) -->
-    <skip />
-    <!-- no translation found for groupsLabel (3574316547053047551) -->
-    <skip />
-    <!-- no translation found for email_home (2230967805906450693) -->
-    <skip />
-    <!-- no translation found for email_mobile (7532438378678903685) -->
-    <skip />
-    <!-- no translation found for email_work (7065971921227432400) -->
-    <skip />
-    <!-- no translation found for email_other (4601881243553289615) -->
-    <skip />
-    <!-- no translation found for email_custom (5777583741581538870) -->
-    <skip />
-    <!-- no translation found for email (5624424151176351591) -->
-    <skip />
-    <!-- no translation found for postal_street (881349814077356134) -->
-    <skip />
-    <!-- no translation found for postal_pobox (1799978742074885091) -->
-    <skip />
-    <!-- no translation found for postal_neighborhood (3721092668038527674) -->
-    <skip />
-    <!-- no translation found for postal_city (3173008531169519309) -->
-    <skip />
-    <!-- no translation found for postal_region (1695206048198921115) -->
-    <skip />
-    <!-- no translation found for postal_postcode (6542806670034753265) -->
-    <skip />
-    <!-- no translation found for postal_country (3988452247038791892) -->
-    <skip />
-    <!-- no translation found for map_home (1221397355014741634) -->
-    <skip />
-    <!-- no translation found for map_work (9015981646907637207) -->
-    <skip />
-    <!-- no translation found for map_other (55098598855607997) -->
-    <skip />
-    <!-- no translation found for map_custom (4943554530347163288) -->
-    <skip />
-    <!-- no translation found for chat_aim (6479001490307452172) -->
-    <skip />
-    <!-- no translation found for chat_msn (627481952525245054) -->
-    <skip />
-    <!-- no translation found for chat_yahoo (5542489454092719897) -->
-    <skip />
-    <!-- no translation found for chat_skype (3145166404699830256) -->
-    <skip />
-    <!-- no translation found for chat_qq (2811762660890755082) -->
-    <skip />
-    <!-- no translation found for chat_gtalk (6043734883347741789) -->
-    <skip />
-    <!-- no translation found for chat_icq (7538190395602030726) -->
-    <skip />
-    <!-- no translation found for chat_jabber (4525546665986350869) -->
-    <skip />
-    <!-- no translation found for chat (6297650784873558837) -->
-    <skip />
-    <!-- no translation found for description_minus_button (2142439445814730827) -->
-    <skip />
-    <!-- no translation found for expand_collapse_name_fields_description (5073419090665464541) -->
-    <skip />
-    <!-- no translation found for expand_collapse_phonetic_name_fields_description (5241493357460353777) -->
-    <skip />
-    <!-- no translation found for list_filter_all_accounts (4265359896628915784) -->
-    <skip />
-    <!-- no translation found for list_filter_all_starred (9060325494254507806) -->
-    <skip />
-    <!-- no translation found for list_filter_customize (2352794292558465089) -->
-    <skip />
-    <!-- no translation found for list_filter_single (4553809449379139446) -->
-    <skip />
-    <!-- no translation found for display_ungrouped (3669471582032440138) -->
-    <skip />
-    <!-- no translation found for display_all_contacts (7251385818740728862) -->
-    <skip />
-    <!-- no translation found for menu_sync_remove (6581565236520430269) -->
-    <skip />
-    <!-- no translation found for dialog_sync_add (1795682729089027675) -->
-    <skip />
-    <!-- no translation found for display_more_groups (6304997485733158224) -->
-    <skip />
-    <!-- no translation found for display_warn_remove_ungrouped (7297678747857509619) -->
-    <skip />
-    <!-- no translation found for savingDisplayGroups (6863012138107446030) -->
-    <skip />
-    <!-- no translation found for menu_done (32470053723443112) -->
-    <skip />
-    <!-- no translation found for menu_doNotSave (6012426160993364871) -->
-    <skip />
-    <!-- no translation found for listAllContactsInAccount (755499980092808715) -->
-    <skip />
-    <!-- no translation found for listCustomView (1915154113477432033) -->
-    <skip />
-    <!-- no translation found for listSingleContact (8525131203887307088) -->
-    <skip />
-    <!-- no translation found for dialog_new_contact_account (32435918254518570) -->
-    <skip />
-    <!-- no translation found for import_from_sim (4749894687871835873) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary (2306434118233541675) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_no_number (8498561004799710237) -->
-    <skip />
-    <!-- no translation found for import_from_vcf_file (1381675161522633950) -->
-    <skip />
-    <!-- no translation found for cancel_import_confirmation_message (7764915400478970495) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_message (4063783315931861656) -->
-    <skip />
-    <!-- no translation found for cancel_vcard_import_or_export_failed (7450212880694781527) -->
-    <skip />
-    <!-- no translation found for fail_reason_unknown (8541352164960008557) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_open_file (7041148341788958325) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_initialize_exporter (1231982631020480035) -->
-    <skip />
-    <!-- no translation found for fail_reason_no_exportable_contact (3717046989062541369) -->
-    <skip />
-    <!-- no translation found for missing_required_permission (3120850759881656369) -->
-    <skip />
-    <!-- no translation found for fail_reason_error_occurred_during_export (8426833603664168716) -->
-    <skip />
-    <!-- no translation found for fail_reason_too_long_filename (3996610741248972232) -->
-    <skip />
-    <!-- no translation found for fail_reason_io_error (7736686553669161933) -->
-    <skip />
-    <!-- no translation found for fail_reason_low_memory_during_import (3277485820827338116) -->
-    <skip />
-    <!-- no translation found for fail_reason_vcard_parse_error (514012644716565082) -->
-    <skip />
-    <!-- no translation found for fail_reason_not_supported (388664373573337601) -->
-    <skip />
-    <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (3179066075701123895) -->
-    <skip />
-    <!-- no translation found for fail_reason_failed_to_read_files (9213844535907986665) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_title (3581883972188707378) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_title_fallback (2953278060195308065) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (6993607802553630980) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_title (5663945499580026953) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
-    <!-- no translation found for composer_failed_to_get_database_infomation (7801276776746351694) -->
-    <skip />
-    <!-- no translation found for composer_has_no_exportable_contact (7063040740576745307) -->
-    <skip />
-    <!-- no translation found for composer_not_initialized (6514403866246950877) -->
-    <skip />
-    <!-- no translation found for exporting_contact_failed_title (6059039606302373945) -->
-    <skip />
-    <!-- no translation found for exporting_contact_failed_message (3922498776695333328) -->
-    <skip />
-    <!-- no translation found for importing_vcard_description (7206609625359484356) -->
-    <skip />
-    <!-- no translation found for reading_vcard_failed_title (4360989450476024034) -->
-    <skip />
-    <!-- no translation found for reading_vcard_canceled_title (1290217818311955708) -->
-    <skip />
-    <!-- no translation found for importing_vcard_finished_title (5590676758277628951) -->
-    <skip />
-    <!-- no translation found for importing_vcard_canceled_title (556913863250769870) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message (7184603116300604514) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message_with_default_name (2560192057642180334) -->
-    <skip />
-    <!-- no translation found for vcard_import_request_rejected_message (5209363425953891316) -->
-    <skip />
-    <!-- no translation found for vcard_export_will_start_message (2168853666316526278) -->
-    <skip />
-    <!-- no translation found for vcard_export_will_start_message_fallback (6418767460851707308) -->
-    <skip />
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
-    <!-- no translation found for vcard_export_request_rejected_message (8044599716727705282) -->
-    <skip />
-    <!-- no translation found for vcard_unknown_filename (4832657686149881554) -->
-    <skip />
-    <!-- no translation found for caching_vcard_message (6635485116655518520) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (4105296876768072508) -->
-    <skip />
-    <!-- no translation found for nfc_vcard_file_name (305679412445157370) -->
-    <skip />
-    <!-- no translation found for confirm_export_title (3240899428149018226) -->
-    <skip />
-    <!-- no translation found for caching_vcard_title (9185299351381102305) -->
-    <skip />
-    <!-- no translation found for progress_notifier_message (359931715339778107) -->
-    <skip />
-    <!-- no translation found for export_to_vcf_file (4142192068495589925) -->
-    <skip />
-    <!-- no translation found for display_options_sort_list_by (8635268562263708102) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (7775798046001047995) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (8196947856299225342) -->
-    <skip />
-    <!-- no translation found for display_options_view_names_as (3232196224409242435) -->
-    <skip />
-    <!-- no translation found for display_options_view_given_name_first (7283772578267332801) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (8133167685885174166) -->
-    <skip />
-    <!-- no translation found for default_editor_account (4338725881650654966) -->
-    <skip />
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Prikaži ažuriranja"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Samo telefon, bez sinhronizacije"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Ime"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nadimak"</string>
+    <string name="full_name" msgid="885420216812981202">"Ime"</string>
+    <string name="name_given" msgid="4153709115654909377">"Ime"</string>
+    <string name="name_family" msgid="5317387657540738981">"Prezime"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Prefiks imena"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Srednje ime"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Sufiks imena"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Fonetsko ime"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetsko ime"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetsko srednje ime"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Fonetsko prezime"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"E-pošta"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresa"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizacija"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Odnos"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"Posebni datum"</string>
+    <string name="sms" msgid="8086289395154598654">"Tekstualna poruka"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Adresa"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"Kompanija"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Naziv"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Bilješke"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Web stranica"</string>
+    <string name="groupsLabel" msgid="3574316547053047551">"Grupe"</string>
+    <string name="email_home" msgid="2230967805906450693">"Pošalji poruku e-pošte na kućnu adresu e-pošte"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Mobilna e-pošta"</string>
+    <string name="email_work" msgid="7065971921227432400">"Pošalji poruku e-pošte na poslovnu adresu e-pošte"</string>
+    <string name="email_other" msgid="4601881243553289615">"E-pošta"</string>
+    <string name="email_custom" msgid="5777583741581538870">"E-pošta <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"E-pošta"</string>
+    <string name="postal_street" msgid="881349814077356134">"Ulica"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Poštanski pretinac"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Komšiluk"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Grad"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Država"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Poštanski broj"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Država"</string>
+    <string name="map_home" msgid="1221397355014741634">"Prikaži kućnu adresu"</string>
+    <string name="map_work" msgid="9015981646907637207">"Prikaži poslovnu adresu"</string>
+    <string name="map_other" msgid="55098598855607997">"Prikaži adresu"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Prikaži adresu <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Ćaskanje putem aplikacije AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Ćaskanje putem aplikacije Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Ćaskanje putem aplikacije Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Ćaskanje putem aplikacije Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Ćaskanje putem aplikacije QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Ćaskanje putem aplikacije Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Ćaskanje putem aplikacije ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Ćaskanje putem aplikacije Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Ćaskanje"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"izbriši"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Proširi ili skupi polja za imena"</string>
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Proširi ili skupi polja za fonetska imena"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Svi kontakti"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Označeno zvijezdom"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Prilagodi"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Kontakt"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Svi drugi kontakti"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Svi kontakti"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Ukloni grupu za sinhronizaciju"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Dodaj grupu za sinhronizaciju"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Više grupa…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Uklanjanje grupe \"<xliff:g id="GROUP">%s</xliff:g>\" iz sinhronizacije će također ukloniti sve negrupisane kontakte iz sinhronizacije."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Spremanje opcija prikaza u toku…"</string>
+    <string name="menu_done" msgid="32470053723443112">"Gotovo"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"Otkaži"</string>
+    <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakti na računu <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Kontakti u prilagođenom prikazu"</string>
+    <string name="listSingleContact" msgid="8525131203887307088">"Jedan kontakt"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"Sačuvaj uvezene kontakte na karticu:"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Uvezi sa SIM kartice"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"Uvezi sa SIM kartice <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Uvezi sa SIM kartice <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Uvezi iz .vcf fajla"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Otkazati uvoz fajla <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Otkazati izvoz fajla <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Nemoguće otkazati uvoz/izvoz vCard fajla"</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"Nepoznata greška."</string>
+    <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Nije moguće otvoriti \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Nije moguće pokrenuti program za izvoz: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Nema sadržaja za izvoz."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Onemogućili ste potrebnu dozvolu."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Došlo je do greške prilikom izvoza: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Zahtijevano ime fajla je predugo (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O greška"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Nema dovoljno memorije. Možda je fajl prevelik."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Nije moguće raščlaniti vCard fajl iz neočekivanog razloga."</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"Format nije podržan."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Nije moguće otvoriti metapodatke vCard fajla/fajlova."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Nije moguće uvesti jedan ili više fajlova (%s)."</string>
+    <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Izvoz fajla <xliff:g id="FILENAME">%s</xliff:g> je završen."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Izvoz kontakata je završen."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Izvoz kontakata je završen. Kliknite obavještenje da podijelite kontakte."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Dodirnite da podijelite kontakte."</string>
+    <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Izvoz fajla <xliff:g id="FILENAME">%s</xliff:g> je otkazan."</string>
+    <string name="exporting_contact_list_title" msgid="5663945499580026953">"Izvoz podataka kontakta u toku"</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Podaci kontakta se izvoze."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nije moguće preuzeti informacije iz baze podataka."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Nema kontakata koji se mogu izvoziti. Ako imate kontakte na telefonu, neki dobavljači podataka možda ne dozvoljavaju izvoz kontakata s telefona."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"Program za izradu vCard nije pravilno pokrenut."</string>
+    <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Izvoz nije uspio"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Podaci kontakta nisu izvezeni.\nRazlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="importing_vcard_description" msgid="7206609625359484356">"Uvozi se kontakt <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Čitanje podataka vCard nije uspjelo"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Čitanje vCard podataka je otkazano"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"Završen uvoz vCard fajla <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_canceled_title" msgid="556913863250769870">"Uvoz fajla <xliff:g id="FILENAME">%s</xliff:g> je otkazan"</string>
+    <string name="vcard_import_will_start_message" msgid="7184603116300604514">"Fajl <xliff:g id="FILENAME">%s</xliff:g> će uskoro biti uvezen."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Fajl će uskoro biti uvezen."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Zahtjev za uvoz vCard fajla je odbijen. Pokušajte ponovo kasnije."</string>
+    <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Fajl <xliff:g id="FILENAME">%s</xliff:g> će će uskoro biti izvezen."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Fajl će uskoro biti izvezen."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Kontakti će uskoro biti izvezeni."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Zahtjev za izvoz vCard fajla je odbijen. Pokušajte ponovo kasnije."</string>
+    <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"Spremanje vCard fajlova u lokalnu privremenu memoriju. Uvoz će započeti uskoro."</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"Uvoz vCard nije uspio."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakt iz NFC-a"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"Izvesti kontakte?"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"Spremanje u privremenu memoriju u toku"</string>
+    <string name="progress_notifier_message" msgid="359931715339778107">"Uvozi se <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Izvezi u .vcf fajl"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Poredaj po"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ime"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Prezime"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Format imena"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Prvo ime"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Prvo prezime"</string>
+    <string name="default_editor_account" msgid="4338725881650654966">"Zadani račun za nove kontakte"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinhroniziraj metapodatke kontakata [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinhroniziraj metapodatke kontakata"</string>
-    <!-- no translation found for setting_about (3926137653588942297) -->
-    <skip />
+    <string name="setting_about" msgid="3926137653588942297">"O Kontaktima"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Postavke"</string>
-    <!-- no translation found for share_visible_contacts (2150662668080757107) -->
-    <skip />
-    <!-- no translation found for share_visible_contacts_failure (5895137872238059893) -->
-    <skip />
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Podijeli vidljive kontakte"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Dijeljenje vidljivih kontakata nije uspjelo."</string>
     <string name="share_favorite_contacts" msgid="2838432887118216222">"Dijeli omiljene kontakte"</string>
     <string name="share_contacts" msgid="6404040163340914061">"Dijeli sve kontakte"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"Dijeljenje kontakata nije uspjelo."</string>
-    <!-- no translation found for dialog_import_export (1125776851100740858) -->
-    <skip />
-    <!-- no translation found for dialog_import (5177004290082451296) -->
-    <skip />
-    <!-- no translation found for share_error (665756457151793108) -->
-    <skip />
-    <!-- no translation found for no_contact_to_share (5749367538191552509) -->
-    <skip />
-    <!-- no translation found for menu_search (7464453023659824700) -->
-    <skip />
-    <!-- no translation found for menu_contacts_filter (586356478145511794) -->
-    <skip />
-    <!-- no translation found for activity_title_contacts_filter (7689519428197855166) -->
-    <skip />
-    <!-- no translation found for custom_list_filter (582616656313514803) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (28151707326753522) -->
-    <skip />
-    <!-- no translation found for contactsFavoritesLabel (1222038757062409949) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZero (6041341919823872732) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroCustom (5661794891640163617) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroStarred (2747107662985362061) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZeroGroup (7450331854661098879) -->
-    <skip />
-    <!-- no translation found for menu_clear_frequents (8492322695770647639) -->
-    <skip />
-    <!-- no translation found for menu_select_sim (7814841439832447299) -->
-    <skip />
-    <!-- no translation found for menu_accounts (2944004960829403994) -->
-    <skip />
-    <!-- no translation found for menu_import_export (6446229463809981669) -->
-    <skip />
-    <!-- no translation found for contact_status_update_attribution (8419168578670128134) -->
-    <skip />
-    <!-- no translation found for contact_status_update_attribution_with_date (7492465535645607473) -->
-    <skip />
-    <!-- no translation found for action_menu_back_from_search (1138551123844019647) -->
-    <skip />
-    <!-- no translation found for description_clear_search (3893511425518852086) -->
-    <skip />
-    <!-- no translation found for settings_contact_display_options_title (1020420603072835628) -->
-    <skip />
-    <!-- no translation found for select_account_dialog_title (5509088895267310568) -->
-    <skip />
-    <!-- no translation found for set_default_account (3865970860434642695) -->
-    <skip />
-    <!-- no translation found for select_phone_account_for_calls (933905607702811164) -->
-    <skip />
-    <!-- no translation found for call_with_a_note (8453800473226831257) -->
-    <skip />
-    <!-- no translation found for call_subject_hint (2270115162050853866) -->
-    <skip />
-    <!-- no translation found for send_and_call_button (7459507823002185202) -->
-    <skip />
-    <!-- no translation found for call_subject_limit (4746194916585506281) -->
-    <skip />
-    <!-- no translation found for call_subject_type_and_number (517676698821671164) -->
-    <skip />
-    <!-- no translation found for tab_title_with_unread_items (6318422670912575609) -->
-    <!-- no translation found for about_build_version (4221971683776635130) -->
-    <skip />
-    <!-- no translation found for about_open_source_licenses (3224958101863814649) -->
-    <skip />
-    <!-- no translation found for about_open_source_licenses_summary (3009343539281606716) -->
-    <skip />
-    <!-- no translation found for about_privacy_policy (8458337666582973913) -->
-    <skip />
-    <!-- no translation found for about_terms_of_service (628537491496465267) -->
-    <skip />
-    <!-- no translation found for activity_title_licenses (7812517458691564230) -->
-    <skip />
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
-    <!-- no translation found for account_filter_view_checked (4368757211136754319) -->
-    <skip />
-    <!-- no translation found for account_filter_view_not_checked (5652044086126815700) -->
-    <skip />
-    <!-- no translation found for description_search_video_call (1699305143973045516) -->
-    <skip />
+    <string name="dialog_import_export" msgid="1125776851100740858">"Uvoz/izvoz kontakata"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Uvezi kontakte"</string>
+    <string name="share_error" msgid="665756457151793108">"Ovaj kontakt se ne može podijeliti."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Nema kontakata za dijeljenje."</string>
+    <string name="menu_search" msgid="7464453023659824700">"Traži"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakti za prikaz"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakti za prikaz"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Definiši prilagođeni prikaz"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Pronađi kontakte"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoriti"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nema kontakata."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Nema vidljivih kontakata."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Nema favorita"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Nema kontakata na <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Obriši često kontaktirane"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"Odaberi SIM karticu"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"Upravljaj računima"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Uvoz/izvoz"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"putem <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> putem <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"zaustavi pretraživanje"</string>
+    <string name="description_clear_search" msgid="3893511425518852086">"Obriši pretragu"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Opcije prikaza kontakata"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"Račun"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Uvijek koristi ovo za pozive"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Poziv putem"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Poziv s bilješkom"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Upišite bilješki koja će se poslati uz poziv ..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"POŠALJI I POZOVI"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
+      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> nepročitana stavka. </item>
+      <item quantity="few"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> nepročitane stavke. </item>
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> nepročitanih stavki. </item>
+    </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"Međuverzija aplikacije"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Licence za otvorene izvore"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Detalji o licenci za softver otvorenog kôda"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Pravila o privatnosti"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"Uslovi pružanja usluge"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Licence za otvorene izvore"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Otvaranje URL-a nije uspjelo."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> je označen"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> nije označen"</string>
+    <string name="description_search_video_call" msgid="1699305143973045516">"Uputi videopoziv"</string>
 </resources>

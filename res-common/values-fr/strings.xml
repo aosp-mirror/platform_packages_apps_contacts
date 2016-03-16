@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Appeler le téléavertisseur professionnel"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Appeler le <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Appeler le numéro de téléphone MMS"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (appeler)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Envoyer un SMS au <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Envoyer un SMS au numéro de téléphone du domicile"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Envoyer un SMS au numéro de téléphone mobile"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Envoyer un SMS au téléavertisseur professionnel"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Envoyer un SMS au <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Envoyer un SMS au numéro de téléphone MMS"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (envoyer un SMS)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Passer un appel vidéo"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Effacer les contacts fréquents ?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Cette opération efface la liste des personnes que vous contactez le plus souvent dans les applications Contacts et Téléphone, et entraîne une réinitialisation des adresses mémorisées comme celles que vous utilisez le plus fréquemment dans vos applications de messagerie électronique."</string>
@@ -75,8 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Contacts"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Autre"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Répertoire"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Annuaire professionnel"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Tous les contacts"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Moi"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Recherche en cours…"</string>
@@ -92,8 +89,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contacts fréquents"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Afficher le contact"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Tous les contacts disposant d\'un numéro de téléphone"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Contacts du profil professionnel"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Afficher les mises à jour"</string>
     <string name="account_phone" msgid="6104157990869081962">"Téléphone uniquement, sans synchronisation"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nom"</string>
