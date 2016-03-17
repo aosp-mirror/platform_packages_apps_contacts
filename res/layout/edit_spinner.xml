@@ -19,11 +19,11 @@
 <Spinner
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/spinner"
-    android:layout_gravity="bottom"
+    android:layout_gravity="bottom|start"
     style="@android:style/Widget.Material.Spinner.Underlined"
     android:dropDownWidth="@dimen/editor_type_label_dropdown_width"
     android:layout_width="@dimen/editor_type_label_width"
     android:layout_height="@dimen/editor_min_line_item_height"
     android:paddingBottom="0dp"
     android:paddingTop="0dp"
-    android:paddingRight="@dimen/editor_spinner_right_padding_workaround" />
+    android:paddingRight="@dimen/editor_spinner_right_padding"/>
