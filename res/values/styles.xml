@@ -169,7 +169,8 @@
     <!-- Action bar overflow menu icon. -->
     <style name="ContactsActionBarOverflowQP"
            parent="@android:style/Widget.Material.Light.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_menu_overflow_lt</item>
+        <item name="android:src">@drawable/ic_more_vert</item>
+        <item name="android:tint">@color/action_bar_button_text_color</item>
     </style>
 
     <style name="ContactsActionBarDropDownStyle" parent="@android:style/Widget.Holo.Light.Spinner">
