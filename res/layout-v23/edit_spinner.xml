@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright (C) 2011 The Android Open Source Project
+  Copyright (C) 2016 The Android Open Source Project
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -15,14 +15,15 @@
   limitations under the License.
   -->
 
-<!-- Button to select a date in the contact editor. -->
-<Button
+<!-- Spinner for a field in the contact editor. -->
+<Spinner
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/date_view"
-    style="@style/SpinnerButtonStyle"
-    android:layout_width="match_parent"
+    android:id="@+id/spinner"
+    android:layout_gravity="bottom|start"
+    style="@android:style/Widget.Material.Spinner.Underlined"
+    android:dropDownWidth="@dimen/editor_type_label_dropdown_width"
+    android:layout_width="@dimen/editor_type_label_width"
     android:layout_height="@dimen/editor_min_line_item_height"
-    android:layout_weight="1"
-    android:textSize="@dimen/editor_form_text_size"
-    android:textAlignment="viewStart"
-    android:paddingRight="@dimen/editor_spinner_right_padding" />
+    android:paddingBottom="0dp"
+    android:paddingTop="0dp"
+    android:paddingEnd="@dimen/editor_spinner_right_padding_workaround"/>

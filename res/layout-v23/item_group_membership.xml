@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2010 The Android Open Source Project
+<!-- Copyright (C) 2016 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -39,6 +39,6 @@
         android:focusable="true"
         android:layout_marginEnd="@dimen/editor_delete_button_size"
         android:layout_marginBottom="@dimen/editor_padding_between_editor_views"
-        android:paddingRight="@dimen/editor_spinner_right_padding"/>
+        android:paddingEnd="@dimen/editor_spinner_right_padding"/>
 
 </com.android.contacts.editor.GroupMembershipView>

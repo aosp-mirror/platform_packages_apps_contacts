@@ -70,6 +70,9 @@
         drawablePadding since the spinner graphic is not a normal drawable.  -->
     <dimen name="editor_spinner_right_padding_workaround">24dip</dimen>
 
+    <!-- RHS padding added to spinners for L devices -->
+    <dimen name="editor_spinner_right_padding">40dip</dimen>
+
     <!-- Size of input form text inside the contact editor -->
     <dimen name="editor_form_text_size">16sp</dimen>
 
