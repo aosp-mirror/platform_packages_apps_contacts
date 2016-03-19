@@ -62,7 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Жумушчу пейжерге SMS жөнөтүү"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Текст жөнөтүү <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS телефонго SMS жөнөтүү"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Билдирүү)"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Билдирүү жөнөтүү)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Видео түрүндө чалуу"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Көп чалынгандар тизмеси тазалансынбы?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Байланыштар жана Телефон колдонмолорунан көп байланышкан адамдар тизмесин тазалап, даректүү жеке жөндөөлөр тууралуу билүү үчүн электрондук почта колдонмолорун иштетиңиз."</string>

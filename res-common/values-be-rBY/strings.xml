@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (C) 2012 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="toast_text_copied" msgid="8327159932780920627">"Тэкст скапіраваны"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Скапіраваць у буфер абмену"</string>
+    <string name="call_custom" msgid="2786306789889210756">"Выклікаць <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1479549630992276827">"Патэлефанаваць на хатні нумар"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Патэлефанаваць на нумар мабільнага тэлефона"</string>
+    <string name="call_work" msgid="8299062439076337075">"Патэлефанаваць на працоўны нумар тэлефона"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"Патэлефанаваць на нумар працоўнага факса"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Патэлефанаваць на нумар хатняга факса"</string>
+    <string name="call_pager" msgid="3038080882899955112">"Патэлефанаваць на пэйджар"</string>
+    <string name="call_other" msgid="4472141328347894937">"Выклікаць"</string>
+    <string name="call_callback" msgid="687494744634190411">"Зрабіць зваротны выклік"</string>
+    <string name="call_car" msgid="9078083109758282133">"Патэлефанаваць на нумар у машыне"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Патэлефанаваць на асноўны нумар кампаніі"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"Выклікаць ISDN"</string>
+    <string name="call_main" msgid="4640261071249938558">"Патэлефанаваць на асноўны нумар"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"Патэлефанаваць на нумар факса"</string>
+    <string name="call_radio" msgid="9055749313292712021">"Патэлефанаваць на радыётэлефон"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Патэлефанаваць на нумар тэлекса"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"Выклікаць TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Патэлефанаваць на працоўны нумар мабільнага тэлефона"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Патэлефанаваць на працоўны пэйджар"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"Выклікаць <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="8998771923464696960">"Выклікаць MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Выклік)"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"Напiсаць тэкставае паведамленне <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"Напiсаць тэкставае паведамленне на хатні тэлефон"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"Напiсаць тэкставае паведамленне на мабільны нумар тэлефона"</string>
+    <string name="sms_work" msgid="3910570578912367742">"Напiсаць тэкставае паведамленне на працоўны нумар тэлефона"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"Напiсаць тэкставае паведамленне на працоўны факс"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Напiсаць тэкставае паведамленне на хатні факс"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"Напiсаць тэкставае паведамленне на пэйджар"</string>
+    <string name="sms_other" msgid="910895193552957097">"Тэкставае паведамленне"</string>
+    <string name="sms_callback" msgid="728414485478941361">"Напiсаць тэкставае паведамленне на нумар зваротнага выкліку"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Напiсаць тэкставае паведамленне на нумар у машыне"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Напiсаць тэкставае паведамленне на асноўны нумар кампаніі"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"Тэкставае паведамленне ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"Напiсаць тэкставае паведамленне на асноўны нумар"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"Напiсаць тэкставае паведамленне на факс"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"Напiсаць тэкставае паведамленне на радыётэлефон"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"Напiсаць тэкставае паведамленне на тэлекс"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"Напiсаць тэкставае паведамленне на TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"Напiсаць тэкставае паведамленне на працоўны нумар мабільнага тэлефона"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Напiсаць тэкставае паведамленне на працоўны пэйджар"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"Напiсаць тэкставае паведамленне <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"Тэкставае паведамленне MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Паведамленне)"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Зрабіць відэавыклік"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Выдалiць частыя кантакты?"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Вы выдалiце найчасцей ужываныя кантакты ў праграмах Кантакты i Тэлефон i прымусiце праграмы па працы з электроннай поштай вывучыць вашы налады адрасацыi з нуля."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Выдаленне частых кантактаў..."</string>
+    <string name="status_available" msgid="4832569677396634846">"Даступны"</string>
+    <string name="status_away" msgid="6267905184545881094">"Адсутнічае"</string>
+    <string name="status_busy" msgid="7111912905211403545">"Заняты"</string>
+    <string name="contactsList" msgid="7140022347217602605">"Кантакты"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Іншае"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"Дырэкторыя"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Працоўная дырэкторыя"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"Усе кантакты"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Я"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Ідзе пошук..."</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"Знойдзена вынікаў: больш за <xliff:g id="COUNT">%d</xliff:g>."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Кантактаў няма"</string>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> знойдзены</item>
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> знойдзены</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> знойдзена</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> знойдзена</item>
+    </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"Хуткі кантакт для карыстальніка \"<xliff:g id="NAME">%1$s</xliff:g>\""</string>
+    <string name="missing_name" msgid="2633118852693000081">"(Без назвы)"</string>
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Часта выкліканыя"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Часта выкарыстаныя кантакты"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Прагледзець кантакт"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Усе кантакты з нумарамі тэлефонаў"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Кантакты працоўнага профілю"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Прагляд абнаўленняў"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Толькі тэлефон, несінхранізаваны"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Імя"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псеўданiм"</string>
+    <string name="full_name" msgid="885420216812981202">"Імя"</string>
+    <string name="name_given" msgid="4153709115654909377">"Імя"</string>
+    <string name="name_family" msgid="5317387657540738981">"Прозвішча"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Прэфікс імені"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Імя па бацьку"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Суфікс да імені"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Фанетычнае імя"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Вымаўленне імя"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Фанетычны запіс імя па бацьку"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Вымаўленне прозвішча"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Тэлефон"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Электронная пошта"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Адрас"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"Iмгненныя паведамленнi"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Установа"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Сувязі"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"Асаблівая дата"</string>
+    <string name="sms" msgid="8086289395154598654">"Тэкставае паведамленне"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Адрас"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"Кампанія"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Назва"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Нататкі"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Вэб-сайт"</string>
+    <string name="groupsLabel" msgid="3574316547053047551">"Групы"</string>
+    <string name="email_home" msgid="2230967805906450693">"Паведамленне на хатні адрас электроннай пошты"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Адправіць электронную пошту на мабільны адрас"</string>
+    <string name="email_work" msgid="7065971921227432400">"Паведамленне на працоўную электронную пошту"</string>
+    <string name="email_other" msgid="4601881243553289615">"Электронная пошта"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Адправiць лiст на адрас: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"Электронная пошта"</string>
+    <string name="postal_street" msgid="881349814077356134">"Вуліца"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Паштовая скрыня"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Наваколле"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Горад"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Шт"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Паштовы індэкс"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Краіна"</string>
+    <string name="map_home" msgid="1221397355014741634">"Прагледзець хатні адрас"</string>
+    <string name="map_work" msgid="9015981646907637207">"Паглядзець працоўны адрас"</string>
+    <string name="map_other" msgid="55098598855607997">"Прагледзець адрас"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Паглядзець адрас \"<xliff:g id="CUSTOM">%s</xliff:g>\""</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Чат у AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Чат у Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Чат у Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Чат у Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Чат у QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Чат у Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Чат праз ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Чат у Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Гутарка"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"выдаліць"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Разгарнуць ці згарнуць назвы палёў"</string>
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Разгарнуць ці згарнуць палі вымаўлення імён"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Усе кантакты"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Пазначаныя"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Карыстальнiцкi"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Кантакт"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Усе кантакты з папкі \"Іншыя\""</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Усе кантакты"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Выдаліць групу сінхранізацыі"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Дадаць групу сінхранізацыі"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Больш груп..."</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Выдаленне групы \"<xliff:g id="GROUP">%s</xliff:g>\" з чаргi на сінхранізацыю таксама выдаліць любыя разгрупаваныя кантакты з гэтай чаргi."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Захаванне параметраў адлюстравання..."</string>
+    <string name="menu_done" msgid="32470053723443112">"Гатова"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"Адмена"</string>
+    <string name="listAllContactsInAccount" msgid="755499980092808715">"Кантакты карыстальнiка <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Кантакты ў карыстальнiцкiм выглядзе"</string>
+    <string name="listSingleContact" msgid="8525131203887307088">"Адзіночны кантакт"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"Захаваць імпартаваныя кантакты ў:"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Імпарт з SIM-карты"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"Імпарт з SIM-карты <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Імпарт з SIM-карты SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Імпарт з файла .vcf"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Адмянiць iмпарт файла \"<xliff:g id="FILENAME">%s</xliff:g>\"?"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Адмянiць экспарт файла \"<xliff:g id="FILENAME">%s</xliff:g>\"?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Немагчыма адмяніць імпарт/экспарт vCard"</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"Невядомая памылка."</string>
+    <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Немагчыма адкрыць файл \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Не атрымалася запусцiць экспарцёр: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Няма кантактаў для экспарту."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Вы адключылі дазвол, які патрабуецца."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Памылка экспарту: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Патрабаванае імя файла (\"<xliff:g id="FILENAME">%s</xliff:g>\") занадта доўгае."</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"Памылка ўводу/вываду"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Недастаткова памяці (магчыма, занадта вялікі файл)"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Па нечаканай прычыне немагчыма разабраць файл vCard."</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"Фармат не падтрымліваецца."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Немагчыма сабраць мета-інфармацыю з гэтых файлаў vCard."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Адзін або некалькі файлаў не могуць быць імпартаваныя (%s)."</string>
+    <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Экспарт файла \"<xliff:g id="FILENAME">%s</xliff:g>\" завершаны."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Экспартаванне кантактаў завершана."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Экспартаванне кантактаў завершана, націсніце на апавяшчэнне, каб абагуліць кантакты."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Дакраніцеся, каб абагуліць кантакты."</string>
+    <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Экспарт файла \"<xliff:g id="FILENAME">%s</xliff:g>\" адменены."</string>
+    <string name="exporting_contact_list_title" msgid="5663945499580026953">"Экспарт дадзеных кантакта"</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Даныя кантакту экспартуюцца."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Немагчыма атрымаць інфармацыю з базы дадзеных."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Няма кантактаў, якiя можна экспартаваць. Калi ў вашым тэлефоне няма кантактаў, некаторыя пастаўшчыкi дадзеных могуць забараняць экспарт кантактаў з тэлефона."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"Памылка запуску складальнiка файлаў vCard."</string>
+    <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Не атрымалася экспартаваць"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Памылка экспарта кантактных дадзеных. \nПрычына: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="importing_vcard_description" msgid="7206609625359484356">"Імпарт дадзеных карыстальнiка: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Немагчыма прачытаць дадзеныя vCard"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Адменена чытанне дадзеных з vCard"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"Заканчэнне імпартавання vCard \"<xliff:g id="FILENAME">%s</xliff:g>\""</string>
+    <string name="importing_vcard_canceled_title" msgid="556913863250769870">"Імпарт файла \"<xliff:g id="FILENAME">%s</xliff:g>\" адменены"</string>
+    <string name="vcard_import_will_start_message" msgid="7184603116300604514">"Файл \"<xliff:g id="FILENAME">%s</xliff:g>\" будзе імпартаваны ў бліжэйшы час."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Файл будзе імпартаваны ў бліжэйшы час."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Запыт экспарту vCard адхілены. Паспрабуйце пазней."</string>
+    <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Файл \"<xliff:g id="FILENAME">%s</xliff:g>\" будзе экспартаваны ў бліжэйшы час."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Файл хутка будзе экспартаваны."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Кантакты хутка будуць экспартаваны."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Запыт экспарту vCard адхілены. Паспрабуйце пазней."</string>
+    <string name="vcard_unknown_filename" msgid="4832657686149881554">"кантакт"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"Кэшуе файлы vCard у лакальнае часовае сховішча. Фактычны імпарт пачнецца ў бліжэйшы час."</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"Немагчыма імпартаваць vCard."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"Кантакт атрыманы праз NFC"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"Экспартаваць кантакты?"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"Кэшаванне"</string>
+    <string name="progress_notifier_message" msgid="359931715339778107">"Імпарт: <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>, <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Экспартаваць у файл .vcf"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сартаваць па"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Імя"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Прозвішча"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Фармат імя"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Спачатку імя"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Спачатку прозвішча"</string>
+    <string name="default_editor_account" msgid="4338725881650654966">"Стандартны ўліковы запіс для новых кантактаў"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Сінхранізаваць метаданыя пра кантакты [ДЛЯ СУПРАЦОЎНІКАЎ]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Сінхранізаваць метаданыя пра кантакты"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Інфармацыя аб Кантактах"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"Налады"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Адкрыць бачныя кантакты"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Спроба абагуліць бачныя кантакты няўдалая."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Абагуліць выбраныя кантакты"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Абагуліць усе кантакты"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Не атрымалася абагуліць кантакты."</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Імпарт/экспарт кантактаў"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Імпартаваць кантакты"</string>
+    <string name="share_error" msgid="665756457151793108">"Немагчыма падзялiцца гэтым кантактам."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Няма кантактаў, якія можна абагуліць."</string>
+    <string name="menu_search" msgid="7464453023659824700">"Пошук"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Кантакты для адлюстр."</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Кантакты для адлюстр."</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Вызначыць карыстальніцкі выгляд"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Знайсці кантакты"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Выбраныя"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Няма кантактаў."</string>
+    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Няма бачных кантактаў."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Няма ўпадабаных"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Няма кантакта \"<xliff:g id="NAME">%s</xliff:g>\" у групе"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Выдалiць частыя кантакты"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"Выбраць SIM-карту"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"Кіраваць уліковымі запісамі"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Імпарт/экспарт"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"праз <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> праз <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"спыніць пошук"</string>
+    <string name="description_clear_search" msgid="3893511425518852086">"Ачысціць пошук"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Параметры адлюстравання кантактаў"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"Уліковы запіс"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Заўсёды выкарыст. гэта для выклікаў"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Выклікаць праз"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Выклік з нататкай"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Увесці нататку для адпраўкі з выклікам…"</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"АДПРАВІЦЬ І ВЫКЛІКАЦЬ"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
+      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> непрачытаны элемент. </item>
+      <item quantity="few"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> непрачытаныя элементы. </item>
+      <item quantity="many"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> непрачытаных элементаў. </item>
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> непрачытанага элемента. </item>
+    </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"Версія зборкі"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Ліцэнзіі на ПЗ з адкрытым зыходным кодам"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Звесткі аб ліцэнзіі на праграмнае забеспячэнне з адкрытым зыходным кодам"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Палітыка прыватнасці"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"Умовы абслугоўвання"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Ліцэнзіі на ПЗ з адкрытым зыходным кодам"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Не ўдалося адкрыць URL."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> пазначана"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> не пазначана"</string>
+    <string name="description_search_video_call" msgid="1699305143973045516">"Зрабіць відэавыклік"</string>
+</resources>
