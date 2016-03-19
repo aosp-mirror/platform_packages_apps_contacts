@@ -40,7 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Deitu laneko bilagailura"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Deitu <xliff:g id="ASSISTANT">%s</xliff:g> zenbakira"</string>
     <string name="call_mms" msgid="8998771923464696960">"Deitu MMS zenbakira"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Deitu)"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (deitu)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Bidali testu-mezua honi: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Bidali testu-mezua etxera"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Bidali testu-mezua mugikorrera"</string>
@@ -62,7 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Bidali testu-mezua laneko bilagailura"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Bidali testu-mezua honi: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Bidali testu-mezua MMS zenbakira"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Bidali SMS mezua)"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (bidali SMS mezua)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Egin bideo-deia"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Sarri erabilitako kontaktuak garbitu?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Kontaktuak eta Telefonoa aplikazioetako sarri erabilitako kontaktuen zerrenda garbituko duzu; beraz, posta elektronikoaren aplikazioek helbideen hobespenak hutsetik ikasi beharko dituzte."</string>

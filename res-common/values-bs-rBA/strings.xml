@@ -27,7 +27,7 @@
     <string name="call_fax_home" msgid="6219051113573396065">"Pozovi kućni faks"</string>
     <string name="call_pager" msgid="3038080882899955112">"Pozovi pejdžer"</string>
     <string name="call_other" msgid="4472141328347894937">"Pozovi"</string>
-    <string name="call_callback" msgid="687494744634190411">"Uzvrati poziv"</string>
+    <string name="call_callback" msgid="687494744634190411">"Pozovi broj za uzvraćanje poziva"</string>
     <string name="call_car" msgid="9078083109758282133">"Pozovi automobil"</string>
     <string name="call_company_main" msgid="8768047233970315359">"Pozovi glavni broj kompanije"</string>
     <string name="call_isdn" msgid="3342482563847537747">"Pozovi ISDN"</string>
@@ -41,27 +41,27 @@
     <string name="call_assistant" msgid="5188990854852312696">"Pozovi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Pozovi MMS"</string>
     <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Poziv)"</string>
-    <string name="sms_custom" msgid="4601748252470175865">"Pošalji SMS na <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7765831490534280540">"Pošalji SMS na kućni broj"</string>
-    <string name="sms_mobile" msgid="8387632124165893103">"Pošalji SMS na mobilni"</string>
-    <string name="sms_work" msgid="3910570578912367742">"Pošalji SMS na poslovni broj"</string>
-    <string name="sms_fax_work" msgid="909086167151248212">"Pošalji SMS na poslovni faks"</string>
-    <string name="sms_fax_home" msgid="4145442497939634875">"Pošalji SMS na kućni faks"</string>
-    <string name="sms_pager" msgid="5664381349583724906">"Pošalji SMS na pejdžer"</string>
-    <string name="sms_other" msgid="910895193552957097">"Pošalji SMS"</string>
-    <string name="sms_callback" msgid="728414485478941361">"Pošalji SMS na povratni"</string>
-    <string name="sms_car" msgid="8543669230270954512">"Pošalji SMS na automobil"</string>
-    <string name="sms_company_main" msgid="5441902128445061862">"Pošalji SMS na glavni broj kompanije"</string>
-    <string name="sms_isdn" msgid="7142483128948042667">"Pošalji SMS na ISDN"</string>
-    <string name="sms_main" msgid="6815987840926184815">"Pošalji SMS na glavni broj"</string>
-    <string name="sms_other_fax" msgid="8649822154879781466">"Pošalji SMS na faks"</string>
-    <string name="sms_radio" msgid="8750339218480745940">"Pošalji SMS na radio"</string>
-    <string name="sms_telex" msgid="5469333785775443999">"Pošalji SMS na teleks"</string>
-    <string name="sms_tty_tdd" msgid="5057886576150816002">"Pošalji SMS na TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="8426872094268475047">"Pošalji SMS na poslovni mobitel"</string>
-    <string name="sms_work_pager" msgid="499303540738557836">"Pošalji SMS na poslovni pejdžer"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"Pošalji tekstualnu poruku na <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"Pošalji tekstualnu poruku na kućni broj"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"Pošalji tekstualnu poruku na mobilni"</string>
+    <string name="sms_work" msgid="3910570578912367742">"Pošalji tekstualnu poruku na poslovni broj"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"Pošalji tekstualnu poruku na poslovni faks"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Pošalji tekstualnu poruku na kućni faks"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"Pošalji tekstualnu poruku na pejdžer"</string>
+    <string name="sms_other" msgid="910895193552957097">"Pošalji tekstualnu poruku"</string>
+    <string name="sms_callback" msgid="728414485478941361">"Pošalji tekstualnu poruku na broj za povratni poziv"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Pošalji tekstualnu poruku na automobil"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Pošalji tekstualnu poruku na glavni broj kompanije"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"Pošalji tekstualnu poruku na ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"Pošalji tekstualnu poruku na glavni broj"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"Pošalji tekstualnu poruku na faks"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"Pošalji tekstualnu poruku na radio"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"Pošalji tekstualnu poruku na teleks"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"Pošalji tekstualnu poruku na TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"Pošalji tekstualnu poruku na poslovni mobitel"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Pošalji tekstualnu poruku na poslovni pejdžer"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Pošalji tekstualnu poruku <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4887206338311086612">"Pošalji MMS"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"Pošalji tekstualnu poruku na MMS broj"</string>
     <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Poruka)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Uputi videopoziv"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Obrisati često kontaktirane osobe?"</string>
@@ -89,7 +89,7 @@
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Često pozivane osobe"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Često kontaktirane osobe"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Prikaži kontakt"</string>
-    <string name="list_filter_phones" msgid="3692815632088465422">"Svi kontaktima s brojevima telefona"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Svi kontakti s brojevima telefona"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Kontakti radnog profila"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Prikaži ažuriranja"</string>
     <string name="account_phone" msgid="6104157990869081962">"Samo telefon, bez sinhronizacije"</string>
@@ -128,7 +128,7 @@
     <string name="email" msgid="5624424151176351591">"E-pošta"</string>
     <string name="postal_street" msgid="881349814077356134">"Ulica"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"Poštanski pretinac"</string>
-    <string name="postal_neighborhood" msgid="3721092668038527674">"Komšiluk"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Naselje"</string>
     <string name="postal_city" msgid="3173008531169519309">"Grad"</string>
     <string name="postal_region" msgid="1695206048198921115">"Država"</string>
     <string name="postal_postcode" msgid="6542806670034753265">"Poštanski broj"</string>
@@ -158,8 +158,8 @@
     <string name="menu_sync_remove" msgid="6581565236520430269">"Ukloni grupu za sinhronizaciju"</string>
     <string name="dialog_sync_add" msgid="1795682729089027675">"Dodaj grupu za sinhronizaciju"</string>
     <string name="display_more_groups" msgid="6304997485733158224">"Više grupa…"</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Uklanjanje grupe \"<xliff:g id="GROUP">%s</xliff:g>\" iz sinhronizacije će također ukloniti sve negrupisane kontakte iz sinhronizacije."</string>
-    <string name="savingDisplayGroups" msgid="6863012138107446030">"Spremanje opcija prikaza u toku…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Uklanjanje grupe \"<xliff:g id="GROUP">%s</xliff:g>\" iz sinhronizacije će također ukloniti sve negrupirane kontakte iz sinhronizacije."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Čuvanje opcija prikaza u toku…"</string>
     <string name="menu_done" msgid="32470053723443112">"Gotovo"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Otkaži"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakti na računu <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -184,7 +184,7 @@
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Nema dovoljno memorije. Možda je fajl prevelik."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Nije moguće raščlaniti vCard fajl iz neočekivanog razloga."</string>
     <string name="fail_reason_not_supported" msgid="388664373573337601">"Format nije podržan."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Nije moguće otvoriti metapodatke vCard fajla/fajlova."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Nije moguće otvoriti metapodatke vCard fajl(ov)a."</string>
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Nije moguće uvesti jedan ili više fajlova (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Izvoz fajla <xliff:g id="FILENAME">%s</xliff:g> je završen."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Izvoz kontakata je završen."</string>
@@ -195,7 +195,7 @@
     <string name="exporting_contact_list_message" msgid="141905615542638683">"Podaci kontakta se izvoze."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nije moguće preuzeti informacije iz baze podataka."</string>
     <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Nema kontakata koji se mogu izvoziti. Ako imate kontakte na telefonu, neki dobavljači podataka možda ne dozvoljavaju izvoz kontakata s telefona."</string>
-    <string name="composer_not_initialized" msgid="6514403866246950877">"Program za izradu vCard nije pravilno pokrenut."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"Program za izradu kartica vCard nije pravilno pokrenut."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Izvoz nije uspio"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Podaci kontakta nisu izvezeni.\nRazlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Uvozi se kontakt <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -211,19 +211,19 @@
     <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Kontakti će uskoro biti izvezeni."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Zahtjev za izvoz vCard fajla je odbijen. Pokušajte ponovo kasnije."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
-    <string name="caching_vcard_message" msgid="6635485116655518520">"Spremanje vCard fajlova u lokalnu privremenu memoriju. Uvoz će započeti uskoro."</string>
-    <string name="vcard_import_failed" msgid="4105296876768072508">"Uvoz vCard nije uspio."</string>
-    <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakt iz NFC-a"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"Spremanje vCard fajlova u lokalnu privremenu pohranu. Uvoz će započeti uskoro."</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"Uvoz vCard kartice nije uspio."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakt preko NFC-a"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Izvesti kontakte?"</string>
-    <string name="caching_vcard_title" msgid="9185299351381102305">"Spremanje u privremenu memoriju u toku"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"Spremanje u privremenu pohranu u toku"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Uvozi se <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Izvezi u .vcf fajl"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Poredaj po"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ime"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Prezime"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Format imena"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Prvo ime"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Prvo prezime"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Ime prvo"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Prezime prvo"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Zadani račun za nove kontakte"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinhroniziraj metapodatke kontakata [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinhroniziraj metapodatke kontakata"</string>
@@ -241,13 +241,13 @@
     <string name="menu_search" msgid="7464453023659824700">"Traži"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakti za prikaz"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakti za prikaz"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definiši prilagođeni prikaz"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Definiraj prilagođeni prikaz"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Pronađi kontakte"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoriti"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nema kontakata."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Nema vidljivih kontakata."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Nema favorita"</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Nema kontakata na <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Nema kontakata u <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Obriši često kontaktirane"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Odaberi SIM karticu"</string>
     <string name="menu_accounts" msgid="2944004960829403994">"Upravljaj računima"</string>
@@ -258,10 +258,10 @@
     <string name="description_clear_search" msgid="3893511425518852086">"Obriši pretragu"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Opcije prikaza kontakata"</string>
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Račun"</string>
-    <string name="set_default_account" msgid="3865970860434642695">"Uvijek koristi ovo za pozive"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Uvijek koristi ovu karticu za pozive"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Poziv putem"</string>
     <string name="call_with_a_note" msgid="8453800473226831257">"Poziv s bilješkom"</string>
-    <string name="call_subject_hint" msgid="2270115162050853866">"Upišite bilješki koja će se poslati uz poziv ..."</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Upišite bilješku koja će se poslati uz poziv ..."</string>
     <string name="send_and_call_button" msgid="7459507823002185202">"POŠALJI I POZOVI"</string>
     <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
@@ -271,11 +271,11 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> nepročitanih stavki. </item>
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"Međuverzija aplikacije"</string>
-    <string name="about_open_source_licenses" msgid="3224958101863814649">"Licence za otvorene izvore"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Detalji o licenci za softver otvorenog kôda"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Open source licence"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Detalji o licenci za Open source softver"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Pravila o privatnosti"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Uslovi pružanja usluge"</string>
-    <string name="activity_title_licenses" msgid="7812517458691564230">"Licence za otvorene izvore"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Open source licence"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Otvaranje URL-a nije uspjelo."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> je označen"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> nije označen"</string>
