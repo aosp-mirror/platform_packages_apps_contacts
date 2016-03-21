@@ -51,6 +51,13 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     public static final char SNIPPET_START_MATCH = '[';
     public static final char SNIPPET_END_MATCH = ']';
 
+    // Phone numbers that were used more than 30 days ago are dropped from frequents query
+    // in ContactsProvider2#queryLocal so we include them in the main query when running
+    // the strequents experiment
+    private static final String LAST_CONTACTED_MORE_THAN_THIRTY_DAYS_AGO =
+            "(strftime('%s', 'now') - " + Contacts.LAST_TIME_CONTACTED + "/1000) > "
+                    + 30L * 24 * 60 * 60;
+
     public DefaultContactListAdapter(Context context) {
         super(context);
     }
@@ -112,10 +119,10 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
                 if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
-                    // Filter out starred and frequently contacted contacts from the main loader
-                    // query results
-                    loader.setSelection(Contacts.TIMES_CONTACTED + "=0 AND "
-                            + Contacts.STARRED + "=0");
+                    // Filter out frequently contacted and starred contacts from the main results
+                    loader.setSelection("(" + Contacts.LAST_TIME_CONTACTED + "=0 OR "
+                            + LAST_CONTACTED_MORE_THAN_THIRTY_DAYS_AGO + ") AND "
+                            + "(" + Contacts.STARRED + "=0 OR " + Contacts.STARRED + " IS null)");
 
                     // Configure an extra query to load strequent contacts and merge them in
                     // before the main loader query results.

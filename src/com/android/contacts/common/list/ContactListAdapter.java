@@ -78,7 +78,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
             Contacts.PHONETIC_NAME,                 // 8
-            Contacts.TIMES_CONTACTED,               // 9
+            Contacts.LAST_TIME_CONTACTED,           // 9
             Contacts.STARRED,                       // 10
             SearchSnippets.SNIPPET,                 // 11
         };
@@ -93,7 +93,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
             Contacts.PHONETIC_NAME,                 // 8
-            Contacts.TIMES_CONTACTED,               // 9
+            Contacts.LAST_TIME_CONTACTED,           // 9
             Contacts.STARRED,                       // 10
             SearchSnippets.SNIPPET,                 // 11
         };
@@ -107,7 +107,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         public static final int CONTACT_LOOKUP_KEY       = 6;
         public static final int CONTACT_IS_USER_PROFILE  = 7;
         public static final int CONTACT_PHONETIC_NAME    = 8;
-        public static final int CONTACT_TIMES_CONTACTED  = 9;
+        public static final int CONTACT_LAST_TIME_CONTACTED = 9;
         public static final int CONTACT_STARRED          = 10;
         public static final int CONTACT_SNIPPET          = 11;
     }
@@ -126,7 +126,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 Contacts.LOOKUP_KEY,                    // 6
                 Contacts.IS_USER_PROFILE,               // 7
                 Contacts.PHONETIC_NAME,                 // 8
-                Contacts.TIMES_CONTACTED,               // 9
+                Contacts.LAST_TIME_CONTACTED,           // 9
                 Contacts.STARRED,                       // 10
                 // SearchSnippets.SNIPPET not supported for Contacts.CONTENT_URI
         };
@@ -141,7 +141,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 Contacts.LOOKUP_KEY,                    // 6
                 Contacts.IS_USER_PROFILE,               // 7
                 Contacts.PHONETIC_NAME,                 // 8
-                Contacts.TIMES_CONTACTED,               // 9
+                Contacts.LAST_TIME_CONTACTED,           // 9
                 Contacts.STARRED,                       // 10
                 // SearchSnippets.SNIPPET not supported for Contacts.CONTENT_URI
         };
@@ -157,7 +157,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 // Contacts.IS_USER_PROFILE not supported for Data.CONTENT_URI
                 Contacts.IN_VISIBLE_GROUP,              // 7
                 Contacts.PHONETIC_NAME,                 // 8
-                Contacts.TIMES_CONTACTED,               // 9
+                Contacts.LAST_TIME_CONTACTED,           // 9
                 Contacts.STARRED,                       // 10
                 // SearchSnippets.SNIPPET not supported for Data.CONTENT_URI
                 Email.ADDRESS,                          // 11
