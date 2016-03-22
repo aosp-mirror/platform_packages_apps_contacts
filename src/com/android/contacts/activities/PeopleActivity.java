@@ -75,6 +75,7 @@ import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
+import com.android.contacts.commonbind.ObjectFactory;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction;
@@ -1110,6 +1111,8 @@ public class PeopleActivity extends ContactsActivity implements
         makeMenuItemVisible(menu, R.id.menu_blocked_numbers, showMiscOptions && showBlockedNumbers);
         makeMenuItemVisible(menu, R.id.menu_settings,
                 showMiscOptions && !ContactsPreferenceActivity.isEmpty(this));
+        makeMenuItemVisible(menu, R.id.menu_duplicates,
+                showMiscOptions && ObjectFactory.getDuplicatesActivityIntent(this) != null);
 
         final boolean showSelectedContactOptions = mActionBarAdapter.isSelectionMode()
                 && mAllFragment.getSelectedContactIds().size() != 0;
@@ -1220,6 +1223,11 @@ public class PeopleActivity extends ContactsActivity implements
                 if (intent != null) {
                     startActivity(intent);
                 }
+                return true;
+            }
+            case R.id.menu_duplicates: {
+                ImplicitIntentsUtil.startActivityInAppIfPossible(this,
+                        ObjectFactory.getDuplicatesActivityIntent(this));
                 return true;
             }
             case R.id.export_database: {

@@ -66,4 +66,8 @@
         android:id="@+id/menu_share"
         android:title="@string/menu_share" />
 
+    <item
+        android:id="@+id/menu_duplicates"
+        android:title="@string/menu_duplicates" />
+
 </menu>
