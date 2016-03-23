@@ -91,6 +91,4 @@
     <string name="pref_privacy_policy_key">pref_privacy_policy</string>
     <string name="pref_terms_of_service_key">pref_terms_of_service</string>
 
-    <!-- File Authority for AOSP Contacts files -->
-    <string name="contacts_file_provider_authority">com.android.contacts.files</string>
 </resources>
