@@ -274,8 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"গোপনীয়তা নীতি"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"পরিষেবার শর্তাবলী"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"মুক্ত উৎস লাইসেন্সগুলি"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"url খুলতে ব্যর্থ হয়েছে৷"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> এ টিক চিহ্ন দেওয়া হয়েছে"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> এ টিক চিহ্ন দেওয়া হয়নি"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"ভিডিও কল করুন"</string>

@@ -274,8 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"గోప్యతా విధానం"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"సేవా నిబంధనలు"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"urlని తెరవడంలో విఫలమైంది."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ఎంచుకోబడింది"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ఎంచుకోబడలేదు"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"వీడియో కాల్ చేస్తుంది"</string>

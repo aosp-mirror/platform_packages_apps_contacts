@@ -274,8 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Personvernregler"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Vilkår for bruk"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Lisenser for åpen kildekode"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Kunne ikke åpne nettadressen."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"Det er merket av for <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Det er ikke merket av for <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Start et videoanrop"</string>
