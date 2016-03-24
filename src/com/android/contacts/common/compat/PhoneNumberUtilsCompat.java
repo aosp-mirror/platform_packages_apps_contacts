@@ -106,19 +106,25 @@ public class PhoneNumberUtilsCompat {
             return null;
         }
         Spannable spannable = Spannable.Factory.getInstance().newSpannable(phoneNumber);
-        addTtsSpan(spannable, 0, spannable.length());
+        addTtsSpanInternal(spannable, 0, spannable.length());
         return spannable;
     }
 
     /**
-     * Attach a {@link TtsSpan} to the supplied {@code Spannable} at the indicated location,
-     * annotating that location as containing a phone number.
-     *
-     * @param s A {@code Spannable} to annotate.
-     * @param start The starting character position of the phone number in {@code s}.
-     * @param endExclusive The position after the ending character in the phone number {@code s}.
+     * Compat method for addTtsSpan, see {@link PhoneNumberUtils#addTtsSpan}
      */
-    private static void addTtsSpan(Spannable s, int start, int endExclusive) {
+    public static void addTtsSpan(Spannable s, int start, int endExclusive) {
+        if (CompatUtils.isMarshmallowCompatible()) {
+            PhoneNumberUtils.addTtsSpan(s, start, endExclusive);
+        } else {
+            addTtsSpanInternal(s, start, endExclusive);
+        }
+    }
+
+    /**
+     * Copied from {@link PhoneNumberUtils#addTtsSpan}
+     */
+    private static void addTtsSpanInternal(Spannable s, int start, int endExclusive) {
         s.setSpan(createTtsSpan(s.subSequence(start, endExclusive).toString()),
                 start,
                 endExclusive,
