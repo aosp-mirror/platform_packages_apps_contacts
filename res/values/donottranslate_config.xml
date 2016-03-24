@@ -45,4 +45,7 @@
 
     <!-- File Authority for the photo picker -->
     <string name="photo_file_provider_authority">com.android.contacts.files</string>
+
+    <!-- File Authority for AOSP Contacts files -->
+    <string name="contacts_file_provider_authority">com.android.contacts.files</string>
 </resources>
