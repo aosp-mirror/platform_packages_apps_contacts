@@ -678,9 +678,6 @@
          contact filter state. [CHAR LIMIT=64] -->
     <string name="toast_displaying_all_contacts">Displaying all contacts</string>
 
-    <!-- Message in the standard "no account" prompt that encourages the user to add a Google account before continuing to use the People app [CHAR LIMIT=NONE] -->
-    <string name="no_account_prompt">Contacts works better with a Google Account.\n\n\u2022 Access from any web browser.\n\u2022 Back up your contacts securely.</string>
-
     <!-- Message in the standard "no account" prompt that encourages the user to add any account (non Google-specific) before continuing to use the People app [CHAR LIMIT=NONE] -->
     <string name="generic_no_account_prompt">Keep your contacts safe even if you lose your phone: synchronize with an online service.</string>
 

@@ -36,7 +36,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountsListAdapter;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.util.AccountPromptUtils;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 
 import java.util.List;
 
@@ -70,7 +70,7 @@ public class ContactEditorAccountsChangedActivity extends AppCompatActivity {
     private final OnClickListener mAddAccountClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            final Intent intent = AccountPromptUtils.getIntentForAddingAccount();
+            final Intent intent = ImplicitIntentsUtil.getIntentForAddingAccount();
             startActivityForResult(intent, SUBACTIVITY_ADD_NEW_ACCOUNT);
         }
     };
