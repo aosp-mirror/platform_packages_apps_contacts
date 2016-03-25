@@ -274,8 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Règles de confidentialité"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Conditions d\'utilisation"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licences Open Source"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Impossible d\'ouvrir l\'URL."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"Élément \"<xliff:g id="ACCOUNT_INFO">%s</xliff:g>\" coché"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Élément \"<xliff:g id="ACCOUNT_INFO">%s</xliff:g>\" non coché"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Passer un appel vidéo"</string>
