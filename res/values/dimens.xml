@@ -213,7 +213,7 @@
     <!-- Dimensions for an entry in ExpandingEntryCardView -->
     <dimen name="expanding_entry_card_item_padding_start">20dp</dimen>
     <dimen name="expanding_entry_card_item_padding_end">20dp</dimen>
-    <dimen name="expanding_entry_card_item_padding_top">18dp</dimen>
+    <dimen name="expanding_entry_card_item_padding_top">13dp</dimen>
     <dimen name="expanding_entry_card_item_padding_bottom">16dp</dimen>
     <dimen name="expanding_entry_card_item_image_spacing">27dp</dimen>
 
