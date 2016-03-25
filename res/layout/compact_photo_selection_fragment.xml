@@ -22,7 +22,7 @@
       android:numColumns="auto_fit"
       android:verticalSpacing="3dp"
       android:horizontalSpacing="3dp"
-      android:stretchMode="none"
+      android:stretchMode="columnWidth"
       android:gravity="center"
       android:paddingTop="3dp"
       android:drawSelectorOnTop="true"/>
