@@ -328,4 +328,5 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"รูปภาพนี้เลือกจากบัญชีที่ไม่รู้จัก"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"กำลังอัปเดตรายการสมุดโทรศัพท์เพื่อแสดงการเปลี่ยนภาษา\n\nโปรดรอสักครู่..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"หมายเลขที่ถูกบล็อก"</string>
+    <string name="menu_duplicates" msgid="4440351599741996317">"ค้นหาข้อมูลที่ซ้ำกัน"</string>
 </resources>

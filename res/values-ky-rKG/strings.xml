@@ -402,4 +402,5 @@
     <!-- no translation found for locale_change_in_progress (1124266507671178413) -->
     <skip />
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Бөгөттөлгөн номерлер"</string>
+    <string name="menu_duplicates" msgid="4440351599741996317">"Жупнускаларды табуу"</string>
 </resources>

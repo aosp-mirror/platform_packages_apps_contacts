@@ -328,4 +328,6 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Photo d\'un compte inconnu sélectionnée"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Mise à jour de la liste des contacts en cours suite au changement de langue.\n\nVeuillez patienter..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Numéros bloqués"</string>
+    <!-- no translation found for menu_duplicates (4440351599741996317) -->
+    <skip />
 </resources>

@@ -186,7 +186,7 @@
     <string name="edit_contact" msgid="7529281274005689512">"পরিচিতি সম্পাদনা করুন"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"নির্বাচিত পরিচিতির সঙ্গে বর্তমান পরিচিতিটি লিঙ্ক করবেন?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"নির্বাচিত পরিচিতি সম্পাদনায় নিয়ে যাবেন? আপনার এ পর্যন্ত প্রবেশ করানো তথ্য অনুলিপি করা হবে৷"</string>
-    <string name="menu_copyContact" msgid="1573960845106822639">"আমার পরিচিতিগুলিতে অনুলিপি করুন"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"আমার পরিচিতিগুলিতে কপি করুন"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"আমার পরিচিতিগুলিতে যুক্ত করুন"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ডিরেক্টরি <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"কাস্টম"</string>
@@ -222,7 +222,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> জন</item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"অন্য একটির সাথে লিঙ্ক করার আগে পরিচিতির নাম লিখুন৷"</string>
-    <string name="copy_text" msgid="3257145021583508761">"ক্লিপবোর্ডে অনুলিপি করুন"</string>
+    <string name="copy_text" msgid="3257145021583508761">"ক্লিপবোর্ডে কপি করুন"</string>
     <string name="set_default" msgid="4417505153468300351">"ডিফল্ট সেট করুন"</string>
     <string name="clear_default" msgid="7193185801596678067">"ডিফল্ট সাফ করুন"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"পাঠ্য অনুলিপি হয়েছে"</string>
@@ -328,4 +328,5 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়েছে"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ভাষা পরিবর্তন দেখানোর জন্য পরিচিতির তালিকা আপডেট করা হচ্ছে৷\n\nঅনুগ্রহ করে অপেক্ষা করুন..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"অবরোধ করা নম্বরগুলি"</string>
+    <string name="menu_duplicates" msgid="4440351599741996317">"সদৃশগুলি খুঁজুন"</string>
 </resources>
