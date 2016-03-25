@@ -350,4 +350,5 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotka z neznámého účtu byla vybrána"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"V souvislosti se změnou jazyka probíhá aktualizace seznamu kontaktů.\n\nČekejte prosím..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokovaná čísla"</string>
+    <string name="menu_duplicates" msgid="4440351599741996317">"Najít duplicity"</string>
 </resources>

@@ -339,4 +339,6 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotografie selectată dintr-un cont necunoscut"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Se actualizează lista de persoane din agendă pentru a reflecta modificarea limbii.\n\n Așteptați..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Numere blocate"</string>
+    <!-- no translation found for menu_duplicates (4440351599741996317) -->
+    <skip />
 </resources>

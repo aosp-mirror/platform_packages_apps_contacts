@@ -339,4 +339,5 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Slika sa nepoznatog naloga je označena"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Lista kontakata se trenutno ažurira kako bi se primenila promena jezika.\n\nSačekajte..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokirani brojevi"</string>
+    <string name="menu_duplicates" msgid="4440351599741996317">"Pronađi duplikate"</string>
 </resources>
