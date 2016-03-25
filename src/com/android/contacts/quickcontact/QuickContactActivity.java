@@ -406,7 +406,7 @@ public class QuickContactActivity extends ContactsActivity
 
             mHasIntentLaunched = true;
             try {
-                startActivity(intent);
+                ImplicitIntentsUtil.startActivityInAppIfPossible(QuickContactActivity.this, intent);
             } catch (SecurityException ex) {
                 Toast.makeText(QuickContactActivity.this, R.string.missing_app,
                         Toast.LENGTH_SHORT).show();
@@ -445,31 +445,6 @@ public class QuickContactActivity extends ContactsActivity
                 }
             } else {
                 Log.w(TAG, "Invalid Data ID");
-            }
-
-            // Pass the touch point through the intent for use in the InCallUI
-            if (Intent.ACTION_CALL.equals(intent.getAction())) {
-                if (TouchPointManager.getInstance().hasValidPoint()) {
-                    Bundle extras = new Bundle();
-                    extras.putParcelable(TouchPointManager.TOUCH_POINT,
-                            TouchPointManager.getInstance().getPoint());
-                    intent.putExtra(TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS, extras);
-                }
-            }
-
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            mHasIntentLaunched = true;
-            try {
-                ImplicitIntentsUtil.startActivityInAppIfPossible(QuickContactActivity.this, intent);
-            } catch (SecurityException ex) {
-                Toast.makeText(QuickContactActivity.this, R.string.missing_app,
-                        Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "QuickContacts does not have permission to launch "
-                        + intent);
-            } catch (ActivityNotFoundException ex) {
-                Toast.makeText(QuickContactActivity.this, R.string.missing_app,
-                        Toast.LENGTH_SHORT).show();
             }
         }
     };
