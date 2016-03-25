@@ -272,7 +272,7 @@
     <string name="about_open_source_licenses" msgid="3224958101863814649">"ഓപ്പൺ സോഴ്‌സ് ലൈസൻസ്"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ഓപ്പൺ സോഴ്‌സ് സോഫ്റ്റ്‌വെയറിനായുള്ള ലൈസൻസ് വിശദാംശങ്ങൾ"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"സ്വകാര്യതാ നയം"</string>
-    <string name="about_terms_of_service" msgid="628537491496465267">"സേവന നിബന്ധനകള്‍"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"സേവന നിബന്ധനകൾ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ഓപ്പൺ സോഴ്‌സ് ലൈസൻസ്"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url തുറക്കാനായില്ല."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ചെക്കുചെയ്തു"</string>
