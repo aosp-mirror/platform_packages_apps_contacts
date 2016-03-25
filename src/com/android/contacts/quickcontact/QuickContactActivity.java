@@ -1241,8 +1241,8 @@ public class QuickContactActivity extends ContactsActivity
                 displayName, mContactData.getDisplayNameSource() == DisplayNameSources.PHONE);
         final String phoneticName = ContactDisplayUtils.getPhoneticName(this, data);
         if (mScroller != null) {
-            if (mContactData.getDisplayNameSource() != DisplayNameSources.STRUCTURED_PHONETIC_NAME
-                    && !TextUtils.isEmpty(phoneticName)) {
+            // Show phonetic name only when it doesn't equal the display name.
+            if (!TextUtils.isEmpty(phoneticName) && !phoneticName.equals(displayName)) {
                 mScroller.setPhoneticName(phoneticName);
             } else {
                 mScroller.setPhoneticNameGone();
