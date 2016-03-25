@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Telefono numrin e biperit të punës"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Telefono <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Telefono numrin MMS"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Telefono)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Dërgo mesazh te <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Dërgo mesazh te numri i shtëpisë"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Dërgo mesazh te numri celular"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Dërgo mesazh te numri i biperit"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Dërgo mesazh te <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Dërgo mesazh te numri i MMS-së"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Mesazh)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Bëj një telefonatë me video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Të pastrohen kontaktet e shpeshta?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Do ta pastrosh listën e kontakteve të shpeshta në aplikacionet \"Kontaktet\" dhe \"Telefoni\" dhe do t\'i detyrosh aplikacionet e mail-it të mësojnë preferencat e tua të adresimit nga e para."</string>
@@ -276,8 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Politika e privatësisë"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Kushtet e shërbimit"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licencat me burim të hapur"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Dështoi në hapjen e url-së."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> u shënua"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> nuk u shënua"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Kryej një telefonatë me video"</string>

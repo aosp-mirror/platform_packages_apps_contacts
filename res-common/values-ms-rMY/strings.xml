@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Panggil alat kelui tempat kerja"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Panggil <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Panggil MMS"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Panggil)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"SMS <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"SMS rumah"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"SMS telefon mudah alih"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"SMS alat kelui tempat kerja"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"SMS <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"SMS nombor MMS"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Hantar mesej)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Buat panggilan video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Padam bersih senarai kerap dihubungi?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Anda akan mengosongkan senarai yang kerap dihubungi dalam apl Kenalan dan Telefon serta memaksa apl e-mel untuk mempelajari pilihan alamat anda dari awal."</string>
@@ -75,8 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Kenalan"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Lain-lain"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Direktori"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Direktori kerja"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Semua kenalan"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Saya"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Mencari..."</string>
@@ -92,8 +89,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Kerap dihubungi"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Lihat kenalan"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Semua kenalan dengan nombor telefon"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Kenalan profil kerja"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Lihat kemas kini"</string>
     <string name="account_phone" msgid="6104157990869081962">"Telefon sahaja, tidak disegerakkan"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nama"</string>
@@ -280,8 +276,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Dasar privasi"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Syarat perkhidmatan"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Lesen sumber terbuka"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Gagal membuka url."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> disemak"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> tidak disemak"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Buat panggilan video"</string>

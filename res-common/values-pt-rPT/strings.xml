@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Telefonar para o pager do trabalho"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Telefonar para <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Telefonar para um número MMS"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Chamada)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Enviar mensagem de texto para <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Enviar mensagem de texto para o telefone de casa"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Enviar mensagem de texto para telemóvel"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Enviar mensagem de texto para o pager do trabalho"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Enviar mensagem de texto para <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Enviar mensagem de texto para um número MMS"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Mensagem)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Fazer videochamada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Limpar contactos frequentes?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Limpa a lista de contactos frequentes nas aplicações Contactos e Telemóvel e força as aplicações de email a aprenderem as suas preferências de endereço de raiz."</string>
@@ -75,8 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Contactos"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Outro"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Diretório"</string>
-    <!-- no translation found for directory_search_label_work (7396227297795426967) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Diretório de trabalho"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Todos os contactos"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Eu"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"A pesquisar…"</string>
@@ -92,8 +89,7 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactados frequentemente"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ver contacto"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos os contactos com números de telefone"</string>
-    <!-- no translation found for list_filter_phones_work (5226451114859079417) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Contactos do perfil de trabalho"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ver atualizações"</string>
     <string name="account_phone" msgid="6104157990869081962">"Apenas telemóvel, não sincronizado"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nome"</string>
@@ -278,8 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Política de Privacidade"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Termos de Utilização"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licenças de código aberto"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Falha ao abrir o URL."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> verificado"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> não verificado"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Efetuar videochamada"</string>

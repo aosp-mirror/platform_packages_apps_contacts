@@ -40,8 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Ipigie peja ya kazini"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Piga simu <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Piga simu kwa MMS"</string>
-    <!-- no translation found for call_by_shortcut (4053430514293064454) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Piga)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Tumia ujumbe wa maandishi kwa <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Tuma ujumbe wa maandishi nyumbani"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Tumia simu ya mkononi ujumbe wa maandishi"</string>
@@ -63,8 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Itumie peja ya kazini ya kazini ujumbe"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Tuma ujumbe wa maandishi kwa <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Tumia MMS ujmbe wa maandishi"</string>
-    <!-- no translation found for sms_by_shortcut (2675928528835074838) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Tuma Ujumbe)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Piga Hangout ya video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Futa unaowasiliana nao mara kwa mara?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Utafuta orodha ya unaowasiliana nao mara kwa mara katika programu za Anwani na Simu, na ulazimishe programu za barua pepe zitambue mapendeleo yako ya anwani kutoka mwanzo."</string>
@@ -278,8 +276,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Sera ya faragha"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Sheria na masharti"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Leseni za programu huria"</string>
-    <!-- no translation found for url_open_error_toast (7557601281695424805) -->
-    <skip />
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Imeshindwa kufungua url."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> imeteuliwa"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> haijateuliwa"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Anzisha Hangout ya Video"</string>
