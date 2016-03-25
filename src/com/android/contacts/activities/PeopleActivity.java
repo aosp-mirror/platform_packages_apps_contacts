@@ -27,11 +27,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Rect;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.os.UserManager;
-import android.preference.PreferenceActivity;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
@@ -70,9 +67,8 @@ import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.ViewPagerTabs;
 import com.android.contacts.common.logging.Logger;
-import com.android.contacts.common.logging.ScreenEvent;
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.preference.ContactsPreferenceActivity;
-import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
@@ -293,6 +289,7 @@ public class PeopleActivity extends ContactsActivity implements
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT) {
             final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
                     mRequest.getContactUri(), QuickContactActivity.MODE_FULLY_EXPANDED);
+            intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
             ImplicitIntentsUtil.startActivityInApp(this, intent);
             return false;
         }
@@ -560,7 +557,7 @@ public class PeopleActivity extends ContactsActivity implements
                 break;
             case ActionBarAdapter.Listener.Action.START_SEARCH_MODE:
                 if (!mIsRecreatedInstance) {
-                    Logger.logScreenView(ScreenEvent.SEARCH, this, ScreenEvent.TAG_SEARCH);
+                    Logger.logScreenView(this, ScreenType.SEARCH);
                 }
                 startSearchOrSelectionMode();
                 break;
@@ -944,8 +941,9 @@ public class PeopleActivity extends ContactsActivity implements
                         QuickContactActivity.MODE_FULLY_EXPANDED, null);
             } else {
                 final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
-                        contactLookupUri,
-                        QuickContactActivity.MODE_FULLY_EXPANDED);
+                        contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
+                intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
+                        mAllFragment.isSearchMode() ? ScreenType.SEARCH : ScreenType.ALL_CONTACTS);
                 ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
             }
         }
@@ -1027,6 +1025,7 @@ public class PeopleActivity extends ContactsActivity implements
         public void onContactSelected(Uri contactUri, Rect targetRect) {
             final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(contactUri,
                     QuickContactActivity.MODE_FULLY_EXPANDED);
+            intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.FAVORITES);
             ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
         }
 
@@ -1366,7 +1365,7 @@ public class PeopleActivity extends ContactsActivity implements
             if (mAllFragment.wasSearchResultClicked()) {
                 mAllFragment.resetSearchResultClicked();
             } else {
-                Logger.logScreenView(ScreenEvent.SEARCH_EXIT, this, ScreenEvent.TAG_SEARCH_EXIT);
+                Logger.logScreenView(this, ScreenType.SEARCH_EXIT);
                 Logger.logSearchEvent(mAllFragment.createSearchState());
             }
         } else {
