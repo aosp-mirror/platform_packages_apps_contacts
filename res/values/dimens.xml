@@ -280,8 +280,8 @@
       of ListView's will not match the padding inside list items -->
     <dimen name="contact_browser_list_item_padding_top_or_bottom">12dp</dimen>
 
-    <!-- Width of padding between columns of photos in photo picker -->
-    <dimen name="photo_picker_column_padding_width">1dp</dimen>
+    <!-- Ideal item width in photo picker -->
+    <dimen name="photo_picker_item_ideal_width">135dp</dimen>
 
     <!-- Margin between name field and whatever fields are above it. -->
     <dimen name="compact_editor_name_top_margin">8dp</dimen>
