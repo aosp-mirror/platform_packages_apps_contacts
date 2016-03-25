@@ -261,7 +261,7 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         super.onLoadFinished(loader, data);
 
         // disable scroll bar if there is no data
-        setVisibleScrollbarEnabled(data != null && data.getCount() > 0);
+        setVisibleScrollbarEnabled(data != null && !data.isClosed() && data.getCount() > 0);
     }
 
     public void setUseCallableUri(boolean useCallableUri) {

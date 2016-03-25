@@ -491,7 +491,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
      * Updates the indexer, which is used to produce section headers.
      */
     private void updateIndexer(Cursor cursor) {
-        if (cursor == null) {
+        if (cursor == null || cursor.isClosed()) {
             setIndexer(null);
             return;
         }
