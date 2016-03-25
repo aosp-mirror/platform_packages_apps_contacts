@@ -81,7 +81,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setProjection(getProjection(false));
                 loader.setSelection("0");
             } else if (flags.getBoolean(Experiments.FLAG_SEARCH_DISPLAY_NAME_QUERY, false)
-                && directoryId == Directory.DEFAULT) {
+                    && directoryId == Directory.DEFAULT
+                    && loader instanceof ProfileAndContactsLoader) {
                 // Configure the loader to prefix match display names and phonetic names
                 final String displayNameColumn =
                         getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
@@ -118,7 +119,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 appendSearchParameters(builder, query, directoryId);
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
-                if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
+                if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)
+                        && loader instanceof ProfileAndContactsLoader) {
                     // Filter out frequently contacted and starred contacts from the main results
                     loader.setSelection("(" + Contacts.LAST_TIME_CONTACTED + "=0 OR "
                             + LAST_CONTACTED_MORE_THAN_THIRTY_DAYS_AGO + ") AND "
