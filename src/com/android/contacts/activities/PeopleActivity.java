@@ -41,6 +41,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyCharacterMap;
@@ -58,6 +59,7 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -1095,11 +1097,12 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             helpMenu.setVisible(HelpUtils.isHelpAndFeedbackAvailable());
         }
         final boolean showMiscOptions = !isSearchOrSelectionMode;
+        final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this)
+                && ContactsUtils.FLAG_N_FEATURE;
         makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_import_export, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
-        // TODO make menu_blocked_numbers visible by using UI in framework
-        makeMenuItemVisible(menu, R.id.menu_blocked_numbers, false);
+        makeMenuItemVisible(menu, R.id.menu_blocked_numbers, showBlockedNumbers);
         makeMenuItemVisible(menu, R.id.menu_settings,
                 showMiscOptions && !ContactsPreferenceActivity.isEmpty(this));
 
@@ -1207,6 +1210,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 return true;
             }
             case R.id.menu_blocked_numbers: {
+                TelecomManagerUtil.launchBlockedNumbersActivity(
+                        (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
                 return true;
             }
             case R.id.export_database: {
