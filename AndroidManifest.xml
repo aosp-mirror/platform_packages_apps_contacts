@@ -467,6 +467,10 @@
             android:label="@string/launcherActivityLabel"
             android:theme="@style/BackgroundOnlyTheme" />
 
+        <activity android:name=".common.vcard.ShareVCardActivity"
+                  android:label="@string/launcherActivityLabel"
+                  android:theme="@style/BackgroundOnlyTheme" />
+
         <service
             android:name=".common.vcard.VCardService"
             android:exported="false" />
@@ -534,7 +538,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.android.contacts.files"
+            android:authorities="@string/contacts_file_provider_authority"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data

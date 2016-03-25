@@ -42,4 +42,7 @@
     <!-- Help URL pointing to editing contacts in People. This is intentionally empty because
          the overlay will fill this in during build time. -->
     <string name="help_url_people_edit"></string>
+
+    <!-- File Authority for the photo picker -->
+    <string name="photo_file_provider_authority">com.android.contacts.files</string>
 </resources>
