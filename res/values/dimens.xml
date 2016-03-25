@@ -225,10 +225,12 @@
     <dimen name="expanding_entry_card_item_sub_header_icon_margin_right">4dp</dimen>
     <dimen name="expanding_entry_card_item_sub_header_icon_margin_bottom">14dp</dimen>
 
-    <dimen name="expanding_entry_card_item_icon_margin_top">7dp</dimen>
+    <dimen name="expanding_entry_card_item_icon_margin_top">12dp</dimen>
     <dimen name="expanding_entry_card_item_header_only_margin_top">6dp</dimen>
     <dimen name="expanding_entry_card_item_alternate_icon_start_margin">16dp</dimen>
-    <dimen name="expanding_entry_card_item_alternate_icon_margin_bottom">10dp</dimen>
+    <dimen name="expanding_entry_card_item_alternate_icon_margin_bottom">12dp</dimen>
+    <dimen name="expanding_entry_card_item_alternate_icon_margin_left">12dp</dimen>
+    <dimen name="expanding_entry_card_item_alternate_icon_margin_right">12dp</dimen>
 
     <dimen name="expanding_entry_card_badge_separator_margin">8dp</dimen>
     <dimen name="expanding_entry_card_card_corner_radius">2dp</dimen>
