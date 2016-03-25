@@ -294,7 +294,10 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
 
         // Remove the default account to emulate broken preferences.
         mTarget.removeDefaultAccountForTest();
-        assertTrue(mTarget.shouldShowAccountChangedNotification());
+
+        // The dialog shouldn't show up.
+        // The logic is, if there's a writable account, we'll pick it as default
+        assertFalse(mTarget.shouldShowAccountChangedNotification());
     }
 
     private static <T> Set<T> toSet(Collection<T> collection) {
