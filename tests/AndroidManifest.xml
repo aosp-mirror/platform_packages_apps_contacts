@@ -18,13 +18,11 @@
     package="com.android.contacts.tests">
 
     <uses-sdk
-        android:minSdkVersion="23"
+        android:minSdkVersion="21"
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
-    <uses-permission android:name="android.permission.READ_CALL_LOG" />
-    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
@@ -37,13 +35,13 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_SOCIAL_STREAM" />
 
-    <application>
+    <application
+        android:label="@string/applicationLabel">
+
         <uses-library android:name="android.test.runner" />
         <meta-data android:name="com.android.contacts.iconset" android:resource="@xml/iconset" />
 
-        <activity android:name=".allintents.AllIntentsActivity"
-            android:label="@string/contactsIntents"
-            >
+        <activity android:name=".allintents.AllIntentsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -51,34 +49,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".allintents.ResultActivity"
-            android:label="@string/result"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".allintents.ResultActivity"/>
 
-        <activity android:name=".widget.PinnedHeaderUseCaseActivity"
-            android:label="@string/pinnedHeaderList"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".quickcontact.QuickContactTestsActivity"
-            android:label="@string/quickContactTests"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".quickcontact.QuickContactTestsActivity"/>
 
         <!--
           Test authenticators/sync adapters.

@@ -16,12 +16,12 @@
 
 package com.android.contacts.activities;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract.Intents;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -36,7 +36,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountsListAdapter;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.util.AccountPromptUtils;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ import java.util.List;
  * the new contact in. If the activity result doesn't contain intent data, then there is no
  * account for this contact.
  */
-public class ContactEditorAccountsChangedActivity extends AppCompatActivity {
+public class ContactEditorAccountsChangedActivity extends Activity {
 
     private static final String TAG = ContactEditorAccountsChangedActivity.class.getSimpleName();
 
@@ -70,7 +70,7 @@ public class ContactEditorAccountsChangedActivity extends AppCompatActivity {
     private final OnClickListener mAddAccountClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            final Intent intent = AccountPromptUtils.getIntentForAddingAccount();
+            final Intent intent = ImplicitIntentsUtil.getIntentForAddingAccount();
             startActivityForResult(intent, SUBACTIVITY_ADD_NEW_ACCOUNT);
         }
     };

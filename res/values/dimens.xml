@@ -213,7 +213,7 @@
     <!-- Dimensions for an entry in ExpandingEntryCardView -->
     <dimen name="expanding_entry_card_item_padding_start">20dp</dimen>
     <dimen name="expanding_entry_card_item_padding_end">20dp</dimen>
-    <dimen name="expanding_entry_card_item_padding_top">18dp</dimen>
+    <dimen name="expanding_entry_card_item_padding_top">13dp</dimen>
     <dimen name="expanding_entry_card_item_padding_bottom">16dp</dimen>
     <dimen name="expanding_entry_card_item_image_spacing">27dp</dimen>
 
@@ -225,10 +225,12 @@
     <dimen name="expanding_entry_card_item_sub_header_icon_margin_right">4dp</dimen>
     <dimen name="expanding_entry_card_item_sub_header_icon_margin_bottom">14dp</dimen>
 
-    <dimen name="expanding_entry_card_item_icon_margin_top">7dp</dimen>
+    <dimen name="expanding_entry_card_item_icon_margin_top">12dp</dimen>
     <dimen name="expanding_entry_card_item_header_only_margin_top">6dp</dimen>
     <dimen name="expanding_entry_card_item_alternate_icon_start_margin">16dp</dimen>
-    <dimen name="expanding_entry_card_item_alternate_icon_margin_bottom">10dp</dimen>
+    <dimen name="expanding_entry_card_item_alternate_icon_margin_bottom">12dp</dimen>
+    <dimen name="expanding_entry_card_item_alternate_icon_margin_left">12dp</dimen>
+    <dimen name="expanding_entry_card_item_alternate_icon_margin_right">12dp</dimen>
 
     <dimen name="expanding_entry_card_badge_separator_margin">8dp</dimen>
     <dimen name="expanding_entry_card_card_corner_radius">2dp</dimen>
@@ -278,8 +280,8 @@
       of ListView's will not match the padding inside list items -->
     <dimen name="contact_browser_list_item_padding_top_or_bottom">12dp</dimen>
 
-    <!-- Width of padding between columns of photos in photo picker -->
-    <dimen name="photo_picker_column_padding_width">1dp</dimen>
+    <!-- Ideal item width in photo picker -->
+    <dimen name="photo_picker_item_ideal_width">135dp</dimen>
 
     <!-- Margin between name field and whatever fields are above it. -->
     <dimen name="compact_editor_name_top_margin">8dp</dimen>
@@ -287,21 +289,4 @@
     <!-- Top margin for "Saving to" account header text field. -->
     <dimen name="compact_editor_account_header_top_margin">3dp</dimen>
 
-    <!-- Dimensions used in blocked numbers -->
-    <dimen name="blocked_number_settings_description_text_size">14sp</dimen>
-    <dimen name="blocked_number_container_padding">16dp</dimen>
-    <dimen name="blocked_number_top_margin">16dp</dimen>
-    <dimen name="blocked_number_bottom_margin">16dp</dimen>
-    <dimen name="blocked_number_add_top_margin">8dp</dimen>
-    <dimen name="blocked_number_add_bottom_margin">8dp</dimen>
-    <dimen name="blocked_number_horizontal_margin">16dp</dimen>
-    <dimen name="blocked_number_primary_text_size">16sp</dimen>
-    <dimen name="blocked_number_add_number_icon_size">40dp</dimen>
-    <dimen name="blocked_number_delete_icon_size">32dp</dimen>
-    <dimen name="empty_list_message_text_size">16sp</dimen>
-    <dimen name="call_log_action_height">48dp</dimen>
-    <dimen name="call_log_action_horizontal_padding">24dp</dimen>
-    <dimen name="search_list_padding_top">16dp</dimen>
-    <dimen name="blocked_number_search_text_size">14sp</dimen>
-    <dimen name="button_horizontal_padding">16dp</dimen>
 </resources>

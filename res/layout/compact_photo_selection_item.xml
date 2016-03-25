@@ -21,8 +21,8 @@
 
     <ImageView
             android:id="@+id/image"
-            android:layout_width="135dp"
-            android:layout_height="135dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/photo_picker_item_ideal_width"
             android:adjustViewBounds="true"
             android:layout_centerInParent="true"
             android:scaleType="centerCrop" />

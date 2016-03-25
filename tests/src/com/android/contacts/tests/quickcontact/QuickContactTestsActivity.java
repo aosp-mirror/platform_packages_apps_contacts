@@ -23,6 +23,7 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.QuickContact;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -45,6 +46,7 @@ public class QuickContactTestsActivity extends Activity {
     private QuickContactBadge mMediumBadge2;
     private QuickContactBadge mLargeBadge1;
     private QuickContactBadge mLargeBadge2;
+    private Button mButton;
 
     private Uri mContactUri;
 
@@ -63,6 +65,15 @@ public class QuickContactTestsActivity extends Activity {
         mMediumBadge2 = (QuickContactBadge) findViewById(R.id.medium_badge2);
         mLargeBadge1 = (QuickContactBadge) findViewById(R.id.large_badge1);
         mLargeBadge2 = (QuickContactBadge) findViewById(R.id.large_badge2);
+        mButton = (Button) findViewById(android.R.id.button1);
+        mButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
+                intent.setData(mContactUri);
+                startActivity(intent);
+            }
+        });
 
         mPickContact.setOnClickListener(new OnClickListener() {
             @Override
@@ -89,6 +100,7 @@ public class QuickContactTestsActivity extends Activity {
             case REQUEST_CODE_PICK: {
                 mContactUri = data.getData();
                 assignUri();
+                mButton.setEnabled(true);
                 break;
             }
         }

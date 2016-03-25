@@ -41,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:paddingTop="5dp"
         android:layout_toEndOf="@+id/icon"
         android:layout_toStartOf="@+id/icon_alternate"
         android:textColor="@color/quickcontact_entry_header_text_color"
@@ -86,20 +87,22 @@
         android:layout_marginEnd="@dimen/expanding_entry_card_item_text_icon_margin_right" />
 
      <ImageView
-         android:id="@+id/icon_alternate"
+         android:id="@+id/third_icon"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_alignParentTop="true"
-         android:layout_toStartOf="@+id/third_icon"
+         android:layout_toStartOf="@+id/icon_alternate"
          android:layout_alignWithParentIfMissing="true"
          android:visibility="gone"
          android:background="?android:attr/selectableItemBackgroundBorderless"
          android:paddingTop="@dimen/expanding_entry_card_item_icon_margin_top"
          android:paddingBottom="@dimen/expanding_entry_card_item_alternate_icon_margin_bottom"
+         android:paddingLeft="@dimen/expanding_entry_card_item_alternate_icon_margin_left"
+         android:paddingRight="@dimen/expanding_entry_card_item_alternate_icon_margin_right"
          android:layout_marginStart="@dimen/expanding_entry_card_item_alternate_icon_start_margin" />
 
      <ImageView
-         android:id="@+id/third_icon"
+         android:id="@+id/icon_alternate"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_alignParentEnd="true"

@@ -59,6 +59,7 @@ import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
+import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor.SaveMode;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import com.google.common.collect.Lists;

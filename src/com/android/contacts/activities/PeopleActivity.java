@@ -27,11 +27,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Rect;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.os.UserManager;
-import android.preference.PreferenceActivity;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
@@ -40,7 +37,7 @@ import android.provider.Settings;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
+import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyCharacterMap;
@@ -50,17 +47,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
-import com.android.contacts.AppCompatContactsActivity;
+import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.common.widget.FloatingActionButtonController;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
@@ -69,12 +67,13 @@ import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.ViewPagerTabs;
 import com.android.contacts.common.logging.Logger;
-import com.android.contacts.common.logging.ScreenEvent;
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.preference.ContactsPreferenceActivity;
-import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.Constants;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
+import com.android.contacts.common.widget.FloatingActionButtonController;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction;
@@ -92,7 +91,6 @@ import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.list.ProviderStatusWatcher;
 import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
-import com.android.contacts.util.AccountPromptUtils;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contactsbind.HelpUtils;
@@ -104,7 +102,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Displays a list to browse contacts.
  */
-public class PeopleActivity extends AppCompatContactsActivity implements
+public class PeopleActivity extends ContactsActivity implements
         View.OnCreateContextMenuListener,
         View.OnClickListener,
         ActionBarAdapter.Listener,
@@ -194,10 +192,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     public boolean areContactsAvailable() {
         return (mProviderStatus != null) && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
-    }
-
-    private boolean areContactWritableAccountsAvailable() {
-        return ContactsUtils.areContactWritableAccountsAvailable(this);
     }
 
     private boolean areGroupWritableAccountsAvailable() {
@@ -295,6 +289,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT) {
             final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
                     mRequest.getContactUri(), QuickContactActivity.MODE_FULLY_EXPANDED);
+            intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
             ImplicitIntentsUtil.startActivityInApp(this, intent);
             return false;
         }
@@ -302,6 +297,10 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     private void createViewsAndFragments(Bundle savedState) {
+        // Disable the ActionBar so that we can use a Toolbar. This needs to be called before
+        // setContentView().
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.people_activity);
 
         final FragmentManager fragmentManager = getFragmentManager();
@@ -317,9 +316,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         mTabPager.setAdapter(mTabPagerAdapter);
         mTabPager.setOnPageChangeListener(mTabPagerListener);
 
-        // Configure toolbar and toolbar tabs. If in landscape mode, we configure tabs differently.
+        // Configure toolbar and toolbar tabs. If in landscape mode, we  configure tabs differntly.
         final Toolbar toolbar = getView(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setActionBar(toolbar);
         final ViewPagerTabs portraitViewPagerTabs
                 = (ViewPagerTabs) findViewById(R.id.lists_pager_header);
         ViewPagerTabs landscapeViewPagerTabs = null;
@@ -370,7 +369,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         // Setting Properties after fragment is created
         mFavoritesFragment.setDisplayType(DisplayType.STREQUENT);
 
-        mActionBarAdapter = new ActionBarAdapter(this, this, getSupportActionBar(),
+        mActionBarAdapter = new ActionBarAdapter(this, this, getActionBar(),
                 portraitViewPagerTabs, landscapeViewPagerTabs, toolbar);
         mActionBarAdapter.initialize(savedState, mRequest);
 
@@ -558,8 +557,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 break;
             case ActionBarAdapter.Listener.Action.START_SEARCH_MODE:
                 if (!mIsRecreatedInstance) {
-                    Logger.getInstance().logScreenView(
-                            ScreenEvent.SEARCH, this, ScreenEvent.TAG_SEARCH);
+                    Logger.logScreenView(this, ScreenType.SEARCH);
                 }
                 startSearchOrSelectionMode();
                 break;
@@ -899,24 +897,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 mAllFragment.setEnabled(true);
             }
         } else {
-            // If there are no accounts on the device and we should show the "no account" prompt
-            // (based on {@link SharedPreferences}), then launch the account setup activity so the
-            // user can sign-in or create an account.
-            //
-            // Also check for ability to modify accounts.  In limited user mode, you can't modify
-            // accounts so there is no point sending users to account setup activity.
-            final UserManager userManager = (UserManager) getSystemService(Context.USER_SERVICE);
-            final boolean disallowModifyAccounts = userManager.getUserRestrictions().getBoolean(
-                    UserManager.DISALLOW_MODIFY_ACCOUNTS);
-            if (!disallowModifyAccounts && !areContactWritableAccountsAvailable() &&
-                    AccountPromptUtils.shouldShowAccountPrompt(this)) {
-                AccountPromptUtils.neverShowAccountPromptAgain(this);
-                AccountPromptUtils.launchAccountPrompt(this);
-                return;
-            }
-
-            // Otherwise, continue setting up the page so that the user can still use the app
-            // without an account.
+            // Setting up the page so that the user can still use the app
+            // even without an account.
             if (mAllFragment != null) {
                 mAllFragment.setEnabled(false);
             }
@@ -959,8 +941,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                         QuickContactActivity.MODE_FULLY_EXPANDED, null);
             } else {
                 final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
-                        contactLookupUri,
-                        QuickContactActivity.MODE_FULLY_EXPANDED);
+                        contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
+                intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
+                        mAllFragment.isSearchMode() ? ScreenType.SEARCH : ScreenType.ALL_CONTACTS);
                 ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
             }
         }
@@ -1024,7 +1007,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         @Override
         public void onAddAccountAction() {
-            final Intent intent = AccountPromptUtils.getIntentForAddingAccount();
+            final Intent intent = ImplicitIntentsUtil.getIntentForAddingAccount();
             ImplicitIntentsUtil.startActivityOutsideApp(PeopleActivity.this, intent);
         }
 
@@ -1042,6 +1025,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         public void onContactSelected(Uri contactUri, Rect targetRect) {
             final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(contactUri,
                     QuickContactActivity.MODE_FULLY_EXPANDED);
+            intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.FAVORITES);
             ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
         }
 
@@ -1229,9 +1213,11 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 return true;
             }
             case R.id.menu_blocked_numbers: {
-                final Intent intent = new Intent("android.intent.action.EDIT");
-                intent.setType("blocked_numbers/*");
-                ImplicitIntentsUtil.startActivityInApp(this, intent);
+                final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
+                        (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
+                if (intent != null) {
+                    startActivity(intent);
+                }
                 return true;
             }
             case R.id.export_database: {
@@ -1382,9 +1368,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             if (mAllFragment.wasSearchResultClicked()) {
                 mAllFragment.resetSearchResultClicked();
             } else {
-                Logger.getInstance().logScreenView(
-                        ScreenEvent.SEARCH_EXIT, this, ScreenEvent.TAG_SEARCH_EXIT);
-                Logger.getInstance().logSearchEventImpl(mAllFragment.createSearchState());
+                Logger.logScreenView(this, ScreenType.SEARCH_EXIT);
+                Logger.logSearchEvent(mAllFragment.createSearchState());
             }
         } else {
             super.onBackPressed();

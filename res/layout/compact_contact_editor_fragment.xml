@@ -32,16 +32,16 @@
 
         <include layout="@layout/compact_photo_editor_view" />
 
+        <!-- Dummy view so the first input field is not initially focused. b/21644158 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
+
         <include layout="@layout/editor_all_rawcontacts_accounts_selector" />
         <include layout="@layout/compact_account_info" />
         <include layout="@layout/editor_account_selector" />
-
-        <!-- Dummy view so the first input field is not initially focused. b/21644158 -->
-        <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true"/>
 
         <include layout="@layout/compact_contact_editor_fields" />
 

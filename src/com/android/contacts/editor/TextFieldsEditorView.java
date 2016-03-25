@@ -125,7 +125,13 @@ public class TextFieldsEditorView extends LabeledEditorView {
         final View editor = mFields.getChildAt(0);
 
         // Show the soft-keyboard.
-        showSoftKeyboard(editor);
+        InputMethodManager imm =
+                (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            if (!imm.showSoftInput(editor, InputMethodManager.SHOW_IMPLICIT)) {
+                Log.w(TAG, "Failed to show soft input method.");
+            }
+        }
     }
 
     @Override
@@ -174,26 +180,12 @@ public class TextFieldsEditorView extends LabeledEditorView {
                 }
                 if (editText.hasFocus()) {
                     anyFieldHasFocus = true;
-                    showSoftKeyboard(editText);
                     break;
                 }
             }
             if (!anyFieldHasFocus && firstField != null) {
                 firstField.requestFocus();
-                showSoftKeyboard(firstField);
             }
-        }
-    }
-
-    /**
-     * Show soft keyboard for the currently focused view.
-     */
-    private void showSoftKeyboard(View v) {
-        final InputMethodManager inputMethodManager = (InputMethodManager)
-                getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (inputMethodManager != null &&
-                !inputMethodManager.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT)) {
-            Log.w(TAG, "Failed to show soft input method.");
         }
     }
 
@@ -231,7 +223,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
             int inputType = field.inputType;
             fieldView.setInputType(inputType);
             if (inputType == InputType.TYPE_CLASS_PHONE) {
-                PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(getContext(), fieldView);
+                PhoneNumberFormatter.setPhoneNumberFormattingTextWatcher(
+                        getContext(), fieldView, /* formatAfterWatcherSet =*/ false);
                 fieldView.setTextDirection(View.TEXT_DIRECTION_LTR);
             }
             fieldView.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);

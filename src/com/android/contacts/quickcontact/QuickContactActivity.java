@@ -90,6 +90,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -108,6 +109,7 @@ import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.common.activity.RequestDesiredPermissionsActivity;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.EventCompat;
@@ -117,6 +119,8 @@ import com.android.contacts.common.interactions.TouchPointManager;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.list.ShortcutIntentBuilder;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
+import com.android.contacts.common.logging.Logger;
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
@@ -201,6 +205,9 @@ public class QuickContactActivity extends ContactsActivity
      * should only be used by the Contacts app.
      */
     public static final int MODE_FULLY_EXPANDED = 4;
+
+    /** Used to pass the screen where the user came before launching this Activity. */
+    public static final String EXTRA_PREVIOUS_SCREEN_TYPE = "previous_screen_type";
 
     private static final String TAG = "QuickContact";
 
@@ -406,7 +413,7 @@ public class QuickContactActivity extends ContactsActivity
 
             mHasIntentLaunched = true;
             try {
-                startActivity(intent);
+                ImplicitIntentsUtil.startActivityInAppIfPossible(QuickContactActivity.this, intent);
             } catch (SecurityException ex) {
                 Toast.makeText(QuickContactActivity.this, R.string.missing_app,
                         Toast.LENGTH_SHORT).show();
@@ -445,31 +452,6 @@ public class QuickContactActivity extends ContactsActivity
                 }
             } else {
                 Log.w(TAG, "Invalid Data ID");
-            }
-
-            // Pass the touch point through the intent for use in the InCallUI
-            if (Intent.ACTION_CALL.equals(intent.getAction())) {
-                if (TouchPointManager.getInstance().hasValidPoint()) {
-                    Bundle extras = new Bundle();
-                    extras.putParcelable(TouchPointManager.TOUCH_POINT,
-                            TouchPointManager.getInstance().getPoint());
-                    intent.putExtra(TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS, extras);
-                }
-            }
-
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            mHasIntentLaunched = true;
-            try {
-                ImplicitIntentsUtil.startActivityInAppIfPossible(QuickContactActivity.this, intent);
-            } catch (SecurityException ex) {
-                Toast.makeText(QuickContactActivity.this, R.string.missing_app,
-                        Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "QuickContacts does not have permission to launch "
-                        + intent);
-            } catch (ActivityNotFoundException ex) {
-                Toast.makeText(QuickContactActivity.this, R.string.missing_app,
-                        Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -619,6 +601,10 @@ public class QuickContactActivity extends ContactsActivity
                 new int[] { -android.R.attr.state_checked }
         };
         final int[] colors = new int[] { mColorFilterColor, mColorFilterColor };
+        if (suggestion != null && suggestion.name != null) {
+            checkbox.setContentDescription(suggestion.name + " " +
+                    getResources().getString(R.string.contact_from_account_name, accountName));
+        }
         checkbox.setButtonTintList(new ColorStateList(stateSet, colors));
         checkbox.setChecked(mSuggestionsShouldAutoSelected ||
                 mSelectedAggregationIds.contains(suggestion.contactId));
@@ -934,9 +920,14 @@ public class QuickContactActivity extends ContactsActivity
         Trace.beginSection("onCreate()");
         super.onCreate(savedInstanceState);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+        if (RequestPermissionsActivity.startPermissionActivity(this) ||
+                RequestDesiredPermissionsActivity.startPermissionActivity(this)) {
             return;
         }
+
+        final int previousScreenType = getIntent().getIntExtra
+                (EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
+        Logger.logScreenView(this, ScreenType.QUICK_CONTACT, previousScreenType);
 
         if (CompatUtils.isLollipopCompatible()) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -994,6 +985,9 @@ public class QuickContactActivity extends ContactsActivity
                 mCollapsedSuggestionCardView.setVisibility(View.GONE);
                 mExpandSuggestionCardView.setVisibility(View.VISIBLE);
                 mIsSuggestionListCollapsed = false;
+                mExpandSuggestionCardTitle.requestFocus();
+                mExpandSuggestionCardTitle.sendAccessibilityEvent(
+                        AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
             }
         });
 
@@ -1172,12 +1166,13 @@ public class QuickContactActivity extends ContactsActivity
                     LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
         } else if (oldLookupUri != mLookupUri) {
             // After copying a directory contact, the contact URI changes. Therefore,
-            // we need to restart the loader and reload the new contact.
+            // we need to reload the new contact.
             destroyInteractionLoaders();
-            mContactLoader = (ContactLoader) getLoaderManager().restartLoader(
-                    LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
+            mContactLoader = (ContactLoader) (Loader<?>) getLoaderManager().getLoader(
+                    LOADER_CONTACT_ID);
             mCachedCp2DataCardModel = null;
         }
+        mContactLoader.forceLoad();
 
         NfcHandler.register(this, mLookupUri);
     }
@@ -1246,8 +1241,8 @@ public class QuickContactActivity extends ContactsActivity
                 displayName, mContactData.getDisplayNameSource() == DisplayNameSources.PHONE);
         final String phoneticName = ContactDisplayUtils.getPhoneticName(this, data);
         if (mScroller != null) {
-            if (mContactData.getDisplayNameSource() != DisplayNameSources.STRUCTURED_PHONETIC_NAME
-                    && !TextUtils.isEmpty(phoneticName)) {
+            // Show phonetic name only when it doesn't equal the display name.
+            if (!TextUtils.isEmpty(phoneticName) && !phoneticName.equals(displayName)) {
                 mScroller.setPhoneticName(phoneticName);
             } else {
                 mScroller.setPhoneticNameGone();
@@ -1281,7 +1276,7 @@ public class QuickContactActivity extends ContactsActivity
 
     private void bindDataToCards(Cp2DataCardModel cp2DataCardModel) {
         startInteractionLoaders(cp2DataCardModel);
-        populateContactAndAboutCard(cp2DataCardModel);
+        populateContactAndAboutCard(cp2DataCardModel, /* shouldAddPhoneticName */ true);
         populateSuggestionCard();
     }
 
@@ -1374,7 +1369,7 @@ public class QuickContactActivity extends ContactsActivity
         // If returning from a launched activity, repopulate the contact and about card
         if (mHasIntentLaunched) {
             mHasIntentLaunched = false;
-            populateContactAndAboutCard(mCachedCp2DataCardModel);
+            populateContactAndAboutCard(mCachedCp2DataCardModel, /* shouldAddPhoneticName */ false);
         }
 
         // When exiting the activity and resuming, we want to force a full reload of all the
@@ -1430,7 +1425,8 @@ public class QuickContactActivity extends ContactsActivity
         mAggregationSuggestionEngine.onNameChange(ValuesDelta.fromBefore(values));
     }
 
-    private void populateContactAndAboutCard(Cp2DataCardModel cp2DataCardModel) {
+    private void populateContactAndAboutCard(Cp2DataCardModel cp2DataCardModel,
+            boolean shouldAddPhoneticName) {
         mCachedCp2DataCardModel = cp2DataCardModel;
         if (mHasIntentLaunched || cp2DataCardModel == null) {
             return;
@@ -1461,8 +1457,11 @@ public class QuickContactActivity extends ContactsActivity
 
         Trace.beginSection("bind about card");
         // Phonetic name is not a data item, so the entry needs to be created separately
+        // But if mCachedCp2DataCardModel is passed to this method (e.g. returning from editor
+        // without saving any changes), then it should include phoneticName and the phoneticName
+        // shouldn't be changed. If this is the case, we shouldn't add it again. b/27459294
         final String phoneticName = mContactData.getPhoneticName();
-        if (!TextUtils.isEmpty(phoneticName)) {
+        if (shouldAddPhoneticName && !TextUtils.isEmpty(phoneticName)) {
             Entry phoneticEntry = new Entry(/* viewId = */ -1,
                     /* icon = */ null,
                     getResources().getString(R.string.name_phonetic),

@@ -16,8 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.contacts"
-    android:versionCode="10401"
-    android:versionName="1.4.1">
+    android:versionCode="10406"
+    android:versionName="1.4.6">
 
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="23" />
     <original-package android:name="com.android.contacts" />
@@ -27,6 +27,7 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS_PRIVILEGED" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -63,7 +64,7 @@
         <!-- The main Contacts activity with the contact list, favorites, and groups. -->
         <activity android:name=".activities.PeopleActivity"
             android:label="@string/launcherActivityLabel"
-            android:theme="@style/PeopleActivityTheme"
+            android:theme="@style/PeopleTheme"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTop"
             android:resizeableActivity="true"
@@ -227,6 +228,12 @@
 
         <activity
             android:name=".common.activity.RequestPermissionsActivity"
+            android:label="@string/launcherActivityLabel"
+            android:theme="@style/PeopleTheme"
+            android:exported="false"/>
+
+        <activity
+            android:name=".common.activity.RequestDesiredPermissionsActivity"
             android:label="@string/launcherActivityLabel"
             android:theme="@style/PeopleTheme"
             android:exported="false"/>
@@ -418,17 +425,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Blocked numbers activity -->
-        <activity android:name=".activities.BlockedNumbersActivity"
-                  android:label="@string/blocked_numbers_title"
-                  android:theme="@style/BlockedNumbersStyle">
-            <intent-filter>
-                <action android:name="android.intent.action.EDIT" />
-                <data android:mimeType="blocked_numbers/*" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <!-- vCard related -->
         <activity android:name=".common.vcard.ImportVCardActivity"
             android:label="@string/launcherActivityLabel"
@@ -466,6 +462,10 @@
         <activity android:name=".common.vcard.ExportVCardActivity"
             android:label="@string/launcherActivityLabel"
             android:theme="@style/BackgroundOnlyTheme" />
+
+        <activity android:name=".common.vcard.ShareVCardActivity"
+                  android:label="@string/launcherActivityLabel"
+                  android:theme="@style/BackgroundOnlyTheme" />
 
         <service
             android:name=".common.vcard.VCardService"
@@ -534,7 +534,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.android.contacts.files"
+            android:authorities="@string/contacts_file_provider_authority"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data
