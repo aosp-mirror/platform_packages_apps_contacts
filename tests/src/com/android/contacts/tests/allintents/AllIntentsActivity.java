@@ -276,45 +276,60 @@ public class AllIntentsActivity extends ListActivity
             }
             case EDIT_CONTACT: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
-                final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-                final Intent intent = new Intent(Intent.ACTION_EDIT, uri);
-                startActivity(intent);
+                if (contactId != -1) {
+                    final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+                    final Intent intent = new Intent(Intent.ACTION_EDIT, uri);
+                    startActivity(intent);
+                }
                 break;
             }
             case EDIT_CONTACT_LOOKUP: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
-                final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-                final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
-                final String lookupKey = lookupUri.getPathSegments().get(2);
-                final Uri lookupWithoutIdUri = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI,
-                        lookupKey);
-                final Intent intent = new Intent(Intent.ACTION_EDIT, lookupWithoutIdUri);
-                startActivity(intent);
+                if (contactId != -1) {
+                    final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+                    final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
+                    final String lookupKey = lookupUri.getPathSegments().get(2);
+                    final Uri lookupWithoutIdUri = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI,
+                            lookupKey);
+                    final Intent intent = new Intent(Intent.ACTION_EDIT, lookupWithoutIdUri);
+                    startActivity(intent);
+                }
                 break;
             }
             case EDIT_CONTACT_LOOKUP_ID: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
-                final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-                final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
-                final Intent intent = new Intent(Intent.ACTION_EDIT, lookupUri);
-                startActivity(intent);
+                if (contactId != -1) {
+                    final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+                    final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
+                    final Intent intent = new Intent(Intent.ACTION_EDIT, lookupUri);
+                    startActivity(intent);
+                }
                 break;
             }
             case EDIT_RAW_CONTACT: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
-                final long rawContactId = findArbitraryRawContactOfContact(contactId);
-                final Uri uri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
-                final Intent intent = new Intent(Intent.ACTION_EDIT, uri);
-                startActivity(intent);
+                if (contactId != -1) {
+                    final long rawContactId = findArbitraryRawContactOfContact(contactId);
+                    if (rawContactId != -1) {
+                        final Uri uri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                                rawContactId);
+                        final Intent intent = new Intent(Intent.ACTION_EDIT, uri);
+                        startActivity(intent);
+                    }
+                }
                 break;
             }
             case EDIT_LEGACY: {
-                final Uri legacyContentUri = Uri.parse("content://contacts/people");
                 final long contactId = findArbitraryContactWithPhoneNumber();
-                final long rawContactId = findArbitraryRawContactOfContact(contactId);
-                final Uri uri = ContentUris.withAppendedId(legacyContentUri, rawContactId);
-                final Intent intent = new Intent(Intent.ACTION_EDIT, uri);
-                startActivity(intent);
+                if (contactId != -1) {
+                    final long rawContactId = findArbitraryRawContactOfContact(contactId);
+                    if (rawContactId != -1) {
+                        final Uri legacyContentUri = Uri.parse("content://contacts/people");
+                        final Uri uri = ContentUris.withAppendedId(legacyContentUri, rawContactId);
+                        final Intent intent = new Intent(Intent.ACTION_EDIT, uri);
+                        startActivity(intent);
+                    }
+                }
                 break;
             }
             case EDIT_NEW_CONTACT: {
@@ -323,9 +338,7 @@ public class AllIntentsActivity extends ListActivity
             }
             case EDIT_NEW_CONTACT_WITH_DATA: {
                 Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-
                 putDataExtra(intent);
-
                 startActivity(intent);
                 break;
             }
@@ -347,9 +360,11 @@ public class AllIntentsActivity extends ListActivity
             }
             case VIEW_CONTACT: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
-                final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-                final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                if (contactId != -1) {
+                    final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+                    final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
                 break;
             }
             case VIEW_CONTACT_WITHOUT_ID: {
@@ -358,38 +373,51 @@ public class AllIntentsActivity extends ListActivity
             }
             case VIEW_CONTACT_LOOKUP: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
-                final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-                final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
-                final String lookupKey = lookupUri.getPathSegments().get(2);
-                final Uri lookupWithoutIdUri = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI,
-                        lookupKey);
-                final Intent intent = new Intent(Intent.ACTION_VIEW, lookupWithoutIdUri);
-                startActivity(intent);
+                if (contactId != -1) {
+                    final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+                    final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
+                    final String lookupKey = lookupUri.getPathSegments().get(2);
+                    final Uri lookupWithoutIdUri = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI,
+                            lookupKey);
+                    final Intent intent = new Intent(Intent.ACTION_VIEW, lookupWithoutIdUri);
+                    startActivity(intent);
+                }
                 break;
             }
             case VIEW_CONTACT_LOOKUP_ID: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
-                final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-                final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
-                final Intent intent = new Intent(Intent.ACTION_VIEW, lookupUri);
-                startActivity(intent);
+                if (contactId != -1) {
+                    final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
+                    final Uri lookupUri = Contacts.getLookupUri(getContentResolver(), uri);
+                    final Intent intent = new Intent(Intent.ACTION_VIEW, lookupUri);
+                    startActivity(intent);
+                }
                 break;
             }
             case VIEW_RAW_CONTACT: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
-                final long rawContactId = findArbitraryRawContactOfContact(contactId);
-                final Uri uri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
-                final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                if (contactId != -1) {
+                    final long rawContactId = findArbitraryRawContactOfContact(contactId);
+                    if (rawContactId != -1) {
+                        final Uri uri = ContentUris.withAppendedId(RawContacts.CONTENT_URI,
+                                rawContactId);
+                        final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                }
                 break;
             }
             case VIEW_LEGACY: {
-                final Uri legacyContentUri = Uri.parse("content://contacts/people");
                 final long contactId = findArbitraryContactWithPhoneNumber();
-                final long rawContactId = findArbitraryRawContactOfContact(contactId);
-                final Uri uri = ContentUris.withAppendedId(legacyContentUri, rawContactId);
-                final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                if (contactId != -1) {
+                    final long rawContactId = findArbitraryRawContactOfContact(contactId);
+                    if (rawContactId != -1) {
+                        final Uri legacyContentUri = Uri.parse("content://contacts/people");
+                        final Uri uri = ContentUris.withAppendedId(legacyContentUri, rawContactId);
+                        final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                }
                 break;
             }
             case QUICK_CONTACT_TESTS_ACTIVITY: {
@@ -436,7 +464,7 @@ public class AllIntentsActivity extends ListActivity
     private long findArbitraryContactWithPhoneNumber() {
         final Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
                 new String[] { Contacts._ID },
-                Contacts.HAS_PHONE_NUMBER + "!=0 AND " + Contacts.STARRED + "!=0" ,
+                Contacts.HAS_PHONE_NUMBER + "!=0",
                 null, "RANDOM() LIMIT 1");
         try {
             if (cursor.moveToFirst()) {
@@ -445,7 +473,8 @@ public class AllIntentsActivity extends ListActivity
         } finally {
             cursor.close();
         }
-
+        Toast.makeText(this, "Failed to find a contact with a phone number. Aborting.",
+                Toast.LENGTH_SHORT).show();
         return -1;
     }
 
@@ -462,7 +491,8 @@ public class AllIntentsActivity extends ListActivity
         } finally {
             cursor.close();
         }
-
+        Toast.makeText(this, "Failed to find a raw contact of contact with ID " + contactId +
+                ". Aborting", Toast.LENGTH_SHORT).show();
         return -1;
     }
 
