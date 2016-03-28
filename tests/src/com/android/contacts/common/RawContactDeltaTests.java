@@ -17,9 +17,9 @@
 package com.android.contacts.common;
 
 import android.content.ContentProviderOperation;
+import android.content.ContentProviderOperation.Builder;
 import android.content.ContentValues;
 import android.content.Context;
-import android.os.Build;
 import android.os.Parcel;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
@@ -27,9 +27,6 @@ import android.provider.ContactsContract.RawContacts;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.model.BuilderWrapper;
-import com.android.contacts.common.model.CPOWrapper;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
@@ -150,15 +147,13 @@ public class RawContactDeltaTests extends AndroidTestCase {
         values.markDeleted();
 
         // Should produce a delete action
-        final BuilderWrapper builderWrapper = values.buildDiffWrapper(Data.CONTENT_URI);
-        final boolean isDelete = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                ? builderWrapper.getBuilder().build().isDelete()
-                : builderWrapper.getType() == CompatUtils.TYPE_DELETE;
+        final Builder builder = values.buildDiff(Data.CONTENT_URI);
+        final boolean isDelete = builder.build().isDelete();
         assertTrue("Didn't produce delete action", isDelete);
     }
 
     /**
-     * Test that {@link RawContactDelta#buildDiffWrapper(ArrayList)} is correctly built for
+     * Test that {@link RawContactDelta#buildDiff(ArrayList)} is correctly built for
      * insert, update, and delete cases. This only tests a subset of possible
      * {@link Data} row changes.
      */
@@ -167,8 +162,8 @@ public class RawContactDeltaTests extends AndroidTestCase {
         final RawContactDelta source = RawContactDelta.fromBefore(before);
 
         // Assert that writing unchanged produces few operations
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        source.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildDiff(diff);
 
         assertTrue("Created changes when none needed", (diff.size() == 0));
     }
@@ -185,30 +180,27 @@ public class RawContactDeltaTests extends AndroidTestCase {
         source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Assert two operations: insert Data row and enforce version
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        source.buildAssertWrapper(diff);
-        source.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 4, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            assertTrue("Expected version enforcement", CompatUtils.isAssertQueryCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Expected version enforcement", oper.isAssertQuery());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(2);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(2);
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(3);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(3);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -228,36 +220,32 @@ public class RawContactDeltaTests extends AndroidTestCase {
         source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Assert three operations: update Contact, insert Data row, enforce version
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        source.buildAssertWrapper(diff);
-        source.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 5, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            assertTrue("Expected version enforcement", CompatUtils.isAssertQueryCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Expected version enforcement", oper.isAssertQuery());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(2);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(2);
+            assertTrue("Incorrect type", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(3);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(3);
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(4);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(4);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -271,30 +259,27 @@ public class RawContactDeltaTests extends AndroidTestCase {
         child.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
 
         // Assert that version is enforced
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        source.buildAssertWrapper(diff);
-        source.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 4, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            assertTrue("Expected version enforcement", CompatUtils.isAssertQueryCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Expected version enforcement", oper.isAssertQuery());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(2);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(2);
+            assertTrue("Incorrect type", oper.isUpdate());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(3);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(3);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -307,18 +292,17 @@ public class RawContactDeltaTests extends AndroidTestCase {
         source.getValues().markDeleted();
 
         // Assert two operations: delete Contact and enforce version
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        source.buildAssertWrapper(diff);
-        source.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 2, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            assertTrue("Expected version enforcement", CompatUtils.isAssertQueryCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Expected version enforcement", oper.isAssertQuery());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isDeleteCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Incorrect type", oper.isDelete());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -332,15 +316,14 @@ public class RawContactDeltaTests extends AndroidTestCase {
         final ValuesDelta values = ValuesDelta.fromAfter(after);
         final RawContactDelta source = new RawContactDelta(values);
 
-        // Assert two operations: insert Contact and enforce version
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        source.buildAssertWrapper(diff);
-        source.buildDiffWrapper(diff);
+        // Assert two operations: delete Contact and enforce version
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 2, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -362,20 +345,18 @@ public class RawContactDeltaTests extends AndroidTestCase {
         source.addEntry(ValuesDelta.fromAfter(phone));
 
         // Assert two operations: delete Contact and enforce version
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        source.buildAssertWrapper(diff);
-        source.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        source.buildAssert(diff);
+        source.buildDiff(diff);
         assertEquals("Unexpected operations", 3, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
 
         }

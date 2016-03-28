@@ -16,28 +16,27 @@
 
 package com.android.contacts.common.test.mocks;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Maps;
-
+import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
-import android.support.annotation.Nullable;
+import android.text.TextUtils;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import junit.framework.Assert;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * A programmable mock content provider.
  */
-public class MockContentProvider extends android.test.mock.MockContentProvider {
+public class MockContentProvider extends ContentProvider {
     private static final String TAG = "MockContentProvider";
 
     public static class Query {
@@ -48,7 +47,7 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
         private String mSelection;
         private String[] mSelectionArgs;
         private String mSortOrder;
-        private List<Object> mRows = new ArrayList<>();
+        private ArrayList<Object> mRows = new ArrayList<Object>();
         private boolean mAnyProjection;
         private boolean mAnySelection;
         private boolean mAnySortOrder;
@@ -127,22 +126,52 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
                 return false;
             }
 
-            if (!mAnyProjection && !Arrays.equals(projection, mProjection)) {
+            if (!mAnyProjection && !equals(projection, mProjection)) {
                 return false;
             }
 
-            if (!mAnySelection && !Objects.equals(selection, mSelection)) {
+            if (!mAnySelection && !equals(selection, mSelection)) {
                 return false;
             }
 
-            if (!mAnySelection && !Arrays.equals(selectionArgs, mSelectionArgs)) {
+            if (!mAnySelection && !equals(selectionArgs, mSelectionArgs)) {
                 return false;
             }
 
-            if (!mAnySortOrder && !Objects.equals(sortOrder, mSortOrder)) {
+            if (!mAnySortOrder && !equals(sortOrder, mSortOrder)) {
                 return false;
             }
 
+            return true;
+        }
+
+        private boolean equals(String string1, String string2) {
+            if (TextUtils.isEmpty(string1)) {
+                string1 = null;
+            }
+            if (TextUtils.isEmpty(string2)) {
+                string2 = null;
+            }
+            return TextUtils.equals(string1, string2);
+        }
+
+        private static boolean equals(String[] array1, String[] array2) {
+            boolean empty1 = array1 == null || array1.length == 0;
+            boolean empty2 = array2 == null || array2.length == 0;
+            if (empty1 && empty2) {
+                return true;
+            }
+            if (empty1 != empty2 && (empty1 || empty2)) {
+                return false;
+            }
+
+            if (array1.length != array2.length) return false;
+
+            for (int i = 0; i < array1.length; i++) {
+                if (!array1[i].equals(array2[i])) {
+                    return false;
+                }
+            }
             return true;
         }
 
@@ -198,245 +227,8 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
         }
     }
 
-    public static class Insert {
-        private final Uri mUri;
-        private final ContentValues mContentValues;
-        private final Uri mResultUri;
-        private boolean mAnyNumberOfTimes;
-        private boolean mIsExecuted;
-
-        /**
-         * Creates a new Insert to expect.
-         *
-         * @param uri the uri of the insertion request.
-         * @param contentValues the ContentValues to insert.
-         * @param resultUri the {@link Uri} for the newly inserted item.
-         * @throws NullPointerException if any parameter is {@code null}.
-         */
-        public Insert(Uri uri, ContentValues contentValues, Uri resultUri) {
-            mUri = Preconditions.checkNotNull(uri);
-            mContentValues = Preconditions.checkNotNull(contentValues);
-            mResultUri = Preconditions.checkNotNull(resultUri);
-        }
-
-        /**
-         * Causes this insert expectation to be useable for mutliple calls to insert, rather than
-         * just one.
-         *
-         * @return this
-         */
-        public Insert anyNumberOfTimes() {
-            mAnyNumberOfTimes = true;
-            return this;
-        }
-
-        private boolean equals(Uri uri, ContentValues contentValues) {
-            return mUri.equals(uri) && mContentValues.equals(contentValues);
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            Insert insert = (Insert) o;
-            return mAnyNumberOfTimes == insert.mAnyNumberOfTimes &&
-                    mIsExecuted == insert.mIsExecuted &&
-                    Objects.equals(mUri, insert.mUri) &&
-                    Objects.equals(mContentValues, insert.mContentValues) &&
-                    Objects.equals(mResultUri, insert.mResultUri);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(mUri, mContentValues, mResultUri, mAnyNumberOfTimes, mIsExecuted);
-        }
-
-        @Override
-        public String toString() {
-            return "Insert{" +
-                    "mUri=" + mUri +
-                    ", mContentValues=" + mContentValues +
-                    ", mResultUri=" + mResultUri +
-                    ", mAnyNumberOfTimes=" + mAnyNumberOfTimes +
-                    ", mIsExecuted=" + mIsExecuted +
-                    '}';
-        }
-    }
-
-    public static class Delete {
-        private final Uri mUri;
-
-        private boolean mAnyNumberOfTimes;
-        private boolean mAnySelection;
-        @Nullable private String mSelection;
-        @Nullable private String[] mSelectionArgs;
-        private boolean mIsExecuted;
-        private int mRowsAffected;
-
-        /**
-         * Creates a new Delete to expect.
-         * @param uri the uri of the delete request.
-         * @throws NullPointerException if uri is {@code null}.
-         */
-        public Delete(Uri uri) {
-            mUri = Preconditions.checkNotNull(uri);
-        }
-
-        /**
-         * Sets the given information as expected selection arguments.
-         *
-         * @param selection The selection to expect.
-         * @param selectionArgs The selection args to expect.
-         * @return this.
-         */
-        public Delete withSelection(String selection, @Nullable String[] selectionArgs) {
-            mSelection = Preconditions.checkNotNull(selection);
-            mSelectionArgs = selectionArgs;
-            mAnySelection = false;
-            return this;
-        }
-
-        /**
-         * Sets this delete to expect any selection arguments.
-         *
-         * @return this.
-         */
-        public Delete withAnySelection() {
-            mAnySelection = true;
-            return this;
-        }
-
-        /**
-         * Sets this delete to return the given number of rows affected.
-         *
-         * @param rowsAffected The value to return when this expected delete is executed.
-         * @return this.
-         */
-        public Delete returnRowsAffected(int rowsAffected) {
-            mRowsAffected = rowsAffected;
-            return this;
-        }
-
-        /**
-         * Causes this delete expectation to be useable for multiple calls to delete, rather than
-         * just one.
-         *
-         * @return this.
-         */
-        public Delete anyNumberOfTimes() {
-            mAnyNumberOfTimes = true;
-            return this;
-        }
-
-        private boolean equals(Uri uri, String selection, String[] selectionArgs) {
-            return mUri.equals(uri) && Objects.equals(mSelection, selection)
-                    && Arrays.equals(mSelectionArgs, selectionArgs);
-        }
-    }
-
-    public static class Update {
-        private final Uri mUri;
-        private final ContentValues mContentValues;
-        @Nullable private String mSelection;
-        @Nullable private String[] mSelectionArgs;
-        private boolean mAnyNumberOfTimes;
-        private boolean mIsExecuted;
-        private int mRowsAffected;
-
-        /**
-         * Creates a new Update to expect.
-         *
-         * @param uri the uri of the update request.
-         * @param contentValues the ContentValues to update.
-         *
-         * @throws NullPointerException if any parameter is {@code null}.
-         */
-        public Update(Uri uri,
-                      ContentValues contentValues,
-                      @Nullable String selection,
-                      @Nullable String[] selectionArgs) {
-            mUri = Preconditions.checkNotNull(uri);
-            mContentValues = Preconditions.checkNotNull(contentValues);
-            mSelection = selection;
-            mSelectionArgs = selectionArgs;
-        }
-
-        /**
-         * Causes this update expectation to be useable for mutliple calls to update, rather than
-         * just one.
-         *
-         * @return this
-         */
-        public Update anyNumberOfTimes() {
-            mAnyNumberOfTimes = true;
-            return this;
-        }
-
-        /**
-         * Sets this update to return the given number of rows affected.
-         *
-         * @param rowsAffected The value to return when this expected update is executed.
-         * @return this.
-         */
-        public Update returnRowsAffected(int rowsAffected) {
-            mRowsAffected = rowsAffected;
-            return this;
-        }
-
-        private boolean equals(Uri uri,
-                               ContentValues contentValues,
-                               @Nullable String selection,
-                               @Nullable String[] selectionArgs) {
-            return mUri.equals(uri) && mContentValues.equals(contentValues) &&
-                    Objects.equals(mSelection, selection) &&
-                    Objects.equals(mSelectionArgs, selectionArgs);
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            Update update = (Update) o;
-            return mAnyNumberOfTimes == update.mAnyNumberOfTimes &&
-                    mIsExecuted == update.mIsExecuted &&
-                    Objects.equals(mUri, update.mUri) &&
-                    Objects.equals(mContentValues, update.mContentValues) &&
-                    Objects.equals(mSelection, update.mSelection) &&
-                    Objects.equals(mSelectionArgs, update.mSelectionArgs);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(mUri, mContentValues, mAnyNumberOfTimes, mIsExecuted, mSelection,
-                    mSelectionArgs);
-        }
-
-        @Override
-        public String toString() {
-            return "Update{" +
-                    "mUri=" + mUri +
-                    ", mContentValues=" + mContentValues +
-                    ", mAnyNumberOfTimes=" + mAnyNumberOfTimes +
-                    ", mIsExecuted=" + mIsExecuted +
-                    ", mSelection=" + mSelection +
-                    ", mSelectionArgs=" + mSelectionArgs +
-                    '}';
-        }
-    }
-
-    private List<Query> mExpectedQueries = new ArrayList<>();
-    private Map<Uri, String> mExpectedTypeQueries = Maps.newHashMap();
-    private List<Insert> mExpectedInserts = new ArrayList<>();
-    private List<Delete> mExpectedDeletes = new ArrayList<>();
-    private List<Update> mExpectedUpdates = new ArrayList<>();
+    private ArrayList<Query> mExpectedQueries = new ArrayList<Query>();
+    private HashMap<Uri, String> mExpectedTypeQueries = Maps.newHashMap();
 
     @Override
     public boolean onCreate() {
@@ -453,32 +245,9 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
         mExpectedTypeQueries.put(uri, type);
     }
 
-    public void expectInsert(Uri contentUri, ContentValues contentValues, Uri resultUri) {
-        mExpectedInserts.add(new Insert(contentUri, contentValues, resultUri));
-    }
-
-    public Update expectUpdate(Uri contentUri,
-                               ContentValues contentValues,
-                               @Nullable String selection,
-                               @Nullable String[] selectionArgs) {
-        Update update = new Update(contentUri, contentValues, selection, selectionArgs);
-        mExpectedUpdates.add(update);
-        return update;
-    }
-
-    public Delete expectDelete(Uri contentUri) {
-        Delete delete = new Delete(contentUri);
-        mExpectedDeletes.add(delete);
-        return delete;
-    }
-
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
             String sortOrder) {
-        if (mExpectedQueries.isEmpty()) {
-            Assert.fail("Unexpected query: Actual:"
-                    + queryToString(uri, projection, selection, selectionArgs, sortOrder));
-        }
 
         for (Iterator<Query> iterator = mExpectedQueries.iterator(); iterator.hasNext();) {
             Query query = iterator.next();
@@ -491,9 +260,24 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
             }
         }
 
-        Assert.fail("Incorrect query. Expected one of: " + mExpectedQueries + ". Actual: " +
-                queryToString(uri, projection, selection, selectionArgs, sortOrder));
+        if (mExpectedQueries.isEmpty()) {
+            Assert.fail("Unexpected query: "
+                    + queryToString(uri, projection, selection, selectionArgs, sortOrder));
+        } else {
+            StringBuilder sb = new StringBuilder();
+            sb.append(mExpectedQueries.get(0));
+            for (int i = 1; i < mExpectedQueries.size(); i++) {
+                sb.append("\n              ").append(mExpectedQueries.get(i));
+            }
+            Assert.fail("Incorrect query.\n    Expected: " + sb + "\n      Actual: " +
+                    queryToString(uri, projection, selection, selectionArgs, sortOrder));
+        }
         return null;
+    }
+
+    @Override
+    public int delete(Uri uri, String selection, String[] selectionArgs) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -513,86 +297,12 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        if (mExpectedInserts.isEmpty()) {
-            Assert.fail("Unexpected insert. Actual: " + insertToString(uri, values));
-        }
-        for (Iterator<Insert> iterator = mExpectedInserts.iterator(); iterator.hasNext(); ) {
-            Insert insert = iterator.next();
-            if (insert.equals(uri, values)) {
-                insert.mIsExecuted = true;
-                if (!insert.mAnyNumberOfTimes) {
-                    iterator.remove();
-                }
-                return insert.mResultUri;
-            }
-        }
-
-        Assert.fail("Incorrect insert. Expected one of: " + mExpectedInserts + ". Actual: "
-                + insertToString(uri, values));
-        return null;
-    }
-
-    private String insertToString(Uri uri, ContentValues contentValues) {
-        return "Insert { uri=" + uri + ", contentValues=" + contentValues + '}';
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public int update(Uri uri,
-                      ContentValues values,
-                      @Nullable String selection,
-                      @Nullable String[] selectionArgs) {
-        if (mExpectedUpdates.isEmpty()) {
-            Assert.fail("Unexpected update. Actual: "
-                    + updateToString(uri, values, selection, selectionArgs));
-        }
-        for (Iterator<Update> iterator = mExpectedUpdates.iterator(); iterator.hasNext(); ) {
-            Update update = iterator.next();
-            if (update.equals(uri, values, selection, selectionArgs)) {
-                update.mIsExecuted = true;
-                if (!update.mAnyNumberOfTimes) {
-                    iterator.remove();
-                }
-                return update.mRowsAffected;
-            }
-        }
-
-        Assert.fail("Incorrect update. Expected one of: " + mExpectedUpdates + ". Actual: "
-                + updateToString(uri, values, selection, selectionArgs));
-        return - 1;
-    }
-
-    private String updateToString(Uri uri,
-                                  ContentValues contentValues,
-                                  @Nullable String selection,
-                                  @Nullable String[] selectionArgs) {
-        return "Update { uri=" + uri + ", contentValues=" + contentValues + ", selection=" +
-                selection + ", selectionArgs" + Arrays.toString(selectionArgs) + '}';
-    }
-
-    @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
-        if (mExpectedDeletes.isEmpty()) {
-            Assert.fail("Unexpected delete. Actual: " + deleteToString(uri, selection,
-                    selectionArgs));
-        }
-        for (Iterator<Delete> iterator = mExpectedDeletes.iterator(); iterator.hasNext(); ) {
-            Delete delete = iterator.next();
-            if (delete.equals(uri, selection, selectionArgs)) {
-                delete.mIsExecuted = true;
-                if (!delete.mAnyNumberOfTimes) {
-                    iterator.remove();
-                }
-                return delete.mRowsAffected;
-            }
-        }
-        Assert.fail("Incorrect delete. Expected one of: " + mExpectedDeletes + ". Actual: "
-                + deleteToString(uri, selection, selectionArgs));
-        return -1;
-    }
-
-    private String deleteToString(Uri uri, String selection, String[] selectionArgs) {
-        return "Delete { uri=" + uri + ", selection=" + selection + ", selectionArgs"
-                + Arrays.toString(selectionArgs) + '}';
+    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        throw new UnsupportedOperationException();
     }
 
     private static String queryToString(Uri uri, String[] projection, String selection,
@@ -619,41 +329,13 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
     }
 
     public void verify() {
-        verifyQueries();
-        verifyInserts();
-        verifyDeletes();
-    }
-
-    private void verifyQueries() {
-        List<Query> missedQueries = new ArrayList<>();
+        ArrayList<Query> mMissedQueries = Lists.newArrayList();
         for (Query query : mExpectedQueries) {
             if (!query.mExecuted) {
-                missedQueries.add(query);
+                mMissedQueries.add(query);
             }
         }
-        Assert.assertTrue("Not all expected queries have been called: " + missedQueries,
-                missedQueries.isEmpty());
-    }
-
-    private void verifyInserts() {
-        List<Insert> missedInserts = new ArrayList<>();
-        for (Insert insert : mExpectedInserts) {
-            if (!insert.mIsExecuted) {
-                missedInserts.add(insert);
-            }
-        }
-        Assert.assertTrue("Not all expected inserts have been called: " + missedInserts,
-                missedInserts.isEmpty());
-    }
-
-    private void verifyDeletes() {
-        List<Delete> missedDeletes = new ArrayList<>();
-        for (Delete delete : mExpectedDeletes) {
-            if (!delete.mIsExecuted) {
-                missedDeletes.add(delete);
-            }
-        }
-        Assert.assertTrue("Not all expected deletes have been called: " + missedDeletes,
-                missedDeletes.isEmpty());
+        Assert.assertTrue("Not all expected queries have been called: " +
+                mMissedQueries, mMissedQueries.isEmpty());
     }
 }

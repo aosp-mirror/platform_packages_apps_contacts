@@ -96,7 +96,9 @@ public class ImportVCardActivity extends Activity {
     private static final String SOURCE_URI_DISPLAY_NAME =
             "com.android.contacts.common.vcard.SOURCE_URI_DISPLAY_NAME";
 
-    private static final String STORAGE_VCARD_URI_PREFIX = "file:///storage";
+    private static final String GMAIL_VCARD_URI_PREFIX = "content://gmail-ls/";
+
+    private static final String DOWNLOAD_VCARD_URI_PREFIX = "content://downloads";
 
     private AccountWithDataSet mAccount;
 
@@ -530,9 +532,13 @@ public class ImportVCardActivity extends Activity {
         return Uri.parse(getFileStreamPath(fileName).toURI().toString());
     }
 
-    // Returns true if uri is from Storage.
-    private boolean isStorageUri(Uri uri) {
-        return uri != null && uri.toString().startsWith(STORAGE_VCARD_URI_PREFIX);
+    // Returns true if uri is from Gmail app.
+    private static boolean isGmailUri(Uri uri) {
+        return uri != null && uri.toString().startsWith(GMAIL_VCARD_URI_PREFIX);
+    }
+
+    private static boolean isDownloadUri(Uri uri) {
+        return uri != null && uri.toString().startsWith(DOWNLOAD_VCARD_URI_PREFIX);
     }
 
     @Override
@@ -540,12 +546,11 @@ public class ImportVCardActivity extends Activity {
         super.onCreate(bundle);
 
         Uri sourceUri = getIntent().getData();
-
-        // Reading uris from non-storage needs the permission granted from the source intent,
+        // Reading uris from Gmail and Download needs the permission granted from the source intent,
         // instead of permissions from RequestImportVCardPermissionActivity. So skipping requesting
-        // permissions from RequestImportVCardPermissionActivity for uris from non-storage source.
-        if (isStorageUri(sourceUri)
-                && RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
+        // permissions from RequestImportVCardPermissionActivity for uris from Gmail and Download.
+        if (!isGmailUri(sourceUri) && !isDownloadUri(sourceUri) &&
+                RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
             return;
         }
 
@@ -566,11 +571,6 @@ public class ImportVCardActivity extends Activity {
                 getIntent().putExtra(SOURCE_URI_DISPLAY_NAME, sourceDisplayName);
             }
             sourceUri = Uri.parse(getFileStreamPath(localTmpFileName).toURI().toString());
-        }
-
-        // Always request required permission for contacts before importing the vcard.
-        if (RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
-            return;
         }
 
         String accountName = null;
@@ -699,31 +699,34 @@ public class ImportVCardActivity extends Activity {
 
     @Override
     protected Dialog onCreateDialog(int resId, Bundle bundle) {
-        if (resId == R.id.dialog_cache_vcard) {
-            if (mProgressDialogForCachingVCard == null) {
-                final String title = getString(R.string.caching_vcard_title);
-                final String message = getString(R.string.caching_vcard_message);
-                mProgressDialogForCachingVCard = new ProgressDialog(this);
-                mProgressDialogForCachingVCard.setTitle(title);
-                mProgressDialogForCachingVCard.setMessage(message);
-                mProgressDialogForCachingVCard.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                mProgressDialogForCachingVCard.setOnCancelListener(mVCardCacheThread);
-                startVCardService();
+        switch (resId) {
+            case R.id.dialog_cache_vcard: {
+                if (mProgressDialogForCachingVCard == null) {
+                    final String title = getString(R.string.caching_vcard_title);
+                    final String message = getString(R.string.caching_vcard_message);
+                    mProgressDialogForCachingVCard = new ProgressDialog(this);
+                    mProgressDialogForCachingVCard.setTitle(title);
+                    mProgressDialogForCachingVCard.setMessage(message);
+                    mProgressDialogForCachingVCard.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    mProgressDialogForCachingVCard.setOnCancelListener(mVCardCacheThread);
+                    startVCardService();
+                }
+                return mProgressDialogForCachingVCard;
             }
-            return mProgressDialogForCachingVCard;
-        } else if (resId == R.id.dialog_error_with_message) {
-            String message = mErrorMessage;
-            if (TextUtils.isEmpty(message)) {
-                Log.e(LOG_TAG, "Error message is null while it must not.");
-                message = getString(R.string.fail_reason_unknown);
+            case R.id.dialog_error_with_message: {
+                String message = mErrorMessage;
+                if (TextUtils.isEmpty(message)) {
+                    Log.e(LOG_TAG, "Error message is null while it must not.");
+                    message = getString(R.string.fail_reason_unknown);
+                }
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.reading_vcard_failed_title))
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
+                    .setMessage(message)
+                    .setOnCancelListener(mCancelListener)
+                    .setPositiveButton(android.R.string.ok, mCancelListener);
+                return builder.create();
             }
-            final AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.reading_vcard_failed_title))
-                .setIconAttribute(android.R.attr.alertDialogIcon)
-                .setMessage(message)
-                .setOnCancelListener(mCancelListener)
-                .setPositiveButton(android.R.string.ok, mCancelListener);
-            return builder.create();
         }
 
         return super.onCreateDialog(resId, bundle);

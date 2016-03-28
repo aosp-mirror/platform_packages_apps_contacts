@@ -34,9 +34,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.CPOWrapper;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
@@ -389,37 +387,33 @@ public class RawContactModifierTests extends AndroidTestCase {
         RawContactModifier.insertChild(state, kindPhone, typeHome);
 
         // Build diff, expecting insert for data row and update enforcement
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        state.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 3, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(2);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(2);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
 
         // Trim empty rows and try again, expecting delete of overall contact
         RawContactModifier.trimEmpty(state, source);
         diff.clear();
-        state.buildDiffWrapper(diff);
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 1, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isDeleteCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Incorrect type", oper.isDelete());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -439,7 +433,7 @@ public class RawContactModifierTests extends AndroidTestCase {
         RawContactDeltaListTests.assertDiffPattern(state,
                 RawContactDeltaListTests.buildAssertVersion(VER_FIRST),
                 RawContactDeltaListTests.buildUpdateAggregationSuspended(),
-                RawContactDeltaListTests.buildCPOWrapper(Data.CONTENT_URI, TYPE_INSERT,
+                RawContactDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
                         RawContactDeltaListTests.buildDataInsert(values, TEST_ID)),
                 RawContactDeltaListTests.buildUpdateAggregationDefault());
 
@@ -465,7 +459,7 @@ public class RawContactModifierTests extends AndroidTestCase {
         RawContactDeltaListTests.assertDiffPattern(state,
                 RawContactDeltaListTests.buildAssertVersion(VER_FIRST),
                 RawContactDeltaListTests.buildUpdateAggregationSuspended(),
-                RawContactDeltaListTests.buildCPOWrapper(Data.CONTENT_URI, TYPE_INSERT,
+                RawContactDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
                         RawContactDeltaListTests.buildDataInsert(values, TEST_ID)),
                 RawContactDeltaListTests.buildUpdateAggregationDefault());
 
@@ -474,7 +468,7 @@ public class RawContactModifierTests extends AndroidTestCase {
         RawContactDeltaListTests.assertDiffPattern(state,
                 RawContactDeltaListTests.buildAssertVersion(VER_FIRST),
                 RawContactDeltaListTests.buildUpdateAggregationSuspended(),
-                RawContactDeltaListTests.buildCPOWrapper(Data.CONTENT_URI, TYPE_INSERT,
+                RawContactDeltaListTests.buildOper(Data.CONTENT_URI, TYPE_INSERT,
                         RawContactDeltaListTests.buildDataInsert(values, TEST_ID)),
                 RawContactDeltaListTests.buildUpdateAggregationDefault());
     }
@@ -492,14 +486,14 @@ public class RawContactModifierTests extends AndroidTestCase {
         state.addEntry(ValuesDelta.fromBefore(before));
 
         // Build diff, expecting no changes
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        state.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
 
         // Try trimming existing empty, which we shouldn't touch
         RawContactModifier.trimEmpty(state, source);
         diff.clear();
-        state.buildDiffWrapper(diff);
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
     }
 
@@ -517,44 +511,40 @@ public class RawContactModifierTests extends AndroidTestCase {
         final RawContactDelta state = getRawContact(TEST_ID, before);
 
         // Build diff, expecting no changes
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        state.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
 
         // Now update row by changing number to empty string, expecting single update
         final ValuesDelta child = state.getEntry(TEST_ID);
         child.put(Phone.NUMBER, "");
         diff.clear();
-        state.buildDiffWrapper(diff);
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 3, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Incorrect type", oper.isUpdate());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(2);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(2);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
 
         // Now run trim, which should turn that update into delete
         RawContactModifier.trimEmpty(state, source);
         diff.clear();
-        state.buildDiffWrapper(diff);
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 1, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isDeleteCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Incorrect type", oper.isDelete());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -570,21 +560,21 @@ public class RawContactModifierTests extends AndroidTestCase {
         final RawContactDeltaList set = new RawContactDeltaList();
         set.add(state);
 
+
         // Build diff, expecting single insert
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        state.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 2, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
 
         // Trim empty rows and try again, expecting no insert
         RawContactModifier.trimEmpty(set, accountTypes);
         diff.clear();
-        state.buildDiffWrapper(diff);
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
     }
 
@@ -601,26 +591,24 @@ public class RawContactModifierTests extends AndroidTestCase {
         set.add(state);
 
         // Build diff, expecting two insert operations
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        state.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 3, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isInsertCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Incorrect type", oper.isInsert());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
 
         // Trim empty rows and try again, expecting silence
         RawContactModifier.trimEmpty(set, accountTypes);
         diff.clear();
-        state.buildDiffWrapper(diff);
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
     }
 
@@ -648,56 +636,50 @@ public class RawContactModifierTests extends AndroidTestCase {
         set.add(state);
 
         // Build diff, expecting no changes
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        state.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
 
         // Now update row by changing number to empty string, expecting single update
         final ValuesDelta child = state.getEntry(TEST_ID);
         child.put(Phone.NUMBER, "");
         diff.clear();
-        state.buildDiffWrapper(diff);
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 3, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Incorrect type", oper.isUpdate());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(2);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(2);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
 
         // Now run trim, which should turn that update into delete
         RawContactModifier.trimEmpty(set, accountTypes);
         diff.clear();
-        state.buildDiffWrapper(diff);
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 3, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isDeleteCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Incorrect type", oper.isDelete());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(2);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(2);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }
@@ -720,44 +702,40 @@ public class RawContactModifierTests extends AndroidTestCase {
         set.add(state);
 
         // Build diff, expecting no changes
-        final ArrayList<CPOWrapper> diff = Lists.newArrayList();
-        state.buildDiffWrapper(diff);
+        final ArrayList<ContentProviderOperation> diff = Lists.newArrayList();
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 0, diff.size());
 
         // Now update row by changing number to empty string, expecting single update
         final ValuesDelta child = state.getEntry(TEST_ID);
         child.put(Phone.NUMBER, "");
         diff.clear();
-        state.buildDiffWrapper(diff);
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 3, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(1);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(1);
+            assertTrue("Incorrect type", oper.isUpdate());
             assertEquals("Incorrect target", Data.CONTENT_URI, oper.getUri());
         }
         {
-            final CPOWrapper cpoWrapper = diff.get(2);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Expected aggregation mode change", CompatUtils.isUpdateCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(2);
+            assertTrue("Expected aggregation mode change", oper.isUpdate());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
 
         // Now run trim, which should turn into deleting the whole contact
         RawContactModifier.trimEmpty(set, accountTypes);
         diff.clear();
-        state.buildDiffWrapper(diff);
+        state.buildDiff(diff);
         assertEquals("Unexpected operations", 1, diff.size());
         {
-            final CPOWrapper cpoWrapper = diff.get(0);
-            final ContentProviderOperation oper = cpoWrapper.getOperation();
-            assertTrue("Incorrect type", CompatUtils.isDeleteCompat(cpoWrapper));
+            final ContentProviderOperation oper = diff.get(0);
+            assertTrue("Incorrect type", oper.isDelete());
             assertEquals("Incorrect target", RawContacts.CONTENT_URI, oper.getUri());
         }
     }

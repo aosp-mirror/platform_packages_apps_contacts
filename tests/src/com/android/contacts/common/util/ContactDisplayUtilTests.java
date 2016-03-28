@@ -24,10 +24,6 @@ import android.test.suitebuilder.annotation.SmallTest;
 import com.android.contacts.common.R;
 import com.android.contacts.common.preference.ContactsPreferences;
 
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-
 /**
  * Unit tests for (@link ContactDisplayUtils}
  */
@@ -36,14 +32,6 @@ public class ContactDisplayUtilTests extends AndroidTestCase {
 
     private static final String NAME_PRIMARY = "Name Primary";
     private static final String NAME_ALTERNATIVE = "Name Alternative";
-
-    @Mock private ContactsPreferences mContactsPreferences;
-
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        MockitoAnnotations.initMocks(this);
-    }
 
     public void testIsCustomPhoneTypeReturnsTrue() {
         assertTrue(ContactDisplayUtils.isCustomPhoneType(Phone.TYPE_CUSTOM));
@@ -108,95 +96,43 @@ public class ContactDisplayUtilTests extends AndroidTestCase {
         assertEquals(R.string.sms_home, ContactDisplayUtils.getSmsLabelResourceId(Phone.TYPE_HOME));
     }
 
-    public void testGetPreferredDisplayName_NullContactsPreferences() {
-        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredDisplayName(NAME_PRIMARY,
-                NAME_ALTERNATIVE, null));
-    }
-
-    public void testGetPreferredDisplayName_NullContactsPreferences_NullAlternative() {
-        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredDisplayName(NAME_PRIMARY, null,
-                null));
-    }
-
-    public void testGetPreferredDisplayName_NullContactsPreferences_NullPrimary() {
-        assertEquals(NAME_ALTERNATIVE, ContactDisplayUtils.getPreferredDisplayName(null,
-                NAME_ALTERNATIVE, null));
-    }
-
-    public void testGetPreferredDisplayName_NullContactsPreferences_BothNull() {
-        assertNull(ContactDisplayUtils.getPreferredDisplayName(null, null, null));
-    }
-
-    public void testGetPreferredDisplayName_EmptyAlternative() {
-        Mockito.when(mContactsPreferences.getDisplayOrder())
-                .thenReturn(ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE);
+    public void testGetPreferredDisplayNameEmptyAlternative() {
         assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredDisplayName(NAME_PRIMARY, "",
-                mContactsPreferences));
+                ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE));
     }
 
-    public void testGetPreferredDisplayName_InvalidPreference() {
-        Mockito.when(mContactsPreferences.getDisplayOrder()).thenReturn(-1);
+    public void testGetPreferredDisplayNameInvalidPreference() {
         assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredDisplayName(NAME_PRIMARY,
-                NAME_ALTERNATIVE, mContactsPreferences));
+                NAME_ALTERNATIVE, -1));
     }
 
-    public void testGetPreferredDisplayName_Primary() {
-        Mockito.when(mContactsPreferences.getDisplayOrder())
-                .thenReturn(ContactsPreferences.DISPLAY_ORDER_PRIMARY);
+    public void testGetPreferredDisplayNamePrimary() {
         assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredDisplayName(NAME_PRIMARY,
-                NAME_ALTERNATIVE, mContactsPreferences));
+                NAME_ALTERNATIVE, ContactsPreferences.DISPLAY_ORDER_PRIMARY));
     }
 
-    public void testGetPreferredDisplayName_Alternative() {
-        Mockito.when(mContactsPreferences.getDisplayOrder())
-                .thenReturn(ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE);
+    public void testGetPreferredDisplayNameAlternative() {
         assertEquals(NAME_ALTERNATIVE, ContactDisplayUtils.getPreferredDisplayName(NAME_PRIMARY,
-                NAME_ALTERNATIVE, mContactsPreferences));
+                NAME_ALTERNATIVE, ContactsPreferences.DISPLAY_ORDER_ALTERNATIVE));
     }
 
-    public void testGetPreferredSortName_NullContactsPreferences() {
-        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredSortName(NAME_PRIMARY,
-                NAME_ALTERNATIVE, null));
-    }
-
-    public void testGetPreferredSortName_NullContactsPreferences_NullAlternative() {
-        assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredSortName(NAME_PRIMARY, null,
-                null));
-    }
-
-    public void testGetPreferredSortName_NullContactsPreferences_NullPrimary() {
-        assertEquals(NAME_ALTERNATIVE, ContactDisplayUtils.getPreferredSortName(null,
-                NAME_ALTERNATIVE, null));
-    }
-
-    public void testGetPreferredSortName_NullContactsPreferences_BothNull() {
-        assertNull(ContactDisplayUtils.getPreferredSortName(null, null, null));
-    }
-
-    public void testGetPreferredSortName_EmptyAlternative() {
-        Mockito.when(mContactsPreferences.getSortOrder())
-                .thenReturn(ContactsPreferences.SORT_ORDER_ALTERNATIVE);
+    public void testGetPreferredSortNameEmptyAlternative() {
         assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredSortName(NAME_PRIMARY, "",
-                mContactsPreferences));
+                ContactsPreferences.SORT_ORDER_ALTERNATIVE));
     }
 
-    public void testGetPreferredSortName_InvalidPreference() {
-        Mockito.when(mContactsPreferences.getSortOrder()).thenReturn(-1);
+    public void testGetPreferredSortNameInvalidPreference() {
         assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredSortName(NAME_PRIMARY,
-                NAME_ALTERNATIVE, mContactsPreferences));
+                NAME_ALTERNATIVE, -1));
     }
 
-    public void testGetPreferredSortName_Primary() {
-        Mockito.when(mContactsPreferences.getSortOrder())
-                .thenReturn(ContactsPreferences.SORT_ORDER_PRIMARY);
+    public void testGetPreferredSortNamePrimary() {
         assertEquals(NAME_PRIMARY, ContactDisplayUtils.getPreferredSortName(NAME_PRIMARY,
-                NAME_ALTERNATIVE, mContactsPreferences));
+                NAME_ALTERNATIVE, ContactsPreferences.SORT_ORDER_PRIMARY));
     }
 
-    public void testGetPreferredSortName_Alternative() {
-        Mockito.when(mContactsPreferences.getSortOrder())
-                .thenReturn(ContactsPreferences.SORT_ORDER_ALTERNATIVE);
+    public void testGetPreferredSortNameAlternative() {
         assertEquals(NAME_ALTERNATIVE, ContactDisplayUtils.getPreferredSortName(NAME_PRIMARY,
-                NAME_ALTERNATIVE, mContactsPreferences));
+                NAME_ALTERNATIVE, ContactsPreferences.SORT_ORDER_ALTERNATIVE));
     }
 }

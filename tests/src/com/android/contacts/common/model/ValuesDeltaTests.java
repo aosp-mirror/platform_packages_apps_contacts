@@ -18,13 +18,9 @@ package com.android.contacts.common.model;
 
 import android.content.ContentProviderOperation.Builder;
 import android.content.ContentValues;
-import android.os.Build;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
 import android.test.suitebuilder.annotation.SmallTest;
-
-import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.model.BuilderWrapper;
 
 import junit.framework.TestCase;
 
@@ -48,10 +44,8 @@ public class ValuesDeltaTests extends TestCase {
         final ValuesDelta values = ValuesDelta.fromAfter(after);
 
         // Should produce an insert action
-        final BuilderWrapper builderWrapper = values.buildDiffWrapper(Data.CONTENT_URI);
-        final boolean isInsert = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                ? builderWrapper.getBuilder().build().isInsert()
-                : builderWrapper.getType() == CompatUtils.TYPE_INSERT;
+        final Builder builder = values.buildDiff(Data.CONTENT_URI);
+        final boolean isInsert = builder.build().isInsert();
         assertTrue("Didn't produce insert action", isInsert);
     }
 
@@ -81,10 +75,8 @@ public class ValuesDeltaTests extends TestCase {
         values.put(Phone.NUMBER, TEST_PHONE_NUMBER_2);
 
         // Should produce an update action
-        final BuilderWrapper builderWrapper = values.buildDiffWrapper(Data.CONTENT_URI);
-        final boolean isUpdate = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                ? builderWrapper.getBuilder().build().isUpdate()
-                : builderWrapper.getType() == CompatUtils.TYPE_UPDATE;
+        final Builder builder = values.buildDiff(Data.CONTENT_URI);
+        final boolean isUpdate = builder.build().isUpdate();
         assertTrue("Didn't produce update action", isUpdate);
     }
 }

@@ -325,17 +325,7 @@ public class ShortcutIntentBuilder {
         Intent intent = new Intent();
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, bitmap);
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
-
-        if (TextUtils.isEmpty(displayName)) {
-            displayName = mContext.getResources().getString(R.string.missing_name);
-        }
-        if (TextUtils.equals(shortcutAction, Intent.ACTION_CALL)) {
-            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME,
-                    mContext.getResources().getString(R.string.call_by_shortcut, displayName));
-        } else if (TextUtils.equals(shortcutAction, Intent.ACTION_SENDTO)) {
-            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME,
-                    mContext.getResources().getString(R.string.sms_by_shortcut, displayName));
-        }
+        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, displayName);
 
         mListener.onShortcutIntentCreated(uri, intent);
     }

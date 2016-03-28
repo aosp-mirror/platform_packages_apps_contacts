@@ -98,14 +98,16 @@ public class SelectAccountActivity extends Activity {
 
     @Override
     protected Dialog onCreateDialog(int resId, Bundle bundle) {
-        if (resId == R.string.import_from_vcf_file) {
-            if (mAccountSelectionListener == null) {
-                throw new NullPointerException(
-                        "mAccountSelectionListener must not be null.");
+        switch (resId) {
+            case R.string.import_from_vcf_file: {
+                if (mAccountSelectionListener == null) {
+                    throw new NullPointerException(
+                            "mAccountSelectionListener must not be null.");
+                }
+                return AccountSelectionUtil.getSelectAccountDialog(this, resId,
+                        mAccountSelectionListener,
+                        new CancelListener());
             }
-            return AccountSelectionUtil.getSelectAccountDialog(this, resId,
-                    mAccountSelectionListener,
-                    new CancelListener());
         }
         return super.onCreateDialog(resId, bundle);
     }

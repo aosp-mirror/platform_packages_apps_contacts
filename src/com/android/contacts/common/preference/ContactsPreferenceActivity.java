@@ -18,16 +18,16 @@ package com.android.contacts.common.preference;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.app.ActionBar;
-import android.preference.PreferenceActivity;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import com.android.contacts.common.activity.AppCompatPreferenceActivity;
 import com.android.contacts.common.R;
 
 /**
  * Contacts settings.
  */
-public final class ContactsPreferenceActivity extends PreferenceActivity {
+public final class ContactsPreferenceActivity extends AppCompatPreferenceActivity {
 
     private static final String TAG_ABOUT_CONTACTS = "about_contacts";
 
@@ -35,7 +35,7 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
         }
@@ -92,7 +92,7 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
     }
 
     private void setActivityTitle(int res) {
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle(res);
         }

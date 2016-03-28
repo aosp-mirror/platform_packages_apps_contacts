@@ -312,10 +312,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         public static final int FAVORITES = 6;
     }
 
-    public void setLookupUri(Uri lookupUri) {
-        mLookupUri = lookupUri;
-    }
-
     @Override
     public Contact loadInBackground() {
         try {
