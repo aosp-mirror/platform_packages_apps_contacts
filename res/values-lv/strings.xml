@@ -243,7 +243,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Mans vietējais profils"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mans <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profils"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Tiek attēlotas visas kontaktpersonas"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Lietotne “Kontaktpersonas” darbosies labāk, izmantojot Google kontu.\n\n• Piekļuve no jebkuras tīmekļa pārlūkprogrammas. \n• Droša kontaktpersonu informācijas dublēšana."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Nodrošinieties pret kontaktpersonu zudumu pat tālruņa nozaudēšanas gadījumā — sinhronizējiet informāciju ar tiešsaistes pakalpojumu."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konta pievienošana"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Jaunā kontaktinformācija netiks dublēta. Vai pievienot kontu, kurā tiek tiešsaistē dublēta kontaktinformācija?"</string>
@@ -339,34 +338,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Nav atzīmēts fotoattēls no nezināma konta"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Atzīmēts fotoattēls no nezināma konta"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaktpersonu saraksts tiek atjaunināts, lai atainotu valodas maiņu.\n\nLūdzu, uzgaidiet..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Bloķētie numuri"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"No šiem numuriem saņemtie zvani un ziņojumi tiks bloķēti."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Pievienot numuru"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Bloķēt numuru"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Pievienojiet numuru vai meklējiet kontaktpersonas"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"No šī numura saņemtie zvani un ziņojumi tiks bloķēti."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Vai atbloķēt numuru <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ATBLOĶĒT"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Vai bloķēt numuru <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"BLOĶĒT"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> bloķēts"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> atbloķēts"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> nav derīgs."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Zvanu bloķēšana ir īslaicīgi izslēgta"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Zvanu bloķēšana ir atspējota, jo pēdējo 48 stundu laikā jūs sazinājāties ar ārkārtas palīdzības dienestiem, izmantojot šo tālruni. Zvanu bloķēšana tiks automātiski iespējota, tiklīdz beigsies 48 stundu periods."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Jūs iepriekš atzīmējāt dažas kontaktpersonas, kuras automātiski jānovirza uz balss pastu. Importējiet šo kontaktpersonu tālruņa numurus šeit, lai bloķētu no tiem saņemtos zvanus un ziņojumus."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Importēt"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Skatīt numurus"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Pievienot numuru"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Zvanu bloķēšana atspējota uz 48 stundām"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Zvanu bloķēšana atspējota, jo tika veikts ārkārtas zvans."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"ATSAUKT"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> jau ir bloķēts."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Atbloķēt numuru"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Kontaktpersonas informācija: <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Importēšana neizdevās"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Importēt numurus"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Lai meklētu savas kontaktpersonas, ieslēdziet atļauju Kontaktpersonas."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Ieslēgt"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Bloķētie numuri"</string>
 </resources>

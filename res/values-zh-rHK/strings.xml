@@ -236,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"我的本機個人資料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 個人資料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"聯絡人與 Google 帳戶搭配使用的效能更卓越。\n\n• 透過任何網絡瀏覽器皆可存取。\n• 安全備份您的聯絡人。"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使丟失手機，也要確保通訊錄安全：與網上服務保持同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"新增帳戶"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"您的新聯絡人資料不會備份。要新增可在網上備份聯絡人資料的帳戶嗎？"</string>
@@ -328,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"未勾選不明帳戶中的相片"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"已勾選不明帳戶中的相片"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"正在更新聯絡人清單以反映語言變更。\n\n請稍候…"</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"已封鎖的號碼"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"系統會封鎖這些號碼的來電和短訊。"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"新增電話號碼"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"封鎖號碼"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"新增號碼或搜尋聯絡人"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"系統會封鎖這個號碼的來電和短訊。"</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"要解除封鎖 <xliff:g id="NUMBER">%1$s</xliff:g> 嗎？"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"解除封鎖"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"要封鎖 <xliff:g id="NUMBER">%1$s</xliff:g> 嗎？"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"封鎖"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"已封鎖 <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"已解除封鎖 <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> 無效。"</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"暫時關閉來電封鎖功能"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"您在過去 48 小時內曾經使用此手機聯絡緊急服務，因此來電封鎖功能已停用。系統會在 48 小時期限結束後自動重新啟用功能。"</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"您之前曾將某些聯絡人設定為自動轉駁至留言信箱。在此匯入這些號碼，即可封鎖對方的來電和短訊。"</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"匯入"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"查看電話號碼"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"新增電話號碼"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"已停用來電封鎖 (48 小時)"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"已撥打緊急電話，已停用來電封鎖功能。"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"復原"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"已封鎖 <xliff:g id="NUMBER">%1$s</xliff:g>。"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"解除封鎖號碼"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"「<xliff:g id="NAMEORNUMBER">%1$s</xliff:g>」的聯絡人詳細資料"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"匯入失敗"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"匯入號碼"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"如要搜尋聯絡人，請開啟「通訊錄」權限。"</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"開放權限"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"已封鎖的號碼"</string>
 </resources>

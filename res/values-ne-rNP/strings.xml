@@ -236,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"मेरो स्थानीय प्रोफाइल"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"मेरो <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफाइल"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सबै सम्पर्कहरू प्रदर्शन गरिदै"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Google खाता साथमा सम्पर्कले राम्रो काम गर्छ।\n\n• कुनै पनि वेब ब्राउजरबाट पहुँच गर्न सकिन्छ।\n• तपाईँका सम्पर्कहरू सुरक्षित रूपमा जगेडा गर्नुहोस्।"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"तपाईँले फोन नै हराउनु भएको अवस्थामा पनि आफ्ना सम्पर्कहरूलाई सुरक्षित राख्नुहोस्: कुनै अनलाइन सेवासँग सिन्क्रोनाइज गर्नुहोस्।"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"एउटा खाता थप्नुहोस्"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"तपाईँको नयाँ सम्पर्क अद्यावधि गरिने छैन। अनलाइन अद्यावधिक गर्ने एउटा खाता थप्ने हो?"</string>
@@ -328,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"अज्ञात खाताको तस्बिर जाँच गरिएन"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"अज्ञात खाताको तस्बिर जाँच गरियो"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"भाषा परिवर्तन प्रतिविम्ब गराउन सम्पर्क सूची अद्यावधिक भइरहेको छ। \n \n कृपया प्रतीक्षा गर्नुहोस्..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"रोकिएका नम्बरहरू"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"यी नम्बरका कल र पाठ सन्देशलाई रोक लगाइनेछ।"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"नम्बर थप्नुहोस्"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"नम्बरलाई निषेध गर्नुहोस्"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"नम्बर थप्नुहोस् वा सम्पर्कहरू खोज्नुहोस्"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"यस नम्बरका कल र पाठ सन्देशलाई रोक लगाइनेछ।"</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> माथिको रोक हटाउने हो?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"रोक हटाउनुहोस्"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> माथि रोक लगाउने हो?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"रोक्नुहोस्"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> रोकियो"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> रोकियो"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> अमान्य छ।"</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"कल अवरुद्ध अस्थायी रुपमा निष्क्रिय"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"कल अवरुद्ध अस्थायी रुपमा असक्षम गरिएको छ किनभने तपाईँले अन्तिम ४८ घण्टा भित्र यस फोनबाट आपत्कालीन सेवाहरू सम्पर्क गर्नुभयो। एकपटक ४८ घण्टा अवधि समाप्त भएपछि यो स्वचालित रूपले पुनः सक्रिय हुनेछ।"</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"तपाईंले पहिले नै भ्वाइस मेलमा स्वत: पठाउन केही सम्पर्कहरूमा चिन्ह लगाउनुभएको थियो। कल र पाठ सन्देश दुबैलाई रोक्न ती नम्बरहरूलाई यहाँ आयात गर्नुहोस्।"</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"आयात गर्नुहोस्"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"नम्बरहरू हेर्नुहोस्"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"नम्बर थप्नुहोस्"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"४८ घण्टाको लागि कल निषेध असक्षम गरियो"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"आपत्कालीन कल गरिएको हुनाले असक्षम गरियो।"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"अनडू गर्नुहोस्"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> पहिले नै रोकिएको छ।"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"नम्बरमाथिको रोक हटाउनुहोस्"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> को लागि सम्पर्क विवरणहरू"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"आयात असफल भयो"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"नम्बरहरू आयात गर्नुहोस्"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"तपाईँको सम्पर्कहरू खोज गर्न सम्पर्क अनुमतिहरू सक्रिय गर्नुहोस्।"</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"सक्रिय पार्नुहोस्"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"रोकिएका नम्बरहरू"</string>
 </resources>

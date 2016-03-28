@@ -236,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"El meu perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil de <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"La funció Contactes funciona millor amb un compte de Google.\n\n• Accedeix-hi des de qualsevol navegador.\n• Fes còpies de seguretat dels contactes de manera segura."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén els contactes segurs encara que perdis el telèfon: sincronitza\'ls amb un servidor en línia."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Afegeix compte"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No es farà una còpia de seguretat del teu contacte nou. Vols afegir un compte per fer còpies de seguretat en línia dels contactes?"</string>
@@ -328,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"No s\'ha seleccionat la foto d\'un compte desconegut"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"S\'ha seleccionat la foto d\'un compte desconegut"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"La llista de contactes s\'està actualitzant per reflectir el canvi d\'idioma.\n\nEspereu-vos..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Números bloquejats"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"Es bloquejaran les trucades i els missatges de text d\'aquests números."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Afegeix un número"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Bloqueja el número"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Afegeix núm. o cerca contactes"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Es bloquejaran les trucades i els missatges de text d\'aquest número."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Vols desbloquejar el número <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"DESBLOQUEJA"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Vols bloquejar el número <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"BLOQUEJA"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"S\'ha bloquejat el número <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"S\'ha desbloquejat el número <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> no és vàlid."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Bloqueig de trucades desactivat tempor."</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"El bloqueig de trucades s\'ha desactivat perquè has contactat amb els serveis d\'emergència des d\'aquest telèfon durant les últimes 48 hores. Es tornarà a activar automàticament una vegada transcorregut el període de 48 hores."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Has indicat que les trucades d\'alguns contactes s\'enviïn automàticament a la bústia de veu. Importa aquests números aquí per bloquejar tant les trucades com els missatges de text."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Importa"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Mostra els números"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Afegeix un número"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"El bloqueig de trucades s\'ha desactivat durant 48 hores"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"S\'ha desactivat perquè s\'ha fet una trucada d\'emergència."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"DESFÉS"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ja està bloquejat."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Desbloqueja el número"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Dades de contacte de: <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Error en la importació"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Importa els números"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Per cercar els teus contactes, activa els permisos de Contactes."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Activa"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Números bloquejats"</string>
 </resources>

@@ -250,7 +250,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Moj lokalni profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Moj profil za <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Prikaz vseh stikov"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Stiki delujejo bolje z Google Računom.\n\n• Dostop iz poljubnega brskalnika.\n• Varno varnostno kopiranje stikov."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Naj bodo vaš stiki na varnem, tudi če izgubite telefon: sinhronizirajte s spletno storitvijo."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Dodajanje računa"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nov stik ne bo varnostno kopiran. Želite dodati račun za varnostno kopiranje stikov v internetu?"</string>
@@ -350,34 +349,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Fotografija iz neznanega računa ni izbrana"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotografija iz neznanega računa je izbrana"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Seznam stikov se posodablja po spremembi jezika.\n\nPočakajte ..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Blokirane številke"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"Klici in SMS-ji s teh številk bodo blokirani."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Dodaj telefonsko številko"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Blokiraj številko"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Dodajte št. ali iščite med st."</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Klici in SMS-ji s te številke bodo blokirani."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Želite odblokirati številko <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ODBLOKIRAJ"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Želite blokirati številko <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"BLOKIRAJ"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"Številka <xliff:g id="NUMBER">%1$s</xliff:g> je blokirana"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"Številka <xliff:g id="NUMBER">%1$s</xliff:g> je odblokirana"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"Telefonska številka <xliff:g id="NUMBER">%1$s</xliff:g> je neveljavna."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Blokiranje klicev je začasno izklopljeno"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Blokiranje klicev je onemogočeno, ker ste se v zadnjih 48 urah s tem telefonom obrnili na nujno pomoč. Ko 48-urno obdobje poteče, bo blokiranje klicev samodejno znova omogočeno."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Označili ste, naj bodo nekateri stiki samodejno preusmerjeni v odzivnik. Uvozite te številke zaradi blokiranja klicev in SMS-jev."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Uvozi"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Ogled številk"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Dodaj telefonsko številko"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Blokiranje klicev je onemogočeno za 48 ur"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Onemogočeno zaradi opravljenega klica v sili"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"RAZVELJAVI"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"Telefonska številka <xliff:g id="NUMBER">%1$s</xliff:g> je že blokirana."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Odblokiranje telefonske številke"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Podrobnosti stika za <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Uvoz ni uspel"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Uvoz številk"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Če želite iskati po stikih, vklopite dovoljenje za stike."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Vklop"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokirane številke"</string>
 </resources>

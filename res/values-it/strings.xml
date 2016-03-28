@@ -236,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Il mio profilo locale"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Il mio profilo <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Sono visualizzati tutti i contatti"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"L\'app Contatti funziona meglio con un account Google.\n\n• Accedi da qualsiasi browser web.\n• Effettua il backup dei tuoi contatti in modo sicuro."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tieni al sicuro i tuoi contatti anche se perdi il telefono: sincronizzali con un servizio online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Aggiungi un account"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Non verrà effettuato il backup del nuovo contatto. Aggiungere un account che effettua il backup dei contatti online?"</string>
@@ -328,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto di un account sconosciuto non selezionata"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto di un account sconosciuto selezionata"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"L\'elenco contatti verrà aggiornato per rispecchiare il cambio di lingua.\n\nAttendi..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Numeri bloccati"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"Le chiamate e gli SMS da questi numeri verranno bloccati."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Aggiungi numero"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Blocca numero"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Aggiungi numero/cerca contatti"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Le chiamate e gli SMS da questo numero verranno bloccati."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Sbloccare il numero <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"SBLOCCA"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Bloccare il numero <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"BLOCCA"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> bloccato"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> sbloccato"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> non è valido."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Blocco chiamate temporaneam. disattivato"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Il blocco chiamate è stato disattivato perché hai contattato servizi di emergenza da questo telefono nelle ultime 48 ore. Verrà riattivato automaticamente una volta trascorso il periodo di 48 ore."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Hai già contrassegnato alcuni contatti da inviare automaticamente alla segreteria. Importa qui i relativi numeri per bloccare chiamate e SMS."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Importa"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Visualizza numeri"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Aggiungi numero"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Il blocco chiamate è stato disattivato per 48 ore"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Funzione disattivata: è stata fatta una chiamata di emergenza."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"ANNULLA"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> è già bloccato."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Sblocca numero"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Dettagli contatto <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Importazione non riuscita"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Importa numeri"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Per cercare nei tuoi contatti, attiva le autorizzazioni Contatti."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Attiva"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Numeri bloccati"</string>
 </resources>

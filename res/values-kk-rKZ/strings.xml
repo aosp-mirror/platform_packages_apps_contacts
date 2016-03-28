@@ -236,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Менің жергілікті профайлым"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Менің <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профайлым"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Барлық контактілер көрсетілуде"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Контактілер Google есептік жазбасымен жақсырақ жұмыс істейді.\n\n• Кез келген веб-браузерден қатынасыңыз.\n• Контактілердің сақтық көшірмесін қауіпсіз жасаңыз."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Телефоныңыз жоғалған жағдайда контактілеріңізді сақтап қалыңыз: желі қызметімен синхрондаңыз."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Есептік жазба қосу"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Жаңа контактінің сақтық көшірмесі жасалмайды. Контактілердің желі арқылы көшірмесін жасайтын есептік жазба қосуды қалайсыз ба?"</string>
@@ -328,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Белгісіз есептік жазбадан алынған фотосуретке құсбелгі қойылмады"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Белгісіз есептік жазбадан алынған фотосуретке құсбелгі қойылды"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Контактілер тізімі тілдің өзгеруін көрсету үшін жаңартылуда.\n\nКүтіңіз..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Бөгелген нөмірлер"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"Бұл нөмірлерден қоңыраулар мен мәтіндік хабарлар бөгеледі."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Нөмір қосу"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Нөмірді бөгеу"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Нөмірді енгізіңіз немесе контактілерден іздеп табыңыз"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Бұл нөмірден қоңыраулар мен мәтіндік хабарлар бөгеледі."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> бөгеуден шығару керек пе?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"БӨГЕУДЕН ШЫҒАРУ"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> бөгеу керек пе?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"БӨГЕУ"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> бөгелген"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> бөгеуден шығарылған"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> жарамсыз."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Қоңырауларға тыйым салу уақытша өшірулі"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Қоңырауларға тыйым салу өшірілді, өйткені сіз соңғы 48 сағат ішінде осы телефоннан төтенше қызметтерге хабарластыңыз. Ол 48 сағаттық кезең өткеннен кейін автоматты түрде қайта қосылады."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Сіз алдында кейбір контактілерді дауыстық поштаға автоматты түрде жіберу үшін белгілегенсіз. Қоңырауларды да, мәтіндік хабарларды да бөгеу үшін бұл нөмірлерді осында импорттаңыз."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Импорттау"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Нөмірлерді көру"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Нөмір қосу"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Қоңырауларға тыйым салу 48 сағат бойы өшірілген"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Өшірілген, өйткені төтенше қоңырау соғылған."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"КЕРІ ОРЫНДАУ"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> бөгеліп қойылған."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Нөмірді бөгеуден шығару"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> контакт деректері"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Импорттау сәтсіз аяқталды"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Нөмірлерді импорттау"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Контактілерді іздеу үшін \"Контактілер\" рұқсаттарын қосыңыз."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Қосу"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Бөгелген нөмірлер"</string>
 </resources>

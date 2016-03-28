@@ -236,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"โปรไฟล์ในอุปกรณ์ของฉัน"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"โปรไฟล์ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ของฉัน"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"แสดงรายชื่อติดต่อทั้งหมด"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"คุณจะใช้งานรายชื่อติดต่อได้ดีขึ้นโดยผ่านบัญชี Google\n\n• เข้าถึงได้จากเว็บเบราว์เซอร์ทุกชนิด\n• สำรองข้อมูลรายชื่อติดต่อของคุณอย่างปลอดภัย"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"เก็บรายชื่อติดต่อของคุณไว้อย่างปลอดภัยด้วยการซิงค์กับบริการออนไลน์แม้ว่าคุณจะทำโทรศัพท์หาย"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"เพิ่มบัญชี"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ผู้ติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลผู้ติดต่อออนไลน์หรือไม่"</string>
@@ -328,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"รูปภาพนี้ไม่ได้เลือกจากบัญชีที่ไม่รู้จัก"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"รูปภาพนี้เลือกจากบัญชีที่ไม่รู้จัก"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"กำลังอัปเดตรายการสมุดโทรศัพท์เพื่อแสดงการเปลี่ยนภาษา\n\nโปรดรอสักครู่..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"หมายเลขที่ถูกบล็อก"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"ระบบจะบล็อกสายเรียกเข้าและข้อความจากหมายเลขเหล่านี้"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"เพิ่มหมายเลข"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"บล็อกหมายเลข"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"เพิ่มหมายเลขหรือค้นหาผู้ติดต่อ"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"ระบบจะบล็อกสายเรียกเข้าและข้อความจากหมายเลขนี้"</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"เลิกบล็อก <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"เลิกบล็อก"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"บล็อก <xliff:g id="NUMBER">%1$s</xliff:g> ไหม"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"บล็อก"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"บล็อก <xliff:g id="NUMBER">%1$s</xliff:g> แล้ว"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"เลิกบล็อก <xliff:g id="NUMBER">%1$s</xliff:g> แล้ว"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> ไม่ถูกต้อง"</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"การบล็อกสายเรียกเข้าปิดชั่วคราว"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"ระบบปิดใช้การบล็อกสายเรียกเข้าเนื่องจากคุณติดต่อบริการฉุกเฉินจากโทรศัพท์เครื่องนี้ภายใน 48 ชั่วโมงที่ผ่านมา ระบบจะเปิดใช้คุณลักษณะนี้อีกครั้งโดยอัตโนมัติเมื่อครบ 48 ชั่วโมง"</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"ก่อนหน้านี้คุณได้ทำเครื่องหมายรายชื่อติดต่อบางรายการให้ส่งไปยังข้อความเสียงโดยอัตโนมัติ โปรดนำเข้าหมายเลขดังกล่าวที่นี่เพื่อบล็อกทั้งสายเรียกเข้าและข้อความ"</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"นำเข้า"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"ดูหมายเลข"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"เพิ่มหมายเลข"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"ปิดการบล็อกสายเรียกเข้า 48 ชั่วโมง"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"ปิดใช้งานเนื่องจากมีการโทรเข้าหมายเลขฉุกเฉิน"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"เลิกทำ"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ถูกบล็อกอยู่แล้ว"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"เลิกบล็อกหมายเลข"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"รายละเอียดรายชื่อติดต่อสำหรับ <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"การนำเข้าล้มเหลว"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"นำเข้าหมายเลข"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"หากต้องการค้นหารายชื่อติดต่อ ให้เปิดสิทธิ์เข้าถึงรายชื่อติดต่อ"</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"เปิด"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"หมายเลขที่ถูกบล็อก"</string>
 </resources>

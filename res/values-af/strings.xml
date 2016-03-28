@@ -236,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"My plaaslike profiel"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"My <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>profiel"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Vertoon alle kontakte"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Kontakte werk beter met \'n Google-rekening.\n\n• Verkry toegang vanaf enige webblaaier.\n• Rugsteun jou kontakte veilig."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Hou jou kontakte veilig, selfs al verloor jy jou selfoon: sinkroniseer met \'n aanlyn diens."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Voeg \'n rekening by"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Jou nuwe kontak sal nie gerugsteun word nie. Voeg \'n rekening by wat kontakte aanlyn rugsteun?"</string>
@@ -328,34 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto van onbekende rekening af is nie gemerk nie"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto van onbekende rekening af is gemerk"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaklys word tans opgedateer om die taalverandering te weerspieël.\n\nWag asseblief..."</string>
-    <string name="blocked_numbers_title" msgid="6350716762304498682">"Geblokkeerde nommers"</string>
-    <string name="blocked_number_header_message" msgid="7296377056254430077">"Oproepe en SMS\'e van hierdie nommers af sal geblokkeer word."</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Voeg nommer by"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Blokkeer nommer"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Gee nommer of soek in kontakte"</string>
-    <string name="block_number_confirmation_message" msgid="4425497283298329703">"Oproepe en SMS\'e van hierdie nommer af sal geblokkeer word."</string>
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Deblokkeer <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"DEBLOKKEER"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Blokkeer <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"BLOKKEER"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> is geblokkeer"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> is gedeblokkeer"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> is ongeldig."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Oproepblokkering is tydelik af"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Oproepblokkering is gedeaktiveer omdat jy die afgelope 48 uur nooddienste van hierdie foon af gekontak het. Dit sal outomaties heraktiveer word sodra die 48-uurtydperk verstryk."</string>
-    <string name="blocked_call_settings_import_description" msgid="9026101454390679399">"Jy het voorheen sommige kontakte gemerk om outomaties na stemboodskap gestuur te word. Voer daardie nommers hier in om oproepe én SMS\'e te blokkeer."</string>
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Voer in"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Bekyk nommers"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Voeg nommer by"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Oproepblokkering is vir 48 uur gedeaktiveer"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Gedeaktiveer omdat \'n noodoproep gemaak is."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"ONTDOEN"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> is reeds geblokkeer."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Deblokkeer nommer"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Kontakbesonderhede van <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Kon nie invoer nie"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Voer nommers in"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Skakel die Kontakte-toestemmings aan om jou kontakte te deursoek."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Skakel aan"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Geblokkeerde nommers"</string>
 </resources>
