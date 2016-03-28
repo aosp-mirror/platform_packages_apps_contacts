@@ -92,5 +92,6 @@
         <DataKind kind="website" />
         <DataKind kind="sip_address" maxOccurs="1" />
         <DataKind kind="note" maxOccurs="1" />
+        <DataKind kind="group_membership" maxOccurs="1" />
     </EditSchema>
 </ContactsAccountType>
