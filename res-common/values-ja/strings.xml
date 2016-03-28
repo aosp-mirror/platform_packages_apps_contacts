@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"ポケベル（勤務先）に発信"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g>に発信"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMSに発信"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> さん（通話を発信）"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g>にSMS"</string>
     <string name="sms_home" msgid="7765831490534280540">"自宅にSMS"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"携帯端末にSMS"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ポケベル（勤務先）にSMS"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>にSMS"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMSにSMS"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> さん（メッセージを送信）"</string>
     <string name="description_video_call" msgid="4907306403398614909">"ビデオハングアウト"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"よく使う連絡先を消去しますか？"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"連絡帳アプリや電話アプリのよく使う連絡先リストを消去し、メールアプリがアドレス設定を初めから保存していくようにします。"</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"連絡先"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"その他"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ディレクトリ"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"仕事用の連絡先リスト"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"仕事用の連絡先リスト"</string>
     <string name="local_search_label" msgid="9094584931063745728">"すべての連絡先"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"自分"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"検索しています…"</string>
@@ -89,9 +87,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"よく使う連絡先"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"連絡先を表示"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"電話番号のあるすべての連絡先"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"仕事用プロファイルの連絡先"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"仕事用プロファイルの連絡先"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"更新情報を表示"</string>
-    <string name="account_phone" msgid="6104157990869081962">"電話のみ（非同期）"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"タブレットのみ（非同期）"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"電話のみ（非同期）"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"名前"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ニックネーム"</string>
     <string name="full_name" msgid="885420216812981202">"名前"</string>
@@ -179,6 +178,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"必要な権限が無効にされています。"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"エクスポート中にエラーが発生しました: 「<xliff:g id="EXACT_REASON">%s</xliff:g>」。"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ファイル名（必須）が長すぎます（「<xliff:g id="FILENAME">%s</xliff:g>」）。"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"ストレージ内のvCardファイルが多すぎます。"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SDカードのvCardファイルが多すぎます。"</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"送受信エラー"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"メモリが不足しています。ファイルが大きすぎる可能性があります。"</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"予期しない理由によりvCardを解析できませんでした。"</string>
@@ -187,13 +188,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"1つ以上のファイルをインポートできませんでした（%s）。"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートの完了"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"連絡先のエクスポートの完了"</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"連絡先のエクスポートが終了しました。通知をタップして連絡先を共有してください。"</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"タップして連絡先を共有してください。"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートのキャンセル"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"連絡先データのエクスポート"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"連絡先データをエクスポートしています。"</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"連絡先データを<xliff:g id="FILE_NAME">%s</xliff:g>にエクスポートします。"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"データベース情報を取得できませんでした。"</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"エクスポートできる連絡先がありません。携帯端末に連絡先がある場合でも、データプロバイダによっては携帯端末から連絡先をエクスポートできないことがあります。"</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"エクスポートできる連絡先がありません。タブレットに連絡先がある場合でも、データプロバイダによってはタブレットから連絡先をエクスポートできないことがあります。"</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"エクスポートできる連絡先がありません。携帯端末に連絡先がある場合でも、データプロバイダによっては携帯端末から連絡先をエクスポートできないことがあります。"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCardコンポーザーが正しく起動しませんでした。"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"エクスポート失敗"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"連絡先データはエクスポートされませんでした。\n理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>
@@ -207,14 +207,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCardのインポートリクエストは拒否されました。しばらくしてからもう一度お試しください。"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g>はまもなくエクスポートされます。"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ファイルはまもなくエクスポートされます。"</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"連絡先のエクスポートをまもなく開始します。"</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCardのエクスポートリクエストは拒否されました。しばらくしてからもう一度お試しください。"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"連絡先"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCardをローカル一時ストレージにキャッシュしています。まもなくインポート処理を開始します。"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCardをインポートできませんでした。"</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"ストレージ内にvCardファイルが見つかりません。"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SDカードにvCardファイルが見つかりません。"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC受信の連絡先"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"連絡先をエクスポートしますか？"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"キャッシュ中"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"ストレージをスキャンできませんでした（理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」）。"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SDカードをスキャンできませんでした（理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」）。"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>件をインポート中: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcfにエクスポート"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"並べ替え"</string>
@@ -274,7 +277,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"プライバシーポリシー"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"利用規約"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"オープンソースライセンス"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"この URL を開けませんでした。"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> はONです"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> はOFFです"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"ビデオハングアウトを発信"</string>

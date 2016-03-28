@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"התקשר לזימונית של העבודה"</string>
     <string name="call_assistant" msgid="5188990854852312696">"התקשר אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"‏התקשר ל-MMS"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (שיחה)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"שלח הודעת טקסט אל <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"שלח הודעת טקסט לבית"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"שלח הודעת טקסט לנייד"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"שלח הודעת טקסט לזימונית של עבודה"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"שלח הודעת טקסט אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"‏שלח הודעת טקסט ל-MMS"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (הודעה)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"בצע שיחת וידאו"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"האם למחוק אנשי קשר קבועים?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"הפעולה הזו תמחק מהאפליקציות \'אנשים\' ו\'טלפון\' את רשימת אנשי הקשר שאיתם אתה יוצר קשר בתדירות גבוהה, ויהיה עליך ללמד מחדש את אפליקציות האימייל את הכתובות המועדפות עליך."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"אנשי קשר"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"אחר"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ספריה"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"ספריית עבודה"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"ספריית עבודה"</string>
     <string name="local_search_label" msgid="9094584931063745728">"כל אנשי הקשר"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"אני"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"מחפש…"</string>
@@ -91,9 +89,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"בקשר לעתים קרובות"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"הצג איש קשר"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"כל אנשי הקשר עם מספרי טלפון"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"אנשי הקשר של פרופיל העבודה"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"אנשי קשר של פרופיל עבודה"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"הצג עדכונים"</string>
-    <string name="account_phone" msgid="6104157990869081962">"טלפון בלבד, לא מסונכרן"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"טאבלט בלבד, לא מסונכרן"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"טלפון בלבד, לא מסונכרן"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"שם"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"כינוי"</string>
     <string name="full_name" msgid="885420216812981202">"שם"</string>
@@ -181,6 +180,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"השבתת הרשאה נדרשת."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"אירעה שגיאה במהלך הייצוא: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"שם הקובץ הדרוש ארוך מדי (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"‏באמצעי האחסון קיימים קובצי vCard רבים מדי."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"‏קיימים בכרטיס ה-SD קובצי vCard רבים מדי."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"שגיאת קלט/פלט"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"אין מספיק זיכרון. ייתכן שהקובץ גדול מדי."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"‏לא ניתן היה לנתח את ה-vCard מסיבה בלתי צפויה."</string>
@@ -189,13 +190,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"‏לא ניתן היה לייבא קובץ אחד או יותר (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> הסתיים."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"ייצוא אנשי הקשר הושלם."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"יצוא אנשי הקשר הסתיים, לחץ על ההודעה כדי לשתף אנשי קשר."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"הקש כדי לשתף אנשי קשר."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> בוטל."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"מייצא נתונים של אנשי קשר"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"יצוא הנתונים של אנשי הקשר מתבצע כעת."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"נתוני אנשי הקשר שלך מיוצאים אל: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"לא ניתן היה לקבל מידע ממסד הנתונים."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"אין אנשי קשר הניתנים לייצוא. אם מוגדרים אנשי קשר בטלפון שלך, ייתכן שספקי נתונים מסוימים אינם מאפשרים ייצוא של אנשי קשר מהטלפון."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"אין אנשי קשר הניתנים לייצוא. אם מוגדרים בטאבלט שלך אנשי קשר, ייתכן שספקי נתונים מסוימים אינם מאפשרים ייצוא של אנשי קשר מהטאבלט."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"אין אנשי קשר הניתנים לייצוא. אם מוגדרים אנשי קשר בטלפון שלך, ייתכן שספקי נתונים מסוימים אינם מאפשרים ייצוא של אנשי קשר מהטלפון."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"‏יישום יצירת ה-vCard לא הופעל כהלכה."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"לא ניתן היה לייצא"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"נתוני אנשי הקשר לא יוצאו.\nסיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -209,14 +209,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"‏הבקשה לייבוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> יתבצע תוך זמן קצר."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ייצוא הקובץ יתבצע בעוד זמן קצר."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"יצוא אנשי הקשר יבוצע תוך זמן קצר."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"‏הבקשה לייצוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"איש קשר"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"‏קובצי ה-vCard נשמרים כקבצים באחסון מקומי זמני. הייבוא בפועל יחל בקרוב."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"‏לא ניתן היה לייבא את ה-vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"‏לא נמצאו קובצי vCard באמצעי האחסון."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏לא נמצאו קובצי vCard בכרטיס ה-SD."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"‏איש הקשר התקבל באמצעות NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"לייצא את אנשי הקשר?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"שומר כקובץ שמור"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"לא ניתן היה לסרוק את אמצעי האחסון. (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏לא ניתן היה לסרוק את כרטיס ה-SD. (סיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"מייבא <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>‏: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"‏יצא לקובץ ‎.vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"מיין לפי"</string>
@@ -278,7 +281,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"מדיניות פרטיות"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"תנאים והגבלות"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"רישיונות קוד פתוח"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"לא ניתן לפתוח את כתובת האתר."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> מסומן"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> לא מסומן"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"בצע שיחת וידאו"</string>

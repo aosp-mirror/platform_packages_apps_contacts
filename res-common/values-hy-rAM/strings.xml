@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Զանգել աշխատավայրի փեյջերին"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Զանգել <xliff:g id="ASSISTANT">%s</xliff:g>-ին"</string>
     <string name="call_mms" msgid="8998771923464696960">"Զանգել MMS համարին"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Զանգ)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Հաղորդագրել <xliff:g id="CUSTOM">%s</xliff:g>-ին"</string>
     <string name="sms_home" msgid="7765831490534280540">"Հաղորդագրել տուն"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Հաղորդագրել բջջայինին"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Հաղորդագրել աշխատանքային փեյջերին"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Հաղորդագրել <xliff:g id="ASSISTANT">%s</xliff:g>-ին"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Հաղորդագրել MMS համարին"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Հաղորդագրություն)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Կատարել տեսազանգ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Մաքրե՞լ հաճախակի հաղորդակցվածները"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Դուք կմաքրեք հաճախակի հաղորդակցվողների ցանկը Կոնտակտներ և Հեռախոս հավելվածներում, և ձեր էլփոստի ծրագիրը զրոյից կսովորի ձեր հասցեագրումների նախընտրությունները:"</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Կոնտակտներ"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Այլ"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Գրացուցակ"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Աշխատանքային գրացուցակ"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Աշխատանքային գրացուցակ"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Բոլոր կոնտակտները"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ես"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Որոնում..."</string>
@@ -89,9 +87,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Հաճախակի հաղորդակցվող"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Դիտել կոնտակտը"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Բոլոր հեռախոսահամարներով կոնտատկները"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Աշխատանքային պրոֆիլի կոնտակտներ"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Աշխատանքային պրոֆիլի կոնտակտներ"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Դիտել թարմացումները"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Միայն հեռախոսային, չհամաժամեցված"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Միայն գրասալիկի համար, չհամաժամեցված"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Միայն հեռախոսային, չհամաժամեցված"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Անունը"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Մականունը"</string>
     <string name="full_name" msgid="885420216812981202">"Անունը"</string>
@@ -179,6 +178,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Դուք անջատել եք անհրաժեշտ թույլտվությունը:"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Արտահանման ընթացքում սխալ է տեղի ունեցել. պատճառը` «<xliff:g id="EXACT_REASON">%s</xliff:g>»:"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Պահանջվող ֆայլի անունը («<xliff:g id="FILENAME">%s</xliff:g>») շատ երկար է:"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Փահոցում չափից շատ vCard ֆայլեր կան:"</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD քարտում չափից շատ vCard ֆայլեր կան:"</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O սխալ"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Հիշողությունը բավարար չէ: Հնարավոր է` ֆայլը չափազանց մեծ է:"</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Չհաջողվեց վերլուծել vCard-ը անսպասելի պատճառով:"</string>
@@ -187,13 +188,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Հնարավոր չէ ներմուծել մեկ կամ ավելի ֆայլեր (%s):"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>-ի արտահանումը ավարտվեց:"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Կոնտակտների արտահանումը ավարտվեց:"</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Կոնտակտներն արտահանվեցին: Սեղմեք ծանուցումը՝ դրանք հասանելի դարձնելու համար:"</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Հպեք՝ կոնտակտները հասանելի դարձնելու համար:"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>-ի արտահանումը չեղարկվեց:"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Կոնտակտային տվյալների արտահանում"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"Կոնտակտային տվյալներն արտահանվում են:"</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Ձեր կոնտակտային տվյալները արտահանվում են <xliff:g id="FILE_NAME">%s</xliff:g>:"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Հնարավոր չէ ստանալ տվյալների շտեմարանի տեղեկատվությունը:"</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Արտահանելի կոնտակտներ չկան: Եթե ​​դուք ձեր հեռախոսի մեջ ունեք կոնտակտներ, հնարավոր է՝ որոշ տվյալների մատակարարներ չեն թույլատրում հեռախոսից կոնտակտների արտահանումը:"</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Արտահանելի կոնտակտներ չկան: Եթե ​​դուք ունեք ունեք կոնտակտներ ձեր գրասալիկի մեջ, հնարավոր է՝ որոշ տվյալների մատակարարներ չեն թույլատրում գրասալիկից կոնտակտների արտահանումը:"</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Արտահանելի կոնտակտներ չկան: Եթե ​​դուք ձեր հեռախոսի մեջ ունեք կոնտակտներ, հնարավոր է՝ որոշ տվյալների մատակարարներ չեն թույլատրում հեռախոսից կոնտակտների արտահանումը:"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard-ի կազմիչը ճիշտ չի մեկնարկել:"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Հնարավոր չէ արտահանել"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Կոնտակտային տվյալները չեն արտահանվել:\nՊատճառը՝ «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
@@ -207,14 +207,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard-ի ներմուծման հայցը մերժվել է: Կրկին փորձեք ավելի ուշ:"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g>-ը կարտահանվի շուտով:"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Ֆայլը շուտով կարտահանվի:"</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Կոնտակտները շուտով կարտահանվեն:"</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard-ի արտահանման հայցը մերժվեց: Փորձեք կրկին ավելի ուշ:"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"կոնտակտ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(եր)-ի քեշավորում ժամանակավոր պաոց: Փաստացի ներմուծումը կսկսվի շուտով:"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Չհաջողվեց ներմուծել vCard-ը:"</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Պահոցում vCard ֆայլ չի գտնվել:"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD քարտում vCard ֆայլ չի հայտնաբերվել:"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC-ով ստացված կոնտակտ"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Արտահանե՞լ կոնտակտները"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Քեշավորում"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Պահոցը հնարավոր չէ սկանավորել: (Պատճառը` «<xliff:g id="FAIL_REASON">%s</xliff:g>»)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Չհաջողվեց սկանավորել SD քարտը: (Պատճառը՝ «<xliff:g id="FAIL_REASON">%s</xliff:g>»)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>-ի ներմուծում"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Արտահանել .vcf ֆայլ"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Դասավորել ըստ"</string>
@@ -274,7 +277,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Գաղտնիության քաղաքականություն"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Օգտագործման պայմաններ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Բաց աղբյուրով լիցենզիաներ"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"Չհաջողվեց բացել url-ը:"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> հաշիվը նշվել է"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> հաշիվը չի նշվել"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Կատարել տեսազանգ"</string>

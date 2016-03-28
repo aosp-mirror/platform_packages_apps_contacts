@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Chamar ao busca do traballo"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Chamar a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Chamar ao número de teléfono de MMS"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (chamar)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Enviar unha mensaxe a <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Enviar unha mensaxe á casa"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Enviar unha mensaxe ao teléfono móbil"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Enviar unha mensaxe ao busca do traballo"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Enviar unha mensaxe a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Enviar unha mensaxe ao teléfono da MMS"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (enviar mensaxe)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Realiza unha videochamada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Borrar contactados con frecuencia?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Borra a lista de persoas coas que contactaches frecuentemente das aplicacións Contactos e Teléfono, e obriga ás aplicacións de correo electrónico a que memoricen as túas preferencias de enderezos desde cero."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Contactos"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Outro"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Directorio"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Directorio de traballo"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Directorio de traballo"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Todos os contactos"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Eu"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Buscando..."</string>
@@ -89,9 +87,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactados frecuentemente"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ver contacto"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos os contactos con números de teléfono"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Contactos do perfil de traballo"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Contactos do perfil de traballo"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ver actualizacións"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Só no teléfono, non sincronizado"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Só no tablet, non sincronizado"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Só no teléfono, non sincronizado"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nome"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Alcume"</string>
     <string name="full_name" msgid="885420216812981202">"Nome"</string>
@@ -179,6 +178,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Desactivaches un permiso necesario."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Produciuse un erro durante a exportación: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"O nome do ficheiro necesario é demasiado longo (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Hai demasiados ficheiros vCard no almacenamento."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"Hai demasiados ficheiros vCard na tarxeta SD."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"Erro de E/S"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Non hai memoria suficiente. É posible que o ficheiro sexa demasiado grande."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Non se puido analizar o vCard debido a un motivo inesperado."</string>
@@ -187,13 +188,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Non se puideron importar un ou máis ficheiros (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Finalizouse a exportación de <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Finalizou a exportación dos contactos."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Finalizou a exportación dos contactos. Fai clic na notificación para compartilos."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Toca para compartir os contactos."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Cancelouse a exportación de <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Exportando datos de contacto"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"Estanse exportando os datos dos contactos."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Estanse exportando os teus datos de contacto a: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Non se puido obter información da base de datos."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Non hai ningún contacto exportable. Se tes contactos no teu teléfono, é posible que algúns provedores de datos non permitan a exportación dos contactos desde o teléfono."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Non hai ningún contacto exportable. Se tes contactos no teu tablet, é posible que algúns provedores de datos non permitan a exportación dos contactos desde o tablet."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Non hai ningún contacto exportable. Se tes contactos no teu teléfono, é posible que algúns provedores de datos non permitan a exportación dos contactos desde o teléfono."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"O redactor de vCard non se iniciou correctamente."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Imposible exportar"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Non se exportaron os datos dos contactos.\n Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -207,14 +207,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Rexeitouse a solicitude de importación de vCard. Téntao de novo máis tarde."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> exportarase en breve."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"O ficheiro exportarase en breve."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Exportaranse os contactos en breve."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Rexeitouse a solicitude de exportación do vCard. Téntao de novo máis tarde."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contacto"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Almacenando vCard na memoria caché do almacenamento temporal local. A importación real iniciarase en breve."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Non se puido importar o vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Non se encontrou ningún ficheiro vCard no almacenamento."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Non se encontrou ningún ficheiro vCard na tarxeta SD."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Contacto por NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Exportar contactos?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Almacenando na caché"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Non se puido buscar o almacenamento. (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Non se puido buscar a tarxeta SD. (Motivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importando <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Exportar a ficheiro .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ordenar por"</string>
@@ -274,7 +277,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Política de privacidade"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Condicións de servizo"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licenzas de código aberto"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"Produciuse un erro ao abrir o URL."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"Marcouse <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Non se marcou <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Facer videochamada"</string>

@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Soita hakulaitteeseen (työ)"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Soita: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Soita MMS-numeroon"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (soita)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Lähetä tekstiviesti: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Lähetä tekstiviesti kotinumeroon"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Lähetä tekstiviesti matkapuhelimeen"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Lähetä tekstiviesti hakulaitteeseen (työ)"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Lähetä tekstiviesti: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Lähetä tekstiviesti MMS-numeroon"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (lähetä viesti)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Soita videopuhelu"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Tyhjennetäänkö usein käytetyt?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Toiminto tyhjentää Yhteystiedot- ja Puhelin-sovellusten usein käytettyjen kontaktien luettelon. Lisäksi sähköpostisovellukset pakotetaan opettelemaan osoiteasetuksesi uudestaan."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Yhteystiedot"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Muu"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Osoitekirja"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Työhakemisto"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Työhakemisto"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Kaikki yhteystiedot"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Minä"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Haetaan..."</string>
@@ -89,9 +87,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Usein käytetyt"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Näytä kontakti"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Kaikki kontaktit, joilla on puhelinnumero"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Työprofiilin yhteystiedot"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Työprofiilin yhteystiedot"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Näytä päivitykset"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Vain puhelin, ei synkronoitu"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Vain tabletti, ei synkronoitu"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Vain puhelin, ei synkronoitu"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nimi"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Lempinimi"</string>
     <string name="full_name" msgid="885420216812981202">"Nimi"</string>
@@ -179,6 +178,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Olet poistanut käytöstä tarvittavan käyttöoikeuden."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Virhe viennin aikana: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Tarvittava tiedostonimi on liian pitkä (<xliff:g id="FILENAME">%s</xliff:g>)"</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Tallennustilassa on liian monta vCard-tiedostoa."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD-kortilla on liian monta vCard-tiedostoa."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O-virhe"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Muisti ei riitä. Tiedosto voi olla liian suuri."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"vCardia ei voi jäsentää odottamattomasta syystä."</string>
@@ -187,13 +188,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Ainakin yhden tiedoston tuominen epäonnistui (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Kohde <xliff:g id="FILENAME">%s</xliff:g> on viety."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Yhteystiedot on viety."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Yhteystiedot vietiin. Jaa yhteystiedot klikkaamalla ilmoitusta."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Jaa yhteystiedot koskettamalla."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Kohteen <xliff:g id="FILENAME">%s</xliff:g> vienti peruutettiin."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Viedään yhteystietoja"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"Yhteystietoja viedään."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Yhteystietosi viedään kohteeseen <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Tietokannan tietojen hakeminen epäonnistui."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Vietäviä yhteystietoja ei ole. Jos puhelimessasi on yhteystietoja, tietojen tarjoaja on saattanut estää niiden viemisen puhelimen ulkopuolelle."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Vietäviä yhteystietoja ei ole. Jos tablet-laitteellasi on yhteystietoja, tietojen tarjoaja on saattanut estää niiden viemisen tablet-laitteen ulkopuolelle."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Vietäviä yhteystietoja ei ole. Jos puhelimessasi on yhteystietoja, tietojen tarjoaja on saattanut estää niiden viemisen puhelimen ulkopuolelle."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard-luonti ei käynnistynyt oikein."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Vieminen epäonnistui"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Yhteystietoja ei viety.\nSyy: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
@@ -207,14 +207,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard-tuontipyyntö hylättiin. Yritä myöhemmin uudelleen."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> viedään pian."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Tiedosto viedään pian."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Yhteystiedot viedään hetken kuluttua."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard-vientipyyntö hylättiin. Yritä myöhemmin uudelleen."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"yhteystieto"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Lisätään vCard-tietojen välimuistiversiot paikalliseen väliaikaistallennustilaan. Tuonti alkaa pian."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCard-tietojen tuominen epäonnistui."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Tallennustilasta ei löydy vCard-tiedostoja."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD-kortilta ei löydy vCard-tiedostoa."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Yht. saatu (NFC)"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Viedäänkö yhteystietoja?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Vie välimuistiin"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Tallennustilaa ei voi lukea. (Syy: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD-korttia ei voi lukea. (Syy: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Tuodaan <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Vie .vcf-tiedostoon"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Lajitteluperuste"</string>
@@ -274,7 +277,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Tietosuojakäytäntö"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Käyttöehdot"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Avoimen lähdekoodin käyttöluvat"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"URL-osoitteen avaus epäonnistui."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> valittu"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ei valittu"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Soita videopuhelu"</string>

@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Позови пословни пејџер"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Позови <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Позови број за MMS"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (позови)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Пошаљи SMS на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Пошаљи SMS на кућни телефон"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Пошаљи SMS на мобилни телефон"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Пошаљи SMS на пословни пејџер"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Пошаљи SMS на <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Пошаљи SMS на број за MMS"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (пошаљи SMS)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Упути видео позив"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Бришете често контактиране?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Обрисаћете листу често контактираних у апликацијама Контакти и Телефон, па ће имејл апликације морати поново да прикупе информације о адресирању."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Контакти"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Друго"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Директоријум"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Директоријум за Work"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Директоријум за Work"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Сви контакти"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ја"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Претражује се..."</string>
@@ -90,9 +88,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Често контактирани"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Приказивање контакта"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Сви контакти са бројевима телефона"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Контакти са профила за Work"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Контакти профила за Work"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Прикажи ажурирања"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Само на телефону, без синхронизације"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Само на таблету, без синхронизације"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Само на телефону, без синхронизације"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Надимак"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>
@@ -180,6 +179,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Онемогућили сте обавезну дозволу."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Дошло је до грешке при извозу: „<xliff:g id="EXACT_REASON">%s</xliff:g>“"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Захтевани назив датотеке је предугачак („<xliff:g id="FILENAME">%s</xliff:g>“)."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"У меморији има превише vCard датотека."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"На SD картици има превише vCard датотека."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"У/И грешка"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Нема довољно меморије. Датотека је можда превелика."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Из неочекиваног разлога није могуће рашчланити vCard датотеку."</string>
@@ -188,13 +189,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Није могућ увоз једне или више датотека (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Извоз датотеке <xliff:g id="FILENAME">%s</xliff:g> је завршен."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Извоз контаката је завршен."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Извожење контаката је завршено. Кликните на обавештење да бисте делили контакте."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Додирните да бисте делили контакте."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Извоз датотеке <xliff:g id="FILENAME">%s</xliff:g> је отказан."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Извоз података о контактима је у току"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"Подаци о контактима се извозе."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Подаци о контактима се извозе у: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Преузимање информација из базе података није могуће."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Нема контаката за извоз. Ако имате контакте на телефону, неки добављачи података можда неће дозволити да се контакти извозе са телефона."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Нема контаката за извоз. Ако имате контакте на таблету, неки добављачи података можда неће дозволити извоз контаката са таблета."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Нема контаката за извоз. Ако имате контакте на телефону, неки добављачи података можда неће дозволити да се контакти извозе са телефона."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Програм за израду vCard датотека се није исправно покренуо."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Извоз није могућ"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Подаци о контактима низу извезени.\nРазлог: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
@@ -208,14 +208,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Захтев за увоз vCard датотеке је одбијен. Покушајте поново касније."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Датотека <xliff:g id="FILENAME">%s</xliff:g> ће ускоро бити извезена."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Датотека ће ускоро бити извезена."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Контакти ће ускоро бити извезени."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Захтев за извоз vCard датотеке је одбијен. Покушајте поново касније."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Кеширање vCard датотекa у локалну привремену меморију. Увоз ће ускоро започети."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Увоз vCard датотеке није могућ."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"У меморији није пронађена ниједна vCard датотека."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"На SD картици није пронађена ниједна vCard датотека."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Контакт преко NFC-а"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Желите ли да извезете контакте?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кеширање"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Није могуће скенирати меморију. (Разлог: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Није могуће скенирати SD картицу. (Разлог: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Увози се <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Извези у .vcf датотеку"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортирај према"</string>
@@ -276,7 +279,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Политика приватности"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Услови коришћења услуге"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Лиценце отвореног кода"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"Отварање URL-а није успело."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"Означено: <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Није означено: <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Упути видео позив"</string>

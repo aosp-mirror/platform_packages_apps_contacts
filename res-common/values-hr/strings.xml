@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Nazovi poslovni dojavljivač"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Nazovi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Nazovi MMS"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (poziv)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Pošalji SMS na <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Pošalji SMS na kućni"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Pošalji SMS na mobitel"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Pošalji SMS na poslovni dojavljivač"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Pošalji SMS na <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Pošalji SMS na MMS"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (poruka)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Uputite videopoziv"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Brisati podatke o čestim kontaktima?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Izbrisat ćete popis osoba s kojima često kontaktirate u aplikacijama Kontakti i Osobe, pa će aplikacije e-pošte morati ispočetka učiti vaše postavke adresiranja."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Kontakti"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Ostalo"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Direktorij"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Poslovni direktorij"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Poslovni imenik"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Svi kontakti"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ja"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Pretraživanje…"</string>
@@ -90,9 +88,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Često kontaktirani"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Prikaži kontakt"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Svi kontakti s telefonskim brojevima"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Poslovni kontakti"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Kontakti radnog profila"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Prikaži ažuriranja"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Samo telefon, bez sinkronizacije"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Samo tabletni uređaj, bez sinkronizacije"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Samo telefon, bez sinkronizacije"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Ime"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nadimak"</string>
     <string name="full_name" msgid="885420216812981202">"Ime"</string>
@@ -180,6 +179,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Onemogućili ste obavezno dopuštenje."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Tijekom izvoza došlo je do pogreške: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Obavezan naziv datoteke predug je (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"U pohrani je previše vCard datoteka."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"Na SD kartici ima previše vCard datoteka."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O pogreška"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Nema dovoljno memorije. Datoteka je možda prevelika."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Iz neočekivanog razloga nije moguće analizirati vCard datoteku."</string>
@@ -188,16 +189,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Uvoz jedne ili više datoteka nije uspio (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Završetak izvoza datoteke <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Dovršen je izvoz kontakata."</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g> otkazan je."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Izvoz podataka o kontaktu"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Vaši podaci o kontaktu izvoze se u datoteku <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Dohvaćanje podataka iz baze podataka nije uspjelo."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Nema kontakata koji se mogu izvoziti. Ako na svojem telefonu imate kontakte, neki davatelji podataka možda ne dopuštaju izvoz kontakata s tog telefona."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Nema kontakata koji se mogu izvoziti. Ako na svojem tabletnom računalu imate kontakte, neki davatelji podataka možda ne dopuštaju izvoz kontakata s tog tabletnog računala."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nema kontakata koji se mogu izvoziti. Ako na svojem telefonu imate kontakte, neki davatelji podataka možda ne dopuštaju izvoz kontakata s tog telefona."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Sastavljač za vCard nije se ispravno pokrenuo."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Izvoz nije uspio"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Podaci o kontaktu nisu izvezeni.\nRazlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -211,15 +208,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Zahtjev za uvoz formata vCard odbijen je. Pokušajte ponovo kasnije."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Datoteka <xliff:g id="FILENAME">%s</xliff:g> uskoro će biti izvezena."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Datoteka će se uskoro izvesti."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Zahtjev za izvoz formata vCard odbijen je. Pokušajte ponovo kasnije."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Spremanje vCard datoteka u lokalnu privremenu pohranu. Stvarni uvoz počet će uskoro."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Uvoz vCard datoteke nije uspio."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"U pohrani nije pronađena nijedna vCard datoteka."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Na SD kartici nije pronađena nijedna vCard datoteka."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakt NFC-om"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Izvesti kontakte?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Spremanje u predmemoriju"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Pohrana se ne može skenirati. (Razlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD kartica ne može se skenirati. (Razlog: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Uvoz <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Izvezi u .vcf datoteku"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Poredaj po"</string>
@@ -280,7 +279,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Pravila o privatnosti"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Uvjeti pružanja usluge"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licence otvorenog izvornog koda"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"Otvaranje URL-a nije uspjelo."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> potvrđen"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> nije potvrđen"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Upućivanje videopoziva"</string>

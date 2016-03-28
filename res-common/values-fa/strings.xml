@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"تماس با پی‌جوی محل کار"</string>
     <string name="call_assistant" msgid="5188990854852312696">"تماس با <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"‏تماس با MMS"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (تماس)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"ارسال پیامک به <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"ارسال پیامک به تلفن منزل"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"ارسال پیامک به تلفن همراه"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ارسال پیامک به پی‌جوی محل کار"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"ارسال پیامک به <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"ارسال پیامک به خدمات پیام چندرسانه‌ای"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (پیام)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"برقراری تماس ویدیویی"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"فهرست مکرر تماس‌گرفته‌شده پاک شود؟"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"فهرست افرادی را که مکرر با آن‌ها تماس گرفته‌اید در برنامه‌های «مخاطبین» و «تلفن» پاک خواهید کرد و برنامه‌های ایمیل مجبور می‌شوند که تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"مخاطبین"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"موارد دیگر"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"فهرست"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"فهرست کار"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"فهرست راهنمای مخاطب کاری"</string>
     <string name="local_search_label" msgid="9094584931063745728">"همه مخاطبین"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"من"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"درحال جستجو..."</string>
@@ -89,9 +87,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"مکرر تماس‌گرفته‌شده"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"مشاهده مخاطب"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"همه مخاطبین دارای شماره تلفن"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"مخاطبین نمایه کاری"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"مخاطبین نمایه کاری"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"مشاهده به‌روزرسانی‌ها"</string>
-    <string name="account_phone" msgid="6104157990869081962">"فقط تلفن، همگام‌سازی نشده"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"فقط رایانهٔ لوحی، همگام‌سازی نشده"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"فقط تلفن، همگام‌سازی نشده"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"نام"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"نام مستعار"</string>
     <string name="full_name" msgid="885420216812981202">"نام"</string>
@@ -179,6 +178,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"یک مجوز الزامی را غیرفعال کرده‌اید."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"خطایی در هنگام صادر کردن روی داد: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"نام فایل خیلی طولانی است (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"تعداد فایل‌های کارت ویزیت در حافظه بسیار زیاد است."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"‏فایل‌های کارت ویزیت بسیار زیادی در کارت SD وجود دارد."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"خطای ورودی/خروجی"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"حافظه کافی نیست. ممکن است فایل بسیار بزرگ باشد."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"تفسیر کارت ویزیت به دلیل پیش‌بینی نشده‌ای ممکن نیست."</string>
@@ -187,13 +188,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"‏نمی‌توان یک یا چند فایل را وارد کرد (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> پایان یافت."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"صادرکردن مخاطبین تمام شد."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"صادر کردن مخاطبین تمام شد؛ برای به اشتراک گذاشتن مخاطبین، روی اعلان کلیک کنید."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"برای به اشتراک گذاشتن مخاطبین ضربه بزنید."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شد."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"صدور اطلاعات مخاطب"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"داده‌های مخاطب در حال صادر شدن است."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"داده‌های تماس شما در حال صادر شدن به این فایل هستند: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"نمی‌توان اطلاعات پایگاه داده را دریافت کرد."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"هیچ مخاطب قابل صدوری وجود ندارد. اگر در گوشی خود مخاطبینی دارید، بعضی از ارائه‌دهندگان داده ممکن است اجازه ندهند تا مخاطبین از گوشی صادر شوند."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"مخاطب قابل صدوری وجود ندارد. اگر بر روی رایانهٔ لوحی خود مخاطبینی دارید، بعضی از ارائه‌دهندگان داده ممکن است اجازه ندهند مخاطبین از رایانهٔ لوحی صادر شوند."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"هیچ مخاطب قابل صدوری وجود ندارد. اگر در گوشی خود مخاطبینی دارید، بعضی از ارائه‌دهندگان داده ممکن است اجازه ندهند تا مخاطبین از گوشی صادر شوند."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"سازنده فایل کارت ویزیت به درستی اجرا نشد."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"صادر نمی‌شود"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"‏داده‎های مخاطب صادر نشد.\nعلت: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
@@ -207,14 +207,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"درخواست وارد کردن کارت ویزیت رد شد. لطفاً بعداً امتحان کنید."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> به زودی صادر می‌شود."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"فایل به‌زودی منقضی می‌شود."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"مخاطبین به‌زودی صادر می‌شوند."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"درخواست صدور کارت ویزیت رد شد. لطفاً بعداً امتحان کنید."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"مخاطب"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"در حال ذخیره کارت‌(های) ویزیت در حافظه موقت محلی است. وارد کردن واقعی به زودی آغاز خواهد شد."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"وارد کردن کارت ویزیت انجام نشد."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"هیچ فایل کارت ویزیتی در حافظه یافت نشد."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏هیچ فایل کارت ویزیتی در کارت SD یافت نشد."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"‏دریافت مخاطب باNFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"مخاطبین صادر شوند؟"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"در حال ذخیره در حافظهٔ پنهان"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"دستگاه ذخیره نمی‌تواند بررسی شود. (علت: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏کارت SD نمی‌تواند بررسی شود. (علت: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"وارد کردن <xliff:g id="CURRENT_NUMBER">%s</xliff:g><xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"‏صادر کردن به فایل ‎.vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"مرتب‌سازی براساس"</string>
@@ -274,7 +277,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"خط‌مشی رازداری"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"شرایط خدمات"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"مجوزهای منبع آزاد"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"نشانی وب باز نشد."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> علامت‌گذاری شد"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> بدون علامت شد"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"برقراری تماس ویدیویی"</string>

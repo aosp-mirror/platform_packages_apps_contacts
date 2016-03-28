@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Gọi số máy nhắn tin cơ quan"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Gọi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Gọi MMS"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Gọi)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Nhắn tin tới <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Nhắn tin tới số điện thoại nhà riêng"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Nhắn tin tới số điện thoại di động"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Nhắn tin tới số máy nhắn tin cơ quan"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Nhắn tin tới <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Nhắn tin tới số điện thoại MMS"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Tin nhắn)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Gọi điện video"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Xóa danh sách liên hệ thường xuyên?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Bạn sẽ xóa danh sách liên hệ thường xuyên trong ứng dụng Danh bạ và điện thoại cũng như buộc các ứng dụng email phải tìm hiểu các tùy chọn gửi của bạn lại từ đầu."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Danh bạ"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Khác"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Thư mục"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Thư mục công việc"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Thư mục công việc"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Tất cả người liên hệ"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Tôi"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Đang tìm kiếm…"</string>
@@ -89,9 +87,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Thường xuyên được liên hệ"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Xem người liên hệ"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Tất cả người liên hệ có số điện thoại"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Liên hệ trên hồ sơ công việc"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Danh bạ trên Hồ sơ công việc"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Xem thông tin cập nhật"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Chỉ trên điện thoại, ko đồng bộ"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Chỉ trên máy tính bảng, chưa được đồng bộ hóa"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Chỉ trên điện thoại, ko đồng bộ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Tên"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Biệt hiệu"</string>
     <string name="full_name" msgid="885420216812981202">"Tên"</string>
@@ -179,6 +178,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Bạn đã tắt quyền được yêu cầu."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Đã xảy ra lỗi khi xuất: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Tên tệp yêu cầu quá dài (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Quá nhiều tệp vCard trong bộ nhớ."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"Quá nhiều tệp vCard trên thẻ SD."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"Lỗi I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Không đủ bộ nhớ. Tệp có thể quá lớn."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Không thể phân tích cú pháp vCard vì lý do không mong muốn."</string>
@@ -187,16 +188,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Không thể nhập một hoặc nhiều tệp (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Đã xuất xong <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Đã xuất xong danh bạ."</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Quá trình xuất <xliff:g id="FILENAME">%s</xliff:g> bị hủy."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Đang xuất dữ liệu liên hệ"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Dữ liệu liên hệ của bạn đang được xuất sang: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Không thể nhận thông tin cơ sở dữ liệu."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Không thể xuất liên hệ nào. Nếu bạn có danh bạ trên điện thoại của mình, một số nhà cung cấp dữ liệu không cho phép xuất danh bạ từ điện thoại."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Không thể xuất liên hệ nào. Nếu bạn có danh bạ trên máy tính bảng của mình, một số nhà cung cấp dữ liệu có thể không cho phép xuất danh bạ từ máy tính bảng."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Không thể xuất liên hệ nào. Nếu bạn có danh bạ trên điện thoại của mình, một số nhà cung cấp dữ liệu không cho phép xuất danh bạ từ điện thoại."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Trình soạn vCard không khởi động đúng."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Không thể xuất"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Không xuất được dữ liệu liên hệ.\nLý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -210,15 +207,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Yêu cầu nhập vCard bị từ chối. Hãy thử lại sau."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> sẽ sớm được xuất."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Tệp sẽ sớm được xuất."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Yêu cầu xuất vCard bị từ chối. Hãy thử lại sau."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"liên hệ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Đang lưu vào bộ nhớ cache các tệp vCard sẽ được nhập vào bộ nhớ cục bộ tạm thời. Thao tác nhập thực sự sẽ sớm bắt đầu."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Không thể nhập vCard."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Không tìm thấy tệp vCard nào trong bộ nhớ."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Không tìm thấy tệp vCard trên thẻ SD."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"L.h nhận qua NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Xuất danh bạ?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Đang lưu vào bộ nhớ cache"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Không thể quét bộ nhớ. (Lý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Không thể quét thẻ SD. (Lý do: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Đang nhập <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Xuất sang tệp .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sắp xếp theo"</string>
@@ -278,7 +277,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Chính sách bảo mật"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Điều khoản dịch vụ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Giấy phép nguồn mở"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"Không mở được url."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"Đã kiểm tra <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Chưa kiểm tra <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Gọi điện video"</string>

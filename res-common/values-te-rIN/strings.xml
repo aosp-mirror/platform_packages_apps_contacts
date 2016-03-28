@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"కార్యాలయ పేజర్‌కు కాల్ చేయండి"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g>కు కాల్ చేయండి"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMSకు కాల్ చేయండి"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (కాల్ చేయి)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g>కు వచనం పంపండి"</string>
     <string name="sms_home" msgid="7765831490534280540">"ఇంటికి వచనం పంపండి"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"మొబైల్‌కు వచనం పంపండి"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"కార్యాలయ పేజర్‌కు వచనం పంపండి"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>కు వచనం పంపండి"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMSకు వచనం పంపండి"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (సందేశం పంపు)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"వీడియో కాల్ చేయి"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేయాలా?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"మీరు పరిచయాలు మరియు ఫోన్ అనువర్తనాల్లో తరచుగా సంప్రదించిన పరిచయాల జాబితాను తీసివేస్తారు మరియు స్క్రాచ్ నుండి మీ చిరునామా ప్రాధాన్యతలను తెలుసుకునేలా ఇమెయిల్ అనువర్తనాలను నిర్బంధిస్తారు."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"పరిచయాలు"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"ఇతరం"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"డైరెక్టరీ"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"కార్యాలయ డైరెక్టరీ"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"కార్యాలయ డైరెక్టరీ"</string>
     <string name="local_search_label" msgid="9094584931063745728">"అన్ని పరిచయాలు"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"నేను"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"శోధిస్తోంది..."</string>
@@ -89,9 +87,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"తరచుగా సంప్రదించబడినవి"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"పరిచయాన్ని వీక్షించండి"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ఫోన్ నంబర్‌లు గల అన్ని పరిచయాలు"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"కార్యాలయ ప్రొఫైల్ పరిచయాలు"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"కార్యాలయ ప్రొఫైల్ పరిచయాలు"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"నవీకరణలను వీక్షించండి"</string>
-    <string name="account_phone" msgid="6104157990869081962">"ఫోన్-మాత్రమే, సమకాలీకరించబడలేదు"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"టాబ్లెట్-మాత్రమే, సమకాలీకరించబడలేదు"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"ఫోన్-మాత్రమే, సమకాలీకరించబడలేదు"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"పేరు"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"మారుపేరు"</string>
     <string name="full_name" msgid="885420216812981202">"పేరు"</string>
@@ -179,6 +178,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"మీరు అవసరమయ్యే అనుమతిని నిలిపివేసారు."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"ఎగుమతి సమయంలో లోపం సంభవించింది: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"అవసరమైన ఫైల్ పేరు (\"<xliff:g id="FILENAME">%s</xliff:g>\") చాలా పెద్దదిగా ఉంది."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"నిల్వలో చాలా ఎక్కువ vCard ఫైల్‌లు ఉన్నాయి."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD కార్డులో చాలా ఎక్కువ vCard ఫైల్‌లు ఉన్నాయి."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O లోపం"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"తగినంత మెమరీ లేదు. ఫైల్ చాలా పెద్దదిగా ఉండవచ్చు."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"ఊహించని కారణంగా vCardను అన్వయించడం సాధ్యపడలేదు."</string>
@@ -187,13 +188,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ఒకటి లేదా అంతకంటే ఎక్కువ ఫైల్‌లను (%s) దిగుమతి చేయడం సాధ్యపడలేదు."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>ని ఎగుమతి చేయడం పూర్తయింది."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"పరిచయాలను ఎగుమతి చేయడం పూర్తయింది."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"పరిచయాలను ఎగుమతి చేయడం పూర్తయింది, పరిచయాలను భాగస్వామ్యం చేయడానికి నోటిఫికేషన్‌ను క్లిక్ చేయండి."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"పరిచయాలను భాగస్వామ్యం చేయడానికి నొక్కండి."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>ని ఎగుమతి చేయడం రద్దు చేయబడింది."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"పరిచయ డేటాను ఎగుమతి చేస్తోంది"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"పరిచయ డేటా ఎగుమతి చేయబడుతోంది."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"మీ పరిచయ డేటా దీనికి ఎగుమతి చేయబడుతోంది: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"డేటాబేస్ సమాచారాన్ని పొందడం సాధ్యపడలేదు."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"ఎగుమతి చేయదగిన పరిచయాలు ఏవీ లేవు. మీరు మీ ఫోన్‌లో పరిచయాలు కలిగి ఉన్నప్పటికీ, కొందరు డేటా ప్రదాతలు పరిచయాలను ఫోన్ నుండి ఎగుమతి చేయడానికి అనుమతించకపోవచ్చు."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"ఎగుమతి చేయదగిన పరిచయాలు ఏవీ లేవు. మీరు మీ టాబ్లెట్‌లో పరిచయాలు కలిగి ఉన్నప్పటికీ, కొందరు డేటా ప్రదాతలు పరిచయాలను టాబ్లెట్ నుండి ఎగుమతి చేయడానికి అనుమతించకపోవచ్చు."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"ఎగుమతి చేయదగిన పరిచయాలు ఏవీ లేవు. మీరు మీ ఫోన్‌లో పరిచయాలు కలిగి ఉన్నప్పటికీ, కొందరు డేటా ప్రదాతలు పరిచయాలను ఫోన్ నుండి ఎగుమతి చేయడానికి అనుమతించకపోవచ్చు."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard కంపోజర్ సరిగ్గా ప్రారంభించబడలేదు."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ఎగుమతి చేయడం సాధ్యపడలేదు"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"పరిచయ డేటా ఎగుమతి చేయబడలేదు.\nకారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -207,14 +207,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard దిగుమతి అభ్యర్థన తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> కొద్దిసేపట్లో ఎగుమతి చేయబడుతుంది."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ఫైల్ కాసేపట్లో ఎగుమతి చేయబడుతుంది."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"పరిచయాలు త్వరలో ఎగుమతి చేయబడతాయి."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard ఎగుమతి అభ్యర్థన తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"పరిచయం"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(ల)ను స్థానిక తాత్కాలిక నిల్వకు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCardని దిగుమతి చేయడం సాధ్యపడలేదు."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"నిల్వలో vCard ఫైల్ ఏదీ కనుగొనబడలేదు."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD కార్డులో vCard ఫైల్ ఏదీ కనుగొనబడలేదు."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"పరిచయం NFC ద్వారా స్వీకరించబడింది"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"పరిచయాలను ఎగుమతి చేయాలా?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"కాష్ చేస్తోంది"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"నిల్వను స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD కార్డును స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g>లో <xliff:g id="CURRENT_NUMBER">%s</xliff:g> దిగుమతి చేయబడుతోంది: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ఫైల్‌కు ఎగుమతి చేయి"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ఇలా క్రమబద్ధీకరించు"</string>
@@ -274,7 +277,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"గోప్యతా విధానం"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"సేవా నిబంధనలు"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"urlని తెరవడంలో విఫలమైంది."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ఎంచుకోబడింది"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ఎంచుకోబడలేదు"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"వీడియో కాల్ చేస్తుంది"</string>

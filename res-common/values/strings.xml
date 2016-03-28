@@ -67,8 +67,6 @@
     </string>
     <!-- Action string for calling a MMS phone number -->
     <string name="call_mms">Call MMS</string>
-    <!-- Action string for calling a contact by shortcut -->
-    <string name="call_by_shortcut"><xliff:g id="contact_name">%s</xliff:g> (Call)</string>
 
     <!-- Action string for sending an SMS to a custom phone number -->
     <string name="sms_custom">Text
@@ -116,8 +114,6 @@
     </string>
     <!-- Action string for sending an SMS to a MMS phone number -->
     <string name="sms_mms">Text MMS</string>
-    <!-- Action string for sending an SMS to a contact by shortcut -->
-    <string name="sms_by_shortcut"><xliff:g id="contact_name">%s</xliff:g> (Message)</string>
 
     <!-- Description string for an action button to initiate a video call. -->
     <string name="description_video_call">Make video call</string>
@@ -153,7 +149,7 @@
     <string name="directory_search_label">Directory</string>
 
     <!-- The label in section header in the contact list for a work contact directory [CHAR LIMIT=128] -->
-    <string name="directory_search_label_work">Work directory</string>
+    <string name="directory_search_label_work">Work Directory</string>
 
     <!-- The label in section header in the contact list for a local contacts [CHAR LIMIT=128] -->
     <string name="local_search_label">All contacts</string>
@@ -207,15 +203,20 @@
     <string name="list_filter_phones">All contacts with phone numbers</string>
 
     <!-- Contact list filter selection indicating that the list shows all work contacts with phone numbers [CHAR LIMIT=64] -->
-    <string name="list_filter_phones_work">Work profile contacts</string>
+    <string name="list_filter_phones_work">Work Profile contacts</string>
 
     <!-- Button to view the updates from the current group on the group detail page [CHAR LIMIT=25] -->
     <string name="view_updates_from_group">View updates</string>
 
+
     <!-- Title for data source when creating or editing a contact that doesn't
          belong to a specific account.  This contact will only exist on the phone
          and will not be synced. -->
-    <string name="account_phone">Phone-only, unsynced</string>
+    <string name="account_phone" product="tablet">Tablet-only, unsynced</string>
+    <!-- Title for data source when creating or editing a contact that doesn't
+         belong to a specific account.  This contact will only exist on the phone
+         and will not be synced. -->
+    <string name="account_phone" product="default">Phone-only, unsynced</string>
 
     <!-- Header that expands to list all name types when editing a structured name of a contact
          [CHAR LIMIT=20] -->
@@ -482,6 +483,13 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
          mention it here. [CHAR LIMIT=NONE] -->
     <string name="fail_reason_too_long_filename">Required filename is too long (\"<xliff:g id="filename">%s</xliff:g>\").</string>
 
+    <!-- The failed reason shown when vCard exporter could not create a file for the vCard since
+         there are too many files relevant to vCard. [CHAR LIMIT=NONE] -->
+    <string name="fail_reason_too_many_vcard" product="nosdcard">Too many vCard files are in the storage.</string>
+    <!-- The failed reason shown when vCard exporter could not create a file for the vCard since
+         there are too many files relevant to vCard. -->
+    <string name="fail_reason_too_many_vcard" product="default">Too many vCard files are on the SD card.</string>
+
     <!-- The failed reason shown when Contacts app (especially vCard importer/exporter)
          emitted some I/O error. Exact reason will be appended by the system. [CHAR LIMIT=NONE] -->
     <string name="fail_reason_io_error">I/O error</string>
@@ -512,12 +520,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- The title shown when exporting vCard has finished successfully but the destination filename could not be resolved. [CHAR LIMIT=NONE] -->
     <string name="exporting_vcard_finished_title_fallback">Finished exporting contacts.</string>
 
-    <!-- The toast message shown when exporting vCard has finished and vCards are ready to be shared [CHAR LIMIT=150]-->
-    <string name="exporting_vcard_finished_toast">Finished exporting contacts, click the notification to share contacts.</string>
-
-    <!-- The message on notification shown when exporting vCard has finished and vCards are ready to be shared [CHAR LIMIT=60]-->
-    <string name="touch_to_share_contacts">Tap to share contacts.</string>
-
     <!-- The title shown when exporting vCard is canceled (probably by a user)
          The argument is file name the user canceled importing.
          [CHAR LIMIT=40] -->
@@ -527,7 +529,7 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <string name="exporting_contact_list_title">Exporting contact data</string>
 
     <!-- Message shown when the application is exporting contact data outside -->
-    <string name="exporting_contact_list_message">Contact data is being exported.</string>
+    <string name="exporting_contact_list_message">Your contact data is being exported to: <xliff:g id="file_name">%s</xliff:g>.</string>
 
     <!-- The error reason the vCard composer "may" emit when database is corrupted or
          something is going wrong. Usually users should not see this text. [CHAR LIMIT=NONE] -->
@@ -536,7 +538,11 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- This error message shown when the user actually have no contact
          (e.g. just after data-wiping), or, data providers of the contact list prohibits their
          contacts from being exported to outside world via vcard exporter, etc. [CHAR LIMIT=NONE] -->
-    <string name="composer_has_no_exportable_contact">There are no exportable contacts. If you do have contacts on your phone, some data providers may not allow the contacts to be exported from the phone.</string>
+    <string name="composer_has_no_exportable_contact" product="tablet">There are no exportable contacts. If you do have contacts on your tablet, some data providers may not allow the contacts to be exported from the tablet.</string>
+    <!-- This error message shown when the user actually have no contact
+         (e.g. just after data-wiping), or, data providers of the contact list prohibits their
+         contacts from being exported to outside world via vcard exporter, etc. [CHAR LIMIT=NONE] -->
+    <string name="composer_has_no_exportable_contact" product="default">There are no exportable contacts. If you do have contacts on your phone, some data providers may not allow the contacts to be exported from the phone.</string>
 
     <!-- The error reason the vCard composer may emit when vCard composer is not initialized
          even when needed.
@@ -591,9 +597,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- The message shown when a vCard export request is accepted but the destination filename could not be resolved. [CHAR LIMIT=NONE] -->
     <string name="vcard_export_will_start_message_fallback">The file will be exported shortly.</string>
 
-    <!-- The message shown when a vCard export request is accepted and contacts will be exported shortly. [CHAR LIMIT=70]-->
-    <string name="contacts_export_will_start_message">Contacts will be exported shortly.</string>
-
     <!-- The message shown when a given vCard export request is rejected by the system. [CHAR LIMIT=NONE] -->
     <string name="vcard_export_request_rejected_message">vCard export request was rejected. Try again later.</string>
     <!-- Used when file name is unknown in vCard processing. It typically happens
@@ -607,6 +610,15 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Message used when vCard import has failed. [CHAR LIMIT=40] -->
     <string name="vcard_import_failed">Couldn\'t import vCard.</string>
 
+    <!-- The failure message shown when the system could not find any vCard file.
+         (with extension ".vcf" in (USB) storage.)
+         [CHAR LIMIT=128] -->
+    <string name="import_failure_no_vcard_file" product="nosdcard">No vCard file found in storage.</string>
+    <!-- The failure message shown when the system could not find any vCard file.
+         (with extension ".vcf" in SDCard.)
+         [CHAR LIMIT=128] -->
+    <string name="import_failure_no_vcard_file" product="default">No vCard file found on the SD card.</string>
+
     <!-- The "file name" displayed for vCards received directly via NFC [CHAR LIMIT=16] -->
     <string name="nfc_vcard_file_name">Contact received over NFC</string>
 
@@ -616,6 +628,13 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- The title shown when vCard importer is caching files to be imported into local temporary
          data storage.  [CHAR LIMIT=40] -->
     <string name="caching_vcard_title">Caching</string>
+
+    <!-- Dialog message shown when searching VCard data failed.
+         An exact reason for the failure should [CHAR LIMIT=NONE] -->
+    <string name="scanning_sdcard_failed_message" product="nosdcard">The storage couldn\'t be scanned. (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
+    <!-- Dialog message shown when searching VCard data failed.
+         An exact reason for the failure should [CHAR LIMIT=NONE] -->
+    <string name="scanning_sdcard_failed_message" product="default">The SD card couldn\'t be scanned. (Reason: \"<xliff:g id="fail_reason">%s</xliff:g>\")</string>
 
     <!-- The message shown while importing vCard(s).
          First argument is current index of contacts to be imported.
@@ -824,9 +843,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- Title for the activity that displays licenses for open source libraries. [CHAR LIMIT=100]-->
     <string name="activity_title_licenses">Open source licenses</string>
-
-    <!-- Toast message showing when failed to open the url. [CHAR LIMIT=100]-->
-    <string name="url_open_error_toast">Failed to open the url.</string>
 
     <!-- Content description of entries (including that radio button is checked) in contact
          accounts list filter. For example: Google abc@gmail.com checked, etc [CHAR LIMIT=30]-->

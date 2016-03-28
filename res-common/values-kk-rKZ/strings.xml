@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Жұмыс пэйджеріне қоңырау шалу"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> нөміріне қоңырау соғу"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS нөміріне қоңырау шалу"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Қоңырау)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> мәтін-хабар жіберу"</string>
     <string name="sms_home" msgid="7765831490534280540">"Үй телефонына мәтін-хабар жіберу"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Ұялы телефонған мәтін-хабар жіберу"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Жұмыс пейджеріне мәтін-хабар жіберу"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> нөміріне мәтін-хабар жіберу"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS нөміріне мәтін-хабар жіберу"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Хабар)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Бейне қоңырау шалу"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Жиі қолданылғандар тазартылсын ба?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Контактілер және Телефондар қолданбаларындағы жиі хабарласатындар тізімі тазаланады және электрондық пошта қолданбалары мекенжай параметрлерін басынан үйренуге мәжбүрленеді."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Контактілер"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Басқа"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Анықтама"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Жұмыс каталогы"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Жұмыс каталогы"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Барлық контактілер"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Мен"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Іздеуде..."</string>
@@ -89,9 +87,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Жиі қолданылғандар"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Контактіні көру"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Телефон нөмірі бар барлық контактілер"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Жұмыс профилінің контактілері"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Жұмыс профилінің контактілері"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Жаңартуларды көру"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Телефон ғана, синхрондалмайды"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Планшет-қана, синхрондалмаған"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Телефон ғана, синхрондалмайды"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Аты-жөні"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Қысқа аты"</string>
     <string name="full_name" msgid="885420216812981202">"Аты-жөні"</string>
@@ -179,6 +178,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Сіз міндетті рұқсатты өшірдіңіз."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Экспорттау кезінде қателік орын алды: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Қажетті файл атауы тым ұзақ (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"Жадта тым көп vКарта файлдары."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD картада тым көп vКарта файлдары."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O қателігі"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Жад жеткіліксіз. Файл тым үлкен болуы мүмкін."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"vКартасын талдау күтпеген себеппен мүмкін болмады."</string>
@@ -187,16 +188,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Бір немесе бірнеше карталарды импорттау мүмкін болмады (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> экспорттау аяқталды."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Контактілер экспортталып болды."</string>
-    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
-    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> экспорттау тоқтатылды."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Контакт дерекқор экспортталуда"</string>
-    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Контакт дерекқорыңыз келесі файлға экспортталуда: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Дерекқор ақпаратын ала алмады."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Экспорттауға болатын контактілер жоқ. Телефоныңызда контактілер болса, кейбір дерекқор жадбықтаушылар контактілердің телефоннан экспортталуына рұқсат бермейді."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Экспортталатын контактілер жоқ. Планшетіңізде контактілер болса, кейбір дерекқор жадбықтаушылар контактілердің планшеттен экспортталуына рұқсат бермейді."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Экспорттауға болатын контактілер жоқ. Телефоныңызда контактілер болса, кейбір дерекқор жадбықтаушылар контактілердің телефоннан экспортталуына рұқсат бермейді."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vКарта жасақтаушы дұрыс басталмады."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Экспорттай алмады"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Контакт деректері экспортталмады. \nСебебі: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -210,15 +207,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vКартасын импорттау өтініші қабылданбады. Кейінірек қайта әрекеттеніп көріңіз."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> жуық арада экспортталады."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Файл қысқа уақыттан кейін экспортталады."</string>
-    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
-    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vКартасын экспорттау өтініші қабылданбады. Кейінірек қайта әрекеттеніп көріңіз."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vКарталарын жергілікті уақытша жадқа кэштеу. Импорттау жуық арада басталады."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vКартасын экспорттау мүмкін болмады."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Жадта ешқандай vКарта табылмады."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD картада ешқандай vCard файлы жоқ."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"ЖӨБ контактісі"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Контактілер экспортталсын ба?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кэштеу"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Ешқандай жадты скандау мүмкін болмады. (Себеп: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD картасын скандау мүмкін болмады. (Себеп: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> импорттауда: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf файлына экспорттау"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сұрыптау шарты"</string>
@@ -278,7 +277,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Құпиялылық саясаты"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Қызмет көрсету шарттары"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Ашық бастапқы код лицензиялары"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"Url ашылған жоқ."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> құсбелгі қойылған"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> құсбелгі қойылмаған"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Бейне қоңырау соғу"</string>

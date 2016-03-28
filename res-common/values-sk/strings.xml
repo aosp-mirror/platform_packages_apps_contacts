@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Volať na pracovný pager"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Volať kontakt <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Volať na číslo MMS"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (hovor)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Poslať správu kontaktu <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Poslať správu na domáci telefón"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Poslať správu na mobil"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Poslať správu na pracovný pager"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Poslať správu kontaktu <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Poslať správu na číslo MMS"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (správa)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Uskutočniť videohovor"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vymazať často kontaktované osoby?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Vymažete zoznam často kontaktovaných osôb v aplikáciách Kontakty a Telefón a e-mailové aplikácie budú musieť odznova vytvoriť predvoľby adresátov."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Kontakty"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Iné"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Adresár"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Pracovný adresár"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Pracovný adresár"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Všetky kontakty"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ja"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Hľadá sa…"</string>
@@ -91,9 +89,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Najčastejšie používané kontakty"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Zobraziť kontakt"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Všetky kontakty s telefónnymi číslami"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Kontakty v pracovnom profile"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Kontakty v pracovnom profile"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Zobraziť aktualizácie"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Iba v telefóne, nesynchronizované"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Iba v tablete, nesynchronizované"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Iba v telefóne, nesynchronizované"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Meno"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Prezývka"</string>
     <string name="full_name" msgid="885420216812981202">"Meno"</string>
@@ -181,6 +180,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"Zakázali ste požadované povolenie."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Počas exportovania sa vyskytla chyba: „<xliff:g id="EXACT_REASON">%s</xliff:g>“."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Požadovaný názov súboru (<xliff:g id="FILENAME">%s</xliff:g>) je príliš dlhý."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"V ukladacom priestore je príliš veľa súborov vCard."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"Na SD karte sa nachádza príliš veľa súborov vCard."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"Chyba I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Nedostatok pamäte. Súbor je možno príliš veľký."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Analýza karty vCard zlyhala z neznámeho dôvodu."</string>
@@ -189,13 +190,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Nepodaril sa import jedného alebo viacerých súborov (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Exportovanie súboru <xliff:g id="FILENAME">%s</xliff:g> bolo dokončené."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Exportovanie kontaktov bolo dokončené"</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Exportovanie kontaktov sa skončilo. Zdieľajte ich kliknutím na upozornenie."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Klepnutím zdieľajte kontakty."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Exportovanie súboru <xliff:g id="FILENAME">%s</xliff:g> bolo zrušené."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Export údajov kontaktov"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"Kontaktné informácie sa exportujú."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Vaše údaje o kontaktoch sa exportujú do súboru: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nepodarilo sa získať informácie z databázy."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Nenašli sa žiadne kontakty, ktoré by bolo možné exportovať. Ak v telefóne skutočne máte kontakty, problém môže byť spôsobený tým, že niektorí poskytovatelia údajov neumožňujú export kontaktov z telefónu."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Nenašli sa žiadne kontakty, ktoré by bolo možné exportovať. Ak v tablete skutočne máte kontakty, problém môže byť spôsobený tým, že niektorí poskytovatelia údajov neumožňujú export kontaktov z tabletu."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nenašli sa žiadne kontakty, ktoré by bolo možné exportovať. Ak v telefóne skutočne máte kontakty, problém môže byť spôsobený tým, že niektorí poskytovatelia údajov neumožňujú export kontaktov z telefónu."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Nástroj na tvorbu vizitiek vCard sa nespustil správne."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Exportovanie zlyhalo"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Údaje o kontaktoch sa neexportovali.\nDôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
@@ -209,14 +209,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Žiadosť o import vizitky vCard bola odmietnutá. Skúste to znova neskôr."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"Vizitka <xliff:g id="FILENAME">%s</xliff:g> bude čoskoro exportovaná."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Súbor bude čoskoro exportovaný."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Kontakty budú čoskoro exportované."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Žiadosť o exportovanie vizitky vCard bola odmietnutá. Skúste to znova neskôr."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Prebieha načítavanie vizitiek vCard do vyrovnávacej pamäte miestneho dočasného úložiska. Samotné importovanie začne o chvíľu."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Vizitku vCard sa nepodarilo importovať."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"V úložisku sa nenašla žiadna vizitka vCard."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"Na SD karte sa nenašla žiadna vizitka vCard."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakt cez NFC"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Exportovať kontakty?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Ukladanie do vyrovnávacej pamäte..."</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Ukladací priestor sa nepodarilo prehľadať. (Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD kartu sa nepodarilo prehľadať. (Dôvod: „<xliff:g id="FAIL_REASON">%s</xliff:g>“)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Import: <xliff:g id="CURRENT_NUMBER">%s</xliff:g> / <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Exportovať do súboru .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Zoradiť podľa"</string>
@@ -278,7 +281,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Pravidlá ochrany súkromia"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Zmluvné podmienky"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licencie open source"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"Webovú adresu nebolo možné otvoriť"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> – skontrolované"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> – neskontrolované"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Uskutočniť videohovor"</string>

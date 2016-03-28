@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"કાર્યાલયના પેજર પર કૉલ કરો"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> ને કૉલ કરો"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS પર કૉલ કરો"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (કૉલ કરો)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> ને ટેક્સ્ટ કરો"</string>
     <string name="sms_home" msgid="7765831490534280540">"ઘરે ટેક્સ્ટ કરો"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"મોબાઇલ પર ટેક્સ્ટ કરો"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"કાર્યાલયના પેજર પર ટેક્સ્ટ કરો"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> ને ટેક્સ્ટ કરો"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS પર ટેક્સ્ટ કરો"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (સંદેશ મોકલો)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"વિડિઓ કૉલ કરો"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"વારંવાર સંપર્ક કરેલા સાફ કરીએ?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"તમે સંપર્કો અને ફોન એપ્લિકેશન્સમાં વારંવાર સંપર્ક કરેલ સૂચિને સાફ કરશો અને ઇમેઇલ એપ્લિકેશન્સને તમારી સંબોધન પસંદગીઓને શરૂઆતથી જાણવા માટે ફરજ પાડશો."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"સંપર્કો"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"અન્ય"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"નિર્દેશિકા"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"કાર્ય નિર્દેશિકા"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"કાર્ય નિર્દેશિકા"</string>
     <string name="local_search_label" msgid="9094584931063745728">"તમામ સંપર્કો"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"મારા"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"શોધી રહ્યું છે..."</string>
@@ -89,9 +87,10 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"વારંવાર સંપર્ક કરેલા"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"સંપર્ક જુઓ"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ફોન નંબર્સ સાથેના તમામ સંપર્કો"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"કાર્ય પ્રોફાઇલના સંપર્કો"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"કાર્ય પ્રોફાઇલના સંપર્કો"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"અપડેટ્સ જુઓ"</string>
-    <string name="account_phone" msgid="6104157990869081962">"ફક્ત ફોન, અસમન્વયિત"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"ફક્ત ટેબ્લેટ, અસમન્વયિત"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"ફક્ત ફોન, અસમન્વયિત"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"નામ"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ઉપનામ"</string>
     <string name="full_name" msgid="885420216812981202">"નામ"</string>
@@ -179,6 +178,8 @@
     <string name="missing_required_permission" msgid="3120850759881656369">"તમે આવશ્યક પરવાનગી અક્ષમ કરી છે."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"નિકાસ દરમિયાન ભૂલ આવી: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"જરૂરી ફાઇલનું નામ ખૂબ લાંબું છે (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="fail_reason_too_many_vcard" product="nosdcard" msgid="8720294715223591581">"સ્ટોરેજમાં ઘણી બધી vCard ફાઇલો છે."</string>
+    <string name="fail_reason_too_many_vcard" product="default" msgid="3793454448838716962">"SD કાર્ડ પર ઘણી બધી vCard ફાઇલો છે."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O ભૂલ"</string>
     <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"પર્યાપ્ત મેમરી નથી. આ ફાઇલ ખૂબ મોટી હોઈ શકે છે."</string>
     <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"અનપેક્ષિત કારણસર vCard નું વિશ્લેષણ કરી શકાયું નથી."</string>
@@ -187,13 +188,12 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"એક અથવા વધુ ફાઇલો આયાત કરી શકાઈ નથી (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> ને નિકાસ કરવું સમાપ્ત થયું."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"સંપર્કોને નિકાસ કરવાનું સમાપ્ત થયું."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"નિકાસ કરવાનું સમાપ્ત થયું, સંપર્કો શેર કરવા માટે સૂચના ક્લિક કરો."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"સંપર્કો શેર કરવા માટે ટૅપ કરો."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> ને નિકાસ કરવું રદ કર્યું."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"સંપર્ક ડેટા નિકાસ કરી રહ્યાં છે"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"સંપર્ક ડેટાનો નિકાસ કરવામાં આવી રહ્યો છે."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"તમારો સંપર્ક ડેટા આ પર નિકાસ કરવામાં આવશે: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ડેટાબેસ જાણકારી મેળવી શકાઈ નથી."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"કોઈ નિકાસયોગ્ય સંપર્કો નથી. જો તમારી પાસે તમારા ફોન પર કોઈ સંપર્કો નથી, તો કેટલાક ડેટા પ્રદાતા ફોન પરથી સંપર્કોને નિકાસ કરવાની મંજૂરી આપી શકશે નહીં."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"કોઈ નિકાસયોગ્ય સંપર્કો નથી. જો તમારી પાસે તમારા ટેબ્લેટ પર કોઈ સંપર્કો નથી, તો કેટલાક ડેટા પ્રદાતા ટેબ્લેટ પરથી સંપર્કોને નિકાસ કરવાની મંજૂરી આપી શકશે નહીં."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"કોઈ નિકાસયોગ્ય સંપર્કો નથી. જો તમારી પાસે તમારા ફોન પર કોઈ સંપર્કો નથી, તો કેટલાક ડેટા પ્રદાતા ફોન પરથી સંપર્કોને નિકાસ કરવાની મંજૂરી આપી શકશે નહીં."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard કમ્પોઝર ઠીકથી પ્રારંભ થયું નથી."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"નિકાસ કરી શક્યાં નથી"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"સંપર્ક ડેટા નિકાસ કર્યો નહોતો.\nકારણ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -207,14 +207,17 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard આયાતની વિનંતી નકારી હતી. પછીથી ફરી પ્રયાસ કરો."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> ને ટૂંક સમયમાં નિકાસ કરવામાં આવશે."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ફાઇલને ટૂંક સમયમાં નિકાસ કરવામાં આવશે."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"સંપર્કોનો ટૂંક સમયમાં નિકાસ કરવામાં આવશે."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard નિકાસની વિનંતી નકારી હતી. પછીથી ફરી પ્રયાસ કરો."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"સંપર્ક"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"સ્થાનિક અસ્થાયી સ્ટોરેજ પર vCard કેશ કરી રહ્યાં છે. વાસ્તવિક આયાત જલ્દી જ શરૂ થશે."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vCard આયાત કરી શકાયો નથી."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"સ્ટોરેજમાં કોઈ vCard ફાઇલ મળી નથી."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD કાર્ડમાં કોઈ vCard ફાઇલ મળી નથી."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC પર સંપર્ક પ્રાપ્ત"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"સંપર્કો નિકાસ કરીએ?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"કેશ કરી રહ્યાં છે"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"સ્ટોરેજ સ્કેન કરી શકાયું નથી. (કારણ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD કાર્ડ સ્કેન કરી શકાયું નથી. (કારણ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> આયાત કરે છે: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ફાઇલ પર નિકાસ કરો"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"આ પ્રમાણે સૉર્ટ કરો"</string>
@@ -274,7 +277,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"ગોપનીયતા નીતિ"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"સેવાની શરતો"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ખુલ્લા સ્ત્રોત લાઇસેંસેસ"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"url ખોલવામાં નિષ્ફળ થયાં."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ચેક કર્યું"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ચેક કરેલ નથી"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"વિડિઓ કૉલ કરો"</string>
