@@ -52,6 +52,7 @@ import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
+import com.android.contacts.common.testing.NeededForTesting;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.widget.QuickContactImageView;
@@ -64,6 +65,7 @@ import java.util.HashMap;
 /**
  * Utility methods for creating contact editor.
  */
+@NeededForTesting
 public class EditorUiUtils {
 
     // Maps DataKind.mimeType to editor view layouts.
@@ -114,6 +116,7 @@ public class EditorUiUtils {
     /**
      * Returns the account name and account type labels to display for local accounts.
      */
+    @NeededForTesting
     public static Pair<String,String> getLocalAccountInfo(Context context,
             String accountName, AccountType accountType) {
         if (TextUtils.isEmpty(accountName)) {
@@ -130,6 +133,7 @@ public class EditorUiUtils {
     /**
      * Returns the account name and account type labels to display for the given account type.
      */
+    @NeededForTesting
     public static Pair<String,String> getAccountInfo(Context context, String accountName,
             AccountType accountType) {
         CharSequence accountTypeDisplayLabel = accountType.getDisplayLabel(context);
@@ -213,6 +217,7 @@ public class EditorUiUtils {
     /**
      * Returns a ringtone string based on the ringtone URI and version #.
      */
+    @NeededForTesting
     public static String getRingtoneStringFromUri(Uri pickedUri, int currentVersion) {
         if (isNewerThanM(currentVersion)) {
             if (pickedUri == null) return ""; // silent ringtone
@@ -225,6 +230,7 @@ public class EditorUiUtils {
     /**
      * Returns a ringtone URI, based on the string and version #.
      */
+    @NeededForTesting
     public static Uri getRingtoneUriFromString(String str, int currentVersion) {
         if (str != null) {
             if (isNewerThanM(currentVersion) && TextUtils.isEmpty(str)) return null;

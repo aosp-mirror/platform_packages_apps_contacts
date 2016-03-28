@@ -41,6 +41,7 @@ import java.util.Set;
 /**
  * Utility methods for the "account changed" notification in the new contact creation flow.
  */
+@NeededForTesting
 public class ContactEditorUtils {
     private static final String TAG = "ContactEditorUtils";
 
@@ -119,6 +120,7 @@ public class ContactEditorUtils {
      * @param defaultAccount the account used to save a newly created contact.  Or pass {@code null}
      *     If the user selected "local only".
      */
+    @NeededForTesting
     public void saveDefaultAndAllAccounts(AccountWithDataSet defaultAccount) {
         final SharedPreferences.Editor editor = mPrefs.edit()
                 .putBoolean(mAnythingSavedKey, true);
@@ -210,6 +212,7 @@ public class ContactEditorUtils {
      * {@link #getDefaultAccount} will return a valid account.  (Either an account which still
      * exists, or {@code null} which should be interpreted as "local only".)
      */
+    @NeededForTesting
     public boolean shouldShowAccountChangedNotification() {
         if (isFirstLaunch()) {
             return true;
