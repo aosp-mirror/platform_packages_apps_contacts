@@ -261,6 +261,25 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
             } else {
                 photo.primary = false;
             }
+            updateContentDescription(photo);
+        }
+    }
+
+    private void updateContentDescription(CompactPhotoSelectionFragment.Photo photo) {
+        if (!TextUtils.isEmpty(photo.accountType)) {
+            photo.contentDescription = getResources().getString(photo.primary ?
+                            R.string.photo_view_description_checked :
+                            R.string.photo_view_description_not_checked,
+                    photo.accountType, photo.accountName);
+            photo.contentDescriptionChecked = getResources().getString(
+                    R.string.photo_view_description_checked,
+                    photo.accountType, photo.accountName);
+        } else {
+            photo.contentDescription = getResources().getString(photo.primary ?
+                    R.string.photo_view_description_checked_no_info :
+                    R.string.photo_view_description_not_checked_no_info);
+            photo.contentDescriptionChecked = getResources().getString(
+                    R.string.photo_view_description_checked_no_info);
         }
     }
 
