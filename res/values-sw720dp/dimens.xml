@@ -26,10 +26,6 @@
     <dimen name="quickcontact_title_initial_margin">32dp</dimen>
     <!-- When QC is uncollapsed, the title has this much margin on its bottom -->
     <dimen name="quickcontact_title_initial_bottom_margin">0dp</dimen>
-    <!-- Initial size of QuickContact's title size -->
-    <dimen name="quickcontact_maximum_title_size">56dp</dimen>
-    <!-- Initial size of QuickContact's phonetic name size -->
-    <dimen name="quickcontact_maximum_phonetic_name_size">50dp</dimen>
     <!-- Right margin of the floating action button -->
     <dimen name="floating_action_button_margin_right">100dp</dimen>
 
