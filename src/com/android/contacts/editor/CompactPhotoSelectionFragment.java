@@ -95,6 +95,8 @@ public class CompactPhotoSelectionFragment extends Fragment {
 
         public String contentDescription;
         public String contentDescriptionChecked; // Talkback announcement when the photo is checked
+        public String accountType;
+        public String accountName;
 
         public ValuesDelta valuesDelta;
 
