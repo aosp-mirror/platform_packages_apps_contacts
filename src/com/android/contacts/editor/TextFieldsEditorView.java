@@ -23,8 +23,10 @@ import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.Spannable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.TtsSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -270,6 +272,16 @@ public class TextFieldsEditorView extends LabeledEditorView {
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (!ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(
+                            getKind().mimeType) || !(s instanceof Spannable)) {
+                        return;
+                    }
+                    final Spannable spannable = (Spannable) s;
+                    final TtsSpan[] spans = spannable.getSpans(0, s.length(), TtsSpan.class);
+                    for (int i = 0; i < spans.length; i++) {
+                        spannable.removeSpan(spans[i]);
+                    }
+                    PhoneNumberUtilsCompat.addTtsSpan(spannable, 0, s.length());
                 }
             });
 
