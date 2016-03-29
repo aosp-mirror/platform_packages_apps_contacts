@@ -554,27 +554,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                             kindSectionData.getRawContactDelta().getRawContactId()));
                 }
 
-                // set content descriptions of the photo
-                final CharSequence accountTypeText = accountType.getDisplayLabel(getContext());
-                if (accountTypeText != null) {
-                    final String accountNameText =
-                            kindSectionData.getRawContactDelta().getAccountName();
-                    photo.contentDescription = getResources().getString(photo.primary ?
-                                    R.string.photo_view_description_checked :
-                                    R.string.photo_view_description_not_checked,
-                            accountTypeText,
-                            accountNameText == null ? "" : accountNameText);
-                    photo.contentDescriptionChecked = getResources().getString(
-                            R.string.photo_view_description_checked,
-                            accountTypeText,
-                            accountNameText == null ? "" : accountNameText);
-                } else {
-                    photo.contentDescription = getResources().getString(photo.primary ?
-                            R.string.photo_view_description_checked_no_info :
-                            R.string.photo_view_description_not_checked_no_info);
-                    photo.contentDescriptionChecked = getResources().getString(
-                            R.string.photo_view_description_checked_no_info);
-                }
+                final CharSequence accountTypeLabel = accountType.getDisplayLabel(getContext());
+                photo.accountType = accountTypeLabel == null ? "" : accountTypeLabel.toString();
+                final String accountName = kindSectionData.getRawContactDelta().getAccountName();
+                photo.accountName = accountName == null ? "" : accountName;
 
                 photos.add(photo);
             }
