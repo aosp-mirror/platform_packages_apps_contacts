@@ -10,6 +10,14 @@
 }
 
 -keep class com.android.contacts.common.** { *;}
+# For test:
+-keep class com.android.contacts.commonbind.analytics.AnalyticsUtil { *;}
+-keep class com.android.contacts.interactions.** { *;}
+-keep class com.google.common.base.Objects { *;}
+-keep class com.google.common.base.Preconditions { *;}
+-keep class com.google.common.collect.Lists { *;}
+-keep class com.google.common.collect.Maps { *;}
+-keep class com.google.common.collect.Sets { *;}
 
 # Any class or method annotated with NeededForTesting or NeededForReflection.
 -keep @com.android.contacts.common.testing.NeededForTesting class *
@@ -17,6 +25,11 @@
 -keepclassmembers class * {
 @com.android.contacts.common.testing.NeededForTesting *;
 @com.android.contacts.test.NeededForReflection *;
+}
+# Keep classes and methods that have the guava @VisibleForTesting annotation
+-keep @com.google.common.annotations.VisibleForTesting class *
+-keepclassmembers class * {
+  @com.google.common.annotations.VisibleForTesting *;
 }
 
 -verbose
