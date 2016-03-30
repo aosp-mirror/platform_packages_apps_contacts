@@ -240,9 +240,7 @@ public class EditorUiUtils {
     /** Returns the {@link Photo#PHOTO_FILE_ID} from the given ValuesDelta. */
     public static Long getPhotoFileId(ValuesDelta valuesDelta) {
         if (valuesDelta == null) return null;
-        // 1. There's no "after", we want to obtain the value of Photo.PHOTO_FILE_ID from "before".
-        // 2. There's a "after", we want to obtain the value of Photo.PHOTO_FILE_ID from "after".
-        if (valuesDelta.getAfter().size() == 0 || valuesDelta.getAfter().get(Photo.PHOTO) != null) {
+        if (valuesDelta.getAfter() == null || valuesDelta.getAfter().get(Photo.PHOTO) == null) {
             return valuesDelta.getAsLong(Photo.PHOTO_FILE_ID);
         }
         return null;
