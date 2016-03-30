@@ -916,7 +916,4 @@
 
     <!-- The menu item to open blocked numbers activity [CHAR LIMIT=60]-->
     <string name="menu_blocked_numbers">Blocked numbers</string>
-
-    <!-- The menu item to open the link/merge duplicates activity. [CHAR LIMIT=80]-->
-    <string name="menu_duplicates">Find duplicates</string>
 </resources>
