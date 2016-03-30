@@ -51,12 +51,33 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     public static final char SNIPPET_START_MATCH = '[';
     public static final char SNIPPET_END_MATCH = ']';
 
-    // Phone numbers that were used more than 30 days ago are dropped from frequents query
-    // in ContactsProvider2#queryLocal so we include them in the main query when running
-    // the strequents experiment
-    private static final String LAST_CONTACTED_MORE_THAN_THIRTY_DAYS_AGO =
-            "(strftime('%s', 'now') - " + Contacts.LAST_TIME_CONTACTED + "/1000) > "
-                    + 30L * 24 * 60 * 60;
+    // Contacts contacted within the last 3 days (in seconds)
+    private static final long LAST_TIME_USED_3_DAYS_SEC = 3L * 24 * 60 * 60;
+
+    // Contacts contacted within the last 7 days (in seconds)
+    private static final long LAST_TIME_USED_7_DAYS_SEC = 7L * 24 * 60 * 60;
+
+    // Contacts contacted within the last 14 days (in seconds)
+    private static final long LAST_TIME_USED_14_DAYS_SEC = 14L * 24 * 60 * 60;
+
+    // Contacts contacted within the last 30 days (in seconds)
+    private static final long LAST_TIME_USED_30_DAYS_SEC = 30L * 24 * 60 * 60;
+
+    private static final String TIME_SINCE_LAST_USED_SEC =
+            "(strftime('%s', 'now') - " + Contacts.LAST_TIME_CONTACTED + "/1000)";
+
+    private static final String STREQUENT_SORT =
+            "(CASE WHEN " + TIME_SINCE_LAST_USED_SEC + " < " + LAST_TIME_USED_3_DAYS_SEC +
+                    " THEN 0 " +
+                    " WHEN " + TIME_SINCE_LAST_USED_SEC + " < " + LAST_TIME_USED_7_DAYS_SEC +
+                    " THEN 1 " +
+                    " WHEN " + TIME_SINCE_LAST_USED_SEC + " < " + LAST_TIME_USED_14_DAYS_SEC +
+                    " THEN 2 " +
+                    " WHEN " + TIME_SINCE_LAST_USED_SEC + " < " + LAST_TIME_USED_30_DAYS_SEC +
+                    " THEN 3 " +
+                    " ELSE 4 END), " +
+                    Contacts.TIMES_CONTACTED + " DESC, " +
+                    Contacts.STARRED + " DESC";
 
     public DefaultContactListAdapter(Context context) {
         super(context);
@@ -111,30 +132,15 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                                 Phone.CONTENT_ITEM_TYPE, "%" + normalizedNumberQuery + "%",
                                 Email.CONTENT_ITEM_TYPE, query + "%"});
                 if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
-                    sortOrder = String.format("%s DESC, %s DESC",
-                            Contacts.TIMES_CONTACTED, Contacts.STARRED);
+                    sortOrder = STREQUENT_SORT;
                 }
             } else {
                 final Builder builder = ContactsCompat.getContentUri().buildUpon();
                 appendSearchParameters(builder, query, directoryId);
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
-                if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)
-                        && loader instanceof ProfileAndContactsLoader) {
-                    // Filter out frequently contacted and starred contacts from the main results
-                    loader.setSelection("(" + Contacts.LAST_TIME_CONTACTED + "=0 OR "
-                            + LAST_CONTACTED_MORE_THAN_THIRTY_DAYS_AGO + ") AND "
-                            + "(" + Contacts.STARRED + "=0 OR " + Contacts.STARRED + " IS null)");
-
-                    // Configure an extra query to load strequent contacts and merge them in
-                    // before the main loader query results.
-                    final ProfileAndContactsLoader profileAndContactsLoader =
-                            (ProfileAndContactsLoader) loader;
-                    final Builder strequentBuilder =
-                            Contacts.CONTENT_STREQUENT_FILTER_URI.buildUpon();
-                    appendSearchParameters(strequentBuilder, query, directoryId);
-                    profileAndContactsLoader.setLoadExtraContactsFirst(
-                            strequentBuilder.build(), getExperimentProjection());
+                if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
+                    sortOrder = STREQUENT_SORT;
                 }
             }
         } else {
