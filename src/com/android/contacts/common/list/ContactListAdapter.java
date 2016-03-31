@@ -20,8 +20,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippets;
 import android.text.TextUtils;
@@ -29,12 +27,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
-import com.android.contacts.common.Experiments;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.ContactsCompat;
 import com.android.contacts.common.preference.ContactsPreferences;
-import com.android.contacts.common.util.ContactDisplayUtils;
-import com.android.contacts.commonbind.experiments.Flags;
 
 /**
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
@@ -110,64 +105,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         public static final int CONTACT_LAST_TIME_CONTACTED = 9;
         public static final int CONTACT_STARRED          = 10;
         public static final int CONTACT_SNIPPET          = 11;
-    }
-
-    // The projection columns should match those in ContactQuery above expect we must omit the
-    // columns which are not supported
-    protected static class ExperimentQuery {
-
-        private static final String[] FILTER_PROJECTION_PRIMARY = new String[] {
-                Contacts._ID,                           // 0
-                Contacts.DISPLAY_NAME_PRIMARY,          // 1
-                Contacts.CONTACT_PRESENCE,              // 2
-                Contacts.CONTACT_STATUS,                // 3
-                Contacts.PHOTO_ID,                      // 4
-                Contacts.PHOTO_THUMBNAIL_URI,           // 5
-                Contacts.LOOKUP_KEY,                    // 6
-                Contacts.IS_USER_PROFILE,               // 7
-                Contacts.PHONETIC_NAME,                 // 8
-                Contacts.LAST_TIME_CONTACTED,           // 9
-                Contacts.STARRED,                       // 10
-                // SearchSnippets.SNIPPET not supported for Contacts.CONTENT_URI
-        };
-
-        private static final String[] FILTER_PROJECTION_ALTERNATIVE = new String[] {
-                Contacts._ID,                           // 0
-                Contacts.DISPLAY_NAME_ALTERNATIVE,      // 1
-                Contacts.CONTACT_PRESENCE,              // 2
-                Contacts.CONTACT_STATUS,                // 3
-                Contacts.PHOTO_ID,                      // 4
-                Contacts.PHOTO_THUMBNAIL_URI,           // 5
-                Contacts.LOOKUP_KEY,                    // 6
-                Contacts.IS_USER_PROFILE,               // 7
-                Contacts.PHONETIC_NAME,                 // 8
-                Contacts.LAST_TIME_CONTACTED,           // 9
-                Contacts.STARRED,                       // 10
-                // SearchSnippets.SNIPPET not supported for Contacts.CONTENT_URI
-        };
-
-        public static final String[] FILTER_PROJECTION_PRIMARY_EXTRA = new String[] {
-                Contacts._ID,                           // 0
-                Contacts.DISPLAY_NAME_PRIMARY,          // 1
-                Contacts.CONTACT_PRESENCE,              // 2
-                Contacts.CONTACT_STATUS,                // 3
-                Contacts.PHOTO_ID,                      // 4
-                Contacts.PHOTO_THUMBNAIL_URI,           // 5
-                Contacts.LOOKUP_KEY,                    // 6
-                // Contacts.IS_USER_PROFILE not supported for Data.CONTENT_URI
-                Contacts.IN_VISIBLE_GROUP,              // 7
-                Contacts.PHONETIC_NAME,                 // 8
-                Contacts.LAST_TIME_CONTACTED,           // 9
-                Contacts.STARRED,                       // 10
-                // SearchSnippets.SNIPPET not supported for Data.CONTENT_URI
-                Email.ADDRESS,                          // 11
-                Phone.NUMBER,                           // 12
-                Phone.NORMALIZED_NUMBER,                // 13
-        };
-
-        public static final int EMAIL_ADDRESS = 11;
-        public static final int NUMBER = 12;
-        public static final int NORMAILIZED_NUMBER = 13;
     }
 
     private CharSequence mUnknownNameText;
@@ -343,21 +280,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     }
 
     protected void bindSearchSnippet(final ContactListItemView view, Cursor cursor) {
-        if (Flags.getInstance(mContext).getBoolean(
-                Experiments.FLAG_SEARCH_DISPLAY_NAME_QUERY, false)) {
-            final String queryString = getQueryString();
-            if (ContactDisplayUtils.isPossiblePhoneNumber(queryString)
-                    && cursor.getColumnCount() > ExperimentQuery.NUMBER
-                    && Phone.NUMBER.equals(cursor.getColumnName(ExperimentQuery.NUMBER))) {
-                view.showSnippet(cursor, queryString, ExperimentQuery.NUMBER);
-                return;
-            }
-            if (cursor.getColumnCount() > ExperimentQuery.EMAIL_ADDRESS
-                    && Email.ADDRESS.equals(cursor.getColumnName(ExperimentQuery.EMAIL_ADDRESS))) {
-                view.showSnippet(cursor, queryString, ExperimentQuery.EMAIL_ADDRESS);
-                return;
-            }
-        }
         view.showSnippet(cursor, ContactQuery.CONTACT_SNIPPET);
     }
 
@@ -470,15 +392,5 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 return ContactQuery.CONTACT_PROJECTION_ALTERNATIVE;
             }
         }
-    }
-
-    /**
-     * Returns the projection useful for search experiments.
-     */
-    protected final String[] getExperimentProjection() {
-        final int sortOrder = getContactNameDisplayOrder();
-        return sortOrder == ContactsPreferences.DISPLAY_ORDER_PRIMARY
-                ? ExperimentQuery.FILTER_PROJECTION_PRIMARY
-                : ExperimentQuery.FILTER_PROJECTION_ALTERNATIVE;
     }
 }
