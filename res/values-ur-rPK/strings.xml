@@ -328,6 +328,5 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"نامعلوم اکاؤنٹ سے تصویر نشان زد ہے"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"زبان کی تبدیلی کو منعکس کرنے کیلئے رابطہ فہرست اپ ڈیٹ ہو رہی ہے\n\nبراہ کرم انتظار کریں…"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"مسدود کردہ نمبرز"</string>
-    <!-- no translation found for menu_duplicates (4440351599741996317) -->
-    <skip />
+    <string name="menu_duplicates" msgid="4440351599741996317">"ڈپلیکیٹس تلاش کریں"</string>
 </resources>
