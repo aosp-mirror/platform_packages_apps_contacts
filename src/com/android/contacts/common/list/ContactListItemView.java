@@ -32,6 +32,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.SearchSnippets;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -186,7 +187,7 @@ public class ContactListItemView extends ViewGroup
     private TextView mSnippetView;
     private TextView mStatusView;
     private ImageView mPresenceIcon;
-    private CheckBox mCheckBox;
+    private AppCompatCheckBox mCheckBox;
     private ImageView mVideoCallIcon;
     private ImageView mWorkProfileIcon;
 
@@ -1232,11 +1233,11 @@ public class ContactListItemView extends ViewGroup
     }
 
     /**
-     * Returns the {@link CheckBox} view, creating it if necessary.
+     * Returns the {@link AppCompatCheckBox} view, creating it if necessary.
      */
-    public CheckBox getCheckBox() {
+    public AppCompatCheckBox getCheckBox() {
         if (mCheckBox == null) {
-            mCheckBox = new CheckBox(getContext());
+            mCheckBox = new AppCompatCheckBox(getContext());
             // Make non-focusable, so the rest of the ContactListItemView can be clicked.
             mCheckBox.setFocusable(false);
             addView(mCheckBox);
