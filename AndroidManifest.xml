@@ -64,7 +64,7 @@
         <!-- The main Contacts activity with the contact list, favorites, and groups. -->
         <activity android:name=".activities.PeopleActivity"
             android:label="@string/launcherActivityLabel"
-            android:theme="@style/PeopleTheme"
+            android:theme="@style/PeopleActivityTheme"
             android:clearTaskOnLaunch="true"
             android:launchMode="singleTop"
             android:resizeableActivity="true"

@@ -25,7 +25,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/ic_back_arrow"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_menu_back_from_search"
         android:layout_gravity="center_vertical|start"
         android:tint="@android:color/white" />
@@ -37,6 +37,6 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_gravity="center_vertical|start"
-        style="@style/ContactsActionBarTitleText" />
+        style="@style/ContactsActionBarTitleTextAppCompat" />
 
 </FrameLayout>

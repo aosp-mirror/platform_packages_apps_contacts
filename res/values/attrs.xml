@@ -20,8 +20,6 @@
         <attr name="mimeType" format="string"/>
         <!-- RemoteViews XML that should be used to format this data -->
         <attr name="remoteViews" format="reference"/>
-        <!-- Icon that should be used to represent this data -->
-        <attr name="icon" format="reference"/>
         <!-- Column in data table to summarize this data -->
         <attr name="summaryColumn" format="string"/>
         <!-- Column in data table to show details of this data -->
