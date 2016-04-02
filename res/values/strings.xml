@@ -919,4 +919,10 @@
 
     <!-- The menu item to open the link/merge duplicates activity. [CHAR LIMIT=80]-->
     <string name="menu_duplicates">Find duplicates</string>
+
+    <!-- Open drawer content descriptions [CHAR LIMIT=40] -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+
+    <!-- Close drawer content descriptions [CHAR LIMIT=40] -->
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

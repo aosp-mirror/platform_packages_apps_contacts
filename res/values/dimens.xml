@@ -291,4 +291,11 @@
     <!-- Top margin for "Saving to" account header text field. -->
     <dimen name="compact_editor_account_header_top_margin">3dp</dimen>
 
+    <!-- Navigation drawer header height, per the Android Design guidelines. -->
+    <dimen name="nav_header_height">160dp</dimen>
+
+    <!-- Navigation drawer margins, per the Android Design guidelines. -->
+    <dimen name="nav_activity_horizontal_margin">16dp</dimen>
+    <dimen name="nav_activity_vertical_margin">16dp</dimen>
+
 </resources>

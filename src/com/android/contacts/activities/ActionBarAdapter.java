@@ -366,6 +366,9 @@ public class ActionBarAdapter implements OnCloseListener {
             newFlags |= ActionBar.DISPLAY_SHOW_TITLE;
             mToolbar.setContentInsetsRelative(mMaxToolbarContentInsetStart,
                     mToolbar.getContentInsetEnd());
+            mToolbar.setNavigationIcon(R.drawable.ic_menu_hamburger);
+        } else {
+            mToolbar.setNavigationIcon(null);
         }
 
         if (mSelectionMode) {

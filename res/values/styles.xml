@@ -130,6 +130,7 @@
         <!-- Style for the overflow button in the actionbar. -->
         <item name="android:actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
         <item name="actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
+        <item name="toolbarNavigationButtonStyle">@style/ContactToolbarNavigationButtonStyle</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_close_lt</item>
         <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_thumb</item>
         <item name="android:fastScrollTrackDrawable">@null</item>
@@ -268,6 +269,11 @@
     <style name="ContactsActionBarOverflowQP"
            parent="Widget.AppCompat.Light.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_more_vert</item>
+        <item name="android:tint">@color/action_bar_button_text_color</item>
+    </style>
+
+    <!-- Toolbar navigation button. -->
+    <style name="ContactToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
         <item name="android:tint">@color/action_bar_button_text_color</item>
     </style>
 

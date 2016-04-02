@@ -42,14 +42,6 @@
         android:title="@string/menu_accounts" />
 
     <item
-        android:id="@+id/menu_settings"
-        android:title="@string/menu_settings" />
-
-    <item
-        android:id="@+id/menu_help"
-        android:title="@string/menu_help" />
-
-    <item
         android:id="@+id/export_database"
         android:title="@string/menu_export_database"
         android:visible="false"

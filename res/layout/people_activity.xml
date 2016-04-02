@@ -14,40 +14,61 @@
      limitations under the License.
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/list_container"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <include
-        layout="@layout/people_activity_toolbar"
-        android:id="@+id/toolbar_parent" />
-
-    <!--
-        ViewPager for swiping between tabs.  We put StrequentContactListFragment,
-        DefaultContactBrowseListFragment and GroupBrowseListFragment at runtime.
-
-        (Adding them directly as the children of this view is not recommended.  ViewPager should
-        be treated like a ListView, which doesn't expect children to be added from the layout.)
-    -->
-    <android.support.v4.view.ViewPager
-        android:id="@+id/tab_pager"
-        android:layout_height="match_parent"
+    <RelativeLayout
+        android:id="@+id/list_container"
         android:layout_width="match_parent"
-        android:layout_below="@id/toolbar_parent"
-        />
+        android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/contacts_unavailable_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_parent"
-        android:visibility="gone">
-        <FrameLayout
-            android:id="@+id/contacts_unavailable_container"
+        <include
+            layout="@layout/people_activity_toolbar"
+            android:id="@+id/toolbar_parent" />
+
+        <!--
+            ViewPager for swiping between tabs.  We put StrequentContactListFragment,
+            DefaultContactBrowseListFragment and GroupBrowseListFragment at runtime.
+
+            (Adding them directly as the children of this view is not recommended.  ViewPager should
+            be treated like a ListView, which doesn't expect children to be added from the layout.)
+        -->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/tab_pager"
             android:layout_height="match_parent"
-            android:layout_width="match_parent" />
-    </FrameLayout>
+            android:layout_width="match_parent"
+            android:layout_below="@id/toolbar_parent"
+            />
 
-    <include layout="@layout/floating_action_button" />
-</RelativeLayout>
+        <FrameLayout
+            android:id="@+id/contacts_unavailable_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar_parent"
+            android:visibility="gone">
+            <FrameLayout
+                android:id="@+id/contacts_unavailable_container"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent" />
+        </FrameLayout>
+
+        <include layout="@layout/floating_action_button" />
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer"/>
+
+</android.support.v4.widget.DrawerLayout>

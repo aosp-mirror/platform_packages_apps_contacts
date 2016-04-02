@@ -34,9 +34,13 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
+import android.support.design.widget.NavigationView;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.telecom.TelecomManager;
 import android.text.TextUtils;
@@ -112,7 +116,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         ContactListFilterController.ContactListFilterListener,
         ProviderStatusListener,
         MultiContactDeleteListener,
-        JoinContactsListener {
+        JoinContactsListener,
+        NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "PeopleActivity";
 
@@ -328,6 +333,22 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             mViewPagerTabs = portraitViewPagerTabs;
         }
         mViewPagerTabs.setViewPager(mTabPager);
+
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        final Menu menu = navigationView.getMenu();
+        if (HelpUtils.isHelpAndFeedbackAvailable()) {
+            final MenuItem menuItem = menu.add(/* groupId */ R.id.misc, /* itemId */ R.id.nav_help,
+                    /* order */ Menu.NONE, /* titleRes */ R.string.menu_help);
+            menuItem.setIcon(R.drawable.ic_menu_help);
+        }
 
         final String FAVORITE_TAG = "tab-pager-favorite";
         final String ALL_TAG = "tab-pager-all";
@@ -1076,14 +1097,12 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         // Get references to individual menu items in the menu
         final MenuItem contactsFilterMenu = menu.findItem(R.id.menu_contacts_filter);
         final MenuItem clearFrequentsMenu = menu.findItem(R.id.menu_clear_frequents);
-        final MenuItem helpMenu = menu.findItem(R.id.menu_help);
 
         final boolean isSearchOrSelectionMode = mActionBarAdapter.isSearchMode()
                 || mActionBarAdapter.isSelectionMode();
         if (isSearchOrSelectionMode) {
             contactsFilterMenu.setVisible(false);
             clearFrequentsMenu.setVisible(false);
-            helpMenu.setVisible(false);
         } else {
             switch (getTabPositionForTextDirection(mActionBarAdapter.getCurrentTab())) {
                 case TabState.FAVORITES:
@@ -1095,7 +1114,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                     clearFrequentsMenu.setVisible(false);
                     break;
             }
-            helpMenu.setVisible(HelpUtils.isHelpAndFeedbackAvailable());
         }
         final boolean showMiscOptions = !isSearchOrSelectionMode;
         final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this)
@@ -1105,8 +1123,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         makeMenuItemVisible(menu, R.id.menu_import_export, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_blocked_numbers, showMiscOptions && showBlockedNumbers);
-        makeMenuItemVisible(menu, R.id.menu_settings,
-                showMiscOptions && !ContactsPreferenceActivity.isEmpty(this));
         makeMenuItemVisible(menu, R.id.menu_duplicates,
                 showMiscOptions && ObjectFactory.getDuplicatesActivityIntent(this) != null);
 
@@ -1170,10 +1186,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 }
                 return true;
             }
-            case R.id.menu_settings: {
-                startActivity(new Intent(this, ContactsPreferenceActivity.class));
-                return true;
-            }
             case R.id.menu_contacts_filter: {
                 AccountFilterUtil.startAccountFilterActivityForResult(
                         this, SUBACTIVITY_ACCOUNT_FILTER,
@@ -1201,9 +1213,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 ClearFrequentsDialog.show(getFragmentManager());
                 return true;
             }
-            case R.id.menu_help:
-                HelpUtils.launchHelpAndFeedbackForMainScreen(this);
-                return true;
             case R.id.menu_accounts: {
                 final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
                 intent.putExtra(Settings.EXTRA_AUTHORITIES, new String[] {
@@ -1234,6 +1243,22 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             }
         }
         return false;
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        final int id = item.getItemId();
+
+        if (id == R.id.nav_settings) {
+            startActivity(new Intent(this, ContactsPreferenceActivity.class));
+        } else if (id == R.id.nav_help) {
+            HelpUtils.launchHelpAndFeedbackForMainScreen(this);
+        }
+
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     private void showImportExportDialogFragment(){
@@ -1365,7 +1390,10 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             return;
         }
 
-        if (mActionBarAdapter.isSelectionMode()) {
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (mActionBarAdapter.isSelectionMode()) {
             mActionBarAdapter.setSelectionMode(false);
             mAllFragment.displayCheckBoxes(false);
         } else if (mActionBarAdapter.isSearchMode()) {
