@@ -25,6 +25,7 @@ import android.provider.ContactsContract.Groups;
 
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.activities.GroupDetailActivity;
+import com.android.contacts.activities.GroupEditorActivity;
 import com.google.common.base.Objects;
 
 /**
@@ -66,6 +67,13 @@ public final class GroupUtil {
 
         return new GroupListItem(accountName, accountType, dataSet, groupId, title,
                 isFirstGroupInAccount, memberCount);
+    }
+
+    /** Returns an Intent to create a new group. */
+    public static Intent createAddGroupIntent(Context context) {
+        final Intent intent = new Intent(context, GroupEditorActivity.class);
+        intent.setAction(Intent.ACTION_INSERT);
+        return intent;
     }
 
     /** Returns an Intent to view the details of the group identified by the given Uri. */

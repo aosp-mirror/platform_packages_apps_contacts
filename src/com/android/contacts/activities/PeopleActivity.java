@@ -914,22 +914,27 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     @Override
     public void onGroupsLoaded(List<GroupListItem> groupListItems) {
+        // Clear previously added groups
         final Menu menu = mNavigationView.getMenu();
-        menu.removeGroup(R.id.menu_groups);
+        menu.removeGroup(R.id.nav_groups);
+
         if (groupListItems == null || groupListItems.isEmpty()) {
             return;
         }
+
+        // Add each group
         for (GroupListItem groupListItem : groupListItems) {
-            if (groupListItem.isFirstGroupInAccount()) {
-                menu.addSubMenu(groupListItem.getAccountName());
-            }
             final String title = groupListItem.getMemberCount() == 0 ? groupListItem.getTitle()
                     : getString(R.string.group_name_menu_item, groupListItem.getTitle(),
                             groupListItem.getMemberCount());
-            final MenuItem menuItem =
-                    menu.add(R.id.menu_groups, Menu.NONE, Menu.CATEGORY_SYSTEM, title);
+            final MenuItem menuItem = menu.add(R.id.nav_groups, Menu.NONE, Menu.NONE, title);
             menuItem.setIntent(GroupUtil.createViewGroupIntent(this, groupListItem.getGroupId()));
         }
+
+        // Create a menu item to add new groups
+        final MenuItem menuItem = menu.add(R.id.nav_groups, Menu.NONE, Menu.NONE,
+                getString(R.string.menu_new_group_action_bar));
+        menuItem.setIntent(GroupUtil.createAddGroupIntent(this));
     }
 
     @Override
