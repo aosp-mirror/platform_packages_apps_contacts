@@ -350,5 +350,4 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"סומנה תמונה מחשבון לא ידוע"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"רשימת אנשי הקשר מתעדכנת כדי לשקף את החלפת השפה.\n\nהמתן..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"מספרים חסומים"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"חיפוש כפילויות"</string>
 </resources>

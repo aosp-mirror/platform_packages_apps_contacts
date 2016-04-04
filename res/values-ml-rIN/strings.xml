@@ -328,5 +328,4 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തു"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ഭാഷാ മാറ്റം പ്രതിഫലിപ്പിക്കുന്നതിന് കോൺടാക്റ്റ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്തുകൊണ്ടിരിക്കുന്നു.\n\nകാക്കുക..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"ബ്ലോക്കുചെയ്ത നമ്പറുകൾ"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"ഡ്യൂപ്ലിക്കേറ്റുകളെ കണ്ടെത്തുക"</string>
 </resources>

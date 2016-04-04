@@ -328,5 +328,4 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Mynd af óþekktum reikningi valin"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Verið er að uppfæra tengiliðalistann í samræmi við nýja tungumálið.\n\nAugnablik..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Númer á bannlista"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"Finna tvítekningar"</string>
 </resources>

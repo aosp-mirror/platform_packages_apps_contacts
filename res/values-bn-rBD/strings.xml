@@ -328,5 +328,4 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়েছে"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ভাষা পরিবর্তন দেখানোর জন্য পরিচিতির তালিকা আপডেট করা হচ্ছে৷\n\nঅনুগ্রহ করে অপেক্ষা করুন..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"অবরোধ করা নম্বরগুলি"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"সদৃশগুলি খুঁজুন"</string>
 </resources>

@@ -328,5 +328,4 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto van onbekende rekening af is gemerk"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaklys word tans opgedateer om die taalverandering te weerspieël.\n\nWag asseblief..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Geblokkeerde nommers"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"Vind duplikate"</string>
 </resources>
