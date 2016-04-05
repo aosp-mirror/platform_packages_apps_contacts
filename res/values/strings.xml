@@ -294,6 +294,11 @@
     <!-- The text displayed when the contacts list is empty while displaying all contacts [CHAR LIMIT=NONE] -->
     <string name="noContacts">No contacts</string>
 
+    <!-- Group name menu item title when there is at least one group member. [CHAR LIMIT=NONE] -->
+    <string name="group_name_menu_item">
+        <xliff:g id="group_name">%s</xliff:g> (<xliff:g id="count">%d</xliff:g>)
+    </string>
+
     <!-- The text displayed when the groups list is empty while displaying all groups [CHAR LIMIT=NONE] -->
     <string name="noGroups">No groups.</string>
 

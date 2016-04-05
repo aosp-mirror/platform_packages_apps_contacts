@@ -36,9 +36,9 @@ import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -55,14 +55,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-
 import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.compat.BlockedNumberContractCompat;
+import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -81,6 +80,10 @@ import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
 import com.android.contacts.commonbind.ObjectFactory;
 import com.android.contacts.editor.EditorIntents;
+import com.android.contacts.group.GroupListItem;
+import com.android.contacts.group.GroupUtil;
+import com.android.contacts.group.GroupsFragment;
+import com.android.contacts.group.GroupsFragment.GroupsListener;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiContactDeleteListener;
@@ -114,6 +117,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         ActionBarAdapter.Listener,
         DialogManager.DialogShowingViewActivity,
         ContactListFilterController.ContactListFilterListener,
+        GroupsListener,
         ProviderStatusListener,
         MultiContactDeleteListener,
         JoinContactsListener,
@@ -152,6 +156,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
      */
     private MultiSelectContactsListFragment mAllFragment;
     private ContactTileListFragment mFavoritesFragment;
+    private GroupsFragment mGroupsFragment;
 
     /** ViewPager for swipe */
     private ViewPager mTabPager;
@@ -159,6 +164,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     private TabPagerAdapter mTabPagerAdapter;
     private String[] mTabTitles;
     private final TabPagerListener mTabPagerListener = new TabPagerListener();
+
+    private NavigationView mNavigationView;
 
     private boolean mEnableDebugMenuOptions;
 
@@ -340,10 +347,10 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView.setNavigationItemSelectedListener(this);
 
-        final Menu menu = navigationView.getMenu();
+        final Menu menu = mNavigationView.getMenu();
         if (HelpUtils.isHelpAndFeedbackAvailable()) {
             final MenuItem menuItem = menu.add(/* groupId */ R.id.misc, /* itemId */ R.id.nav_help,
                     /* order */ Menu.NONE, /* titleRes */ R.string.menu_help);
@@ -352,6 +359,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         final String FAVORITE_TAG = "tab-pager-favorite";
         final String ALL_TAG = "tab-pager-all";
+        final String GROUPS_TAG = "groups";
 
         // Create the fragments and add as children of the view pager.
         // The pager adapter will only change the visibility; it'll never create/destroy
@@ -363,13 +371,20 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 fragmentManager.findFragmentByTag(FAVORITE_TAG);
         mAllFragment = (MultiSelectContactsListFragment)
                 fragmentManager.findFragmentByTag(ALL_TAG);
+        mGroupsFragment = (GroupsFragment)
+                fragmentManager.findFragmentByTag(GROUPS_TAG);
 
         if (mFavoritesFragment == null) {
             mFavoritesFragment = new ContactTileListFragment();
-            mAllFragment = new MultiSelectContactsListFragment();
-
             transaction.add(R.id.tab_pager, mFavoritesFragment, FAVORITE_TAG);
+
+            mAllFragment = new MultiSelectContactsListFragment();
             transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
+
+            if (areGroupWritableAccountsAvailable()) {
+                mGroupsFragment = new GroupsFragment();
+                transaction.add(mGroupsFragment, GROUPS_TAG);
+            }
         }
 
         mFavoritesFragment.setListener(mFavoritesFragmentListener);
@@ -377,10 +392,15 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
         mAllFragment.setCheckBoxListListener(new CheckBoxListListener());
 
+        if (areGroupWritableAccountsAvailable()) {
+            mGroupsFragment.setListener(this);
+        }
+
         // Hide all fragments for now.  We adjust visibility when we get onSelectedTabChanged()
         // from ActionBarAdapter.
         transaction.hide(mFavoritesFragment);
         transaction.hide(mAllFragment);
+        // Groups fragment has no UI, no need to hide it
 
         transaction.commitAllowingStateLoss();
         fragmentManager.executePendingTransactions();
@@ -893,6 +913,26 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     @Override
+    public void onGroupsLoaded(List<GroupListItem> groupListItems) {
+        final Menu menu = mNavigationView.getMenu();
+        menu.removeGroup(R.id.menu_groups);
+        if (groupListItems == null || groupListItems.isEmpty()) {
+            return;
+        }
+        for (GroupListItem groupListItem : groupListItems) {
+            if (groupListItem.isFirstGroupInAccount()) {
+                menu.addSubMenu(groupListItem.getAccountName());
+            }
+            final String title = groupListItem.getMemberCount() == 0 ? groupListItem.getTitle()
+                    : getString(R.string.group_name_menu_item, groupListItem.getTitle(),
+                            groupListItem.getMemberCount());
+            final MenuItem menuItem =
+                    menu.add(R.id.menu_groups, Menu.NONE, Menu.CATEGORY_SYSTEM, title);
+            menuItem.setIntent(GroupUtil.createViewGroupIntent(this, groupListItem.getGroupId()));
+        }
+    }
+
+    @Override
     public void onProviderStatusChange() {
         updateViewConfiguration(false);
     }
@@ -1164,13 +1204,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         }
     }
 
-    private void makeMenuItemEnabled(Menu menu, int itemId, boolean visible) {
-        final MenuItem item = menu.findItem(itemId);
-        if (item != null) {
-            item.setEnabled(visible);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDisableOptionItemSelected) {
@@ -1242,7 +1275,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 return true;
             }
         }
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -1254,6 +1287,10 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             startActivity(new Intent(this, ContactsPreferenceActivity.class));
         } else if (id == R.id.nav_help) {
             HelpUtils.launchHelpAndFeedbackForMainScreen(this);
+        } else if (item.getIntent() != null) {
+            ImplicitIntentsUtil.startActivityInApp(this, item.getIntent());
+        } else {
+            Log.w(TAG, "Unhandled navigation view item selection");
         }
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
