@@ -108,6 +108,8 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Trimiteți apelurile direct către mesageria vocală"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminați fotografia"</string>
     <string name="noContacts" msgid="4955659076981974652">"Nu există persoane în agendă"</string>
+    <!-- no translation found for group_name_menu_item (2156087417604358090) -->
+    <skip />
     <string name="noGroups" msgid="8614664663561385253">"Nu există grupuri."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Pentru a crea grupuri aveți nevoie de un cont."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Nu există persoane în acest grup."</string>
@@ -340,4 +342,8 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Se actualizează lista de persoane din agendă pentru a reflecta modificarea limbii.\n\n Așteptați..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Numere blocate"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"Găsiți dubluri"</string>
+    <!-- no translation found for navigation_drawer_open (1126498472143250642) -->
+    <skip />
+    <!-- no translation found for navigation_drawer_close (4137416137011817930) -->
+    <skip />
 </resources>

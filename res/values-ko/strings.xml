@@ -107,6 +107,8 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"수신전화를 바로 음성사서함으로 보내기"</string>
     <string name="removePhoto" msgid="4898105274130284565">"사진 삭제"</string>
     <string name="noContacts" msgid="4955659076981974652">"주소록이 없습니다."</string>
+    <!-- no translation found for group_name_menu_item (2156087417604358090) -->
+    <skip />
     <string name="noGroups" msgid="8614664663561385253">"그룹 없음"</string>
     <string name="noAccounts" msgid="7768267764545265909">"그룹을 만들려면 계정이 필요합니다."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"이 그룹에 사람이 없습니다."</string>
@@ -329,4 +331,8 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"변경된 언어를 반영하도록 연락처 목록을 업데이트하는 중입니다.\n\n잠시 기다려 주세요."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"차단된 번호"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"중복된 연락처 찾기"</string>
+    <!-- no translation found for navigation_drawer_open (1126498472143250642) -->
+    <skip />
+    <!-- no translation found for navigation_drawer_close (4137416137011817930) -->
+    <skip />
 </resources>

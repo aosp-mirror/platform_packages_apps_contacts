@@ -107,6 +107,7 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Anrufe direkt an Mailbox senden"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Foto entfernen"</string>
     <string name="noContacts" msgid="4955659076981974652">"Keine Kontakte"</string>
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="noGroups" msgid="8614664663561385253">"Keine Gruppen"</string>
     <string name="noAccounts" msgid="7768267764545265909">"Du benötigst ein Konto, um Gruppen erstellen zu können."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Keine Personen in dieser Gruppe"</string>
@@ -329,4 +330,6 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Die Kontaktliste wird an die geänderte Sprache angepasst.\n\nBitte warten..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blockierte Nummern"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"Doppelte Kontakte suchen"</string>
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"Navigationsleiste öffnen"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"Navigationsleiste schließen"</string>
 </resources>

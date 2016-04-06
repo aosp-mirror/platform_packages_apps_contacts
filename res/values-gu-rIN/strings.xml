@@ -107,6 +107,7 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"કૉલ્સને સીધા જ વૉઇસમેઇલ પર મોકલો"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ફોટો દૂર કરો"</string>
     <string name="noContacts" msgid="4955659076981974652">"કોઈ સંપર્કો નથી"</string>
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="noGroups" msgid="8614664663561385253">"કોઈ જૂથ નથી."</string>
     <string name="noAccounts" msgid="7768267764545265909">"જૂથો બનાવવા માટે તમને એકાઉન્ટની જરૂર છે."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"આ જૂથમાં કોઈ લોકો નથી."</string>
@@ -329,4 +330,6 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ભાષામાં ફેરફાર પ્રતિબિંબિત કરવા માટે સંપર્ક સૂચિને અપડેટ કરવામાં આવી રહી છે.\n\nકૃપા કરીને રાહ જુઓ..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"અવરોધિત નંબરો"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"ડુપ્લિકેટ્સ શોધો"</string>
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"નેવિગેશન ડ્રોઅર ખોલો"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"નેવિગેશન ડ્રોઅર બંધ કરો"</string>
 </resources>

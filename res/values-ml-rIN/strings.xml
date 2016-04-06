@@ -107,6 +107,7 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"കോളുകൾ നേരിട്ട് വോയ്‌സ്‌മെയിലിലേക്ക് അയയ്‌ക്കുക"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ഫോട്ടോ നീക്കംചെയ്യുക"</string>
     <string name="noContacts" msgid="4955659076981974652">"കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="noGroups" msgid="8614664663561385253">"ഗ്രൂപ്പുകൾ ഒന്നുമില്ല."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ഗ്രൂപ്പുകൾ സൃഷ്‌ടിക്കാൻ നിങ്ങൾക്ക് ഒരു അക്കൗണ്ട് ആവശ്യമാണ്."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"ഈ ഗ്രൂപ്പിൽ ആരുമില്ല."</string>
@@ -329,4 +330,6 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ഭാഷാ മാറ്റം പ്രതിഫലിപ്പിക്കുന്നതിന് കോൺടാക്റ്റ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്തുകൊണ്ടിരിക്കുന്നു.\n\nകാക്കുക..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"ബ്ലോക്കുചെയ്ത നമ്പറുകൾ"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"ഡ്യൂപ്ലിക്കേറ്റുകളെ കണ്ടെത്തുക"</string>
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"നാവിഗേഷൻ ഡ്രോയർ തുറക്കുക"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"നാവിഗേഷൻ ഡ്രോയർ അടയ്‌ക്കുക"</string>
 </resources>

@@ -107,6 +107,8 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Stuur oproepe direk na stemboodskap"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Verwyder foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"Geen kontakte"</string>
+    <!-- no translation found for group_name_menu_item (2156087417604358090) -->
+    <skip />
     <string name="noGroups" msgid="8614664663561385253">"Geen groepe nie."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Jy het \'n rekening nodig om groepe te skep."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Geen mense in hierdie groep nie."</string>
@@ -329,4 +331,8 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaklys word tans opgedateer om die taalverandering te weerspieël.\n\nWag asseblief..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Geblokkeerde nommers"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"Vind duplikate"</string>
+    <!-- no translation found for navigation_drawer_open (1126498472143250642) -->
+    <skip />
+    <!-- no translation found for navigation_drawer_close (4137416137011817930) -->
+    <skip />
 </resources>
