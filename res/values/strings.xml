@@ -299,6 +299,13 @@
         <xliff:g id="group_name">%s</xliff:g> (<xliff:g id="count">%d</xliff:g>)
     </string>
 
+    <!-- Group list header title with the number of members in the group. [CHAR LIMIT=30] -->
+    <plurals name="group_members_count">
+        <item quantity="zero">No contacts</item>
+        <item quantity="one">1 contact</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
+    </plurals>
+
     <!-- The text displayed when the groups list is empty while displaying all groups [CHAR LIMIT=NONE] -->
     <string name="noGroups">No groups.</string>
 
