@@ -39,15 +39,23 @@ public class JoinContactsDialogFragment extends DialogFragment {
     private static final String FRAGMENT_TAG = "joinDialog";
     private static final String KEY_CONTACT_IDS = "contactIds";
 
+    private JoinContactsListener mListener;
+
     public interface JoinContactsListener {
         void onContactsJoined();
     }
 
-    public static void start(Activity activity, TreeSet<Long> contactIds) {
+    public static JoinContactsDialogFragment start(Activity activity, TreeSet<Long> contactIds) {
         final FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
         final JoinContactsDialogFragment newFragment
                 = JoinContactsDialogFragment.newInstance(contactIds);
         newFragment.show(ft, FRAGMENT_TAG);
+
+        if (activity instanceof JoinContactsListener) {
+            newFragment.setJoinContactsListener(((JoinContactsListener) activity));
+        }
+
+        return newFragment;
     }
 
     private static JoinContactsDialogFragment newInstance(TreeSet<Long> contactIds) {
@@ -56,6 +64,10 @@ public class JoinContactsDialogFragment extends DialogFragment {
         arguments.putSerializable(KEY_CONTACT_IDS, contactIds);
         fragment.setArguments(arguments);
         return fragment;
+    }
+
+    public void setJoinContactsListener(JoinContactsListener listener) {
+        mListener = listener;
     }
 
     @Override
@@ -99,9 +111,8 @@ public class JoinContactsDialogFragment extends DialogFragment {
     }
 
     private void notifyListener() {
-        if (getActivity() instanceof JoinContactsListener) {
-            ((JoinContactsListener) getActivity()).onContactsJoined();
+        if (mListener != null) {
+            mListener.onContactsJoined();
         }
     }
-
 }
