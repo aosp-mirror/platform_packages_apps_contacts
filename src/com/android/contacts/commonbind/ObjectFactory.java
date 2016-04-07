@@ -17,7 +17,6 @@ import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.preference.PreferenceManager;
 
 import android.content.Context;
-import android.content.Intent;
 
 /**
  * Creates default bindings for overlays.
@@ -29,12 +28,4 @@ public class ObjectFactory {
     }
 
     public static PreferenceManager getPreferenceManager(Context context) { return null; }
-
-    /**
-     * Returns an Intent to start an Activity to clean up duplicate contacts or null
-     * if it is not a supported feature.
-     */
-    public static Intent getDuplicatesActivityIntent(Context context) {
-        return null;
-    }
 }
