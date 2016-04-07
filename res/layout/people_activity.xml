@@ -24,6 +24,15 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+    <!-- To prevent hamburger menu from getting the initial focus. -->
+    <View
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="1px"
+        android:layout_height="1px" >
+        <requestFocus/>
+    </View>
+
     <RelativeLayout
         android:id="@+id/list_container"
         android:layout_width="match_parent"
