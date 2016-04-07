@@ -19,7 +19,7 @@
     android:versionCode="10408"
     android:versionName="1.4.8">
 
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="24" />
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="23" />
     <original-package android:name="com.android.contacts" />
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
