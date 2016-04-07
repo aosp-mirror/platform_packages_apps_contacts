@@ -44,6 +44,6 @@
     <!-- An ID to be used for contents of a custom dialog so that its state be preserved -->
     <item type="id" name="custom_dialog_content" />
 
-    <!-- Menu group ID for the contact groups -->
-    <item type="id" name="menu_groups" />
+    <!-- Menu ID for the contact groups -->
+    <item type="id" name="nav_groups" />
 </resources>
