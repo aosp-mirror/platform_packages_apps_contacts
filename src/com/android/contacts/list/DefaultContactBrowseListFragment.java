@@ -61,17 +61,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private View mSearchProgress;
     private TextView mSearchProgressText;
 
-    private class FilterHeaderClickListener implements OnClickListener {
-        @Override
-        public void onClick(View view) {
-            AccountFilterUtil.startAccountFilterActivityForResult(
-                        DefaultContactBrowseListFragment.this,
-                        REQUEST_CODE_ACCOUNT_FILTER,
-                        getFilter());
-        }
-    }
-    private OnClickListener mFilterHeaderClickListener = new FilterHeaderClickListener();
-
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
         // Don't use a QuickContactBadge. Just use a regular ImageView. Using a QuickContactBadge
@@ -115,7 +104,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         super.onCreateView(inflater, container);
 
         mAccountFilterHeader = getView().findViewById(R.id.account_filter_header_container);
-        mAccountFilterHeader.setOnClickListener(mFilterHeaderClickListener);
 
         // Create an empty user profile header and hide it for now (it will be visible if the
         // contacts list will have no user profile).
