@@ -29,11 +29,9 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.QuickContact;
-import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
@@ -1209,13 +1207,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                     mContactListFilterController.getFilter());
         } else if (id == R.id.nav_import_export) {
             showImportExportDialogFragment();
-        } else if (id == R.id.nav_accounts) {
-            final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
-            intent.putExtra(Settings.EXTRA_AUTHORITIES, new String[] {
-                    ContactsContract.AUTHORITY
-            });
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-            ImplicitIntentsUtil.startActivityInAppIfPossible(this, intent);
         } else if (id == R.id.nav_blocked_numbers) {
             final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
                     (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
