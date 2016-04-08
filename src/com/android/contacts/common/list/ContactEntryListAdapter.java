@@ -73,6 +73,11 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mIncludeProfile;
 
     /**
+     * indicates if contact queries include favorites
+     */
+    private boolean mIncludeFavorites;
+
+    /**
      * indicates if query results includes a profile
      */
     private boolean mProfileExists;
@@ -371,15 +376,33 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         mIncludeProfile = includeProfile;
     }
 
+    public boolean shouldIncludeFavorites() {
+        return mIncludeFavorites;
+    }
+
+    public void setIncludeFavorites(boolean includeFavorites) {
+        mIncludeFavorites = includeFavorites;
+    }
+
     public void setProfileExists(boolean exists) {
         mProfileExists = exists;
         // Stick the "ME" header for the profile
         if (exists) {
-            SectionIndexer indexer = getIndexer();
-            if (indexer != null) {
-                ((ContactsSectionIndexer) indexer).setProfileHeader(
-                        getContext().getString(R.string.user_profile_contacts_list_header));
-            }
+            setSectionHeader(R.string.user_profile_contacts_list_header, /* # of ME */ 1);
+        }
+    }
+
+    public void setFavoritesSectionHeader(int numberOfFavorites) {
+        if (mIncludeFavorites) {
+            setSectionHeader(R.string.star_sign, numberOfFavorites);
+        }
+    }
+
+    private void setSectionHeader(int resId, int numberOfItems) {
+        SectionIndexer indexer = getIndexer();
+        if (indexer != null) {
+            ((ContactsSectionIndexer) indexer).setProfileAndFavoritesHeader(
+                    getContext().getString(resId), numberOfItems);
         }
     }
 

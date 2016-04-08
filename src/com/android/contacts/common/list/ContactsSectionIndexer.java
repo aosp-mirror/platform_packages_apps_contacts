@@ -96,7 +96,7 @@ public class ContactsSectionIndexer implements SectionIndexer {
         return index >= 0 ? index : -index - 2;
     }
 
-    public void setProfileHeader(String header) {
+    public void setProfileAndFavoritesHeader(String header, int numberOfItemsToAdd) {
         if (mSections != null) {
             // Don't do anything if the header is already set properly.
             if (mSections.length > 0 && header.equals(mSections[0])) {
@@ -111,11 +111,11 @@ public class ContactsSectionIndexer implements SectionIndexer {
             tempPositions[0] = 0;
             for (int i = 1; i <= mPositions.length; i++) {
                 tempSections[i] = mSections[i - 1];
-                tempPositions[i] = mPositions[i - 1] + 1;
+                tempPositions[i] = mPositions[i - 1] + numberOfItemsToAdd;
             }
             mSections = tempSections;
             mPositions = tempPositions;
-            mCount++;
+            mCount = mCount + numberOfItemsToAdd;
         }
     }
 }

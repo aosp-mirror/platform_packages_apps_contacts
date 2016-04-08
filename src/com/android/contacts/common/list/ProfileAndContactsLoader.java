@@ -23,6 +23,7 @@ import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Profile;
+import android.provider.ContactsContract.Contacts;
 
 import com.google.common.collect.Lists;
 
@@ -35,6 +36,8 @@ import java.util.List;
 public class ProfileAndContactsLoader extends CursorLoader {
 
     private boolean mLoadProfile;
+
+    private boolean mLoadFavorites;
 
     private String[] mProjection;
 
@@ -51,6 +54,11 @@ public class ProfileAndContactsLoader extends CursorLoader {
     /** Whether to load the profile and merge results in before any other results. */
     public void setLoadProfile(boolean flag) {
         mLoadProfile = flag;
+    }
+
+    /** Whether to load favorites and merge results in before any other results. */
+    public void setLoadFavorites(boolean flag) {
+        mLoadFavorites = flag;
     }
 
     public void setProjection(String[] projection) {
@@ -85,6 +93,11 @@ public class ProfileAndContactsLoader extends CursorLoader {
         List<Cursor> cursors = Lists.newArrayList();
         if (mLoadProfile) {
             cursors.add(loadProfile());
+        }
+        // TODO(wenyiw): don't show favorites in contacts list until tabs are removed.
+        final boolean areTabsRemoved = false;
+        if (areTabsRemoved && mLoadFavorites) {
+            cursors.add(loadFavoritesContacts());
         }
         if (canLoadExtraContacts() && !mMergeExtraContactsAfterPrimary) {
             cursors.add(loadExtraContacts());
@@ -141,5 +154,11 @@ public class ProfileAndContactsLoader extends CursorLoader {
     private Cursor loadExtraContacts() {
         return getContext().getContentResolver().query(
                 mExtraUri, mExtraProjection, mExtraSelection, mExtraSelectionArgs, null);
+    }
+
+    private Cursor loadFavoritesContacts() {
+        return getContext().getContentResolver().query(
+                Contacts.CONTENT_URI, mProjection, Contacts.STARRED + "=?", new String[]{"1"},
+                Contacts.DISPLAY_NAME+" COLLATE NOCASE ASC");
     }
 }

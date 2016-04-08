@@ -36,6 +36,9 @@ import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.common.util.ContactDisplayUtils;
 import com.android.contacts.commonbind.experiments.Flags;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
  * Also includes support for including the {@link ContactsContract.Profile} record in the
@@ -54,6 +57,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
             Contacts.PHONETIC_NAME,                 // 8
+            Contacts.STARRED,                       // 9
         };
 
         private static final String[] CONTACT_PROJECTION_ALTERNATIVE = new String[] {
@@ -66,6 +70,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
             Contacts.PHONETIC_NAME,                 // 8
+            Contacts.STARRED,                       // 9
         };
 
         private static final String[] FILTER_PROJECTION_PRIMARY = new String[] {
@@ -78,9 +83,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
             Contacts.PHONETIC_NAME,                 // 8
-            Contacts.LAST_TIME_CONTACTED,           // 9
-            Contacts.STARRED,                       // 10
-            SearchSnippets.SNIPPET,                 // 11
+            Contacts.STARRED,                       // 9
+            SearchSnippets.SNIPPET,                 // 10
         };
 
         private static final String[] FILTER_PROJECTION_ALTERNATIVE = new String[] {
@@ -93,9 +97,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.LOOKUP_KEY,                    // 6
             Contacts.IS_USER_PROFILE,               // 7
             Contacts.PHONETIC_NAME,                 // 8
-            Contacts.LAST_TIME_CONTACTED,           // 9
-            Contacts.STARRED,                       // 10
-            SearchSnippets.SNIPPET,                 // 11
+            Contacts.STARRED,                       // 9
+            SearchSnippets.SNIPPET,                 // 10
         };
 
         public static final int CONTACT_ID               = 0;
@@ -107,9 +110,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         public static final int CONTACT_LOOKUP_KEY       = 6;
         public static final int CONTACT_IS_USER_PROFILE  = 7;
         public static final int CONTACT_PHONETIC_NAME    = 8;
-        public static final int CONTACT_LAST_TIME_CONTACTED = 9;
-        public static final int CONTACT_STARRED          = 10;
-        public static final int CONTACT_SNIPPET          = 11;
+        public static final int CONTACT_STARRED          = 9;
+        public static final int CONTACT_SNIPPET          = 10;
     }
 
     // The projection columns should match those in ContactQuery above expect we must omit the
@@ -446,10 +448,39 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     public void changeCursor(int partitionIndex, Cursor cursor) {
         super.changeCursor(partitionIndex, cursor);
 
-        // Check if a profile exists
-        if (cursor != null && cursor.moveToFirst()) {
-            setProfileExists(cursor.getInt(ContactQuery.CONTACT_IS_USER_PROFILE) == 1);
+        if (cursor == null || !cursor.moveToFirst()) {
+            return;
         }
+
+        // hasProfile tells whether the first row is a profile
+        final boolean hasProfile = cursor.getInt(ContactQuery.CONTACT_IS_USER_PROFILE) == 1;
+
+        // If the first row is a profile, we need to skip it.
+        final boolean skipProfile = !hasProfile || (hasProfile && cursor.moveToNext());
+
+        // TODO(wenyiw): don't show favorites in contacts list until tabs are removed.
+        final boolean areTabsRemoved = false;
+
+        // Add favorites first and then add ME profile on top of it.
+        if (areTabsRemoved && shouldIncludeFavorites() && skipProfile) {
+            if (cursor.getInt(ContactQuery.CONTACT_STARRED) == 1) {
+                final Set<Integer> favorites = new HashSet<>();
+                int count = 1;
+                favorites.add(cursor.getInt(ContactQuery.CONTACT_ID));
+                while (cursor != null && cursor.moveToNext()) {
+                    if (cursor.getInt(ContactQuery.CONTACT_STARRED) != 1
+                            || favorites.contains(cursor.getInt(ContactQuery.CONTACT_ID))) {
+                        break;
+                    }
+                    count++;
+                }
+                setFavoritesSectionHeader(count);
+            }
+        }
+
+        // Add ME profile on top of favorites
+        cursor.moveToFirst();
+        setProfileExists(hasProfile);
     }
 
     /**

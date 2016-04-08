@@ -98,6 +98,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mQuickContactEnabled = true;
     private boolean mAdjustSelectionBoundsEnabled = true;
     private boolean mIncludeProfile;
+    private boolean mIncludeFavorites;
     private boolean mSearchMode;
     private boolean mVisibleScrollbarEnabled;
     private boolean mShowEmptyListForEmptyQuery;
@@ -582,8 +583,15 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
     public void setIncludeProfile(boolean flag) {
         mIncludeProfile = flag;
-        if(mAdapter != null) {
+        if (mAdapter != null) {
             mAdapter.setIncludeProfile(flag);
+        }
+    }
+
+    public void setIncludeFavorites(boolean flag) {
+        mIncludeFavorites = flag;
+        if (mAdapter != null) {
+            mAdapter.setIncludeFavorites(flag);
         }
     }
 
@@ -804,6 +812,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mAdapter.setQuickContactEnabled(mQuickContactEnabled);
         mAdapter.setAdjustSelectionBoundsEnabled(mAdjustSelectionBoundsEnabled);
         mAdapter.setIncludeProfile(mIncludeProfile);
+        mAdapter.setIncludeFavorites(mIncludeFavorites);
         mAdapter.setQueryString(mQueryString);
         mAdapter.setDirectorySearchMode(mDirectorySearchMode);
         mAdapter.setPinnedPartitionHeadersEnabled(false);

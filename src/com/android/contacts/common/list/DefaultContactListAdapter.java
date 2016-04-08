@@ -87,6 +87,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
     public void configureLoader(CursorLoader loader, long directoryId) {
         if (loader instanceof ProfileAndContactsLoader) {
             ((ProfileAndContactsLoader) loader).setLoadProfile(shouldIncludeProfile());
+            ((ProfileAndContactsLoader) loader).setLoadFavorites(shouldIncludeFavorites());
         }
 
         String sortOrder = null;
