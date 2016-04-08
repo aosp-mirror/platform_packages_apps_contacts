@@ -343,13 +343,23 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         mNavigationView.setNavigationItemSelectedListener(this);
 
         final Menu menu = mNavigationView.getMenu();
-        if (HelpUtils.isHelpAndFeedbackAvailable()) {
-            final MenuItem menuItem = menu.add(/* groupId */ R.id.misc, /* itemId */ R.id.nav_help,
-                    /* order */ Menu.NONE, /* titleRes */ R.string.menu_help);
-            menuItem.setIcon(R.drawable.ic_menu_help);
+
+        final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this)
+                && ContactsUtils.FLAG_N_FEATURE
+                && BlockedNumberContractCompat.canCurrentUserBlockNumbers(this);
+
+        if (!showBlockedNumbers) {
+            menu.removeItem(R.id.nav_blocked_numbers);
         }
 
-        final String FAVORITE_TAG = "tab-pager-favorite";
+        if (Assistants.getDuplicatesActivityIntent(this) == null) {
+            menu.removeItem(R.id.nav_find_duplicates);
+        }
+
+        if (!HelpUtils.isHelpAndFeedbackAvailable()) {
+            menu.removeItem(R.id.nav_help);
+        }
+
         final String ALL_TAG = "tab-pager-all";
         final String GROUPS_TAG = "groups";
 
@@ -896,17 +906,34 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         // Add each group
         for (GroupListItem groupListItem : groupListItems) {
-            final String title = groupListItem.getMemberCount() == 0 ? groupListItem.getTitle()
-                    : getString(R.string.group_name_menu_item, groupListItem.getTitle(),
-                            groupListItem.getMemberCount());
+            final String title = groupListItem.getTitle();
             final MenuItem menuItem = menu.add(R.id.nav_groups, Menu.NONE, Menu.NONE, title);
             menuItem.setIntent(GroupUtil.createViewGroupIntent(this, groupListItem.getGroupId()));
+            menuItem.setIcon(R.drawable.ic_menu_label);
         }
 
+        menu.removeGroup(R.id.nav_create_groups);
         // Create a menu item to add new groups
-        final MenuItem menuItem = menu.add(R.id.nav_groups, Menu.NONE, Menu.NONE,
+        final MenuItem menuItem = menu.add(R.id.nav_create_groups, Menu.NONE, Menu.NONE,
                 getString(R.string.menu_new_group_action_bar));
         menuItem.setIntent(GroupUtil.createAddGroupIntent(this));
+        menuItem.setIcon(R.drawable.ic_menu_group_add);
+
+        // Add misc menu items below the group of groups menu items
+        addMiscMenuItems();
+    }
+
+    private void addMiscMenuItems() {
+        final Menu menu = mNavigationView.getMenu();
+        menu.removeGroup(R.id.nav_misc);
+        final MenuItem settingsItem = menu.add(R.id.nav_misc, R.id.nav_settings, Menu.NONE,
+                R.string.menu_settings);
+        settingsItem.setIcon(R.drawable.ic_menu_settings);
+        if (HelpUtils.isHelpAndFeedbackAvailable()) {
+            final MenuItem helpItem = menu.add(R.id.nav_misc, R.id.nav_help, Menu.NONE,
+                    R.string.menu_help);
+            helpItem.setIcon(R.drawable.ic_menu_help);
+        }
     }
 
     @Override
@@ -1092,30 +1119,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             return false;
         }
 
-        // Get references to individual menu items in the menu
-        final MenuItem contactsFilterMenu = menu.findItem(R.id.menu_contacts_filter);
-
         final boolean isSearchOrSelectionMode = mActionBarAdapter.isSearchMode()
                 || mActionBarAdapter.isSelectionMode();
-        if (isSearchOrSelectionMode) {
-            contactsFilterMenu.setVisible(false);
-        } else {
-            switch (getTabPositionForTextDirection(mActionBarAdapter.getCurrentTab())) {
-                case TabState.ALL:
-                    contactsFilterMenu.setVisible(true);
-                    break;
-            }
-        }
-        final boolean showMiscOptions = !isSearchOrSelectionMode;
-        final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this)
-                && ContactsUtils.FLAG_N_FEATURE
-                && BlockedNumberContractCompat.canCurrentUserBlockNumbers(this);
-        makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);
-        makeMenuItemVisible(menu, R.id.menu_import_export, showMiscOptions);
-        makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
-        makeMenuItemVisible(menu, R.id.menu_blocked_numbers, showMiscOptions && showBlockedNumbers);
-        makeMenuItemVisible(menu, R.id.menu_duplicates,
-                showMiscOptions && Assistants.getDuplicatesActivityIntent(this) != null);
+        makeMenuItemVisible(menu, R.id.menu_search, !isSearchOrSelectionMode);
 
         final boolean showSelectedContactOptions = mActionBarAdapter.isSelectionMode()
                 && mAllFragment.getSelectedContactIds().size() != 0;
@@ -1162,49 +1168,20 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 }
                 return true;
             }
-            case R.id.menu_contacts_filter: {
-                AccountFilterUtil.startAccountFilterActivityForResult(
-                        this, SUBACTIVITY_ACCOUNT_FILTER,
-                        mContactListFilterController.getFilter());
-                return true;
-            }
             case R.id.menu_search: {
                 onSearchRequested();
                 return true;
             }
-            case R.id.menu_share:
+            case R.id.menu_share: {
                 shareSelectedContacts();
                 return true;
-            case R.id.menu_join:
+            }
+            case R.id.menu_join: {
                 joinSelectedContacts();
                 return true;
-            case R.id.menu_delete:
+            }
+            case R.id.menu_delete: {
                 deleteSelectedContacts();
-                return true;
-            case R.id.menu_import_export: {
-                showImportExportDialogFragment();
-                return true;
-            }
-            case R.id.menu_accounts: {
-                final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
-                intent.putExtra(Settings.EXTRA_AUTHORITIES, new String[] {
-                    ContactsContract.AUTHORITY
-                });
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                ImplicitIntentsUtil.startActivityInAppIfPossible(this, intent);
-                return true;
-            }
-            case R.id.menu_blocked_numbers: {
-                final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
-                        (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
-                if (intent != null) {
-                    startActivity(intent);
-                }
-                return true;
-            }
-            case R.id.menu_duplicates: {
-                ImplicitIntentsUtil.startActivityInAppIfPossible(this,
-                        Assistants.getDuplicatesActivityIntent(this));
                 return true;
             }
             case R.id.export_database: {
@@ -1226,6 +1203,28 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             startActivity(new Intent(this, ContactsPreferenceActivity.class));
         } else if (id == R.id.nav_help) {
             HelpUtils.launchHelpAndFeedbackForMainScreen(this);
+        } else if (id == R.id.nav_contacts_filter) {
+            AccountFilterUtil.startAccountFilterActivityForResult(
+                    this, SUBACTIVITY_ACCOUNT_FILTER,
+                    mContactListFilterController.getFilter());
+        } else if (id == R.id.nav_import_export) {
+            showImportExportDialogFragment();
+        } else if (id == R.id.nav_accounts) {
+            final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
+            intent.putExtra(Settings.EXTRA_AUTHORITIES, new String[] {
+                    ContactsContract.AUTHORITY
+            });
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            ImplicitIntentsUtil.startActivityInAppIfPossible(this, intent);
+        } else if (id == R.id.nav_blocked_numbers) {
+            final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
+                    (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
+            if (intent != null) {
+                startActivity(intent);
+            }
+        } else if (id == R.id.nav_find_duplicates) {
+            ImplicitIntentsUtil.startActivityInAppIfPossible(this,
+                    Assistants.getDuplicatesActivityIntent(this));
         } else if (item.getIntent() != null) {
             ImplicitIntentsUtil.startActivityInApp(this, item.getIntent());
         } else {

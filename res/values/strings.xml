@@ -145,7 +145,7 @@
     <string name="menu_new_contact_action_bar">Add Contact</string>
 
     <!-- Menu item (in the action bar) that creates a new group [CHAR LIMIT=30] -->
-    <string name="menu_new_group_action_bar">Add Group</string>
+    <string name="menu_new_group_action_bar">Create new...</string>
 
     <!-- Confirmation dialog for unlinking contacts into multiple instances [CHAR LIMIT=NONE] -->
     <string name="splitConfirmation">Unlink this contact into multiple contacts?</string>
