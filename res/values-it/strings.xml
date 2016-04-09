@@ -107,8 +107,7 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Inoltra chiamate direttamente alla segreteria"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Rimuovi foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"Nessun contatto"</string>
-    <!-- no translation found for group_name_menu_item (2156087417604358090) -->
-    <skip />
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="noGroups" msgid="8614664663561385253">"Nessun gruppo."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Per creare gruppi è necessario un account."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Nessuna persona in questo gruppo."</string>
@@ -331,8 +330,6 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"L\'elenco contatti verrà aggiornato per rispecchiare il cambio di lingua.\n\nAttendi..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Numeri bloccati"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"Trova duplicati"</string>
-    <!-- no translation found for navigation_drawer_open (1126498472143250642) -->
-    <skip />
-    <!-- no translation found for navigation_drawer_close (4137416137011817930) -->
-    <skip />
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"Apri riquadro di navigazione a scomparsa"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"Chiudi riquadro navigazione a scomparsa"</string>
 </resources>

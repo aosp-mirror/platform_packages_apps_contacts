@@ -111,8 +111,7 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"إرسال المكالمات إلى البريد الصوتي مباشرة"</string>
     <string name="removePhoto" msgid="4898105274130284565">"إزالة الصور"</string>
     <string name="noContacts" msgid="4955659076981974652">"ليست هناك جهات اتصال"</string>
-    <!-- no translation found for group_name_menu_item (2156087417604358090) -->
-    <skip />
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="noGroups" msgid="8614664663561385253">"لا توجد مجموعات."</string>
     <string name="noAccounts" msgid="7768267764545265909">"يجب توفير حساب لإنشاء مجموعات."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"ليس هناك أشخاص في هذه المجموعة."</string>
@@ -375,8 +374,6 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"يتم تحديث قائمة جهات الاتصال لتعكس التغيير الذي حدث في اللغة.\n\nالرجاء الانتظار..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"الأرقام المحظورة"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"البحث عن النُسخ المكررة"</string>
-    <!-- no translation found for navigation_drawer_open (1126498472143250642) -->
-    <skip />
-    <!-- no translation found for navigation_drawer_close (4137416137011817930) -->
-    <skip />
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"فتح لائحة التنقل"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"إغلاق لائحة التنقل"</string>
 </resources>

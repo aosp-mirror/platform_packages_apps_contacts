@@ -107,8 +107,7 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接将来电转到语音信箱"</string>
     <string name="removePhoto" msgid="4898105274130284565">"删除照片"</string>
     <string name="noContacts" msgid="4955659076981974652">"没有联系人"</string>
-    <!-- no translation found for group_name_menu_item (2156087417604358090) -->
-    <skip />
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g>（<xliff:g id="COUNT">%d</xliff:g> 人）"</string>
     <string name="noGroups" msgid="8614664663561385253">"没有任何群组。"</string>
     <string name="noAccounts" msgid="7768267764545265909">"您需要拥有一个帐号才能创建群组。"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"此群组中没有联系人。"</string>
@@ -331,8 +330,6 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"正在更新联系人列表，以反映语言的变更。\n\n请稍候..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"已屏蔽的号码"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"查找重复的联系人"</string>
-    <!-- no translation found for navigation_drawer_open (1126498472143250642) -->
-    <skip />
-    <!-- no translation found for navigation_drawer_close (4137416137011817930) -->
-    <skip />
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"打开抽屉式导航栏"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"关闭抽屉式导航栏"</string>
 </resources>

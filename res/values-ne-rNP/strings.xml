@@ -107,8 +107,7 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"कलहरू सिधै भ्वाइसमेलमा पठाउनुहोस्"</string>
     <string name="removePhoto" msgid="4898105274130284565">"फोटो मेट्नुहोस्"</string>
     <string name="noContacts" msgid="4955659076981974652">"कुनै सम्पर्कहरू छैन।"</string>
-    <!-- no translation found for group_name_menu_item (2156087417604358090) -->
-    <skip />
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="noGroups" msgid="8614664663561385253">"कुनै समूहहरू छैनन्।"</string>
     <string name="noAccounts" msgid="7768267764545265909">"समूह बनाउनका लागि एउटा खाताको आवश्यक्ता हुन्छ।"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"यो समूहमा कोही छैन।"</string>
@@ -331,8 +330,6 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"भाषा परिवर्तन प्रतिविम्ब गराउन सम्पर्क सूची अद्यावधिक भइरहेको छ। \n \n कृपया प्रतीक्षा गर्नुहोस्..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"रोकिएका नम्बरहरू"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"दोहोरिएका प्रतिलिपिहरू खोज्नुहोस्"</string>
-    <!-- no translation found for navigation_drawer_open (1126498472143250642) -->
-    <skip />
-    <!-- no translation found for navigation_drawer_close (4137416137011817930) -->
-    <skip />
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"नेभिगेसन ड्रअर खोल्नुहोस्"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"नेभिगेसन ड्रअर बन्द गर्नुहोस्"</string>
 </resources>

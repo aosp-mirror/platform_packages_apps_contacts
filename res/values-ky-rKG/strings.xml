@@ -404,6 +404,6 @@
     <skip />
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Бөгөттөлгөн номерлер"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"Окшош байланыштарды табуу"</string>
-    <string name="navigation_drawer_open" msgid="1126498472143250642">"Навигация чийгичти ачуу"</string>
-    <string name="navigation_drawer_close" msgid="4137416137011817930">"Навигация чийгичти жабуу"</string>
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"Чабыттоо суурмасын ачуу"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"Чабыттоо суурмасын жабуу"</string>
 </resources>

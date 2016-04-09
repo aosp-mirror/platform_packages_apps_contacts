@@ -107,8 +107,7 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"បញ្ជូន​ការ​ហៅ​ដោយ​ផ្ទាល់​ទៅ​សារ​ជា​សំឡេង"</string>
     <string name="removePhoto" msgid="4898105274130284565">"លុប​រូបថត​ចេញ"</string>
     <string name="noContacts" msgid="4955659076981974652">"គ្មាន​ទំនាក់ទំនង"</string>
-    <!-- no translation found for group_name_menu_item (2156087417604358090) -->
-    <skip />
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <string name="noGroups" msgid="8614664663561385253">"មិន​មាន​ក្រុម។"</string>
     <string name="noAccounts" msgid="7768267764545265909">"ដើម្បី​បង្កើត​ក្រុម​អ្នក​ចាំបាច់​ត្រូវ​មាន​គណនី​មួយ។"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"មិន​មាន​មនុស្ស​នៅ​ក្នុង​ក្រុម​នេះ​ទេ។"</string>
@@ -331,8 +330,6 @@
     <string name="locale_change_in_progress" msgid="1124266507671178413">"កំពុង​ធ្វើ​បច្ចុប្បន្នភាព​ទំនាក់ទំនង​ដើម្បី​ឆ្លុះបញ្ចាំង​ការ​ប្ដូរ​ភាសា។\n\nសូម​រង់ចាំ..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"លេខបានរារាំង"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"រក​ទំនាក់ទំនង​ស្ទួន​"</string>
-    <!-- no translation found for navigation_drawer_open (1126498472143250642) -->
-    <skip />
-    <!-- no translation found for navigation_drawer_close (4137416137011817930) -->
-    <skip />
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"បើក​ផ្ទាំង​រុករក"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"បិទ​ផ្ទាំង​រុករក"</string>
 </resources>

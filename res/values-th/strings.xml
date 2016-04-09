@@ -331,5 +331,5 @@
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"หมายเลขที่ถูกบล็อก"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"ค้นหาข้อมูลที่ซ้ำกัน"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"เปิดลิ้นชักการนำทาง"</string>
-    <string name="navigation_drawer_close" msgid="4137416137011817930">"ปิดช่องการนำทาง"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"ปิดลิ้นชักการนำทาง"</string>
 </resources>
