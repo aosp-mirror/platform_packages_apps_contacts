@@ -318,9 +318,6 @@
     <!-- The text displayed to instruct users to add members to a group (when viewing a group detail page for a group with no members) [CHAR LIMIT=50] -->
     <string name="addPeopleToGroup">To add some, edit the group.</string>
 
-    <!-- Displayed in a spinner dialog after the user creates a contact and it's being saved to the database -->
-    <string name="savingContact">Saving contact\u2026</string>
-
     <!-- Toast displayed when a contact is saved [CHAR LIMIT=NONE] -->
     <string name="contactSavedToast">Contact saved</string>
 
@@ -463,9 +460,6 @@
 
     <!-- String describing which account a contact came from when editing it -->
     <string name="from_account_format"><xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
-
-    <!-- Text used to explain that a contact cannot be edited from the People application since the data is read only [CHAR LIMIT=40] -->
-    <string name="contact_read_only">Not editable from this app.</string>
 
     <!-- Text used to explain that a group cannot be edited since the data is read only [CHAR LIMIT=40] -->
     <string name="group_read_only">Not editable on this device.</string>

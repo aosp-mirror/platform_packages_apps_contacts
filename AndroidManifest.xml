@@ -335,14 +335,6 @@
 
         </activity-alias>
 
-        <!-- Confirm that a single detail will be added to an existing contact -->
-        <activity
-            android:name=".activities.ConfirmAddDetailActivity"
-            android:label="@string/activity_title_confirm_add_detail"
-            android:theme="@style/ConfirmAddDetailDialogTheme"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false"/>
-
         <!-- Accounts changed prompt that can appear when creating a new contact. -->
         <activity
             android:name=".activities.ContactEditorAccountsChangedActivity"
