@@ -403,6 +403,9 @@ public abstract class ContactBrowseListFragment extends
 
         // Display the user's profile if not in search mode
         adapter.setIncludeProfile(!searchMode);
+
+        // Display favorites if not in search mode
+        adapter.setIncludeFavorites(!searchMode);
     }
 
     @Override

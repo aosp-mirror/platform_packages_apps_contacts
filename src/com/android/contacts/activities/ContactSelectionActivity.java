@@ -291,6 +291,7 @@ public class ContactSelectionActivity extends ContactsActivity
             case ContactsRequest.ACTION_PICK_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setIncludeProfile(mRequest.shouldIncludeProfile());
+                fragment.setIncludeFavorites(mRequest.shouldIncludeFavorites());
                 mListFragment = fragment;
                 break;
             }
