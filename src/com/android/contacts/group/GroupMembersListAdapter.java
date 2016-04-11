@@ -69,6 +69,7 @@ public class GroupMembersListAdapter extends ContactEntryListAdapter {
     public GroupMembersListAdapter(Context context) {
         super(context);
         mUnknownNameText = context.getText(android.R.string.unknownName);
+        setIndexedPartition(0);
     }
 
     /** Sets the ID of the group whose members will be displayed. */
@@ -89,6 +90,8 @@ public class GroupMembersListAdapter extends ContactEntryListAdapter {
         loader.setUri(Data.CONTENT_URI.buildUpon()
                 .appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                         String.valueOf(Directory.DEFAULT))
+                .appendQueryParameter(Contacts.EXTRA_ADDRESS_BOOK_INDEX, "true")
+                .appendQueryParameter(Contacts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS, "true")
                 .build());
 
         loader.setSelection(Data.MIMETYPE + "=?" + " AND " + GroupMembership.GROUP_ROW_ID + "=?");
@@ -105,8 +108,7 @@ public class GroupMembersListAdapter extends ContactEntryListAdapter {
 
         loader.setSortOrder(
                 getSortOrder() == ContactsPreferences.SORT_ORDER_PRIMARY
-                        ? Data.DISPLAY_NAME_PRIMARY
-                        : Data.DISPLAY_NAME_ALTERNATIVE);
+                        ? Contacts.SORT_KEY_PRIMARY : Contacts.SORT_KEY_ALTERNATIVE);
     }
 
     @Override
