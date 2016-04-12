@@ -75,6 +75,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -891,13 +892,13 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             mPendingRequests.clear();
             return;
         }
-        ImageView[] requestSetCopy = mPendingRequests.keySet().toArray(new ImageView[
-                mPendingRequests.size()]);
-        for (ImageView imageView : requestSetCopy) {
+        final Iterator<Entry<ImageView, Request>> iterator = mPendingRequests.entrySet().iterator();
+        while (iterator.hasNext()) {
+            final ImageView imageView = iterator.next().getKey();
             // If an ImageView is orphaned (currently scrap) or a child of fragmentRootView, then
             // we can safely remove its request.
             if (imageView.getParent() == null || isChildView(fragmentRootView, imageView)) {
-                mPendingRequests.remove(imageView);
+                iterator.remove();
             }
         }
     }
@@ -1147,13 +1148,12 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
      * photos still haven't been loaded, sends another request for image loading.
      */
     private void processLoadedImages() {
-        Iterator<ImageView> iterator = mPendingRequests.keySet().iterator();
+        final Iterator<Entry<ImageView, Request>> iterator = mPendingRequests.entrySet().iterator();
         while (iterator.hasNext()) {
-            ImageView view = iterator.next();
-            Request key = mPendingRequests.get(view);
+            final Entry<ImageView, Request> entry = iterator.next();
             // TODO: Temporarily disable contact photo fading in, until issues with
             // RoundedBitmapDrawables overlapping the default image drawables are resolved.
-            boolean loaded = loadCachedPhoto(view, key, false);
+            final boolean loaded = loadCachedPhoto(entry.getKey(), entry.getValue(), false);
             if (loaded) {
                 iterator.remove();
             }
