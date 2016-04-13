@@ -78,7 +78,6 @@ import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
-import com.android.contacts.commonbind.ObjectFactory;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupUtil;
@@ -102,6 +101,7 @@ import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contactsbind.Assistants;
 import com.android.contactsbind.HelpUtils;
 
 import java.util.List;
@@ -1170,7 +1170,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_blocked_numbers, showMiscOptions && showBlockedNumbers);
         makeMenuItemVisible(menu, R.id.menu_duplicates,
-                showMiscOptions && ObjectFactory.getDuplicatesActivityIntent(this) != null);
+                showMiscOptions && Assistants.getDuplicatesActivityIntent(this) != null);
 
         final boolean showSelectedContactOptions = mActionBarAdapter.isSelectionMode()
                 && mAllFragment.getSelectedContactIds().size() != 0;
@@ -1271,7 +1271,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             }
             case R.id.menu_duplicates: {
                 ImplicitIntentsUtil.startActivityInAppIfPossible(this,
-                        ObjectFactory.getDuplicatesActivityIntent(this));
+                        Assistants.getDuplicatesActivityIntent(this));
                 return true;
             }
             case R.id.export_database: {
