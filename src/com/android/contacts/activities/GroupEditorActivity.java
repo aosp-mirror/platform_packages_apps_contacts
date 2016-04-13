@@ -146,7 +146,7 @@ public class GroupEditorActivity extends ContactsActivity
         @Override
         public void onSaveFinished(int resultCode, Intent resultIntent) {
             if (resultIntent != null) {
-                Intent intent = new Intent(GroupEditorActivity.this, GroupDetailActivity.class);
+                Intent intent = new Intent(GroupEditorActivity.this, GroupMembersActivity.class);
                 intent.setData(resultIntent.getData());
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

@@ -257,6 +257,10 @@
             </intent-filter>
         </activity>
 
+        <!-- Displays the members of a group in a list -->
+        <activity android:name=".activities.GroupMembersActivity"
+            android:theme="@style/ContactPickerTheme"/>
+
         <!-- Views the details of a single group -->
         <activity android:name=".activities.GroupDetailActivity"
             android:label=""
