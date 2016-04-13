@@ -43,9 +43,6 @@
     -->
     <dimen name="contact_tile_shadowbox_height">48sp</dimen>
 
-    <!-- Top padding of the ListView in the contact tile list -->
-    <dimen name="contact_tile_list_padding_top">0dip</dimen>
-
     <!-- For contact filter setting screens -->
     <dimen name="contact_filter_left_margin">16dip</dimen>
     <dimen name="contact_filter_right_margin">16dip</dimen>

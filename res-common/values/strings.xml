@@ -189,9 +189,6 @@
     <!-- Shown as the display name for a person when the name is missing or unknown. [CHAR LIMIT=18]-->
     <string name="missing_name">(No name)</string>
 
-    <!-- The text displayed on the divider for the Favorites tab in Phone app indicating that items below it are frequently called as opposed to starred contacts [CHAR LIMIT = 39] -->
-    <string name="favoritesFrequentCalled">Frequently called</string>
-
     <!-- The text displayed on the divider for the Favorites tab in People app indicating that items below it are frequently contacted [CHAR LIMIT = 39] -->
     <string name="favoritesFrequentContacted">Frequently contacted</string>
 
@@ -714,12 +711,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "All contacts" is selected  [CHAR LIMIT=64]-->
     <string name="listTotalAllContactsZero">No contacts.</string>
-
-    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "Custom" is selected  [CHAR LIMIT=64]-->
-    <string name="listTotalAllContactsZeroCustom">No visible contacts.</string>
-
-    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when starred contact list is selected  [CHAR LIMIT=64]-->
-    <string name="listTotalAllContactsZeroStarred">No favorites</string>
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when a group or account is selected  [CHAR LIMIT=64]-->
     <string name="listTotalAllContactsZeroGroup">No contacts in <xliff:g id="name" example="Friends">%s</xliff:g></string>
