@@ -15,6 +15,4 @@
 -->
 <resources>
     <integer name="contact_tile_column_count">4</integer>
-    <!--  Determines the number of columns in a ContactTileRow in the favorites tab -->
-    <integer name="contact_tile_column_count_in_favorites">5</integer>
 </resources>

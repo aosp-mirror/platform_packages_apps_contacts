@@ -46,6 +46,7 @@
         android:layout_gravity="top"
         android:layout_weight="0"
         android:layout_below="@id/toolbar"
+        android:visibility="gone"
         style="@style/ContactsActionBarTabTextStyle" />
 
 </LinearLayout>
