@@ -94,9 +94,7 @@ public class ProfileAndContactsLoader extends CursorLoader {
         if (mLoadProfile) {
             cursors.add(loadProfile());
         }
-        // TODO(wenyiw): don't show favorites in contacts list until tabs are removed.
-        final boolean areTabsRemoved = false;
-        if (areTabsRemoved && mLoadFavorites) {
+        if (mLoadFavorites) {
             cursors.add(loadFavoritesContacts());
         }
         if (canLoadExtraContacts() && !mMergeExtraContactsAfterPrimary) {

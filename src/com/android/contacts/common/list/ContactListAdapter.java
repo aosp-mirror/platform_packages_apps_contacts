@@ -458,11 +458,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         // If the first row is a profile, we need to skip it.
         final boolean skipProfile = !hasProfile || (hasProfile && cursor.moveToNext());
 
-        // TODO(wenyiw): don't show favorites in contacts list until tabs are removed.
-        final boolean areTabsRemoved = false;
-
         // Add favorites first and then add ME profile on top of it.
-        if (areTabsRemoved && shouldIncludeFavorites() && skipProfile) {
+        if (shouldIncludeFavorites() && skipProfile) {
             if (cursor.getInt(ContactQuery.CONTACT_STARRED) == 1) {
                 final Set<Integer> favorites = new HashSet<>();
                 int count = 1;
