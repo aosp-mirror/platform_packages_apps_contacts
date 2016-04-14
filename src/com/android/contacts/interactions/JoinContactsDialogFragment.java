@@ -36,7 +36,9 @@ import java.util.TreeSet;
  */
 public class JoinContactsDialogFragment extends DialogFragment {
 
-    private static final String FRAGMENT_TAG = "joinDialog";
+    public static final String FRAGMENT_TAG = "joinDialog";
+    public static final String KEY_POSITION = "position";
+
     private static final String KEY_CONTACT_IDS = "contactIds";
 
     public interface JoinContactsListener {
@@ -50,10 +52,22 @@ public class JoinContactsDialogFragment extends DialogFragment {
         newFragment.show(ft, FRAGMENT_TAG);
     }
 
-    private static JoinContactsDialogFragment newInstance(TreeSet<Long> contactIds) {
+    public static JoinContactsDialogFragment newInstance(TreeSet<Long> contactIds) {
+        return newInstance(contactIds, -1);
+    }
+
+    /**
+     * Creates a new instance of {@link JoinContactsDialogFragment} with passed in arguments.
+     * 
+     * Position parameter is passed back to target fragment if this instance of the join dialog
+     * was launched from a list fragment that needs to know which item position in the list
+     * the dialog was launched from.
+     */
+    public static JoinContactsDialogFragment newInstance(TreeSet<Long> contactIds, int position) {
         final JoinContactsDialogFragment fragment = new JoinContactsDialogFragment();
         Bundle arguments = new Bundle();
         arguments.putSerializable(KEY_CONTACT_IDS, contactIds);
+        arguments.putInt(KEY_POSITION, position);
         fragment.setArguments(arguments);
         return fragment;
     }
@@ -101,6 +115,11 @@ public class JoinContactsDialogFragment extends DialogFragment {
     private void notifyListener() {
         if (getActivity() instanceof JoinContactsListener) {
             ((JoinContactsListener) getActivity()).onContactsJoined();
+        } else if (getTargetFragment() != null) {
+            final Intent intent = new Intent()
+                    .putExtra(KEY_POSITION, getArguments().getInt(KEY_POSITION));
+            getTargetFragment().onActivityResult(getTargetRequestCode(),
+                    Activity.RESULT_OK, intent);
         }
     }
 
