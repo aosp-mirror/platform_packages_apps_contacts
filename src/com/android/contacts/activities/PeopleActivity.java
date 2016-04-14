@@ -928,8 +928,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                     : getString(R.string.group_name_menu_item, groupListItem.getTitle(),
                             groupListItem.getMemberCount());
             final MenuItem menuItem = menu.add(R.id.nav_groups, Menu.NONE, Menu.NONE, title);
-            menuItem.setIntent(GroupUtil.createViewGroupIntent(
-                    this, groupListItem.getGroupId(), groupListItem.getMemberCount()));
+            menuItem.setIntent(GroupUtil.createViewGroupIntent(this, groupListItem.getGroupId()));
         }
 
         // Create a menu item to add new groups

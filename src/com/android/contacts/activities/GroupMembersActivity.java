@@ -25,15 +25,13 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.group.GroupMembersListFragment;
-import com.android.contacts.group.GroupMembersListFragment.GroupMembersCallbacks;
+import com.android.contacts.group.GroupMembersListFragment.GroupMembersListCallbacks;
 import com.android.contacts.quickcontact.QuickContactActivity;
 
 /** Displays the members of a group. */
-public class GroupMembersActivity extends ContactsActivity implements GroupMembersCallbacks {
+public class GroupMembersActivity extends ContactsActivity implements GroupMembersListCallbacks {
 
     private static final String TAG_GROUP_MEMBERS = "group_members";
-
-    public static final String EXTRA_MEMBERS_COUNT = "membersCount";
 
     private GroupMembersListFragment mFragment;
 
@@ -59,7 +57,6 @@ public class GroupMembersActivity extends ContactsActivity implements GroupMembe
                     .commit();
         }
         mFragment.setGroupUri(getIntent().getData());
-        mFragment.setMembersCount(getIntent().getIntExtra(EXTRA_MEMBERS_COUNT, -1));
         mFragment.setCallbacks(this);
     }
 

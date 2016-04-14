@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.ContactsContract.Groups;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,6 +34,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.contacts.GroupListLoader;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -46,13 +48,12 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
     private static final String TAG = "GroupMembersList";
 
     private static final String KEY_GROUP_URI = "groupUri";
-    private static final String KEY_MEMBERS_COUNT = "membersCount";
     private static final String KEY_GROUP_METADATA = "groupMetadata";
 
     private static final int LOADER_GROUP_METADATA = 0;
+    private static final int LOADER_GROUP_LIST_DETAILS = 1;
 
-    /** The listener for the group metadata loader. */
-    private final LoaderCallbacks<Cursor> mGroupMetadatCallbacks = new LoaderCallbacks<Cursor>() {
+    private final LoaderCallbacks<Cursor> mGroupMetadataCallbacks = new LoaderCallbacks<Cursor>() {
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
@@ -81,9 +82,45 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
                             mGroupMetadata.accountType, mGroupMetadata.dataSet);
                     mGroupMetadata.editable = accountType.isGroupMembershipEditable();
 
-                    onGroupMetadataLoaded();
+                    getLoaderManager().restartLoader(LOADER_GROUP_LIST_DETAILS, null,
+                            mGroupListDetailsCallbacks);
                 }
             }
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader) {}
+    };
+
+    private final LoaderCallbacks<Cursor> mGroupListDetailsCallbacks =
+            new LoaderCallbacks<Cursor>() {
+
+        @Override
+        public CursorLoader onCreateLoader(int id, Bundle args) {
+            final GroupListLoader groupListLoader = new GroupListLoader(getContext());
+
+            // TODO(wjang): modify GroupListLoader to accept this selection criteria more naturally
+            groupListLoader.setSelection(groupListLoader.getSelection()
+                    + " AND " + Groups._ID + "=?");
+
+            final String[] selectionArgs = new String[1];
+            selectionArgs[0] = Long.toString(mGroupMetadata.groupId);
+            groupListLoader.setSelectionArgs(selectionArgs);
+
+            return groupListLoader;
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+            if (cursor == null || cursor.isClosed()) {
+                Log.e(TAG, "Failed to load group list details");
+                return;
+            }
+            if (cursor.moveToNext()) {
+                mGroupMetadata.memberCount = cursor.getInt(GroupListLoader.MEMBER_COUNT);
+            }
+
+            onGroupMetadataLoaded();
         }
 
         @Override
@@ -109,6 +146,7 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
         String groupName;
         boolean readOnly;
         boolean editable;
+        int memberCount = -1;
 
         GroupMetadata() {
         }
@@ -130,6 +168,7 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
             dest.writeString(groupName);
             dest.writeInt(readOnly ? 1 : 0);
             dest.writeInt(editable ? 1 : 0);
+            dest.writeInt(memberCount);
         }
 
         private void readFromParcel(Parcel source) {
@@ -139,6 +178,7 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
             groupName = source.readString();
             readOnly = source.readInt() == 1;
             editable = source.readInt() == 1;
+            memberCount = source.readInt();
         }
 
         @Override
@@ -149,12 +189,13 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
                     " groupName=" + groupName +
                     " readOnly=" + readOnly +
                     " editable=" + editable +
+                    " memberCount=" + memberCount +
                     "]";
         }
     }
 
     /** Callbacks for hosts of {@link GroupMembersListFragment}. */
-    public interface GroupMembersCallbacks {
+    public interface GroupMembersListCallbacks {
 
         /** Invoked when the user hits back in the action bar. */
         void onHomePressed();
@@ -170,8 +211,8 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
     }
 
     private Uri mGroupUri;
-    private int mMembersCount;
-    private GroupMembersCallbacks mCallbacks;
+
+    private GroupMembersListCallbacks mCallbacks;
 
     private GroupMetadata mGroupMetadata;
 
@@ -190,12 +231,8 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
         mGroupUri = groupUri;
     }
 
-    public void setMembersCount(int membersCount) {
-        mMembersCount = membersCount;
-    }
-
     /** Sets a listener for group member click events. */
-    public void setCallbacks(GroupMembersCallbacks callbacks) {
+    public void setCallbacks(GroupMembersListCallbacks callbacks) {
         mCallbacks = callbacks;
     }
 
@@ -204,7 +241,6 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
         super.onCreate(savedState);
         if (savedState != null) {
             mGroupUri = savedState.getParcelable(KEY_GROUP_URI);
-            mMembersCount = savedState.getInt(KEY_MEMBERS_COUNT);
             mGroupMetadata = savedState.getParcelable(KEY_GROUP_METADATA);
         }
     }
@@ -213,14 +249,13 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(KEY_GROUP_URI, mGroupUri);
-        outState.putInt(KEY_MEMBERS_COUNT, mMembersCount);
         outState.putParcelable(KEY_GROUP_METADATA, mGroupMetadata);
     }
 
     @Override
     protected void startLoading() {
         if (mGroupMetadata == null) {
-            getLoaderManager().restartLoader(LOADER_GROUP_METADATA, null, mGroupMetadatCallbacks);
+            getLoaderManager().restartLoader(LOADER_GROUP_METADATA, null, mGroupMetadataCallbacks);
         } else {
             onGroupMetadataLoaded();
         }
@@ -291,13 +326,14 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
     private void bindMembersCount() {
         final View accountFilterContainer = getView().findViewById(
                 R.id.account_filter_header_container);
-        if (mMembersCount >= 0) {
+        if (mGroupMetadata.memberCount >= 0) {
             accountFilterContainer.setVisibility(View.VISIBLE);
 
             final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
                     R.id.account_filter_header);
             accountFilterHeader.setText(getResources().getQuantityString(
-                    R.plurals.group_members_count, mMembersCount, mMembersCount));
+                    R.plurals.group_members_count, mGroupMetadata.memberCount,
+                    mGroupMetadata.memberCount));
         } else {
             accountFilterContainer.setVisibility(View.GONE);
         }

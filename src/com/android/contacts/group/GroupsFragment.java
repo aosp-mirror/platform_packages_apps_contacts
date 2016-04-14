@@ -47,10 +47,7 @@ public final class GroupsFragment extends Fragment {
         void onGroupsLoaded(List<GroupListItem> groupListItems);
     }
 
-    /**
-     * Group meta data loader listener.
-     */
-    private final LoaderManager.LoaderCallbacks<Cursor> mGroupLoaderListener =
+    private final LoaderManager.LoaderCallbacks<Cursor> mGroupListLoaderListener =
             new LoaderManager.LoaderCallbacks<Cursor>() {
 
                 @Override
@@ -93,7 +90,7 @@ public final class GroupsFragment extends Fragment {
 
     @Override
     public void onStart() {
-        getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupLoaderListener);
+        getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupListLoaderListener);
         super.onStart();
     }
 

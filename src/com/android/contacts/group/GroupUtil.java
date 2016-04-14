@@ -24,7 +24,6 @@ import android.net.Uri;
 import android.provider.ContactsContract.Groups;
 
 import com.android.contacts.GroupListLoader;
-import com.android.contacts.activities.GroupDetailActivity;
 import com.android.contacts.activities.GroupEditorActivity;
 import com.android.contacts.activities.GroupMembersActivity;
 import com.google.common.base.Objects;
@@ -78,10 +77,9 @@ public final class GroupUtil {
     }
 
     /** Returns an Intent to view the details of the group identified by the given Uri. */
-    public static Intent createViewGroupIntent(Context context, long groupId, int membersCount) {
-        final Intent intent = new Intent(context, GroupDetailActivity.class);
+    public static Intent createViewGroupIntent(Context context, long groupId) {
+        final Intent intent = new Intent(context, GroupMembersActivity.class);
         intent.setData(getGroupUriFromId(groupId));
-        intent.putExtra(GroupMembersActivity.EXTRA_MEMBERS_COUNT, membersCount);
         return intent;
     }
 
