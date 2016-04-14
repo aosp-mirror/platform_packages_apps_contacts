@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"Remove photo"</string>
     <string name="noContacts" msgid="4955659076981974652">"No contacts"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts</item>
+      <item quantity="one">1 contact</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"No groups."</string>
     <string name="noAccounts" msgid="7768267764545265909">"To create groups you need an account."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"No people in this group."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"To add some, edit the group."</string>
-    <string name="savingContact" msgid="4075751076741924939">"Saving contact…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Contact saved"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Contacts unlinked"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Couldn\'t save contact changes."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> account"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"Not editable from this app."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Not editable on this device"</string>
     <string name="take_photo" msgid="7496128293167402354">"Take photo"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Take new photo"</string>

@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"ફોટો દૂર કરો"</string>
     <string name="noContacts" msgid="4955659076981974652">"કોઈ સંપર્કો નથી"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> સંપર્ક</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> સંપર્ક</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"કોઈ જૂથ નથી."</string>
     <string name="noAccounts" msgid="7768267764545265909">"જૂથો બનાવવા માટે તમને એકાઉન્ટની જરૂર છે."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"આ જૂથમાં કોઈ લોકો નથી."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"કોઈને ઉમેરવા માટે, જૂથ સંપાદિત કરો."</string>
-    <string name="savingContact" msgid="4075751076741924939">"સંપર્ક સાચવી રહ્યાં છે…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"સંપર્ક સાચવ્યો"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"સંપર્કો અનલિંક કર્યા"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ફેરફારો સાચવી શકાયાં નથી."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> એકાઉન્ટ"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"આ એપ્લિકેશનથી સંપાદનયોગ્ય નથી."</string>
     <string name="group_read_only" msgid="1061762906115697637">"આ ઉપકરણ પર સંપાદનયોગ્ય નથી."</string>
     <string name="take_photo" msgid="7496128293167402354">"ફોટો લો"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"નવો ફોટો લો"</string>

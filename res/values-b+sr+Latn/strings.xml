@@ -109,11 +109,15 @@
     <string name="removePhoto" msgid="4898105274130284565">"Ukloni fotografiju"</string>
     <string name="noContacts" msgid="4955659076981974652">"Nema kontakata"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontakt</item>
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> kontakta</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontakata</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"Nema grupa."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Morate da imate nalog da biste mogli da pravite grupe."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Nema ljudi u ovoj grupi."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Da biste dodali neke, izmenite grupu."</string>
-    <string name="savingContact" msgid="4075751076741924939">"Čuvanje kontakta je u toku..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt je sačuvan"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontakti su razdvojeni"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nije moguće sačuvati izmene kontakata."</string>
@@ -169,7 +173,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> nalog"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"Ne može da se izmeni iz ove aplikacije."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Ne može da se menja na ovom uređaju."</string>
     <string name="take_photo" msgid="7496128293167402354">"Snimi fotografiju"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Napravi novu fotografiju"</string>

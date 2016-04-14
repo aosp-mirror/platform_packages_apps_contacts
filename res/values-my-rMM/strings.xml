@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"ပုံအားဖယ်ရှားပါ"</string>
     <string name="noContacts" msgid="4955659076981974652">"အဆက်အသွယ်များမရှိပါ"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g> ယောက်)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other">အဆက်အသွယ် <xliff:g id="COUNT">%d</xliff:g> ခု</item>
+      <item quantity="one">အဆက်အသွယ် ၁ ခု</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"အုပ်စုများမရှိပါ"</string>
     <string name="noAccounts" msgid="7768267764545265909">"အုပ်စုများ ပြုလုပ်ရန် အကောင့်တစ်ခု လိုအပ်ပါသည်"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"ဒီအုပ်စုထဲမှာ လူတစ်ယောက်မှမရှိပါ"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"တချို့ကိုထည့်ရန်, အုပ်စုကိုပြင်ပါ"</string>
-    <string name="savingContact" msgid="4075751076741924939">"အဆက်အသွယ်အား သိမ်းဆည်းနေစဉ်…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"အဆက်အသွယ်အား သိမ်းဆည်းပြီးပါပြီ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"အဆက်အသွယ်များကို ကွင်းဆက်ဖြုတ်လိုက်ပြီ"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"လိပ်စာပြောင်းလဲမှုအား သိမ်းဆည်းလို့မရပါ"</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> အကောင့်"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"ဤအပ်ပလီကေးရှင်းမှ ပြင်ခွင့်မရှိပါ"</string>
     <string name="group_read_only" msgid="1061762906115697637">"ဒီစက်ပေါ်မှာ ပြင်လို့ မရနိုင်ပါ"</string>
     <string name="take_photo" msgid="7496128293167402354">"ဓာတ်ပုံရိုက်ရန်"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ဓာတ်ပုံအသစ်ရိုက်ပါ"</string>

@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"फोटो काढा"</string>
     <string name="noContacts" msgid="4955659076981974652">"कोणतेही संपर्क नाहीत"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"कोणतेही गट नाहीत."</string>
     <string name="noAccounts" msgid="7768267764545265909">"गट तयार करण्‍यासाठी आपल्‍याला खात्‍याची आवश्‍यकता अाहे."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"या गटात कोणतेही लोक नाहीत."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"काही जोडण्‍यासाठी, गट संपादित करा."</string>
-    <string name="savingContact" msgid="4075751076741924939">"संपर्क जतन करीत आहे..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"संपर्क जतन केला"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"संपर्कांचा दुवा रद्द केला"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"संपर्क बदल जतन करू शकलो नाही."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> खाते"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"या अ‍ॅप वरून संपादन करण्‍यायोग्‍य नाही."</string>
     <string name="group_read_only" msgid="1061762906115697637">"या डिव्हाइसवर संपादन करण्‍यायोग्‍य नाही."</string>
     <string name="take_photo" msgid="7496128293167402354">"फोटो घ्‍या"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"नवीन फोटो घ्या"</string>

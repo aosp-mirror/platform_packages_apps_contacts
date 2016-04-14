@@ -110,11 +110,16 @@
     <string name="removePhoto" msgid="4898105274130284565">"הסר תמונה"</string>
     <string name="noContacts" msgid="4955659076981974652">"אין אנשי קשר"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר</item>
+      <item quantity="one">איש קשר אחד</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"אין קבוצות."</string>
     <string name="noAccounts" msgid="7768267764545265909">"כדי ליצור קבוצות, נחוץ חשבון."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"אין אנשים בקבוצה זו."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"כדי להוסיף, ערוך את הקבוצה."</string>
-    <string name="savingContact" msgid="4075751076741924939">"שומר איש קשר…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"איש הקשר נשמר"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"בוטל הקישור לאנשי קשר"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"לא ניתן לשמור את השינויים באנשי הקשר."</string>
@@ -173,7 +178,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"חשבון <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"לא ניתן לעריכה מאפליקציה זו."</string>
     <string name="group_read_only" msgid="1061762906115697637">"לא ניתן לעריכה במכשיר זה"</string>
     <string name="take_photo" msgid="7496128293167402354">"צלם תמונה"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"צלם תמונה חדשה"</string>

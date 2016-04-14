@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"ਫੋਟੋ ਹਟਾਓ"</string>
     <string name="noContacts" msgid="4955659076981974652">"ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ਸੰਪਰਕ</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ਸੰਪਰਕ</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"ਕੋਈ ਸਮੂਹ ਨਹੀਂ।"</string>
     <string name="noAccounts" msgid="7768267764545265909">"ਸਮੂਹ ਬਣਾਉਣ ਲਈ ਤੁਹਾਨੂੰ ਇੱਕ ਖਾਤਾ ਬਣਾਉਣ ਦੀ ਲੋੜ ਹੈ।"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"ਇਸ ਸਮੂਹ ਵਿੱਚ ਕੋਈ ਲੋਕ ਨਹੀਂ।"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"ਕੁਝ ਸ਼ਾਮਲ ਕਰਨ ਲਈ, ਸਮੂਹ ਸੰਪਾਦਿਤ ਕਰੋ।"</string>
-    <string name="savingContact" msgid="4075751076741924939">"ਸੰਪਰਕ ਸੁਰੱਖਿਅਤ ਕਰ ਰਿਹਾ ਹੈ…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"ਸੰਪਰਕ ਸਹੇਜਿਆ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ਸੰਪਰਕ ਅਨਲਿੰਕ ਕੀਤੇ"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ਸੰਪਰਕ ਬਦਲਾਵਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਕਰ ਸਕਿਆ।"</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> ਖਾਤਾ"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"ਇਸ ਐਪ ਤੋਂ ਸੰਪਾਦਨਯੋਗ ਨਹੀਂ।"</string>
     <string name="group_read_only" msgid="1061762906115697637">"ਇਸ ਡਿਵਾਈਸ ਤੇ ਸੰਪਾਦਨਯੋਗ ਨਹੀਂ।"</string>
     <string name="take_photo" msgid="7496128293167402354">"ਫੋਟੋ ਲਓ"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ਨਵੀਂ ਫੋਟੋ ਲਓ"</string>

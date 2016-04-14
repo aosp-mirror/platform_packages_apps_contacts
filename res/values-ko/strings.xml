@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"사진 삭제"</string>
     <string name="noContacts" msgid="4955659076981974652">"주소록이 없습니다."</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g>(<xliff:g id="COUNT">%d</xliff:g>개)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other">연락처 <xliff:g id="COUNT">%d</xliff:g>개</item>
+      <item quantity="one">연락처 1개</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"그룹 없음"</string>
     <string name="noAccounts" msgid="7768267764545265909">"그룹을 만들려면 계정이 필요합니다."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"이 그룹에 사람이 없습니다."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"사람을 추가하려면 그룹을 수정하세요."</string>
-    <string name="savingContact" msgid="4075751076741924939">"연락처 저장 중..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"연락처가 저장되었습니다."</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"연락처 연결 해제됨"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"연락처 변경사항을 저장할 수 없습니다."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> 계정"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"이 앱에서 수정할 수 없습니다."</string>
     <string name="group_read_only" msgid="1061762906115697637">"이 기기에서 수정할 수 없습니다."</string>
     <string name="take_photo" msgid="7496128293167402354">"사진 찍기"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"새 사진 찍기"</string>

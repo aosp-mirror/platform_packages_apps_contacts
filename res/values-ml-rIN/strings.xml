@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"ഫോട്ടോ നീക്കംചെയ്യുക"</string>
     <string name="noContacts" msgid="4955659076981974652">"കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> കോൺടാക്‌റ്റുകൾ</item>
+      <item quantity="one">ഒരു കോൺടാക്‌റ്റ്</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"ഗ്രൂപ്പുകൾ ഒന്നുമില്ല."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ഗ്രൂപ്പുകൾ സൃഷ്‌ടിക്കാൻ നിങ്ങൾക്ക് ഒരു അക്കൗണ്ട് ആവശ്യമാണ്."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"ഈ ഗ്രൂപ്പിൽ ആരുമില്ല."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"കുറച്ചുപേരെ ചേർക്കാൻ ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക."</string>
-    <string name="savingContact" msgid="4075751076741924939">"കോൺടാക്റ്റ് സംരക്ഷിക്കുന്നു…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"കോൺടാക്റ്റ് സംരക്ഷിച്ചു"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"കോൺടാക്റ്റുകൾ അൺലിങ്കുചെയ്തു"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"കോൺടാക്റ്റ് മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> അക്കൗണ്ട്"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"ഈ അപ്ലിക്കേഷനിൽ നിന്നും എഡിറ്റുചെയ്യാനാകില്ല."</string>
     <string name="group_read_only" msgid="1061762906115697637">"ഈ ഉപകരണത്തിൽ എഡിറ്റുചെയ്യാനാകില്ല."</string>
     <string name="take_photo" msgid="7496128293167402354">"ഫോട്ടോ എടുക്കുക"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"പുതിയ ഫോട്ടോ എടുക്കുക"</string>

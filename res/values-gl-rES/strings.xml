@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"Eliminar foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"Sen contactos"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos</item>
+      <item quantity="one">1 contacto</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"Ningún grupo"</string>
     <string name="noAccounts" msgid="7768267764545265909">"Para crear grupos precisas unha conta."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Non hai ninguén neste grupo."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Para engadir algo, edita o grupo."</string>
-    <string name="savingContact" msgid="4075751076741924939">"Gardando contacto..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Gardouse o contacto"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Desligáronse os contactos"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Non se puideron gardar os cambios nos contactos."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"Conta de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"Non editable desde esta aplicación."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Non editable neste dispositivo"</string>
     <string name="take_photo" msgid="7496128293167402354">"Facer foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Facer foto nova"</string>

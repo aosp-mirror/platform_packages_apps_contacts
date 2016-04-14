@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"Премахване на снимката"</string>
     <string name="noContacts" msgid="4955659076981974652">"Няма контакти"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> контакта</item>
+      <item quantity="one">1 контакт</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"Няма групи."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Необходим ви е профил, за да създавате групи."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"В тази група няма хора."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"За да добавите, редактирайте групата."</string>
-    <string name="savingContact" msgid="4075751076741924939">"Контактът се запазва..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Контактът е запазен"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Контактите са разделени"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Промените в контакта не можаха да бъдат запазени."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"Профил в <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"Не може да се редактира от приложението."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Не може да се редактира на това у-во."</string>
     <string name="take_photo" msgid="7496128293167402354">"Снимане"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Заснемане на нова снимка"</string>

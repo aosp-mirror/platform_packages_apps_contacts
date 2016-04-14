@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"फोटो मेट्नुहोस्"</string>
     <string name="noContacts" msgid="4955659076981974652">"कुनै सम्पर्कहरू छैन।"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> सम्पर्कहरू</item>
+      <item quantity="one">१ सम्पर्क</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"कुनै समूहहरू छैनन्।"</string>
     <string name="noAccounts" msgid="7768267764545265909">"समूह बनाउनका लागि एउटा खाताको आवश्यक्ता हुन्छ।"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"यो समूहमा कोही छैन।"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"केही थपनका लागि, समुह सम्पादन गर्नुहोस्।"</string>
-    <string name="savingContact" msgid="4075751076741924939">"सम्पर्क बचत गर्दै..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"सम्पर्क बचत गरियो।"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"सम्पर्क ठेगानाहरू अनलिंक गरियो"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"सम्पर्क परिवर्तनहरू सुरक्षित गर्न सकेन।"</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> खाता"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"यो अनुप्रयोगबाट सम्पादन गर्न नमिल्ने।"</string>
     <string name="group_read_only" msgid="1061762906115697637">"यस उपकरणमा सम्पादनयोग्य छैन।"</string>
     <string name="take_photo" msgid="7496128293167402354">"तस्वीर लिनुहोस्"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"नयाँ फोटो खिच्नुहोस्"</string>

@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"删除照片"</string>
     <string name="noContacts" msgid="4955659076981974652">"没有联系人"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g>（<xliff:g id="COUNT">%d</xliff:g> 人）"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位联系人</item>
+      <item quantity="one">1 位联系人</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"没有任何群组。"</string>
     <string name="noAccounts" msgid="7768267764545265909">"您需要拥有一个帐号才能创建群组。"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"此群组中没有联系人。"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"要添加联系人，请修改该群组。"</string>
-    <string name="savingContact" msgid="4075751076741924939">"正在保存联系人…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"联系人已保存"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"已将联系人取消关联"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"无法保存联系人更改。"</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>帐号"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"无法通过此应用修改。"</string>
     <string name="group_read_only" msgid="1061762906115697637">"无法在此设备上修改。"</string>
     <string name="take_photo" msgid="7496128293167402354">"拍照"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"拍摄新照片"</string>

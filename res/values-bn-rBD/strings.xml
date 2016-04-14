@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"ফটো সরান"</string>
     <string name="noContacts" msgid="4955659076981974652">"কোনো পরিচিতি নেই"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"কোনো গোষ্ঠী নেই৷"</string>
     <string name="noAccounts" msgid="7768267764545265909">"গোষ্ঠীগুলি তৈরি করার জন্য আপনার একটি অ্যাকাউন্টের প্রয়োজন৷"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"এই গোষ্ঠীতে কেউ নেই৷"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"কিছু যোগ করতে, গোষ্ঠী সম্পাদনা করুন৷"</string>
-    <string name="savingContact" msgid="4075751076741924939">"পরিচিতি সংরক্ষণ করা হচ্ছে…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"পরিচিতি সংরক্ষণ করা হয়েছে"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"পরিচিতিগুলি লিঙ্কমুক্ত করা হয়েছে"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"পরিচিতির পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> অ্যাকাউন্ট"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"এই অ্যাপ্লিকেশন থেকে সম্পাদনাযোগ্য নয়৷"</string>
     <string name="group_read_only" msgid="1061762906115697637">"এই ডিভাইসে সম্পাদনযোগ্য নয়৷"</string>
     <string name="take_photo" msgid="7496128293167402354">"ফটো তুলুন"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"নতুন ফটো তুলুন"</string>

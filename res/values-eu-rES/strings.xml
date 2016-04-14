@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"Kendu argazkia"</string>
     <string name="noContacts" msgid="4955659076981974652">"Ez dago kontakturik"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktu</item>
+      <item quantity="one">1 kontaktu</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"Ez dago talderik."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Taldeak sortzeko, kontu bat behar duzu."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Ez dago jenderik talde honetan."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Batzuk gehitzeko, editatu taldea."</string>
-    <string name="savingContact" msgid="4075751076741924939">"Kontaktua gordetzen…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Gorde da kontaktua"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kendu da kontaktuen lotura"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ezin izan dira gorde kontaktuari egindako aldaketak."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> kontua"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"Ezin da aplikazio honen bidez editatu."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Ezin da gailu honetan editatu."</string>
     <string name="take_photo" msgid="7496128293167402354">"Atera argazkia"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Atera beste argazki bat"</string>

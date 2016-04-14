@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"Poista kuva"</string>
     <string name="noContacts" msgid="4955659076981974652">"Ei kontakteja"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> yhteystietoa</item>
+      <item quantity="one">1 yhteystieto</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"Ei ryhmiä."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Tarvitset tilin ryhmien luomiseen."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Tässä ryhmässä ei ole ihmisiä."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Muokkaa ryhmää, niin voit lisätä ihmisiä."</string>
-    <string name="savingContact" msgid="4075751076741924939">"Tallennetaan yhteystietoa…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Yhteystieto tallennettu"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Yhteystietojen linkitys on poistettu."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ei voitu tallentaa yhteystietojen muutoksia."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-tili"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"Ei muokattavissa tästä sovelluksesta."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Ei muokattavissa tällä laitteella."</string>
     <string name="take_photo" msgid="7496128293167402354">"Ota valokuva"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ota uusi kuva"</string>

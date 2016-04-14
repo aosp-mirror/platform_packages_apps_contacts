@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"फ़ोटो निकालें"</string>
     <string name="noContacts" msgid="4955659076981974652">"कोई संपर्क नहीं"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"कोई समूह नहीं."</string>
     <string name="noAccounts" msgid="7768267764545265909">"समूह बनाने के लिए आपको किसी खाते की आवश्‍यकता होती है."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"इस समूह में कोई व्‍यक्ति नहीं."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"कुछ जोड़ने के लिए, समूह संपादित करें."</string>
-    <string name="savingContact" msgid="4075751076741924939">"संपर्क सहेज रहा है…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"संपर्क सहेजा गया"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"संपर्क अनलिंक किए गए"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"संपर्क परिवर्तन सहेजे नहीं जा सके."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> खाता"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"इस ऐप्स  द्वारा संपादन-योग्‍य नहीं."</string>
     <string name="group_read_only" msgid="1061762906115697637">"इस डिवाइस पर संपादन योग्‍य नहीं."</string>
     <string name="take_photo" msgid="7496128293167402354">"फ़ोटो लें"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"नया फ़ोटो लें"</string>

@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"นำภาพออก"</string>
     <string name="noContacts" msgid="4955659076981974652">"ไม่มีรายชื่อติดต่อ"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="other">ผู้ติดต่อ <xliff:g id="COUNT">%d</xliff:g> คน</item>
+      <item quantity="one">ผู้ติดต่อ 1 คน</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"ไม่มีกลุ่ม"</string>
     <string name="noAccounts" msgid="7768267764545265909">"คุณจำเป็นต้องมีบัญชีเพื่อสร้างกลุ่ม"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"ไม่มีสมาชิกในกลุ่มนี้"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"หากต้องการเพิ่มสมาชิก ให้แก้ไขกลุ่ม"</string>
-    <string name="savingContact" msgid="4075751076741924939">"กำลังบันทึกรายชื่อ…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"บันทึกรายชื่อติดต่อแล้ว"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ยกเลิกการลิงก์รายชื่อติดต่อแล้ว"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ไม่สามารถบันทึกการเปลี่ยนแปลงรายชื่อติดต่อ"</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"บัญชี <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"ไม่สามารถแก้ไขได้จากแอปพลิเคชันนี้"</string>
     <string name="group_read_only" msgid="1061762906115697637">"ไม่สามารถแก้ไขได้ในอุปกรณ์นี้"</string>
     <string name="take_photo" msgid="7496128293167402354">"ถ่ายภาพ"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ถ่ายภาพใหม่"</string>

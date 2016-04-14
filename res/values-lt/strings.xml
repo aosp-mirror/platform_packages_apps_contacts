@@ -110,11 +110,16 @@
     <string name="removePhoto" msgid="4898105274130284565">"Pašalinti nuotrauką"</string>
     <string name="noContacts" msgid="4955659076981974652">"Kontaktų nėra"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"Grupė „<xliff:g id="GROUP_NAME">%s</xliff:g>“ (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontaktas</item>
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> kontaktai</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> kontakto</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktų</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"Nėra grupių."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Jums reikia paskyros, kad galėtumėte kurti grupes."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Šioje grupėje nėra žmonių."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Jei norite jų pridėti, redaguokite grupę."</string>
-    <string name="savingContact" msgid="4075751076741924939">"Išsaugomas adresatas..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontaktas išsaugotas"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktai atsieti"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nepavyko išsaugoti kontakto pakeitimų."</string>
@@ -173,7 +178,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"„<xliff:g id="SOURCE">%1$s</xliff:g>“ paskyra"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"Iš šios programos redaguoti negalima."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Negalima redaguoti šiame įrenginyje."</string>
     <string name="take_photo" msgid="7496128293167402354">"Fotografuoti"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Iš naujo fotografuoti"</string>

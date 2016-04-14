@@ -108,11 +108,14 @@
     <string name="removePhoto" msgid="4898105274130284565">"Supprimer la photo"</string>
     <string name="noContacts" msgid="4955659076981974652">"Aucun contact"</string>
     <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts</item>
+    </plurals>
     <string name="noGroups" msgid="8614664663561385253">"Aucun groupe"</string>
     <string name="noAccounts" msgid="7768267764545265909">"Vous devez posséder un compte pour créer des groupes."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Ce groupe est vide."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Pour ajouter des membres, veuillez le modifier."</string>
-    <string name="savingContact" msgid="4075751076741924939">"Enregistrement du contact…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Contact enregistré."</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Contacts dissociés"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Impossible d\'enregistrer les modifications apportées au contact."</string>
@@ -165,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"Compte <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="contact_read_only" msgid="7421346527289472273">"Non modifiable depuis cette application."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Non modifiable sur cet appareil."</string>
     <string name="take_photo" msgid="7496128293167402354">"Prendre une photo"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Prendre une autre photo"</string>
