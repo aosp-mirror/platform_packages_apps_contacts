@@ -170,7 +170,7 @@
     <string name="take_new_photo" msgid="7341354729436576304">"عکس جدید گرفتن"</string>
     <string name="pick_photo" msgid="2129509985223564942">"انتخاب عکس"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"انتخاب عکس جدید"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"لیست مخاطبین در حال به‌روزرسانی است."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"فهرست مخاطبین در حال به‌روزرسانی است."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"در حال جستجو..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"نمایش موارد انتخاب شده"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"نمایش همه"</string>
@@ -326,6 +326,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"عکس <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> انتخاب شد"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"عکس از حساب نامشخص انتخاب نشده است"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"عکس از حساب نامشخص انتخاب شده است"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"لیست مخاطبین جهت اعمال تغییر زبان در حال به‌روزرسانی است.\n\nلطفاً منتظر بمانید..."</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"فهرست مخاطبین جهت اعمال تغییر زبان در حال به‌روزرسانی است.\n\nلطفاً منتظر بمانید..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"شماره‌های مسدودشده"</string>
 </resources>
