@@ -16,9 +16,9 @@
 
 package com.android.contacts.common.preference;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
-import android.app.ActionBar;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
@@ -59,17 +59,6 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
                 .addToBackStack(null)
                 .commit();
         setActivityTitle(R.string.setting_about);
-    }
-
-    /**
-     * Returns true if there are no preferences to display and therefore the
-     * corresponding menu item can be removed.
-     */
-    public static boolean isEmpty(Context context) {
-        return !context.getResources().getBoolean(R.bool.config_sort_order_user_changeable)
-                && !context.getResources().getBoolean(R.bool.config_display_order_user_changeable)
-                && !context.getResources().getBoolean(
-                        R.bool.config_default_account_user_changeable);
     }
 
     @Override
