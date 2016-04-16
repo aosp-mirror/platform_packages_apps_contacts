@@ -23,5 +23,6 @@
     android:orientation="horizontal"
     android:layout_gravity="top"
     android:layout_weight="0"
+    android:visibility="gone"
     android:textSize="@dimen/people_activity_landscape_tabs_text_size"
     style="@style/ContactsActionBarTabTextStyle" />

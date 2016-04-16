@@ -172,11 +172,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 mMessageView.setText(mNoContactsMsgResId);
                 mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
                 mMessageView.setVisibility(View.VISIBLE);
-                if (callerTab == TabState.FAVORITES) {
-                    mImageView.setImageResource(R.drawable.ic_star_black_128dp);
-                    mProgress.setVisibility(View.GONE);
-                    updateButtonVisibilty(View.GONE);
-                } else if (callerTab == TabState.ALL) {
+                if (callerTab == TabState.ALL) {
                     mImageView.setImageResource(R.drawable.ic_person_black_128dp);
                     updateButtonVisibilty(View.VISIBLE);
                 }

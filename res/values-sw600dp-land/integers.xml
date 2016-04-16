@@ -14,9 +14,6 @@
      limitations under the License.
 -->
 <resources>
-    <!--  Determines the number of columns in a ContactTileRow in the favorites tab -->
-    <integer name="contact_tile_column_count_in_favorites">5</integer>
-
     <integer name="contact_tile_column_count">3</integer>
 
     <!-- Layout weight of space elements in PeopleActivity for favorites list and all

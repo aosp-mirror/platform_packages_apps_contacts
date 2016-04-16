@@ -14,9 +14,6 @@
      limitations under the License.
 -->
 <resources>
-    <!--  Determines the number of columns in a ContactTileRow in the favorites tab -->
-    <integer name="contact_tile_column_count_in_favorites">4</integer>
-
     <integer name="contact_tile_column_count">2</integer>
 
     <!-- Layout weight of column space elements for favorites list, all contacts list and

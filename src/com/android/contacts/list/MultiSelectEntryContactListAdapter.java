@@ -142,6 +142,7 @@ public class MultiSelectEntryContactListAdapter extends DefaultContactListAdapte
             } else {
                 mSelectedContactIds.remove(contactId);
             }
+            notifyDataSetChanged();
             if (mSelectedContactsListener != null) {
                 mSelectedContactsListener.onSelectedContactsChangedViaCheckBox();
             }

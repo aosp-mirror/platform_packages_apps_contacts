@@ -62,12 +62,10 @@ import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.compat.BlockedNumberContractCompat;
 import com.android.contacts.common.compat.TelecomManagerUtil;
-import com.android.contacts.common.dialog.ClearFrequentsDialog;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
-import com.android.contacts.common.list.ContactTileAdapter.DisplayType;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.ViewPagerTabs;
 import com.android.contacts.common.logging.Logger;
@@ -88,7 +86,6 @@ import com.android.contacts.interactions.ContactMultiDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiContactDeleteListener;
 import com.android.contacts.interactions.JoinContactsDialogFragment;
 import com.android.contacts.interactions.JoinContactsDialogFragment.JoinContactsListener;
-import com.android.contacts.list.ContactTileListFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
@@ -140,9 +137,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     private View mFloatingActionButtonContainer;
     private boolean wasLastFabAnimationScaleIn = false;
 
-    private ContactTileListFragment.Listener mFavoritesFragmentListener =
-            new StrequentContactListFragmentListener();
-
     private ContactListFilterController mContactListFilterController;
 
     private ContactsUnavailableFragment mContactsUnavailableFragment;
@@ -155,7 +149,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
      * Showing a list of Contacts. Also used for showing search results in search mode.
      */
     private MultiSelectContactsListFragment mAllFragment;
-    private ContactTileListFragment mFavoritesFragment;
     private GroupsFragment mGroupsFragment;
 
     /** ViewPager for swipe */
@@ -319,7 +312,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         mTabTitles = new String[TabState.COUNT];
-        mTabTitles[TabState.FAVORITES] = getString(R.string.favorites_tab_label);
         mTabTitles[TabState.ALL] = getString(R.string.all_contacts_tab_label);
         mTabPager = getView(R.id.tab_pager);
         mTabPagerAdapter = new TabPagerAdapter();
@@ -367,17 +359,12 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         // However, if it's after screen rotation, the fragments have been re-created by
         // the fragment manager, so first see if there're already the target fragments
         // existing.
-        mFavoritesFragment = (ContactTileListFragment)
-                fragmentManager.findFragmentByTag(FAVORITE_TAG);
         mAllFragment = (MultiSelectContactsListFragment)
                 fragmentManager.findFragmentByTag(ALL_TAG);
         mGroupsFragment = (GroupsFragment)
                 fragmentManager.findFragmentByTag(GROUPS_TAG);
 
-        if (mFavoritesFragment == null) {
-            mFavoritesFragment = new ContactTileListFragment();
-            transaction.add(R.id.tab_pager, mFavoritesFragment, FAVORITE_TAG);
-
+        if (mAllFragment == null) {
             mAllFragment = new MultiSelectContactsListFragment();
             transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
 
@@ -386,8 +373,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 transaction.add(mGroupsFragment, GROUPS_TAG);
             }
         }
-
-        mFavoritesFragment.setListener(mFavoritesFragmentListener);
 
         mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
         mAllFragment.setCheckBoxListListener(new CheckBoxListListener());
@@ -398,15 +383,11 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         // Hide all fragments for now.  We adjust visibility when we get onSelectedTabChanged()
         // from ActionBarAdapter.
-        transaction.hide(mFavoritesFragment);
         transaction.hide(mAllFragment);
         // Groups fragment has no UI, no need to hide it
 
         transaction.commitAllowingStateLoss();
         fragmentManager.executePendingTransactions();
-
-        // Setting Properties after fragment is created
-        mFavoritesFragment.setDisplayType(DisplayType.STREQUENT);
 
         mActionBarAdapter = new ActionBarAdapter(this, this, getSupportActionBar(),
                 portraitViewPagerTabs, landscapeViewPagerTabs, toolbar);
@@ -514,7 +495,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 case ContactsRequest.ACTION_FREQUENT:
                 case ContactsRequest.ACTION_STREQUENT:
                 case ContactsRequest.ACTION_STARRED:
-                    tabToOpen = TabState.FAVORITES;
+                    tabToOpen = TabState.ALL;
                     break;
                 case ContactsRequest.ACTION_VIEW_CONTACT:
                     tabToOpen = TabState.ALL;
@@ -672,10 +653,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     private void showEmptyStateForTab(int tab) {
         if (mContactsUnavailableFragment != null) {
             switch (getTabPositionForTextDirection(tab)) {
-                case TabState.FAVORITES:
-                    mContactsUnavailableFragment.setTabInfo(
-                            R.string.listTotalAllContactsZeroStarred, TabState.FAVORITES);
-                    break;
                 case TabState.ALL:
                     mContactsUnavailableFragment.setTabInfo(R.string.noContacts, TabState.ALL);
                     break;
@@ -776,9 +753,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                     return 0; // Only 1 page in search mode
                 }
             } else {
-                if (object == mFavoritesFragment) {
-                    return getTabPositionForTextDirection(TabState.FAVORITES);
-                }
                 if (object == mAllFragment) {
                     return getTabPositionForTextDirection(TabState.ALL);
                 }
@@ -801,9 +775,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 }
                 return mAllFragment;
             } else {
-                if (position == TabState.FAVORITES) {
-                    return mFavoritesFragment;
-                } else if (position == TabState.ALL) {
+                if (position == TabState.ALL) {
                     return mAllFragment;
                 }
             }
@@ -1081,25 +1053,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         }
     }
 
-    private final class StrequentContactListFragmentListener
-            implements ContactTileListFragment.Listener {
-        StrequentContactListFragmentListener() {}
-
-        @Override
-        public void onContactSelected(Uri contactUri, Rect targetRect) {
-            final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(contactUri,
-                    QuickContactActivity.MODE_FULLY_EXPANDED);
-            intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.FAVORITES);
-            ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
-        }
-
-        @Override
-        public void onCallNumberDirectly(String phoneNumber) {
-            // No need to call phone number directly from People app.
-            Log.w(TAG, "unexpected invocation of onCallNumberDirectly()");
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!areContactsAvailable()) {
@@ -1141,22 +1094,15 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         // Get references to individual menu items in the menu
         final MenuItem contactsFilterMenu = menu.findItem(R.id.menu_contacts_filter);
-        final MenuItem clearFrequentsMenu = menu.findItem(R.id.menu_clear_frequents);
 
         final boolean isSearchOrSelectionMode = mActionBarAdapter.isSearchMode()
                 || mActionBarAdapter.isSelectionMode();
         if (isSearchOrSelectionMode) {
             contactsFilterMenu.setVisible(false);
-            clearFrequentsMenu.setVisible(false);
         } else {
             switch (getTabPositionForTextDirection(mActionBarAdapter.getCurrentTab())) {
-                case TabState.FAVORITES:
-                    contactsFilterMenu.setVisible(false);
-                    clearFrequentsMenu.setVisible(hasFrequents());
-                    break;
                 case TabState.ALL:
                     contactsFilterMenu.setVisible(true);
-                    clearFrequentsMenu.setVisible(false);
                     break;
             }
         }
@@ -1192,14 +1138,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         final List<ResolveInfo> receivers = getPackageManager().queryIntentActivities(intent,
                 PackageManager.MATCH_DEFAULT_ONLY);
         return receivers != null && receivers.size() > 0;
-    }
-
-    /**
-     * Returns whether there are any frequently contacted people being displayed
-     * @return
-     */
-    private boolean hasFrequents() {
-        return mFavoritesFragment.hasFrequents();
     }
 
     private void makeMenuItemVisible(Menu menu, int itemId, boolean visible) {
@@ -1245,10 +1183,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 return true;
             case R.id.menu_import_export: {
                 showImportExportDialogFragment();
-                return true;
-            }
-            case R.id.menu_clear_frequents: {
-                ClearFrequentsDialog.show(getFragmentManager());
                 return true;
             }
             case R.id.menu_accounts: {
@@ -1304,14 +1238,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     private void showImportExportDialogFragment(){
-        final boolean isOnFavoriteTab = mTabPagerAdapter.mCurrentPrimaryItem == mFavoritesFragment;
-        if (isOnFavoriteTab) {
-            ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
-                    PeopleActivity.class, ImportExportDialogFragment.EXPORT_MODE_FAVORITES);
-        } else {
-            ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
-                    PeopleActivity.class, ImportExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
-        }
+        ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
+                PeopleActivity.class, ImportExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
     }
 
     @Override
