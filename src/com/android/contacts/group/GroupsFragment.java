@@ -52,7 +52,7 @@ public final class GroupsFragment extends Fragment {
 
                 @Override
                 public CursorLoader onCreateLoader(int id, Bundle args) {
-                    return new GroupListLoader(mContext);
+                    return new GroupListLoader(getActivity());
                 }
 
                 @Override
@@ -72,21 +72,8 @@ public final class GroupsFragment extends Fragment {
                 }
             };
 
-    private Context mContext;
     private List<GroupListItem> mGroupListItems = new ArrayList<>();
     private GroupsListener mListener;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mContext = null;
-    }
 
     @Override
     public void onStart() {
