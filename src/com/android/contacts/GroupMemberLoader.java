@@ -41,6 +41,7 @@ public final class GroupMemberLoader extends CursorLoader {
             Data.DISPLAY_NAME_PRIMARY,              // 2
             Data.PHOTO_URI,                         // 3
             Data.LOOKUP_KEY,                        // 4
+            Data.PHOTO_ID,                          // 5
         };
 
         public static final int CONTACT_ID                   = 0;
@@ -48,6 +49,7 @@ public final class GroupMemberLoader extends CursorLoader {
         public static final int CONTACT_DISPLAY_NAME_PRIMARY = 2;
         public static final int CONTACT_PHOTO_URI            = 3;
         public static final int CONTACT_LOOKUP_KEY           = 4;
+        public static final int CONTACT_PHOTO_ID             = 5;
     }
 
     public static class GroupDetailQuery {

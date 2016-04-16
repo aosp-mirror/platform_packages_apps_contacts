@@ -53,7 +53,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,7 +70,6 @@ import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.common.util.ViewUtil;
 
 import com.google.common.base.Objects;
 
@@ -118,6 +116,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
          * Fragment is created but there's no accounts set up.
          */
         void onAccountsNotFound();
+
+        /**
+         * Group member name or photo was clicked in order to view contact details.
+         */
+        void onGroupMemberClicked(Uri contactLookupUri);
     }
 
     private static final int LOADER_GROUP_METADATA = 1;
@@ -514,6 +517,23 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         inflater.inflate(R.menu.edit_group, menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                getActivity().onBackPressed();
+                return true;
+            }
+            case R.id.menu_save:
+                onDoneClicked();
+                return true;
+            case R.id.menu_discard:
+                doRevertAction();
+                return true;
+        }
+        return false;
+    }
+
     private void doRevertAction() {
         // When this Fragment is closed we don't want it to auto-save
         mStatus = Status.CLOSING;
@@ -768,8 +788,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 String lookupKey = data.getString(GroupEditorQuery.CONTACT_LOOKUP_KEY);
                 String displayName = data.getString(GroupEditorQuery.CONTACT_DISPLAY_NAME_PRIMARY);
                 String photoUri = data.getString(GroupEditorQuery.CONTACT_PHOTO_URI);
+                long photoId = data.getLong(GroupEditorQuery.CONTACT_PHOTO_ID);
                 listExistingMembers.add(new Member(rawContactId, lookupKey, contactId,
-                        displayName, photoUri));
+                        displayName, photoUri, photoId));
             }
 
             // Update the display list
@@ -813,8 +834,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             String displayName = cursor.getString(CONTACT_DISPLAY_NAME_PRIMARY_COLUMN_INDEX);
             String lookupKey = cursor.getString(CONTACT_LOOKUP_KEY_COLUMN_INDEX);
             String photoUri = cursor.getString(CONTACT_PHOTO_URI_COLUMN_INDEX);
+            long photoId = cursor.getLong(CONTACT_PHOTO_ID_COLUMN_INDEX);
             getLoaderManager().destroyLoader(LOADER_NEW_GROUP_MEMBER);
-            Member member = new Member(mRawContactId, lookupKey, contactId, displayName, photoUri);
+            Member member = new Member(mRawContactId, lookupKey, contactId, displayName, photoUri,
+                    photoId);
             addMember(member);
         }
 
@@ -834,15 +857,17 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         private final String mDisplayName;
         private final Uri mPhotoUri;
         private final String mLookupKey;
+        private final long mPhotoId;
 
         public Member(long rawContactId, String lookupKey, long contactId, String displayName,
-                String photoUri) {
+                String photoUri, long photoId) {
             mRawContactId = rawContactId;
             mContactId = contactId;
             mLookupKey = lookupKey;
             mLookupUri = Contacts.getLookupUri(contactId, lookupKey);
             mDisplayName = displayName;
             mPhotoUri = (photoUri != null) ? Uri.parse(photoUri) : null;
+            mPhotoId = photoId;
         }
 
         public long getRawContactId() {
@@ -867,6 +892,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         public Uri getPhotoUri() {
             return mPhotoUri;
+        }
+
+        public long getPhotoId() {
+            return mPhotoId;
         }
 
         @Override
@@ -897,6 +926,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             dest.writeString(mLookupKey);
             dest.writeString(mDisplayName);
             dest.writeParcelable(mPhotoUri, flags);
+            dest.writeLong(mPhotoId);
         }
 
         private Member(Parcel in) {
@@ -906,6 +936,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             mLookupKey = in.readString();
             mDisplayName = in.readString();
             mPhotoUri = in.readParcelable(getClass().getClassLoader());
+            mPhotoId = in.readLong();
         }
 
         public static final Parcelable.Creator<Member> CREATOR = new Parcelable.Creator<Member>() {
@@ -939,12 +970,18 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 result = convertView;
             }
             final Member member = getItem(position);
-
-            QuickContactBadge badge = (QuickContactBadge) result.findViewById(R.id.badge);
-            badge.assignContactUri(member.getLookupUri());
+            final OnClickListener groupMemberClickListener = new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        mListener.onGroupMemberClicked(member.getLookupUri());
+                    }
+                }
+            };
 
             TextView name = (TextView) result.findViewById(R.id.name);
             name.setText(member.getDisplayName());
+            name.setOnClickListener(groupMemberClickListener);
 
             View deleteButton = result.findViewById(R.id.delete_button_container);
             if (deleteButton != null) {
@@ -955,11 +992,13 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                     }
                 });
             }
-            DefaultImageRequest request = new DefaultImageRequest(member.getDisplayName(),
-                    member.getLookupKey(), true /* isCircular */);
-            mPhotoManager.loadPhoto(badge, member.getPhotoUri(),
-                    ViewUtil.getConstantPreLayoutWidth(badge), false, true /* isCircular */,
-                            request);
+
+            // Bind photo
+            final ImageView imageView = (ImageView) result.findViewById(R.id.photo);
+            imageView.setOnClickListener(groupMemberClickListener);
+            bindPhoto(mPhotoManager, imageView, member.getPhotoId(), member.getPhotoUri(),
+                    member.getDisplayName(), member.getLookupKey());
+
             return result;
         }
 
@@ -980,6 +1019,25 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         public void setIsGroupMembershipEditable(boolean editable) {
             mIsGroupMembershipEditable = editable;
+        }
+    }
+
+    /**
+     * @param identifier the {@link ContactPhotoManager.DefaultImageRequest#identifier}
+     *         to use for this the group member.
+     */
+    public static void bindPhoto(ContactPhotoManager photoManager, ImageView imageView,
+            long photoId, Uri photoUri, String displayName, String identifier) {
+        if (photoId == 0) {
+            final DefaultImageRequest defaultImageRequest = photoUri == null
+                    ? new DefaultImageRequest(displayName, identifier,
+                            /* circularPhotos */ true)
+                    : null;
+            photoManager.loadDirectoryPhoto(imageView, photoUri, /* darkTheme */ false,
+                        /* isCircular */ true, defaultImageRequest);
+        } else {
+            photoManager.loadThumbnail(imageView, photoId, /* darkTheme */ false,
+                        /* isCircular */ true, /* defaultImageRequest */ null);
         }
     }
 }

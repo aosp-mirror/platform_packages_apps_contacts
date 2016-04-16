@@ -18,20 +18,17 @@ package com.android.contacts.activities;
 
 import android.app.ActionBar;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.group.GroupEditorFragment;
+import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.PhoneCapabilityTester;
 
 public class GroupEditorActivity extends ContactsActivity
         implements DialogManager.DialogShowingViewActivity {
@@ -39,8 +36,6 @@ public class GroupEditorActivity extends ContactsActivity
     private static final String TAG = "GroupEditorActivity";
 
     public static final String ACTION_SAVE_COMPLETED = "saveCompleted";
-    public static final String ACTION_ADD_MEMBER_COMPLETED = "addMemberCompleted";
-    public static final String ACTION_REMOVE_MEMBER_COMPLETED = "removeMemberCompleted";
 
     private GroupEditorFragment mFragment;
 
@@ -60,24 +55,9 @@ public class GroupEditorActivity extends ContactsActivity
 
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            // Inflate a custom action bar that contains the "done" button for saving changes
-            // to the group
-            LayoutInflater inflater = (LayoutInflater) getSystemService
-                    (Context.LAYOUT_INFLATER_SERVICE);
-            View customActionBarView = inflater.inflate(R.layout.editor_custom_action_bar,
-                    null);
-            View saveMenuItem = customActionBarView.findViewById(R.id.save_menu_item);
-            saveMenuItem.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mFragment.onDoneClicked();
-                }
-            });
-            // Show the custom action bar but hide the home icon and title
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM,
-                    ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME |
-                    ActionBar.DISPLAY_SHOW_TITLE);
-            actionBar.setCustomView(customActionBarView);
+            actionBar.setTitle(getResources().getString(R.string.editGroupDescription));
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         mFragment = (GroupEditorFragment) getFragmentManager().findFragmentById(
@@ -152,6 +132,12 @@ public class GroupEditorActivity extends ContactsActivity
                 startActivity(intent);
                 finish();
             }
+        }
+
+        @Override
+        public void onGroupMemberClicked(Uri contactLookupUri) {
+            startActivity(ImplicitIntentsUtil.composeQuickContactIntent(
+                    contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED));
         }
     };
 

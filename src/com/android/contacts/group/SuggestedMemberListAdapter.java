@@ -16,10 +16,17 @@
 package com.android.contacts.group;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
@@ -69,6 +76,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
         Photo.PHOTO,                            // 4
     };
 
+    private static final int ID_INDEX = 0;
     private static final int MIMETYPE_COLUMN_INDEX = 2;
     private static final int DATA_COLUMN_INDEX = 3;
     private static final int PHOTO_COLUMN_INDEX = 4;
@@ -76,6 +84,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
     private Filter mFilter;
     private ContentResolver mContentResolver;
     private LayoutInflater mInflater;
+    private ContactPhotoManager mPhotoManager;
 
     private String mAccountType;
     private String mAccountName;
@@ -90,6 +99,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
     public SuggestedMemberListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mPhotoManager = ContactPhotoManager.getInstance(context);
     }
 
     public void setAccountType(String accountType) {
@@ -144,14 +154,54 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
         }
         byte[] byteArray = member.getPhotoByteArray();
         if (byteArray == null) {
-            icon.setImageDrawable(ContactPhotoManager.getDefaultAvatarDrawableForContact(
-                    icon.getResources(), false, null));
+            final Uri contactLookupUri = RawContacts.getContactLookupUri(mContentResolver,
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, member.getContactId()));
+            final String imageRequestIdentifier = contactLookupUri == null
+                    ? null : contactLookupUri.toString();
+            GroupEditorFragment.bindPhoto(mPhotoManager, icon, member.getPhotoId(),
+                /* photoUri */ null, member.getDisplayName(), imageRequestIdentifier);
         } else {
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-            icon.setImageBitmap(bitmap);
+            icon.setImageBitmap(frameBitmapInCircle(bitmap));
         }
         result.setTag(member);
         return result;
+    }
+
+    private static Bitmap frameBitmapInCircle(Bitmap input) {
+        // Crop the image if not squared.
+        final int targetDiameter = input.getWidth();
+        final Bitmap scaled = Bitmap.createScaledBitmap(
+                input, targetDiameter, targetDiameter, /* filter */ false);
+        int inputWidth = scaled.getWidth();
+        int inputHeight = scaled.getHeight();
+        int targetX, targetY, targetSize;
+        if (inputWidth >= inputHeight) {
+            targetX = inputWidth / 2 - inputHeight / 2;
+            targetY = 0;
+            targetSize = inputHeight;
+        } else {
+            targetX = 0;
+            targetY = inputHeight / 2 - inputWidth / 2;
+            targetSize = inputWidth;
+        }
+
+        // Create an output bitmap and a canvas to draw on it.
+        final Bitmap output = Bitmap.createBitmap(targetSize, targetSize, Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(output);
+
+        // Create a black paint to draw the mask.
+        final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.BLACK);
+
+        // Draw a circle.
+        canvas.drawCircle(targetDiameter / 2, targetDiameter / 2, targetDiameter / 2, paint);
+
+        // Replace the black parts of the mask with the input image.
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(scaled, targetX /* left */, targetY /* top */, paint);
+
+        return output;
     }
 
     @Override
@@ -277,6 +327,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
                         String mimetype = memberDataCursor.getString(MIMETYPE_COLUMN_INDEX);
                         if (Photo.CONTENT_ITEM_TYPE.equals(mimetype)) {
                             // Set photo
+                            member.setPhotoId(memberDataCursor.getLong(ID_INDEX));
                             byte[] bitmapArray = memberDataCursor.getBlob(PHOTO_COLUMN_INDEX);
                             member.setPhotoByteArray(bitmapArray);
                         } else if (Email.CONTENT_ITEM_TYPE.equals(mimetype) ||
@@ -327,8 +378,10 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
         private long mRawContactId;
         private long mContactId;
         private String mDisplayName;
+
         private String mExtraInfo;
         private byte[] mPhoto;
+        private long mPhotoId;
 
         public SuggestedMember(long rawContactId, String displayName, long contactId) {
             mRawContactId = rawContactId;
@@ -356,6 +409,10 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
             return mPhoto;
         }
 
+        public long getPhotoId() {
+            return mPhotoId;
+        }
+
         public boolean hasExtraInfo() {
             return mExtraInfo != null;
         }
@@ -369,6 +426,10 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
 
         public void setPhotoByteArray(byte[] photo) {
             mPhoto = photo;
+        }
+
+        public void setPhotoId(long photoId) {
+            mPhotoId = photoId;
         }
 
         @Override
