@@ -28,10 +28,6 @@
             android:icon="@drawable/ic_menu_import_export"
             android:title="@string/menu_import_export"/>
         <item
-            android:id="@+id/nav_accounts"
-            android:icon="@drawable/ic_account_circle_black_24dp"
-            android:title="@string/menu_accounts"/>
-        <item
             android:id="@+id/nav_blocked_numbers"
             android:icon="@drawable/ic_menu_blocked_numbers"
             android:title="@string/menu_blocked_numbers"/>
