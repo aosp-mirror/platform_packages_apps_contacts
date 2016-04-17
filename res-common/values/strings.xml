@@ -653,8 +653,20 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!--Label of the "Sync contact metadata" setting dialog to set sync account for Lychee. [CHAR LIMIT=80]-->
     <string name="sync_contact_metadata_dialog_title">Sync contact metadata</string>
 
-    <!-- Label of the "About" setting -->
-    <string name="setting_about">About Contacts</string>
+    <!-- Title of preference category of my info (including "default account") [CHAR LIMIT=30]-->
+    <string name="settings_my_info_title">My info</string>
+
+    <!-- Title of preference category of list format (specifying how to sort contacts list) [CHAR LIMIT=30]-->
+    <string name="settings_list_format_title">List format</string>
+
+    <!-- Title of preference category of about (including preference "About Contacts"). [CHAR LIMIT=20]-->
+    <string name="settings_about_title">About</string>
+
+    <!-- Title of preference category of contacts metadata (including preference "Sync contact metadata [DOGFOOD]") [CHAR LIMIT=40]-->
+    <string name="settings_metadata_title">Contacts metadata</string>
+
+    <!-- Label of the "About Contacts" setting [CHAR LIMIT=30]-->
+    <string name="settings_about">About Contacts</string>
 
     <!-- Title of the settings activity [CHAR LIMIT=64] -->
     <string name="activity_title_settings">Settings</string>
@@ -720,9 +732,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- Menu item to select SIM card -->
     <string name="menu_select_sim">Select SIM card</string>
-
-    <!-- The menu item to open the list of accounts. [CHAR LIMIT=60]-->
-    <string name="menu_accounts">Manage accounts</string>
 
     <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
     <string name="menu_import_export">Import/export</string>
