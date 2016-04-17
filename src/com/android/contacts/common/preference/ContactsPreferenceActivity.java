@@ -17,7 +17,6 @@
 package com.android.contacts.common.preference;
 
 import android.app.ActionBar;
-import android.content.Context;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
@@ -49,7 +48,7 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
             final AboutPreferenceFragment fragment = (AboutPreferenceFragment) getFragmentManager()
                     .findFragmentByTag(TAG_ABOUT_CONTACTS);
             setActivityTitle(fragment == null ?
-                    R.string.activity_title_settings : R.string.setting_about);
+                    R.string.activity_title_settings : R.string.settings_about);
         }
     }
 
@@ -58,7 +57,7 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
                 .replace(android.R.id.content, new AboutPreferenceFragment(), TAG_ABOUT_CONTACTS)
                 .addToBackStack(null)
                 .commit();
-        setActivityTitle(R.string.setting_about);
+        setActivityTitle(R.string.settings_about);
     }
 
     @Override
