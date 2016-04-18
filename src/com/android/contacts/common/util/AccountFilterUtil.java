@@ -18,8 +18,10 @@ package com.android.contacts.common.util;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -28,6 +30,14 @@ import com.android.contacts.common.R;
 import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+
+import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility class for account filter manipulation.
@@ -162,5 +172,58 @@ public class AccountFilterUtil {
                 filterController.setContactListFilter(filter, true);
             }
         }
+    }
+
+    /**
+     * Loads a list of contact list filters
+     */
+    public static class FilterLoader extends AsyncTaskLoader<List<ContactListFilter>> {
+        private Context mContext;
+
+        public FilterLoader(Context context) {
+            super(context);
+            mContext = context;
+        }
+
+        @Override
+        public List<ContactListFilter> loadInBackground() {
+            return loadAccountFilters(mContext);
+        }
+
+        @Override
+        protected void onStartLoading() {
+            forceLoad();
+        }
+
+        @Override
+        protected void onStopLoading() {
+            cancelLoad();
+        }
+
+        @Override
+        protected void onReset() {
+            onStopLoading();
+        }
+    }
+
+    private static List<ContactListFilter> loadAccountFilters(Context context) {
+        final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
+        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
+        final List<AccountWithDataSet> accounts =
+                accountTypeManager.getAccounts(/* contactWritableOnly */false);
+        for (AccountWithDataSet account : accounts) {
+            final AccountType accountType =
+                    accountTypeManager.getAccountType(account.type, account.dataSet);
+            if (accountType.isExtension() && !account.hasData(context)) {
+                // Hide extensions with no raw_contacts.
+                continue;
+            }
+            final Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
+            accountFilters.add(ContactListFilter.createAccountFilter(
+                    account.type, account.name, account.dataSet, icon));
+        }
+        final ArrayList<ContactListFilter> result = Lists.newArrayList();
+        result.addAll(accountFilters);
+        return result;
     }
 }

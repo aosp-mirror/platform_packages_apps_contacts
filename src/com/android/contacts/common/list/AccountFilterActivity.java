@@ -36,11 +36,10 @@ import android.widget.ListView;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.AccountFilterUtil;
+
 import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -84,71 +83,10 @@ public class AccountFilterActivity extends Activity implements AdapterView.OnIte
         getLoaderManager().initLoader(FILTER_LOADER_ID, null, new MyLoaderCallbacks());
     }
 
-    private static class FilterLoader extends AsyncTaskLoader<List<ContactListFilter>> {
-        private Context mContext;
-
-        public FilterLoader(Context context) {
-            super(context);
-            mContext = context;
-        }
-
-        @Override
-        public List<ContactListFilter> loadInBackground() {
-            return loadAccountFilters(mContext);
-        }
-
-        @Override
-        protected void onStartLoading() {
-            forceLoad();
-        }
-
-        @Override
-        protected void onStopLoading() {
-            cancelLoad();
-        }
-
-        @Override
-        protected void onReset() {
-            onStopLoading();
-        }
-    }
-
-    private static List<ContactListFilter> loadAccountFilters(Context context) {
-        final ArrayList<ContactListFilter> result = Lists.newArrayList();
-        final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
-        List<AccountWithDataSet> accounts = accountTypes.getAccounts(false);
-        for (AccountWithDataSet account : accounts) {
-            AccountType accountType = accountTypes.getAccountType(account.type, account.dataSet);
-            if (accountType.isExtension() && !account.hasData(context)) {
-                // Hide extensions with no raw_contacts.
-                continue;
-            }
-            Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
-            accountFilters.add(ContactListFilter.createAccountFilter(
-                    account.type, account.name, account.dataSet, icon));
-        }
-
-        // Always show "All", even when there's no accounts.  (We may have local contacts)
-        result.add(ContactListFilter.createFilterWithType(
-                ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS));
-
-        final int count = accountFilters.size();
-        if (count >= 1) {
-            // If we only have one account, don't show it as "account", instead show it as "all"
-            if (count > 1) {
-                result.addAll(accountFilters);
-            }
-            result.add(ContactListFilter.createFilterWithType(
-                    ContactListFilter.FILTER_TYPE_CUSTOM));
-        }
-        return result;
-    }
-
     private class MyLoaderCallbacks implements LoaderCallbacks<List<ContactListFilter>> {
         @Override
         public Loader<List<ContactListFilter>> onCreateLoader(int id, Bundle args) {
-            return new FilterLoader(AccountFilterActivity.this);
+            return new AccountFilterUtil.FilterLoader(AccountFilterActivity.this);
         }
 
         @Override
