@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Рэдагаваць"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Выдаліць"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Дадаць кантакт"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Дадаць групу"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Стварыць новы ўліковы запіс..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Раз\'яднаць гэты кантакт на некалькі кантактаў?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Выдаліць сувязь"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Жадаеце захаваць змяненні, якія вы ўжо зрабілі, і развязаць гэты кантакт на некалькі кантактаў?"</string>
@@ -114,7 +114,7 @@
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> кантакт</item>
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> кантакты</item>
       <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> кантактаў</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> кантакта</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> кантакту</item>
     </plurals>
     <string name="noGroups" msgid="8614664663561385253">"Няма груп."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Для стварэння групы патрабуецца ўліковы запіс."</string>
@@ -150,7 +150,6 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> знойдзена</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"Усе"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Упадабаныя"</string>
     <string name="callBack" msgid="5498224409038809224">"Зваротны выклік"</string>
     <string name="callAgain" msgid="3197312117049874778">"Выклікаць зноў"</string>
     <string name="returnCall" msgid="8171961914203617813">"Зваротны выклік"</string>

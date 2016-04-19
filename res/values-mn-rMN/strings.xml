@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Засах"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Устгах"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Харилцагч нэмэх"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Бүлгэм нэмэх"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Шинийг үүсгэх..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Энэ харилцагчийн хаягийг олон харилцагч болгон салгах уу?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Салгах"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Та энэ харилцагчийн жагсаалтыг салгаад, олон харилцагч болгосон өөрчлөлтийг хадгалах уу?"</string>
@@ -140,7 +140,6 @@
       <item quantity="one">1 олсон байна</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"Бүгд"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Дуртай"</string>
     <string name="callBack" msgid="5498224409038809224">"Буцааж залгах"</string>
     <string name="callAgain" msgid="3197312117049874778">"Дахин залгана уу"</string>
     <string name="returnCall" msgid="8171961914203617813">"Буцааж залгах"</string>

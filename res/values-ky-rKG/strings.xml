@@ -79,7 +79,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Өзгөртүү"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Жок кылуу"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Байланыш кошуу"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Топ кошуу"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Жаңысын түзүү..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Бул байланыш бир нече байланышка ажыратылсынбы?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Ажыратуу"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Сиз киргизген өзгөртүүлөрдү сактап, бул байланышты бир нече байланышка ажыраткыңыз келеби?"</string>
@@ -174,7 +174,6 @@
       <item quantity="one">1 табылды</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"Бардыгы"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Сүйүктүүлөр"</string>
     <!-- no translation found for callBack (5498224409038809224) -->
     <skip />
     <!-- no translation found for callAgain (3197312117049874778) -->

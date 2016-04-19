@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"កែសម្រួល​"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"លុប"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"បន្ថែម​ទំនាក់ទំនង"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"បន្ថែម​ក្រុម"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"បង្កើត​ថ្មី..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"ផ្តាច់ការតភ្ជាប់ទំនាក់ទំនងនេះទៅជាទំនាក់ទំនងច្រើនឬ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ផ្តាច់ការតភ្ជាប់"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"តើអ្នកចង់រក្សាទុកការផ្លាស់ប្តូរដែលអ្នកបានធ្វើឡើង និងផ្តាច់ការតភ្ជាប់ទំនាក់ទំនងនេះទៅជាទំនាក់ទំនងច្រើនដែរឬទេ?"</string>
@@ -140,7 +140,6 @@
       <item quantity="one">បានរកឃើញ 1</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"ទាំងអស់"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"ពេញចិត្ត"</string>
     <string name="callBack" msgid="5498224409038809224">"ហៅ​ទៅវិញ"</string>
     <string name="callAgain" msgid="3197312117049874778">"ហៅ​ម្ដងទៀត"</string>
     <string name="returnCall" msgid="8171961914203617813">"ហៅ​ទៅវិញ"</string>

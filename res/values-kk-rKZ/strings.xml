@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Жөндеу"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Жою"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Контакт қосу"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Топ қосу"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Жаңасын құру..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Осы контакт байланысын жойып, бірнеше контактіге бөлу керек пе?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Байланысты жою"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Енгізіп қойған өзгертулерді сақтау және осы контакт байланысын жойып, бірнеше контактіге бөлу керек пе?"</string>
@@ -140,7 +140,6 @@
       <item quantity="one">1 табылды</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"Барлығы"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Таңдаулылар"</string>
     <string name="callBack" msgid="5498224409038809224">"Кері қоңырау шалу"</string>
     <string name="callAgain" msgid="3197312117049874778">"Қайта қоңырау шалу"</string>
     <string name="returnCall" msgid="8171961914203617813">"Қоңырауды қайтару"</string>

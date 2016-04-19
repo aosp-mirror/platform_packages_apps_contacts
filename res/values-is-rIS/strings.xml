@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Breyta"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Eyða"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Bæta tengilið við"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Bæta hóp við"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Búa til nýjan..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Skipta þessum tengilið upp í fleiri tengiliði?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Skipta upp"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Viltu vista breytingarnar sem þegar hafa verið gerðar og skipta þessum tengilið upp í fleiri tengiliði?"</string>
@@ -140,7 +140,6 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> fundust</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"Allir"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Uppáhald"</string>
     <string name="callBack" msgid="5498224409038809224">"Hringja til baka"</string>
     <string name="callAgain" msgid="3197312117049874778">"Hringja aftur"</string>
     <string name="returnCall" msgid="8171961914203617813">"Hringja til baka"</string>

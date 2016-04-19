@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"సవరించు"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"తొలగించు"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"పరిచయాన్ని జోడించు"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"సమూహాన్ని జోడించు"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"కొత్తది సృష్టించు..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"ఈ పరిచయాన్ని పలు పరిచయాలుగా వేరు చేయాలా?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"వేరు చేయి"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"మీరు ఇప్పటికే చేసిన మార్పులను సేవ్ చేసి, ఈ పరిచయాన్ని పలు పరిచయాలుగా వేరు చేయాలనుకుంటున్నారా?"</string>
@@ -140,7 +140,6 @@
       <item quantity="one">1 కనుగొనబడింది</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"అన్నీ"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"ఇష్టమైనవి"</string>
     <string name="callBack" msgid="5498224409038809224">"కాల్ చేయి"</string>
     <string name="callAgain" msgid="3197312117049874778">"మళ్లీ కాల్ చేయి"</string>
     <string name="returnCall" msgid="8171961914203617813">"కాల్‌ను తిరిగి చేయి"</string>

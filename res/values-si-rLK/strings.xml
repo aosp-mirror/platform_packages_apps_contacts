@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"සංස්කරණය කරන්න"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"මකන්න"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"සම්බන්ධතාවය එක් කරන්න"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"කණ්ඩායමක් එක් කරන්න"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"අලුත් එකක් සාදන්න"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"මෙම සම්බන්ධතාව බහුවිධ සම්බන්ධතාවලට වෙන් කරන්නද?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"සබැඳි ඉවත් කරන්න"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ඔබ දැනටමත් සිදු කර ඇති වෙනස් කිරීම් සුරැකීමට සහ මෙම සම්බන්ධතාව බහුවිධ සම්බන්ධතාවලට වෙන් කිරීමට කැමතිද?"</string>
@@ -140,7 +140,6 @@
       <item quantity="other">සොයා ගැනීම් <xliff:g id="COUNT">%d</xliff:g></item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"සියලු"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"ප්‍රියතම"</string>
     <string name="callBack" msgid="5498224409038809224">"නැවත අමතන්න"</string>
     <string name="callAgain" msgid="3197312117049874778">"නැවත අමතන්න"</string>
     <string name="returnCall" msgid="8171961914203617813">"ඇමතුම නැවත ලබා දෙන්න"</string>

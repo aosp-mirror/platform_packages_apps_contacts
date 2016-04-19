@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Edit"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Padam"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Tambah Kenalan"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Tambah Kumpulan"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Buat baharu…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Nyahpaut kenalan ini menjadi beberapa kenalan?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Nyahpaut"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Adakah anda ingin menyimpan perubahan yang telah dibuat dan menyahpaut kenalan ini menjadi beberapa kenalan?"</string>
@@ -140,7 +140,6 @@
       <item quantity="one">1 ditemui</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"Semua"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Kegemaran"</string>
     <string name="callBack" msgid="5498224409038809224">"Panggil balik"</string>
     <string name="callAgain" msgid="3197312117049874778">"Panggil semula"</string>
     <string name="returnCall" msgid="8171961914203617813">"Balas panggilan"</string>

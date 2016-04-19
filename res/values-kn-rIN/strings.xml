@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"ಸಂಪಾದಿಸು"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"ಅಳಿಸು"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"ಸಂಪರ್ಕವನ್ನು ಸೇರಿಸಿ"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"ಗುಂಪು ಸೇರಿಸು"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"ಹೊಸದನ್ನು ರಚಿಸಿ..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡುವುದೇ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ಲಿಂಕ್ ರದ್ದುಮಾಡು"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
@@ -140,7 +140,6 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ಕಂಡುಬಂದಿದೆ</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"ಎಲ್ಲಾ"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"ಮೆಚ್ಚಿನವುಗಳು"</string>
     <string name="callBack" msgid="5498224409038809224">"ಮರಳಿ ಕರೆ ಮಾಡಿ"</string>
     <string name="callAgain" msgid="3197312117049874778">"ಮತ್ತೆ ಕರೆ ಮಾಡಿ"</string>
     <string name="returnCall" msgid="8171961914203617813">"ಹಿಂತಿರುಗುವಿಕೆ ಕರೆ"</string>

@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"संपादित करा"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"हटवा"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"संपर्क जोडा"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"गट जोडा"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"नवीन तयार करा..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"एकाधिक संपर्कांमध्‍ये या संपर्काचा दुवा रद्द करायचा?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"दुवा रद्द करा"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"आपण आधीपासून केलेले बदल आपण जतन करू आणि एकाधिक संपर्कांमध्‍ये या संपर्काचा दुवा रद्द करू इच्छिता?"</string>
@@ -140,7 +140,6 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> आढळले</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"सर्व"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"मनपसंत"</string>
     <string name="callBack" msgid="5498224409038809224">"पुन्हा कॉल करा"</string>
     <string name="callAgain" msgid="3197312117049874778">"पुन्हा कॉल करा"</string>
     <string name="returnCall" msgid="8171961914203617813">"उलट कॉल करा"</string>

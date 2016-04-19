@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Редагувати"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Видалити"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Додати контакт"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Додати групу"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Створити нову..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Розділити цей контакт?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Розділити"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Зберегти зміни та розділити цей контакт?"</string>
@@ -150,7 +150,6 @@
       <item quantity="other">Знайдено <xliff:g id="COUNT">%d</xliff:g></item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"Усі контакти"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Вибране"</string>
     <string name="callBack" msgid="5498224409038809224">"Передзвонити"</string>
     <string name="callAgain" msgid="3197312117049874778">"Набрати знову"</string>
     <string name="returnCall" msgid="8171961914203617813">"Зворот. виклик"</string>
