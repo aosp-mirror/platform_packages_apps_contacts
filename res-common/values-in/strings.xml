@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Kontak cepat untuk <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Tanpa nama)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Paling sering dipanggil"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Paling sering dihubungi"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Lihat kontak"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Semua kontak dengan nomor telepon"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Temukan kontak"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favorit"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Tidak ada kontak."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Tidak ada kontak yang terlihat."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Tidak ada favorit"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Tidak ada kontak di <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Hapus yang sering"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Pilih kartu SIM"</string>

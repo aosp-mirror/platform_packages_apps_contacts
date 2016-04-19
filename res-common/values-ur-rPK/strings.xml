@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> کیلئے فوری رابطہ"</string>
     <string name="missing_name" msgid="2633118852693000081">"(کوئی نام نہیں)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"اکثر کال کردہ"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"اکثر رابطہ کردہ"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"رابطہ دیکھیں"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"فون نمبرز کے ساتھ سبھی رابطے"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"رابطے تلاش کریں"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"پسندیدہ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"کوئی رابطے نہیں ہیں۔"</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"کوئی مرئی رابطے نہیں ہیں۔"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"کوئی پسندیدہ نہیں"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> میں کوئی رابطے نہیں ہیں"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"اکثر و بیشتر کو صاف کریں"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"‏SIM کارڈ منتخب کریں"</string>

@@ -89,7 +89,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"اتصال سريع لـ <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(بلا اسم)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"الأكثر اتصالاً"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"يتم الاتصال بها بشكل متكرر"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"عرض جهة الاتصال"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"جميع جهات الاتصال التي لها أرقام هواتف"</string>
@@ -248,8 +247,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"البحث عن جهات اتصال"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"المفضلة"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ليست هناك جهات اتصال."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ليست هناك جهات اتصال مرئية."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"ليست هناك مفضلة"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"ليست هناك جهات اتصال في <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"محو قائمة من يتصل بهم كثيرًا"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"‏تحديد شريحة SIM"</string>

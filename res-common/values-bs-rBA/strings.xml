@@ -86,7 +86,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Brzi kontakt za <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Bez imena)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Često pozivane osobe"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Često kontaktirane osobe"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Prikaži kontakt"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Svi kontakti s brojevima telefona"</string>
@@ -245,8 +244,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Pronađi kontakte"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoriti"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nema kontakata."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Nema vidljivih kontakata."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Nema favorita"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Nema kontakata u <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Obriši često kontaktirane"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Odaberi SIM karticu"</string>

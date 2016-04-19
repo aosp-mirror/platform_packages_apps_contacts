@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> కోసం శీఘ్ర సంప్రదింపు"</string>
     <string name="missing_name" msgid="2633118852693000081">"(పేరు లేదు)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"తరచుగా కాల్ చేయబడినవి"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"తరచుగా సంప్రదించబడినవి"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"పరిచయాన్ని వీక్షించండి"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ఫోన్ నంబర్‌లు గల అన్ని పరిచయాలు"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"పరిచయాలను కనుగొనండి"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ఇష్టమైనవి"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"పరిచయాలు లేవు."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"కనిపించే పరిచయాలు ఏవీ లేవు."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"ఇష్టమైనవి లేవు"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>లో పరిచయాలు లేవు"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"తరచుగా ఉన్నవాటిని క్లియర్ చేయి"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"సిమ్ కార్డును ఎంచుకోండి"</string>

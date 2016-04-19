@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> ಇವರಿಗಾಗಿ ತಕ್ಷಣದ ಸಂಪರ್ಕ"</string>
     <string name="missing_name" msgid="2633118852693000081">"(ಯಾವುದೇ ಹೆಸರಿಲ್ಲ)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"ಪದೇ ಪದೇ ಕರೆ ಮಾಡಲಾಗಿದೆ"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"ಪದೇ ಪದೇ ಸಂಪರ್ಕಿಸಿರುವುದು"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"ಸಂಪರ್ಕವನ್ನು ವೀಕ್ಷಿಸಿ"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ ಎಲ್ಲ ಸಂಪರ್ಕಗಳು"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ಮೆಚ್ಚಿನವುಗಳು"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ಯಾವುದೇ ಗೋಚರಿಸುವ ಸಂಪರ್ಕಗಳಿಲ್ಲ."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"ಯಾವುದೇ ಮೆಚ್ಚಿನವುಗಳಿಲ್ಲ"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> ರಲ್ಲಿ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"ಪುನರಾವರ್ತನೆಗಳನ್ನು ತೆರುವುಗೊಳಿಸಿ"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"ಸಿಮ್‌ ಕಾರ್ಡ್ ಆಯ್ಕೆಮಾಡಿ"</string>

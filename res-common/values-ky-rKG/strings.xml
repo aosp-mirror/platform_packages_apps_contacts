@@ -85,8 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> үчүн тез байланышуу"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Аты жок)"</string>
-    <!-- no translation found for favoritesFrequentCalled (6600127125011757687) -->
-    <skip />
     <!-- no translation found for favoritesFrequentContacted (2849493314447751970) -->
     <skip />
     <!-- no translation found for description_view_contact_detail (2756753096193839285) -->
@@ -249,8 +247,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Байланыштарды табуу"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Тандамалдар"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Эч бир байланыш жок."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Көрүнүктүү байланыштар жок."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Сүйүктүүлөр тизмеси бош"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> ичинде байланыштар жок"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Көп чалуулар тизмесин тазалоо"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM карта тандаңыз"</string>

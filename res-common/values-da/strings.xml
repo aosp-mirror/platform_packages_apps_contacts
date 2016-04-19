@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Hurtig kontakt til <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Intet navn)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Ofte ringet til"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Ofte kontaktet"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Vis kontaktperson"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Alle kontaktpersoner med telefonnumre"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Find kontaktpersoner"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Foretrukne"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ingen kontaktpersoner."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ingen synlige kontaktpersoner."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Der er ingen favoritter"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Ingen kontaktpersoner i <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Ryd hyppige"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Vælg SIM-kort"</string>

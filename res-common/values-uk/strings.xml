@@ -87,7 +87,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Швидкий зв’язок, контакт <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Без імені)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Часті виклики"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Часті контакти"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Переглянути контакт"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Усі контакти з номерами телефону"</string>
@@ -246,8 +245,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Пошук контактів"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Вибране"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Контактів немає."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Видимих контактів немає."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Немає вибраних контактів"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> – контактів немає"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Очистити часті контакти"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Вибрати SIM-карту"</string>

@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacto rápido para <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sem nome)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Números de marcação frequente"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactados frequentemente"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ver contacto"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos os contactos com números de telefone"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Localizar contactos"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoritos"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Sem contactos."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Sem contactos visíveis"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Sem favoritos"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Sem contactos em <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Limpar frequentes"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Selecionar cartão SIM"</string>

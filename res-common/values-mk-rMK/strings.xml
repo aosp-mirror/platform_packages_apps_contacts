@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Брз контакт за <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Без име)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Често повикувани"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Често контактирани"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Прикажи контакт"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Сите контакти со телефонски броеви"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Пронајди контакти"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Омилени"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Нема контакти."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Нема видливи контакти."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Нема омилени"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Нема контакти во <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Исчисти чести"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Изберете СИМ-картичка"</string>

@@ -86,7 +86,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Ātrā saziņa ar kontaktpersonu <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Nav vārda)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Kontaktpersonas, kurām bieži zvanāt"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Personas, ar kurām bieži sazināties"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Skatīt kontaktpersonu"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Visas kontaktpersonas ar tālruņa numuriem"</string>
@@ -245,8 +244,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Meklēt kontaktpersonas"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Izlase"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nav kontaktpersonu."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Nav redzamu kontaktpersonu."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Izlasē nav nevienas kontaktpersonas."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Nav kontaktpersonu šādā grupā: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Dzēst bieži lietotos kontaktus"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Atlasiet SIM karti"</string>

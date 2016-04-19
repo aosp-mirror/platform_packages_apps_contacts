@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> എന്നയാളുടെ ദ്രുത കോൺടാക്റ്റ്"</string>
     <string name="missing_name" msgid="2633118852693000081">"(പേരില്ല)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"പതിവായി വിളിച്ചവർ"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവർ"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"കോൺടാക്റ്റ് കാണുക"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ഫോൺ നമ്പറുകളുള്ള എല്ലാ കോൺടാക്റ്റുകളും"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"കോൺടാക്റ്റ് കണ്ടെത്തൂ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"പ്രിയപ്പെട്ടവർ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"കോൺടാക്റ്റുകൾ ഒന്നുമില്ല."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ദൃശ്യമായ കോൺടാക്റ്റുകളൊന്നുമില്ല."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"പ്രിയപ്പെട്ടവയൊന്നുമില്ല"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> എന്നതിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"സ്ഥിരംവിളിക്കുന്നവരെ മായ്‌ക്കുക"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"സിം കാർഡ് തിരഞ്ഞെടുക്കുക"</string>

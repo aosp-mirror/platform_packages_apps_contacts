@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> માટે ઝડપી સંપર્ક"</string>
     <string name="missing_name" msgid="2633118852693000081">"(નામ નથી)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"વારંવાર કૉલ કરેલા"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"વારંવાર સંપર્ક કરેલા"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"સંપર્ક જુઓ"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ફોન નંબર્સ સાથેના તમામ સંપર્કો"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"સંપર્કો શોધો"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"મનપસંદ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"કોઈ સંપર્કો નથી."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"કોઈ દૃશ્યક્ષમ સંપર્કો નથી."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"કોઈ મનપસંદ નથી"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> માં કોઈ સંપર્કો નથી"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"વારંવારના સાફ કરો"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM કાર્ડ પસંદ કરો"</string>

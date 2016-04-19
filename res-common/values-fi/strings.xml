@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Pikayhteys henkilöön <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Ei nimeä)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Soitettu usein"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Usein käytetyt"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Näytä kontakti"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Kaikki kontaktit, joilla on puhelinnumero"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Etsi yhteystietoja"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Suosikit"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ei yhteystietoja."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ei näkyviä yhteystietoja."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Ei suosikkeja"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Ei yhteystietoja ryhmässä <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Tyhjennä usein käytetyt"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Valitse SIM-kortti"</string>

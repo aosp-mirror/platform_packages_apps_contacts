@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"ទំនាក់ទំនង​រហ័ស​សម្រាប់ <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(គ្មាន​ឈ្មោះ)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"បាន​ហៅ​ញឹកញាប់"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"បាន​ទាក់ទង​ញឹកញាប់"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"មើល​ទំនាក់ទំនង"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ទំនាក់ទំនង​ទាំងអស់​ដែល​មាន​លេខ​ទូរស័ព្ទ"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"រក​ទំនាក់ទំនង"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"សំណព្វ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"មិន​មាន​ទំនាក់ទំនង។"</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"មើល​មិន​ឃើញ​ទំនាក់ទំនង។"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"គ្មានសំណព្វទេ"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"មិន​មាន​ទំនាក់ទំនង​នៅ​ក្នុង <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"សម្អាត​ញឹកញាប់"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"ជ្រើស​ស៊ី​ម​កាត"</string>

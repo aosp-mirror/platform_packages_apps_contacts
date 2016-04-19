@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Mabilisang contact para kay <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Walang pangalan)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Madalas na tinatawagan"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Madalas na kino-contact"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Tingnan ang contact"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Lahat ng contact na may mga numero ng telepono"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Maghanap ng mga contact"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Mga Paborito"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Walang mga contact."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Walang mga nakikitang contact."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Walang mga paborito"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Walang mga contact sa <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"I-clear ang mga frequent"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Pumili ng SIM card"</string>

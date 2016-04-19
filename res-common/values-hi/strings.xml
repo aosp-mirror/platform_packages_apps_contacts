@@ -85,7 +85,6 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> के लिए त्वरित संपर्क"</string>
     <string name="missing_name" msgid="2633118852693000081">"(कोई नाम नहीं)"</string>
-    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"बार-बार कॉल किए गए"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"बार-बार संपर्क किए गए"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"संपर्क देखें"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"फ़ोन नंबरों वाले सभी संपर्क"</string>
@@ -244,8 +243,6 @@
     <string name="hint_findContacts" msgid="28151707326753522">"संपर्क ढूंढें"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"पसंदीदा"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"कोई संपर्क नहीं."</string>
-    <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"कोई दृश्यमान संपर्क नहीं."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"कोई पसंदीदा नहीं"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> में कोई संपर्क नहीं"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"अक्सर किए जाने वाले साफ़ करें"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"सिम कार्ड चुनें"</string>
