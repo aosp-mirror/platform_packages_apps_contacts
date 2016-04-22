@@ -65,7 +65,6 @@ import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.compat.BlockedNumberContractCompat;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
-import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
@@ -947,7 +946,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             final MenuItem menuItem = subMenu.add(R.id.nav_filters_items, Menu.NONE, Menu.NONE,
                     accountName);
             final Intent intent = new Intent();
-            intent.putExtra(AccountFilterActivity.KEY_EXTRA_CONTACT_LIST_FILTER, filter);
+            intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
             menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -1235,7 +1234,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             final Intent intent = new Intent();
             final ContactListFilter filter = ContactListFilter.createFilterWithType(
                     ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
-            intent.putExtra(AccountFilterActivity.KEY_EXTRA_CONTACT_LIST_FILTER, filter);
+            intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
             AccountFilterUtil.handleAccountFilterResult(
                     mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
         } else if (id == R.id.nav_import_export) {

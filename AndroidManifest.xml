@@ -214,18 +214,6 @@
             android:theme="@style/ContactsPreferencesTheme"
             android:exported="false" />
 
-        <!-- Used to filter contacts list by account -->
-        <activity
-            android:name=".common.list.AccountFilterActivity"
-            android:label="@string/activity_title_contacts_filter"
-            android:theme="@style/ContactListFilterTheme" />
-
-        <!-- Used to select display and sync groups -->
-        <activity
-            android:name=".common.list.CustomContactListFilterActivity"
-            android:label="@string/custom_list_filter"
-            android:theme="@style/ContactListFilterTheme" />
-
         <activity
             android:name=".common.activity.RequestPermissionsActivity"
             android:label="@string/launcherActivityLabel"

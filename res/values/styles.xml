@@ -305,10 +305,6 @@
         <item name="android:listViewStyle">@style/ListViewStyle</item>
     </style>
 
-    <style name="ContactListFilterTheme" parent="@style/PeopleTheme">
-        <item name="android:listViewStyle">@style/ListViewStyle</item>
-    </style>
-
     <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent.NoTitleBar">
     </style>
 

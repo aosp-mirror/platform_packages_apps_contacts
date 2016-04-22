@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,7 +34,6 @@ import android.widget.TextView;
 import com.android.contacts.R;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
-import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.ProfileAndContactsLoader;
@@ -49,8 +47,6 @@ import com.android.contacts.common.util.AccountFilterUtil;
  */
 public class DefaultContactBrowseListFragment extends ContactBrowseListFragment {
     private static final String TAG = DefaultContactBrowseListFragment.class.getSimpleName();
-
-    private static final int REQUEST_CODE_ACCOUNT_FILTER = 1;
 
     private View mSearchHeaderView;
     private View mAccountFilterHeader;
@@ -193,18 +189,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 }
             }
             showEmptyUserProfile(false);
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_ACCOUNT_FILTER) {
-            if (getActivity() != null) {
-                AccountFilterUtil.handleAccountFilterResult(
-                        ContactListFilterController.getInstance(getActivity()), resultCode, data);
-            } else {
-                Log.e(TAG, "getActivity() returns null during Fragment#onActivityResult()");
-            }
         }
     }
 
