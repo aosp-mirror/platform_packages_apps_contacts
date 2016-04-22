@@ -380,33 +380,6 @@
     <!-- Contact list filter label indicating that the list is showing all available accounts [CHAR LIMIT=64] -->
     <string name="list_filter_all_accounts">All contacts</string>
 
-    <!-- Contact list filter label indicating that the list is showing all starred contacts [CHAR LIMIT=64] -->
-    <string name="list_filter_all_starred">Starred</string>
-
-    <!-- Contact list filter selection indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
-    <string name="list_filter_customize">Customize</string>
-
-    <!-- Contact list filter selection indicating that the list shows only the selected contact [CHAR LIMIT=64] -->
-    <string name="list_filter_single">Contact</string>
-
-    <!-- List title for a special contacts group that covers all contacts. [CHAR LIMIT=25] -->
-    <string name="display_ungrouped">All other contacts</string>
-
-    <!-- List title for a special contacts group that covers all contacts that
-a        ren't members of any other group. [CHAR LIMIT=25] -->
-    <string name="display_all_contacts">All contacts</string>
-
-    <string name="menu_sync_remove">Remove sync group</string>
-    <string name="dialog_sync_add">Add sync group</string>
-    <string name="display_more_groups">More groups\u2026</string>
-
-    <!-- Warning message given to users just before they remove a currently syncing
-         group that would also cause all ungrouped contacts to stop syncing.  [CHAR LIMIT=NONE] -->
-    <string name="display_warn_remove_ungrouped">Removing \"<xliff:g id="group" example="Starred">%s</xliff:g>\" from sync will also remove any ungrouped contacts from sync.</string>
-
-    <!-- Displayed in a spinner dialog as user changes to display options are saved -->
-    <string name="savingDisplayGroups">Saving display options\u2026</string>
-
     <!-- Menu item to indicate you are done editing a contact and want to save the changes you've made -->
     <string name="menu_done">Done</string>
 
@@ -689,15 +662,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
     <!-- Menu item to search contacts -->
     <string name="menu_search">Search</string>
 
-    <!-- The menu item to filter the list of contacts displayed -->
-    <string name="menu_contacts_filter">Contacts to display</string>
-
-    <!-- Title of the activity that allows the uesr to filter the list of contacts displayed according to account [CHAR LIMIT=25] -->
-    <string name="activity_title_contacts_filter">Contacts to display</string>
-
-    <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
-    <string name="custom_list_filter">Define custom view</string>
-
     <!-- Query hint displayed inside the search field [CHAR LIMIT=64] -->
     <string name="hint_findContacts">Find contacts</string>
 
@@ -818,14 +782,6 @@ a        ren't members of any other group. [CHAR LIMIT=25] -->
 
     <!-- Toast message showing when failed to open the url. [CHAR LIMIT=100]-->
     <string name="url_open_error_toast">Failed to open the url.</string>
-
-    <!-- Content description of entries (including that radio button is checked) in contact
-         accounts list filter. For example: Google abc@gmail.com checked, etc [CHAR LIMIT=30]-->
-    <string name="account_filter_view_checked"><xliff:g id="account_info">%s</xliff:g> checked</string>
-
-    <!-- Content description of entries (including that the radio button is not checked) in contact
-         accounts list filter. For example: Google abc@gmail.com not checked, etc [CHAR LIMIT=30]-->
-    <string name="account_filter_view_not_checked"><xliff:g id="account_info">%s</xliff:g> not checked</string>
 
     <!-- Description string for an action button to initiate a video call from search results.
          Note: AccessibilityServices use this attribute to announce what the view represents.

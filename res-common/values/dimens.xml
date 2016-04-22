@@ -43,12 +43,6 @@
     -->
     <dimen name="contact_tile_shadowbox_height">48sp</dimen>
 
-    <!-- For contact filter setting screens -->
-    <dimen name="contact_filter_left_margin">16dip</dimen>
-    <dimen name="contact_filter_right_margin">16dip</dimen>
-    <dimen name="contact_filter_item_min_height">48dip</dimen>
-    <dimen name="contact_filter_icon_size">32dip</dimen>
-
     <!-- Padding to be used between a visible scrollbar and the contact list -->
     <dimen name="list_visible_scrollbar_padding">32dip</dimen>
 
