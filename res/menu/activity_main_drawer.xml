@@ -20,13 +20,9 @@
 
     <group android:id="@+id/nav_utilities">
         <item
-            android:id="@+id/nav_contacts_filter"
+            android:id="@+id/nav_all_contacts"
             android:icon="@drawable/ic_menu_filter"
-            android:title="@string/menu_contacts_filter" />
-        <item
-            android:id="@+id/nav_import_export"
-            android:icon="@drawable/ic_menu_import_export"
-            android:title="@string/menu_import_export"/>
+            android:title="@string/contactsList" />
         <item
             android:id="@+id/nav_blocked_numbers"
             android:icon="@drawable/ic_menu_blocked_numbers"
@@ -37,11 +33,39 @@
             android:title="@string/menu_duplicates"/>
     </group>
 
+    <group android:id="@+id/groups">
+        <item
+            android:id="@+id/nav_groups"
+            android:title="@string/menu_title_groups">
+            <menu/>
+        </item>
+    </group>
+
+    <group android:id="@+id/create_groups">
+        <item
+            android:id="@+id/nav_create_groups"
+            android:icon="@drawable/ic_menu_group_add"
+            android:title="@string/menu_new_group_action_bar"
+            android:visible="false"/>
+    </group>
+
+    <group android:id="@+id/filters">
+        <item
+            android:id="@+id/nav_filters"
+            android:title="@string/menu_title_filters">
+            <menu/>
+        </item>
+    </group>
+
     <group android:id="@+id/nav_misc">
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_settings"
             android:title="@string/menu_settings"/>
+        <item
+            android:id="@+id/nav_import_export"
+            android:icon="@drawable/ic_menu_import_export"
+            android:title="@string/menu_import_export"/>
         <item
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_menu_help"

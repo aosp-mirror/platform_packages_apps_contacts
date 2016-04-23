@@ -25,6 +25,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,6 +41,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telecom.TelecomManager;
 import android.text.TextUtils;
@@ -48,6 +51,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -61,6 +65,7 @@ import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.compat.BlockedNumberContractCompat;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
+import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
@@ -79,6 +84,8 @@ import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupUtil;
 import com.android.contacts.group.GroupsFragment;
 import com.android.contacts.group.GroupsFragment.GroupsListener;
+import com.android.contacts.interactions.AccountFiltersFragment;
+import com.android.contacts.interactions.AccountFiltersFragment.AccountFiltersListener;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiContactDeleteListener;
@@ -109,6 +116,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PeopleActivity extends AppCompatContactsActivity implements
         View.OnCreateContextMenuListener,
         View.OnClickListener,
+        AccountFiltersListener,
         ActionBarAdapter.Listener,
         DialogManager.DialogShowingViewActivity,
         ContactListFilterController.ContactListFilterListener,
@@ -148,6 +156,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
      */
     private MultiSelectContactsListFragment mAllFragment;
     private GroupsFragment mGroupsFragment;
+    private AccountFiltersFragment mAccountFiltersFragment;
 
     /** ViewPager for swipe */
     private ViewPager mTabPager;
@@ -360,6 +369,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         final String ALL_TAG = "tab-pager-all";
         final String GROUPS_TAG = "groups";
+        final String FILTERS_TAG = "filters";
 
         // Create the fragments and add as children of the view pager.
         // The pager adapter will only change the visibility; it'll never create/destroy
@@ -371,6 +381,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 fragmentManager.findFragmentByTag(ALL_TAG);
         mGroupsFragment = (GroupsFragment)
                 fragmentManager.findFragmentByTag(GROUPS_TAG);
+        mAccountFiltersFragment = (AccountFiltersFragment)
+                fragmentManager.findFragmentByTag(FILTERS_TAG);
 
         if (mAllFragment == null) {
             mAllFragment = new MultiSelectContactsListFragment();
@@ -380,6 +392,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 mGroupsFragment = new GroupsFragment();
                 transaction.add(mGroupsFragment, GROUPS_TAG);
             }
+
+            mAccountFiltersFragment = new AccountFiltersFragment();
+            transaction.add(mAccountFiltersFragment, FILTERS_TAG);
         }
 
         mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
@@ -388,6 +403,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         if (areGroupWritableAccountsAvailable()) {
             mGroupsFragment.setListener(this);
         }
+
+        mAccountFiltersFragment.setListener(this);
 
         // Hide all fragments for now.  We adjust visibility when we get onSelectedTabChanged()
         // from ActionBarAdapter.
@@ -894,43 +911,56 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     @Override
     public void onGroupsLoaded(List<GroupListItem> groupListItems) {
-        // Clear previously added groups
         final Menu menu = mNavigationView.getMenu();
-        menu.removeGroup(R.id.nav_groups);
+        final MenuItem groupsMenuItem = menu.findItem(R.id.nav_groups);
+        final SubMenu subMenu = groupsMenuItem.getSubMenu();
+        subMenu.removeGroup(R.id.nav_groups_items);
 
-        if (groupListItems == null || groupListItems.isEmpty()) {
+        if (groupListItems != null) {
+            // Add each group
+            for (GroupListItem groupListItem : groupListItems) {
+                final String title = groupListItem.getTitle();
+                final MenuItem menuItem =
+                        subMenu.add(R.id.nav_groups_items, Menu.NONE, Menu.NONE, title);
+                menuItem.setIntent(GroupUtil.createViewGroupIntent(this, groupListItem.getGroupId()));
+                menuItem.setIcon(R.drawable.ic_menu_label);
+            }
+        }
+
+        makeMenuItemVisible(menu, R.id.nav_create_groups, areGroupWritableAccountsAvailable());
+    }
+
+    @Override
+    public void onFiltersLoaded(List<ContactListFilter> accountFilterItems) {
+        final Menu menu = mNavigationView.getMenu();
+        final MenuItem filtersMenuItem = menu.findItem(R.id.nav_filters);
+        final SubMenu subMenu = filtersMenuItem.getSubMenu();
+        subMenu.removeGroup(R.id.nav_filters_items);
+
+        if (accountFilterItems == null || accountFilterItems.size() < 2) {
             return;
         }
 
-        // Add each group
-        for (GroupListItem groupListItem : groupListItems) {
-            final String title = groupListItem.getTitle();
-            final MenuItem menuItem = menu.add(R.id.nav_groups, Menu.NONE, Menu.NONE, title);
-            menuItem.setIntent(GroupUtil.createViewGroupIntent(this, groupListItem.getGroupId()));
-            menuItem.setIcon(R.drawable.ic_menu_label);
-        }
-
-        menu.removeGroup(R.id.nav_create_groups);
-        // Create a menu item to add new groups
-        final MenuItem menuItem = menu.add(R.id.nav_create_groups, Menu.NONE, Menu.NONE,
-                getString(R.string.menu_new_group_action_bar));
-        menuItem.setIntent(GroupUtil.createAddGroupIntent(this));
-        menuItem.setIcon(R.drawable.ic_menu_group_add);
-
-        // Add misc menu items below the group of groups menu items
-        addMiscMenuItems();
-    }
-
-    private void addMiscMenuItems() {
-        final Menu menu = mNavigationView.getMenu();
-        menu.removeGroup(R.id.nav_misc);
-        final MenuItem settingsItem = menu.add(R.id.nav_misc, R.id.nav_settings, Menu.NONE,
-                R.string.menu_settings);
-        settingsItem.setIcon(R.drawable.ic_menu_settings);
-        if (HelpUtils.isHelpAndFeedbackAvailable()) {
-            final MenuItem helpItem = menu.add(R.id.nav_misc, R.id.nav_help, Menu.NONE,
-                    R.string.menu_help);
-            helpItem.setIcon(R.drawable.ic_menu_help);
+        for (int i = 0; i < accountFilterItems.size(); i++) {
+            final ContactListFilter filter = accountFilterItems.get(i);
+            final String accountName = filter.accountName;
+            final MenuItem menuItem = subMenu.add(R.id.nav_filters_items, Menu.NONE, Menu.NONE,
+                    accountName);
+            final Intent intent = new Intent();
+            intent.putExtra(AccountFilterActivity.KEY_EXTRA_CONTACT_LIST_FILTER, filter);
+            menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+                    AccountFilterUtil.handleAccountFilterResult(
+                            mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
+                    return true;
+                }
+            });
+            menuItem.setIcon(filter.icon);
+            // Get rid of the default memu item overlay and show original account icons.
+            menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
         }
     }
 
@@ -1201,10 +1231,13 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             startActivity(new Intent(this, ContactsPreferenceActivity.class));
         } else if (id == R.id.nav_help) {
             HelpUtils.launchHelpAndFeedbackForMainScreen(this);
-        } else if (id == R.id.nav_contacts_filter) {
-            AccountFilterUtil.startAccountFilterActivityForResult(
-                    this, SUBACTIVITY_ACCOUNT_FILTER,
-                    mContactListFilterController.getFilter());
+        } else if (id == R.id.nav_all_contacts) {
+            final Intent intent = new Intent();
+            final ContactListFilter filter = ContactListFilter.createFilterWithType(
+                    ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+            intent.putExtra(AccountFilterActivity.KEY_EXTRA_CONTACT_LIST_FILTER, filter);
+            AccountFilterUtil.handleAccountFilterResult(
+                    mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
         } else if (id == R.id.nav_import_export) {
             showImportExportDialogFragment();
         } else if (id == R.id.nav_blocked_numbers) {
@@ -1216,6 +1249,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         } else if (id == R.id.nav_find_duplicates) {
             ImplicitIntentsUtil.startActivityInAppIfPossible(this,
                     Assistants.getDuplicatesActivityIntent(this));
+        } else if (id == R.id.nav_create_groups) {
+            ImplicitIntentsUtil.startActivityInApp(this, GroupUtil.createAddGroupIntent(this));
         } else if (item.getIntent() != null) {
             ImplicitIntentsUtil.startActivityInApp(this, item.getIntent());
         } else {

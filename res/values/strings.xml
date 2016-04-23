@@ -928,4 +928,10 @@
 
     <!-- Close drawer content descriptions [CHAR LIMIT=40] -->
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Menu section title of "labels" [CHAR LIMIT=20] -->
+    <string name="menu_title_groups">Labels</string>
+
+    <!-- Menu section title of "accounts" [CHAR LIMIT=20] -->
+    <string name="menu_title_filters">Accounts</string>
 </resources>

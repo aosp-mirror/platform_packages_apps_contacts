@@ -48,8 +48,8 @@
     <item type="id" name="nav_misc" />
 
     <!-- Menu group ID for the contact groups -->
-    <item type="id" name="nav_groups" />
+    <item type="id" name="nav_groups_items" />
 
-    <!-- Menu group ID for "create new group" -->
-    <item type="id" name="nav_create_groups" />
+    <!-- Menu group ID for the contact filters -->
+    <item type="id" name="nav_filters_items" />
 </resources>
