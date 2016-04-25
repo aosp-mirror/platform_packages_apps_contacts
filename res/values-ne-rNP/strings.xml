@@ -333,4 +333,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"दोहोरिएका प्रतिलिपिहरू खोज्नुहोस्"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"नेभिगेसन ड्रअर खोल्नुहोस्"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"नेभिगेसन ड्रअर बन्द गर्नुहोस्"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"लेबलहरू"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"खाताहरू"</string>
 </resources>

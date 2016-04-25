@@ -333,4 +333,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"ഡ്യൂപ്ലിക്കേറ്റുകളെ കണ്ടെത്തുക"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"നാവിഗേഷൻ ഡ്രോയർ തുറക്കുക"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"നാവിഗേഷൻ ഡ്രോയർ അടയ്‌ക്കുക"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"ലേബലുകൾ"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"അക്കൗണ്ടുകൾ"</string>
 </resources>

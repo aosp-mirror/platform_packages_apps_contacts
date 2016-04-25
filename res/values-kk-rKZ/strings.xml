@@ -194,7 +194,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"Реттелетін"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Параметрлер"</string>
     <string name="menu_settings" msgid="377929915873428211">"Параметрлер"</string>
-    <string name="menu_help" msgid="1680178646764069976">"Анықтама және кері байланыс"</string>
+    <string name="menu_help" msgid="1680178646764069976">"Анықтама және пікір"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Көрсету опциялары"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Телефон нөмірі"</string>
@@ -333,4 +333,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"Көшірмелерді табу"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Жылжу тақтасын ашу"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Жылжу тақтасын жабу"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"Белгілер"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"Есептік жазбалар"</string>
 </resources>
