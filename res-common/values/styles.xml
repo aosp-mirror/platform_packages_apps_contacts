@@ -69,15 +69,6 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:overScrollMode">always</item>
     </style>
 
-    <style name="ContactListFilterTheme" parent="@android:Theme.Holo.Light">
-        <item name="android:listViewStyle">@style/ListViewStyle</item>
-    </style>
-
-    <style name="CustomContactListFilterView" parent="ContactListFilterTheme">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
-
     <style name="BackgroundOnlyTheme" parent="@android:style/Theme.Material.Light">
         <item name="android:windowBackground">@null</item>
         <item name="android:windowContentOverlay">@null</item>
