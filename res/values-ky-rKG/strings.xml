@@ -79,7 +79,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Өзгөртүү"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Жок кылуу"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Байланыш кошуу"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Жаңысын түзүү..."</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Жаңы топ түзүү..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Бул байланыш бир нече байланышка ажыратылсынбы?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Ажыратуу"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Сиз киргизген өзгөртүүлөрдү сактап, бул байланышты бир нече байланышка ажыраткыңыз келеби?"</string>
@@ -406,4 +406,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"Окшош байланыштарды табуу"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Чабыттоо суурмасын ачуу"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Чабыттоо суурмасын жабуу"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"Энбелгилер"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"Каттоо эсептери"</string>
 </resources>

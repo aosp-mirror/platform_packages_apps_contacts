@@ -345,4 +345,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"Găsiți dubluri"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Deschideți panoul de navigare"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Închideți panoul de navigare"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"Etichete"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"Conturi"</string>
 </resources>

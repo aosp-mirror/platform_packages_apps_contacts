@@ -56,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Рэдагаваць"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Выдаліць"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Дадаць кантакт"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Стварыць новы ўліковы запіс..."</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Стварыць новую..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Раз\'яднаць гэты кантакт на некалькі кантактаў?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Выдаліць сувязь"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Жадаеце захаваць змяненні, якія вы ўжо зрабілі, і развязаць гэты кантакт на некалькі кантактаў?"</string>
@@ -357,4 +357,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"Знайсці дублікаты"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Адкрыць высоўнае меню навігацыі"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Закрыць высоўнае меню навігацыi"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"Меткі"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"Уліковыя запісы"</string>
 </resources>

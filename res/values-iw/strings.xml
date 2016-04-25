@@ -357,4 +357,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"חיפוש כפילויות"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"פתח את חלונית ההזזה לניווט"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"סגור את חלונית ההזזה לניווט"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"תוויות"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"חשבונות"</string>
 </resources>

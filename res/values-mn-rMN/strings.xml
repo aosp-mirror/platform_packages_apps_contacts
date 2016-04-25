@@ -333,4 +333,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"Давхардсануудыг олох"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Навигацын шургуулгыг нээх"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Навигацын шургуулгыг хаах"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"Шошго"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"Бүртгэл"</string>
 </resources>

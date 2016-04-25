@@ -333,4 +333,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"నకిలీలను కనుగొను"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"నావిగేషన్ డ్రాయర్‌ను తెరుస్తుంది"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"నావిగేషన్ డ్రాయర్‌ను మూసివేస్తుంది"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"లేబుల్‌లు"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"ఖాతాలు"</string>
 </resources>

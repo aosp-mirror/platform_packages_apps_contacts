@@ -333,4 +333,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"ค้นหาข้อมูลที่ซ้ำกัน"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"เปิดลิ้นชักการนำทาง"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ปิดลิ้นชักการนำทาง"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"ป้ายกำกับ"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"บัญชี"</string>
 </resources>
