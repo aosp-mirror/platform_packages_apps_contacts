@@ -25,7 +25,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.android.contacts.common.R;
@@ -42,8 +41,6 @@ import org.json.JSONObject;
 public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactEntryListAdapter>
         implements OnShortcutIntentCreatedListener, PhoneNumberListAdapter.Listener {
     private static final String TAG = PhoneNumberPickerFragment.class.getSimpleName();
-
-    private static final int REQUEST_CODE_ACCOUNT_FILTER = 1;
 
     private static final String KEY_SHORTCUT_ACTION = "shortcutAction";
 
@@ -79,17 +76,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         callNumber(position, true /* isVideoCall */);
     }
 
-    private class FilterHeaderClickListener implements OnClickListener {
-        @Override
-        public void onClick(View view) {
-            AccountFilterUtil.startAccountFilterActivityForResult(
-                    PhoneNumberPickerFragment.this,
-                    REQUEST_CODE_ACCOUNT_FILTER,
-                    mFilter);
-        }
-    }
-    private OnClickListener mFilterHeaderClickListener = new FilterHeaderClickListener();
-
     public PhoneNumberPickerFragment() {
         setQuickContactEnabled(false);
         setPhotoLoaderEnabled(true);
@@ -122,7 +108,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         getListView().addHeaderView(paddingView);
 
         mAccountFilterHeader = getView().findViewById(R.id.account_filter_header_container);
-        mAccountFilterHeader.setOnClickListener(mFilterHeaderClickListener);
         updateFilterHeaderView();
 
         setVisibleScrollbarEnabled(getVisibleScrollbarEnabled());
@@ -328,18 +313,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     public void onPickerResult(Intent data) {
         mListener.onPickDataUri(data.getData(), false /* isVideoCall */,
                 getCallInitiationType(false /* isRemoteDirectory */));
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_ACCOUNT_FILTER) {
-            if (getActivity() != null) {
-                AccountFilterUtil.handleAccountFilterResult(
-                        ContactListFilterController.getInstance(getActivity()), resultCode, data);
-            } else {
-                Log.e(TAG, "getActivity() returns null during Fragment#onActivityResult()");
-            }
-        }
     }
 
     public ContactListFilter getFilter() {
