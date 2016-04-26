@@ -333,8 +333,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"ڈپلیکیٹس تلاش کریں"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"نیویگیشن دراز کھولیں"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"نیویگیشن دراز بند کریں"</string>
-    <!-- no translation found for menu_title_groups (8356921831150278868) -->
-    <skip />
-    <!-- no translation found for menu_title_filters (8210922220185114527) -->
-    <skip />
+    <string name="menu_title_groups" msgid="8356921831150278868">"لیبلز"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"اکاؤنٹس"</string>
 </resources>
