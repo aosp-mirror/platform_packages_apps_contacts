@@ -381,8 +381,6 @@
     <string name="menu_duplicates" msgid="4440351599741996317">"البحث عن النُسخ المكررة"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"فتح لائحة التنقل"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"إغلاق لائحة التنقل"</string>
-    <!-- no translation found for menu_title_groups (8356921831150278868) -->
-    <skip />
-    <!-- no translation found for menu_title_filters (8210922220185114527) -->
-    <skip />
+    <string name="menu_title_groups" msgid="8356921831150278868">"التصنيفات"</string>
+    <string name="menu_title_filters" msgid="8210922220185114527">"الحسابات"</string>
 </resources>
