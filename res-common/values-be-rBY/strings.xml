@@ -150,16 +150,6 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Разгарнуць ці згарнуць назвы палёў"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Разгарнуць ці згарнуць палі вымаўлення імён"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Усе кантакты"</string>
-    <string name="list_filter_all_starred" msgid="9060325494254507806">"Пазначаныя"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"Карыстальнiцкi"</string>
-    <string name="list_filter_single" msgid="4553809449379139446">"Кантакт"</string>
-    <string name="display_ungrouped" msgid="3669471582032440138">"Усе кантакты з папкі \"Іншыя\""</string>
-    <string name="display_all_contacts" msgid="7251385818740728862">"Усе кантакты"</string>
-    <string name="menu_sync_remove" msgid="6581565236520430269">"Выдаліць групу сінхранізацыі"</string>
-    <string name="dialog_sync_add" msgid="1795682729089027675">"Дадаць групу сінхранізацыі"</string>
-    <string name="display_more_groups" msgid="6304997485733158224">"Больш груп..."</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Выдаленне групы \"<xliff:g id="GROUP">%s</xliff:g>\" з чаргi на сінхранізацыю таксама выдаліць любыя разгрупаваныя кантакты з гэтай чаргi."</string>
-    <string name="savingDisplayGroups" msgid="6863012138107446030">"Захаванне параметраў адлюстравання..."</string>
     <string name="menu_done" msgid="32470053723443112">"Гатова"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Адмена"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Кантакты карыстальнiка <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -227,7 +217,16 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Стандартны ўліковы запіс для новых кантактаў"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Сінхранізаваць метаданыя пра кантакты [ДЛЯ СУПРАЦОЎНІКАЎ]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Сінхранізаваць метаданыя пра кантакты"</string>
-    <string name="setting_about" msgid="3926137653588942297">"Інфармацыя аб Кантактах"</string>
+    <!-- no translation found for settings_my_info_title (583358944162385703) -->
+    <skip />
+    <!-- no translation found for settings_list_format_title (4863616397459998295) -->
+    <skip />
+    <!-- no translation found for settings_about_title (2661603735818124823) -->
+    <skip />
+    <!-- no translation found for settings_metadata_title (80278989223603428) -->
+    <skip />
+    <!-- no translation found for settings_about (3291206829885886562) -->
+    <skip />
     <string name="activity_title_settings" msgid="3056389601004689380">"Налады"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Адкрыць бачныя кантакты"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Спроба абагуліць бачныя кантакты няўдалая."</string>
@@ -239,16 +238,12 @@
     <string name="share_error" msgid="665756457151793108">"Немагчыма падзялiцца гэтым кантактам."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Няма кантактаў, якія можна абагуліць."</string>
     <string name="menu_search" msgid="7464453023659824700">"Пошук"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Кантакты для адлюстр."</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Кантакты для адлюстр."</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Вызначыць карыстальніцкі выгляд"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Знайсці кантакты"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Выбраныя"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Няма кантактаў."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Няма кантакта \"<xliff:g id="NAME">%s</xliff:g>\" у групе"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Выдалiць частыя кантакты"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Выбраць SIM-карту"</string>
-    <string name="menu_accounts" msgid="2944004960829403994">"Кіраваць уліковымі запісамі"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Імпарт/экспарт"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"праз <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> праз <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
@@ -276,7 +271,5 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"Умовы абслугоўвання"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Ліцэнзіі на ПЗ з адкрытым зыходным кодам"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Не ўдалося адкрыць URL."</string>
-    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> пазначана"</string>
-    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> не пазначана"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Зрабіць відэавыклік"</string>
 </resources>

@@ -148,16 +148,6 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Expandir ou reduzir campos dos nomes"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Expandir ou reduzir campos de nomes fonéticos"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Todos os contactos"</string>
-    <string name="list_filter_all_starred" msgid="9060325494254507806">"Com estrela"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"Personalizar"</string>
-    <string name="list_filter_single" msgid="4553809449379139446">"Contacto"</string>
-    <string name="display_ungrouped" msgid="3669471582032440138">"Todos os outros contactos"</string>
-    <string name="display_all_contacts" msgid="7251385818740728862">"Todos os contactos"</string>
-    <string name="menu_sync_remove" msgid="6581565236520430269">"Remover grupo de sincronização"</string>
-    <string name="dialog_sync_add" msgid="1795682729089027675">"Adicionar grupo de sincronização"</string>
-    <string name="display_more_groups" msgid="6304997485733158224">"Mais grupos..."</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Ao remover \"<xliff:g id="GROUP">%s</xliff:g>\" da sincronização, removerá também quaisquer contactos não agrupados."</string>
-    <string name="savingDisplayGroups" msgid="6863012138107446030">"A guardar opções de visualização..."</string>
     <string name="menu_done" msgid="32470053723443112">"Concluído"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Cancelar"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Contactos em <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -225,7 +215,11 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Conta predefinida para novos contactos"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronizar metadados de contactos [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronizar metadados de contactos"</string>
-    <string name="setting_about" msgid="3926137653588942297">"Acerca dos Contactos"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"As minhas informações"</string>
+    <string name="settings_list_format_title" msgid="4863616397459998295">"Formato da lista"</string>
+    <string name="settings_about_title" msgid="2661603735818124823">"Acerca de"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"Metadados dos contactos"</string>
+    <string name="settings_about" msgid="3291206829885886562">"Acerca dos Contactos"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Definições"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partilhar contactos visíveis"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Falha ao partilhar os contactos visíveis."</string>
@@ -237,16 +231,12 @@
     <string name="share_error" msgid="665756457151793108">"Não é possível partilhar este contacto."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Não existem contactos para partilhar."</string>
     <string name="menu_search" msgid="7464453023659824700">"Pesquisar"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Contactos a apresentar"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contactos a apresentar"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definir vista personalizada"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Localizar contactos"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoritos"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Sem contactos."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Sem contactos em <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Limpar frequentes"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Selecionar cartão SIM"</string>
-    <string name="menu_accounts" msgid="2944004960829403994">"Gerir contas"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importar/exportar"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"através do <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> através do <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
@@ -272,7 +262,5 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"Termos de Utilização"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licenças de código aberto"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Falha ao abrir o URL."</string>
-    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> verificado"</string>
-    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> não verificado"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Efetuar videochamada"</string>
 </resources>

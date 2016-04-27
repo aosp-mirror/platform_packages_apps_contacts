@@ -148,16 +148,6 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Ընդարձակել կամ սեղմել անունների դաշտերը"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Ընդարձակել կամ կոծկել հնչյունաբանական անվան դաշտերը"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Բոլոր կոնտակտները"</string>
-    <string name="list_filter_all_starred" msgid="9060325494254507806">"Աստղանշված"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"Հարմարեցնել"</string>
-    <string name="list_filter_single" msgid="4553809449379139446">"Կոնտակտ"</string>
-    <string name="display_ungrouped" msgid="3669471582032440138">"Բոլոր այլ կոնտակտները"</string>
-    <string name="display_all_contacts" msgid="7251385818740728862">"Բոլոր կոնտակտները"</string>
-    <string name="menu_sync_remove" msgid="6581565236520430269">"Հեռացնել համաժամեցված խումբը"</string>
-    <string name="dialog_sync_add" msgid="1795682729089027675">"Ավելացնել համաժամեցված խումբ"</string>
-    <string name="display_more_groups" msgid="6304997485733158224">"Այլ խմբեր..."</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"«<xliff:g id="GROUP">%s</xliff:g>»-ի հեռացումը համաժամեցումից կհեռացնի այնտեղից նաև չխմբավորված կոնտակտները:"</string>
-    <string name="savingDisplayGroups" msgid="6863012138107446030">"Ցուցադրվող ընտրանքները պահվում են..."</string>
     <string name="menu_done" msgid="32470053723443112">"Կատարված է"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Չեղարկել"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g>-ի կոնտակտները"</string>
@@ -225,7 +215,11 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Կանխադրված հաշիվ նոր կոնտակտների համար"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Համաժամացնել կոնտակտի մետատվյալները [ՆԵՐՔԻՆ ՓՈՐՁԱՐԿՄԱՆ ՆՊԱՏԱԿՈՎ]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Համաժամացնել կոնտակտի մետատվյալները"</string>
-    <string name="setting_about" msgid="3926137653588942297">"Կոնտակտների մասին"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"Իմ մասին"</string>
+    <string name="settings_list_format_title" msgid="4863616397459998295">"Ցանկի ձևաչափ"</string>
+    <string name="settings_about_title" msgid="2661603735818124823">"Կոնտակտների մասին"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"Կոնտակտների մետատվյալներ"</string>
+    <string name="settings_about" msgid="3291206829885886562">"Կոնտակտների մասին"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Կարգավորումներ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Փոխանցել տեսանելի կոնտակտները"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Չհաջողվեց համօգտագործել տեսանելի կոնտակտները:"</string>
@@ -237,16 +231,12 @@
     <string name="share_error" msgid="665756457151793108">"Հնարավոր չէ տարածել կոնտակտը:"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Կոնտակտներ չունեք, որոնցով կարող եք կիսվել:"</string>
     <string name="menu_search" msgid="7464453023659824700">"Որոնել"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Ցուցադրվող կոնտկատներ"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Ցուցադրվող կոնտակտներ"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Սահմանել հատուկ տեսքը"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Գտնել կոնտակտներ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Ընտրյալներ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Կոնտակտներ չկան:"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>-ում կոնտակտներ չկան"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Մաքրել հաճախակիները"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Ընտրեք SIM քարտը"</string>
-    <string name="menu_accounts" msgid="2944004960829403994">"Հաշիվների կառավարում"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Ներմուծել/արտահանել"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g>-ի միջոցով"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>` <xliff:g id="SOURCE">%2$s</xliff:g>-ի միջոցով"</string>
@@ -272,7 +262,5 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"Օգտագործման պայմաններ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Բաց աղբյուրով լիցենզիաներ"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Չհաջողվեց բացել url-ը:"</string>
-    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> հաշիվը նշվել է"</string>
-    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> հաշիվը չի նշվել"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Կատարել տեսազանգ"</string>
 </resources>

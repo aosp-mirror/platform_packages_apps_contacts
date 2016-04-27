@@ -148,16 +148,6 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"పేరు ఫీల్డ్‌లను విస్తరింపజేయి లేదా కుదించు"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"ఫొనెటిక్ పేరు ఫీల్డ్‌లను విస్తరింపజేస్తుంది లేదా కుదిస్తుంది"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"అన్ని పరిచయాలు"</string>
-    <string name="list_filter_all_starred" msgid="9060325494254507806">"నక్షత్రం గుర్తు ఉన్నవి"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"అనుకూలీకరించండి"</string>
-    <string name="list_filter_single" msgid="4553809449379139446">"పరిచయం"</string>
-    <string name="display_ungrouped" msgid="3669471582032440138">"అన్ని ఇతర పరిచయాలు"</string>
-    <string name="display_all_contacts" msgid="7251385818740728862">"అన్ని పరిచయాలు"</string>
-    <string name="menu_sync_remove" msgid="6581565236520430269">"సమకాలీకరణ సమూహాన్ని తీసివేయి"</string>
-    <string name="dialog_sync_add" msgid="1795682729089027675">"సమకాలీకరణ సమూహాన్ని జోడించండి"</string>
-    <string name="display_more_groups" msgid="6304997485733158224">"మరిన్ని సమూహాలు…"</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"సమకాలీకరణ నుండి \"<xliff:g id="GROUP">%s</xliff:g>\"ని తీసివేయడం వలన సమకాలీకరణ నుండి సమూహం చేయబడని పరిచయాలు కూడా తీసివేయబడతాయి."</string>
-    <string name="savingDisplayGroups" msgid="6863012138107446030">"ప్రదర్శన ఎంపికలను సేవ్ చేస్తోంది…"</string>
     <string name="menu_done" msgid="32470053723443112">"పూర్తయింది"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"రద్దు చేయి"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g>లో పరిచయాలు"</string>
@@ -225,7 +215,16 @@
     <string name="default_editor_account" msgid="4338725881650654966">"కొత్త పరిచయాల కోసం డిఫాల్ట్ ఖాతా"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"పరిచయ మెటాడేటాను సమకాలీకరించు [డాగ్‌ఫుడ్]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"పరిచయ మెటాడేటాను సమకాలీకరించు"</string>
-    <string name="setting_about" msgid="3926137653588942297">"పరిచయాల గురించి"</string>
+    <!-- no translation found for settings_my_info_title (583358944162385703) -->
+    <skip />
+    <!-- no translation found for settings_list_format_title (4863616397459998295) -->
+    <skip />
+    <!-- no translation found for settings_about_title (2661603735818124823) -->
+    <skip />
+    <!-- no translation found for settings_metadata_title (80278989223603428) -->
+    <skip />
+    <!-- no translation found for settings_about (3291206829885886562) -->
+    <skip />
     <string name="activity_title_settings" msgid="3056389601004689380">"సెట్టింగ్‌లు"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయండి"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయడం విఫలమైంది."</string>
@@ -237,16 +236,12 @@
     <string name="share_error" msgid="665756457151793108">"ఈ పరిచయాన్ని భాగస్వామ్యం చేయడం సాధ్యపడదు."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"భాగస్వామ్యం చేయడానికి పరిచయాలు ఏవీ లేవు."</string>
     <string name="menu_search" msgid="7464453023659824700">"శోధించు"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"అనుకూల వీక్షణ నిర్వచనం"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"పరిచయాలను కనుగొనండి"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ఇష్టమైనవి"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"పరిచయాలు లేవు."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>లో పరిచయాలు లేవు"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"తరచుగా ఉన్నవాటిని క్లియర్ చేయి"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"సిమ్ కార్డును ఎంచుకోండి"</string>
-    <string name="menu_accounts" msgid="2944004960829403994">"ఖాతాలను నిర్వహించు"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"దిగుమతి చేయి/ఎగుమతి చేయి"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> ద్వారా"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> ద్వారా <xliff:g id="DATE">%1$s</xliff:g>"</string>
@@ -272,7 +267,5 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"సేవా నిబంధనలు"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"urlని తెరవడంలో విఫలమైంది."</string>
-    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ఎంచుకోబడింది"</string>
-    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ఎంచుకోబడలేదు"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"వీడియో కాల్ చేస్తుంది"</string>
 </resources>

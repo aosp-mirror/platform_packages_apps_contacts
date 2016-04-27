@@ -148,16 +148,6 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Vou naamvelde uit of in"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Vou fonetiese naamvelde uit of in"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Alle kontakte"</string>
-    <string name="list_filter_all_starred" msgid="9060325494254507806">"Gester"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"Pasmaak"</string>
-    <string name="list_filter_single" msgid="4553809449379139446">"Kontak"</string>
-    <string name="display_ungrouped" msgid="3669471582032440138">"Alle ander kontakte"</string>
-    <string name="display_all_contacts" msgid="7251385818740728862">"Alle kontakte"</string>
-    <string name="menu_sync_remove" msgid="6581565236520430269">"Verwyder sinkroniseergroep"</string>
-    <string name="dialog_sync_add" msgid="1795682729089027675">"Voeg sinkroniseergroep by"</string>
-    <string name="display_more_groups" msgid="6304997485733158224">"Meer groepe"</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"As jy \"<xliff:g id="GROUP">%s</xliff:g>\" uit sinkronisering verwyder, sal dit ook enige ongegroepeerde kontakte uit sinkronisering verwyder."</string>
-    <string name="savingDisplayGroups" msgid="6863012138107446030">"Stoor tans vertoonopsies"</string>
     <string name="menu_done" msgid="32470053723443112">"Klaar"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Kanselleer"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakte in <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -225,7 +215,11 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Verstekrekening vir nuwe kontakte"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinkroniseer kontakmetadata [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinkroniseer kontakmetadata"</string>
-    <string name="setting_about" msgid="3926137653588942297">"Meer oor Kontakte"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"My inligting"</string>
+    <string name="settings_list_format_title" msgid="4863616397459998295">"Lysformaat"</string>
+    <string name="settings_about_title" msgid="2661603735818124823">"Meer oor"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"Kontakte-metadata"</string>
+    <string name="settings_about" msgid="3291206829885886562">"Meer oor Kontakte"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Instellings"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Deel sigbare kontakte"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Kon nie sigbare kontakte deel nie."</string>
@@ -237,16 +231,12 @@
     <string name="share_error" msgid="665756457151793108">"Hierdie kontak kan nie gedeel word nie."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Daar is geen kontakte om te deel nie."</string>
     <string name="menu_search" msgid="7464453023659824700">"Soek"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakte om te wys"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakte om te wys"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definieer gepasmaakte aansig"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Vind kontakte"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Gunstelinge"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Geen kontakte nie."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Geen kontakte in <xliff:g id="NAME">%s</xliff:g> nie"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Vee dikwels-gebruiktes uit"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Kies SIM-kaart"</string>
-    <string name="menu_accounts" msgid="2944004960829403994">"Bestuur rekeninge"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Voer in/uit"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
@@ -272,7 +262,5 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"Diensbepalings"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Oopbronlisensies"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Kon nie die URL oopmaak nie."</string>
-    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> is gemerk"</string>
-    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> is nie gemerk nie"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Maak video-oproep"</string>
 </resources>

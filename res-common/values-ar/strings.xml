@@ -152,16 +152,6 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"توسيع أو تصغير حقول الاسم"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"توسيع أو تصغير حقول الاسم الصوتي"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"جميع جهات الاتصال"</string>
-    <string name="list_filter_all_starred" msgid="9060325494254507806">"مميّزة بنجمة"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"تخصيص"</string>
-    <string name="list_filter_single" msgid="4553809449379139446">"جهة الاتصال"</string>
-    <string name="display_ungrouped" msgid="3669471582032440138">"جميع جهات الاتصال الأخرى"</string>
-    <string name="display_all_contacts" msgid="7251385818740728862">"جميع جهات الاتصال"</string>
-    <string name="menu_sync_remove" msgid="6581565236520430269">"إزالة مجموعة متزامنة"</string>
-    <string name="dialog_sync_add" msgid="1795682729089027675">"إضافة مجموعة متزامنة"</string>
-    <string name="display_more_groups" msgid="6304997485733158224">"مزيد من المجموعات..."</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"ستؤدي إزالة \"<xliff:g id="GROUP">%s</xliff:g>\"من المزامنة أيضًا إلى إزالة أية جهات اتصال غير مجمعة من المزامنة."</string>
-    <string name="savingDisplayGroups" msgid="6863012138107446030">"جارٍ حفظ خيارات العرض..."</string>
     <string name="menu_done" msgid="32470053723443112">"تم"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"إلغاء"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"جهات الاتصال في <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -229,7 +219,11 @@
     <string name="default_editor_account" msgid="4338725881650654966">"الحساب الافتراضي لجهات الاتصال الجديدة"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"‏مزامنة البيانات الوصفية لجهات الاتصال [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"مزامنة البيانات الوصفية لجهات الاتصال"</string>
-    <string name="setting_about" msgid="3926137653588942297">"حول جهات الاتصال"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"معلوماتي"</string>
+    <string name="settings_list_format_title" msgid="4863616397459998295">"صيغة قائمة"</string>
+    <string name="settings_about_title" msgid="2661603735818124823">"حول"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"البيانات الوصفية لجهات الاتصال"</string>
+    <string name="settings_about" msgid="3291206829885886562">"حول جهات الاتصال"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"الإعدادات"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"مشاركة جهات الاتصال المرئية"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"أخفقت مشاركة جهات الاتصال المرئية."</string>
@@ -241,16 +235,12 @@
     <string name="share_error" msgid="665756457151793108">"لا يمكن مشاركة جهة الاتصال هذه."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"ليست هناك جهات اتصال لمشاركتها."</string>
     <string name="menu_search" msgid="7464453023659824700">"البحث"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"جهات الاتصال المعروضة"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"جهات الاتصال المعروضة"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"تحديد عرض مخصص"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"البحث عن جهات اتصال"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"المفضلة"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ليست هناك جهات اتصال."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"ليست هناك جهات اتصال في <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"محو قائمة من يتصل بهم كثيرًا"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"‏تحديد شريحة SIM"</string>
-    <string name="menu_accounts" msgid="2944004960829403994">"إدارة الحسابات"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"استيراد/تصدير"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"عبر <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> عبر <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
@@ -280,7 +270,5 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"بنود الخدمة"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"تراخيص البرامج مفتوحة المصدر"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"‏فشل فتح عنوان URL."</string>
-    <string name="account_filter_view_checked" msgid="4368757211136754319">"تم تحديد <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
-    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"لم يتم تحديد <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"إجراء مكالمة فيديو"</string>
 </resources>

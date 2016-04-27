@@ -150,16 +150,6 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Razširi ali strni imenska polja"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Razširitev ali strnitev fonetičnih imenskih polj"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Vsi stiki"</string>
-    <string name="list_filter_all_starred" msgid="9060325494254507806">"Z zvezdico"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"Prilagodi"</string>
-    <string name="list_filter_single" msgid="4553809449379139446">"Stik"</string>
-    <string name="display_ungrouped" msgid="3669471582032440138">"Vsi drugi stiki"</string>
-    <string name="display_all_contacts" msgid="7251385818740728862">"Vsi stiki"</string>
-    <string name="menu_sync_remove" msgid="6581565236520430269">"Odstrani skupino za sinhroniziranje"</string>
-    <string name="dialog_sync_add" msgid="1795682729089027675">"Dodaj skupino za sinhroniziranje"</string>
-    <string name="display_more_groups" msgid="6304997485733158224">"Več skupin ..."</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Če skupino »<xliff:g id="GROUP">%s</xliff:g>« odstranite iz sinhronizacije, boste iz sinhronizacije odstranili tudi vse nerazvrščene stike."</string>
-    <string name="savingDisplayGroups" msgid="6863012138107446030">"Shranjevanje možnosti prikaza ..."</string>
     <string name="menu_done" msgid="32470053723443112">"Končano"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Prekliči"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Stiki v <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -227,7 +217,11 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Privzeti račun za nove stike"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinhronizacija metapodatkov stikov [PRESKUSNA INTERNA UPORABA]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinhronizacija metapodatkov stikov"</string>
-    <string name="setting_about" msgid="3926137653588942297">"O programu za stike"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"Moji podatki"</string>
+    <string name="settings_list_format_title" msgid="4863616397459998295">"Oblika seznama"</string>
+    <string name="settings_about_title" msgid="2661603735818124823">"Vizitka"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"Metapodatki za stike"</string>
+    <string name="settings_about" msgid="3291206829885886562">"O Stikih"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Nastavitve"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Vidne stike deli z drugimi"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Deljenje vidnih stikov z drugimi ni uspelo."</string>
@@ -239,16 +233,12 @@
     <string name="share_error" msgid="665756457151793108">"Tega stika ni mogoče dati v skupno rabo."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Ni stikov za deljenje z drugimi"</string>
     <string name="menu_search" msgid="7464453023659824700">"Išči"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Stiki, ki bodo prikazani"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Stiki, ki bodo prikazani"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Določite pogled po meri"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Najdi stike"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Priljubljeni"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ni stikov."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Ni stikov v kategoriji <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Izbriši seznam pogostih stikov"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Izberite kartico SIM"</string>
-    <string name="menu_accounts" msgid="2944004960829403994">"Upravljanje računov"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Uvozi/izvozi"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"vir: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"vir: <xliff:g id="SOURCE">%2$s</xliff:g> – <xliff:g id="DATE">%1$s</xliff:g>"</string>
@@ -276,7 +266,5 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"Pogoji storitve"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Odprtokodne licence"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Naslova URL ni bilo mogoče odpreti."</string>
-    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> – označeno"</string>
-    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> – ni označeno"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Začetek videoklica"</string>
 </resources>
