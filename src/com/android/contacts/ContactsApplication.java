@@ -117,7 +117,7 @@ public class ContactsApplication extends Application {
             Log.d(Constants.PERFORMANCE_TAG, "ContactsApplication.onCreate finish");
         }
 
-        AnalyticsUtil.initialize(this);
+        AnalyticsUtil.registerCallbacks(this);
     }
 
     private class DelayedInitializer extends AsyncTask<Void, Void, Void> {
