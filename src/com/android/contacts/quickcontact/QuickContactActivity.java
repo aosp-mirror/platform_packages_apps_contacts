@@ -342,9 +342,6 @@ public class QuickContactActivity extends ContactsActivity
     /** Id for the background contact loader */
     private static final int LOADER_CONTACT_ID = 0;
 
-    private static final String KEY_LOADER_EXTRA_PHONES =
-            QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_PHONES";
-
     /** Id for the background Sms Loader */
     private static final int LOADER_SMS_ID = 1;
     private static final int MAX_SMS_RETRIEVE = 3;
@@ -366,7 +363,10 @@ public class QuickContactActivity extends ContactsActivity
     private static final int MIN_NUM_CONTACT_ENTRIES_SHOWN = 3;
     private static final int MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN = 3;
     private static final int CARD_ENTRY_ID_EDIT_CONTACT = -2;
-
+    private static final String KEY_LOADER_EXTRA_PHONES =
+            QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_PHONES";
+    private static final String KEY_LOADER_EXTRA_SIP_NUMBERS =
+            QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_SIP_NUMBERS";
 
     private static final int[] mRecentLoaderIds = new int[]{
         LOADER_SMS_ID,
@@ -1284,6 +1284,7 @@ public class QuickContactActivity extends ContactsActivity
     private void startInteractionLoaders(Cp2DataCardModel cp2DataCardModel) {
         final Map<String, List<DataItem>> dataItemsMap = cp2DataCardModel.dataItemsMap;
         final List<DataItem> phoneDataItems = dataItemsMap.get(Phone.CONTENT_ITEM_TYPE);
+        final List<DataItem> sipCallDataItems = dataItemsMap.get(SipAddress.CONTENT_ITEM_TYPE);
         if (phoneDataItems != null && phoneDataItems.size() == 1) {
             mOnlyOnePhoneNumber = true;
         }
@@ -1294,8 +1295,16 @@ public class QuickContactActivity extends ContactsActivity
                 phoneNumbers[i] = ((PhoneDataItem) phoneDataItems.get(i)).getNumber();
             }
         }
+        String[] sipNumbers = null;
+        if (sipCallDataItems != null) {
+            sipNumbers = new String[sipCallDataItems.size()];
+            for (int i = 0; i < sipCallDataItems.size(); ++i) {
+                sipNumbers[i] = ((SipAddressDataItem) sipCallDataItems.get(i)).getSipAddress();
+            }
+        }
         final Bundle phonesExtraBundle = new Bundle();
         phonesExtraBundle.putStringArray(KEY_LOADER_EXTRA_PHONES, phoneNumbers);
+        phonesExtraBundle.putStringArray(KEY_LOADER_EXTRA_SIP_NUMBERS, sipNumbers);
 
         Trace.beginSection("start sms loader");
         getLoaderManager().initLoader(
@@ -2494,6 +2503,7 @@ public class QuickContactActivity extends ContactsActivity
                     loader = new CallLogInteractionsLoader(
                             QuickContactActivity.this,
                             args.getStringArray(KEY_LOADER_EXTRA_PHONES),
+                            args.getStringArray(KEY_LOADER_EXTRA_SIP_NUMBERS),
                             MAX_CALL_LOG_RETRIEVE);
             }
             return loader;

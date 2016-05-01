@@ -38,29 +38,44 @@ import java.util.List;
 public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInteraction>> {
 
     private final String[] mPhoneNumbers;
+    private final String[] mSipNumbers;
     private final int mMaxToRetrieve;
     private List<ContactInteraction> mData;
 
-    public CallLogInteractionsLoader(Context context, String[] phoneNumbers,
+    public CallLogInteractionsLoader(Context context, String[] phoneNumbers, String[] sipNumbers,
             int maxToRetrieve) {
         super(context);
         mPhoneNumbers = phoneNumbers;
+        mSipNumbers = sipNumbers;
         mMaxToRetrieve = maxToRetrieve;
     }
 
     @Override
     public List<ContactInteraction> loadInBackground() {
+        final boolean isPhoneNumbersEmpty = mPhoneNumbers == null || mPhoneNumbers.length <= 0;
+        final boolean isSipNumbersEmpty = mSipNumbers == null || mSipNumbers.length <= 0;
         if (!PermissionsUtil.hasPhonePermissions(getContext())
                 || !getContext().getPackageManager()
                         .hasSystemFeature(PackageManager.FEATURE_TELEPHONY)
-                || mPhoneNumbers == null || mPhoneNumbers.length <= 0 || mMaxToRetrieve <= 0) {
+                || (isPhoneNumbersEmpty && isSipNumbersEmpty) || mMaxToRetrieve <= 0) {
             return Collections.emptyList();
         }
 
         final List<ContactInteraction> interactions = new ArrayList<>();
-        for (String number : mPhoneNumbers) {
-            interactions.addAll(getCallLogInteractions(number));
+        if (!isPhoneNumbersEmpty) {
+            for (String number : mPhoneNumbers) {
+                final String normalizedNumber = PhoneNumberUtilsCompat.normalizeNumber(number);
+                if (!TextUtils.isEmpty(normalizedNumber)) {
+                    interactions.addAll(getCallLogInteractions(normalizedNumber));
+                }
+            }
         }
+        if (!isSipNumbersEmpty) {
+            for (String number : mSipNumbers) {
+                interactions.addAll(getCallLogInteractions(number));
+            }
+        }
+
         // Sort the call log interactions by date for duplicate removal
         Collections.sort(interactions, new Comparator<ContactInteraction>() {
             @Override
@@ -107,13 +122,8 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
     }
 
     private List<ContactInteraction> getCallLogInteractions(String phoneNumber) {
-        final String normalizedNumber = PhoneNumberUtilsCompat.normalizeNumber(phoneNumber);
-        // If the number contains only symbols, we can skip it
-        if (TextUtils.isEmpty(normalizedNumber)) {
-            return Collections.emptyList();
-        }
         final Uri uri = Uri.withAppendedPath(Calls.CONTENT_FILTER_URI,
-                Uri.encode(normalizedNumber));
+                Uri.encode(phoneNumber));
         // Append the LIMIT clause onto the ORDER BY clause. This won't cause crashes as long
         // as we don't also set the {@link android.provider.CallLog.Calls.LIMIT_PARAM_KEY} that
         // becomes available in KK.
