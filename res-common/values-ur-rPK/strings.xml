@@ -215,16 +215,11 @@
     <string name="default_editor_account" msgid="4338725881650654966">"نئے رابطوں کیلئے ڈیفالٹ اکاؤنٹ"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"‏رابطہ میٹا ڈیٹا مطابقت پذیر بنائیں [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"رابطہ میٹا ڈیٹا مطابقت پذیر بنائیں"</string>
-    <!-- no translation found for settings_my_info_title (583358944162385703) -->
-    <skip />
-    <!-- no translation found for settings_list_format_title (4863616397459998295) -->
-    <skip />
-    <!-- no translation found for settings_about_title (2661603735818124823) -->
-    <skip />
-    <!-- no translation found for settings_metadata_title (80278989223603428) -->
-    <skip />
-    <!-- no translation found for settings_about (3291206829885886562) -->
-    <skip />
+    <string name="settings_my_info_title" msgid="583358944162385703">"میری معلومات"</string>
+    <string name="settings_list_format_title" msgid="4863616397459998295">"فہرست کا فارمیٹ"</string>
+    <string name="settings_about_title" msgid="2661603735818124823">"بارے میں"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"رابطوں کا میٹا ڈیٹا"</string>
+    <string name="settings_about" msgid="3291206829885886562">"رابطوں کے بارے میں"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"ترتیبات"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"مرئی رابطوں کا اشتراک کریں"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"مرئی رابطوں کا اشتراک کرنے میں ناکام ہو گیا۔"</string>

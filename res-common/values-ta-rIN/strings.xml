@@ -215,16 +215,11 @@
     <string name="default_editor_account" msgid="4338725881650654966">"புதிய தொடர்புகளுக்கான இயல்பு கணக்கு"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"தொடர்பின் மீத்தரவை ஒத்திசை [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"தொடர்பின் மீத்தரவை ஒத்திசை"</string>
-    <!-- no translation found for settings_my_info_title (583358944162385703) -->
-    <skip />
-    <!-- no translation found for settings_list_format_title (4863616397459998295) -->
-    <skip />
-    <!-- no translation found for settings_about_title (2661603735818124823) -->
-    <skip />
-    <!-- no translation found for settings_metadata_title (80278989223603428) -->
-    <skip />
-    <!-- no translation found for settings_about (3291206829885886562) -->
-    <skip />
+    <string name="settings_my_info_title" msgid="583358944162385703">"எனது தகவல்"</string>
+    <string name="settings_list_format_title" msgid="4863616397459998295">"பட்டியல் வடிவமைப்பு"</string>
+    <string name="settings_about_title" msgid="2661603735818124823">"அறிமுகம்"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"தொடர்புகள் மீத்தரவு"</string>
+    <string name="settings_about" msgid="3291206829885886562">"தொடர்புகள் - ஓர் அறிமுகம்"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"அமைப்புகள்"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"தெரியும் தொடர்புகளைப் பகிர்"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"தெரியும் தொடர்புகளைப் பகிர்வதில் தோல்வி."</string>

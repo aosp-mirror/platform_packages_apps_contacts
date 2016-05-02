@@ -219,10 +219,10 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Жаңы байланыштарыңыз үчүн демейки каттоо эсеби"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Байланыш метадайындарын шайкештирүү [БЕТА ПРОГРАММАЛАРДЫ СЫНОО]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Байланыш метадайындарын шайкештирүү"</string>
-    <string name="settings_my_info_title" msgid="583358944162385703">"Менин маалыматым"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"Менин дайындарым"</string>
     <string name="settings_list_format_title" msgid="4863616397459998295">"Тизме форматы"</string>
-    <string name="settings_about_title" msgid="2661603735818124823">"Ушул жөнүндө"</string>
-    <string name="settings_metadata_title" msgid="80278989223603428">"Байланыштардын метадатасы"</string>
+    <string name="settings_about_title" msgid="2661603735818124823">"Колдонмо жөнүндө"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"Байланыштардын метадайындары"</string>
     <string name="settings_about" msgid="3291206829885886562">"Байланыштар жөнүндө"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Жөндөөлөр"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Көрүнүктүү байланыштарды бөлүшүү"</string>

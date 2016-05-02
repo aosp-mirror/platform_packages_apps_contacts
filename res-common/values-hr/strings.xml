@@ -223,7 +223,7 @@
     <string name="settings_my_info_title" msgid="583358944162385703">"Moje informacije"</string>
     <string name="settings_list_format_title" msgid="4863616397459998295">"Oblik popisa"</string>
     <string name="settings_about_title" msgid="2661603735818124823">"O Kontaktima"</string>
-    <string name="settings_metadata_title" msgid="80278989223603428">"Metapodaci Kontakata"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"Metapodaci kontakata"</string>
     <string name="settings_about" msgid="3291206829885886562">"O Kontaktima"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Postavke"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Dijeli vidljive kontakte"</string>

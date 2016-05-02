@@ -215,16 +215,11 @@
     <string name="default_editor_account" msgid="4338725881650654966">"新聯絡人的預設帳戶"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"同步處理聯絡人中繼資料 [處於 Dogfood 測試階段]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"同步處理聯絡人中繼資料"</string>
-    <!-- no translation found for settings_my_info_title (583358944162385703) -->
-    <skip />
-    <!-- no translation found for settings_list_format_title (4863616397459998295) -->
-    <skip />
-    <!-- no translation found for settings_about_title (2661603735818124823) -->
-    <skip />
-    <!-- no translation found for settings_metadata_title (80278989223603428) -->
-    <skip />
-    <!-- no translation found for settings_about (3291206829885886562) -->
-    <skip />
+    <string name="settings_my_info_title" msgid="583358944162385703">"我的資訊"</string>
+    <string name="settings_list_format_title" msgid="4863616397459998295">"清單格式"</string>
+    <string name="settings_about_title" msgid="2661603735818124823">"簡介"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"聯絡人中繼資料"</string>
+    <string name="settings_about" msgid="3291206829885886562">"關於聯絡人"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"設定"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"分享正常顯示的聯絡人"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"無法分享目前顯示的聯絡人資料。"</string>

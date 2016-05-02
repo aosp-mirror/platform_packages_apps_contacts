@@ -215,7 +215,7 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Account predefinito per i nuovi contatti"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronizza i metadati dei contatti [VERSIONE SPERIMENTALE]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronizza i metadati dei contatti"</string>
-    <string name="settings_my_info_title" msgid="583358944162385703">"Le mie informazioni"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"I miei dati"</string>
     <string name="settings_list_format_title" msgid="4863616397459998295">"Formato elenco"</string>
     <string name="settings_about_title" msgid="2661603735818124823">"Informazioni"</string>
     <string name="settings_metadata_title" msgid="80278989223603428">"Metadati contatti"</string>

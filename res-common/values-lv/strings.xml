@@ -216,16 +216,11 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Noklusējuma konts jaunām kontaktpersonām"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinhronizēt kontaktpersonu metadatus [IZSTRĀDES PROGRAMMATŪRA]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Kontaktpersonu metadatu sinhronizācija"</string>
-    <!-- no translation found for settings_my_info_title (583358944162385703) -->
-    <skip />
-    <!-- no translation found for settings_list_format_title (4863616397459998295) -->
-    <skip />
-    <!-- no translation found for settings_about_title (2661603735818124823) -->
-    <skip />
-    <!-- no translation found for settings_metadata_title (80278989223603428) -->
-    <skip />
-    <!-- no translation found for settings_about (3291206829885886562) -->
-    <skip />
+    <string name="settings_my_info_title" msgid="583358944162385703">"Mana informācija"</string>
+    <string name="settings_list_format_title" msgid="4863616397459998295">"Saraksta formāts"</string>
+    <string name="settings_about_title" msgid="2661603735818124823">"Par"</string>
+    <string name="settings_metadata_title" msgid="80278989223603428">"Kontaktpersonu metadati"</string>
+    <string name="settings_about" msgid="3291206829885886562">"Par lietotni Kontaktpersonas"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Iestatījumi"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Kopīgot redzamo kontaktpersonu datus"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Neizdevās kopīgot redzamās kontaktpersonas."</string>
