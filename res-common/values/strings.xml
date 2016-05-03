@@ -296,8 +296,8 @@
          [CHAR LIMIT=20] -->
     <string name="websiteLabelsGroup">Website</string>
 
-    <!-- Header for the list of all groups for a contact [CHAR LIMIT=20] -->
-    <string name="groupsLabel">Groups</string>
+    <!-- Header for the list of all labels for a contact [CHAR LIMIT=20] -->
+    <string name="groupsLabel">Labels</string>
 
     <!-- Action string for sending an email to a home email address -->
     <string name="email_home">Email home</string>
