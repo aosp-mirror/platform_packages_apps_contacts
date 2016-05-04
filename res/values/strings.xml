@@ -84,12 +84,8 @@
     <string name="insertContactDescription">Create contact</string>
 
     <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
-         editing a group. This string represents the built in way to edit the group. [CHAR LIMIT=NONE] -->
-    <string name="editGroupDescription">Edit group</string>
-
-    <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
-         creating a new group. This string represents the built in way to create the group. [CHAR LIMIT=NONE] -->
-    <string name="insertGroupDescription">Create group</string>
+         editing a label. This string represents the built in way to edit the label. [CHAR LIMIT=30] -->
+    <string name="editGroupDescription">Edit label</string>
 
     <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=15] -->
     <string name="contactDetailAbout">About</string>
@@ -135,17 +131,17 @@
     <!-- Menu item that splits an item from the contact detail into a separate aggregate -->
     <string name="menu_splitAggregate">Unlink</string>
 
-    <!-- Menu item that edits the currently selected group [CHAR LIMIT=30] -->
+    <!-- Menu item that edits the currently selected label [CHAR LIMIT=30] -->
     <string name="menu_editGroup">Edit</string>
 
-    <!-- Menu item that deletes the currently selected group [CHAR LIMIT=30] -->
+    <!-- Menu item that deletes the currently selected label [CHAR LIMIT=30] -->
     <string name="menu_deleteGroup">Delete</string>
 
     <!-- Menu item (in the action bar) that creates a new contact [CHAR LIMIT=30] -->
     <string name="menu_new_contact_action_bar">Add Contact</string>
 
-    <!-- Menu item (in the action bar) that creates a new group [CHAR LIMIT=30] -->
-    <string name="menu_new_group_action_bar">Create new...</string>
+    <!-- Menu item (in the action bar) that creates a new label [CHAR LIMIT=30] -->
+    <string name="menu_new_group_action_bar">Create new&#8230;</string>
 
     <!-- Confirmation dialog for unlinking contacts into multiple instances [CHAR LIMIT=NONE] -->
     <string name="splitConfirmation">Unlink this contact into multiple contacts?</string>
@@ -265,13 +261,6 @@
 
     <!-- The order of the items below is important, don't reorder without changing EditContactActivity.java -->
     <skip/>
-    <!-- The labels that are under the otherLabelsGroup when editing a contact. [CHAR LIMIT=20] -->
-    <string-array name="otherLabels">
-        <!-- An organization associated with a contact -->
-        <item>Organization</item>
-        <!-- A note associated with a contact -->
-        <item>Note</item>
-    </string-array>
 
     <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
     <string name="photoPickerNotFoundText" product="tablet">No pictures are available on the tablet.</string>
@@ -294,29 +283,18 @@
     <!-- The text displayed when the contacts list is empty while displaying all contacts [CHAR LIMIT=NONE] -->
     <string name="noContacts">No contacts</string>
 
-    <!-- Group name menu item title when there is at least one group member. [CHAR LIMIT=NONE] -->
-    <string name="group_name_menu_item">
-        <xliff:g id="group_name">%s</xliff:g> (<xliff:g id="count">%d</xliff:g>)
-    </string>
-
-    <!-- Group list header title with the number of members in the group. [CHAR LIMIT=30] -->
+    <!-- Label list header title with the number of members in the label. [CHAR LIMIT=30] -->
     <plurals name="group_members_count">
         <item quantity="zero">No contacts</item>
         <item quantity="one">1 contact</item>
         <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
     </plurals>
 
-    <!-- The text displayed when the groups list is empty while displaying all groups [CHAR LIMIT=NONE] -->
-    <string name="noGroups">No groups.</string>
+    <!-- The text displayed when the labels list is empty while displaying all labels [CHAR LIMIT=30] -->
+    <string name="noGroups">No labels.</string>
 
-    <!-- The text displayed when the groups list is empty and no accounts are set on the device while displaying all groups [CHAR LIMIT=NONE] -->
-    <string name="noAccounts">To create groups you need an account.</string>
-
-    <!-- The text displayed when there are no members in the group while displaying the group detail page [CHAR LIMIT=40] -->
-    <string name="emptyGroup">No people in this group.</string>
-
-    <!-- The text displayed to instruct users to add members to a group (when viewing a group detail page for a group with no members) [CHAR LIMIT=50] -->
-    <string name="addPeopleToGroup">To add some, edit the group.</string>
+    <!-- The text displayed when there are no members that have this label while displaying the label detail page [CHAR LIMIT=70] -->
+    <string name="emptyGroup">No people with this label.</string>
 
     <!-- Toast displayed when a contact is saved [CHAR LIMIT=NONE] -->
     <string name="contactSavedToast">Contact saved</string>
@@ -339,11 +317,11 @@
     <!-- Toast displayed when saving a contact photo failed. [CHAR LIMIT=NONE] -->
     <string name="contactPhotoSavedErrorToast">Couldn\'t save contact photo changes.</string>
 
-    <!-- Toast displayed when a group is saved [CHAR LIMIT=NONE] -->
-    <string name="groupSavedToast">Group saved.</string>
+    <!-- Toast displayed when a label is saved [CHAR LIMIT=30] -->
+    <string name="groupSavedToast">Label saved</string>
 
-    <!-- Toast displayed when saving a group failed [CHAR LIMIT=NONE] -->
-    <string name="groupSavedErrorToast">Couldn\'t save group changes.</string>
+    <!-- Toast displayed when saving a label failed [CHAR LIMIT=70] -->
+    <string name="groupSavedErrorToast">Couldn\'t save label changes.</string>
 
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" is selected -->
     <plurals name="listTotalPhoneContacts">
@@ -429,8 +407,8 @@
     <!-- Dialog title when picking the application to share a contact with. -->
     <string name="share_via">Share contact via</string>
 
-    <!-- Title for the disambiguation dialog that requests the user choose an account for the new group to be created under [CHAR LIMIT=NONE] -->
-    <string name="dialog_new_group_account">Create group under account</string>
+    <!-- Title for the disambiguation dialog that requests the user choose an account for the new label to be created under [CHAR LIMIT=NONE] -->
+    <string name="dialog_new_group_account">Create label under account</string>
 
     <!-- Generic action string for starting an audio chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
     <string name="audio_chat">Voice chat</string>
@@ -457,9 +435,6 @@
 
     <!-- String describing which account a contact came from when editing it -->
     <string name="from_account_format"><xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
-
-    <!-- Text used to explain that a group cannot be edited since the data is read only [CHAR LIMIT=40] -->
-    <string name="group_read_only">Not editable on this device.</string>
 
     <!-- An option in the 'Contact photo' dialog, if there is no photo yet [CHAR LIMIT=50] -->
     <string name="take_photo">Take photo</string>
@@ -500,8 +475,8 @@
     <!-- The button to add an organization field to a contact in the Raw Contact Editor [CHAR LIMIT=12] -->
     <string name="event_edit_field_hint_text">Date</string>
 
-    <!-- The button to add an organization field to a contact in the Raw Contact Editor [CHAR LIMIT=15] -->
-    <string name="group_edit_field_hint_text">Group name</string>
+    <!-- The button to add an label field to a contact in the Raw Contact Editor [CHAR LIMIT=15] -->
+    <string name="group_edit_field_hint_text">Label name</string>
 
     <!-- Button used for changing a photo in the Raw Contact Editor [CHAR LIMIT=15] -->
     <string name="change_photo">Change</string>
@@ -531,7 +506,7 @@
     <!-- The button that creates a local copy of a corporate contact. [CHAR LIMIT=40]-->
     <string name="menu_copyContact">Copy to My Contacts</string>
 
-    <!-- The button that adds a contact to the predefined group "My Contacts" (as this is
+    <!-- The button that adds a contact to the predefined label "My Contacts" (as this is
          mostly interesting for Google-contacts, this should have the same description as the
          function of GMail/Contacts on the Web
          [CHAR LIMIT=40] -->
@@ -539,9 +514,6 @@
 
     <!-- The description of the directory where the contact was found [CHAR LIMIT=100]-->
     <string name="contact_directory_description">Directory <xliff:g id="type" example="Corporate Directory">%1$s</xliff:g></string>
-
-    <!-- Contact list filter indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
-    <string name="list_filter_custom">Custom</string>
 
     <!-- Title of the settings activity [CHAR LIMIT=64] -->
     <string name="activity_title_settings">Settings</string>
@@ -595,31 +567,25 @@
     Initiates a contact import dialog [CHAR LIMIT=128] -->
     <string name="contacts_unavailable_import_contacts">Import contacts</string>
 
-    <!-- Title of the dialog that allows creation of a contact group [CHAR LIMIT=128] -->
-    <string name="create_group_dialog_title">Create new group</string>
+    <!-- Title of the dialog that allows creation of a contact label [CHAR LIMIT=50] -->
+    <string name="create_group_dialog_title">Create new label</string>
 
-    <!-- An item in the popup list of groups that triggers creation of a contact group [CHAR LIMIT=128] -->
-    <string name="create_group_item_label">Create new group</string>
+    <!-- An item in the popup list of labels that triggers creation of a contact label [CHAR LIMIT=128] -->
+    <string name="create_group_item_label">Create new&#8230;</string>
 
-    <!-- Shows how many groups are from the specified account [CHAR LIMIT=15] -->
-    <plurals name="num_groups_in_account">
-        <item quantity="one">1 group</item>
-        <item quantity="other"><xliff:g id="count">%0$d</xliff:g> groups</item>
-    </plurals>
-
-    <!-- Confirmation message of the dialog that allows deletion of a contact group  [CHAR LIMIT=256] -->
-    <string name="delete_group_dialog_message">Delete the group
+    <!-- Confirmation message of the dialog that allows deletion of a contact label  [CHAR LIMIT=256] -->
+    <string name="delete_group_dialog_message">Delete the label
       \"<xliff:g id="group_label" example="Friends">%1$s</xliff:g>\"?
       (Contacts themselves will not be deleted.)
     </string>
 
-    <!-- Subtitle of the group detail page that describes how many people are in the current group [CHAR LIMIT=30] -->
+    <!-- Subtitle of the label detail page that describes how many people are in the current label [CHAR LIMIT=30] -->
     <plurals name="num_contacts_in_group">
         <item quantity="one"><xliff:g id="count">%1$d</xliff:g> person from <xliff:g id="account_type">%2$s</xliff:g></item>
         <item quantity="other"><xliff:g id="count">%1$d</xliff:g> people from <xliff:g id="account_type">%2$s</xliff:g></item>
     </plurals>
 
-    <!-- Subtitle of a group (in the group list) that describes how many people are in the current group [CHAR LIMIT=30] -->
+    <!-- Subtitle of a label (in the label list) that describes how many people are in the current label [CHAR LIMIT=30] -->
     <plurals name="group_list_num_contacts_in_group">
         <item quantity="one"><xliff:g id="count">%1$d</xliff:g> person</item>
         <item quantity="other"><xliff:g id="count">%1$d</xliff:g> people</item>
@@ -665,11 +631,8 @@
       personal profile entry [CHAR LIMIT=64] -->
     <string name="profile_display_name">Set up my profile</string>
 
-    <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
-    <string name="enter_contact_name">Type person\'s name</string>
-
-    <!-- Hint text in the group name box in the edit group view. [CHAR LIMIT=20]-->
-    <string name="group_name_hint">Group\'s name</string>
+    <!-- Hint text in the label name box in the edit label view. [CHAR LIMIT=20]-->
+    <string name="group_name_hint">Label\'s name</string>
 
     <!-- Header label in the contact editor for a profile that is local to the device only (and not associated with any account) [CHAR LIMIT=25] -->
     <string name="local_profile_title">My local profile</string>
@@ -738,7 +701,7 @@
     <string name="send_message">Send message</string>
 
     <!-- Toast that appears when you are copying a directory contact into your personal contacts -->
-    <string name="toast_making_personal_copy">Creating a personal copy...</string>
+    <string name="toast_making_personal_copy">Creating a personal copy&#8230;</string>
     <!-- Timestamp string for interactions from yesterday. [CHAR LIMIT=40] -->
     <string name="yesterday">Yesterday</string>
     <string name="tomorrow">Tomorrow</string>
@@ -915,7 +878,7 @@
     <string name="photo_view_description_checked_no_info">Photo from unknown account checked</string>
 
     <!-- Text shown in the contacts app while the background process updates contacts after a locale change [CHAR LIMIT=150]-->
-    <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.\n\nPlease wait...</string>
+    <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.\n\nPlease wait&#8230;</string>
 
     <!-- The menu item to open blocked numbers activity [CHAR LIMIT=60]-->
     <string name="menu_blocked_numbers">Blocked numbers</string>

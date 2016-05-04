@@ -201,7 +201,7 @@ public class EditorUiUtils {
             case Photo.CONTENT_ITEM_TYPE:
                 return context.getResources().getDrawable(R.drawable.ic_camera_alt_black_24dp);
             case GroupMembership.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_people_black_24dp);
+                return context.getResources().getDrawable(R.drawable.ic_menu_label);
             case Organization.CONTENT_ITEM_TYPE:
                 return context.getResources().getDrawable(R.drawable.ic_business_black_24dp);
             case Note.CONTENT_ITEM_TYPE:
