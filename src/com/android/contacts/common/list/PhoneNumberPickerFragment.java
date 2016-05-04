@@ -29,7 +29,6 @@ import android.view.ViewGroup;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
-import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.commonbind.analytics.AnalyticsUtil;
 
 import org.json.JSONException;
@@ -48,13 +47,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     private String mShortcutAction;
 
     private ContactListFilter mFilter;
-
-    private View mAccountFilterHeader;
-    /**
-     * Lives as ListView's header and is shown when {@link #mAccountFilterHeader} is set
-     * to View.GONE.
-     */
-    private View mPaddingView;
 
     private static final String KEY_FILTER = "filter";
 
@@ -103,42 +95,11 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
 
-        View paddingView = inflater.inflate(R.layout.contact_detail_list_padding, null, false);
-        mPaddingView = paddingView.findViewById(R.id.contact_detail_list_padding);
-        getListView().addHeaderView(paddingView);
-
-        mAccountFilterHeader = getView().findViewById(R.id.account_filter_header_container);
-        updateFilterHeaderView();
-
         setVisibleScrollbarEnabled(getVisibleScrollbarEnabled());
     }
 
     protected boolean getVisibleScrollbarEnabled() {
         return true;
-    }
-
-    @Override
-    protected void setSearchMode(boolean flag) {
-        super.setSearchMode(flag);
-        updateFilterHeaderView();
-    }
-
-    private void updateFilterHeaderView() {
-        final ContactListFilter filter = getFilter();
-        if (mAccountFilterHeader == null || filter == null) {
-            return;
-        }
-        final boolean shouldShowHeader =
-                !isSearchMode() &&
-                AccountFilterUtil.updateAccountFilterTitleForPhone(
-                        mAccountFilterHeader, filter, false);
-        if (shouldShowHeader) {
-            mPaddingView.setVisibility(View.GONE);
-            mAccountFilterHeader.setVisibility(View.VISIBLE);
-        } else {
-            mPaddingView.setVisibility(View.VISIBLE);
-            mAccountFilterHeader.setVisibility(View.GONE);
-        }
     }
 
     @Override
@@ -315,10 +276,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
                 getCallInitiationType(false /* isRemoteDirectory */));
     }
 
-    public ContactListFilter getFilter() {
-        return mFilter;
-    }
-
     public void setFilter(ContactListFilter filter) {
         if ((mFilter == null && filter == null) ||
                 (mFilter != null && mFilter.equals(filter))) {
@@ -329,7 +286,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
         if (mLoaderStarted) {
             reloadData();
         }
-        updateFilterHeaderView();
     }
 
     public void setPhotoPosition(ContactListItemView.PhotoPosition photoPosition) {
