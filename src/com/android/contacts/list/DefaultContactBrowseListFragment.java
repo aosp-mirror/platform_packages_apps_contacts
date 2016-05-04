@@ -99,8 +99,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
 
-        mAccountFilterHeader = getView().findViewById(R.id.account_filter_header_container);
-
         // Create an empty user profile header and hide it for now (it will be visible if the
         // contacts list will have no user profile).
         addEmptyUserProfileHeader(inflater);
@@ -133,31 +131,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     private void checkHeaderViewVisibility() {
-        updateFilterHeaderView();
-
         // Hide the search header by default.
         if (mSearchHeaderView != null) {
             mSearchHeaderView.setVisibility(View.GONE);
-        }
-    }
-
-    @Override
-    public void setFilter(ContactListFilter filter) {
-        super.setFilter(filter);
-        updateFilterHeaderView();
-    }
-
-    private void updateFilterHeaderView() {
-        if (mAccountFilterHeader == null) {
-            return; // Before onCreateView -- just ignore it.
-        }
-        final ContactListFilter filter = getFilter();
-        if (filter != null && !isSearchMode()) {
-            final boolean shouldShowHeader = AccountFilterUtil.updateAccountFilterTitleForPeople(
-                    mAccountFilterHeader, filter, false);
-            mAccountFilterHeader.setVisibility(shouldShowHeader ? View.VISIBLE : View.GONE);
-        } else {
-            mAccountFilterHeader.setVisibility(View.GONE);
         }
     }
 
