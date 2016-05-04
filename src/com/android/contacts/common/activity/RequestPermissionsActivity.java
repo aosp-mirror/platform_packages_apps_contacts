@@ -30,11 +30,15 @@ public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
 
     private static final String[] REQUIRED_PERMISSIONS = new String[]{
             // "Contacts" group. Without this permission, the Contacts app is useless.
+            permission.GET_ACCOUNTS,
             permission.READ_CONTACTS,
+            permission.WRITE_CONTACTS,
             // "Phone" group. This is only used in a few places such as QuickContactActivity and
             // ImportExportDialogFragment. We could work around missing this permission with a bit
             // of work.
+            permission.CALL_PHONE,
             permission.READ_CALL_LOG,
+            permission.READ_PHONE_STATE,
     };
 
     @Override
@@ -45,11 +49,21 @@ public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
     @Override
     protected String[] getDesiredPermissions() {
         return new String[]{
-                permission.ACCESS_FINE_LOCATION, // Location Group
-                permission.READ_CONTACTS, // Contacts group
-                permission.READ_CALL_LOG, // Permission group phone
-                permission.READ_CALENDAR, // Calendar group
-                permission.READ_SMS, // SMS group
+                // Location group
+                permission.ACCESS_COARSE_LOCATION,
+                permission.ACCESS_FINE_LOCATION,
+                // Contacts group
+                permission.GET_ACCOUNTS,
+                permission.READ_CONTACTS,
+                permission.WRITE_CONTACTS,
+                // Phone group
+                permission.CALL_PHONE,
+                permission.READ_CALL_LOG,
+                permission.READ_PHONE_STATE,
+                // Calendar group
+                permission.READ_CALENDAR,
+                // SMS group
+                permission.READ_SMS,
         };
     }
 

@@ -33,8 +33,12 @@ import android.os.Bundle;
 public class RequestDesiredPermissionsActivity extends RequestPermissionsActivityBase {
 
     private static final String[] DESIRED_PERMISSIONS = new String[] {
+            // Location group
+            permission.ACCESS_COARSE_LOCATION,
             permission.ACCESS_FINE_LOCATION,
+            // Calendar group
             permission.READ_CALENDAR,
+            // SMS group
             permission.READ_SMS,
     };
 
