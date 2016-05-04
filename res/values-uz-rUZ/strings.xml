@@ -166,10 +166,10 @@
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Ushbu ilova orqali tahrirlab bo‘lmaydi."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Ushbu qurilmada tahrir qilib bo‘lmaydi."</string>
-    <string name="take_photo" msgid="7496128293167402354">"Rasmga olish"</string>
-    <string name="take_new_photo" msgid="7341354729436576304">"Rasmga olish"</string>
+    <string name="take_photo" msgid="7496128293167402354">"Suratga olish"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"Suratga olish"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Rasm tanlash"</string>
-    <string name="pick_new_photo" msgid="9122450996263688237">"Yangi suratni tanlang"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"Boshqa rasm tanlash"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontakt ro‘yxati yangilanmoqda."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Qidirilmoqda…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Tanlanganni ko‘rsatish"</string>
@@ -316,7 +316,7 @@
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Ushbu kontaktlar bitta odamniki bo‘lishi mumkin. Ularni bitta kontaktga bog‘lashingiz mumkin."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Bog‘langan kontaktlar"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Hisoblaringizdan olingan"</string>
-    <string name="take_a_photo_button" msgid="6268693854069113488">"Rasmga olish"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"Suratga olish"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Barcha rasmlar"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Rasm tanlash"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> tomonidan"</string>
