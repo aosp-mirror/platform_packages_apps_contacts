@@ -39,9 +39,9 @@ public class DirectoryCompat {
         return directoryId == Directory.LOCAL_INVISIBLE;
     }
 
-    public static boolean isRemoteDirectory(long directoryId) {
+    public static boolean isRemoteDirectoryId(long directoryId) {
         if (ContactsUtils.FLAG_N_FEATURE) {
-            return DirectorySdkCompat.isRemoteDirectory(directoryId);
+            return DirectorySdkCompat.isRemoteDirectoryId(directoryId);
         }
         return !(directoryId == Directory.DEFAULT || directoryId == Directory.LOCAL_INVISIBLE);
     }
