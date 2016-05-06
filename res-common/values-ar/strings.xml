@@ -121,7 +121,8 @@
     <string name="label_notes" msgid="3997277594846722699">"ملاحظات"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"موقع ويب"</string>
-    <string name="groupsLabel" msgid="3574316547053047551">"المجموعات"</string>
+    <!-- no translation found for groupsLabel (2001597910276087197) -->
+    <skip />
     <string name="email_home" msgid="2230967805906450693">"إرسال رسالة إلكترونية إلى عنوان البريد الإلكتروني للمنزل"</string>
     <string name="email_mobile" msgid="7532438378678903685">"إرسال رسالة إلكترونية إلى عنوان بريد إلكتروني على الجوال"</string>
     <string name="email_work" msgid="7065971921227432400">"إرسال رسالة إلكترونية إلى عنوان البريد الإلكتروني للعمل"</string>

@@ -119,7 +119,8 @@
     <string name="label_notes" msgid="3997277594846722699">"Примітки"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Веб-сайт"</string>
-    <string name="groupsLabel" msgid="3574316547053047551">"Групи"</string>
+    <!-- no translation found for groupsLabel (2001597910276087197) -->
+    <skip />
     <string name="email_home" msgid="2230967805906450693">"Написати на домашню електронну адресу"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Написати на мобільну електронну адресу"</string>
     <string name="email_work" msgid="7065971921227432400">"Написати на робочу електронну адресу"</string>

@@ -117,7 +117,8 @@
     <string name="label_notes" msgid="3997277594846722699">"குறிப்புகள்"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"இணையதளம்"</string>
-    <string name="groupsLabel" msgid="3574316547053047551">"குழுக்கள்"</string>
+    <!-- no translation found for groupsLabel (2001597910276087197) -->
+    <skip />
     <string name="email_home" msgid="2230967805906450693">"வீட்டு மின்னஞ்சல் முகவரிக்கு மின்னஞ்சல் அனுப்பு"</string>
     <string name="email_mobile" msgid="7532438378678903685">"மொபைல் மின்னஞ்சல் முகவரிக்கு மின்னஞ்சல் அனுப்பு"</string>
     <string name="email_work" msgid="7065971921227432400">"பணியிட மின்னஞ்சல் முகவரிக்கு மின்னஞ்சல் அனுப்பு"</string>

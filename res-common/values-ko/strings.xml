@@ -117,7 +117,8 @@
     <string name="label_notes" msgid="3997277594846722699">"메모"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"웹사이트"</string>
-    <string name="groupsLabel" msgid="3574316547053047551">"그룹"</string>
+    <!-- no translation found for groupsLabel (2001597910276087197) -->
+    <skip />
     <string name="email_home" msgid="2230967805906450693">"개인 이메일 주소로 이메일 보내기"</string>
     <string name="email_mobile" msgid="7532438378678903685">"모바일로 이메일 보내기"</string>
     <string name="email_work" msgid="7065971921227432400">"직장으로 이메일 보내기"</string>
