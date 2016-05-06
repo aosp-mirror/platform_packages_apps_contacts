@@ -211,7 +211,8 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
             loader.setUri(builder.build());
             loader.setProjection(PhoneQuery.PROJECTION_PRIMARY);
         } else {
-            final boolean isRemoteDirectoryQuery = DirectoryCompat.isRemoteDirectory(directoryId);
+            final boolean isRemoteDirectoryQuery
+                    = DirectoryCompat.isRemoteDirectoryId(directoryId);
             final Builder builder;
             if (isSearchMode()) {
                 final Uri baseUri;
@@ -342,7 +343,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
     public Uri getDataUri(int partitionIndex, Cursor cursor) {
         final long directoryId =
                 ((DirectoryPartition)getPartition(partitionIndex)).getDirectoryId();
-        if (DirectoryCompat.isRemoteDirectory(directoryId)) {
+        if (DirectoryCompat.isRemoteDirectoryId(directoryId)) {
             return null;
         } else if (DirectoryCompat.isEnterpriseDirectoryId(directoryId)) {
             /*
@@ -609,7 +610,7 @@ public class PhoneNumberListAdapter extends ContactEntryListAdapter {
                 if (id > maxId) {
                     maxId = id;
                 }
-                if (!DirectoryCompat.isRemoteDirectory(id)) {
+                if (!DirectoryCompat.isRemoteDirectoryId(id)) {
                     // assuming remote directories come after local, we will end up with the index
                     // where we should insert extended directories. This also works if there are no
                     // remote directories at all.

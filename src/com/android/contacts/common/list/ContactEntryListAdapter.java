@@ -419,7 +419,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             if (getPartitionByDirectoryId(id) == -1) {
                 DirectoryPartition partition = new DirectoryPartition(false, true);
                 partition.setDirectoryId(id);
-                if (DirectoryCompat.isRemoteDirectory(id)) {
+                if (DirectoryCompat.isRemoteDirectoryId(id)) {
                     if (DirectoryCompat.isEnterpriseDirectoryId(id)) {
                         partition.setLabel(mContext.getString(R.string.directory_search_label_work));
                     } else {
@@ -642,7 +642,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         TextView labelTextView = (TextView)view.findViewById(R.id.label);
         TextView displayNameTextView = (TextView)view.findViewById(R.id.display_name);
         labelTextView.setText(directoryPartition.getLabel());
-        if (!DirectoryCompat.isRemoteDirectory(directoryId)) {
+        if (!DirectoryCompat.isRemoteDirectoryId(directoryId)) {
             displayNameTextView.setText(null);
         } else {
             String directoryName = directoryPartition.getDisplayName();
