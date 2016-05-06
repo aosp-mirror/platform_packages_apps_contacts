@@ -35,7 +35,7 @@ import android.text.TextDirectionHeuristics;
 public class SmsInteraction implements ContactInteraction {
 
     private static final String URI_TARGET_PREFIX = "smsto:";
-    private static final int SMS_ICON_RES = R.drawable.ic_message_24dp;
+    private static final int SMS_ICON_RES = R.drawable.ic_message_24dp_mirrored;
     private static BidiFormatter sBidiFormatter = BidiFormatter.getInstance();
 
     private ContentValues mValues;
