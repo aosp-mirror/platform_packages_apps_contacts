@@ -316,7 +316,7 @@ public class ShortcutIntentBuilder {
         } else {
             phoneUri = Uri.fromParts(ContactsUtils.SCHEME_SMSTO, phoneNumber, null);
             bitmap = generatePhoneNumberIcon(drawable, phoneType, phoneLabel,
-                    R.drawable.ic_message_24dp);
+                    R.drawable.ic_message_24dp_mirrored);
         }
 
         Intent shortcutIntent = new Intent(shortcutAction, phoneUri);
