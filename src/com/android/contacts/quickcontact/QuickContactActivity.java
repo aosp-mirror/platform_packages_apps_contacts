@@ -1868,7 +1868,7 @@ public class QuickContactActivity extends ContactsActivity
                 alternateIntent = new Intent(Intent.ACTION_SENDTO,
                         Uri.fromParts(ContactsUtils.SCHEME_SMSTO, phone.getNumber(), null));
 
-                alternateIcon = res.getDrawable(R.drawable.ic_message_24dp);
+                alternateIcon = res.getDrawable(R.drawable.ic_message_24dp_mirrored);
                 alternateContentDescription.append(res.getString(R.string.sms_custom, header));
                 smsContentDescription = com.android.contacts.common.util.ContactDisplayUtils
                         .getTelephoneTtsSpannable(alternateContentDescription.toString(), header);
