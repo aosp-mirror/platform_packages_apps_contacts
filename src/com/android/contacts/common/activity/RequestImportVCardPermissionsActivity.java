@@ -25,7 +25,11 @@ import android.app.Activity;
 public class RequestImportVCardPermissionsActivity extends RequestPermissionsActivity {
 
     private static final String[] REQUIRED_PERMISSIONS = new String[] {
+            // Contacts group
+            permission.GET_ACCOUNTS,
             permission.READ_CONTACTS,
+            permission.WRITE_CONTACTS,
+            // Storage group
             permission.READ_EXTERNAL_STORAGE,
     };
 
