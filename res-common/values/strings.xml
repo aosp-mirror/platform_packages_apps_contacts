@@ -377,23 +377,11 @@
     <string name="expand_collapse_phonetic_name_fields_description">Expand or collapse phonetic
         name fields</string>
 
-    <!-- Contact list filter label indicating that the list is showing all available accounts [CHAR LIMIT=64] -->
-    <string name="list_filter_all_accounts">All contacts</string>
-
     <!-- Menu item to indicate you are done editing a contact and want to save the changes you've made -->
     <string name="menu_done">Done</string>
 
     <!-- Menu item to indicate you want to cancel the current editing process and NOT save the changes you've made [CHAR LIMIT=12] -->
     <string name="menu_doNotSave">Cancel</string>
-
-    <!-- Displayed at the top of the contacts showing the account filter selected  [CHAR LIMIT=64] -->
-    <string name="listAllContactsInAccount">Contacts in <xliff:g id="name" example="abc@gmail.com">%s</xliff:g></string>
-
-    <!-- Displayed at the top of the contacts showing single contact. [CHAR LIMIT=64] -->
-    <string name="listCustomView">Contacts in custom view</string>
-
-    <!-- Displayed at the top of the contacts showing single contact. [CHAR LIMIT=64] -->
-    <string name="listSingleContact">Single contact</string>
 
     <!-- Message asking user to select an account to save contacts imported from vcard or SIM card [CHAR LIMIT=64] -->
     <string name="dialog_new_contact_account">Save imported contacts to:</string>
