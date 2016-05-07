@@ -129,9 +129,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     private static final String ENABLE_DEBUG_OPTIONS_HIDDEN_CODE = "debug debug!";
 
-    // These values needs to start at 2. See {@link ContactEntryListFragment}.
-    private static final int SUBACTIVITY_ACCOUNT_FILTER = 2;
-
     private final DialogManager mDialogManager = new DialogManager(this);
 
     private ContactsIntentResolver mIntentResolver;
@@ -584,7 +581,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             return;
         }
 
-        mAllFragment.setFilter(mContactListFilterController.getFilter());
+        setFilterAndUpdateTitle(mContactListFilterController.getFilter());
 
         invalidateOptionsMenuIfNeeded();
     }
@@ -881,7 +878,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             mAllFragment.setSelectedContactUri(contactUri);
         }
 
-        mAllFragment.setFilter(mContactListFilterController.getFilter());
+        setFilterAndUpdateTitle(mContactListFilterController.getFilter());
         setQueryTextToFragment(mActionBarAdapter.getQueryString());
 
         if (mRequest.isDirectorySearchEnabled()) {
@@ -893,7 +890,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     private void configureContactListFragment() {
         // Filter may be changed when this Activity is in background.
-        mAllFragment.setFilter(mContactListFilterController.getFilter());
+        setFilterAndUpdateTitle(mContactListFilterController.getFilter());
 
         mAllFragment.setVerticalScrollbarPosition(getScrollBarPosition());
         mAllFragment.setSelectionVisible(false);
@@ -1056,11 +1053,11 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                     && currentFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
                 filter = ContactListFilter.createFilterWithType(
                         ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
-                mAllFragment.setFilter(filter);
+                setFilterAndUpdateTitle(filter);
             } else {
                 filter = ContactListFilter.createFilterWithType(
                         ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
-                mAllFragment.setFilter(filter, false);
+                setFilterAndUpdateTitle(filter, /* restoreSelectedUri */ false);
             }
             mContactListFilterController.setContactListFilter(filter, true);
         }
@@ -1330,12 +1327,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case SUBACTIVITY_ACCOUNT_FILTER: {
-                AccountFilterUtil.handleAccountFilterResult(
-                        mContactListFilterController, resultCode, data);
-                break;
-            }
-
             // TODO: Using the new startActivityWithResultFromFragment API this should not be needed
             // anymore
             case ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER:
@@ -1464,5 +1455,18 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             return TabState.COUNT - 1 - position;
         }
         return position;
+    }
+
+    private void setFilterAndUpdateTitle(ContactListFilter filter) {
+        setFilterAndUpdateTitle(filter, true);
+    }
+
+    private void setFilterAndUpdateTitle(ContactListFilter filter, boolean restoreSelectedUri) {
+        mAllFragment.setFilter(filter, restoreSelectedUri);
+        if (getSupportActionBar() != null) {
+            final String actionBarTitle = TextUtils.isEmpty(filter.accountName) ?
+                    getString(R.string.contactsList) : filter.accountName;
+            getSupportActionBar().setTitle(actionBarTitle);
+        }
     }
 }
