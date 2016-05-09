@@ -117,8 +117,7 @@
     <string name="label_notes" msgid="3997277594846722699">"Notas"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Website"</string>
-    <!-- no translation found for groupsLabel (2001597910276087197) -->
-    <skip />
+    <string name="groupsLabel" msgid="2001597910276087197">"Marcadores"</string>
     <string name="email_home" msgid="2230967805906450693">"Enviar e-mail para residencial"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Enviar e-mail para celular"</string>
     <string name="email_work" msgid="7065971921227432400">"Enviar e-mail para comercial"</string>
@@ -148,12 +147,8 @@
     <string name="description_minus_button" msgid="2142439445814730827">"excluir"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Expandir ou recolher campos de nome"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Expandir ou recolher campos de nome fonético"</string>
-    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Todos os contatos"</string>
     <string name="menu_done" msgid="32470053723443112">"Concluído"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Cancelar"</string>
-    <string name="listAllContactsInAccount" msgid="755499980092808715">"Contatos em <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Cont. na vis. pers."</string>
-    <string name="listSingleContact" msgid="8525131203887307088">"Contato único"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Salvar contatos importados em:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importar do cartão SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importar do SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>

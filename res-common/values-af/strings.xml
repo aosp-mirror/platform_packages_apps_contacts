@@ -117,8 +117,7 @@
     <string name="label_notes" msgid="3997277594846722699">"Notas"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webwerf"</string>
-    <!-- no translation found for groupsLabel (2001597910276087197) -->
-    <skip />
+    <string name="groupsLabel" msgid="2001597910276087197">"Etikette"</string>
     <string name="email_home" msgid="2230967805906450693">"E-postuis"</string>
     <string name="email_mobile" msgid="7532438378678903685">"E-pos mobiel"</string>
     <string name="email_work" msgid="7065971921227432400">"E-pos werk"</string>
@@ -148,12 +147,8 @@
     <string name="description_minus_button" msgid="2142439445814730827">"vee uit"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Vou naamvelde uit of in"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Vou fonetiese naamvelde uit of in"</string>
-    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Alle kontakte"</string>
     <string name="menu_done" msgid="32470053723443112">"Klaar"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Kanselleer"</string>
-    <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontakte in <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kontakte in gepasmaakte aansig"</string>
-    <string name="listSingleContact" msgid="8525131203887307088">"Enkel kontak"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Stoor ingevoerde kontakte in:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Voer van SIM-kaart af in"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Voer in vanaf SIM <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>

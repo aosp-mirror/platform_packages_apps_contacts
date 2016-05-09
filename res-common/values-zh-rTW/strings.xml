@@ -117,8 +117,7 @@
     <string name="label_notes" msgid="3997277594846722699">"附註"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"網站"</string>
-    <!-- no translation found for groupsLabel (2001597910276087197) -->
-    <skip />
+    <string name="groupsLabel" msgid="2001597910276087197">"標籤"</string>
     <string name="email_home" msgid="2230967805906450693">"傳送電子郵件至住家電子郵件地址"</string>
     <string name="email_mobile" msgid="7532438378678903685">"傳送電子郵件至行動裝置"</string>
     <string name="email_work" msgid="7065971921227432400">"傳送電子郵件至公司電子郵件地址"</string>
@@ -148,12 +147,8 @@
     <string name="description_minus_button" msgid="2142439445814730827">"刪除"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"展開或收合名稱欄位"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"展開或收合姓名拼音欄位"</string>
-    <string name="list_filter_all_accounts" msgid="4265359896628915784">"所有聯絡人"</string>
     <string name="menu_done" msgid="32470053723443112">"完成"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"取消"</string>
-    <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> 中的聯絡人"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"聯絡人自訂檢視"</string>
-    <string name="listSingleContact" msgid="8525131203887307088">"單一聯絡人"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"將匯入的聯絡人儲存到："</string>
     <string name="import_from_sim" msgid="4749894687871835873">"從 SIM 卡匯入"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"從 SIM 卡 <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> 匯入"</string>

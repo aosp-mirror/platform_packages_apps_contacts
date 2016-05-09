@@ -117,8 +117,7 @@
     <string name="label_notes" msgid="3997277594846722699">"দ্রষ্টব্য"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"ওয়েবসাইট"</string>
-    <!-- no translation found for groupsLabel (2001597910276087197) -->
-    <skip />
+    <string name="groupsLabel" msgid="2001597910276087197">"লেবেলগুলি"</string>
     <string name="email_home" msgid="2230967805906450693">"বাড়ির ইমেল ঠিকানায় ইমেল করুন"</string>
     <string name="email_mobile" msgid="7532438378678903685">"মোবাইলের ইমেল ঠিকানায় ইমেল করুন"</string>
     <string name="email_work" msgid="7065971921227432400">"কর্মক্ষেত্রের ইমেল ঠিকানায় ইমেল করুন"</string>
@@ -148,12 +147,8 @@
     <string name="description_minus_button" msgid="2142439445814730827">"মুছুন"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"নামের ক্ষেত্রটিকে প্রসারিত বা সঙ্কুচিত করুন"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"ফোনেটিক নামের ক্ষেত্রটিকে প্রসারিত বা সঙ্কুচিত করুন"</string>
-    <string name="list_filter_all_accounts" msgid="4265359896628915784">"সকল পরিচিতি"</string>
     <string name="menu_done" msgid="32470053723443112">"সম্পন্ন হয়েছে"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"বাতিল করুন"</string>
-    <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> এ পরিচিতিগুলি"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"কাস্টম দৃশ্যে পরিচিতিগুলি"</string>
-    <string name="listSingleContact" msgid="8525131203887307088">"একক পরিচিতি"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"আমদানি করা পরিচিতিগুলি এতে সংরক্ষণ করুন:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"সিম কার্ড থেকে আমদানি করুন"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> SIM থেকে আমদানি করুন - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>

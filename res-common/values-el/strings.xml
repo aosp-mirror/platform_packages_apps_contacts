@@ -117,8 +117,7 @@
     <string name="label_notes" msgid="3997277594846722699">"Σημειώσεις"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Ιστότοπος"</string>
-    <!-- no translation found for groupsLabel (2001597910276087197) -->
-    <skip />
+    <string name="groupsLabel" msgid="2001597910276087197">"Ετικέτες"</string>
     <string name="email_home" msgid="2230967805906450693">"Αποστολή μηνύματος ηλεκτρονικού ταχυδρομείου προς οικία"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Αποστολή μηνύματος ηλεκτρονικού ταχυδρομείου προς κινητό"</string>
     <string name="email_work" msgid="7065971921227432400">"Αποστολή μηνύματος ηλεκτρονικού ταχυδρομείου προς εργασία"</string>
@@ -148,12 +147,8 @@
     <string name="description_minus_button" msgid="2142439445814730827">"διαγραφή"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Ανάπτυξη ή σύμπτυξη πεδίων ονομάτων"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Ανάπτυξη ή σύμπτυξη πεδίων φωνητικού ονόματος"</string>
-    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Όλες οι επαφές"</string>
     <string name="menu_done" msgid="32470053723443112">"Τέλος"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Ακύρωση"</string>
-    <string name="listAllContactsInAccount" msgid="755499980092808715">"Επαφές στο <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Επαφές σε προσ/νη προβολή"</string>
-    <string name="listSingleContact" msgid="8525131203887307088">"Μία επαφή"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Αποθήκευση επαφών που εισήχθησαν σε:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Εισαγωγή από κάρτα SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Εισαγωγή από κάρτα SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>

@@ -117,8 +117,7 @@
     <string name="label_notes" msgid="3997277594846722699">"குறிப்புகள்"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"இணையதளம்"</string>
-    <!-- no translation found for groupsLabel (2001597910276087197) -->
-    <skip />
+    <string name="groupsLabel" msgid="2001597910276087197">"லேபிள்கள்"</string>
     <string name="email_home" msgid="2230967805906450693">"வீட்டு மின்னஞ்சல் முகவரிக்கு மின்னஞ்சல் அனுப்பு"</string>
     <string name="email_mobile" msgid="7532438378678903685">"மொபைல் மின்னஞ்சல் முகவரிக்கு மின்னஞ்சல் அனுப்பு"</string>
     <string name="email_work" msgid="7065971921227432400">"பணியிட மின்னஞ்சல் முகவரிக்கு மின்னஞ்சல் அனுப்பு"</string>
@@ -148,12 +147,8 @@
     <string name="description_minus_button" msgid="2142439445814730827">"நீக்கு"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"பெயர் புலங்களை விரிவுப்படுத்து அல்லது சுருக்கு"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"ஒலிப்புமுறை பெயர் புலங்களை விரி அல்லது சுருக்கு"</string>
-    <string name="list_filter_all_accounts" msgid="4265359896628915784">"எல்லா தொடர்புகளும்"</string>
     <string name="menu_done" msgid="32470053723443112">"முடிந்தது"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"ரத்துசெய்"</string>
-    <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> இல் உள்ள தொடர்புகள்"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"தனிப்பயன் காட்சியில் உள்ள தொடர்புகள்"</string>
-    <string name="listSingleContact" msgid="8525131203887307088">"ஒரு தொடர்பு"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"இறக்கிய தொடர்புகளை இதில் சேமி:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"சிம் கார்டிலிருந்து இறக்குமதிசெய்"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> என்ற SIM இல் இருந்து இறக்குமதிசெய்"</string>

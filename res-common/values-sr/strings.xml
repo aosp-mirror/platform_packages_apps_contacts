@@ -118,8 +118,7 @@
     <string name="label_notes" msgid="3997277594846722699">"Белешке"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Веб-сајт"</string>
-    <!-- no translation found for groupsLabel (2001597910276087197) -->
-    <skip />
+    <string name="groupsLabel" msgid="2001597910276087197">"Ознаке"</string>
     <string name="email_home" msgid="2230967805906450693">"Пошаљи имејл на кућну имејл адресу"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Пошаљи имејл на мобилни телефон"</string>
     <string name="email_work" msgid="7065971921227432400">"Пошаљи имејл на пословну имејл адресу"</string>
@@ -149,12 +148,8 @@
     <string name="description_minus_button" msgid="2142439445814730827">"избриши"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Проширивање или скупљање поља за називе"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Прошири или скупи поља за фонетско име"</string>
-    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Сви контакти"</string>
     <string name="menu_done" msgid="32470053723443112">"Готово"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Откажи"</string>
-    <string name="listAllContactsInAccount" msgid="755499980092808715">"Контакти у групи <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Контакти у прилагођеном приказу"</string>
-    <string name="listSingleContact" msgid="8525131203887307088">"Појединачни контакт"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Сачувајте увезене контакте на:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Увези са SIM картице"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Увоз са SIM картице <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>

@@ -117,8 +117,7 @@
     <string name="label_notes" msgid="3997277594846722699">"메모"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"웹사이트"</string>
-    <!-- no translation found for groupsLabel (2001597910276087197) -->
-    <skip />
+    <string name="groupsLabel" msgid="2001597910276087197">"라벨"</string>
     <string name="email_home" msgid="2230967805906450693">"개인 이메일 주소로 이메일 보내기"</string>
     <string name="email_mobile" msgid="7532438378678903685">"모바일로 이메일 보내기"</string>
     <string name="email_work" msgid="7065971921227432400">"직장으로 이메일 보내기"</string>
@@ -148,12 +147,8 @@
     <string name="description_minus_button" msgid="2142439445814730827">"삭제"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"이름 입력란 펼치기/접기"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"이름(소리나는 대로) 입력란 펼치기 또는 접기"</string>
-    <string name="list_filter_all_accounts" msgid="4265359896628915784">"모든 주소록"</string>
     <string name="menu_done" msgid="32470053723443112">"완료"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"취소"</string>
-    <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g>의 주소록"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"주소록 맞춤 보기"</string>
-    <string name="listSingleContact" msgid="8525131203887307088">"단일 연락처"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"가져온 주소록을 저장할 계정:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM 카드에서 가져오기"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>에서 가져오기"</string>

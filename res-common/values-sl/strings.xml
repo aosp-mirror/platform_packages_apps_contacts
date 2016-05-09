@@ -119,8 +119,7 @@
     <string name="label_notes" msgid="3997277594846722699">"Opombe"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Spletno mesto"</string>
-    <!-- no translation found for groupsLabel (2001597910276087197) -->
-    <skip />
+    <string name="groupsLabel" msgid="2001597910276087197">"Oznake"</string>
     <string name="email_home" msgid="2230967805906450693">"Pošlji e-poštno sporočilo domov"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Pošlji e-poštno sporočilo v mobilno napravo"</string>
     <string name="email_work" msgid="7065971921227432400">"Pošlji e-poštno sporočilo na službeni naslov"</string>
@@ -150,12 +149,8 @@
     <string name="description_minus_button" msgid="2142439445814730827">"izbriši"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Razširi ali strni imenska polja"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Razširitev ali strnitev fonetičnih imenskih polj"</string>
-    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Vsi stiki"</string>
     <string name="menu_done" msgid="32470053723443112">"Končano"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Prekliči"</string>
-    <string name="listAllContactsInAccount" msgid="755499980092808715">"Stiki v <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Stiki v pogledu po meri"</string>
-    <string name="listSingleContact" msgid="8525131203887307088">"Posamezen stik"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Shranjevanje uvoženih stikov v račun:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Uvoz s kartice SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Uvoz s kartice SIM <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>

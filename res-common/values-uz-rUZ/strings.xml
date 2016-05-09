@@ -117,8 +117,7 @@
     <string name="label_notes" msgid="3997277594846722699">"Eslatmalar"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Veb-sayt"</string>
-    <!-- no translation found for groupsLabel (2001597910276087197) -->
-    <skip />
+    <string name="groupsLabel" msgid="2001597910276087197">"Yorliqlar"</string>
     <string name="email_home" msgid="2230967805906450693">"Uy e-pochtasiga xat jo‘natish"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Mobil e-pochtaga xat yozish"</string>
     <string name="email_work" msgid="7065971921227432400">"Ish e-pochtasiga xat jo‘natish"</string>
@@ -148,12 +147,8 @@
     <string name="description_minus_button" msgid="2142439445814730827">"o‘chirib tashlash"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Qo‘shimcha maydonlarni ko‘rsatish va berkitish"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Fonetik ism maydonlarni ko‘rsatish va berkitish"</string>
-    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Barcha kontaktlar"</string>
     <string name="menu_done" msgid="32470053723443112">"Tayyor"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Bekor qilish"</string>
-    <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g>dagi kontaktlar"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Filtrlangan kontaktlar"</string>
-    <string name="listSingleContact" msgid="8525131203887307088">"Bitta kontakt"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Import qilingan kontaktlarni saqlash joyi:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM-kartadan import qilish"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Quyidagi SIM-kartadan import qilish: <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
