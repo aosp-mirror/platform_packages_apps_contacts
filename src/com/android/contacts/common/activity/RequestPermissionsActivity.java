@@ -49,9 +49,6 @@ public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
     @Override
     protected String[] getDesiredPermissions() {
         return new String[]{
-                // Location group
-                permission.ACCESS_COARSE_LOCATION,
-                permission.ACCESS_FINE_LOCATION,
                 // Contacts group
                 permission.GET_ACCOUNTS,
                 permission.READ_CONTACTS,
