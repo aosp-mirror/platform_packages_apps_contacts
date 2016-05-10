@@ -93,7 +93,7 @@ import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiCo
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
-import com.android.contacts.list.MultiSelectContactsListFragment;
+import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.MultiSelectContactsListFragment.OnCheckBoxListActionListener;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
@@ -149,7 +149,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     /**
      * Showing a list of Contacts. Also used for showing search results in search mode.
      */
-    private MultiSelectContactsListFragment mAllFragment;
+    private DefaultContactBrowseListFragment mAllFragment;
     private GroupsFragment mGroupsFragment;
     private AccountFiltersFragment mAccountFiltersFragment;
 
@@ -375,7 +375,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         // However, if it's after screen rotation, the fragments have been re-created by
         // the fragment manager, so first see if there're already the target fragments
         // existing.
-        mAllFragment = (MultiSelectContactsListFragment)
+        mAllFragment = (DefaultContactBrowseListFragment)
                 fragmentManager.findFragmentByTag(ALL_TAG);
         mGroupsFragment = (GroupsFragment)
                 fragmentManager.findFragmentByTag(GROUPS_TAG);
@@ -383,7 +383,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 fragmentManager.findFragmentByTag(FILTERS_TAG);
 
         if (mAllFragment == null) {
-            mAllFragment = new MultiSelectContactsListFragment();
+            mAllFragment = new DefaultContactBrowseListFragment();
             transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
 
             if (areGroupWritableAccountsAvailable()) {

@@ -28,12 +28,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
-import com.android.contacts.common.list.ContactEntryListAdapter;
 import com.android.contacts.common.list.ContactListItemView;
+import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.preference.ContactsPreferences;
 
 /** Group members cursor adapter. */
-public class GroupMembersListAdapter extends ContactEntryListAdapter {
+public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter {
 
     private static class GroupMembersQuery {
 
@@ -67,7 +67,7 @@ public class GroupMembersListAdapter extends ContactEntryListAdapter {
     private long mGroupId;
 
     public GroupMembersListAdapter(Context context) {
-        super(context);
+        super(context, GroupMembersQuery.CONTACT_ID);
         mUnknownNameText = context.getText(android.R.string.unknownName);
         setIndexedPartition(0);
     }

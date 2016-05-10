@@ -16,12 +16,11 @@
 
 package com.android.contacts.list;
 
-import com.android.contacts.common.list.ContactListAdapter;
-import com.android.contacts.common.list.ContactListItemView;
-import com.android.contacts.common.list.DefaultContactListAdapter;
-import com.android.contacts.common.logging.Logger;
+import com.android.contacts.common.list.ContactEntryListFragment;
+import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
+import com.android.contacts.common.list.MultiSelectEntryContactListAdapter.SelectedContactsListener;
 import com.android.contacts.common.logging.SearchState;
-import com.android.contacts.list.MultiSelectEntryContactListAdapter.SelectedContactsListener;
+import com.android.contacts.common.logging.Logger;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -37,7 +36,8 @@ import java.util.TreeSet;
  * Fragment containing a contact list used for browsing contacts and optionally selecting
  * multiple contacts via checkboxes.
  */
-public class MultiSelectContactsListFragment extends DefaultContactBrowseListFragment
+public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntryContactListAdapter>
+        extends ContactEntryListFragment<T>
         implements SelectedContactsListener {
 
     private static final String TAG = "MultiContactsList";
@@ -113,11 +113,6 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
     }
 
     @Override
-    public MultiSelectEntryContactListAdapter getAdapter() {
-        return (MultiSelectEntryContactListAdapter) super.getAdapter();
-    }
-
-    @Override
     protected void configureAdapter() {
         super.configureAdapter();
         getAdapter().setSelectedContactsListener(this);
@@ -184,7 +179,6 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
                 mSearchResultClicked = true;
                 Logger.logSearchEvent(createSearchStateForSearchResultClick(position));
             }
-            super.onItemClick(position, id);
         }
         if (mCheckBoxListListener != null && getAdapter().getSelectedContactIds().size() == 0) {
             mCheckBoxListListener.onStopDisplayingCheckBoxes();
@@ -270,15 +264,5 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
             }
         }
         return searchState;
-    }
-
-    @Override
-    protected ContactListAdapter createListAdapter() {
-        DefaultContactListAdapter adapter = new MultiSelectEntryContactListAdapter(getContext());
-        adapter.setSectionHeaderDisplayEnabled(isSectionHeaderDisplayEnabled());
-        adapter.setDisplayPhotos(true);
-        adapter.setPhotoPosition(
-                ContactListItemView.getDefaultPhotoPosition(/* opposite = */ false));
-        return adapter;
     }
 }

@@ -41,9 +41,10 @@ import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
+import com.android.contacts.list.MultiSelectContactsListFragment;
 
 /** Displays the members of a group. */
-public class GroupMembersListFragment extends ContactEntryListFragment<GroupMembersListAdapter> {
+public class GroupMembersListFragment extends MultiSelectContactsListFragment {
 
     private static final String TAG = "GroupMembersList";
 
@@ -345,6 +346,11 @@ public class GroupMembersListFragment extends ContactEntryListFragment<GroupMemb
         adapter.setSectionHeaderDisplayEnabled(true);
         adapter.setDisplayPhotos(true);
         return adapter;
+    }
+
+    @Override
+    public GroupMembersListAdapter getAdapter() {
+        return (GroupMembersListAdapter) super.getAdapter();
     }
 
     @Override

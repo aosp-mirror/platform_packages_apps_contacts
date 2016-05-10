@@ -63,6 +63,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         if (uri == null) {
             return;
         }
+        if (getAdapter().isDisplayingCheckBoxes()) {
+            super.onItemClick(position, id);
+            return;
+        }
         viewContact(uri, getAdapter().isEnterpriseContact(position));
     }
 

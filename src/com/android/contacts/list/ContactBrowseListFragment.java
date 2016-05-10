@@ -36,7 +36,6 @@ import android.util.Log;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.common.list.AutoScrollListView;
-import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.DirectoryPartition;
@@ -49,7 +48,7 @@ import java.util.List;
  * picking a contact with one of the PICK intents).
  */
 public abstract class ContactBrowseListFragment extends
-        ContactEntryListFragment<ContactListAdapter> {
+        MultiSelectContactsListFragment<ContactListAdapter> {
 
     private static final String TAG = "ContactList";
 
@@ -380,6 +379,11 @@ public abstract class ContactBrowseListFragment extends
             mSelectedContactLookupKey = null;
             mSelectedContactId = 0;
         }
+    }
+
+    @Override
+    public ContactListAdapter getAdapter() {
+        return (ContactListAdapter) super.getAdapter();
     }
 
     @Override
