@@ -36,7 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"اطلاعات تماس"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"ویرایش مخاطب"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"ایجاد مخاطب"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"ویرایش برچسب"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"ویرایش گروه"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"ایجاد گروه"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"درباره"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"نسخه‌های به روز"</string>
     <string name="searchHint" msgid="8482945356247760701">"جستجوی مخاطبین"</string>
@@ -55,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"ویرایش"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"حذف"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"افزودن مخاطب"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"ایجاد مورد جدید..."</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"ایجاد مورد جدید..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"این مخاطب به چند مخاطب لغو پیوند شود؟"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"لغو پیوند"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"می‌خواهید تغییراتی را که قبلاً ایجاد کرده‌اید، ذخیره کنید و این مخاطب را به چند مخاطب لغو پیوند کنید؟"</string>
@@ -95,6 +96,10 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> به صفحه اصلی اضافه شد."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"ایجاد مخاطب جدید"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"ایجاد مخاطب جدید"</string>
+  <string-array name="otherLabels">
+    <item msgid="8287841928119937597">"سازمان"</item>
+    <item msgid="7196592230748086755">"توجه"</item>
+  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"عکسی در رایانهٔ لوحی موجود نیست."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"عکسی در گوشی موجود نیست."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"عکس مخاطب"</string>
@@ -102,12 +107,15 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ارسال تماس به صورت مستقیم به پست صوتی"</string>
     <string name="removePhoto" msgid="4898105274130284565">"حذف عکس"</string>
     <string name="noContacts" msgid="4955659076981974652">"مخاطبی موجود نیست"</string>
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مخاطب</item>
     </plurals>
-    <string name="noGroups" msgid="4607906327968232225">"برچسبی وجود ندارد."</string>
-    <string name="emptyGroup" msgid="3741795311081911842">"هیچ‌کس با این برچسب وجود ندارد."</string>
+    <string name="noGroups" msgid="8614664663561385253">"گروهی وجود ندارد."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"برای ایجاد گروه‌ها، نیاز به یک حساب دارید."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"هیچ فردی در این گروه نیست."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"برای افزودن چند عضو، گروه را ویرایش کنید."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"مخاطب ذخیره شد"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ارتباط مخاطبین لغو شد."</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ذخیره تغییرات مخاطب انجام نشد."</string>
@@ -115,8 +123,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"مخاطب پیوند داده نشد."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"خطا هنگام ذخیره مخاطب."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"ذخیره تغییرات عکس مخاطب انجام نشد."</string>
-    <string name="groupSavedToast" msgid="6491495462357722285">"برچسب ذخیره شد"</string>
-    <string name="groupSavedErrorToast" msgid="8121032018490980184">"تغییرات برچسب ذخیره نشد."</string>
+    <string name="groupSavedToast" msgid="1168756874239833756">"گروه ذخیره شد."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"ذخیرهٔ تغییرات گروه انجام نشد."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب با شماره تلفن</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مخاطب با شماره تلفن</item>
@@ -148,7 +156,7 @@
     <string name="menu_share" msgid="943789700636542260">"اشتراک‌گذاری"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"افزودن به مخاطبین"</string>
     <string name="share_via" msgid="563121028023030093">"اشتراک‌گذاری مخاطب از طریق"</string>
-    <string name="dialog_new_group_account" msgid="6229422022442236548">"ایجاد برچسب در حساب"</string>
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"ایجاد گروه تحت حساب کاربری"</string>
     <string name="audio_chat" msgid="2535716629358298691">"گپ صوتی"</string>
     <string name="video_chat" msgid="1872255818640336072">"گپ ویدئویی"</string>
     <string name="connections" msgid="8098440723172028350">"اتصال‌ها"</string>
@@ -159,6 +167,7 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"حساب <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
+    <string name="group_read_only" msgid="1061762906115697637">"در این دستگاه قابل ویرایش نیست."</string>
     <string name="take_photo" msgid="7496128293167402354">"عکس گرفتن"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"عکس جدید گرفتن"</string>
     <string name="pick_photo" msgid="2129509985223564942">"انتخاب عکس"</string>
@@ -172,7 +181,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"افزودن مورد جدید"</string>
     <string name="add_organization" msgid="7311893231158291197">"افزودن سازمان"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"تاریخ"</string>
-    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"نام برچسب"</string>
+    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"نام گروه"</string>
     <string name="change_photo" msgid="8530597935483526383">"تغییر"</string>
     <string name="primary_photo" msgid="8517942231868516999">"عکس اصلی"</string>
     <string name="description_star" msgid="2605854427360036550">"مورد دلخواه"</string>
@@ -182,6 +191,7 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"کپی در مخاطبین من"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"افزودن به مخاطبین من"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"دایرکتوری <xliff:g id="TYPE">%1$s</xliff:g>"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"سفارشی"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"تنظیمات"</string>
     <string name="menu_settings" msgid="377929915873428211">"تنظیمات"</string>
     <string name="menu_help" msgid="1680178646764069976">"راهنما و بازخورد"</string>
@@ -198,9 +208,13 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ایجاد مخاطب جدید"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"افزودن حساب"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"وارد کردن مخاطبین"</string>
-    <string name="create_group_dialog_title" msgid="5363404287877384473">"ایجاد برچسب جدید"</string>
-    <string name="create_group_item_label" msgid="3263064599743742865">"ایجاد مورد جدید..."</string>
-    <string name="delete_group_dialog_message" msgid="335713829185261371">"برچسب «<xliff:g id="GROUP_LABEL">%1$s</xliff:g>» حذف شود؟ (مخاطبین حذف نخواهند شد.)"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"ایجاد گروه جدید"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"ایجاد گروه جدید"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> گروه</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> گروه</item>
+    </plurals>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"مطمئنید می‌خواهید گروه \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" حذف شود؟ (مخاطبین خودشان حذف نخواهند شد.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> نفر از <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> نفر از <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
@@ -219,7 +233,8 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"حفظ ویرایش"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"راه‌اندازی نمایه من"</string>
-    <string name="group_name_hint" msgid="7614490821934528478">"نام برچسب"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"نام شخص را تایپ کنید"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"نام گروه"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"نمایه محلی من"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"نمایه <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> من"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"نمایش همه مخاطبان"</string>
@@ -241,7 +256,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"اخیر"</string>
     <string name="about_card_title" msgid="2920942314212825637">"درباره"</string>
     <string name="send_message" msgid="8938418965550543196">"ارسال پیام"</string>
-    <string name="toast_making_personal_copy" msgid="288549957278065542">"ایجاد یک کپی شخصی..."</string>
+    <string name="toast_making_personal_copy" msgid="6137651078366797938">"در حال ایجاد یک کپی شخصی..."</string>
     <string name="yesterday" msgid="6840858548955018569">"دیروز"</string>
     <string name="tomorrow" msgid="6241969467795308581">"فردا"</string>
     <string name="today" msgid="8041090779381781781">"امروز"</string>
@@ -313,7 +328,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"عکس <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> انتخاب شد"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"عکس از حساب نامشخص انتخاب نشده است"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"عکس از حساب نامشخص انتخاب شده است"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"فهرست مخاطبین برای اعمال تغییر زبان در حال به‌روزرسانی است.\n\nلطفاً صبر کنید..."</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"فهرست مخاطبین جهت اعمال تغییر زبان در حال به‌روزرسانی است.\n\nلطفاً منتظر بمانید..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"شماره‌های مسدودشده"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"پیدا کردن موارد تکراری"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"بازکردن کشوی پیمایش"</string>

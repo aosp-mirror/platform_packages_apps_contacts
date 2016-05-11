@@ -36,7 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Informācija par kontaktpersonu"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Rediģēt kontaktpersonu"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Izveidot kontaktpersonu"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"Rediģēt iezīmi"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"Rediģēt grupu"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Izveidot grupu"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Par"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Atjaunināj."</string>
     <string name="searchHint" msgid="8482945356247760701">"Meklēt kontaktpersonas"</string>
@@ -55,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Rediģēt"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Dzēst"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Pievienot kontaktpersonu"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Izveidot jaunu…"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Izveidot jaunu..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Vai atsaistīt šo kontaktpersonu un sadalīt vairākās kontaktpersonās?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Atsaistīt"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Vai vēlaties saglabāt veiktās izmaiņas, atsaistīt šo kontaktpersonu un sadalīt vairākās kontaktpersonās?"</string>
@@ -96,6 +97,10 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontaktpersona <xliff:g id="NAME">%s</xliff:g> ir pievienota sākuma ekrānam."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Izveidot jaunu kontaktpersonu"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Izveidot jaunu kontaktpersonu"</string>
+  <string-array name="otherLabels">
+    <item msgid="8287841928119937597">"Organizācija"</item>
+    <item msgid="7196592230748086755">"Piezīme"</item>
+  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Planšetdatorā nav pieejams neviens attēls."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Tālrunī nav pieejams neviens attēls."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontaktpersonas fotoattēls"</string>
@@ -103,13 +108,16 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Pāradresēt zvanus tieši uz balss pastu"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Noņemt fotoattēlu"</string>
     <string name="noContacts" msgid="4955659076981974652">"Nav kontaktpersonu"</string>
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="zero">Nav kontaktpersonu</item>
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontaktpersona</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktpersonas</item>
     </plurals>
-    <string name="noGroups" msgid="4607906327968232225">"Nav iezīmju."</string>
-    <string name="emptyGroup" msgid="3741795311081911842">"Šī iezīme nav piešķirta nevienam lietotājam."</string>
+    <string name="noGroups" msgid="8614664663561385253">"Nav grupu."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Lai izveidotu grupas, ir nepieciešams konts."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Šajā grupā nav personu."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Lai pievienotu personas, rediģējiet grupu."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontaktpersona ir saglabāta."</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktpersonas ir atsaistītas"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nevarēja saglabāt kontaktpersonas datu izmaiņas."</string>
@@ -117,8 +125,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Nevarēja saistīt kontaktpersonu."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Saglabājot kontaktpersonu, radās kļūda."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Nevarēja saglabāt kontaktpersonas fotoattēla izmaiņas."</string>
-    <string name="groupSavedToast" msgid="6491495462357722285">"Iezīme ir saglabāta."</string>
-    <string name="groupSavedErrorToast" msgid="8121032018490980184">"Nevarēja saglabāt iezīmes izmaiņas."</string>
+    <string name="groupSavedToast" msgid="1168756874239833756">"Grupa ir saglabāta."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Nevarēja saglabāt grupas izmaiņas."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="zero"><xliff:g id="COUNT">%d</xliff:g> kontaktpersonas ar tālruņa numuriem</item>
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontaktpersona ar tālruņa numuriem</item>
@@ -153,7 +161,7 @@
     <string name="menu_share" msgid="943789700636542260">"Kopīgot"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Pievienot kontaktpersonām"</string>
     <string name="share_via" msgid="563121028023030093">"Kopīgot kontaktpersonu, izmantojot"</string>
-    <string name="dialog_new_group_account" msgid="6229422022442236548">"Izveidot iezīmi šajā kontā:"</string>
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"Izveidot grupu šajā kontā:"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Balss tērzēšana"</string>
     <string name="video_chat" msgid="1872255818640336072">"Video tērzēšana"</string>
     <string name="connections" msgid="8098440723172028350">"Savienojumi"</string>
@@ -164,6 +172,7 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> konts"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
+    <string name="group_read_only" msgid="1061762906115697637">"Nevar rediģēt šajā ierīcē."</string>
     <string name="take_photo" msgid="7496128293167402354">"Uzņemt fotoattēlu"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Uzņemt jaunu fotoattēlu"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Izvēlēties fotoattēlu"</string>
@@ -177,7 +186,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Pievienot jaunu"</string>
     <string name="add_organization" msgid="7311893231158291197">"Pievienot organizāciju"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Datums"</string>
-    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"Nosaukums"</string>
+    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Grupas nosaukums"</string>
     <string name="change_photo" msgid="8530597935483526383">"Mainīt"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Galvenais foto"</string>
     <string name="description_star" msgid="2605854427360036550">"izlase"</string>
@@ -187,6 +196,7 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopēt uz manām kontaktpersonām"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Pievienot mapē Manas kontaktpersonas"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Katalogs <xliff:g id="TYPE">%1$s</xliff:g>"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Pielāgotas"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Iestatījumi"</string>
     <string name="menu_settings" msgid="377929915873428211">"Iestatījumi"</string>
     <string name="menu_help" msgid="1680178646764069976">"Palīdzība un atsauksmes"</string>
@@ -203,9 +213,14 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Izveidot jaunu kontaktpersonu"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Pievienot kontu"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importēt kontaktpersonas"</string>
-    <string name="create_group_dialog_title" msgid="5363404287877384473">"Jaunas iezīmes izveide"</string>
-    <string name="create_group_item_label" msgid="3263064599743742865">"Izveidot jaunu…"</string>
-    <string name="delete_group_dialog_message" msgid="335713829185261371">"Vai dzēst iezīmi “<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? (Kontaktpersonas netiks dzēstas.)"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"Jaunas grupas izveide"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"Izveidot jaunu grupu"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="zero"><xliff:g id="COUNT">%0$d</xliff:g> grupu</item>
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> grupa</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupas</item>
+    </plurals>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Vai dzēst grupu <xliff:g id="GROUP_LABEL">%1$s</xliff:g>? (Kontaktpersonas netiks dzēstas.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="zero"><xliff:g id="COUNT_2">%1$d</xliff:g> personu grupā <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> persona grupā <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
@@ -226,7 +241,8 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Turpināt rediģēšanu"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> — <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Iestatīt savu profilu"</string>
-    <string name="group_name_hint" msgid="7614490821934528478">"Iezīmes nosaukums"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"Rakstiet personas vārdu."</string>
+    <string name="group_name_hint" msgid="238359485263401293">"Grupas nosaukums"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mans vietējais profils"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mans <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profils"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Tiek attēlotas visas kontaktpersonas"</string>
@@ -248,7 +264,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"Nesenie"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Par"</string>
     <string name="send_message" msgid="8938418965550543196">"Sūtīt ziņojumu"</string>
-    <string name="toast_making_personal_copy" msgid="288549957278065542">"Notiek personīgā eksemplāra izveide..."</string>
+    <string name="toast_making_personal_copy" msgid="6137651078366797938">"Notiek personīgās kopijas izveide…"</string>
     <string name="yesterday" msgid="6840858548955018569">"Vakar"</string>
     <string name="tomorrow" msgid="6241969467795308581">"Rīt"</string>
     <string name="today" msgid="8041090779381781781">"Šodien"</string>
@@ -324,7 +340,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Fotoattēls no <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> ir atlasīts."</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Nav atzīmēts fotoattēls no nezināma konta"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Atzīmēts fotoattēls no nezināma konta"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"Kontaktpersonu saraksts tiek atjaunināts, lai atainotu valodas maiņu.\n\nLūdzu, uzgaidiet…"</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaktpersonu saraksts tiek atjaunināts, lai atainotu valodas maiņu.\n\nLūdzu, uzgaidiet..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Bloķētie numuri"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"Atrast dublikātus"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Atvērt navigācijas atvilktni"</string>

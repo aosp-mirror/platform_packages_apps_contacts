@@ -36,7 +36,8 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Детаљи о контакту"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Измени контакт"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Направи контакт"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"Измените ознаку"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"Измени групу"</string>
+    <string name="insertGroupDescription" msgid="5658512271662210139">"Направи групу"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Основни подаци"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Ажурирања"</string>
     <string name="searchHint" msgid="8482945356247760701">"Претражи контакте"</string>
@@ -55,7 +56,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Измени"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Избриши"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Додај контакт"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Направи нову…"</string>
+    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Направи нову..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Желите ли да раздвојите овај контакт у више контаката?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Раздвоји"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Желите ли да сачувате промене које сте већ обавили и раздвојите овај контакт у више контаката?"</string>
@@ -96,6 +97,10 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Контакт <xliff:g id="NAME">%s</xliff:g> је додат на почетни екран."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Направите нови контакт"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Направи нови контакт"</string>
+  <string-array name="otherLabels">
+    <item msgid="8287841928119937597">"Организација"</item>
+    <item msgid="7196592230748086755">"Напомена"</item>
+  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Слике нису доступне на таблету."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"На телефону нема доступних слика."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Слика контакта"</string>
@@ -103,13 +108,16 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Шаљи позиве директно у гласовну пошту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Уклони фотографију"</string>
     <string name="noContacts" msgid="4955659076981974652">"Нема контаката"</string>
+    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> контакт</item>
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> контакта</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> контаката</item>
     </plurals>
-    <string name="noGroups" msgid="4607906327968232225">"Нема ознака."</string>
-    <string name="emptyGroup" msgid="3741795311081911842">"Нема људи са овом ознаком."</string>
+    <string name="noGroups" msgid="8614664663561385253">"Нема група."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Морате да имате налог да бисте могли да правите групе."</string>
+    <string name="emptyGroup" msgid="7502116218697177370">"Нема људи у овој групи."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Да бисте додали неке, измените групу."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Контакт је сачуван"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Контакти су раздвојени"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Није могуће сачувати измене контаката."</string>
@@ -117,8 +125,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Обједињавање контаката није успело."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Дошло је до грешке при чувању контакта."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Чување измена слике контакта није успело."</string>
-    <string name="groupSavedToast" msgid="6491495462357722285">"Ознака је сачувана"</string>
-    <string name="groupSavedErrorToast" msgid="8121032018490980184">"Чување промена ознаке није успело."</string>
+    <string name="groupSavedToast" msgid="1168756874239833756">"Група је сачувана."</string>
+    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Није могуће сачувати измене група."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> контакт са бројем телефона</item>
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> контакта са бројевима телефона</item>
@@ -153,7 +161,7 @@
     <string name="menu_share" msgid="943789700636542260">"Дели"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Додај у контакте"</string>
     <string name="share_via" msgid="563121028023030093">"Дели контакт преко"</string>
-    <string name="dialog_new_group_account" msgid="6229422022442236548">"Направите ознаку у оквиру налога"</string>
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"Прављење групе на налогу"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Аудио ћаскање"</string>
     <string name="video_chat" msgid="1872255818640336072">"Видео ћаскање"</string>
     <string name="connections" msgid="8098440723172028350">"Везе"</string>
@@ -164,6 +172,7 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> налог"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
+    <string name="group_read_only" msgid="1061762906115697637">"Не може да се мења на овом уређају."</string>
     <string name="take_photo" msgid="7496128293167402354">"Сними фотографију"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Направи нову фотографију"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Изабери слику"</string>
@@ -177,7 +186,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Додај ново"</string>
     <string name="add_organization" msgid="7311893231158291197">"Додај организацију"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Датум"</string>
-    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"Назив ознаке"</string>
+    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Назив групе"</string>
     <string name="change_photo" msgid="8530597935483526383">"Промени"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Главна слика"</string>
     <string name="description_star" msgid="2605854427360036550">"омиљено"</string>
@@ -187,6 +196,7 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Копирај у моје контакте"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Додај у Моје контакте"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Каталог <xliff:g id="TYPE">%1$s</xliff:g>"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Прилагођено"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Подешавања"</string>
     <string name="menu_settings" msgid="377929915873428211">"Подешавања"</string>
     <string name="menu_help" msgid="1680178646764069976">"Помоћ и повратне информације"</string>
@@ -203,9 +213,14 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Направи нови контакт"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Додајте налог"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Увези контакте"</string>
-    <string name="create_group_dialog_title" msgid="5363404287877384473">"Направите нову ознаку"</string>
-    <string name="create_group_item_label" msgid="3263064599743742865">"Направи нову…"</string>
-    <string name="delete_group_dialog_message" msgid="335713829185261371">"Желите да избришете ознаку „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“? (Контакти неће бити избрисани.)"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"Прављење нове групе"</string>
+    <string name="create_group_item_label" msgid="4411981763169654825">"Направи нову групу"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> група</item>
+      <item quantity="few"><xliff:g id="COUNT">%0$d</xliff:g> групе</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> група</item>
+    </plurals>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Желите ли да избришете групу „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“? (Контакти неће бити избрисани.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> особа са налога <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="few"><xliff:g id="COUNT_2">%1$d</xliff:g> особе са налога <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
@@ -226,7 +241,8 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Настави изменe"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Подеси мој профил"</string>
-    <string name="group_name_hint" msgid="7614490821934528478">"Назив ознаке"</string>
+    <string name="enter_contact_name" msgid="1738391320566349924">"Унесите име особе"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"Назив групе"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мој локални профил"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мој <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профил"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Приказани су сви контакти"</string>
@@ -248,7 +264,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"Недавно"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Основни подаци"</string>
     <string name="send_message" msgid="8938418965550543196">"Пошаљи поруку"</string>
-    <string name="toast_making_personal_copy" msgid="288549957278065542">"Прављење личне копије..."</string>
+    <string name="toast_making_personal_copy" msgid="6137651078366797938">"Прављење личне копије..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Јуче"</string>
     <string name="tomorrow" msgid="6241969467795308581">"Сутра"</string>
     <string name="today" msgid="8041090779381781781">"Данас"</string>
@@ -324,7 +340,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Слика са <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> налога <xliff:g id="USER_NAME">%s </xliff:g> је означена"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Слика са непознатог налога није означена"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Слика са непознатог налога је означена"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"Листа контаката се ажурира да би се применила промена језика.\n\nСачекајте…"</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"Листа контаката се тренутно ажурира како би се применила промена језика.\n\nСачекајте..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Блокирани бројеви"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"Пронађи дупликате"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Отвори фиоку за навигацију"</string>
