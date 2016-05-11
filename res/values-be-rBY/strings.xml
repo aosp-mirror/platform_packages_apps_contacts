@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Дадзеныя кантакта"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Рэдагаваць кантакт"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Стварыць кантакт"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Рэдагаваць групу"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Стварыць групу"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"Рэдагаваць метку"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Інфармацыя"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Абнаўленні"</string>
     <string name="searchHint" msgid="8482945356247760701">"Пошук кантактаў"</string>
@@ -56,7 +55,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Рэдагаваць"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Выдаліць"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Дадаць кантакт"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Стварыць новую..."</string>
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Стварыць новую..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Раз\'яднаць гэты кантакт на некалькі кантактаў?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Выдаліць сувязь"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Жадаеце захаваць змяненні, якія вы ўжо зрабілі, і развязаць гэты кантакт на некалькі кантактаў?"</string>
@@ -98,10 +97,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> дададзены на Галоўны экран."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Стварыць новы кантакт"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Стварыць новы кантакт"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"Установа"</item>
-    <item msgid="7196592230748086755">"Нататкі"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"На планшэце няма фатаграфій."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"На тэлефоне няма даступных малюнкаў."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Фота кантакта"</string>
@@ -109,17 +104,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Адпраўляць выклікі непасрэдна на галасавую пошту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Выдаліць фота"</string>
     <string name="noContacts" msgid="4955659076981974652">"Няма кантактаў"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> кантакт</item>
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> кантакты</item>
       <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> кантактаў</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> кантакту</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"Няма груп."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Для стварэння групы патрабуецца ўліковы запіс."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"У гэтай групе няма карыстальнiкаў."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Каб дадаць, змянiце групу."</string>
+    <string name="noGroups" msgid="4607906327968232225">"Метак няма."</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"Пад гэтай меткай карыстальнікаў няма."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Кантакт захаваны"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Кантакты адлучаны"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Немагчыма захаваць змены кантакта."</string>
@@ -127,8 +119,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Не ўдалося падлучыць кантакт."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Памылка пры захаванні кантакту."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Не ўдалося захаваць змяненні фота кантакту."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"Група захаваная."</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Немагчыма захаваць змены групы."</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"Метка захавана"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"Не ўдалося захаваць змяненні меткі."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> кантакт з нумарам(і) тэлефона(ў)</item>
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> кантакты з нумарамі тэлефонаў</item>
@@ -166,7 +158,7 @@
     <string name="menu_share" msgid="943789700636542260">"Апублікаваць"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Дадаць у кантакты"</string>
     <string name="share_via" msgid="563121028023030093">"Апублікаваць кантакт з дапамогай"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"Стварыць групу ва ўліковым запісе"</string>
+    <string name="dialog_new_group_account" msgid="6229422022442236548">"Стварыць метку пад уліковым запісам"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Галасавы чат"</string>
     <string name="video_chat" msgid="1872255818640336072">"Відэачат"</string>
     <string name="connections" msgid="8098440723172028350">"Сувязi"</string>
@@ -177,7 +169,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"Уліковы запіс <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"Нельга рэдагаваць на гэтай прыладзе."</string>
     <string name="take_photo" msgid="7496128293167402354">"Зрабіць фота"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Зрабiце новую фатаграфію"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Выбраць фота"</string>
@@ -191,7 +182,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Дадаць новы"</string>
     <string name="add_organization" msgid="7311893231158291197">"Дадаць арганізацыю"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Дата"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Назва групы"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"Дадаць метку"</string>
     <string name="change_photo" msgid="8530597935483526383">"Змяніць"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Асноўнае фота"</string>
     <string name="description_star" msgid="2605854427360036550">"выбранае"</string>
@@ -201,7 +192,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Капіяваць у мае кантакты"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Дадаць да Маіх кантактаў"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Каталог <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"Карыстальніцкі"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Налады"</string>
     <string name="menu_settings" msgid="377929915873428211">"Налады"</string>
     <string name="menu_help" msgid="1680178646764069976">"Даведка і водгукі"</string>
@@ -218,15 +208,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Стварыць новы кантакт"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Дадаць уліковы запіс"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Імпартаваць кантакты"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"Стварыць новую групу"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"Стварыць новую групу"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> група</item>
-      <item quantity="few"><xliff:g id="COUNT">%0$d</xliff:g> групы</item>
-      <item quantity="many"><xliff:g id="COUNT">%0$d</xliff:g> груп</item>
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> групы</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Выдаліць групу \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Кантакты не будуць выдалены.)"</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"Стварыць новую метку"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"Стварыць новую..."</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"Выдаліць метку \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Самі кантакты не будуць выдалены.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> чалавек з <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="few"><xliff:g id="COUNT_2">%1$d</xliff:g> чалавекі з <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
@@ -249,8 +233,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Працягнуць рэдагаванне"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Наладзіць мой профіль"</string>
-    <string name="enter_contact_name" msgid="1738391320566349924">"Тып імя чалавека"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"Назва групы"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"Назва меткі"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мой лакальны профіль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мой профіль у <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Адлюстраванне ўсіх кантактаў"</string>
@@ -272,7 +255,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"Апошнія"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Інфармацыя"</string>
     <string name="send_message" msgid="8938418965550543196">"Адправiць паведамленне"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"Стварэнне асабістай копіі…"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Стварэнне асабістай копіі..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Учора"</string>
     <string name="tomorrow" msgid="6241969467795308581">"Заўтра"</string>
     <string name="today" msgid="8041090779381781781">"Сёння"</string>
@@ -352,7 +335,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Фота з уліковага запісу <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>пазначана"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Фота з невядомага ўліковага запісу не пазначана"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Пазначана фота з невядомага ўліковага запісу"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"Спіс кантактаў абнаўляецца, каб адлюстраваць змяненне мовы.\n\nПачакайце..."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"Спіс кантактаў абнаўляецца, каб адлюстраваць змяненне мовы.\n\nПачакайце..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Заблакіраваныя нумары"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"Знайсці дублікаты"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Адкрыць высоўнае меню навігацыі"</string>

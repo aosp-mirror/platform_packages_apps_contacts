@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Detail kontak"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Edit kontak"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Buat kontak"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Edit grup"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Buat grup"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"Edit label"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Tentang"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Pembaruan"</string>
     <string name="searchHint" msgid="8482945356247760701">"Telusuri kontak"</string>
@@ -56,7 +55,7 @@
     <string name="menu_editGroup" msgid="5062005185370983720">"Edit"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Hapus"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Tambahkan Kenalan"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Buat baru..."</string>
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Buat baru…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Batalkan tautannya menjadi beberapa kontak?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Batalkan tautan"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Ingin menyimpan perubahan yang sudah dilakukan dan membatalkan tautan dengan kontak ini menjadi beberapa kontak?"</string>
@@ -96,10 +95,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ditambahkan ke layar Utama."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Buat kontak baru"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Buat kontak baru"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"Organisasi"</item>
-    <item msgid="7196592230748086755">"Catatan"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Tidak ada gambar yang tersedia pada tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Tidak ada gambar pada ponsel."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto kontak"</string>
@@ -107,15 +102,12 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Kirim panggilan ke kotak pesan secara langsung"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Hapus foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"Tidak ada kontak"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontak</item>
       <item quantity="one">1 kontak</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"Tidak ada grup."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Untuk membuat grup, Anda memerlukan sebuah akun."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"Tidak ada orang dalam grup ini."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Untuk menambah beberapa orang, edit grup tersebut."</string>
+    <string name="noGroups" msgid="4607906327968232225">"Tidak ada label."</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"Tidak ada orang dengan label ini."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontak disimpan"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontak dibatalkan tautannya"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Tidak dapat menyimpan perubahan kontak."</string>
@@ -123,8 +115,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Tidak dapat menautkan kontak."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Kesalahan saat menyimpan kontak."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Tidak dapat menyimpan perubahan foto kontak."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"Grup disimpan."</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Tidak dapat menyimpan perubahan grup."</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"Label disimpan"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"Tidak dapat menyimpan perubahan label."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontak dengan nomor telepon</item>
       <item quantity="one">1 kontak dengan nomor telepon</item>
@@ -156,7 +148,7 @@
     <string name="menu_share" msgid="943789700636542260">"Bagikan"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Tambahkan ke kontak"</string>
     <string name="share_via" msgid="563121028023030093">"Bagikan kontak melalui"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"Buat grup dalam akun"</string>
+    <string name="dialog_new_group_account" msgid="6229422022442236548">"Buat label dalam akun"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Obrolan suara"</string>
     <string name="video_chat" msgid="1872255818640336072">"Obrolan video"</string>
     <string name="connections" msgid="8098440723172028350">"Hubungan"</string>
@@ -167,7 +159,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"Akun <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"Tidak dapat diedit pada perangkat ini."</string>
     <string name="take_photo" msgid="7496128293167402354">"Ambil foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ambil foto baru"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Pilih foto"</string>
@@ -181,7 +172,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Tambah baru"</string>
     <string name="add_organization" msgid="7311893231158291197">"Tambahkan organisasi"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Tanggal"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Nama grup"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"Nama label"</string>
     <string name="change_photo" msgid="8530597935483526383">"Ganti"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Foto utama"</string>
     <string name="description_star" msgid="2605854427360036550">"favorit"</string>
@@ -191,7 +182,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Salin ke Kontak Saya"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Tambahkan ke Kontak Saya"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Direktori <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"Khusus"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Setelan"</string>
     <string name="menu_settings" msgid="377929915873428211">"Setelan"</string>
     <string name="menu_help" msgid="1680178646764069976">"Bantuan &amp; masukan"</string>
@@ -208,13 +198,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Buat kontak baru"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Tambahkan akun"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Impor kontak"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"Buat grup baru"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"Buat grup baru"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grup</item>
-      <item quantity="one">1 grup</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Menghapus grup \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Kontak itu sendiri tidak akan dihapus.)"</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"Buat label baru"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"Buat baru…"</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"Hapus label \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Kontak tidak akan dihapus.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> orang dari <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> orang dari <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
@@ -233,8 +219,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Simpan pengeditan"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Siapkan profil saya"</string>
-    <string name="enter_contact_name" msgid="1738391320566349924">"Ketik nama seseorang"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"Nama grup"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"Nama label"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Profil lokal saya"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> saya"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Menampilkan semua kontak"</string>
@@ -256,7 +241,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"Terbaru"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Tentang"</string>
     <string name="send_message" msgid="8938418965550543196">"Kirim pesan"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"Membuat salinan pribadi..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Membuat salinan pribadi..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Kemarin"</string>
     <string name="tomorrow" msgid="6241969467795308581">"Besok"</string>
     <string name="today" msgid="8041090779381781781">"Hari ini"</string>
@@ -328,7 +313,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Foto dari <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>dicentang"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto dari akun tak dikenal tidak dicentang"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto dari akun tak dikenal dicentang"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"Daftar kontak sedang diperbarui untuk mencerminkan perubahan bahasa.\n\nHarap tunggu..."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"Daftar kontak sedang diperbarui untuk menerapkan perubahan bahasa.\n\nTunggu…"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Nomor yang diblokir"</string>
     <string name="menu_duplicates" msgid="4440351599741996317">"Temukan duplikat"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Buka panel samping navigasi"</string>
