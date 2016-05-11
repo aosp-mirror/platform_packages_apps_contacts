@@ -63,6 +63,7 @@ import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.compat.BlockedNumberContractCompat;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -256,6 +257,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate finish");
         }
         getWindow().setBackgroundDrawable(null);
+        if (CompatUtils.isLollipopCompatible()) {
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
     }
 
     @Override
