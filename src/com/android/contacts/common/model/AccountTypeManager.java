@@ -259,18 +259,18 @@ class AccountTypeManagerImpl extends AccountTypeManager
             } else if (a.name == null || a.type == null) {
                 return 1;
             } else {
-                int diff = a.name.compareTo(b.name);
+                int diff = a.name.compareToIgnoreCase(b.name);
                 if (diff != 0) {
                     return diff;
                 }
-                diff = a.type.compareTo(b.type);
+                diff = a.type.compareToIgnoreCase(b.type);
                 if (diff != 0) {
                     return diff;
                 }
 
                 // Accounts without data sets get sorted before those that have them.
                 if (a.dataSet != null) {
-                    return b.dataSet == null ? 1 : a.dataSet.compareTo(b.dataSet);
+                    return b.dataSet == null ? 1 : a.dataSet.compareToIgnoreCase(b.dataSet);
                 } else {
                     return -1;
                 }
