@@ -58,6 +58,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.contacts.AppCompatContactsActivity;
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
@@ -88,8 +89,6 @@ import com.android.contacts.interactions.AccountFiltersFragment.AccountFiltersLi
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiContactDeleteListener;
-import com.android.contacts.interactions.JoinContactsDialogFragment;
-import com.android.contacts.interactions.JoinContactsDialogFragment.JoinContactsListener;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
@@ -122,7 +121,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         GroupsListener,
         ProviderStatusListener,
         MultiContactDeleteListener,
-        JoinContactsListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "PeopleActivity";
@@ -1306,11 +1304,16 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     private void joinSelectedContacts() {
-        JoinContactsDialogFragment.start(this, mAllFragment.getSelectedContactIds());
-    }
+        final Long[] contactIdsArray = mAllFragment.getSelectedContactIds().toArray(
+                new Long[mAllFragment.getSelectedContactIds().size()]);
+        final long[] contactIdsArray2 = new long[contactIdsArray.length];
+        for (int i = 0; i < contactIdsArray.length; i++) {
+            contactIdsArray2[i] = contactIdsArray[i];
+        }
+        final Intent intent = ContactSaveService.createJoinSeveralContactsIntent(this,
+                contactIdsArray2);
+        this.startService(intent);
 
-    @Override
-    public void onContactsJoined() {
         mActionBarAdapter.setSelectionMode(false);
     }
 
@@ -1442,8 +1445,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                             Toast.LENGTH_SHORT).show();
                 }
                 break;
-        default:
-            Log.wtf(TAG, "Unexpected onClick event from " + view);
+            default:
+                Log.wtf(TAG, "Unexpected onClick event from " + view);
         }
     }
 

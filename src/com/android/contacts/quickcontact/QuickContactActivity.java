@@ -157,8 +157,6 @@ import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactInteraction;
-import com.android.contacts.interactions.JoinContactsDialogFragment;
-import com.android.contacts.interactions.JoinContactsDialogFragment.JoinContactsListener;
 import com.android.contacts.interactions.SmsInteractionsLoader;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.Entry;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.EntryContextMenuInfo;
@@ -197,7 +195,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * {@link Intent#getSourceBounds()}.
  */
 public class QuickContactActivity extends ContactsActivity
-        implements AggregationSuggestionEngine.Listener, JoinContactsListener {
+        implements AggregationSuggestionEngine.Listener {
 
     /**
      * QuickContacts immediately takes up the full screen. All possible information is shown.
@@ -650,15 +648,21 @@ public class QuickContactActivity extends ContactsActivity
                 if (!mSelectedAggregationIds.contains(mContactData.getId())) {
                     mSelectedAggregationIds.add(mContactData.getId());
                 }
-                JoinContactsDialogFragment.start(
-                        QuickContactActivity.this, mSelectedAggregationIds);
+
+                final Long[] contactIdsArray = mSelectedAggregationIds.toArray(
+                        new Long[mSelectedAggregationIds.size()]);
+                final long[] contactIdsArray2 = new long[contactIdsArray.length];
+                for (int i = 0; i < contactIdsArray.length; i++) {
+                    contactIdsArray2[i] = contactIdsArray[i];
+                }
+
+                final Intent intent = ContactSaveService.createJoinSeveralContactsIntent(
+                        QuickContactActivity.this, contactIdsArray2);
+                QuickContactActivity.this.startService(intent);
+
+                disableLinkButton();
             }
         });
-    }
-
-    @Override
-    public void onContactsJoined() {
-        disableLinkButton();
     }
 
     private void disableLinkButton() {

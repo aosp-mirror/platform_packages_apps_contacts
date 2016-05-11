@@ -207,15 +207,6 @@
     <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. [CHAR LIMIT=NONE]-->
     <string name="readOnlyContactDeleteConfirmation">The contact to be deleted has details from multiple accounts. Details from read-only accounts will be hidden, not deleted.</string>
 
-    <!-- Warning dialog. Shown if user selects a single contact to link. [CHAR LIMIT=NONE]  -->
-    <string name="batch_link_single_contact_warning">You need at least two contacts selected to perform a link.</string>
-
-    <!-- Confirmation dialog. Shown after user selects to link contacts. [CHAR LIMIT=NONE]  -->
-    <string name="batch_link_confirmation">Link selected contacts?</string>
-
-    <!-- Positive button text from confirmation dialog. Shown after user selects to link contacts. [CHAR LIMIT=40]  -->
-    <string name="batch_link_confirmation_positive_button">Link</string>
-
     <!-- Confirmation dialog. Shown after user selects to delete one writable contact [CHAR LIMIT=NONE]  -->
     <string name="single_delete_confirmation">Delete this contact?</string>
 
