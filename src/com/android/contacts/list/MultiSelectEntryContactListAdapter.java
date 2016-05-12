@@ -115,13 +115,12 @@ public class MultiSelectEntryContactListAdapter extends DefaultContactListAdapte
 
     private void bindCheckBox(ContactListItemView view, Cursor cursor, int position,
             boolean isLocalDirectory) {
-        // Disable clicking on the ME profile and all contacts from remote directories
-        // when showing check boxes. We do this by telling the view to handle clicking itself.
-        view.setClickable((position == 0 && hasProfile() || !isLocalDirectory)
-                && mDisplayCheckBoxes);
+        // Disable clicking on all contacts from remote directories when showing check boxes. We do
+        // this by telling the view to handle clicking itself.
+        view.setClickable(!isLocalDirectory && mDisplayCheckBoxes);
         // Only show checkboxes if mDisplayCheckBoxes is enabled. Also, never show the
-        // checkbox for the Me profile entry and other directory contacts except local directory.
-        if (position == 0 && hasProfile() || !mDisplayCheckBoxes || !isLocalDirectory) {
+        // checkbox for other directory contacts except local directory.
+        if (!mDisplayCheckBoxes || !isLocalDirectory) {
             view.hideCheckBox();
             return;
         }

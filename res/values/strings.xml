@@ -618,10 +618,6 @@
         <xliff:g id="call_type" example="Friends">%1$s</xliff:g>  <xliff:g id="call_short_date" example="Friends">%2$s</xliff:g>
     </string>
 
-    <!-- Text displayed in place of the display name for the contact that represents the user's
-      personal profile entry [CHAR LIMIT=64] -->
-    <string name="profile_display_name">Set up my profile</string>
-
     <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
     <string name="enter_contact_name">Type person\'s name</string>
 

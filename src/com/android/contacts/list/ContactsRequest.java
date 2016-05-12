@@ -85,7 +85,6 @@ public class ContactsRequest {
     private CharSequence mTitle;
     private boolean mSearchMode;
     private String mQueryString;
-    private boolean mIncludeProfile;
     private boolean mIncludeFavorites;
     private boolean mLegacyCompatibilityMode;
     private boolean mDirectorySearchEnabled = true;
@@ -98,7 +97,6 @@ public class ContactsRequest {
                 + " mTitle=" + mTitle
                 + " mSearchMode=" + mSearchMode
                 + " mQueryString=" + mQueryString
-                + " mIncludeProfile=" + mIncludeProfile
                 + " mIncludeFavorites=" + mIncludeFavorites
                 + " mLegacyCompatibilityMode=" + mLegacyCompatibilityMode
                 + " mDirectorySearchEnabled=" + mDirectorySearchEnabled
@@ -144,14 +142,6 @@ public class ContactsRequest {
 
     public void setQueryString(String string) {
         mQueryString = string;
-    }
-
-    public boolean shouldIncludeProfile() {
-        return mIncludeProfile;
-    }
-
-    public void setIncludeProfile(boolean includeProfile) {
-        mIncludeProfile = includeProfile;
     }
 
     public boolean shouldIncludeFavorites() {
