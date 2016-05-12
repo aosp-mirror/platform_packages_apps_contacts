@@ -462,16 +462,15 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         if (shouldIncludeFavorites() && skipProfile) {
             if (cursor.getInt(ContactQuery.CONTACT_STARRED) == 1) {
                 final Set<Integer> favorites = new HashSet<>();
-                int count = 1;
                 favorites.add(cursor.getInt(ContactQuery.CONTACT_ID));
                 while (cursor != null && cursor.moveToNext()) {
                     if (cursor.getInt(ContactQuery.CONTACT_STARRED) != 1
                             || favorites.contains(cursor.getInt(ContactQuery.CONTACT_ID))) {
                         break;
                     }
-                    count++;
+                    favorites.add(cursor.getInt(ContactQuery.CONTACT_ID));
                 }
-                setFavoritesSectionHeader(count);
+                setFavoritesSectionHeader(favorites.size());
             }
         }
 
