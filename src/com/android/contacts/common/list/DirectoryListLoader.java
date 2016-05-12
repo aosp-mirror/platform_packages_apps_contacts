@@ -45,7 +45,6 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
     public static final int SEARCH_MODE_DATA_SHORTCUT = 3;
 
     private static final class DirectoryQuery {
-        public static final Uri URI = DirectoryCompat.getContentUri();
         public static final String ORDER_BY = Directory._ID;
 
         public static final String[] PROJECTION = {
@@ -61,6 +60,14 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
         public static final int TYPE_RESOURCE_ID = 2;
         public static final int DISPLAY_NAME = 3;
         public static final int PHOTO_SUPPORT = 4;
+
+        public static Uri getDirectoryUri(int mode) {
+            if (mode == SEARCH_MODE_DATA_SHORTCUT || mode == SEARCH_MODE_CONTACT_SHORTCUT) {
+                return Directory.CONTENT_URI;
+            } else {
+                return DirectoryCompat.getContentUri();
+            }
+        }
     }
 
     // This is a virtual column created for a MatrixCursor.
@@ -104,7 +111,8 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
     @Override
     protected void onStartLoading() {
         getContext().getContentResolver().
-                registerContentObserver(DirectoryQuery.URI, false, mObserver);
+                registerContentObserver(DirectoryQuery.getDirectoryUri(mDirectorySearchMode),
+                        false, mObserver);
         forceLoad();
     }
 
@@ -144,7 +152,8 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
         }
         Cursor cursor = null;
         try {
-            cursor = context.getContentResolver().query(DirectoryQuery.URI,
+            cursor = context.getContentResolver().query(
+                    DirectoryQuery.getDirectoryUri(mDirectorySearchMode),
                     DirectoryQuery.PROJECTION, selection, null, DirectoryQuery.ORDER_BY);
 
             if (cursor == null) {
