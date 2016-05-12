@@ -43,7 +43,7 @@
         android:layout_alignParentTop="true"
         android:paddingTop="5dp"
         android:layout_toEndOf="@+id/icon"
-        android:layout_toStartOf="@+id/icon_alternate"
+        android:layout_toStartOf="@+id/third_icon"
         android:textColor="@color/quickcontact_entry_header_text_color"
         android:textAlignment="viewStart"
         android:layout_marginBottom="@dimen/expanding_entry_card_header_margin_bottom" />
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/header"
         android:layout_toEndOf="@+id/icon_sub_header"
-        android:layout_toStartOf="@+id/icon_alternate"
+        android:layout_toStartOf="@+id/third_icon"
         android:textAlignment="viewStart"
         android:textColor="@color/quickcontact_entry_sub_header_text_color" />
 
@@ -73,7 +73,7 @@
         android:id="@+id/text"
         android:layout_below="@+id/sub_header"
         android:layout_toEndOf="@+id/icon_text"
-        android:layout_toStartOf="@+id/icon_alternate"
+        android:layout_toStartOf="@+id/third_icon"
         android:textAlignment="viewStart"
         android:textColor="@color/quickcontact_entry_sub_header_text_color" />
 

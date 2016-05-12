@@ -78,7 +78,7 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
 
         mLandscapePhotoRatio = getTypedFloat(R.dimen.quickcontact_landscape_photo_ratio);
         mPortraitPhotoRatio = getTypedFloat(R.dimen.editor_portrait_photo_ratio);
-        mIsTwoPanel = getResources().getBoolean(R.bool.quickcontact_two_panel);
+        mIsTwoPanel = getResources().getBoolean(R.bool.contacteditor_two_panel);
 
         final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(
                 new int[] { android.R.attr.actionBarSize });
