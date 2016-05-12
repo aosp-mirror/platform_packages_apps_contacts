@@ -66,7 +66,7 @@ import android.widget.Toolbar;
 public class MultiShrinkScroller extends FrameLayout {
 
     /**
-     * 1000 pixels per millisecond. Ie, 1 pixel per second.
+     * 1000 pixels per second. Ie, 1 pixel per millisecond.
      */
     private static final int PIXELS_PER_SECOND = 1000;
 
@@ -135,6 +135,8 @@ public class MultiShrinkScroller extends FrameLayout {
      */
     private boolean mIsOpenContactSquare;
     private int mMaximumHeaderTextSize;
+    private int mMaximumPhoneticNameViewHeight;
+    private int mMaximumFullNameViewHeight;
     private int mCollapsedTitleBottomMargin;
     private int mCollapsedTitleStartMargin;
     private int mMinimumPortraitHeaderHeight;
@@ -287,7 +289,8 @@ public class MultiShrinkScroller extends FrameLayout {
     /**
      * This method must be called inside the Activity's OnCreate.
      */
-    public void initialize(MultiShrinkScrollerListener listener, boolean isOpenContactSquare) {
+    public void initialize(MultiShrinkScrollerListener listener, boolean isOpenContactSquare,
+                final int maximumHeaderTextSize, final boolean shouldUpdateNameViewHeight) {
         mScrollView = (ScrollView) findViewById(R.id.content_scroller);
         mScrollViewChild = findViewById(R.id.card_container);
         mToolbar = findViewById(R.id.toolbar_parent);
@@ -346,7 +349,20 @@ public class MultiShrinkScroller extends FrameLayout {
                 mMaximumPortraitHeaderHeight = mIsTwoPanel ? getHeight()
                         : mPhotoViewContainer.getWidth();
                 setHeaderHeight(getMaximumScrollableHeaderHeight());
-                mMaximumHeaderTextSize = mTitleAndPhoneticNameView.getHeight();
+                if (shouldUpdateNameViewHeight) {
+                    mMaximumHeaderTextSize = mTitleAndPhoneticNameView.getHeight();
+                    mMaximumFullNameViewHeight = mLargeTextView.getHeight();
+                    // We cannot rely on mPhoneticNameView.getHeight() since it could be 0
+                    final int phoneticNameSize = getResources().getDimensionPixelSize(
+                            R.dimen.quickcontact_maximum_phonetic_name_size);
+                    final int fullNameSize = getResources().getDimensionPixelSize(
+                            R.dimen.quickcontact_maximum_title_size);
+                    mMaximumPhoneticNameViewHeight =
+                            mMaximumFullNameViewHeight * phoneticNameSize / fullNameSize;
+                }
+                if (maximumHeaderTextSize > 0) {
+                    mMaximumHeaderTextSize = maximumHeaderTextSize;
+                }
                 if (mIsTwoPanel) {
                     mMaximumHeaderHeight = getHeight();
                     mMinimumHeaderHeight = mMaximumHeaderHeight;
@@ -393,7 +409,7 @@ public class MultiShrinkScroller extends FrameLayout {
         final float TITLE_GRADIENT_SIZE_COEFFICIENT = 1.25f;
         final FrameLayout.LayoutParams largeTextLayoutParms
                 = (FrameLayout.LayoutParams) mTitleAndPhoneticNameView.getLayoutParams();
-        titleGradientLayoutParams.height = (int) ((mTitleAndPhoneticNameView.getHeight()
+        titleGradientLayoutParams.height = (int) ((mMaximumHeaderTextSize
                 + largeTextLayoutParms.bottomMargin) * TITLE_GRADIENT_SIZE_COEFFICIENT);
         mTitleGradientView.setLayoutParams(titleGradientLayoutParams);
     }
@@ -418,7 +434,9 @@ public class MultiShrinkScroller extends FrameLayout {
         // in case it just changed from Visibility=GONE.
         mPhoneticNameView.setVisibility(View.VISIBLE);
         // TODO try not using initialize() to refresh phonetic name view: b/27410518
-        initialize(mListener, mIsOpenContactSquare);
+        initialize(mListener, mIsOpenContactSquare, /* maximumHeaderTextSize */
+                (mMaximumFullNameViewHeight + mMaximumPhoneticNameViewHeight),
+                /* shouldUpdateNameViewHeight */ false);
     }
 
     public void setPhoneticNameGone() {
@@ -429,7 +447,9 @@ public class MultiShrinkScroller extends FrameLayout {
         mPhoneticNameView.setVisibility(View.GONE);
         // Initialize to make Visibility work.
         // TODO try not using initialize() to refresh phonetic name view: b/27410518
-        initialize(mListener, mIsOpenContactSquare);
+        initialize(mListener, mIsOpenContactSquare,
+                /* maximumHeaderTextSize */ mMaximumFullNameViewHeight,
+                /* shouldUpdateNameViewHeight */ false);
     }
 
     @Override
@@ -1039,7 +1059,7 @@ public class MultiShrinkScroller extends FrameLayout {
         } else {
             mTitleAndPhoneticNameView.setPivotX(0);
         }
-        mTitleAndPhoneticNameView.setPivotY(mTitleAndPhoneticNameView.getHeight() / 2);
+        mTitleAndPhoneticNameView.setPivotY(mMaximumHeaderTextSize / 2);
 
         final int toolbarHeight = mToolbar.getLayoutParams().height;
         mPhotoTouchInterceptOverlay.setClickable(toolbarHeight != mMaximumHeaderHeight);
@@ -1085,7 +1105,7 @@ public class MultiShrinkScroller extends FrameLayout {
         // Padding needed on the mTitleAndPhoneticNameView so that it has the same amount of
         // padding as the target rectangle.
         mCollapsedTitleBottomMargin =
-                desiredTopToCenter - mTitleAndPhoneticNameView.getHeight() / 2;
+                desiredTopToCenter - mMaximumHeaderTextSize / 2;
     }
 
     /**
