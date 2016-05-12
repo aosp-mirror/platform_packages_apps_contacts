@@ -398,7 +398,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
         mAllFragment.setCheckBoxListListener(new CheckBoxListListener());
 
-        if (areGroupWritableAccountsAvailable()) {
+        if (areGroupWritableAccountsAvailable() && mGroupsFragment != null) {
             mGroupsFragment.setListener(this);
         }
 
