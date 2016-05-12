@@ -42,7 +42,7 @@ import java.util.Set;
 /**
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
  */
-public abstract class ContactListAdapter extends ContactEntryListAdapter {
+public abstract class ContactListAdapter extends MultiSelectEntryContactListAdapter {
 
     protected static class ContactQuery {
         private static final String[] CONTACT_PROJECTION_PRIMARY = new String[] {
@@ -171,7 +171,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
     private ContactListItemView.PhotoPosition mPhotoPosition;
 
     public ContactListAdapter(Context context) {
-        super(context);
+        super(context, ContactQuery.CONTACT_ID);
 
         mUnknownNameText = context.getText(R.string.missing_name);
     }
