@@ -20,12 +20,12 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.commonbind.ObjectFactory;
 
 import java.util.List;
@@ -35,13 +35,6 @@ import java.util.List;
  */
 public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
 
-    private static final String KEY_LIST_FORMAT = "list_format";
-    private static final String KEY_SORT_ORDER = "sortOrder";
-    private static final String KEY_DISPLAY_ORDER = "displayOrder";
-    private static final String KEY_ABOUT = "about";
-    private static final String KEY_MY_INFO = "my_info";
-    private static final String KEY_CONTACTS_METADATA = "contacts_metadata";
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +42,10 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preference_display_options);
 
-        addLycheePreferences();
+        removeUnsupportedPreferences();
+        addExtraPreferences();
 
-        final Preference aboutPreference = findPreference(KEY_ABOUT);
+        final Preference aboutPreference = findPreference("about");
         aboutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -59,30 +53,18 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
                 return true;
             }
         });
-
-        removeUnsupportedPreferences();
     }
 
     private void removeUnsupportedPreferences() {
-        final Resources resources = getResources();
-
-        // List format
-        final PreferenceCategory listFormatCategory =
-                (PreferenceCategory) findPreference(KEY_LIST_FORMAT);
-
         // Disable sort order for CJK locales where it is not supported
-        boolean isSortOrderRemoved = false;
+        final Resources resources = getResources();
         if (!resources.getBoolean(R.bool.config_sort_order_user_changeable)) {
-            isSortOrderRemoved = true;
-            listFormatCategory.removePreference(findPreference(KEY_SORT_ORDER));
+            getPreferenceScreen().removePreference(findPreference("sortOrder"));
         }
 
         // Disable display order for CJK locales as well
         if (!resources.getBoolean(R.bool.config_display_order_user_changeable)) {
-            listFormatCategory.removePreference(findPreference(KEY_DISPLAY_ORDER));
-            if (isSortOrderRemoved) {
-                getPreferenceScreen().removePreference(listFormatCategory);
-            }
+            getPreferenceScreen().removePreference(findPreference("displayOrder"));
         }
 
         // Remove the "Default account" setting if there aren't any writable accounts
@@ -90,22 +72,17 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(
                 /* contactWritableOnly */ true);
         if (accounts.isEmpty()) {
-            getPreferenceScreen().removePreference(
-                    (PreferenceCategory) findPreference(KEY_MY_INFO));
+            getPreferenceScreen().removePreference(findPreference("accounts"));
         }
     }
 
-    private void addLycheePreferences() {
+    private void addExtraPreferences() {
         final PreferenceManager preferenceManager = ObjectFactory.getPreferenceManager(
                 getContext());
-        final PreferenceCategory metadataCategory =
-                (PreferenceCategory) findPreference(KEY_CONTACTS_METADATA);
-        if (preferenceManager != null && !preferenceManager.getPreferences().isEmpty()) {
+        if (preferenceManager != null) {
             for (Preference preference : preferenceManager.getPreferences()) {
-                metadataCategory.addPreference(preference);
+                getPreferenceScreen().addPreference(preference);
             }
-        } else {
-            getPreferenceScreen().removePreference(metadataCategory);
         }
     }
 
