@@ -18,11 +18,9 @@ package com.android.contacts.common.list;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
-import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.Contacts;
 
 import com.google.common.collect.Lists;
@@ -30,12 +28,10 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
- * A loader for use in the default contact list, which will also query for the user's profile
+ * A loader for use in the default contact list, which will also query for favorite contacts
  * if configured to do so.
  */
-public class ProfileAndContactsLoader extends CursorLoader {
-
-    private boolean mLoadProfile;
+public class FavoritesAndContactsLoader extends CursorLoader {
 
     private boolean mLoadFavorites;
 
@@ -47,13 +43,8 @@ public class ProfileAndContactsLoader extends CursorLoader {
     private String[] mExtraSelectionArgs;
     private boolean mMergeExtraContactsAfterPrimary;
 
-    public ProfileAndContactsLoader(Context context) {
+    public FavoritesAndContactsLoader(Context context) {
         super(context);
-    }
-
-    /** Whether to load the profile and merge results in before any other results. */
-    public void setLoadProfile(boolean flag) {
-        mLoadProfile = flag;
     }
 
     /** Whether to load favorites and merge results in before any other results. */
@@ -89,11 +80,7 @@ public class ProfileAndContactsLoader extends CursorLoader {
 
     @Override
     public Cursor loadInBackground() {
-        // First load the profile, if enabled.
         List<Cursor> cursors = Lists.newArrayList();
-        if (mLoadProfile) {
-            cursors.add(loadProfile());
-        }
         if (mLoadFavorites) {
             cursors.add(loadFavoritesContacts());
         }
@@ -120,33 +107,6 @@ public class ProfileAndContactsLoader extends CursorLoader {
                 return contactsCursor == null ? new Bundle() : contactsCursor.getExtras();
             }
         };
-    }
-
-    /**
-     * Loads the profile into a MatrixCursor. On failure returns null, which
-     * matches the behavior of CursorLoader.loadInBackground().
-     *
-     * @return MatrixCursor containing profile or null on query failure.
-     */
-    private MatrixCursor loadProfile() {
-        Cursor cursor = getContext().getContentResolver().query(Profile.CONTENT_URI, mProjection,
-                null, null, null);
-        if (cursor == null) {
-            return null;
-        }
-        try {
-            MatrixCursor matrix = new MatrixCursor(mProjection);
-            Object[] row = new Object[mProjection.length];
-            while (cursor.moveToNext()) {
-                for (int i = 0; i < row.length; i++) {
-                    row[i] = cursor.getString(i);
-                }
-                matrix.addRow(row);
-            }
-            return matrix;
-        } finally {
-            cursor.close();
-        }
     }
 
     private Cursor loadExtraContacts() {
