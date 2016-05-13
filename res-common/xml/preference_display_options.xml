@@ -15,43 +15,27 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory
-        android:key="my_info"
-        android:title="@string/settings_my_info_title">
-        <com.android.contacts.common.preference.DefaultAccountPreference
-            android:icon="@null"
-            android:key="accounts"
-            android:title="@string/default_editor_account"
-            android:dialogTitle="@string/default_editor_account" />
-    </PreferenceCategory>
+    <com.android.contacts.common.preference.SortOrderPreference
+        android:icon="@null"
+        android:key="sortOrder"
+        android:title="@string/display_options_sort_list_by"
+        android:dialogTitle="@string/display_options_sort_list_by" />
 
-    <PreferenceCategory
-        android:key="list_format"
-        android:title="@string/settings_list_format_title">
-        <com.android.contacts.common.preference.SortOrderPreference
-            android:icon="@null"
-            android:key="sortOrder"
-            android:title="@string/display_options_sort_list_by"
-            android:dialogTitle="@string/display_options_sort_list_by" />
+    <com.android.contacts.common.preference.DisplayOrderPreference
+        android:icon="@null"
+        android:key="displayOrder"
+        android:title="@string/display_options_view_names_as"
+        android:dialogTitle="@string/display_options_view_names_as" />
 
-        <com.android.contacts.common.preference.DisplayOrderPreference
-            android:icon="@null"
-            android:key="displayOrder"
-            android:title="@string/display_options_view_names_as"
-            android:dialogTitle="@string/display_options_view_names_as" />
-    </PreferenceCategory>
+    <com.android.contacts.common.preference.DefaultAccountPreference
+        android:icon="@null"
+        android:key="accounts"
+        android:title="@string/default_editor_account"
+        android:dialogTitle="@string/default_editor_account" />
 
-    <PreferenceCategory
-        android:key="contacts_metadata"
-        android:title="@string/settings_metadata_title">
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/settings_about_title">
-        <Preference
-            android:icon="@null"
-            android:key="about"
-            android:title="@string/settings_about"
-            android:order="@integer/about_contacts_order_number"/>
-    </PreferenceCategory>
-
+    <Preference
+        android:icon="@null"
+        android:key="about"
+        android:title="@string/setting_about"
+        android:order="@integer/about_contacts_order_number"/>
 </PreferenceScreen>
