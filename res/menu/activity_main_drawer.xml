@@ -41,14 +41,6 @@
         </item>
     </group>
 
-    <group android:id="@+id/create_groups">
-        <item
-            android:id="@+id/nav_create_groups"
-            android:icon="@drawable/ic_menu_group_add"
-            android:title="@string/menu_new_group_action_bar"
-            android:visible="false"/>
-    </group>
-
     <group android:id="@+id/filters">
         <item
             android:id="@+id/nav_filters"

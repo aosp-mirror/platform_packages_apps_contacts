@@ -925,7 +925,11 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             }
         }
 
-        makeMenuItemVisible(menu, R.id.nav_create_groups, areGroupWritableAccountsAvailable());
+        // Create a menu item in the sub menu to add new groups
+        final MenuItem menuItem = subMenu.add(R.id.nav_groups_items, Menu.NONE, Menu.NONE,
+                getString(R.string.menu_new_group_action_bar));
+        menuItem.setIntent(GroupUtil.createAddGroupIntent(this));
+        menuItem.setIcon(R.drawable.ic_menu_group_add);
     }
 
     @Override
@@ -1247,8 +1251,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         } else if (id == R.id.nav_find_duplicates) {
             ImplicitIntentsUtil.startActivityInAppIfPossible(this,
                     Assistants.getDuplicatesActivityIntent(this));
-        } else if (id == R.id.nav_create_groups) {
-            ImplicitIntentsUtil.startActivityInApp(this, GroupUtil.createAddGroupIntent(this));
         } else if (item.getIntent() != null) {
             ImplicitIntentsUtil.startActivityInApp(this, item.getIntent());
         } else {
