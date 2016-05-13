@@ -135,7 +135,10 @@
     <string name="menu_editGroup">Edit</string>
 
     <!-- Menu item that deletes the currently selected label [CHAR LIMIT=30] -->
-    <string name="menu_deleteGroup">Delete</string>
+    <string name="menu_deleteGroup">Delete label</string>
+
+    <!-- Menu item to remove the currently selected contacts from the currently selected label. [CHAR LIMIT=60] -->
+    <string name="menu_removeFromGroup">Remove from label</string>
 
     <!-- Menu item (in the action bar) that creates a new contact [CHAR LIMIT=30] -->
     <string name="menu_new_contact_action_bar">Add Contact</string>

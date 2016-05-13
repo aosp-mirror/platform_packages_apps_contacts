@@ -39,6 +39,7 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
 
         private static final String[] PROJECTION_PRIMARY = new String[] {
                 Data.CONTACT_ID,
+                Data.RAW_CONTACT_ID,
                 Data.PHOTO_ID,
                 Data.LOOKUP_KEY,
                 Data.CONTACT_PRESENCE,
@@ -48,6 +49,7 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
 
         private static final String[] PROJECTION_ALTERNATIVE = new String[] {
                 Data.CONTACT_ID,
+                Data.RAW_CONTACT_ID,
                 Data.PHOTO_ID,
                 Data.LOOKUP_KEY,
                 Data.CONTACT_PRESENCE,
@@ -56,18 +58,19 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
         };
 
         public static final int CONTACT_ID                   = 0;
-        public static final int CONTACT_PHOTO_ID             = 1;
-        public static final int CONTACT_LOOKUP_KEY           = 2;
-        public static final int CONTACT_PRESENCE             = 3;
-        public static final int CONTACT_STATUS               = 4;
-        public static final int CONTACT_DISPLAY_NAME         = 5;
+        public static final int RAW_CONTACT_ID               = 1;
+        public static final int CONTACT_PHOTO_ID             = 2;
+        public static final int CONTACT_LOOKUP_KEY           = 3;
+        public static final int CONTACT_PRESENCE             = 4;
+        public static final int CONTACT_STATUS               = 5;
+        public static final int CONTACT_DISPLAY_NAME         = 6;
     }
 
     private final CharSequence mUnknownNameText;
     private long mGroupId;
 
     public GroupMembersListAdapter(Context context) {
-        super(context, GroupMembersQuery.CONTACT_ID);
+        super(context, GroupMembersQuery.RAW_CONTACT_ID);
         mUnknownNameText = context.getText(android.R.string.unknownName);
         setIndexedPartition(0);
     }
@@ -114,6 +117,13 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
     @Override
     public String getContactDisplayName(int position) {
         return ((Cursor) getItem(position)).getString(GroupMembersQuery.CONTACT_DISPLAY_NAME);
+    }
+
+    public Uri getContactUri(int position) {
+        final Cursor cursor = (Cursor) getItem(position);
+        final long contactId = cursor.getLong(GroupMembersQuery.CONTACT_ID);
+        final String lookupKey = cursor.getString(GroupMembersQuery.CONTACT_LOOKUP_KEY);
+        return Contacts.getLookupUri(contactId, lookupKey);
     }
 
     @Override

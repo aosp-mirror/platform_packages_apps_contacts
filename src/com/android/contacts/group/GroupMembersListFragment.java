@@ -18,6 +18,7 @@ package com.android.contacts.group;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -34,10 +35,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
-import com.android.contacts.common.list.ContactEntryListFragment;
+import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
@@ -270,10 +272,18 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         final MenuItem editMenu = menu.findItem(R.id.menu_edit_group);
-        editMenu.setVisible(isGroupEditable());
+        editMenu.setVisible(!isSelectionMode() && isGroupEditable());
 
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete_group);
-        deleteMenu.setVisible(isGroupDeletable());
+        deleteMenu.setVisible(!isSelectionMode() && isGroupDeletable());
+
+        final MenuItem removeFromGroupMenu = menu.findItem(R.id.menu_remove_from_group);
+        removeFromGroupMenu.setVisible(isSelectionMode());
+    }
+
+    private boolean isSelectionMode() {
+        final GroupMembersActivity activity = (GroupMembersActivity) getActivity();
+        return activity != null && activity.isSelectionMode();
     }
 
     private boolean isGroupEditable() {
@@ -304,8 +314,24 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
                         mGroupMetadata.groupName, /* endActivity */ true);
                 return true;
             }
+            case R.id.menu_remove_from_group: {
+                removeSelectedContacts();
+                return true;
+            }
         }
         return false;
+    }
+
+    private void removeSelectedContacts() {
+        final Activity activity = getActivity();
+        if (activity != null) {
+            final long[] rawContactsToRemove = getAdapter().getSelectedContactIdsArray();
+            final Intent intent = ContactSaveService.createGroupUpdateIntent(
+                    activity, mGroupMetadata.groupId, /* groupName */ null,
+                    /* rawContactsToAdd */ null, rawContactsToRemove, activity.getClass(),
+                    GroupMembersActivity.ACTION_SAVE_COMPLETED);
+            activity.startService(intent);
+        }
     }
 
     private void onGroupMetadataLoaded() {
@@ -368,6 +394,14 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
 
     @Override
     protected void onItemClick(int position, long id) {
+        final Uri uri = getAdapter().getContactUri(position);
+        if (uri == null) {
+            return;
+        }
+        if (getAdapter().isDisplayingCheckBoxes()) {
+            super.onItemClick(position, id);
+            return;
+        }
         if (mCallbacks != null) {
             final Uri contactLookupUri = getAdapter().getContactLookupUri(position);
             mCallbacks.onGroupMemberClicked(contactLookupUri);

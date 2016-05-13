@@ -14,13 +14,20 @@
      limitations under the License.
 -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:contacts="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/menu_edit_group"
+        android:icon="@drawable/ic_create_24dp"
         android:title="@string/menu_editGroup"
-        android:alphabeticShortcut="e" />
+        contacts:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_delete_group"
         android:title="@string/menu_deleteGroup" />
+
+    <item
+        android:id="@+id/menu_remove_from_group"
+        android:title="@string/menu_removeFromGroup" />
 </menu>

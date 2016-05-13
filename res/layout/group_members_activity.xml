@@ -19,4 +19,10 @@
     android:id="@+id/fragment_container"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent">
+
+    <include
+        layout="@layout/people_activity_toolbar"
+        android:id="@+id/toolbar_parent" />
+
+</LinearLayout>
