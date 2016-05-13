@@ -158,10 +158,6 @@
     <!-- The label in section header in the contact list for a local contacts [CHAR LIMIT=128] -->
     <string name="local_search_label">All contacts</string>
 
-    <!-- String describing the text on the header of the profile contact in the contacts list
-         This may be programatically capitalized. [CHAR LIMIT=20] -->
-    <string name="user_profile_contacts_list_header" msgid="9154761216179882405">Me</string>
-
     <!-- Title shown in the search result activity of contacts app while searching.  [CHAR LIMIT=20]
          (also in contacts) -->
     <string name="search_results_searching">Searching\u2026</string>
