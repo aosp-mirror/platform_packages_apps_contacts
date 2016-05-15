@@ -399,7 +399,13 @@
     <string name="share_via">Share contact via</string>
 
     <!-- Title for the disambiguation dialog that requests the user choose an account for the new label to be created under [CHAR LIMIT=NONE] -->
-    <string name="dialog_new_group_account">Create label under account</string>
+    <string name="dialog_new_group_account">Choose account</string>
+
+    <!-- Title for the create new label dialog. CHAR LIMIT=40] -->
+    <string name="create_group_dialog_title">Create label</string>
+
+    <!-- Button label to create a new label on the create new label dialog. [CHAR LIMIT=20] -->
+    <string name="create_group_dialog_button">Create</string>
 
     <!-- Generic action string for starting an audio chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
     <string name="audio_chat">Voice chat</string>
