@@ -17,19 +17,31 @@
 package com.android.contacts.common.preference;
 
 import android.app.ActionBar;
-import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.provider.ContactsContract.QuickContact;
+import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment.ProfileListener;
+import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment.ProfileQuery;
 
 /**
  * Contacts settings.
  */
-public final class ContactsPreferenceActivity extends PreferenceActivity {
+public final class ContactsPreferenceActivity extends PreferenceActivity implements
+        ProfileListener {
 
-    private static final String TAG_ABOUT_CONTACTS = "about_contacts";
+    private static final String TAG_ABOUT = "about_contacts";
+    private static final String TAG_DISPLAY_OPTIONS = "display_options";
+
+    private String mNewLocalProfileExtra;
+    private int mModeFullyExpanded;
+
+    public static final String EXTRA_NEW_LOCAL_PROFILE = "newLocalProfile";
+    public static final String EXTRA_MODE_FULLY_EXPANDED = "modeFullyExpanded";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,22 +52,32 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
         }
 
+        mNewLocalProfileExtra = getIntent().getStringExtra(EXTRA_NEW_LOCAL_PROFILE);
+        mModeFullyExpanded = getIntent().getIntExtra(EXTRA_MODE_FULLY_EXPANDED,
+                QuickContact.MODE_LARGE);
+
         if (savedInstanceState == null) {
+            final DisplayOptionsPreferenceFragment fragment = DisplayOptionsPreferenceFragment
+                    .newInstance(mNewLocalProfileExtra, mModeFullyExpanded);
+            fragment.setListener(this);
             getFragmentManager().beginTransaction()
-                    .replace(android.R.id.content, new DisplayOptionsPreferenceFragment())
+                    .replace(android.R.id.content, fragment, TAG_DISPLAY_OPTIONS)
                     .commit();
             setActivityTitle(R.string.activity_title_settings);
         } else {
-            final AboutPreferenceFragment fragment = (AboutPreferenceFragment) getFragmentManager()
-                    .findFragmentByTag(TAG_ABOUT_CONTACTS);
-            setActivityTitle(fragment == null ?
+            final AboutPreferenceFragment aboutFragment = (AboutPreferenceFragment)
+                    getFragmentManager().findFragmentByTag(TAG_ABOUT);
+            setActivityTitle(aboutFragment == null ?
                     R.string.activity_title_settings : R.string.setting_about);
+            final DisplayOptionsPreferenceFragment fragment = (DisplayOptionsPreferenceFragment)
+                    getFragmentManager().findFragmentByTag(TAG_DISPLAY_OPTIONS);
+            fragment.setListener(this);
         }
     }
 
     public void showAboutFragment() {
         getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new AboutPreferenceFragment(), TAG_ABOUT_CONTACTS)
+                .replace(android.R.id.content, AboutPreferenceFragment.newInstance(), TAG_ABOUT)
                 .addToBackStack(null)
                 .commit();
         setActivityTitle(R.string.setting_about);
@@ -75,6 +97,9 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             setActivityTitle(R.string.activity_title_settings);
             getFragmentManager().popBackStack();
+            final DisplayOptionsPreferenceFragment fragment = (DisplayOptionsPreferenceFragment)
+                    getFragmentManager().findFragmentByTag(TAG_DISPLAY_OPTIONS);
+            fragment.setListener(this);
         } else {
             super.onBackPressed();
         }
@@ -85,5 +110,23 @@ public final class ContactsPreferenceActivity extends PreferenceActivity {
         if (actionBar != null) {
             actionBar.setTitle(res);
         }
+    }
+
+    @Override
+    public void onProfileLoaded(Cursor cursor) {
+        boolean hasProfile = false;
+        String displayName = null;
+        long contactId = -1;
+        if (cursor != null && cursor.moveToFirst()) {
+            hasProfile = cursor.getInt(ProfileQuery.CONTACT_IS_USER_PROFILE) == 1;
+            displayName = cursor.getString(ProfileQuery.CONTACT_DISPLAY_NAME);
+            contactId = cursor.getLong(ProfileQuery.CONTACT_ID);
+        }
+        if (hasProfile && TextUtils.isEmpty(displayName)) {
+            displayName = getString(R.string.missing_name);
+        }
+        final DisplayOptionsPreferenceFragment fragment = (DisplayOptionsPreferenceFragment)
+                getFragmentManager().findFragmentByTag(TAG_DISPLAY_OPTIONS);
+        fragment.updateMyInfoPreference(hasProfile, displayName, contactId);
     }
 }
