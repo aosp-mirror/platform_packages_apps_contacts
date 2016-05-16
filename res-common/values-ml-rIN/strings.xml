@@ -94,7 +94,7 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"പേര്"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"വിളിപ്പേര്"</string>
     <string name="full_name" msgid="885420216812981202">"പേര്"</string>
-    <string name="name_given" msgid="4153709115654909377">"പേരിന്‍റെ ആദ്യഭാഗം"</string>
+    <string name="name_given" msgid="4153709115654909377">"ഫസ്റ്റ് നെയിം"</string>
     <string name="name_family" msgid="5317387657540738981">"പേരിന്റെ അവസാനഭാഗം"</string>
     <string name="name_prefix" msgid="8219879405071462309">"പേര് പ്രിഫിക്‌സ്"</string>
     <string name="name_middle" msgid="3951610314424632183">"പേരിന്റെ മധ്യഭാഗം"</string>
@@ -203,10 +203,10 @@
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ഇമ്പോർട്ടുചെയ്യുന്നു: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ഫയലിലേക്ക് എക്സ്പോർട്ട് ചെയ്യൂ"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ഇതുപ്രകാരം അടുക്കുക"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"പേരിന്‍റെ ആദ്യഭാഗം"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ഫസ്റ്റ് നെയിം"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"പേരിന്റെ അവസാനഭാഗം"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"പേരിന്റെ ഫോർമാറ്റ്"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"പേരിന്റെ ആദ്യഭാഗം ആദ്യം"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ഫസ്റ്റ് നെയിം ആദ്യം"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"പേരിന്റെ അവസാന ഭാഗം ആദ്യം"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"പുതിയ കോൺടാക്റ്റുകൾക്കായുള്ള ഡിഫോൾട്ട് അക്കൗണ്ട്"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"കോൺടാക്റ്റ് മെറ്റാഡാറ്റ സമന്വയിപ്പിക്കുക [ഡോഗ്‌ഫുഡ്]"</string>

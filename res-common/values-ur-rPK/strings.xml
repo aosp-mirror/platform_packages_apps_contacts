@@ -215,7 +215,7 @@
     <string name="settings_list_format_title" msgid="4863616397459998295">"فہرست کا فارمیٹ"</string>
     <string name="settings_about_title" msgid="2661603735818124823">"بارے میں"</string>
     <string name="settings_metadata_title" msgid="80278989223603428">"رابطوں کا میٹا ڈیٹا"</string>
-    <string name="settings_about" msgid="3291206829885886562">"رابطوں کے بارے میں"</string>
+    <string name="settings_about" msgid="3291206829885886562">"رابطے کے بارے میں"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"ترتیبات"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"مرئی رابطوں کا اشتراک کریں"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"مرئی رابطوں کا اشتراک کرنے میں ناکام ہو گیا۔"</string>

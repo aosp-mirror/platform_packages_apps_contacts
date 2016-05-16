@@ -100,7 +100,7 @@
     <string name="name_middle" msgid="3951610314424632183">"Jina la kati"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Kiambishi tamati cha jina"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Jina la fonetiki"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Jina la kwanza kifonetiki"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Anza na jina kifonetiki"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Jina la kati la fonetiki"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Jina la mwisho kifonetiki"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Simu"</string>
@@ -208,8 +208,8 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Jina la kwanza"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Jina la mwisho"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Mpangilio wa majina"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Jina la kwanza liwe mwanzo"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Jina la mwisho kwanza"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Anza na jina la kwanza"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Anza na jina la mwisho"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Akaunti ya msingi ya anwani mpya"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sawazisha metadata ya anwani [SHIRIKI KATIKA JARIBIO LA KINDANI]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sawazisha metadata ya anwani"</string>

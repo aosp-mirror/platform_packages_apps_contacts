@@ -113,7 +113,7 @@
     <string name="sms" msgid="8086289395154598654">"Տեքստային հաղորդագրություն"</string>
     <string name="postal_address" msgid="7692926530081579786">"Հասցեն"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Ընկերությունը"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Վերնագիրը"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Պաշտոն"</string>
     <string name="label_notes" msgid="3997277594846722699">"Գրառումներ"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Վեբ-կայք"</string>
@@ -203,8 +203,8 @@
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>-ի ներմուծում"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Արտահանել .vcf ֆայլ"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Դասավորել ըստ"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Անուն"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Ազգանուն"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Անունի"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Ազգանունի"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Անվան ձևաչափը"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Սկզբում՝ անունը"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Սկզբում՝ ազգանունը"</string>
@@ -252,11 +252,11 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթարցված տարր: </item>
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"Թողարկման տարբերակը"</string>
-    <string name="about_open_source_licenses" msgid="3224958101863814649">"Բաց աղբյուրով լիցենզիաներ"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Լիցենզիայի մանրամասներ բաց աղբյուրով ծրագրային ապահովման համար"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Բաց կոդով ծրագրերի արտոնագրեր"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Բաց կոդով ծրագրային ապահովման արտոնագրերի մանրամասներ"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Գաղտնիության քաղաքականություն"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Օգտագործման պայմաններ"</string>
-    <string name="activity_title_licenses" msgid="7812517458691564230">"Բաց աղբյուրով լիցենզիաներ"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Բաց կոդով ծրագրերի արտոնագրեր"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Չհաջողվեց բացել url-ը:"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Կատարել տեսազանգ"</string>
 </resources>
