@@ -37,6 +37,7 @@ public class MultiSelectEntryContactListAdapter extends DefaultContactListAdapte
     private SelectedContactsListener mSelectedContactsListener;
     private TreeSet<Long> mSelectedContactIds = new TreeSet<Long>();
     private boolean mDisplayCheckBoxes;
+    private final int mContactIdColumnIndex;
 
     public interface SelectedContactsListener {
         void onSelectedContactsChanged();
@@ -44,7 +45,26 @@ public class MultiSelectEntryContactListAdapter extends DefaultContactListAdapte
     }
 
     public MultiSelectEntryContactListAdapter(Context context) {
+        this(context, ContactQuery.CONTACT_ID);
+    }
+
+    /**
+     * @param contactIdColumnIndex the column index of the contact ID in the underlying cursor;
+     *         it is passed in so that this adapter can support different kinds of contact
+     *         lists (e.g. aggregate contacts or raw contacts).
+     */
+    public MultiSelectEntryContactListAdapter(Context context, int contactIdColumnIndex) {
         super(context);
+        mContactIdColumnIndex = contactIdColumnIndex;
+    }
+
+    /**
+     * Returns the column index of the contact ID in the underlying cursor; the contact ID
+     * retrieved using this index is the value that is selected by this adapter (and returned
+     * by {@link #getSelectedContactIds}).
+     */
+    public int getContactColumnIdIndex() {
+        return mContactIdColumnIndex;
     }
 
     public void setSelectedContactsListener(SelectedContactsListener listener) {
@@ -56,6 +76,19 @@ public class MultiSelectEntryContactListAdapter extends DefaultContactListAdapte
      */
     public TreeSet<Long> getSelectedContactIds() {
         return mSelectedContactIds;
+    }
+
+    /**
+     * Returns the selected contacts as an array.
+     */
+    public long[] getSelectedContactIdsArray() {
+        final Long[] contactIds = mSelectedContactIds.toArray(
+                new Long[mSelectedContactIds.size()]);
+        final long[] result = new long[contactIds.length];
+        for (int i = 0; i < contactIds.length; i++) {
+            result[i] = contactIds[i];
+        }
+        return result;
     }
 
     /**
@@ -125,7 +158,7 @@ public class MultiSelectEntryContactListAdapter extends DefaultContactListAdapte
             return;
         }
         final CheckBox checkBox = view.getCheckBox();
-        final long contactId = cursor.getLong(ContactQuery.CONTACT_ID);
+        final long contactId = cursor.getLong(mContactIdColumnIndex);
         checkBox.setChecked(mSelectedContactIds.contains(contactId));
         checkBox.setTag(contactId);
         checkBox.setOnClickListener(mCheckBoxClickListener);

@@ -1310,14 +1310,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     private void joinSelectedContacts() {
-        final Long[] contactIdsArray = mAllFragment.getSelectedContactIds().toArray(
-                new Long[mAllFragment.getSelectedContactIds().size()]);
-        final long[] contactIdsArray2 = new long[contactIdsArray.length];
-        for (int i = 0; i < contactIdsArray.length; i++) {
-            contactIdsArray2[i] = contactIdsArray[i];
-        }
-        final Intent intent = ContactSaveService.createJoinSeveralContactsIntent(this,
-                contactIdsArray2);
+        final Intent intent = ContactSaveService.createJoinSeveralContactsIntent(
+                this, mAllFragment.getSelectedContactIdsArray());
         this.startService(intent);
 
         mActionBarAdapter.setSelectionMode(false);

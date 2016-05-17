@@ -39,8 +39,6 @@ import com.android.contacts.common.list.FavoritesAndContactsLoader;
  * picking a contact with one of the PICK intents).
  */
 public class DefaultContactBrowseListFragment extends ContactBrowseListFragment {
-    private static final String TAG = DefaultContactBrowseListFragment.class.getSimpleName();
-
     private View mSearchHeaderView;
     private View mSearchProgress;
     private TextView mSearchProgressText;

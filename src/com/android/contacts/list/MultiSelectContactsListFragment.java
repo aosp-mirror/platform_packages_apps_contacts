@@ -19,15 +19,14 @@ package com.android.contacts.list;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
+import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.SearchState;
 import com.android.contacts.list.MultiSelectEntryContactListAdapter.SelectedContactsListener;
-import com.android.contacts.common.logging.Logger;
 
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
 import java.util.ArrayList;
@@ -40,6 +39,8 @@ import java.util.TreeSet;
  */
 public class MultiSelectContactsListFragment extends DefaultContactBrowseListFragment
         implements SelectedContactsListener {
+
+    private static final String TAG = "MultiContactsList";
 
     public interface OnCheckBoxListActionListener {
         void onStartDisplayingCheckBoxes();
@@ -60,7 +61,7 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
 
     /**
      * Whether a search result was clicked by the user. Tracked so that we can distinguish
-     * between exiting the search mode after a result was clicked from existing w/o clicking
+     * between exiting the search mode after a result was clicked from exiting w/o clicking
      * any search result.
      */
     public boolean wasSearchResultClicked() {
@@ -76,9 +77,7 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
 
     @Override
     public void onSelectedContactsChanged() {
-        if (mCheckBoxListListener != null) {
-            mCheckBoxListListener.onSelectedContactIdsChanged();
-        }
+        if (mCheckBoxListListener != null) mCheckBoxListListener.onSelectedContactIdsChanged();
     }
 
     @Override
@@ -106,8 +105,11 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
     }
 
     public TreeSet<Long> getSelectedContactIds() {
-        final MultiSelectEntryContactListAdapter adapter = getAdapter();
-        return adapter.getSelectedContactIds();
+        return getAdapter().getSelectedContactIds();
+    }
+
+    public long[] getSelectedContactIdsArray() {
+        return getAdapter().getSelectedContactIdsArray();
     }
 
     @Override
@@ -129,9 +131,11 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
     }
 
     public void displayCheckBoxes(boolean displayCheckBoxes) {
-        getAdapter().setDisplayCheckBoxes(displayCheckBoxes);
-        if (!displayCheckBoxes) {
-            clearCheckBoxes();
+        if (getAdapter() != null) {
+            getAdapter().setDisplayCheckBoxes(displayCheckBoxes);
+            if (!displayCheckBoxes) {
+                clearCheckBoxes();
+            }
         }
     }
 
@@ -142,23 +146,20 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
     @Override
     protected boolean onItemLongClick(int position, long id) {
         final int previouslySelectedCount = getAdapter().getSelectedContactIds().size();
-        final Uri uri = getAdapter().getContactUri(position);
+        final long contactId = getContactId(position);
         final int partition = getAdapter().getPartitionForPosition(position);
-        if (uri != null && partition == ContactsContract.Directory.DEFAULT) {
-            final String contactId = uri.getLastPathSegment();
-            if (!TextUtils.isEmpty(contactId)) {
-                if (mCheckBoxListListener != null) {
-                    mCheckBoxListListener.onStartDisplayingCheckBoxes();
-                }
-                getAdapter().toggleSelectionOfContactId(Long.valueOf(contactId));
-                // Manually send clicked event if there is a checkbox.
-                // See b/24098561.  TalkBack will not read it otherwise.
-                final int index = position + getListView().getHeaderViewsCount() - getListView()
-                        .getFirstVisiblePosition();
-                if (index >= 0 && index < getListView().getChildCount()) {
-                    getListView().getChildAt(index).sendAccessibilityEvent(AccessibilityEvent
-                            .TYPE_VIEW_CLICKED);
-                }
+        if (contactId >= 0 && partition == ContactsContract.Directory.DEFAULT) {
+            if (mCheckBoxListListener != null) {
+                mCheckBoxListListener.onStartDisplayingCheckBoxes();
+            }
+            getAdapter().toggleSelectionOfContactId(contactId);
+            // Manually send clicked event if there is a checkbox.
+            // See b/24098561.  TalkBack will not read it otherwise.
+            final int index = position + getListView().getHeaderViewsCount() - getListView()
+                    .getFirstVisiblePosition();
+            if (index >= 0 && index < getListView().getChildCount()) {
+                getListView().getChildAt(index).sendAccessibilityEvent(AccessibilityEvent
+                        .TYPE_VIEW_CLICKED);
             }
         }
         final int nowSelectedCount = getAdapter().getSelectedContactIds().size();
@@ -172,15 +173,12 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
 
     @Override
     protected void onItemClick(int position, long id) {
-        final Uri uri = getAdapter().getContactUri(position);
-        if (uri == null) {
+        final long contactId = getContactId(position);
+        if (contactId < 0) {
             return;
         }
         if (getAdapter().isDisplayingCheckBoxes()) {
-            final String contactId = uri.getLastPathSegment();
-            if (!TextUtils.isEmpty(contactId)) {
-                getAdapter().toggleSelectionOfContactId(Long.valueOf(contactId));
-            }
+            getAdapter().toggleSelectionOfContactId(contactId);
         } else {
             if (isSearchMode()) {
                 mSearchResultClicked = true;
@@ -191,6 +189,20 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
         if (mCheckBoxListListener != null && getAdapter().getSelectedContactIds().size() == 0) {
             mCheckBoxListListener.onStopDisplayingCheckBoxes();
         }
+    }
+
+    private long getContactId(int position) {
+        final int contactIdColumnIndex = getAdapter().getContactColumnIdIndex();
+
+        final Cursor cursor = (Cursor) getAdapter().getItem(position);
+        if (cursor != null) {
+            if (cursor.getColumnCount() > contactIdColumnIndex) {
+                return cursor.getLong(contactIdColumnIndex);
+            }
+        }
+
+        Log.w(TAG, "Failed to get contact ID from cursor column " + contactIdColumnIndex);
+        return -1;
     }
 
     /**
