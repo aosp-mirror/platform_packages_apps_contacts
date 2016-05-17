@@ -24,7 +24,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.util.Log;
@@ -68,19 +67,9 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     private boolean mAdjustSelectionBoundsEnabled;
 
     /**
-     * indicates if contact queries include profile
-     */
-    private boolean mIncludeProfile;
-
-    /**
      * indicates if contact queries include favorites
      */
     private boolean mIncludeFavorites;
-
-    /**
-     * indicates if query results includes a profile
-     */
-    private boolean mProfileExists;
 
     /**
      * The root view of the fragment that this adapter is associated with.
@@ -368,28 +357,12 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         mAdjustSelectionBoundsEnabled = enabled;
     }
 
-    public boolean shouldIncludeProfile() {
-        return mIncludeProfile;
-    }
-
-    public void setIncludeProfile(boolean includeProfile) {
-        mIncludeProfile = includeProfile;
-    }
-
     public boolean shouldIncludeFavorites() {
         return mIncludeFavorites;
     }
 
     public void setIncludeFavorites(boolean includeFavorites) {
         mIncludeFavorites = includeFavorites;
-    }
-
-    public void setProfileExists(boolean exists) {
-        mProfileExists = exists;
-        // Stick the "ME" header for the profile
-        if (exists) {
-            setSectionHeader(R.string.user_profile_contacts_list_header, /* # of ME */ 1);
-        }
     }
 
     public void setFavoritesSectionHeader(int numberOfFavorites) {
@@ -404,10 +377,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
             ((ContactsSectionIndexer) indexer).setProfileAndFavoritesHeader(
                     getContext().getString(resId), numberOfItems);
         }
-    }
-
-    public boolean hasProfile() {
-        return mProfileExists;
     }
 
     public void setDarkTheme(boolean value) {
@@ -560,9 +529,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     @Override
     public int getItemViewType(int partitionIndex, int position) {
         int type = super.getItemViewType(partitionIndex, position);
-        if (!isUserProfile(position)
-                && isSectionHeaderDisplayEnabled()
-                && partitionIndex == getIndexedPartition()) {
+        if (isSectionHeaderDisplayEnabled() && partitionIndex == getIndexedPartition()) {
             Placement placement = getItemPlacementInSection(position);
             return placement.firstInSection ? type : getItemViewTypeCount() + type;
         } else {
@@ -688,33 +655,6 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     // for eg number of unique contacts for a phone list.
     protected int getResultCount(Cursor cursor) {
         return cursor == null ? 0 : cursor.getCount();
-    }
-
-    /**
-     * Checks whether the contact entry at the given position represents the user's profile.
-     */
-    protected boolean isUserProfile(int position) {
-        // The profile only ever appears in the first position if it is present.  So if the position
-        // is anything beyond 0, it can't be the profile.
-        boolean isUserProfile = false;
-        if (position == 0) {
-            int partition = getPartitionForPosition(position);
-            if (partition >= 0) {
-                // Save the old cursor position - the call to getItem() may modify the cursor
-                // position.
-                int offset = getCursor(partition).getPosition();
-                Cursor cursor = (Cursor) getItem(position);
-                if (cursor != null) {
-                    int profileColumnIndex = cursor.getColumnIndex(Contacts.IS_USER_PROFILE);
-                    if (profileColumnIndex != -1) {
-                        isUserProfile = cursor.getInt(profileColumnIndex) == 1;
-                    }
-                    // Restore the old cursor position.
-                    cursor.moveToPosition(offset);
-                }
-            }
-        }
-        return isUserProfile;
     }
 
     // TODO: fix PluralRules to handle zero correctly and use Resources.getQuantityText directly

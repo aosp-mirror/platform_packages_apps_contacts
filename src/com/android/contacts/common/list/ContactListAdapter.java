@@ -41,8 +41,6 @@ import java.util.Set;
 
 /**
  * A cursor adapter for the {@link ContactsContract.Contacts#CONTENT_TYPE} content type.
- * Also includes support for including the {@link ContactsContract.Profile} record in the
- * list.
  */
 public abstract class ContactListAdapter extends ContactEntryListAdapter {
 
@@ -55,8 +53,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.PHOTO_ID,                      // 4
             Contacts.PHOTO_THUMBNAIL_URI,           // 5
             Contacts.LOOKUP_KEY,                    // 6
-            Contacts.IS_USER_PROFILE,               // 7
-            Contacts.PHONETIC_NAME,                 // 8
+            Contacts.PHONETIC_NAME,                 // 7
             Contacts.STARRED,                       // 9
         };
 
@@ -68,9 +65,8 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.PHOTO_ID,                      // 4
             Contacts.PHOTO_THUMBNAIL_URI,           // 5
             Contacts.LOOKUP_KEY,                    // 6
-            Contacts.IS_USER_PROFILE,               // 7
-            Contacts.PHONETIC_NAME,                 // 8
-            Contacts.STARRED,                       // 9
+            Contacts.PHONETIC_NAME,                 // 7
+            Contacts.STARRED,                       // 8
         };
 
         private static final String[] FILTER_PROJECTION_PRIMARY = new String[] {
@@ -81,10 +77,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.PHOTO_ID,                      // 4
             Contacts.PHOTO_THUMBNAIL_URI,           // 5
             Contacts.LOOKUP_KEY,                    // 6
-            Contacts.IS_USER_PROFILE,               // 7
-            Contacts.PHONETIC_NAME,                 // 8
-            Contacts.STARRED,                       // 9
-            SearchSnippets.SNIPPET,                 // 10
+            Contacts.PHONETIC_NAME,                 // 7
+            Contacts.STARRED,                       // 8
+            SearchSnippets.SNIPPET,                 // 9
         };
 
         private static final String[] FILTER_PROJECTION_ALTERNATIVE = new String[] {
@@ -95,10 +90,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             Contacts.PHOTO_ID,                      // 4
             Contacts.PHOTO_THUMBNAIL_URI,           // 5
             Contacts.LOOKUP_KEY,                    // 6
-            Contacts.IS_USER_PROFILE,               // 7
-            Contacts.PHONETIC_NAME,                 // 8
-            Contacts.STARRED,                       // 9
-            SearchSnippets.SNIPPET,                 // 10
+            Contacts.PHONETIC_NAME,                 // 7
+            Contacts.STARRED,                       // 8
+            SearchSnippets.SNIPPET,                 // 9
         };
 
         public static final int CONTACT_ID               = 0;
@@ -108,10 +102,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
         public static final int CONTACT_PHOTO_ID         = 4;
         public static final int CONTACT_PHOTO_URI        = 5;
         public static final int CONTACT_LOOKUP_KEY       = 6;
-        public static final int CONTACT_IS_USER_PROFILE  = 7;
-        public static final int CONTACT_PHONETIC_NAME    = 8;
-        public static final int CONTACT_STARRED          = 9;
-        public static final int CONTACT_SNIPPET          = 10;
+        public static final int CONTACT_PHONETIC_NAME    = 7;
+        public static final int CONTACT_STARRED          = 8;
+        public static final int CONTACT_SNIPPET          = 9;
     }
 
     // The projection columns should match those in ContactQuery above expect we must omit the
@@ -126,10 +119,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 Contacts.PHOTO_ID,                      // 4
                 Contacts.PHOTO_THUMBNAIL_URI,           // 5
                 Contacts.LOOKUP_KEY,                    // 6
-                Contacts.IS_USER_PROFILE,               // 7
-                Contacts.PHONETIC_NAME,                 // 8
-                Contacts.LAST_TIME_CONTACTED,           // 9
-                Contacts.STARRED,                       // 10
+                Contacts.PHONETIC_NAME,                 // 7
+                Contacts.LAST_TIME_CONTACTED,           // 8
+                Contacts.STARRED,                       // 9
                 // SearchSnippets.SNIPPET not supported for Contacts.CONTENT_URI
         };
 
@@ -141,10 +133,9 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 Contacts.PHOTO_ID,                      // 4
                 Contacts.PHOTO_THUMBNAIL_URI,           // 5
                 Contacts.LOOKUP_KEY,                    // 6
-                Contacts.IS_USER_PROFILE,               // 7
-                Contacts.PHONETIC_NAME,                 // 8
-                Contacts.LAST_TIME_CONTACTED,           // 9
-                Contacts.STARRED,                       // 10
+                Contacts.PHONETIC_NAME,                 // 7
+                Contacts.LAST_TIME_CONTACTED,           // 8
+                Contacts.STARRED,                       // 9
                 // SearchSnippets.SNIPPET not supported for Contacts.CONTENT_URI
         };
 
@@ -452,14 +443,7 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
             return;
         }
 
-        // hasProfile tells whether the first row is a profile
-        final boolean hasProfile = cursor.getInt(ContactQuery.CONTACT_IS_USER_PROFILE) == 1;
-
-        // If the first row is a profile, we need to skip it.
-        final boolean skipProfile = !hasProfile || (hasProfile && cursor.moveToNext());
-
-        // Add favorites first and then add ME profile on top of it.
-        if (shouldIncludeFavorites() && skipProfile) {
+        if (shouldIncludeFavorites()) {
             if (cursor.getInt(ContactQuery.CONTACT_STARRED) == 1) {
                 final Set<Integer> favorites = new HashSet<>();
                 favorites.add(cursor.getInt(ContactQuery.CONTACT_ID));
@@ -473,10 +457,6 @@ public abstract class ContactListAdapter extends ContactEntryListAdapter {
                 setFavoritesSectionHeader(favorites.size());
             }
         }
-
-        // Add ME profile on top of favorites
-        cursor.moveToFirst();
-        setProfileExists(hasProfile);
     }
 
     /**

@@ -85,9 +85,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
-        if (loader instanceof ProfileAndContactsLoader) {
-            ((ProfileAndContactsLoader) loader).setLoadProfile(shouldIncludeProfile());
-            ((ProfileAndContactsLoader) loader).setLoadFavorites(shouldIncludeFavorites());
+        if (loader instanceof FavoritesAndContactsLoader) {
+            ((FavoritesAndContactsLoader) loader).setLoadFavorites(shouldIncludeFavorites());
         }
 
         String sortOrder = null;
@@ -104,7 +103,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setSelection("0");
             } else if (flags.getBoolean(Experiments.FLAG_SEARCH_DISPLAY_NAME_QUERY, false)
                     && directoryId == Directory.DEFAULT
-                    && loader instanceof ProfileAndContactsLoader) {
+                    && loader instanceof FavoritesAndContactsLoader) {
                 // Configure the loader to prefix match display names and phonetic names
                 final String displayNameColumn =
                         getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
@@ -120,10 +119,10 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 // Configure an extra query to show email and phone number matches and merge
                 // them in after the display name loader query results. Emails are prefix matched
                 // but phone numbers are matched anywhere in the normalized phone number string.
-                final ProfileAndContactsLoader profileAndContactsLoader =
-                        (ProfileAndContactsLoader) loader;
+                final FavoritesAndContactsLoader favoritesAndContactsLoader =
+                        (FavoritesAndContactsLoader) loader;
                 final String normalizedNumberQuery = PhoneNumberUtilsCompat.normalizeNumber(query);
-                profileAndContactsLoader.setLoadExtraContactsLast(
+                favoritesAndContactsLoader.setLoadExtraContactsLast(
                         Data.CONTENT_URI,
                         ExperimentQuery.FILTER_PROJECTION_PRIMARY_EXTRA,
                         Contacts.IN_VISIBLE_GROUP + "=? AND " +
