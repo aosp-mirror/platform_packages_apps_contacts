@@ -22,9 +22,6 @@
     <!-- If true, phonetic name is included in the contact editor by default -->
     <bool name="config_editor_include_phonetic_name">false</bool>
 
-    <!-- If true, the "home" icon on the action bar will be shown. -->
-    <bool name="show_home_icon">false</bool>
-
     <!--
       If true, the "view updates from group" button in the action bar will be
       shown. Otherwise it will be part of the content on the group detail page.

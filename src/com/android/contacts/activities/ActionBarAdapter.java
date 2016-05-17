@@ -108,6 +108,7 @@ public class ActionBarAdapter implements OnCloseListener {
     private final FrameLayout mToolBarFrame;
 
     private boolean mShowHomeIcon;
+    private boolean mShowHomeAsUp;
 
     public interface TabState {
         public static int ALL = 0;
@@ -129,10 +130,17 @@ public class ActionBarAdapter implements OnCloseListener {
         mToolbar = toolbar;
         mToolBarFrame = (FrameLayout) mToolbar.getParent();
         mMaxToolbarContentInsetStart = mToolbar.getContentInsetStart();
-        mShowHomeIcon = mActivity.getResources().getBoolean(R.bool.show_home_icon);
 
         setupSearchAndSelectionViews();
         setupTabs(mActivity);
+    }
+
+    public void setShowHomeIcon(boolean showHomeIcon) {
+        mShowHomeIcon = showHomeIcon;
+    }
+
+    public void setShowHomeAsUp(boolean showHomeAsUp) {
+        mShowHomeAsUp = showHomeAsUp;
     }
 
     private void setupTabs(Context context) {
@@ -354,6 +362,9 @@ public class ActionBarAdapter implements OnCloseListener {
         int newFlags = 0;
         if (mShowHomeIcon && !isSearchOrSelectionMode) {
             newFlags |= ActionBar.DISPLAY_SHOW_HOME;
+            if (mShowHomeAsUp) {
+                newFlags |= ActionBar.DISPLAY_HOME_AS_UP;
+            }
         }
         if (mSearchMode && !mSelectionMode) {
             // The search container is placed inside the toolbar. So we need to disable the
