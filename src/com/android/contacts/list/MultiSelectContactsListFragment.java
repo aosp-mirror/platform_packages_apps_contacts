@@ -144,8 +144,7 @@ public class MultiSelectContactsListFragment extends DefaultContactBrowseListFra
         final int previouslySelectedCount = getAdapter().getSelectedContactIds().size();
         final Uri uri = getAdapter().getContactUri(position);
         final int partition = getAdapter().getPartitionForPosition(position);
-        if (uri != null && (partition == ContactsContract.Directory.DEFAULT
-                && (position > 0 || !getAdapter().hasProfile()))) {
+        if (uri != null && partition == ContactsContract.Directory.DEFAULT) {
             final String contactId = uri.getLastPathSegment();
             if (!TextUtils.isEmpty(contactId)) {
                 if (mCheckBoxListListener != null) {
