@@ -52,17 +52,17 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
 
     @Override
     public List<ContactInteraction> loadInBackground() {
-        final boolean isPhoneNumbersEmpty = mPhoneNumbers == null || mPhoneNumbers.length <= 0;
-        final boolean isSipNumbersEmpty = mSipNumbers == null || mSipNumbers.length <= 0;
+        final boolean hasPhoneNumber = mPhoneNumbers != null && mPhoneNumbers.length > 0;
+        final boolean hasSipNumber = mSipNumbers != null && mSipNumbers.length > 0;
         if (!PermissionsUtil.hasPhonePermissions(getContext())
                 || !getContext().getPackageManager()
                         .hasSystemFeature(PackageManager.FEATURE_TELEPHONY)
-                || (isPhoneNumbersEmpty && isSipNumbersEmpty) || mMaxToRetrieve <= 0) {
+                || (!hasPhoneNumber && !hasSipNumber) || mMaxToRetrieve <= 0) {
             return Collections.emptyList();
         }
 
         final List<ContactInteraction> interactions = new ArrayList<>();
-        if (!isPhoneNumbersEmpty) {
+        if (hasPhoneNumber) {
             for (String number : mPhoneNumbers) {
                 final String normalizedNumber = PhoneNumberUtilsCompat.normalizeNumber(number);
                 if (!TextUtils.isEmpty(normalizedNumber)) {
@@ -70,7 +70,7 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
                 }
             }
         }
-        if (!isSipNumbersEmpty) {
+        if (hasSipNumber) {
             for (String number : mSipNumbers) {
                 interactions.addAll(getCallLogInteractions(number));
             }
@@ -90,7 +90,8 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
             }
         });
         // Duplicates only occur because of fuzzy matching. No need to dedupe a single number.
-        if (mPhoneNumbers.length == 1) {
+        if ((hasPhoneNumber && mPhoneNumbers.length == 1 && !hasSipNumber)
+                || (hasSipNumber && mSipNumbers.length == 1 && !hasPhoneNumber)) {
             return interactions;
         }
         return pruneDuplicateCallLogInteractions(interactions, mMaxToRetrieve);
