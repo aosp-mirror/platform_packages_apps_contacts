@@ -102,9 +102,6 @@
     <!-- Width of the Type-Label in the Editor -->
     <dimen name="editor_type_label_width">150dip</dimen>
 
-    <!-- Width of the drop down that appears when you click on the Type-Label spinner in the editor -->
-    <dimen name="editor_type_label_dropdown_width">150dp</dimen>
-
     <!-- Left padding of the label in the add field button for the contact editor -->
     <dimen name="editor_add_field_label_left_padding">16dip</dimen>
 
