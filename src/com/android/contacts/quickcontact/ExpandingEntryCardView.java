@@ -638,6 +638,19 @@ public class ExpandingEntryCardView extends CardView {
         }
     }
 
+    public void setEntrySubHeaderColor(int color) {
+        if (mEntries != null) {
+            for (List<View> entryList : mEntryViews) {
+                for (View entryView : entryList) {
+                    final TextView subHeader = (TextView) entryView.findViewById(R.id.sub_header);
+                    if (subHeader != null) {
+                        subHeader.setTextColor(color);
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * The ColorFilter is passed in along with the color so that a new one only needs to be created
      * once for the entire activity.
