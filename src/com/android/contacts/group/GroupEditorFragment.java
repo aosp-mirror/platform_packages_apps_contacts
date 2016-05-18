@@ -25,7 +25,6 @@ import android.app.Fragment;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
@@ -59,9 +58,8 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMemberLoader.GroupEditorQuery;
-import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
-import com.android.contacts.activities.GroupEditorActivity;
+import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.model.account.AccountType;
@@ -79,11 +77,13 @@ import java.util.List;
 public class GroupEditorFragment extends Fragment implements SelectAccountDialogFragment.Listener {
     private static final String TAG = "GroupEditorFragment";
 
-    private static final String LEGACY_CONTACTS_AUTHORITY = "contacts";
+    private static final String ARG_ACTION = "action";
+    private static final String ARG_GROUP_METADATA = "groupMetadata";
+    private static final String ARG_INTENT_EXTRAS = "intentExtras";
 
     private static final String KEY_ACTION = "action";
-    private static final String KEY_GROUP_URI = "groupUri";
-    private static final String KEY_GROUP_ID = "groupId";
+    private static final String KEY_GROUP_METADATA = "groupMetadata";
+    private static final String KEY_INTENT_EXTRAS = "intentExtras";
     private static final String KEY_STATUS = "status";
     private static final String KEY_ACCOUNT_NAME = "accountName";
     private static final String KEY_ACCOUNT_TYPE = "accountType";
@@ -96,11 +96,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
     private static final String CURRENT_EDITOR_TAG = "currentEditorForAccount";
 
-    public static interface Listener {
+    public interface Listener {
         /**
          * Group metadata was not found, close the fragment now.
          */
-        public void onGroupNotFound();
+        void onGroupNotFound();
 
         /**
          * User has tapped Revert, close the fragment now.
@@ -123,7 +123,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         void onGroupMemberClicked(Uri contactLookupUri);
     }
 
-    private static final int LOADER_GROUP_METADATA = 1;
     private static final int LOADER_EXISTING_MEMBERS = 2;
     private static final int LOADER_NEW_GROUP_MEMBER = 3;
 
@@ -165,7 +164,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
      */
     public enum Status {
         SELECTING_ACCOUNT, // Account select dialog is showing
-        LOADING,    // Loader is fetching the group metadata
         EDITING,    // Not currently busy. We are waiting forthe user to enter data.
         SAVING,     // Data is currently being saved
         CLOSING     // Prevents any more saves
@@ -174,8 +172,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private Context mContext;
     private String mAction;
     private Bundle mIntentExtras;
-    private Uri mGroupUri;
-    private long mGroupId;
+    private GroupMetadata mGroupMetadata;
+
     private Listener mListener;
 
     private Status mStatus;
@@ -205,23 +203,57 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private ArrayList<Member> mListMembersToRemove = new ArrayList<Member>();
     private ArrayList<Member> mListToDisplay = new ArrayList<Member>();
 
-    public GroupEditorFragment() {
+    public static GroupEditorFragment newInstance(String action, GroupMetadata groupMetadata,
+            Bundle intentExtras) {
+        final Bundle args = new Bundle();
+        args.putString(ARG_ACTION, action);
+        args.putParcelable(ARG_GROUP_METADATA, groupMetadata);
+        args.putParcelable(ARG_INTENT_EXTRAS, intentExtras);
+        final GroupEditorFragment fragment = new GroupEditorFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedState) {
         setHasOptionsMenu(true);
+
         mLayoutInflater = inflater;
         mRootView = (ViewGroup) inflater.inflate(R.layout.group_editor_fragment, container, false);
         return mRootView;
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mContext = activity;
-        mPhotoManager = ContactPhotoManager.getInstance(mContext);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState == null) {
+            final Bundle args = getArguments();
+            if (args == null) {
+                throw new IllegalStateException("Group editor fragment created without arguments");
+            }
+            mAction = args.getString(ARG_ACTION);
+            mGroupMetadata = args.getParcelable(ARG_GROUP_METADATA);
+            mIntentExtras = args.getParcelable(ARG_INTENT_EXTRAS);
+        } else {
+            onRestoreInstanceState(savedInstanceState);
+        }
+
         mMemberListAdapter = new MemberListAdapter();
+    }
+
+    @Override
+    public void onAttach(Activity context) {
+        super.onAttach(context);
+        mContext = context;
+        mPhotoManager = ContactPhotoManager.getInstance(mContext);
+        mContentResolver = mContext.getContentResolver();
+
+        try {
+            mListener = (Listener) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity() + " must implement " +
+                    Listener.class.getSimpleName());
+        }
     }
 
     @Override
@@ -229,17 +261,14 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         super.onActivityCreated(savedInstanceState);
 
         if (savedInstanceState != null) {
-            // Just restore from the saved state.  No loading.
-            onRestoreInstanceState(savedInstanceState);
-            if (mStatus == Status.SELECTING_ACCOUNT) {
-                // Account select dialog is showing.  Don't setup the editor yet.
-            } else if (mStatus == Status.LOADING) {
-                startGroupMetaDataLoader();
-            } else {
+            if (mStatus != Status.SELECTING_ACCOUNT) {
                 setupEditorForAccount();
-            }
+            } // else Account select dialog is showing.  Don't setup the editor yet.
         } else if (Intent.ACTION_EDIT.equals(mAction)) {
-            startGroupMetaDataLoader();
+            bindGroupMetaData();
+            // Load existing members
+            getLoaderManager().initLoader(
+                    LOADER_EXISTING_MEMBERS, null, mGroupMemberListLoaderListener);
         } else if (Intent.ACTION_INSERT.equals(mAction)) {
             final Account account = mIntentExtras == null ? null :
                     (Account) mIntentExtras.getParcelable(Intents.Insert.EXTRA_ACCOUNT);
@@ -256,24 +285,15 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 // No Account specified. Let the user choose from a disambiguation dialog.
                 selectAccountAndCreateGroup();
             }
-        } else {
-            throw new IllegalArgumentException("Unknown Action String " + mAction +
-                    ". Only support " + Intent.ACTION_EDIT + " or " + Intent.ACTION_INSERT);
         }
-    }
-
-    private void startGroupMetaDataLoader() {
-        mStatus = Status.LOADING;
-        getLoaderManager().initLoader(LOADER_GROUP_METADATA, null,
-                mGroupMetaDataLoaderListener);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(KEY_ACTION, mAction);
-        outState.putParcelable(KEY_GROUP_URI, mGroupUri);
-        outState.putLong(KEY_GROUP_ID, mGroupId);
+        outState.putParcelable(KEY_GROUP_METADATA, mGroupMetadata);
+        outState.putParcelable(KEY_INTENT_EXTRAS, mIntentExtras);
 
         outState.putSerializable(KEY_STATUS, mStatus);
         outState.putString(KEY_ACCOUNT_NAME, mAccountName);
@@ -290,8 +310,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
     private void onRestoreInstanceState(Bundle state) {
         mAction = state.getString(KEY_ACTION);
-        mGroupUri = state.getParcelable(KEY_GROUP_URI);
-        mGroupId = state.getLong(KEY_GROUP_ID);
+        mGroupMetadata = state.getParcelable(KEY_GROUP_METADATA);
+        mIntentExtras = state.getParcelable(KEY_INTENT_EXTRAS);
 
         mStatus = (Status) state.getSerializable(KEY_STATUS);
         mAccountName = state.getString(KEY_ACCOUNT_NAME);
@@ -304,13 +324,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         mListMembersToAdd = state.getParcelableArrayList(KEY_MEMBERS_TO_ADD);
         mListMembersToRemove = state.getParcelableArrayList(KEY_MEMBERS_TO_REMOVE);
         mListToDisplay = state.getParcelableArrayList(KEY_MEMBERS_TO_DISPLAY);
-    }
-
-    public void setContentResolver(ContentResolver resolver) {
-        mContentResolver = resolver;
-        if (mAutoCompleteAdapter != null) {
-            mAutoCompleteAdapter.setContentResolver(mContentResolver);
-        }
     }
 
     private void selectAccountAndCreateGroup() {
@@ -400,7 +413,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         } else {
             editorView = mRootView.findViewWithTag(CURRENT_EDITOR_TAG);
             if (editorView == null) {
-                throw new IllegalStateException("Group editor view not found");
+                // TODO(wjang): should not happen once this is fully integrated into group members
+                // activity so just let it go for now
+                // throw new IllegalStateException("Group editor view not found");
+                return;
             }
         }
 
@@ -466,26 +482,12 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         mStatus = Status.EDITING;
     }
 
-    public void load(String action, Uri groupUri, Bundle intentExtras) {
-        mAction = action;
-        mGroupUri = groupUri;
-        mGroupId = (groupUri != null) ? ContentUris.parseId(mGroupUri) : 0;
-        mIntentExtras = intentExtras;
-    }
-
-    private void bindGroupMetaData(Cursor cursor) {
-        if (!cursor.moveToFirst()) {
-            Log.i(TAG, "Group not found with URI: " + mGroupUri + " Closing activity now.");
-            if (mListener != null) {
-                mListener.onGroupNotFound();
-            }
-            return;
-        }
-        mOriginalGroupName = cursor.getString(GroupMetaDataLoader.TITLE);
-        mAccountName = cursor.getString(GroupMetaDataLoader.ACCOUNT_NAME);
-        mAccountType = cursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
-        mDataSet = cursor.getString(GroupMetaDataLoader.DATA_SET);
-        mGroupNameIsReadOnly = (cursor.getInt(GroupMetaDataLoader.IS_READ_ONLY) == 1);
+    private void bindGroupMetaData() {
+        mOriginalGroupName = mGroupMetadata.groupName;
+        mAccountName = mGroupMetadata.accountName;
+        mAccountType = mGroupMetadata.accountType;
+        mDataSet = mGroupMetadata.dataSet;
+        mGroupNameIsReadOnly = mGroupMetadata.readOnly;
         setupEditorForAccount();
 
         // Setup the group metadata display
@@ -521,7 +523,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
-                getActivity().onBackPressed();
+                if (!hasNameChange() && !hasMembershipChange()) {
+                    getActivity().onBackPressed();
+                } else {
+                    CancelEditDialogFragment.show(this);
+                }
                 return true;
             }
             case R.id.menu_save:
@@ -586,7 +592,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         // If there are no changes, then go straight to onSaveCompleted()
         if (!hasNameChange() && !hasMembershipChange()) {
-            onSaveCompleted(false, mGroupUri);
+            onSaveCompleted(false, mGroupMetadata.uri);
             return true;
         }
 
@@ -607,7 +613,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                     new AccountWithDataSet(mAccountName, mAccountType, mDataSet),
                     mGroupNameView.getText().toString(),
                     membersToAddArray, activity.getClass(),
-                    GroupEditorActivity.ACTION_SAVE_COMPLETED);
+                    GroupMembersActivity.ACTION_SAVE_COMPLETED);
         } else if (Intent.ACTION_EDIT.equals(mAction)) {
             // Create array of raw contact IDs for contacts to add to the group
             long[] membersToAddArray = convertToArray(mListMembersToAdd);
@@ -616,9 +622,10 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             long[] membersToRemoveArray = convertToArray(mListMembersToRemove);
 
             // Create the update intent (which includes the updated group name if necessary)
-            saveIntent = ContactSaveService.createGroupUpdateIntent(activity, mGroupId,
+            saveIntent = ContactSaveService.createGroupUpdateIntent(activity,
+                    mGroupMetadata.groupId,
                     getUpdatedName(), membersToAddArray, membersToRemoveArray,
-                    activity.getClass(), GroupEditorActivity.ACTION_SAVE_COMPLETED);
+                    activity.getClass(), GroupMembersActivity.ACTION_SAVE_COMPLETED);
         } else {
             throw new IllegalStateException("Invalid intent action type " + mAction);
         }
@@ -636,21 +643,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         final Intent resultIntent;
         final int resultCode;
         if (success && groupUri != null) {
-            final String requestAuthority = groupUri.getAuthority();
-
             resultIntent = new Intent();
-            if (LEGACY_CONTACTS_AUTHORITY.equals(requestAuthority)) {
-                // Build legacy Uri when requested by caller
-                final long groupId = ContentUris.parseId(groupUri);
-                final Uri legacyContentUri = Uri.parse("content://contacts/groups");
-                final Uri legacyUri = ContentUris.withAppendedId(
-                        legacyContentUri, groupId);
-                resultIntent.setData(legacyUri);
-            } else {
-                // Otherwise pass back the given Uri
-                resultIntent.setData(groupUri);
-            }
-
+            resultIntent.setData(GroupUtil.maybeConvertToLegacyUri(groupUri));
             resultCode = Activity.RESULT_OK;
         } else {
             resultCode = Activity.RESULT_CANCELED;
@@ -744,30 +738,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     }
 
     /**
-     * The listener for the group metadata (i.e. group name, account type, and account name) loader.
-     */
-    private final LoaderManager.LoaderCallbacks<Cursor> mGroupMetaDataLoaderListener =
-            new LoaderCallbacks<Cursor>() {
-
-        @Override
-        public CursorLoader onCreateLoader(int id, Bundle args) {
-            return new GroupMetaDataLoader(mContext, mGroupUri);
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-            bindGroupMetaData(data);
-
-            // Load existing members
-            getLoaderManager().initLoader(LOADER_EXISTING_MEMBERS, null,
-                    mGroupMemberListLoaderListener);
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Cursor> loader) {}
-    };
-
-    /**
      * The loader listener for the list of existing group members.
      */
     private final LoaderManager.LoaderCallbacks<Cursor> mGroupMemberListLoaderListener =
@@ -775,7 +745,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
-            return GroupMemberLoader.constructLoaderForGroupEditorQuery(mContext, mGroupId);
+            return GroupMemberLoader.constructLoaderForGroupEditorQuery(
+                    mContext, mGroupMetadata.groupId);
         }
 
         @Override

@@ -24,7 +24,6 @@ import android.net.Uri;
 import android.provider.ContactsContract.Groups;
 
 import com.android.contacts.GroupListLoader;
-import com.android.contacts.activities.GroupEditorActivity;
 import com.android.contacts.activities.GroupMembersActivity;
 import com.google.common.base.Objects;
 
@@ -32,6 +31,9 @@ import com.google.common.base.Objects;
  * Group utility methods.
  */
 public final class GroupUtil {
+
+    private static final String LEGACY_CONTACTS_AUTHORITY = "contacts";
+    private static final String LEGACY_CONTACTS_URI = "content://contacts/groups";
 
     private GroupUtil() {
     }
@@ -71,16 +73,38 @@ public final class GroupUtil {
 
     /** Returns an Intent to create a new group. */
     public static Intent createAddGroupIntent(Context context) {
-        final Intent intent = new Intent(context, GroupEditorActivity.class);
+        final Intent intent = new Intent(context, GroupMembersActivity.class);
         intent.setAction(Intent.ACTION_INSERT);
         return intent;
     }
 
-    /** Returns an Intent to view the details of the group identified by the given Uri. */
+    /** Returns an Intent to view the details of the group identified by the given ID. */
     public static Intent createViewGroupIntent(Context context, long groupId) {
+        return createViewGroupIntent(context, getGroupUriFromId(groupId));
+    }
+
+    /** Returns an Intent to view the details of the group identified by the given Uri. */
+    public static Intent createViewGroupIntent(Context context, Uri uri) {
         final Intent intent = new Intent(context, GroupMembersActivity.class);
-        intent.setData(getGroupUriFromId(groupId));
+        intent.setAction(Intent.ACTION_VIEW);
+        // TODO(wjang): do we still need it?
+        // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setData(uri);
         return intent;
+    }
+
+    /**
+     * Converts the given group Uri to the legacy format if the legacy authority was specified
+     * in the given Uri.
+     */
+    public static Uri maybeConvertToLegacyUri(Uri groupUri) {
+        final String requestAuthority = groupUri.getAuthority();
+        if (!LEGACY_CONTACTS_AUTHORITY.equals(requestAuthority)) {
+            return groupUri;
+        }
+        final long groupId = ContentUris.parseId(groupUri);
+        final Uri legacyContentUri = Uri.parse(LEGACY_CONTACTS_URI);
+        return ContentUris.withAppendedId(legacyContentUri, groupId);
     }
 
     /** TODO: Make it private after {@link GroupBrowseListAdapter} is removed. */

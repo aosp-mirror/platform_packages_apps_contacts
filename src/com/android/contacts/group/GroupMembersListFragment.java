@@ -15,209 +15,43 @@
  */
 package com.android.contacts.group;
 
-import android.app.Activity;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
-import android.content.Intent;
-import android.content.Loader;
-import android.database.Cursor;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.provider.ContactsContract.Groups;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.GroupListLoader;
-import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
-import com.android.contacts.activities.GroupMembersActivity;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 
 /** Displays the members of a group. */
 public class GroupMembersListFragment extends MultiSelectContactsListFragment {
 
-    private static final String TAG = "GroupMembersList";
-
-    private static final String KEY_GROUP_URI = "groupUri";
     private static final String KEY_GROUP_METADATA = "groupMetadata";
 
-    private static final int LOADER_GROUP_METADATA = 0;
-    private static final int LOADER_GROUP_LIST_DETAILS = 1;
-
-    private final LoaderCallbacks<Cursor> mGroupMetadataCallbacks = new LoaderCallbacks<Cursor>() {
-
-        @Override
-        public CursorLoader onCreateLoader(int id, Bundle args) {
-            return new GroupMetaDataLoader(getContext(), mGroupUri);
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-            if (cursor == null || cursor.isClosed()) {
-                Log.e(TAG, "Failed to load group metadata");
-                return;
-            }
-            if (cursor.moveToNext()) {
-                final boolean deleted = cursor.getInt(GroupMetaDataLoader.DELETED) == 1;
-                if (!deleted) {
-                    mGroupMetadata = new GroupMetadata();
-                    mGroupMetadata.accountType = cursor.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
-                    mGroupMetadata.dataSet = cursor.getString(GroupMetaDataLoader.DATA_SET);
-                    mGroupMetadata.groupId = cursor.getLong(GroupMetaDataLoader.GROUP_ID);
-                    mGroupMetadata.groupName = cursor.getString(GroupMetaDataLoader.TITLE);
-                    mGroupMetadata.readOnly = cursor.getInt(GroupMetaDataLoader.IS_READ_ONLY) == 1;
-
-                    final AccountTypeManager accountTypeManager =
-                            AccountTypeManager.getInstance(getContext());
-                    final AccountType accountType = accountTypeManager.getAccountType(
-                            mGroupMetadata.accountType, mGroupMetadata.dataSet);
-                    mGroupMetadata.editable = accountType.isGroupMembershipEditable();
-
-                    getLoaderManager().restartLoader(LOADER_GROUP_LIST_DETAILS, null,
-                            mGroupListDetailsCallbacks);
-                }
-            }
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Cursor> loader) {}
-    };
-
-    private final LoaderCallbacks<Cursor> mGroupListDetailsCallbacks =
-            new LoaderCallbacks<Cursor>() {
-
-        @Override
-        public CursorLoader onCreateLoader(int id, Bundle args) {
-            final GroupListLoader groupListLoader = new GroupListLoader(getContext());
-
-            // TODO(wjang): modify GroupListLoader to accept this selection criteria more naturally
-            groupListLoader.setSelection(groupListLoader.getSelection()
-                    + " AND " + Groups._ID + "=?");
-
-            final String[] selectionArgs = new String[1];
-            selectionArgs[0] = Long.toString(mGroupMetadata.groupId);
-            groupListLoader.setSelectionArgs(selectionArgs);
-
-            return groupListLoader;
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-            if (cursor == null || cursor.isClosed()) {
-                Log.e(TAG, "Failed to load group list details");
-                return;
-            }
-            if (cursor.moveToNext()) {
-                mGroupMetadata.memberCount = cursor.getInt(GroupListLoader.MEMBER_COUNT);
-            }
-
-            onGroupMetadataLoaded();
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Cursor> loader) {}
-    };
-
-    private static final class GroupMetadata implements Parcelable {
-
-        public static final Creator<GroupMetadata> CREATOR = new Creator<GroupMetadata>() {
-
-            public GroupMetadata createFromParcel(Parcel in) {
-                return new GroupMetadata(in);
-            }
-
-            public GroupMetadata[] newArray(int size) {
-                return new GroupMetadata[size];
-            }
-        };
-
-        String accountType;
-        String dataSet;
-        long groupId;
-        String groupName;
-        boolean readOnly;
-        boolean editable;
-        int memberCount = -1;
-
-        GroupMetadata() {
-        }
-
-        GroupMetadata(Parcel source) {
-            readFromParcel(source);
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(accountType);
-            dest.writeString(dataSet);
-            dest.writeLong(groupId);
-            dest.writeString(groupName);
-            dest.writeInt(readOnly ? 1 : 0);
-            dest.writeInt(editable ? 1 : 0);
-            dest.writeInt(memberCount);
-        }
-
-        private void readFromParcel(Parcel source) {
-            accountType = source.readString();
-            dataSet = source.readString();
-            groupId = source.readLong();
-            groupName = source.readString();
-            readOnly = source.readInt() == 1;
-            editable = source.readInt() == 1;
-            memberCount = source.readInt();
-        }
-
-        @Override
-        public String toString() {
-            return "GroupMetadata[accountType=" + accountType +
-                    " dataSet=" + dataSet +
-                    " groupId=" + groupId +
-                    " groupName=" + groupName +
-                    " readOnly=" + readOnly +
-                    " editable=" + editable +
-                    " memberCount=" + memberCount +
-                    "]";
-        }
-    }
+    private static final String ARG_GROUP_METADATA = "groupMetadata";
 
     /** Callbacks for hosts of {@link GroupMembersListFragment}. */
-    public interface GroupMembersListCallbacks {
-
-        /** Invoked when the user hits back in the action bar. */
-        void onHomePressed();
-
-        /** Invoked after group metadata has been loaded. */
-        void onGroupNameLoaded(String groupName);
+    public interface GroupMembersListListener {
 
         /** Invoked when a group member in the list is clicked. */
-        void onGroupMemberClicked(Uri contactLookupUri);
-
-        /** Invoked when a user chooses ot edit the group whose members are being displayed. */
-        void onEditGroup(Uri groupUri);
+        void onGroupMemberListItemClicked(Uri contactLookupUri);
     }
 
-    private Uri mGroupUri;
-
-    private GroupMembersListCallbacks mCallbacks;
+    private GroupMembersListListener mListener;
 
     private GroupMetadata mGroupMetadata;
+
+    public static GroupMembersListFragment newInstance(GroupMetadata groupMetadata) {
+        final Bundle args = new Bundle();
+        args.putParcelable(ARG_GROUP_METADATA, groupMetadata);
+
+        final GroupMembersListFragment fragment = new GroupMembersListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     public GroupMembersListFragment() {
         setHasOptionsMenu(true);
@@ -229,129 +63,53 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
         setQuickContactEnabled(false);
     }
 
-    /** Sets the Uri of the group whose members will be displayed. */
-    public void setGroupUri(Uri groupUri) {
-        mGroupUri = groupUri;
-    }
-
-    /** Sets a listener for group member click events. */
-    public void setCallbacks(GroupMembersListCallbacks callbacks) {
-        mCallbacks = callbacks;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (GroupMembersListListener) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity() + " must implement " +
+                    GroupMembersListListener.class.getSimpleName());
+        }
     }
 
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-        if (savedState != null) {
-            mGroupUri = savedState.getParcelable(KEY_GROUP_URI);
+        if (savedState == null) {
+            mGroupMetadata = getArguments().getParcelable(ARG_GROUP_METADATA);
+        } else {
             mGroupMetadata = savedState.getParcelable(KEY_GROUP_METADATA);
         }
+
+        // Don't attach the multi select check box listener if we can't edit the group
+        if (mGroupMetadata.editable) {
+            try {
+                setCheckBoxListListener((OnCheckBoxListActionListener) getActivity());
+            } catch (ClassCastException e) {
+                throw new ClassCastException(getActivity() + " must implement " +
+                        OnCheckBoxListActionListener.class.getSimpleName());
+            }
+        }
+    }
+
+    @Override
+    public View onCreateView (LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        final View view = super.onCreateView(inflater, container, savedInstanceState);
+        bindMembersCount(view);
+        return view;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(KEY_GROUP_URI, mGroupUri);
         outState.putParcelable(KEY_GROUP_METADATA, mGroupMetadata);
     }
 
-    @Override
-    protected void startLoading() {
-        if (mGroupMetadata == null) {
-            getLoaderManager().restartLoader(LOADER_GROUP_METADATA, null, mGroupMetadataCallbacks);
-        } else {
-            onGroupMetadataLoaded();
-        }
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
-        inflater.inflate(R.menu.view_group, menu);
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        final MenuItem editMenu = menu.findItem(R.id.menu_edit_group);
-        editMenu.setVisible(!isSelectionMode() && isGroupEditable());
-
-        final MenuItem deleteMenu = menu.findItem(R.id.menu_delete_group);
-        deleteMenu.setVisible(!isSelectionMode() && isGroupDeletable());
-
-        final MenuItem removeFromGroupMenu = menu.findItem(R.id.menu_remove_from_group);
-        removeFromGroupMenu.setVisible(isSelectionMode());
-    }
-
-    private boolean isSelectionMode() {
-        final GroupMembersActivity activity = (GroupMembersActivity) getActivity();
-        return activity != null && activity.isSelectionMode();
-    }
-
-    private boolean isGroupEditable() {
-        return mGroupUri != null && mGroupMetadata != null && mGroupMetadata.editable;
-    }
-
-    private boolean isGroupDeletable() {
-        return mGroupUri != null && mGroupMetadata != null && !mGroupMetadata.readOnly;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                if (mCallbacks != null) {
-                    mCallbacks.onHomePressed();
-                }
-                return true;
-            }
-            case R.id.menu_edit_group: {
-                if (mCallbacks != null) {
-                    mCallbacks.onEditGroup(mGroupUri);
-                }
-                break;
-            }
-            case R.id.menu_delete_group: {
-                GroupDeletionDialogFragment.show(getFragmentManager(), mGroupMetadata.groupId,
-                        mGroupMetadata.groupName, /* endActivity */ true);
-                return true;
-            }
-            case R.id.menu_remove_from_group: {
-                removeSelectedContacts();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void removeSelectedContacts() {
-        final Activity activity = getActivity();
-        if (activity != null) {
-            final long[] rawContactsToRemove = getAdapter().getSelectedContactIdsArray();
-            final Intent intent = ContactSaveService.createGroupUpdateIntent(
-                    activity, mGroupMetadata.groupId, /* groupName */ null,
-                    /* rawContactsToAdd */ null, rawContactsToRemove, activity.getClass(),
-                    GroupMembersActivity.ACTION_SAVE_COMPLETED);
-            activity.startService(intent);
-        }
-    }
-
-    private void onGroupMetadataLoaded() {
-        final Activity activity = getActivity();
-        if (activity != null) activity.invalidateOptionsMenu();
-
-        // Set the title
-        if (mCallbacks != null) {
-            mCallbacks.onGroupNameLoaded(mGroupMetadata.groupName);
-        }
-
-        // Set the header
-        bindMembersCount();
-
-        // Start loading the group members
-        super.startLoading();
-    }
-
-    private void bindMembersCount() {
-        final View accountFilterContainer = getView().findViewById(
+    private void bindMembersCount(View view) {
+        final View accountFilterContainer = view.findViewById(
                 R.id.account_filter_header_container);
         if (mGroupMetadata.memberCount >= 0) {
             accountFilterContainer.setVisibility(View.VISIBLE);
@@ -382,9 +140,7 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
     @Override
     protected void configureAdapter() {
         super.configureAdapter();
-        if (mGroupMetadata != null) {
-            getAdapter().setGroupId(mGroupMetadata.groupId);
-        }
+        getAdapter().setGroupId(mGroupMetadata.groupId);
     }
 
     @Override
@@ -402,9 +158,9 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
             super.onItemClick(position, id);
             return;
         }
-        if (mCallbacks != null) {
+        if (mListener != null) {
             final Uri contactLookupUri = getAdapter().getContactLookupUri(position);
-            mCallbacks.onGroupMemberClicked(contactLookupUri);
+            mListener.onGroupMemberListItemClicked(contactLookupUri);
         }
     }
 }

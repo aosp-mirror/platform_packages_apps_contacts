@@ -30,6 +30,7 @@ import com.android.contacts.group.GroupEditorFragment;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.DialogManager;
 
+// TODO(wjang): it longer works. will be deleted shortly
 public class GroupEditorActivity extends ContactsActivity
         implements DialogManager.DialogShowingViewActivity {
 
@@ -63,13 +64,13 @@ public class GroupEditorActivity extends ContactsActivity
         mFragment = (GroupEditorFragment) getFragmentManager().findFragmentById(
                 R.id.group_editor_fragment);
         mFragment.setListener(mFragmentListener);
-        mFragment.setContentResolver(getContentResolver());
+        // mFragment.setContentResolver(getContentResolver());
 
         // NOTE The fragment will restore its state by itself after orientation changes, so
         // we need to do this only for a new instance.
         if (savedState == null) {
             Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
-            mFragment.load(action, uri, getIntent().getExtras());
+            // mFragment.load(action, uri, getIntent().getExtras());
         }
     }
 
