@@ -245,7 +245,7 @@
 
         <!-- Displays the members of a group in a list -->
         <activity android:name=".activities.GroupMembersActivity"
-            android:theme="@style/ContactPickerTheme"/>
+            android:theme="@style/PeopleActivityTheme"/>
 
         <!-- Views the details of a single group -->
         <activity android:name=".activities.GroupDetailActivity"
