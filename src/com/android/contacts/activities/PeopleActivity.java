@@ -80,6 +80,7 @@ import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
+import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupUtil;
@@ -1230,7 +1231,12 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         final int id = item.getItemId();
 
         if (id == R.id.nav_settings) {
-            startActivity(new Intent(this, ContactsPreferenceActivity.class));
+            final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
+            intent.putExtra(ContactsPreferenceActivity.EXTRA_NEW_LOCAL_PROFILE,
+                    ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE);
+            intent.putExtra(ContactsPreferenceActivity.EXTRA_MODE_FULLY_EXPANDED,
+                    QuickContactActivity.MODE_FULLY_EXPANDED);
+            startActivity(intent);
         } else if (id == R.id.nav_help) {
             HelpUtils.launchHelpAndFeedbackForMainScreen(this);
         } else if (id == R.id.nav_all_contacts) {
