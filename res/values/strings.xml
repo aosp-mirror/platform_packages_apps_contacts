@@ -287,6 +287,12 @@
     <!-- The text displayed when the labels list is empty while displaying all labels [CHAR LIMIT=30] -->
     <string name="noGroups">No labels.</string>
 
+    <!-- The text displayed when the groups list is empty and no accounts are set on the device while displaying all groups [CHAR LIMIT=NONE] -->
+    <string name="noAccounts">To create groups you need an account.</string>
+
+    <!-- The text displayed to instruct users to add members to a group (when viewing a group detail page for a group with no members) [CHAR LIMIT=50] -->
+    <string name="addPeopleToGroup">To add some, edit the group.</string>
+
     <!-- The text displayed when there are no members that have this label while displaying the label detail page [CHAR LIMIT=70] -->
     <string name="emptyGroup">No people with this label.</string>
 
@@ -435,6 +441,9 @@
 
     <!-- String describing which account a contact came from when editing it -->
     <string name="from_account_format"><xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
+
+    <!-- Text used to explain that a group cannot be edited since the data is read only [CHAR LIMIT=40] -->
+    <string name="group_read_only">Not editable on this device.</string>
 
     <!-- An option in the 'Contact photo' dialog, if there is no photo yet [CHAR LIMIT=50] -->
     <string name="take_photo">Take photo</string>
