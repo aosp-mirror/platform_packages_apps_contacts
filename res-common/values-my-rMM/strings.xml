@@ -148,7 +148,7 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"နာမည်အကွက်များအား ဖြန့်ချ သို့မဟုတ် လိပ်တင်ပါ"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"အသံထွက်ဆိုင်ရာ အကွက်များကို တိုးချဲ့ သို့မဟုတ် ခေါက်သိမ်းပါ"</string>
     <string name="menu_done" msgid="32470053723443112">"ပြီးပါပြီ"</string>
-    <string name="menu_doNotSave" msgid="6012426160993364871">"ထားတော့"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"ဖျက်သိမ်းရန်"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"သွင်းထားသည့် အဆက်အသွယ်များကို သိမ်းဆည်းရန် −"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"ဆင်းမ်ကဒ်ထဲမှ အထဲသို့သွင်းရန်"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"ဆင်းမ်ကဒ်မှ သွင်းယူရန် <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>

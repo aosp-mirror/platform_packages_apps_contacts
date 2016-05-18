@@ -222,7 +222,7 @@
     <string name="share_favorite_contacts" msgid="2838432887118216222">"Share favourite contacts"</string>
     <string name="share_contacts" msgid="6404040163340914061">"Share all contacts"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"Failed to share contacts."</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Import/export contacts"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Import/Export contacts"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Import contacts"</string>
     <string name="share_error" msgid="665756457151793108">"This contact cannot be shared."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"There are no contacts to share."</string>

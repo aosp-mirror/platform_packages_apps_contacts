@@ -75,7 +75,7 @@
     <string name="directory_search_label" msgid="4484648822765516947">"નિર્દેશિકા"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"કાર્ય નિર્દેશિકા"</string>
     <string name="local_search_label" msgid="9094584931063745728">"તમામ સંપર્કો"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"મારા"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"હું"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"શોધી રહ્યું છે..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> કરતાં વધુ મળ્યાં."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"સંપર્કો નથી"</string>
