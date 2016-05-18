@@ -32,7 +32,7 @@ import android.os.Bundle;
  */
 public class RequestDesiredPermissionsActivity extends RequestPermissionsActivityBase {
 
-    private static final String[] DESIRED_PERMISSIONS = new String[] {
+    public static final String[] DESIRED_PERMISSIONS = new String[] {
             // Calendar group
             permission.READ_CALENDAR,
             // SMS group
@@ -50,14 +50,15 @@ public class RequestDesiredPermissionsActivity extends RequestPermissionsActivit
     }
 
     /**
-     * If any desired permissions the Contacts app needs are missing, open an Activity
-     * to prompt the user for these permissions.
+     * If any desired permission that Contacts app needs are missing, open an Activity
+     * to prompt user for these permissions. After that calling activity is restarted
+     * and in the second run permission check is skipped.
      *
      * This is designed to be called inside {@link android.app.Activity#onCreate}
      */
     public static boolean startPermissionActivity(Activity activity) {
         final Bundle extras = activity.getIntent().getExtras();
-        if (extras != null && extras.getBoolean(STARTED_PERMISSIONS_ACTIVITY, false)) {
+        if (extras != null && extras.getBoolean(EXTRA_STARTED_PERMISSIONS_ACTIVITY, false)) {
             return false;
         }
         return startPermissionActivity(activity, DESIRED_PERMISSIONS,

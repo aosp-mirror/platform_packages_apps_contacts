@@ -18,6 +18,7 @@ package com.android.contacts.common.activity;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.util.PermissionsUtil;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,7 +27,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Trace;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +44,8 @@ public abstract class RequestPermissionsActivityBase extends Activity
     public static final String PREVIOUS_ACTIVITY_INTENT = "previous_intent";
 
     /** Whether the permissions activity was already started. */
-    protected static final String STARTED_PERMISSIONS_ACTIVITY = "started_permissions_activity";
+    protected static final String EXTRA_STARTED_PERMISSIONS_ACTIVITY =
+            "started_permissions_activity";
 
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
@@ -85,7 +86,7 @@ public abstract class RequestPermissionsActivityBase extends Activity
             String[] requiredPermissions, Class<?> newActivityClass) {
         if (!hasPermissions(activity, requiredPermissions)) {
             final Intent intent = new Intent(activity,  newActivityClass);
-            activity.getIntent().putExtra(STARTED_PERMISSIONS_ACTIVITY, true);
+            activity.getIntent().putExtra(EXTRA_STARTED_PERMISSIONS_ACTIVITY, true);
             intent.putExtra(PREVIOUS_ACTIVITY_INTENT, activity.getIntent());
             activity.startActivity(intent);
             activity.finish();
@@ -121,8 +122,7 @@ public abstract class RequestPermissionsActivityBase extends Activity
             // Construct a list of missing permissions
             final ArrayList<String> unsatisfiedPermissions = new ArrayList<>();
             for (String permission : getDesiredPermissions()) {
-                if (checkSelfPermission(permission)
-                        != PackageManager.PERMISSION_GRANTED) {
+                if (!PermissionsUtil.hasPermission(this, permission)) {
                     unsatisfiedPermissions.add(permission);
                 }
             }
@@ -139,17 +139,11 @@ public abstract class RequestPermissionsActivityBase extends Activity
         }
     }
 
-    @Override
-    public int checkSelfPermission(String permission) {
-        return ContextCompat.checkSelfPermission(this, permission);
-    }
-
     protected static boolean hasPermissions(Context context, String[] permissions) {
         Trace.beginSection("hasPermission");
         try {
             for (String permission : permissions) {
-                if (ContextCompat.checkSelfPermission(context, permission)
-                        != PackageManager.PERMISSION_GRANTED) {
+                if (!PermissionsUtil.hasPermission(context, permission)) {
                     return false;
                 }
             }
