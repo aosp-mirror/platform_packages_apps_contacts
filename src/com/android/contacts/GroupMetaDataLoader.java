@@ -50,7 +50,7 @@ public final class GroupMetaDataLoader extends CursorLoader {
 
     public GroupMetaDataLoader(Context context, Uri groupUri) {
         super(context, ensureIsGroupUri(groupUri), COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "
-                + Groups.ACCOUNT_NAME + " NOT NULL", null, Groups.TITLE);
+                + Groups.ACCOUNT_NAME + " NOT NULL", null, Groups.TITLE + " COLLATE NOCASE");
     }
 
     /**
