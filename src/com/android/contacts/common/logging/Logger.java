@@ -16,7 +16,6 @@
 package com.android.contacts.common.logging;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.text.TextUtils;
 
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
