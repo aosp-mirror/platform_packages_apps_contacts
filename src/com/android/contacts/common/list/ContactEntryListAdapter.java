@@ -71,6 +71,8 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
      */
     private boolean mIncludeFavorites;
 
+    private int mNumberOfFavorites;
+
     /**
      * The root view of the fragment that this adapter is associated with.
      */
@@ -367,8 +369,13 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
 
     public void setFavoritesSectionHeader(int numberOfFavorites) {
         if (mIncludeFavorites) {
+            mNumberOfFavorites = numberOfFavorites;
             setSectionHeader(R.string.star_sign, numberOfFavorites);
         }
+    }
+
+    public int getNumberOfFavorites() {
+        return mNumberOfFavorites;
     }
 
     private void setSectionHeader(int resId, int numberOfItems) {

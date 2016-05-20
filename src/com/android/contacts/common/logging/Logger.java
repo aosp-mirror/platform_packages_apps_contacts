@@ -64,11 +64,31 @@ public abstract class Logger {
      */
     public static void logSearchEvent(SearchState searchState) {
         final Logger logger = getInstance();
-         if (logger != null) {
+        if (logger != null) {
             logger.logSearchEventImpl(searchState);
+        }
+    }
+
+    /**
+     * Logs how users view and use a contacts list. See {@link ListEvent} for definition of
+     * parameters.
+     */
+    public static void logListEvent(int actionType, int listType, int count, int clickedIndex,
+            int numSelected) {
+        final ListEvent event = new ListEvent();
+        event.actionType = actionType;
+        event.listType = listType;
+        event.count = count;
+        event.clickedIndex = clickedIndex;
+        event.numSelected = numSelected;
+
+        final Logger logger = getInstance();
+        if (logger != null) {
+            logger.logListEventImpl(event);
         }
     }
 
     public abstract void logScreenViewImpl(int screenType, int previousScreenType);
     public abstract void logSearchEventImpl(SearchState searchState);
+    public abstract void logListEventImpl(ListEvent event);
 }

@@ -31,6 +31,9 @@ public class ScreenEvent {
         public static final int ALL_CONTACTS = 4;
         public static final int QUICK_CONTACT = 5;
         public static final int EDITOR = 6;
+        public static final int LIST_ACCOUNT = 7;
+        public static final int LIST_GROUP = 8;
+        public static final int ME_CONTACT = 9;
 
         public static String getFriendlyName(int screenType) {
             switch (screenType) {
@@ -40,6 +43,9 @@ public class ScreenEvent {
                 case ALL_CONTACTS: return "AllContacts";
                 case QUICK_CONTACT: return "QuickContact";
                 case EDITOR: return "Editor";
+                case LIST_ACCOUNT: return "ListAccount";
+                case LIST_GROUP: return "ListGroup";
+                case ME_CONTACT: return "MeContact";
                 case UNKNOWN: // fall-through
                 default: return null;
             }
