@@ -45,10 +45,6 @@
             android:paddingStart="8dip"/>
 
         <include
-            layout="@layout/group_editor_autocomplete_view"
-            android:id="@+id/add_member_field"/>
-
-        <include
             layout="@layout/group_editor_existing_member_list"
             android:id="@android:id/list"/>
     </LinearLayout>

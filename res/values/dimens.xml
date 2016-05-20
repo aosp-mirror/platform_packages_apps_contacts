@@ -154,9 +154,6 @@
     <!-- Right margin for the group member list to match the built in margin in the autocomplete asset -->
     <dimen name="group_editor_member_list_right_margin">4dip</dimen>
 
-    <!-- Left padding of the auto complete field to line hint text up with member list -->
-    <dimen name="group_editor_autocomplete_left_padding">8dip</dimen>
-
     <!-- Border padding for the group detail fragment -->
     <dimen name="group_detail_border_padding">0dip</dimen>
 

@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.AutoCompleteTextView;
 
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
@@ -139,6 +140,20 @@ public class GroupEditorActivity extends ContactsActivity
         public void onGroupMemberClicked(Uri contactLookupUri) {
             startActivity(ImplicitIntentsUtil.composeQuickContactIntent(
                     contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED));
+        }
+
+        @Override
+        public AutoCompleteTextView getSearchView() {
+            return null;
+        }
+
+        @Override
+        public boolean isSearchMode() {
+            return false;
+        }
+
+        @Override
+        public void setSearchMode(boolean searchMode) {
         }
     };
 

@@ -121,6 +121,24 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
          * Group member name or photo was clicked in order to view contact details.
          */
         void onGroupMemberClicked(Uri contactLookupUri);
+
+        // TODO(wjang): consider calling these directly on the host Activity or moving these
+        // options menu items to the host Activity.
+
+        /**
+         * Returns the autocomplete view from the action bar.
+         */
+        AutoCompleteTextView getSearchView();
+
+        /**
+         * Whether the action bar is currently in search mode.
+         */
+        boolean isSearchMode();
+
+        /**
+         * Change whether the action bar is in search mode.
+         */
+        void setSearchMode(boolean searchMode);
     }
 
     private static final int LOADER_EXISTING_MEMBERS = 2;
@@ -421,8 +439,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         }
 
         mGroupNameView = (TextView) editorView.findViewById(R.id.group_name);
-        mAutoCompleteTextView = (AutoCompleteTextView) editorView.findViewById(
-                R.id.add_member_field);
+        if (mListener != null) {
+            mAutoCompleteTextView = mListener.getSearchView();
+        }
 
         mListView = (ListView) editorView.findViewById(android.R.id.list);
         mListView.setAdapter(mMemberListAdapter);
@@ -520,6 +539,21 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     }
 
     @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        final boolean isSearchMode = mListener == null ? false : mListener.isSearchMode();
+        setVisible(menu, R.id.menu_add, !isSearchMode);
+        setVisible(menu, R.id.menu_save, !isSearchMode);
+        setVisible(menu, R.id.menu_discard, !isSearchMode);
+    }
+
+    private static void setVisible(Menu menu, int id, boolean visible) {
+        final MenuItem menuItem = menu.findItem(id);
+        if (menuItem != null) {
+            menuItem.setVisible(visible);
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
@@ -530,6 +564,11 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
                 }
                 return true;
             }
+            case R.id.menu_add:
+                if (mListener != null) {
+                    mListener.setSearchMode(true);
+                }
+                return true;
             case R.id.menu_save:
                 onDoneClicked();
                 return true;

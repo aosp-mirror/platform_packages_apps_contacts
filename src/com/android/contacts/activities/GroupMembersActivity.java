@@ -31,6 +31,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 import com.android.contacts.AppCompatContactsActivity;
@@ -257,7 +258,8 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
         final ContactsRequest contactsRequest = new ContactsRequest();
         contactsRequest.setActionCode(ContactsRequest.ACTION_GROUP);
         mActionBarAdapter = new ActionBarAdapter(this, this, getSupportActionBar(),
-                /* portraitTabs */ null, /* landscapeTabs */ null, toolbar);
+                /* portraitTabs */ null, /* landscapeTabs */ null, toolbar,
+                R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
         mActionBarAdapter.setShowHomeAsUp(true);
         mActionBarAdapter.initialize(savedState, contactsRequest);
@@ -429,9 +431,6 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
     @Override
     public void onAction(int action) {
         switch (action) {
-            case ActionBarAdapter.Listener.Action.CHANGE_SEARCH_QUERY:
-                // TODO(wjang)
-                break;
             case ActionBarAdapter.Listener.Action.START_SEARCH_MODE:
                 mActionBarAdapter.setSearchMode(true);
                 invalidateOptionsMenu();
@@ -527,5 +526,23 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
     public void onGroupMemberClicked(Uri contactLookupUri) {
         startActivity(ImplicitIntentsUtil.composeQuickContactIntent(
                 contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED));
+    }
+
+    @Override
+    public AutoCompleteTextView getSearchView() {
+        return mActionBarAdapter == null
+                ? null : (AutoCompleteTextView) mActionBarAdapter.getSearchView();
+    }
+
+    @Override
+    public boolean isSearchMode() {
+        return mActionBarAdapter == null ? false : mActionBarAdapter.isSearchMode();
+    }
+
+    @Override
+    public void setSearchMode(boolean searchMode) {
+        if (mActionBarAdapter != null) {
+            mActionBarAdapter.setSearchMode(searchMode);
+        }
     }
 }

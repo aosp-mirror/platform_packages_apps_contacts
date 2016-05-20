@@ -52,8 +52,6 @@
     <dimen name="group_editor_member_list_right_margin">4dip</dimen>
     <!-- Account title left padding -->
     <dimen name="account_container_left_padding">16dip</dimen>
-    <!-- Left padding of the auto complete field to line hint text up with member list -->
-    <dimen name="group_editor_autocomplete_left_padding">16dip</dimen>
     <dimen name="contact_detail_list_top_padding">8dip</dimen>
     <dimen name="frequently_contacted_title_text_size">24sp</dimen>
 </resources>

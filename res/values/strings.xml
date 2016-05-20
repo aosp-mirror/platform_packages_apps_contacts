@@ -137,11 +137,14 @@
     <!-- Menu item that deletes the currently selected label [CHAR LIMIT=30] -->
     <string name="menu_deleteGroup">Delete label</string>
 
+    <!-- Menu item to search for contacts to add to the currently selected label. CHAR LIMIT=30] -->
+    <string name="menu_addToGroup">Add contact</string>
+
     <!-- Menu item to remove the currently selected contacts from the currently selected label. [CHAR LIMIT=60] -->
     <string name="menu_removeFromGroup">Remove from label</string>
 
     <!-- Menu item (in the action bar) that creates a new contact [CHAR LIMIT=30] -->
-    <string name="menu_new_contact_action_bar">Add Contact</string>
+    <string name="menu_new_contact_action_bar">Add contact</string>
 
     <!-- Menu item (in the action bar) that creates a new label [CHAR LIMIT=30] -->
     <string name="menu_new_group_action_bar">Create new&#8230;</string>

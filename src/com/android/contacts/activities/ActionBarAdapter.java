@@ -110,6 +110,8 @@ public class ActionBarAdapter implements OnCloseListener {
     private boolean mShowHomeIcon;
     private boolean mShowHomeAsUp;
 
+    private int mSearchHintResId;
+
     public interface TabState {
         public static int ALL = 0;
 
@@ -121,6 +123,12 @@ public class ActionBarAdapter implements OnCloseListener {
 
     public ActionBarAdapter(Activity activity, Listener listener, ActionBar actionBar,
             View portraitTabs, View landscapeTabs, Toolbar toolbar) {
+        this(activity, listener, actionBar, portraitTabs, landscapeTabs, toolbar,
+                R.string.hint_findContacts);
+    }
+
+    public ActionBarAdapter(Activity activity, Listener listener, ActionBar actionBar,
+            View portraitTabs, View landscapeTabs, Toolbar toolbar, int searchHintResId) {
         mActivity = activity;
         mListener = listener;
         mActionBar = actionBar;
@@ -130,6 +138,7 @@ public class ActionBarAdapter implements OnCloseListener {
         mToolbar = toolbar;
         mToolBarFrame = (FrameLayout) mToolbar.getParent();
         mMaxToolbarContentInsetStart = mToolbar.getContentInsetStart();
+        mSearchHintResId = searchHintResId;
 
         setupSearchAndSelectionViews();
         setupTabs(mActivity);
@@ -141,6 +150,10 @@ public class ActionBarAdapter implements OnCloseListener {
 
     public void setShowHomeAsUp(boolean showHomeAsUp) {
         mShowHomeAsUp = showHomeAsUp;
+    }
+
+    public EditText getSearchView() {
+        return mSearchView;
     }
 
     private void setupTabs(Context context) {
@@ -163,7 +176,7 @@ public class ActionBarAdapter implements OnCloseListener {
         mSearchContainer.setBackgroundColor(mActivity.getResources().getColor(
                 R.color.searchbox_background_color));
         mSearchView = (EditText) mSearchContainer.findViewById(R.id.search_view);
-        mSearchView.setHint(mActivity.getString(R.string.hint_findContacts));
+        mSearchView.setHint(mActivity.getString(mSearchHintResId));
         mSearchView.addTextChangedListener(new SearchTextWatcher());
         mSearchContainer.findViewById(R.id.search_back_button).setOnClickListener(
                 new OnClickListener() {
