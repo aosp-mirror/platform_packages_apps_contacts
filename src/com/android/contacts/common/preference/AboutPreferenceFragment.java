@@ -38,6 +38,10 @@ public class AboutPreferenceFragment extends PreferenceFragment {
     private static final String PRIVACY_POLICY_URL = "http://www.google.com/policies/privacy";
     private static final String TERMS_OF_SERVICE_URL = "http://www.google.com/policies/terms";
 
+    public static AboutPreferenceFragment newInstance() {
+        return new AboutPreferenceFragment();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
