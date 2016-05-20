@@ -32,7 +32,7 @@
         android:contentDescription="@string/action_menu_back_from_search"
         android:tint="@color/actionbar_background_color" />
 
-    <EditText
+    <android.widget.AutoCompleteTextView
         android:id="@+id/search_view"
         android:layout_width="0dp"
         android:layout_height="@dimen/search_box_icon_size"
