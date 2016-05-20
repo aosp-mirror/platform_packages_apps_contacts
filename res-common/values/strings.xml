@@ -610,6 +610,15 @@
     <!--Label of the "Sync contact metadata" setting dialog to set sync account for Lychee. [CHAR LIMIT=80]-->
     <string name="sync_contact_metadata_dialog_title">Sync contact metadata</string>
 
+    <!-- Title of my info preference, showing the name of user's personal profile [CHAR LIMIT=30]-->
+    <string name="settings_my_info_title">My info</string>
+
+    <!-- Displayed below my info for user to set up the user's personal profile entry [CHAR LIMIT=64] -->
+    <string name="set_up_profile">Set up your profile</string>
+
+    <!-- Displayed below my info to show the name of user's personal profile [CHAR LIMIT=30]-->
+    <string name="me_contact_name">Me Contact\u003A\u0020<xliff:g id="name">%s</xliff:g></string>
+
     <!-- Label of the "About" setting -->
     <string name="setting_about">About Contacts</string>
 
@@ -659,9 +668,6 @@
 
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "All contacts" is selected  [CHAR LIMIT=64]-->
     <string name="listTotalAllContactsZero">No contacts.</string>
-
-    <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when a group or account is selected  [CHAR LIMIT=64]-->
-    <string name="listTotalAllContactsZeroGroup">No contacts in <xliff:g id="name" example="Friends">%s</xliff:g></string>
 
     <!--  The menu item to clear frequents [CHAR LIMIT=30] -->
     <string name="menu_clear_frequents">Clear frequents</string>
