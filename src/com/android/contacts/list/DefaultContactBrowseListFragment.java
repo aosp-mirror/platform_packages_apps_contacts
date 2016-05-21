@@ -67,7 +67,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             super.onItemClick(position, id);
             return;
         }
-        viewContact(uri, getAdapter().isEnterpriseContact(position));
+        viewContact(position, uri, getAdapter().isEnterpriseContact(position));
     }
 
     @Override

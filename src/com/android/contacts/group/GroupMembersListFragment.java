@@ -33,6 +33,7 @@ import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.logging.ListEvent.ListType;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 
 /** Displays the members of a group. */
@@ -58,7 +59,7 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
         void onGroupMetadataLoadFailed();
 
         /** Invoked when a group member in the list is clicked. */
-        void onGroupMemberListItemClicked(Uri contactLookupUri);
+        void onGroupMemberListItemClicked(int position, Uri contactLookupUri);
     }
 
     /** Step 1 of loading group metadata. */
@@ -158,6 +159,7 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
         // Don't show the scrollbar until after group members have been loaded
         setVisibleScrollbarEnabled(false);
         setQuickContactEnabled(false);
+        setListType(ListType.GROUP);
     }
 
     public void setListener(GroupMembersListListener listener) {
@@ -268,7 +270,7 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
         }
         if (mListener != null) {
             final Uri contactLookupUri = getAdapter().getContactLookupUri(position);
-            mListener.onGroupMemberListItemClicked(contactLookupUri);
+            mListener.onGroupMemberListItemClicked(position, contactLookupUri);
         }
     }
 }

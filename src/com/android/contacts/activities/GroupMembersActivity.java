@@ -41,6 +41,9 @@ import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMemberLoader.GroupEditorQuery;
 import com.android.contacts.R;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
+import com.android.contacts.common.logging.Logger;
+import com.android.contacts.common.logging.ListEvent;
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
@@ -347,6 +350,15 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
                 return true;
             }
             case R.id.menu_remove_from_group: {
+                if (mMembersListFragment == null) {
+                    return false;
+                }
+                final int count = mMembersListFragment.getAdapter().getCount();
+                final int numSelected =
+                        mMembersListFragment.getAdapter().getSelectedContactIdsArray().length;
+                Logger.logListEvent(ListEvent.ActionType.REMOVE_LABEL,
+                        mMembersListFragment.getListType(), count, /* clickedIndex */ -1,
+                        numSelected);
                 removeSelectedContacts();
                 return true;
             }
@@ -570,8 +582,13 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
     }
 
     @Override
-    public void onGroupMemberListItemClicked(Uri contactLookupUri) {
-        startActivity(ImplicitIntentsUtil.composeQuickContactIntent(
-                contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED));
+    public void onGroupMemberListItemClicked(int position, Uri contactLookupUri) {
+        final int count = mMembersListFragment.getAdapter().getCount();
+        Logger.logListEvent(ListEvent.ActionType.CLICK, ListEvent.ListType.GROUP, count,
+                /* clickedIndex */ position, /* numSelected */ 0);
+        final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
+                contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
+        intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.LIST_GROUP);
+        startActivity(intent);
     }
 }

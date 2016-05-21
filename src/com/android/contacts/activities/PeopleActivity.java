@@ -72,6 +72,7 @@ import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.ViewPagerTabs;
+import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.preference.ContactsPreferenceActivity;
@@ -128,6 +129,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     private static final String TAG = "PeopleActivity";
 
     private static final String ENABLE_DEBUG_OPTIONS_HIDDEN_CODE = "debug debug!";
+
+    private static final int ACTIVITY_REQUEST_CODE_SHARE = 0;
 
     private final DialogManager mDialogManager = new DialogManager(this);
 
@@ -398,6 +401,10 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
         mAllFragment.setCheckBoxListListener(new CheckBoxListListener());
+        final int listType =  mContactListFilterController.getFilter().filterType ==
+                ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
+                ? ListEvent.ListType.ALL_CONTACTS : ListEvent.ListType.ACCOUNT;
+        mAllFragment.setListType(listType);
 
         if (areGroupWritableAccountsAvailable() && mGroupsFragment != null) {
             mGroupsFragment.setListener(this);
@@ -1028,7 +1035,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         }
 
         @Override
-        public void onViewContactAction(Uri contactLookupUri, boolean isEnterpriseContact) {
+        public void onViewContactAction(int position, Uri contactLookupUri,
+                boolean isEnterpriseContact) {
             if (isEnterpriseContact) {
                 // No implicit intent as user may have a different contacts app in work profile.
                 QuickContact.showQuickContact(PeopleActivity.this, new Rect(), contactLookupUri,
@@ -1036,8 +1044,26 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             } else {
                 final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
                         contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
-                intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
-                        mAllFragment.isSearchMode() ? ScreenType.SEARCH : ScreenType.ALL_CONTACTS);
+                final int previousScreen;
+                if (mAllFragment.isSearchMode()) {
+                    previousScreen = ScreenType.SEARCH;
+                } else {
+                    if (mAllFragment.getFilter().filterType ==
+                            ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+                        if (position < mAllFragment.getAdapter().getNumberOfFavorites()) {
+                            previousScreen = ScreenType.FAVORITES;
+                        } else {
+                            previousScreen = ScreenType.ALL_CONTACTS;
+                        }
+                    } else {
+                        previousScreen = ScreenType.LIST_ACCOUNT;
+                    }
+                }
+                Logger.logListEvent(ListEvent.ActionType.CLICK,
+                        /* listType */ getListTypeIncludingSearch(),
+                        /* count */ mAllFragment.getAdapter().getCount(),
+                        /* clickedIndex */ position, /* numSelected */ 0);
+                intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, previousScreen);
                 ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
             }
         }
@@ -1208,6 +1234,10 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 return true;
             }
             case R.id.menu_join: {
+                Logger.logListEvent(ListEvent.ActionType.LINK,
+                        /* listType */ getListTypeIncludingSearch(),
+                        /* count */ mAllFragment.getAdapter().getCount(), /* clickedIndex */ -1,
+                        /* numSelected */ mAllFragment.getAdapter().getSelectedContactIds().size());
                 joinSelectedContacts();
                 return true;
             }
@@ -1236,6 +1266,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                     ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE);
             intent.putExtra(ContactsPreferenceActivity.EXTRA_MODE_FULLY_EXPANDED,
                     QuickContactActivity.MODE_FULLY_EXPANDED);
+            intent.putExtra(ContactsPreferenceActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
+                    QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE);
             startActivity(intent);
         } else if (id == R.id.nav_help) {
             HelpUtils.launchHelpAndFeedbackForMainScreen(this);
@@ -1312,7 +1344,13 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         final Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType(Contacts.CONTENT_VCARD_TYPE);
         intent.putExtra(Intent.EXTRA_STREAM, uri);
-        ImplicitIntentsUtil.startActivityOutsideApp(this, intent);
+        try {
+            // TODO(wenyiw): show different strings based on number of contacts.
+            startActivityForResult(Intent.createChooser(intent, getText(R.string.share_via)),
+                    ACTIVITY_REQUEST_CODE_SHARE);
+        } catch (final ActivityNotFoundException ex) {
+            Toast.makeText(this, R.string.share_error, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void joinSelectedContacts() {
@@ -1330,7 +1368,17 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     @Override
     public void onDeletionFinished() {
+        // The parameters count and numSelected are both the number of contacts before deletion.
+        Logger.logListEvent(ListEvent.ActionType.DELETE,
+                /* listType */ getListTypeIncludingSearch(),
+                /* count */ mAllFragment.getAdapter().getCount(), /* clickedIndex */ -1,
+                /* numSelected */ mAllFragment.getSelectedContactIds().size());
         mActionBarAdapter.setSelectionMode(false);
+    }
+
+    private int getListTypeIncludingSearch() {
+        return mAllFragment.isSearchMode()
+                ? ListEvent.ListType.SEARCH_RESULT : mAllFragment.getListType();
     }
 
     @Override
@@ -1342,6 +1390,12 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 if (resultCode == RESULT_OK) {
                     mAllFragment.onPickerResult(data);
                 }
+            case ACTIVITY_REQUEST_CODE_SHARE:
+                Logger.logListEvent(ListEvent.ActionType.SHARE,
+                    /* listType */ getListTypeIncludingSearch(),
+                    /* count */ mAllFragment.getAdapter().getCount(), /* clickedIndex */ -1,
+                    /* numSelected */ mAllFragment.getAdapter().getSelectedContactIds().size());
+
 
 // TODO fix or remove multipicker code
 //                else if (resultCode == RESULT_CANCELED && mMode == MODE_PICK_MULTIPLE_PHONES) {
