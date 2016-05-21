@@ -39,7 +39,7 @@
     <string name="call_work_mobile" msgid="4408630608955148641">"تماس با تلفن همراه محل کار"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"تماس با پی‌جوی محل کار"</string>
     <string name="call_assistant" msgid="5188990854852312696">"تماس با <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="8998771923464696960">"‏تماس با MMS"</string>
+    <string name="call_mms" msgid="8998771923464696960">"تماس با فراپیام"</string>
     <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (تماس)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"ارسال پیامک به <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"ارسال پیامک به تلفن منزل"</string>
@@ -64,9 +64,9 @@
     <string name="sms_mms" msgid="4887206338311086612">"ارسال پیامک به خدمات پیام چندرسانه‌ای"</string>
     <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (پیام)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"برقراری تماس ویدیویی"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"فهرست مکرر تماس‌گرفته‌شده پاک شود؟"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"مکرراً تماس‌گرفته‌ها پاک شود؟"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"فهرست افرادی را که مکرر با آن‌ها تماس گرفته‌اید در برنامه‌های «مخاطبین» و «تلفن» پاک خواهید کرد و برنامه‌های ایمیل مجبور می‌شوند که تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
-    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"درحال پاک کردن مکرر تماس‌گرفته‌شده…"</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"درحال پاک کردن مکرراً تماس‌گرفته…"</string>
     <string name="status_available" msgid="4832569677396634846">"در دسترس"</string>
     <string name="status_away" msgid="6267905184545881094">"غایب"</string>
     <string name="status_busy" msgid="7111912905211403545">"مشغول"</string>
@@ -86,7 +86,7 @@
     <string name="description_quick_contact_for" msgid="6355240770807101947">"تماس سریع برای <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(بدون نام)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"بیشتر تماس‌ گرفته شده"</string>
-    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"مکرر تماس‌گرفته‌شده"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"مکرراً تماس‌گرفته"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"مشاهده مخاطب"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"همه مخاطبین دارای شماره تلفن"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"مخاطبین نمایه کاری"</string>
@@ -245,9 +245,9 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"موارد دلخواه"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"مخاطبی موجود نیست."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"مخاطب قابل مشاهده‌ای موجود نیست."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"مورد دلخواهی وجود ندارد"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"مورد دلخواهی ندارید"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"هیچ مخاطبی در <xliff:g id="NAME">%s</xliff:g> موجود نیست"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"پاک کردن موارد مکرر"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"پاک کردن مکرراً تماس‌گرفته"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"انتخاب سیم‌کارت"</string>
     <string name="menu_accounts" msgid="2944004960829403994">"مدیریت حساب‌ها"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"وارد کردن/صادر کردن"</string>

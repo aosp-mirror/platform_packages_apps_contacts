@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Telefon raqamli kontaktlar"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Ishchi profili kontaktlari"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Yangilanishlarni ko‘rish"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Faqat telefonda, sinxronlanmaydi"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Faqat telefonga saqlanadigan va sinxronlanmaydigan"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Ismi"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Taxallusi"</string>
     <string name="full_name" msgid="885420216812981202">"To‘liq ismi"</string>
@@ -151,7 +151,7 @@
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Barcha kontaktlar"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Baho berilgan"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Sozlash"</string>
-    <string name="list_filter_single" msgid="4553809449379139446">"Kontakt"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Tanlangan kontakt"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"Boshqa kontaktlar"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"Barcha kontaktlar"</string>
     <string name="menu_sync_remove" msgid="6581565236520430269">"Sinx. guruhini o‘chirish"</string>
@@ -242,7 +242,7 @@
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontaktlarni filtrlash"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"Kontaktlar guruhini tanlang"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Kontakt qidirish"</string>
-    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Saralar"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Sevimlilar"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Hech qanday kontakt yo‘q."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ko‘rinadigan kontaktlar yo‘q."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Hech narsa yo‘q"</string>

@@ -168,7 +168,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Importér fra SIM-kort"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importér fra .vcf-fil"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importer fra .vcf-fil"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vil du avbryte importeringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vil du avbryte eksporteringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Kunne ikke avbryte imp./eksp. av vCard"</string>

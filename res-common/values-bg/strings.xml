@@ -216,7 +216,7 @@
     <string name="confirm_export_title" msgid="3240899428149018226">"Да се експортират ли контактите?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кешира се"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импортира/т се <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Експорт. като .vcf файл"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Експортиране като .vcf файл"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортиране по"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Собствено име"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Фамилно име"</string>

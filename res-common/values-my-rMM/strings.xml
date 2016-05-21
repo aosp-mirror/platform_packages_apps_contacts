@@ -29,9 +29,9 @@
     <string name="call_other" msgid="4472141328347894937">"ခေါ်ပါ"</string>
     <string name="call_callback" msgid="687494744634190411">"ပြန်ခေါ်ခြင်းဝန်ဆောင်မှုကို ခေါ်ပါ"</string>
     <string name="call_car" msgid="9078083109758282133">"ကားကိုခေါ်ပါ"</string>
-    <string name="call_company_main" msgid="8768047233970315359">"ကုမ္ပဏီအဓိက နံပါတ်ကို ခေါ်ပါ"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"ကုမ္ပဏီပင်မနံပါတ်ကို ခေါ်ပါ"</string>
     <string name="call_isdn" msgid="3342482563847537747">"ISDN ကိုခေါ်ပါ"</string>
-    <string name="call_main" msgid="4640261071249938558">"အဓိကနံပါတ်ကိုခေါ်ပါ"</string>
+    <string name="call_main" msgid="4640261071249938558">"ပင်မနံပါတ်ကို ခေါ်ပါ"</string>
     <string name="call_other_fax" msgid="2536328553125487877">"ဖက်စ်ကိုခေါ်ပါ"</string>
     <string name="call_radio" msgid="9055749313292712021">"ရေဒီယိုကိုခေါ်ပါ"</string>
     <string name="call_telex" msgid="2909886619224843563">"တဲလက်ဇ်နံပါတ်ကိုခေါ်ပါ"</string>
@@ -75,7 +75,7 @@
     <string name="directory_search_label" msgid="4484648822765516947">"လမ်းညွှန်"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"အလုပ်လမ်းညွှန်"</string>
     <string name="local_search_label" msgid="9094584931063745728">"လိပ်စာများအားလုံး"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"ကျွန်ုပ်"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"မိမိ"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"ရှာဖွေနေသည်…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> ထက်ပိုတွေ့ရှိသည်"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"အဆက်အသွယ်များမရှိပါ"</string>
@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ဖုန်းနံပါတ်ပါသော လိပ်စာများအားလုံး"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"အလုပ်ပရိုဖိုင် အဆက်အသွယ်များ"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"အဆင့်မြှင့်ခြင်းများပြရန်"</string>
-    <string name="account_phone" msgid="6104157990869081962">"ဖုန်းတွင်သာ ညီတူမညှိထားပါ"</string>
+    <string name="account_phone" msgid="6104157990869081962">"ဖုန်းတွင်သာရှိပြီး စင့်ခ်လုပ်မထားပါ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"အမည်"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"နာမည်ဝှက်"</string>
     <string name="full_name" msgid="885420216812981202">"အမည်"</string>
@@ -160,7 +160,7 @@
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" အား ထပ်တူပြုလုပ်ခြင်းမှ ဖယ်ထုတ်ခြင်းသည် တခြား အုပ်စုမလုပ်ထားသော အဆက်အသွယ်များအားလည်း ဖယ်ထုတ်ပါလိမ့်မည်။"</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"ပြသမှု ရွေးချယ်ခြင်းများ သိမ်းဆည်နေစဉ်…"</string>
     <string name="menu_done" msgid="32470053723443112">"ပြီးပါပြီ"</string>
-    <string name="menu_doNotSave" msgid="6012426160993364871">"ထားတော့"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"ဖျက်သိမ်းရန်"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> ထဲမှ အဆက်အသွယ်များ"</string>
     <string name="listCustomView" msgid="1915154113477432033">"မိမိစိတ်ကြိုက် မြင်ကွင်းမှ"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"အဆက်အသွယ်တစ်ခုတည်း"</string>
@@ -234,7 +234,7 @@
     <string name="share_contacts" msgid="6404040163340914061">"အဆက်အသွယ်များအားလုံးကို မျှဝေပါ"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"အဆက်အသွယ်များကို မျှဝေခြင်းမအောင်မြင်ပါ။"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"အဆက်အသွယ်များ သွင်းယူ၊ ထုတ်ယူရန်"</string>
-    <string name="dialog_import" msgid="5177004290082451296">"အဆက်အသွယ်များ တင်သွင်းပါ"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"အဆက်အသွယ်များ သွင်းပါ"</string>
     <string name="share_error" msgid="665756457151793108">"ဒီလိပ်စာအား မျှဝေလို့ မရပါ"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"မျှဝေရန် အဆက်အသွယ်များမရှိပါ။"</string>
     <string name="menu_search" msgid="7464453023659824700">"ရှာဖွေခြင်း"</string>
@@ -271,7 +271,7 @@
     <string name="about_build_version" msgid="4221971683776635130">"တည်ဆောက်မှု ဗားရှင်း"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"အခမဲ့ ရင်းမြစ် လိုင်စင်များ"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"အခမဲ့  ဆော့ဝဲအတွက် လိုင်စင် အသေးစိတ်များ"</string>
-    <string name="about_privacy_policy" msgid="8458337666582973913">"ပုဂ္ဂိုလ်ရေး မူဝါဒ"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"ပုဂ္ဂိုလ်ရေးဆိုင်ရာ မူဝါဒ"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"ဝန်ဆောင်မှု စည်းကမ်းချက်များ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"အခမဲ့ ရင်းမြစ် လိုင်စင်များ"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url ကို ဖွင့်၍မရပါ။"</string>

@@ -86,7 +86,7 @@
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacto rápido para <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sen nome)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Chamados frecuentemente"</string>
-    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactados frecuentemente"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactos frecuentes"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ver contacto"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos os contactos con números de teléfono"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Contactos do perfil de traballo"</string>

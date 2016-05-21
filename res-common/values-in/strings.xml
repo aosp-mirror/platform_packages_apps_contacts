@@ -221,8 +221,8 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Nama depan"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Nama belakang"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Format nama"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nama depan pertama"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nama belakang pertama"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nama depan terlebih dulu"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nama belakang terlebih dulu"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Akun default untuk kontak baru"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinkronkan metadata kontak [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinkronkan metadata kontak"</string>

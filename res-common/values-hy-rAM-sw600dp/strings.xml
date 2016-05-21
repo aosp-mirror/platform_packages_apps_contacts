@@ -17,6 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"Միայն գրասալիկի համար, չհամաժամեցված"</string>
+    <string name="account_phone" msgid="4804592866198643905">"Միայն պլանշետի համար, չհամաժամեցված"</string>
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"Արտահանելի կոնտակտներ չկան: Եթե պլանշետում ունեք կոնտակտներ, հնարավոր է՝ որոշ տվյալների մատակարարներ չեն թույլատրում պլանշետից կոնտակտների արտահանումը:"</string>
 </resources>

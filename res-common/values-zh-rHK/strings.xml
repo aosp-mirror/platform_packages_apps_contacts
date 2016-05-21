@@ -75,7 +75,7 @@
     <string name="directory_search_label" msgid="4484648822765516947">"名錄"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"工作目錄"</string>
     <string name="local_search_label" msgid="9094584931063745728">"所有聯絡人"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"我本人"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"我"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"正在搜尋..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"找到超過 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人。"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"沒有聯絡人"</string>
@@ -230,7 +230,7 @@
     <string name="activity_title_settings" msgid="3056389601004689380">"設定"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"分享正常顯示的聯絡人"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"無法分享顯示的聯絡人"</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"分享常用的聯絡人資料"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"分享常用聯絡人資料"</string>
     <string name="share_contacts" msgid="6404040163340914061">"分享所有聯絡人資料"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"無法分享聯絡人資料。"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"匯入/匯出聯絡人資料"</string>
@@ -270,7 +270,7 @@
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"版本"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"開放原始碼授權"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"開放原始碼軟件的授權詳細資料"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"開放原始碼軟件的授權詳情"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"私隱權政策"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"服務條款"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"開放原始碼授權"</string>

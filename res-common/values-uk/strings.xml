@@ -93,7 +93,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Усі контакти з номерами телефону"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Контакти в робочому профілі"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Переглянути оновлення"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Лише в телефоні, не синхронізується"</string>
+    <string name="account_phone" msgid="6104157990869081962">"лише в телефоні, не синхронізується"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Ім’я"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псевдонім"</string>
     <string name="full_name" msgid="885420216812981202">"Ім’я"</string>

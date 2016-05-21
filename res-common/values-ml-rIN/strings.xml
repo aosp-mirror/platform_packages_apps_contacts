@@ -86,22 +86,22 @@
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> എന്നയാളുടെ ദ്രുത കോൺടാക്റ്റ്"</string>
     <string name="missing_name" msgid="2633118852693000081">"(പേരില്ല)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"പതിവായി വിളിച്ചവർ"</string>
-    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവർ"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"പതിവ് കോൺടാക്റ്റുകൾ"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"കോൺടാക്റ്റ് കാണുക"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ഫോൺ നമ്പറുകളുള്ള എല്ലാ കോൺടാക്റ്റുകളും"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"ഔദ്യോഗിക പ്രൊഫൈൽ കോൺടാക്റ്റുകൾ"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"അപ്‌ഡേറ്റുകള്‍ കാണുക"</string>
-    <string name="account_phone" msgid="6104157990869081962">"ഫോണിൽ മാത്രം, സമന്വയിപ്പിക്കില്ല"</string>
+    <string name="account_phone" msgid="6104157990869081962">"ഫോണിൽ മാത്രം, സമന്വയിപ്പിക്കാത്ത"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"പേര്"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"വിളിപ്പേര്"</string>
     <string name="full_name" msgid="885420216812981202">"പേര്"</string>
-    <string name="name_given" msgid="4153709115654909377">"പേരിന്‍റെ ആദ്യഭാഗം"</string>
-    <string name="name_family" msgid="5317387657540738981">"പേരിന്റെ അവസാനഭാഗം"</string>
+    <string name="name_given" msgid="4153709115654909377">"ഫസ്റ്റ് നെയിം"</string>
+    <string name="name_family" msgid="5317387657540738981">"ലാസ്റ്റ് നെയിം"</string>
     <string name="name_prefix" msgid="8219879405071462309">"പേര് പ്രിഫിക്‌സ്"</string>
     <string name="name_middle" msgid="3951610314424632183">"പേരിന്റെ മധ്യഭാഗം"</string>
     <string name="name_suffix" msgid="5436984808550075931">"പേര് സഫിക്‌സ്"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"ഉച്ചാരണപ്രകാരമുള്ള പേര്"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"പേരിന്റെ ആദ്യ ഭാഗം"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"ഫസ്റ്റ് നെയിം"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"പേരിന്റെ മധ്യഭാഗം"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"പേരിന്റെ അവസാന ഭാഗം"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ഫോണ്‍"</string>
@@ -114,7 +114,7 @@
     <string name="sms" msgid="8086289395154598654">"വാചക സന്ദേശം"</string>
     <string name="postal_address" msgid="7692926530081579786">"വിലാസം"</string>
     <string name="ghostData_company" msgid="22470841482615409">"കമ്പനി"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"ശീര്‍ഷകം"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"ജോലി"</string>
     <string name="label_notes" msgid="3997277594846722699">"കുറിപ്പുകള്‍"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"വെബ്‌സൈറ്റ്"</string>
@@ -218,11 +218,11 @@
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ഇമ്പോർട്ടുചെയ്യുന്നു: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ഫയലിലേക്ക് എക്സ്പോർട്ട് ചെയ്യൂ"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ഇതുപ്രകാരം അടുക്കുക"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"പേരിന്‍റെ ആദ്യഭാഗം"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"പേരിന്റെ അവസാനഭാഗം"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ഫസ്റ്റ് നെയിം"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"ലാസ്റ്റ് നെയിം"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"പേരിന്റെ ഫോർമാറ്റ്"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"പേരിന്റെ ആദ്യഭാഗം ആദ്യം"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"പേരിന്റെ അവസാന ഭാഗം ആദ്യം"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ഫസ്റ്റ് നെയിം ആദ്യം"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ലാസ്റ്റ് നെയിം ആദ്യം"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"പുതിയ കോൺടാക്റ്റുകൾക്കായുള്ള ഡിഫോൾട്ട് അക്കൗണ്ട്"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"കോൺടാക്റ്റ് മെറ്റാഡാറ്റ സമന്വയിപ്പിക്കുക [ഡോഗ്‌ഫുഡ്]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"കോൺടാക്റ്റ് മെറ്റാഡാറ്റ സമന്വയിപ്പിക്കുക"</string>

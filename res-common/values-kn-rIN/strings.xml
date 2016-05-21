@@ -269,7 +269,7 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> ಓದದಿರುವ ಐಟಂಗಳು. </item>
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"ಬಿಲ್ಡ್ ಆವೃತ್ತಿ"</string>
-    <string name="about_open_source_licenses" msgid="3224958101863814649">"ಓಪನ್ ಸೋರ್ಸ್ ಪರವಾನಗಿಗಳು"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"ಮುಕ್ತ ಮೂಲ ಪರವಾನಗಿಗಳು"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ಓಪನ್ ಸೋರ್ಸ್ ಸಾಫ್ಟ್‌ವೇರ್‌ಗಾಗಿ ಪರವಾನಗಿ ವಿವರಗಳು"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"ಗೌಪ್ಯತೆ ನೀತಿ"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"ಸೇವಾ ನಿಯಮಗಳು"</string>

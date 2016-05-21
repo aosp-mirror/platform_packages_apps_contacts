@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"फोन नम्बर भएका सबै सम्पर्कहरू"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"कार्य प्रोफाइलका सम्पर्कहरू"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"अद्यावधिकहरू अवलोकन गर्नुहोस्"</string>
-    <string name="account_phone" msgid="6104157990869081962">"फोन मात्र, सिङ्क नभएको"</string>
+    <string name="account_phone" msgid="6104157990869081962">"फोन मात्र, सिंक नभएको"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"नाम"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"उपनाम"</string>
     <string name="full_name" msgid="885420216812981202">"नाम"</string>
@@ -154,8 +154,8 @@
     <string name="list_filter_single" msgid="4553809449379139446">"ठेगाना"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"सबै अन्य सम्पर्कहरू"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"सबै सम्पर्कहरू"</string>
-    <string name="menu_sync_remove" msgid="6581565236520430269">"सिङ्क समूह हटाउनुहोस्"</string>
-    <string name="dialog_sync_add" msgid="1795682729089027675">"सिङ्क समूह थप्नुहोस्"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"सिंक समूह हटाउनुहोस्"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"सिंक समूह थप्नुहोस्"</string>
     <string name="display_more_groups" msgid="6304997485733158224">"अधिक समूहहरू..."</string>
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" सिङ्कबाट हटाइदै,  सिङ्कबाट समूहमा विभाजन नभएका सम्पर्कहरूलाई हटाउने छ।"</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"प्रदर्शन विकल्पहरू बचत गर्दै ..."</string>
@@ -224,9 +224,9 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"क्रमवद्घ गर्नुहोस्"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"नाम"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"थर"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"नाम ढाँचा"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"नामको ढाँचा"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाम पहिले"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"थर पहिला"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"थर पहिले"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"नयाँ सम्पर्कहरूका लागि पूर्वनिर्धारित खाता"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"सम्पर्क मेटाडाटा [DOGFOOD]लाई सिंक गर्नुहोस्"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"सम्पर्क मेटाडाटालाई सिंक गर्नुहोस्"</string>
@@ -274,7 +274,7 @@
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"बिल्ड संस्करण"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"खुला स्रोत इजाजतपत्रहरू"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"खुला स्रोत सफ्टवेयरका लागि इजाजतपत्र विवरणहरू"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"खुला स्रोत सफ्टवेयरका लागि इजाजतपत्रका विवरणहरू"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"गोपनीयता नीति"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"सेवा सर्तहरू"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"खुलास्रोत इजाजतपत्रहरू"</string>

@@ -93,7 +93,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Усе кантакты з нумарамі тэлефонаў"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Кантакты працоўнага профілю"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Прагляд абнаўленняў"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Толькі тэлефон, несінхранізаваны"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Толькі тэлефон, без сінхранізацыі"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Імя"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псеўданiм"</string>
     <string name="full_name" msgid="885420216812981202">"Імя"</string>
@@ -102,9 +102,9 @@
     <string name="name_prefix" msgid="8219879405071462309">"Прэфікс імені"</string>
     <string name="name_middle" msgid="3951610314424632183">"Імя па бацьку"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Суфікс да імені"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Фанетычнае імя"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Вымаўленне імя"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Вымаўленне імя"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Фанетычны запіс імя па бацьку"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Вымаўленне імені па бацьку / 2-га імені"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Вымаўленне прозвішча"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Тэлефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Электронная пошта"</string>
@@ -170,7 +170,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Імпарт з SIM-карты"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Імпарт з SIM-карты <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Імпарт з SIM-карты SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Імпарт з файла .vcf"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Імпартаваць з файла .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Адмянiць iмпарт файла \"<xliff:g id="FILENAME">%s</xliff:g>\"?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Адмянiць экспарт файла \"<xliff:g id="FILENAME">%s</xliff:g>\"?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Немагчыма адмяніць імпарт/экспарт vCard"</string>
@@ -220,19 +220,19 @@
     <string name="progress_notifier_message" msgid="359931715339778107">"Імпарт: <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>, <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Экспартаваць у файл .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сартаваць па"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Імя"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Прозвішча"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Імені"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Прозвішчы"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Фармат імя"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Спачатку імя"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Спачатку прозвішча"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Стандартны ўліковы запіс для новых кантактаў"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Сінхранізаваць метаданыя пра кантакты [ДЛЯ СУПРАЦОЎНІКАЎ]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Сінхранізаваць метаданыя пра кантакты"</string>
-    <string name="setting_about" msgid="3926137653588942297">"Інфармацыя аб Кантактах"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Аб Кантактах"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Налады"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Адкрыць бачныя кантакты"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Спроба абагуліць бачныя кантакты няўдалая."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Абагуліць выбраныя кантакты"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Абагуліць улюбёныя кантакты"</string>
     <string name="share_contacts" msgid="6404040163340914061">"Абагуліць усе кантакты"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"Не атрымалася абагуліць кантакты."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Імпарт/экспарт кантактаў"</string>

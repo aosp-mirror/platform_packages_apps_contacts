@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Телефон нөмірі бар барлық контактілер"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Жұмыс профилінің контактілері"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Жаңартуларды көру"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Телефон ғана, синхрондалмайды"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Телефон ғана, синхрондалмайтын"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Аты-жөні"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Қысқа аты"</string>
     <string name="full_name" msgid="885420216812981202">"Аты-жөні"</string>
