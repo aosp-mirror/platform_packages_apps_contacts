@@ -32,7 +32,7 @@
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Yangi kontakt yaratish"</string>
     <string name="starredList" msgid="4817256136413959463">"Baho berilgan"</string>
     <string name="frequentList" msgid="7154768136473953056">"Ko‘p gaplashilgan"</string>
-    <string name="strequentList" msgid="5640192862059373511">"Saralar"</string>
+    <string name="strequentList" msgid="5640192862059373511">"Sevimlilar"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Kontakt tafsilotlari"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Kontaktni tahrirlash"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Kontakt yaratish"</string>
@@ -160,7 +160,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Aloqa qo‘shish"</string>
     <string name="recent" msgid="2659189233141493004">"Yaqinda"</string>
     <string name="recent_updates" msgid="4267258535615860710">"So‘nggi yangilanishlar"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Kontakt: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakt"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> hisobi"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -243,12 +243,12 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Yangi kontaktlar uchun birlamchi hisobni tanlang:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Yangi kontakt qo‘shish"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Kontaktni tahrirlash"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Qur-ga saqlash"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Qurilmaga saqlash"</string>
     <string name="add_account" msgid="8201790677994503186">"Hisob qo‘shish"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Yangi hisob qo‘shish"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Ma’lumotlar bazasi fayllarini eksport qilish"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"yangi kontakt qo‘shish"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Ko‘proq"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Yana"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Kamroq"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Barchasini ko‘rish"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Yaqinda"</string>
@@ -288,7 +288,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Boshqa maydonlar"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Rasmni o‘zgartirish"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Muharrirni ochib bo‘lmadi."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Saqlash"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Hisobni tanlang"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Hozirda <xliff:g id="ACCOUNT_NAME">%s</xliff:g> hisobiga saqlanmoqda. Boshqa hisobni tanlash uchun ikki marta bosing."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Bog‘langan kontaktlar (<xliff:g id="COUNT">%d</xliff:g>)</item>

@@ -165,7 +165,7 @@
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"ਇਸ ਐਪ ਤੋਂ ਸੰਪਾਦਨਯੋਗ ਨਹੀਂ।"</string>
-    <string name="group_read_only" msgid="1061762906115697637">"ਇਸ ਡਿਵਾਈਸ ਤੇ ਸੰਪਾਦਨਯੋਗ ਨਹੀਂ।"</string>
+    <string name="group_read_only" msgid="1061762906115697637">"ਇਸ ਡੀਵਾਈਸ ਤੇ ਸੰਪਾਦਨਯੋਗ ਨਹੀਂ।"</string>
     <string name="take_photo" msgid="7496128293167402354">"ਫੋਟੋ ਲਓ"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ਨਵੀਂ ਫੋਟੋ ਲਓ"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ਫੋਟੋ ਚੁਣੋ"</string>
@@ -237,7 +237,7 @@
     <string name="external_profile_title" msgid="8034998767621359438">"ਮੇਰੀ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ਪ੍ਰੋਫਾਈਲ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ਸਾਰੇ ਸੰਪਰਕ ਡਿਸਪਲੇ ਕਰ ਰਿਹਾ ਹੈ"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"ਆਪਣੇ ਫੋਨ ਦੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤਦ ਵੀ ਸੁਰੱਖਿਅਤ ਰੱਖੋ ਭਾਵੇਂ ਤੁਹਾਡਾ ਫੋਨ ਗੁਆਚ ਜਾਏ: ਇੱਕ ਔਨਲਾਈਨ ਸੇਵਾ ਨਾਲ ਸਿੰਕ੍ਰੋਨਾਈਜ਼ ਕਰੋ।"</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ਇੱਕ ਖਾਤਾ ਜੋੜੋ"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ਇੱਕ ਖਾਤਾ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ਤੁਹਾਡਾ ਨਵਾਂ ਸੰਪਰਕ ਬੈਕ ਅਪ ਨਹੀਂ ਕੀਤਾ ਜਾਏਗਾ। ਕੀ ਇੱਕ ਅਜਿਹਾ ਖਾਤਾ ਜੋੜਨਾ ਹੈ ਜੋ ਸੰਪਰਕਾਂ ਨੂੰ ਔਨਲਾਈਨ ਬੈਕ ਅਪ ਕਰਦਾ ਹੈ?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ਨਵੇਂ ਸੰਪਰਕ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ਵਿੱਚ ਰੱਖਿਅਤ ਕੀਤੇ ਜਾਣਗੇ।"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ਨਵੇਂ ਸੰਪਰਕਾਂ ਲਈ ਇੱਕ ਪੂਰਵ-ਨਿਰਧਾਰਤ ਖਾਤਾ ਚੁਣੋ:"</string>

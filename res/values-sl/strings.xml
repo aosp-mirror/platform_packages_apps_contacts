@@ -63,7 +63,7 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Shrani in razdruži"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Ali želite shraniti že narejene spremembe in združiti z izbranim stikom?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Shrani in združi"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Povezava"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Poveži"</string>
     <string name="menu_save" msgid="1727844363591825909">"Shrani"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Povezava stikov"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Izberite stik, ki ga želite povezati s stikom <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -78,7 +78,7 @@
       <item quantity="other">Stiki so izbrisani</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastavi zvonj."</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Vsi klici na odzivnik"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Vsi klici v odzivnik"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Stikov iz računov, ki so samo za branje, ni mogoče izbrisati, mogoče pa jih je skriti."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Skrij"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Stik, ki ga želite izbrisati, ima podrobnosti iz več računov. Podatki iz računov, ki so samo za branje, ne bodo izbrisani, temveč skriti."</string>
@@ -91,7 +91,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Stiki, ki jih želite izbrisati, imajo podatke iz več računov. Podatki iz računov, ki so samo za branje, ne bodo izbrisani, temveč skriti."</string>
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Če boste izbrisali ta stik, boste izbrisali podatke iz več računov."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Želite izbrisati ta stik?"</string>
-    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Izbris"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Izbriši"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Zavrzi spremembe"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Stik ne obstaja."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Stik je dodan na začetni zaslon."</string>
@@ -143,8 +143,8 @@
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> najdeni</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> najdenih</item>
     </plurals>
-    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Vse"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Priljubljeno"</string>
+    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Vsi"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"Priljubljeni"</string>
     <string name="callBack" msgid="5498224409038809224">"Povratni klic"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ponovi klic"</string>
     <string name="returnCall" msgid="8171961914203617813">"Povratni klic"</string>
@@ -212,7 +212,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Stik"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Nalaganje …"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Ustvarjanje novega stika"</string>
-    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Dodajanje računa"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Dodaj račun"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Uvozi stike"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Ustvarjanje nove skupine"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Ustvari novo skupino"</string>
@@ -255,7 +255,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nov stik ne bo varnostno kopiran. Želite dodati račun za varnostno kopiranje stikov v internetu?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Novi stiki bodo shranjeni v račun <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Izberite privzeti račun za nove stike:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dod. novega stika"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dodaj nov stik"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Urejanje stika"</string>
     <string name="keep_local" msgid="1258761699192993322">"Ohrani lokalno"</string>
     <string name="add_account" msgid="8201790677994503186">"Dodaj račun"</string>

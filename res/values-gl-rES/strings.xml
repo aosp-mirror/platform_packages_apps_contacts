@@ -100,13 +100,13 @@
     <item msgid="8287841928119937597">"Organización"</item>
     <item msgid="7196592230748086755">"Nota"</item>
   </string-array>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Non hai imaxes dispoñibles no tablet."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Non hai imaxes dispoñibles na tableta."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Non hai imaxes dispoñibles no teléfono."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nome de etiqueta personalizada"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar chamadas directamente ao correo de voz"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminar foto"</string>
-    <string name="noContacts" msgid="4955659076981974652">"Sen contactos"</string>
+    <string name="noContacts" msgid="4955659076981974652">"Non hai contactos"</string>
     <string name="noGroups" msgid="8614664663561385253">"Ningún grupo"</string>
     <string name="noAccounts" msgid="7768267764545265909">"Para crear grupos precisas unha conta."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Non hai ninguén neste grupo."</string>
@@ -130,7 +130,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
       <item quantity="one">Un contacto encontrado</item>
     </plurals>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Sen contactos"</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Non hai contactos"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
       <item quantity="one">Un contacto encontrado</item>

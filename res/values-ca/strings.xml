@@ -29,7 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Trieu un número per enviar-hi un missatge"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Afegeix al contacte"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Tria un contacte"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crea un contacte nou"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crea un contacte"</string>
     <string name="starredList" msgid="4817256136413959463">"Destacats"</string>
     <string name="frequentList" msgid="7154768136473953056">"Freqüent"</string>
     <string name="strequentList" msgid="5640192862059373511">"Preferits"</string>
@@ -94,8 +94,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"El contacte no existeix."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"S\'ha afegit el contacte a la pantalla d\'inici."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"S\'ha afegit <xliff:g id="NAME">%s</xliff:g> a la pantalla d\'inici."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crea un contacte nou"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"Crea un contacte nou"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crea un contacte"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Crea un contacte"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organització"</item>
     <item msgid="7196592230748086755">"Nota"</item>
@@ -160,7 +160,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Afegeix una connexió"</string>
     <string name="recent" msgid="2659189233141493004">"Recent"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Actualitzac. recents"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Contacte de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Compte de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -230,7 +230,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Descarta"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Continua editant"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Configura el perfil"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Configura el meu perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Escriu el nom de la persona"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nom del grup"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"El meu perfil local"</string>

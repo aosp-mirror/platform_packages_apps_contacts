@@ -65,8 +65,8 @@
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"သိမ်းထားလျက် ချိတ်ဆက်ပေးပါ"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"လင့်ခ်"</string>
     <string name="menu_save" msgid="1727844363591825909">"သိမ်းဆည်းရန်"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"အဆက်အသွယ်များကို ကွင်းဆက်ချိတ်ပါ"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> နှင့်ကွင်းဆက်ချိတ်လိုသည့် အဆက်အသွယ်ကိုရွေးပါ −"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"အဆက်အသွယ်များ ချိတ်ဆက်ရန်"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> နှင့်ချိတ်လိုသည့် အဆက်အသွယ်ကို ရွေးပါ −"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"အဆက်အသွယ်များအားလုံးအားပြပါ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"အကြုံပြုလိုသော အဆက်အသွယ်များ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"လိပ်စာများအားလုံး"</string>
@@ -145,11 +145,11 @@
     <string name="description_plus_button" msgid="515164827856229880">"အပေါင်း"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ၏ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> လိပ်စာ"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"အဆက်အသွယ်များ၏နာမည်များ"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အပလီကေးရှင်း မရှိပါ။"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အက်ပ် မရှိပါ။"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ယခင် မျက်နှာပြင်သို့ ပြန်ရန် ကလစ်ပါ"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်း နံပါတ် ထည့်ရန်"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်းနံပါတ် ထည့်ပါ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"အီးမေးလ် ထည့်ရန်"</string>
-    <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အပလီကေးရှင်း မရှိပါ။"</string>
+    <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အက်ပ် မရှိပါ။"</string>
     <string name="menu_share" msgid="943789700636542260">"မျှဝေခြင်း"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"အဆက်အသွယ်များ ထဲသို့ ထည့်ရန်"</string>
     <string name="share_via" msgid="563121028023030093">"မှ အဆယ်အသွယ်အား မျှဝေခြင်း"</string>
@@ -192,7 +192,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"မိမိစိတ်ကြိုက်"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"အပြင်အဆင်များ"</string>
     <string name="menu_settings" msgid="377929915873428211">"အပြင်အဆင်များ"</string>
-    <string name="menu_help" msgid="1680178646764069976">"အကူအညီ &amp;amp၊ တုံ့ပြန်ချက်"</string>
+    <string name="menu_help" msgid="1680178646764069976">"အကူအညီနှင့် အကြံပြုချက်"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ပြသမှုအတွက်ရွေးစရာများ"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"ဖုန်းနံပါတ်"</string>
@@ -204,8 +204,8 @@
     <string name="social_widget_label" msgid="6378905543028924592">"အဆက်အသွယ်"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ဖွင့်နေစဉ်…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"အဆက်အသွယ်သစ်တစ်ခု ပြုလုပ်ပါ"</string>
-    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"အကောင့် ထည့်ရန်"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"အဆက်အသွယ်များ တင်သွင်းပါ"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"အကောင့်ထည့်ရန်"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"အဆက်အသွယ်များ သွင်းပါ"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"အုပ်စုသစ်ပြုလုပ်ရန်"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"အုပ်စုအသစ်ပြုလုပ်ရန်"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
@@ -232,19 +232,19 @@
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"မိမိကိုယ်ရေးအကောင့်အား ပြုလုပ်ရန်"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"လူနာမည်ရိုက်ထည့်ပါ"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"အုပ်စု၏နာမည်"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"အုပ်စု၏အမည်"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"မိမိ၏ဖုန်းမှပရိုဖိုင်လ်"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ကျွန်ုပ်၏ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ကိုယ်ရေးအကောင့်"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"အဆက်အသွယ်အားလုံးအားပြနေစဉ်"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"အွန်လိုင်း ဝန်ဆောင်မှုဖြင့် ထပ်တူကျအောင် ပြုလုပ်ထားခြင်းအားဖြင့် ဖုန်းပျောက်သွားသည့်တိုင်အောင် အဆက်အသွယ်များအား လုံခြုံစွာ သိမ်းထားနိုင်ပါသည်"</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"အကောင့် ထပ်ဖြည့်ပါ"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"သင့် အဆက်အသွယ်အသစ်ကို အရံသိမ်းဆည်းထားခြင်း မရှိပါ။ အဆယ်အသွယ်များကို အွန်လိုင်းပေါ်မှာ အရံသိမ်းဆည်းပေးရန် အကောင့်သစ် ထပ်ထည့်ချင်ပါသလား"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"အကောင့်တစ်ခုထည့်ပါ"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"သင်၏အဆက်အသွယ်အသစ်ကို မိတ္တူကူးမထားပါ။ အဆယ်အသွယ်များကို အွန်လိုင်းတွင် ကူးထားရန် အကောင့်သစ် ထပ်ထည့်ချင်ပါသလား။"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"အဆက်အသွယ် အသစ်ကို <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> တွင်သိမ်းလိုက်ပါမည်။"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"အဆက်အသွယ် အသစ်များအတွက် မူရင်းအကောင့်ကို ရွေးပါ။"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"အဆက်အသွယ်သစ် ထည့်မည်"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"အဆက်အသွယ်အားပြင်ရန်"</string>
     <string name="keep_local" msgid="1258761699192993322">"ဖုန်းထဲတွင်သာသိမ်းပါ"</string>
-    <string name="add_account" msgid="8201790677994503186">"အကောင့်ထပ်ထည့်ရန်"</string>
+    <string name="add_account" msgid="8201790677994503186">"အကောင့်ထည့်ရန်"</string>
     <string name="add_new_account" msgid="5748627740680940264">"အကောင့်အသစ်ထည့်ပါ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ဒေ့ဘာဘေ့စ်ဖိုင်များကို အပြင်သို့ထုတ်ပါ"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"အဆက်အသွယ် အသစ်ကို ထည့်ရန်"</string>

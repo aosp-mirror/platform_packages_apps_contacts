@@ -29,7 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выбрать номер для отправки сообщения"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Добавление данных"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Выбор контакта"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Добавить контакт"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Создать контакт"</string>
     <string name="starredList" msgid="4817256136413959463">"Помеченные"</string>
     <string name="frequentList" msgid="7154768136473953056">"Часто вызываемые"</string>
     <string name="strequentList" msgid="5640192862059373511">"Избранное"</string>
@@ -96,8 +96,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Нет такого контакта."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Контакт добавлен на главный экран"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Контакт \"<xliff:g id="NAME">%s</xliff:g>\" добавлен на главный экран"</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"Добавить контакт"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать контакт"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Создать контакт"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Организация"</item>
     <item msgid="7196592230748086755">"Примечание"</item>
@@ -211,7 +211,7 @@
     <string name="date_year_toggle" msgid="7122002148518724139">"Указать год"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Контакт"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Загрузка..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Создать новый контакт"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Создать контакт"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Добавить аккаунт"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Импортировать контакты"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Создание новой группы"</string>
@@ -334,7 +334,7 @@
     </plurals>
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g> <xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Этот контакт"</string>
-    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Повторяющие контакты"</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Повторяющиеся контакты"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Возможно, эти контакты относятся к одному человеку. Объедините их."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Связанные контакты"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Из ваших аккаунтов"</string>

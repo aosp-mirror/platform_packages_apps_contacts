@@ -29,7 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Izvēlieties numuru, uz kuru sūtīt īsziņu"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Pievienot kontaktpersonai"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Kontaktpersonas izvēle"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Radiet jaunu kontaktpersonu"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Izveidojiet jaunu kontaktpersonu"</string>
     <string name="starredList" msgid="4817256136413959463">"Atzīmēti ar zvaigznīti"</string>
     <string name="frequentList" msgid="7154768136473953056">"Bieži"</string>
     <string name="strequentList" msgid="5640192862059373511">"Izlase"</string>
@@ -65,7 +65,7 @@
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Saglabāt un saistīt"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Saistīt"</string>
     <string name="menu_save" msgid="1727844363591825909">"Saglabāt"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"KONTAKTPERSONU SAISTĪŠANA"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Kontaktu saistīšana"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Izvēlieties kontaktpersonu, kuru vēlaties saistīt ar vārdu <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Rādīt visas kontaktpersonas"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Ieteiktās kontaktpersonas"</string>

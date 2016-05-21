@@ -168,7 +168,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Pridať spojenie"</string>
     <string name="recent" msgid="2659189233141493004">"Nedávne"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Nedávne aktualizácie"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Kontakt z účtu <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Kontakt zo zdroja <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Účet <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -302,7 +302,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Ďalšie polia"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Zmeniť fotku"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Nepodarilo sa otvoriť editor."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Ukladá sa do"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Uložiť ako"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Kontakty sa momentálne ukladajú do účtu <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Iný účet vyberiete dvojitým klepnutím."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="few">Prepojené kontakty (<xliff:g id="COUNT">%d</xliff:g>)</item>

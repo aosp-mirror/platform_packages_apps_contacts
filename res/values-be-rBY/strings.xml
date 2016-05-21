@@ -42,8 +42,8 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Абнаўленні"</string>
     <string name="searchHint" msgid="8482945356247760701">"Пошук кантактаў"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Прагледзець кантакт"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Дадаць да любімых"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Выдаліць з Выбранага"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Дадаць у абраныя"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Выдаліць з абраных"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Выдалена з упадабаных"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Дададзена ва ўпадабаныя"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Рэдагаваць"</string>
@@ -155,7 +155,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Імёны вашых кантактаў"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Не знойдзена прыкладанне для гэтага дзеяння."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Націсніце, каб вярнуцца на папярэдні экран"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Дадаць тэлефонны нумар"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Дадаць нумар тэлефона"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Дадаць адрас электроннай пошты"</string>
     <string name="missing_app" msgid="1466111003546611387">"Не знойдзена праграма для гэтага дзеяння."</string>
     <string name="menu_share" msgid="943789700636542260">"Апублікаваць"</string>
@@ -166,7 +166,7 @@
     <string name="video_chat" msgid="1872255818640336072">"Відэачат"</string>
     <string name="connections" msgid="8098440723172028350">"Сувязi"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Дадаць кантакт"</string>
-    <string name="recent" msgid="2659189233141493004">"Апошнія"</string>
+    <string name="recent" msgid="2659189233141493004">"Нядаўнія"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Апошнія абнаўленні"</string>
     <string name="account_type_format" msgid="718948015590343010">"Кантакт <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Уліковы запіс <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
@@ -201,7 +201,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Налады"</string>
     <string name="menu_settings" msgid="377929915873428211">"Налады"</string>
     <string name="menu_help" msgid="1680178646764069976">"Даведка і водгукі"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"Паказаць параметры"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Параметры адлюстравання"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Нумар тэлефона"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Дадаць у кантакты"</string>
@@ -265,7 +265,7 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Болей"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Паказаць менш"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Прагледзець усё"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"Апошнія"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"Нядаўнія"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Інфармацыя"</string>
     <string name="send_message" msgid="8938418965550543196">"Адправiць паведамленне"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Стварэнне асабістай копіі…"</string>
@@ -302,7 +302,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Дадатковыя палі"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Змяніць фота"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Збой адкрыцця рэдактара."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Ідзе захаванне ў"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Куды захоўваць:"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Зараз ідзе захаванне ва ўліковы запіс <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Двойчы дакраніцеся, каб выбраць іншы ўліковы запіс."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Звязаны кантакт (<xliff:g id="COUNT">%d</xliff:g>)</item>

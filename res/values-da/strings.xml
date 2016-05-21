@@ -66,7 +66,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Link"</string>
     <string name="menu_save" msgid="1727844363591825909">"Gem"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Link kontaktpersoner"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Vælg den kontaktperson, der skal knyttes til <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Vælg den kontaktperson, der skal linkes til <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Vis alle kontakter"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Foreslåede kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakter"</string>

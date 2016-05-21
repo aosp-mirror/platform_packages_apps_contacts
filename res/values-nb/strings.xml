@@ -48,7 +48,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Lagt til i favoritter"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Rediger"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Slett"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"Endre bilde"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"Bytt bilde"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plassér på startsiden"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send SMS til kontakt"</string>
@@ -63,7 +63,7 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Lagre og del opp"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Vil du lagre endringene du allerede har gjort og knytte sammen med den valgte kontakten?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Lagre og knytt sammen"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Sammenknytt"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Knytt sammen"</string>
     <string name="menu_save" msgid="1727844363591825909">"Lagre"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Knytt sammen kontakter"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Velg kontakten du vil knytte sammen med <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -286,7 +286,7 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Du: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts fungerer bedre når du går inn i personenes Hangouts-identifikatorer i e-postfeltet eller telefonfeltet."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Flere felt"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Endre bilde"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Bytt bilde"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Kunne ikke åpne redigeringsvinduet."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Lagres i"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Lagrer på <xliff:g id="ACCOUNT_NAME">%s</xliff:g> for øyeblikket. Dobbelttrykk for å velge en annen konto."</string>

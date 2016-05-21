@@ -136,7 +136,7 @@
       <item quantity="one">找到 1 位聯絡人</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"全部"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"最愛聯絡人"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"常用聯絡人"</string>
     <string name="callBack" msgid="5498224409038809224">"回播電話"</string>
     <string name="callAgain" msgid="3197312117049874778">"重撥"</string>
     <string name="returnCall" msgid="8171961914203617813">"回電"</string>
@@ -160,7 +160,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"加入聯絡方式"</string>
     <string name="recent" msgid="2659189233141493004">"最新"</string>
     <string name="recent_updates" msgid="4267258535615860710">"最新動態"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 聯絡人"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>聯絡人"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> 帳戶"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />

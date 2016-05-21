@@ -63,7 +63,7 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Gorde eta banandu"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Egin dituzun aldaketak gorde, eta hautatutako kontaktuarekin lotu nahi duzu?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Gorde eta lotu"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Estekatu"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Lotu"</string>
     <string name="menu_save" msgid="1727844363591825909">"Gorde"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Lotu kontaktuak"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Aukeratu <xliff:g id="NAME">%s</xliff:g> kontaktuarekin lotu nahi duzuna:"</string>
@@ -76,7 +76,7 @@
       <item quantity="one">Ezabatu da kontaktua</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ezarri tonua"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Erantzungailuko dei guztiak"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Dei guztiak erantzungailura"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Irakurtzeko soilik diren kontuetako kontaktuak ezin dira ezabatu, baina ezkutatu egin daitezke."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Ezkutatu"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Ezabatzeko hautatu duzun kontaktuak hainbat kontutako informazioa du. Irakurtzeko soilik diren kontuetako informazioa kontaktuen zerrendatik ezkutatuko da, baina ez da ezabatuko."</string>

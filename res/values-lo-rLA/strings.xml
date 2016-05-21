@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="applicationLabel" msgid="3906689777043645443">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="launcherActivityLabel" msgid="6497230399032392417">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="quickContactActivityLabel" msgid="7985456650689347268">"ເບິ່ງລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="editContactActivityLabel" msgid="1129944572070802839">"ແກ້ໄຂລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
@@ -151,7 +151,7 @@
     <string name="quickcontact_add_email" msgid="739298028384348482">"ເພີ່ມອີເມວ"</string>
     <string name="missing_app" msgid="1466111003546611387">"ບໍ່ພົບແອັບຯທີ່ໃຊ້ເພື່ອດຳເນີນການ."</string>
     <string name="menu_share" msgid="943789700636542260">"ແບ່ງປັນ"</string>
-    <string name="menu_add_contact" msgid="3198704337220892684">"​ເພີ່ມ​ໃນ​ລາຍ​ຊື່​ຜູ່​ຕິດ​ຕໍ່"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"ເພີ່ມໃສ່ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="share_via" msgid="563121028023030093">"ແບ່ງປັນລາຍຊື່ຜູ່ຕິດຕໍ່ຜ່ານທາງ"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"ສ້າງກຸ່ມພາຍໃຕ້ບັນຊີ"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ການສົນທະນາດ້ວຍສຽງ"</string>
@@ -192,7 +192,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"ກຳນົດເອງ"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ການຕັ້ງຄ່າ"</string>
     <string name="menu_settings" msgid="377929915873428211">"ການຕັ້ງຄ່າ"</string>
-    <string name="menu_help" msgid="1680178646764069976">"ຊ່ວຍ​ເຫຼືອ &amp; ຄຳ​ຕິ​ຊົມ"</string>
+    <string name="menu_help" msgid="1680178646764069976">"ຊ່ວຍ​ເຫຼືອ ແລະ ຄຳ​ຕິ​ຊົມ"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ໂຕເລືອກການສະແດງຜົນ"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"ເບີໂທລະສັບ"</string>
@@ -238,7 +238,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ສະແດງລາຍຊື່ຜູ່ຕິດຕໍ່ທັງໝົດ"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"ເກັບຮັກສາລາຍຊື່ຜູ່ຕິດຕໍ່ຂອງທ່ານໄວ້ຢ່າງປອດໄພ ເຖິງແມ່ນວ່າໂທລະສັບຂອງທ່ານຈະເສຍກໍຕາມ ດ້ວຍການຊິ້ງຂໍ້ມູນກັບບໍລິການອອນລາຍ."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ເພີ່ມບັນຊີ"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ລາຍຊື່ຜູ່ຕິດຕໍ່ໃໝ່ຂອງທ່ານຈະບໍ່ຖືກສຳຮອງຂໍ້ມູນ. ທ່ານຕ້ອງການເພີ່ມບັນຊີ ທີ່ສາມາດສຳຮອງຂໍ້ມູນອອນລາຍໄດ້ຫຼືບໍ່?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່ຂອງທ່ານຈະບໍ່ຖືກສຳຮອງຂໍ້ມູນ. ທ່ານຕ້ອງການເພີ່ມບັນຊີ ທີ່ສາມາດສຳຮອງຂໍ້ມູນອອນລາຍໄດ້ຫຼືບໍ່?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໃໝ່​ຈະ​ຖືກ​ບັນ​ທຶກ​ໃສ່ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ເລືອກ​ບັນ​ຊີ​ເລີ່ມຕົ້ນ​ສຳ​ລັບ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໃໝ່:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"​ເພີ່ມ​ລາຍ​ຊື່​ຜູ່​ຕິດ​ຕໍ່​ໃໝ່"</string>
@@ -285,7 +285,7 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"ການ​ໂທຫຼ້າ​ສຸດ. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. ຄລິກ​ເພື່ອ​ໂທ​ກັບ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"​ທ່ານ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts ເຮັດ​ວຽກ​ໄດ້​ດີ​ຂຶ້ນ ເມື່ອ​ທ່ານ​ປ້ອນ​ຕົວ​ລະ​ບຸ​ Hangouts ຂອງ​ບຸກ​ຄົນ​ໃສ່​ບ່ອນ​ໃສ່ອີເມວ ຫຼື​ບ່ອນ​ໃສ່​ໂທ​ລະ​ສັບ​ຂອງ​ທ່ານ."</string>
-    <string name="compact_editor_more_fields" msgid="5987638193568699600">"ເຂດໃສ່ຂໍ້ມູນເພີ່ມເຕີມ"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"ຊ່ອງຂໍ້ມູນເພີ່ມເຕີມ"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ປ່ຽນຮູບ"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ເປີດ​ເຄື່ອງ​ຕັດ​ຕໍ່​ບໍ່​ສຳ​ເລັດ."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"ກຳ​ລັງ​ບັນ​ທຶກ​ໃສ່"</string>
@@ -327,5 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ບໍ່ໄດ້ໝາຍເອົາຮູບຖ່າຍຈາກບັນຊີທີ່ບໍ່ຮູ້ຈັກແລ້ວ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ໝາຍເອົາຮູບຖ່າຍຈາກບັນຊີທີ່ບໍ່ຮູ້ຈັກແລ້ວ"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຖືກອັບເດດ ຕາມການປ່ຽນແປງຂອງພາສາ.\n\nກະລຸນາລໍຖ້າ..."</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ເບີໂທບລັອກໄວ້"</string>
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ເບີໂທທີ່ບລັອກໄວ້"</string>
 </resources>

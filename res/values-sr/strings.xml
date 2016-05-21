@@ -164,7 +164,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Додај везу"</string>
     <string name="recent" msgid="2659189233141493004">"Недавно"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Недавна ажурирања"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контакт"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> налог"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -295,7 +295,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Још поља"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Промените слику"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Oтварање уређивача није успело."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Чува се на"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Чува се"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Тренутно се чува на налогу <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Додирните двапут да бисте изабрали други налог."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Обједињени контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -327,7 +327,7 @@
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Изгледа да су ови контакти иста особа. Можете да их обједините у један контакт."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Обједињени контакти"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Са ваших налога"</string>
-    <string name="take_a_photo_button" msgid="6268693854069113488">"Сними слику"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"Сликај"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Све слике"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Изаберите слику"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Са <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>

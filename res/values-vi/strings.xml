@@ -106,7 +106,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Tên nhãn tùy chỉnh"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Gửi cuộc gọi trực tiếp tới thư thoại"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Xóa ảnh"</string>
-    <string name="noContacts" msgid="4955659076981974652">"Không có địa chỉ liên hệ nào"</string>
+    <string name="noContacts" msgid="4955659076981974652">"Không có liên hệ nào"</string>
     <string name="noGroups" msgid="8614664663561385253">"Không có nhóm nào."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Để tạo nhóm, bạn cần có tài khoản."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Không có người nào trong nhóm này."</string>

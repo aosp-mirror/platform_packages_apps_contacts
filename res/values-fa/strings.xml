@@ -24,11 +24,11 @@
     <string name="shortcutContact" msgid="749243779392912958">"مخاطب"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"شماره گیری مستقیم"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"پیام جدید"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"انتخاب میان‌بر مخاطب"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"انتخاب میان‌بر برای مخاطب"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"انتخاب یک شماره برای تماس"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"انتخاب یک شماره برای پیام"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"افزودن به مخاطب"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"انتخاب یک مخاطب"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"انتخاب مخاطب"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ایجاد مخاطب جدید"</string>
     <string name="starredList" msgid="4817256136413959463">"ستاره‌دار"</string>
     <string name="frequentList" msgid="7154768136473953056">"مکرر"</string>
@@ -222,7 +222,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> نفر</item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"قبل از پیوند دادن با مخاطب دیگر، نام مخاطب را تایپ کنید."</string>
-    <string name="copy_text" msgid="3257145021583508761">"کپی به کلیپ بورد"</string>
+    <string name="copy_text" msgid="3257145021583508761">"کپی در بریده‌دان"</string>
     <string name="set_default" msgid="4417505153468300351">"تنظیم پیش‌فرض"</string>
     <string name="clear_default" msgid="7193185801596678067">"پاک کردن پیش فرض‌ها"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"متن کپی شده"</string>
@@ -238,7 +238,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"نمایش همه مخاطبان"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"مخاطبین خود را ایمن نگهدارید حتی اگر گوشی شما گم شود: با یک سرویس آنلاین همگام‌سازی کنید."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"افزودن یک حساب"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"از مخاطب جدید شما نسخه پشتبان تهیه نمی‌شود. حسابی را اضافه می‌کنید که از مخاطبین به‌صورت آنلاین نسخه پشتبان تهیه کند؟"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"از مخاطب جدیدتان نسخه پشتبان تهیه نمی‌شود. حسابی را اضافه می‌کنید که از مخاطبین به‌صورت آنلاین نسخه پشتیبان تهیه کند؟"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"مخاطب‌های جدید در <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ذخیره می‌شوند."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"انتخاب حساب پیش‌فرض برای مخاطبین جدید:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"افزودن مخاطب جدید"</string>
@@ -299,8 +299,8 @@
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"پیوند دادن مخاطبین"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"لغو"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب تکراری ممکن</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مخاطب تکراری ممکن</item>
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب تکراری احتمالی</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مخاطب تکراری احتمالی</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب پیوند داده شده</item>

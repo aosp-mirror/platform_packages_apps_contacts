@@ -205,7 +205,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Chargement en cours..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Créer un contact"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Ajouter un compte"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Téléverser des contacts"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer des contacts"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Créer un groupe"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Créer un groupe"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
