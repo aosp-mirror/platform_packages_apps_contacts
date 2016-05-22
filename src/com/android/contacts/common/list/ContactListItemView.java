@@ -33,6 +33,7 @@ import android.provider.ContactsContract.SearchSnippets;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.AppCompatImageButton;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -187,6 +188,7 @@ public class ContactListItemView extends ViewGroup
     private TextView mStatusView;
     private ImageView mPresenceIcon;
     private AppCompatCheckBox mCheckBox;
+    private AppCompatImageButton mDeleteImageButton;
     private ImageView mVideoCallIcon;
     private ImageView mWorkProfileIcon;
 
@@ -229,6 +231,8 @@ public class ContactListItemView extends ViewGroup
     private int mStatusTextViewHeight;
     private int mCheckBoxHeight;
     private int mCheckBoxWidth;
+    private int mDeleteImageButtonHeight;
+    private int mDeleteImageButtonWidth;
 
     // Holds Math.max(mLabelTextViewHeight, mDataViewHeight), assuming Label and Data share the
     // same row.
@@ -432,6 +436,8 @@ public class ContactListItemView extends ViewGroup
         mStatusTextViewHeight = 0;
         mCheckBoxWidth = 0;
         mCheckBoxHeight = 0;
+        mDeleteImageButtonWidth = 0;
+        mDeleteImageButtonHeight = 0;
 
         ensurePhotoViewSize();
 
@@ -463,6 +469,15 @@ public class ContactListItemView extends ViewGroup
             mCheckBoxWidth = mCheckBox.getMeasuredWidth();
             mCheckBoxHeight = mCheckBox.getMeasuredHeight();
             effectiveWidth -= mCheckBoxWidth + mGapBetweenImageAndText;
+        }
+
+        if (isVisible(mDeleteImageButton)) {
+            mDeleteImageButton.measure(
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+            mDeleteImageButtonWidth = mDeleteImageButton.getMeasuredWidth();
+            mDeleteImageButtonHeight = mDeleteImageButton.getMeasuredHeight();
+            effectiveWidth -= mDeleteImageButtonWidth + mGapBetweenImageAndText;
         }
 
         if (isVisible(mNameTextView)) {
@@ -645,6 +660,21 @@ public class ContactListItemView extends ViewGroup
                         photoTop,
                         leftBound + mCheckBoxWidth,
                         photoTop + mCheckBoxHeight);
+            }
+        }
+
+        if (isVisible(mDeleteImageButton)) {
+            final int photoTop = topBound + (bottomBound - topBound - mDeleteImageButtonHeight) / 2;
+            if (mPhotoPosition == PhotoPosition.LEFT) {
+                mDeleteImageButton.layout(rightBound - mDeleteImageButtonWidth,
+                        photoTop,
+                        rightBound,
+                        photoTop + mDeleteImageButtonHeight);
+            } else {
+                mDeleteImageButton.layout(leftBound,
+                        photoTop,
+                        leftBound + mDeleteImageButtonWidth,
+                        photoTop + mDeleteImageButtonHeight);
             }
         }
 
@@ -1248,6 +1278,21 @@ public class ContactListItemView extends ViewGroup
     }
 
     /**
+     * Returns the {@link AppCompatImageButton} delete button, creating it if necessary.
+     */
+    public AppCompatImageButton getDeleteImageButton() {
+        if (mDeleteImageButton == null) {
+            mDeleteImageButton = new AppCompatImageButton(getContext());
+            // Make non-focusable, so the rest of the ContactListItemView can be clicked.
+            mDeleteImageButton.setFocusable(false);
+            mDeleteImageButton.setImageResource(R.drawable.ic_highlight_off_black_24dp);
+            mDeleteImageButton.setBackgroundColor(Color.TRANSPARENT);
+            addView(mDeleteImageButton);
+        }
+        return mDeleteImageButton;
+    }
+
+    /**
      * Returns the text view for the data text, creating it if necessary.
      */
     public TextView getDataView() {
@@ -1431,6 +1476,13 @@ public class ContactListItemView extends ViewGroup
         if (mCheckBox != null) {
             removeView(mCheckBox);
             mCheckBox = null;
+        }
+    }
+
+    public void hideDeleteImageButton() {
+        if (mDeleteImageButton != null) {
+            removeView(mDeleteImageButton);
+            mDeleteImageButton = null;
         }
     }
 
