@@ -16,6 +16,7 @@
 
 package com.android.contacts.common.editor;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -58,6 +59,13 @@ public final class SelectAccountDialogFragment extends DialogFragment {
     public static <F extends Fragment & Listener> void show(FragmentManager fragmentManager,
             F targetFragment, int titleResourceId,
             AccountListFilter accountListFilter, Bundle extraArgs) {
+        show(fragmentManager, targetFragment, titleResourceId, accountListFilter, extraArgs,
+                /* tag */ null);
+    }
+
+    public static <F extends Fragment & Listener> void show(FragmentManager fragmentManager,
+            F targetFragment, int titleResourceId,
+            AccountListFilter accountListFilter, Bundle extraArgs, String tag) {
         final Bundle args = new Bundle();
         args.putInt(KEY_TITLE_RES_ID, titleResourceId);
         args.putSerializable(KEY_LIST_FILTER, accountListFilter);
@@ -65,8 +73,10 @@ public final class SelectAccountDialogFragment extends DialogFragment {
 
         final SelectAccountDialogFragment instance = new SelectAccountDialogFragment();
         instance.setArguments(args);
-        instance.setTargetFragment(targetFragment, 0);
-        instance.show(fragmentManager, null);
+        if (targetFragment != null) {
+            instance.setTargetFragment(targetFragment, 0);
+        }
+        instance.show(fragmentManager, tag);
     }
 
     @Override
@@ -98,10 +108,9 @@ public final class SelectAccountDialogFragment extends DialogFragment {
     @Override
     public void onCancel(DialogInterface dialog) {
         super.onCancel(dialog);
-        final Fragment targetFragment = getTargetFragment();
-        if (targetFragment != null && targetFragment instanceof Listener) {
-            final Listener target = (Listener) targetFragment;
-            target.onAccountSelectorCancelled();
+        final Listener listener = getListener();
+        if (listener != null) {
+            listener.onAccountSelectorCancelled();
         }
     }
 
@@ -115,11 +124,24 @@ public final class SelectAccountDialogFragment extends DialogFragment {
      * Calls {@link Listener#onAccountChosen} of {@code targetFragment}.
      */
     private void onAccountSelected(AccountWithDataSet account) {
-        final Fragment targetFragment = getTargetFragment();
-        if (targetFragment != null && targetFragment instanceof Listener) {
-            final Listener target = (Listener) targetFragment;
-            target.onAccountChosen(account, getArguments().getBundle(KEY_EXTRA_ARGS));
+        final Listener listener = getListener();
+        if (listener != null) {
+            listener.onAccountChosen(account, getArguments().getBundle(KEY_EXTRA_ARGS));
         }
+    }
+
+    private Listener getListener() {
+        Listener listener = null;
+        final Fragment targetFragment = getTargetFragment();
+        if (targetFragment == null) {
+            final Activity activity = getActivity();
+            if (activity != null && activity instanceof Listener) {
+                listener = (Listener) activity;
+            }
+        } else if (targetFragment instanceof Listener) {
+            listener = (Listener) targetFragment;
+        }
+        return listener;
     }
 
     public interface Listener {
