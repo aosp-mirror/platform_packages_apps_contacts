@@ -75,7 +75,6 @@
     <string name="directory_search_label" msgid="4484648822765516947">"கோப்பகம்"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"பணிக் கோப்பகம்"</string>
     <string name="local_search_label" msgid="9094584931063745728">"எல்லா தொடர்புகளும்"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"நான்"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"தேடுகிறது..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> க்கும் மேற்பட்டவை கண்டறியப்பட்டன."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"தொடர்புகள் இல்லை"</string>
@@ -212,10 +211,11 @@
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"தொடர்பின் மீத்தரவை ஒத்திசை [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"தொடர்பின் மீத்தரவை ஒத்திசை"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"எனது தகவல்"</string>
-    <string name="settings_list_format_title" msgid="4863616397459998295">"பட்டியல் வடிவமைப்பு"</string>
-    <string name="settings_about_title" msgid="2661603735818124823">"அறிமுகம்"</string>
-    <string name="settings_metadata_title" msgid="80278989223603428">"தொடர்புகள் மீத்தரவு"</string>
-    <string name="settings_about" msgid="3291206829885886562">"தொடர்புகள் - ஓர் அறிமுகம்"</string>
+    <!-- no translation found for set_up_profile (8396362096521360520) -->
+    <skip />
+    <!-- no translation found for me_contact_name (1899366267108364062) -->
+    <skip />
+    <string name="setting_about" msgid="3926137653588942297">"தொடர்புகள் விவரம்"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"அமைப்புகள்"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"தெரியும் தொடர்புகளைப் பகிர்"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"தெரியும் தொடர்புகளைப் பகிர்வதில் தோல்வி."</string>
@@ -230,9 +230,9 @@
     <string name="hint_findContacts" msgid="28151707326753522">"தொடர்புகளைக் கண்டறி"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"பிடித்தவை"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"தொடர்புகள் இல்லை."</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> இல் தொடர்புகள் இல்லை"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"அடிக்கடி தொடர்புகொண்டவர்களை அழி"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"சிம் ஐத் தேர்ந்தெடுக்கவும்"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"கணக்குகளை நிர்வகி"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"இறக்கு/ஏற்று"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> வழியாக"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> வழியாக <xliff:g id="DATE">%1$s</xliff:g>"</string>
@@ -251,7 +251,7 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. படிக்காதவை (<xliff:g id="COUNT_3">%2$d</xliff:g>). </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. படிக்காதது (<xliff:g id="COUNT_1">%2$d</xliff:g>). </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"அகநிரல் பதிப்பு"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"பதிப்பு எண்"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"ஓப்பன் சோர்ஸ் உரிமங்கள்"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ஓப்பன் சோர்ஸ் மென்பொருளுக்கான உரிம விவரங்கள்"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"தனியுரிமைக் கொள்கை"</string>

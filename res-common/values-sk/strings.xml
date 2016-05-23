@@ -75,7 +75,6 @@
     <string name="directory_search_label" msgid="4484648822765516947">"Adresár"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"Pracovný adresár"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Všetky kontakty"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ja"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Hľadá sa…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Našlo sa viac ako <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Žiadne kontakty"</string>
@@ -92,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Všetky kontakty s telefónnymi číslami"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Kontakty v pracovnom profile"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Zobraziť aktualizácie"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Iba v telefóne, nesynchronizované"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Telefón, nesynchronizované"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Meno"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Prezývka"</string>
     <string name="full_name" msgid="885420216812981202">"Meno"</string>
@@ -214,10 +213,11 @@
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Synchronizovať metadáta kontaktov [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Synchronizácia metadát kontaktov"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"Moje informácie"</string>
-    <string name="settings_list_format_title" msgid="4863616397459998295">"Formát zoznamu"</string>
-    <string name="settings_about_title" msgid="2661603735818124823">"Informácie"</string>
-    <string name="settings_metadata_title" msgid="80278989223603428">"Metadáta kontaktov"</string>
-    <string name="settings_about" msgid="3291206829885886562">"Informácie o kontaktoch"</string>
+    <!-- no translation found for set_up_profile (8396362096521360520) -->
+    <skip />
+    <!-- no translation found for me_contact_name (1899366267108364062) -->
+    <skip />
+    <string name="setting_about" msgid="3926137653588942297">"O aplikácii Kontakty"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Nastavenia"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Zdieľať viditeľné kontakty"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Nepodarilo sa zdieľať viditeľné kontakty"</string>
@@ -232,9 +232,9 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Hľadať kontakty"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Obľúbené"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Žiadne kontakty."</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"V skupine <xliff:g id="NAME">%s</xliff:g> nie sú žiadne kontakty"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Vymazať často kontaktovaných"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Vybrať SIM kartu"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"Spravovať účty"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Import a export"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"zdroj: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>, zdroj: <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
@@ -256,7 +256,7 @@
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> neprečítaná položka. </item>
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"Verzia zostavy"</string>
-    <string name="about_open_source_licenses" msgid="3224958101863814649">"Licencie Open source"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Licencie open source"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Podrobnosti o licencii pre softvér open source"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Pravidlá ochrany súkromia"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Zmluvné podmienky"</string>

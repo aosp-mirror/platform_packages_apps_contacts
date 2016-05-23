@@ -75,7 +75,6 @@
     <string name="directory_search_label" msgid="4484648822765516947">"Répertoire"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"Contacts professionnels"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Tous les contacts"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Moi"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Recherche en cours…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Plus de <xliff:g id="COUNT">%d</xliff:g> contacts ont été trouvés."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Aucun contact"</string>
@@ -153,7 +152,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Importer depuis la carte SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importer depuis la carte SIM <xliff:g id="SIM_NAME">^1</xliff:g> (<xliff:g id="SIM_NUMBER">^2</xliff:g>)"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importer depuis la carte SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importer à partir de fichier VCF"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importer depuis fichier .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Annuler l\'importation du fichier <xliff:g id="FILENAME">%s</xliff:g> ?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Annuler l\'exportation du fichier <xliff:g id="FILENAME">%s</xliff:g> ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Impossible annuler import./export. vCard"</string>
@@ -201,7 +200,7 @@
     <string name="confirm_export_title" msgid="3240899428149018226">"Exporter les contacts ?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Mise en cache"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importation <xliff:g id="CURRENT_NUMBER">%s</xliff:g> sur <xliff:g id="TOTAL_NUMBER">%s</xliff:g> (<xliff:g id="NAME">%s</xliff:g>)"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Exporter dans fichier VCF"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Exporter dans fichier .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Trier par"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Prénom"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Nom"</string>
@@ -212,10 +211,11 @@
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Synchroniser les métadonnées des contacts [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Synchroniser les métadonnées des contacts"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"Mes infos"</string>
-    <string name="settings_list_format_title" msgid="4863616397459998295">"Format de la liste"</string>
-    <string name="settings_about_title" msgid="2661603735818124823">"À propos"</string>
-    <string name="settings_metadata_title" msgid="80278989223603428">"Métadonnées des contacts"</string>
-    <string name="settings_about" msgid="3291206829885886562">"À propos de Contacts"</string>
+    <!-- no translation found for set_up_profile (8396362096521360520) -->
+    <skip />
+    <!-- no translation found for me_contact_name (1899366267108364062) -->
+    <skip />
+    <string name="setting_about" msgid="3926137653588942297">"À propos de Contacts"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Paramètres"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partager les contacts visibles"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Échec du partage des contacts visibles."</string>
@@ -230,9 +230,9 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Rechercher des contacts"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoris"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Aucun contact"</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Aucun contact dans <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Effacer les contacts fréquents"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Sélectionner une carte SIM"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"Gérer les comptes"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importer/Exporter"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>

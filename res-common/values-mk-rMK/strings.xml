@@ -75,7 +75,6 @@
     <string name="directory_search_label" msgid="4484648822765516947">"Адресар"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"Работен директориум"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Сите контакти"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Јас"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Се пребарува..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Повеќе од <xliff:g id="COUNT">%d</xliff:g> се пронајдени."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Нема контакти"</string>
@@ -90,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Сите контакти со телефонски броеви"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Контакти на Работниот профил"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Прикажи ажурирања"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Само телефон, несинхрнизиран"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Само на телефон, несинхронизиран"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Прекар"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>
@@ -115,7 +114,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Компанија"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Име"</string>
     <string name="label_notes" msgid="3997277594846722699">"Белешки"</string>
-    <string name="label_sip_address" msgid="3754551597798479318">"СИП"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Веб-сајт"</string>
     <string name="groupsLabel" msgid="2001597910276087197">"Етикети"</string>
     <string name="email_home" msgid="2230967805906450693">"Домашна е-пошта"</string>
@@ -212,10 +211,11 @@
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Синхронизација на метаподатоци за контакт [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Синхронизација на метаподатоци за контакт"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"Мои информации"</string>
-    <string name="settings_list_format_title" msgid="4863616397459998295">"Формат на списокот"</string>
-    <string name="settings_about_title" msgid="2661603735818124823">"За"</string>
-    <string name="settings_metadata_title" msgid="80278989223603428">"Метаподатоци на Контакти"</string>
-    <string name="settings_about" msgid="3291206829885886562">"За Контакти"</string>
+    <!-- no translation found for set_up_profile (8396362096521360520) -->
+    <skip />
+    <!-- no translation found for me_contact_name (1899366267108364062) -->
+    <skip />
+    <string name="setting_about" msgid="3926137653588942297">"За Контакти"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Поставки"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Сподели видливи контакти"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Не успеаја да се споделат видливите контакти."</string>
@@ -230,9 +230,9 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Пронајди контакти"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Омилени"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Нема контакти."</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Нема контакти во <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Исчисти чести"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Изберете СИМ-картичка"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"Управувај со сметки"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Увези/извези"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"од <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"на <xliff:g id="DATE">%1$s</xliff:g> од <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
@@ -251,7 +251,7 @@
       <item quantity="one"><xliff:g id="TITLE_2">%1$s</xliff:g> <xliff:g id="COUNT_3">%2$d</xliff:g> непрочитана ставка. </item>
       <item quantity="other"><xliff:g id="TITLE_2">%1$s</xliff:g> <xliff:g id="COUNT_3">%2$d</xliff:g> непрочитани ставки. </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"Вградена верзија"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"Верзија"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"Лиценци за софтвер со отворен код"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Детали за лиценците за софтвер со отворен код"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Политика за приватност"</string>

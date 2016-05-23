@@ -75,7 +75,6 @@
     <string name="directory_search_label" msgid="4484648822765516947">"Kataloog"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"Töökontaktide kataloog"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Kõik kontaktid"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Mina"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Otsimine ..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Leitud rohkem kui <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Kontaktid puuduvad"</string>
@@ -212,10 +211,11 @@
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sünkrooni kontakti metaandmed [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sünkrooni kontakti metaandmed"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"Minu teave"</string>
-    <string name="settings_list_format_title" msgid="4863616397459998295">"Loendi vorming"</string>
-    <string name="settings_about_title" msgid="2661603735818124823">"Teave"</string>
-    <string name="settings_metadata_title" msgid="80278989223603428">"Kontaktide metaandmed"</string>
-    <string name="settings_about" msgid="3291206829885886562">"Teave kontaktide kohta"</string>
+    <!-- no translation found for set_up_profile (8396362096521360520) -->
+    <skip />
+    <!-- no translation found for me_contact_name (1899366267108364062) -->
+    <skip />
+    <string name="setting_about" msgid="3926137653588942297">"Teave rakenduse Kontaktid kohta"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Seaded"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Jaga nähtavaid kontakte"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Nähtavate kontaktide jagamine ebaõnnestus."</string>
@@ -230,9 +230,9 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Otsige kontakte"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Lemmikud"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Kontaktid puuduvad."</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"Grupis <xliff:g id="NAME">%s</xliff:g> pole kontakte"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Sagedaste kustutamine"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM-kaardi valimine"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"Kontode haldamine"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Impordi/ekspordi"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"allika <xliff:g id="SOURCE">%1$s</xliff:g> kaudu"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> allika <xliff:g id="SOURCE">%2$s</xliff:g> kaudu"</string>

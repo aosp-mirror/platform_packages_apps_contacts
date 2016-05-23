@@ -21,7 +21,7 @@
     <string name="copy_text" msgid="3424081789297978355">"クリップボードにコピー"</string>
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g>に発信"</string>
     <string name="call_home" msgid="1479549630992276827">"自宅に発信"</string>
-    <string name="call_mobile" msgid="8618334085824709009">"携帯端末に発信"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"モバイル端末に発信"</string>
     <string name="call_work" msgid="8299062439076337075">"勤務先に発信"</string>
     <string name="call_fax_work" msgid="3770754834467992571">"勤務先FAXに発信"</string>
     <string name="call_fax_home" msgid="6219051113573396065">"自宅FAXに発信"</string>
@@ -36,14 +36,14 @@
     <string name="call_radio" msgid="9055749313292712021">"無線に発信"</string>
     <string name="call_telex" msgid="2909886619224843563">"テレックスに発信"</string>
     <string name="call_tty_tdd" msgid="6704940636171078852">"TTY/TDDに発信"</string>
-    <string name="call_work_mobile" msgid="4408630608955148641">"携帯端末（勤務先）に発信"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"モバイル端末（勤務先）に発信"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"ポケベル（勤務先）に発信"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g>に発信"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMSに発信"</string>
     <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> さん（通話を発信）"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g>にSMS"</string>
     <string name="sms_home" msgid="7765831490534280540">"自宅にSMS"</string>
-    <string name="sms_mobile" msgid="8387632124165893103">"携帯端末にSMS"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"モバイル端末にSMS"</string>
     <string name="sms_work" msgid="3910570578912367742">"勤務先にSMS"</string>
     <string name="sms_fax_work" msgid="909086167151248212">"勤務先FAXにSMS"</string>
     <string name="sms_fax_home" msgid="4145442497939634875">"自宅FAXにSMS"</string>
@@ -58,7 +58,7 @@
     <string name="sms_radio" msgid="8750339218480745940">"無線にSMS"</string>
     <string name="sms_telex" msgid="5469333785775443999">"テレックスにSMS"</string>
     <string name="sms_tty_tdd" msgid="5057886576150816002">"TTY/TDDにSMS"</string>
-    <string name="sms_work_mobile" msgid="8426872094268475047">"携帯端末（勤務先）にSMS"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"モバイル端末（勤務先）にSMS"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"ポケベル（勤務先）にSMS"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>にSMS"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMSにSMS"</string>
@@ -75,7 +75,6 @@
     <string name="directory_search_label" msgid="4484648822765516947">"ディレクトリ"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"仕事用の連絡先リスト"</string>
     <string name="local_search_label" msgid="9094584931063745728">"すべての連絡先"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"自分"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"検索しています…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>件以上見つかりました。"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"連絡先はありません"</string>
@@ -119,7 +118,7 @@
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"ウェブサイト"</string>
     <string name="groupsLabel" msgid="2001597910276087197">"ラベル"</string>
     <string name="email_home" msgid="2230967805906450693">"自宅にメール"</string>
-    <string name="email_mobile" msgid="7532438378678903685">"携帯端末にメール"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"モバイル端末にメール"</string>
     <string name="email_work" msgid="7065971921227432400">"勤務先にメール"</string>
     <string name="email_other" msgid="4601881243553289615">"メール"</string>
     <string name="email_custom" msgid="5777583741581538870">"<xliff:g id="CUSTOM">%s</xliff:g>にメール"</string>
@@ -178,7 +177,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"連絡先データのエクスポート"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"連絡先データをエクスポートしています。"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"データベース情報を取得できませんでした。"</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"エクスポートできる連絡先がありません。携帯端末に連絡先がある場合でも、データプロバイダによっては携帯端末から連絡先をエクスポートできないことがあります。"</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"エクスポートできる連絡先がありません。モバイル端末に連絡先がある場合でも、データプロバイダによってはモバイル端末から連絡先をエクスポートできないことがあります。"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCardコンポーザーが正しく起動しませんでした。"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"エクスポート失敗"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"連絡先データはエクスポートされませんでした。\n理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>
@@ -212,10 +211,11 @@
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"連絡先メタデータの同期 [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"連絡先メタデータの同期"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"ユーザー情報"</string>
-    <string name="settings_list_format_title" msgid="4863616397459998295">"リスト形式"</string>
-    <string name="settings_about_title" msgid="2661603735818124823">"概要"</string>
-    <string name="settings_metadata_title" msgid="80278989223603428">"連絡先のメタデータ"</string>
-    <string name="settings_about" msgid="3291206829885886562">"連絡先について"</string>
+    <!-- no translation found for set_up_profile (8396362096521360520) -->
+    <skip />
+    <!-- no translation found for me_contact_name (1899366267108364062) -->
+    <skip />
+    <string name="setting_about" msgid="3926137653588942297">"連絡先について"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"設定"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"表示可能な連絡先を共有"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"表示可能な連絡先を共有できませんでした。"</string>
@@ -230,9 +230,9 @@
     <string name="hint_findContacts" msgid="28151707326753522">"連絡先を検索"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"お気に入り"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"連絡先がありません。"</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>の連絡先はありません"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"よく使う連絡先のクリア"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIMカードを選択"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"アカウントを管理"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"インポート/エクスポート"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"更新元: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>、更新元: <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
