@@ -15,18 +15,15 @@
  */
 package com.android.contacts.common.logging;
 
-import android.app.Activity;
-import com.android.contacts.commonbind.analytics.AnalyticsUtil;
-
 /**
  * Stores constants identifying individual screens/dialogs/fragments in the application, and also
  * provides a mapping of integer id -> screen name mappings for analytics purposes.
  */
-public final class ScreenEvent {
+public class ScreenEvent {
 
     // Should match ContactsExtension.ScreenEvent.ScreenType values in
     // http://cs/google3/logs/proto/wireless/android/contacts/contacts_extensions.proto
-    public static final class ScreenType {
+    public static class ScreenType {
         public static final int UNKNOWN = 0;
         public static final int SEARCH = 1;
         public static final int SEARCH_EXIT = 2;
@@ -34,9 +31,6 @@ public final class ScreenEvent {
         public static final int ALL_CONTACTS = 4;
         public static final int QUICK_CONTACT = 5;
         public static final int EDITOR = 6;
-
-        private ScreenType() {
-        }
 
         public static String getFriendlyName(int screenType) {
             switch (screenType) {
@@ -50,8 +44,5 @@ public final class ScreenEvent {
                 default: return null;
             }
         }
-    }
-
-    private ScreenEvent() {
     }
 }
