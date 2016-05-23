@@ -45,6 +45,7 @@
         <attr name="list_item_padding_bottom" format="dimension"/>
         <attr name="list_item_padding_left" format="dimension"/>
         <attr name="list_item_gap_between_image_and_text" format="dimension"/>
+        <attr name="list_item_gap_between_indexer_and_image" format="dimension"/>
         <attr name="list_item_gap_between_label_and_data" format="dimension"/>
         <attr name="list_item_presence_icon_margin" format="dimension"/>
         <attr name="list_item_presence_icon_size" format="dimension"/>

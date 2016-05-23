@@ -29,7 +29,7 @@
     <color name="secondary_text_color">@color/dialtacts_secondary_text_color</color>
 
     <!-- Text color for section header. -->
-    <color name="section_header_text_color">#888888</color>
+    <color name="section_header_text_color">@color/dialtacts_theme_color</color>
 
     <!-- Divider color for header separator -->
     <color name="main_header_separator_color">#AAAAAA</color>
