@@ -136,9 +136,6 @@
     <!-- Font size used for the social status in the widget -->
     <dimen name="widget_text_size_snippet">13sp</dimen>
 
-    <!-- Height of list sections (A, B, C) that show the first character of the contacts -->
-    <dimen name="list_section_height">25dip</dimen>
-
     <!-- Account title left padding -->
     <dimen name="account_container_left_padding">16dip</dimen>
 
