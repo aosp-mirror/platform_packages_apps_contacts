@@ -24,11 +24,11 @@
     <string name="shortcutContact" msgid="749243779392912958">"পরিচিতি"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"সরাসরি ডায়াল"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"সরাসরি বার্তা"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"শর্টকার্ট করতে একটি পরিচিতি চয়ন করুন"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"কল করার জন্য একটি নম্বর চয়ন করুন"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"বার্তা পাঠানোর জন্য একটি নম্বর চয়ন করুন"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"শর্টকার্ট করতে একটি পরিচিতি বেছে নিন"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"কল করার জন্য একটি নম্বর বেছে নিন"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"বার্তা পাঠানোর জন্য একটি নম্বর বেছে নিন"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"পরিচিতিতে যোগ করুন"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"একটি পরিচিতি চয়ন করুন"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"একটি পরিচিতি বেছে নিন"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"নতুন পরিচিতি তৈরি করুন"</string>
     <string name="starredList" msgid="4817256136413959463">"তারকা চিহ্নিত"</string>
     <string name="frequentList" msgid="7154768136473953056">"ঘন ঘন"</string>
@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"পরিচিতির বিবরণগুলি"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"পরিচিতি সম্পাদনা করুন"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"পরিচিতি তৈরি করুন"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"গোষ্ঠী সম্পাদনা করুন"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"গোষ্ঠী তৈরি করুন"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"লেবেল সম্পাদনা করুন"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"সম্পর্কে"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"আপডেটগুলি"</string>
     <string name="searchHint" msgid="8482945356247760701">"পরিচিতিগুলি খুঁজুন"</string>
@@ -54,9 +53,13 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"পরিচিতিকে পাঠ্য বার্তা পাঠান"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"লিঙ্কমুক্ত করুন"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"সম্পাদনা করুন"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"মুছুন"</string>
-    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"পরিচিতি যুক্ত করুন"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"নতুন তৈরি করুন..."</string>
+    <string name="menu_deleteGroup" msgid="1126469629233412249">"লেবেল মুছুন"</string>
+    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
+    <skip />
+    <string name="menu_removeFromGroup" msgid="6720354305399961978">"লেবেল থেকে সরান"</string>
+    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
+    <skip />
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"নতুন তৈরি করুন…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"এই পরিচিতিটিকে একাধিক পরিচিতি থেকে লিঙ্কমুক্ত করবেন?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"লিঙ্কমুক্ত করুন"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"আপনি কি আপনার ইতিমধ্যে করা পরিবর্তনগুলি সংরক্ষণ এবং এই পরিচিতিটিকে একাধিক পরিচিতি থেকে লিঙ্কমুক্ত করতে চান?"</string>
@@ -66,7 +69,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"লিঙ্ক করুন"</string>
     <string name="menu_save" msgid="1727844363591825909">"সংরক্ষণ করুন"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"পরিচিতিগুলি লিঙ্ক করুন"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"যে পরিচিতিটিকে <xliff:g id="NAME">%s</xliff:g> এর সাথে লিঙ্ক করতে চান চয়ন করুন:"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"যে পরিচিতিটিকে <xliff:g id="NAME">%s</xliff:g> এর সাথে লিঙ্ক করতে চান বেছে নিন:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"সকল পরিচিতি দেখান"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"প্রস্তাবিত পরিচিতিগুলি"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"সকল পরিচিতি"</string>
@@ -80,9 +83,6 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"শুধুমাত্র-পঠনযোগ্য অ্যাকাউন্টের পরিচিতিগুলি মোছা যায় না, কিন্তু সেগুলিকে লুকিয়ে রাখা যাবে৷"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"লুকান"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"যে পরিচিতিগুলি মোছা হবে সেগুলিতে একধিক অ্যাকাউন্টের বিশদ বিবরণ রয়েছে৷ শুধুমাত্র-পঠনযোগ্য অ্যাকাউন্টগুলির বিশদ বিবরণ লুকানো হবে, কিন্তু মুছে ফেলা হবে না৷"</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"একটি লিঙ্ক করার কাজ সম্পাদন করতে আপনাকে কমপক্ষে দুটি পরিচিতি নির্বাচন করতে হবে৷"</string>
-    <string name="batch_link_confirmation" msgid="5845237114309114908">"নির্বাচিত পরিচিতিগুলি লিঙ্ক করবেন?"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"লিঙ্ক করুন"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"এই পরিচিতিটি মুছবেন?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"নির্বাচিত পরিচিতিগুলি মুছে ফেলতে চান?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"শুধুমাত্র-পঠনযোগ্য অ্যাকাউন্টের পরিচিতিগুলি মোছা যায় না, কিন্তু সেগুলিকে লুকিয়ে রাখা যাবে৷"</string>
@@ -96,10 +96,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"হোম স্ক্রীনে <xliff:g id="NAME">%s</xliff:g> যোগ করা হয়েছে৷"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"নতুন পরিচিতি তৈরি করুন"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"নতুন পরিচিতি তৈরি করুন"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"সংগঠন"</item>
-    <item msgid="7196592230748086755">"টিকা"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ট্যাবলেটে কোনো ছবি উপলব্ধ নয়৷"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"ফোনে কোনো ছবি উপলব্ধ নয়৷"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"পরিচিতির ফটো"</string>
@@ -107,15 +103,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"কলগুলিকে সরাসরি ভয়েসমেলে পাঠান"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ফটো সরান"</string>
     <string name="noContacts" msgid="4955659076981974652">"কোনো পরিচিতি নেই"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"কোনো গোষ্ঠী নেই৷"</string>
+    <string name="noGroups" msgid="4607906327968232225">"কোনো লেবেল নেই।"</string>
     <string name="noAccounts" msgid="7768267764545265909">"গোষ্ঠীগুলি তৈরি করার জন্য আপনার একটি অ্যাকাউন্টের প্রয়োজন৷"</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"এই গোষ্ঠীতে কেউ নেই৷"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"কিছু যোগ করতে, গোষ্ঠী সম্পাদনা করুন৷"</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"এই লেবেলের সাথে কোনো লোকজন নেই।"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"পরিচিতি সংরক্ষণ করা হয়েছে"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"পরিচিতিগুলি লিঙ্কমুক্ত করা হয়েছে"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"পরিচিতির পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
@@ -123,8 +118,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"পরিচিতি লিঙ্ক করা যায়নি৷"</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"পরিচিতি সংরক্ষণ করতে ত্রুটি হয়েছে৷"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"পরিচিতির ফটোর পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"গোষ্ঠী সংরক্ষিত হয়েছে৷"</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"গোষ্ঠীর পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"লেবেল সংরক্ষিত হয়েছে"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"লেবেল পরিবর্তনগুলি সংরক্ষণ করা গেল না।"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">ফোন নম্বর সহ <xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
       <item quantity="other">ফোন নম্বর সহ <xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
@@ -156,7 +151,9 @@
     <string name="menu_share" msgid="943789700636542260">"শেয়ার করুন"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"পরিচিতিগুলিতে জুড়ুন"</string>
     <string name="share_via" msgid="563121028023030093">"এর মাধ্যমে পরিচিতি শেয়ার করুন"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"অ্যাকাউন্টের অধীনে গোষ্ঠী তৈরি করুন"</string>
+    <string name="dialog_new_group_account" msgid="3451312333591556651">"অ্যাকাউন্ট বেছে নিন"</string>
+    <string name="create_group_dialog_title" msgid="125681283147434685">"লেবেল তৈরি করুন"</string>
+    <string name="create_group_dialog_button" msgid="3024179099311027120">"তৈরি করুন"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ভয়েস চ্যাট"</string>
     <string name="video_chat" msgid="1872255818640336072">"ভিডিও চ্যাট"</string>
     <string name="connections" msgid="8098440723172028350">"সংযোগগুলি"</string>
@@ -170,7 +167,7 @@
     <string name="group_read_only" msgid="1061762906115697637">"এই ডিভাইসে সম্পাদনযোগ্য নয়৷"</string>
     <string name="take_photo" msgid="7496128293167402354">"ফটো তুলুন"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"নতুন ফটো তুলুন"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"ফটো চয়ন করুন"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"ফটো বেছে নিন"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"নতুন ফটো নির্বাচন করুন"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"পরিচিতি তালিকা আপডেট করা হচ্ছে৷"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"অনুসন্ধান করছে..."</string>
@@ -181,7 +178,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"নতুন যোগ করুন"</string>
     <string name="add_organization" msgid="7311893231158291197">"সংগঠন যোগ করুন"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"তারিখ"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"গোষ্ঠী নাম"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"লেবেল নাম"</string>
     <string name="change_photo" msgid="8530597935483526383">"পরিবর্তন"</string>
     <string name="primary_photo" msgid="8517942231868516999">"প্রাথমিক ফটো"</string>
     <string name="description_star" msgid="2605854427360036550">"পছন্দসই"</string>
@@ -191,7 +188,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"আমার পরিচিতিগুলিতে কপি করুন"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"আমার পরিচিতিগুলিতে যুক্ত করুন"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ডিরেক্টরি <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"কাস্টম"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"সেটিংস"</string>
     <string name="menu_settings" msgid="377929915873428211">"সেটিংস"</string>
     <string name="menu_help" msgid="1680178646764069976">"সহায়তা ও প্রতিক্রিয়া"</string>
@@ -208,13 +204,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"একটি নতুন পরিচিতি তৈরি করুন"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"অ্যাকাউন্ট যোগ করুন"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"পরিচিতিগুলি আমদানি করুন"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"নতুন গোষ্ঠী তৈরি করুন"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"নতুন গোষ্ঠী তৈরি করুন"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g>টি গোষ্ঠী</item>
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g>টি গোষ্ঠী</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"গোষ্ঠী \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" মুছবেন? (পরিচিতিগুলি নিজে থেকে মুছে যাবে না৷)"</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"নতুন লেবেল তৈরি করুন"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"নতুন তৈরি করুন…"</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" গোষ্ঠী মুছবেন? (পরিচিতিগুলি নিজে থেকে মুছে যাবে না৷)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> থেকে <xliff:g id="COUNT_2">%1$d</xliff:g> জন</item>
       <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> থেকে <xliff:g id="COUNT_2">%1$d</xliff:g> জন</item>
@@ -232,9 +224,8 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"বাতিল করুন"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"সম্পাদনা করা চালিয়ে যান"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"আমার প্রোফাইল সেট করা"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"ব্যক্তির নাম লিখুন"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"গোষ্ঠীর নাম"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"লেবেলের নাম"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"আমার স্থানীয় প্রোফাইল"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"আমার <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> প্রোফাইল"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"সমস্ত পরিচিতি দেখানো হচ্ছে"</string>
@@ -242,7 +233,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"একটি অ্যাকাউন্ট যোগ করুন"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"আপনার নতুন পরিচিতিটির ব্যাকআপ নেওয়া হবে না৷ পরিচিতিগুলিকে অনলাইনে ব্যাকআপ নেওয়ার জন্য একটি অ্যাকাউন্ট যুক্ত করবেন?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"নতুন পরিচিতিগুলি <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> এ সংরক্ষণ করা হবে৷"</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"নতুন পরিচিতিগুলির জন্য একটি ডিফল্ট অ্যাকাউন্ট চয়ন করুন:"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"নতুন পরিচিতিগুলির জন্য একটি ডিফল্ট অ্যাকাউন্ট বেছে নিন:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"নতুন পরিচিতি জুড়ুন"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"পরিচিতি সম্পাদনা করুন"</string>
     <string name="keep_local" msgid="1258761699192993322">"স্থানীয় ভাবে রাখুন"</string>
@@ -256,7 +247,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"সাম্প্রতিক"</string>
     <string name="about_card_title" msgid="2920942314212825637">"সম্পর্কে"</string>
     <string name="send_message" msgid="8938418965550543196">"বার্তা পাঠান"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"একটি ব্যক্তিগত প্রতিলিপি তৈরি করা হচ্ছে..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"একটি ব্যক্তিগত অনুলিপি তৈরি করা হচ্ছে…"</string>
     <string name="yesterday" msgid="6840858548955018569">"গতকাল"</string>
     <string name="tomorrow" msgid="6241969467795308581">"আগামীকাল"</string>
     <string name="today" msgid="8041090779381781781">"আজ"</string>
@@ -320,7 +311,7 @@
     <string name="from_your_accounts" msgid="1746293107836889912">"আপনার অ্যাকাউন্টগুলি থেকে"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"একটি ফটো তুলুন"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"সকল ফটো"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"ফটো চয়ন করুন"</string>
+    <string name="photo_picker_title" msgid="5272832995550042801">"ফটো বেছে নিন"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> থেকে"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> মুছুন"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> মুছুন"</string>
@@ -328,9 +319,9 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> এর থেকে ফটো পরীক্ষা করা হয়েছে"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়নি"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়েছে"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"ভাষা পরিবর্তন দেখানোর জন্য পরিচিতির তালিকা আপডেট করা হচ্ছে৷\n\nঅনুগ্রহ করে অপেক্ষা করুন..."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"ভাষা পরিবর্তন দেখানোর জন্য পরিচিতির তালিকা আপডেট করা হচ্ছে৷\n\n অনুগ্রহ করে অপেক্ষা করুন…"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"অবরোধ করা নম্বরগুলি"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"সদৃশগুলি খুঁজুন"</string>
+    <string name="menu_duplicates" msgid="4129802988372197257">"সদৃশগুলি"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"নেভিগেশান ড্রয়ার খুলুন"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"নেভিগেশান ড্রয়ার বন্ধ করুন"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"লেবেলগুলি"</string>

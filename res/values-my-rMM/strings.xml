@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"အဆက်အသွယ် အသေးစိတ်"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"အဆက်အသွယ်အား ပြင်ရန်"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"အဆက်အသွယ်တစ်ခု ပြုလုပ်ရန်"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"အုပ်စုအားပြင်ရန်"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"အုပ်စုသစ်ပြုလုပ်ရန်"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"အညွှန်းပြင်ဆင်ပါ"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"အကြောင်း"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"အဆင့်မြှင့်မှု"</string>
     <string name="searchHint" msgid="8482945356247760701">"အဆက်အသွယ်များရှာပါ"</string>
@@ -54,9 +53,13 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"အဆက်အသွယ်ကို စာတိုပို့ရန်"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"လင့်ခ် ဖြုတ်ရန်"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"ပြင်ဆင်ရန်"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"ဖျက်ရန်"</string>
-    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"လိပ်စာထပ်ထည့်ပါ"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"အသစ် ဖန်တီးရန်..."</string>
+    <string name="menu_deleteGroup" msgid="1126469629233412249">"အညွှန်းကိုဖျက်ပါ"</string>
+    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
+    <skip />
+    <string name="menu_removeFromGroup" msgid="6720354305399961978">"အညွှန်းမှဖယ်ရှားပါ"</string>
+    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
+    <skip />
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"အသစ်ဖန်တီးပါ…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"ဤအဆက်အသွယ်အား ချိတ်ဆက်ထားမှုကို ဖျက်လျက် အဆက်အသွယ် အများအပြားအဖြစ် ခွဲပစ်ရမလား။"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ချိတ်ဆက်မှုဖြုတ်ပါ"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"သင် ပြုလုပ်ခဲ့သည့် အပြောင်းအလဲများကို သိမ်းဆည်းလျက် ဤအဆက်အသွယ်အား ချိတ်ဆက်ထားမှုကို ဖျက်လိုက်ကာ အဆက်အသွယ် အများအပြားအဖြစ် ခွဲပစ်ရမလား။"</string>
@@ -65,8 +68,8 @@
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"သိမ်းထားလျက် ချိတ်ဆက်ပေးပါ"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"လင့်ခ်"</string>
     <string name="menu_save" msgid="1727844363591825909">"သိမ်းဆည်းရန်"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"အဆက်အသွယ်များကို ကွင်းဆက်ချိတ်ပါ"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> နှင့်ကွင်းဆက်ချိတ်လိုသည့် အဆက်အသွယ်ကိုရွေးပါ −"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"အဆက်အသွယ်များ ချိတ်ဆက်ရန်"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> နှင့်ချိတ်လိုသည့် အဆက်အသွယ်ကို ရွေးပါ −"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"အဆက်အသွယ်များအားလုံးအားပြပါ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"အကြုံပြုလိုသော အဆက်အသွယ်များ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"လိပ်စာများအားလုံး"</string>
@@ -80,9 +83,6 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ဖတ်ရန် သက်သက် အကောင့်များကို ဖျက်မရနိုင်သော်လည်း ဝှက်ထားနိုင်ပါသည်။"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"ဝှက်ထားပါ"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"ဖျက်မည့် အဆက်အသွယ်ထဲတွင် အကောင့်အများအပြားမှ အချက်အလက်များ ပါဝင်ပါသည်။ ဖတ်ရန်သက်သက် အကောင့်များမှ အချက်အလက်များကို ဝှက်ထားမှာဖြစ်ပြီး ဖျက်ပစ်မည် မဟုတ်ပါ"</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"လင့်ခ်တစ်ခုကို ဖန်တီးရန် ရွေးထားသည့် အဆက်အသွယ် အနည်းဆုံး နှစ်ခု လိုအပ်သည်။"</string>
-    <string name="batch_link_confirmation" msgid="5845237114309114908">"ရွေးထားသည့် အဆက်အသွယ်များကို ချိတ်ဆက်ပေးရမလား။"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"လင့်"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"ဤအဆက်အသွယ်ကို ဖျက်မလား။"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"ရွေးထားသော အဆက်အသွယ်များကို ဖျက်မလား။"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"ဖတ်ရန် သက်သက် အကောင့်များကို ဖျက်မရနိုင်သော်လည်း ဝှက်ထားနိုင်ပါသည်။"</string>
@@ -96,10 +96,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ကို ပင်မ မျက်နှာပြင်သို့ ထည့်ပေးလိုက်ပြီ။"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"အဆက်အသွယ်သစ်တစ်ခု ပြုလုပ်ရန်"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"အဆက်အသွယ်သစ်တစ်ခု ပြုလုပ်ရန်"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"အဖွဲ့အစည်း"</item>
-    <item msgid="7196592230748086755">"မှတ်စု"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"တက်ဘလက်ထဲတွင် ပုံများ မရှိပါ"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"ဖုန်းထဲတွင် ပုံများ မရှိပါ"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"လိပ်စာရဲ့ဓာတ်ပုံ"</string>
@@ -107,15 +103,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ဖုန်းများအား အသံစာပို့စနစ်သို့ ပို့လိုက်ပါ"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ပုံအားဖယ်ရှားပါ"</string>
     <string name="noContacts" msgid="4955659076981974652">"အဆက်အသွယ်များမရှိပါ"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g> ယောက်)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="other">အဆက်အသွယ် <xliff:g id="COUNT">%d</xliff:g> ခု</item>
       <item quantity="one">အဆက်အသွယ် ၁ ခု</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"အုပ်စုများမရှိပါ"</string>
+    <string name="noGroups" msgid="4607906327968232225">"အညွှန်းများမရှိပါ။"</string>
     <string name="noAccounts" msgid="7768267764545265909">"အုပ်စုများ ပြုလုပ်ရန် အကောင့်တစ်ခု လိုအပ်ပါသည်"</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"ဒီအုပ်စုထဲမှာ လူတစ်ယောက်မှမရှိပါ"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"တချို့ကိုထည့်ရန်, အုပ်စုကိုပြင်ပါ"</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"ဤအညွှန်းနှင့် မည်သူမျှမရှိပါ။"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"အဆက်အသွယ်အား သိမ်းဆည်းပြီးပါပြီ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"အဆက်အသွယ်များကို ကွင်းဆက်ဖြုတ်လိုက်ပြီ"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"လိပ်စာပြောင်းလဲမှုအား သိမ်းဆည်းလို့မရပါ"</string>
@@ -123,8 +118,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"အဆက်အသွယ်ကို ကွင်းဆက်ချိတ်၍မရပါ။"</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"အဆက်အသွယ် သိမ်းဆည်းရာတွင် ပြဿနာရှိနေသည်။"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"အဆက်အသွယ်၏ ဓာတ်ပုံပြောင်းလဲမှု သိမ်းဆည်းနိုင်ခြင်းမရှိပါ။"</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"အုပ်စုသိမ်းဆည်ပြီးပါပြီ"</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"အုပ်စုအတွက် ထပ်ပြင်မှုများဟာ သိမ်းဆည်းလို့မရပါ"</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"အညွှန်းကို သိမ်းပြီးပါပြီ"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"အညွှန်းအပြောင်းအလဲများကို သိမ်း၍မရပါ။"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ဖုန်းနံပါတ်များပါသောအဆက်အသွယ်<xliff:g id="COUNT">%d</xliff:g>ခု</item>
       <item quantity="one">ဖုန်းနံပါတ်ပါသောအဆက်အသွယ်1ခု</item>
@@ -148,15 +143,17 @@
     <string name="description_plus_button" msgid="515164827856229880">"အပေါင်း"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ၏ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> လိပ်စာ"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"အဆက်အသွယ်များ၏နာမည်များ"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အပလီကေးရှင်း မရှိပါ။"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အက်ပ် မရှိပါ။"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ယခင် မျက်နှာပြင်သို့ ပြန်ရန် ကလစ်ပါ"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်း နံပါတ် ထည့်ရန်"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်းနံပါတ် ထည့်ပါ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"အီးမေးလ် ထည့်ရန်"</string>
-    <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အပလီကေးရှင်း မရှိပါ။"</string>
+    <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အက်ပ် မရှိပါ။"</string>
     <string name="menu_share" msgid="943789700636542260">"မျှဝေခြင်း"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"အဆက်အသွယ်များ ထဲသို့ ထည့်ရန်"</string>
     <string name="share_via" msgid="563121028023030093">"မှ အဆယ်အသွယ်အား မျှဝေခြင်း"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"အကောင့်အောက်မှာ အုပ်စုပြုလုပ်ပါ"</string>
+    <string name="dialog_new_group_account" msgid="3451312333591556651">"အကောင့်ရွေးပါ"</string>
+    <string name="create_group_dialog_title" msgid="125681283147434685">"အညွှန်းဖန်တီးပါ"</string>
+    <string name="create_group_dialog_button" msgid="3024179099311027120">"ဖန်တီးရန်"</string>
     <string name="audio_chat" msgid="2535716629358298691">"အသံဖြင့် ချက်တင်း"</string>
     <string name="video_chat" msgid="1872255818640336072">"ဗီဒီယိုဖြင့်စကားပြောခြင်း"</string>
     <string name="connections" msgid="8098440723172028350">"အဆက်အသွယ်များ"</string>
@@ -181,7 +178,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"အသစ်ထည့်ရန်"</string>
     <string name="add_organization" msgid="7311893231158291197">"အဖွဲ့အစည်းထည့်ရန်"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"ရက်စွဲ"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"အုပ်စုနာမည်"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"အညွှန်းအမည်"</string>
     <string name="change_photo" msgid="8530597935483526383">"ပြောင်းရန်"</string>
     <string name="primary_photo" msgid="8517942231868516999">"အဓိက ဓာတ်ပုံ"</string>
     <string name="description_star" msgid="2605854427360036550">"အနှစ်သက်ဆုံး"</string>
@@ -191,10 +188,9 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"ကျွန်ုပ်၏လိပ်စာများထဲ ထည့်ပါ"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"ကျွန်ုပ်၏လိပ်စာများထဲ ထည့်ပါ"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"အကန့် <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"မိမိစိတ်ကြိုက်"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"အပြင်အဆင်များ"</string>
     <string name="menu_settings" msgid="377929915873428211">"အပြင်အဆင်များ"</string>
-    <string name="menu_help" msgid="1680178646764069976">"အကူအညီ &amp;amp၊ တုံ့ပြန်ချက်"</string>
+    <string name="menu_help" msgid="1680178646764069976">"အကူအညီနှင့် အကြံပြုချက်"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ပြသမှုအတွက်ရွေးစရာများ"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"ဖုန်းနံပါတ်"</string>
@@ -206,15 +202,11 @@
     <string name="social_widget_label" msgid="6378905543028924592">"အဆက်အသွယ်"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ဖွင့်နေစဉ်…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"အဆက်အသွယ်သစ်တစ်ခု ပြုလုပ်ပါ"</string>
-    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"အကောင့် ထည့်ရန်"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"အဆက်အသွယ်များ တင်သွင်းပါ"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"အုပ်စုသစ်ပြုလုပ်ရန်"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"အုပ်စုအသစ်ပြုလုပ်ရန်"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other">အုပ်စု <xliff:g id="COUNT">%0$d</xliff:g>စု</item>
-      <item quantity="one">အုပ်စု 1စု</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" အုပ်စုကို ဖျက်ပစ်ပါမလား? (လိပ်စာများ ကိုယ်တိုင်တော့ ပျက်သွားမည်မဟုတ်ပါ)"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"အကောင့်ထည့်ရန်"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"အဆက်အသွယ်များ သွင်းပါ"</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"အညွှန်းသစ်ဖန်တီးပါ"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"အသစ်ဖန်တီးပါ…"</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" အညွှန်းကို ဖျက်ပစ်မလား။ (အဆက်အသွယ်များအနေဖြင့် ပျက်သွားမည်မဟုတ်ပါ။)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> မှ လူ<xliff:g id="COUNT_2">%1$d</xliff:g> ယောက်</item>
       <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g> မှ လူ<xliff:g id="COUNT_0">%1$d</xliff:g> ယောက်</item>
@@ -232,21 +224,20 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"စွန့်ပစ်ရန်"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"ဆက်လက်တည်းဖြတ်ပါ"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"မိမိကိုယ်ရေးအကောင့်အား ပြုလုပ်ရန်"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"လူနာမည်ရိုက်ထည့်ပါ"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"အုပ်စု၏နာမည်"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"အညွှန်း၏အမည်"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"မိမိ၏ဖုန်းမှပရိုဖိုင်လ်"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ကျွန်ုပ်၏ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ကိုယ်ရေးအကောင့်"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"အဆက်အသွယ်အားလုံးအားပြနေစဉ်"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"အွန်လိုင်း ဝန်ဆောင်မှုဖြင့် ထပ်တူကျအောင် ပြုလုပ်ထားခြင်းအားဖြင့် ဖုန်းပျောက်သွားသည့်တိုင်အောင် အဆက်အသွယ်များအား လုံခြုံစွာ သိမ်းထားနိုင်ပါသည်"</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"အကောင့် ထပ်ဖြည့်ပါ"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"သင့် အဆက်အသွယ်အသစ်ကို အရံသိမ်းဆည်းထားခြင်း မရှိပါ။ အဆယ်အသွယ်များကို အွန်လိုင်းပေါ်မှာ အရံသိမ်းဆည်းပေးရန် အကောင့်သစ် ထပ်ထည့်ချင်ပါသလား"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"အကောင့်တစ်ခုထည့်ပါ"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"သင်၏အဆက်အသွယ်အသစ်ကို မိတ္တူကူးမထားပါ။ အဆယ်အသွယ်များကို အွန်လိုင်းတွင် ကူးထားရန် အကောင့်သစ် ထပ်ထည့်ချင်ပါသလား။"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"အဆက်အသွယ် အသစ်ကို <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> တွင်သိမ်းလိုက်ပါမည်။"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"အဆက်အသွယ် အသစ်များအတွက် မူရင်းအကောင့်ကို ရွေးပါ။"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"အဆက်အသွယ်သစ် ထည့်မည်"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"အဆက်အသွယ်အားပြင်ရန်"</string>
     <string name="keep_local" msgid="1258761699192993322">"ဖုန်းထဲတွင်သာသိမ်းပါ"</string>
-    <string name="add_account" msgid="8201790677994503186">"အကောင့်ထပ်ထည့်ရန်"</string>
+    <string name="add_account" msgid="8201790677994503186">"အကောင့်ထည့်ရန်"</string>
     <string name="add_new_account" msgid="5748627740680940264">"အကောင့်အသစ်ထည့်ပါ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ဒေ့ဘာဘေ့စ်ဖိုင်များကို အပြင်သို့ထုတ်ပါ"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"အဆက်အသွယ် အသစ်ကို ထည့်ရန်"</string>
@@ -256,7 +247,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"မကြာမီတုန်းက"</string>
     <string name="about_card_title" msgid="2920942314212825637">"အကြောင်း"</string>
     <string name="send_message" msgid="8938418965550543196">"စာတို ပို့ရန်"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"ကိုယ်ပိုင် ကော်ပီကို ဖန်တီးနေ..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"မိမိအတွက် ကိုယ်ပိုင်ကော်ပီ ပြုလုပ်နေစဉ်…"</string>
     <string name="yesterday" msgid="6840858548955018569">"မနေ့က"</string>
     <string name="tomorrow" msgid="6241969467795308581">"နက်ဖြန်"</string>
     <string name="today" msgid="8041090779381781781">"ယနေ့"</string>
@@ -328,9 +319,9 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>ထံမှ ဓာတ်ပုံကို စစ်ကြည့်ပြီးပြီ"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"အမည်မသိအကောင့်မှ ဓာတ်ပုံဓာတ်ပုံ မစစ်ဆေးရသေးပါ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"အမည်မသိအကောင့်မှ ဓာတ်ပုံ စစ်ဆေးပြီးပါပြီ"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"ဆက်သွယ်ရန် စာရင်းကို ဘာသာစကားဆိုင်ရာ အပြောင်းအလဲအား ထင်ဟပ်ပေးရန် အပ်ဒိတ် လုပ်ပေးနေပါသည်။ \n\nခဏစောင့်ပါ..."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"ဘာသာစကားအပြောင်းအလဲကို ထင်ဟပ်ပေးရန် အဆက်အသွယ်စာရင်းကို မွမ်းမံနေပါသည်။\n\nခဏစောင့်ပေးပါ…"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"ပိတ်ဆို့ထားသည့် နံပါတ်များ"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"ထပ်နေသည်များကို ရှာပါ"</string>
+    <string name="menu_duplicates" msgid="4129802988372197257">"မိတ္တူပွားများ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"လမ်းညွှန်ချက်အကွက်ကို ဖွင့်ပါ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"လမ်းညွှန်ချက်အကွက်ကို ပိတ်ပါ"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"အညွှန်းများ"</string>

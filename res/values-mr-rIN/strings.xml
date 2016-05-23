@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"संपर्क तपशील"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"संपर्क संपादित करा"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"संपर्क तयार करा"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"गट संपादित करा"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"गट तयार करा"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"लेबल संपादित करा"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"विषयी"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"अद्यतने"</string>
     <string name="searchHint" msgid="8482945356247760701">"संपर्क शोधा"</string>
@@ -54,18 +53,22 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"संपर्कास मजकूर पाठवा"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"दुवा रद्द करा"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"संपादित करा"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"हटवा"</string>
-    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"संपर्क जोडा"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"नवीन तयार करा..."</string>
+    <string name="menu_deleteGroup" msgid="1126469629233412249">"लेबल हटवा"</string>
+    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
+    <skip />
+    <string name="menu_removeFromGroup" msgid="6720354305399961978">"लेबलवरून काढा"</string>
+    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
+    <skip />
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"नवीन तयार करा…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"एकाधिक संपर्कांमध्‍ये या संपर्काचा दुवा रद्द करायचा?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"दुवा रद्द करा"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"आपण आधीपासून केलेले बदल आपण जतन करू आणि एकाधिक संपर्कांमध्‍ये या संपर्काचा दुवा रद्द करू इच्छिता?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"जतन करा आणि दुवा रद्द करा"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"आपण आधीपासून केलेले बदल आपण जतन करू आणि निवडलेल्या संपर्काशी दुवा जोडू इच्छिता?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"जतन करा आणि दुवा जोडा"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"दुवा"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"दुवा साधा"</string>
     <string name="menu_save" msgid="1727844363591825909">"जतन करा"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"संपर्कांचा दुवा जोडा"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"संपर्कांचा दुवा साधा"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"आपण <xliff:g id="NAME">%s</xliff:g> सह ज्या संपर्काचा दुवा जोडू इच्छिता तो निवडा:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सर्व संपर्क दर्शवा"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"सूचित संपर्क"</string>
@@ -76,13 +79,10 @@
       <item quantity="other">संपर्क हटविले</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिंगटोन सेट करा"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"व्हॉइसमेलवरील सर्व कॉल"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"सर्व कॉल व्हॉइसमेलवर"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"आपल्‍या केवळ-वाचनीय खात्यांमधील संपर्क हटविले जाऊ शकत नाहीत परंतु ते लपविले जाऊ शकतात."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"लपवा"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"जो संपर्क हटवायचा आहे त्यामध्‍ये एकाधिक खात्यांमधील तपशील आहेत. केवळ-वाचनीय खात्यांमधील तपशील लपविले जातील, हटविले जाणार नाहीत."</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"दुवा साधण्‍यासाठी आपण कमीतकमी दोन संपर्क निवडलेले असणे आवश्‍यक आहे."</string>
-    <string name="batch_link_confirmation" msgid="5845237114309114908">"निवडलेल्या संपर्कांचा दुवा जोडायचा?"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"दुवा"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"हा संपर्क हटवायचा?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"निवडलेले संपर्क हटवायचे?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"आपल्‍या केवळ-वाचनीय खात्यांमधील संपर्क हटविले जाऊ शकत नाहीत परंतु ते लपविले जाऊ शकतात."</string>
@@ -96,10 +96,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ना मुख्‍यपृष्‍ठावर जोडले."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"नवीन संपर्क तयार करा"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"नवीन संपर्क तयार करा"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"संस्था"</item>
-    <item msgid="7196592230748086755">"टीप"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"टॅब्‍लेटवर कोणतीही चित्रे उपलब्ध नाहीत."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"फोनवर कोणतीही चित्रे उपलब्ध नाहीत."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"संपर्क फोटो"</string>
@@ -107,15 +103,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"कॉल थेट व्हॉइसमेलवर पाठवा"</string>
     <string name="removePhoto" msgid="4898105274130284565">"फोटो काढा"</string>
     <string name="noContacts" msgid="4955659076981974652">"कोणतेही संपर्क नाहीत"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"कोणतेही गट नाहीत."</string>
+    <string name="noGroups" msgid="4607906327968232225">"लेबलेे नाहीत."</string>
     <string name="noAccounts" msgid="7768267764545265909">"गट तयार करण्‍यासाठी आपल्‍याला खात्‍याची आवश्‍यकता अाहे."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"या गटात कोणतेही लोक नाहीत."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"काही जोडण्‍यासाठी, गट संपादित करा."</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"हे लेबल असलेले लोक नाहीत."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"संपर्क जतन केला"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"संपर्कांचा दुवा रद्द केला"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"संपर्क बदल जतन करू शकलो नाही."</string>
@@ -123,8 +118,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"संपर्काचा दुवा जोडणे शक्य झाले नाही."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"संपर्क जतन करताना त्रुटी."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"संपर्क फोटो बदल जतन करणे शक्य झाले नाही."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"गट जतन केला."</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"गट बदल जतन करू शकलो नाही."</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"लेबल जतन केले"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"लेबल बदल जतन करणे शक्य झाले नाही."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">फोन नंबरसह <xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
       <item quantity="other">फोन नंबरसह <xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
@@ -156,7 +151,9 @@
     <string name="menu_share" msgid="943789700636542260">"सामायिक करा"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"संपर्कांमध्ये जोडा"</string>
     <string name="share_via" msgid="563121028023030093">"द्वारे संपर्क सामायिक करा"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"खात्याअंतर्गत गट तयार करा"</string>
+    <string name="dialog_new_group_account" msgid="3451312333591556651">"खाते निवडा"</string>
+    <string name="create_group_dialog_title" msgid="125681283147434685">"लेबल बनवा"</string>
+    <string name="create_group_dialog_button" msgid="3024179099311027120">"तयार करा"</string>
     <string name="audio_chat" msgid="2535716629358298691">"व्हॉइस चॅट"</string>
     <string name="video_chat" msgid="1872255818640336072">"व्हिडिओ चॅट"</string>
     <string name="connections" msgid="8098440723172028350">"कनेक्शन"</string>
@@ -181,7 +178,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"नवीन जोडा"</string>
     <string name="add_organization" msgid="7311893231158291197">"संस्‍था जोडा"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"तारीख"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"गट नाव"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"लेबल नाव"</string>
     <string name="change_photo" msgid="8530597935483526383">"बदला"</string>
     <string name="primary_photo" msgid="8517942231868516999">"प्राथमिक फोटो"</string>
     <string name="description_star" msgid="2605854427360036550">"आवडते"</string>
@@ -191,11 +188,10 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"माझे संपर्क वर कॉपी करा"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"माझे संपर्क मध्ये जोडा"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"निर्देशिका <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"सानुकूल"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिंग्ज"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिंग्ज"</string>
     <string name="menu_help" msgid="1680178646764069976">"मदत आणि अभिप्राय"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"पर्याय प्रदर्शित करा"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"प्रदर्शन पर्याय"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"फोन नंबर"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"संपर्कांमध्ये जोडा"</string>
@@ -208,13 +204,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"नवीन संपर्क तयार करा"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"खाते जोडा"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"संपर्क आयात करा"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"नवीन गट तयार करा"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"नवीन गट तयार करा"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> गट</item>
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> गट</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" गट हटवायचा? (संपर्क आपणहून हटविले जाणार नाहीत.)"</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"नवीन लेबल तयार करा"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"नवीन तयार करा…"</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" लेबल हटवायचे? (संपर्क आपणहून हटविले जाणार नाहीत.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"> <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> मधील <xliff:g id="COUNT_2">%1$d</xliff:g> व्यक्ती</item>
       <item quantity="other"> <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> मधील <xliff:g id="COUNT_2">%1$d</xliff:g> लोक</item>
@@ -232,9 +224,8 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"टाकून द्या"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"संपादन करणे सुरु ठेवा"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"माझे प्रोफाईल सेट करा"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"व्‍यक्तीचे नाव टाईप करा"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"गटाचे नाव"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"लेबलचे नाव"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"माझे स्थानिक प्रोफाइल"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"माझे <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफाईल"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सर्व संपर्क प्रदर्शित करीत आहे"</string>
@@ -256,7 +247,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"अलीकडील"</string>
     <string name="about_card_title" msgid="2920942314212825637">"विषयी"</string>
     <string name="send_message" msgid="8938418965550543196">"संदेश पाठवा"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"वैयक्तिक प्रत तयार करीत आहे..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"वैयक्तिक प्रत तयार करीत आहे..."</string>
     <string name="yesterday" msgid="6840858548955018569">"काल"</string>
     <string name="tomorrow" msgid="6241969467795308581">"उद्या"</string>
     <string name="today" msgid="8041090779381781781">"आज"</string>
@@ -328,9 +319,9 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>कडील फोटो चेक केला"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"अज्ञात खात्यामधील फोटो चेक केला नाही"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"अज्ञात खात्यामधील फोटो चेक केला"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"भाषेचे बदल प्रतिबिंबित करण्यासाठी संपर्क सूची अद्यतनित केली जात आहे. \n\nकृपया प्रतीक्षा करा..."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"भाषेेचा बदल दर्शविण्यासाठी संपर्क सूची अद्यतनित केली जात आहे.\n\nकृपया प्रतीक्षा करा…"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"अवरोधित केलेले नंबर"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"डुप्लिकेट शोधा"</string>
+    <string name="menu_duplicates" msgid="4129802988372197257">"डुप्लिकेट"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"नेव्हिगेशन ड्रॉवर उघडा"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"नेव्हिगेशन ड्रॉवर बंद करा"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"लेबले"</string>

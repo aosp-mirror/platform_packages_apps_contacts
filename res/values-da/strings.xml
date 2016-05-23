@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Kontaktoplysninger"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Rediger kontakt"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Opret kontakt"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Rediger gruppe"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Opret gruppe"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"Rediger etiket"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Om"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Opdateringer"</string>
     <string name="searchHint" msgid="8482945356247760701">"Søg i kontakter"</string>
@@ -54,9 +53,13 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send sms til kontakt"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Fjern link"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Rediger"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"Slet"</string>
-    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Tilføj kontaktperson"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Opret ny…"</string>
+    <string name="menu_deleteGroup" msgid="1126469629233412249">"Slet etiket"</string>
+    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
+    <skip />
+    <string name="menu_removeFromGroup" msgid="6720354305399961978">"Fjern fra etiket"</string>
+    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
+    <skip />
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Opret ny…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Vil du fjerne linkningen og opdele denne kontaktperson i flere kontaktpersoner?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Fjern link"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Vil du gemme de ændringer, du allerede har foretaget, og fjerne linkningen og opdele kontaktpersonen i flere kontaktpersoner?"</string>
@@ -66,7 +69,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Link"</string>
     <string name="menu_save" msgid="1727844363591825909">"Gem"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Link kontaktpersoner"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Vælg den kontaktperson, der skal knyttes til <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Vælg den kontaktperson, der skal linkes til <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Vis alle kontakter"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Foreslåede kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakter"</string>
@@ -80,9 +83,6 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontaktpersoner fra dine skrivebeskyttede konti kan ikke slettes, men de kan skjules."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Skjul"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Den kontaktperson, du vil slette, indeholder oplysninger fra flere konti. Oplysninger fra skrivebeskyttede konti skjules fremfor at blive slettet."</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Du skal vælge mindst to kontaktpersoner for at foretage en sammenfletning."</string>
-    <string name="batch_link_confirmation" msgid="5845237114309114908">"Vil du linke de valgte kontaktpersoner?"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Link"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Vil du slette denne kontaktperson?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Vil du slette de valgte kontaktpersoner?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontaktpersoner fra dine skrivebeskyttede konti kan ikke slettes, men de kan skjules."</string>
@@ -96,10 +96,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> blev føjet til startskærmen."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Opret ny kontaktperson"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Opret ny kontaktperson"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"Organisation"</item>
-    <item msgid="7196592230748086755">"Note"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Der er ingen tilgængelige billeder på tabletcomputeren."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Der er ingen tilgængelige billeder på telefonen."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Billede af kontaktperson"</string>
@@ -107,15 +103,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Send opkald direkte til telefonsvarer"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fjern billede"</string>
     <string name="noContacts" msgid="4955659076981974652">"Ingen kontaktpersoner"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontaktperson</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktpersoner</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"Ingen grupper."</string>
+    <string name="noGroups" msgid="4607906327968232225">"Der er ingen etiketter."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Du skal have en konto for at kunne oprette grupper."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"Ingen personer i denne gruppe."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Rediger gruppen for at tilføje nogen."</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"Der er ingen personer med denne etiket."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontaktpersonen er gemt"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Linkningen til kontaktpersonerne er fjernet"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Der kunne ikke gemmes ændringer i kontaktpersoner."</string>
@@ -123,8 +118,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kontaktpersonen kunne ikke tilknyttes."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Kontaktpersonen kunne ikke gemmes."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Det ændrede billede af kontaktpersonen kunne ikke gemmes."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"Gruppen er gemt."</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Gruppeændringerne kunne ikke gemmes."</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"Etiketten blev gemt"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"Ændringerne af etiketten kan ikke gemmes."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontaktpersoner med telefonnumre</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktpersoner med telefonnumre</item>
@@ -156,7 +151,9 @@
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Føj til kontaktpersoner"</string>
     <string name="share_via" msgid="563121028023030093">"Del kontakt via"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"Opret gruppe på konto"</string>
+    <string name="dialog_new_group_account" msgid="3451312333591556651">"Vælg konto"</string>
+    <string name="create_group_dialog_title" msgid="125681283147434685">"Opret etiket"</string>
+    <string name="create_group_dialog_button" msgid="3024179099311027120">"Opret"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Talechat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videochat"</string>
     <string name="connections" msgid="8098440723172028350">"Forbindelser"</string>
@@ -181,7 +178,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Tilføj ny"</string>
     <string name="add_organization" msgid="7311893231158291197">"Tilføj organisation"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Dato"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Gruppenavn"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"Etiketnavn"</string>
     <string name="change_photo" msgid="8530597935483526383">"Rediger"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Primært foto"</string>
     <string name="description_star" msgid="2605854427360036550">"foretrukken"</string>
@@ -191,7 +188,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopier til Mine kontaktpersoner"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Føj til mine kontaktpersoner"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Indeks <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"Tilpasset"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Indstillinger"</string>
     <string name="menu_settings" msgid="377929915873428211">"Indstillinger"</string>
     <string name="menu_help" msgid="1680178646764069976">"Hjælp og feedback"</string>
@@ -208,13 +204,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Opret ny kontaktperson"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Tilføj konto"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer kontaktpersoner"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"Opret en ny gruppe"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"Opret en ny gruppe"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> grupper</item>
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupper</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Vil du slette gruppen \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Selve kontaktpersonerne slettes ikke)."</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"Opret en ny etiket"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"Opret ny…"</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"Vil du slette etiketten \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Selve kontaktpersonerne bliver ikke slettet)."</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> personer fra <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> personer fra <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
@@ -232,9 +224,8 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Kassér"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Fortsæt redigering"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Konfigurer min profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Indtast personens navn"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"Gruppens navn"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"Navn på etiketten"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Min <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Viser alle kontaktpersoner"</string>
@@ -256,7 +247,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"Seneste"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Om"</string>
     <string name="send_message" msgid="8938418965550543196">"Send besked"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"Opretter en personlig kopi..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Opretter en privat kopi..."</string>
     <string name="yesterday" msgid="6840858548955018569">"I går"</string>
     <string name="tomorrow" msgid="6241969467795308581">"I morgen"</string>
     <string name="today" msgid="8041090779381781781">"I dag"</string>
@@ -328,9 +319,9 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Billede fra <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> er valgt"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Der er ikke markeret et billede fra en ukendt konto"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Et billede fra en ukendt konto er markeret"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaktlisten opdateres for at afspejle ændringen af sprog.\n\nVent et øjeblik..."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"Kontaktlisten opdateres for at afspejle ændringen af sprog.\n\nVent et øjeblik…"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokerede telefonnumre"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"Find dubletter"</string>
+    <string name="menu_duplicates" msgid="4129802988372197257">"Dubletter"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Åbn navigationsskuffen"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Luk navigationsskuffen"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Etiketter"</string>

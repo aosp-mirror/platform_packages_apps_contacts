@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"連絡先情報"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"連絡先を編集"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"連絡先を新規登録"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"グループの編集"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"グループの作成"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"ラベルを編集"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"概要"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"最新情報"</string>
     <string name="searchHint" msgid="8482945356247760701">"連絡先を検索"</string>
@@ -54,9 +53,13 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"連絡先にSMS"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"リンクを解除"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"編集"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"削除"</string>
-    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"連絡先を追加"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"新しいグループを作成..."</string>
+    <string name="menu_deleteGroup" msgid="1126469629233412249">"ラベルを削除"</string>
+    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
+    <skip />
+    <string name="menu_removeFromGroup" msgid="6720354305399961978">"ラベルから削除"</string>
+    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
+    <skip />
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"新規作成…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"この連絡先を複数の連絡先にリンク解除しますか？"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"リンク解除"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ここまでの変更を保存してこの連絡先を複数の連絡先にリンク解除しますか？"</string>
@@ -80,9 +83,6 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"読み取り専用のアカウントからの連絡先は削除できませんが非表示にすることはできます。"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"非表示"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"削除しようとしている連絡先には複数のアカウントからの詳細情報が含まれています。読み取り専用のアカウントからの詳細情報は非表示になるだけで削除はされません。"</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"リンクするには連絡先を2件以上選択してください。"</string>
-    <string name="batch_link_confirmation" msgid="5845237114309114908">"選択した連絡先をリンクしますか？"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"リンク"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"この連絡先を削除しますか？"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"選択した連絡先を削除しますか？"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"読み取り専用のアカウントからの連絡先は削除できませんが非表示にすることはできます。"</string>
@@ -96,10 +96,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g>をホーム画面に追加しました。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"連絡先を新規登録"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"新しい連絡先を作成"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"所属"</item>
-    <item msgid="7196592230748086755">"メモ"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"タブレット内に写真がありません。"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"画像がありません。"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"連絡先の写真"</string>
@@ -107,15 +103,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ボイスメールに自動転送する"</string>
     <string name="removePhoto" msgid="4898105274130284565">"写真を削除"</string>
     <string name="noContacts" msgid="4955659076981974652">"連絡先はありません"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g>（<xliff:g id="COUNT">%d</xliff:g> 人）"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="other">メンバー <xliff:g id="COUNT">%d</xliff:g> 人</item>
       <item quantity="one">メンバー 1 人</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"グループはありません。"</string>
+    <string name="noGroups" msgid="4607906327968232225">"ラベルはありません。"</string>
     <string name="noAccounts" msgid="7768267764545265909">"グループを作成するにはアカウントが必要です。"</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"このグループにはメンバーがいません。"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"メンバーを追加するにはグループを編集します。"</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"このラベルを使用しているユーザーはいません。"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"連絡先を保存しました"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"連絡先のリンクを解除しました"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"連絡先の変更を保存できませんでした。"</string>
@@ -123,8 +118,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"連絡先をリンクできませんでした。"</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"連絡先の保存中にエラーが発生しました。"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"連絡先の写真の変更を保存できませんでした。"</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"グループを保存しました。"</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"グループの変更を保存できませんでした。"</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"ラベルを保存しました"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"ラベルの変更を保存できませんでした。"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">電話番号のある連絡先<xliff:g id="COUNT">%d</xliff:g>件</item>
       <item quantity="one">電話番号のある連絡先1件</item>
@@ -156,7 +151,9 @@
     <string name="menu_share" msgid="943789700636542260">"共有"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"連絡先に追加"</string>
     <string name="share_via" msgid="563121028023030093">"連絡先の共有ツール"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"次のアカウントにグループを作成"</string>
+    <string name="dialog_new_group_account" msgid="3451312333591556651">"アカウントの選択"</string>
+    <string name="create_group_dialog_title" msgid="125681283147434685">"ラベルの作成"</string>
+    <string name="create_group_dialog_button" msgid="3024179099311027120">"作成"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ボイスチャット"</string>
     <string name="video_chat" msgid="1872255818640336072">"ビデオチャット"</string>
     <string name="connections" msgid="8098440723172028350">"連絡先情報"</string>
@@ -181,7 +178,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"新しく追加"</string>
     <string name="add_organization" msgid="7311893231158291197">"所属を追加"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"日付"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"グループ名"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"ラベル名"</string>
     <string name="change_photo" msgid="8530597935483526383">"変更"</string>
     <string name="primary_photo" msgid="8517942231868516999">"メインの写真"</string>
     <string name="description_star" msgid="2605854427360036550">"お気に入り"</string>
@@ -191,7 +188,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Myコンタクトにコピー"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Myコンタクトに追加"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ディレクトリ<xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"カスタム"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"設定"</string>
     <string name="menu_settings" msgid="377929915873428211">"設定"</string>
     <string name="menu_help" msgid="1680178646764069976">"ヘルプとフィードバック"</string>
@@ -208,13 +204,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"新しい連絡先を作成"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"アカウントを追加"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"連絡先をインポート"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"新しいグループの作成"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"新しいグループを作成"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g>グループ</item>
-      <item quantity="one">1グループ</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"グループ「<xliff:g id="GROUP_LABEL">%1$s</xliff:g>」を削除しますか？連絡先自体は削除されません。"</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"新しいラベルの作成"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"新規作成…"</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"ラベル「<xliff:g id="GROUP_LABEL">%1$s</xliff:g>」を削除しますか？（連絡先自体は削除されません。）"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g>から<xliff:g id="COUNT_2">%1$d</xliff:g>人</item>
       <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g>から<xliff:g id="COUNT_0">%1$d</xliff:g>人</item>
@@ -232,13 +224,12 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"破棄"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"編集を続ける"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"プロファイルを設定"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"名前を入力"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"グループの名前"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"ラベルの名前"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ローカルプロファイル"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>のプロファイル"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"すべての連絡先を表示しています"</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"携帯端末を紛失したときにも連絡先を保護するため、オンラインサービスと同期させます。"</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"モバイル端末を紛失したときにも連絡先を保護するため、オンラインサービスと同期させます。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"アカウントの追加"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"新しい連絡先はバックアップされません。オンラインで連絡先をバックアップするアカウントを追加しますか？"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"新しい連絡先を<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>に保存します"</string>
@@ -256,7 +247,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"最近"</string>
     <string name="about_card_title" msgid="2920942314212825637">"概要"</string>
     <string name="send_message" msgid="8938418965550543196">"メッセージの送信"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"個人用コピーを作成しています..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"個人用コピーを作成しています..."</string>
     <string name="yesterday" msgid="6840858548955018569">"昨日"</string>
     <string name="tomorrow" msgid="6241969467795308581">"明日"</string>
     <string name="today" msgid="8041090779381781781">"今日"</string>
@@ -328,9 +319,9 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> の写真は選択されています"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"不明なアカウントの写真は選択されていません"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"不明なアカウントの写真が選択されています"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"言語の変更に伴い連絡先リストを更新しています。\n\nしばらくお待ちください..."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"言語の変更に合わせて連絡先リストを更新しています。\n\nしばらくお待ちください..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"ブロックした番号"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"重複する連絡先を見つける"</string>
+    <string name="menu_duplicates" msgid="4129802988372197257">"重複"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ナビゲーションドロワーを開く"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ナビゲーションドロワーを閉じる"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ラベル"</string>

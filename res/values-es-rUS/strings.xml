@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Detalles de contacto"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Editar contacto"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Crear contacto"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Editar grupo"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Crear grupo"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"Editar la etiqueta"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Acerca de"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Actualizaciones"</string>
     <string name="searchHint" msgid="8482945356247760701">"Buscar contactos"</string>
@@ -54,9 +53,13 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar texto al contacto"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Desvincular"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Editar"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"Eliminar"</string>
-    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Agregar contacto"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Crear nuevo…"</string>
+    <string name="menu_deleteGroup" msgid="1126469629233412249">"Borrar etiqueta"</string>
+    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
+    <skip />
+    <string name="menu_removeFromGroup" msgid="6720354305399961978">"Quitar de la etiqueta"</string>
+    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
+    <skip />
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Crear nueva…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"¿Deseas desvincular este contacto en múltiples contactos?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Desvincular"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"¿Deseas guardar los cambios que realizaste y desvincular este contacto en múltiples contactos?"</string>
@@ -80,9 +83,6 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Los contactos de las cuentas de solo lectura no se pueden borrar, pero pueden ocultarse."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Ocultar"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"El contacto que se borrará tiene información de múltiples cuentas. La información de la cuentas de solo lectura se ocultarán, pero no se borrarán."</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Debes seleccionar al menos dos contactos para poder vincularlos."</string>
-    <string name="batch_link_confirmation" msgid="5845237114309114908">"¿Deseas vincular los contactos seleccionados?"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Vincular"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"¿Deseas borrar este contacto?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"¿Deseas borrar los contactos seleccionados?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Los contactos de las cuentas de solo lectura no se pueden borrar, pero pueden ocultarse."</string>
@@ -96,10 +96,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> se agregó a la pantalla principal."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crear nuevo contacto"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Crear contacto nuevo"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"Organización"</item>
-    <item msgid="7196592230748086755">"Nota"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"No hay imágenes disponibles en el tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"No hay imágenes disponibles en el dispositivo."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacto"</string>
@@ -107,15 +103,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar llamadas directamente al correo de voz"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminar foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"No hay contactos"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos</item>
       <item quantity="one">1 contacto</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"Ningún grupo"</string>
+    <string name="noGroups" msgid="4607906327968232225">"No hay etiquetas."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Para crear grupos, necesitas una cuenta."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"No hay contactos en este grupo."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Para agregar alguno, edita el grupo."</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"No hay personas con esta etiqueta."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Contacto guardado"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Contactos desvinculados"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"No se pudieron guardar los cambios realizados al contacto."</string>
@@ -123,8 +118,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"No se pudo vincular el contacto."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Se produjo un error al guardar el contacto."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"No se pudieron guardar los cambios que se realizaron en la foto de contacto."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"Grupo guardado."</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"No se pudieron guardar los cambios realizados al grupo."</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"Etiqueta guardada"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"No se pudieron guardar los cambios en la etiqueta."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos con números de teléfono</item>
       <item quantity="one">1 contacto con número de teléfono</item>
@@ -156,7 +151,9 @@
     <string name="menu_share" msgid="943789700636542260">"Compartir"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Agregar a contactos"</string>
     <string name="share_via" msgid="563121028023030093">"Compartir un contacto a través de"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"Crear un grupo en la cuenta"</string>
+    <string name="dialog_new_group_account" msgid="3451312333591556651">"Elegir cuenta"</string>
+    <string name="create_group_dialog_title" msgid="125681283147434685">"Crear etiqueta"</string>
+    <string name="create_group_dialog_button" msgid="3024179099311027120">"Crear"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Chat de voz"</string>
     <string name="video_chat" msgid="1872255818640336072">"Chat de video"</string>
     <string name="connections" msgid="8098440723172028350">"Conexiones"</string>
@@ -181,7 +178,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Agregar nuevo"</string>
     <string name="add_organization" msgid="7311893231158291197">"Agregar organización"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Fecha"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Nombre de grupo"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"Nombre etiqueta"</string>
     <string name="change_photo" msgid="8530597935483526383">"Cambiar"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Foto principal"</string>
     <string name="description_star" msgid="2605854427360036550">"favorito"</string>
@@ -191,7 +188,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Copiar en Mis contactos"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Agregar a Mis contactos"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directorio <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"Personalizado"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Configuración"</string>
     <string name="menu_settings" msgid="377929915873428211">"Configuración"</string>
     <string name="menu_help" msgid="1680178646764069976">"Ayuda y comentarios"</string>
@@ -208,13 +204,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Crear un contacto nuevo"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Agregar cuenta"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importar contactos"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"Crear grupo nuevo"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"Crear grupo nuevo"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupos</item>
-      <item quantity="one">1 grupo</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"¿Deseas eliminar el grupo \" <xliff:g id="GROUP_LABEL">%1$s</xliff:g> \"? (No se eliminarán los contactos)."</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"Crear una etiqueta nueva"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"Crear nueva…"</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"¿Quieres quitar la etiqueta \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Los contactos en sí no se borrarán)."</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> personas de <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persona de <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
@@ -232,9 +224,8 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Descartar"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Seguir editando"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Configurar mi perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Escribe el nombre de la persona."</string>
-    <string name="group_name_hint" msgid="238359485263401293">"Nombre del grupo"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"Nombre de etiqueta"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mi perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mi perfil de <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Mostrar todos los contactos"</string>
@@ -256,7 +247,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"Reciente"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Información"</string>
     <string name="send_message" msgid="8938418965550543196">"Enviar mensaje"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"Creando una copia personal…"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Creando una copia personal..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Ayer"</string>
     <string name="tomorrow" msgid="6241969467795308581">"Mañana"</string>
     <string name="today" msgid="8041090779381781781">"Hoy"</string>
@@ -328,9 +319,9 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Se seleccionó la foto de <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"No se seleccionó la foto de una cuenta desconocida"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Se seleccionó la foto de una cuenta desconocida"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"La lista de contactos se está actualizando para reflejar el cambio de idioma.\n\n Espera."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"La lista de contactos se está actualizando para reflejar el cambio de idioma.\n\nEspera…"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Números bloqueados"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"Buscar duplicados"</string>
+    <string name="menu_duplicates" msgid="4129802988372197257">"Duplicados"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Abrir panel lateral de navegación"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Cerrar panel lateral de navegación"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Etiquetas"</string>

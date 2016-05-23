@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"聯絡資訊"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"編輯聯絡人"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"建立聯絡人"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"編輯群組"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"建立群組"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"編輯標籤"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"相關資訊"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"更新"</string>
     <string name="searchHint" msgid="8482945356247760701">"搜尋聯絡人"</string>
@@ -54,9 +53,15 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"取消連結"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"編輯"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"刪除"</string>
-    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"新增聯絡人"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"建立新群組..."</string>
+    <!-- no translation found for menu_deleteGroup (1126469629233412249) -->
+    <skip />
+    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
+    <skip />
+    <!-- no translation found for menu_removeFromGroup (6720354305399961978) -->
+    <skip />
+    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
+    <skip />
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"新建..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"確定要將這個聯絡人的連結取消，還原為多筆聯絡人資料嗎？"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"取消連結"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"您要儲存目前所做變更，並將這個聯絡人的連結取消，還原為多筆聯絡人資料嗎？"</string>
@@ -80,9 +85,6 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"系統無法刪除擷取自唯讀帳戶的聯絡人資料，但可以將這些資料設為隱藏。"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"隱藏"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"您要刪除的聯絡人詳細資料源自多個帳戶。針對擷取自唯讀帳戶的詳細資料，系統會予以隱藏，而不會刪除這些資料。"</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"您至少必須選取兩筆聯絡人資料才可執行連結。"</string>
-    <string name="batch_link_confirmation" msgid="5845237114309114908">"確定要連結所選的聯絡人嗎？"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"連結"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"確定要刪除這個聯絡人嗎？"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"確定要刪除所選的聯絡人嗎？"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"系統無法刪除擷取自唯讀帳戶的聯絡人資料，但可以將這些資料設為隱藏。"</string>
@@ -96,10 +98,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"已在主畫面中新增<xliff:g id="NAME">%s</xliff:g>的捷徑。"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"建立新聯絡人"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"建立新聯絡人"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"機構"</item>
-    <item msgid="7196592230748086755">"附註"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"平板電腦中沒有相片可供選用。"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"手機上沒有相片 。"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"聯絡人相片"</string>
@@ -107,15 +105,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接將來電轉到語音信箱"</string>
     <string name="removePhoto" msgid="4898105274130284565">"移除相片"</string>
     <string name="noContacts" msgid="4955659076981974652">"沒有聯絡人"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g> 人)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位聯絡人</item>
       <item quantity="one">1 位聯絡人</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"沒有群組。"</string>
+    <string name="noGroups" msgid="4607906327968232225">"沒有任何標籤。"</string>
     <string name="noAccounts" msgid="7768267764545265909">"必須要有帳戶才能建立群組。"</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"這個群組中沒有成員。"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"如要新增成員，請編輯群組。"</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"沒有任何成員套用這個標籤。"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"聯絡人已儲存"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"已取消連結聯絡人"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"無法儲存聯絡人變更。"</string>
@@ -123,8 +120,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"無法連結聯絡人。"</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"儲存聯絡人時發生錯誤。"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"無法儲存聯絡人相片變更。"</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"群組已儲存。"</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"無法儲存群組變更。"</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"已儲存標籤"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"無法儲存標籤的變更內容。"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位有電話號碼的聯絡人</item>
       <item quantity="one">1 位有電話號碼的聯絡人</item>
@@ -156,14 +153,16 @@
     <string name="menu_share" msgid="943789700636542260">"分享"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"新增為聯絡人"</string>
     <string name="share_via" msgid="563121028023030093">"使用下列應用程式分享聯絡人資訊："</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"選擇帳戶以建立群組"</string>
+    <string name="dialog_new_group_account" msgid="3451312333591556651">"選擇帳戶"</string>
+    <string name="create_group_dialog_title" msgid="125681283147434685">"建立標籤"</string>
+    <string name="create_group_dialog_button" msgid="3024179099311027120">"建立"</string>
     <string name="audio_chat" msgid="2535716629358298691">"語音通訊"</string>
     <string name="video_chat" msgid="1872255818640336072">"語音通訊"</string>
     <string name="connections" msgid="8098440723172028350">"聯絡方式"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"加入聯絡方式"</string>
     <string name="recent" msgid="2659189233141493004">"最新"</string>
     <string name="recent_updates" msgid="4267258535615860710">"最新動態"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> 聯絡人"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>聯絡人"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> 帳戶"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -181,7 +180,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"新增"</string>
     <string name="add_organization" msgid="7311893231158291197">"填寫聯絡人任職單位"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"日期"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"群組名稱"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"標籤名稱"</string>
     <string name="change_photo" msgid="8530597935483526383">"變更"</string>
     <string name="primary_photo" msgid="8517942231868516999">"主要相片"</string>
     <string name="description_star" msgid="2605854427360036550">"我的收藏"</string>
@@ -191,7 +190,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"複製到我的通訊錄"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"新增至我的聯絡人"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"目錄：<xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"自訂"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"設定"</string>
     <string name="menu_settings" msgid="377929915873428211">"設定"</string>
     <string name="menu_help" msgid="1680178646764069976">"說明與意見回饋"</string>
@@ -208,13 +206,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"建立新聯絡人"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"新增帳戶"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"匯入聯絡人"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"建立新群組"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"建立新群組"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> 個群組</item>
-      <item quantity="one">1 個群組</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"確定要刪除「<xliff:g id="GROUP_LABEL">%1$s</xliff:g>」群組？(這樣並不會刪除各聯絡人資料)。"</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"建立新標籤"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"新建..."</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"要刪除「<xliff:g id="GROUP_LABEL">%1$s</xliff:g>」標籤嗎？(聯絡人本身不會遭到刪除。)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g>中有 <xliff:g id="COUNT_2">%1$d</xliff:g> 人</item>
       <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g>中有 <xliff:g id="COUNT_0">%1$d</xliff:g> 人</item>
@@ -232,9 +226,8 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"捨棄"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"繼續編輯"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"設定我的個人資料"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"輸入聯絡人的名稱"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"群組名稱"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"標籤名稱"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"我的本機個人資料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 個人資料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
@@ -256,7 +249,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"近期"</string>
     <string name="about_card_title" msgid="2920942314212825637">"關於"</string>
     <string name="send_message" msgid="8938418965550543196">"傳送簡訊"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"正在建立個人副本..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"正在建立個人副本…"</string>
     <string name="yesterday" msgid="6840858548955018569">"昨天"</string>
     <string name="tomorrow" msgid="6241969467795308581">"明天"</string>
     <string name="today" msgid="8041090779381781781">"今天"</string>
@@ -328,9 +321,9 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"已勾選 <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> <xliff:g id="USER_NAME">%s </xliff:g> 的相片"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"未勾選不明帳戶中的相片"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"已勾選不明帳戶中的相片"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"正在更新聯絡人清單以反映語言變更。\n\n請稍候…"</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"正在更新聯絡人清單以反映語言變更。\n\n請稍候…"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"已封鎖的號碼"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"尋找重複的聯絡人"</string>
+    <string name="menu_duplicates" msgid="4129802988372197257">"重複的聯絡人"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"開啟導覽匣"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"關閉導覽匣"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"標籤"</string>

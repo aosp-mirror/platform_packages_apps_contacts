@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Detajet e kontaktit"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Redakto kontaktin"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Krijo një kontakt"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"Redakto grupin"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Krijo një grup"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"Redakto etiketën"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Informacion rreth"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Përditësimet"</string>
     <string name="searchHint" msgid="8482945356247760701">"Kërko për kontakte"</string>
@@ -54,9 +53,13 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Dërgo mesazh me tekst te kontakti"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Anulo lidhjen"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Redakto"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"Fshi"</string>
-    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Shto një kontakt"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Krijo të re..."</string>
+    <string name="menu_deleteGroup" msgid="1126469629233412249">"Fshi etiketën"</string>
+    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
+    <skip />
+    <string name="menu_removeFromGroup" msgid="6720354305399961978">"Hiq nga etiketa"</string>
+    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
+    <skip />
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Krijo të re..."</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Të shkëputet ky kontakt në shumë kontakte të ndara?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Shkëput"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Dëshiron t\'i ruash ndryshimet që ke bërë tashmë dhe ta shkëputësh këtë kontakt në shumë kontakte të ndara?"</string>
@@ -80,9 +83,6 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontaktet nga llogaritë e tua vetëm për lexim nuk mund të fshihen, por mund të mos shfaqen."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Fshih"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Kontakti që do të fshihet ka detaje nga shumë llogari. Detajet nga llogaritë vetëm për lexim nuk do të shfaqen, por nuk do të fshihen."</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Të duhen të paktën dy kontakte të zgjedhura për të kryer një lidhje."</string>
-    <string name="batch_link_confirmation" msgid="5845237114309114908">"Të lidhen kontaktet e zgjedhura?"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Lidh"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Të fshihet ky kontakt?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Të fshihen kontaktet e zgjedhura?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontaktet nga llogaritë e tua vetëm për lexim nuk mund të fshihen, por mund të mos shfaqen."</string>
@@ -96,10 +96,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> u shtua tek Ekrani bazë."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Krijo një kontakt të ri"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Krijo një kontakt të ri"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"Organizata"</item>
-    <item msgid="7196592230748086755">"Shënim."</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Nuk ka fotografi të përdorshme në tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Nuk ka fotografi të përdorshme në telefon."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Fotografia e kontaktit"</string>
@@ -107,15 +103,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Dërgoji telefonatat drejtpërdrejt te posta zanore"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Hiqe fotografinë"</string>
     <string name="noContacts" msgid="4955659076981974652">"Nuk ka asnjë kontakt"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontakte</item>
       <item quantity="one">1 kontakt</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"Nuk ka asnjë grup."</string>
+    <string name="noGroups" msgid="4607906327968232225">"S\'ka etiketa."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Për të krijuar grupe të duhet një llogari."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"Nuk ka persona në këtë grup."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Për të shtuar disa anëtarë, redakto grupin."</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"Nuk ka persona me këtë etiketë."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakti u ruajt"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktet u shkëputën"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ndryshimet e kontaktit nuk mund të ruheshin."</string>
@@ -123,8 +118,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kontakti nuk mund të lidhej."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Gabim gjatë ruajtjes së kontaktit."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Ndryshimet e fotografisë së kontaktit nuk mund të ruheshin."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"Grupi u ruajt."</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Ndryshimet e grupit nuk mund të ruheshin."</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"Etiketa u ruajt"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"Nuk mund të ruhen ndryshimet e etiketës."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontakte me numra telefoni</item>
       <item quantity="one">1 kontakt me numër telefoni</item>
@@ -156,7 +151,9 @@
     <string name="menu_share" msgid="943789700636542260">"Shpërnda"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Shto te kontaktet"</string>
     <string name="share_via" msgid="563121028023030093">"Shpërnda kontaktin nëpërmjet"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"Krijo një grup nën llogari"</string>
+    <string name="dialog_new_group_account" msgid="3451312333591556651">"Zgjidh llogarinë"</string>
+    <string name="create_group_dialog_title" msgid="125681283147434685">"Krijo etiketë"</string>
+    <string name="create_group_dialog_button" msgid="3024179099311027120">"Krijo"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Biseda me zë"</string>
     <string name="video_chat" msgid="1872255818640336072">"Biseda me video"</string>
     <string name="connections" msgid="8098440723172028350">"Lidhjet"</string>
@@ -181,7 +178,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Shto të re"</string>
     <string name="add_organization" msgid="7311893231158291197">"Shto një organizatë"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Data"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Emri i grupit"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"Etiketo emrin"</string>
     <string name="change_photo" msgid="8530597935483526383">"Ndërro"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Fotografia parësore"</string>
     <string name="description_star" msgid="2605854427360036550">"i preferuar"</string>
@@ -191,7 +188,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopjo te \"Kontaktet e mia\""</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Shto te \"Kontaktet e mia\""</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Direktoria <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"I personalizuar"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Cilësimet"</string>
     <string name="menu_settings" msgid="377929915873428211">"Cilësimet"</string>
     <string name="menu_help" msgid="1680178646764069976">"Ndihmë dhe komente"</string>
@@ -208,13 +204,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Krijo një kontakt të ri"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Shto llogari"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importo kontaktet"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"Krijo një grup të ri"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"Krijo një grup të ri"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupe</item>
-      <item quantity="one">1 grup</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Të fshihet grupi \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Kontaktet nuk do të fshihen.)"</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"Krijo etiketë të re"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"Krijo të re..."</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"Të fshihet grupi \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Kontaktet nuk do të fshihen.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> persona nga <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> person nga <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
@@ -232,9 +224,8 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Hiq"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Vazhdo redaktimin"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Konfiguro profilin tim"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Shkruaj emrin e personit"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"Emri i grupit"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"Emri i etiketës"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Profili im lokal"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profili im i <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Po shfaq të gjitha kontaktet"</string>
@@ -256,7 +247,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"Të fundit"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Informacion rreth"</string>
     <string name="send_message" msgid="8938418965550543196">"Dërgo mesazh"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"Po krijon një kopje personale..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Po krijon një kopje personale..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Dje"</string>
     <string name="tomorrow" msgid="6241969467795308581">"Nesër"</string>
     <string name="today" msgid="8041090779381781781">"Sot"</string>
@@ -328,9 +319,9 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Është shënuar fotografia nga <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Nuk është zgjedhur fotografi nga llogari e panjohur"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Është zgjedhur fotografi nga llogari e panjohur"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"Lista e kontakteve po përditësohet për të pasqyruar ndryshimin e gjuhës.\n\nQëndro në pritje..."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"Lista e kontakteve po përditësohet për të pasqyruar ndryshimin e gjuhës.\n\nQëndro në pritje..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Numrat e bllokuar"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"Gjej dublikata"</string>
+    <string name="menu_duplicates" msgid="4129802988372197257">"Dublikatat"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Hap sirtarin e navigimit"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Mbyll sirtarin e navigimit"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Emërtimet"</string>

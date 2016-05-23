@@ -28,7 +28,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ඇමතීමට අංකයක් තෝරාගන්න"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"පණිවිඩයක් යැවීමට අංකයක් තෝරාගන්න"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"සම්බන්ධතාවය වෙත එක් කරන්න"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"සම්බන්ධතාවයක් තෝරාගන්න"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"සම්බන්ධතාවයක් තෝරන්න"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"නව සම්බන්ධතාවයක් නිර්මාණය කරන්න"</string>
     <string name="starredList" msgid="4817256136413959463">"තරුව සලකුණු කළ"</string>
     <string name="frequentList" msgid="7154768136473953056">"නිතර"</string>
@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"සම්බන්ධතා විස්තර"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"සම්බන්ධතාව සංස්කරණය කරන්න"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"සම්බන්ධතාවයක් සාදන්න"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"කණ්ඩායම සංස්කරණය කරන්න"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"කණ්ඩායමක් සාදන්න"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"ලේබලය සංස්කරණය"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"පිළිබඳ"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"යාවත්කාලීන කිරීම්"</string>
     <string name="searchHint" msgid="8482945356247760701">"සම්බන්ධතා සෙවීම"</string>
@@ -54,9 +53,15 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"සම්බන්ධතාවයට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"සබැඳි ඉවත් කරන්න"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"සංස්කරණය කරන්න"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"මකන්න"</string>
-    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"සම්බන්ධතාවය එක් කරන්න"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"අලුත් එකක් සාදන්න"</string>
+    <!-- no translation found for menu_deleteGroup (1126469629233412249) -->
+    <skip />
+    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
+    <skip />
+    <!-- no translation found for menu_removeFromGroup (6720354305399961978) -->
+    <skip />
+    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
+    <skip />
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"අලුත් එකක් තනන්න…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"මෙම සම්බන්ධතාව බහුවිධ සම්බන්ධතාවලට වෙන් කරන්නද?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"සබැඳි ඉවත් කරන්න"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ඔබ දැනටමත් සිදු කර ඇති වෙනස් කිරීම් සුරැකීමට සහ මෙම සම්බන්ධතාව බහුවිධ සම්බන්ධතාවලට වෙන් කිරීමට කැමතිද?"</string>
@@ -80,9 +85,6 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ඔබේ කියවීමට-පමණි වන ගිණුම් වෙතින් වන සම්බන්ධතා මැකිය නොහැකිය, නමුත් ඒවා සැඟවිය හැකිය."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"සඟවන්න"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"මැකීමට ඇති සම්බන්ධතාවයෙහි බහුවිධ ගිණුම්වලින් විස්තර ඇත. කියවීමට-පමණි වන ගිණුම් වෙතින් වන විස්තර නොමකනු ඇත, ඒවා සඟවනු ලැබේ."</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"සබැඳි කිරීමට ඔබ විසින් අවම වශයෙන් සම්බන්ධතා දෙකක් තෝරා ගත යුතුය."</string>
-    <string name="batch_link_confirmation" msgid="5845237114309114908">"තෝරන ලද සම්බන්ධතා සබැඳි කරන්නද?"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"සබැඳි කරන්න"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"මෙම සම්බන්ධතාව මකන්නද?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"තෝරන ලද සම්බන්ධතා මකන්නද?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"ඔබේ කියවීමට-පමණි වන ගිණුම් වෙතින් වන සම්බන්ධතා මැකිය නොහැකිය, නමුත් ඒවා සැඟවිය හැකිය."</string>
@@ -96,10 +98,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> මුල් පිටු තිරය වෙත එක් කරන ලදී."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"නව සම්බන්ධතාවයක් නිර්මාණය කරන්න"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"නව සම්බන්ධතාවයක් නිර්මාණය කරන්න"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"සංවිධානය"</item>
-    <item msgid="7196592230748086755">"සටහන"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ටැබ්ලටයේ පින්තූර කිසිවක් ලද නොහැක."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"දුරකථනයේ පින්තූර කිසිවක් ලද නොහැක."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"සම්බන්ධතා ඡායාරූපය"</string>
@@ -107,15 +105,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"හඬ තැපෑලට ඍජුවම ඇමතුම් යවන්න"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ඡායාරූපය මකන්න"</string>
     <string name="noContacts" msgid="4955659076981974652">"සම්බන්ධතා නැත"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="one">සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g></item>
       <item quantity="other">සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g></item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"කණ්ඩායම් නොමැත."</string>
+    <string name="noGroups" msgid="4607906327968232225">"ලේබල නැත."</string>
     <string name="noAccounts" msgid="7768267764545265909">"කණ්ඩායම් නිර්මාණය කිරීමට ඔබට ගිණුමක් අවශ්‍ය වේ."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"මෙම කණ්ඩායම තුළ පුද්ගලයින් නොමැත."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"කිහිපයක් එක් කිරීමට, කණ්ඩායම සංස්කරණය කරන්න."</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"මෙම ලේබලය හා පුද්ගලයන් නැත."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"සම්බන්ධතාවය සුරකින ලදි"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"සම්බන්ධතා සබැඳි ඉවත් කරන ලදී"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"සම්බන්ධතා වෙනස්කම් සුරැකීමට නොහැක."</string>
@@ -123,8 +120,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"සම්බන්ධතාව සබැඳි කළ නොහැකි විය."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"සම්බන්ධතාව සුරැකීමේ දෝෂය."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"සම්බන්ධතා ඡායාරූපය වෙනස් කිරීම් සුරැකිය නොහැකි විය."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"කණ්ඩායම සුරකින ලදි."</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"කණ්ඩායම් වෙනස්කම් සුරැකීමට නොහැක."</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"ලේබලය සුරැකිණි"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"ලේබල වෙනස් කිරීම් සුරැකීමට නොහැකි විය."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">දුරකථන අංක සමඟ සම්බන්ධතාවන් <xliff:g id="COUNT">%d</xliff:g></item>
       <item quantity="other">දුරකථන අංක සමඟ සම්බන්ධතාවන් <xliff:g id="COUNT">%d</xliff:g></item>
@@ -156,7 +153,9 @@
     <string name="menu_share" msgid="943789700636542260">"බෙදාගන්න"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"සම්බන්ධතා වලට එක් කරන්න"</string>
     <string name="share_via" msgid="563121028023030093">"ඔස්සේ සම්බන්ධතාවය බෙදාගන්න"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"ගිණුම යටතේ කණ්ඩායමක් නිර්මාණය කරන්න"</string>
+    <string name="dialog_new_group_account" msgid="3451312333591556651">"ගිණුම තෝරන්න"</string>
+    <string name="create_group_dialog_title" msgid="125681283147434685">"ලේබලය තනන්න"</string>
+    <string name="create_group_dialog_button" msgid="3024179099311027120">"තනන්න"</string>
     <string name="audio_chat" msgid="2535716629358298691">"හඬ කතාබහ"</string>
     <string name="video_chat" msgid="1872255818640336072">"වීඩියෝ කතාබස්"</string>
     <string name="connections" msgid="8098440723172028350">"සම්බන්ධතා"</string>
@@ -181,7 +180,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"නව දෙයක් එක් කරන්න"</string>
     <string name="add_organization" msgid="7311893231158291197">"සංවිධානය එක් කරන්න"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"දිනය"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"කණ්ඩායම් නම"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"ලේබල නම"</string>
     <string name="change_photo" msgid="8530597935483526383">"වෙනස් කරන්න"</string>
     <string name="primary_photo" msgid="8517942231868516999">"ප්‍රාථමික රූප"</string>
     <string name="description_star" msgid="2605854427360036550">"ප්‍රියතම"</string>
@@ -191,7 +190,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"මගේ සම්බන්ධතා වෙතට පිටපත් කරන්න"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"මගේ සම්බන්ධතා වලට එක් කරන්න"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> නාමාවලිය"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"අභිරුචි"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"සැකසීම්"</string>
     <string name="menu_settings" msgid="377929915873428211">"සැකසීම්"</string>
     <string name="menu_help" msgid="1680178646764069976">"උදවු සහ ප්‍රතිපෝෂණ"</string>
@@ -208,13 +206,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"නව සම්බන්ධතාවයක් නිර්මාණය කරන්න"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"ගිණුම එක් කරන්න"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"සම්බන්ධතා ආයාත කරන්න"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"නව කණ්ඩායමක් නිර්මාණය කරන්න"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"නව කණ්ඩායමක් නිර්මාණය කිරීම"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="one">කණ්ඩායම් <xliff:g id="COUNT">%0$d</xliff:g></item>
-      <item quantity="other">කණ්ඩායම් <xliff:g id="COUNT">%0$d</xliff:g></item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" කණ්ඩායම මකා දමන්නද? (සම්බන්ධතා මකා දමන්නේ නැත.)"</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"නව ලේබලයක් තනන්න"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"අලුත් එකක් තනන්න..."</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ලේබලය මකන්නද? (සම්බන්ධතා ඒවාම නොමැකෙනු ඇත.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> වෙතින් පුද්ගලයන් <xliff:g id="COUNT_2">%1$d</xliff:g> යි</item>
       <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> වෙතින් පුද්ගලයන් <xliff:g id="COUNT_2">%1$d</xliff:g> යි</item>
@@ -232,9 +226,8 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ඉවතලන්න"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"සංස්කරණය කරගෙන යන්න"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"මගේ පැතිකඩ සකසන්න"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"පුද්ගලයාගේ නම ටයිප් කරන්න"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"කණ්ඩායමේ නම"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"ලේබලයෙහි නම"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"මගේ දේශීය පැතිකඩ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"මගේ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> පැතිකඩ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"සියලු සම්බන්ධතා පෙන්වමින්"</string>
@@ -256,7 +249,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"මෑත"</string>
     <string name="about_card_title" msgid="2920942314212825637">"පිළිබඳ"</string>
     <string name="send_message" msgid="8938418965550543196">"පණිවිඩය යවන්න"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"පුද්ගලික පිටපතක් නිර්මාණය කරමින්..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"පුද්ගලික පිටපතක් නිර්මාණය කරමින්…"</string>
     <string name="yesterday" msgid="6840858548955018569">"ඊයේ"</string>
     <string name="tomorrow" msgid="6241969467795308581">"හෙට"</string>
     <string name="today" msgid="8041090779381781781">"අද"</string>
@@ -328,9 +321,9 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> වෙතින් ඡායාරූපය පරීක්ෂා කරන ලදී"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"නොදන්නා ගිණුම වෙතින් වන ඡායාරූපය ලකුණු නොකරන ලදී"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"නොදන්නා ගිණුම වෙතින් වන ඡායාරූපය ලකුණු කරන ලදී"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"භාෂා වෙනස්වීම පෙන්වීමට සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන වෙමින් පවතී.\n\nකරුණාකර රැඳී සිටින්න..."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"භාෂාවේ වෙනස් කිරීම පෙන්වීමට සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන කරමින් පවතී.\n\nකරුණාකර රැඳී සිටින්න…"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"අවහිර කළ අංක"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"අනුපිටපත් සොයන්න"</string>
+    <string name="menu_duplicates" msgid="4129802988372197257">"අනුපිටපත්"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"සංචාලන ලාච්චුව විවෘත කරන්න"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"සංචාලන ලාච්චුව වසන්න"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ලේබල"</string>

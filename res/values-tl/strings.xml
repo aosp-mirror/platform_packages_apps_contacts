@@ -36,8 +36,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Mga detalye ng contact"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"I-edit ang contact"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Lumikha ng contact"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"I-edit ang pangkat"</string>
-    <string name="insertGroupDescription" msgid="5658512271662210139">"Lumikha ng pangkat"</string>
+    <string name="editGroupDescription" msgid="8684610429826272985">"I-edit ang label"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Tungkol sa"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Mga Update"</string>
     <string name="searchHint" msgid="8482945356247760701">"Maghanap ng mga contact"</string>
@@ -54,9 +53,15 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Mag-text sa contact"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"I-unlink"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"I-edit"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"I-delete"</string>
-    <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Magdagdag ng Contact"</string>
-    <string name="menu_new_group_action_bar" msgid="7331296126351153854">"Gumawa ng bago..."</string>
+    <!-- no translation found for menu_deleteGroup (1126469629233412249) -->
+    <skip />
+    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
+    <skip />
+    <!-- no translation found for menu_removeFromGroup (6720354305399961978) -->
+    <skip />
+    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
+    <skip />
+    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Gumawa ng bagong…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"I-unlink ang contact na ito sa maraming contact?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"I-unlink"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Gusto mo bang i-save ang mga pagbabagong nagawa mo na at i-unlink ang contact na ito sa maraming contact?"</string>
@@ -80,9 +85,6 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Hindi maaaring i-delete ang mga contact mula sa mga read-only na account mo, ngunit maaaring itago ang mga ito."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Itago"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Ang contact na ide-delete ay may mga detalye mula sa maraming account. Itatago at hindi ide-delete ang mga detalye mula sa mga read-only na account."</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Upang makapag-link, kailangan mo ng hindi bababa sa dalawang contact."</string>
-    <string name="batch_link_confirmation" msgid="5845237114309114908">"I-link ang mga napiling contact?"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"I-link"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"I-delete ang contact na ito?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"I-delete ang mga napiling contact?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Hindi maaaring i-delete ang mga contact mula sa mga read-only na account mo, ngunit maaaring itago ang mga ito."</string>
@@ -96,10 +98,6 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Naidagdag ang <xliff:g id="NAME">%s</xliff:g> sa Home screen."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Lumikha ng bagong contact"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Lumikha ng bagong contact"</string>
-  <string-array name="otherLabels">
-    <item msgid="8287841928119937597">"Samahan"</item>
-    <item msgid="7196592230748086755">"Tandaan"</item>
-  </string-array>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Walang available na mga larawan sa tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Walang mga larawan ang available sa telepono."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Larawan ng contact"</string>
@@ -107,15 +105,14 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Ipadala ang mga tawag nang direkta sa voicemail"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Alisin ang larawan"</string>
     <string name="noContacts" msgid="4955659076981974652">"Walang mga contact"</string>
-    <string name="group_name_menu_item" msgid="2156087417604358090">"<xliff:g id="GROUP_NAME">%s</xliff:g> (<xliff:g id="COUNT">%d</xliff:g>)"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> na contact</item>
     </plurals>
-    <string name="noGroups" msgid="8614664663561385253">"Walang mga pangkat."</string>
+    <string name="noGroups" msgid="4607906327968232225">"Walang mga label."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Upang lumikha ng mga pangkat kailangan mo ng isang account."</string>
-    <string name="emptyGroup" msgid="7502116218697177370">"Walang mga tao sa pangkat na ito."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Upang magdagdag ng ilan, i-edit ang pangkat."</string>
+    <string name="emptyGroup" msgid="3741795311081911842">"Walang mga tao na may ganitong label."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Na-save ang contact"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Na-unlink ang mga contact"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Hindi ma-save ang mga pagbabago sa contact."</string>
@@ -123,8 +120,8 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Hindi ma-link ang contact."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Error sa pagse-save ng contact."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Hindi ma-save ang mga pagbabago sa larawan ng contact."</string>
-    <string name="groupSavedToast" msgid="1168756874239833756">"Na-save ang pangkat."</string>
-    <string name="groupSavedErrorToast" msgid="7984466936615304740">"Hindi ma-save ang mga pagbabago sa pangkat."</string>
+    <string name="groupSavedToast" msgid="6491495462357722285">"Na-save ang label"</string>
+    <string name="groupSavedErrorToast" msgid="8121032018490980184">"Hindi ma-save ang mga pagbabago sa label."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact na may mga numero ng telepono</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> na contact na may mga numero ng telepono</item>
@@ -156,7 +153,9 @@
     <string name="menu_share" msgid="943789700636542260">"Ibahagi"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Idagdag sa mga contact"</string>
     <string name="share_via" msgid="563121028023030093">"Ibahagi ang contact sa pamamagitan ng"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"Lumikha ng pangkat sa ilalim ng account"</string>
+    <string name="dialog_new_group_account" msgid="3451312333591556651">"Pumili ng account"</string>
+    <string name="create_group_dialog_title" msgid="125681283147434685">"Gumawa ng label"</string>
+    <string name="create_group_dialog_button" msgid="3024179099311027120">"Gumawa"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Voice chat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Video chat"</string>
     <string name="connections" msgid="8098440723172028350">"Mga Koneksyon"</string>
@@ -181,7 +180,7 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Magdagdag ng bago"</string>
     <string name="add_organization" msgid="7311893231158291197">"Magdagdag ng samahan"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Petsa"</string>
-    <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Pangalan ng pangkat"</string>
+    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"Lagyan ng label"</string>
     <string name="change_photo" msgid="8530597935483526383">"Baguhin"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Pangunahing larawan"</string>
     <string name="description_star" msgid="2605854427360036550">"paborito"</string>
@@ -191,7 +190,6 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopyahin sa Aking Mga Contact"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Idagdag sa Aking Mga Contact"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Direktoryo na <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"Custom"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Mga Setting"</string>
     <string name="menu_settings" msgid="377929915873428211">"Mga Setting"</string>
     <string name="menu_help" msgid="1680178646764069976">"Tulong at feedback"</string>
@@ -208,13 +206,9 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Lumikha ng bagong contact"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Magdagdag ng account"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Mag-import ng mga contact"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"Lumikha ng bagong pangkat"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"Bagong pangkat"</string>
-    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
-      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> pangkat</item>
-      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> na pangkat</item>
-    </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"Tanggalin ang pangkat na \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Hindi tatanggalin ang mismong mga contact.)"</string>
+    <string name="create_group_dialog_title" msgid="5363404287877384473">"Gumawa ng bagong label"</string>
+    <string name="create_group_item_label" msgid="3263064599743742865">"Gumawa ng bagong…"</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"I-delete ang label na \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Ang mga contact mismo ay hindi ide-delete.)"</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> tao mula sa <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> na tao mula sa <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
@@ -232,9 +226,8 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"I-discard"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Patuloy na mag-edit"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"I-set up ang profile"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"I-type ang pangalan ng tao"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"Pangalan ng pangkat"</string>
+    <string name="group_name_hint" msgid="7614490821934528478">"Pangalan ng label"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Aking lokal na profile"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Aking <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> na profile"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ipinapakita ang lahat ng contact"</string>
@@ -256,7 +249,7 @@
     <string name="recent_card_title" msgid="8982782042698001695">"Kamakailan"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Tungkol dito"</string>
     <string name="send_message" msgid="8938418965550543196">"Magpadala ng mensahe"</string>
-    <string name="toast_making_personal_copy" msgid="6137651078366797938">"Gumagawa ng personal na kopya..."</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"Lumilikha ng personal na kopya…"</string>
     <string name="yesterday" msgid="6840858548955018569">"Kahapon"</string>
     <string name="tomorrow" msgid="6241969467795308581">"Bukas"</string>
     <string name="today" msgid="8041090779381781781">"Ngayon"</string>
@@ -328,9 +321,9 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Napili na ang larawan mula sa <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Hindi nilagyan ng check ang larawan mula sa isang hindi kilalang account"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Nalagyan na ng check ang larawan mula sa isang hindi kilalang account"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"Ina-update ang listahan ng contact upang ipakita ang pagbabago ng wika.\n\nPakihintay..."</string>
+    <string name="locale_change_in_progress" msgid="6975676844194755501">"Ina-update ang listahan ng contact upang ipakita ang pagbabago ng wika.\n\nPakihintay…"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Mga naka-block na numero"</string>
-    <string name="menu_duplicates" msgid="4440351599741996317">"Maghanap ng mga duplicate"</string>
+    <string name="menu_duplicates" msgid="4129802988372197257">"Mga Duplicate"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Binubuksan ang navigation drawer"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Isinasara ang navigation drawer"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Mga Label"</string>
