@@ -93,6 +93,7 @@ public class ContactListItemView extends ViewGroup
     // The initialized values are defaults if none is provided through xml.
     private int mPreferredHeight = 0;
     private int mGapBetweenImageAndText = 0;
+    private int mGapBetweenIndexerAndImage = 0;
     private int mGapBetweenLabelAndData = 0;
     private int mPresenceIconMargin = 4;
     private int mPresenceIconSize = 16;
@@ -284,6 +285,9 @@ public class ContactListItemView extends ViewGroup
             mGapBetweenImageAndText = a.getDimensionPixelOffset(
                     R.styleable.ContactListItemView_list_item_gap_between_image_and_text,
                     mGapBetweenImageAndText);
+            mGapBetweenIndexerAndImage = a.getDimensionPixelOffset(
+                    R.styleable.ContactListItemView_list_item_gap_between_indexer_and_image,
+                    mGapBetweenIndexerAndImage);
             mGapBetweenLabelAndData = a.getDimensionPixelOffset(
                     R.styleable.ContactListItemView_list_item_gap_between_label_and_data,
                     mGapBetweenLabelAndData);
@@ -444,7 +448,7 @@ public class ContactListItemView extends ViewGroup
         }
 
         if (mIsSectionHeaderEnabled) {
-            effectiveWidth -= mHeaderWidth + mGapBetweenImageAndText;
+            effectiveWidth -= mHeaderWidth + mGapBetweenIndexerAndImage;
         }
 
         if (mSupportVideoCallIcon) {
@@ -621,9 +625,9 @@ public class ContactListItemView extends ViewGroup
         mRightOffset = left + rightBound;
         if (mIsSectionHeaderEnabled) {
             if (isLayoutRtl) {
-                rightBound -= mGapBetweenImageAndText;
+                rightBound -= mGapBetweenIndexerAndImage;
             } else {
-                leftBound += mGapBetweenImageAndText;
+                leftBound += mGapBetweenIndexerAndImage;
             }
         }
 
