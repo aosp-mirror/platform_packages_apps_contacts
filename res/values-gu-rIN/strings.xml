@@ -54,11 +54,9 @@
     <string name="menu_splitAggregate" msgid="2627252205317945563">"અનલિંક કરો"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"સંપાદન"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"લેબલ કાઢી નાખો"</string>
-    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
-    <skip />
+    <string name="menu_addToGroup" msgid="3267409983764370041">"સંપર્ક ઉમેરો"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"લેબલમાંથી દૂર કરો"</string>
-    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
-    <skip />
+    <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"સંપર્ક ઉમેરો"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"નવું બનાવો…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"આ સંપર્કને બહુવિધ સંપર્કોમાં અનલિંક કરીએ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"અનલિંક કરો"</string>

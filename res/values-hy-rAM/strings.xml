@@ -148,7 +148,7 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Ավելացնել հեռախոսահամար"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Ավելացնել էլփոստ"</string>
     <string name="missing_app" msgid="1466111003546611387">"Այս գործողությունը կատարելու համար ոչ մի ծրագիր չի գտնվել:"</string>
-    <string name="menu_share" msgid="943789700636542260">"Տարածել"</string>
+    <string name="menu_share" msgid="943789700636542260">"Կիսվել"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Ավելացնել կոնտակտներում"</string>
     <string name="share_via" msgid="563121028023030093">"Տարածել կոնտակտը"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Ընտրեք հաշիվը"</string>

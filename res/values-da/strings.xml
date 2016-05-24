@@ -54,11 +54,9 @@
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Fjern link"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Rediger"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Slet etiket"</string>
-    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
-    <skip />
+    <string name="menu_addToGroup" msgid="3267409983764370041">"Tilføj kontaktperson"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Fjern fra etiket"</string>
-    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
-    <skip />
+    <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Tilføj kontaktperson"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Opret ny…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Vil du fjerne linkningen og opdele denne kontaktperson i flere kontaktpersoner?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Fjern link"</string>

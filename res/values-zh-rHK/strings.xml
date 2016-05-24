@@ -54,11 +54,9 @@
     <string name="menu_splitAggregate" msgid="2627252205317945563">"解除連結"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"編輯"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"刪除標籤"</string>
-    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
-    <skip />
+    <string name="menu_addToGroup" msgid="3267409983764370041">"新增聯絡人"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"從標籤中移除"</string>
-    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
-    <skip />
+    <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"新增聯絡人"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"建立新…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"要解除連結此聯絡人為多個聯絡人嗎？"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"解除連結"</string>

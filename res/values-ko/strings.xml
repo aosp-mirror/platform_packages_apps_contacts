@@ -53,12 +53,10 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"연락처에 문자 보내기"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"연결 해제"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"수정"</string>
-    <!-- no translation found for menu_deleteGroup (1126469629233412249) -->
-    <skip />
+    <string name="menu_deleteGroup" msgid="1126469629233412249">"라벨 삭제"</string>
     <!-- no translation found for menu_addToGroup (3267409983764370041) -->
     <skip />
-    <!-- no translation found for menu_removeFromGroup (6720354305399961978) -->
-    <skip />
+    <string name="menu_removeFromGroup" msgid="6720354305399961978">"라벨에서 삭제"</string>
     <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
     <skip />
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"새로 만들기…"</string>
