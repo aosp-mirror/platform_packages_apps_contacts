@@ -212,10 +212,8 @@
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronizați metadatele pentru persoanele de contact [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronizați metadatele pentru persoanele de contact"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"Informațiile mele"</string>
-    <!-- no translation found for set_up_profile (8396362096521360520) -->
-    <skip />
-    <!-- no translation found for me_contact_name (1899366267108364062) -->
-    <skip />
+    <string name="set_up_profile" msgid="8396362096521360520">"Configurați profilul"</string>
+    <string name="me_contact_name" msgid="1899366267108364062">"Date personale de contact: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="setting_about" msgid="3926137653588942297">"Despre Agendă"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Setări"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Distribuiți persoanele de contact vizibile"</string>

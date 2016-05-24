@@ -213,8 +213,7 @@
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinhronizacija metapodatkov stikov [PRESKUSNA INTERNA UPORABA]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinhronizacija metapodatkov stikov"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"Moji podatki"</string>
-    <!-- no translation found for set_up_profile (8396362096521360520) -->
-    <skip />
+    <string name="set_up_profile" msgid="8396362096521360520">"Nastavitev profila"</string>
     <!-- no translation found for me_contact_name (1899366267108364062) -->
     <skip />
     <string name="setting_about" msgid="3926137653588942297">"O Stikih"</string>

@@ -213,10 +213,8 @@
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinchronizuoti kontaktų metaduomenis [NEGALUTINĖ VERSIJA]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Kontaktų metaduomenų sinchronizavimas"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"Mano informacija"</string>
-    <!-- no translation found for set_up_profile (8396362096521360520) -->
-    <skip />
-    <!-- no translation found for me_contact_name (1899366267108364062) -->
-    <skip />
+    <string name="set_up_profile" msgid="8396362096521360520">"Nustatykite profilį"</string>
+    <string name="me_contact_name" msgid="1899366267108364062">"Mano kontaktinė informacija: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="setting_about" msgid="3926137653588942297">"Apie Kontaktus"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Nustatymai"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Bendrinti matomus kontaktus"</string>
