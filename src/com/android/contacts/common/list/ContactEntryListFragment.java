@@ -48,6 +48,8 @@ import android.widget.ListView;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.logging.Logger;
+import com.android.contacts.common.logging.ListEvent.ActionType;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.common.util.ContactListViewUtils;
 
@@ -82,6 +84,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final String KEY_DARK_THEME = "darkTheme";
     private static final String KEY_LEGACY_COMPATIBILITY = "legacyCompatibility";
     private static final String KEY_DIRECTORY_RESULT_LIMIT = "directoryResultLimit";
+    private static final String KEY_LOGS_LIST_EVENTS = "logsListEvents";
+    private static final String KEY_DATA_LOADED = "dataLoaded";
 
     private static final String DIRECTORY_ID_ARG_KEY = "directoryId";
 
@@ -105,6 +109,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private int mDirectorySearchMode = DirectoryListLoader.SEARCH_MODE_NONE;
     private boolean mSelectionVisible;
     private boolean mLegacyCompatibility;
+    // Whether we should log list LOAD events. It may be modified when list filter is changed.
+    private boolean mLogListEvents = true;
+    // Whether data has been loaded ever. It will stay true once it's set to true in the lifecycle.
+    // We use this flag to log LOAD events when the activity/fragment is initialized.
+    private boolean mDataLoaded;
 
     private boolean mEnabled = true;
 
@@ -122,6 +131,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
      * Used for keeping track of the scroll state of the list.
      */
     private Parcelable mListState;
+
+    /**
+     * The type of the contacts list.
+     */
+    private int mListType;
 
     private int mDisplayOrder;
     private int mSortOrder;
@@ -252,6 +266,8 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putString(KEY_QUERY_STRING, mQueryString);
         outState.putInt(KEY_DIRECTORY_RESULT_LIMIT, mDirectoryResultLimit);
         outState.putBoolean(KEY_DARK_THEME, mDarkTheme);
+        outState.putBoolean(KEY_LOGS_LIST_EVENTS, mLogListEvents);
+        outState.putBoolean(KEY_DATA_LOADED, mDataLoaded);
 
         if (mListView != null) {
             outState.putParcelable(KEY_LIST_STATE, mListView.onSaveInstanceState());
@@ -432,6 +448,12 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                     }
                 }
             } else {
+                if (!mDataLoaded || mLogListEvents) {
+                    Logger.logListEvent(ActionType.LOAD, getListType(), getAdapter().getCount(),
+                        /* clickedIndex */ -1, /* numSelected */ 0);
+                    mLogListEvents = false;
+                    mDataLoaded = true;
+                }
                 mDirectoryListStatus = STATUS_NOT_LOADED;
                 getLoaderManager().destroyLoader(DIRECTORY_LOADER_ID);
             }
@@ -725,6 +747,11 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             mListView.requestFocus();
         }
 
+        if (savedInstanceState != null) {
+            mLogListEvents = savedInstanceState.getBoolean(KEY_LOGS_LIST_EVENTS, true);
+            mDataLoaded = savedInstanceState.getBoolean(KEY_DATA_LOADED, false);
+        }
+
         return mView;
     }
 
@@ -930,5 +957,17 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
             default:
                 return View.SCROLLBAR_POSITION_RIGHT;
         }
+    }
+
+    public void setListType(int listType) {
+        mListType = listType;
+    }
+
+    public int getListType() {
+        return mListType;
+    }
+
+    public void setLogListEvents(boolean logListEvents) {
+        mLogListEvents = logListEvents;
     }
 }

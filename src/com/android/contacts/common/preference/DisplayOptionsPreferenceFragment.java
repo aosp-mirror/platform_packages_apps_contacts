@@ -32,6 +32,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Profile;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
@@ -46,6 +47,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
 
     private static final String ARG_NEW_LOCAL_PROFILE = "new_local_profile";
     private static final String ARG_MODE_FULLY_EXPANDED = "mode_fully_expanded";
+    private static final String ARG_PREVIOUS_SCREEN = "previous_screen";
 
     private static final String KEY_ABOUT = "about";
     private static final String KEY_ACCOUNTS = "accounts";
@@ -92,6 +94,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
     }
 
     private String mNewLocalProfileExtra;
+    private String mPreviousScreenExtra;
     private int mModeFullyExpanded;
 
     private Preference mMyInfoPreference;
@@ -121,10 +124,11 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
     };
 
     public static DisplayOptionsPreferenceFragment newInstance(String newLocalProfileExtra,
-            int modeFullyExpanded) {
+            String previousScreenExtra, int modeFullyExpanded) {
         final DisplayOptionsPreferenceFragment fragment = new DisplayOptionsPreferenceFragment();
         final Bundle args = new Bundle();
         args.putString(ARG_NEW_LOCAL_PROFILE, newLocalProfileExtra);
+        args.putString(ARG_PREVIOUS_SCREEN, previousScreenExtra);
         args.putInt(ARG_MODE_FULLY_EXPANDED, modeFullyExpanded);
         fragment.setArguments(args);
         return fragment;
@@ -142,6 +146,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
 
         final Bundle args = getArguments();
         mNewLocalProfileExtra = args.getString(ARG_NEW_LOCAL_PROFILE);
+        mPreviousScreenExtra = args.getString(ARG_PREVIOUS_SCREEN);
         mModeFullyExpanded = args.getInt(ARG_MODE_FULLY_EXPANDED);
 
         mMyInfoPreference = findPreference(KEY_MY_INFO);
@@ -174,6 +179,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
                 if (hasProfile) {
                     final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
                     intent = ImplicitIntentsUtil.composeQuickContactIntent(uri, mModeFullyExpanded);
+                    intent.putExtra(mPreviousScreenExtra, ScreenType.ME_CONTACT);
                 } else {
                     intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
                     intent.putExtra(mNewLocalProfileExtra, true);
