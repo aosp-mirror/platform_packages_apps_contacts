@@ -158,9 +158,12 @@
         <item name="list_item_padding_bottom">
             @dimen/contact_browser_list_item_padding_top_or_bottom
         </item>
-        <item name="list_item_padding_left">16dip</item>
+        <item name="list_item_padding_left">18dp</item>
         <item name="list_item_gap_between_image_and_text">
             @dimen/contact_browser_list_item_gap_between_image_and_text
+        </item>
+        <item name="list_item_gap_between_indexer_and_image">
+            @dimen/contact_browser_list_item_gap_between_indexer_and_image
         </item>
         <item name="list_item_gap_between_label_and_data">5dip</item>
         <item name="list_item_presence_icon_margin">4dip</item>
