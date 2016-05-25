@@ -19,8 +19,9 @@ package com.android.contacts.list;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter.SelectedContactsListener;
-import com.android.contacts.common.logging.SearchState;
+import com.android.contacts.common.logging.ListEvent.ActionType;
 import com.android.contacts.common.logging.Logger;
+import com.android.contacts.common.logging.SearchState;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -148,8 +149,11 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
                 mCheckBoxListListener.onStartDisplayingCheckBoxes();
             }
             getAdapter().toggleSelectionOfContactId(contactId);
+            Logger.logListEvent(ActionType.SELECT, getListType(),
+                    /* count */ getAdapter().getCount(), /* clickedIndex */ position,
+                    /* numSelected */ 1);
             // Manually send clicked event if there is a checkbox.
-            // See b/24098561.  TalkBack will not read it otherwise.
+            // See b/24098561. TalkBack will not read it otherwise.
             final int index = position + getListView().getHeaderViewsCount() - getListView()
                     .getFirstVisiblePosition();
             if (index >= 0 && index < getListView().getChildCount()) {

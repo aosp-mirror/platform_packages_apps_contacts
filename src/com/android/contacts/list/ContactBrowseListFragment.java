@@ -39,6 +39,7 @@ import com.android.contacts.common.list.AutoScrollListView;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.DirectoryPartition;
+import com.android.contacts.common.logging.ListEvent.ListType;
 import com.android.contacts.common.util.ContactLoaderUtils;
 
 import java.util.List;
@@ -203,10 +204,15 @@ public abstract class ContactBrowseListFragment extends
         }
 
         if (mFilter != null && mFilter.equals(filter)) {
+            setLogListEvents(false);
             return;
         }
 
         Log.v(TAG, "New filter: " + filter);
+
+        setListType(filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
+                ? ListType.ALL_CONTACTS : ListType.ACCOUNT);
+        setLogListEvents(true);
 
         mFilter = filter;
         mLastSelectedPosition = -1;
@@ -604,9 +610,10 @@ public abstract class ContactBrowseListFragment extends
         mListener = listener;
     }
 
-    public void viewContact(Uri contactUri, boolean isEnterpriseContact) {
+    public void viewContact(int position, Uri contactUri, boolean isEnterpriseContact) {
         setSelectedContactUri(contactUri, false, false, true, false);
-        if (mListener != null) mListener.onViewContactAction(contactUri, isEnterpriseContact);
+        if (mListener != null) mListener.onViewContactAction(position, contactUri,
+                isEnterpriseContact);
     }
 
     public void deleteContact(Uri contactUri) {
