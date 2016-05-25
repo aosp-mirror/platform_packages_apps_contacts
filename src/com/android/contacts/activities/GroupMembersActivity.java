@@ -18,6 +18,9 @@ package com.android.contacts.activities;
 import android.accounts.Account;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.app.FragmentTransaction;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -26,14 +29,17 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsDrawerActivity;
+import com.android.contacts.GroupMemberLoader;
+import com.android.contacts.GroupMemberLoader.GroupEditorQuery;
 import com.android.contacts.R;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.logging.ListEvent;
@@ -59,7 +65,7 @@ import java.util.List;
 /**
  * Displays the members of a group and allows the user to edit it.
  */
-public class GroupMembersActivity extends AppCompatContactsActivity implements
+public class GroupMembersActivity extends ContactsDrawerActivity implements
         ActionBarAdapter.Listener,
         MultiSelectContactsListFragment.OnCheckBoxListActionListener,
         SelectAccountDialogFragment.Listener,
@@ -184,14 +190,13 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
         setContentView(R.layout.group_members_activity);
 
         // Set up the action bar
-        final Toolbar toolbar = getView(R.id.toolbar);
-        setSupportActionBar(toolbar);
         mActionBarAdapter = new ActionBarAdapter(this, this, getSupportActionBar(),
-                /* portraitTabs */ null, /* landscapeTabs */ null, toolbar,
+                /* portraitTabs */ null, /* landscapeTabs */ null, mToolbar,
                 R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
-        mActionBarAdapter.setShowHomeAsUp(true);
 
+        final FragmentManager fragmentManager = getFragmentManager();
+        final FragmentTransaction transaction = fragmentManager.beginTransaction();
         // Decide whether to prompt for the account and group name or start loading existing members
         if (mIsInsertAction) {
             // Check if we are in the middle of the insert flow.
@@ -216,7 +221,6 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
             }
         } else {
             // Add the members list fragment
-            final FragmentManager fragmentManager = getFragmentManager();
             mMembersListFragment = (GroupMembersListFragment)
                     fragmentManager.findFragmentByTag(TAG_GROUP_MEMBERS);
             if (mMembersListFragment == null) {
@@ -291,9 +295,13 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
 
             mMembersListFragment = GroupMembersListFragment.newInstance(groupUri);
             mMembersListFragment.setListener(this);
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, mMembersListFragment, TAG_GROUP_MEMBERS)
-                    .commit();
+
+            final FragmentManager fragmentManager = getFragmentManager();
+            final FragmentTransaction transaction = fragmentManager.beginTransaction();
+            addGroupsAndFiltersFragments(transaction);
+            transaction.replace(R.id.fragment_container_inner, mMembersListFragment,
+                    TAG_GROUP_MEMBERS).commit();
+
             if (mGroupMetadata != null && mGroupMetadata.editable) {
                 mMembersListFragment.setCheckBoxListListener(this);
             }
@@ -319,6 +327,32 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
         if (ACTION_ADD_TO_GROUP.equals(action)) return R.string.groupMembersAddedToast;
         if (ACTION_REMOVE_FROM_GROUP.equals(action)) return R.string.groupMembersRemovedToast;
         throw new IllegalArgumentException("Unhanded contact save action " + action);
+    }
+
+    @Override
+    protected void onGroupMenuItemClicked(long groupId) {
+        if (mGroupMetadata.groupId != groupId) {
+            super.onGroupMenuItemClicked(groupId);
+            finish();
+        }
+        mDrawer.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    protected boolean shouldFinish() {
+        return true;
+    }
+
+    @Override
+    protected void switchToAllContacts() {
+        super.switchToAllContacts();
+        finish();
+    }
+
+    @Override
+    protected void launchFindDuplicates() {
+        super.launchFindDuplicates();
+        finish();
     }
 
     @Override
@@ -437,7 +471,12 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
 
     @Override
     public void onBackPressed() {
-        if (mIsInsertAction) {
+        if (!isSafeToCommitTransactions()) {
+            return;
+        }
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            mDrawer.closeDrawer(GravityCompat.START);
+        } else if (mIsInsertAction) {
             finish();
         } else if (mActionBarAdapter.isSelectionMode()) {
             mActionBarAdapter.setSelectionMode(false);

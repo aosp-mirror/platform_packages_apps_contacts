@@ -33,7 +33,7 @@ import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
-import com.android.contacts.compat.ProviderStatusCompat;
+import com.android.contacts.common.compat.ProviderStatusCompat;
 
 /**
  * Fragment shown when contacts are unavailable. It contains provider status

@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
@@ -517,9 +518,7 @@ public class ActionBarAdapter implements OnCloseListener {
                     R.color.contextual_selection_bar_status_bar_color);
             mActivity.getWindow().setStatusBarColor(cabStatusBarColor);
         } else {
-            final int normalStatusBarColor = ContextCompat.getColor(
-                    mActivity, R.color.primary_color_dark);
-            mActivity.getWindow().setStatusBarColor(normalStatusBarColor);
+            mActivity.getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
     }
 

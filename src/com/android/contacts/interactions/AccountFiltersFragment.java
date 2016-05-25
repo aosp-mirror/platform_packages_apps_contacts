@@ -41,7 +41,7 @@ public class AccountFiltersFragment extends Fragment {
         /**
          * Invoked after account filters have been loaded.
          */
-        void onFiltersLoaded(List<ContactListFilter> groupListItems);
+        void onFiltersLoaded(List<ContactListFilter> accountFilterItems);
     }
 
     private final LoaderManager.LoaderCallbacks<List<ContactListFilter>> mFiltersLoaderListener =
