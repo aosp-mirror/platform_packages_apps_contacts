@@ -671,6 +671,9 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     @Override
     public void onGroupMetadataLoaded(GroupMetadata groupMetadata) {
         mGroupMetadata = groupMetadata;
+
+        updateGroupMenu(mGroupMetadata);
+
         if (!mIsInsertAction) {
             setActionBarTitle(mGroupMetadata.groupName);
         }
@@ -687,6 +690,11 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     @Override
     public void onGroupMetadataLoadFailed() {
         setResultCanceledAndFinish(R.string.groupLoadErrorToast);
+    }
+
+    @Override
+    protected GroupMetadata getGroupMetadata() {
+        return mGroupMetadata;
     }
 
     @Override

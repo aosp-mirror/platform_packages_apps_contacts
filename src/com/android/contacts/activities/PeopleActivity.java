@@ -1392,6 +1392,9 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         final int listType =  filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
                 ? ListEvent.ListType.ALL_CONTACTS : ListEvent.ListType.ACCOUNT;
         mAllFragment.setListType(listType);
+
+        updateFilterMenu(filter);
+
         if (getSupportActionBar() != null) {
             final String actionBarTitle = TextUtils.isEmpty(filter.accountName) ?
                     getString(R.string.contactsList) : filter.accountName;
@@ -1412,5 +1415,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     @Override
     protected boolean shouldFinish() {
         return false;
+    }
+
+    @Override
+    protected ContactListFilter getContactListFilter() {
+        return mContactListFilterController.getFilter();
     }
 }
