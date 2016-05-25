@@ -320,8 +320,23 @@
     <!-- Toast displayed when saving a contact photo failed. [CHAR LIMIT=NONE] -->
     <string name="contactPhotoSavedErrorToast">Couldn\'t save contact photo changes.</string>
 
+    <!-- Toast displayed when something goes wrong while loading a label. [CHAR LIMIT=70] -->
+    <string name="groupLoadErrorToast">Failed to load label</string>
+
     <!-- Toast displayed when a label is saved [CHAR LIMIT=30] -->
     <string name="groupSavedToast">Label saved</string>
+
+    <!-- Toast displayed when a label name is updated. [CHAR LIMIT=50] -->
+    <string name="groupCreatedToast">Label created</string>
+
+    <!-- Toast displayed when a new label is created. [CHAR LIMIT=50] -->
+    <string name="groupUpdatedToast">Label updated</string>
+
+    <!-- Toast displayed when contacts are removed from a label. [CHAR LIMIT=50] -->
+    <string name="groupMembersRemovedToast">Removed contacts</string>
+
+    <!-- Toast displayed when a contact is added to a label. [CHAR LIMIT=50] -->
+    <string name="groupMembersAddedToast">Added contact</string>
 
     <!-- Toast displayed when saving a label failed [CHAR LIMIT=70] -->
     <string name="groupSavedErrorToast">Couldn\'t save label changes.</string>
@@ -414,10 +429,10 @@
     <string name="dialog_new_group_account">Choose account</string>
 
     <!-- Title for the create new label dialog. CHAR LIMIT=40] -->
-    <string name="create_group_dialog_title">Create label</string>
+    <string name="insert_group_dialog_title">Create label</string>
 
-    <!-- Button label to create a new label on the create new label dialog. [CHAR LIMIT=20] -->
-    <string name="create_group_dialog_button">Create</string>
+    <!-- Title for the update label dialog. CHAR LIMIT=40] -->
+    <string name="update_group_dialog_title">Update label</string>
 
     <!-- Generic action string for starting an audio chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
     <string name="audio_chat">Voice chat</string>

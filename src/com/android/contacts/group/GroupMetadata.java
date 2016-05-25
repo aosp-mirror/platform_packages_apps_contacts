@@ -18,6 +18,9 @@ package com.android.contacts.group;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
+
+import com.android.contacts.common.model.account.AccountWithDataSet;
 
 /** Meta data for a contact group. */
 // TODO(wjang): consolidate with com.android.contacts.common.GroupMetaData;
@@ -39,7 +42,7 @@ public final class GroupMetadata implements Parcelable {
     public String accountName;
     public String accountType;
     public String dataSet;
-    public long groupId;
+    public long groupId = -1;
     public String groupName;
     public boolean readOnly;
     public boolean editable;
@@ -48,7 +51,7 @@ public final class GroupMetadata implements Parcelable {
     public GroupMetadata() {
     }
 
-    public GroupMetadata(Parcel source) {
+    private GroupMetadata(Parcel source) {
         readFromParcel(source);
     }
 
@@ -77,6 +80,25 @@ public final class GroupMetadata implements Parcelable {
         dest.writeInt(memberCount);
     }
 
+    /** Whether all metadata fields are set. */
+    public boolean isValid() {
+        return uri != null
+                && !TextUtils.isEmpty(accountName)
+                && !TextUtils.isEmpty(groupName)
+                && groupId > 0
+                && memberCount >= 0;
+    }
+
+    public AccountWithDataSet createAccountWithDataSet() {
+        return new AccountWithDataSet(accountName, accountType, dataSet);
+    }
+
+    public void setGroupAccountMetadata(AccountWithDataSet account) {
+        accountName = account.name;
+        accountType = account.type;
+        dataSet = account.dataSet;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -93,6 +115,7 @@ public final class GroupMetadata implements Parcelable {
                 " readOnly=" + readOnly +
                 " editable=" + editable +
                 " memberCount=" + memberCount +
+                " isValid=" + isValid() +
                 "]";
     }
 }

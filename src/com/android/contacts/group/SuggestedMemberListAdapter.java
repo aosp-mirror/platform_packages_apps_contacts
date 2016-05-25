@@ -118,9 +118,9 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
         mContentResolver = resolver;
     }
 
-    public void updateExistingMembersList(List<GroupEditorFragment.Member> list) {
+    public void updateExistingMembersList(List<Member> list) {
         mExistingMemberContactIds.clear();
-        for (GroupEditorFragment.Member member : list) {
+        for (Member member : list) {
             mExistingMemberContactIds.add(member.getContactId());
         }
     }

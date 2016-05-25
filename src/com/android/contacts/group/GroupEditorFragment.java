@@ -33,8 +33,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.text.TextUtils;
@@ -69,8 +67,6 @@ import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 
-import com.google.common.base.Objects;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +91,8 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private static final String KEY_MEMBERS_TO_DISPLAY = "membersToDisplay";
 
     private static final String CURRENT_EDITOR_TAG = "currentEditorForAccount";
+
+    private static final String ACTION_SAVE_COMPLETED = "saveCompleted";
 
     public interface Listener {
         /**
@@ -217,9 +215,9 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
     private ContentResolver mContentResolver;
     private SuggestedMemberListAdapter mAutoCompleteAdapter;
 
-    private ArrayList<Member> mListMembersToAdd = new ArrayList<Member>();
-    private ArrayList<Member> mListMembersToRemove = new ArrayList<Member>();
-    private ArrayList<Member> mListToDisplay = new ArrayList<Member>();
+    private ArrayList<Member> mListMembersToAdd = new ArrayList<>();
+    private ArrayList<Member> mListMembersToRemove = new ArrayList<>();
+    private ArrayList<Member> mListToDisplay = new ArrayList<>();
 
     public static GroupEditorFragment newInstance(String action, GroupMetadata groupMetadata,
             Bundle intentExtras) {
@@ -651,8 +649,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             saveIntent = ContactSaveService.createNewGroupIntent(activity,
                     new AccountWithDataSet(mAccountName, mAccountType, mDataSet),
                     mGroupNameView.getText().toString(),
-                    membersToAddArray, activity.getClass(),
-                    GroupMembersActivity.ACTION_SAVE_COMPLETED);
+                    membersToAddArray, activity.getClass(), ACTION_SAVE_COMPLETED);
         } else if (Intent.ACTION_EDIT.equals(mAction)) {
             // Create array of raw contact IDs for contacts to add to the group
             long[] membersToAddArray = convertToArray(mListMembersToAdd);
@@ -664,7 +661,7 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
             saveIntent = ContactSaveService.createGroupUpdateIntent(activity,
                     mGroupMetadata.groupId,
                     getUpdatedName(), membersToAddArray, membersToRemoveArray,
-                    activity.getClass(), GroupMembersActivity.ACTION_SAVE_COMPLETED);
+                    activity.getClass(), ACTION_SAVE_COMPLETED);
         } else {
             throw new IllegalStateException("Invalid intent action type " + mAction);
         }
@@ -854,113 +851,6 @@ public class GroupEditorFragment extends Fragment implements SelectAccountDialog
         @Override
         public void onLoaderReset(Loader<Cursor> loader) {}
     };
-
-    /**
-     * This represents a single member of the current group.
-     */
-    public static class Member implements Parcelable {
-
-        // TODO: Switch to just dealing with raw contact IDs everywhere if possible
-        private final long mRawContactId;
-        private final long mContactId;
-        private final Uri mLookupUri;
-        private final String mDisplayName;
-        private final Uri mPhotoUri;
-        private final String mLookupKey;
-        private final long mPhotoId;
-
-        public Member(long rawContactId, String lookupKey, long contactId, String displayName,
-                String photoUri, long photoId) {
-            mRawContactId = rawContactId;
-            mContactId = contactId;
-            mLookupKey = lookupKey;
-            mLookupUri = Contacts.getLookupUri(contactId, lookupKey);
-            mDisplayName = displayName;
-            mPhotoUri = (photoUri != null) ? Uri.parse(photoUri) : null;
-            mPhotoId = photoId;
-        }
-
-        public long getRawContactId() {
-            return mRawContactId;
-        }
-
-        public long getContactId() {
-            return mContactId;
-        }
-
-        public Uri getLookupUri() {
-            return mLookupUri;
-        }
-
-        public String getLookupKey() {
-            return mLookupKey;
-        }
-
-        public String getDisplayName() {
-            return mDisplayName;
-        }
-
-        public Uri getPhotoUri() {
-            return mPhotoUri;
-        }
-
-        public long getPhotoId() {
-            return mPhotoId;
-        }
-
-        @Override
-        public boolean equals(Object object) {
-            if (object instanceof Member) {
-                Member otherMember = (Member) object;
-                return Objects.equal(mLookupUri, otherMember.getLookupUri());
-            }
-            return false;
-        }
-
-        @Override
-        public int hashCode() {
-            return mLookupUri == null ? 0 : mLookupUri.hashCode();
-        }
-
-        // Parcelable
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeLong(mRawContactId);
-            dest.writeLong(mContactId);
-            dest.writeParcelable(mLookupUri, flags);
-            dest.writeString(mLookupKey);
-            dest.writeString(mDisplayName);
-            dest.writeParcelable(mPhotoUri, flags);
-            dest.writeLong(mPhotoId);
-        }
-
-        private Member(Parcel in) {
-            mRawContactId = in.readLong();
-            mContactId = in.readLong();
-            mLookupUri = in.readParcelable(getClass().getClassLoader());
-            mLookupKey = in.readString();
-            mDisplayName = in.readString();
-            mPhotoUri = in.readParcelable(getClass().getClassLoader());
-            mPhotoId = in.readLong();
-        }
-
-        public static final Parcelable.Creator<Member> CREATOR = new Parcelable.Creator<Member>() {
-            @Override
-            public Member createFromParcel(Parcel in) {
-                return new Member(in);
-            }
-
-            @Override
-            public Member[] newArray(int size) {
-                return new Member[size];
-            }
-        };
-    }
 
     /**
      * This adapter displays a list of members for the current group being edited.

@@ -18,7 +18,6 @@ package com.android.contacts.group;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -32,44 +31,77 @@ import android.widget.EditText;
 import com.android.contacts.R;
 
 /**
- * Prompts the user for the name of the new group.
+ * Edits the name of a group.
  */
-public final class CreateGroupDialogFragment extends DialogFragment {
+public final class GroupNameEditDialogFragment extends DialogFragment {
 
-    private static final String TAG_CREATE_GROUP_DIALOG = "createGroup";
+    private static final String KEY_IS_INSERT = "isInsert";
+    private static final String KEY_GROUP_NAME = "groupName";
 
-    /** Callbacks for hosts of the {@link CreateGroupDialogFragment}. */
+    private static final String ARG_IS_INSERT = "isInsert";
+    private static final String ARG_GROUP_NAME = "groupName";
+
+    /** Callbacks for hosts of the {@link GroupNameEditDialogFragment}. */
     public interface Listener {
-        void onCreateGroup(String groupName);
-        void onCreateGroupCancelled();
+        void onGroupNameEdit(String groupName);
+        void onGroupNameEditCancelled();
     }
 
+    private boolean mIsInsert;
+    private String mGroupName;
     private EditText mGroupNameEditText;
 
-    public static <F extends Fragment & Listener> void show(
-            FragmentManager fragmentManager, F targetFragment) {
-        final CreateGroupDialogFragment dialog = new CreateGroupDialogFragment();
-        dialog.setTargetFragment(targetFragment, /* requestCode */ 0);
-        dialog.show(fragmentManager, TAG_CREATE_GROUP_DIALOG);
+    public static void showInsertDialog(FragmentManager fragmentManager, String tag) {
+        showDialog(fragmentManager, tag, /* isInsert */ true, /* groupName */ null);
+    }
+
+    public static void showUpdateDialog(FragmentManager fragmentManager,
+            String tag, String groupName) {
+        showDialog(fragmentManager, tag, /* isInsert */ false, groupName);
+    }
+
+    private static void showDialog(FragmentManager fragmentManager,
+            String tag, boolean isInsert, String groupName) {
+        final Bundle args = new Bundle();
+        args.putBoolean(ARG_IS_INSERT, isInsert);
+        args.putString(ARG_GROUP_NAME, groupName);
+
+        final GroupNameEditDialogFragment dialog = new GroupNameEditDialogFragment();
+        dialog.setArguments(args);
+        dialog.show(fragmentManager, tag);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState == null) {
+            final Bundle args = getArguments();
+            mIsInsert = args.getBoolean(KEY_IS_INSERT);
+            mGroupName = args.getString(KEY_GROUP_NAME);
+        } else {
+            mIsInsert = savedInstanceState.getBoolean(ARG_IS_INSERT);
+            mGroupName = savedInstanceState.getString(ARG_GROUP_NAME);
+        }
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Build a dialog with two buttons and a view of a single EditText input field
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.create_group_dialog_title)
-                .setView(R.layout.create_group_dialog)
+                .setTitle(mIsInsert ? R.string.insert_group_dialog_title
+                        : R.string.update_group_dialog_title)
+                .setView(R.layout.group_name_edit_dialog)
                 .setNegativeButton(android.R.string.cancel, new OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        onCreateGroupCancelled();
+                        getListener().onGroupNameEditCancelled();
                         dismiss();
                     }
                 })
-                .setPositiveButton(R.string.create_group_dialog_button, new OnClickListener() {
+                .setPositiveButton(android.R.string.ok, new OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        onCreateGroup();
+                        getListener().onGroupNameEdit(getGroupName());
                     }
                 });
 
@@ -79,6 +111,10 @@ public final class CreateGroupDialogFragment extends DialogFragment {
             @Override
             public void onShow(DialogInterface dialog) {
                 mGroupNameEditText = (EditText) alertDialog.findViewById(android.R.id.text1);
+                if (!TextUtils.isEmpty(mGroupName)) {
+                    mGroupNameEditText.setText(mGroupName);
+                    mGroupNameEditText.setSelection(mGroupName.length());
+                }
 
                 final Button createButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
                 createButton.setEnabled(!TextUtils.isEmpty(getGroupName()));
@@ -104,27 +140,22 @@ public final class CreateGroupDialogFragment extends DialogFragment {
     @Override
     public void onCancel(DialogInterface dialog) {
         super.onCancel(dialog);
-        onCreateGroupCancelled();
+        getListener().onGroupNameEditCancelled();
     }
 
     @Override
-    public void onSaveInstanceState(Bundle b) {
-        setTargetFragment(null, /* requestCode */ -1);
-        super.onSaveInstanceState(b);
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_IS_INSERT, mIsInsert);
+        outState.putString(KEY_GROUP_NAME, getGroupName());
     }
 
-    private void onCreateGroupCancelled() {
-        final Fragment targetFragment = getTargetFragment();
-        if (targetFragment != null && targetFragment instanceof Listener) {
-            ((Listener) targetFragment).onCreateGroupCancelled();
+    private Listener getListener() {
+        if (!(getActivity() instanceof Listener)) {
+            throw new ClassCastException(getActivity() + " must implement " +
+                    Listener.class.getName());
         }
-    }
-
-    private void onCreateGroup() {
-        final Fragment targetFragment = getTargetFragment();
-        if (targetFragment != null && targetFragment instanceof Listener) {
-            ((Listener) targetFragment).onCreateGroup(getGroupName());
-        }
+        return (Listener) getActivity();
     }
 
     private String getGroupName() {
