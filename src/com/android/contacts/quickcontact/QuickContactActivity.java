@@ -69,6 +69,7 @@ import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
@@ -148,6 +149,7 @@ import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.DateUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
+import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.detail.ContactDisplayUtils;
@@ -259,6 +261,7 @@ public class QuickContactActivity extends ContactsActivity
     private ExpandingEntryCardView mNoContactDetailsCard;
     private ExpandingEntryCardView mRecentCard;
     private ExpandingEntryCardView mAboutCard;
+    private ExpandingEntryCardView mPermissionExplanationCard;
 
     // Suggestion card.
     private CardView mCollapsedSuggestionCardView;
@@ -275,6 +278,10 @@ public class QuickContactActivity extends ContactsActivity
     private boolean mIsSuggestionListCollapsed;
     private boolean mSuggestionsShouldAutoSelected = true;
     private long mPreviousContactId = 0;
+
+    // Permission explanation card.
+    private boolean mShouldShowPermissionExplanation = false;
+    private String mPermissionExplanationCardSubHeader = "";
 
     private MultiShrinkScroller mScroller;
     private SelectAccountDialogFragmentListener mSelectAccountFragmentListener;
@@ -363,6 +370,7 @@ public class QuickContactActivity extends ContactsActivity
     private static final int MIN_NUM_CONTACT_ENTRIES_SHOWN = 3;
     private static final int MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN = 3;
     private static final int CARD_ENTRY_ID_EDIT_CONTACT = -2;
+    private static final int CARD_ENTRY_ID_REQUEST_PERMISSION = -3;
     private static final String KEY_LOADER_EXTRA_PHONES =
             QuickContactActivity.class.getCanonicalName() + ".KEY_LOADER_EXTRA_PHONES";
     private static final String KEY_LOADER_EXTRA_SIP_NUMBERS =
@@ -396,6 +404,13 @@ public class QuickContactActivity extends ContactsActivity
 
             if (dataId == CARD_ENTRY_ID_EDIT_CONTACT) {
                 editContact();
+                return;
+            }
+
+            if (dataId == CARD_ENTRY_ID_REQUEST_PERMISSION) {
+                finish();
+                RequestDesiredPermissionsActivity.startPermissionActivity(
+                        QuickContactActivity.this);
                 return;
             }
 
@@ -926,9 +941,41 @@ public class QuickContactActivity extends ContactsActivity
         Trace.beginSection("onCreate()");
         super.onCreate(savedInstanceState);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this) ||
-                RequestDesiredPermissionsActivity.startPermissionActivity(this)) {
+        if (RequestPermissionsActivity.startPermissionActivity(this)) {
             return;
+        }
+
+        // There're 3 states for each permission:
+        // 1. App doesn't have permission, not asked user yet.
+        // 2. App doesn't have permission, user denied it previously.
+        // 3. App has permission.
+        // Permission explanation card is displayed only for case 1.
+        final boolean hasCalendarPermission = PermissionsUtil.hasPermission(
+                this, RequestDesiredPermissionsActivity.DESIRED_PERMISSIONS[0]);
+        final boolean hasSMSPermission = PermissionsUtil.hasPermission(
+                this, RequestDesiredPermissionsActivity.DESIRED_PERMISSIONS[1]);
+
+        final boolean wasCalendarPermissionDenied =
+                ActivityCompat.shouldShowRequestPermissionRationale(
+                        this, RequestDesiredPermissionsActivity.DESIRED_PERMISSIONS[0]);
+        final boolean wasSMSPermissionDenied =
+                ActivityCompat.shouldShowRequestPermissionRationale(
+                        this, RequestDesiredPermissionsActivity.DESIRED_PERMISSIONS[1]);
+
+        final boolean shouldDisplayCalendarMessage =
+                !hasCalendarPermission && !wasCalendarPermissionDenied;
+        final boolean shouldDisplaySMSMessage = !hasSMSPermission && !wasSMSPermissionDenied;
+        mShouldShowPermissionExplanation = shouldDisplayCalendarMessage || shouldDisplaySMSMessage;
+
+        if (shouldDisplayCalendarMessage && shouldDisplaySMSMessage) {
+            mPermissionExplanationCardSubHeader =
+                    getString(R.string.permission_explanation_subheader_calendar_and_SMS);
+        } else if (shouldDisplayCalendarMessage) {
+            mPermissionExplanationCardSubHeader =
+                    getString(R.string.permission_explanation_subheader_calendar);
+        } else if (shouldDisplaySMSMessage) {
+            mPermissionExplanationCardSubHeader =
+                    getString(R.string.permission_explanation_subheader_SMS);
         }
 
         final int previousScreenType = getIntent().getIntExtra
@@ -955,6 +1002,8 @@ public class QuickContactActivity extends ContactsActivity
         mNoContactDetailsCard = (ExpandingEntryCardView) findViewById(R.id.no_contact_data_card);
         mRecentCard = (ExpandingEntryCardView) findViewById(R.id.recent_card);
         mAboutCard = (ExpandingEntryCardView) findViewById(R.id.about_card);
+        mPermissionExplanationCard =
+                (ExpandingEntryCardView) findViewById(R.id.permission_explanation_card);
 
         mCollapsedSuggestionCardView = (CardView) findViewById(R.id.collapsed_suggestion_card);
         mExpandSuggestionCardView = (CardView) findViewById(R.id.expand_suggestion_card);
@@ -1006,6 +1055,7 @@ public class QuickContactActivity extends ContactsActivity
             }
         });
 
+        mPermissionExplanationCard.setOnClickListener(mEntryClickHandler);
         mNoContactDetailsCard.setOnClickListener(mEntryClickHandler);
         mContactCard.setOnClickListener(mEntryClickHandler);
         mContactCard.setExpandButtonText(
@@ -2609,6 +2659,49 @@ public class QuickContactActivity extends ContactsActivity
                     /* isExpanded = */ mRecentCard.isExpanded(), /* isAlwaysExpanded = */ false,
                             mExpandingEntryCardViewListener, mScroller);
                     mRecentCard.setVisibility(View.VISIBLE);
+                }
+
+                Trace.endSection();
+                Trace.beginSection("initialize permission explanation card");
+
+                final Drawable historyIcon = getResources().getDrawable(
+                        R.drawable.ic_history_24dp).mutate();
+                final Entry permissionExplanationEntry = new Entry(CARD_ENTRY_ID_REQUEST_PERMISSION,
+                        historyIcon, getString(R.string.permission_explanation_header),
+                        mPermissionExplanationCardSubHeader, /* subHeaderIcon = */ null,
+                        /* text = */ null, /* textIcon = */ null,
+                        /* primaryContentDescription = */ null, getIntent(),
+                        /* alternateIcon = */ null, /* alternateIntent = */ null,
+                        /* alternateContentDescription = */ null, /* shouldApplyColor = */ true,
+                        /* isEditable = */ false, /* EntryContextMenuInfo = */ null,
+                        /* thirdIcon = */ null, /* thirdIntent = */ null,
+                        /* thirdContentDescription = */ null, /* thirdAction = */ Entry.ACTION_NONE,
+                        /* thirdExtras = */ null, R.drawable.ic_history_24dp);
+
+                final List<List<Entry>> permissionExplanationEntries = new ArrayList<>();
+                permissionExplanationEntries.add(new ArrayList<Entry>());
+                permissionExplanationEntries.get(0).add(permissionExplanationEntry);
+
+                final int subHeaderTextColor = getResources().getColor(android.R.color.white);
+                final PorterDuffColorFilter whiteColorFilter =
+                        new PorterDuffColorFilter(subHeaderTextColor, PorterDuff.Mode.SRC_ATOP);
+
+                mPermissionExplanationCard.initialize(permissionExplanationEntries,
+                        /* numInitialVisibleEntries = */ 1,
+                        /* isExpanded = */ true,
+                        /* isAlwaysExpanded = */ true,
+                        /* listener = */ null,
+                        mScroller);
+
+                mPermissionExplanationCard.setColorAndFilter(subHeaderTextColor, whiteColorFilter);
+                mPermissionExplanationCard.setBackgroundColor(mColorFilterColor);
+                mPermissionExplanationCard.setEntryHeaderColor(subHeaderTextColor);
+                mPermissionExplanationCard.setEntrySubHeaderColor(subHeaderTextColor);
+
+                if (mShouldShowPermissionExplanation) {
+                    mPermissionExplanationCard.setVisibility(View.VISIBLE);
+                } else {
+                    mPermissionExplanationCard.setVisibility(View.GONE);
                 }
 
                 Trace.endSection();

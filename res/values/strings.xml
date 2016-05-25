@@ -923,4 +923,20 @@
 
     <!-- Menu section title of "accounts" [CHAR LIMIT=20] -->
     <string name="menu_title_filters">Accounts</string>
+
+    <!-- Contacts app asking for permissions in QuickContact activity,
+         in order to display calendar and SMS history [CHAR LIMIT=60] -->
+    <string name="permission_explanation_header">See your history together</string>
+
+    <!-- Content displayed in QuickContact activity after Contacts app receiving
+         Calendar and SMS permissions [CHAR LIMIT=60] -->
+    <string name="permission_explanation_subheader_calendar_and_SMS">Events and Messages</string>
+
+    <!-- Content displayed in QuickContact activity after Contacts app receiving
+         Calendar permission [CHAR LIMIT=40] -->
+    <string name="permission_explanation_subheader_calendar">Events</string>
+
+    <!-- Content displayed in QuickContact activity after Contacts app receiving
+         SMS permission [CHAR LIMIT=40] -->
+    <string name="permission_explanation_subheader_SMS">Messages</string>
 </resources>
