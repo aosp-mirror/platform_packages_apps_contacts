@@ -24,6 +24,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Intents;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -41,13 +42,14 @@ import com.android.contacts.GroupMemberLoader;
 import com.android.contacts.GroupMemberLoader.GroupEditorQuery;
 import com.android.contacts.R;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
-import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ListEvent;
+import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.group.GroupMembersListAdapter.GroupMembersQuery;
 import com.android.contacts.group.GroupMembersListFragment;
 import com.android.contacts.group.GroupMetadata;
 import com.android.contacts.group.GroupNameEditDialogFragment;
@@ -57,6 +59,7 @@ import com.android.contacts.group.SuggestedMemberListAdapter.SuggestedMember;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.MultiSelectContactsListFragment;
+import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.quickcontact.QuickContactActivity;
 
 import java.util.ArrayList;
@@ -89,6 +92,8 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
     private static final String ACTION_UPDATE_GROUP = "updateGroup";
     private static final String ACTION_ADD_TO_GROUP = "addToGroup";
     private static final String ACTION_REMOVE_FROM_GROUP = "removeFromGroup";
+
+    private static final int RESULT_GROUP_ADD_MEMBER = 100;
 
     /** Loader callbacks for existing group members for the autocomplete text view. */
     private final LoaderCallbacks<Cursor> mGroupMemberCallbacks = new LoaderCallbacks<Cursor>() {
@@ -312,7 +317,10 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
         final boolean isGroupReadOnly = mGroupMetadata != null && mGroupMetadata.readOnly;
 
         setVisible(menu, R.id.menu_add,
-                isGroupEditable &&!isSelectionMode && !isSearchMode);
+                isGroupEditable && !isSelectionMode && !isSearchMode);
+
+        setVisible(menu, R.id.menu_search,
+                isGroupEditable && !isSelectionMode && !isSearchMode);
 
         setVisible(menu, R.id.menu_rename_group,
                 isGroupEditable && !isSelectionMode && !isSearchMode);
@@ -341,6 +349,16 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
                 return true;
             }
             case R.id.menu_add: {
+                final Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType(ContactsContract.Groups.CONTENT_ITEM_TYPE);
+                intent.putExtra(UiIntentActions.GROUP_ACCOUNT_WITH_DATA_SET,
+                        mGroupMetadata.createAccountWithDataSet());
+                intent.putExtra(UiIntentActions.GROUP_RAW_CONTACT_IDS,
+                        getExistingGroupMemberRawContactIds());
+                startActivityForResult(intent, RESULT_GROUP_ADD_MEMBER);
+                return true;
+            }
+            case R.id.menu_search: {
                 if (mActionBarAdapter != null) {
                     mActionBarAdapter.setSearchMode(true);
                 }
@@ -365,6 +383,17 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private ArrayList<String> getExistingGroupMemberRawContactIds() {
+        final ArrayList<String> rawContactIds = new ArrayList<>();
+        final Cursor cursor = mMembersListFragment.getAdapter().getCursor(/* partition */ 0);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                rawContactIds.add(cursor.getString(GroupMembersQuery.RAW_CONTACT_ID));
+            } while (cursor.moveToNext());
+        }
+        return rawContactIds;
     }
 
     private void deleteGroup() {
@@ -414,6 +443,33 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
             mActionBarAdapter.setSearchMode(false);
         } else {
             super.onBackPressed();
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RESULT_GROUP_ADD_MEMBER && resultCode == RESULT_OK && data != null) {
+            final Uri rawContactUri = data.getData();
+            if (rawContactUri != null) {
+                long rawContactId = -1;
+                try {
+                    rawContactId = Long.parseLong(rawContactUri.getLastPathSegment());
+                } catch (NumberFormatException ignored) {}
+                if (rawContactId < 0) {
+                    Toast.makeText(this, R.string.groupSavedErrorToast, Toast.LENGTH_SHORT).show();
+                    Log.w(TAG, "Failed to parse ID from pick group member result uri " +
+                            rawContactUri);
+                    return;
+                }
+                final long[] rawContactIdsToAdd = new long[1];
+                rawContactIdsToAdd[0] = rawContactId;
+                final Intent intent = ContactSaveService.createGroupUpdateIntent(
+                        GroupMembersActivity.this, mGroupMetadata.groupId, /* newLabel */ null,
+                        rawContactIdsToAdd, /* rawContactIdsToRemove */ null,
+                        GroupMembersActivity.class, GroupMembersActivity.ACTION_ADD_TO_GROUP);
+                startService(intent);
+            }
         }
     }
 

@@ -28,10 +28,13 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Intents.Insert;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.android.contacts.common.model.account.AccountWithDataSet;
 
 /**
  * Parses a Contacts intent, extracting all relevant parts and packaging them
@@ -89,6 +92,12 @@ public class ContactsIntentResolver {
                 request.setLegacyCompatibilityMode(true);
             } else if (Email.CONTENT_TYPE.equals(resolvedType)) {
                 request.setActionCode(ContactsRequest.ACTION_PICK_EMAIL);
+            } else if (Groups.CONTENT_ITEM_TYPE.equals(resolvedType)) {
+                request.setActionCode(ContactsRequest.ACTION_PICK_GROUP_MEMBERS);
+                request.setAccountWithDataSet(intent.<AccountWithDataSet> getParcelableExtra(
+                        UiIntentActions.GROUP_ACCOUNT_WITH_DATA_SET));
+                request.setRawContactIds(intent.getStringArrayListExtra(
+                        UiIntentActions.GROUP_RAW_CONTACT_IDS));
             }
         } else if (Intent.ACTION_CREATE_SHORTCUT.equals(action)) {
             String component = intent.getComponent().getClassName();

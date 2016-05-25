@@ -18,7 +18,6 @@ package com.android.contacts.activities;
 
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -26,7 +25,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Intents.Insert;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,6 +44,8 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.list.ContactEntryListFragment;
+import com.android.contacts.list.GroupMemberPickerFragment;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
@@ -62,7 +62,7 @@ import com.android.contacts.list.OnPostalAddressPickerActionListener;
 import com.android.contacts.common.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 /**
  * Displays a list of contacts (or phone numbers or postal addresses) for the
@@ -139,9 +139,10 @@ public class ContactSelectionActivity extends ContactsActivity
                 .inflate(R.layout.custom_action_bar, null);
         mSearchView = (SearchView) mSearchViewContainer.findViewById(R.id.search_view);
 
-        // Postal address pickers (and legacy pickers) don't support search, so just show
+        // Postal address  group member,and legacy pickers don't support search, so just show
         // "HomeAsUp" button and title.
         if (mRequest.getActionCode() == ContactsRequest.ACTION_PICK_POSTAL ||
+                mRequest.getActionCode() == ContactsRequest.ACTION_PICK_GROUP_MEMBERS ||
                 mRequest.isLegacyCompatibilityMode()) {
             mSearchView.setVisibility(View.GONE);
             if (actionBar != null) {
@@ -270,6 +271,11 @@ public class ContactSelectionActivity extends ContactsActivity
                 setTitle(R.string.titleJoinContactDataWith);
                 break;
             }
+
+            case ContactsRequest.ACTION_PICK_GROUP_MEMBERS: {
+                setTitle(R.string.contactPickerActivityTitle);
+                break;
+            }
         }
     }
 
@@ -350,6 +356,15 @@ public class ContactSelectionActivity extends ContactsActivity
                 break;
             }
 
+            case ContactsRequest.ACTION_PICK_GROUP_MEMBERS: {
+                final AccountWithDataSet account = getIntent().getParcelableExtra(
+                        UiIntentActions.GROUP_ACCOUNT_WITH_DATA_SET);
+                final ArrayList<String> rawContactIds = getIntent().getStringArrayListExtra(
+                        UiIntentActions.GROUP_RAW_CONTACT_IDS);
+                mListFragment = GroupMemberPickerFragment.newInstance(account, rawContactIds);
+                break;
+            }
+
             default:
                 throw new IllegalStateException("Invalid action code: " + mActionCode);
         }
@@ -389,6 +404,9 @@ public class ContactSelectionActivity extends ContactsActivity
         } else if (mListFragment instanceof JoinContactListFragment) {
             ((JoinContactListFragment) mListFragment).setOnContactPickerActionListener(
                     new JoinContactActionListener());
+        } else if (mListFragment instanceof GroupMemberPickerFragment) {
+            ((GroupMemberPickerFragment) mListFragment).setListener(
+                    new GroupMemberPickerListener());
         } else {
             throw new IllegalStateException("Unsupported list fragment type: " + mListFragment);
         }
@@ -459,6 +477,14 @@ public class ContactSelectionActivity extends ContactsActivity
 
         @Override
         public void onEditContactAction(Uri contactLookupUri) {
+        }
+    }
+
+    private final class GroupMemberPickerListener implements GroupMemberPickerFragment.Listener {
+
+        @Override
+        public void onGroupMemberClicked(Uri uri) {
+            returnPickerResult(uri);
         }
     }
 

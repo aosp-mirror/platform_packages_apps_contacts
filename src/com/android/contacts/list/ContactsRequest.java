@@ -21,6 +21,10 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.android.contacts.common.model.account.AccountWithDataSet;
+
+import java.util.ArrayList;
+
 /**
  * Parsed form of the intent sent to the Contacts application.
  */
@@ -37,6 +41,9 @@ public class ContactsRequest {
 
     /** Show contents of a specific group */
     public static final int ACTION_GROUP = 20;
+
+    /** Show potential new members of a specific group */
+    public static final int ACTION_PICK_GROUP_MEMBERS = 21;
 
     /** Show all starred contacts */
     public static final int ACTION_STARRED = 30;
@@ -89,6 +96,8 @@ public class ContactsRequest {
     private boolean mLegacyCompatibilityMode;
     private boolean mDirectorySearchEnabled = true;
     private Uri mContactUri;
+    private AccountWithDataSet mAccountWithDataSet;
+    private ArrayList<String> mRawContactIds;
 
     @Override
     public String toString() {
@@ -101,6 +110,8 @@ public class ContactsRequest {
                 + " mLegacyCompatibilityMode=" + mLegacyCompatibilityMode
                 + " mDirectorySearchEnabled=" + mDirectorySearchEnabled
                 + " mContactUri=" + mContactUri
+                + " mAccountWithDataSet=" + mAccountWithDataSet
+                + " mRawContactIds=" + mRawContactIds
                 + "}";
     }
 
@@ -178,5 +189,21 @@ public class ContactsRequest {
 
     public void setContactUri(Uri contactUri) {
         this.mContactUri = contactUri;
+    }
+
+    public AccountWithDataSet getAccountWithDataSet() {
+        return mAccountWithDataSet;
+    }
+
+    public void setAccountWithDataSet(AccountWithDataSet accountWithDataSet) {
+        mAccountWithDataSet = accountWithDataSet;
+    }
+
+    public ArrayList<String> getRawContactIds() {
+        return mRawContactIds;
+    }
+
+    public void setRawContactIds(ArrayList<String> rawContactIds) {
+        mRawContactIds = rawContactIds;
     }
 }

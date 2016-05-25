@@ -80,14 +80,6 @@ public final class GroupMemberLoader extends CursorLoader {
         return new GroupMemberLoader(context, groupId, GroupEditorQuery.PROJECTION);
     }
 
-    /**
-     * @return GroupMemberLoader object used in group detail page.
-     */
-    public static GroupMemberLoader constructLoaderForGroupDetailQuery(
-            Context context, long groupId) {
-        return new GroupMemberLoader(context, groupId, GroupDetailQuery.PROJECTION);
-    }
-
     private GroupMemberLoader(Context context, long groupId, String[] projection) {
         super(context);
         mGroupId = groupId;

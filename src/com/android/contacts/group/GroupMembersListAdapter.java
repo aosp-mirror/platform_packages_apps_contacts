@@ -35,7 +35,7 @@ import com.android.contacts.common.preference.ContactsPreferences;
 /** Group members cursor adapter. */
 public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter {
 
-    private static class GroupMembersQuery {
+    public static class GroupMembersQuery {
 
         private static final String[] PROJECTION_PRIMARY = new String[] {
                 Data.CONTACT_ID,

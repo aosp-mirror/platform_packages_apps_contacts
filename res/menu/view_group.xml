@@ -24,6 +24,11 @@
         contacts:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_ab_search"
+        android:title="@string/menu_search" />
+
+    <item
         android:id="@+id/menu_rename_group"
         android:title="@string/menu_renameGroup"/>
 
