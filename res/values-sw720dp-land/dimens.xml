@@ -17,7 +17,6 @@
     <dimen name="group_detail_border_padding">32dip</dimen>
     <dimen name="group_editor_side_padding">64dip</dimen>
     <dimen name="contact_detail_list_top_padding">32dip</dimen>
-    <dimen name="list_visible_scrollbar_padding">48dip</dimen>
     <dimen name="detail_contact_photo_size">256dip</dimen>
     <!-- Right margin of the floating action button -->
     <dimen name="floating_action_button_margin_right">32dp</dimen>

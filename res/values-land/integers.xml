@@ -14,8 +14,6 @@
      limitations under the License.
 -->
 <resources>
-    <integer name="contact_tile_column_count">4</integer>
-
     <!-- Number of lines the QuickContact title can have -->
     <integer name="quickcontact_title_lines">2</integer>
 </resources>

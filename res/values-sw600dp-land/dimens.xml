@@ -16,7 +16,6 @@
 <resources>
     <dimen name="group_editor_side_padding">64dip</dimen>
     <dimen name="quick_contact_photo_container_height">180dip</dimen>
-    <dimen name="list_visible_scrollbar_padding">32dip</dimen>
     <dimen name="detail_contact_photo_size">192dip</dimen>
     <dimen name="detail_contact_photo_margin">16dip</dimen>
 </resources>

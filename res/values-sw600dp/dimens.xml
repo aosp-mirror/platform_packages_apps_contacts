@@ -27,9 +27,6 @@
     <dimen name="contact_browser_list_item_gap_between_image_and_text">25dp</dimen>
     <dimen name="contact_browser_list_item_gap_between_indexer_and_image">15dp</dimen>
     <dimen name="contact_browser_list_top_margin">18dp</dimen>
-    <!-- Contact list (vertical scroll bar comes left) -->
-    <dimen name="list_visible_scrollbar_padding">32dip</dimen>
-    <dimen name="list_header_extra_top_padding">@dimen/contact_browser_list_top_margin</dimen>
 
     <dimen name="quick_contact_photo_container_height">360dip</dimen>
     <!-- Height of the selection indicator of a tab. -->
@@ -40,16 +37,10 @@
     <!-- Because the "join" screen has the vertical scroll bar on right,
       we cannot use @dimen/contact_browser_list_header_left_margin as is. -->
     <dimen name="join_header_left_margin">24dip</dimen>
-    <dimen name="join_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
+    <dimen name="join_header_right_margin">32dip</dimen>
     <dimen name="join_header_top_margin">16dip</dimen>
     <dimen name="join_header_bottom_margin">16dip</dimen>
 
-    <!-- Left padding for a group member list item -->
-    <dimen name="group_member_item_left_padding">12dip</dimen>
-    <!-- Left margin for the group member list to match the built in margin in the autocomplete asset -->
-    <dimen name="group_editor_member_list_left_margin">4dip</dimen>
-    <!-- Right margin for the group member list to match the built in margin in the autocomplete asset -->
-    <dimen name="group_editor_member_list_right_margin">4dip</dimen>
     <!-- Account title left padding -->
     <dimen name="account_container_left_padding">16dip</dimen>
     <dimen name="contact_detail_list_top_padding">8dip</dimen>

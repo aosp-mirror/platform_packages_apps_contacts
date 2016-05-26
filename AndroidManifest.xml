@@ -247,17 +247,6 @@
         <activity android:name=".activities.GroupMembersActivity"
             android:theme="@style/PeopleActivityTheme"/>
 
-        <!-- Views the details of a single group -->
-        <activity android:name=".activities.GroupDetailActivity"
-            android:label=""
-            android:theme="@style/DetailActivityTheme"/>
-
-        <!-- Create a new or edit an existing group -->
-        <activity
-            android:name=".activities.GroupEditorActivity"
-            android:theme="@style/EditorActivityTheme"
-            android:windowSoftInputMode="adjustResize" />
-
         <activity
             android:name=".quickcontact.QuickContactActivity"
             android:label="@string/quickContactActivityLabel"

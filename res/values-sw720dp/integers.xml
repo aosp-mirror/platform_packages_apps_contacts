@@ -14,8 +14,6 @@
      limitations under the License.
 -->
 <resources>
-    <integer name="contact_tile_column_count">2</integer>
-
     <!-- Layout weight of column space elements for favorites list, all contacts list and
          QuickContact-->
     <integer name="contact_list_space_layout_weight">11</integer>

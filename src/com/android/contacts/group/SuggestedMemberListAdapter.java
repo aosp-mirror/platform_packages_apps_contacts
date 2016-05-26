@@ -158,7 +158,7 @@ public class SuggestedMemberListAdapter extends ArrayAdapter<SuggestedMember> {
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, member.getContactId()));
             final String imageRequestIdentifier = contactLookupUri == null
                     ? null : contactLookupUri.toString();
-            GroupEditorFragment.bindPhoto(mPhotoManager, icon, member.getPhotoId(),
+            GroupUtil.bindPhoto(mPhotoManager, icon, member.getPhotoId(),
                 /* photoUri */ null, member.getDisplayName(), imageRequestIdentifier);
         } else {
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);

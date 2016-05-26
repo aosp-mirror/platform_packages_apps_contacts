@@ -139,17 +139,8 @@
     <!-- Account title left padding -->
     <dimen name="account_container_left_padding">16dip</dimen>
 
-    <!-- Left padding for a group member list item -->
-    <dimen name="group_member_item_left_padding">4dip</dimen>
-
     <!-- Left and right padding for the group editor view -->
     <dimen name="group_editor_side_padding">16dip</dimen>
-
-    <!-- Left margin for the group member list to match the built in margin in the autocomplete asset -->
-    <dimen name="group_editor_member_list_left_margin">4dip</dimen>
-
-    <!-- Right margin for the group member list to match the built in margin in the autocomplete asset -->
-    <dimen name="group_editor_member_list_right_margin">4dip</dimen>
 
     <!-- Border padding for the group detail fragment -->
     <dimen name="group_detail_border_padding">0dip</dimen>
@@ -165,8 +156,6 @@
     <dimen name="join_header_right_margin">@dimen/contact_browser_list_header_right_margin</dimen>
     <dimen name="join_header_top_margin">16dip</dimen>
     <dimen name="join_header_bottom_margin">0dip</dimen>
-
-    <dimen name="no_accounts_message_margin">20dip</dimen>
 
     <dimen name="contact_filter_header_min_height">24dip</dimen>
 

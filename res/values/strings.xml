@@ -83,10 +83,6 @@
          creating a new contact. This string represents the built in way to create the contact. -->
     <string name="insertContactDescription">Create contact</string>
 
-    <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
-         editing a label. This string represents the built in way to edit the label. [CHAR LIMIT=30] -->
-    <string name="editGroupDescription">Edit label</string>
-
     <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=15] -->
     <string name="contactDetailAbout">About</string>
 
@@ -296,9 +292,6 @@
     <!-- The text displayed when the groups list is empty and no accounts are set on the device while displaying all groups [CHAR LIMIT=NONE] -->
     <string name="noAccounts">To create groups you need an account.</string>
 
-    <!-- The text displayed to instruct users to add members to a group (when viewing a group detail page for a group with no members) [CHAR LIMIT=50] -->
-    <string name="addPeopleToGroup">To add some, edit the group.</string>
-
     <!-- The text displayed when there are no members that have this label while displaying the label detail page [CHAR LIMIT=70] -->
     <string name="emptyGroup">No people with this label.</string>
 
@@ -469,9 +462,6 @@
     <!-- String describing which account a contact came from when editing it -->
     <string name="from_account_format"><xliff:g id="source" example="user@gmail.com">%1$s</xliff:g></string>
 
-    <!-- Text used to explain that a group cannot be edited since the data is read only [CHAR LIMIT=40] -->
-    <string name="group_read_only">Not editable on this device.</string>
-
     <!-- An option in the 'Contact photo' dialog, if there is no photo yet [CHAR LIMIT=50] -->
     <string name="take_photo">Take photo</string>
 
@@ -614,18 +604,6 @@
       \"<xliff:g id="group_label" example="Friends">%1$s</xliff:g>\"?
       (Contacts themselves will not be deleted.)
     </string>
-
-    <!-- Subtitle of the label detail page that describes how many people are in the current label [CHAR LIMIT=30] -->
-    <plurals name="num_contacts_in_group">
-        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> person from <xliff:g id="account_type">%2$s</xliff:g></item>
-        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> people from <xliff:g id="account_type">%2$s</xliff:g></item>
-    </plurals>
-
-    <!-- Subtitle of a label (in the label list) that describes how many people are in the current label [CHAR LIMIT=30] -->
-    <plurals name="group_list_num_contacts_in_group">
-        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> person</item>
-        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> people</item>
-    </plurals>
 
     <!-- Toast displayed when the user creates a new contact and attempts to link it
       with another before entering any data  [CHAR LIMIT=256] -->

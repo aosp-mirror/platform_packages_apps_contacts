@@ -15,17 +15,6 @@
 -->
 <resources>
 
-    <style name="DetailActivityTheme" parent="@android:style/Theme.Holo.Light">
-        <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_menu_back</item>
-        <item name="android:actionOverflowButtonStyle">@style/ContactsActionBarOverflow</item>
-        <item name="android:actionBarItemBackground">@drawable/action_bar_item_background</item>
-        <item name="android:actionBarWidgetTheme">@style/ContactsActionBarTheme</item>
-        <item name="android:textColorPrimary">@color/primary_text_color</item>
-        <item name="android:textColorSecondary">@color/secondary_text_color</item>
-        <item name="android:listViewStyle">@style/ListViewStyle</item>
-    </style>
-
     <style name="EditorActivityTheme" parent="@style/PeopleTheme">
         <item name="android:listViewStyle">@style/ListViewStyle</item>
         <item name="android:actionBarStyle">@style/EditorActionBarStyle</item>
@@ -189,11 +178,6 @@
     <style name="ContactsUnavailableButtonStyle" parent="@style/Widget.AppCompat.Button.Colored">
     </style>
 
-
-    <style name="ContactsActionBarOverflow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_overflow_menu</item>
-    </style>
-
     <!-- Use the non-light style so that the up button & icons aren't black. If we use the
          Light style, then it is impossible to tint the homeAsUp icon anything other than black -->
     <style name="ContactsActionBarStyle" parent="@android:style/Widget.Material.ActionBar">
@@ -278,17 +262,6 @@
     <!-- Toolbar navigation button. -->
     <style name="ContactToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
         <item name="android:tint">@color/action_bar_button_text_color</item>
-    </style>
-
-    <style name="ContactsActionBarDropDownStyle" parent="@android:style/Widget.Holo.Light.Spinner">
-        <item name="android:background">@drawable/ab_dropdown_navigation_item_background</item>
-    </style>
-
-    <style name="ContactsActionBarTheme" parent="@android:style/Theme.Holo.Light">
-        <item name="android:textColorHint">#CCCCCC</item>
-        <item name="android:textColor">@android:color/black</item>
-        <item name="android:popupMenuStyle">@android:style/Widget.Holo.Light.PopupMenu</item>
-        <item name="android:dropDownListViewStyle">@style/ListViewDropdownStyle</item>
     </style>
 
     <style name="ListViewDropdownStyle" parent="@android:style/Widget.ListView.DropDown">

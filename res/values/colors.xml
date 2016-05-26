@@ -19,11 +19,10 @@
     <color name="quickcontact_entry_sub_header_text_color">#737373</color>
     <color name="quickcontact_entry_header_text_color">#202020</color>
 
+    <color name="action_bar_background">#0288d1</color>
+
     <color name="background_social_updates">#ffeeeeee</color>
 
-    <!-- TODO: remove these colors once we delete the group code (b/16522929) -->
-    <color name="action_bar_background">#0288d1</color>
-    <color name="action_bar_background_highlight">#cecece</color>
     <color name="action_bar_button_text_color">#FFFFFF</color>
 
     <color name="actionbar_background_color">@color/primary_color</color>

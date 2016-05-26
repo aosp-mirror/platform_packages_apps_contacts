@@ -22,12 +22,6 @@
     <!-- If true, phonetic name is included in the contact editor by default -->
     <bool name="config_editor_include_phonetic_name">false</bool>
 
-    <!--
-      If true, the "view updates from group" button in the action bar will be
-      shown. Otherwise it will be part of the content on the group detail page.
-    -->
-    <bool name="config_show_group_action_in_action_bar">false</bool>
-
     <!-- Help URL pointing to main TOC for People. This is intentionally empty because
          the overlay will fill this in during build time. -->
     <string name="help_url_people_main"></string>

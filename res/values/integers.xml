@@ -15,8 +15,6 @@
 -->
 
 <resources>
-    <!-- Determines the number of columns in a ContactTileRow -->
-    <integer name="contact_tile_column_count">2</integer>
 
     <!-- Number of lines the QuickContact title can have -->
     <integer name="quickcontact_title_lines">1</integer>

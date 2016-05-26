@@ -22,9 +22,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract.Groups;
+import android.widget.ImageView;
 
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.activities.GroupMembersActivity;
+import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.google.common.base.Objects;
 
 /**
@@ -71,6 +74,25 @@ public final class GroupUtil {
                 isFirstGroupInAccount, memberCount);
     }
 
+    /**
+     * @param identifier the {@link ContactPhotoManager.DefaultImageRequest#identifier}
+     *         to use for this the group member.
+     */
+    public static void bindPhoto(ContactPhotoManager photoManager, ImageView imageView,
+            long photoId, Uri photoUri, String displayName, String identifier) {
+        if (photoId == 0) {
+            final DefaultImageRequest defaultImageRequest = photoUri == null
+                    ? new DefaultImageRequest(displayName, identifier,
+                            /* circularPhotos */ true)
+                    : null;
+            photoManager.loadDirectoryPhoto(imageView, photoUri, /* darkTheme */ false,
+                        /* isCircular */ true, defaultImageRequest);
+        } else {
+            photoManager.loadThumbnail(imageView, photoId, /* darkTheme */ false,
+                        /* isCircular */ true, /* defaultImageRequest */ null);
+        }
+    }
+
     /** Returns an Intent to create a new group. */
     public static Intent createAddGroupIntent(Context context) {
         final Intent intent = new Intent(context, GroupMembersActivity.class);
@@ -90,6 +112,7 @@ public final class GroupUtil {
      * Converts the given group Uri to the legacy format if the legacy authority was specified
      * in the given Uri.
      */
+    // TODO(wjang):
     public static Uri maybeConvertToLegacyUri(Uri groupUri) {
         final String requestAuthority = groupUri.getAuthority();
         if (!LEGACY_CONTACTS_AUTHORITY.equals(requestAuthority)) {

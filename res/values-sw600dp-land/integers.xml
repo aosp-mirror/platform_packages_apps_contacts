@@ -14,8 +14,6 @@
      limitations under the License.
 -->
 <resources>
-    <integer name="contact_tile_column_count">3</integer>
-
     <!-- Layout weight of space elements in PeopleActivity for favorites list and all
     contacts list-->
     <integer name="contact_list_space_layout_weight">1</integer>
