@@ -61,7 +61,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         if (mSelectedGroupUri == null && cursor != null && cursor.getCount() > 0) {
             GroupListItem firstItem = getItem(0);
             long groupId = (firstItem == null) ? 0 : firstItem.getGroupId();
-            mSelectedGroupUri = GroupUtil.getGroupUriFromId(groupId);
+            mSelectedGroupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
         }
 
         notifyDataSetChanged();
@@ -76,7 +76,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         mCursor.moveToPosition(-1);
         while (mCursor.moveToNext()) {
             long groupId = mCursor.getLong(GroupListLoader.GROUP_ID);
-            Uri uri = GroupUtil.getGroupUriFromId(groupId);
+            final Uri uri = ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
             if (mSelectedGroupUri.equals(uri)) {
                   return index;
             }
@@ -152,7 +152,7 @@ public class GroupBrowseListAdapter extends BaseAdapter {
         }
 
         // Bind the group data
-        Uri groupUri = GroupUtil.getGroupUriFromId(entry.getGroupId());
+        final Uri groupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, entry.getGroupId());
         String memberCountString = mContext.getResources().getQuantityString(
                 R.plurals.group_list_num_contacts_in_group, entry.getMemberCount(),
                 entry.getMemberCount());

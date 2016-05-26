@@ -38,7 +38,6 @@ public class Member implements Parcelable {
         }
     };
 
-    // TODO: Switch to just dealing with raw contact IDs everywhere if possible
     private final long mRawContactId;
     private final long mContactId;
     private final Uri mLookupUri;

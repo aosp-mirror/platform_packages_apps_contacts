@@ -79,7 +79,6 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
                 }
                 return;
             }
-            // TODO(wjang): how should we handle deleted groups
             mGroupMetadata = new GroupMetadata();
             mGroupMetadata.uri = mGroupUri;
             mGroupMetadata.accountName = cursor.getString(GroupMetaDataLoader.ACCOUNT_NAME);
@@ -109,8 +108,7 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
         public CursorLoader onCreateLoader(int id, Bundle args) {
             final GroupListLoader groupListLoader = new GroupListLoader(getActivity());
 
-            // TODO(wjang): modify GroupListLoader to accept this selection criteria more naturally
-            groupListLoader.setSelection(groupListLoader.getSelection()
+            groupListLoader.setSelection(GroupListLoader.DEFAULT_SELECTION
                     + " AND " + ContactsContract.Groups._ID + "=?");
 
             final String[] selectionArgs = new String[1];

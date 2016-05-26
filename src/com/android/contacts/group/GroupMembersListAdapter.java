@@ -72,7 +72,6 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
     public GroupMembersListAdapter(Context context) {
         super(context, GroupMembersQuery.RAW_CONTACT_ID);
         mUnknownNameText = context.getText(android.R.string.unknownName);
-        setIndexedPartition(0);
     }
 
     /** Sets the ID of the group whose members will be displayed. */
@@ -133,7 +132,6 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
                 super.newView(context, partition, cursor, position, parent);
         view.setUnknownNameText(mUnknownNameText);
         view.setQuickContactEnabled(isQuickContactEnabled());
-        view.setIsSectionHeaderEnabled(isSectionHeaderDisplayEnabled());
         return view;
     }
 
@@ -141,20 +139,9 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
     protected void bindView(View v, int partition, Cursor cursor, int position) {
         super.bindView(v, partition, cursor, position);
         final ContactListItemView view = (ContactListItemView) v;
-        bindSectionHeaderAndDivider(view, position);
-        bindName(view, cursor);
         bindViewId(view, cursor, GroupMembersQuery.CONTACT_ID);
+        bindName(view, cursor);
         bindPhoto(view, cursor);
-    }
-
-    private void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
-        final int section = getSectionForPosition(position);
-        if (getPositionForSection(section) == position) {
-            final String header = (String) getSections()[section];
-            view.setSectionHeader(header);
-        } else {
-            view.setSectionHeader(null);
-        }
     }
 
     private void bindName(ContactListItemView view, Cursor cursor) {

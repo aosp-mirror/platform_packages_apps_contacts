@@ -134,6 +134,9 @@
     <!-- Menu item that edits the currently selected label [CHAR LIMIT=30] -->
     <string name="menu_editGroup">Edit</string>
 
+    <!-- Menu item to rename the currently selected label [CHAR LIMIT=30] -->
+    <string name="menu_renameGroup">Rename label</string>
+
     <!-- Menu item that deletes the currently selected label [CHAR LIMIT=30] -->
     <string name="menu_deleteGroup">Delete label</string>
 
@@ -326,6 +329,9 @@
     <!-- Toast displayed when a label is saved [CHAR LIMIT=30] -->
     <string name="groupSavedToast">Label saved</string>
 
+    <!-- Toast displayed when a label name is delted. [CHAR LIMIT=50] -->
+    <string name="groupDeletedToast">Label deleted</string>
+
     <!-- Toast displayed when a label name is updated. [CHAR LIMIT=50] -->
     <string name="groupCreatedToast">Label created</string>
 
@@ -429,10 +435,13 @@
     <string name="dialog_new_group_account">Choose account</string>
 
     <!-- Title for the create new label dialog. CHAR LIMIT=40] -->
-    <string name="insert_group_dialog_title">Create label</string>
+    <string name="group_name_dialog_insert_title">Create label</string>
 
     <!-- Title for the update label dialog. CHAR LIMIT=40] -->
-    <string name="update_group_dialog_title">Update label</string>
+    <string name="group_name_dialog_update_title">Rename label</string>
+
+    <!-- Hint for the label name input field on the insert and update label dialogs [CHAR LIMIT=30] -->
+    <string name="group_name_dialog_hint">Label name</string>
 
     <!-- Generic action string for starting an audio chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
     <string name="audio_chat">Voice chat</string>

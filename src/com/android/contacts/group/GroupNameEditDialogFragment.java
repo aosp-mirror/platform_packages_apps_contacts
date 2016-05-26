@@ -19,12 +19,16 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -87,9 +91,12 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Build a dialog with two buttons and a view of a single EditText input field
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
-                .setTitle(mIsInsert ? R.string.insert_group_dialog_title
-                        : R.string.update_group_dialog_title)
+        final ContextThemeWrapper context = new ContextThemeWrapper(getActivity(),
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(mIsInsert
+                        ? R.string.group_name_dialog_insert_title
+                        : R.string.group_name_dialog_update_title)
                 .setView(R.layout.group_name_edit_dialog)
                 .setNegativeButton(android.R.string.cancel, new OnClickListener() {
                     @Override
@@ -132,6 +139,8 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
                         createButton.setEnabled(!TextUtils.isEmpty(s));
                     }
                 });
+
+                showInputMethod(mGroupNameEditText);
             }
         });
         return alertDialog;
@@ -148,6 +157,14 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
         super.onSaveInstanceState(outState);
         outState.putBoolean(KEY_IS_INSERT, mIsInsert);
         outState.putString(KEY_GROUP_NAME, getGroupName());
+    }
+
+    private void showInputMethod(View view) {
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.showSoftInput(view, /* flags */ 0);
+        }
     }
 
     private Listener getListener() {

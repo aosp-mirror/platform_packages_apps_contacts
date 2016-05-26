@@ -28,6 +28,11 @@ import android.provider.ContactsContract.Groups;
  */
 public final class GroupListLoader extends CursorLoader {
 
+    public final static String DEFAULT_SELECTION =
+            Groups.ACCOUNT_TYPE + " NOT NULL AND " +
+                    Groups.ACCOUNT_NAME + " NOT NULL AND " + Groups.AUTO_ADD + "=0 AND " +
+                    Groups.FAVORITES + "=0 AND " + Groups.DELETED + "=0";
+
     private final static String[] COLUMNS = new String[] {
         Groups.ACCOUNT_NAME,
         Groups.ACCOUNT_TYPE,
@@ -50,11 +55,9 @@ public final class GroupListLoader extends CursorLoader {
         super(context,
                 GROUP_LIST_URI,
                 COLUMNS,
-                Groups.ACCOUNT_TYPE + " NOT NULL AND " +
-                        Groups.ACCOUNT_NAME + " NOT NULL AND " + Groups.AUTO_ADD + "=0 AND " +
-                        Groups.FAVORITES + "=0 AND " + Groups.DELETED + "=0",
+                DEFAULT_SELECTION,
                 null,
                 Groups.ACCOUNT_TYPE + ", " + Groups.ACCOUNT_NAME + ", " + Groups.DATA_SET + ", " +
-                Groups.TITLE + " COLLATE LOCALIZED ASC");
+                Groups.TITLE + " COLLATE NOCASE ASC");
     }
 }
