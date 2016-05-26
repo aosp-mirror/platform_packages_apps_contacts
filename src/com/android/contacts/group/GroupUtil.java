@@ -80,16 +80,9 @@ public final class GroupUtil {
 
     /** Returns an Intent to view the details of the group identified by the given ID. */
     public static Intent createViewGroupIntent(Context context, long groupId) {
-        return createViewGroupIntent(context, getGroupUriFromId(groupId));
-    }
-
-    /** Returns an Intent to view the details of the group identified by the given Uri. */
-    public static Intent createViewGroupIntent(Context context, Uri uri) {
         final Intent intent = new Intent(context, GroupMembersActivity.class);
         intent.setAction(Intent.ACTION_VIEW);
-        // TODO(wjang): do we still need it?
-        // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.setData(uri);
+        intent.setData(ContentUris.withAppendedId(Groups.CONTENT_URI, groupId));
         return intent;
     }
 
@@ -105,10 +98,5 @@ public final class GroupUtil {
         final long groupId = ContentUris.parseId(groupUri);
         final Uri legacyContentUri = Uri.parse(LEGACY_CONTACTS_URI);
         return ContentUris.withAppendedId(legacyContentUri, groupId);
-    }
-
-    /** TODO: Make it private after {@link GroupBrowseListAdapter} is removed. */
-    static Uri getGroupUriFromId(long groupId) {
-        return ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
     }
 }

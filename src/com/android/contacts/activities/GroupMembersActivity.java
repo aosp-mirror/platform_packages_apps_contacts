@@ -65,7 +65,6 @@ import java.util.List;
 /**
  * Displays the members of a group and allows the user to edit it.
  */
-// TODO(wjang): rename it to GroupActivity since it does both display and edit now.
 public class GroupMembersActivity extends AppCompatContactsActivity implements
         ActionBarAdapter.Listener,
         MultiSelectContactsListFragment.OnCheckBoxListActionListener,
@@ -85,6 +84,7 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
 
     private static final int LOADER_GROUP_MEMBERS = 0;
 
+    private static final String ACTION_DELETE_GROUP = "deleteGroup";
     private static final String ACTION_CREATE_GROUP = "createGroup";
     private static final String ACTION_UPDATE_GROUP = "updateGroup";
     private static final String ACTION_ADD_TO_GROUP = "addToGroup";
@@ -241,7 +241,11 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
     protected void onNewIntent(Intent newIntent) {
         super.onNewIntent(newIntent);
 
-        if (isSaveAction(newIntent.getAction())) {
+        if (isDeleteAction(newIntent.getAction())) {
+            Toast.makeText(this, R.string.groupDeletedToast, Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+            finish();
+        } else if (isSaveAction(newIntent.getAction())) {
             final Uri groupUri = newIntent.getData();
             if (groupUri == null) {
                 Toast.makeText(this, R.string.groupSavedErrorToast, Toast.LENGTH_SHORT).show();
@@ -267,6 +271,10 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
 
             invalidateOptionsMenu();
         }
+    }
+
+    private static boolean isDeleteAction(String action) {
+        return ACTION_DELETE_GROUP.equals(action);
     }
 
     private static boolean isSaveAction(String action) {
@@ -306,7 +314,7 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
         setVisible(menu, R.id.menu_add,
                 isGroupEditable &&!isSelectionMode && !isSearchMode);
 
-        setVisible(menu, R.id.menu_edit_group,
+        setVisible(menu, R.id.menu_rename_group,
                 isGroupEditable && !isSelectionMode && !isSearchMode);
 
         setVisible(menu, R.id.menu_delete_group,
@@ -338,32 +346,47 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
                 }
                 return true;
             }
-            case R.id.menu_edit_group: {
+            case R.id.menu_rename_group: {
                 GroupNameEditDialogFragment.showUpdateDialog(
                         getFragmentManager(), TAG_GROUP_NAME_EDIT_DIALOG, mGroupMetadata.groupName);
                 return true;
             }
             case R.id.menu_delete_group: {
-                // TODO(wjang): add a Toast after deletion after deleting the editor fragment
-                GroupDeletionDialogFragment.show(getFragmentManager(), mGroupMetadata.groupId,
-                        mGroupMetadata.groupName, /* endActivity */ true);
+                deleteGroup();
                 return true;
             }
             case R.id.menu_remove_from_group: {
                 if (mMembersListFragment == null) {
                     return false;
                 }
-                final int count = mMembersListFragment.getAdapter().getCount();
-                final int numSelected =
-                        mMembersListFragment.getAdapter().getSelectedContactIdsArray().length;
-                Logger.logListEvent(ListEvent.ActionType.REMOVE_LABEL,
-                        mMembersListFragment.getListType(), count, /* clickedIndex */ -1,
-                        numSelected);
+                logListEvent();
                 removeSelectedContacts();
                 return true;
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteGroup() {
+        if (mGroupMetadata.memberCount == 0) {
+            final Intent intent = ContactSaveService.createGroupDeletionIntent(
+                    this, mGroupMetadata.groupId,
+                    GroupMembersActivity.class, ACTION_DELETE_GROUP);
+            startService(intent);
+        } else {
+            GroupDeletionDialogFragment.show(getFragmentManager(), mGroupMetadata.groupId,
+                    mGroupMetadata.groupName, /* endActivity */ false, ACTION_DELETE_GROUP);
+        }
+    }
+
+    // TODO(wjang): replace this with group events
+    private void logListEvent() {
+        Logger.logListEvent(
+                ListEvent.ActionType.REMOVE_LABEL,
+                mMembersListFragment.getListType(),
+                mMembersListFragment.getAdapter().getCount(),
+                /* clickedIndex */ -1,
+                mMembersListFragment.getAdapter().getSelectedContactIdsArray().length);
     }
 
     private void removeSelectedContacts() {
@@ -372,7 +395,7 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
         final Intent intent = ContactSaveService.createGroupUpdateIntent(
                 this, mGroupMetadata.groupId, /* groupName */ null,
                 /* rawContactsToAdd */ null, rawContactsToRemove, getClass(),
-                GroupMembersActivity.ACTION_REMOVE_FROM_GROUP);
+                ACTION_REMOVE_FROM_GROUP);
         startService(intent);
 
         mActionBarAdapter.setSelectionMode(false);
@@ -498,11 +521,11 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
             saveIntent = ContactSaveService.createNewGroupIntent(this,
                     mGroupMetadata.createAccountWithDataSet(), groupName,
                     /* rawContactsToAdd */ null, GroupMembersActivity.class,
-                    GroupMembersActivity.ACTION_CREATE_GROUP);
+                    ACTION_CREATE_GROUP);
         } else {
             saveIntent = ContactSaveService.createGroupRenameIntent(this,
                     mGroupMetadata.groupId, groupName, GroupMembersActivity.class,
-                    GroupMembersActivity.ACTION_UPDATE_GROUP);
+                    ACTION_UPDATE_GROUP);
         }
         startService(saveIntent);
     }
@@ -548,7 +571,7 @@ public class GroupMembersActivity extends AppCompatContactsActivity implements
                 final Intent intent = ContactSaveService.createGroupUpdateIntent(
                         GroupMembersActivity.this, mGroupMetadata.groupId, /* newLabel */ null,
                         rawContactIdsToAdd, /* rawContactIdsToRemove */ null,
-                        GroupMembersActivity.class, GroupMembersActivity.ACTION_ADD_TO_GROUP);
+                        GroupMembersActivity.class, ACTION_ADD_TO_GROUP);
                 startService(intent);
 
                 // Update the autocomplete adapter so the contact doesn't get suggested again

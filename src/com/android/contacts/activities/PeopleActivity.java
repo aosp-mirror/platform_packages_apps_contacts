@@ -928,7 +928,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 final String title = groupListItem.getTitle();
                 final MenuItem menuItem =
                         subMenu.add(R.id.nav_groups_items, Menu.NONE, Menu.NONE, title);
-                menuItem.setIntent(GroupUtil.createViewGroupIntent(this, groupListItem.getGroupId()));
+                menuItem.setIntent(GroupUtil.createViewGroupIntent(
+                        this, groupListItem.getGroupId()));
                 menuItem.setIcon(R.drawable.ic_menu_label);
             }
         }

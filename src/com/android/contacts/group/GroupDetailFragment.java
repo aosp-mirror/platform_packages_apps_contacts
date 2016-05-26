@@ -449,7 +449,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
         mOptionsMenuGroupDeletable = isGroupDeletable() && isVisible();
         mOptionsMenuGroupEditable = isGroupEditableAndPresent() && isVisible();
 
-        final MenuItem editMenu = menu.findItem(R.id.menu_edit_group);
+        final MenuItem editMenu = menu.findItem(R.id.menu_rename_group);
         editMenu.setVisible(mOptionsMenuGroupEditable);
 
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete_group);
@@ -459,7 +459,7 @@ public class GroupDetailFragment extends Fragment implements OnScrollListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_edit_group: {
+            case R.id.menu_rename_group: {
                 if (mListener != null) mListener.onEditRequested(mGroupUri);
                 break;
             }

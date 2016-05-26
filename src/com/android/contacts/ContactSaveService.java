@@ -46,6 +46,7 @@ import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.support.v4.os.ResultReceiver;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -777,10 +778,19 @@ public class ContactSaveService extends IntentService {
     /**
      * Creates an intent that can be sent to this service to delete a group.
      */
-    public static Intent createGroupDeletionIntent(Context context, long groupId) {
+    public static Intent createGroupDeletionIntent(Context context, long groupId,
+            Class<? extends Activity> callbackActivity, String callbackAction) {
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_DELETE_GROUP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
+
+        // Callback intent will be invoked by the service once the group is updated
+        if (callbackActivity != null && !TextUtils.isEmpty(callbackAction)) {
+            final Intent callbackIntent = new Intent(context, callbackActivity);
+            callbackIntent.setAction(callbackAction);
+            serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
+        }
+
         return serviceIntent;
     }
 
@@ -793,6 +803,13 @@ public class ContactSaveService extends IntentService {
 
         getContentResolver().delete(
                 ContentUris.withAppendedId(Groups.CONTENT_URI, groupId), null, null);
+
+        final Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
+        if (callbackIntent != null) {
+            final Uri groupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
+            callbackIntent.setData(groupUri);
+            deliverCallback(callbackIntent);
+        }
     }
 
     /**

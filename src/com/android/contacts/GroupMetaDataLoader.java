@@ -49,8 +49,10 @@ public final class GroupMetaDataLoader extends CursorLoader {
     public final static int DELETED = 8;
 
     public GroupMetaDataLoader(Context context, Uri groupUri) {
-        super(context, ensureIsGroupUri(groupUri), COLUMNS, Groups.ACCOUNT_TYPE + " NOT NULL AND "
-                + Groups.ACCOUNT_NAME + " NOT NULL", null, Groups.TITLE + " COLLATE NOCASE");
+        super(context, ensureIsGroupUri(groupUri), COLUMNS,
+                Groups.ACCOUNT_TYPE + " NOT NULL AND " + Groups.ACCOUNT_NAME + " NOT NULL AND "
+                        + Groups.DELETED + "=0",
+                null, Groups.TITLE + " COLLATE NOCASE ASC");
     }
 
     /**

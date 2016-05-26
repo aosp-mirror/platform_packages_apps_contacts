@@ -24,10 +24,8 @@
         contacts:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_edit_group"
-        android:icon="@drawable/ic_create_24dp"
-        android:title="@string/menu_editGroup"
-        contacts:showAsAction="ifRoom" />
+        android:id="@+id/menu_rename_group"
+        android:title="@string/menu_renameGroup"/>
 
     <item
         android:id="@+id/menu_delete_group"

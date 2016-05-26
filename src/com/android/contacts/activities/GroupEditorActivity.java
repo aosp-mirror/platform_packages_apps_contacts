@@ -31,7 +31,7 @@ import com.android.contacts.group.GroupEditorFragment;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.DialogManager;
 
-// TODO(wjang): it longer works. will be deleted shortly
+// TODO(wjang): it no longer works. will be deleted shortly
 public class GroupEditorActivity extends ContactsActivity
         implements DialogManager.DialogShowingViewActivity {
 
