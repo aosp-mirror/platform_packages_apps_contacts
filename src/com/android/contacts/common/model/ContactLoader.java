@@ -848,6 +848,8 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 selectionArgs.add(accountName);
                 selectionArgs.add(accountType);
 
+                selection.append(" AND " + Groups.DELETED + "=0");
+
                 if (dataSet != null) {
                     selection.append(" AND " + Groups.DATA_SET + "=?");
                     selectionArgs.add(dataSet);
