@@ -54,11 +54,9 @@
     <string name="menu_splitAggregate" msgid="2627252205317945563">"I-unlink"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"I-edit"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"I-delete ang label"</string>
-    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
-    <skip />
+    <string name="menu_addToGroup" msgid="3267409983764370041">"Magdagdag ng contact"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Alisin mula sa label"</string>
-    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
-    <skip />
+    <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Magdagdag ng contact"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Gumawa ng bagong…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"I-unlink ang contact na ito sa maraming contact?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"I-unlink"</string>
@@ -118,7 +116,17 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Hindi ma-link ang contact."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Error sa pagse-save ng contact."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Hindi ma-save ang mga pagbabago sa larawan ng contact."</string>
+    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
+    <skip />
     <string name="groupSavedToast" msgid="6491495462357722285">"Na-save ang label"</string>
+    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
+    <skip />
+    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
+    <skip />
+    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
+    <skip />
+    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Hindi ma-save ang mga pagbabago sa label."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact na may mga numero ng telepono</item>
@@ -152,8 +160,10 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"Idagdag sa mga contact"</string>
     <string name="share_via" msgid="563121028023030093">"Ibahagi ang contact sa pamamagitan ng"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Pumili ng account"</string>
-    <string name="create_group_dialog_title" msgid="125681283147434685">"Gumawa ng label"</string>
-    <string name="create_group_dialog_button" msgid="3024179099311027120">"Gumawa"</string>
+    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
+    <skip />
+    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"Voice chat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Video chat"</string>
     <string name="connections" msgid="8098440723172028350">"Mga Koneksyon"</string>

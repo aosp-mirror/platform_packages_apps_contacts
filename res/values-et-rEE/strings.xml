@@ -54,11 +54,9 @@
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Tühista linkimine"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Muuda"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Kustuta silt"</string>
-    <!-- no translation found for menu_addToGroup (3267409983764370041) -->
-    <skip />
+    <string name="menu_addToGroup" msgid="3267409983764370041">"Kontakti lisamine"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Eemalda sildilt"</string>
-    <!-- no translation found for menu_new_contact_action_bar (7371001434034419566) -->
-    <skip />
+    <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Lisa kontakt"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Uue loomine …"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Kas tühistada selle kontakti linkimine ja jagada see mitmeks kontaktiks?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Tühista linkimine"</string>
@@ -118,7 +116,17 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kontakti ei saanud linkida."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Viga kontakti salvestamisel."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Kontakti foto muudatusi ei õnnestunud salvestada."</string>
+    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
+    <skip />
     <string name="groupSavedToast" msgid="6491495462357722285">"Silt on salvestatud"</string>
+    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
+    <skip />
+    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
+    <skip />
+    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
+    <skip />
+    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Sildi muudatusi ei õnnestunud salvestada."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> telefoninumbriga kontakti</item>
@@ -152,8 +160,10 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"Lisa kontaktide hulka"</string>
     <string name="share_via" msgid="563121028023030093">"Kontakti jagamisvalikud"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Konto valimine"</string>
-    <string name="create_group_dialog_title" msgid="125681283147434685">"Sildi loomine"</string>
-    <string name="create_group_dialog_button" msgid="3024179099311027120">"Loomine"</string>
+    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
+    <skip />
+    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"Häälvestlus"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videovestlus"</string>
     <string name="connections" msgid="8098440723172028350">"Ühendused"</string>
