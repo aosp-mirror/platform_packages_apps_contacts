@@ -211,10 +211,8 @@
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"കോൺടാക്റ്റ് മെറ്റാഡാറ്റ സമന്വയിപ്പിക്കുക [ഡോഗ്‌ഫുഡ്]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"കോൺടാക്റ്റ് മെറ്റാഡാറ്റ സമന്വയിപ്പിക്കുക"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"എന്റെ വിവരം"</string>
-    <!-- no translation found for set_up_profile (8396362096521360520) -->
-    <skip />
-    <!-- no translation found for me_contact_name (1899366267108364062) -->
-    <skip />
+    <string name="set_up_profile" msgid="8396362096521360520">"നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക"</string>
+    <string name="me_contact_name" msgid="1899366267108364062">"എന്റെ വിവരങ്ങൾ: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="setting_about" msgid="3926137653588942297">"കോണ്‍ടാക്റ്റുകളെ കുറിച്ച്"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"ക്രമീകരണം"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുക"</string>
