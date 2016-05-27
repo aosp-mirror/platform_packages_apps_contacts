@@ -205,6 +205,7 @@
             android:name=".common.preference.ContactsPreferenceActivity"
             android:label="@string/activity_title_settings"
             android:theme="@style/ContactsPreferencesTheme"
+            android:launchMode="singleTop"
             android:exported="false"/>
 
         <activity android:name=".common.activity.LicenseActivity"

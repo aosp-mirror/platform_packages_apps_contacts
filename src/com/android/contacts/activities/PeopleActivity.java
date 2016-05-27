@@ -1262,14 +1262,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         final int id = item.getItemId();
 
         if (id == R.id.nav_settings) {
-            final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
-            intent.putExtra(ContactsPreferenceActivity.EXTRA_NEW_LOCAL_PROFILE,
-                    ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE);
-            intent.putExtra(ContactsPreferenceActivity.EXTRA_MODE_FULLY_EXPANDED,
-                    QuickContactActivity.MODE_FULLY_EXPANDED);
-            intent.putExtra(ContactsPreferenceActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
-                    QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE);
-            startActivity(intent);
+            startActivity(createPreferenceIntent());
         } else if (id == R.id.nav_help) {
             HelpUtils.launchHelpAndFeedbackForMainScreen(this);
         } else if (id == R.id.nav_all_contacts) {
@@ -1279,8 +1272,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
             AccountFilterUtil.handleAccountFilterResult(
                     mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
-        } else if (id == R.id.nav_import_export) {
-            showImportExportDialogFragment();
         } else if (id == R.id.nav_blocked_numbers) {
             final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
                     (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
@@ -1299,6 +1290,19 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private Intent createPreferenceIntent() {
+        final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
+        intent.putExtra(ContactsPreferenceActivity.EXTRA_NEW_LOCAL_PROFILE,
+                ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE);
+        intent.putExtra(ContactsPreferenceActivity.EXTRA_MODE_FULLY_EXPANDED,
+                QuickContactActivity.MODE_FULLY_EXPANDED);
+        intent.putExtra(ContactsPreferenceActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
+                QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE);
+        intent.putExtra(ContactsPreferenceActivity.EXTRA_ARE_CONTACTS_AVAILABLE,
+                areContactsAvailable());
+        return intent;
     }
 
     private void showImportExportDialogFragment(){
