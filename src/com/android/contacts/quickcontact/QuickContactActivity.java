@@ -1165,6 +1165,7 @@ public class QuickContactActivity extends ContactsActivity
         final boolean deletedOrSplit = requestCode == REQUEST_CODE_CONTACT_EDITOR_ACTIVITY &&
                 (resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED ||
                 resultCode == ContactEditorBaseActivity.RESULT_CODE_SPLIT);
+        setResult(resultCode, data);
         if (deletedOrSplit) {
             finish();
         } else if (requestCode == REQUEST_CODE_CONTACT_SELECTION_ACTIVITY &&
