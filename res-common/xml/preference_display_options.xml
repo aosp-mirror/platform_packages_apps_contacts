@@ -40,6 +40,11 @@
 
     <Preference
         android:icon="@null"
+        android:key="importExport"
+        android:title="@string/menu_import_export"/>
+
+    <Preference
+        android:icon="@null"
         android:key="about"
         android:title="@string/setting_about"
         android:order="@integer/about_contacts_order_number"/>
