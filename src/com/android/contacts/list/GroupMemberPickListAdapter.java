@@ -102,14 +102,12 @@ public class GroupMemberPickListAdapter extends ContactEntryListAdapter {
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
         loader.setUri(RawContacts.CONTENT_URI);
-
         loader.setProjection(
                 getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
                         ? GroupMembersQuery.PROJECTION_PRIMARY
                         : GroupMembersQuery.PROJECTION_ALTERNATIVE);
         loader.setSelection(getSelection());
         loader.setSelectionArgs(getSelectionArgs());
-
         loader.setSortOrder(getSortOrder() == ContactsPreferences.SORT_ORDER_PRIMARY
                 ? Data.SORT_KEY_PRIMARY : Data.SORT_KEY_ALTERNATIVE
                 + " COLLATE LOCALIZED ASC");

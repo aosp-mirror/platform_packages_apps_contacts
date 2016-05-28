@@ -15,16 +15,16 @@
  */
 package com.android.contacts.list;
 
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.RawContacts;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,11 +46,15 @@ import java.util.Map;
 public class GroupMemberPickerFragment extends
         ContactEntryListFragment<GroupMemberPickListAdapter> {
 
+    public static final String TAG = "GroupMemberPicker";
+
     private static final String KEY_ACCOUNT = "account";
     private static final String KEY_RAW_CONTACT_IDS = "rawContactIds";
 
     private static final String ARG_ACCOUNT = "account";
     private static final String ARG_RAW_CONTACT_IDS = "rawContactIds";
+
+    private static final int LOADER_CONTACT_ENTITY = 0;
 
     /** Callbacks for host of {@link GroupMemberPickerFragment}. */
     public interface Listener {
@@ -74,16 +78,30 @@ public class GroupMemberPickerFragment extends
 
             mCount = super.getCount();
             mIndex = new int[mCount];
+
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "FilterCursorWrapper starting size cursor=" + mCount + " photosMap="
+                        + (mContactPhotosMap == null ? 0 : mContactPhotosMap.size()));
+            }
+
             for (int i = 0; i < mCount; i++) {
                 super.moveToPosition(i);
                 final String rawContactId = getString(GroupMembersQuery.RAW_CONTACT_ID);
                 if (!mRawContactIds.contains(rawContactId)) {
                     mIndex[mPos++] = i;
+                } else if (mContactPhotosMap != null) {
+                    final long contactId = getLong(GroupMembersQuery.CONTACT_ID);
+                    mContactPhotosMap.remove(contactId);
                 }
             }
             mCount = mPos;
             mPos = 0;
             super.moveToFirst();
+
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "FilterCursorWrapper ending  size cursor=" + mCount + " photosMap="
+                        + (mContactPhotosMap == null ? 0 : mContactPhotosMap.size()));
+            }
         }
 
         @Override
@@ -151,6 +169,11 @@ public class GroupMemberPickerFragment extends
             return super.getLong(columnIndex);
         }
 
+        private Pair<Long,String> getContactPhotoPair(long contactId) {
+            return mContactPhotosMap != null && mContactPhotosMap.containsKey(contactId)
+                ? mContactPhotosMap.get(contactId) : null;
+        }
+
         @Override
         public boolean move(int offset) {
             return moveToPosition(mPos + offset);
@@ -193,9 +216,41 @@ public class GroupMemberPickerFragment extends
         }
     }
 
+    private final LoaderCallbacks<Cursor> mContactsEntityCallbacks = new LoaderCallbacks<Cursor>() {
+
+        private final String[] PROJECTION = new String[] {
+                Contacts._ID,
+                Contacts.PHOTO_ID,
+                Contacts.LOOKUP_KEY
+        };
+
+        @Override
+        public CursorLoader onCreateLoader(int id, Bundle args) {
+            final CursorLoader loader = new CursorLoader(getActivity());
+            loader.setUri(Contacts.CONTENT_URI);
+            loader.setProjection(PROJECTION);
+            return loader;
+        }
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+            mContactPhotosMap = new HashMap<>();
+            while (cursor.moveToNext()) {
+                final long contactId = cursor.getLong(0);
+                final Pair<Long, String> pair =
+                        new Pair(cursor.getLong(1), cursor.getString(2));
+                mContactPhotosMap.put(contactId, pair);
+            }
+            GroupMemberPickerFragment.super.startLoading();
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader) {}
+    };
+
     private AccountWithDataSet mAccount;
     private ArrayList<String> mRawContactIds;
-    private Map<Long, Pair<Long,String>> mContactPhotoMap = new HashMap();
+    // Contact ID longs to Pairs of photo ID and contact lookup keys
+    private Map<Long, Pair<Long,String>> mContactPhotosMap;
 
     private Listener mListener;
 
@@ -213,6 +268,7 @@ public class GroupMemberPickerFragment extends
     public GroupMemberPickerFragment() {
         setQuickContactEnabled(false);
         setPhotoLoaderEnabled(true);
+        setVisibleScrollbarEnabled(true);
         setHasOptionsMenu(true);
     }
 
@@ -233,6 +289,15 @@ public class GroupMemberPickerFragment extends
         super.onSaveInstanceState(outState);
         outState.putParcelable(KEY_ACCOUNT, mAccount);
         outState.putStringArrayList(KEY_RAW_CONTACT_IDS, mRawContactIds);
+    }
+
+    @Override
+    protected void startLoading() {
+        if (mContactPhotosMap == null) {
+            getLoaderManager().restartLoader(LOADER_CONTACT_ENTITY, null, mContactsEntityCallbacks);
+        } else {
+            super.startLoading();
+        }
     }
 
     public void setListener(Listener listener) {
@@ -261,6 +326,7 @@ public class GroupMemberPickerFragment extends
         super.configureAdapter();
         getAdapter().setAccount(mAccount);
         getAdapter().setRawContactIds(mRawContactIds);
+        getAdapter().setEmptyListEnabled(true);
     }
 
     @Override
@@ -268,32 +334,5 @@ public class GroupMemberPickerFragment extends
         if (mListener != null) {
             mListener.onGroupMemberClicked(getAdapter().getRawContactUri(position));
         }
-    }
-
-    // TODO(wjang): unacceptable scrolling performance for big groups
-    private Pair<Long,String> getContactPhotoPair(long contactId) {
-        if (mContactPhotoMap.containsKey(contactId)) {
-            return mContactPhotoMap.get(contactId);
-        }
-        final Uri uri  = Data.CONTENT_URI.buildUpon()
-                .appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
-                        String.valueOf(Directory.DEFAULT))
-                .build();
-        final String[] projection = new String[] { Data.PHOTO_ID, Data.LOOKUP_KEY };
-        final String selection = Data.CONTACT_ID + "=?";
-        final String[] selectionArgs = new String[] { Long.toString(contactId) };
-        Cursor cursor = null;
-        try {
-            cursor = getActivity().getContentResolver().query(
-                    uri, projection, selection, selectionArgs, /* sortOrder */ null);
-            if (cursor != null && cursor.moveToFirst()) {
-                final Pair<Long, String> pair = new Pair(cursor.getLong(0), cursor.getString(1));
-                mContactPhotoMap.put(contactId, pair);
-                return pair;
-            }
-        } finally {
-            if (cursor != null) cursor.close();
-        }
-        return null;
     }
 }
