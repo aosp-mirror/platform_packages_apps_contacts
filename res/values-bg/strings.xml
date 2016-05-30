@@ -36,7 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Подробности за контакта"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Редактиране на контакт"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Създаване на контакт"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"Редактиране на етикета"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Информация"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Актуал."</string>
     <string name="searchHint" msgid="8482945356247760701">"Търсене в контактите"</string>
@@ -53,6 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Изпращaне на SMS на контакт"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Разделяне"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Редактиране"</string>
+    <string name="menu_renameGroup" msgid="7169512355179757182">"Преименуване на етикета"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Изтриване на етикета"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Добавяне на контакт"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Премахване от етикета"</string>
@@ -107,7 +107,6 @@
     </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Няма етикети."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Необходим ви е профил, за да създавате групи."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"За да добавите, редактирайте групата."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Няма хора с този етикет."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Контактът е запазен"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Контактите са разделени"</string>
@@ -116,17 +115,13 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Контактът не можа да бъде свързан."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"При запазването на контакта възникна грешка."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Промените в снимката на контакта не можаха да се запазят."</string>
-    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
-    <skip />
+    <string name="groupLoadErrorToast" msgid="7536267148196064554">"Зареждането на етикета не бе успешно"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"Етикетът е запазен."</string>
-    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
-    <skip />
-    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
-    <skip />
-    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
-    <skip />
-    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"Етикетът бе изтрит"</string>
+    <string name="groupCreatedToast" msgid="1924195126172834870">"Етикетът бе създаден"</string>
+    <string name="groupUpdatedToast" msgid="3667977658676267687">"Етикетът бе актуализиран"</string>
+    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"Контактите бяха премахнати"</string>
+    <string name="groupMembersAddedToast" msgid="3335172811673427991">"Контактът бе добавен"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Промените в етикета не можаха да бъдат запазени."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> контакта с телефонен номер</item>
@@ -160,10 +155,9 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"Добавяне към контактите"</string>
     <string name="share_via" msgid="563121028023030093">"Споделяне на контакт чрез"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Избиране на профил"</string>
-    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
-    <skip />
-    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Създаване на етикет"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Преименуване на етикета"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Име на етикета"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Гласов разговор"</string>
     <string name="video_chat" msgid="1872255818640336072">"Видеоразговор"</string>
     <string name="connections" msgid="8098440723172028350">"Връзки"</string>
@@ -174,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"Профил в <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"Не може да се редактира на това у-во."</string>
     <string name="take_photo" msgid="7496128293167402354">"Снимане"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Заснемане на нова снимка"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Избор на снимка"</string>
@@ -217,14 +210,6 @@
     <string name="create_group_dialog_title" msgid="5363404287877384473">"Създаване на нов етикет"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Създаване на ново…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Да се изтрие ли етикетът „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“? (Самите контакти няма да бъдат изтрити.)"</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> души от <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> човек от <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> души</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> човек</item>
-    </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Въведете името на контакта преди свързването му с друг."</string>
     <string name="copy_text" msgid="3257145021583508761">"Копиране в буфера"</string>
     <string name="set_default" msgid="4417505153468300351">"Задаване като стандартна настройка"</string>
@@ -336,4 +321,8 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Затваряне на слоя за навигация"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Етикети"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Профили"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Преглед на общата ви история"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Събития и съобщения"</string>
+    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Събития"</string>
+    <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Съобщения"</string>
 </resources>

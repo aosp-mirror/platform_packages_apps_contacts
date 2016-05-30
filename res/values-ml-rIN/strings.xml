@@ -36,7 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"കോൺടാക്റ്റ് വിശദാംശങ്ങൾ"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"കോൺടാ‌ക്‌റ്റ് തിരുത്തുക"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"കോൺടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"ലേബൽ എഡിറ്റുചെയ്യുക"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"ആമുഖം"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"അപ്‌ഡേറ്റുകൾ"</string>
     <string name="searchHint" msgid="8482945356247760701">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
@@ -53,6 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"കോൺടാക്റ്റിന് വാചകസന്ദേശമയയ്‌ക്കുക"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"അൺലിങ്കുചെയ്യുക"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"എഡിറ്റുചെയ്യുക"</string>
+    <string name="menu_renameGroup" msgid="7169512355179757182">"ലേബലിന്റെ പേരുമാറ്റുക"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"ലേബല്‍ ഇല്ലാതാക്കുക"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"കോൺടാക്റ്റ് ചേർക്കുക"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"ലേബ‌ലിൽ നിന്ന് നീക്കംചെയ്യുക"</string>
@@ -107,7 +107,6 @@
     </plurals>
     <string name="noGroups" msgid="4607906327968232225">"ലേബലുകളൊന്നുമില്ല."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ഗ്രൂപ്പുകൾ സൃഷ്‌ടിക്കാൻ നിങ്ങൾക്ക് ഒരു അക്കൗണ്ട് ആവശ്യമാണ്."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"കുറച്ചുപേരെ ചേർക്കാൻ ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"ഈ ലേബലുള്ള ആരുമില്ല."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"കോൺടാക്റ്റ് സംരക്ഷിച്ചു"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"കോൺടാക്റ്റുകൾ അൺലിങ്കുചെയ്തു"</string>
@@ -116,17 +115,13 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"കോൺടാക്റ്റ് ലിങ്കുചെയ്യാൻ കഴിഞ്ഞില്ല."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"കോൺടാക്റ്റ് സംരക്ഷിക്കുന്നതില്‍ പിശക്"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"കോൺടാക്റ്റ് ഫോട്ടോ മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
-    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
-    <skip />
+    <string name="groupLoadErrorToast" msgid="7536267148196064554">"ലേബൽ ലോഡുചെയ്യുന്നത് പരാജയപ്പെട്ടു"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"ലേബൽ സംരക്ഷിച്ചു"</string>
-    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
-    <skip />
-    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
-    <skip />
-    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
-    <skip />
-    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"ലേബൽ ഇല്ലാതാക്കി"</string>
+    <string name="groupCreatedToast" msgid="1924195126172834870">"ലേബൽ സൃഷ്‌ടിച്ചു"</string>
+    <string name="groupUpdatedToast" msgid="3667977658676267687">"ലേബൽ അപ്ഡേറ്റുചെയ്‌തു"</string>
+    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"കോണ്‍ടാക്റ്റുകള്‍ നീക്കംചെയ്‌തു"</string>
+    <string name="groupMembersAddedToast" msgid="3335172811673427991">"കോൺടാക്‌റ്റ് ചേർത്തു"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"ലേബൽ മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ഫോൺ നമ്പറുള്ള <xliff:g id="COUNT">%d</xliff:g> കോൺടാക്‌റ്റുകൾ</item>
@@ -160,10 +155,9 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"കോൺടാക്‌റ്റുകളിൽ ചേർക്കുക"</string>
     <string name="share_via" msgid="563121028023030093">"ഇതുവഴി കോൺടാക്റ്റുകൾ പങ്കിടുക"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക"</string>
-    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
-    <skip />
-    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"ലേബല്‍ സൃഷ്ടിക്കുക"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"ലേബലിന്റെ പേരുമാറ്റുക"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"ലേബല്‍ പേര്"</string>
     <string name="audio_chat" msgid="2535716629358298691">"വോയ്സ് ചാറ്റ്"</string>
     <string name="video_chat" msgid="1872255818640336072">"വീഡിയോ ചാറ്റ്"</string>
     <string name="connections" msgid="8098440723172028350">"കണക്ഷനുകൾ"</string>
@@ -174,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> അക്കൗണ്ട്"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"ഈ ഉപകരണത്തിൽ എഡിറ്റുചെയ്യാനാകില്ല."</string>
     <string name="take_photo" msgid="7496128293167402354">"ഫോട്ടോ എടുക്കുക"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"പുതിയ ഫോട്ടോ എടുക്കുക"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ഫോട്ടോ തിരഞ്ഞെടുക്കുക"</string>
@@ -217,14 +210,6 @@
     <string name="create_group_dialog_title" msgid="5363404287877384473">"പുതിയ ലേബല്‍ സൃഷ്ടിക്കൂ"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"പുതിയത് സൃഷ്‌ടിക്കുക…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ലേബൽ ഇല്ലാതാക്കണോ? (കോൺടാക്റ്റുകൾ സ്വയം ഇല്ലാതാക്കപ്പെടില്ല.)"</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> എന്നതിൽ നിന്നുള്ള <xliff:g id="COUNT_2">%1$d</xliff:g> പേർ</item>
-      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g> എന്നതിൽ നിന്നുള്ള <xliff:g id="COUNT_0">%1$d</xliff:g> ആൾ</item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> പേർ</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> ആൾ</item>
-    </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"മറ്റൊരു കോൺടാക്റ്റുമായി ലിങ്കുചെയ്യുന്നതിന് മുമ്പ് കോൺടാക്റ്റിന്റെ പേര് ടൈപ്പുചെയ്യുക."</string>
     <string name="copy_text" msgid="3257145021583508761">"ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തുക"</string>
     <string name="set_default" msgid="4417505153468300351">"സ്ഥിരമായി സജ്ജമാക്കുക"</string>
@@ -336,4 +321,8 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"നാവിഗേഷൻ ഡ്രോയർ അടയ്‌ക്കുക"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ലേബലുകൾ"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"അക്കൗണ്ടുകൾ"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"ചരിത്രം ഒന്നിച്ചുകാണൂ"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ഇവന്റുകളും സന്ദേശങ്ങളും"</string>
+    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ഇവന്റുകൾ"</string>
+    <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"സന്ദേശങ്ങള്‍‌"</string>
 </resources>

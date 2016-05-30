@@ -36,7 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"פרטי איש קשר"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"ערוך איש קשר"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"צור איש קשר"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"עריכת תווית"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"מידע כללי"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"עדכונים"</string>
     <string name="searchHint" msgid="8482945356247760701">"חפש אנשי קשר"</string>
@@ -53,6 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"בטל קישור"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"ערוך"</string>
+    <string name="menu_renameGroup" msgid="7169512355179757182">"שינוי השם של התווית"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"מחיקת התווית"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"הוספת איש קשר"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"הסרה מהתווית"</string>
@@ -111,7 +111,6 @@
     </plurals>
     <string name="noGroups" msgid="4607906327968232225">"אין תוויות."</string>
     <string name="noAccounts" msgid="7768267764545265909">"כדי ליצור קבוצות, נחוץ חשבון."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"כדי להוסיף, ערוך את הקבוצה."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"אין אנשים שמסומנים בתווית הזו."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"איש הקשר נשמר"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"בוטל הקישור לאנשי קשר"</string>
@@ -120,17 +119,13 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"לא ניתן היה לקשר איש קשר."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"אירעה שגיאה בעת שמירת איש הקשר."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"לא ניתן היה לשמור את השינויים בתמונות של אנשי הקשר."</string>
-    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
-    <skip />
+    <string name="groupLoadErrorToast" msgid="7536267148196064554">"טעינת התווית נכשלה"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"התווית נשמרה"</string>
-    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
-    <skip />
-    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
-    <skip />
-    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
-    <skip />
-    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"התווית נמחקה"</string>
+    <string name="groupCreatedToast" msgid="1924195126172834870">"התווית נוצרה"</string>
+    <string name="groupUpdatedToast" msgid="3667977658676267687">"התווית עודכנה"</string>
+    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"אנשי הקשר הוסרו"</string>
+    <string name="groupMembersAddedToast" msgid="3335172811673427991">"איש הקשר נוסף"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"לא ניתן היה לשמור את השינויים בתווית."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר עם מספרי טלפון</item>
@@ -170,10 +165,9 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"הוסף לאנשי הקשר"</string>
     <string name="share_via" msgid="563121028023030093">"שתף איש קשר באמצעות"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"בחר חשבון"</string>
-    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
-    <skip />
-    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"יצירת תווית"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"שינוי השם של התווית"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"שם התווית"</string>
     <string name="audio_chat" msgid="2535716629358298691">"צ\'אט קולי"</string>
     <string name="video_chat" msgid="1872255818640336072">"Hangout"</string>
     <string name="connections" msgid="8098440723172028350">"חיבורים"</string>
@@ -184,7 +178,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"חשבון <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"לא ניתן לעריכה במכשיר זה"</string>
     <string name="take_photo" msgid="7496128293167402354">"צלם תמונה"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"צלם תמונה חדשה"</string>
     <string name="pick_photo" msgid="2129509985223564942">"בחר תמונה"</string>
@@ -227,18 +220,6 @@
     <string name="create_group_dialog_title" msgid="5363404287877384473">"יצירת תווית חדשה"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"צור חדשה…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"למחוק את התווית \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (אנשי הקשר המסומנים בתווית לא יימחקו)."</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="two"><xliff:g id="COUNT_2">%1$d</xliff:g> אנשים מ-<xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
-      <item quantity="many"><xliff:g id="COUNT_2">%1$d</xliff:g> אנשים מ-<xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> אנשים מ-<xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
-      <item quantity="one">אדם <xliff:g id="COUNT_0">%1$d</xliff:g> מ-<xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="two"><xliff:g id="COUNT_1">%1$d</xliff:g> אנשים</item>
-      <item quantity="many"><xliff:g id="COUNT_1">%1$d</xliff:g> אנשים</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> אנשים</item>
-      <item quantity="one">אדם <xliff:g id="COUNT_0">%1$d</xliff:g></item>
-    </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"הקלד שם של איש קשר לפני קישורו לאחר."</string>
     <string name="copy_text" msgid="3257145021583508761">"העתק ללוח"</string>
     <string name="set_default" msgid="4417505153468300351">"קבע כברירת מחדל"</string>
@@ -358,4 +339,8 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"סגור את חלונית ההזזה לניווט"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"תוויות"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"חשבונות"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"הצגה של ההיסטוריה המשותפת שלכם"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"אירועים והודעות"</string>
+    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"אירועים"</string>
+    <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"הודעות"</string>
 </resources>

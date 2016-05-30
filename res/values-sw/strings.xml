@@ -36,7 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Maelezo ya anwani"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Hariri anwani"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Unda anwani"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"Badilisha lebo"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Kuhusu"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Masasisho"</string>
     <string name="searchHint" msgid="8482945356247760701">"Tafuta anwani"</string>
@@ -53,6 +52,8 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Tuma ujumbe kwa anwani"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Tenganisha"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Badilisha"</string>
+    <!-- no translation found for menu_renameGroup (7169512355179757182) -->
+    <skip />
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Futa lebo"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Ongeza anwani"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Ondoa kutoka kwenye lebo"</string>
@@ -107,7 +108,6 @@
     </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Hakuna lebo."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Ili kuunda vikundi unahitaji akaunti"</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Kuongeza baadhi, hariri kikundi."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Hakuna watu walio na lebo hii."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Anwani imehifadhiwa"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Imetenganisha anwani"</string>
@@ -116,17 +116,14 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Haikuweza kuunganisha anwani."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Kumekuwa na hitilafu ya kuhifadhi anwani."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Haikuweza kuhifadhi mabadiliko ya picha ya unayewasiliana naye."</string>
-    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
-    <skip />
+    <string name="groupLoadErrorToast" msgid="7536267148196064554">"Imeshindwa kupakia lebo"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"Lebo imehifadhiwa"</string>
-    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
+    <!-- no translation found for groupDeletedToast (520896687873262027) -->
     <skip />
-    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
-    <skip />
-    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
-    <skip />
-    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
-    <skip />
+    <string name="groupCreatedToast" msgid="1924195126172834870">"Lebo imeundwa"</string>
+    <string name="groupUpdatedToast" msgid="3667977658676267687">"Lebo mesasishwa"</string>
+    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"Umeondoa anwani"</string>
+    <string name="groupMembersAddedToast" msgid="3335172811673427991">"Umeongeza anwani"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Imeshindwa kuhifadhi mabadiliko ya lebo."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> unaowasiliana nao wenye nambari za simu</item>
@@ -160,9 +157,11 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"Ongeza kwenye anwani"</string>
     <string name="share_via" msgid="563121028023030093">"Shiriki anwani kupitia"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Teua akaunti"</string>
-    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
+    <!-- no translation found for group_name_dialog_insert_title (2668452090427027941) -->
     <skip />
-    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
+    <!-- no translation found for group_name_dialog_update_title (6328021162869677383) -->
+    <skip />
+    <!-- no translation found for group_name_dialog_hint (7624523157537700160) -->
     <skip />
     <string name="audio_chat" msgid="2535716629358298691">"Gumzo la sauti"</string>
     <string name="video_chat" msgid="1872255818640336072">"Piga gumzo la video"</string>
@@ -174,7 +173,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"Akaunti ya <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"Haiwezi kuhaririwa kwenye kifaa hiki"</string>
     <string name="take_photo" msgid="7496128293167402354">"Piga picha"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Piga picha mpya"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Chagua picha"</string>
@@ -217,14 +215,6 @@
     <string name="create_group_dialog_title" msgid="5363404287877384473">"Unda lebo mpya"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Unda mpya…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Ungependa kufuta lebo iitwayo \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Anwani zenyewe hazitafutwa.)"</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="other">Watu <xliff:g id="COUNT_2">%1$d</xliff:g> kutoka <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
-      <item quantity="one">Mtu<xliff:g id="COUNT_0">%1$d</xliff:g> kutoka <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="other">Watu <xliff:g id="COUNT_1">%1$d</xliff:g></item>
-      <item quantity="one">Mtu <xliff:g id="COUNT_0">%1$d</xliff:g></item>
-    </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Andika jina ya anwani kabla ya kuiunganisha na nyingine."</string>
     <string name="copy_text" msgid="3257145021583508761">"Nakili kwenye ubao wa kunakili"</string>
     <string name="set_default" msgid="4417505153468300351">"Weka chaguo-msingi"</string>
@@ -336,4 +326,8 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Funga droo ya kusogeza"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Lebo"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Akaunti"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Kuangali historia yako pamoja"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Matukio na Ujumbe"</string>
+    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Matukio"</string>
+    <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Ujumbe"</string>
 </resources>

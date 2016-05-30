@@ -36,7 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"పరిచయ వివరాలు"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"పరిచయాన్ని సవరించు"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"పరిచయాన్ని సృష్టించండి"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"లేబుల్‌ను సవరించండి"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"గురించి"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"నవీకరణలు"</string>
     <string name="searchHint" msgid="8482945356247760701">"పరిచయాలను శోధించు"</string>
@@ -53,6 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"పరిచయానికి వచనం పంపు"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"వేరు చేయి"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"సవరించు"</string>
+    <string name="menu_renameGroup" msgid="7169512355179757182">"లేబుల్ పేరును మార్చు"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"లేబుల్‌ను తొలగించు"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"పరిచయాన్ని జోడించు"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"లేబుల్ నుండి తీసివేయి"</string>
@@ -107,7 +107,6 @@
     </plurals>
     <string name="noGroups" msgid="4607906327968232225">"లేబుల్‌లు లేవు."</string>
     <string name="noAccounts" msgid="7768267764545265909">"సమూహాలను సృష్టించడానికి మీకు ఖాతా అవసరం."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"కొంతమందిని జోడించడానికి, సమూహాన్ని సవరించండి."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"ఈ లేబుల్‌తో వ్యక్తులు ఎవరూ లేరు."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"పరిచయం సేవ్ చేయబడింది"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"పరిచయాలు వేరు చేయబడ్డాయి"</string>
@@ -116,17 +115,13 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"పరిచయాన్ని లింక్ చేయడం సాధ్యపడలేదు."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"పరిచయాన్ని సేవ్ చేయడంలో లోపం ఏర్పడింది."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"పరిచయం ఫోటో మార్పులను సేవ్ చేయలేకపోయింది."</string>
-    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
-    <skip />
+    <string name="groupLoadErrorToast" msgid="7536267148196064554">"లేబుల్‌ను లోడ్ చేయడంలో విఫలమైంది"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"లేబుల్ సేవ్ చేయబడింది"</string>
-    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
-    <skip />
-    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
-    <skip />
-    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
-    <skip />
-    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"లేబుల్ తొలగించబడింది"</string>
+    <string name="groupCreatedToast" msgid="1924195126172834870">"లేబుల్ సృష్టించబడింది"</string>
+    <string name="groupUpdatedToast" msgid="3667977658676267687">"లేబుల్ నవీకరించబడింది"</string>
+    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"పరిచయాలు తీసివేయబడ్డాయి"</string>
+    <string name="groupMembersAddedToast" msgid="3335172811673427991">"పరిచయం జోడించబడింది"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"లేబుల్ మార్పులను సేవ్ చేయలేకపోయింది."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ఫోన్ నంబర్‌లు ఉన్న <xliff:g id="COUNT">%d</xliff:g> పరిచయాలు</item>
@@ -160,10 +155,9 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"పరిచయాలకు జోడించు"</string>
     <string name="share_via" msgid="563121028023030093">"పరిచయాన్ని దీని ద్వారా భాగస్వామ్యం చేయండి"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"ఖాతాను ఎంచుకోండి"</string>
-    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
-    <skip />
-    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"లేబుల్‌ను సృష్టించండి"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"లేబుల్ పేరును మార్చండి"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"లేబుల్ పేరు"</string>
     <string name="audio_chat" msgid="2535716629358298691">"వాయిస్ చాట్"</string>
     <string name="video_chat" msgid="1872255818640336072">"వీడియో చాట్"</string>
     <string name="connections" msgid="8098440723172028350">"కనెక్షన్‌లు"</string>
@@ -174,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> ఖాతా"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"ఈ పరికరంలో సవరించడం కుదరదు."</string>
     <string name="take_photo" msgid="7496128293167402354">"ఫోటో తీయండి"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"కొత్త ఫోటో తీసుకోండి"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ఫోటోను ఎంచుకోండి"</string>
@@ -217,14 +210,6 @@
     <string name="create_group_dialog_title" msgid="5363404287877384473">"కొత్త లేబుల్‌ను సృష్టించు"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"కొత్తది సృష్టించు…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" లేబుల్‌ని తొలగించాలా? (పరిచయాలు వాటంతట అవే తొలగించబడవు.)"</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> నుండి <xliff:g id="COUNT_2">%1$d</xliff:g> మంది వ్యక్తులు</item>
-      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g> నుండి <xliff:g id="COUNT_0">%1$d</xliff:g> వ్యక్తి</item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> మంది వ్యక్తులు</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> వ్యక్తి</item>
-    </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"మరొకదానితో లింక్ చేయడానికి ముందు పరిచయం పేరు టైప్ చేయండి."</string>
     <string name="copy_text" msgid="3257145021583508761">"క్లిప్‌బోర్డ్‌కు కాపీ చేయి"</string>
     <string name="set_default" msgid="4417505153468300351">"డిఫాల్ట్‌గా సెట్ చేయి"</string>
@@ -336,4 +321,8 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"నావిగేషన్ డ్రాయర్‌ను మూసివేస్తుంది"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"లేబుల్‌లు"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"ఖాతాలు"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"మీ చరిత్ర అంతా కలిపి చూడండి"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ఈవెంట్‌లు మరియు సందేశాలు"</string>
+    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ఈవెంట్‌లు"</string>
+    <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"సందేశాలు"</string>
 </resources>

@@ -36,7 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"পরিচিতির বিবরণগুলি"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"পরিচিতি সম্পাদনা করুন"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"পরিচিতি তৈরি করুন"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"লেবেল সম্পাদনা করুন"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"সম্পর্কে"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"আপডেটগুলি"</string>
     <string name="searchHint" msgid="8482945356247760701">"পরিচিতিগুলি খুঁজুন"</string>
@@ -53,6 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"পরিচিতিকে পাঠ্য বার্তা পাঠান"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"লিঙ্কমুক্ত করুন"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"সম্পাদনা করুন"</string>
+    <string name="menu_renameGroup" msgid="7169512355179757182">"লেবেলের পুনঃনামকরণ করুন"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"লেবেল মুছুন"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"পরিচিতি যোগ করুন"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"লেবেল থেকে সরান"</string>
@@ -107,7 +107,6 @@
     </plurals>
     <string name="noGroups" msgid="4607906327968232225">"কোনো লেবেল নেই।"</string>
     <string name="noAccounts" msgid="7768267764545265909">"গোষ্ঠীগুলি তৈরি করার জন্য আপনার একটি অ্যাকাউন্টের প্রয়োজন৷"</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"কিছু যোগ করতে, গোষ্ঠী সম্পাদনা করুন৷"</string>
     <string name="emptyGroup" msgid="3741795311081911842">"এই লেবেলের সাথে কোনো লোকজন নেই।"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"পরিচিতি সংরক্ষণ করা হয়েছে"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"পরিচিতিগুলি লিঙ্কমুক্ত করা হয়েছে"</string>
@@ -116,17 +115,13 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"পরিচিতি লিঙ্ক করা যায়নি৷"</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"পরিচিতি সংরক্ষণ করতে ত্রুটি হয়েছে৷"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"পরিচিতির ফটোর পরিবর্তনগুলি সংরক্ষণ করা যায়নি৷"</string>
-    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
-    <skip />
+    <string name="groupLoadErrorToast" msgid="7536267148196064554">"লেবেল লোড করা গেল না"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"লেবেল সংরক্ষিত হয়েছে"</string>
-    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
-    <skip />
-    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
-    <skip />
-    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
-    <skip />
-    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"লেবেল মুছে ফেলা হয়েছে"</string>
+    <string name="groupCreatedToast" msgid="1924195126172834870">"লেবেল তৈরি করা হয়েছে"</string>
+    <string name="groupUpdatedToast" msgid="3667977658676267687">"লেবেল আপডেট করা হয়েছে"</string>
+    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"সরানো পরিচিতিগুলি"</string>
+    <string name="groupMembersAddedToast" msgid="3335172811673427991">"যোগ করা পরিচিতি"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"লেবেল পরিবর্তনগুলি সংরক্ষণ করা গেল না।"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">ফোন নম্বর সহ <xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
@@ -160,10 +155,9 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"পরিচিতিগুলিতে জুড়ুন"</string>
     <string name="share_via" msgid="563121028023030093">"এর মাধ্যমে পরিচিতি শেয়ার করুন"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"অ্যাকাউন্ট বেছে নিন"</string>
-    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
-    <skip />
-    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"লেবেল তৈরি করুন"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"লেবেলের পুনঃনামকরণ করুন"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"লেবেলের নাম"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ভয়েস চ্যাট"</string>
     <string name="video_chat" msgid="1872255818640336072">"ভিডিও চ্যাট"</string>
     <string name="connections" msgid="8098440723172028350">"সংযোগগুলি"</string>
@@ -174,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> অ্যাকাউন্ট"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"এই ডিভাইসে সম্পাদনযোগ্য নয়৷"</string>
     <string name="take_photo" msgid="7496128293167402354">"ফটো তুলুন"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"নতুন ফটো তুলুন"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ফটো বেছে নিন"</string>
@@ -217,14 +210,6 @@
     <string name="create_group_dialog_title" msgid="5363404287877384473">"নতুন লেবেল তৈরি করুন"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"নতুন তৈরি করুন…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" গোষ্ঠী মুছবেন? (পরিচিতিগুলি নিজে থেকে মুছে যাবে না৷)"</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> থেকে <xliff:g id="COUNT_2">%1$d</xliff:g> জন</item>
-      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> থেকে <xliff:g id="COUNT_2">%1$d</xliff:g> জন</item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> জন</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> জন</item>
-    </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"অন্য একটির সাথে লিঙ্ক করার আগে পরিচিতির নাম লিখুন৷"</string>
     <string name="copy_text" msgid="3257145021583508761">"ক্লিপবোর্ডে কপি করুন"</string>
     <string name="set_default" msgid="4417505153468300351">"ডিফল্ট সেট করুন"</string>
@@ -336,4 +321,8 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"নেভিগেশান ড্রয়ার বন্ধ করুন"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"লেবেলগুলি"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"অ্যাকাউন্টগুলি"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"আপনার ইতিহাস একসাথে দেখুন"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ইভেন্ট এবং বার্তাগুলি"</string>
+    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ইভেন্টগুলি"</string>
+    <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"বার্তাগুলি"</string>
 </resources>

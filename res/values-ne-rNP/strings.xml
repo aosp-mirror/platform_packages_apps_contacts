@@ -36,7 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"विवरणहरूलाई सम्पर्क गर्नुहोस्"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"सम्पर्क सम्पादन गर्नुहोस्"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"ठेगाना बनाउनुहोस्"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"लेबललाई सम्पादन गर्नुहोस्"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"बारेमा"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"अद्यावधिकहरू"</string>
     <string name="searchHint" msgid="8482945356247760701">"सम्पर्कहरू खोज्नुहोस्"</string>
@@ -53,6 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"पाठ सम्पर्क"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"अनलिंक"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"सम्पादन गर्नुहोस्"</string>
+    <string name="menu_renameGroup" msgid="7169512355179757182">"लेबलको पुन:नामाकरण गर्नुहोस्"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"लेबल मेटाउनुहोस"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"सम्पर्क थप्नुहोस्"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"लेबलबाट हटाउनुहोस्"</string>
@@ -107,7 +107,6 @@
     </plurals>
     <string name="noGroups" msgid="4607906327968232225">"कुनै पनि लेबल छैन।"</string>
     <string name="noAccounts" msgid="7768267764545265909">"समूह बनाउनका लागि एउटा खाताको आवश्यक्ता हुन्छ।"</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"केही थपनका लागि, समुह सम्पादन गर्नुहोस्।"</string>
     <string name="emptyGroup" msgid="3741795311081911842">"यो लेबल भएका कुनै पनि व्यक्तिहरू छैनन्।"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"सम्पर्क बचत गरियो।"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"सम्पर्क ठेगानाहरू अनलिंक गरियो"</string>
@@ -116,17 +115,13 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"सम्पर्क ठेगाना लिंक गर्न सकिएन।"</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"सम्पर्क सुरक्षित गर्दा त्रूटि।"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"सम्पर्क तस्बिर परिवर्तनहरू सुरक्षित गर्न सकिएन।"</string>
-    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
-    <skip />
+    <string name="groupLoadErrorToast" msgid="7536267148196064554">"लेबल लोड गर्न सकिएन"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"लेबललाई सुरक्षित गरियो"</string>
-    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
-    <skip />
-    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
-    <skip />
-    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
-    <skip />
-    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"लेबल मेटाइयो"</string>
+    <string name="groupCreatedToast" msgid="1924195126172834870">"लेबल सिर्जना गरियो"</string>
+    <string name="groupUpdatedToast" msgid="3667977658676267687">"लेबललाई अद्यावधिक गरियो"</string>
+    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"सम्पर्कहरू हटाइए"</string>
+    <string name="groupMembersAddedToast" msgid="3335172811673427991">"सम्पर्क थपियो"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"लेबलमा गरिएका परिवर्तनहरूलाई सुरक्षित गर्न सकिएन।"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>सम्पर्कहरू फोन नम्बर सहित</item>
@@ -160,10 +155,9 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"सम्पर्कहरूमा थप्नुहोस्"</string>
     <string name="share_via" msgid="563121028023030093">"यस मार्फत सम्पर्क ‍साझेदारी गर्नुहोस्"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"खाता छान्नुहोस्"</string>
-    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
-    <skip />
-    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"लेबल सिर्जना गर्नुहोस्"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"लेबलको पुन:नामाकरण गर्नुहोस्"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"लेबलको नाम"</string>
     <string name="audio_chat" msgid="2535716629358298691">"भ्वाइस च्याट"</string>
     <string name="video_chat" msgid="1872255818640336072">"भिडियो च्याट"</string>
     <string name="connections" msgid="8098440723172028350">"जडानहरू"</string>
@@ -174,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> खाता"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"यस उपकरणमा सम्पादनयोग्य छैन।"</string>
     <string name="take_photo" msgid="7496128293167402354">"तस्बिर लिनुहोस्"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"नयाँ तस्बिर खिच्नुहोस्"</string>
     <string name="pick_photo" msgid="2129509985223564942">"तस्बिर छान्नुहोस्"</string>
@@ -217,14 +210,6 @@
     <string name="create_group_dialog_title" msgid="5363404287877384473">"नयाँ लेबल सिर्जना गर्नुहोस्"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"नयाँ लेबल सिर्जना गर्नुहोस्..."</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" लेबललाई हटाउने हो? (सम्पर्कहरू मेटिने छैनन्।)"</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> व्यक्तिहरू <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> बाट</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> व्यक्ति <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g> बाट</item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> व्यक्तिहरु</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> व्यक्ति</item>
-    </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"अर्कोसँग लिंक हुनुअघि सम्पर्क नाम टाइप गर्नुहोस्।"</string>
     <string name="copy_text" msgid="3257145021583508761">"क्लिपबोर्डमा प्रतिलिपि गर्नुहोस्"</string>
     <string name="set_default" msgid="4417505153468300351">"पूर्वनिर्धारित मिलाउनुहोस्"</string>
@@ -336,4 +321,8 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"नेभिगेसन ड्रअर बन्द गर्नुहोस्"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"लेबलहरू"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"खाताहरू"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"आफ्नो इतिहास संयुक्त रूपमा हेर्नुहोस्"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"घटनाक्रम र सन्देशहरू"</string>
+    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"घटनाक्रमहरू"</string>
+    <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"सन्देशहरू"</string>
 </resources>

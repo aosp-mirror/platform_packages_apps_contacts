@@ -36,7 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"தொடர்பு விவரங்கள்"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"தொடர்பைத் திருத்து"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"தொடர்பை உருவாக்கு"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"லேபிளை மாற்று"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"அறிமுகம்"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"புதுப்பிப்புகள்"</string>
     <string name="searchHint" msgid="8482945356247760701">"தொடர்புகளைத் தேடு"</string>
@@ -53,6 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"தொடர்பிற்கு உரைச் செய்தியை அனுப்பு"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"தொடர்பைப் பிரி"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"திருத்து"</string>
+    <string name="menu_renameGroup" msgid="7169512355179757182">"லேபிளின் பெயரை மாற்று"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"லேபிளை நீக்கு"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"தொடர்பைச் சேர்"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"லேபிளிலிருந்து அகற்று"</string>
@@ -107,7 +107,6 @@
     </plurals>
     <string name="noGroups" msgid="4607906327968232225">"லேபிள்கள் இல்லை."</string>
     <string name="noAccounts" msgid="7768267764545265909">"குழுக்களை உருவாக்க கணக்கு அவசியம்."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"சிலவற்றைச் சேர்க்க, குழுவைத் திருத்தவும்."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"இந்த லேபிளுடன் யாருமில்லை."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"தொடர்பு சேமிக்கப்பட்டது"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"தொடர்புகள் பிரிக்கப்பட்டன"</string>
@@ -116,17 +115,13 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"தொடர்பை இணைக்க முடியவில்லை."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"தொடர்பைச் சேமிப்பதில் பிழை."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"தொடர்பின் பட மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
-    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
-    <skip />
+    <string name="groupLoadErrorToast" msgid="7536267148196064554">"லேபிளை ஏற்ற முடியவில்லை"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"லேபிள் சேமிக்கப்பட்டது"</string>
-    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
-    <skip />
-    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
-    <skip />
-    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
-    <skip />
-    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"லேபிள் நீக்கப்பட்டது"</string>
+    <string name="groupCreatedToast" msgid="1924195126172834870">"லேபிள் உருவாக்கப்பட்டது"</string>
+    <string name="groupUpdatedToast" msgid="3667977658676267687">"லேபிள் புதுப்பிக்கப்பட்டது"</string>
+    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"தொடர்புகள் அகற்றப்பட்டன"</string>
+    <string name="groupMembersAddedToast" msgid="3335172811673427991">"தொடர்பு சேர்க்கப்பட்டது"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"லேபிள் மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">மொபைல் எண்களுடன் <xliff:g id="COUNT">%d</xliff:g> தொடர்புகள் உள்ளன</item>
@@ -160,10 +155,9 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"தொடர்புகளில் சேர்"</string>
     <string name="share_via" msgid="563121028023030093">"தொடர்பை இதில் பகிர்:"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"கணக்கைத் தேர்வுசெய்க"</string>
-    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
-    <skip />
-    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"லேபிளை உருவாக்கு"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"லேபிளின் பெயரை மாற்று"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"லேபிளின் பெயர்"</string>
     <string name="audio_chat" msgid="2535716629358298691">"குரல் அரட்டை"</string>
     <string name="video_chat" msgid="1872255818640336072">"வீடியோ அரட்டை"</string>
     <string name="connections" msgid="8098440723172028350">"இணைப்புகள்"</string>
@@ -174,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> கணக்கு"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"இந்தச் சாதனத்தில் திருத்தக்கூடியதல்ல."</string>
     <string name="take_photo" msgid="7496128293167402354">"படமெடு"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"புதிய படத்தை எடு"</string>
     <string name="pick_photo" msgid="2129509985223564942">"படத்தைத் தேர்வுசெய்யவும்"</string>
@@ -217,14 +210,6 @@
     <string name="create_group_dialog_title" msgid="5363404287877384473">"புதிய லேபிளை உருவாக்கு"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"புதியதை உருவாக்கு…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" லேபிளை நீக்கவா? (அதன் தொடர்புகள் நீக்கப்படாது.)"</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> இலிருந்து <xliff:g id="COUNT_2">%1$d</xliff:g> பேர்</item>
-      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g> இலிருந்து <xliff:g id="COUNT_0">%1$d</xliff:g> நபர்</item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> பேர்</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> நபர்</item>
-    </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"வேறொன்றுடன் இணைப்பதற்கு முன் தொடர்பின் பெயரை உள்ளிடவும்."</string>
     <string name="copy_text" msgid="3257145021583508761">"கிளிப்போர்டுக்கு நகலெடு"</string>
     <string name="set_default" msgid="4417505153468300351">"இயல்புநிலையாக அமை"</string>
@@ -336,4 +321,8 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"வழிசெலுத்தல் டிராயரை மூடும்"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"லேபிள்கள்"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"கணக்குகள்"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"நிகழ்வுகள் &amp; செய்திகளின் வரலாற்றை ஒன்றாகப் பார்க்கவும்"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"நிகழ்வுகளும் செய்திகளும்"</string>
+    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"நிகழ்வுகள்"</string>
+    <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"செய்திகள்"</string>
 </resources>

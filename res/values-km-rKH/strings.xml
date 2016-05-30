@@ -36,7 +36,6 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"ព័ត៌មាន​លម្អិត​របស់​ទំនាក់ទំនង"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"កែ​ទំនាក់ទំនង"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"បង្កើត​ទំនាក់ទំនង"</string>
-    <string name="editGroupDescription" msgid="8684610429826272985">"កែ​ស្លាក"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"អំពី"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"បច្ចុប្បន្នភាព"</string>
     <string name="searchHint" msgid="8482945356247760701">"រក​ទំនាក់ទំនង"</string>
@@ -53,6 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"អត្ថបទ​ទំនាក់ទំនង"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"ផ្តាច់ការតភ្ជាប់"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"កែសម្រួល​"</string>
+    <string name="menu_renameGroup" msgid="7169512355179757182">"ប្ដូរឈ្មោះស្លាក"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"លុបស្លាក"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"បន្ថែម​ទំនាក់ទំនង"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"លុប​ចេញ​ពី​ស្លាក"</string>
@@ -107,7 +107,6 @@
     </plurals>
     <string name="noGroups" msgid="4607906327968232225">"គ្មានស្លាក។"</string>
     <string name="noAccounts" msgid="7768267764545265909">"ដើម្បី​បង្កើត​ក្រុម​អ្នក​ចាំបាច់​ត្រូវ​មាន​គណនី​មួយ។"</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"ដើម្បី​បន្ថែម, កែ​សម្រួល​ក្រុម។"</string>
     <string name="emptyGroup" msgid="3741795311081911842">"មិនមានមនុស្សដែលមានស្លាកនេះ​ទេ។"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"បាន​រក្សាទុក​ទំនាក់ទំនង"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ទំនាក់ទំនងដែលមិនបានតភ្ជាប់"</string>
@@ -116,17 +115,13 @@
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"មិនអាចតភ្ជាប់ទំនាក់ទំនងបានទេ"</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"មានកំហុសក្នុងការរក្សាទុកទំនាក់ទំនង"</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"មិនអាចរក្សាទុកការប្ដូររូបថតទំនាក់ទំនង។"</string>
-    <!-- no translation found for groupLoadErrorToast (7536267148196064554) -->
-    <skip />
+    <string name="groupLoadErrorToast" msgid="7536267148196064554">"បាន​បរាជ័យ​ក្នុង​ការ​ផ្ទុក​ស្លាក"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"បាន​រក្សាទុក​ស្លាក"</string>
-    <!-- no translation found for groupCreatedToast (1924195126172834870) -->
-    <skip />
-    <!-- no translation found for groupUpdatedToast (3667977658676267687) -->
-    <skip />
-    <!-- no translation found for groupMembersRemovedToast (2683813023881480814) -->
-    <skip />
-    <!-- no translation found for groupMembersAddedToast (3335172811673427991) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"បានលុបស្លាក"</string>
+    <string name="groupCreatedToast" msgid="1924195126172834870">"បាន​បង្កើត​ស្លាក"</string>
+    <string name="groupUpdatedToast" msgid="3667977658676267687">"បាន​ធ្វើ​​បច្ចុប្បន្នភាព​ស្លាក"</string>
+    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"ទំនាក់ទំនង​បាន​យកចេញ"</string>
+    <string name="groupMembersAddedToast" msgid="3335172811673427991">"បាន​បន្ថែម​ទំនាក់ទំនង"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"មិនអាចរក្សាទុកការផ្លាស់ប្តូរស្លាក​បាន​ទេ។"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ទំនាក់ទំនង <xliff:g id="COUNT">%d</xliff:g> ដែលមានលេខទូរស័ព្ទ</item>
@@ -160,10 +155,9 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"បន្ថែម​ទៅ​ទំនាក់ទំនង"</string>
     <string name="share_via" msgid="563121028023030093">"ចែករំលែក​ទំនាក់ទំនង​តាម"</string>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"ជ្រើសគណនី"</string>
-    <!-- no translation found for insert_group_dialog_title (3560335036960234288) -->
-    <skip />
-    <!-- no translation found for update_group_dialog_title (3240957510452067931) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"បង្កើតស្លាក"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"ប្ដូរឈ្មោះស្លាក"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"ឈ្មោះស្លាក"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ជជែក​ជា​សំឡេង"</string>
     <string name="video_chat" msgid="1872255818640336072">"ជជែក​ជា​វីដេអូ"</string>
     <string name="connections" msgid="8098440723172028350">"ការ​តភ្ជាប់"</string>
@@ -174,7 +168,6 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"គណនី <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="group_read_only" msgid="1061762906115697637">"មិន​អាច​កែ​បាន​ទេ​លើ​ឧបករណ៍​នេះ។"</string>
     <string name="take_photo" msgid="7496128293167402354">"ថតរូប"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ថតរូប​ថ្មី"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ជ្រើស​រូបថត"</string>
@@ -217,14 +210,6 @@
     <string name="create_group_dialog_title" msgid="5363404287877384473">"បង្កើតស្លាកថ្មី"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"បង្កើត​ថ្មី..."</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"លុប​​ស្លាក \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (ទំនាក់ទំនង​របស់​​ខ្លួន​ឯង​​នឹង​មិន​ត្រូវ​បាន​លុប​ទេ)"</string>
-    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
-      <item quantity="other">មនុស្ស <xliff:g id="COUNT_2">%1$d</xliff:g> នាក់ពី <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
-      <item quantity="one">មនុស្ស <xliff:g id="COUNT_0">%1$d</xliff:g> នាក់ពី <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
-    </plurals>
-    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
-      <item quantity="other">មនុស្ស <xliff:g id="COUNT_1">%1$d</xliff:g> នាក់</item>
-      <item quantity="one">មនុស្ស <xliff:g id="COUNT_0">%1$d</xliff:g> នាក់</item>
-    </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"សូមបញ្ចូលឈ្មោះទំនាក់ទំនងមុនពេលតភ្ជាប់ជាមួយទំនាក់ទំនងផ្សេងទៀត។"</string>
     <string name="copy_text" msgid="3257145021583508761">"ចម្លង​ទៅ​ក្ដារ​តម្បៀត​ខ្ទាស់"</string>
     <string name="set_default" msgid="4417505153468300351">"កំណត់​លំនាំដើម"</string>
@@ -336,4 +321,8 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"បិទ​ផ្ទាំង​រុករក"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ស្លាក"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"គណនី"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"មើល​ប្រវត្តិ​របស់​អ្នក​រួម​គ្នា"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ព្រឹត្តិការណ៍ និង​សារ"</string>
+    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ព្រឹត្តិការណ៍"</string>
+    <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"សារ"</string>
 </resources>
