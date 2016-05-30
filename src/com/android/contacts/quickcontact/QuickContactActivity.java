@@ -2813,7 +2813,8 @@ public class QuickContactActivity extends ContactsActivity
         intent.putExtra(Intent.EXTRA_STREAM, shareUri);
 
         // Launch chooser to share contact via
-        final CharSequence chooseTitle = getText(R.string.share_via);
+        final CharSequence chooseTitle = getResources().getQuantityString(
+                R.plurals.title_share_via, /* quantity */ 1);
         final Intent chooseIntent = Intent.createChooser(intent, chooseTitle);
 
         try {

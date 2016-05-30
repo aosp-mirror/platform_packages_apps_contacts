@@ -1346,9 +1346,10 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         intent.setType(Contacts.CONTENT_VCARD_TYPE);
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         try {
-            // TODO(wenyiw): show different strings based on number of contacts.
-            startActivityForResult(Intent.createChooser(intent, getText(R.string.share_via)),
-                    ACTIVITY_REQUEST_CODE_SHARE);
+            startActivityForResult(Intent.createChooser(intent, getResources().getQuantityString(
+                    R.plurals.title_share_via,
+                    /* quantity */ mAllFragment.getSelectedContactIds().size()))
+                    , ACTIVITY_REQUEST_CODE_SHARE);
         } catch (final ActivityNotFoundException ex) {
             Toast.makeText(this, R.string.share_error, Toast.LENGTH_SHORT).show();
         }
