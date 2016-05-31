@@ -421,8 +421,11 @@
     <!-- The menu item to add the the currently viewed contact to your contacts [CHAR LIMIT=30] -->
     <string name="menu_add_contact">Add to contacts</string>
 
-    <!-- Dialog title when picking the application to share a contact with. -->
-    <string name="share_via">Share contact via</string>
+    <!-- Dialog title when picking the application to share one or multiple contacts with. [CHAR LIMIT=40] -->
+    <plurals name="title_share_via">
+        <item quantity="one">Share contact via</item>
+        <item quantity="other">Share contacts via</item>
+    </plurals>
 
     <!-- Title for the disambiguation dialog that requests the user choose an account for the new label to be created under [CHAR LIMIT=NONE] -->
     <string name="dialog_new_group_account">Choose account</string>
