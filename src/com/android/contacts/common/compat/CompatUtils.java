@@ -176,7 +176,9 @@ public final class CompatUtils {
         // SdkVersionOverride doesn't work here because VERSION.SDK_INT remains 23 (same as M)
         // before N is release
 
-        return Build.VERSION.SDK_INT > Build.VERSION_CODES.M;  // Run time flag
+        // TODO: remove build time check and use proper runtime check once N is released.
+        return SdkSelectionUtils.TARGET_N_SDK // Build time flag
+                && CODENAME_STARTS_WITH_N;  // Run time flag
     }
 
     /**
