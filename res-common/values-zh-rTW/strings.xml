@@ -226,7 +226,7 @@
     <string name="no_contact_to_share" msgid="5749367538191552509">"沒有任何聯絡人資料可供分享。"</string>
     <string name="menu_search" msgid="7464453023659824700">"搜尋"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"尋找聯絡人"</string>
-    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"最愛的聯絡人"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"常用聯絡人"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"沒有聯絡人。"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"清除常用聯絡人"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"選取 SIM 卡"</string>

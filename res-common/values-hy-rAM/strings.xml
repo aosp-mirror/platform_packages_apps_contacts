@@ -204,7 +204,7 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Դասավորել ըստ"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Անունի"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Ազգանունի"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Անվան ձևաչափը"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Անվան ձևաչափ"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Սկզբում՝ անունը"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Սկզբում՝ ազգանունը"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Կանխադրված հաշիվ նոր կոնտակտների համար"</string>
@@ -246,8 +246,8 @@
     <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
     <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
-      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթարցված տարր: </item>
-      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթարցված տարր: </item>
+      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթերցված տարր: </item>
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթերցված տարր: </item>
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"Թողարկման տարբերակը"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"Բաց կոդով ծրագրերի արտոնագրեր"</string>
