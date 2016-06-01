@@ -163,7 +163,12 @@
     <string name="missing_app" msgid="1466111003546611387">"Aplikace potřebná k provedení této akce nebyla nalezena."</string>
     <string name="menu_share" msgid="943789700636542260">"Sdílet"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Přidat do kontaktů"</string>
-    <string name="share_via" msgid="563121028023030093">"Sdílet kontakt pomocí"</string>
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="few">Sdílet kontakty v aplikaci</item>
+      <item quantity="many">Sdílet kontakty v aplikaci</item>
+      <item quantity="other">Sdílet kontakty v aplikaci</item>
+      <item quantity="one">Sdílet kontakt v aplikaci</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Vyberte účet"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Vytvořit štítek"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Přejmenovat štítek"</string>
@@ -174,7 +179,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Přidat spojení"</string>
     <string name="recent" msgid="2659189233141493004">"Nedávné"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Poslední aktualizace"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Kontakt ze zdroje <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Zdroj kontaktu: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Účet <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />

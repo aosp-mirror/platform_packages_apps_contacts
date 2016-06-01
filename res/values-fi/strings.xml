@@ -153,7 +153,10 @@
     <string name="missing_app" msgid="1466111003546611387">"Tätä toimintoa käsittelevää sovellusta ei löydy."</string>
     <string name="menu_share" msgid="943789700636542260">"Jaa"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Lisää yhteystietoihin"</string>
-    <string name="share_via" msgid="563121028023030093">"Jaa yhteystieto"</string>
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="other">Jaa yhteystiedot sovelluksella</item>
+      <item quantity="one">Jaa yhteystieto sovelluksella</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Valitse tili"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Luo tunniste"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Nimeä tunniste uudelleen"</string>

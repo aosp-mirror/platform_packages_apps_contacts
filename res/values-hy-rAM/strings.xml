@@ -77,7 +77,7 @@
       <item quantity="other">Կոնտակտները ջնջվեցին</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ընտրել զանգերանգ"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Զանգերը ուղղել ձայնային փոստ"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Միայն ձայն․ փոստ"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Ձեր միայն կարդալու հաշիվների կոնտակտները չեն կարող ջնջվել, սակայն կարող են թաքցվել:"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Թաքցնել"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Ջնջվող կոնտակտը պարունակում են տվյալներ մի քանի հաշիվներից: Միայն կարդալու հաշիվների տվյալները կթաքցվեն, սակայն չեն ջնջվի:"</string>
@@ -153,7 +153,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Այս գործողությունը կատարելու համար ոչ մի ծրագիր չի գտնվել:"</string>
     <string name="menu_share" msgid="943789700636542260">"Կիսվել"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Ավելացնել կոնտակտներում"</string>
-    <string name="share_via" msgid="563121028023030093">"Տարածել կոնտակտը"</string>
+    <!-- no translation found for title_share_via (5886112726191455415) -->
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Ընտրեք հաշիվը"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Պիտակի ստեղծում"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Պիտակի վերանվանում"</string>

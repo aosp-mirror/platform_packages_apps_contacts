@@ -52,8 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS an Kontakt"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Verknüpfung aufheben"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Bearbeiten"</string>
-    <!-- no translation found for menu_renameGroup (7169512355179757182) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="7169512355179757182">"Label umbenennen"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Label löschen"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Kontakt hinzufügen"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Aus Label entfernen"</string>
@@ -118,8 +117,7 @@
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Änderungen des Kontaktfotos konnten nicht gespeichert werden."</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Label konnte nicht geladen werden"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"Label gespeichert"</string>
-    <!-- no translation found for groupDeletedToast (520896687873262027) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"Label gelöscht"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Label erstellt"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Label aktualisiert"</string>
     <string name="groupMembersRemovedToast" msgid="2683813023881480814">"Kontakte entfernt"</string>
@@ -155,14 +153,11 @@
     <string name="missing_app" msgid="1466111003546611387">"Für diese Aktion wurde keine App gefunden."</string>
     <string name="menu_share" msgid="943789700636542260">"Teilen"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Zu Kontakten hinzufügen"</string>
-    <string name="share_via" msgid="563121028023030093">"Kontakt teilen über"</string>
+    <!-- no translation found for title_share_via (5886112726191455415) -->
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Konto auswählen"</string>
-    <!-- no translation found for group_name_dialog_insert_title (2668452090427027941) -->
-    <skip />
-    <!-- no translation found for group_name_dialog_update_title (6328021162869677383) -->
-    <skip />
-    <!-- no translation found for group_name_dialog_hint (7624523157537700160) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Label erstellen"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Label umbenennen"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Labelname"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Sprachchat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videochat"</string>
     <string name="connections" msgid="8098440723172028350">"Verbindungen"</string>

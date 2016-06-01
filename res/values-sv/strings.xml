@@ -52,8 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Skicka SMS till kontakt"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Ta bort länk"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Redigera"</string>
-    <!-- no translation found for menu_renameGroup (7169512355179757182) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="7169512355179757182">"Byt namn på etikett"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Radera etikett"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Lägg till kontakt"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Ta bort från etikett"</string>
@@ -118,8 +117,7 @@
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Det gick inte att spara ändringarna av kontaktfotot."</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Det gick inte att läsa in etiketten"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"Etikett sparad"</string>
-    <!-- no translation found for groupDeletedToast (520896687873262027) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"Etiketten raderad"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Etikett skapad"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"En etikett uppdaterad"</string>
     <string name="groupMembersRemovedToast" msgid="2683813023881480814">"Tog bort kontakter"</string>
@@ -155,14 +153,11 @@
     <string name="missing_app" msgid="1466111003546611387">"Ingen app som kan hantera åtgärden hittades"</string>
     <string name="menu_share" msgid="943789700636542260">"Dela"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Lägg till i Kontakter"</string>
-    <string name="share_via" msgid="563121028023030093">"Dela kontakt via"</string>
+    <!-- no translation found for title_share_via (5886112726191455415) -->
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Välj konto"</string>
-    <!-- no translation found for group_name_dialog_insert_title (2668452090427027941) -->
-    <skip />
-    <!-- no translation found for group_name_dialog_update_title (6328021162869677383) -->
-    <skip />
-    <!-- no translation found for group_name_dialog_hint (7624523157537700160) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Skapa etikett"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Byt namn på etikett"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Etikettnamn"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Röstchatt"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videochatt"</string>
     <string name="connections" msgid="8098440723172028350">"Anslutningar"</string>
@@ -327,7 +322,7 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"Etiketter"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Konton"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"Se historiken tillsammans"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Händelser och meddelanden"</string>
-    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Händelser"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Event och meddelanden"</string>
+    <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Event"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Meddelanden"</string>
 </resources>

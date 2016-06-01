@@ -52,8 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Envoyer un SMS au contact"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Dissocier"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Modifier"</string>
-    <!-- no translation found for menu_renameGroup (7169512355179757182) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="7169512355179757182">"Renommer le libellé"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Supprimer le libellé"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Ajouter un contact"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Retirer du libellé"</string>
@@ -118,8 +117,7 @@
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Impossible d\'enregistrer les modifications apportées à la photo du contact."</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Impossible de charger le libellé"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"Libellé enregistré"</string>
-    <!-- no translation found for groupDeletedToast (520896687873262027) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"Libellé supprimé"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Libellé créé"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Libellé mis à jour"</string>
     <string name="groupMembersRemovedToast" msgid="2683813023881480814">"Contacts supprimés"</string>
@@ -155,14 +153,11 @@
     <string name="missing_app" msgid="1466111003546611387">"Aucune application trouvée pour gérer cette action."</string>
     <string name="menu_share" msgid="943789700636542260">"Partager"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Ajouter aux contacts"</string>
-    <string name="share_via" msgid="563121028023030093">"Partager contact via"</string>
+    <!-- no translation found for title_share_via (5886112726191455415) -->
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Sélectionner un compte"</string>
-    <!-- no translation found for group_name_dialog_insert_title (2668452090427027941) -->
-    <skip />
-    <!-- no translation found for group_name_dialog_update_title (6328021162869677383) -->
-    <skip />
-    <!-- no translation found for group_name_dialog_hint (7624523157537700160) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Créer un libellé"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Renommer un libellé"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Nom du libellé"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Chat audio"</string>
     <string name="video_chat" msgid="1872255818640336072">"Chat vidéo"</string>
     <string name="connections" msgid="8098440723172028350">"Contacts"</string>

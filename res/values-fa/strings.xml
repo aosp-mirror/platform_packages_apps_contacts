@@ -52,8 +52,7 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"ارسال متن به مخاطب"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"لغو ارتباط"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"ویرایش"</string>
-    <!-- no translation found for menu_renameGroup (7169512355179757182) -->
-    <skip />
+    <string name="menu_renameGroup" msgid="7169512355179757182">"تغییر نام برچسب"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"حذف برچسب"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"افزودن مخاطب"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"حذف از برچسب"</string>
@@ -118,8 +117,7 @@
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"ذخیره تغییرات عکس مخاطب انجام نشد."</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"برچسب بار نشد"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"برچسب ذخیره شد"</string>
-    <!-- no translation found for groupDeletedToast (520896687873262027) -->
-    <skip />
+    <string name="groupDeletedToast" msgid="520896687873262027">"برچسب حذف شد"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"برچسب ایجاد شد"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"برچسب به‌روزرسانی شد"</string>
     <string name="groupMembersRemovedToast" msgid="2683813023881480814">"مخاطبین حذف شدند"</string>
@@ -151,18 +149,18 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"برنامه‌ای برای انجام این عملکرد یافت نشد."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"برای بازگشت به صفحه قبلی کلیک کنید"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"افزودن شماره تلفن"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"افزودن ایمیل"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"افزودن رایانامه"</string>
     <string name="missing_app" msgid="1466111003546611387">"برنامه‌ای برای انجام این عملکرد یافت نشد."</string>
     <string name="menu_share" msgid="943789700636542260">"اشتراک‌گذاری"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"افزودن به مخاطبین"</string>
-    <string name="share_via" msgid="563121028023030093">"اشتراک‌گذاری مخاطب از طریق"</string>
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="one">اشتراک‌گذاری مخاطبین از طریق</item>
+      <item quantity="other">اشتراک‌گذاری مخاطبین از طریق</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"انتخاب حساب"</string>
-    <!-- no translation found for group_name_dialog_insert_title (2668452090427027941) -->
-    <skip />
-    <!-- no translation found for group_name_dialog_update_title (6328021162869677383) -->
-    <skip />
-    <!-- no translation found for group_name_dialog_hint (7624523157537700160) -->
-    <skip />
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"ایجاد برچسب"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"تغییر نام برچسب"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"نام برچسب"</string>
     <string name="audio_chat" msgid="2535716629358298691">"گپ صوتی"</string>
     <string name="video_chat" msgid="1872255818640336072">"گپ ویدئویی"</string>
     <string name="connections" msgid="8098440723172028350">"اتصال‌ها"</string>
@@ -265,7 +263,7 @@
     <string name="header_relation_entry" msgid="1520292958088146460">"رابطه"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"حساب"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"نام"</string>
-    <string name="header_email_entry" msgid="8666093061171624478">"ایمیل"</string>
+    <string name="header_email_entry" msgid="8666093061171624478">"رایانامه"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"تلفن"</string>
     <string name="header_photo_entry" msgid="4438023151411853238">"عکس"</string>
     <string name="content_description_expand_editor" msgid="1111381475901897470">"برای بزرگ کردن ویرایشگر مخاطب کلیک کنید."</string>
@@ -277,7 +275,7 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"بی‌پاسخ"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"تماس اخیر. <xliff:g id="CALL_TYPE">%s</xliff:g>‏. <xliff:g id="PHONE_NUMBER">%s</xliff:g>‏. ‏<xliff:g id="DATE">%s</xliff:g>. برای بازگرداندن تماس کلیک کنید"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"شما: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏وقتی شناسه Hangouts شخص را در فیلد ایمیل یا فیلد تلفن وارد کنید، Hangouts بهتر کار می‌کند."</string>
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏وقتی شناسه Hangouts شخص را در فیلد رایانامه یا فیلد تلفن وارد کنید، Hangouts بهتر کار می‌کند."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"فیلدهای بیشتر"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"تغییر عکس"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ویرایشگر باز نشد."</string>

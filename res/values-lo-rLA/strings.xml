@@ -153,7 +153,10 @@
     <string name="missing_app" msgid="1466111003546611387">"ບໍ່ພົບແອັບຯທີ່ໃຊ້ເພື່ອດຳເນີນການ."</string>
     <string name="menu_share" msgid="943789700636542260">"ແບ່ງປັນ"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"ເພີ່ມໃສ່ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
-    <string name="share_via" msgid="563121028023030093">"ແບ່ງປັນລາຍຊື່ຜູ່ຕິດຕໍ່ຜ່ານທາງ"</string>
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="other">ແບ່ງປັນລາຍຊື່ຜູ້ຕິດຕໍ່ຜ່ານ</item>
+      <item quantity="one">ແບ່ງປັນລາຍຊື່ຜູ້ຕິດຕໍ່ຜ່ານ</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"ເລືອກບັນຊີ"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"ສ້າງປ້າຍກຳກັບ"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"ປ່ຽນຊື່ປ້າຍກຳກັບ"</string>

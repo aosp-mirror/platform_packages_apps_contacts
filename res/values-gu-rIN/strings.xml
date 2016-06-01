@@ -153,7 +153,10 @@
     <string name="missing_app" msgid="1466111003546611387">"આ ક્રિયાને હેન્ડલ કરવા માટે કોઈ ઍપ્લિકેશન મળી નહીં."</string>
     <string name="menu_share" msgid="943789700636542260">"શેર કરો"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"સંપર્કોમાં ઉમેરો"</string>
-    <string name="share_via" msgid="563121028023030093">"આના દ્વારા સંપર્ક શેર કરો"</string>
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="one">આના દ્વારા સંપર્કો શેર કરો</item>
+      <item quantity="other">આના દ્વારા સંપર્કો શેર કરો</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"એકાઉન્ટ પસંદ કરો"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"લેબલ બનાવો"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"લેબલનું નામ બદલો"</string>

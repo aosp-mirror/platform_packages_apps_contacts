@@ -67,7 +67,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"តភ្ជាប់"</string>
     <string name="menu_save" msgid="1727844363591825909">"រក្សាទុក"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"តភ្ជាប់ទំនាក់ទំនង"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"ជ្រើសទំនាក់ទំនងដែលអ្នកចង់តភ្ជាប់ជាមួយ <xliff:g id="NAME">%s</xliff:g>៖"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"ជ្រើសរើសទំនាក់ទំនងដែលអ្នកចង់តភ្ជាប់ជាមួយ <xliff:g id="NAME">%s</xliff:g>៖"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"បង្ហាញ​ទំនាក់​ទំនង​ទាំងអស់"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ទំនាក់ទំនង​ដែល​បាន​ស្នើ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ទំនាក់ទំនង​ទាំងអស់"</string>
@@ -81,12 +81,12 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ព័ត៌មានលម្អិតពីគណនីសម្រាប់តែអានប៉ុណ្ណោះមិនអាចលុបបានទេ ប៉ុន្តែអាចលាក់បាន។"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"លាក់"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"ទំនាក់ទំនងដែលនឹងត្រូវលុបមានព័ត៌មានលម្អិតពីគណនីច្រើន។ ព័ត៌មានលម្អិតពីគណនីសម្រាប់តែអានប៉ុណ្ណោះនឹងត្រូវបានលាក់ ប៉ុន្តែវានឹងមិនត្រូវបានលុបនោះទេ។"</string>
-    <string name="single_delete_confirmation" msgid="3106905986948679720">"លុបទំនាក់ទំនងនេះឬ?"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"លុបទំនាក់ទំនងនេះ?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"លុបទំនាក់ទំនងដែលបានជ្រើសឬ?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"ព័ត៌មានលម្អិតពីគណនីសម្រាប់តែអានប៉ុណ្ណោះមិនអាចលុបបានទេ ប៉ុន្តែអាចលាក់បាន។"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"ទំនាក់ទំនងដែលនឹងត្រូវលុបមានព័ត៌មានលម្អិតពីគណនីច្រើន។ ព័ត៌មានលម្អិតពីគណនីសម្រាប់តែអានប៉ុណ្ណោះនឹងត្រូវបានលាក់ ប៉ុន្តែវានឹងមិនត្រូវបានលុបនោះទេ។"</string>
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"ការលុបទំនាក់ទំនងនេះនឹងលុបព័ត៌មានលម្អិតពីគណនីច្រើន"</string>
-    <string name="deleteConfirmation" msgid="3512271779086656043">"លុបទំនាក់ទំនងនេះឬ?"</string>
+    <string name="deleteConfirmation" msgid="3512271779086656043">"លុបទំនាក់ទំនងនេះ?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"លុប"</string>
     <string name="menu_discard" msgid="6854657936970228164">"បោះបង់​ការ​ផ្លាស់ប្ដូរ"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"មិន​មាន​ទំនាក់ទំនង។"</string>
@@ -153,7 +153,7 @@
     <string name="missing_app" msgid="1466111003546611387">"រក​មិន​ឃើញ​កម្មវិធី​ដើម្បី​គ្រប់គ្រង​សកម្មភាព​នេះ​ទេ។"</string>
     <string name="menu_share" msgid="943789700636542260">"ចែករំលែក​"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"បន្ថែម​ទៅ​ទំនាក់ទំនង"</string>
-    <string name="share_via" msgid="563121028023030093">"ចែករំលែក​ទំនាក់ទំនង​តាម"</string>
+    <!-- no translation found for title_share_via (5886112726191455415) -->
     <string name="dialog_new_group_account" msgid="3451312333591556651">"ជ្រើសគណនី"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"បង្កើតស្លាក"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"ប្ដូរឈ្មោះស្លាក"</string>
@@ -170,7 +170,7 @@
     <skip />
     <string name="take_photo" msgid="7496128293167402354">"ថតរូប"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ថតរូប​ថ្មី"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"ជ្រើស​រូបថត"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"ជ្រើសរើស​រូបថត"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"ជ្រើស​រូបថត​ថ្មី"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"កំពុង​ធ្វើ​បច្ចុប្បន្នភាព​បញ្ជី​ទំនាក់ទំនង។"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"កំពុង​រក..."</string>
@@ -205,7 +205,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"ទំនាក់ទំនង"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"កំពុង​ផ្ទុក..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"បង្កើត​ទំនាក់ទំនង​ថ្មី"</string>
-    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"បន្ថែមគណនី"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"បញ្ចូលគណនី"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"នាំចូល​ទំនាក់ទំនង"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"បង្កើតស្លាកថ្មី"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"បង្កើត​ថ្មី..."</string>
@@ -226,16 +226,16 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"បង្ហាញ​ទំនាក់ទំនង​ទាំងអស់"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"រក្សាទុក​ទំនាក់ទំនង​របស់​អ្នក​យ៉ាង​មាន​សុវត្ថិភាព ទោះបីជា​អ្នក​បាត់​ទូរស័ព្ទ​ក៏ដោយ៖ ធ្វើ​សមកាលកម្ម​ជាមួយ​សេវាកម្ម​លើ​បណ្ដាញ។"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"បន្ថែម​គណនី"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"នឹង​មិន​បម្រុងទុក​ទំនាក់ទំនង​ថ្មី​របស់​អ្នក​ទេ។ បន្ថែម​គណនី​ដើម្បី​បម្រុងទុក​ទំនាក់ទំនង​នៅ​លើ​បណ្ដាញ?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"​ទំនាក់ទំនង​ថ្មី​របស់​អ្នកនឹងមិនត្រូវបានបម្រុងទុក​​ទេ។ សូម​បញ្ចូល​​គណនីមួយ​​ដើម្បី​បម្រុងទុក​ទំនាក់ទំនង​នៅ​លើ​អ៊ីនធឺណិត?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ទំនាក់ទំនងថ្មីនឹងត្រូវបានរក្សាទុកទៅក្នុង <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ជ្រើសគណនីលំនាំដើមសម្រាប់ទំនាក់ទំនងថ្មី៖"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"បន្ថែមទំនាក់ទំនងថ្មី"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"បញ្ចូល​ទំនាក់ទំនងថ្មី"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"កែ​ទំនាក់ទំនង"</string>
     <string name="keep_local" msgid="1258761699192993322">"រក្សា​ទុក​មូលដ្ឋាន"</string>
-    <string name="add_account" msgid="8201790677994503186">"បន្ថែម​គណនី"</string>
+    <string name="add_account" msgid="8201790677994503186">"បញ្ចូល​​គណនី"</string>
     <string name="add_new_account" msgid="5748627740680940264">"បន្ថែម​គណនី​ថ្មី"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"នាំចេញ​ឯកសារ​មូលដ្ឋាន​ទិន្នន័យ"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"បន្ថែម​ទំនាក់ទំនង​ថ្មី"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"បញ្ចូល​​ទំនាក់ទំនង​ថ្មី"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"​មើល​​ច្រើន​ជាង"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"​មើល​តិច​ជាង"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"​មើល​ទាំង​អស់"</string>
@@ -255,7 +255,7 @@
     <string name="header_organization_entry" msgid="8515394955666265406">"ស្ថាប័ន"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"ឈ្មោះ​ហៅ​ក្រៅ"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"ចំណាំ"</string>
-    <string name="header_website_entry" msgid="1411467850000824745">"វេបសាយ"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"គេហទំព័រ"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"ព្រឹត្តិការណ៍"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"ទំនាក់ទំនង"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"គណនី"</string>
@@ -276,7 +276,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"ប្រអប់ច្រើនទៀត"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ប្ដូររូបថត"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"បានបរាជ័យក្នុងការបើកកម្មវិធីកែ"</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"កំពុងរក្សាទុកទៅ"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"រក្សាទុកក្នុង"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"បច្ចុប្បន្នកំពុងរក្សាទុកទៅ <xliff:g id="ACCOUNT_NAME">%s</xliff:g>។ សូូមប៉ះពីរដងដើម្បីជ្រើសគណនីផ្សេងទៀត។"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">ទំនាក់ទំនងដែលបានតភ្ជាប់ (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -306,7 +306,7 @@
     <string name="from_your_accounts" msgid="1746293107836889912">"ពីគណនីរបស់អ្នក"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"ថតរូប"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"រូបថតទាំងអស់"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"ជ្រើសរូបថត"</string>
+    <string name="photo_picker_title" msgid="5272832995550042801">"ជ្រើសរើសរូបថត"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"ពី <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"លុប <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"លុប <xliff:g id="DATA_KIND">%s</xliff:g>"</string>

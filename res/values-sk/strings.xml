@@ -163,7 +163,12 @@
     <string name="missing_app" msgid="1466111003546611387">"Aplikácia potrebná na spracovanie tejto akcie sa nenašla."</string>
     <string name="menu_share" msgid="943789700636542260">"Zdieľať"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Pridať do kontaktov"</string>
-    <string name="share_via" msgid="563121028023030093">"Zdieľať kontakt pomocou"</string>
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="few">Zdieľať kontakty pomocou</item>
+      <item quantity="many">Zdieľať kontakty pomocou</item>
+      <item quantity="other">Zdieľať kontakty pomocou</item>
+      <item quantity="one">Zdieľať kontakt pomocou</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Výber účtu"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Vytvorenie štítka"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Premenovanie štítka"</string>

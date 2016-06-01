@@ -46,7 +46,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"נוסף למועדפים"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"ערוך"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"מחק"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"שנה תמונה"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"החלפת תמונה"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"הצב במסך הבית"</string>
     <string name="menu_call" msgid="3992595586042260618">"התקשר לאיש קשר"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
@@ -163,7 +163,12 @@
     <string name="missing_app" msgid="1466111003546611387">"לא נמצאה אפליקציה שיכולה לטפל בפעולה זו."</string>
     <string name="menu_share" msgid="943789700636542260">"שתף"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"הוסף לאנשי הקשר"</string>
-    <string name="share_via" msgid="563121028023030093">"שתף איש קשר באמצעות"</string>
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="two">שתף את אנשי הקשר באמצעות</item>
+      <item quantity="many">שתף את אנשי הקשר באמצעות</item>
+      <item quantity="other">שתף את אנשי הקשר באמצעות</item>
+      <item quantity="one">שתף את איש הקשר באמצעות</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"בחר חשבון"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"יצירת תווית"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"שינוי השם של התווית"</string>
@@ -284,7 +289,7 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"אתה: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏Hangouts פועל טוב יותר כשאתה מזין את מזהה ה-Hangouts של המשתמש בשדה האימייל או בשדה הטלפון."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"עוד שדות"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"שנה תמונה"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"החלפת תמונה"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"פתיחת העורך נכשלה."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"שומר ב-"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"נשמר כרגע ב-<xliff:g id="ACCOUNT_NAME">%s</xliff:g>. הקש פעמיים כדי לבחור חשבון אחר."</string>

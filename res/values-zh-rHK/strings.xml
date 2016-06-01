@@ -67,7 +67,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"連結"</string>
     <string name="menu_save" msgid="1727844363591825909">"儲存"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"連結聯絡人"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"選擇您想連結<xliff:g id="NAME">%s</xliff:g>的聯絡人："</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"選擇要連結至<xliff:g id="NAME">%s</xliff:g>的聯絡人："</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"顯示所有聯絡人"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建議的聯絡人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
@@ -153,7 +153,7 @@
     <string name="missing_app" msgid="1466111003546611387">"找不到可以處理這個操作的應用程式。"</string>
     <string name="menu_share" msgid="943789700636542260">"分享"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"加入通訊錄"</string>
-    <string name="share_via" msgid="563121028023030093">"使用下列應用程式分享聯絡人資訊："</string>
+    <!-- no translation found for title_share_via (5886112726191455415) -->
     <string name="dialog_new_group_account" msgid="3451312333591556651">"選擇帳戶"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"建立標籤"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"重新命名標籤"</string>
@@ -226,7 +226,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使丟失手機，也要確保通訊錄安全：與網上服務保持同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"新增帳戶"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"您的新聯絡人資料不會備份。要新增可在網上備份聯絡人資料的帳戶嗎？"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系統不會備份您的新聯絡人資料。要新增帳戶，在網上備份聯絡人資料嗎？"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"新聯絡人將會儲存至 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"為新聯絡人選擇預設帳戶："</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增聯絡人"</string>

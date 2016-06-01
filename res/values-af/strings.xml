@@ -153,7 +153,10 @@
     <string name="missing_app" msgid="1466111003546611387">"Geen program is gevind om hierdie handeling te behartig nie."</string>
     <string name="menu_share" msgid="943789700636542260">"Deel"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Voeg by kontakte"</string>
-    <string name="share_via" msgid="563121028023030093">"Deel kontak met"</string>
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="other">Deel kontakte via</item>
+      <item quantity="one">Deel kontak via</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Kies rekening"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Skep etiket"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Hernoem etiket"</string>
