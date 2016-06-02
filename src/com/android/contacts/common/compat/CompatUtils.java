@@ -18,6 +18,7 @@ package com.android.contacts.common.compat;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.support.annotation.Nullable;
+import android.support.v4.os.BuildCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -40,8 +41,6 @@ public final class CompatUtils {
     public final static int TYPE_DELETE = 3;
 
     public final static int TYPE_ASSERT = 4;
-
-    private final static Boolean CODENAME_STARTS_WITH_N = VERSION.CODENAME.startsWith("N");
 
     /**
      * Returns whether the operation in CPOWrapper is of TYPE_INSERT;
@@ -173,12 +172,7 @@ public final class CompatUtils {
      * false} otherwise.
      */
     public static boolean isNCompatible() {
-        // SdkVersionOverride doesn't work here because VERSION.SDK_INT remains 23 (same as M)
-        // before N is release
-
-        // TODO: remove build time check and use proper runtime check once N is released.
-        return SdkSelectionUtils.TARGET_N_SDK // Build time flag
-                && CODENAME_STARTS_WITH_N;  // Run time flag
+        return BuildCompat.isAtLeastN();
     }
 
     /**
