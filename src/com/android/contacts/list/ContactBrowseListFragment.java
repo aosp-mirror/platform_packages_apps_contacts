@@ -216,7 +216,11 @@ public abstract class ContactBrowseListFragment extends
 
         mFilter = filter;
         mLastSelectedPosition = -1;
-        saveFilter();
+
+        if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+            saveFilter();
+        }
+
         if (restoreSelectedUri) {
             mSelectedContactUri = null;
             restoreSelectedUri(true);
