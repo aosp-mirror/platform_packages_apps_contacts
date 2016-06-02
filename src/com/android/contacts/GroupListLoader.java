@@ -40,6 +40,8 @@ public final class GroupListLoader extends CursorLoader {
         Groups._ID,
         Groups.TITLE,
         Groups.SUMMARY_COUNT,
+        Groups.GROUP_IS_READ_ONLY,
+        Groups.SYSTEM_ID,
     };
 
     public final static int ACCOUNT_NAME = 0;
@@ -48,16 +50,18 @@ public final class GroupListLoader extends CursorLoader {
     public final static int GROUP_ID = 3;
     public final static int TITLE = 4;
     public final static int MEMBER_COUNT = 5;
+    public final static int IS_READ_ONLY = 6;
+    public final static int SYSTEM_ID = 7;
 
     private static final Uri GROUP_LIST_URI = Groups.CONTENT_SUMMARY_URI;
 
     public GroupListLoader(Context context) {
+        // Sort groups from all accounts alphabettically and in a localized way.
         super(context,
                 GROUP_LIST_URI,
                 COLUMNS,
                 DEFAULT_SELECTION,
                 null,
-                Groups.ACCOUNT_TYPE + ", " + Groups.ACCOUNT_NAME + ", " + Groups.DATA_SET + ", " +
-                Groups.TITLE + " COLLATE NOCASE ASC");
+                Groups.TITLE + " COLLATE LOCALIZED ASC");
     }
 }

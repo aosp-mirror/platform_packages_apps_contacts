@@ -925,6 +925,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         if (groupListItems != null) {
             // Add each group
             for (GroupListItem groupListItem : groupListItems) {
+                if (GroupUtil.isEmptyFFCGroup(groupListItem)) {
+                    continue;
+                }
                 final String title = groupListItem.getTitle();
                 final MenuItem menuItem =
                         subMenu.add(R.id.nav_groups_items, Menu.NONE, Menu.NONE, title);
