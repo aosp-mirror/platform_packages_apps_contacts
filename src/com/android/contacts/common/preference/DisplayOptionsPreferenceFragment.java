@@ -16,6 +16,7 @@
 
 package com.android.contacts.common.preference;
 
+import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.Context;
@@ -32,6 +33,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Profile;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -43,15 +45,18 @@ import java.util.List;
 /**
  * This fragment shows the preferences for "display options"
  */
-public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
+public class DisplayOptionsPreferenceFragment extends PreferenceFragment
+        implements Preference.OnPreferenceClickListener {
 
-    private static final String ARG_NEW_LOCAL_PROFILE = "new_local_profile";
+    private static final String ARG_CONTACTS_AVAILABLE = "are_contacts_available";
     private static final String ARG_MODE_FULLY_EXPANDED = "mode_fully_expanded";
+    private static final String ARG_NEW_LOCAL_PROFILE = "new_local_profile";
     private static final String ARG_PREVIOUS_SCREEN = "previous_screen";
 
     private static final String KEY_ABOUT = "about";
     private static final String KEY_ACCOUNTS = "accounts";
     private static final String KEY_DISPLAY_ORDER = "displayOrder";
+    private static final String KEY_IMPORT_EXPORT = "importExport";
     private static final String KEY_MY_INFO = "myInfo";
     private static final String KEY_SORT_ORDER = "sortOrder";
 
@@ -96,6 +101,10 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
     private String mNewLocalProfileExtra;
     private String mPreviousScreenExtra;
     private int mModeFullyExpanded;
+    private boolean mAreContactsAvailable;
+
+    private boolean mHasProfile;
+    private long mProfileContactId;
 
     private Preference mMyInfoPreference;
 
@@ -124,14 +133,25 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
     };
 
     public static DisplayOptionsPreferenceFragment newInstance(String newLocalProfileExtra,
-            String previousScreenExtra, int modeFullyExpanded) {
+            String previousScreenExtra, int modeFullyExpanded, boolean areContactsAvailable) {
         final DisplayOptionsPreferenceFragment fragment = new DisplayOptionsPreferenceFragment();
         final Bundle args = new Bundle();
         args.putString(ARG_NEW_LOCAL_PROFILE, newLocalProfileExtra);
         args.putString(ARG_PREVIOUS_SCREEN, previousScreenExtra);
         args.putInt(ARG_MODE_FULLY_EXPANDED, modeFullyExpanded);
+        args.putBoolean(ARG_CONTACTS_AVAILABLE, areContactsAvailable);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (ProfileListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement ProfileListener");
+        }
     }
 
     @Override
@@ -148,17 +168,14 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         mNewLocalProfileExtra = args.getString(ARG_NEW_LOCAL_PROFILE);
         mPreviousScreenExtra = args.getString(ARG_PREVIOUS_SCREEN);
         mModeFullyExpanded = args.getInt(ARG_MODE_FULLY_EXPANDED);
+        mAreContactsAvailable = args.getBoolean(ARG_CONTACTS_AVAILABLE);
 
         mMyInfoPreference = findPreference(KEY_MY_INFO);
+        final Preference importExportPreference = findPreference(KEY_IMPORT_EXPORT);
+        importExportPreference.setOnPreferenceClickListener(this);
 
         final Preference aboutPreference = findPreference(KEY_ABOUT);
-        aboutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                ((ContactsPreferenceActivity) getActivity()).showAboutFragment();
-                return true;
-            }
-        });
+        aboutPreference.setOnPreferenceClickListener(this);
     }
 
     @Override
@@ -167,27 +184,13 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         getLoaderManager().restartLoader(LOADER_PROFILE, null, mProfileLoaderListener);
     }
 
-    public void updateMyInfoPreference(final boolean hasProfile, String displayName,
-            final long contactId) {
+    public void updateMyInfoPreference(boolean hasProfile, String displayName, long contactId) {
         final CharSequence summary = hasProfile ? getString(R.string.me_contact_name, displayName)
                 : getString(R.string.set_up_profile);
         mMyInfoPreference.setSummary(summary);
-        mMyInfoPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                final Intent intent;
-                if (hasProfile) {
-                    final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
-                    intent = ImplicitIntentsUtil.composeQuickContactIntent(uri, mModeFullyExpanded);
-                    intent.putExtra(mPreviousScreenExtra, ScreenType.ME_CONTACT);
-                } else {
-                    intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                    intent.putExtra(mNewLocalProfileExtra, true);
-                }
-                ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
-                return true;
-            }
-        });
+        mHasProfile = hasProfile;
+        mProfileContactId = contactId;
+        mMyInfoPreference.setOnPreferenceClickListener(this);
     }
 
     private void removeUnsupportedPreferences() {
@@ -248,8 +251,32 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         return ProfileQuery.PROFILE_PROJECTION_ALTERNATIVE;
     }
 
-    public void setListener(ProfileListener listener) {
-        mListener = listener;
+    @Override
+    public boolean onPreferenceClick(Preference p) {
+        final String prefKey = p.getKey();
+
+        if (KEY_ABOUT.equals(prefKey)) {
+            ((ContactsPreferenceActivity) getActivity()).showAboutFragment();
+            return true;
+        } else if (KEY_IMPORT_EXPORT.equals(prefKey)) {
+            ImportExportDialogFragment.show(getFragmentManager(), mAreContactsAvailable,
+                    ContactsPreferenceActivity.class,
+                    ImportExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
+            return true;
+        } else if (KEY_MY_INFO.equals(prefKey)) {
+            final Intent intent;
+            if (mHasProfile) {
+                final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, mProfileContactId);
+                intent = ImplicitIntentsUtil.composeQuickContactIntent(uri, mModeFullyExpanded);
+                intent.putExtra(mPreviousScreenExtra, ScreenType.ME_CONTACT);
+            } else {
+                intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                intent.putExtra(mNewLocalProfileExtra, true);
+            }
+            ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
+            return true;
+        }
+        return false;
     }
 }
 

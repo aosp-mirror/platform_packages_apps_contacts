@@ -40,10 +40,12 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
     private String mNewLocalProfileExtra;
     private String mPreviousScreenExtra;
     private int mModeFullyExpanded;
+    private boolean mAreContactsAvailable;
 
     public static final String EXTRA_NEW_LOCAL_PROFILE = "newLocalProfile";
     public static final String EXTRA_MODE_FULLY_EXPANDED = "modeFullyExpanded";
     public static final String EXTRA_PREVIOUS_SCREEN_TYPE = "previousScreenType";
+    public static final String EXTRA_ARE_CONTACTS_AVAILABLE = "areContactsAvailable";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +60,12 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
         mModeFullyExpanded = getIntent().getIntExtra(EXTRA_MODE_FULLY_EXPANDED,
                 QuickContact.MODE_LARGE);
         mPreviousScreenExtra = getIntent().getStringExtra(EXTRA_PREVIOUS_SCREEN_TYPE);
+        mAreContactsAvailable = getIntent().getBooleanExtra(EXTRA_ARE_CONTACTS_AVAILABLE, false);
 
         if (savedInstanceState == null) {
             final DisplayOptionsPreferenceFragment fragment = DisplayOptionsPreferenceFragment
-                    .newInstance(mNewLocalProfileExtra, mPreviousScreenExtra, mModeFullyExpanded);
-            fragment.setListener(this);
+                    .newInstance(mNewLocalProfileExtra, mPreviousScreenExtra, mModeFullyExpanded,
+                            mAreContactsAvailable);
             getFragmentManager().beginTransaction()
                     .replace(android.R.id.content, fragment, TAG_DISPLAY_OPTIONS)
                     .commit();
@@ -72,9 +75,6 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
                     getFragmentManager().findFragmentByTag(TAG_ABOUT);
             setActivityTitle(aboutFragment == null ?
                     R.string.activity_title_settings : R.string.setting_about);
-            final DisplayOptionsPreferenceFragment fragment = (DisplayOptionsPreferenceFragment)
-                    getFragmentManager().findFragmentByTag(TAG_DISPLAY_OPTIONS);
-            fragment.setListener(this);
         }
     }
 
@@ -100,9 +100,6 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             setActivityTitle(R.string.activity_title_settings);
             getFragmentManager().popBackStack();
-            final DisplayOptionsPreferenceFragment fragment = (DisplayOptionsPreferenceFragment)
-                    getFragmentManager().findFragmentByTag(TAG_DISPLAY_OPTIONS);
-            fragment.setListener(this);
         } else {
             super.onBackPressed();
         }
