@@ -241,7 +241,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Δεν θα δημιουργηθεί αντίγραφο ασφαλείας για τη νέα επαφή σας. Θέλετε να προσθέσετε ένα λογαριασμό που δημιουργεί αντίγραφα ασφαλείας επαφών στο διαδίκτυο;"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Οι νέες επαφές θα αποθηκευτούν στο λογαριασμό <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Επιλέξτε έναν προεπιλεγμένο λογαριασμό για νέες επαφές:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Προσθήκης επαφής"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Προσθήκη νεάς επαφής"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Επεξεργασία επαφής"</string>
     <string name="keep_local" msgid="1258761699192993322">"Αποθ. τοπικά"</string>
     <string name="add_account" msgid="8201790677994503186">"Προσθήκη λογαριασμού"</string>

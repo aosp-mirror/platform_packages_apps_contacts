@@ -20,7 +20,7 @@
     <string name="launcherActivityLabel" msgid="6497230399032392417">"通讯录"</string>
     <string name="quickContactActivityLabel" msgid="7985456650689347268">"查看联系人"</string>
     <string name="editContactActivityLabel" msgid="1129944572070802839">"修改联系人"</string>
-    <string name="contactsList" msgid="8661624236494819731">"联系人"</string>
+    <string name="contactsList" msgid="8661624236494819731">"通讯录"</string>
     <string name="shortcutContact" msgid="749243779392912958">"联系人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接拨打电话"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"直接发送短信"</string>

@@ -130,7 +130,7 @@
       <item quantity="other">연락처 <xliff:g id="COUNT">%d</xliff:g>개</item>
       <item quantity="one">연락처 1개</item>
     </plurals>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"주소록 없음"</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"연락처 없음"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
       <item quantity="other">연락처 <xliff:g id="COUNT">%d</xliff:g>개</item>
       <item quantity="one">연락처 1개</item>

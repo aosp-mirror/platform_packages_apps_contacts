@@ -48,7 +48,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Lagt til i favoritter"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Rediger"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Slett"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"Endre bilde"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"Bytt bilde"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plassér på startsiden"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send SMS til kontakt"</string>
@@ -63,7 +63,7 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Lagre og del opp"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Vil du lagre endringene du allerede har gjort og knytte sammen med den valgte kontakten?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Lagre og knytt sammen"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Sammenknytt"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Knytt sammen"</string>
     <string name="menu_save" msgid="1727844363591825909">"Lagre"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Knytt sammen kontakter"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Velg kontakten du vil knytte sammen med <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -205,7 +205,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Laster inn …"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Opprett en ny kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Legg til konto"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer kontakter"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importér kontakter"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Opprett ny gruppe"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Opprett en ny gruppe"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
@@ -238,7 +238,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Viser alle kontakter"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Hold kontaktene dine trygge selv om du mister telefonen: synkroniser med en nettbasert tjeneste."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Legg til en konto"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Den nye kontakten din blir ikke sikkerhetskopiert. Vil du legge til en konto som sikkerhetskopierer kontakter på nettet?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Den nye kontakten blir ikke sikkerhetskopiert. Vil du legge til en konto for sikkerhetskopiering av kontakter på nettet?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Nye kontakter blir lagret i <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Velg en standardkonto for nye kontakter."</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Legg til ny kontakt"</string>
@@ -286,7 +286,7 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Du: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts fungerer bedre når du går inn i personenes Hangouts-identifikatorer i e-postfeltet eller telefonfeltet."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Flere felt"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Endre bilde"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Bytt bilde"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Kunne ikke åpne redigeringsvinduet."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Lagres i"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Lagrer på <xliff:g id="ACCOUNT_NAME">%s</xliff:g> for øyeblikket. Dobbelttrykk for å velge en annen konto."</string>

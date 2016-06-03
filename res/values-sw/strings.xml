@@ -28,7 +28,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Chagua nambari ya kupiga"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Chagua nambari ya kutumia ujumbe"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Ongeza kwenye anwani"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Chagua mwasiliani"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Chagua anwani"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Ongeza anwani mpya"</string>
     <string name="starredList" msgid="4817256136413959463">"Zenye nyota"</string>
     <string name="frequentList" msgid="7154768136473953056">"Mara kwa mara"</string>
@@ -42,7 +42,7 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Masasisho"</string>
     <string name="searchHint" msgid="8482945356247760701">"Tafuta anwani"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Tazama anwani"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Ongeza kwa vipendwa"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Ongeza kwenye vipendwa"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Ondoa kwenye vipendwa"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Imeondolowa kwenye vipendewa"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Imeongezwa kwenye vipendwa"</string>
@@ -66,7 +66,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Unganisha"</string>
     <string name="menu_save" msgid="1727844363591825909">"Hifadhi"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Unganisha anwani"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Chagua anwani ambayo ungependa kuunganisha nayo <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Chagua anwani ambayo ungependa kuunganisha na <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Onyesha anwani zote"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Anwani zilizopendekezwa"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Anwani zote"</string>
@@ -158,7 +158,7 @@
     <string name="video_chat" msgid="1872255818640336072">"Piga gumzo la video"</string>
     <string name="connections" msgid="8098440723172028350">"Miunganisho"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Ongeza muunganisho"</string>
-    <string name="recent" msgid="2659189233141493004">"Hivi karibuni"</string>
+    <string name="recent" msgid="2659189233141493004">"Za Hivi karibuni"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Masasisho vya hivi karibuni"</string>
     <string name="account_type_format" msgid="718948015590343010">"Anwani <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Akaunti ya <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
@@ -193,7 +193,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Mipangilio"</string>
     <string name="menu_settings" msgid="377929915873428211">"Mipangilio"</string>
     <string name="menu_help" msgid="1680178646764069976">"Usaidizi na maoni"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"Onyesha machaguo"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Chaguo za kuonyesha"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Nambari ya simu"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Ongeza kwa anwani"</string>
@@ -238,12 +238,12 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Inaonyesha anwani zote"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Weka anwani za unaowasiliana nao salama hata ukipoteza simu yako: sawazisha kwa huduma iliyo mtandaoni."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ongeza akaunti"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitakuwa na nakala rudufu. Je, ungependa kuongeza akaunti ambayo inahifadhi nakala rudufu ya anwani katika mtandao?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitakuwa na nakala rudufu. Je, ungependa kuongeza akaunti ambayo inahifadhi nakala za anwani mtandaoni?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Anwani mpya zitahifadhiwa kwenye <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Chagua akaunti ya msingi ya anwani mpya:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ongeza anwani mpya"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Badilisha anwani"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Weka karibu"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Weka ndani ya kifaa"</string>
     <string name="add_account" msgid="8201790677994503186">"Ongeza akaunti"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ongeza akaunti mpya"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Hamisha faili za hifadhidata"</string>

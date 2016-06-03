@@ -160,7 +160,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Verbindung hinzufügen"</string>
     <string name="recent" msgid="2659189233141493004">"Neueste Nachrichten"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Neueste Updates"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-Kontakt"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> Kontakt"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-Konto"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />

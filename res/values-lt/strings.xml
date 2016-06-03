@@ -69,7 +69,7 @@
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Pasirinkite kontaktą, kurį norite susieti su <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Rodyti visus adresatus"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Siūlomi adresatai"</string>
-    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Visi adresatai"</string>
+    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Visi kontaktai"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontaktai susieti"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">kontaktas ištrintas</item>
@@ -244,7 +244,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Atmesti"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Toliau redaguoti"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Nustatyti mano profilį"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Nustatyti profilį"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Įveskite asmens vardą ir (arba) pavardę"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Grupės pavadinimas"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mano vietos profilis"</string>
@@ -258,14 +258,14 @@
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Pridėti naują kont."</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Redaguoti kontaktą"</string>
     <string name="keep_local" msgid="1258761699192993322">"Išsaug. kaip vietinį"</string>
-    <string name="add_account" msgid="8201790677994503186">"Pridėkite paskyrą"</string>
+    <string name="add_account" msgid="8201790677994503186">"Pridėti paskyrą"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Pridėkite naują paskyrą"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksportuoti duomenų failus"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"pridėti naują kontaktą"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Žr. daugiau"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Žr. mažiau"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Žr. viską"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"Naujausios"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"Naujausi"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Apie"</string>
     <string name="send_message" msgid="8938418965550543196">"Siųsti pranešimą"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Kuriama asmeninė kopija..."</string>
@@ -285,7 +285,7 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Įvykis"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Ryšys"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"Paskyra"</string>
-    <string name="header_name_entry" msgid="1592791008096288306">"Pavadinimas"</string>
+    <string name="header_name_entry" msgid="1592791008096288306">"Vardas"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"El. paštas"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Telefonas"</string>
     <string name="header_photo_entry" msgid="4438023151411853238">"Nuotrauka"</string>
@@ -302,7 +302,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Daugiau laukų"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Keisti nuotrauką"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Nepavyko atidaryti redagavimo priemonės."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Išsaugoma į"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Saugojimo vieta"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Šiuo metu išsaugoma <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Dukart palieskite, kad pasirinktumėte kitą paskyrą."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Susieti kontaktai (<xliff:g id="COUNT">%d</xliff:g>)</item>

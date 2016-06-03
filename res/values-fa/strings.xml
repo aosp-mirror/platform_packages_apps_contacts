@@ -24,11 +24,11 @@
     <string name="shortcutContact" msgid="749243779392912958">"مخاطب"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"شماره گیری مستقیم"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"پیام جدید"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"انتخاب میان‌بر مخاطب"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"انتخاب میان‌بر برای مخاطب"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"انتخاب یک شماره برای تماس"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"انتخاب یک شماره برای پیام"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"افزودن به مخاطب"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"انتخاب یک مخاطب"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"انتخاب مخاطب"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ایجاد مخاطب جدید"</string>
     <string name="starredList" msgid="4817256136413959463">"ستاره‌دار"</string>
     <string name="frequentList" msgid="7154768136473953056">"مکرر"</string>
@@ -148,7 +148,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"برنامه‌ای برای انجام این عملکرد یافت نشد."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"برای بازگشت به صفحه قبلی کلیک کنید"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"افزودن شماره تلفن"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"افزودن ایمیل"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"افزودن رایانامه"</string>
     <string name="missing_app" msgid="1466111003546611387">"برنامه‌ای برای انجام این عملکرد یافت نشد."</string>
     <string name="menu_share" msgid="943789700636542260">"اشتراک‌گذاری"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"افزودن به مخاطبین"</string>
@@ -160,7 +160,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"افزودن اتصال"</string>
     <string name="recent" msgid="2659189233141493004">"اخیر"</string>
     <string name="recent_updates" msgid="4267258535615860710">"به‌روزرسانی‌های اخیر"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> مخاطب"</string>
+    <string name="account_type_format" msgid="718948015590343010">"مخاطب <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"حساب <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -170,7 +170,7 @@
     <string name="take_new_photo" msgid="7341354729436576304">"عکس جدید گرفتن"</string>
     <string name="pick_photo" msgid="2129509985223564942">"انتخاب عکس"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"انتخاب عکس جدید"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"لیست مخاطبین در حال به‌روزرسانی است."</string>
+    <string name="upgrade_in_progress" msgid="474511436863451061">"فهرست مخاطبین در حال به‌روزرسانی است."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"در حال جستجو..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"نمایش موارد انتخاب شده"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"نمایش همه"</string>
@@ -222,7 +222,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> نفر</item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"قبل از پیوند دادن با مخاطب دیگر، نام مخاطب را تایپ کنید."</string>
-    <string name="copy_text" msgid="3257145021583508761">"کپی به کلیپ بورد"</string>
+    <string name="copy_text" msgid="3257145021583508761">"کپی در بریده‌دان"</string>
     <string name="set_default" msgid="4417505153468300351">"تنظیم پیش‌فرض"</string>
     <string name="clear_default" msgid="7193185801596678067">"پاک کردن پیش فرض‌ها"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"متن کپی شده"</string>
@@ -238,7 +238,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"نمایش همه مخاطبان"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"مخاطبین خود را ایمن نگهدارید حتی اگر گوشی شما گم شود: با یک سرویس آنلاین همگام‌سازی کنید."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"افزودن یک حساب"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"از مخاطب جدید شما نسخه پشتبان تهیه نمی‌شود. حسابی را اضافه می‌کنید که از مخاطبین به‌صورت آنلاین نسخه پشتبان تهیه کند؟"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"از مخاطب جدیدتان نسخه پشتبان تهیه نمی‌شود. حسابی را اضافه می‌کنید که از مخاطبین به‌صورت آنلاین نسخه پشتیبان تهیه کند؟"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"مخاطب‌های جدید در <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ذخیره می‌شوند."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"انتخاب حساب پیش‌فرض برای مخاطبین جدید:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"افزودن مخاطب جدید"</string>
@@ -272,7 +272,7 @@
     <string name="header_relation_entry" msgid="1520292958088146460">"رابطه"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"حساب"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"نام"</string>
-    <string name="header_email_entry" msgid="8666093061171624478">"ایمیل"</string>
+    <string name="header_email_entry" msgid="8666093061171624478">"رایانامه"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"تلفن"</string>
     <string name="header_photo_entry" msgid="4438023151411853238">"عکس"</string>
     <string name="content_description_expand_editor" msgid="1111381475901897470">"برای بزرگ کردن ویرایشگر مخاطب کلیک کنید."</string>
@@ -284,7 +284,7 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"بی‌پاسخ"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"تماس اخیر. <xliff:g id="CALL_TYPE">%s</xliff:g>‏. <xliff:g id="PHONE_NUMBER">%s</xliff:g>‏. ‏<xliff:g id="DATE">%s</xliff:g>. برای بازگرداندن تماس کلیک کنید"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"شما: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏وقتی شناسه Hangouts شخص را در فیلد ایمیل یا فیلد تلفن وارد کنید، Hangouts بهتر کار می‌کند."</string>
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏وقتی شناسه Hangouts شخص را در فیلد رایانامه یا فیلد تلفن وارد کنید، Hangouts بهتر کار می‌کند."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"فیلدهای بیشتر"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"تغییر عکس"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ویرایشگر باز نشد."</string>
@@ -299,8 +299,8 @@
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"پیوند دادن مخاطبین"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"لغو"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب تکراری ممکن</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مخاطب تکراری ممکن</item>
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب تکراری احتمالی</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مخاطب تکراری احتمالی</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب پیوند داده شده</item>
@@ -326,6 +326,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"عکس <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> انتخاب شد"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"عکس از حساب نامشخص انتخاب نشده است"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"عکس از حساب نامشخص انتخاب شده است"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"لیست مخاطبین جهت اعمال تغییر زبان در حال به‌روزرسانی است.\n\nلطفاً منتظر بمانید..."</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"فهرست مخاطبین جهت اعمال تغییر زبان در حال به‌روزرسانی است.\n\nلطفاً منتظر بمانید..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"شماره‌های مسدودشده"</string>
 </resources>
