@@ -86,12 +86,12 @@
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacto rápido para <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sen nome)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Chamados frecuentemente"</string>
-    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactados frecuentemente"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactos frecuentes"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ver contacto"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos os contactos con números de teléfono"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Contactos do perfil de traballo"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ver actualizacións"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Só no teléfono, non sincronizado"</string>
+    <string name="account_phone" msgid="6104157990869081962">"só no teléfono, non sincronizado"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nome"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Alcume"</string>
     <string name="full_name" msgid="885420216812981202">"Nome"</string>
@@ -226,7 +226,7 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Conta predeterminada para novos contactos"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronizar metadatos de contacto [VERSIÓN DE PROBA INTERNA]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronizar metadatos de contacto"</string>
-    <string name="setting_about" msgid="3926137653588942297">"Acerca dos contactos"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Información sobre Contactos"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Configuración"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Compartir contactos visibles"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Produciuse un erro ao compartir os contactos visibles."</string>

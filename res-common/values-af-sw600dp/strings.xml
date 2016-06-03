@@ -17,6 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"Net tablet, ongesinkroniseer"</string>
+    <string name="account_phone" msgid="4804592866198643905">"Net tablet, ongesinkroniseerde"</string>
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"Daar is geen kontakte wat uitgevoer kan word nie. As jy wel kontakte op jou tablet het, laat sommige dataverskaffers dalk nie toe dat die kontakte van die tablet af uitgevoer word nie."</string>
 </resources>

@@ -92,7 +92,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Сви контакти са бројевима телефона"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Контакти са профила за Work"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Прикажи ажурирања"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Само на телефону, без синхронизације"</string>
+    <string name="account_phone" msgid="6104157990869081962">"само на телефону, без синхронизације"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Надимак"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>

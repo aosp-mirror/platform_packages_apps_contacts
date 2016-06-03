@@ -230,7 +230,7 @@
     <string name="activity_title_settings" msgid="3056389601004689380">"सेटिंग्ज"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"दृश्यमान संपर्क सामायिक करा"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"दृश्यमान संपर्क सामायिक करण्‍यात अयशस्वी झाले."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"आवडता संपर्क सामायिक करा"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"आवडते संपर्क सामायिक करा"</string>
     <string name="share_contacts" msgid="6404040163340914061">"सर्व संपर्क सामायिक करा"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"संपर्क सामायिक करण्यात अयशस्वी झाले."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"संपर्क आयात/निर्यात करा"</string>

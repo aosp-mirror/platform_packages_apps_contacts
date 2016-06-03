@@ -114,7 +114,7 @@
     <string name="sms" msgid="8086289395154598654">"Текстово съобщение"</string>
     <string name="postal_address" msgid="7692926530081579786">"Адрес"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Фирма"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Наименование"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Длъжност"</string>
     <string name="label_notes" msgid="3997277594846722699">"Бележки"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Уебсайт"</string>
@@ -216,7 +216,7 @@
     <string name="confirm_export_title" msgid="3240899428149018226">"Да се експортират ли контактите?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кешира се"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импортира/т се <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Експорт. като .vcf файл"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Експортиране като .vcf файл"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортиране по"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Собствено име"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Фамилно име"</string>

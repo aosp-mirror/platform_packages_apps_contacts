@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ਫੋਨ ਨੰਬਰਾਂ ਵਾਲੇ ਸਾਰੇ ਸੰਪਰਕ"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"ਕੰਮ ਪ੍ਰੋਫਾਈਲ ਸੰਪਰਕ"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"ਅਪਡੇਟਾਂ ਦੇਖੋ"</string>
-    <string name="account_phone" msgid="6104157990869081962">"ਫੋਨ-ਓਨਲੀ, ਅਣਸਿੰਕਡ"</string>
+    <string name="account_phone" msgid="6104157990869081962">"ਕੇਵਲ-ਫ਼ੋਨ \'ਤੇ, ਅਣਸਮਕਾਲੀਕਿਰਤ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ਨਾਮ"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ਉਪਨਾਮ"</string>
     <string name="full_name" msgid="885420216812981202">"ਨਾਮ"</string>
@@ -117,7 +117,7 @@
     <string name="ghostData_title" msgid="6221293237772204604">"ਸਿਰਲੇਖ"</string>
     <string name="label_notes" msgid="3997277594846722699">"ਸੂਚਨਾਵਾਂ"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"ਵੈਬਸਾਈਟ"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"ਵੈੱਬਸਾਈਟ"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"ਸਮੂਹ"</string>
     <string name="email_home" msgid="2230967805906450693">"ਘਰ ਈਮੇਲ ਕਰੋ"</string>
     <string name="email_mobile" msgid="7532438378678903685">"ਮੋਬਾਈਲ ਤੇ ਈਮੇਲ ਕਰੋ"</string>
@@ -150,7 +150,7 @@
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"ਫੋਨੈਟਿਕ ਨਾਮ ਖੇਤਰਾਂ ਦਾ ਵਿਸਤਾਰ ਕਰੋ ਜਾਂ ਨਸ਼ਟ ਕਰੋ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"ਸਾਰੇ ਸੰਪਰਕ"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"ਸਟਾਰ ਵਾਲੇ"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"ਅਨੁਕੂਲਿਤ ਕਰੋ"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"ਵਿਸ਼ੇਸ਼-ਵਿਉਂਤਬੱਧ ਕਰੋ"</string>
     <string name="list_filter_single" msgid="4553809449379139446">"ਸੰਪਰਕ"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"ਹੋਰ ਸਾਰੇ ਸੰਪਰਕ"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"ਸਾਰੇ ਸੰਪਰਕ"</string>
@@ -217,10 +217,10 @@
     <string name="caching_vcard_title" msgid="9185299351381102305">"ਕੈਚ ਕਰ ਰਿਹਾ ਹੈ"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ਨੂੰ ਆਯਾਤ ਕਰ ਰਿਹਾ ਹੈ: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ਫ਼ਾਈਲ ਵਿੱਚ ਨਿਰਯਾਤ ਕਰੋ"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"ਇਸ ਅਨੁਸਾਰ ਛਾਂਟੋ"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"ਇਸ ਮੁਤਾਬਕ ਛਾਂਟੋ"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ਪਹਿਲਾ ਨਾਮ"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"ਆਖਰੀ ਨਾਮ"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"ਨਾਮ ਫੌਰਮੈਟ"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"ਨਾਮ ਦੀ ਵੰਨਗੀ"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ਪਹਿਲਾਂ ਪਹਿਲਾ ਨਾਮ"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ਪਹਿਲਾਂ ਆਖ਼ਰੀ ਨਾਮ"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"ਨਵੇਂ ਸੰਪਰਕਾਂ ਲਈ ਪੂਰਵ-ਨਿਰਧਾਰਤ ਖਾਤਾ"</string>
@@ -228,7 +228,7 @@
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ਸੰਪਰਕ ਮੈਟਾਡੈਟੇ ਨੂੰ ਸਮਕਾਲੀ ਕਰੋ"</string>
     <string name="setting_about" msgid="3926137653588942297">"ਸੰਪਰਕਾਂ ਬਾਰੇ"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"ਸੈਟਿੰਗਾਂ"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"ਦਿੱਸਦੇ ਸੰਪਰਕ ਸ਼ੇਅਰ ਕਰੋ"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"ਦਿਖਣਯੋਗ ਸੰਪਰਕ ਸਾਂਝੇ ਕਰੋ"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ਦ੍ਰਿਸ਼ਮਾਨ ਸੰਪਰਕ ਸ਼ੇਅਰ ਕਰਨ ਵਿੱਚ ਅਸਫਲ।"</string>
     <string name="share_favorite_contacts" msgid="2838432887118216222">"ਮਨਪਸੰਦ ਸੰਪਰਕਾਂ ਨੂੰ ਸਾਂਝਾ ਕਰੋ"</string>
     <string name="share_contacts" msgid="6404040163340914061">"ਸਾਰੇ ਸੰਪਰਕ ਸਾਂਝੇ ਕਰੋ"</string>
@@ -268,12 +268,12 @@
       <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>। <xliff:g id="COUNT_3">%2$d</xliff:g> ਬਿਨਾਂ ਪੜ੍ਹੀਆਂ ਆਈਟਮਾਂ। </item>
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>। <xliff:g id="COUNT_3">%2$d</xliff:g> ਬਿਨਾਂ ਪੜ੍ਹੀਆਂ ਆਈਟਮਾਂ। </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"ਬਿਲਡ ਵਰਜਨ"</string>
-    <string name="about_open_source_licenses" msgid="3224958101863814649">"ਓਪਨ ਸੋਰਸ ਲਾਇਸੰਸ"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ਓਪਨ ਸੋਰਸ ਸੌਫਟਵੇਅਰ ਲਈ ਲਾਇਸੰਸ ਵੇਰਵੇ"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"ਨਿਰਮਾਣ ਸੰਸਕਰਣ"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"ਖੁੱਲ੍ਹਾ ਸ੍ਰੋਤ ਲਾਇਸੰਸ"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ਖੁੱਲ੍ਹਾ ਸ੍ਰੋਤ ਸਾਫਟਵੇਅਰ ਲਈ ਲਾਇਸੰਸ ਵੇਰਵੇ"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"ਪਰਦੇਦਾਰੀ ਨੀਤੀ"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"ਸੇਵਾ ਦੀਆਂ ਮਦਾਂ"</string>
-    <string name="activity_title_licenses" msgid="7812517458691564230">"ਓਪਨ ਸੋਰਸ ਲਾਇਸੰਸ"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"ਖੁੱਲ੍ਹਾ ਸ੍ਰੋਤ ਲਾਇਸੰਸ"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url ਖੋਲ੍ਹਣ ਵਿੱਚ ਅਸਫਲ।"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ਜਾਂਚੀ ਗਈ"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ਜਾਂਚੀ ਨਹੀਂ ਗਈ"</string>

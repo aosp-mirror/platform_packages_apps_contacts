@@ -96,7 +96,7 @@
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ডাকনাম"</string>
     <string name="full_name" msgid="885420216812981202">"নাম"</string>
     <string name="name_given" msgid="4153709115654909377">"প্রথম নাম"</string>
-    <string name="name_family" msgid="5317387657540738981">"পারিবারিক নাম"</string>
+    <string name="name_family" msgid="5317387657540738981">"পদবি"</string>
     <string name="name_prefix" msgid="8219879405071462309">"নামের আগের অংশ"</string>
     <string name="name_middle" msgid="3951610314424632183">"মাঝের নাম"</string>
     <string name="name_suffix" msgid="5436984808550075931">"নামের পরের অংশ"</string>
@@ -219,10 +219,10 @@
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ফাইলে রপ্তানি করুন"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"এই অনুসারে বাছুন"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"প্রথম নাম"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"পারিবারিক নাম"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"পদবি"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"নামের বিন্যাস"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"প্রথমে আদ্য নাম"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"প্রথমে পারিবারিক নাম"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"প্রথমে প্রথম নামটি"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"প্রথমে উপাধি"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"নতুন পরিচিতিগুলির জন্য ডিফল্ট অ্যাকাউন্ট"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"পরিচিতির মেটাডাটা সিঙ্ক করুন [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"পরিচিতির মেটাডাটা সিঙ্ক করুন"</string>
@@ -245,7 +245,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"পছন্দগুলি"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"কোনো পরিচিতি নেই৷"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"কোনো দৃশ্যমান পরিচিতি নেই৷"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"কোনো পছন্দসই নেই"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"কোনো পছন্দসই পরিচিতি নেই৷"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> এ কোনো পরিচিতি নেই"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"পুনরাবৃত্তি সাফ করুন"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"সিম কার্ড নির্বাচন করুন"</string>

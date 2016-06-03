@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Сите контакти со телефонски броеви"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Контакти на Работниот профил"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Прикажи ажурирања"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Само телефон, несинхрнизиран"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Само на телефон, несинхронизиран"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Прекар"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>
@@ -116,7 +116,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Компанија"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Име"</string>
     <string name="label_notes" msgid="3997277594846722699">"Белешки"</string>
-    <string name="label_sip_address" msgid="3754551597798479318">"СИП"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Веб-сајт"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Групи"</string>
     <string name="email_home" msgid="2230967805906450693">"Домашна е-пошта"</string>
@@ -226,7 +226,7 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Стандардна сметка за новите контакти"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Синхронизација на метаподатоци за контакт [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Синхронизација на метаподатоци за контакт"</string>
-    <string name="setting_about" msgid="3926137653588942297">"За контактите"</string>
+    <string name="setting_about" msgid="3926137653588942297">"За Контакти"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Поставки"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Сподели видливи контакти"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Не успеаја да се споделат видливите контакти."</string>
@@ -268,7 +268,7 @@
       <item quantity="one"><xliff:g id="TITLE_2">%1$s</xliff:g> <xliff:g id="COUNT_3">%2$d</xliff:g> непрочитана ставка. </item>
       <item quantity="other"><xliff:g id="TITLE_2">%1$s</xliff:g> <xliff:g id="COUNT_3">%2$d</xliff:g> непрочитани ставки. </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"Вградена верзија"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"Верзија"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"Лиценци за софтвер со отворен код"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Детали за лиценците за софтвер со отворен код"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Политика за приватност"</string>

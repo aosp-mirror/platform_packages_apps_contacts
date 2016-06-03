@@ -98,11 +98,11 @@
     <string name="name_given" msgid="4153709115654909377">"ຊື່"</string>
     <string name="name_family" msgid="5317387657540738981">"ນາມສະກຸນ"</string>
     <string name="name_prefix" msgid="8219879405071462309">"ຄຳນຳໜ້າຊື່"</string>
-    <string name="name_middle" msgid="3951610314424632183">"ຊື່ກາງ"</string>
+    <string name="name_middle" msgid="3951610314424632183">"ຊື່ຮອງ"</string>
     <string name="name_suffix" msgid="5436984808550075931">"ຄຳຕໍ່ທ້າຍຊື່"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"ການອອກສຽງຊື່"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"ການ​ອອກ​ສຽງ​​ຊື່"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"ການອອກສຽງຊື່ກາງ"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"ການອອກສຽງຊື່ຮອງ"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"ການ​ອອກ​ສຽງ​ນາມ​ສະ​ກຸນ​​​"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ໂທລະສັບ"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ອີເມວ"</string>
@@ -176,7 +176,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"ບໍ່ສາມາດເປີດ \"<xliff:g id="FILE_NAME">%s</xliff:g>\" ໄດ້: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"ບໍ່ສາມາດເລີ່ມໂປຣແກຣມສົ່ງອອກໄດ້: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ສາມາດສົ່ງອອກໄດ້."</string>
-    <string name="missing_required_permission" msgid="3120850759881656369">"ທ່ານ​ປິດ​ໃຊ້​ງານ​ການ​ອະ​ນຸ​ຍາດ​ທີ່​ຕ້ອງ​ການ​ແລ້ວ."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"ທ່ານປິດການນຳໃຊ້ສິດອະນຸຍາດທີ່ຈຳເປັນໄວ້ແລ້ວ."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"ເກີດຄວາມຜິດພາດໃນລະຫວ່າງການສົ່ງອອກ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ຊື່ໄຟລ໌ທີ່ຕ້ອງການຍາວເກີນໄປ (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O ຜິດພາດ"</string>
@@ -226,22 +226,22 @@
     <string name="default_editor_account" msgid="4338725881650654966">"ບັນ​ຊີ​ເລີ່ມຕົ້ນ​ສຳ​ລັບ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໃໝ່"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"ຊິ້ງຂໍ້ມູນເມຕາເດຕາຂອງລາຍຊື່ຜູ້ຕິດຕໍ່ [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ຊິ້ງຂໍ້ມູນເມຕາເດຕາຂອງລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
-    <string name="setting_about" msgid="3926137653588942297">"ກ່ຽວ​ກັບ​ລາຍ​ຊື່​ຕິດ​ຕໍ່"</string>
+    <string name="setting_about" msgid="3926137653588942297">"ກ່ຽວກັບລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"ການຕັ້ງຄ່າ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ແບ່ງປັນລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ເບິ່ງເຫັນໄດ້"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ແບ່ງ​ປັນ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ສາ​ມາດ​ເຫັນ​ໄດ້​ບໍ່​ສຳ​ເລັດ."</string>
     <string name="share_favorite_contacts" msgid="2838432887118216222">"ແບ່ງປັນລາຍຊື່ຜູ້ຕິດຕໍ່ທີ່ມັກ"</string>
     <string name="share_contacts" msgid="6404040163340914061">"ແບ່ງປັນທຸກລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"ແບ່ງປັນລາຍຊື່ຜູ້ຕິດຕໍ່ບໍ່ສຳເລັດ."</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"ນຳເຂົ້າ/ສົ່ງອອກ ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"ນຳເຂົ້າ/ສົ່ງອອກ ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="dialog_import" msgid="5177004290082451296">"ນຳເຂົ້າລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="share_error" msgid="665756457151793108">"ບໍ່ສາມາດແບ່ງປັນລາຍຊື່ລາຍຊື່ຜູ່ຕິດຕໍ່ນີ້ໄດ້."</string>
-    <string name="no_contact_to_share" msgid="5749367538191552509">"ບໍ່​ມີ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ທີ່​ຈະ​ໂທ."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"ບໍ່ມີລາຍຊື່ຜູ້ຕິດຕໍ່ທີ່ຈະແບ່ງປັນ."</string>
     <string name="menu_search" msgid="7464453023659824700">"ຊອກຫາ"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"ລາຍຊື່ຜູ່ຕິດຕໍ່ເພື່ອສະແດງ"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ລາຍຊື່ຜູ່ຕິດຕໍ່ເພື່ອສະແດງ"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"ລາຍຊື່ຜູ້ຕິດຕໍ່ເພື່ອສະແດງ"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ລາຍຊື່ຜູ້ຕິດຕໍ່ເພື່ອສະແດງ"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"ກຳນົດມຸມມອງເອງ"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"ຊອກຫາລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"ຊອກຫາລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ລາຍການທີ່ມັກ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ເບິ່ງເຫັນໄດ້."</string>
@@ -268,12 +268,12 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> ລາຍ​ການ​ບໍ່​ທັນ​ໄດ້​ອ່ານ. </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> ​ລາຍ​ການ​ບໍ່​ທັນ​ໄດ້​ອ່ານ. </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"ລຸ້ນທີ່ສ້າງ"</string>
-    <string name="about_open_source_licenses" msgid="3224958101863814649">"ໃບອະນຸຍາດແຫຼ່ງເປີດ"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"ເວີຊັນທີ່ສ້າງ"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"ລິຂະສິດໂອເພນຊອດ"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ລາຍລະອຽດໃບອະນຸຍາດຂອງຊອບແວແຫຼ່ງເປີດ"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"​ນະ​ໂຍ​ບາຍ​ຄວາມ​ເປັນ​ສ່ວນຕົວ"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"​ເງື່ອນ​ໄຂ​ການ​ໃຫ້​ບໍ​ລິ​ການ"</string>
-    <string name="activity_title_licenses" msgid="7812517458691564230">"ໃບອະນຸຍາດແຫຼ່ງເປີດ"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"ລິຂະສິດໂອເພນຊອດ"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"ເປີດ URL ລົ້ມເຫລວ."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ຖືກ​ໝາຍ​ແລ້ວ"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ບໍ່​ໄດ້​ໝາຍ​ແລ້ວ"</string>

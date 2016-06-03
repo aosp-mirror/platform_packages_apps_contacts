@@ -99,7 +99,7 @@
     <string name="full_name" msgid="885420216812981202">"Ime"</string>
     <string name="name_given" msgid="4153709115654909377">"Ime"</string>
     <string name="name_family" msgid="5317387657540738981">"Priimek"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Naziv"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Naziv (pred imenom)"</string>
     <string name="name_middle" msgid="3951610314424632183">"Drugo ime"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Naziv (za imenom)"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Ime – fonetično"</string>
@@ -228,11 +228,11 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Privzeti račun za nove stike"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinhronizacija metapodatkov stikov [PRESKUSNA INTERNA UPORABA]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinhronizacija metapodatkov stikov"</string>
-    <string name="setting_about" msgid="3926137653588942297">"O programu za stike"</string>
+    <string name="setting_about" msgid="3926137653588942297">"O Stikih"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Nastavitve"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Vidne stike deli z drugimi"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Deljenje vidnih stikov z drugimi ni uspelo."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Skupna raba priljubljenih stikov"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Deljenje priljubljenih stikov"</string>
     <string name="share_contacts" msgid="6404040163340914061">"Skupna raba vseh stikov"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"Dajanje stikov v skupno rabo ni uspelo."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Uvoz/izvoz stikov"</string>

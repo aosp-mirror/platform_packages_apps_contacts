@@ -75,7 +75,7 @@
     <string name="directory_search_label" msgid="4484648822765516947">"નિર્દેશિકા"</string>
     <string name="directory_search_label_work" msgid="7396227297795426967">"કાર્ય નિર્દેશિકા"</string>
     <string name="local_search_label" msgid="9094584931063745728">"તમામ સંપર્કો"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"મારા"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"હું"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"શોધી રહ્યું છે..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> કરતાં વધુ મળ્યાં."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"સંપર્કો નથી"</string>
@@ -270,7 +270,7 @@
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"બિલ્ડ સંસ્કરણ"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"ઓપન સોર્સ લાઇસેંસેસ"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ઓપન સોર્સ સૉફ્ટવેર માટે લાઇસેંસ વિગતો"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ઓપન સોર્સ સૉફ્ટવેર માટે લાઇસન્સ વિગતો"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"ગોપનીયતા નીતિ"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"સેવાની શરતો"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ખુલ્લા સ્ત્રોત લાઇસેંસેસ"</string>

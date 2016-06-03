@@ -224,7 +224,7 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ordenar por"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Nombre"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Apellido"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Formato del nombre"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Formato de nombre"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nombre primero"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Apellido primero"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Cuenta predeterminada para nuevos contactos"</string>
@@ -272,7 +272,7 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> elementos no leídos. </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> elemento no leído. </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"Versión de compilación"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"Versión de la compilación"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"Licencias de software libre"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Detalles de las licencias de software libre"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Política de Privacidad"</string>

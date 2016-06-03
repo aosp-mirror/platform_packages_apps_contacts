@@ -271,7 +271,7 @@
     <string name="about_build_version" msgid="4221971683776635130">"बिल्ड वर्शन"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"ओपन सोर्स लाइसेंस"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ओपन सोर्स सॉफ़्टवेयर के लि‍ए लाइसेंस वि‍वरण"</string>
-    <string name="about_privacy_policy" msgid="8458337666582973913">"गोपनीयता नीति"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"निजता नीति"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"सेवा की शर्तें"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ओपन सोर्स लाइसेंस"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url खोलने में विफल रहा."</string>

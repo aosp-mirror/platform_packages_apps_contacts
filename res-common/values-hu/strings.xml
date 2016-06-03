@@ -217,7 +217,7 @@
     <string name="caching_vcard_title" msgid="9185299351381102305">"Gyorsítótárazás"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importálás – <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Exportálás .vcf fájlba"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Rendezés"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Rendezés alapja"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Utónév"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Vezetéknév"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Névformátum"</string>

@@ -245,7 +245,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Preferits"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"No hi ha cap contacte."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"No hi ha cap contacte visible."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"No hi ha cap preferit"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Sense preferits"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"No hi ha cap contacte a <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Esborra contactes freqüents"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Selecciona una targeta SIM"</string>
