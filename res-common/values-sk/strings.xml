@@ -97,7 +97,7 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Meno"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Prezývka"</string>
     <string name="full_name" msgid="885420216812981202">"Meno"</string>
-    <string name="name_given" msgid="4153709115654909377">"Meno"</string>
+    <string name="name_given" msgid="4153709115654909377">"Krstné meno"</string>
     <string name="name_family" msgid="5317387657540738981">"Priezvisko"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Titul pred menom"</string>
     <string name="name_middle" msgid="3951610314424632183">"Stredné meno"</string>
@@ -116,7 +116,7 @@
     <string name="sms" msgid="8086289395154598654">"Textová správa"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adresa"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Spoločnosť"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Názov"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Funkcia"</string>
     <string name="label_notes" msgid="3997277594846722699">"Poznámky"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Web"</string>
@@ -220,7 +220,7 @@
     <string name="progress_notifier_message" msgid="359931715339778107">"Import: <xliff:g id="CURRENT_NUMBER">%s</xliff:g> / <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Exportovať do súboru .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Zoradiť podľa"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Meno"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Krstné meno"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Priezvisko"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Formát mena"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Najprv meno"</string>

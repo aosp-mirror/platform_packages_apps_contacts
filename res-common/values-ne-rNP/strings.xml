@@ -103,7 +103,7 @@
     <string name="name_phonetic" msgid="2249169131785620210">"फोनेटिक नाम"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"ध्वनितात्त्विक नाम"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"फोनेटिक मध्य नाम"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"ध्वनितात्त्विक थर"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"फोनेटिक थर"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"फोन"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"इमेल गर्नुहोस्"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"ठेगाना"</string>
@@ -238,7 +238,7 @@
     <string name="share_contacts" msgid="6404040163340914061">"सबै सम्पर्क साझेदारी गर्नुहोस्"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"सम्पर्कहरू साझेदारी गर्न असफल भयो।"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"आयात/निर्यात सम्पर्कहरू"</string>
-    <string name="dialog_import" msgid="5177004290082451296">"सम्पर्क आयात गर्नुहोस्"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"सम्पर्कहरूलाई आयात गर्नुहोस्"</string>
     <string name="share_error" msgid="665756457151793108">"यस सम्पर्कलाई साझेदारी गर्न सकिँदैन।"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"साझेदारी गर्न कुनै सम्पर्क ठेगानाहरू छैनन्।"</string>
     <string name="menu_search" msgid="7464453023659824700">"खोज्नुहोस्"</string>

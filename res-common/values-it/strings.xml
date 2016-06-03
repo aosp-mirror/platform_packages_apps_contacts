@@ -270,7 +270,7 @@
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"Versione build"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"Licenze open source"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Dettagli della licenza del software open source"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Dettagli delle licenze per il software open source"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Norme sulla privacy"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Termini di servizio"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licenze open source"</string>

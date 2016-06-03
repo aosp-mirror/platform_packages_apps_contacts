@@ -65,7 +65,7 @@
     <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (پیام)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"برقراری تماس ویدیویی"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"مکرراً تماس‌گرفته‌ها پاک شود؟"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"فهرست افرادی را که مکرر با آن‌ها تماس گرفته‌اید در برنامه‌های «مخاطبین» و «تلفن» پاک خواهید کرد و برنامه‌های ایمیل مجبور می‌شوند که تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"فهرست افرادی را که مکرر با آن‌ها تماس گرفته‌اید در برنامه‌های «مخاطبین» و «تلفن» پاک خواهید کرد و برنامه‌های رایانامه مجبور می‌شوند که تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"درحال پاک کردن مکرراً تماس‌گرفته…"</string>
     <string name="status_available" msgid="4832569677396634846">"در دسترس"</string>
     <string name="status_away" msgid="6267905184545881094">"غایب"</string>
@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"همه مخاطبین دارای شماره تلفن"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"مخاطبین نمایه کاری"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"مشاهده به‌روزرسانی‌ها"</string>
-    <string name="account_phone" msgid="6104157990869081962">"فقط تلفن، همگام‌سازی نشده"</string>
+    <string name="account_phone" msgid="6104157990869081962">"فقط تلفن، همگام‌سازی‌نشده"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"نام"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"نام مستعار"</string>
     <string name="full_name" msgid="885420216812981202">"نام"</string>
@@ -105,7 +105,7 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"تلفظ نام میانی"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"تلفظ نام خانوادگی"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"تلفن"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"ایمیل"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"رایانامه"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"آدرس"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"پیام فوری"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"سازمان"</string>
@@ -119,12 +119,12 @@
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"وب سایت"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"گروه‌ها"</string>
-    <string name="email_home" msgid="2230967805906450693">"ایمیل به منزل"</string>
-    <string name="email_mobile" msgid="7532438378678903685">"ایمیل به تلفن همراه"</string>
-    <string name="email_work" msgid="7065971921227432400">"ایمیل به محل کار"</string>
-    <string name="email_other" msgid="4601881243553289615">"ایمیل"</string>
-    <string name="email_custom" msgid="5777583741581538870">"ایمیل به <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5624424151176351591">"ایمیل"</string>
+    <string name="email_home" msgid="2230967805906450693">"رایانامه به منزل"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"رایانامه به تلفن همراه"</string>
+    <string name="email_work" msgid="7065971921227432400">"رایانامه به محل کار"</string>
+    <string name="email_other" msgid="4601881243553289615">"رایانامه"</string>
+    <string name="email_custom" msgid="5777583741581538870">"رایانامه به <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"رایانامه"</string>
     <string name="postal_street" msgid="881349814077356134">"خیابان"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"صندوق پستی"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"محله"</string>

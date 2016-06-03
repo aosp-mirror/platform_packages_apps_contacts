@@ -63,9 +63,9 @@
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>ထံ စာပို့ပါ"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS နံပါတ်သို့ စာပို့ပါ"</string>
     <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (မက်ဆေ့ဂ်ျပို့ပါ)"</string>
-    <string name="description_video_call" msgid="4907306403398614909">"ဗီဒီယို ခေါ်ဆိုမှု ပြုလုပ်ရန်"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"ဗီဒီယို ဖုန်းခေါ်ရန်"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"အသုံးများသောလိပ်စာများရှင်းပစ်မလား?"</string>
-    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"အသုံးများသော အဆက်အသွယ်စာရင်းအား Contacts နှင့် Phone app များမှ သင် ရှင်းလင်းပစ်မှာဖြစ်ပြီး၊ အီးမေး app များအား သင့်နှစ်သက်ရာ ​ပ​ြောဆိုဆက်ဆံမှုပုံစံကို အစမှပြန်လည် လေ့လာခိုင်းမည်။"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"အသုံးများသော အဆက်အသွယ်စာရင်းအား Contacts နှင့် Phone app များမှ သင် ရှင်းလင်းပစ်မှာဖြစ်ပြီး၊ အီးမေးလ် app များအား သင့်နှစ်သက်ရာ ​ပ​ြောဆိုဆက်ဆံမှုပုံစံကို အစမှပြန်လည် လေ့လာခိုင်းမည်။"</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"အသုံးများသောလိပ်စာများ ရှင်းလင်းနေစဉ်"</string>
     <string name="status_available" msgid="4832569677396634846">"ဆက်သွယ်နိုင်ပါသည်"</string>
     <string name="status_away" msgid="6267905184545881094">"အဝေးရောက်နေပါသည်"</string>
@@ -160,7 +160,7 @@
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" အား ထပ်တူပြုလုပ်ခြင်းမှ ဖယ်ထုတ်ခြင်းသည် တခြား အုပ်စုမလုပ်ထားသော အဆက်အသွယ်များအားလည်း ဖယ်ထုတ်ပါလိမ့်မည်။"</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"ပြသမှု ရွေးချယ်ခြင်းများ သိမ်းဆည်နေစဉ်…"</string>
     <string name="menu_done" msgid="32470053723443112">"ပြီးပါပြီ"</string>
-    <string name="menu_doNotSave" msgid="6012426160993364871">"ဖျက်သိမ်းရန်"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"မလုပ်တော့ပါ"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> ထဲမှ အဆက်အသွယ်များ"</string>
     <string name="listCustomView" msgid="1915154113477432033">"မိမိစိတ်ကြိုက် မြင်ကွင်းမှ"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"အဆက်အသွယ်တစ်ခုတည်း"</string>
@@ -217,7 +217,7 @@
     <string name="caching_vcard_title" msgid="9185299351381102305">"ယာယီသိမ်းထားခြင်း"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>ကို သွင်းနေစဉ်: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ဖိုင်သို့ထုတ်မည်"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"ဖြင့် စီပေးရန်"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"အောက်ပါအတိုင်း စီပါ"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ပထမ အမည်"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"နောက်ဆုံး အမည်"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"အမည် ချထားပုံစံ"</string>
@@ -272,7 +272,7 @@
     <string name="about_open_source_licenses" msgid="3224958101863814649">"အခမဲ့ ရင်းမြစ် လိုင်စင်များ"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"အခမဲ့  ဆော့ဝဲအတွက် လိုင်စင် အသေးစိတ်များ"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"ပုဂ္ဂိုလ်ရေးဆိုင်ရာ မူဝါဒ"</string>
-    <string name="about_terms_of_service" msgid="628537491496465267">"ဝန်ဆောင်မှု စည်းကမ်းချက်များ"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"ဝန်ဆောင်မှုဆိုင်ရာ စည်းမျဉ်းများ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"အခမဲ့ ရင်းမြစ် လိုင်စင်များ"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url ကို ဖွင့်၍မရပါ။"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ကိုစစ်ဆေးပြီးပါပြီ"</string>

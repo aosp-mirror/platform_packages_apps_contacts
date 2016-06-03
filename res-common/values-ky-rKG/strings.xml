@@ -85,15 +85,10 @@
     </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> үчүн тез байланышуу"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Аты жок)"</string>
-    <!-- no translation found for favoritesFrequentCalled (6600127125011757687) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentContacted (2849493314447751970) -->
-    <skip />
-    <!-- no translation found for description_view_contact_detail (2756753096193839285) -->
-    <!-- no translation found for description_view_contact_detail (2795575601596468581) -->
-    <skip />
-    <!-- no translation found for list_filter_phones (3692815632088465422) -->
-    <skip />
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Көп чалынган"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Көп байланышып турган"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Байланышты карап көрүү"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Телефон номерлери бар бардык байланыштар"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Жумуш профилиндеги байланыштар"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Жаңыртууларды көрүү"</string>
     <string name="account_phone" msgid="6104157990869081962">"Телефондо гана, шайкештирилбейт"</string>

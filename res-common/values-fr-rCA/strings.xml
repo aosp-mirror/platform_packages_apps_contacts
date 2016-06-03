@@ -105,7 +105,7 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Deuxième prénom phonétique"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Prononciation du nom de famille"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Numéro de téléphone"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"Adresse de courriel :"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Adresse de courriel"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresse"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"MI"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Entreprise"</string>
@@ -122,9 +122,9 @@
     <string name="email_home" msgid="2230967805906450693">"Envoyer un courriel au domicile"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Envoyer un courriel sur le mobile"</string>
     <string name="email_work" msgid="7065971921227432400">"Envoyer un courriel au bureau"</string>
-    <string name="email_other" msgid="4601881243553289615">"Adresse de courriel :"</string>
+    <string name="email_other" msgid="4601881243553289615">"Envoyer un courriel"</string>
     <string name="email_custom" msgid="5777583741581538870">"Envoyer un courriel à <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5624424151176351591">"Adresse de courriel :"</string>
+    <string name="email" msgid="5624424151176351591">"Envoyer un courriel"</string>
     <string name="postal_street" msgid="881349814077356134">"Rue"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"Case postale"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"Quartier"</string>

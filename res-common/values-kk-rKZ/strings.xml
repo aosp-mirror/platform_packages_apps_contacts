@@ -100,10 +100,10 @@
     <string name="name_prefix" msgid="8219879405071462309">"Аттың префиксі"</string>
     <string name="name_middle" msgid="3951610314424632183">"Әкесінің аты"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Аттың суффиксі"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Фонетикалық есімі"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Фонетикалық аты"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Әкесінің фонетикалық аты"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Фонетикалық тегі"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Атының транскрипциясы"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Атының транскрипциясы"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Әкесінің атының транскрипциясы"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Тегінің транскрипциясы"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Э-пошта"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Мекенжай"</string>
@@ -114,7 +114,7 @@
     <string name="sms" msgid="8086289395154598654">"Мәтін-хабар"</string>
     <string name="postal_address" msgid="7692926530081579786">"Мекенжай"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Компания"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Атауы"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Лауазымы"</string>
     <string name="label_notes" msgid="3997277594846722699">"Ескертулер"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Веб-сайт"</string>
@@ -147,7 +147,7 @@
     <string name="chat" msgid="6297650784873558837">"Чаттасу"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"жою"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Ат аймақтарын кеңейту немесе қирату"</string>
-    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Фонетикалық атау өрістерін жаю немесе жию"</string>
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Атының транскрипциясы өрістерін жаю немесе жию"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Барлық контактілер"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Жұлдызшалы"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Қалау бойынша реттеу"</string>
@@ -160,7 +160,7 @@
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" синрондаудан алу топталмаған контактілердің синхрондаудан алынуына себеп болады."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Дисплей опцияларын сақтау…"</string>
     <string name="menu_done" msgid="32470053723443112">"Дайын"</string>
-    <string name="menu_doNotSave" msgid="6012426160993364871">"Өшіру"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"Бас тарту"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> ішіндегі контактілер"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Контактілердің жеке көрінісі"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Жалғыз контакт"</string>

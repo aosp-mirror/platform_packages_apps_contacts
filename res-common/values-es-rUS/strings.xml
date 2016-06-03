@@ -105,7 +105,7 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Segundo nombre fonético"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Apellido fonético"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Teléfono"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"Dirección de correo"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Correo electrónico"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Dirección"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"MI"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organización"</string>
@@ -145,7 +145,7 @@
     <string name="chat_icq" msgid="7538190395602030726">"Chat mediante ICQ"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"Chat mediante Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"Chatear"</string>
-    <string name="description_minus_button" msgid="2142439445814730827">"eliminar"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"borrar"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Expandir o contraer campos de nombre"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Expandir o contraer campos de nombre fonético"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Todos los contactos"</string>
@@ -168,7 +168,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Importar desde tarjeta SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importar desde SIM <xliff:g id="SIM_NAME">^1</xliff:g> (<xliff:g id="SIM_NUMBER">^2</xliff:g>)"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importar desde SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importar desde el archivo .vcf"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importar desde archivo .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"¿Deseas cancelar la importación de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"¿Deseas cancelar la exportación de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"No se canceló impor./expor. de vCard."</string>
@@ -216,7 +216,7 @@
     <string name="confirm_export_title" msgid="3240899428149018226">"¿Exportar contactos?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Almacenando en caché"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importando <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Exportar al archivo .vcf"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Exportar a archivo .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ordenar por"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Nombre"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Apellido"</string>
@@ -226,7 +226,7 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Cuenta predeterminada para los contactos nuevos"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronizar metadatos de contactos [PRUEBA INTERNA]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronizar metadatos de contactos"</string>
-    <string name="setting_about" msgid="3926137653588942297">"Acerca de los Contactos"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Acerca de Contactos"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Configuración"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Compartir contactos visibles"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Se produjo un error al compartir los contactos visibles."</string>

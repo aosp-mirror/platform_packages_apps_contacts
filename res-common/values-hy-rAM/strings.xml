@@ -92,9 +92,9 @@
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Աշխատանքային պրոֆիլի կոնտակտներ"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Դիտել թարմացումները"</string>
     <string name="account_phone" msgid="6104157990869081962">"Միայն սարքում, չհամաժամեցված"</string>
-    <string name="nameLabelsGroup" msgid="1817502703362057154">"Անունը"</string>
-    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Մականունը"</string>
-    <string name="full_name" msgid="885420216812981202">"Անունը"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Անուն"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Մականուն"</string>
+    <string name="full_name" msgid="885420216812981202">"Անուն"</string>
     <string name="name_given" msgid="4153709115654909377">"Անուն"</string>
     <string name="name_family" msgid="5317387657540738981">"Ազգանուն"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Անվան նախածանց"</string>
@@ -112,10 +112,10 @@
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Հարաբերություն"</string>
     <string name="eventLabelsGroup" msgid="4801419345682462171">"Հատուկ ամսաթիվ"</string>
     <string name="sms" msgid="8086289395154598654">"Տեքստային հաղորդագրություն"</string>
-    <string name="postal_address" msgid="7692926530081579786">"Հասցեն"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Հասցե"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Ընկերությունը"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Պաշտոն"</string>
-    <string name="label_notes" msgid="3997277594846722699">"Գրառումներ"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Նշումներ"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Վեբ-կայք"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Խմբերը"</string>
@@ -125,13 +125,13 @@
     <string name="email_other" msgid="4601881243553289615">"Էլփոստ"</string>
     <string name="email_custom" msgid="5777583741581538870">"Նամակագրել <xliff:g id="CUSTOM">%s</xliff:g>-ին"</string>
     <string name="email" msgid="5624424151176351591">"Էլփոստ"</string>
-    <string name="postal_street" msgid="881349814077356134">"Փողոցը"</string>
-    <string name="postal_pobox" msgid="1799978742074885091">"Բաժանորդային արկղը"</string>
-    <string name="postal_neighborhood" msgid="3721092668038527674">"Շրջակայքը"</string>
-    <string name="postal_city" msgid="3173008531169519309">"Քաղաքը"</string>
-    <string name="postal_region" msgid="1695206048198921115">"Նահանգը"</string>
-    <string name="postal_postcode" msgid="6542806670034753265">"Փոստային կոդը"</string>
-    <string name="postal_country" msgid="3988452247038791892">"Երկիրը"</string>
+    <string name="postal_street" msgid="881349814077356134">"Փողոց"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Բաժանորդային արկղ"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Թաղամաս"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Քաղաք"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Նահանգ/շրջան"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Փոստային դասիչ"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Երկիր"</string>
     <string name="map_home" msgid="1221397355014741634">"Դիտել տան հասցեն"</string>
     <string name="map_work" msgid="9015981646907637207">"Դիտել աշխատավայրի հասցեն"</string>
     <string name="map_other" msgid="55098598855607997">"Դիտել հասցեն"</string>
@@ -220,7 +220,7 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Դասավորել ըստ"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Անունի"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Ազգանունի"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Անվան ձևաչափը"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Անվան ձևաչափ"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Սկզբում՝ անունը"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Սկզբում՝ ազգանունը"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Կանխադրված հաշիվ նոր կոնտակտների համար"</string>
@@ -265,8 +265,8 @@
     <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
     <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
-      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթարցված տարր: </item>
-      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթարցված տարր: </item>
+      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթերցված տարր: </item>
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթերցված տարր: </item>
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"Թողարկման տարբերակը"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"Բաց կոդով ծրագրերի արտոնագրեր"</string>

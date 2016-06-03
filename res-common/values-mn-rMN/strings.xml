@@ -258,7 +258,7 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"хайлтыг зогсоох"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Хайлтыг цэвэрлэх"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Харилцагчийн харагдах сонголт"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"Акаунт"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"Бүртгэл"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Дуудлагад байнга үүнийг ашиглах"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Залгах"</string>
     <string name="call_with_a_note" msgid="8453800473226831257">"Тэмдэглэл бүхий дуудлага хийх"</string>

@@ -224,7 +224,7 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ordenar por"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Nombre"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Apellido"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Formato del nombre"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Formato de nombre"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nombre primero"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Apellido primero"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Cuenta predeterminada para nuevos contactos"</string>

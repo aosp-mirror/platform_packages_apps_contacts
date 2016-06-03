@@ -118,7 +118,7 @@
     <string name="ghostData_title" msgid="6221293237772204604">"Titlu"</string>
     <string name="label_notes" msgid="3997277594846722699">"Note"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Site web"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Site"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Grupuri"</string>
     <string name="email_home" msgid="2230967805906450693">"Trimiteți un e-mail la o adresă de e-mail de domiciliu"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Trimiteți un e-mail către un telefon mobil"</string>
