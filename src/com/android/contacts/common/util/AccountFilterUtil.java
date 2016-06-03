@@ -59,7 +59,8 @@ public class AccountFilterUtil {
             if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
                 filterController.selectCustomFilter();
             } else {
-                filterController.setContactListFilter(filter, true);
+                filterController.setContactListFilter(filter, /* persistent */
+                        filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
             }
         }
     }
