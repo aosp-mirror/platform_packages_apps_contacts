@@ -93,7 +93,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Контакты с номерами телефонов"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Контакты из рабочего профиля"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Просмотреть обновления"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Только телефон, без синхронизации"</string>
+    <string name="account_phone" msgid="6104157990869081962">"только на телефоне, без синхронизации"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Имя"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псевдоним"</string>
     <string name="full_name" msgid="885420216812981202">"Полное имя"</string>
@@ -170,7 +170,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Импорт с SIM-карты"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Импорт с SIM-карты <xliff:g id="SIM_NAME">^1</xliff:g> (<xliff:g id="SIM_NUMBER">^2</xliff:g>)"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Импорт с SIM-карты <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Импортировать из файла VCF"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Импорт из файла VCF"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Отменить импорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\"?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Отменить экспорт файла \"<xliff:g id="FILENAME">%s</xliff:g>\"?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Не удалось отменить импорт/экспорт vCard"</string>
@@ -218,7 +218,7 @@
     <string name="confirm_export_title" msgid="3240899428149018226">"Экспортировать контакты?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кеширование…"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>..."</string>
-    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Экспортировать в файл VCF"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Экспорт в файл VCF"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортировка"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"По имени"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"По фамилии"</string>
@@ -232,7 +232,7 @@
     <string name="activity_title_settings" msgid="3056389601004689380">"Настройки"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Передать видимые контакты"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Не удалось поделиться видимыми контактами."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Отправить избранные контакты"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Отправить избранные"</string>
     <string name="share_contacts" msgid="6404040163340914061">"Отправить все контакты"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"Не удалось отправить контакты"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Импорт/экспорт контактов"</string>

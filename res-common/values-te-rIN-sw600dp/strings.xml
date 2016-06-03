@@ -17,6 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"టాబ్లెట్-మాత్రమే, సమకాలీకరించబడలేదు"</string>
+    <string name="account_phone" msgid="4804592866198643905">"టాబ్లెట్-మాత్రమే, సమకాలీకరించబడని"</string>
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"ఎగుమతి చేయదగిన పరిచయాలు ఏవీ లేవు. మీరు మీ టాబ్లెట్‌లో పరిచయాలు కలిగి ఉన్నప్పటికీ, కొందరు డేటా ప్రదాతలు పరిచయాలను టాబ్లెట్ నుండి ఎగుమతి చేయడానికి అనుమతించకపోవచ్చు."</string>
 </resources>

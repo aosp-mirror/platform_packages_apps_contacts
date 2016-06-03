@@ -92,7 +92,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Toate persoanele de contact cu numere de telefon"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Persoane de contact din profilul de serviciu"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Afișați actualizări"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Numai pe telefon, nesincronizată"</string>
+    <string name="account_phone" msgid="6104157990869081962">"numai pe telefon, nesincronizată"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nume"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Pseudonim"</string>
     <string name="full_name" msgid="885420216812981202">"Nume"</string>
@@ -106,19 +106,19 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Al doilea prenume fonetic"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Nume fonetic"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"Adrese de e-mail"</string>
-    <string name="postalLabelsGroup" msgid="3727124282406728557">"Adrese poștale"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"E-mail"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresă"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizație"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Relație"</string>
     <string name="eventLabelsGroup" msgid="4801419345682462171">"Dată specială"</string>
     <string name="sms" msgid="8086289395154598654">"Mesaj text"</string>
-    <string name="postal_address" msgid="7692926530081579786">"Adresă poștală"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Adresă"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Companie"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Titlu"</string>
     <string name="label_notes" msgid="3997277594846722699">"Note"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Site web"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Site"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Grupuri"</string>
     <string name="email_home" msgid="2230967805906450693">"Trimiteți un e-mail la o adresă de e-mail de domiciliu"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Trimiteți un e-mail către un telefon mobil"</string>

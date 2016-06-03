@@ -29,7 +29,7 @@
     <string name="call_other" msgid="4472141328347894937">"Залгах"</string>
     <string name="call_callback" msgid="687494744634190411">"Дуудлага хүлээж авахаар залгах"</string>
     <string name="call_car" msgid="9078083109758282133">"Машин руу залгах"</string>
-    <string name="call_company_main" msgid="8768047233970315359">"Компанийн үндсэн дугаар руу залгах"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Компаний үндсэн дугаар руу залгах"</string>
     <string name="call_isdn" msgid="3342482563847537747">"ISDN руу залгах"</string>
     <string name="call_main" msgid="4640261071249938558">"Үндсэн дугаар руу залгах"</string>
     <string name="call_other_fax" msgid="2536328553125487877">"Факс руу залгах"</string>
@@ -51,7 +51,7 @@
     <string name="sms_other" msgid="910895193552957097">"Зурвас илгээх"</string>
     <string name="sms_callback" msgid="728414485478941361">"Дуудлага авах зурвас илгээх"</string>
     <string name="sms_car" msgid="8543669230270954512">"Машин руу зурвас илгээх"</string>
-    <string name="sms_company_main" msgid="5441902128445061862">"Компанийн үндсэн дугаар руу зурвас илгээх"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Компаний үндсэн дугаар руу зурвас илгээх"</string>
     <string name="sms_isdn" msgid="7142483128948042667">"ISDN рүү зурвас илгээх"</string>
     <string name="sms_main" msgid="6815987840926184815">"Үндсэн дугаар руу зурвас илгээх"</string>
     <string name="sms_other_fax" msgid="8649822154879781466">"Факс руу зурвас илгээх"</string>
@@ -223,7 +223,7 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Өөрийн нэр"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Овог"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Нэрний формат"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Өөрийн нэрийг эхэнд нь"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Нэрийг эхэнд нь"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Овгийг эхэнд нь"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Шинэ харилцагчийн өгөгдмөл бүртгэл"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Харилцагчдын мета-өгөгдлийг синк хийх [DOGFOOD]"</string>
@@ -235,8 +235,8 @@
     <string name="share_favorite_contacts" msgid="2838432887118216222">"Дуртай харилцагчдаа хуваалцах"</string>
     <string name="share_contacts" msgid="6404040163340914061">"Бүх харилцагчдыг хуваалцах"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"Харилцагчдыг хуваалцаж чадсангүй."</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Харилцагчид импорт/экспорт хийх"</string>
-    <string name="dialog_import" msgid="5177004290082451296">"Харилцагчид импорт хийх"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Харилцагчид импортлох/экспортлох"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Харилцагчид импортлох"</string>
     <string name="share_error" msgid="665756457151793108">"Энэ харилцагчийг хуваалцах боломжгүй."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Хуваалцах харилцагчийн жагсаалт алга."</string>
     <string name="menu_search" msgid="7464453023659824700">"Хайх"</string>
@@ -258,7 +258,7 @@
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"хайлтыг зогсоох"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Хайлтыг цэвэрлэх"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Харилцагчийн харагдах сонголт"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"Акаунт"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"Бүртгэл"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Дуудлагад байнга үүнийг ашиглах"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Залгах"</string>
     <string name="call_with_a_note" msgid="8453800473226831257">"Тэмдэглэл бүхий дуудлага хийх"</string>

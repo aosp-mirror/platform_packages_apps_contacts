@@ -78,7 +78,7 @@
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Tôi"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Đang tìm kiếm…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Đã tìm thấy hơn <xliff:g id="COUNT">%d</xliff:g> người liên hệ."</string>
-    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Không có người liên hệ nào"</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Không có liên hệ nào"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
       <item quantity="other">Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g></item>
       <item quantity="one">Đã tìm thấy 1</item>

@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Tutti i contatti con numeri di telefono"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Contatti del profilo di lavoro"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Visualizza aggiornamenti"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Solo su telefono, non sincronizzato"</string>
+    <string name="account_phone" msgid="6104157990869081962">"solo su telefono, non sincronizzato"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nome"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nickname"</string>
     <string name="full_name" msgid="885420216812981202">"Nome"</string>
@@ -216,7 +216,7 @@
     <string name="confirm_export_title" msgid="3240899428149018226">"Esportare contatti?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Memorizzazione nella cache"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importazione di <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Esporta  in file .vcf"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Esporta in file .vcf"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ordina per"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Nome"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Cognome"</string>
@@ -226,7 +226,7 @@
     <string name="default_editor_account" msgid="4338725881650654966">"Account predefinito per i nuovi contatti"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronizza i metadati dei contatti [VERSIONE SPERIMENTALE]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronizza i metadati dei contatti"</string>
-    <string name="setting_about" msgid="3926137653588942297">"Informazioni sull\'applicazione Contatti"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Informazioni su Contatti"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Impostazioni"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Condividi contatti visibili"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Impossibile condividere i contatti visibili."</string>
@@ -270,7 +270,7 @@
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"Versione build"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"Licenze open source"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Dettagli della licenza del software open source"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Dettagli delle licenze per il software open source"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Norme sulla privacy"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Termini di servizio"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licenze open source"</string>

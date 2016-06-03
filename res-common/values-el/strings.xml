@@ -230,13 +230,13 @@
     <string name="activity_title_settings" msgid="3056389601004689380">"Ρυθμίσεις"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Κοινοποίηση ορατών επαφών"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Η κοινοποίηση των ορατών επαφών απέτυχε."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Κοινή χρήση αγαπημένων επαφών"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Κοινοποίηση αγαπημένων επαφών"</string>
     <string name="share_contacts" msgid="6404040163340914061">"Κοινή χρήση όλων των επαφών"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"Αποτυχία κοινής χρήσης επαφών."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Εισαγωγή/Εξαγωγή επαφών"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Εισαγωγή επαφών"</string>
     <string name="share_error" msgid="665756457151793108">"Δεν είναι δυνατή η κοινή χρήση αυτής της επαφής."</string>
-    <string name="no_contact_to_share" msgid="5749367538191552509">"Δεν υπάρχουν επαφές για κοινή χρήση."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Δεν υπάρχουν επαφές για κοινοποίηση."</string>
     <string name="menu_search" msgid="7464453023659824700">"Αναζήτηση"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Επαφές για προβολή"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Επαφές για προβολή"</string>

@@ -78,7 +78,7 @@
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Men"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Qidirilmoqda…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>dan ko‘proq topildi."</string>
-    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Hech qanday kontakt yo‘q"</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Hech narsa topilmadi"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ta topildi</item>
       <item quantity="one">1 found</item>
@@ -91,15 +91,15 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Telefon raqamli kontaktlar"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Ishchi profili kontaktlari"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Yangilanishlarni ko‘rish"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Faqat telefonda, sinxronlanmaydi"</string>
-    <string name="nameLabelsGroup" msgid="1817502703362057154">"Ismi"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Faqat telefonga saqlanadigan va sinxronlanmaydigan"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Ism"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Taxallusi"</string>
     <string name="full_name" msgid="885420216812981202">"To‘liq ismi"</string>
-    <string name="name_given" msgid="4153709115654909377">"Ismi"</string>
+    <string name="name_given" msgid="4153709115654909377">"Ism"</string>
     <string name="name_family" msgid="5317387657540738981">"Familiyasi"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Ismga old qo‘shimcha"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Ism prefiksi"</string>
     <string name="name_middle" msgid="3951610314424632183">"Otasining ismi"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Ismga qo‘shimcha"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Ism suffiksi"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Ism talaffuzi"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Ism talaffuzi"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Otasining ismi talaffuzi"</string>
@@ -151,7 +151,7 @@
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Barcha kontaktlar"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Baho berilgan"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Sozlash"</string>
-    <string name="list_filter_single" msgid="4553809449379139446">"Kontakt"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Tanlangan kontakt"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"Boshqa kontaktlar"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"Barcha kontaktlar"</string>
     <string name="menu_sync_remove" msgid="6581565236520430269">"Sinx. guruhini o‘chirish"</string>
@@ -187,8 +187,8 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Bir yoki bir necha fayllarni import qilib bo‘lmadi (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>ni eksport qilish tugadi."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Kontaktlar eksport qilindi."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Kontaktlar eksport qilindi, ularni ulashish uchun bildirishnomani bosing."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Kontaktlarni ulashish uchun bosing."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Kontaktlar eksport qilindi, ularni baham ko‘rish uchun bildirishnoma ustiga bosing."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Kontaktlarni baham ko‘rish uchun bosing."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>ni eksport qilish bekor qilindi."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontakt ma’lumoti eksport qilinmoqda"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"Kontakt ma’lumotlari eksport qilinmoqda."</string>
@@ -217,37 +217,37 @@
     <string name="caching_vcard_title" msgid="9185299351381102305">"Keshga yuklanmoqda"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g> import qilinmoqda"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"VCF faylga eksport qilish"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Saralash"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ismi"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Familiyasi"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Saralash tartibi"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ismi bo‘yicha"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Familiyasi bo‘yicha"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Ism formati"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Avval ismi"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Avval familiyasi"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Yangi kontaktlar uchun birlamchi hisob"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Kontakt meta-ma’lumotlarini sinxronlash [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Kontakt meta-ma’lumotlarini sinxronlash"</string>
-    <string name="setting_about" msgid="3926137653588942297">"Kontaktlar haqida"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Kontaktlar ilovasi haqida"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Sozlamalar"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Ko‘rinadigan kontaktlarni yuborish"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Ko‘rinadigan kontaktlarni yuborib bo‘lmadi."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Sevimli kontaktlarni ulashish"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Barcha kontaktlarni ulashish"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"Kontaktlarni ulashib bo‘lmadi."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Sevimli kontaktlarni yuborish"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Barcha kontaktlarni yuborish"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Kontaktlarni yuborib bo‘lmadi."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktlarni import/eksport qilish"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktlarni import qilish"</string>
     <string name="share_error" msgid="665756457151793108">"Kontaktni yuborib bo‘lmadi."</string>
-    <string name="no_contact_to_share" msgid="5749367538191552509">"Ulashish uchun hech qanday kontakt yo‘q."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Yuborish uchun hech qanday kontakt yo‘q."</string>
     <string name="menu_search" msgid="7464453023659824700">"Qidirish"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Kontaktlarni filtrlash"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontaktlarni filtrlash"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Ko‘rinadigan kontaktlar"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Ko‘rinadigan kontaktlar"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"Kontaktlar guruhini tanlang"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Kontakt qidirish"</string>
-    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Saralar"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Kontaktlar ichidan qidirish"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Sevimlilar"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Hech qanday kontakt yo‘q."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ko‘rinadigan kontaktlar yo‘q."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Hech narsa yo‘q"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> guruhida hech qanday kontakt yo‘q"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"Muntazam qo‘n-qlarni tozalash"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Tez-tez aloqadagilarni tozalash"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM kartani tanlash"</string>
     <string name="menu_accounts" msgid="2944004960829403994">"Hisoblarni boshqarish"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Import/eksport"</string>
@@ -268,12 +268,12 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> ta o‘qilmagan. </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> ta o‘qilmagan. </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"Yig‘ma versiyasi"</string>
-    <string name="about_open_source_licenses" msgid="3224958101863814649">"Ochiq kodli dasturiy ta’minot litsenziyalari"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Ochiq kodli dasturiy ta’minot litsenziyalari haqida ma’lumot"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"Versiyasi"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Ochiq kodli DT litsenziyalari"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Ochiq kodli DT litsenziyalari haqida ma’lumot"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Maxfiylik siyosati"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Foydalanish shartlari"</string>
-    <string name="activity_title_licenses" msgid="7812517458691564230">"Ochiq kodli dasturiy ta’minot litsenziyalari"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Ochiq kodli DT litsenziyalari"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"URLni ochishda xatolik yuz berdi."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> belgilandi"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> belgilanmadi"</string>

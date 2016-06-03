@@ -188,7 +188,7 @@
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"已完成 <xliff:g id="FILENAME">%s</xliff:g> 匯出作業。"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"匯出聯絡人完成。"</string>
     <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"聯絡人資料匯出完畢，按一下通知即可分享聯絡人資料。"</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"輕按即可分享聯絡人資料。"</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"輕觸即可分享聯絡人資料。"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"已取消匯出 <xliff:g id="FILENAME">%s</xliff:g>。"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"正在匯出聯絡人資料"</string>
     <string name="exporting_contact_list_message" msgid="141905615542638683">"正在匯出聯絡人資料。"</string>
@@ -242,7 +242,7 @@
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"要顯示的聯絡人"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"定義自訂檢視"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"尋找聯絡人"</string>
-    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"最愛的聯絡人"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"常用聯絡人"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"沒有聯絡人。"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"沒有可顯示的聯絡人。"</string>
     <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"沒有常用聯絡人"</string>

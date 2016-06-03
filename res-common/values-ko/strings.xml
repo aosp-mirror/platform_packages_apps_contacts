@@ -78,7 +78,7 @@
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"나"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"검색 중…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>개 이상 찾았습니다."</string>
-    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"주소록 없음"</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"연락처 없음"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>개 찾음</item>
       <item quantity="one">1개 찾음</item>

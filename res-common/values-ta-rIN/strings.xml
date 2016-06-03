@@ -268,7 +268,7 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. படிக்காதவை (<xliff:g id="COUNT_3">%2$d</xliff:g>). </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. படிக்காதது (<xliff:g id="COUNT_1">%2$d</xliff:g>). </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"அகநிரல் பதிப்பு"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"பதிப்பு எண்"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"ஓப்பன் சோர்ஸ் உரிமங்கள்"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ஓப்பன் சோர்ஸ் மென்பொருளுக்கான உரிம விவரங்கள்"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"தனியுரிமைக் கொள்கை"</string>

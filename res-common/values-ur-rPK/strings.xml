@@ -226,7 +226,7 @@
     <string name="default_editor_account" msgid="4338725881650654966">"نئے رابطوں کیلئے ڈیفالٹ اکاؤنٹ"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"‏رابطہ میٹا ڈیٹا مطابقت پذیر بنائیں [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"رابطہ میٹا ڈیٹا مطابقت پذیر بنائیں"</string>
-    <string name="setting_about" msgid="3926137653588942297">"رابطوں کے بارے میں"</string>
+    <string name="setting_about" msgid="3926137653588942297">"رابطے کے بارے میں"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"ترتیبات"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"مرئی رابطوں کا اشتراک کریں"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"مرئی رابطوں کا اشتراک کرنے میں ناکام ہو گیا۔"</string>

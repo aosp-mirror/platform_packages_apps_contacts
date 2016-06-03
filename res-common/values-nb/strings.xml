@@ -168,7 +168,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Importér fra SIM-kort"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importér fra .vcf-fil"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importer fra .vcf-fil"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vil du avbryte importeringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vil du avbryte eksporteringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Kunne ikke avbryte imp./eksp. av vCard"</string>
@@ -233,8 +233,8 @@
     <string name="share_favorite_contacts" msgid="2838432887118216222">"Del favorittkontaktene"</string>
     <string name="share_contacts" msgid="6404040163340914061">"Del alle kontaktene"</string>
     <string name="share_contacts_failure" msgid="3498837575583860197">"Kunne ikke dele kontaktene."</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Importer/eksporter kontakter"</string>
-    <string name="dialog_import" msgid="5177004290082451296">"Importer kontakter"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Importér/eksportér kontakter"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Importér kontakter"</string>
     <string name="share_error" msgid="665756457151793108">"Denne kontakten kan ikke deles."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Det finnes ingen kontakter å dele."</string>
     <string name="menu_search" msgid="7464453023659824700">"Søk"</string>
@@ -250,7 +250,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Fjern ofte kontaktede personer"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Velg SIM-kort"</string>
     <string name="menu_accounts" msgid="2944004960829403994">"Administrer kontoer"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"Importer/eksporter"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Importér/eksportér"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"avslutt søket"</string>

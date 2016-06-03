@@ -91,7 +91,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Anwani zote zilizo na nambari ya simu"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Anwani za watu wa kazini"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ona sasisho"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Simu pekee, haijalandanishwa"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Simu pekee, hazitasawazishwa"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Jina"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Lakabu"</string>
     <string name="full_name" msgid="885420216812981202">"Jina"</string>
@@ -99,10 +99,10 @@
     <string name="name_family" msgid="5317387657540738981">"Jina la mwisho"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Herufi za kwanza za jina"</string>
     <string name="name_middle" msgid="3951610314424632183">"Jina la kati"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Kiambishi tamati cha jina"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Jina la fonetiki"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Jina la kwanza kifonetiki"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Jina la kati la fonetiki"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Herufi za mwisho za jina"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Jina la kifonetiki"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Anza na jina kifonetiki"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Jina la kati kifonetiki"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Jina la mwisho kifonetiki"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Simu"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Barua pepe"</string>
@@ -114,7 +114,7 @@
     <string name="sms" msgid="8086289395154598654">"SMS, (Ujumbe wa maandishi)"</string>
     <string name="postal_address" msgid="7692926530081579786">"Anwani"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Kampuni"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Kichwa"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Jina"</string>
     <string name="label_notes" msgid="3997277594846722699">"Madokezo"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Tovuti"</string>
@@ -176,7 +176,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Haikuweza kufungua \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Haikuweza kuanzisha kihamishaji: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Hakuna anwani inayoweza kuhamishwa."</string>
-    <string name="missing_required_permission" msgid="3120850759881656369">"Umezima ruhusa inayohitajika."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Umezima idhini inayohitajika."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Hitilafu imetokea wakati wa uhamisho: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Jina la faili linalohitajika ni ndefu sana (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"Hitilafu ya I/O"</string>
@@ -223,8 +223,8 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Jina la kwanza"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Jina la mwisho"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Mpangilio wa majina"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Jina la kwanza liwe mwanzo"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Jina la mwisho kwanza"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Anza na jina la kwanza"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Anza na jina la mwisho"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Akaunti ya msingi ya anwani mpya"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sawazisha metadata ya anwani [SHIRIKI KATIKA JARIBIO LA KINDANI]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sawazisha metadata ya anwani"</string>
@@ -270,7 +270,7 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. Ujumbe <xliff:g id="COUNT_3">%2$d</xliff:g> ambao haujasomwa. </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. Ujumbe <xliff:g id="COUNT_1">%2$d</xliff:g> ambao haujasomwa. </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"Unda toleo"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"Nambari ya toleo"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"Leseni za programu huria"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Maelezo ya leseni ya programu huria"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Sera ya faragha"</string>

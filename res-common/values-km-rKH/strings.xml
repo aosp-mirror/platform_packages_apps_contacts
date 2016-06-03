@@ -114,10 +114,10 @@
     <string name="sms" msgid="8086289395154598654">"សារ​អត្ថបទ"</string>
     <string name="postal_address" msgid="7692926530081579786">"អាសយដ្ឋាន"</string>
     <string name="ghostData_company" msgid="22470841482615409">"ក្រុមហ៊ុន"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"មុខងារ"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"តួនាទី"</string>
     <string name="label_notes" msgid="3997277594846722699">"ចំណាំ"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"តំបន់បណ្ដាញ"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"គេហទំព័រ"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"ក្រុម"</string>
     <string name="email_home" msgid="2230967805906450693">"អ៊ីមែល​ទៅ​ផ្ទះ"</string>
     <string name="email_mobile" msgid="7532438378678903685">"អ៊ីមែល​ទៅ​ទូរស័ព្ទ​ចល័ត"</string>
