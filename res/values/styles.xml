@@ -376,10 +376,9 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
-    <!-- Inherit from Theme.Material.Light.Dialog instead of Theme.Material.Light.Dialog.Alert
-        since the Alert dialog is private. They are identical anyway. -->
-    <style name="ContactsAlertDialogTheme" parent="@android:style/Theme.Material.Light.Dialog">
+    <style name="ContactsAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.MinWidth">
         <item name="android:colorAccent">@color/primary_color</item>
+        <item name="colorAccent">@color/primary_color</item>
     </style>
 
     <style name="EditKindIconStyle">
