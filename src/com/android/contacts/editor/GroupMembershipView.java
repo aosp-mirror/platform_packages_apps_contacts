@@ -94,6 +94,9 @@ public class GroupMembershipView extends LinearLayout
      */
     private class GroupMembershipAdapter<T> extends ArrayAdapter<T> {
 
+        // The position of the group with the largest group ID
+        private int mNewestGroupPosition;
+
         public GroupMembershipAdapter(Context context, int textViewResourceId) {
             super(context, textViewResourceId);
         }
@@ -130,6 +133,15 @@ public class GroupMembershipView extends LinearLayout
 
             return checkedTextView;
         }
+
+        public int getNewestGroupPosition() {
+            return mNewestGroupPosition;
+        }
+
+        public void setNewestGroupPosition(int newestGroupPosition) {
+            mNewestGroupPosition = newestGroupPosition;
+        }
+
     }
 
     private RawContactDelta mState;
@@ -192,7 +204,7 @@ public class GroupMembershipView extends LinearLayout
             onClick(this); // This causes the popup to open.
             if (mPopup != null) {
                 // Ensure that the newly created group is checked.
-                int position = mAdapter.getCount() - 2;
+                final int position = mAdapter.getNewestGroupPosition();
                 ListView listView = mPopup.getListView();
                 if (listView != null && !listView.isItemChecked(position)) {
                     // Newly created group is not checked, so check it.
@@ -307,6 +319,8 @@ public class GroupMembershipView extends LinearLayout
         mAdapter = new GroupMembershipAdapter<GroupSelectionItem>(
                 getContext(), R.layout.group_membership_list_item);
 
+        long newestGroupId = -1;
+
         mGroupMetaData.moveToPosition(-1);
         while (mGroupMetaData.moveToNext()) {
             String accountName = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_NAME);
@@ -317,6 +331,10 @@ public class GroupMembershipView extends LinearLayout
                 long groupId = mGroupMetaData.getLong(GroupMetaDataLoader.GROUP_ID);
                 if (groupId != mFavoritesGroupId
                         && (groupId != mDefaultGroupId || mDefaultGroupVisible)) {
+                    if (groupId > newestGroupId) {
+                        newestGroupId = groupId;
+                        mAdapter.setNewestGroupPosition(mAdapter.getCount());
+                    }
                     String title = mGroupMetaData.getString(GroupMetaDataLoader.TITLE);
                     boolean checked = hasMembership(groupId);
                     mAdapter.add(new GroupSelectionItem(groupId, title, checked));
