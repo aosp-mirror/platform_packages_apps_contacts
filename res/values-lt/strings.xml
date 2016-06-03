@@ -244,7 +244,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Atmesti"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Toliau redaguoti"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Nustatyti mano profilį"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Nustatyti profilį"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Įveskite asmens vardą ir (arba) pavardę"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Grupės pavadinimas"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mano vietos profilis"</string>

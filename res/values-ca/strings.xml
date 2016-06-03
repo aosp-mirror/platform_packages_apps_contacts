@@ -43,7 +43,7 @@
     <string name="searchHint" msgid="8482945356247760701">"Cerca als contactes"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Visualitza el contacte"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Afegeix als preferits"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Elimina dels preferits"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Suprimeix dels preferits"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Eliminat dels preferits"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Afegit als preferits"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Edita"</string>

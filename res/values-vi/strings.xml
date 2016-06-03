@@ -27,8 +27,8 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Chọn lối tắt cho liên hệ"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Chọn một số để gọi"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Chọn một số để gửi tin nhắn"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Thêm vào địa chỉ liên hệ"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Chọn địa chỉ liên hệ"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Thêm vào liên hệ"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Chọn người liên hệ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Tạo liên hệ mới"</string>
     <string name="starredList" msgid="4817256136413959463">"Được gắn dấu sao"</string>
     <string name="frequentList" msgid="7154768136473953056">"Thường xuyên"</string>
@@ -197,7 +197,7 @@
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Số điện thoại"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Thêm vào danh bạ"</string>
-    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Thêm vào đ.chỉ l.hệ"</string>
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Thêm vào liên hệ"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Đóng"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"Bao gồm năm"</string>

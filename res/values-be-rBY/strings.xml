@@ -77,8 +77,8 @@
       <item quantity="many">Кантакты выдалены</item>
       <item quantity="other">Кантакты выдалены</item>
     </plurals>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Устал. рынгтон"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Усе выклікі на гал. пошту"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Задаць рынгтон"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Усе выклікі на галасавую пошту"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Кантакты з уліковых запісаў, даступных толькі для чытання, нельга выдаліць, але іх можна схаваць."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Схаваць"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Кантакт на выдаленне мае інфармацыю з некалькіх уліковых запісаў. Інфармацыя з уліковых запісаў, даступных толькі для чытання, будзе схавана, а не выдалена."</string>
@@ -144,7 +144,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> знойдзена</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"Усе"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Упадабаныя"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"Абраныя"</string>
     <string name="callBack" msgid="5498224409038809224">"Зваротны выклік"</string>
     <string name="callAgain" msgid="3197312117049874778">"Выклікаць зноў"</string>
     <string name="returnCall" msgid="8171961914203617813">"Зваротны выклік"</string>

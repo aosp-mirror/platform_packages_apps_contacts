@@ -48,7 +48,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"အကြိုက်ဆုံးများ ထဲကို ထည့်ပြီး"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"ပြင်ဆင်ရန်"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ဖျက်ရန်"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"ဓာတ်ပုံ ပြောင်းလဲ"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"ဓာတ်ပုံပြောင်းရန်"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ပင်မစာမျက်နှာတွင် တင်ထားပါ"</string>
     <string name="menu_call" msgid="3992595586042260618">"အဆက်အသွယ်ကို ခေါ်ပါ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"အဆက်အသွယ်ကို စာတိုပို့ရန်"</string>
@@ -152,7 +152,7 @@
     <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အက်ပ် မရှိပါ။"</string>
     <string name="menu_share" msgid="943789700636542260">"မျှဝေခြင်း"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"အဆက်အသွယ်များ ထဲသို့ ထည့်ရန်"</string>
-    <string name="share_via" msgid="563121028023030093">"မှ အဆယ်အသွယ်အား မျှဝေခြင်း"</string>
+    <string name="share_via" msgid="563121028023030093">"အောက်ပါတို့မှတဆင့် အဆယ်အသွယ်ကို မျှဝေသည်"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"အကောင့်အောက်မှာ အုပ်စုပြုလုပ်ပါ"</string>
     <string name="audio_chat" msgid="2535716629358298691">"အသံဖြင့် ချက်တင်း"</string>
     <string name="video_chat" msgid="1872255818640336072">"ဗီဒီယိုဖြင့်စကားပြောခြင်း"</string>
@@ -230,7 +230,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"စွန့်ပစ်ရန်"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"ဆက်လက်တည်းဖြတ်ပါ"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"မိမိကိုယ်ရေးအကောင့်အား ပြုလုပ်ရန်"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"မိမိပရိုဖိုင်းအား သတ်မှတ်ရန်"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"လူနာမည်ရိုက်ထည့်ပါ"</string>
     <string name="group_name_hint" msgid="238359485263401293">"အုပ်စု၏အမည်"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"မိမိ၏ဖုန်းမှပရိုဖိုင်လ်"</string>
@@ -251,7 +251,7 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"ပိုပြီး ကြည့်ရန်"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"လျှော့ပြီး ကြည့်ရန်"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"အားလုံးကို ကြည့်ရန်"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"မကြာမီတုန်းက"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"မကြာမီက"</string>
     <string name="about_card_title" msgid="2920942314212825637">"အကြောင်း"</string>
     <string name="send_message" msgid="8938418965550543196">"စာတို ပို့ရန်"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"ကိုယ်ပိုင် ကော်ပီကို ဖန်တီးနေ..."</string>
@@ -286,7 +286,7 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"သင်: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"အီးမေးအကွက် သို့မဟုတ် ဖုန်းနံပါတ် အကွက်တွင် တစ်ခြားသူ၏ Hangouts  အမှတ်သညာအား သင်ရိုက်ထည့်သည့်အခါ Hangouts ပိုမိုလွယ်ကူကောင်းမွန်စွာ အလုပ်လုပ်သည်။"</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"နောက်ထပ် အကွက်များ"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ဓာတ်ပုံ ပြောင်းလဲ"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ဓာတ်ပုံပြောင်းရန်"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"တည်းဖြတ်သူကို ဖွင့်ခြင်းမအောင်မြင်ပါ။"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"သိမ်းဆည်းရန်နေရာ"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"လောလောဆယ်မှာ <xliff:g id="ACCOUNT_NAME">%s</xliff:g>သို့ သိမ်းဆည်းနေသည်။ အခြားအကောင့်ကို ရွေးရန် နှစ်ကြိမ် တို့ပါ။"</string>

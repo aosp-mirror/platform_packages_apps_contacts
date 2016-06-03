@@ -288,7 +288,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"আরো ফিল্ড"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ফটো পরিবর্তন করুন"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"সম্পাদক খুলতে ব্যর্থ হচ্ছে৷"</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"এ সংরক্ষণ করা হচ্ছে"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"এতে সংরক্ষণ করা হচ্ছে"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"বর্তমানে <xliff:g id="ACCOUNT_NAME">%s</xliff:g> এ সংরক্ষণ করা হচ্ছে৷ কোনো আলাদা অ্যাকাউন্ট চয়ন করার জন্য দুবার আলতো চপুন৷"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>

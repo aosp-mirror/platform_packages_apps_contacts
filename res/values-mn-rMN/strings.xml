@@ -108,7 +108,7 @@
     <string name="removePhoto" msgid="4898105274130284565">"Зургийг арилгах"</string>
     <string name="noContacts" msgid="4955659076981974652">"Харилцагч байхгүй"</string>
     <string name="noGroups" msgid="8614664663561385253">"Бүлгэм байхгүй байна."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Бүлгэм үүсгэхийн тулд танд акаунт хэрэгтэй."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Бүлгэм үүсгэхийн тулд танд бүртгэл хэрэгтэй."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Энэ бүлгэмд хүн алга."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Нэмэхийн тулд бүлгэмд өөрчлөлт оруулна уу."</string>
     <string name="savingContact" msgid="4075751076741924939">"Харилцагчийг хадгалж байна…"</string>
@@ -153,7 +153,7 @@
     <string name="menu_share" msgid="943789700636542260">"Хуваалцах"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Харилцагчдад нэмэх"</string>
     <string name="share_via" msgid="563121028023030093">"Харилцагчийг дараахаар хуваалцах"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"Акаунт дотор бүлгэм үүсгэх"</string>
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"Бүртгэл дотор бүлгэм үүсгэх"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Дуут чат"</string>
     <string name="video_chat" msgid="1872255818640336072">"Видео чат"</string>
     <string name="connections" msgid="8098440723172028350">"Холболтууд"</string>
@@ -230,22 +230,22 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Устгах"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Үргэлжлүүлэн засах"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Миний профайлийн тохиргоо"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Миний профайлын тохиргоо"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Хүний нэрийг бичнэ үү"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Бүлгэмийн Нэр"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Миний дотоод профайл"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Миний <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профайл"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Бүх харилцагчийг харуулж байна"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Утсаа гээсэн ч харилцагчдаа найдвартай хадгалаарай: онлайн үйлчилгээгээр синк хийгээрэй."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Акаунт нэмэх"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Бүртгэл нэмэх"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Таны шинэ харилцагч нөөцлөгдөхгүй. Харилцагчдыг онлайнаар нөөцөлдөг акаунтыг нэмэх үү?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Шинэ харилцагчийн хаягийг <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>-д хадгална."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Шинэ харилцагчид өгөгдмөл бүртгэл сонгох:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Шинэ харилцагч нэмэх"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Харилцагчийг засварлах"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Төхөөрөмжид хадгалах"</string>
-    <string name="add_account" msgid="8201790677994503186">"Акаунт нэмэх"</string>
-    <string name="add_new_account" msgid="5748627740680940264">"Шинэ акаунт нэмэх"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Дотор хадгалах"</string>
+    <string name="add_account" msgid="8201790677994503186">"Бүртгэл нэмэх"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"Шинэ бүртгэл нэмэх"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Өгөгдлийн сангийн файлуудыг экспорт хийх"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"шинэ харилцагч нэмэх"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Дэлгэрэнгүй үзэх"</string>
@@ -270,7 +270,7 @@
     <string name="header_website_entry" msgid="1411467850000824745">"Вебсайт"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Үйл явдал"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Хамаарал"</string>
-    <string name="header_account_entry" msgid="2684318506427891827">"Акаунт"</string>
+    <string name="header_account_entry" msgid="2684318506427891827">"Бүртгэл"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"Нэр"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"Имэйл"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Утас"</string>

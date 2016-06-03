@@ -76,7 +76,7 @@
       <item quantity="one">კონტაქტი წაიშალა</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ზარის დაყენება"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ყველა ზარი ხმოვან ფოსტაში"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ზარების ხმოვან ფოსტაში გაგზ."</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"მხოლოდ წაკითხვადი ანგარიშებიდან კონტაქტები ვერ წაიშლება, თუმცა შესაძლებელია მათი დამალვა."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"დამალვა"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"წასაშლელი კონტაქტი შეიცავს ინფორმაციას რამდენიმე ანგარიშიდან. მხოლოდ წაკითხვადი ანგარიშებიდან მიღებული ინფორმაცია, წაშლის ნაცვლად, დაიმალება."</string>
@@ -230,7 +230,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"გაუქმება"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"რედაქტირების გაგრძელება"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"პროფ. დაყენება"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"ჩემი პროფ. დაყენება"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"აკრიფეთ კონტაქტის სახელი"</string>
     <string name="group_name_hint" msgid="238359485263401293">"ჯგუფის სახელი"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ჩემი ადგილობრივი პროფილი"</string>
@@ -238,10 +238,10 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ყველა კონტაქტის ჩვენება"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"შეინახეთ თქვენი კონტაქტები საიმედოდ ტელეფონის დაკარგვის შემთხვევაშიც კი: მოახდინეთ სინქრონიზაცია ონლაინ სერვისთან."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ანგარიშის დამატება"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"თქვენი ახალი კონტაქტი არ დამარქაფდება. გსურთ ანგარიშის დამატება, რომელიც დაამარქაფებს კონტაქტებს ონლაინ?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"თქვენი ახალი კონტაქტი არ დამარქაფდება. გსურთ ანგარიშის დამატება, რომელიც კონტაქტების სარეზერვო ასლებს ინტერნეტში შეინახავს?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ახალი კონტაქტები შეინახება აქ: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"აირჩიეთ ნაგულისხმევი ანგარიში ახალი კონტაქტებისთვის:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ახალი კონტ. დამატება"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ახალი კონტაქტ.დამატება"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"კონტაქტის შესწორება"</string>
     <string name="keep_local" msgid="1258761699192993322">"შენახვა ადგილობრივად"</string>
     <string name="add_account" msgid="8201790677994503186">"ანგარიშის დამატება"</string>

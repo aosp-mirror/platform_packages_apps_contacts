@@ -28,7 +28,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"വിളിക്കാൻ ഒരു നമ്പർ തിരഞ്ഞെടുക്കുക"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"സന്ദേശമയയ്‌ക്കാൻ ഒരു നമ്പർ തിരഞ്ഞെടുക്കുക"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"കോണ്‍‌ടാക്റ്റിലേക്ക് ചേര്‍ക്കുക"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ഒരു കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കൂ"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കൂ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
     <string name="starredList" msgid="4817256136413959463">"നക്ഷത്രമിട്ടവ"</string>
     <string name="frequentList" msgid="7154768136473953056">"പതിവ് കോൺടാക്റ്റുകൾ"</string>

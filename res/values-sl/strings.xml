@@ -72,7 +72,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Vsi stiki"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Stika povezana"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
-      <item quantity="one">Stiki so izbrisani</item>
+      <item quantity="one">Stik je izbrisan</item>
       <item quantity="two">Stiki so izbrisani</item>
       <item quantity="few">Stiki so izbrisani</item>
       <item quantity="other">Stiki so izbrisani</item>

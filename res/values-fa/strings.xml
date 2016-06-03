@@ -148,7 +148,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"برنامه‌ای برای انجام این عملکرد یافت نشد."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"برای بازگشت به صفحه قبلی کلیک کنید"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"افزودن شماره تلفن"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"افزودن ایمیل"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"افزودن رایانامه"</string>
     <string name="missing_app" msgid="1466111003546611387">"برنامه‌ای برای انجام این عملکرد یافت نشد."</string>
     <string name="menu_share" msgid="943789700636542260">"اشتراک‌گذاری"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"افزودن به مخاطبین"</string>
@@ -160,7 +160,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"افزودن اتصال"</string>
     <string name="recent" msgid="2659189233141493004">"اخیر"</string>
     <string name="recent_updates" msgid="4267258535615860710">"به‌روزرسانی‌های اخیر"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> مخاطب"</string>
+    <string name="account_type_format" msgid="718948015590343010">"مخاطب <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"حساب <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -272,7 +272,7 @@
     <string name="header_relation_entry" msgid="1520292958088146460">"رابطه"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"حساب"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"نام"</string>
-    <string name="header_email_entry" msgid="8666093061171624478">"ایمیل"</string>
+    <string name="header_email_entry" msgid="8666093061171624478">"رایانامه"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"تلفن"</string>
     <string name="header_photo_entry" msgid="4438023151411853238">"عکس"</string>
     <string name="content_description_expand_editor" msgid="1111381475901897470">"برای بزرگ کردن ویرایشگر مخاطب کلیک کنید."</string>
@@ -284,7 +284,7 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"بی‌پاسخ"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"تماس اخیر. <xliff:g id="CALL_TYPE">%s</xliff:g>‏. <xliff:g id="PHONE_NUMBER">%s</xliff:g>‏. ‏<xliff:g id="DATE">%s</xliff:g>. برای بازگرداندن تماس کلیک کنید"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"شما: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏وقتی شناسه Hangouts شخص را در فیلد ایمیل یا فیلد تلفن وارد کنید، Hangouts بهتر کار می‌کند."</string>
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏وقتی شناسه Hangouts شخص را در فیلد رایانامه یا فیلد تلفن وارد کنید، Hangouts بهتر کار می‌کند."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"فیلدهای بیشتر"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"تغییر عکس"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ویرایشگر باز نشد."</string>

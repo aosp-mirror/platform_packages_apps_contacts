@@ -106,7 +106,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre del campo personalizado"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar llamadas directamente al buzón de voz"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminar foto"</string>
-    <string name="noContacts" msgid="4955659076981974652">"No hay contactos."</string>
+    <string name="noContacts" msgid="4955659076981974652">"No hay contactos"</string>
     <string name="noGroups" msgid="8614664663561385253">"No hay grupos"</string>
     <string name="noAccounts" msgid="7768267764545265909">"Para poder crear grupos, necesitas una cuenta."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Este grupo está vacío."</string>
@@ -130,7 +130,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
       <item quantity="one">1 contacto encontrado</item>
     </plurals>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"No hay contactos."</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"No hay contactos"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
       <item quantity="one">1 contacto encontrado</item>
