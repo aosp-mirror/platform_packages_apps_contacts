@@ -22,13 +22,19 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract.Groups;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.common.model.account.GoogleAccountType;
 import com.google.common.base.Objects;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Group utility methods.
@@ -37,6 +43,10 @@ public final class GroupUtil {
 
     private static final String LEGACY_CONTACTS_AUTHORITY = "contacts";
     private static final String LEGACY_CONTACTS_URI = "content://contacts/groups";
+
+    // System IDs of FFC groups in Google accounts
+    private static final Set<String> FFC_GROUPS =
+            new HashSet(Arrays.asList("Friends", "Family", "Coworkers"));
 
     private GroupUtil() {
     }
@@ -52,6 +62,8 @@ public final class GroupUtil {
         long groupId = cursor.getLong(GroupListLoader.GROUP_ID);
         String title = cursor.getString(GroupListLoader.TITLE);
         int memberCount = cursor.getInt(GroupListLoader.MEMBER_COUNT);
+        boolean isReadOnly = cursor.getInt(GroupListLoader.IS_READ_ONLY) == 1;
+        String systemId = cursor.getString(GroupListLoader.SYSTEM_ID);
 
         // Figure out if this is the first group for this account name / account type pair by
         // checking the previous entry. This is to determine whether or not we need to display an
@@ -71,7 +83,7 @@ public final class GroupUtil {
         }
 
         return new GroupListItem(accountName, accountType, dataSet, groupId, title,
-                isFirstGroupInAccount, memberCount);
+                isFirstGroupInAccount, memberCount, isReadOnly, systemId);
     }
 
     /**
@@ -121,5 +133,20 @@ public final class GroupUtil {
         final long groupId = ContentUris.parseId(groupUri);
         final Uri legacyContentUri = Uri.parse(LEGACY_CONTACTS_URI);
         return ContentUris.withAppendedId(legacyContentUri, groupId);
+    }
+
+    /**
+     * Returns true if it's an empty and read-only group of a Google account and the system ID of
+     * the group is one of "Friends", "Family" and "Coworkers".
+     */
+    public static boolean isEmptyFFCGroup(GroupListItem groupListItem) {
+        return GoogleAccountType.ACCOUNT_TYPE.equals(groupListItem.getAccountType())
+                && groupListItem.isReadOnly()
+                && isSystemIdFFC(groupListItem.getSystemId())
+                && (groupListItem.getMemberCount() <= 0);
+    }
+
+    private static boolean isSystemIdFFC(String systemId) {
+        return !TextUtils.isEmpty(systemId) && FFC_GROUPS.contains(systemId);
     }
 }
