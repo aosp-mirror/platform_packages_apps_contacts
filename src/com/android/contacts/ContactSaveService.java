@@ -133,6 +133,7 @@ public class ContactSaveService extends IntentService {
     public static final int CP2_ERROR = 0;
     public static final int CONTACTS_LINKED = 1;
     public static final int CONTACTS_SPLIT = 2;
+    public static final int BAD_ARGUMENTS = 3;
 
     private static final HashSet<String> ALLOWED_DATA_COLUMNS = Sets.newHashSet(
         Data.MIMETYPE,
@@ -1155,14 +1156,17 @@ public class ContactSaveService extends IntentService {
     private void splitContact(Intent intent) {
         final long rawContactIds[][] = (long[][]) intent
                 .getSerializableExtra(EXTRA_RAW_CONTACT_IDS);
+        final ResultReceiver receiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER);
         if (rawContactIds == null) {
             Log.e(TAG, "Invalid argument for splitContact request");
+            if (receiver != null) {
+                receiver.send(BAD_ARGUMENTS, new Bundle());
+            }
             return;
         }
         final int batchSize = MAX_CONTACTS_PROVIDER_BATCH_SIZE;
         final ContentResolver resolver = getContentResolver();
         final ArrayList<ContentProviderOperation> operations = new ArrayList<>(batchSize);
-        final ResultReceiver receiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER);
         for (int i = 0; i < rawContactIds.length; i++) {
             for (int j = 0; j < rawContactIds.length; j++) {
                 if (i != j) {
@@ -1295,6 +1299,9 @@ public class ContactSaveService extends IntentService {
         final long[][] separatedRawContactIds = getSeparatedRawContactIds(contactIds);
         if (rawContactIds == null) {
             Log.e(TAG, "Invalid arguments for joinSeveralContacts request");
+            if (receiver != null) {
+                receiver.send(BAD_ARGUMENTS, new Bundle());
+            }
             return;
         }
 
