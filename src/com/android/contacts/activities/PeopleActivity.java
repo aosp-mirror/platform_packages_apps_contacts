@@ -253,6 +253,14 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         mProviderStatusWatcher.addListener(this);
 
         mIsRecreatedInstance = (savedState != null);
+
+        // Use FILTER_TYPE_ALL_ACCOUNTS filter if the activity is not a re-created one.
+        // This is useful when user upgrades app while an account filter or a custom filter was
+        // stored in sharedPreference in a previous version of Contacts app.
+        final ContactListFilter filter = mIsRecreatedInstance
+                ? mContactListFilterController.getFilter() : createAllAccountsFilter();
+        persistFilterIfNeeded(filter);
+
         createViewsAndFragments(savedState);
 
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
@@ -401,10 +409,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
         mAllFragment.setCheckBoxListListener(new CheckBoxListListener());
-        final int listType =  mContactListFilterController.getFilter().filterType ==
-                ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
-                ? ListEvent.ListType.ALL_CONTACTS : ListEvent.ListType.ACCOUNT;
-        mAllFragment.setListType(listType);
+        mAllFragment.setListType(ListEvent.ListType.ALL_CONTACTS);
 
         if (areGroupWritableAccountsAvailable() && mGroupsFragment != null) {
             mGroupsFragment.setListener(this);
@@ -513,8 +518,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             final int tabToOpen;
             switch (actionCode) {
                 case ContactsRequest.ACTION_ALL_CONTACTS:
-                    filter = ContactListFilter.createFilterWithType(
-                            ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+                    filter = createAllAccountsFilter();
                     tabToOpen = TabState.ALL;
                     break;
                 case ContactsRequest.ACTION_CONTACTS_WITH_PHONES:
@@ -964,6 +968,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 public boolean onMenuItemClick(MenuItem item) {
                     final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                     drawer.closeDrawer(GravityCompat.START);
+                    mAllFragment.setListType(ListEvent.ListType.ACCOUNT);
                     AccountFilterUtil.handleAccountFilterResult(
                             mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
                     return true;
@@ -1085,15 +1090,14 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             ContactListFilter currentFilter = mAllFragment.getFilter();
             if (currentFilter != null
                     && currentFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
-                filter = ContactListFilter.createFilterWithType(
-                        ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+                filter = createAllAccountsFilter();
                 setFilterAndUpdateTitle(filter);
             } else {
                 filter = ContactListFilter.createFilterWithType(
                         ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
                 setFilterAndUpdateTitle(filter, /* restoreSelectedUri */ false);
             }
-            mContactListFilterController.setContactListFilter(filter, true);
+            persistFilterIfNeeded(filter);
         }
     }
 
@@ -1266,12 +1270,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         } else if (id == R.id.nav_help) {
             HelpUtils.launchHelpAndFeedbackForMainScreen(this);
         } else if (id == R.id.nav_all_contacts) {
-            final Intent intent = new Intent();
-            final ContactListFilter filter = ContactListFilter.createFilterWithType(
-                    ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
-            intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
-            AccountFilterUtil.handleAccountFilterResult(
-                    mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
+            switchToAllContacts();
         } else if (id == R.id.nav_blocked_numbers) {
             final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
                     (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
@@ -1459,6 +1458,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 Logger.logScreenView(this, ScreenType.SEARCH_EXIT);
                 Logger.logSearchEvent(mAllFragment.createSearchState());
             }
+        } else if (mContactListFilterController.getFilter().filterType !=
+                ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+            switchToAllContacts();
         } else {
             super.onBackPressed();
         }
@@ -1537,5 +1539,23 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                     getString(R.string.contactsList) : filter.accountName;
             getSupportActionBar().setTitle(actionBarTitle);
         }
+    }
+
+    private void switchToAllContacts() {
+        final Intent intent = new Intent();
+        final ContactListFilter filter = createAllAccountsFilter();
+        intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
+        AccountFilterUtil.handleAccountFilterResult(
+                mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
+    }
+
+    private ContactListFilter createAllAccountsFilter() {
+        return ContactListFilter.createFilterWithType(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+    }
+
+    // Persist filter only when it's of the type FILTER_TYPE_ALL_ACCOUNTS.
+    private void persistFilterIfNeeded(ContactListFilter filter) {
+        mContactListFilterController.setContactListFilter(filter, /* persistent */
+                filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
     }
 }
