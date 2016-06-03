@@ -100,7 +100,6 @@ public class ImportExportDialogFragment extends DialogFragment
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        AnalyticsUtil.sendScreenView(this);
     }
 
     @Override

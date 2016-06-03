@@ -16,11 +16,9 @@
 package com.android.contacts.common.logging;
 
 import android.app.Activity;
-import android.text.TextUtils;
 
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.commonbind.ObjectFactory;
-import com.android.contacts.commonbind.analytics.AnalyticsUtil;
 
 /**
  * Logs analytics events.
@@ -50,13 +48,6 @@ public abstract class Logger {
         if (logger != null) {
             logger.logScreenViewImpl(screenType, previousScreenType);
         }
-        // We prepend the friendly screen name with "From" and use it as the tag to indicate the
-        // screen where the user was previously when they initiated the screen view being logged
-        String tag = ScreenType.getFriendlyName(previousScreenType);
-        if (!TextUtils.isEmpty(tag)) {
-            tag = "From" + tag;
-        }
-        AnalyticsUtil.sendScreenView(/* fragmentName */ (String) null, activity, tag);
     }
 
     /**
