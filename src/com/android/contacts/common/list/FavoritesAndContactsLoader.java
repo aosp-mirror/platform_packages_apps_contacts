@@ -117,6 +117,6 @@ public class FavoritesAndContactsLoader extends CursorLoader {
     private Cursor loadFavoritesContacts() {
         return getContext().getContentResolver().query(
                 Contacts.CONTENT_URI, mProjection, Contacts.STARRED + "=?", new String[]{"1"},
-                Contacts.DISPLAY_NAME+" COLLATE NOCASE ASC");
+                getSortOrder());
     }
 }
