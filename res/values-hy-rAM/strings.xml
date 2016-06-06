@@ -153,7 +153,10 @@
     <string name="missing_app" msgid="1466111003546611387">"Այս գործողությունը կատարելու համար ոչ մի ծրագիր չի գտնվել:"</string>
     <string name="menu_share" msgid="943789700636542260">"Կիսվել"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Ավելացնել կոնտակտներում"</string>
-    <!-- no translation found for title_share_via (5886112726191455415) -->
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="one">Share contacts via</item>
+      <item quantity="other">Ուղարկել կոնտակտները հետևյալով՝</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Ընտրեք հաշիվը"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Պիտակի ստեղծում"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Պիտակի վերանվանում"</string>
@@ -226,7 +229,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ցուցադրվում են բոլոր կոնտակտները"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Պահեք ձեր կոնտակտները ապահով, նույնիսկ եթե կորցնեք ձեր հեռախոսը. համաժամեցրեք առցանց ծառայության հետ:"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ավելացնել հաշիվ"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Ձեր նոր կոնտակտը չի պահուստավորվի: Ավելացնե՞լ հաշիվ, որն առցանց է պահուստավորում կոնտակտները:"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Ձեր նոր կոնտակտը չի պահուստավորվի։ Ավելացնե՞լ հաշիվ, որն կպահպանի ձեր կոնտակտները նաև Համացանցում։"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Նոր կոնտակտները կպահվեն <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> հաշվում:"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Ընտրեք կանխադրված հաշիվ նոր կոնտակտների համար՝"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ավելացնել կոնտակտ"</string>
