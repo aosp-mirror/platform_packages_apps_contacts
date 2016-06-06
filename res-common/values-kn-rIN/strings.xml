@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ ಎಲ್ಲ ಸಂಪರ್ಕಗಳು"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"ಕೆಲಸದ ಪ್ರೊಫೈಲ್ ಸಂಪರ್ಕಗಳು"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"ನವೀಕರಣಗಳನ್ನು ವೀಕ್ಷಿಸಿ"</string>
-    <string name="account_phone" msgid="6104157990869081962">"ಫೋನ್‌ ಮಾತ್ರ, ಅನ್‌ಸಿಂಕ್‌‌ ಮಾಡಲಾಗಿದೆ"</string>
+    <string name="account_phone" msgid="6104157990869081962">"ಫೋನ್‌ ಮಾತ್ರ, ಅನ್‌ಸಿಂಕ್‌‌ ಮಾಡಲಾದ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ಹೆಸರು"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ಅಡ್ಡಹೆಸರು"</string>
     <string name="full_name" msgid="885420216812981202">"ಹೆಸರು"</string>
@@ -207,7 +207,7 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"ಹೆಸರಿನ ಫಾರ್ಮ್ಯಾಟ್‌"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ಮೊದಲ ಹೆಸರು ಮೊದಲು"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ಕೊನೆಯ ಹೆಸರು ಮೊದಲು"</string>
-    <string name="default_editor_account" msgid="4338725881650654966">"ಹೊಸ ಸಂಪರ್ಕಗಳಿಗೆ ಡೀಫಾಲ್ಟ್‌ ಖಾತೆ"</string>
+    <string name="default_editor_account" msgid="4338725881650654966">"ಹೊಸ ಸಂಪರ್ಕಗಳಿಗೆ ಡಿಫಾಲ್ಟ್‌ ಖಾತೆ"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"ಸಂಪರ್ಕ ಮೆಟಾಡೇಟಾವನ್ನು ಸಿಂಕ್ ಮಾಡಿ [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ಸಂಪರ್ಕ ಮೆಟಾಡೇಟಾವನ್ನು ಸಿಂಕ್ ಮಾಡಿ"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"ನನ್ನ ಮಾಹಿತಿ"</string>
@@ -251,7 +251,7 @@
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"ಬಿಲ್ಡ್ ಆವೃತ್ತಿ"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"ಮುಕ್ತ ಮೂಲ ಪರವಾನಗಿಗಳು"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ಓಪನ್ ಸೋರ್ಸ್ ಸಾಫ್ಟ್‌ವೇರ್‌ಗಾಗಿ ಪರವಾನಗಿ ವಿವರಗಳು"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ಮುಕ್ತ ಮೂಲ ಸಾಫ್ಟ್‌ವೇರ್‌ಗಾಗಿ ಪರವಾನಗಿ ವಿವರಗಳು"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"ಗೌಪ್ಯತೆ ನೀತಿ"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"ಸೇವಾ ನಿಯಮಗಳು"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ತೆರೆದ ಮೂಲ ಪರವಾನಗಿಗಳು"</string>

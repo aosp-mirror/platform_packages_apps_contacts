@@ -202,11 +202,11 @@
     <string name="progress_notifier_message" msgid="359931715339778107">"იმპორტირდება <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"ექსპორტი .vcf ფაილში"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"სორტირება:"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"სახელი"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"გვარი"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"სახელით"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"გვარით"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"სახელის ფორმატი"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ჯერ სახელით"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ჯერ გვარით"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ჯერ სახელი"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ჯერ გვარი"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"ნაგულისხმევი ანგარიში ახალი კონტაქტებისთვის"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"კონტაქტების მეტამონაცემების სინქრონიზაცია (Dogfood-ვერსია)"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"კონტაქტების მეტამონაცემების სინქრონიზაცია"</string>

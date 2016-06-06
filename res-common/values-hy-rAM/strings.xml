@@ -110,7 +110,7 @@
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Հարաբերություն"</string>
     <string name="eventLabelsGroup" msgid="4801419345682462171">"Հատուկ ամսաթիվ"</string>
     <string name="sms" msgid="8086289395154598654">"Տեքստային հաղորդագրություն"</string>
-    <string name="postal_address" msgid="7692926530081579786">"Հասցեն"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Հասցե"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Ընկերությունը"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Պաշտոն"</string>
     <string name="label_notes" msgid="3997277594846722699">"Նշումներ"</string>
@@ -124,12 +124,12 @@
     <string name="email_custom" msgid="5777583741581538870">"Նամակագրել <xliff:g id="CUSTOM">%s</xliff:g>-ին"</string>
     <string name="email" msgid="5624424151176351591">"Էլփոստ"</string>
     <string name="postal_street" msgid="881349814077356134">"Փողոց"</string>
-    <string name="postal_pobox" msgid="1799978742074885091">"Բաժանորդային արկղը"</string>
-    <string name="postal_neighborhood" msgid="3721092668038527674">"Շրջակայքը"</string>
-    <string name="postal_city" msgid="3173008531169519309">"Քաղաքը"</string>
-    <string name="postal_region" msgid="1695206048198921115">"Նահանգը"</string>
-    <string name="postal_postcode" msgid="6542806670034753265">"Փոստային կոդը"</string>
-    <string name="postal_country" msgid="3988452247038791892">"Երկիրը"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Բաժանորդային արկղ"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Թաղամաս"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Քաղաք"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Նահանգ/շրջան"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Փոստային դասիչ"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Երկիր"</string>
     <string name="map_home" msgid="1221397355014741634">"Դիտել տան հասցեն"</string>
     <string name="map_work" msgid="9015981646907637207">"Դիտել աշխատավայրի հասցեն"</string>
     <string name="map_other" msgid="55098598855607997">"Դիտել հասցեն"</string>

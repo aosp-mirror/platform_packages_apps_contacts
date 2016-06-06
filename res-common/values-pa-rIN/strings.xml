@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"ਫੋਨ ਨੰਬਰਾਂ ਵਾਲੇ ਸਾਰੇ ਸੰਪਰਕ"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"ਕੰਮ ਪ੍ਰੋਫਾਈਲ ਸੰਪਰਕ"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"ਅਪਡੇਟਾਂ ਦੇਖੋ"</string>
-    <string name="account_phone" msgid="6104157990869081962">"ਫੋਨ-ਓਨਲੀ, ਅਣਸਿੰਕਡ"</string>
+    <string name="account_phone" msgid="6104157990869081962">"ਕੇਵਲ-ਫ਼ੋਨ \'ਤੇ, ਅਣਸਮਕਾਲੀਕਿਰਤ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ਨਾਮ"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ਉਪਨਾਮ"</string>
     <string name="full_name" msgid="885420216812981202">"ਨਾਮ"</string>
@@ -115,7 +115,7 @@
     <string name="ghostData_title" msgid="6221293237772204604">"ਸਿਰਲੇਖ"</string>
     <string name="label_notes" msgid="3997277594846722699">"ਸੂਚਨਾਵਾਂ"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"ਵੈਬਸਾਈਟ"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"ਵੈੱਬਸਾਈਟ"</string>
     <string name="groupsLabel" msgid="2001597910276087197">"ਲੇਬਲ"</string>
     <string name="email_home" msgid="2230967805906450693">"ਘਰ ਈਮੇਲ ਕਰੋ"</string>
     <string name="email_mobile" msgid="7532438378678903685">"ਮੋਬਾਈਲ ਤੇ ਈਮੇਲ ਕਰੋ"</string>
@@ -160,7 +160,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ਨੂੰ ਖੋਲ੍ਹ ਨਹੀਂ ਸਕਿਆ: <xliff:g id="EXACT_REASON">%s</xliff:g>।"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"ਐਕਸਪੋਰਟ ਚਾਲੂ ਨਹੀੰ ਕਰ ਸਕਿਆ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"।"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ਕੋਈ ਵੀ ਨਿਰਯਾਤ ਕਰਨ ਯੋਗ ਸੰਪਰਕ ਨਹੀਂ ਹਨ।"</string>
-    <string name="missing_required_permission" msgid="3120850759881656369">"ਤੁਸੀਂ ਇੱਕ ਲੁੜੀਂਦੀ ਅਨੁਮਤੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਇਆ ਹੈ।"</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"ਤੁਸੀਂ ਇੱਕ ਲੁੜੀਂਦੀ ਅਨੁਮਤੀ ਨੂੰ ਅਯੋਗ ਬਣਾਇਆ ਹੈ।"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"ਨਿਰਯਾਤ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਅਸ਼ੁੱਧੀ ਵਾਪਰੀ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"।"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ਲੁੜੀਂਦਾ ਫਾਈਲ ਨਾਮ ਬਹੁਤ ਜ਼ਿਆਦਾ ਵੱਡਾ ਹੈ (\"<xliff:g id="FILENAME">%s</xliff:g>\")।"</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O ਅਸ਼ੁੱਧੀ"</string>
@@ -201,12 +201,12 @@
     <string name="caching_vcard_title" msgid="9185299351381102305">"ਕੈਚ ਕਰ ਰਿਹਾ ਹੈ"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ਨੂੰ ਆਯਾਤ ਕਰ ਰਿਹਾ ਹੈ: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">".vcf ਫ਼ਾਈਲ ਵਿੱਚ ਨਿਰਯਾਤ ਕਰੋ"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"ਇਸ ਅਨੁਸਾਰ ਛਾਂਟੋ"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"ਇਸ ਮੁਤਾਬਕ ਛਾਂਟੋ"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ਪਹਿਲਾ ਨਾਮ"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"ਆਖਰੀ ਨਾਮ"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"ਨਾਮ ਫੌਰਮੈਟ"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"ਨਾਮ ਦੀ ਵੰਨਗੀ"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ਪਹਿਲਾਂ ਪਹਿਲਾ ਨਾਮ"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ਪਹਿਲਾਂ ਆਖ਼ਰੀ ਨਾਮ"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ਪਹਿਲਾਂ ਆਖਰੀ ਨਾਮ"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"ਨਵੇਂ ਸੰਪਰਕਾਂ ਲਈ ਪੂਰਵ-ਨਿਰਧਾਰਤ ਖਾਤਾ"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"ਸੰਪਰਕ ਮੈਟਾਡੈਟੇ ਨੂੰ ਸਮਕਾਲੀ ਕਰੋ [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ਸੰਪਰਕ ਮੈਟਾਡੈਟੇ ਨੂੰ ਸਮਕਾਲੀ ਕਰੋ"</string>
@@ -215,7 +215,7 @@
     <string name="me_contact_name" msgid="1899366267108364062">"\'ਮੇਰੇ ਬਾਰੇ\' ਸੰਪਰਕ: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="setting_about" msgid="3926137653588942297">"ਸੰਪਰਕਾਂ ਬਾਰੇ"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"ਸੈਟਿੰਗਾਂ"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"ਦਿੱਸਦੇ ਸੰਪਰਕ ਸ਼ੇਅਰ ਕਰੋ"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"ਦਿਖਣਯੋਗ ਸੰਪਰਕ ਸਾਂਝੇ ਕਰੋ"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ਦ੍ਰਿਸ਼ਮਾਨ ਸੰਪਰਕ ਸ਼ੇਅਰ ਕਰਨ ਵਿੱਚ ਅਸਫਲ।"</string>
     <string name="share_favorite_contacts" msgid="2838432887118216222">"ਮਨਪਸੰਦ ਸੰਪਰਕਾਂ ਨੂੰ ਸਾਂਝਾ ਕਰੋ"</string>
     <string name="share_contacts" msgid="6404040163340914061">"ਸਾਰੇ ਸੰਪਰਕ ਸਾਂਝੇ ਕਰੋ"</string>
@@ -249,12 +249,12 @@
       <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>। <xliff:g id="COUNT_3">%2$d</xliff:g> ਬਿਨਾਂ ਪੜ੍ਹੀਆਂ ਆਈਟਮਾਂ। </item>
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>। <xliff:g id="COUNT_3">%2$d</xliff:g> ਬਿਨਾਂ ਪੜ੍ਹੀਆਂ ਆਈਟਮਾਂ। </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"ਬਿਲਡ ਵਰਜਨ"</string>
-    <string name="about_open_source_licenses" msgid="3224958101863814649">"ਓਪਨ ਸੋਰਸ ਲਾਇਸੰਸ"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ਓਪਨ ਸੋਰਸ ਸੌਫਟਵੇਅਰ ਲਈ ਲਾਇਸੰਸ ਵੇਰਵੇ"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"ਨਿਰਮਾਣ ਸਰੂਪ"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"ਖੁੱਲ੍ਹਾ ਸ੍ਰੋਤ ਲਾਇਸੰਸ"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ਖੁੱਲ੍ਹਾ ਸ੍ਰੋਤ ਸਾਫਟਵੇਅਰ ਲਈ ਲਾਇਸੰਸ ਵੇਰਵੇ"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"ਪਰਦੇਦਾਰੀ ਨੀਤੀ"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"ਸੇਵਾ ਦੀਆਂ ਮਦਾਂ"</string>
-    <string name="activity_title_licenses" msgid="7812517458691564230">"ਓਪਨ ਸੋਰਸ ਲਾਇਸੰਸ"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"ਖੁੱਲ੍ਹਾ ਸ੍ਰੋਤ ਲਾਇਸੰਸ"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url ਖੋਲ੍ਹਣ ਵਿੱਚ ਅਸਫਲ।"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"ਵੀਡੀਓ ਕਾਲ ਕਰੋ"</string>
 </resources>

@@ -213,7 +213,7 @@
     <string name="settings_my_info_title" msgid="583358944162385703">"ຂໍ້ມູນຂອງຂ້ອຍ"</string>
     <string name="set_up_profile" msgid="8396362096521360520">"ຕັ້ງຄ່າໂປຣໄຟລ໌ຂອງທ່ານ"</string>
     <string name="me_contact_name" msgid="1899366267108364062">"ລາຍຊື່ຜູ້ຕິດຕໍ່ຂ້ອຍ: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="setting_about" msgid="3926137653588942297">"ກ່ຽວ​ກັບ​ລາຍ​ຊື່​ຕິດ​ຕໍ່"</string>
+    <string name="setting_about" msgid="3926137653588942297">"ກ່ຽວກັບລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"ການຕັ້ງຄ່າ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ແບ່ງປັນລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ເບິ່ງເຫັນໄດ້"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ແບ່ງ​ປັນ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ສາ​ມາດ​ເຫັນ​ໄດ້​ບໍ່​ສຳ​ເລັດ."</string>
@@ -225,7 +225,7 @@
     <string name="share_error" msgid="665756457151793108">"ບໍ່ສາມາດແບ່ງປັນລາຍຊື່ລາຍຊື່ຜູ່ຕິດຕໍ່ນີ້ໄດ້."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"ບໍ່ມີລາຍຊື່ຜູ້ຕິດຕໍ່ທີ່ຈະແບ່ງປັນ."</string>
     <string name="menu_search" msgid="7464453023659824700">"ຊອກຫາ"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"ຊອກຫາລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"ຊອກຫາລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ລາຍການທີ່ມັກ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"ລຶບລາຍຊື່ຄົນທີ່ຕິດຕໍ່ຫາເລື້ອຍໆ"</string>

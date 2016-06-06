@@ -228,7 +228,7 @@
     <string name="hint_findContacts" msgid="28151707326753522">"Kontaktlar ichidan qidirish"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Sevimlilar"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Hech qanday kontakt yo‘q."</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"Muntazam qo‘n-qlarni tozalash"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Tez-tez aloqadagilarni tozalash"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM kartani tanlash"</string>
     <string name="menu_accounts" msgid="2944004960829403994">"Hisoblarni boshqarish"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Import/eksport"</string>

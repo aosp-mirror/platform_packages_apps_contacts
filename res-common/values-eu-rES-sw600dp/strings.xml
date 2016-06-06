@@ -17,6 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"Tabletan dago soilik; ez da sinkronizatzen"</string>
+    <string name="account_phone" msgid="4804592866198643905">"Tabletan soilik; sinkronizatu gabeko"</string>
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"Ez dago esporta daitekeen kontakturik. Tabletan kontaktuak badituzu, baliteke datu-hornitzaileek kontaktuak telefonotik esportatzen ez uztea."</string>
 </resources>

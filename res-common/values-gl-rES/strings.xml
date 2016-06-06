@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos os contactos con números de teléfono"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Contactos do perfil de traballo"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ver actualizacións"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Só no teléfono, non sincronizado"</string>
+    <string name="account_phone" msgid="6104157990869081962">"só no teléfono, non sincronizado"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nome"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Alcume"</string>
     <string name="full_name" msgid="885420216812981202">"Nome"</string>
