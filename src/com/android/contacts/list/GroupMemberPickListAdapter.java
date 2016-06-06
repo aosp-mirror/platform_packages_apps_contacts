@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
@@ -43,21 +44,21 @@ public class GroupMemberPickListAdapter extends ContactEntryListAdapter {
     static class GroupMembersQuery {
 
         private static final String[] PROJECTION_PRIMARY = new String[] {
-                RawContacts._ID,                        // 0
-                RawContacts.CONTACT_ID,                 // 1
-                RawContacts.DISPLAY_NAME_PRIMARY,       // 2
+                Data.RAW_CONTACT_ID,             // 0
+                Data.CONTACT_ID,                 // 1
+                Data.DISPLAY_NAME_PRIMARY,       // 2
                 // Dummy columns overwritten by the cursor wrapper
-                RawContacts.SYNC1,                      // 3
-                RawContacts.SYNC2                       // 4
+                Data.PHOTO_ID,                   // 3
+                Data.LOOKUP_KEY                  // 4
         };
 
         private static final String[] PROJECTION_ALTERNATIVE = new String[] {
-                RawContacts._ID,                        // 0
-                RawContacts.CONTACT_ID,                 // 1
-                RawContacts.DISPLAY_NAME_ALTERNATIVE,   // 2
+                Data.RAW_CONTACT_ID,             // 0
+                Data.CONTACT_ID,                 // 1
+                Data.DISPLAY_NAME_ALTERNATIVE,   // 2
                 // Dummy columns overwritten by the cursor wrapper
-                RawContacts.SYNC1,                      // 3
-                RawContacts.SYNC2                       // 4
+                Data.PHOTO_ID,                   // 3
+                Data.LOOKUP_KEY                  // 4
         };
 
         static final int RAW_CONTACT_ID = 0;
@@ -101,7 +102,10 @@ public class GroupMemberPickListAdapter extends ContactEntryListAdapter {
 
     @Override
     public void configureLoader(CursorLoader loader, long directoryId) {
-        loader.setUri(RawContacts.CONTENT_URI);
+        final Uri uri = Data.CONTENT_URI.buildUpon()
+                .appendQueryParameter(Data.VISIBLE_CONTACTS_ONLY, "true")
+                .build();
+        loader.setUri(uri);
         loader.setProjection(
                 getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
                         ? GroupMembersQuery.PROJECTION_PRIMARY
@@ -115,7 +119,8 @@ public class GroupMemberPickListAdapter extends ContactEntryListAdapter {
 
     private String getSelection() {
         // Select raw contacts by account
-        String result = RawContacts.ACCOUNT_NAME + "=? AND " + RawContacts.ACCOUNT_TYPE + "=? AND ";
+        String result = RawContacts.ACCOUNT_NAME + "=? AND " + RawContacts.ACCOUNT_TYPE + "=? AND "
+                + Data.MIMETYPE + "=? AND ";
         if (TextUtils.isEmpty(mAccount.dataSet)) {
             result += Data.DATA_SET + " IS NULL";
         } else {
@@ -128,6 +133,7 @@ public class GroupMemberPickListAdapter extends ContactEntryListAdapter {
         final ArrayList<String> result = new ArrayList<>();
         result.add(mAccount.name);
         result.add(mAccount.type);
+        result.add(GroupMembership.CONTENT_ITEM_TYPE);
         if (!TextUtils.isEmpty(mAccount.dataSet)) result.add(mAccount.dataSet);
         return result.toArray(new String[0]);
     }
@@ -135,7 +141,7 @@ public class GroupMemberPickListAdapter extends ContactEntryListAdapter {
     public Uri getRawContactUri(int position) {
         final Cursor cursor = (Cursor) getItem(position);
         final long rawContactId = cursor.getLong(GroupMembersQuery.RAW_CONTACT_ID);
-        return RawContacts.CONTENT_URI.buildUpon()
+        return Data.CONTENT_URI.buildUpon()
                 .appendPath(Long.toString(rawContactId))
                 .build();
     }
