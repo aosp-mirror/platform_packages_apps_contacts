@@ -153,7 +153,10 @@
     <string name="missing_app" msgid="1466111003546611387">"Не е пронајдена апликација да се справи со ова дејство."</string>
     <string name="menu_share" msgid="943789700636542260">"Сподели"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Додај во контакти"</string>
-    <!-- no translation found for title_share_via (5886112726191455415) -->
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="one">Споделете контакт преку</item>
+      <item quantity="other">Споделете контакти преку</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Изберете сметка"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Создајте етикета"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Преименувајте ја етикетата"</string>
@@ -194,7 +197,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"Поставки"</string>
     <string name="menu_settings" msgid="377929915873428211">"Поставки"</string>
     <string name="menu_help" msgid="1680178646764069976">"Помош и повратни информации"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"Опции за екран"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Опции за приказ"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Телефонски број"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Додај во контакти"</string>

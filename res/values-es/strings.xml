@@ -100,7 +100,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre del campo personalizado"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar llamadas directamente al buzón de voz"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminar foto"</string>
-    <string name="noContacts" msgid="4955659076981974652">"No hay contactos."</string>
+    <string name="noContacts" msgid="4955659076981974652">"No hay contactos"</string>
     <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos</item>
       <item quantity="one">1 contacto</item>
@@ -132,7 +132,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
       <item quantity="one">1 contacto encontrado</item>
     </plurals>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"No hay contactos."</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"No hay contactos"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
       <item quantity="one">1 contacto encontrado</item>
@@ -153,7 +153,10 @@
     <string name="missing_app" msgid="1466111003546611387">"No se ha detectado ninguna aplicación que pueda hacer esta acción."</string>
     <string name="menu_share" msgid="943789700636542260">"Compartir"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Añadir a contactos"</string>
-    <!-- no translation found for title_share_via (5886112726191455415) -->
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="other">Compartir contactos a través de</item>
+      <item quantity="one">Compartir contacto a través de</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Seleccionar una cuenta"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Crear etiqueta"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Cambiar nombre de etiqueta"</string>

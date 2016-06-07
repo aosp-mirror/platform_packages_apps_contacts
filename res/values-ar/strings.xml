@@ -173,7 +173,14 @@
     <string name="missing_app" msgid="1466111003546611387">"لم يتم العثور على تطبيق يمكنه مباشرة هذا الإجراء."</string>
     <string name="menu_share" msgid="943789700636542260">"مشاركة"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"إضافة إلى جهات الاتصال"</string>
-    <!-- no translation found for title_share_via (5886112726191455415) -->
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="zero">مشاركة جهات الاتصال عبر</item>
+      <item quantity="two">مشاركة جهتي الاتصال عبر</item>
+      <item quantity="few">مشاركة جهات الاتصال عبر</item>
+      <item quantity="many">مشاركة جهات الاتصال عبر</item>
+      <item quantity="other">مشاركة جهات الاتصال عبر</item>
+      <item quantity="one">مشاركة جهة الاتصال عبر</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"اختيار حساب"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"إنشاء تصنيف"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"إعادة تسمية التصنيف"</string>

@@ -158,7 +158,11 @@
     <string name="missing_app" msgid="1466111003546611387">"Nu s-a găsit o aplicație care să îndeplinească această acțiune."</string>
     <string name="menu_share" msgid="943789700636542260">"Trimiteți"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Adăugați în agendă"</string>
-    <!-- no translation found for title_share_via (5886112726191455415) -->
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="few">Trimiteți intrările din Agendă prin</item>
+      <item quantity="other">Trimiteți intrările din Agendă prin</item>
+      <item quantity="one">Trimiteți intrarea din Agendă prin</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Alegeți un cont"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Creați o etichetă"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Redenumiți eticheta"</string>
@@ -260,7 +264,7 @@
     <string name="header_organization_entry" msgid="8515394955666265406">"Organizație"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Pseudonim"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"Notă"</string>
-    <string name="header_website_entry" msgid="1411467850000824745">"Site web"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"Site"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Eveniment"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Relație"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"Cont"</string>

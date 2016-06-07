@@ -153,7 +153,10 @@
     <string name="missing_app" msgid="1466111003546611387">"Não foram encontradas aplicações para executar esta ação."</string>
     <string name="menu_share" msgid="943789700636542260">"Partilhar"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Adicionar aos contactos"</string>
-    <!-- no translation found for title_share_via (5886112726191455415) -->
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="other">Partilhar contactos através de</item>
+      <item quantity="one">Partilhar contacto através de</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Selecionar conta"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Criar etiqueta"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Mudar o nome da etiqueta"</string>
@@ -168,7 +171,7 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"Conta <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="take_photo" msgid="7496128293167402354">"Tirar fotografia"</string>
+    <string name="take_photo" msgid="7496128293167402354">"Tirar foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Tirar nova fotografia"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Escolher fotografia"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Selecionar nova fotografia"</string>

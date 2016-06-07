@@ -153,7 +153,10 @@
     <string name="missing_app" msgid="1466111003546611387">"यह कार्यवाही प्रबंधित करने के लिए कोई ऐप्स नहीं मिला."</string>
     <string name="menu_share" msgid="943789700636542260">"साझा करें"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"संपर्कों में जोड़ें"</string>
-    <!-- no translation found for title_share_via (5886112726191455415) -->
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="one">इसके द्वारा संपर्कों को साझा करें</item>
+      <item quantity="other">इसके द्वारा संपर्कों को साझा करें</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"खाता चुनें"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"लेबल बनाएं"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"लेबल का नाम बदलें"</string>

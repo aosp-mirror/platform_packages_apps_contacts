@@ -153,7 +153,10 @@
     <string name="missing_app" msgid="1466111003546611387">"Ingen app som kan hantera åtgärden hittades"</string>
     <string name="menu_share" msgid="943789700636542260">"Dela"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Lägg till i Kontakter"</string>
-    <!-- no translation found for title_share_via (5886112726191455415) -->
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="other">Dela kontakter med</item>
+      <item quantity="one">Dela kontakt med</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Välj konto"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Skapa etikett"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Byt namn på etikett"</string>
@@ -170,7 +173,7 @@
     <skip />
     <string name="take_photo" msgid="7496128293167402354">"Ta en bild"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ta ny bild"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"Välj foto"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Välj bild"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Välj ett nytt foto"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktlistan uppdateras."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Söker …"</string>
@@ -306,7 +309,7 @@
     <string name="from_your_accounts" msgid="1746293107836889912">"Från dina konton"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Ta en bild"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Alla foton"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Välj foto"</string>
+    <string name="photo_picker_title" msgid="5272832995550042801">"Välj bild"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Från <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"Radera <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Radera <xliff:g id="DATA_KIND">%s</xliff:g>"</string>

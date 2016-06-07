@@ -24,12 +24,12 @@
     <string name="shortcutContact" msgid="749243779392912958">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ໂທຫາໂດຍກົງ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ສົ່ງຂໍ້ຄວາມຫາໂດຍກົງ"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ເລືອກທາງລັດລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ເລືອກທາງລັດລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ເລືອກໝາຍເລກເພື່ອໂທ"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ເລືອກເບີເພື່ອສົ່ງຂໍ້ຄວາມ"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ເພີ່ມໃສ່​ລາຍຊື່​ຜູ່ຕິດຕໍ່"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ເລືອກລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ສ້າງລາຍຊື່ຜູ່ຕິດຕໍ່ໃໝ່"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ເລືອກລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="starredList" msgid="4817256136413959463">"ໝາຍດາວແລ້ວ"</string>
     <string name="frequentList" msgid="7154768136473953056">"ເລື້ອຍໆ"</string>
     <string name="strequentList" msgid="5640192862059373511">"ລາຍການທີ່ມັກ"</string>
@@ -73,8 +73,8 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ລາຍຊື່ຜູ່ຕິດຕໍ່ທັງໝົດ"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ລິ້ງ​ແລ້ວ"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
-      <item quantity="other">ລາຍ​ຊື່​ຕິດ​ຕໍ່​ຖືກ​ລຶບ​ແລ້ວ</item>
-      <item quantity="one">ລາຍ​ຊື່​ຕິດ​ຕໍ່​ຖືກ​ລຶບ​ແລ້ວ</item>
+      <item quantity="other">ລາຍຊື່ຜູ້ຕິດຕໍ່ຖືກລຶບອອກແລ້ວ</item>
+      <item quantity="one">ລາຍຊື່ຜູ້ຕິດຕໍ່ຖືກລຶບອອກແລ້ວ</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ຕັ້ງສຽງຣິງໂທນ"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ໂອນທຸກສາຍໄປຂໍ້ຄວາມສຽງ"</string>
@@ -92,8 +92,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"ເພີ່ມລາຍຊື່ຕິດຕໍ່ໃສ່ໜ້າຈໍຫຼັກແລ້ວ."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ເພີ່ມ​ໃສ່​ໜ້າ​ຈໍ​ຫຼັກ​ແລ້ວ."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"ສ້າງລາຍຊື່ຜູ່ຕິດຕໍ່ໃໝ່"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"ສ້າງລາຍຊື່ຜູ່ຕິດຕໍ່ໃໝ່"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ບໍ່ມີຮູບໃນແທັບເລັດທີ່ສາມາດໃຊ້ໄດ້."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"ບໍ່ມີຮູບທີ່ສາມາດໃຊ້ໄດ້ໃນໂທລະສັບ."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"ຮູບລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
@@ -207,7 +207,7 @@
     <string name="date_year_toggle" msgid="7122002148518724139">"ລວມ​ປີ​ນຳ"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ກຳລັງໂຫລດ..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ສ້າງລາຍຊື່ຜູ່ຕິດຕໍ່ໃໝ່"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"ເພີ່ມບັນຊີ"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"ນຳເຂົ້າລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"ສ້າງປ້າຍກຳກັບໃໝ່"</string>
@@ -232,13 +232,13 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່ຂອງທ່ານຈະບໍ່ຖືກສຳຮອງຂໍ້ມູນ. ທ່ານຕ້ອງການເພີ່ມບັນຊີ ທີ່ສາມາດສຳຮອງຂໍ້ມູນອອນລາຍໄດ້ຫຼືບໍ່?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໃໝ່​ຈະ​ຖືກ​ບັນ​ທຶກ​ໃສ່ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ເລືອກ​ບັນ​ຊີ​ເລີ່ມຕົ້ນ​ສຳ​ລັບ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໃໝ່:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"​ເພີ່ມ​ລາຍ​ຊື່​ຜູ່​ຕິດ​ຕໍ່​ໃໝ່"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ແກ້ໄຂລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="keep_local" msgid="1258761699192993322">"ຈັດເກັບໃນເຄື່ອງ"</string>
     <string name="add_account" msgid="8201790677994503186">"ເພີ່ມບັນຊີ"</string>
     <string name="add_new_account" msgid="5748627740680940264">"ເພີ່ມບັນຊີໃໝ່"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ສົ່ງອອກໄຟລ໌ຖານຂໍ້ມູນ"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"ເພີ່ມ​ລາຍຊື່​ຜູ່​ຕິດຕໍ່"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"​ເບິ່ງ​ເພີ່ມ​ເຕີມ"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"​​ເບິ່ງ​ໜ້ອຍ​ລົງ"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"ເບິ່ງ​ທັງ​ໝົດ"</string>

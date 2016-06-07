@@ -158,7 +158,11 @@
     <string name="missing_app" msgid="1466111003546611387">"Netika atrasta neviena lietotne šīs darbības veikšanai."</string>
     <string name="menu_share" msgid="943789700636542260">"Kopīgot"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Pievienot kontaktpersonām"</string>
-    <!-- no translation found for title_share_via (5886112726191455415) -->
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="zero">Kontaktpersonu kopīgošana, izmantojot</item>
+      <item quantity="one">Kontaktpersonu kopīgošana, izmantojot</item>
+      <item quantity="other">Kontaktpersonu kopīgošana, izmantojot</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Konta izvēle"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Iezīmes izveide"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Iezīmes pārdēvēšana"</string>

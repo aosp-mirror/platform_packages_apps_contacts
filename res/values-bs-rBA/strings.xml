@@ -158,7 +158,11 @@
     <string name="missing_app" msgid="1466111003546611387">"Nije pronađena aplikacija za obavljanje ove radnje."</string>
     <string name="menu_share" msgid="943789700636542260">"Podijeli"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Dodaj u kontakte"</string>
-    <!-- no translation found for title_share_via (5886112726191455415) -->
+    <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
+      <item quantity="one">Podijeli kontakte putem</item>
+      <item quantity="few">Podijeli kontakte putem</item>
+      <item quantity="other">Podijeli kontakte putem</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Izaberi račun"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Napravi oznaku"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Preimenuj oznaku"</string>
