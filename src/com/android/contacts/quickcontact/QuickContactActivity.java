@@ -32,7 +32,6 @@ import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -264,9 +263,10 @@ public class QuickContactActivity extends ContactsActivity
     private ExpandingEntryCardView mPermissionExplanationCard;
 
     // Suggestion card.
+    private boolean mShouldShowSuggestions = false;
     private CardView mCollapsedSuggestionCardView;
     private CardView mExpandSuggestionCardView;
-    private View mCollapasedSuggestionHeader;
+    private View mCollapsedSuggestionHeader;
     private TextView mCollapsedSuggestionCardTitle;
     private TextView mExpandSuggestionCardTitle;
     private ImageView mSuggestionSummaryPhoto;
@@ -491,6 +491,9 @@ public class QuickContactActivity extends ContactsActivity
 
     @Override
     public void onAggregationSuggestionChange() {
+        if (!mShouldShowSuggestions) {
+            return;
+        }
         if (mAggregationSuggestionEngine == null) {
             return;
         }
@@ -1005,55 +1008,58 @@ public class QuickContactActivity extends ContactsActivity
         mPermissionExplanationCard =
                 (ExpandingEntryCardView) findViewById(R.id.permission_explanation_card);
 
-        mCollapsedSuggestionCardView = (CardView) findViewById(R.id.collapsed_suggestion_card);
-        mExpandSuggestionCardView = (CardView) findViewById(R.id.expand_suggestion_card);
-        mCollapasedSuggestionHeader = findViewById(R.id.collapsed_suggestion_header);
-        mCollapsedSuggestionCardTitle = (TextView) findViewById(
-                R.id.collapsed_suggestion_card_title);
-        mExpandSuggestionCardTitle = (TextView) findViewById(R.id.expand_suggestion_card_title);
-        mSuggestionSummaryPhoto = (ImageView) findViewById(R.id.suggestion_icon);
-        mSuggestionForName = (TextView) findViewById(R.id.suggestion_for_name);
-        mSuggestionContactsNumber = (TextView) findViewById(R.id.suggestion_for_contacts_number);
-        mSuggestionList = (LinearLayout) findViewById(R.id.suggestion_list);
-        mSuggestionsCancelButton= (Button) findViewById(R.id.cancel_button);
-        mSuggestionsLinkButton = (Button) findViewById(R.id.link_button);
-        if (savedInstanceState != null) {
-            mIsSuggestionListCollapsed = savedInstanceState.getBoolean(
-                    KEY_IS_SUGGESTION_LIST_COLLAPSED, true);
-            mPreviousContactId = savedInstanceState.getLong(KEY_PREVIOUS_CONTACT_ID);
-            mSuggestionsShouldAutoSelected = savedInstanceState.getBoolean(
-                    KEY_SUGGESTIONS_AUTO_SELECTED, true);
-            mSelectedAggregationIds = (TreeSet<Long>)
-                    savedInstanceState.getSerializable(KEY_SELECTED_SUGGESTION_CONTACTS);
-        } else {
-            mIsSuggestionListCollapsed = true;
-            mSelectedAggregationIds.clear();
-        }
-        if (mSelectedAggregationIds.isEmpty()) {
-            disableLinkButton();
-        } else {
-            enableLinkButton();
-        }
-        mCollapasedSuggestionHeader.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mCollapsedSuggestionCardView.setVisibility(View.GONE);
-                mExpandSuggestionCardView.setVisibility(View.VISIBLE);
-                mIsSuggestionListCollapsed = false;
-                mExpandSuggestionCardTitle.requestFocus();
-                mExpandSuggestionCardTitle.sendAccessibilityEvent(
-                        AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
-            }
-        });
-
-        mSuggestionsCancelButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mCollapsedSuggestionCardView.setVisibility(View.VISIBLE);
-                mExpandSuggestionCardView.setVisibility(View.GONE);
+        if (mShouldShowSuggestions) {
+            mCollapsedSuggestionCardView = (CardView) findViewById(R.id.collapsed_suggestion_card);
+            mExpandSuggestionCardView = (CardView) findViewById(R.id.expand_suggestion_card);
+            mCollapsedSuggestionHeader = findViewById(R.id.collapsed_suggestion_header);
+            mCollapsedSuggestionCardTitle = (TextView) findViewById(
+                    R.id.collapsed_suggestion_card_title);
+            mExpandSuggestionCardTitle = (TextView) findViewById(R.id.expand_suggestion_card_title);
+            mSuggestionSummaryPhoto = (ImageView) findViewById(R.id.suggestion_icon);
+            mSuggestionForName = (TextView) findViewById(R.id.suggestion_for_name);
+            mSuggestionContactsNumber = (TextView) findViewById(
+                    R.id.suggestion_for_contacts_number);
+            mSuggestionList = (LinearLayout) findViewById(R.id.suggestion_list);
+            mSuggestionsCancelButton = (Button) findViewById(R.id.cancel_button);
+            mSuggestionsLinkButton = (Button) findViewById(R.id.link_button);
+            if (savedInstanceState != null) {
+                mIsSuggestionListCollapsed = savedInstanceState.getBoolean(
+                        KEY_IS_SUGGESTION_LIST_COLLAPSED, true);
+                mPreviousContactId = savedInstanceState.getLong(KEY_PREVIOUS_CONTACT_ID);
+                mSuggestionsShouldAutoSelected = savedInstanceState.getBoolean(
+                        KEY_SUGGESTIONS_AUTO_SELECTED, true);
+                mSelectedAggregationIds = (TreeSet<Long>)
+                        savedInstanceState.getSerializable(KEY_SELECTED_SUGGESTION_CONTACTS);
+            } else {
                 mIsSuggestionListCollapsed = true;
+                mSelectedAggregationIds.clear();
             }
-        });
+            if (mSelectedAggregationIds.isEmpty()) {
+                disableLinkButton();
+            } else {
+                enableLinkButton();
+            }
+            mCollapsedSuggestionHeader.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCollapsedSuggestionCardView.setVisibility(View.GONE);
+                    mExpandSuggestionCardView.setVisibility(View.VISIBLE);
+                    mIsSuggestionListCollapsed = false;
+                    mExpandSuggestionCardTitle.requestFocus();
+                    mExpandSuggestionCardTitle.sendAccessibilityEvent(
+                            AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+                }
+            });
+
+            mSuggestionsCancelButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCollapsedSuggestionCardView.setVisibility(View.VISIBLE);
+                    mExpandSuggestionCardView.setVisibility(View.GONE);
+                    mIsSuggestionListCollapsed = true;
+                }
+            });
+        }
 
         mPermissionExplanationCard.setOnClickListener(mEntryClickHandler);
         mNoContactDetailsCard.setOnClickListener(mEntryClickHandler);
@@ -1460,6 +1466,9 @@ public class QuickContactActivity extends ContactsActivity
     }
 
     private void populateSuggestionCard() {
+        if (!mShouldShowSuggestions) {
+            return;
+        }
         // Initialize suggestion related view and data.
         if (mPreviousContactId != mContactData.getId()) {
             mCollapsedSuggestionCardView.setVisibility(View.GONE);
@@ -2406,7 +2415,9 @@ public class QuickContactActivity extends ContactsActivity
         mContactCard.setColorAndFilter(mColorFilterColor, mColorFilter);
         mRecentCard.setColorAndFilter(mColorFilterColor, mColorFilter);
         mAboutCard.setColorAndFilter(mColorFilterColor, mColorFilter);
-        mSuggestionsCancelButton.setTextColor(mColorFilterColor);
+        if (mShouldShowSuggestions) {
+            mSuggestionsCancelButton.setTextColor(mColorFilterColor);
+        }
     }
 
     private void updateStatusBarColor() {
