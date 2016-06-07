@@ -172,7 +172,7 @@ public final class CompatUtils {
      * false} otherwise.
      */
     public static boolean isNCompatible() {
-        return BuildCompat.isAtLeastN();
+        return VERSION.SDK_INT >= 24;
     }
 
     /**
