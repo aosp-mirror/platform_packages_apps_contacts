@@ -23,7 +23,7 @@ import android.database.CursorWrapper;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.RawContacts;
+import android.provider.ContactsContract.Data;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -38,7 +38,9 @@ import com.android.contacts.list.GroupMemberPickListAdapter.GroupMembersQuery;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Fragment containing raw contacts for a specified account that are not already in a group.
@@ -84,12 +86,17 @@ public class GroupMemberPickerFragment extends
                         + (mContactPhotosMap == null ? 0 : mContactPhotosMap.size()));
             }
 
+            final Set<String> uniqueRawContactIds = new HashSet<String>();
+
             for (int i = 0; i < mCount; i++) {
                 super.moveToPosition(i);
                 final String rawContactId = getString(GroupMembersQuery.RAW_CONTACT_ID);
-                if (!mRawContactIds.contains(rawContactId)) {
+                if (!mRawContactIds.contains(rawContactId)
+                        && !uniqueRawContactIds.contains(rawContactId)) {
                     mIndex[mPos++] = i;
-                } else if (mContactPhotosMap != null) {
+                    uniqueRawContactIds.add(rawContactId);
+                }
+                if (mRawContactIds.contains(rawContactId) && mContactPhotosMap != null) {
                     final long contactId = getLong(GroupMembersQuery.CONTACT_ID);
                     mContactPhotosMap.remove(contactId);
                 }
@@ -117,10 +124,10 @@ public class GroupMemberPickerFragment extends
         }
 
         private int getColumnIndexForContactColumn(String columnName) {
-            if (Contacts.PHOTO_ID.equals(columnName)) {
+            if (Data.PHOTO_ID.equals(columnName)) {
                 return GroupMembersQuery.CONTACT_PHOTO_ID;
             }
-            if (Contacts.LOOKUP_KEY.equals(columnName)) {
+            if (Data.LOOKUP_KEY.equals(columnName)) {
                 return GroupMembersQuery.CONTACT_LOOKUP_KEY;
             }
             return -1;
@@ -130,14 +137,14 @@ public class GroupMemberPickerFragment extends
         public String[] getColumnNames() {
             final String displayNameColumnName =
                     getContactNameDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
-                            ? RawContacts.DISPLAY_NAME_PRIMARY
-                            : RawContacts.DISPLAY_NAME_ALTERNATIVE;
+                            ? Data.DISPLAY_NAME_PRIMARY
+                            : Data.DISPLAY_NAME_ALTERNATIVE;
             return new String[] {
-                    RawContacts._ID,
-                    RawContacts.CONTACT_ID,
+                    Data._ID,
+                    Data.CONTACT_ID,
                     displayNameColumnName,
-                    Contacts.PHOTO_ID,
-                    Contacts.LOOKUP_KEY,
+                    Data.PHOTO_ID,
+                    Data.LOOKUP_KEY,
             };
         }
 
@@ -219,15 +226,15 @@ public class GroupMemberPickerFragment extends
     private final LoaderCallbacks<Cursor> mContactsEntityCallbacks = new LoaderCallbacks<Cursor>() {
 
         private final String[] PROJECTION = new String[] {
-                Contacts._ID,
-                Contacts.PHOTO_ID,
-                Contacts.LOOKUP_KEY
+                Data.CONTACT_ID,
+                Data.PHOTO_ID,
+                Data.LOOKUP_KEY
         };
 
         @Override
         public CursorLoader onCreateLoader(int id, Bundle args) {
             final CursorLoader loader = new CursorLoader(getActivity());
-            loader.setUri(Contacts.CONTENT_URI);
+            loader.setUri(Data.CONTENT_URI);
             loader.setProjection(PROJECTION);
             return loader;
         }
@@ -311,7 +318,9 @@ public class GroupMemberPickerFragment extends
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        super.onLoadFinished(loader, new FilterCursorWrapper(data));
+        if (data != null) {
+            super.onLoadFinished(loader, new FilterCursorWrapper(data));
+        }
     }
 
     @Override
