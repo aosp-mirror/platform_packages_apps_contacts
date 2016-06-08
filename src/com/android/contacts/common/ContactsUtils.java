@@ -21,9 +21,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Build.VERSION;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.support.annotation.IntDef;
-import android.support.v4.os.BuildCompat;
 import android.provider.ContactsContract.DisplayPhoto;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -53,7 +53,7 @@ public class ContactsUtils {
 
     private static int sThumbnailSize = -1;
 
-    public static final boolean FLAG_N_FEATURE = BuildCompat.isAtLeastN();
+    public static final boolean FLAG_N_FEATURE = Build.VERSION.SDK_INT >= 24;
 
     // TODO find a proper place for the canonical version of these
     public interface ProviderNames {
