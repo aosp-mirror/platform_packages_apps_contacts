@@ -20,11 +20,13 @@ import android.app.ActionBar;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.QuickContact;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.list.ProviderStatusWatcher;
 import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment.ProfileListener;
 import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment.ProfileQuery;
 
@@ -42,10 +44,11 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
     private int mModeFullyExpanded;
     private boolean mAreContactsAvailable;
 
+    private ProviderStatusWatcher mProviderStatusWatcher;
+
     public static final String EXTRA_NEW_LOCAL_PROFILE = "newLocalProfile";
     public static final String EXTRA_MODE_FULLY_EXPANDED = "modeFullyExpanded";
     public static final String EXTRA_PREVIOUS_SCREEN_TYPE = "previousScreenType";
-    public static final String EXTRA_ARE_CONTACTS_AVAILABLE = "areContactsAvailable";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +59,14 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
             actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
         }
 
+        mProviderStatusWatcher = ProviderStatusWatcher.getInstance(this);
+
         mNewLocalProfileExtra = getIntent().getStringExtra(EXTRA_NEW_LOCAL_PROFILE);
         mModeFullyExpanded = getIntent().getIntExtra(EXTRA_MODE_FULLY_EXPANDED,
                 QuickContact.MODE_LARGE);
         mPreviousScreenExtra = getIntent().getStringExtra(EXTRA_PREVIOUS_SCREEN_TYPE);
-        mAreContactsAvailable = getIntent().getBooleanExtra(EXTRA_ARE_CONTACTS_AVAILABLE, false);
+        final int providerStatus = mProviderStatusWatcher.getProviderStatus();
+        mAreContactsAvailable = providerStatus == ProviderStatus.STATUS_NORMAL;
 
         if (savedInstanceState == null) {
             final DisplayOptionsPreferenceFragment fragment = DisplayOptionsPreferenceFragment

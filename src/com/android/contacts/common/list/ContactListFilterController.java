@@ -85,7 +85,7 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
     private ContactListFilter mFilter;
 
     public ContactListFilterControllerImpl(Context context) {
-        mContext = context;
+        mContext = context.getApplicationContext();
         mFilter = ContactListFilter.restoreDefaultPreferences(getSharedPreferences());
         checkFilterValidity(true /* notify listeners */);
     }
