@@ -16,6 +16,18 @@
 
 package com.android.contacts.activities;
 
+import android.app.ActionBar;
+import android.app.Dialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.RawContacts;
+import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
@@ -28,18 +40,6 @@ import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.util.DialogManager;
-
-import android.app.ActionBar;
-import android.app.Dialog;
-import android.content.ContentValues;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.RawContacts;
-import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 
@@ -68,6 +68,8 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
     public static final String ACTION_SAVE_COMPLETED = "saveCompleted";
 
     public static final int RESULT_CODE_SPLIT = 2;
+    // 3 used for ContactDeletionInteraction.RESULT_CODE_DELETED
+    public static final int RESULT_CODE_EDITED = 4;
 
     protected int mActionBarTitleResId;
 
