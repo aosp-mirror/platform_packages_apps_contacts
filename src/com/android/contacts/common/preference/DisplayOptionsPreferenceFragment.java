@@ -185,8 +185,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     }
 
     public void updateMyInfoPreference(boolean hasProfile, String displayName, long contactId) {
-        final CharSequence summary = hasProfile ? getString(R.string.me_contact_name, displayName)
-                : getString(R.string.set_up_profile);
+        final CharSequence summary = hasProfile ? displayName : getString(R.string.set_up_profile);
         mMyInfoPreference.setSummary(summary);
         mHasProfile = hasProfile;
         mProfileContactId = contactId;
