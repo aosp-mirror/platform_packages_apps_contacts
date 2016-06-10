@@ -616,9 +616,6 @@
     <!-- Displayed below my info for user to set up the user's personal profile entry [CHAR LIMIT=64] -->
     <string name="set_up_profile">Set up your profile</string>
 
-    <!-- Displayed below my info to show the name of user's personal profile [CHAR LIMIT=30]-->
-    <string name="me_contact_name">Me Contact\u003A\u0020<xliff:g id="name">%s</xliff:g></string>
-
     <!-- Label of the "About" setting -->
     <string name="setting_about">About Contacts</string>
 
