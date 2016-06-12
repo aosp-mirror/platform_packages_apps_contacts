@@ -233,6 +233,7 @@
     </style>
 
     <style name="ContactsActionBarTitleTextAppCompat" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20dp</item>
         <item name="android:textColor">@color/actionbar_text_color</item>
     </style>
 
