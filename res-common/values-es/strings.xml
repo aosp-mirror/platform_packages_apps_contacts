@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Buscando..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Se han encontrado más de <xliff:g id="COUNT">%d</xliff:g> contactos."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ningún contacto"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 contacto encontrado"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> contactos encontrados"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
+      <item quantity="one">1 contacto encontrado</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacto rápido de <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sin nombre)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Más llamados"</string>
@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos los contactos con número"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ver actualizaciones"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Solo en el tablet (sin sincronizar)"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Solo en el teléfono, no sincronizado"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Solo en teléfono, no sincronizar"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nombre"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Apodo"</string>
     <string name="full_name" msgid="885420216812981202">"Nombre"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"Mensaje de texto"</string>
     <string name="postal_address" msgid="7692926530081579786">"Dirección"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Empresa"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Nombre"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Cargo"</string>
     <string name="label_notes" msgid="3997277594846722699">"Notas"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Sitio web"</string>
@@ -152,7 +152,7 @@
     <string name="menu_sync_remove" msgid="6581565236520430269">"Eliminar grupo de sincronización"</string>
     <string name="dialog_sync_add" msgid="1795682729089027675">"Añadir grupo de sincronización"</string>
     <string name="display_more_groups" msgid="6304997485733158224">"Más grupos…"</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Si eliminas \"<xliff:g id="GROUP">%s</xliff:g>\" de las sincronización, también se eliminarán todos los contactos no agrupados."</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Si quitas \"<xliff:g id="GROUP">%s</xliff:g>\" de las sincronización, también se quitarán todos los contactos no agrupados."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Guardando opciones de visualización…"</string>
     <string name="menu_done" msgid="32470053723443112">"Listo"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Cancelar"</string>
@@ -225,17 +225,17 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Ordenar por"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Nombre"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Apellido"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Formato del nombre"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Formato de nombre"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nombre primero"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Apellido primero"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Compartir contactos visibles"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importar/exportar contactos"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importar contactos"</string>
-    <string name="share_error" msgid="665756457151793108">"No se puede compartir este contacto."</string>
+    <string name="share_error" msgid="665756457151793108">"Este contacto no se puede compartir."</string>
     <string name="menu_search" msgid="7464453023659824700">"Buscar"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Contactos que mostrar"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contactos que mostrar"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definición de vista personalizada"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Definir vista personalizada"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Buscar contactos"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoritos"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"No hay ningún contacto."</string>

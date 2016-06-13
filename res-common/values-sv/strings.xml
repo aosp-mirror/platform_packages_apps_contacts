@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Söker ..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Fler än <xliff:g id="COUNT">%d</xliff:g> hittades."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Inga kontakter"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 hittades"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> hittades"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> hittades</item>
+      <item quantity="one">1 hittades</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Snabbkontakt för <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Inget namn)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Ringer ofta"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adress"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Företag"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Rubrik"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Befattning"</string>
     <string name="label_notes" msgid="3997277594846722699">"Kommentarer"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webbplats"</string>
@@ -235,7 +235,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Sök"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakter som ska visas"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakter som ska visas"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definiera anpassad visning"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Definiera anpassad vy"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Sök efter kontakter"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoriter"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Inga kontakter."</string>

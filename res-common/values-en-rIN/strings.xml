@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Searching…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"More than <xliff:g id="COUNT">%d</xliff:g> found."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"No contacts"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 found"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> found"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> found</item>
+      <item quantity="one">1 found</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Quick contact for <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(No name)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Frequently called"</string>
@@ -99,7 +99,7 @@
     <string name="name_phonetic" msgid="2249169131785620210">"Phonetic name"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Phonetic first name"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Phonetic middle name"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Phonetic last name"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Phonetic surname"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Phone"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Email"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Address"</string>
@@ -227,9 +227,9 @@
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Surname"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Name format"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"First name first"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Last name first"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Surname first"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Share visible contacts"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Import/export contacts"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Import/Export contacts"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Import contacts"</string>
     <string name="share_error" msgid="665756457151793108">"This contact cannot be shared."</string>
     <string name="menu_search" msgid="7464453023659824700">"Search"</string>

@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"శోధిస్తోంది..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> కంటే ఎక్కువ కనుగొనబడ్డాయి."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"పరిచయాలు లేవు"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 కనుగొనబడ్డారు"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> మంది కనుగొనబడ్డారు"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> కనుగొనబడ్డాయి</item>
+      <item quantity="one">1 కనుగొనబడింది</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> కోసం శీఘ్ర సంప్రదింపు"</string>
     <string name="missing_name" msgid="2633118852693000081">"(పేరు లేదు)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"తరచుగా కాల్ చేయబడినవి"</string>
@@ -86,8 +86,8 @@
     <string name="description_view_contact_detail" msgid="2756753096193839285">"పరిచయాన్ని వీక్షించండి"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ఫోన్ నంబర్‌లు గల అన్ని పరిచయాలు"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"నవీకరణలను వీక్షించండి"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"టాబ్లెట్-మాత్రమే, సమకాలీకరించబడలేదు"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"ఫోన్-మాత్రమే, సమకాలీకరించబడలేదు"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"టాబ్లెట్-మాత్రమే, సమకాలీకరించబడని"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"ఫోన్-మాత్రమే, సమకాలీకరించబడని"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"పేరు"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"మారుపేరు"</string>
     <string name="full_name" msgid="885420216812981202">"పేరు"</string>
@@ -96,9 +96,9 @@
     <string name="name_prefix" msgid="8219879405071462309">"పేరు ఆదిప్రత్యయం"</string>
     <string name="name_middle" msgid="3951610314424632183">"మధ్య పేరు"</string>
     <string name="name_suffix" msgid="5436984808550075931">"పేరు అంత్యప్రత్యయం"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"ఫోనెటిక్ పేరు"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"ఫొనెటిక్ పేరు"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"ఫొనెటిక్ మొదటి పేరు"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"ఫోనెటిక్ మధ్య పేరు"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"ఫొనెటిక్ మధ్య పేరు"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"ఫొనెటిక్ చివరి పేరు"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ఫోన్"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ఇమెయిల్"</string>
@@ -193,7 +193,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"పరిచయ డేటా ఎగుమతి చేయబడలేదు.\nకారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"నిల్వ కనుగొనబడలేదు."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD కార్డు కనుగొనబడలేదు."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"మీ పరిచయ జాబితా ఫైల్‌కు ఎగుమతి చేయబడుతుంది: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"మీ పరిచయ జాబితా ఈ ఫైల్‌కు ఎగుమతి చేయబడుతుంది: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g>ని దిగుమతి చేస్తోంది"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard డేటాను చదవడం సాధ్యపడలేదు"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard డేటాను చదవడం రద్దయింది"</string>
@@ -221,21 +221,21 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"నిల్వను స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD కార్డును స్కాన్ చేయడం సాధ్యపడలేదు. (కారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g>లో <xliff:g id="CURRENT_NUMBER">%s</xliff:g> దిగుమతి చేయబడుతోంది: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"నిల్వకు ఎగుమతి చేయి"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"నిల్వకు ఎగుమతి చేయండి"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ఇలా క్రమబద్ధీకరించు"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"మొదటి పేరు"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"చివరి పేరు"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"పేరు ఆకృతి"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ముందుగా మొదటి పేరు"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ముందుగా చివరి పేరు"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయి"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయండి"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"పరిచయాలను దిగుమతి/ఎగుమతి చేయండి"</string>
     <string name="dialog_import" msgid="5177004290082451296">"పరిచయాలను దిగుమతి చేయండి"</string>
     <string name="share_error" msgid="665756457151793108">"ఈ పరిచయాన్ని భాగస్వామ్యం చేయడం సాధ్యపడదు."</string>
     <string name="menu_search" msgid="7464453023659824700">"శోధించు"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"అనుకూల వీక్షణను నిర్వచించండి"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"అనుకూల వీక్షణ నిర్వచనం"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"పరిచయాలను కనుగొనండి"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ఇష్టమైనవి"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"పరిచయాలు లేవు."</string>

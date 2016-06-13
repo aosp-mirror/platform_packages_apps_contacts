@@ -75,10 +75,12 @@
     <string name="search_results_searching" msgid="9022794597388306615">"מחפש…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"נמצאו יותר מ-<xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"אין אנשי קשר"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"נמצא אחד"</item>
-    <item quantity="other" msgid="4649647748678161594">"נמצאו <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="two">נמצאו <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="many">נמצאו <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="other">נמצאו <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">נמצא אחד</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"קשר מהיר עבור <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(ללא שם)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"התקשרות לעתים קרובות"</string>
@@ -110,7 +112,7 @@
     <string name="sms" msgid="8086289395154598654">"הודעת טקסט"</string>
     <string name="postal_address" msgid="7692926530081579786">"כתובת"</string>
     <string name="ghostData_company" msgid="22470841482615409">"חברה"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"כותרת"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"תפקיד"</string>
     <string name="label_notes" msgid="3997277594846722699">"הערות"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"אתר"</string>
@@ -225,9 +227,9 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"מיין לפי"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"שם פרטי"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"שם משפחה"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"פורמט שם"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"שם פרטי תחילה"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"שם משפחה תחילה"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"פורמט השם"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"שם פרטי יופיע ראשון"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"שם משפחה יופיע ראשון"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"שתף אנשי קשר שמוצגים כעת"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"יבא/יצא אנשי קשר"</string>
     <string name="dialog_import" msgid="5177004290082451296">"יבא אנשי קשר"</string>
@@ -235,7 +237,7 @@
     <string name="menu_search" msgid="7464453023659824700">"חפש"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"אנשי קשר להצגה"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"אנשי קשר להצגה"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"הגדרת תצוגה מותאמת אישית"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"תצוגה מותאמת אישית"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"חפש אנשי קשר"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"מועדפים"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"אין אנשי קשר."</string>
@@ -245,7 +247,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"מחק אנשי קשר קבועים"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"‏בחר כרטיס SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"חשבונות"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"יבא/יצא"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"ייבוא/ייצוא"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"באמצעות <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> באמצעות <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"הפסק לחפש"</string>

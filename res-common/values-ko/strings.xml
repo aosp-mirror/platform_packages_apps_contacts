@@ -74,11 +74,11 @@
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"나"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"검색 중…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>개 이상 찾았습니다."</string>
-    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"주소록 없음"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1개를 찾았습니다."</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g>개를 찾았습니다."</item>
-  </plurals>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"연락처 없음"</string>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>개 찾음</item>
+      <item quantity="one">1개 찾음</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g>님의 빠른 주소록"</string>
     <string name="missing_name" msgid="2633118852693000081">"(이름 없음)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"자주 통화한 목록"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"문자 메시지"</string>
     <string name="postal_address" msgid="7692926530081579786">"주소"</string>
     <string name="ghostData_company" msgid="22470841482615409">"회사"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"제목"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"직책"</string>
     <string name="label_notes" msgid="3997277594846722699">"메모"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"웹사이트"</string>

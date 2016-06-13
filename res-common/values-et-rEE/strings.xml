@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Otsimine ..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Leitud rohkem kui <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Kontaktid puuduvad"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 leitud"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> leitud"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">Leiti <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Leiti 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Kiirkontakt: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Nimi puudub)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Sageli valitud üksus"</string>
@@ -101,9 +101,9 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Foneetiline keskmine nimi"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Foneetiline perekonnanimi"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"Meil"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"E-post"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Aadress"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"Kiirsuhtlus"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organisatsioon"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Suhe"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Kindlad kuupäevad"</string>
@@ -222,7 +222,7 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD-kaarti ei saa skannida. (Põhjus: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importimine: <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> – <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Ekspordi mäluseadmesse"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sortimisalus:"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sortimisalus"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Eesnimi"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Perekonnanimi"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Nimevorming"</string>

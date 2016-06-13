@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"S\'està cercant..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Se n\'han trobat més de <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"No hi ha cap contacte"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 contacte"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> contactes"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactes trobats</item>
+      <item quantity="one">1 contacte trobat</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacte ràpid per a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sense nom)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Usuaris a qui es truca sovint"</string>
@@ -110,11 +110,11 @@
     <string name="sms" msgid="8086289395154598654">"Missatge de text"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adreça"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Empresa"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Títol"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Càrrec"</string>
     <string name="label_notes" msgid="3997277594846722699">"Notes"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Lloc web"</string>
-    <string name="groupsLabel" msgid="3574316547053047551">"Google Grups"</string>
+    <string name="groupsLabel" msgid="3574316547053047551">"Grups"</string>
     <string name="email_home" msgid="2230967805906450693">"Envia un correu electrònic a l\'adreça particular"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Envia un correu electrònic al mòbil"</string>
     <string name="email_work" msgid="7065971921227432400">"Envia un correu electrònic a la feina"</string>
@@ -157,10 +157,10 @@
     <string name="menu_done" msgid="32470053723443112">"Fet"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Cancel·la"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Contactes a <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Contactes a la visualització personalitzada"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Contactes en visualització personalitzada"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Un sol contacte"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Crea el contacte al compte"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"Importa des de la targeta SIM"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Importa de la targeta SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importa des de la targeta SIM <xliff:g id="SIM_NAME">^1</xliff:g> (<xliff:g id="SIM_NUMBER">^2</xliff:g>)"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importa des de la targeta SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importa de l\'emmagatzematge"</string>
@@ -193,7 +193,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"No s\'han exportat les dades de contacte.\nMotiu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"No s\'ha trobat emmagatzematge."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"No s\'ha trobat cap targeta SD."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"El llistat de contactes s\'exportarà al fitxer: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"La teva llista de contactes s\'exportarà al fitxer <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"S\'està important <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"No s\'han pogut llegir les dades de vCard"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Lectura de dades de vCard cancel·lada"</string>
@@ -228,19 +228,19 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Format del nom"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Primer el nom"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Primer els cognoms"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"Comparteix els visibles"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Comparteix contactes visibles"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importa/exporta contactes"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importa contactes"</string>
     <string name="share_error" msgid="665756457151793108">"No es pot compartir aquest contacte."</string>
     <string name="menu_search" msgid="7464453023659824700">"Cerca"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Contactes per mostrar"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contactes per mostrar"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Defineix la visualització personalitzada"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Defineix visualització personalitzada"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Cerca contactes"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Preferits"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"No hi ha cap contacte."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"No hi ha cap contacte visible."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"No hi ha cap preferit."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Sense preferits."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"No hi ha cap contacte a <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Esborra contactes freqüents"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Selecciona una targeta SIM"</string>

@@ -18,9 +18,9 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Matndan nusxa olindi"</string>
-    <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g>ga qo‘ng‘iroq qilish"</string>
+    <string name="call_custom" msgid="2786306789889210756">"Qo‘ng‘iroq: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"Uy telefoniga qo‘ng‘iroq qilish"</string>
-    <string name="call_mobile" msgid="8618334085824709009">"Qo‘l telefoniga qo‘ng‘iroq qilish"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Mobil"</string>
     <string name="call_work" msgid="8299062439076337075">"Ish telefoniga qo‘ng‘iroq qilish"</string>
     <string name="call_fax_work" msgid="3770754834467992571">"Ish faks raqamiga qo‘ng‘iroq qilish"</string>
     <string name="call_fax_home" msgid="6219051113573396065">"Uy faks raqamiga qo‘ng‘iroq qilish"</string>
@@ -35,13 +35,13 @@
     <string name="call_radio" msgid="9055749313292712021">"Radio telefon raqamiga qo‘ng‘iroq qilish"</string>
     <string name="call_telex" msgid="2909886619224843563">"Teleks telefon raqamiga qo‘ng‘iroq qilish"</string>
     <string name="call_tty_tdd" msgid="6704940636171078852">"TTY/TDD telefoniga qo‘ng‘iroq qilish"</string>
-    <string name="call_work_mobile" msgid="4408630608955148641">"Ish uyali telefoniga qo‘ng‘iroq qilish"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Ishxona: mobil"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"Ish peyjeriga qo‘ng‘iroq qilish"</string>
-    <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g>ga qo‘ng‘iroq qilish"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"Qo‘ng‘iroq: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS raqamga qo‘ng‘iroq qilish"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g>ga sms jo‘natish"</string>
     <string name="sms_home" msgid="7765831490534280540">"Uy telefoniga sms jo‘natish"</string>
-    <string name="sms_mobile" msgid="8387632124165893103">"Qo‘l telefoniga sms jo‘natish"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"SMS: mobil"</string>
     <string name="sms_work" msgid="3910570578912367742">"Ish telefoniga sms yozish"</string>
     <string name="sms_fax_work" msgid="909086167151248212">"Ish faksiga sms jo‘natish"</string>
     <string name="sms_fax_home" msgid="4145442497939634875">"Uy faksiga sms jo‘natish"</string>
@@ -56,7 +56,7 @@
     <string name="sms_radio" msgid="8750339218480745940">"Radio telefonga sms jo‘natish"</string>
     <string name="sms_telex" msgid="5469333785775443999">"Teleks telefoniga sms jo‘natish"</string>
     <string name="sms_tty_tdd" msgid="5057886576150816002">"TTY/TDD telefoniga sms jo‘natish"</string>
-    <string name="sms_work_mobile" msgid="8426872094268475047">"Ish uyali telefoniga sms jo‘natish"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"SMS: ishxona (mobil)"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"Ish peyjeriga sms jo‘natish"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> telefoniga qo‘ng‘iroq qilish"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS telefonga sms jo‘natish"</string>
@@ -72,51 +72,51 @@
     <string name="directory_search_label" msgid="4484648822765516947">"Direktoriya"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Barcha kontaktlar"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Men"</string>
-    <string name="search_results_searching" msgid="9022794597388306615">"Qidirmoqda…"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Qidirilmoqda…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>dan ko‘proq topildi."</string>
-    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Kontaktlar yo‘q"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 ta topildi"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ta topildi"</item>
-  </plurals>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Hech narsa topilmadi"</string>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ta topildi</item>
+      <item quantity="one">1 found</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> uchun tez kontakt"</string>
-    <string name="missing_name" msgid="2633118852693000081">"(Nomi yo‘q)"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(Ismi yo‘q)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Ko‘p qo‘ng‘iroq qilingan kontaktlar"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Ko‘p gaplashilgan kontaktlar"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Kontaktni ko‘rish"</string>
-    <string name="list_filter_phones" msgid="3692815632088465422">"Telefon raqamli barcha manzillar"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Telefon raqamli kontaktlar"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Yangilanishlarni ko‘rish"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Faqat planshet, sinxronlanmagan"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Faqat telefon, sinxronlanmagan"</string>
-    <string name="nameLabelsGroup" msgid="1817502703362057154">"Ismi"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Faqat telefonga saqlanadigan va sinxronlanmaydigan"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Ism"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Taxallusi"</string>
-    <string name="full_name" msgid="885420216812981202">"Nomi"</string>
+    <string name="full_name" msgid="885420216812981202">"To‘liq ismi"</string>
     <string name="name_given" msgid="4153709115654909377">"Ism"</string>
-    <string name="name_family" msgid="5317387657540738981">"Familiya"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Murojaat turi"</string>
+    <string name="name_family" msgid="5317387657540738981">"Familiyasi"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Ism prefiksi"</string>
     <string name="name_middle" msgid="3951610314424632183">"Otasining ismi"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Ismga qo‘shimcha"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Fonetik ismi"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Ism suffiksi"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Ism talaffuzi"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Ism talaffuzi"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetik otasining ismi"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Otasining ismi talaffuzi"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Familiya talaffuzi"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-pochta"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Manzil"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Tashkilot"</string>
-    <string name="relationLabelsGroup" msgid="3585294036166325520">"Qarindoshligi"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Aloqadorligi"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Maxsus sanalar"</string>
     <string name="sms" msgid="8086289395154598654">"Matn xabari"</string>
     <string name="postal_address" msgid="7692926530081579786">"Manzil"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Kompaniya"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Sarlavhasi"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Lavozimi"</string>
     <string name="label_notes" msgid="3997277594846722699">"Eslatmalar"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Vebsayt"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Veb-sayt"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Guruhlar"</string>
     <string name="email_home" msgid="2230967805906450693">"Uy e-pochtasiga xat jo‘natish"</string>
-    <string name="email_mobile" msgid="7532438378678903685">"Uyali telefonga xat jo‘natish"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Mobil e-pochtaga xat yozish"</string>
     <string name="email_work" msgid="7065971921227432400">"Ish e-pochtasiga xat jo‘natish"</string>
     <string name="email_other" msgid="4601881243553289615">"Boshqa e-pochtalarga xat jo‘natish"</string>
     <string name="email_custom" msgid="5777583741581538870">"<xliff:g id="CUSTOM">%s</xliff:g>ga xat jo‘natish"</string>
@@ -133,7 +133,7 @@
     <string name="map_other" msgid="55098598855607997">"Manzilni ko‘rish"</string>
     <string name="map_custom" msgid="4943554530347163288">"<xliff:g id="CUSTOM">%s</xliff:g> manzillarni ko‘rish"</string>
     <string name="chat_aim" msgid="6479001490307452172">"AIM’da suhbatlashish"</string>
-    <string name="chat_msn" msgid="627481952525245054">"Windows Live’da suhbatlashish"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Windows Live orqali chat"</string>
     <string name="chat_yahoo" msgid="5542489454092719897">"Yahoo’da suhbatlashish"</string>
     <string name="chat_skype" msgid="3145166404699830256">"Skype’da suhbatlashish"</string>
     <string name="chat_qq" msgid="2811762660890755082">"QQ’da suhbatlashish"</string>
@@ -142,28 +142,28 @@
     <string name="chat_jabber" msgid="4525546665986350869">"Jabber’da suhbatlashish"</string>
     <string name="chat" msgid="6297650784873558837">"Suhbatlashish"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"o‘chirib tashlash"</string>
-    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Ism maydonlarini yoyish va yig‘ish"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Qo‘shimcha maydonlarni ko‘rsatish va berkitish"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Barcha kontaktlar"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Baho berilgan"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"Moslash"</string>
-    <string name="list_filter_single" msgid="4553809449379139446">"Kontakt"</string>
-    <string name="display_ungrouped" msgid="3669471582032440138">"Barcha boshqa kontaktlar"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Sozlash"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Tanlangan kontakt"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Boshqa kontaktlar"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"Barcha kontaktlar"</string>
     <string name="menu_sync_remove" msgid="6581565236520430269">"Sinx. guruhini o‘chirish"</string>
     <string name="dialog_sync_add" msgid="1795682729089027675">"Sinxronlash guruhini qo‘shish"</string>
     <string name="display_more_groups" msgid="6304997485733158224">"Ko‘proq guruhlar…"</string>
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\"ni sinxronlashdan olib tashlash, shuningdek, har qanday guruhlanmagan kontaktlarni sinxronlashdan olib tashlaydi."</string>
-    <string name="savingDisplayGroups" msgid="6863012138107446030">"Ko‘rsatish sozlamalari saqlanmoqda…"</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Parametrlar saqlanmoqda…"</string>
     <string name="menu_done" msgid="32470053723443112">"Tayyor"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Bekor qilish"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g>dagi kontaktlar"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kontaktlar moslangan ko‘rinishda"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Filtrlangan kontaktlar"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Bitta kontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Hisob ostida kontakt yaratish"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"SIM kartadan import qilish"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"SIM-kartadan import qilish"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Quyidagi SIM-kartadan import qilish: <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Quyidagi SIM-kartadan import qilish: <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Xotiradan import qilish"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Xotira kartasidan import q-sh"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g>ni import qilish bekor qilinsinmi?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g>ni eksport qilish bekor qilinsinmi?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Tashrifnomani import/eksport qilishni bekor qilib bo‘lmadi"</string>
@@ -193,7 +193,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Kontakt ma’lumoti eksport qilinmadi.\nSababi: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Xotira topilmadi."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD xotira kartasi topilmadi."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Kontaktlar ro‘yxatingiz ushbu faylga eksport qilinadi: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Kontaktlar ro‘yxati ushbu faylga eksport qilinadi: <xliff:g id="VCARD_FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> import qilinmoqda"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Tashrifnoma ma’lumotlari o‘qilmadi"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Tashrifnomani o‘qish bekor qilindi"</string>
@@ -207,8 +207,8 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Tashrifnoma(lar) telefondagi vaqtinchalik xotira keshiga yuklanmoqda. Import qilish jarayoni tezda boshlanadi."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Tashrifnoma import qilinmadi."</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Xotiradan birorta ham tashrifnoma topilmadi."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD kartadan birorta ham tashrifnoma topilmadi."</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Xotira kartasida hech qanday vCard fayli yo‘q."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD-kartada hech qanday vCard fayli yo‘q."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakt NFC orqali olindi"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Kontaktlar eksport qilinsinmi?"</string>
     <string name="select_vcard_title" msgid="1536575036597557639">"Tashrifnomani tanlang"</string>
@@ -221,36 +221,36 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Xotirani tekshirib bo‘lmaydi. (Sababi: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD kartani tekshirib bo‘lmaydi. (Sababi: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g> import qilinmoqda"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Xotiraga eksport qilish"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Saralash"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ism"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Familiya"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Xotira kartasiga eksport q-sh"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Saralash tartibi"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ismi bo‘yicha"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Familiyasi bo‘yicha"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Ism formati"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Avval ismi"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Avval familiyasi"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"Ko‘rinadigan kontaktlarni ulashish"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Ko‘rinadigan kontaktlarni yuborish"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktlarni import/eksport qilish"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktlarni import qilish"</string>
-    <string name="share_error" msgid="665756457151793108">"Ushbu kontaktni ulashib bo‘lmaydi."</string>
-    <string name="menu_search" msgid="7464453023659824700">"Izlash"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"Ko‘rsatiladigan kontaktlar"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Ko‘rsatish uchun kontakt"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Boshqa ko‘rinishni sozlash"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Kontaktlarni topish"</string>
-    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Saralar"</string>
-    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Kontaktlar yo‘q."</string>
+    <string name="share_error" msgid="665756457151793108">"Kontaktni yuborib bo‘lmadi."</string>
+    <string name="menu_search" msgid="7464453023659824700">"Qidirish"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Ko‘rinadigan kontaktlar"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Ko‘rinadigan kontaktlar"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Kontaktlar guruhini tanlang"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Kontaktlar ichidan qidirish"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Sevimlilar"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Hech qanday kontakt yo‘q."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ko‘rinadigan kontaktlar yo‘q."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Saralar yo‘q."</string>
-    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g>da kontaktlar yo‘q"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"Muntazam qo‘n-qlarni tozalash"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Hech qanday sevimli kontakt yo‘q."</string>
+    <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> guruhida hech qanday kontakt yo‘q"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Tez-tez aloqadagilarni tozalash"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM kartani tanlash"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Hisoblar"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"Import/eksport qilish"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Import/eksport"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> orqali"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> orqali <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"qidiruvni to‘xtatish"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Qidiruvni tozalash"</string>
-    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Kontaktlarning ko‘rinishi sozlamalari"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Kontaktlarni ko‘rsatish"</string>
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Hisob"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Har doim qo‘ng‘iroqlar u-n foyd-sin"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Ushbu bilan qo‘ng‘iroq qilish"</string>

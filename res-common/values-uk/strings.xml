@@ -75,10 +75,12 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Пошук…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Знайдено понад <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Контактів немає"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Знайдено 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Знайдено <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one">Знайдено <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="few">Знайдено <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="many">Знайдено <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="other">Знайдено <xliff:g id="COUNT">%d</xliff:g></item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Швидкий зв’язок, контакт <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Без імені)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Часті виклики"</string>
@@ -87,18 +89,18 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Усі контакти з номерами телефону"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Переглянути оновлення"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Лише на пристрої, не синхронізується"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Лише в телефоні, не синхронізується"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"лише в телефоні, не синхронізується"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Ім’я"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псевдонім"</string>
     <string name="full_name" msgid="885420216812981202">"Ім’я"</string>
     <string name="name_given" msgid="4153709115654909377">"Ім’я"</string>
     <string name="name_family" msgid="5317387657540738981">"Прізвище"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Префікс імені"</string>
-    <string name="name_middle" msgid="3951610314424632183">"По-батькові"</string>
+    <string name="name_middle" msgid="3951610314424632183">"По батькові"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Суфікс імені"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Вимова імені"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Вимова імені"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Вимова по-батькові"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Вимова по батькові"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Вимова прізвища"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Електронна адреса"</string>
@@ -157,7 +159,7 @@
     <string name="menu_done" msgid="32470053723443112">"Готово"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Скасувати"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Контакти в обліковому записі <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Контакти в спеціальному перегляді"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Користувацький фільтр"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Один контакт"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Створити контакт в обліковому записі"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Імпорт із SIM-карти"</string>
@@ -235,7 +237,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Пошук"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Контакти для показу"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Контакти для показу"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Налаштувати спеціальний перегляд"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Вибрати групи"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Пошук контактів"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Вибране"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Контактів немає."</string>

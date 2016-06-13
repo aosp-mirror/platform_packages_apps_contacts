@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Αναζήτηση…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Βρέθηκαν περισσότερα από <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Δεν υπάρχουν επαφές"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Βρέθηκε 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Βρέθηκαν <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">Βρέθηκαν <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Βρέθηκε 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Γρήγορη επαφή για <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Χωρίς όνομα)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Συχνές κλήσεις"</string>
@@ -96,9 +96,9 @@
     <string name="name_prefix" msgid="8219879405071462309">"Πρόθεμα ονόματος"</string>
     <string name="name_middle" msgid="3951610314424632183">"Πατρώνυμο"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Επίθημα ονόματος"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Φωνητική μορφή ονόματος"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Φωνητικό όνομα"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Φωνητικό όνομα"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Φωνητική μορφή πατρώνυμου"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Φωνητικό πατρώνυμου"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Φωνητικό επώνυμο"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Τηλέφωνο"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Ηλεκτρονικό ταχυδρομείο"</string>
@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"Τέλος"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Ακύρωση"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Επαφές στο <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Επαφές σε προσαρμοσμένη προβολή"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Επαφές σε προσ/νη προβολή"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Μία επαφή"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Δημιουργία επαφής στο λογαριασμό"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Εισαγωγή από κάρτα SIM"</string>
@@ -191,7 +191,7 @@
     <string name="composer_not_initialized" msgid="6514403866246950877">"Η έναρξη της vCard δεν ήταν σωστή."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Αδυναμία εξαγωγής"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Δεν έγινε εξαγωγή των δεδομένων επαφής.\nΑιτία: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
-    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Δεν βρέθηκε χώρος αποθήκευσης."</string>
+    <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Δεν βρέθηκε αποθηκευτικός χώρος."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Δεν βρέθηκε κάρτα SD."</string>
     <string name="confirm_export_message" msgid="7234189779260525384">"Θα γίνει εξαγωγή της λίστας επαφών σας στο αρχείο: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Εισαγωγή <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -218,7 +218,7 @@
     <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"Αναζήτηση δεδομένων vCard στο χώρο αποθήκευσης…"</string>
     <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"Αναζήτηση για δεδομένα vCard στην κάρτα SD…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Προσωρινή αποθήκευση"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Δεν ήταν δυνατή η σάρωση του χώρου αποθήκευσης. (Αιτία: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Δεν ήταν δυνατή η σάρωση του αποθηκευτικού χώρου. (Αιτία: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Δεν ήταν δυνατή η σάρωση της κάρτας SD. (Αιτία: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Εισαγωγή <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Εξαγωγή στο χώρο αποθ."</string>
@@ -228,14 +228,14 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Μορφή ονόματος"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Πρώτα το όνομα"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Πρώτα το επώνυμο"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"Κοινή χρήση ορατών επαφών"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Κοινοποίηση ορατών επαφών"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Εισαγωγή/Εξαγωγή επαφών"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Εισαγωγή επαφών"</string>
     <string name="share_error" msgid="665756457151793108">"Δεν είναι δυνατή η κοινή χρήση αυτής της επαφής."</string>
     <string name="menu_search" msgid="7464453023659824700">"Αναζήτηση"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Επαφές για προβολή"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Επαφές για προβολή"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Ορισμός προσαρμοσμένης προβολής"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Προσ/σμένη προβολή"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Εύρεση επαφών"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Αγαπημένα"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Δεν υπάρχουν επαφές."</string>

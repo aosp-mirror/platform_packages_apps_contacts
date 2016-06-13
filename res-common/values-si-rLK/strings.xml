@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"සොයමින්..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> ට වඩා සොයාගන්නා ලදී."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"සම්බන්ධතා නැත"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 ක් සොයාගන්නා ලදී"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ක් සොයාගන්නා ලදී"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ක් සොයා ගන්නා ලදි</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ක් සොයා ගන්නා ලදි</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> සඳහා ඉක්මන් සම්බන්ධතාව"</string>
     <string name="missing_name" msgid="2633118852693000081">"(නමක් නොමැත)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"නිතරම අමතන ලද"</string>
@@ -228,7 +228,7 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"නමේ ආකෘතිය"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"මුල් නම මුලින්ම"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"අවසාන නම මුලින්ම"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"දෘශ්‍ය සම්බන්ධතා බෙදාගන්න"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"පෙනෙන සම්බන්ධතා බෙදාගන්න"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"සම්බන්ධතා ආයාත/නිර්යාත කිරීම"</string>
     <string name="dialog_import" msgid="5177004290082451296">"සම්බන්ධතා ආයාත කරන්න"</string>
     <string name="share_error" msgid="665756457151793108">"මෙම සම්බන්ධතාව බෙදා ගත නොහැක."</string>

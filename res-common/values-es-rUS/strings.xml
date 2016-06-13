@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Buscando…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Más de <xliff:g id="COUNT">%d</xliff:g> encontrados"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"No hay contactos"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 encontrado"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">Se encontraron <xliff:g id="COUNT">%d</xliff:g>.</item>
+      <item quantity="one">Se encontró 1.</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacto rápido para <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sin nombre)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Llamados con frecuencia"</string>
@@ -87,21 +87,21 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos los contactos con número de teléfono"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ver actualizaciones"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Sólo en tablet, sin sincronizar"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Solo en el teléfono, no sincronizado"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Contacto no sincronizado"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nombre"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Apodo"</string>
     <string name="full_name" msgid="885420216812981202">"Nombre"</string>
     <string name="name_given" msgid="4153709115654909377">"Nombre"</string>
     <string name="name_family" msgid="5317387657540738981">"Apellido"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Prefijo del nombre"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Tratamiento"</string>
     <string name="name_middle" msgid="3951610314424632183">"Segundo nombre"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Sufijo del nombre"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Título académico o profesional"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Nombre fonético"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Trascripción fonética del nombre"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Nombre fonético"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Segundo nombre fonético"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Trascripción fonética del apellido"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Apellido fonético"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Teléfono"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"Dirección de correo"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Correo electrónico"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Dirección"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"MI"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Organización"</string>
@@ -141,7 +141,7 @@
     <string name="chat_icq" msgid="7538190395602030726">"Chat mediante ICQ"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"Chat mediante Jabber"</string>
     <string name="chat" msgid="6297650784873558837">"Chatear"</string>
-    <string name="description_minus_button" msgid="2142439445814730827">"eliminar"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"borrar"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Expandir o contraer campos de nombre"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Todos los contactos"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Destacados"</string>
@@ -163,7 +163,7 @@
     <string name="import_from_sim" msgid="4749894687871835873">"Importar desde tarjeta SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importar desde SIM <xliff:g id="SIM_NAME">^1</xliff:g> (<xliff:g id="SIM_NUMBER">^2</xliff:g>)"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importar desde SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importar desde almac."</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importar de almacenamiento"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"¿Deseas cancelar la importación de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"¿Deseas cancelar la exportación de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"No se canceló impor./expor. de vCard."</string>

@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"A pesquisar…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Foram encontrados mais de <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Sem contactos"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 encontrado"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> encontrado(s)"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> encontrados</item>
+      <item quantity="one">1 encontrado</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacto rápido para <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sem nome)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Números de marcação frequente"</string>
@@ -93,17 +93,17 @@
     <string name="full_name" msgid="885420216812981202">"Nome"</string>
     <string name="name_given" msgid="4153709115654909377">"Nome próprio"</string>
     <string name="name_family" msgid="5317387657540738981">"Apelido"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Título académico ou profissional"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Prefixo do nome"</string>
     <string name="name_middle" msgid="3951610314424632183">"Primeiro apelido"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Título honorífico ou eclesiástico"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Sufixo do nome"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Nome (fonética)"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Nome próprio fonético"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Primeiro apelido (fonética)"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Nome do meio fonético"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Apelido fonético"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefone"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Email"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Endereço"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"Chat"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Entidade"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Tipo de relação"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Datas especiais"</string>

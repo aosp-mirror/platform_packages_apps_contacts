@@ -75,10 +75,12 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Iskanje …"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Najdenih je bilo več kot toliko stikov: <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ni stikov"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 najden"</item>
-    <item quantity="other" msgid="4649647748678161594">"Št. najdenih: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> najden</item>
+      <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> najdena</item>
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> najdeni</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> najdenih</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Hitri stik za <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Ni imena)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Pogosto klicani"</string>
@@ -93,13 +95,13 @@
     <string name="full_name" msgid="885420216812981202">"Ime"</string>
     <string name="name_given" msgid="4153709115654909377">"Ime"</string>
     <string name="name_family" msgid="5317387657540738981">"Priimek"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Naziv"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Naziv (pred imenom)"</string>
     <string name="name_middle" msgid="3951610314424632183">"Drugo ime"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Naziv (za imenom)"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Ime – fonetično"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetično ime"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Ime – fonetično"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Drugo ime – fonetično"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Fonetični priimek"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Priimek – fonetično"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-poštni naslov"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Naslov"</string>
@@ -110,7 +112,7 @@
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Naslov"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Podjetje"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Naslov"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Naziv"</string>
     <string name="label_notes" msgid="3997277594846722699">"Opombe"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Spletno mesto"</string>
@@ -160,7 +162,7 @@
     <string name="listCustomView" msgid="1915154113477432033">"Stiki v pogledu po meri"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Posamezen stik"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Ustvari stik v računu"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"Uvozi s kartice SIM"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Uvoz s kartice SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Uvoz s kartice SIM <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Uvoz s kartice SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Uvoz iz shrambe"</string>

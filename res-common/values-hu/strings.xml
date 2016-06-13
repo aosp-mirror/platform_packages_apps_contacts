@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Keresés…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Több mint <xliff:g id="COUNT">%d</xliff:g> találat."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Nincsenek névjegyek"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 találat"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> találat"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> találat</item>
+      <item quantity="one">1 találat</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> gyors elérése"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Nincs név)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Gyakran hívott"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"Szöveges üzenet"</string>
     <string name="postal_address" msgid="7692926530081579786">"Cím"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Cég"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Cím"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Beosztás"</string>
     <string name="label_notes" msgid="3997277594846722699">"Megjegyzések"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webhely"</string>
@@ -157,10 +157,10 @@
     <string name="menu_done" msgid="32470053723443112">"Kész"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Mégse"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Ismerősök itt: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Névjegyek egyéni nézetben"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Egyéni nézet névjegyei"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Egyetlen névjegy"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Névjegy létrehozása a következő fiókban:"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"Importálás a SIM kártyáról"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Importálás SIM kártyáról"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importálás a következő SIM kártyáról: <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importálás a következő SIM kártyáról: <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importálás a tárhelyről"</string>
@@ -222,7 +222,7 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Az SD-kártyát nem lehet beolvasni. (Ok: „<xliff:g id="FAIL_REASON">%s</xliff:g>”)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importálás – <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Exportálás a tárhelyre"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Rendezés"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Rendezés alapja"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Utónév"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Vezetéknév"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Névformátum"</string>
@@ -231,7 +231,7 @@
     <string name="share_visible_contacts" msgid="2150662668080757107">"Látható névjegyek megosztása"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Névjegyek importálása/exportálása"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Névjegyek importálása"</string>
-    <string name="share_error" msgid="665756457151793108">"Ez a névjegy nem osztható meg."</string>
+    <string name="share_error" msgid="665756457151793108">"Ezt a névjegyet nem lehet megosztani."</string>
     <string name="menu_search" msgid="7464453023659824700">"Keresés"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Megjelenítendő névjegyek"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Megjelenítendő névjegyek"</string>

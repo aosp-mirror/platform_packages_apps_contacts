@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Ricerca…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Più di <xliff:g id="COUNT">%d</xliff:g> trovati."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Nessun contatto"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 trovato"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> trovati"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> trovati</item>
+      <item quantity="one">1 trovato</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Accesso rapido ai contatti per <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Nessun nome)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Numeri più chiamati"</string>
@@ -86,8 +86,8 @@
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Visualizza contatto"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Tutti i contatti con numeri di telefono"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Visualizza aggiornamenti"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Solo su tablet, non sincronizzato"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Solo su telefono, non sincronizzato"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"solo su tablet, non sincronizzato"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"solo su telefono, non sincronizzato"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nome"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nickname"</string>
     <string name="full_name" msgid="885420216812981202">"Nome"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"SMS"</string>
     <string name="postal_address" msgid="7692926530081579786">"Indirizzo"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Società"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Titolo"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Ruolo"</string>
     <string name="label_notes" msgid="3997277594846722699">"Note"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Sito web"</string>
@@ -235,7 +235,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Cerca"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Contatti da visualizzare"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contatti da visualizzare"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definisci visualizzazione personalizzata"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Visualizzazione personalizzata"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Trova contatti"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Preferiti"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nessun contatto."</string>

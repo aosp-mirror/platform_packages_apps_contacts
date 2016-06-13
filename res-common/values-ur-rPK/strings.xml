@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"تلاش کر رہا ہے…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> سے زیادہ ملے۔"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"کوئی رابطے نہیں ہیں"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 ملا"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ملے"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ملے</item>
+      <item quantity="one">1 ملا</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> کیلئے فوری رابطہ"</string>
     <string name="missing_name" msgid="2633118852693000081">"(کوئی نام نہیں)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"اکثر کال کردہ"</string>
@@ -207,8 +207,8 @@
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"رابطہ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"وی کارڈ (کارڈز) کو مقامی عارضی اسٹوریج میں ذخیرہ کر رہا ہے۔ اصل درآمد جلد ہی شروع ہوگی۔"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"وی کارڈ درآمد نہیں کرسکا۔"</string>
-    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"اسٹوریج میں کوئی وی کارڈ فائل نہیں ملی۔"</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏SD کارڈ میں کوئی وی کارڈ فائل نہیں ملی۔"</string>
+    <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"‏اسٹوریج میں کوئی vCard فائل نہیں ملی۔"</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"‏SD کارڈ میں کوئی vCard فائل نہیں ملی۔"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"‏NFC پر موصولہ رابطہ"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"رابطے برآمد کریں؟"</string>
     <string name="select_vcard_title" msgid="1536575036597557639">"وی کارڈ فائل منتخب کریں"</string>

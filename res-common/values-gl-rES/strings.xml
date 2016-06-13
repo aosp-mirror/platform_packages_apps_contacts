@@ -75,19 +75,19 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Buscando..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Encontráronse máis de <xliff:g id="COUNT">%d</xliff:g> contactos."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ningún contacto"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 encontrado"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
+      <item quantity="one">Un contacto encontrado</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contacto rápido para <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sen nome)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Chamados frecuentemente"</string>
-    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactados frecuentemente"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactos frecuentes"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ver contacto"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos os contactos con números de teléfono"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ver actualizacións"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Só no tablet, non sincronizado"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Só no teléfono, non sincronizado"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Só na tableta, non sincronizado"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"só no teléfono, non sincronizado"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nome"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Alcume"</string>
     <string name="full_name" msgid="885420216812981202">"Nome"</string>
@@ -186,7 +186,7 @@
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Exportando datos de contacto"</string>
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"Estanse exportando os teus datos de contacto a: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Non se puido obter información da base de datos."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Non hai ningún contacto exportable. Se tes contactos no teu tablet, é posible que algúns provedores de datos non permitan a exportación dos contactos desde o tablet."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Non hai ningún contacto exportable. Se tes contactos na túa tableta, é posible que algúns provedores de datos non permitan a exportación dos contactos desde a tableta."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Non hai ningún contacto exportable. Se tes contactos no teu teléfono, é posible que algúns provedores de datos non permitan a exportación dos contactos desde o teléfono."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"O redactor de vCard non se iniciou correctamente."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Imposible exportar"</string>

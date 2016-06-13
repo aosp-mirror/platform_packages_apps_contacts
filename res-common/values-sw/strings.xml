@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Inatafuta…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Zaidi ya <xliff:g id="COUNT">%d</xliff:g> zimepatikana."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Hakuna anwani"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Imepatikana 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Zimepatikana <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">Zimepatikana <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Imepatikana 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Anwani ya haraka ya  <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Hakuna jina)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Zinazopigwa mara kwa mara"</string>
@@ -86,8 +86,8 @@
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Angalia anwani"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Anwani zote zilizo na nambari ya simu"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ona sasisho"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Kompyuta ndogo pekee, haijalandanishwa"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Simu pekee, haijalandanishwa"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Kompyuta ndogo pekee, hazitasawazishwa"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Simu pekee, hazitasawazishwa"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Jina"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Lakabu"</string>
     <string name="full_name" msgid="885420216812981202">"Jina"</string>
@@ -95,10 +95,10 @@
     <string name="name_family" msgid="5317387657540738981">"Jina la mwisho"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Herufi za kwanza za jina"</string>
     <string name="name_middle" msgid="3951610314424632183">"Jina la kati"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Kiambishi tamati cha jina"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Jina la fonetiki"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Jina la kwanza kifonetiki"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Jina la kati la fonetiki"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Herufi za mwisho za jina"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Jina la kifonetiki"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Anza na jina kifonetiki"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Jina la kati kifonetiki"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Jina la mwisho kifonetiki"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Simu"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Barua pepe"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"SMS, (Ujumbe wa maandishi)"</string>
     <string name="postal_address" msgid="7692926530081579786">"Anwani"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Kampuni"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Kichwa"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Jina"</string>
     <string name="label_notes" msgid="3997277594846722699">"Madokezo"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Tovuti"</string>
@@ -228,8 +228,8 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Jina la kwanza"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Jina la mwisho"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Mpangilio wa majina"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Jina la kwanza liwe mwanzo"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Jina la mwisho kwanza"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Anza na jina la kwanza"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Anza na jina la mwisho"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Shiriki anwani zinazoonekana"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Ingiza au uhamishe anwani"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Ingiza anwani"</string>

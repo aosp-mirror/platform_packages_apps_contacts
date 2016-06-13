@@ -18,7 +18,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"വാചകം പകർത്തി"</string>
-    <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g> എന്നതിൽ വിളിക്കുക"</string>
+    <string name="call_custom" msgid="2786306789889210756">"വിളിക്കുക <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="call_home" msgid="1479549630992276827">"വീട്ടിലെ ഫോണിലേക്ക് വിളിക്കുക"</string>
     <string name="call_mobile" msgid="8618334085824709009">"മൊബൈലിലേക്ക് വിളിക്കുക"</string>
     <string name="call_work" msgid="8299062439076337075">"ഔദ്യോഗിക ഫോണിലേക്ക് വിളിക്കുക"</string>
@@ -37,7 +37,7 @@
     <string name="call_tty_tdd" msgid="6704940636171078852">"TTY/TDD-യിലേക്ക് വിളിക്കുക"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"ഔദ്യോഗിക മൊബൈലിലേക്ക് വിളിക്കുക"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"ഔദ്യോഗിക പേജറിലേക്ക് വിളിക്കുക"</string>
-    <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> എന്നതിൽ വിളിക്കുക"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"വിളിക്കുക <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS ഫോണിലേക്ക് വിളിക്കുക"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> എന്നതിലേക്ക് വാചക സന്ദേശമയയ്‌ക്കുക"</string>
     <string name="sms_home" msgid="7765831490534280540">"വീട്ടിലെ ഫോണിലേക്ക് വാചകസന്ദേശമയയ്‌ക്കുക"</string>
@@ -61,9 +61,9 @@
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> എന്നതിലേക്ക് വാചക സന്ദേശമയയ്‌ക്കുക"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS നമ്പറിലേക്ക് വാചകസന്ദേശമയയ്‌ക്കുക"</string>
     <string name="description_video_call" msgid="4907306403398614909">"വീഡിയോ കോൾ ചെയ്യുക"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവരെ മായ്‌ക്കണോ?"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"സ്ഥിരംവിളിക്കുന്നവരെ മായ്‌ക്കണോ?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"നിങ്ങൾ ആളുകളുടെയും ഫോണിന്റെയും അപ്ലിക്കേഷനുകളിലെ പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവരുടെ ലിസ്റ്റ് മായ്‌ക്കുകയും സ്‌ക്രാച്ചിൽ നിന്നും ബന്ധപ്പെടൽ മുൻഗണനകൾ അറിയാൻ ഇമെയിൽ അപ്ലിക്കേഷനുകളെ പ്രേരിപ്പിക്കുകയും ചെയ്യും."</string>
-    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവരെ മായ്‌ക്കുന്നു…"</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"സ്ഥിരംവിളിക്കുന്നവരെ മായ്‌ക്കുന്നു…"</string>
     <string name="status_available" msgid="4832569677396634846">"ലഭ്യം"</string>
     <string name="status_away" msgid="6267905184545881094">"ലഭ്യമല്ല"</string>
     <string name="status_busy" msgid="7111912905211403545">"തിരക്കിലാണ്"</string>
@@ -75,31 +75,31 @@
     <string name="search_results_searching" msgid="9022794597388306615">"തിരയുന്നു…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>-ൽ കൂടുതൽ കണ്ടെത്തി."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"ഒരു കോൺടാക്റ്റ് കണ്ടെത്തി"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> കോൺടാക്റ്റുകൾ കണ്ടെത്തി"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> എണ്ണം കണ്ടെത്തി</item>
+      <item quantity="one">ഒരെണ്ണം കണ്ടെത്തി</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> എന്നയാളുടെ ദ്രുത കോൺടാക്റ്റ്"</string>
     <string name="missing_name" msgid="2633118852693000081">"(പേരില്ല)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"പതിവായി വിളിച്ചവർ"</string>
-    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവർ"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"പതിവ് കോൺടാക്റ്റുകൾ"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"കോൺടാക്റ്റ് കാണുക"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ഫോൺ നമ്പറുകളുള്ള എല്ലാ കോൺടാക്റ്റുകളും"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"അപ്‌ഡേറ്റുകള്‍ കാണുക"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"ടാബ്‌ലെറ്റിൽ മാത്രമുള്ളത്, സമന്വയിപ്പിക്കില്ല"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"ഫോണിൽ മാത്രമുള്ളത്, സമന്വയിപ്പിക്കില്ല"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"ഫോണിൽ മാത്രം, സമന്വയിപ്പിക്കാത്ത"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"പേര്"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"വിളിപ്പേര്"</string>
     <string name="full_name" msgid="885420216812981202">"പേര്"</string>
-    <string name="name_given" msgid="4153709115654909377">"പേരിന്‍റെ ആദ്യഭാഗം"</string>
-    <string name="name_family" msgid="5317387657540738981">"പേരിന്റെ അവസാനഭാഗം"</string>
+    <string name="name_given" msgid="4153709115654909377">"ഫസ്റ്റ് നെയിം"</string>
+    <string name="name_family" msgid="5317387657540738981">"ലാസ്റ്റ് നെയിം"</string>
     <string name="name_prefix" msgid="8219879405071462309">"പേര് പ്രിഫിക്‌സ്"</string>
     <string name="name_middle" msgid="3951610314424632183">"പേരിന്റെ മധ്യഭാഗം"</string>
     <string name="name_suffix" msgid="5436984808550075931">"പേര് സഫിക്‌സ്"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"ഉച്ചാരണപ്രകാരമുള്ള പേര്"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"ഉച്ചാരണപ്രകാരമുള്ള പേരിന്റെ ആദ്യ ഭാഗം"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"ഉച്ചാരണപ്രകാരമുള്ള പേരിന്റെ മധ്യഭാഗം"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"ഉച്ചാരണപ്രകാരമുള്ള പേരിന്റെ അവസാന ഭാഗം"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"ഫസ്റ്റ് നെയിം"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"പേരിന്റെ മധ്യഭാഗം"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"പേരിന്റെ അവസാന ഭാഗം"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ഫോണ്‍"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ഇമെയിൽ"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"വിലാസം"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"വാചക സന്ദേശം"</string>
     <string name="postal_address" msgid="7692926530081579786">"വിലാസം"</string>
     <string name="ghostData_company" msgid="22470841482615409">"കമ്പനി"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"ശീര്‍ഷകം"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"ജോലി"</string>
     <string name="label_notes" msgid="3997277594846722699">"കുറിപ്പുകള്‍"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"വെബ്‌സൈറ്റ്"</string>
@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"പൂർത്തിയായി"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"റദ്ദാക്കുക"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> എന്നതിലെ കോൺടാക്റ്റുകൾ"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"ഇഷ്‌ടാനുസൃത കാഴ്‌ചയിലെ കോൺടാക്റ്റുകൾ"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"ഇഷ്‌ടാനുസൃതകാഴ്‌ചയിലെ കോൺടാക്റ്റ്"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"സിംഗിൾ കോൺടാക്റ്റ്"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"അക്കൗണ്ടിന് കീഴിൽ കോൺ‌ടാക്റ്റ് സൃഷ്‌ടിക്കുക"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"സിം കാർഡിൽ നിന്നും ഇമ്പോർട്ടുചെയ്യുക"</string>
@@ -218,31 +218,31 @@
     <string name="searching_vcard_message" product="nosdcard" msgid="2703499592557555234">"സംഭരണത്തിൽ vCard ഡാറ്റയ്‌ക്കായി തിരയുന്നു…"</string>
     <string name="searching_vcard_message" product="default" msgid="6108691847266062338">"SD കാർഡിൽ vCard ഡാറ്റയ്‌ക്കായി തിരയുന്നു…"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"കാഷെ ചെയ്യൽ"</string>
-    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"സംഭരണം സ്‌കാൻ ചെയ്യാനായില്ല. (കാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
+    <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"സ്റ്റോറേജ്  സ്‌കാൻ ചെയ്യാനായില്ല. (കാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD കാർഡ് സ്‌കാൻ ചെയ്യാനായില്ല. (കാരണം: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ഇമ്പോർട്ടുചെയ്യുന്നു: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"സംഭരണത്തിലേക്ക് എക്‌സ്‌പോർട്ടുചെയ്യുക"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ഇതുപ്രകാരം അടുക്കുക"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"പേരിന്‍റെ ആദ്യഭാഗം"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"പേരിന്റെ അവസാനഭാഗം"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ഫസ്റ്റ് നെയിം"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"ലാസ്റ്റ് നെയിം"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"പേരിന്റെ ഫോർമാറ്റ്"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"പേരിന്റെ ആദ്യഭാഗം ആദ്യം"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"പേരിന്റെ അവസാന ഭാഗം ആദ്യം"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ഫസ്റ്റ് നെയിം ആദ്യം"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ലാസ്റ്റ് നെയിം ആദ്യം"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ദൃശ്യമായ കോൺടാക്റ്റുകൾ പങ്കിടുക"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"കോൺടാക്റ്റുകൾ ഡൗൺലോഡ്/അപ്‌ലോഡ് ചെയ്യുക"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"കോൺടാക്റ്റ് ഡൗൺലോഡ്/അപ്‌ലോഡ്"</string>
     <string name="dialog_import" msgid="5177004290082451296">"കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="share_error" msgid="665756457151793108">"ഈ കോൺടാക്റ്റ് പങ്കിടാനാകില്ല."</string>
     <string name="menu_search" msgid="7464453023659824700">"തിരയുക"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"ദൃശ്യമാക്കാനുള്ള കോൺടാക്റ്റുകൾ"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ദൃശ്യമാക്കേണ്ട കോൺടാക്റ്റുകൾ"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"ഇഷ്‌ടാനുസൃത കാഴ്‌ച നിശ്ചയിക്കുക"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"കോൺടാക്റ്റുകൾ കണ്ടെത്തുക"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"ദൃശ്യമാക്കേണ്ടവ"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ദൃശ്യമാക്കേണ്ടവ"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"കസ്റ്റം കാഴ്‌ച നിശ്ചയിക്കൂ"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"കോൺടാക്റ്റ് കണ്ടെത്തൂ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"പ്രിയപ്പെട്ടവർ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"കോൺടാക്റ്റുകൾ ഒന്നുമില്ല."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"ദൃശ്യമായ കോൺടാക്റ്റുകളൊന്നുമില്ല."</string>
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"പ്രിയപ്പെട്ടവർ ആരുമില്ല."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> എന്നതിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവരെ മായ്‌ക്കുക"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"സ്ഥിരംവിളിക്കുന്നവരെ മായ്‌ക്കൂ"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"സിം കാർഡ് തിരഞ്ഞെടുക്കുക"</string>
     <string name="menu_accounts" msgid="795417468541517082">"അക്കൗണ്ടുകൾ"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"ഡൗൺലോഡ്/അപ്‌ലോഡ്"</string>

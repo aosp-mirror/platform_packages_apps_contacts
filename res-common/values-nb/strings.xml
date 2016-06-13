@@ -68,17 +68,17 @@
     <string name="status_away" msgid="6267905184545881094">"Borte"</string>
     <string name="status_busy" msgid="7111912905211403545">"Opptatt"</string>
     <string name="contactsList" msgid="7140022347217602605">"Kontakter"</string>
-    <string name="local_invisible_directory" msgid="8934840494825588347">"Andre"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Annet"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Katalog"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Alle kontakter"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Meg"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Jeg"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Søker ..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Fant mer enn <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ingen kontakter"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Én funnet"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> funnet"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> er funnet</item>
+      <item quantity="one">1 er funnet</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Hurtigkontakt for <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Uten navn)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Ofte oppringt"</string>
@@ -93,9 +93,9 @@
     <string name="full_name" msgid="885420216812981202">"Navn"</string>
     <string name="name_given" msgid="4153709115654909377">"Fornavn"</string>
     <string name="name_family" msgid="5317387657540738981">"Etternavn"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Første del av navnet"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Navneprefiks"</string>
     <string name="name_middle" msgid="3951610314424632183">"Mellomnavn"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Siste del av navnet"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Navnesuffiks"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Fonetisk navn"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetisk fornavn"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetisk mellomnavn"</string>
@@ -160,10 +160,10 @@
     <string name="listCustomView" msgid="1915154113477432033">"Kontakter i tilpasset visning"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Enkeltkontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Opprett kontakt under konto"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"Importer fra SIM-kort"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Importér fra SIM-kort"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importer fra lagring"</string>
+    <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Importér fra lagring"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vil du avbryte importeringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vil du avbryte eksporteringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Kunne ikke avbryte imp./eksp. av vCard"</string>
@@ -221,7 +221,7 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"Lagringsenheten kunne ikke skannes. (Årsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD-kortet kan ikke skannes. (Årsak: <xliff:g id="FAIL_REASON">%s</xliff:g>)"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Importerer <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Eksporter til lagring"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Eksportér til lagring"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sortér etter"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Fornavn"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Etternavn"</string>
@@ -229,8 +229,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Fornavnet først"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Etternavnet først"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Del synlige kontakter"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Import og eksport av kontakter"</string>
-    <string name="dialog_import" msgid="5177004290082451296">"Importer kontakter"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Importér/eksportér kontakter"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Importér kontakter"</string>
     <string name="share_error" msgid="665756457151793108">"Denne kontakten kan ikke deles."</string>
     <string name="menu_search" msgid="7464453023659824700">"Søk"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakter som skal vises"</string>
@@ -245,7 +245,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Fjern ofte kontaktede personer"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Velg SIM-kort"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Kontoer"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"Import og eksport"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Importér/eksportér"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"avslutt søket"</string>

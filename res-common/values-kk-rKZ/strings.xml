@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Іздеуде..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> көбірек табылды."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ешқандай контактілер жоқ"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 табылды"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> табылды"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> табылды</item>
+      <item quantity="one">1 табылды</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> үшін жылдам байланыс"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Атаусыз)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Қоңырау жиі шалынғандар"</string>
@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Телефон нөмірі бар барлық контактілер"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Жаңартуларды көру"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Планшет-қана, синхрондалмаған"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Телефон-ғана, синхрондалмаған"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Телефон ғана, синхрондалмайтын"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Аты-жөні"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Қысқа аты"</string>
     <string name="full_name" msgid="885420216812981202">"Аты-жөні"</string>
@@ -96,10 +96,10 @@
     <string name="name_prefix" msgid="8219879405071462309">"Аттың префиксі"</string>
     <string name="name_middle" msgid="3951610314424632183">"Әкесінің аты"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Аттың суффиксі"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Фонетикалық есімі"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Фонетикалық аты"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Әкесінің фонетикалық аты"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Фонетикалық тегі"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Атының транскрипциясы"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Атының транскрипциясы"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Әкесінің атының транскрипциясы"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Тегінің транскрипциясы"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Э-пошта"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Мекенжай"</string>
@@ -110,10 +110,10 @@
     <string name="sms" msgid="8086289395154598654">"Мәтін-хабар"</string>
     <string name="postal_address" msgid="7692926530081579786">"Мекенжай"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Компания"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Атауы"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Лауазымы"</string>
     <string name="label_notes" msgid="3997277594846722699">"Ескертулер"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Вебсайт"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Веб-сайт"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Топтар"</string>
     <string name="email_home" msgid="2230967805906450693">"Үй э-поштасына хат жіберу"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Ұялы телефонға хат жіберу"</string>
@@ -154,8 +154,8 @@
     <string name="display_more_groups" msgid="6304997485733158224">"Басқа топтар..."</string>
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" синрондаудан алу топталмаған контактілердің синхрондаудан алынуына себеп болады."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Дисплей опцияларын сақтау…"</string>
-    <string name="menu_done" msgid="32470053723443112">"Орындалды"</string>
-    <string name="menu_doNotSave" msgid="6012426160993364871">"Өшіру"</string>
+    <string name="menu_done" msgid="32470053723443112">"Дайын"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"Бас тарту"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> ішіндегі контактілер"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Контактілердің жеке көрінісі"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Жалғыз контакт"</string>
@@ -208,7 +208,7 @@
     <string name="caching_vcard_message" msgid="6635485116655518520">"vКарталарын жергілікті уақытша жадқа кэштеу. Импорттау жуық арада басталады."</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"vКартасын экспорттау мүмкін болмады."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Жадта ешқандай vКарта табылмады."</string>
-    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD картада ешқандай vКарта табылмады."</string>
+    <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD картада ешқандай vCard файлы жоқ."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"ЖӨБ контактісі"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"Контактілер экспортталсын ба?"</string>
     <string name="select_vcard_title" msgid="1536575036597557639">"vКарта файлын таңдау"</string>
@@ -228,10 +228,10 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Ат пішімі"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Алдымен аты"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Алдымен тегі"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"Көрінетін контактілермен бөлісу"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Көрінетін контактілерді бөлісу"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Контактілерді импорттау/экспорттау"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Контактілерді импорттау"</string>
-    <string name="share_error" msgid="665756457151793108">"Бұл контактімен бөлісу мүмкін болмады"</string>
+    <string name="share_error" msgid="665756457151793108">"Бұл контактіні бөлісу мүмкін болмады"</string>
     <string name="menu_search" msgid="7464453023659824700">"Іздеу"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Көрсетілетін контактілер"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Көрсетілетін контактілер"</string>
@@ -240,7 +240,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Сүйіктілер"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ешқандай контактілер жоқ."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ешқандай көрінетін контактілер жоқ."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Ешқандай сүйіктілер жоқ."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Таңдаулылар жоқ."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> контактілер жоқ"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Жиі қолданылғандары өшіру"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM картасын таңдау"</string>

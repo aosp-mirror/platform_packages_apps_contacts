@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"SMS: номер MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Начать видеовстречу"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Очистить список популярных контактов?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Список популярных контактов в приложениях \"Контакты\" и \"Телефон\" будет очищен, и почтовые приложения начнут заносить в него данные заново."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Список популярных контактов в приложениях \"Контакты\" и \"Телефон\" будет очищен, а приложения электронной почты начнут запоминать адреса заново."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Подождите…"</string>
     <string name="status_available" msgid="4832569677396634846">"Доступен"</string>
     <string name="status_away" msgid="6267905184545881094">"Отсутствует"</string>
@@ -75,10 +75,12 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Поиск…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Найдено контактов: более <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ничего не найдено."</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Найдено контактов: 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Найдено контактов: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one">Найден <xliff:g id="COUNT">%d</xliff:g> контакт</item>
+      <item quantity="few">Найдено <xliff:g id="COUNT">%d</xliff:g> контакта</item>
+      <item quantity="many">Найдено <xliff:g id="COUNT">%d</xliff:g> контактов</item>
+      <item quantity="other">Найдено <xliff:g id="COUNT">%d</xliff:g> контакта</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Быстрый вызов, контакт: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"Имя не указано"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Часто вызываемые"</string>
@@ -87,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Контакты с номерами телефонов"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Просмотреть обновления"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Только планшетный ПК, без синхронизации"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Только телефон, без синхронизации"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"только на телефоне, без синхронизации"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Имя"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псевдоним"</string>
     <string name="full_name" msgid="885420216812981202">"Полное имя"</string>
@@ -96,9 +98,9 @@
     <string name="name_prefix" msgid="8219879405071462309">"Префикс имени"</string>
     <string name="name_middle" msgid="3951610314424632183">"Отчество"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Суффикс имени"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Имя (транскрипция)"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Транскрипция имени"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Транскрипция имени"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Отчество (транскрипция)"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Транскрипция отчества"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Транскрипция фамилии"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Эл. почта"</string>
@@ -193,7 +195,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Не удалось экспортировать данные.\nПричина: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Накопитель не обнаружен"</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"SD-карта не обнаружена"</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Список контактов будет экспортирован в файл \"<xliff:g id="VCARD_FILENAME">%s</xliff:g>\"."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Список контактов будет экспортирован в файл <xliff:g id="VCARD_FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"Импорт файла \"<xliff:g id="NAME">%s</xliff:g>\"…"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Данные файла vCard не прочитаны"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Чтение данных vCard отменено"</string>
@@ -222,9 +224,9 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"Не удалось сканировать SD-карту. <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импорт <xliff:g id="CURRENT_NUMBER">%s</xliff:g> из <xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>..."</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Экспорт на накопитель"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортировать"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Имя"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Фамилия"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортировка"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"По имени"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"По фамилии"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Формат имени"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Сначала имя"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Сначала фамилия"</string>
@@ -235,7 +237,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Поиск"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Фильтр контактов"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Фильтр контактов"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Выберите группы контактов"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Выберите группы"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Поиск контактов"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Избранное"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Нет контактов"</string>

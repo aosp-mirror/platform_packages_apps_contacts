@@ -24,7 +24,7 @@
     <string name="call_work" msgid="8299062439076337075">"تماس با محل کار"</string>
     <string name="call_fax_work" msgid="3770754834467992571">"تماس با نمابر محل کار"</string>
     <string name="call_fax_home" msgid="6219051113573396065">"تماس با نمابر منزل"</string>
-    <string name="call_pager" msgid="3038080882899955112">"تماس با پیجر"</string>
+    <string name="call_pager" msgid="3038080882899955112">"تماس با پی‌جو"</string>
     <string name="call_other" msgid="4472141328347894937">"تماس"</string>
     <string name="call_callback" msgid="687494744634190411">"تماس با شماره بازگرداندن تماس"</string>
     <string name="call_car" msgid="9078083109758282133">"تماس با تلفن خودرو"</string>
@@ -36,16 +36,16 @@
     <string name="call_telex" msgid="2909886619224843563">"تماس با تلکس"</string>
     <string name="call_tty_tdd" msgid="6704940636171078852">"‏تماس با TTY/TDD"</string>
     <string name="call_work_mobile" msgid="4408630608955148641">"تماس با تلفن همراه محل کار"</string>
-    <string name="call_work_pager" msgid="3036932765279753793">"تماس با پیجر محل کار"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"تماس با پی‌جوی محل کار"</string>
     <string name="call_assistant" msgid="5188990854852312696">"تماس با <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="8998771923464696960">"‏تماس با MMS"</string>
+    <string name="call_mms" msgid="8998771923464696960">"تماس با فراپیام"</string>
     <string name="sms_custom" msgid="4601748252470175865">"ارسال پیامک به <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"ارسال پیامک به تلفن منزل"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"ارسال پیامک به تلفن همراه"</string>
     <string name="sms_work" msgid="3910570578912367742">"ارسال پیامک به محل کار"</string>
     <string name="sms_fax_work" msgid="909086167151248212">"ارسال پیامک به نمابر محل کار"</string>
     <string name="sms_fax_home" msgid="4145442497939634875">"ارسال پیامک به نمابر منزل"</string>
-    <string name="sms_pager" msgid="5664381349583724906">"ارسال پیامک به پیجر"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"ارسال پیامک به پی‌جو"</string>
     <string name="sms_other" msgid="910895193552957097">"ارسال پیامک"</string>
     <string name="sms_callback" msgid="728414485478941361">"ارسال پیامک به شماره برگرداندن تماس"</string>
     <string name="sms_car" msgid="8543669230270954512">"ارسال پیامک به تلفن خودرو"</string>
@@ -57,13 +57,13 @@
     <string name="sms_telex" msgid="5469333785775443999">"ارسال پیامک به تلکس"</string>
     <string name="sms_tty_tdd" msgid="5057886576150816002">"‏ارسال پیامک به TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="8426872094268475047">"ارسال پیامک به تلفن همراه محل کار"</string>
-    <string name="sms_work_pager" msgid="499303540738557836">"ارسال پیامک به پیجر محل کار"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"ارسال پیامک به پی‌جوی محل کار"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"ارسال پیامک به <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4887206338311086612">"‏ارسال پیامک به MMS"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"ارسال پیامک به خدمات پیام چندرسانه‌ای"</string>
     <string name="description_video_call" msgid="4907306403398614909">"برقراری تماس ویدیویی"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"لیست تماس مکرر پاک شود؟"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"با این کار شما در برنامه‌های «افراد» و «تلفن»، لیست افرادی را که با آن‌ها بیشترین تماس داشته‌اید پاک خواهید کرد و برنامه‌های ایمیل مجبور می‌شوند تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
-    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"در حال پاک کردن لیست تماس مکرر…"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"مکرراً تماس‌گرفته‌ها پاک شود؟"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"فهرست افرادی را که مکرر با آن‌ها تماس گرفته‌اید در برنامه‌های «مخاطبین» و «تلفن» پاک خواهید کرد و برنامه‌های رایانامه مجبور می‌شوند که تنظیمات برگزیده آدرس‌دهی شما را از اول یاد بگیرند."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"درحال پاک کردن مکرراً تماس‌گرفته…"</string>
     <string name="status_available" msgid="4832569677396634846">"در دسترس"</string>
     <string name="status_away" msgid="6267905184545881094">"غایب"</string>
     <string name="status_busy" msgid="7111912905211403545">"مشغول"</string>
@@ -75,19 +75,19 @@
     <string name="search_results_searching" msgid="9022794597388306615">"درحال جستجو..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"بیش از <xliff:g id="COUNT">%d</xliff:g> مورد یافت شد."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"مخاطبی موجود نیست"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"۱ مورد پیدا شد"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> مورد یافت شد"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مورد پیدا شد</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مورد پیدا شد</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"تماس سریع برای <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(بدون نام)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"بیشتر تماس‌ گرفته شده"</string>
-    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"بیشتر ارتباط برقرار شده"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"مکرراً تماس‌گرفته"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"مشاهده مخاطب"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"همه مخاطبین دارای شماره تلفن"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"مشاهده به‌روزرسانی‌ها"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"فقط رایانهٔ لوحی، همگام‌سازی نشده"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"فقط تلفن، همگام‌سازی نشده"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"فقط تلفن، همگام‌سازی‌نشده"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"نام"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"نام مستعار"</string>
     <string name="full_name" msgid="885420216812981202">"نام"</string>
@@ -101,9 +101,9 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"تلفظ نام میانی"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"تلفظ نام خانوادگی"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"تلفن"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"ایمیل"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"رایانامه"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"آدرس"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"پیام فوری"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"سازمان"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"نسبت"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"تاریخ‌های ویژه"</string>
@@ -115,12 +115,12 @@
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"وب سایت"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"گروه‌ها"</string>
-    <string name="email_home" msgid="2230967805906450693">"ایمیل به منزل"</string>
-    <string name="email_mobile" msgid="7532438378678903685">"ایمیل به تلفن همراه"</string>
-    <string name="email_work" msgid="7065971921227432400">"ایمیل به محل کار"</string>
-    <string name="email_other" msgid="4601881243553289615">"ایمیل"</string>
-    <string name="email_custom" msgid="5777583741581538870">"ایمیل به <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5624424151176351591">"ایمیل"</string>
+    <string name="email_home" msgid="2230967805906450693">"رایانامه به منزل"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"رایانامه به تلفن همراه"</string>
+    <string name="email_work" msgid="7065971921227432400">"رایانامه به محل کار"</string>
+    <string name="email_other" msgid="4601881243553289615">"رایانامه"</string>
+    <string name="email_custom" msgid="5777583741581538870">"رایانامه به <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"رایانامه"</string>
     <string name="postal_street" msgid="881349814077356134">"خیابان"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"صندوق پستی"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"محله"</string>
@@ -154,10 +154,10 @@
     <string name="display_more_groups" msgid="6304997485733158224">"گروه‌های بیشتر..."</string>
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"حذف «<xliff:g id="GROUP">%s</xliff:g>» از همگام‌سازی نیز هر گونه مخاطب گروه‌بندی نشده‌ای را از همگام‌سازی حذف می‌کند."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"در حال ذخیره گزینه‌های نمایش..."</string>
-    <string name="menu_done" msgid="32470053723443112">"انجام شد"</string>
+    <string name="menu_done" msgid="32470053723443112">"تمام"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"لغو"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"مخاطبین در <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"مخاطبین موجود در نمای سفارشی"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"مخاطبین در نمای سفارشی"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"مخاطب تکی"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"ایجاد مخاطبین تحت حساب"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"وارد کردن از سیم کارت"</string>
@@ -193,7 +193,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"‏داده‎های مخاطب صادر نشد.\nعلت: «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"هیچ دستگاه ذخیره‌ای یافت نشد."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"‏کارت SD یافت نشد."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"لیست مخاطبین شما به این فایل صادر می‌شود: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"فهرست مخاطبین شما به این فایل صادر می‌شود: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"وارد کردن <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"خواندن داده‌های کارت ویزیت ممکن نیست"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"خواندن داده کارت ویزیت لغو شد"</string>
@@ -222,7 +222,7 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"‏کارت SD نمی‌تواند بررسی شود. (علت: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"وارد کردن <xliff:g id="CURRENT_NUMBER">%s</xliff:g><xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"صادر کردن به حافظه"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"مرتب‌سازی بر اساس"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"مرتب‌سازی براساس"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"نام"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"نام خانوادگی"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"قالب نام"</string>
@@ -240,9 +240,9 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"موارد دلخواه"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"مخاطبی موجود نیست."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"مخاطب قابل مشاهده‌ای موجود نیست."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"هیچ مورد دلخواهی وجود ندارد."</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"مورد دلخواهی ندارید."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"هیچ مخاطبی در <xliff:g id="NAME">%s</xliff:g> موجود نیست"</string>
-    <string name="menu_clear_frequents" msgid="8492322695770647639">"پاک کردن موارد مکرر"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"پاک کردن مکرراً تماس‌گرفته"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"انتخاب سیم‌کارت"</string>
     <string name="menu_accounts" msgid="795417468541517082">"حساب‌ها"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"وارد کردن/صادر کردن"</string>

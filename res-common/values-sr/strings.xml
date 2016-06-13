@@ -72,13 +72,14 @@
     <string name="directory_search_label" msgid="4484648822765516947">"Директоријум"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Сви контакти"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ја"</string>
-    <string name="search_results_searching" msgid="9022794597388306615">"Претраживање..."</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Претражује се..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Пронађено је више од <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Нема контаката"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 је пронађен"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> је пронађено"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one">Пронађен је <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="few">Пронађена су <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="other">Пронађено је <xliff:g id="COUNT">%d</xliff:g></item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Брзи контакт за корисника <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Нема имена)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Често позивани"</string>
@@ -87,7 +88,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Сви контакти са бројевима телефона"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Прикажи ажурирања"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Само на таблету, без синхронизације"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Само на телефону, без синхронизације"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"само на телефону, без синхронизације"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Надимак"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>
@@ -97,9 +98,9 @@
     <string name="name_middle" msgid="3951610314424632183">"Средње име"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Суфикс имена"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Име – фонетски"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Фонетски написано име"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Име – фонетски"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Средње име – фонетски"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Фонетски написано презиме"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Презиме – фонетски"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Имејл адреса"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Адреса"</string>
@@ -223,8 +224,8 @@
     <string name="progress_notifier_message" msgid="359931715339778107">"Увози се <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Извези у меморију"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортирај према"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Име"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Презиме"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Имену"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Презимену"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Формат имена и презимена"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Прво име"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Прво презиме"</string>
@@ -235,7 +236,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Претражи"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Контакти за приказ"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Контакти за приказ"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Дефинисање прилагођеног приказа"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Прилагођени приказ"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Пронађите контакте"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Омиљено"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Нема контаката."</string>

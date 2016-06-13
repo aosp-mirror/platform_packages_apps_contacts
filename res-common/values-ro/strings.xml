@@ -18,52 +18,52 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toast_text_copied" msgid="8327159932780920627">"Text copiat"</string>
-    <string name="call_custom" msgid="2786306789889210756">"Apelaţi <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="call_home" msgid="1479549630992276827">"Apelaţi numărul de domiciliu"</string>
-    <string name="call_mobile" msgid="8618334085824709009">"Apelaţi numărul de mobil"</string>
-    <string name="call_work" msgid="8299062439076337075">"Apelaţi numărul de serviciu"</string>
-    <string name="call_fax_work" msgid="3770754834467992571">"Apelaţi numărul de fax de serviciu"</string>
-    <string name="call_fax_home" msgid="6219051113573396065">"Apelaţi numărul de fax de domiciliu"</string>
-    <string name="call_pager" msgid="3038080882899955112">"Apelaţi numărul de pager"</string>
-    <string name="call_other" msgid="4472141328347894937">"Apelaţi"</string>
-    <string name="call_callback" msgid="687494744634190411">"Apelaţi un număr cu apelare inversă"</string>
-    <string name="call_car" msgid="9078083109758282133">"Apelaţi numărul de maşină"</string>
-    <string name="call_company_main" msgid="8768047233970315359">"Apelaţi numărul principal al companiei"</string>
-    <string name="call_isdn" msgid="3342482563847537747">"Apelaţi ISDN"</string>
-    <string name="call_main" msgid="4640261071249938558">"Apelaţi numărul principal"</string>
-    <string name="call_other_fax" msgid="2536328553125487877">"Apelaţi numărul de fax"</string>
-    <string name="call_radio" msgid="9055749313292712021">"Apelaţi un număr radio"</string>
-    <string name="call_telex" msgid="2909886619224843563">"Apelaţi un număr de telex"</string>
-    <string name="call_tty_tdd" msgid="6704940636171078852">"Apelaţi TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="4408630608955148641">"Apelaţi numărul de mobil de la serviciu"</string>
-    <string name="call_work_pager" msgid="3036932765279753793">"Apelaţi numărul de pager de serviciu"</string>
-    <string name="call_assistant" msgid="5188990854852312696">"Apelaţi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="call_mms" msgid="8998771923464696960">"Apelaţi MMS"</string>
-    <string name="sms_custom" msgid="4601748252470175865">"Trimiteţi un mesaj text către <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7765831490534280540">"Trimiteţi un mesaj text către telefonul de domiciliu"</string>
-    <string name="sms_mobile" msgid="8387632124165893103">"Trimiteţi un mesaj text către numărul de mobil"</string>
-    <string name="sms_work" msgid="3910570578912367742">"Trimiteţi un mesaj text către numărul de serviciu"</string>
-    <string name="sms_fax_work" msgid="909086167151248212">"Trimiteţi un mesaj text către un număr de fax de serviciu"</string>
-    <string name="sms_fax_home" msgid="4145442497939634875">"Trimiteţi un mesaj text către un număr de fax de domiciliu"</string>
-    <string name="sms_pager" msgid="5664381349583724906">"Trimiteţi un mesaj text către un număr de pager"</string>
-    <string name="sms_other" msgid="910895193552957097">"Trimiteţi un mesaj text"</string>
-    <string name="sms_callback" msgid="728414485478941361">"Trimiteţi un mesaj text către un număr cu apelare inversă"</string>
-    <string name="sms_car" msgid="8543669230270954512">"Trimiteţi un mesaj text către un număr de telefon de maşină"</string>
-    <string name="sms_company_main" msgid="5441902128445061862">"Trimiteţi un mesaj text către numărul principal al companiei"</string>
-    <string name="sms_isdn" msgid="7142483128948042667">"Trimiteţi un mesaj text către un număr ISDN"</string>
-    <string name="sms_main" msgid="6815987840926184815">"Trimiteţi un mesaj text către numărul principal"</string>
-    <string name="sms_other_fax" msgid="8649822154879781466">"Trimiteţi un mesaj text către un număr de fax"</string>
-    <string name="sms_radio" msgid="8750339218480745940">"Trimiteţi un mesaj text către un număr radio"</string>
-    <string name="sms_telex" msgid="5469333785775443999">"Trimiteţi un mesaj text către un număr de telex"</string>
-    <string name="sms_tty_tdd" msgid="5057886576150816002">"Trimiteţi un mesaj text către TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="8426872094268475047">"Trimiteţi un mesaj text către numărul de mobil de serviciu"</string>
-    <string name="sms_work_pager" msgid="499303540738557836">"Trimiteţi un mesaj text către un număr de pager de serviciu"</string>
-    <string name="sms_assistant" msgid="2677586547377136683">"Trimiteţi un mesaj text către <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4887206338311086612">"Trimiteţi un mesaj text către un număr MMS"</string>
+    <string name="call_custom" msgid="2786306789889210756">"Apelați <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1479549630992276827">"Apelați numărul de domiciliu"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Apelați numărul de mobil"</string>
+    <string name="call_work" msgid="8299062439076337075">"Apelați numărul de serviciu"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"Apelați numărul de fax de serviciu"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Apelați numărul de fax de domiciliu"</string>
+    <string name="call_pager" msgid="3038080882899955112">"Apelați numărul de pager"</string>
+    <string name="call_other" msgid="4472141328347894937">"Apelați"</string>
+    <string name="call_callback" msgid="687494744634190411">"Apelați un număr cu apelare inversă"</string>
+    <string name="call_car" msgid="9078083109758282133">"Apelați numărul de mașină"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Apelați numărul principal al companiei"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"Apelați ISDN"</string>
+    <string name="call_main" msgid="4640261071249938558">"Apelați numărul principal"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"Apelați numărul de fax"</string>
+    <string name="call_radio" msgid="9055749313292712021">"Apelați un număr radio"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Apelați un număr de telex"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"Apelați TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Apelați numărul de mobil de la serviciu"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Apelați numărul de pager de serviciu"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"Apelați <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="8998771923464696960">"Apelați MMS"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"Trimiteți un mesaj text către <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"Trimiteți un mesaj text către telefonul de domiciliu"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"Trimiteți un mesaj text către numărul de mobil"</string>
+    <string name="sms_work" msgid="3910570578912367742">"Trimiteți un mesaj text către numărul de serviciu"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"Trimiteți un mesaj text către un număr de fax de serviciu"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Trimiteți un mesaj text către un număr de fax de domiciliu"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"Trimiteți un mesaj text către un număr de pager"</string>
+    <string name="sms_other" msgid="910895193552957097">"Trimiteți un mesaj text"</string>
+    <string name="sms_callback" msgid="728414485478941361">"Trimiteți un mesaj text către un număr cu apelare inversă"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Trimiteți un mesaj text către un număr de telefon de mașină"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Trimiteți un mesaj text către numărul principal al companiei"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"Trimiteți un mesaj text către un număr ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"Trimiteți un mesaj text către numărul principal"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"Trimiteți un mesaj text către un număr de fax"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"Trimiteți un mesaj text către un număr radio"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"Trimiteți un mesaj text către un număr de telex"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"Trimiteți un mesaj text către TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"Trimiteți un mesaj text către numărul de mobil de serviciu"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Trimiteți un mesaj text către un număr de pager de serviciu"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"Trimiteți un mesaj text către <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"Trimiteți un mesaj text către un număr MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Inițiați un apel video"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Ștergeţi pers. frecvent contactate?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Veţi şterge lista cu persoanele frecvent contactate din aplicaţiile Persoane şi Telefon şi veţi forţa aplicaţiile de e-mail să reţină preferinţele dvs. pentru adrese de la zero."</string>
-    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Se şterg pers. frecvent contactate…"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Ștergeți pers. frecvent contactate?"</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Veți șterge lista cu persoanele frecvent contactate din aplicațiile Persoane și Telefon și veți forța aplicațiile de e-mail să rețină preferințele dvs. pentru adrese de la zero."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Se șterg pers. frecvent contactate…"</string>
     <string name="status_available" msgid="4832569677396634846">"Disponibil(ă)"</string>
     <string name="status_away" msgid="6267905184545881094">"Plecat(ă)"</string>
     <string name="status_busy" msgid="7111912905211403545">"Ocupat(ă)"</string>
@@ -75,19 +75,20 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Se caută…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"S-au găsit peste <xliff:g id="COUNT">%d</xliff:g> (de) persoane de contact."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Nu există persoane de contact"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"S-a găsit o persoană de contact"</item>
-    <item quantity="other" msgid="4649647748678161594">"S-au găsit <xliff:g id="COUNT">%d</xliff:g> (de) persoane de contact"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> găsite</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> găsite</item>
+      <item quantity="one">Una găsită</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Contact rapid pentru <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Fără nume)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Apelate frecvent"</string>
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactate frecvent"</string>
-    <string name="description_view_contact_detail" msgid="2756753096193839285">"Afişaţi persoana de contact"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Afișați persoana de contact"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Toate persoanele de contact cu numere de telefon"</string>
-    <string name="view_updates_from_group" msgid="3310864388165884352">"Afişaţi actualizări"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Afișați actualizări"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Numai pe tabletă, nesincronizată"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Numai pe telefon, nesincronizată"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"numai pe telefon, nesincronizată"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nume"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Pseudonim"</string>
     <string name="full_name" msgid="885420216812981202">"Nume"</string>
@@ -101,48 +102,48 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Al doilea prenume fonetic"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Nume fonetic"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"Adrese de e-mail"</string>
-    <string name="postalLabelsGroup" msgid="3727124282406728557">"Adrese poştale"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"E-mail"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresă"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
-    <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizaţie"</string>
-    <string name="relationLabelsGroup" msgid="3585294036166325520">"Relaţie"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Organizație"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Relație"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Date speciale"</string>
     <string name="sms" msgid="8086289395154598654">"Mesaj text"</string>
-    <string name="postal_address" msgid="7692926530081579786">"Adresă poştală"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Adresă"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Companie"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Titlu"</string>
     <string name="label_notes" msgid="3997277594846722699">"Note"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Site web"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Site"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Grupuri"</string>
-    <string name="email_home" msgid="2230967805906450693">"Trimiteţi un e-mail la o adresă de e-mail de domiciliu"</string>
-    <string name="email_mobile" msgid="7532438378678903685">"Trimiteţi un e-mail către un telefon mobil"</string>
-    <string name="email_work" msgid="7065971921227432400">"Trimiteţi un e-mail la o adresă de e-mail de serviciu"</string>
-    <string name="email_other" msgid="4601881243553289615">"Trimiteţi un e-mail"</string>
-    <string name="email_custom" msgid="5777583741581538870">"Trimiteţi un e-mail la <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5624424151176351591">"Trimiteţi un e-mail"</string>
+    <string name="email_home" msgid="2230967805906450693">"Trimiteți un e-mail la o adresă de e-mail de domiciliu"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Trimiteți un e-mail către un telefon mobil"</string>
+    <string name="email_work" msgid="7065971921227432400">"Trimiteți un e-mail la o adresă de e-mail de serviciu"</string>
+    <string name="email_other" msgid="4601881243553289615">"Trimiteți un e-mail"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Trimiteți un e-mail la <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"Trimiteți un e-mail"</string>
     <string name="postal_street" msgid="881349814077356134">"Stradă"</string>
-    <string name="postal_pobox" msgid="1799978742074885091">"Căsuţă poştală"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Căsuță poștală"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"Cartier"</string>
-    <string name="postal_city" msgid="3173008531169519309">"Oraş"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Oraș"</string>
     <string name="postal_region" msgid="1695206048198921115">"Stat"</string>
-    <string name="postal_postcode" msgid="6542806670034753265">"Cod poştal"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Cod poștal"</string>
     <string name="postal_country" msgid="3988452247038791892">"Țară"</string>
-    <string name="map_home" msgid="1221397355014741634">"Vizualizaţi adresa de domiciliu"</string>
-    <string name="map_work" msgid="9015981646907637207">"Vizualizaţi adresa de serviciu"</string>
-    <string name="map_other" msgid="55098598855607997">"Vizualizaţi adresa poştală"</string>
-    <string name="map_custom" msgid="4943554530347163288">"Vizualizaţi adresa <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="chat_aim" msgid="6479001490307452172">"Conversaţi prin AIM"</string>
-    <string name="chat_msn" msgid="627481952525245054">"Conversaţi prin Windows Live"</string>
-    <string name="chat_yahoo" msgid="5542489454092719897">"Conversaţi prin Yahoo"</string>
-    <string name="chat_skype" msgid="3145166404699830256">"Conversaţi prin Skype"</string>
-    <string name="chat_qq" msgid="2811762660890755082">"Conversaţi prin QQ"</string>
-    <string name="chat_gtalk" msgid="6043734883347741789">"Conversaţi prin Google Talk"</string>
-    <string name="chat_icq" msgid="7538190395602030726">"Conversaţi prin ICQ"</string>
-    <string name="chat_jabber" msgid="4525546665986350869">"Conversaţi prin Jabber"</string>
-    <string name="chat" msgid="6297650784873558837">"Conversaţi prin chat"</string>
-    <string name="description_minus_button" msgid="2142439445814730827">"ştergeţi"</string>
-    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Extindeţi sau restrângeţi câmpurile pentru nume"</string>
+    <string name="map_home" msgid="1221397355014741634">"Vizualizați adresa de domiciliu"</string>
+    <string name="map_work" msgid="9015981646907637207">"Vizualizați adresa de serviciu"</string>
+    <string name="map_other" msgid="55098598855607997">"Vizualizați adresa poștală"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Vizualizați adresa <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Conversați prin AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Conversați prin Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Conversați prin Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Conversați prin Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Conversați prin QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Conversați prin Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Conversați prin ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Conversați prin Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Conversați prin chat"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"ștergeți"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Extindeți sau restrângeți câmpurile pentru nume"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Toată agenda"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Cu stea"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Personalizați"</string>
@@ -188,7 +189,7 @@
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Nu s-au putut obține informații din baza de date."</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Nu există persoane de contact care să poată fi exportate. Dacă aveți persoane de contact pe tabletă, este posibil ca exportul acestora de pe tabletă să fie interzis de unii furnizori de date."</string>
     <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Nu există persoane de contact care să poată fi exportate. Dacă aveți persoane de contact pe telefon, este posibil ca exportul acestora de pe telefon să fie interzis de unii furnizori de date."</string>
-    <string name="composer_not_initialized" msgid="6514403866246950877">"Compozitorul vCard nu a pornit în mod corespunzător."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"Editorul de vCard nu a pornit în mod corespunzător."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Nu s-a putut exporta"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Datele persoanelor de contact nu au fost exportate.\nMotivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Nu s-a găsit o stocare."</string>
@@ -231,7 +232,7 @@
     <string name="share_visible_contacts" msgid="2150662668080757107">"Distribuiți persoanele de contact vizibile"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importați/exportați agenda"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importați agenda"</string>
-    <string name="share_error" msgid="665756457151793108">"Această persoană de contact nu poate fi distribuită."</string>
+    <string name="share_error" msgid="665756457151793108">"Nu se poate permite accesul la această intrare."</string>
     <string name="menu_search" msgid="7464453023659824700">"Căutați"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Agendă de afișat"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Agendă de afișat"</string>
@@ -245,7 +246,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Ștergeți contacte frecvente"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Selectați cardul SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Conturi"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"Importați/exportați"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Importați/Exportați"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"prin <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> prin <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"nu mai căutați"</string>

@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Recherche en cours…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Plus de <xliff:g id="COUNT">%d</xliff:g> contacts ont été trouvés."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Aucun contact"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 contact trouvé"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> contacts trouvés"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact trouvé.</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts trouvés.</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Lien rapide vers <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sans nom)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Appels fréquents"</string>
@@ -98,7 +98,7 @@
     <string name="name_suffix" msgid="5436984808550075931">"Suffixe du nom"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Nom phonétique"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Prénom phonétique"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Deuxième prénom phonétique"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"2e prénom phonétique"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Nom phonétique"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Numéro de téléphone"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Adresse e-mail"</string>
@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"OK"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Annuler"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Contacts du compte \"<xliff:g id="NAME">%s</xliff:g>\""</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Contacts en affichage personnalisé"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Contacts avec affichage perso."</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Contact"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Créer un contact sous le compte"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importer depuis la carte SIM"</string>
@@ -235,7 +235,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Rechercher"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Contacts à afficher"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contacts à afficher"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Définir un affichage personnalisé"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Définir affichage perso"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Rechercher des contacts"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoris"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Aucun contact"</string>

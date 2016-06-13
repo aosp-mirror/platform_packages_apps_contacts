@@ -71,14 +71,14 @@
     <string name="local_invisible_directory" msgid="8934840494825588347">"其他"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"名錄"</string>
     <string name="local_search_label" msgid="9094584931063745728">"所有聯絡人"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"我本人"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"我"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"正在搜尋..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"找到超過 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人。"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"沒有聯絡人"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"找到 1 位聯絡人"</item>
-    <item quantity="other" msgid="4649647748678161594">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人</item>
+      <item quantity="one">找到 1 位聯絡人</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"快速聯絡<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(沒有名稱)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"經常通話的聯絡人"</string>
@@ -229,8 +229,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"名字在前"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"姓氏在前"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"分享正常顯示的聯絡人"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"匯入/匯出聯絡人資料"</string>
-    <string name="dialog_import" msgid="5177004290082451296">"匯入聯絡人資料"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"匯入/匯出通訊錄"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"匯入通訊錄"</string>
     <string name="share_error" msgid="665756457151793108">"無法分享這位聯絡人的資料。"</string>
     <string name="menu_search" msgid="7464453023659824700">"搜尋"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"要顯示的聯絡人"</string>

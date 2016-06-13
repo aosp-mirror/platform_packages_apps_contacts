@@ -71,14 +71,14 @@
     <string name="local_invisible_directory" msgid="8934840494825588347">"অন্যান্য"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ডিরেক্টরি"</string>
     <string name="local_search_label" msgid="9094584931063745728">"সকল পরিচিতি"</string>
-    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"আমাকে"</string>
+    <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"আমি"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"অনুসন্ধান করছে..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>টির থেকে বেশি খুঁজে পাওয়া গিয়েছে৷"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"কোনো পরিচিতি নেই"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"১টি খুঁজে পাওয়া গেছে"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g>টি খুঁজে পাওয়া গেছে"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি খুঁজে পাওয়া গেছে</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি খুঁজে পাওয়া গেছে</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> এর জন্য দ্রুত পরিচিতি"</string>
     <string name="missing_name" msgid="2633118852693000081">"(কোনও নাম নেই)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"ঘন ঘন কল করা হয়েছে"</string>
@@ -92,14 +92,14 @@
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ডাকনাম"</string>
     <string name="full_name" msgid="885420216812981202">"নাম"</string>
     <string name="name_given" msgid="4153709115654909377">"প্রথম নাম"</string>
-    <string name="name_family" msgid="5317387657540738981">"পারিবারিক নাম"</string>
+    <string name="name_family" msgid="5317387657540738981">"পদবি"</string>
     <string name="name_prefix" msgid="8219879405071462309">"নামের আগের অংশ"</string>
     <string name="name_middle" msgid="3951610314424632183">"মাঝের নাম"</string>
     <string name="name_suffix" msgid="5436984808550075931">"নামের পরের অংশ"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"উচ্চারণগত নাম"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"ফোনেটিক আদ্য নাম"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"উচ্চারণগত প্রথম নাম"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"উচ্চারণগত মাঝের নাম"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"ফোনেটিক পারিবারিক নাম"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"উচ্চারণগত পারিবারিক নাম"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ফোন"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ইমেল"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"ঠিকানা"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"পাঠ্য বার্তা"</string>
     <string name="postal_address" msgid="7692926530081579786">"ঠিকানা"</string>
     <string name="ghostData_company" msgid="22470841482615409">"কোম্পানি"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"শীর্ষক"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"নাম"</string>
     <string name="label_notes" msgid="3997277594846722699">"দ্রষ্টব্য"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"ওয়েবসাইট"</string>
@@ -211,7 +211,7 @@
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD কার্ডে কোনো  vCard ফাইল পাওয়া যায়নি৷"</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC এর মাধ্যমে পরিচিতি প্রাপ্ত হয়েছে"</string>
     <string name="confirm_export_title" msgid="3240899428149018226">"পরিচিতিগুলি রপ্তানি করবেন?"</string>
-    <string name="select_vcard_title" msgid="1536575036597557639">"vCard ফাইল চয়ন করুন"</string>
+    <string name="select_vcard_title" msgid="1536575036597557639">"vCard ফাইল বেছে নিন"</string>
     <string name="import_one_vcard_string" msgid="6199149175802496361">"একটি vCard ফাইল আমদানি করুন"</string>
     <string name="import_multiple_vcard_string" msgid="8931879029943141122">"একাধিক vCard ফাইল আমদানি করুন"</string>
     <string name="import_all_vcard_string" msgid="1037495558362397535">"সমস্ত vCard ফাইল আমদানি করুন"</string>
@@ -222,16 +222,16 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD কার্ডটিকে স্ক্যান করতে করতে পারা যায় নি৷ (কারণ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"আমদানি করা হচ্ছে, <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"সংগ্রহস্থলে রপ্তানি করুন"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"এর দ্বারা সাজান"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"এই অনুসারে বাছুন"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"প্রথম নাম"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"পারিবারিক নাম"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"পদবি"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"নামের বিন্যাস"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"প্রথমে আদ্য নাম"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"প্রথমে পারিবারিক নাম"</string>
-    <string name="share_visible_contacts" msgid="2150662668080757107">"দৃশ্যমান পরিচিতিগুলিকে ভাগ করুন"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"প্রথমে প্রথম নামটি"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"প্রথমে উপাধি"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"দৃশ্যমান পরিচিতিগুলিকে শেয়ার করুন"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"পরিচিতিগুলি আমদানি/রপ্তানি করুন"</string>
     <string name="dialog_import" msgid="5177004290082451296">"পরিচিতিগুলি আমদানি করুন"</string>
-    <string name="share_error" msgid="665756457151793108">"এই পরিচিতিটিকে ভাগ করা যাবে না৷"</string>
+    <string name="share_error" msgid="665756457151793108">"এই পরিচিতিটিকে শেয়ার করা যাবে না৷"</string>
     <string name="menu_search" msgid="7464453023659824700">"অনুসন্ধান করুন"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"দেখানোর জন্য পরিচিতিগুলি"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"দেখানোর জন্য পরিচিতিগুলি"</string>
@@ -240,7 +240,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"পছন্দগুলি"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"কোনো পরিচিতি নেই৷"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"কোনো দৃশ্যমান পরিচিতি নেই৷"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"কোনো পছন্দসই নেই৷"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"কোনো পছন্দসই পরিচিতি নেই৷"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> এ কোনো পরিচিতি নেই"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"পুনরাবৃত্তি সাফ করুন"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"সিম কার্ড নির্বাচন করুন"</string>

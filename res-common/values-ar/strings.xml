@@ -75,10 +75,14 @@
     <string name="search_results_searching" msgid="9022794597388306615">"جارٍ البحث..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"تم العثور على أكثر من <xliff:g id="COUNT">%d</xliff:g> من جهات الاتصال."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"ليست هناك جهات اتصال"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"تم العثور على جهة اتصال واحدة"</item>
-    <item quantity="other" msgid="4649647748678161594">"تم العثور على <xliff:g id="COUNT">%d</xliff:g> من جهات الاتصال"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="zero">لا توجد أية جهة اتصال (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="two">توجد جهتا اتصال (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="few">توجد <xliff:g id="COUNT">%d</xliff:g> جهات اتصال</item>
+      <item quantity="many">توجد <xliff:g id="COUNT">%d</xliff:g> جهة اتصال</item>
+      <item quantity="other">توجد <xliff:g id="COUNT">%d</xliff:g> من جهات الاتصال</item>
+      <item quantity="one">توجد جهة اتصال واحدة</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"اتصال سريع لـ <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(بلا اسم)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"الأكثر اتصالاً"</string>
@@ -160,9 +164,9 @@
     <string name="listCustomView" msgid="1915154113477432033">"جهات الاتصال في عرض مخصص"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"جهة اتصال واحدة"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"إنشاء جهة اتصال ضمن حساب"</string>
-    <string name="import_from_sim" msgid="4749894687871835873">"‏استيراد من بطاقة SIM"</string>
-    <string name="import_from_sim_summary" msgid="2306434118233541675">"‏استيراد من بطاقة SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"‏استيراد من بطاقة SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"‏استيراد من شريحة SIM"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"‏استيراد من شريحة SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"‏استيراد من شريحة SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"استيراد من وحدة التخزين"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"هل تريد إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"هل تريد إلغاء تصدير <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
@@ -243,7 +247,7 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"ليست هناك مفضلة."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"ليست هناك جهات اتصال في <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"محو قائمة من يتصل بهم كثيرًا"</string>
-    <string name="menu_select_sim" msgid="7814841439832447299">"‏تحديد بطاقة SIM"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"‏تحديد شريحة SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"الحسابات"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"استيراد/تصدير"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"عبر <xliff:g id="SOURCE">%1$s</xliff:g>"</string>

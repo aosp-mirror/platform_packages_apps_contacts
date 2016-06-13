@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"កំពុង​រក..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"បាន​រក​ឃើញ​ច្រើន​ជាង <xliff:g id="COUNT">%d</xliff:g> ។"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"មិន​មាន​ទំនាក់ទំនង។"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"បាន​រក​ឃើញ ១"</item>
-    <item quantity="other" msgid="4649647748678161594">"បាន​រក​ឃើញ <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">បានរកឃើញ <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">បានរកឃើញ 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"ទំនាក់ទំនង​រហ័ស​សម្រាប់ <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(គ្មាន​ឈ្មោះ)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"បាន​ហៅ​ញឹកញាប់"</string>
@@ -110,10 +110,10 @@
     <string name="sms" msgid="8086289395154598654">"សារ​អត្ថបទ"</string>
     <string name="postal_address" msgid="7692926530081579786">"អាសយដ្ឋាន"</string>
     <string name="ghostData_company" msgid="22470841482615409">"ក្រុមហ៊ុន"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"មុខងារ"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"តួនាទី"</string>
     <string name="label_notes" msgid="3997277594846722699">"ចំណាំ"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="8620657380165071493">"តំបន់បណ្ដាញ"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"គេហទំព័រ"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"ក្រុម"</string>
     <string name="email_home" msgid="2230967805906450693">"អ៊ីមែល​ទៅ​ផ្ទះ"</string>
     <string name="email_mobile" msgid="7532438378678903685">"អ៊ីមែល​ទៅ​ទូរស័ព្ទ​ចល័ត"</string>

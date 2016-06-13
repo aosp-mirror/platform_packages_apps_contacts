@@ -28,7 +28,7 @@
     <string name="call_other" msgid="4472141328347894937">"Sesli arama yap"</string>
     <string name="call_callback" msgid="687494744634190411">"Sesli arama yap (geri arama)"</string>
     <string name="call_car" msgid="9078083109758282133">"Sesli arama yap (araç)"</string>
-    <string name="call_company_main" msgid="8768047233970315359">"Sesli arama yap (şirket ana hattı)"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Sesli arama yap (şirket santrali)"</string>
     <string name="call_isdn" msgid="3342482563847537747">"Sesli arama yap (ISDN)"</string>
     <string name="call_main" msgid="4640261071249938558">"Sesli arama yap (santral)"</string>
     <string name="call_other_fax" msgid="2536328553125487877">"Sesli arama yap (faks)"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Aranıyor…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> kişiden fazla bulundu."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Kişi yok"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 kişi bulundu"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> kişi bulundu"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kişi bulundu</item>
+      <item quantity="one">1 kişi bulundu</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> için hızlı kişi"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Adsız)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Sık arananlar"</string>
@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Telefon numarası olan tüm kişiler"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Güncellemeleri görüntüle"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Yalnızca tablet, senkronize değil"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Yalnızca telefon, senkronize değil"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Yalnızca telefonda saklanan, senkronize olmayan"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Adı"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Takma ad"</string>
     <string name="full_name" msgid="885420216812981202">"Adı"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"Kısa mesaj"</string>
     <string name="postal_address" msgid="7692926530081579786">"Adres"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Şirket"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Başlık"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Unvan"</string>
     <string name="label_notes" msgid="3997277594846722699">"Notlar"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Web sitesi"</string>
@@ -154,12 +154,12 @@
     <string name="display_more_groups" msgid="6304997485733158224">"Diğer gruplar..."</string>
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" adlı grubu senkronizasyondan kaldırmak, gruplanmamış tüm kişilerin de senkronizasyondan kaldırılmasına neden olur."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Görüntüleme seçenekleri kaydediliyor..."</string>
-    <string name="menu_done" msgid="32470053723443112">"Tamamlandı"</string>
+    <string name="menu_done" msgid="32470053723443112">"Tamam"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"İptal"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> hesabındaki kişiler"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Özel görünümdeki kişiler"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Tek kişi"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Hesap altında kişi oluştur"</string>
+    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Şu hesap altında kişi oluştur:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM karttan içe aktar"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM\'den (<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>) içe aktar"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"SIM\'den (<xliff:g id="SIM_NAME">%1$s</xliff:g>) içe aktar"</string>
@@ -222,7 +222,7 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD kart taranamadı. (Nedeni: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"İçe aktarılıyor <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Depolama birimine aktar"</string>
-    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sıralama ölçütü:"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sıralama ölçütü"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ad"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Soyadı"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Ad biçimi"</string>

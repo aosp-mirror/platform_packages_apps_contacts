@@ -20,7 +20,7 @@
     <string name="toast_text_copied" msgid="8327159932780920627">"テキストをコピーしました"</string>
     <string name="call_custom" msgid="2786306789889210756">"<xliff:g id="CUSTOM">%s</xliff:g>に発信"</string>
     <string name="call_home" msgid="1479549630992276827">"自宅に発信"</string>
-    <string name="call_mobile" msgid="8618334085824709009">"携帯端末に発信"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"モバイル端末に発信"</string>
     <string name="call_work" msgid="8299062439076337075">"勤務先に発信"</string>
     <string name="call_fax_work" msgid="3770754834467992571">"勤務先FAXに発信"</string>
     <string name="call_fax_home" msgid="6219051113573396065">"自宅FAXに発信"</string>
@@ -35,13 +35,13 @@
     <string name="call_radio" msgid="9055749313292712021">"無線に発信"</string>
     <string name="call_telex" msgid="2909886619224843563">"テレックスに発信"</string>
     <string name="call_tty_tdd" msgid="6704940636171078852">"TTY/TDDに発信"</string>
-    <string name="call_work_mobile" msgid="4408630608955148641">"携帯端末（勤務先）に発信"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"モバイル端末（勤務先）に発信"</string>
     <string name="call_work_pager" msgid="3036932765279753793">"ポケベル（勤務先）に発信"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g>に発信"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMSに発信"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g>にSMS"</string>
     <string name="sms_home" msgid="7765831490534280540">"自宅にSMS"</string>
-    <string name="sms_mobile" msgid="8387632124165893103">"携帯端末にSMS"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"モバイル端末にSMS"</string>
     <string name="sms_work" msgid="3910570578912367742">"勤務先にSMS"</string>
     <string name="sms_fax_work" msgid="909086167151248212">"勤務先FAXにSMS"</string>
     <string name="sms_fax_home" msgid="4145442497939634875">"自宅FAXにSMS"</string>
@@ -56,7 +56,7 @@
     <string name="sms_radio" msgid="8750339218480745940">"無線にSMS"</string>
     <string name="sms_telex" msgid="5469333785775443999">"テレックスにSMS"</string>
     <string name="sms_tty_tdd" msgid="5057886576150816002">"TTY/TDDにSMS"</string>
-    <string name="sms_work_mobile" msgid="8426872094268475047">"携帯端末（勤務先）にSMS"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"モバイル端末（勤務先）にSMS"</string>
     <string name="sms_work_pager" msgid="499303540738557836">"ポケベル（勤務先）にSMS"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g>にSMS"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMSにSMS"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"検索しています…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>件以上見つかりました。"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"連絡先はありません"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1件見つかりました"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g>件見つかりました"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>件見つかりました</item>
+      <item quantity="one">1件見つかりました</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g>さんのクイックコンタクト"</string>
     <string name="missing_name" msgid="2633118852693000081">"（名前なし）"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"よく使う連絡先"</string>
@@ -96,9 +96,9 @@
     <string name="name_prefix" msgid="8219879405071462309">"敬称（名前の前）"</string>
     <string name="name_middle" msgid="3951610314424632183">"ミドルネーム"</string>
     <string name="name_suffix" msgid="5436984808550075931">"敬称（名前の後）"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"よみがな"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"フリガナ"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"フリガナ（名）"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"ミドルネームのよみがな"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"フリガナ（ミドルネーム）"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"フリガナ（姓）"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"電話"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"メール"</string>
@@ -116,7 +116,7 @@
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"ウェブサイト"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"グループ"</string>
     <string name="email_home" msgid="2230967805906450693">"自宅にメール"</string>
-    <string name="email_mobile" msgid="7532438378678903685">"携帯端末にメール"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"モバイル端末にメール"</string>
     <string name="email_work" msgid="7065971921227432400">"勤務先にメール"</string>
     <string name="email_other" msgid="4601881243553289615">"メール"</string>
     <string name="email_custom" msgid="5777583741581538870">"<xliff:g id="CUSTOM">%s</xliff:g>にメール"</string>
@@ -187,7 +187,7 @@
     <string name="exporting_contact_list_message" msgid="3955619563572081300">"連絡先データを<xliff:g id="FILE_NAME">%s</xliff:g>にエクスポートします。"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"データベース情報を取得できませんでした。"</string>
     <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"エクスポートできる連絡先がありません。タブレットに連絡先がある場合でも、データプロバイダによってはタブレットから連絡先をエクスポートできないことがあります。"</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"エクスポートできる連絡先がありません。携帯端末に連絡先がある場合でも、データプロバイダによっては携帯端末から連絡先をエクスポートできないことがあります。"</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"エクスポートできる連絡先がありません。モバイル端末に連絡先がある場合でも、データプロバイダによってはモバイル端末から連絡先をエクスポートできないことがあります。"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCardコンポーザーが正しく起動しませんでした。"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"エクスポート失敗"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"連絡先データはエクスポートされませんでした。\n理由: 「<xliff:g id="FAIL_REASON">%s</xliff:g>」"</string>

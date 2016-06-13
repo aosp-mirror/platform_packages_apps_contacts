@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Bilatzen…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> baino gehiago aurkitu dira."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ez dago kontakturik."</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 aurkitu da"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> aurkitu dira"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> aurkitu dira</item>
+      <item quantity="one">Bat aurkitu da</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Honen kontaktu bizkorra: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Izenik ez)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Sarri deitutakoak"</string>
@@ -86,8 +86,8 @@
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ikusi kontaktua"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Telefono-zenbakiak dituzten kontaktu guztiak"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ikusi berritasunak"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Tabletan soilik, sinkronizatu gabe"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Telefonoan soilik, sinkronizatu gabe"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Tabletan soilik, sinkronizatu gabeko"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Telefonoan soilik, sinkronizatu gabeko"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Izena"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Goitizena"</string>
     <string name="full_name" msgid="885420216812981202">"Izena"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"Testu-mezua"</string>
     <string name="postal_address" msgid="7692926530081579786">"Helbidea"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Enpresa"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Izena"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Lanpostua"</string>
     <string name="label_notes" msgid="3997277594846722699">"Oharrak"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webgunea"</string>
@@ -229,14 +229,14 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Izena lehenengo"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Abizena lehenengo"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partekatu ikusgai dauden kontaktuak"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Inportatu edo esportatu kontaktuak"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Inportatu/Esportatu kontaktuak"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Inportatu kontaktuak"</string>
     <string name="share_error" msgid="665756457151793108">"Ezin da kontaktua partekatu."</string>
     <string name="menu_search" msgid="7464453023659824700">"Bilatu"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Bistaratzeko kontaktuak"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Bistaratzeko kontaktuak"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"Definitu ikuspegi pertsonalizatua"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Aurkitu kontaktuak"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Bilatu kontaktuak"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Gogokoak"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ez dago kontakturik."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ez dago ikusgai dagoen kontakturik."</string>
@@ -245,7 +245,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Garbitu sarri erabilitakoak"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Hautatu SIM txartela"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Kontuak"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"Inportatu/esportatu"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Inportatu/Esportatu"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> bidez"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>, <xliff:g id="SOURCE">%2$s</xliff:g> bidez"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"gelditu bilaketa"</string>

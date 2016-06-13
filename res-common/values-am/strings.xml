@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"በመፈለግ ላይ…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"ከ<xliff:g id="COUNT">%d</xliff:g> በላይ ተገኝተዋል።"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"ምንም እውቂያዎች የሉም"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 ተገኝቷል"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ተገኝተዋል"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ተገኝቷል</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ተገኝተዋል</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"ለ<xliff:g id="NAME">%1$s</xliff:g> ፈጣን ዕውቂያ"</string>
     <string name="missing_name" msgid="2633118852693000081">"(ስም የለም)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"በተደጋጋሚ የተደወለለት/ላት"</string>
@@ -92,14 +92,14 @@
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ቅጽል ስም"</string>
     <string name="full_name" msgid="885420216812981202">"ስም"</string>
     <string name="name_given" msgid="4153709115654909377">"የመጀመሪያ ስም"</string>
-    <string name="name_family" msgid="5317387657540738981">"የመጠሪያ ስም"</string>
+    <string name="name_family" msgid="5317387657540738981">"የመጨረሻ ስም"</string>
     <string name="name_prefix" msgid="8219879405071462309">"ቅድመ-ስም"</string>
     <string name="name_middle" msgid="3951610314424632183">"የመካከለኛ ስም"</string>
     <string name="name_suffix" msgid="5436984808550075931">"ድህረ-ስም"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"የድምፀ ልሳን ስም"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"የመጀመሪያ ስም ፎነቲክ"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"የድምፀ ልሳን መካከለኛ ስም"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"የመጠሪያ ስም ፎነቲክ"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"የመጨረሻ ስም ፎነቲክ"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ስልክ"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ኢሜይል"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"አድራሻ"</string>
@@ -224,10 +224,10 @@
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"ወደ ማከማቻ ይላኩ"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ደርድር በ"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"የመጀመሪያ ስም"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"የመጠሪያ ስም"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"የመጨረሻ ስም"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"የስም ቅርጸት"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"የመጀመሪያ ስም መጀመሪያ"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"የመጠሪያ ስም መጀመሪያ"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"የመጨረሻ ስም መጀመሪያ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"የሚታዩ እውቂያዎችን አጋራ"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"ዕውቂያዎች ያስመጡ/ይላኩ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"እውቅያዎችን ያስመጡ"</string>

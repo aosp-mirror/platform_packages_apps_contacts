@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Haetaan..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Löytyi yli <xliff:g id="COUNT">%d</xliff:g> yhteystietoa."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ei yhteystietoja"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Löytyi 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Löytyi <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> löytyi</item>
+      <item quantity="one">1 löytyi</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Pikayhteys henkilöön <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Ei nimeä)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Soitettu usein"</string>
@@ -86,7 +86,7 @@
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Näytä kontakti"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Kaikki kontaktit, joilla on puhelinnumero"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Näytä päivitykset"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Vain tablet-laite, ei synkronoitu"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"Vain tabletti, ei synkronoitu"</string>
     <string name="account_phone" product="default" msgid="6104157990869081962">"Vain puhelin, ei synkronoitu"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nimi"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Lempinimi"</string>
@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"Valmis"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Peruuta"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Yhteystiedot tilissä <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Yhteystiedot muokatussa näkymässä"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Muokatun näkymän yhteystiedot"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Yksi yhteystieto"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Luo yhteystieto tilissä"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Tuo SIM-kortilta"</string>
@@ -231,7 +231,7 @@
     <string name="share_visible_contacts" msgid="2150662668080757107">"Jaa näkyvät yhteystiedot"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Tuo/vie yhteystietoja"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Tuo yhteystietoja"</string>
-    <string name="share_error" msgid="665756457151793108">"Tätä yhteystietoa ei voi jakaa."</string>
+    <string name="share_error" msgid="665756457151793108">"Yhteystieto ei jaettavissa"</string>
     <string name="menu_search" msgid="7464453023659824700">"Haku"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Näytettävät yhteystiedot"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Näytettävät yhteystiedot"</string>

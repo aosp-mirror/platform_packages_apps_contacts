@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Send sms til mms"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Foretag videoopkald"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vil du rydde de ofte kontaktede?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Hvis du gør dette, rydder du listen over personer, som du ofte kontakter, i appene Personer og Telefon. Du vil samtidig tvinge e-mailapps til at lære dine adressepræferencer fra bunden."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Hvis du gør dette, rydder du listen over personer, som du ofte kontakter, i appene Personer og Opkald. Du vil samtidig tvinge e-mailapps til at lære dine adressepræferencer fra bunden."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Ofte kontaktede personer ryddes…"</string>
     <string name="status_available" msgid="4832569677396634846">"Tilgængelig"</string>
     <string name="status_away" msgid="6267905184545881094">"Ikke til stede"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Søger..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Der er fundet mere end <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ingen kontaktpersoner"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Én fundet"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> fundet"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one">Der blev fundet <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="other">Der blev fundet <xliff:g id="COUNT">%d</xliff:g></item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Hurtig kontakt til <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Intet navn)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Ofte ringet til"</string>
@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Alle kontaktpersoner med telefonnumre"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Se opdateringer"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Kun tablet, ikke synkroniseret"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Kun telefon, ikke synkroniseret"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Kun telefon, ikke synk."</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Navn"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Kaldenavn"</string>
     <string name="full_name" msgid="885420216812981202">"Navn"</string>
@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"Færdig"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Annuller"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontaktpersoner i <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kontaktpersoner i tilpasset visning"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Kontakter i tilpasset visning"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Enkelt kontaktperson"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Opret kontaktperson på konto"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importér fra SIM-kort"</string>

@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"กำลังค้นหา…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"พบมากกว่า <xliff:g id="COUNT">%d</xliff:g> รายการ"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"ไม่มีรายชื่อติดต่อ"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"พบ 1 รายการ"</item>
-    <item quantity="other" msgid="4649647748678161594">"พบ <xliff:g id="COUNT">%d</xliff:g> รายการ"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">พบ <xliff:g id="COUNT">%d</xliff:g> รายการ</item>
+      <item quantity="one">พบ 1 รายการ</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"สมุดโทรศัพท์ด่วนสำหรับ <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(ไม่มีชื่อ)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"โทรติดต่อบ่อย"</string>

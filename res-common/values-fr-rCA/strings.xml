@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Recherche en cours..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Plus de <xliff:g id="COUNT">%d</xliff:g> contacts ont été trouvés."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Aucun contact"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 contact trouvé"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> contacts trouvés"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> résultat</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> résultats</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Lien rapide vers <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Sans nom)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Appels fréquents"</string>
@@ -101,7 +101,7 @@
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Deuxième prénom phonétique"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Prononciation du nom de famille"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Numéro de téléphone"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"Adresse de courriel :"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Adresse de courriel"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresse"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"MI"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Entreprise"</string>
@@ -118,9 +118,9 @@
     <string name="email_home" msgid="2230967805906450693">"Envoyer un courriel au domicile"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Envoyer un courriel sur le mobile"</string>
     <string name="email_work" msgid="7065971921227432400">"Envoyer un courriel au bureau"</string>
-    <string name="email_other" msgid="4601881243553289615">"Adresse de courriel :"</string>
+    <string name="email_other" msgid="4601881243553289615">"Envoyer un courriel"</string>
     <string name="email_custom" msgid="5777583741581538870">"Envoyer un courriel à <xliff:g id="CUSTOM">%s</xliff:g>"</string>
-    <string name="email" msgid="5624424151176351591">"Adresse de courriel :"</string>
+    <string name="email" msgid="5624424151176351591">"Envoyer un courriel"</string>
     <string name="postal_street" msgid="881349814077356134">"Rue"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"Case postale"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"Quartier"</string>
@@ -229,8 +229,8 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Prénom en premier"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nom de famille en premier"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partager les contacts visibles"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Importer/Exporter des contacts"</string>
-    <string name="dialog_import" msgid="5177004290082451296">"Téléverser des contacts"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Importer/exporter des contacts"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Importer des contacts"</string>
     <string name="share_error" msgid="665756457151793108">"Impossible de partager ce contact."</string>
     <string name="menu_search" msgid="7464453023659824700">"Rechercher"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Contacts à afficher"</string>
@@ -245,7 +245,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Effacer les contacts fréquents"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Sélectionner une carte SIM"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Comptes"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"Importer/Exporter"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Importer/exporter"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"par <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> par <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"arrêter la recherche"</string>

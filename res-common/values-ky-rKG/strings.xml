@@ -75,24 +75,19 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Изделүүдө…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> ашык табылды."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Эч бир байланыш жок"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 табылды"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> табылды"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> табылды</item>
+      <item quantity="one">1 табылды</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> үчүн тез байланышуу"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Аты жок)"</string>
-    <!-- no translation found for favoritesFrequentCalled (6600127125011757687) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentContacted (2849493314447751970) -->
-    <skip />
-    <!-- no translation found for description_view_contact_detail (2756753096193839285) -->
-    <!-- no translation found for description_view_contact_detail (2795575601596468581) -->
-    <skip />
-    <!-- no translation found for list_filter_phones (3692815632088465422) -->
-    <skip />
+    <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Көп чалынган"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Көп байланышып турган"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Байланышты карап көрүү"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Телефон номерлери бар бардык байланыштар"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Жаңыртууларды көрүү"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Планшет үчүн гана, сихрондоштурулбаган"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Телефон үчүн гана, сихрондоштурулбаган"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Телефондо гана, шайкештирилбейт"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Аты"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Каймана аты"</string>
     <string name="full_name" msgid="885420216812981202">"Аты"</string>
@@ -102,11 +97,11 @@
     <string name="name_middle" msgid="3951610314424632183">"Атасынын аты"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Атынын суффикси"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Фонетикалык аты"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Фонетикалык ысымы"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Атасынын фонетикалык аты"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Фонетикалык фамилиясы"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Ысымы (транскрипция)"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Атасынын аты (транскрипция)"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Фамилия (транскрипция)"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефону"</string>
-    <string name="emailLabelsGroup" msgid="4696310712601184208">"Эмейл"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Электрондук почта"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Дареги"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Иштеген жери"</string>
@@ -123,9 +118,9 @@
     <string name="email_home" msgid="2230967805906450693">"Үй дарегине эмейлдөө"</string>
     <string name="email_mobile" msgid="7532438378678903685">"Мобилге эмейлдөө"</string>
     <string name="email_work" msgid="7065971921227432400">"Жумушка эмейлдөө"</string>
-    <string name="email_other" msgid="4601881243553289615">"Эмейл"</string>
+    <string name="email_other" msgid="4601881243553289615">"Электрондук кат жазуу"</string>
     <string name="email_custom" msgid="5777583741581538870">"<xliff:g id="CUSTOM">%s</xliff:g> эмейл жөнөтүү"</string>
-    <string name="email" msgid="5624424151176351591">"Эмейл"</string>
+    <string name="email" msgid="5624424151176351591">"Email"</string>
     <string name="postal_street" msgid="881349814077356134">"Көчөсү"</string>
     <string name="postal_pobox" msgid="1799978742074885091">"Абонент кутусу"</string>
     <string name="postal_neighborhood" msgid="3721092668038527674">"Району"</string>
@@ -250,7 +245,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Көп чалуулар тизмесин тазалоо"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM карта тандаңыз"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Эсептер"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"Импортоо/экспортоо"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Импорттоо/экспорттоо"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> аркылуу"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>  <xliff:g id="SOURCE">%2$s</xliff:g> аркылуу"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"издөөнү токтотуу"</string>

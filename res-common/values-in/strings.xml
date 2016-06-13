@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Menelusuri…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Ditemukan lebih dari <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Tidak ada kontak"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Ditemukan 1"</item>
-    <item quantity="other" msgid="4649647748678161594">"Ditemukan <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ditemukan</item>
+      <item quantity="one">1 ditemukan</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Kontak cepat untuk <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Tanpa nama)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Paling sering dipanggil"</string>
@@ -110,7 +110,7 @@
     <string name="sms" msgid="8086289395154598654">"Pesan teks"</string>
     <string name="postal_address" msgid="7692926530081579786">"Alamat"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Perusahaan"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Judul"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Jabatan"</string>
     <string name="label_notes" msgid="3997277594846722699">"Catatan"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Situs web"</string>
@@ -226,8 +226,8 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Nama depan"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Nama belakang"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Format nama"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nama depan pertama"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nama belakang pertama"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nama depan terlebih dulu"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nama belakang terlebih dulu"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Bagikan kontak yang terlihat"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Impor/ekspor kontak"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Impor kontak"</string>
@@ -252,6 +252,6 @@
     <string name="description_clear_search" msgid="3893511425518852086">"Hapus penelusuran"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Opsi tampilan kontak"</string>
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Akun"</string>
-    <string name="set_default_account" msgid="3865970860434642695">"Selalu gunakan ini untuk panggilan"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Selalu gunakan ini untuk telepon"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Telepon dengan"</string>
 </resources>

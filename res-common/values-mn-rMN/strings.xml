@@ -28,7 +28,7 @@
     <string name="call_other" msgid="4472141328347894937">"Залгах"</string>
     <string name="call_callback" msgid="687494744634190411">"Дуудлага хүлээж авахаар залгах"</string>
     <string name="call_car" msgid="9078083109758282133">"Машин руу залгах"</string>
-    <string name="call_company_main" msgid="8768047233970315359">"Компанийн үндсэн дугаар руу залгах"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Компаний үндсэн дугаар руу залгах"</string>
     <string name="call_isdn" msgid="3342482563847537747">"ISDN руу залгах"</string>
     <string name="call_main" msgid="4640261071249938558">"Үндсэн дугаар руу залгах"</string>
     <string name="call_other_fax" msgid="2536328553125487877">"Факс руу залгах"</string>
@@ -49,7 +49,7 @@
     <string name="sms_other" msgid="910895193552957097">"Зурвас илгээх"</string>
     <string name="sms_callback" msgid="728414485478941361">"Дуудлага авах зурвас илгээх"</string>
     <string name="sms_car" msgid="8543669230270954512">"Машин руу зурвас илгээх"</string>
-    <string name="sms_company_main" msgid="5441902128445061862">"Компанийн үндсэн дугаар руу зурвас илгээх"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Компаний үндсэн дугаар руу зурвас илгээх"</string>
     <string name="sms_isdn" msgid="7142483128948042667">"ISDN рүү зурвас илгээх"</string>
     <string name="sms_main" msgid="6815987840926184815">"Үндсэн дугаар руу зурвас илгээх"</string>
     <string name="sms_other_fax" msgid="8649822154879781466">"Факс руу зурвас илгээх"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Хайж байна..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g>-с олон олдлоо."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Харилцагч байхгүй"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 олдсон"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> олдсон"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> олдсон байна</item>
+      <item quantity="one">1 олдсон байна</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g>-тай шууд холбогдох"</string>
     <string name="missing_name" msgid="2633118852693000081">"(нэр байхгүй)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Байнга залгасан"</string>
@@ -159,7 +159,7 @@
     <string name="listAllContactsInAccount" msgid="755499980092808715">"<xliff:g id="NAME">%s</xliff:g> доторх харилцагчид"</string>
     <string name="listCustomView" msgid="1915154113477432033">"Хувийн тохиргоотой харагдац дахь харилцагчид"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Ганц харилцагч"</string>
-    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Акаунт дотор харилцагч үүсгэх"</string>
+    <string name="dialog_new_contact_account" msgid="4107520273478326011">"Бүртгэл дотор харилцагч үүсгэх"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM картаас импорт хийх"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>-с импортлох"</string>
     <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>-с импортлох"</string>
@@ -228,11 +228,11 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Өөрийн нэр"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Овог"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Нэрний формат"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Өөрийн нэрийг эхэнд нь"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Нэрийг эхэнд нь"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Овгийг эхэнд нь"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Харагдах харилцагчдыг хуваалцах"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Харилцагчид импорт/экспорт хийх"</string>
-    <string name="dialog_import" msgid="5177004290082451296">"Харилцагчид импорт хийх"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Харилцагчид импортлох/экспортлох"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Харилцагчид импортлох"</string>
     <string name="share_error" msgid="665756457151793108">"Энэ харилцагчийг хуваалцах боломжгүй."</string>
     <string name="menu_search" msgid="7464453023659824700">"Хайх"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Харуулах харилцагчид"</string>
@@ -246,14 +246,14 @@
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> дотор харилцагчид байхгүй"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Байнга харилцсаныг арилгах"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"SIM карт сонгоно уу"</string>
-    <string name="menu_accounts" msgid="795417468541517082">"Акаунт"</string>
+    <string name="menu_accounts" msgid="795417468541517082">"Бүртгэл"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Импорт/экспорт"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g>-р"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g>-н <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"хайлтыг зогсоох"</string>
     <string name="description_clear_search" msgid="3893511425518852086">"Хайлтыг цэвэрлэх"</string>
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Харилцагчийн харагдах сонголт"</string>
-    <string name="select_account_dialog_title" msgid="5509088895267310568">"Акаунт"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"Бүртгэл"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Дуудлагад байнга үүнийг ашиглах"</string>
     <string name="select_phone_account_for_calls" msgid="933905607702811164">"Залгах"</string>
 </resources>

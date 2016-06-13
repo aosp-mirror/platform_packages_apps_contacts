@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Търси се…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Намерени са повече от <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Няма контакти"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 намерен"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> намерени"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">Намерени са <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Намерен е 1</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Бърз контакт за <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Няма име)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Чести обаждания"</string>
@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Всички контакти с телефонни номера"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Преглед на актуализациите"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Само в таблета, несинхронизиран"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Само в телефона, несинхронизиран"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Само в тел., несинхрон."</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псевдоним"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>
@@ -96,21 +96,21 @@
     <string name="name_prefix" msgid="8219879405071462309">"Обръщение"</string>
     <string name="name_middle" msgid="3951610314424632183">"Презиме"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Титла"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Име, както се произнася"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Собствено име, както се произнася"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Презиме, както се произнася"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Фамилно име, както се произнася"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Име (фонетично)"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Собствено име (фонетично)"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Презиме (фонетично)"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Фамилно име (фонетично)"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Имейл"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Адрес"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"Незабавни съобщения"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Организация"</string>
-    <string name="relationLabelsGroup" msgid="3585294036166325520">"Взаимоотношения"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Връзки"</string>
     <string name="eventLabelsGroup" msgid="5633007096910029346">"Специални дати"</string>
     <string name="sms" msgid="8086289395154598654">"Текстово съобщение"</string>
     <string name="postal_address" msgid="7692926530081579786">"Адрес"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Фирма"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Наименование"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Длъжност"</string>
     <string name="label_notes" msgid="3997277594846722699">"Бележки"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Уебсайт"</string>
@@ -157,7 +157,7 @@
     <string name="menu_done" msgid="32470053723443112">"Готово"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Отказ"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Контакти във: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Контакти в персонализиран изглед"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Контакти в персонал. изглед"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Един контакт"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Създаване на контакт в профил"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Импортиране от SIM карта"</string>
@@ -193,7 +193,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Данните за контакта не бяха експортирани.\nПричина: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Не бе намерено хранилище."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Не бе намерена SD карта."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Списъкът ви с контакти ще се експортира във файла: „<xliff:g id="VCARD_FILENAME">%s</xliff:g>“."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Списъкът ви с контакти ще се експортира във файла: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> се импортира"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Данните от vCard не бяха прочетени"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Четенето на данни от vCard е анулирано"</string>
@@ -226,8 +226,8 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Собствено име"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Фамилно име"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Формат на името"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Собственото име първо"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Фамилното име първо"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Първо собственото име"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Първо фамилното име"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Споделяне на видимите контакти"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Импортиране/eкспортиране на контакти"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Импортиране на контактите"</string>
@@ -235,7 +235,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Търсене"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Контакти за показване"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Контакти за показване"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Определяне на персонализиран изглед"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Определяне на изглед"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Намиране на контакти"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Любими"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Няма контакти."</string>

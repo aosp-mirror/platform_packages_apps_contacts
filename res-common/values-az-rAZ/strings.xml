@@ -60,6 +60,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"İş peyceri nömrəsinə mesaj"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Mətn <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS nömrəsinə mesaj"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Video zəng edin"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Tez-tez ünsiyyət qurulanlar silinsin?"</string>
     <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Siz Adamlar və Telefon tətbiqlərində tez-tez ünsiyyət qurulan siyahını təmizləyəcəksiniz və e-poçt tətbiqlərini Sizin ünvan tərcihlərinizi öyrənməyə məcbur edəcəksiniz."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Tez-tez ünsiyyət qurulanlar silinir..."</string>
@@ -74,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Axtarılır..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> ədəddən çox tapılıb."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Kontakt yoxdur"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 tapıldı"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> tapıldı"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> tapıldı</item>
+      <item quantity="one">1 tapıldı</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> üçün tez kontakt"</string>
     <string name="missing_name" msgid="2633118852693000081">"(ad yoxdur)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Tez-tez zəng edilən"</string>
@@ -90,28 +91,28 @@
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Ad"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nik"</string>
     <string name="full_name" msgid="885420216812981202">"Ad"</string>
-    <string name="name_given" msgid="1560204576305608571">"Verilmiş ad"</string>
-    <string name="name_family" msgid="1267097554034721002">"Soyad"</string>
+    <string name="name_given" msgid="4153709115654909377">"Ad"</string>
+    <string name="name_family" msgid="5317387657540738981">"Soyad"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Ad prefiksi"</string>
     <string name="name_middle" msgid="3951610314424632183">"Atasının adı"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Ad suffiksi"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Fonetik adı"</string>
-    <string name="name_phonetic_given" msgid="993707744185923412">"Fonetik verilmiş ad"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetik ad"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetik ata adı"</string>
-    <string name="name_phonetic_family" msgid="8617732497578358951">"Fonetik soyad"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Fonetik soyad"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-poçt"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Ünvan"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Təşkilat"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Əlaqə"</string>
-    <string name="eventLabelsGroup" msgid="536444452517449685">"Tədbirlər"</string>
+    <string name="eventLabelsGroup" msgid="5633007096910029346">"Xüsusi tarixlər"</string>
     <string name="sms" msgid="8086289395154598654">"Mətn mesajı"</string>
     <string name="postal_address" msgid="7692926530081579786">"Ünvan"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Şirkət"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Başlıq"</string>
     <string name="label_notes" msgid="3997277594846722699">"Qeydlər"</string>
-    <string name="label_sip_address" msgid="5849843867753601973">"İnternet zəngi"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Veb sayt"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Qruplar"</string>
     <string name="email_home" msgid="2230967805906450693">"Evə e-məktub"</string>
@@ -160,6 +161,8 @@
     <string name="listSingleContact" msgid="8525131203887307088">"Tək kontakt"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Hesab altında kontakt yaradın"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM kartdan import edin"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM-dən import edin: <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"SIM-dən import edin: <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sdcard" product="default" msgid="6423964533801496764">"Yaddaşdan import edin"</string>
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"<xliff:g id="FILENAME">%s</xliff:g> importu ləğv olunsun?"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"<xliff:g id="FILENAME">%s</xliff:g> eksportu ləğv edilsin?"</string>
@@ -203,7 +206,6 @@
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Vizit kart eksport sorğusu rədd edildi. Daha sonra cəhd edin."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Vizit kart yerli müvəqqəti yaddaşa keşlənir. Hazırkı import tezliklə başlayacaq."</string>
-    <string name="percentage" msgid="6699653515463625488">"<xliff:g id="PERCENTAGE">%s</xliff:g><xliff:g id="PERCENTSIGN">%%</xliff:g>"</string>
     <string name="vcard_import_failed" msgid="4105296876768072508">"Vizit kart import edilə bilmədi."</string>
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"Yaddaşda vizit kartı faylı tapılmadı."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD kartda heç bir vizit kart tapılmadı."</string>
@@ -220,6 +222,12 @@
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD kart skan oluna bilmədi. (Səbəb: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"İmport edilir: <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"Yaddaş ehtiyatına eksport edin"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Bunlardan biri üzrə sırala"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Ad"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Soyad"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Ad formatı"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Ad ilk yazılsın"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Soyad ilk yazılsın"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Görünən kontaktları paylaşın"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Kontaktları import/eksport edin"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kontaktları İmport edin"</string>
@@ -235,8 +243,15 @@
     <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"Favoritlər yoxdur."</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"<xliff:g id="NAME">%s</xliff:g> daxilində kontakt yoxdur"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Müntəzəmləri təmizləyin"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"SIM kart seçin"</string>
     <string name="menu_accounts" msgid="795417468541517082">"Hesablar"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"İmport/eksport"</string>
-    <string name="description_send_message" msgid="2630211225573754774">"<xliff:g id="NAME">%1$s</xliff:g> ünvanına mesaj göndərin"</string>
-    <string name="description_dial_phone_number" msgid="7315580540586351853">"Yığım telefonu <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> vasitəsilə"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="SOURCE">%2$s</xliff:g> vasitəsilə <xliff:g id="DATE">%1$s</xliff:g>"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"axtarışı dayandırın"</string>
+    <string name="description_clear_search" msgid="3893511425518852086">"Axtarışı təmizləyin"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Kontakt göstərilmə seçimləri"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"Hesab"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Həmişə bu zənglər üçün istifadə edin"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Çağrı üçün SIM:"</string>
 </resources>

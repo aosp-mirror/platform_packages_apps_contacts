@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"搜尋中…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"找到 <xliff:g id="COUNT">%d</xliff:g> 位以上的聯絡人。"</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"沒有聯絡人"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"找到 1 位聯絡人"</item>
-    <item quantity="other" msgid="4649647748678161594">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人</item>
+      <item quantity="one">找到 1 位聯絡人</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> 的快速聯絡人相片"</string>
     <string name="missing_name" msgid="2633118852693000081">"(無姓名)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"經常通話"</string>
@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"所有包含電話號碼的聯絡人資訊"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"查看最新動態"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"僅儲存在平板電腦中 (不同步處理)"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"僅儲存在手機中 (不同步處理)"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"僅儲存在手機中，不同步"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"姓名"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"暱稱"</string>
     <string name="full_name" msgid="885420216812981202">"姓名"</string>
@@ -97,9 +97,9 @@
     <string name="name_middle" msgid="3951610314424632183">"中間名"</string>
     <string name="name_suffix" msgid="5436984808550075931">"姓名後稱銜"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"姓名拼音"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"拼音名字"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"中間名 (拼音)"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"拼音姓氏"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"名字拼音"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"中間名拼音"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"姓氏拼音"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"電話號碼"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"電子郵件"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"地址"</string>
@@ -237,10 +237,10 @@
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"要顯示的聯絡人"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"定義自訂檢視"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"尋找聯絡人"</string>
-    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"最愛的聯絡人"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"常用聯絡人"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"沒有聯絡人。"</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"沒有可顯示的聯絡人。"</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"沒有最愛的聯絡人。"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="4176827228429279164">"沒有常用聯絡人。"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"「<xliff:g id="NAME">%s</xliff:g>」中沒有聯絡人"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"清除常用聯絡人"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"選取 SIM 卡"</string>

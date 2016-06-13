@@ -75,10 +75,11 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Notiek meklēšana…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Atrastas vairāk nekā <xliff:g id="COUNT">%d</xliff:g> kontaktpersonas."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Nav kontaktpersonu"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"Atrasta 1 kontaktpersona"</item>
-    <item quantity="other" msgid="4649647748678161594">"Atrastas <xliff:g id="COUNT">%d</xliff:g> kontaktpersonas"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="zero">Atrastas <xliff:g id="COUNT">%d</xliff:g> kontaktpersonas</item>
+      <item quantity="one">Atrasta <xliff:g id="COUNT">%d</xliff:g> kontaktpersona</item>
+      <item quantity="other">Atrastas <xliff:g id="COUNT">%d</xliff:g> kontaktpersonas</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Ātrā saziņa ar kontaktpersonu <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Nav vārda)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Kontaktpersonas, kurām bieži zvanāt"</string>
@@ -95,7 +96,7 @@
     <string name="name_family" msgid="5317387657540738981">"Uzvārds"</string>
     <string name="name_prefix" msgid="8219879405071462309">"Uzruna"</string>
     <string name="name_middle" msgid="3951610314424632183">"Otrais vārds"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Tituls"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Uzruna"</string>
     <string name="name_phonetic" msgid="2249169131785620210">"Vārda un uzvārda izruna"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Vārda izruna"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"Otrā vārda izruna"</string>
@@ -157,7 +158,7 @@
     <string name="menu_done" msgid="32470053723443112">"Gatavs"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Atcelt"</string>
     <string name="listAllContactsInAccount" msgid="755499980092808715">"Kontaktpersonas sarakstā <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kontaktpersonas pielāgotā skatījumā"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Lietotāju filtrs"</string>
     <string name="listSingleContact" msgid="8525131203887307088">"Viena kontaktpersona"</string>
     <string name="dialog_new_contact_account" msgid="4107520273478326011">"Izveidot jaunu kontaktpersonu kontā"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importēt no SIM kartes"</string>
@@ -235,7 +236,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Meklēt"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Rādāmās kontaktpersonas"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Rādāmās kontaktpersonas"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Pielāgotā skatījuma definēšana"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Kontaktu grupas izvēle"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"Meklēt kontaktpersonas"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Izlase"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nav kontaktpersonu."</string>

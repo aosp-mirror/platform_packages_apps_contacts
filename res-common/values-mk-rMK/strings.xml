@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Се пребарува..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Повеќе од <xliff:g id="COUNT">%d</xliff:g> се пронајдени."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Нема контакти"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 пронајден"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> пронајдени"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> пронајден</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> пронајдени</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Брз контакт за <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Без име)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Често повикувани"</string>
@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Сите контакти со телефонски броеви"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Прикажи ажурирања"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Само таблет, несинхронизиран"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Само телефон, несинхрнизиран"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Само на телефон, несинхронизиран"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Прекар"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>
@@ -112,7 +112,7 @@
     <string name="ghostData_company" msgid="22470841482615409">"Компанија"</string>
     <string name="ghostData_title" msgid="6221293237772204604">"Име"</string>
     <string name="label_notes" msgid="3997277594846722699">"Белешки"</string>
-    <string name="label_sip_address" msgid="3754551597798479318">"СИП"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Веб-сајт"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Групи"</string>
     <string name="email_home" msgid="2230967805906450693">"Домашна е-пошта"</string>
@@ -145,7 +145,7 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Отвори или затвори полиња со име"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Сите контакти"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Со ѕвезда"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"Прилагоди"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Приспособи"</string>
     <string name="list_filter_single" msgid="4553809449379139446">"Контакт"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"Сите други контакти"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"Сите контакти"</string>

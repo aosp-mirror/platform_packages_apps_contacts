@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"<xliff:g id="COUNT">%d</xliff:g> ಗಿಂತ ಹೆಚ್ಚಾಗಿ ಕಂಡುಬಂದಿದೆ."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 ಕಂಡುಬಂದಿದೆ"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> ಕಂಡುಬಂದಿದೆ"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ಕಂಡುಬಂದಿದೆ</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ಕಂಡುಬಂದಿದೆ</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"<xliff:g id="NAME">%1$s</xliff:g> ಇವರಿಗಾಗಿ ತಕ್ಷಣದ ಸಂಪರ್ಕ"</string>
     <string name="missing_name" msgid="2633118852693000081">"(ಯಾವುದೇ ಹೆಸರಿಲ್ಲ)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"ಪದೇ ಪದೇ ಕರೆ ಮಾಡಲಾಗಿದೆ"</string>
@@ -86,8 +86,8 @@
     <string name="description_view_contact_detail" msgid="2756753096193839285">"ಸಂಪರ್ಕವನ್ನು ವೀಕ್ಷಿಸಿ"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ ಎಲ್ಲ ಸಂಪರ್ಕಗಳು"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"ನವೀಕರಣಗಳನ್ನು ವೀಕ್ಷಿಸಿ"</string>
-    <string name="account_phone" product="tablet" msgid="1143884271396601338">"ಟ್ಯಾಬ್ಲೆಟ್‌ ಮಾತ್ರ, ಅನ್‌ಸಿಂಕ್‌ ಮಾಡಲಾಗಿದೆ"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"ಫೋನ್‌ ಮಾತ್ರ, ಅನ್‌ಸಿಂಕ್‌‌ ಮಾಡಲಾಗಿದೆ"</string>
+    <string name="account_phone" product="tablet" msgid="1143884271396601338">"ಟ್ಯಾಬ್ಲೆಟ್‌ ಮಾತ್ರ, ಅನ್‌ಸಿಂಕ್‌ ಮಾಡಲಾದ"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"ಫೋನ್‌ ಮಾತ್ರ, ಅನ್‌ಸಿಂಕ್‌‌ ಮಾಡಲಾದ"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ಹೆಸರು"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ಅಡ್ಡಹೆಸರು"</string>
     <string name="full_name" msgid="885420216812981202">"ಹೆಸರು"</string>
@@ -96,10 +96,10 @@
     <string name="name_prefix" msgid="8219879405071462309">"ಹೆಸರಿನ ಪೂರ್ವಪ್ರತ್ಯಯ"</string>
     <string name="name_middle" msgid="3951610314424632183">"ಮಧ್ಯದ ಹೆಸರು"</string>
     <string name="name_suffix" msgid="5436984808550075931">"ಹೆಸರಿನ ಪ್ರತ್ಯಯ"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"ಉಚ್ಚಾರಣೆ ಹೆಸರು"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"ಉಚ್ಛಾರಣಾನುರೂಪವಾದ ಮೊದಲ ಹೆಸರು"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"ಉಚ್ಚಾರಣಾನುರೂಪವಾಗಿ ಮಧ್ಯದ ಹೆಸರು"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"ಉಚ್ಛಾರಣಾನುರೂಪವಾದ ಕೊನೆಯ ಹೆಸರು"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"ಫೋನೆಟಿಕ್‌‌ ಹೆಸರು"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"ಫೋನೆಟಿಕ್‌ ಮೊದಲ ಹೆಸರು"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"ಫೋನೆಟಿಕ್‌‌ ಮಧ್ಯ ಹೆಸರು"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"ಫೋನೆಟಿಕ್‌‌ ಕೊನೆಯ ಹೆಸರು"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"ಫೋನ್"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"ಇಮೇಲ್"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"ವಿಳಾಸ"</string>
@@ -145,7 +145,7 @@
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"ಹೆಸರಿನ ಕ್ಷೇತ್ರಗಳನ್ನು ವಿಸ್ತರಿಸಿ ಅಥವಾ ಸಂಕುಚಿಸಿ"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳು"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"ನಕ್ಷತ್ರ ಹಾಕಿರುವುದು"</string>
-    <string name="list_filter_customize" msgid="2352794292558465089">"ಕಸ್ಟಮೈಜ್‌ ಮಾಡಿ"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"ಕಸ್ಟಮೈಜ್‌"</string>
     <string name="list_filter_single" msgid="4553809449379139446">"ಸಂಪರ್ಕ"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"ಇತರ ಎಲ್ಲ ಸಂಪರ್ಕಗಳು"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳು"</string>
@@ -193,7 +193,7 @@
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ರಫ್ತು ಮಾಡಲಿಲ್ಲ.\nಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"ಯಾವುದೇ ಸಂಗ್ರಹಣೆ ಪತ್ತೆಯಾಗಿಲ್ಲ."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"ಯಾವುದೇ SD ಕಾರ್ಡ್‌ ಪತ್ತೆಯಾಗಿಲ್ಲ."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"ನಿಮ್ಮ ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ಫೈಲ್‌ಗೆ ರಫ್ತುಮಾಡಲಾಗುತ್ತದೆ: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"ನಿಮ್ಮ ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ಫೈಲ್‌ಗೆ ರವಾನಿಸಲಾಗುತ್ತದೆ: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"vCard ಡೇಟಾವನ್ನು ಓದಲಾಗಲಿಲ್ಲ"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"vCard ಡೇಟಾ ಓದುವಿಕೆ ರದ್ದಗೊಳಿಸಲಾಗಿದೆ"</string>
@@ -210,7 +210,7 @@
     <string name="import_failure_no_vcard_file" product="nosdcard" msgid="2066107150525521097">"ಸಂಗ್ರಹಣೆಯಲ್ಲಿ ಯಾವುದೇ vCard ಫೈಲ್‌ ಕಂಡುಬಂದಿಲ್ಲ."</string>
     <string name="import_failure_no_vcard_file" product="default" msgid="1748300468382501403">"SD ಕಾರ್ಡ್‌ನಲ್ಲಿ ಯಾವುದೇ vCard ಫೈಲ್‌ ಕಂಡುಬಂದಿಲ್ಲ."</string>
     <string name="nfc_vcard_file_name" msgid="305679412445157370">"NFC ಮೂಲಕ ಸ್ವೀಕರಿಸಲಾದ ಸಂಪರ್ಕ"</string>
-    <string name="confirm_export_title" msgid="3240899428149018226">"ಸಂಪರ್ಕಗಳನ್ನು ರಫ್ತು ಮಾಡುವುದೇ?"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"ಸಂಪರ್ಕಗಳನ್ನು ರವಾನಿಸುವುದೇ?"</string>
     <string name="select_vcard_title" msgid="1536575036597557639">"vCard ಫೈಲ್‌ ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="import_one_vcard_string" msgid="6199149175802496361">"ಒಂದು vCard ಫೈಲ್‌ ಆಮದು ಮಾಡಿ"</string>
     <string name="import_multiple_vcard_string" msgid="8931879029943141122">"ಬಹು vCard ಫೈಲ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
@@ -221,20 +221,20 @@
     <string name="scanning_sdcard_failed_message" product="nosdcard" msgid="8442457519490864500">"ಸಂಗ್ರಹಣೆಯನ್ನು ಸ್ಕ್ಯಾನ್‌ ಮಾಡಲಾಗಲಿಲ್ಲ. (ಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="scanning_sdcard_failed_message" product="default" msgid="1409798274361146091">"SD ಕಾಡ್‌ ಸ್ಕ್ಯಾನ್‌ ಮಾಡಲಾಗಲಿಲ್ಲ. (ಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\")"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"ಸಂಗ್ರಹಣೆಗೆ ರಫ್ತುಮಾಡಿ"</string>
+    <string name="export_to_sdcard" product="default" msgid="3665618085563543169">"ಸಂಗ್ರಹಣೆಗೆ ರವಾನಿಸಿ"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"ಈ ಪ್ರಕಾರ ವಿಂಗಡಿಸು"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ಮೊದಲ ಹೆಸರು"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"ಕೊನೆಯ ಹೆಸರು"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"ಹೆಸರು ಸ್ವರೂಪ"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"ಹೆಸರಿನ ಫಾರ್ಮ್ಯಾಟ್‌"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ಮೊದಲ ಹೆಸರು ಮೊದಲು"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ಕೊನೆಯ ಹೆಸರು ಮೊದಲು"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"ಗೋಚರಿಸುವ ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ"</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು/ರಫ್ತು ಮಾಡಿ"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು/ರವಾನೆ ಮಾಡಿ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
     <string name="share_error" msgid="665756457151793108">"ಈ ಸಂಪರ್ಕವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>
     <string name="menu_search" msgid="7464453023659824700">"ಹುಡುಕು"</string>
-    <string name="menu_contacts_filter" msgid="586356478145511794">"ಪ್ರದರ್ಶಿಸಲು ಸಂಪರ್ಕಗಳು"</string>
-    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ಪ್ರದರ್ಶಿಸಲು ಸಂಪರ್ಕಗಳು"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"ಪ್ರದರ್ಶನ ಸಂಪರ್ಕಗಳು"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ಪ್ರದರ್ಶನ ಸಂಪರ್ಕಗಳು"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"ಕಸ್ಟಮ್ ವೀಕ್ಷಣೆ ವಿವರಿಸಿ"</string>
     <string name="hint_findContacts" msgid="28151707326753522">"ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ಮೆಚ್ಚಿನವುಗಳು"</string>
@@ -245,7 +245,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"ಪುನರಾವರ್ತನೆಗಳನ್ನು ತೆರುವುಗೊಳಿಸಿ"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"ಸಿಮ್‌ ಕಾರ್ಡ್ ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="menu_accounts" msgid="795417468541517082">"ಖಾತೆಗಳು"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"ಆಮದು/ರಫ್ತು ಮಾಡಿ"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"ಆಮದು/ರವಾನೆ ಮಾಡು"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> ಮೂಲಕ"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> <xliff:g id="SOURCE">%2$s</xliff:g> ಮೂಲಕ"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"ಹುಡುಕಾಟವನ್ನು ನಿಲ್ಲಿಸಿ"</string>

@@ -62,7 +62,7 @@
     <string name="sms_mms" msgid="4887206338311086612">"Sms\'en naar MMS"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Videogesprek starten"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Lijst regelmatige contacten wissen?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"U wist de lijst met contacten waarmee u regelmatig contact opneemt in de apps Personen en Telefoon, en e-mailapps moeten uw voorkeursadressen weer opnieuw leren."</string>
+    <string name="clearFrequentsConfirmation" msgid="2101370440975269958">"Je wist de lijst met contacten waarmee je regelmatig contact opneemt in de apps Personen en Telefoon, en e-mailapps moeten je voorkeursadressen weer opnieuw leren."</string>
     <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Regelmatige contacten wissen..."</string>
     <string name="status_available" msgid="4832569677396634846">"Beschikbaar"</string>
     <string name="status_away" msgid="6267905184545881094">"Niet beschikbaar"</string>
@@ -75,10 +75,10 @@
     <string name="search_results_searching" msgid="9022794597388306615">"Zoeken..."</string>
     <string name="foundTooManyContacts" msgid="3060037437459313616">"Meer dan <xliff:g id="COUNT">%d</xliff:g> gevonden."</string>
     <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Geen contacten"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="1013734912609351182">"1 gevonden"</item>
-    <item quantity="other" msgid="4649647748678161594">"<xliff:g id="COUNT">%d</xliff:g> gevonden"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> gevonden</item>
+      <item quantity="one">1 gevonden</item>
+    </plurals>
     <string name="description_quick_contact_for" msgid="6355240770807101947">"Snelcontact voor <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="2633118852693000081">"(Geen naam)"</string>
     <string name="favoritesFrequentCalled" msgid="6600127125011757687">"Vaak gebeld"</string>
@@ -87,7 +87,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Alle contacten met telefoonnummers"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Updates bekijken"</string>
     <string name="account_phone" product="tablet" msgid="1143884271396601338">"Alleen tablet, niet gesynchroniseerd"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Alleen voor telefoon, niet gesynchroniseerd"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Niet gesynchr. telefoon"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Naam"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Bijnaam"</string>
     <string name="full_name" msgid="885420216812981202">"Naam"</string>
@@ -96,9 +96,9 @@
     <string name="name_prefix" msgid="8219879405071462309">"Voorvoegsel van naam"</string>
     <string name="name_middle" msgid="3951610314424632183">"Tweede voornaam"</string>
     <string name="name_suffix" msgid="5436984808550075931">"Achtervoegsel van naam"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Fonetisch gespelde naam"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Fonetische naam"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetische voornaam"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetisch gespelde tweede voornaam"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetische tweede voornaam"</string>
     <string name="name_phonetic_family" msgid="1572398622239414464">"Fonetische achternaam"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefoon"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"E-mail"</string>
@@ -152,7 +152,7 @@
     <string name="menu_sync_remove" msgid="6581565236520430269">"Synchronisatiegroep verwijderen"</string>
     <string name="dialog_sync_add" msgid="1795682729089027675">"Synchronisatiegroep toevoegen"</string>
     <string name="display_more_groups" msgid="6304997485733158224">"Meer groepen…"</string>
-    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Als u \'<xliff:g id="GROUP">%s</xliff:g>\' verwijdert uit de synchronisatie, worden ook contacten die niet bij een groep horen uit de synchronisatie verwijderd."</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Als je \'<xliff:g id="GROUP">%s</xliff:g>\' verwijdert uit de synchronisatie, worden ook contacten die niet bij een groep horen uit de synchronisatie verwijderd."</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Weergaveopties opslaan..."</string>
     <string name="menu_done" msgid="32470053723443112">"Gereed"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Annuleren"</string>
@@ -184,16 +184,16 @@
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Exporteren van <xliff:g id="FILENAME">%s</xliff:g> voltooid."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Exporteren van <xliff:g id="FILENAME">%s</xliff:g> geannuleerd."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Contactgegevens exporteren"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Uw contactgegevens worden geëxporteerd naar: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Je contactgegevens worden geëxporteerd naar: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Kan databasegegevens niet ophalen."</string>
-    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Er zijn geen exporteerbare contacten. Als u wel contacten op uw tablet heeft opgeslagen, staat uw gegevensprovider het exporteren van contacten van de tablet mogelijk niet toe."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Er zijn geen exporteerbare contacten. Als u wel contacten op uw telefoon heeft opgeslagen, staat uw gegevensprovider het exporteren van contacten van de telefoon mogelijk niet toe."</string>
+    <string name="composer_has_no_exportable_contact" product="tablet" msgid="1534625366506752907">"Er zijn geen exporteerbare contacten. Als je wel contacten op je tablet hebt opgeslagen, staat je gegevensprovider het exporteren van contacten van de tablet mogelijk niet toe."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Er zijn geen exporteerbare contacten. Als je wel contacten op je telefoon hebt opgeslagen, staat je gegevensprovider het exporteren van contacten van de telefoon mogelijk niet toe."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"De vCard-editor is niet correct gestart."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Kan niet exporteren"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"De contactgegevens zijn niet geëxporteerd.\nReden: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
     <string name="no_sdcard_message" product="nosdcard" msgid="5131553549320038333">"Er is geen opslag gevonden."</string>
     <string name="no_sdcard_message" product="default" msgid="3246805937562594626">"Geen SD-kaart gevonden."</string>
-    <string name="confirm_export_message" msgid="7234189779260525384">"Uw lijst met contacten wordt geëxporteerd naar het bestand: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
+    <string name="confirm_export_message" msgid="7234189779260525384">"Je lijst met contacten wordt geëxporteerd naar het bestand: <xliff:g id="VCARD_FILENAME">%s</xliff:g>."</string>
     <string name="importing_vcard_description" msgid="7206609625359484356">"<xliff:g id="NAME">%s</xliff:g> importeren"</string>
     <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Kan vCard-gegevens niet lezen"</string>
     <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Lezen van vCard-gegevens geannuleerd"</string>
@@ -236,7 +236,7 @@
     <string name="menu_contacts_filter" msgid="586356478145511794">"Zichtbare contacten"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Zichtbare contacten"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"Aangepaste weergave definiëren"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Contacten vinden"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Contacten zoeken"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favorieten"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Geen contacten."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Geen zichtbare contacten."</string>
