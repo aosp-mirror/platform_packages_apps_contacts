@@ -16,35 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.common.logging.ScreenEvent.ScreenType;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.GroupMetaDataLoader;
-import com.android.contacts.R;
-import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
-import com.android.contacts.activities.ContactEditorBaseActivity;
-import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.Contact;
-import com.android.contacts.common.model.ContactLoader;
-import com.android.contacts.common.model.RawContact;
-import com.android.contacts.common.model.RawContactDelta;
-import com.android.contacts.common.model.RawContactDeltaList;
-import com.android.contacts.common.model.RawContactModifier;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.common.util.MaterialColorMapUtils;
-import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
-import com.android.contacts.list.UiIntentActions;
-import com.android.contacts.quickcontact.QuickContactActivity;
-import com.android.contacts.util.HelpUtils;
-import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.contacts.util.UiClosables;
-
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
@@ -83,6 +54,34 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.Toast;
+
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.GroupMetaDataLoader;
+import com.android.contacts.R;
+import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
+import com.android.contacts.activities.ContactEditorBaseActivity;
+import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.Contact;
+import com.android.contacts.common.model.ContactLoader;
+import com.android.contacts.common.model.RawContact;
+import com.android.contacts.common.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactDeltaList;
+import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.common.util.MaterialColorMapUtils;
+import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
+import com.android.contacts.list.UiIntentActions;
+import com.android.contacts.quickcontact.QuickContactActivity;
+import com.android.contacts.util.HelpUtils;
+import com.android.contacts.util.PhoneCapabilityTester;
+import com.android.contacts.util.UiClosables;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -1472,6 +1471,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                             QuickContactActivity.MODE_FULLY_EXPANDED);
                     resultIntent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
                             ScreenType.EDITOR);
+                    resultIntent.putExtra(QuickContactActivity.EXTRA_CONTACT_EDITED, true);
                 } else {
                     resultIntent = null;
                 }

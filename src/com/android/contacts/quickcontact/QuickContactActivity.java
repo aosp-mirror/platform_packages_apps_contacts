@@ -209,6 +209,9 @@ public class QuickContactActivity extends ContactsActivity
 
     /** Used to pass the screen where the user came before launching this Activity. */
     public static final String EXTRA_PREVIOUS_SCREEN_TYPE = "previous_screen_type";
+    /** Used to tell the QuickContact that the previous contact was edited, so it can return an
+     * activity result back to the original Activity that launched it. */
+    public static final String EXTRA_CONTACT_EDITED = "contact_edited";
 
     private static final String TAG = "QuickContact";
 
@@ -1209,6 +1212,9 @@ public class QuickContactActivity extends ContactsActivity
             return;
         }
         Uri lookupUri = intent.getData();
+        if (intent.getBooleanExtra(EXTRA_CONTACT_EDITED, false)) {
+            setResult(ContactEditorBaseActivity.RESULT_CODE_EDITED);
+        }
 
         // Check to see whether it comes from the old version.
         if (lookupUri != null && LEGACY_AUTHORITY.equals(lookupUri.getAuthority())) {
