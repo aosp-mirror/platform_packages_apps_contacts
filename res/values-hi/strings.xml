@@ -56,7 +56,7 @@
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"समूह जोड़ें"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"संपर्क अलग करें?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"यह संपर्क एकाधिक संपर्कों में अलग कर दिया जाएगा."</string>
-    <string name="menu_joinAggregate" msgid="5027981918265667970">"जुड़ें"</string>
+    <string name="menu_joinAggregate" msgid="5027981918265667970">"जोड़ें"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"संपर्क जोड़ें"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"वह संपर्क चुनें जिसे आप <xliff:g id="NAME">%s</xliff:g> के साथ जोड़ना चाहते हैं:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सभी संपर्क दिखाएं"</string>
@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"संपर्क परिवर्तन सहेजे नहीं जा सके."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"समूह सहेजा गया."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"समूह परिवर्तन सहेजे नहीं जा सके."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"फ़ोन नंबर वाला 1 संपर्क"</item>
-    <item quantity="other" msgid="3299954047880968205">"फ़ोन नंबर वाले <xliff:g id="COUNT">%d</xliff:g> संपर्क"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="one">फ़ोन नंबर वाले <xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
+      <item quantity="other">फ़ोन नंबर वाले <xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"फ़ोन नंबर वाले कोई संपर्क नहीं"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1 मिला"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> मिले"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> मिले</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> मिले</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"कोई संपर्क नहीं"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1 मिला"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> मिले"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> मिले</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> मिले</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"सभी संपर्क"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"पसंदीदा"</string>
     <string name="callBack" msgid="5498224409038809224">"कॉल बैक करें"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"प्राथमिक फ़ोटो"</string>
     <string name="description_star" msgid="2605854427360036550">"पसंदीदा"</string>
     <string name="edit_contact" msgid="7529281274005689512">"संपर्क संपादित करें"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"मर्ज नहीं किए गए"</item>
-    <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g> स्रोतों से मर्ज किया गया"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> स्रोतों से मर्ज किया गया</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> स्रोतों से मर्ज किया गया</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"वर्तमान संपर्क को चयनित संपर्क से जोड़ें?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित संपर्क के संपादन पर जाएं? आपके द्वारा अभी तक दर्ज की गई जानकारी की प्रतिलिपि बनाई जाएगी."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"मेरे संपर्क में प्रतिलिपि बनाएं"</string>
@@ -188,19 +188,19 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"संपर्क आयात करें"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"नया समूह बनाएं"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"नया समूह बनाएं"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 समूह"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> समूह"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> समूह</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> समूह</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"समूह \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" को हटाएं? (संपर्क स्वयं नहीं हटाए जाएंगे.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> से <xliff:g id="COUNT_0">%1$d</xliff:g> व्‍यक्ति"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> से <xliff:g id="COUNT_0">%1$d</xliff:g> लोग"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> व्‍यक्ति"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> लोग"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> से <xliff:g id="COUNT_2">%1$d</xliff:g> लोग</item>
+      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> से <xliff:g id="COUNT_2">%1$d</xliff:g> लोग</item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> व्‍यक्‍ति</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> लोग</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"अन्‍य संपर्क से जुड़ने से पहले संपर्क नाम लिखें."</string>
     <string name="copy_text" msgid="3257145021583508761">"क्‍लिपबोर्ड पर प्रतिलिपि बनाएं"</string>
     <string name="set_default" msgid="4417505153468300351">"सामान्य सेट करें"</string>

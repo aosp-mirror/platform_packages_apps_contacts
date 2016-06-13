@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ekki tókst að vista breytingar á tengiliðnum."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Hópur vistaður."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Ekki tókst að vista breytingarnar á hópnum."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"Einn tengiliður með símanúmer"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> tengiliðir með símanúmer"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> tengiliður með símanúmer</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> tengiliðir með símanúmer</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Engir tengiliðir með símanúmer"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"Einn fannst"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> fundust"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> fannst</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> fundust</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Engir tengiliðir"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"Einn fannst"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> fundust"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> fannst</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> fundust</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Allir"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Uppáhald"</string>
     <string name="callBack" msgid="5498224409038809224">"Hringja til baka"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"Aðalmynd"</string>
     <string name="description_star" msgid="2605854427360036550">"uppáhald"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Breyta tengilið"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"ekki sameinaður"</item>
-    <item quantity="other" msgid="425683718017380845">"sameinaður úr <xliff:g id="COUNT">%0$d</xliff:g> færslum"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="one">sameinaður úr <xliff:g id="COUNT">%0$d</xliff:g> öðrum</item>
+      <item quantity="other">sameinaður úr <xliff:g id="COUNT">%0$d</xliff:g> öðrum</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Viltu sameina núverandi tengilið og valda tengiliðinn?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Skipta yfir í að breyta völdum tengilið? Upplýsingarnar sem þú hefur sett inn nú þegar verða afritaðar."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Afrita í tengiliðina mína"</string>
@@ -188,19 +188,19 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Flytja tengiliði inn"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Búa til nýjan hóp"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Búa til nýjan hóp"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"Einn hópur"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> hópar"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> hópur</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> hópar</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Eyða hópnum „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“? (Tengiliðunum sjálfum verður ekki eytt.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> aðili úr <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> aðilar úr <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> aðili"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> aðilar"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> aðili úr <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> aðilar úr <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> aðili</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> aðilar</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Sláðu inn nafn tengiliðar áður en þú sameinar hann öðrum."</string>
     <string name="copy_text" msgid="3257145021583508761">"Afrita á klippiborð"</string>
     <string name="set_default" msgid="4417505153468300351">"Velja sem sjálfgefið"</string>

@@ -25,12 +25,12 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Chọn lối tắt cho liên hệ"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Chọn một số để gọi"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Chọn một số để gửi tin nhắn"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Thêm vào địa chỉ liên hệ"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Chọn địa chỉ liên hệ"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Thêm vào liên hệ"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Chọn người liên hệ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Tạo liên hệ mới"</string>
     <string name="starredList" msgid="4817256136413959463">"Được gắn dấu sao"</string>
     <string name="frequentList" msgid="7154768136473953056">"Thường xuyên"</string>
-    <string name="strequentList" msgid="5640192862059373511">"Mục ưa thích"</string>
+    <string name="strequentList" msgid="5640192862059373511">"Liên hệ ưa thích"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Chi tiết liên hệ"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"Chỉnh sửa liên hệ"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Tạo liên hệ"</string>
@@ -40,7 +40,7 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Cập nhật"</string>
     <string name="searchHint" msgid="8482945356247760701">"Tìm kiếm trong danh bạ"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Xem liên hệ"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Thêm vào mục ưa thích"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Thêm vào liên hệ ưa thích"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Xóa khỏi mục ưa thích"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Đã xóa khỏi mục ưa thích"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Đã thêm vào mục ưa thích"</string>
@@ -64,7 +64,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tất cả liên hệ"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Danh bạ đã được kết hợp"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Đặt nhạc chuông"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Các cuộc gọi tới thư thoại"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Cuộc gọi sang thư thoại"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Bạn không thể xóa địa chỉ liên hệ từ tài khoản chỉ đọc, nhưng bạn có thể ẩn chúng trong danh sách địa chỉ liên hệ của mình."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Liên hệ này chứa thông tin từ nhiều tài khoản. Thông tin từ các tài khoản ở chế độ chỉ đọc sẽ bị ẩn trong danh sách liên hệ của bạn, chứ không bị xóa."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Xóa liên hệ này sẽ xóa thông tin khỏi nhiều tài khoản."</string>
@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Không thể lưu thay đổi của địa chỉ liên hệ."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Đã lưu nhóm."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Không thể lưu thay đổi nhóm."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"1 liên hệ có số điện thoại"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> liên hệ có số điện thoại"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> liên hệ có số điện thoại</item>
+      <item quantity="one">1 liên hệ có số điện thoại</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Không có liên hệ nào có số điện thoại"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"Đã tìm thấy 1"</item>
-    <item quantity="other" msgid="3852668542926965042">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="other">Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g> liên hệ</item>
+      <item quantity="one">Đã tìm thấy 1 liên hệ</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Không có địa chỉ liên hệ nào"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"Đã tìm thấy 1"</item>
-    <item quantity="other" msgid="7988132539476575389">"Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other">Đã tìm thấy <xliff:g id="COUNT">%d</xliff:g> liên hệ</item>
+      <item quantity="one">Đã tìm thấy 1 liên hệ</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Tất cả liên hệ"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Mục yêu thích"</string>
     <string name="callBack" msgid="5498224409038809224">"Gọi lại"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"Ảnh chính"</string>
     <string name="description_star" msgid="2605854427360036550">"Yêu thích"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Chỉnh sửa liên hệ"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"chưa được hợp nhất"</item>
-    <item quantity="other" msgid="425683718017380845">"được hợp nhất từ <xliff:g id="COUNT">%0$d</xliff:g> nguồn"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="other">được hợp nhất từ  <xliff:g id="COUNT">%0$d</xliff:g> nguồn</item>
+      <item quantity="one">chưa được hợp nhất</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Kết hợp địa chỉ liên hệ hiện tại với địa chỉ liên hệ đã chọn?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Chuyển sang chỉnh sửa liên hệ đã chọn? Thông tin bạn đã nhập đến giờ sẽ được sao chép."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Sao chép vào Danh bạ của tôi"</string>
@@ -177,30 +177,30 @@
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Số điện thoại"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Thêm vào danh bạ"</string>
-    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Thêm vào đ.chỉ l.hệ"</string>
+    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Thêm vào liên hệ"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Đóng"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7356532842767854606">"Cho biết năm"</string>
-    <string name="social_widget_label" msgid="6378905543028924592">"Địa chỉ liên hệ"</string>
+    <string name="social_widget_label" msgid="6378905543028924592">"Liên hệ"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Đang tải…"</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Tạo địa chỉ liên hệ mới"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Tạo liên hệ mới"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Đăng nhập vào tài khoản"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Nhập danh bạ"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Tạo nhóm mới"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Tạo nhóm mới"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 nhóm"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> nhóm"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> nhóm</item>
+      <item quantity="one">1 nhóm</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Xóa nhóm \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Danh bạ sẽ không bị xóa.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> người từ <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> người từ <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> người"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> người"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> người từ <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> người từ <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> người</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> người</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Nhập tên địa chỉ liên hệ trước khi kết hợp với địa chỉ liên hệ khác."</string>
     <string name="copy_text" msgid="3257145021583508761">"Sao chép vào khay nhớ tạm"</string>
     <string name="set_default" msgid="4417505153468300351">"Đặt mặc định"</string>
@@ -208,7 +208,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Đã sao chép văn bản"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Hủy các thay đổi của bạn?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Thiết lập tiểu sử của tôi"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Thiết lập hồ sơ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Nhập tên của người này"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Tên nhóm"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"T.sử cục bộ của tôi"</string>
@@ -217,7 +217,7 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"Danh bạ hoạt động tốt hơn với tài khoản Google.\n\n• Truy cập từ bất kỳ trình duyệt web nào.\n• Sao lưu danh bạ của bạn một cách an toàn."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Đảm bảo an toàn cho danh sách liên hệ của bạn ngay cả khi bạn mất điện thoại: hãy đồng bộ hóa với một dịch vụ trực tuyến."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Thêm tài khoản"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Địa chỉ liên hệ mới của bạn sẽ không được sao lưu. Thêm tài khoản sao lưu danh bạ trực tuyến?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Liên hệ mới của bạn sẽ không được sao lưu. Thêm tài khoản sao lưu danh bạ trực tuyến?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Địa chỉ liên hệ mới của bạn sẽ được đồng bộ hóa với <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Bạn có thể đồng bộ hóa địa chỉ liên hệ mới của mình với một trong những tài khoản sau. Bạn muốn sử dụng tài khoản nào?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Thêm liên hệ mới"</string>

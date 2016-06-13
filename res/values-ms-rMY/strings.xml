@@ -63,7 +63,7 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Kenalan cadangan"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Semua kenalan"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kenalan digabungkan"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ttpkn nd dering"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Tetapkan nada dering"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Semua panggilan ke mel suara"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Anda tidak boleh memadamkan kenalan daripada akaun baca sahaja, tetapi anda boleh menyembunyikan mereka dalam senarai kenalan anda."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Kenalan ini mengandungi maklumat daripada berbilang akaun. Maklumat daripada akaun baca sahaja akan disembunyikan dalam senarai kenalan anda, dan bukannya dipadamkan."</string>
@@ -72,7 +72,7 @@
     <string name="menu_discard" msgid="6854657936970228164">"Buang perubahan"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kenalan tidak wujud."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Widget kenalan telah ditambahkan ke skrin Utama."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Wujudkan kenalan baru"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Buat kenalan baharu"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Buat kenalan baharu"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organisasi"</item>
@@ -81,7 +81,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Tiada gambar yang tersedia pada tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Tidak ada gambar yang tersedia pada telefon."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto kenalan"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Label nama peribadi"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nama label peribadi"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Hantar panggilan terus ke peti suara"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Alih keluar foto"</string>
     <string name="noContacts" msgid="8579310973261953559">"Tiada kenalan."</string>
@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Tidak dapat menyimpan perubahan kenalan."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Kumpulan sudah disimpan."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Tidak dapat menyimpan perubahan kumpulan."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"1 kenalan dengan nombor telefon"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> kenalan dengan nombor telefon"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kenalan dengan nombor telefon</item>
+      <item quantity="one">1 kenalan dengan nombor telefon</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Tiada kenalan dengan nombor telefon"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1 ditemui"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> ditemui"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ditemui</item>
+      <item quantity="one">1 ditemui</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Tiada kenalan"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1 ditemui"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> ditemui"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ditemui</item>
+      <item quantity="one">1 ditemui</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Semua kenalan"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Kegemaran"</string>
     <string name="callBack" msgid="5498224409038809224">"Panggil balik"</string>
@@ -125,7 +125,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Tiada apl ditemui untuk mengendalikan tindakan ini."</string>
     <string name="menu_share" msgid="943789700636542260">"Kongsi"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Tambahkan pada kenalan"</string>
-    <string name="share_via" msgid="563121028023030093">"Kongsi gambar melalui"</string>
+    <string name="share_via" msgid="563121028023030093">"Kongsi kenalan melalui"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Buat kumpulan di bawah akaun"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Sembang suara"</string>
     <string name="video_chat" msgid="1872255818640336072">"Sembang video"</string>
@@ -133,7 +133,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Tambah sambungan"</string>
     <string name="recent" msgid="2659189233141493004">"Terbaru"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Kemas kini terbaru"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kenalan"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Kenalan <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Tidak boleh diedit dari aplikasi ini."</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"Foto utama"</string>
     <string name="description_star" msgid="2605854427360036550">"kegemaran"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Edit kenalan"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"tidak digabungkan"</item>
-    <item quantity="other" msgid="425683718017380845">"digabungkan daripada <xliff:g id="COUNT">%0$d</xliff:g> sumber"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="other">digabungkan daripada <xliff:g id="COUNT">%0$d</xliff:g> sumber</item>
+      <item quantity="one">tidak digabungkan</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Gabungkan kenalan semasa dengan kenalan pilihan?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Bertukar kepada mengedit kenalan pilihan? Maklumat yang anda masukkan setakat ini akan disalin."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Salin ke Kenalan Saya"</string>
@@ -180,27 +180,27 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Tambah ke kenalan"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Tutup"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"Berikan tahun"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"Nyatakan tahun"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kenalan"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Memuatkan…"</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Buat kenalan baru"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Buat kenalan baharu"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Log masuk ke akaun"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Import kenalan"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Buat kumpulan baru"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Buat kumpulan baharu"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 kumpulan"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> kumpulan"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> kumpulan</item>
+      <item quantity="one">1 kumpulan</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Padamkan kumpulan \" <xliff:g id="GROUP_LABEL">%1$s</xliff:g> \"? (Kenalan itu sendiri tidak akan dipadamkan.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> orang daripada <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> orang daripada <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> orang"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> orang"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> orang daripada <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> orang daripada <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> orang</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> orang</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Taip nama kenalan sebelum bergabung dengan yang lain."</string>
     <string name="copy_text" msgid="3257145021583508761">"Salin ke papan keratan"</string>
     <string name="set_default" msgid="4417505153468300351">"Tetapkan lalai"</string>

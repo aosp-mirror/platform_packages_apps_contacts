@@ -64,7 +64,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"எல்லா தொடர்புகளும்"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"தொடர்புகள் இணைக்கப்பட்டன"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ரிங்டோனை அமை"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"எல்லா அழைப்புகளையும் குரலஞ்சலிற்கு திருப்பு"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"அழைப்புகளை குரலஞ்சலிற்கு திருப்பு"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"படிக்க மட்டுமேயான கணக்குகளின் தொடர்புகளை நீக்க முடியாது, ஆனால் தொடர்புகள் பட்டியல்களில் அவற்றை மறைக்கலாம்."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"தொடர்பில் பல கணக்குகளின் தகவல் உள்ளது. படிக்க மட்டுமேயான கணக்குகளின் தகவல் தொடர்புகள் பட்டியல்களில் மறைக்கப்படும், ஆனால் நீக்கப்படாது."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"தொடர்பை நீக்குவது பல கணக்குகளில் உள்ள தகவலை நீக்கும்."</string>
@@ -94,23 +94,23 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"தொடர்பின் மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"குழு சேமிக்கப்பட்டது."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"குழு மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"மொபைல் எண்ணுடன் 1 தொடர்பு"</item>
-    <item quantity="other" msgid="3299954047880968205">"மொபைல் எண்களுடன் <xliff:g id="COUNT">%d</xliff:g> தொடர்புகள்"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="other">மொபைல் எண்களுடன் <xliff:g id="COUNT">%d</xliff:g> தொடர்புகள் உள்ளன</item>
+      <item quantity="one">மொபைல் எண்ணுடன் 1 தொடர்பு உள்ளது</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"மொபைல் எண்களுடன் தொடர்புகள் இல்லை"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1 கண்டறியப்பட்டது"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> கண்டறியப்பட்டன"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> கண்டறியப்பட்டன</item>
+      <item quantity="one">1 கண்டறியப்பட்டது</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"தொடர்புகள் எதுவும் இல்லை"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1 கண்டறியப்பட்டது"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> கண்டறியப்பட்டன"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> கண்டறியப்பட்டன</item>
+      <item quantity="one">1 கண்டறியப்பட்டது</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"எல்லா தொடர்புகளும்"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"விருப்பங்கள்"</string>
-    <string name="callBack" msgid="5498224409038809224">"திருப்பி அழை"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"பிடித்தவை"</string>
+    <string name="callBack" msgid="5498224409038809224">"அழை"</string>
     <string name="callAgain" msgid="3197312117049874778">"மீண்டும் அழை"</string>
     <string name="returnCall" msgid="8171961914203617813">"திரும்பி அழை"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" ஐத் தொடர்புகளில் சேர்க்கவா?"</string>
@@ -125,7 +125,7 @@
     <string name="missing_app" msgid="1466111003546611387">"இந்தச் செயலைச் செய்ய பயன்பாடு எதுவுமில்லை."</string>
     <string name="menu_share" msgid="943789700636542260">"பகிர்"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"தொடர்புகளில் சேர்"</string>
-    <string name="share_via" msgid="563121028023030093">"இதன் வழியாக தொடர்பைப் பகிர்"</string>
+    <string name="share_via" msgid="563121028023030093">"தொடர்பை இதில் பகிர்:"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"கணக்கின் கீழ் குழுவை உருவாக்கவும்"</string>
     <string name="audio_chat" msgid="2535716629358298691">"குரல் அரட்டை"</string>
     <string name="video_chat" msgid="1872255818640336072">"வீடியோ அரட்டை"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"முதன்மை படம்"</string>
     <string name="description_star" msgid="2605854427360036550">"பிடித்தது"</string>
     <string name="edit_contact" msgid="7529281274005689512">"தொடர்பைத் திருத்து"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"ஒன்றிணைக்கப்படவில்லை"</item>
-    <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g> ஆதாரங்களிலிருந்து ஒன்றிணைக்கப்பட்டது"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> மூலங்களிலிருந்து இணைக்கப்பட்டன</item>
+      <item quantity="one">இணைக்கப்படவில்லை</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"தேர்ந்தெடுத்த தொடர்புடன் தற்போதைய தொடர்பை இணைக்கவா?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"தேர்ந்தெடுத்த தொடர்பைத் திருத்துதலுக்கு மாறவா? இதுவரை உள்ளிட்ட தகவல் நகலெடுக்கப்படும்."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"எனது தொடர்புகளுக்கு நகலெடு"</string>
@@ -180,27 +180,27 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"தொடர்பில் சேர்"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"மூடு"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7356532842767854606">"ஆண்டை வழங்கு"</string>
+    <string name="date_year_toggle" msgid="7356532842767854606">"ஆண்டைக் காட்டு"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"தொடர்பு"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ஏற்றுகிறது..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"புதிய தொடர்பை உருவாக்கு"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"கணக்கில் உள்நுழைக"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"தொடர்புகளை இறக்குமதி செய்"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"புதிய குழுவை உருவாக்கு"</string>
-    <string name="create_group_item_label" msgid="4411981763169654825">"புதிய குழுவை உருவாக்கு"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 குழு"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> குழுக்கள்"</item>
-  </plurals>
+    <string name="create_group_item_label" msgid="4411981763169654825">"புதிய குழு"</string>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> குழுக்கள்</item>
+      <item quantity="one">1 குழு</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" குழுவை நீக்கவா? (அதன் தொடர்புகள் நீக்கப்படாது.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> இலிருந்து <xliff:g id="COUNT_0">%1$d</xliff:g> நபர்"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> இலிருந்து <xliff:g id="COUNT_0">%1$d</xliff:g> பேர்"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> நபர்"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> பேர்"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> இலிருந்து <xliff:g id="COUNT_2">%1$d</xliff:g> பேர்</item>
+      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g> இலிருந்து <xliff:g id="COUNT_0">%1$d</xliff:g> நபர்</item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> பேர்</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> நபர்</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"வேறொன்றுடன் இணைப்பதற்கு முன் தொடர்பின் பெயரை உள்ளிடவும்."</string>
     <string name="copy_text" msgid="3257145021583508761">"கிளிப்போர்டுக்கு நகலெடு"</string>
     <string name="set_default" msgid="4417505153468300351">"இயல்புநிலையாக அமை"</string>

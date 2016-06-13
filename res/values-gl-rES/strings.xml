@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Seleccionar un atallo para o contacto"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Escolle un número ao que chamar"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Escolle un número ao que enviar unha mensaxe"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Engadir ao contacto"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Engadir a un contacto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Seleccionar un contacto"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crear novo contacto"</string>
     <string name="starredList" msgid="4817256136413959463">"Marcados con asterisco"</string>
@@ -64,7 +64,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contactos"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Contactos unidos"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Definir ton"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Todas as chamadas a correo voz"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Chamadas ao correo de voz"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Non podes eliminar contactos das contas de só lectura, pero podes ocultalos nas túas listas de contactos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contén información de varias contas. A información das contas de só lectura ocultarase nas túas listas de contactos, non se eliminará."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"A eliminación deste contacto eliminará información de varias contas."</string>
@@ -78,7 +78,7 @@
     <item msgid="8287841928119937597">"Organización"</item>
     <item msgid="7196592230748086755">"Nota"</item>
   </string-array>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Non hai imaxes dispoñibles no tablet."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Non hai imaxes dispoñibles na tableta."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Non hai imaxes dispoñibles no teléfono."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nome de etiqueta personalizada"</string>
@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Non se puideron gardar os cambios nos contactos."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupo gardado"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Non se puideron gardar os cambios no grupo."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"1 contacto con número de teléfono"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contactos con números de teléfono"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos con números de teléfono</item>
+      <item quantity="one">Un contacto con número de teléfono</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Ningún contacto ten número de teléfono"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1 encontrado"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
-  </plurals>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Sen contactos"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1 encontrado"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> encontrados"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
+      <item quantity="one">Un contacto encontrado</item>
+    </plurals>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Non hai contactos"</string>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
+      <item quantity="one">Un contacto encontrado</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Contactos"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Favoritos"</string>
     <string name="callBack" msgid="5498224409038809224">"Devolver chamada"</string>
@@ -151,7 +151,7 @@
     <string name="menu_display_selected" msgid="6470001164297969034">"Mostrar selección"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Mostrar todo"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Seleccionar todo"</string>
-    <string name="menu_select_none" msgid="7093222469852132345">"Deseleccionar todo"</string>
+    <string name="menu_select_none" msgid="7093222469852132345">"Anular toda a selección"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Engadir nova"</string>
     <string name="add_organization" msgid="7311893231158291197">"Engadir organización"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Data"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"Foto principal"</string>
     <string name="description_star" msgid="2605854427360036550">"favorito"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Editar contacto"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"non combinados"</item>
-    <item quantity="other" msgid="425683718017380845">"combinados a partir de <xliff:g id="COUNT">%0$d</xliff:g> fontes"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="other">combinados de <xliff:g id="COUNT">%0$d</xliff:g> fontes</item>
+      <item quantity="one">non combinado</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Queres unir o contacto actual coa conta seleccionada?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Cambiar para editar o contacto seleccionado? Copiarase a información introducida ata o momento."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copiar en Os meus contactos"</string>
@@ -188,19 +188,19 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importar contactos"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Crear novo grupo"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Crear novo grupo"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 grupo"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> grupos"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupos</item>
+      <item quantity="one">Un grupo</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Queres eliminar o grupo \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Os contactos non se eliminarán)."</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> persoa de <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> persoas de <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> persoa"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> persoas"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> persoas de <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persoa de <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> persoas</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persoa</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Escribe o nome do contacto antes de unilo con outro."</string>
     <string name="copy_text" msgid="3257145021583508761">"Copiar no portapapeis"</string>
     <string name="set_default" msgid="4417505153468300351">"Definir como predeterminado"</string>

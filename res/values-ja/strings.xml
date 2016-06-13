@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"連絡先の変更を保存できませんでした。"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"グループを保存しました。"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"グループの変更を保存できませんでした。"</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"電話番号のある連絡先1件"</item>
-    <item quantity="other" msgid="3299954047880968205">"電話番号のある連絡先<xliff:g id="COUNT">%d</xliff:g>件"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="other">電話番号のある連絡先<xliff:g id="COUNT">%d</xliff:g>件</item>
+      <item quantity="one">電話番号のある連絡先1件</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"電話番号付きの連絡先はありません"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1件見つかりました"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g>件見つかりました"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>件見つかりました</item>
+      <item quantity="one">1件見つかりました</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"連絡先はありません"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1件見つかりました"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g>件見つかりました"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>件見つかりました</item>
+      <item quantity="one">1件見つかりました</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"すべての連絡先"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"お気に入り"</string>
     <string name="callBack" msgid="5498224409038809224">"コールバック"</string>
@@ -133,7 +133,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"連絡先を招待"</string>
     <string name="recent" msgid="2659189233141493004">"最近"</string>
     <string name="recent_updates" msgid="4267258535615860710">"最近の更新"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>からの連絡先"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>の連絡先"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"このアプリからは編集できません。"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"メインの写真"</string>
     <string name="description_star" msgid="2605854427360036550">"お気に入り"</string>
     <string name="edit_contact" msgid="7529281274005689512">"連絡先の編集"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"結合する連絡先はありません"</item>
-    <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g>件の連絡先が結合されました"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g>件の連絡先から結合</item>
+      <item quantity="one">結合する連絡先はありません</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"現在の連絡先を選択した連絡先に統合しますか？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"選択した連絡先の編集に切り替えますか？これまでに入力した情報はコピーされます。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Myコンタクトにコピー"</string>
@@ -188,19 +188,19 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"連絡先をインポート"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"新しいグループの作成"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"新しいグループを作成"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1グループ"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g>グループ"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g>グループ</item>
+      <item quantity="one">1グループ</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"グループ「<xliff:g id="GROUP_LABEL">%1$s</xliff:g>」を削除しますか？連絡先自体は削除されません。"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>から<xliff:g id="COUNT_0">%1$d</xliff:g>人"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>から<xliff:g id="COUNT_0">%1$d</xliff:g>人"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g>人"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g>人"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g>から<xliff:g id="COUNT_2">%1$d</xliff:g>人</item>
+      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g>から<xliff:g id="COUNT_0">%1$d</xliff:g>人</item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g>人</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g>人</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"別の連絡先と統合するにはまず連絡先の名前を入力してください。"</string>
     <string name="copy_text" msgid="3257145021583508761">"クリップボードにコピー"</string>
     <string name="set_default" msgid="4417505153468300351">"デフォルトに設定"</string>
@@ -208,14 +208,14 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"テキストをコピーしました"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"変更を破棄しますか？"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"プロフィールを設定"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"プロファイルを設定"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"名前を入力"</string>
     <string name="group_name_hint" msgid="238359485263401293">"グループの名前"</string>
-    <string name="local_profile_title" msgid="2021416826991393684">"ローカルプロフィール"</string>
-    <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>のプロフィール"</string>
+    <string name="local_profile_title" msgid="2021416826991393684">"ローカルプロファイル"</string>
+    <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>のプロファイル"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"すべての連絡先を表示しています"</string>
     <string name="no_account_prompt" msgid="6424883302325061025">"Googleアカウントがあれば連絡先をもっと活用できます。\n\n• どのウェブブラウザからもアクセスできます。\n• 連絡先を安全にバックアップできます。"</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"携帯端末を紛失したときにも連絡先を保護するため、オンラインサービスと同期させます。"</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"モバイル端末を紛失したときにも連絡先を保護するため、オンラインサービスと同期させます。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"アカウントの追加"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"新しい連絡先はバックアップされません。オンラインで連絡先をバックアップするアカウントを追加しますか？"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"新しい連絡先は<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>と同期されます。"</string>

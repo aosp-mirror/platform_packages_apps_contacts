@@ -49,12 +49,12 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Placer sur l\'écran d\'accueil"</string>
     <string name="menu_call" msgid="3992595586042260618">"Appeler le contact"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Envoyer un SMS au contact"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Séparer"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Dissocier"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Modifier"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Supprimer"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Ajouter un contact"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Ajouter un groupe"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Séparer le contact ?"</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Dissocier le contact ?"</string>
     <string name="splitConfirmation" msgid="740190210499587175">"Ce contact va être séparé en plusieurs contacts."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Joindre"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Joindre les contacts"</string>
@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Impossible d\'enregistrer les modifications apportées au contact."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Groupe enregistré"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Impossible d\'enregistrer les modifications apportées au groupe."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"1 contact avec numéro de téléphone"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contacts avec des n° de téléphone"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact avec numéro de téléphone</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts avec numéro de téléphone</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Aucun contact disposant d\'un numéro de téléphone"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1 contact trouvé"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> contact(s) trouvé(s)"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact trouvé</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts trouvés</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Aucun contact"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1 contact trouvé"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> contact(s) trouvé(s)"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact trouvé</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts trouvés</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Tous contacts"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Favoris"</string>
     <string name="callBack" msgid="5498224409038809224">"Rappeler"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"Photo principale"</string>
     <string name="description_star" msgid="2605854427360036550">"favori"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Modifier le contact"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"1 contact non fusionné"</item>
-    <item quantity="other" msgid="425683718017380845">"1 contact fusionné à partir de <xliff:g id="COUNT">%0$d</xliff:g> sources"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="one">contact fusionné à partir de <xliff:g id="COUNT">%0$d</xliff:g> source</item>
+      <item quantity="other">contacts fusionnés à partir de <xliff:g id="COUNT">%0$d</xliff:g> sources</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Associer ce contact au contact sélectionné ?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Modifier le contact sélectionné ? Les informations saisies jusqu\'ici seront copiées."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copier dans \"Mes contacts\""</string>
@@ -188,25 +188,25 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer des contacts"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Créer un groupe"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Créer un groupe"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"Un groupe"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> groupes"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> groupe</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> groupes</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Supprimer le groupe \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ? Les contacts ne seront pas supprimés."</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> contact dans <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> contacts dans <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> contact"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> personnes"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> contact dans <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> contacts dans <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> contact</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> contacts</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Saisissez le nom du contact avant de l\'associer à un autre."</string>
     <string name="copy_text" msgid="3257145021583508761">"Copier dans le presse-papiers"</string>
     <string name="set_default" msgid="4417505153468300351">"Définir par défaut"</string>
     <string name="clear_default" msgid="7193185801596678067">"Effacer les valeurs par défaut"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texte copié"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Annuler les modifications ?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Supprimer les modifications ?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Configurer mon profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Saisissez le nom de la personne"</string>
@@ -221,7 +221,7 @@
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Votre nouveau contact va être synchronisé avec <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Vous pouvez synchroniser votre nouveau contact avec l\'un des comptes suivants. Lequel souhaitez-vous utiliser ?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ajouter un contact"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier le contact"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier contact"</string>
     <string name="keep_local" msgid="1258761699192993322">"Enregistrer localement"</string>
     <string name="add_account" msgid="8201790677994503186">"Ajouter un compte"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ajouter un compte"</string>
@@ -244,7 +244,7 @@
     <string name="date_time_set" msgid="4761419824439606690">"Définir"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"Messagerie instantanée"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organisation"</string>
-    <string name="header_nickname_entry" msgid="6743561883967451485">"Pseudo"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"Surnom"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"Note"</string>
     <string name="header_website_entry" msgid="1411467850000824745">"Site Web"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Événement"</string>

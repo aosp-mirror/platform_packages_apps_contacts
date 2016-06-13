@@ -63,7 +63,7 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Soovitatud kontaktid"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Kõik kontaktid"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Kontaktid ühendatud"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Määrake helin"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Määra helin"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Kõik kõned kõneposti"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Te ei saa kontakte kirjutuskaitstud kontodest kustutada, kuid saate need oma kontaktide loendis peita."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"See kontakt sisaldab teavet mitmelt kontolt. Kirjutuskaitstud teabega kontod peidetakse teie kontaktiloendites, mitte ei kustutata."</string>
@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kontaktide muudatuste salvestamine ebaõnnestus."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Grupp on salvestatud."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Rühmade muudatuste salvestamine ebaõnnestus."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"1 telefoninumbriga kontakt"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> telefoninumbriga kontakti"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> telefoninumbriga kontakti</item>
+      <item quantity="one">1 telefoninumbriga kontakt</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Telefoninumbritega kontakte pole"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1 leitud"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> leitud"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="other">Leiti <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Leiti 1</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Kontakte pole"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1 leitud"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> leitud"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other">Leiti <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">Leiti 1</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Kõik kontaktid"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Lemmikud"</string>
     <string name="callBack" msgid="5498224409038809224">"Helista tagasi"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"Põhifoto"</string>
     <string name="description_star" msgid="2605854427360036550">"lemmik"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Muuda kontakti"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"pole liidetud"</item>
-    <item quantity="other" msgid="425683718017380845">"ühendati <xliff:g id="COUNT">%0$d</xliff:g> allikast"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="other">liidetud <xliff:g id="COUNT">%0$d</xliff:g> allikast</item>
+      <item quantity="one">liitmata</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Kas ühendada praegune kontakt valitud kontaktiga?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Kas lülituda valitud kontakti muutmisse? Seni sisestatud andmed kopeeritakse."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopeeri valikusse Minu kontaktid"</string>
@@ -188,19 +188,19 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Impordi kontaktid"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Uue grupi loomine"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Loo uus rühm"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 grupp"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> rühma"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> rühma</item>
+      <item quantity="one">1 rühm</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Kas kustutada rühm „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? (Kontakte ei kustutata.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> isik(ut) rühmas <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> inimest rühmas <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> isik"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> inimest"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> inimest kontolt <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> inimene kontolt <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> inimest</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> inimene</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Enne teise kontaktiga ühendamist sisestage kontakti nimi."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopeeri lõikelauale"</string>
     <string name="set_default" msgid="4417505153468300351">"Määra vaikeseadeks"</string>
@@ -242,7 +242,7 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Pealkirjata sündmus)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"Määra"</string>
-    <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"Kiirsuhtlus"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organisatsioon"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Hüüdnimi"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"Märge"</string>

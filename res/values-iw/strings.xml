@@ -94,20 +94,26 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"לא ניתן לשמור את השינויים באנשי הקשר."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"הקבוצה נשמרה."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"לא ניתן לשמור את השינויים בקבוצות."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"איש קשר אחד עם מספר טלפון"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> אנשי קשר עם מספרי טלפון"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר עם מספרי טלפון</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר עם מספרי טלפון</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר עם מספרי טלפון</item>
+      <item quantity="one">איש קשר אחד עם מספר טלפון</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"אין אנשי קשר עם מספרי טלפון"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"נמצא אחד"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> נמצאו"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="two">נמצאו <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="many">נמצאו <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="other">נמצאו <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">אחד נמצא</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"אין אנשי קשר"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"נמצא אחד"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> נמצאו"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="two">נמצאו <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="many">נמצאו <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="other">נמצאו <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">אחד נמצא</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"כל אנשי הקשר"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"מועדפים"</string>
     <string name="callBack" msgid="5498224409038809224">"התקשר חזרה"</string>
@@ -160,10 +166,12 @@
     <string name="primary_photo" msgid="8517942231868516999">"תמונה ראשית"</string>
     <string name="description_star" msgid="2605854427360036550">"מועדף"</string>
     <string name="edit_contact" msgid="7529281274005689512">"ערוך איש קשר"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"לא מוזגו"</item>
-    <item quantity="other" msgid="425683718017380845">"מוזגו מ-<xliff:g id="COUNT">%0$d</xliff:g> מקורות"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="two">מוזגו מ-<xliff:g id="COUNT">%0$d</xliff:g> מקורות</item>
+      <item quantity="many">מוזגו מ-<xliff:g id="COUNT">%0$d</xliff:g> מקורות</item>
+      <item quantity="other">מוזגו מ-<xliff:g id="COUNT">%0$d</xliff:g> מקורות</item>
+      <item quantity="one">לא מוזגו</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"לצרף את איש הקשר הנוכחי לאיש הקשר שנבחר?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"לעבור לעריכה של איש הקשר שנבחר? המידע שהזנת עד עכשיו יועתק."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"העתק אל \'אנשי הקשר שלי\'"</string>
@@ -188,19 +196,25 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"יבא אנשי קשר"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"צור קבוצה חדשה"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"צור קבוצה חדשה"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"קבוצה אחת"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> קבוצות"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="two"><xliff:g id="COUNT">%0$d</xliff:g> קבוצות</item>
+      <item quantity="many"><xliff:g id="COUNT">%0$d</xliff:g> קבוצות</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> קבוצות</item>
+      <item quantity="one">קבוצה אחת</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"למחוק את הקבוצה \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (אנשי הקשר עצמם לא יימחקו.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> אנשים מתוך <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> אנשים מתוך <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"אדם <xliff:g id="COUNT">%1$d</xliff:g>"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> אנשים"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="two"><xliff:g id="COUNT_2">%1$d</xliff:g> אנשים מ-<xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="many"><xliff:g id="COUNT_2">%1$d</xliff:g> אנשים מ-<xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> אנשים מ-<xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="one">אדם <xliff:g id="COUNT_0">%1$d</xliff:g> מ-<xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="two"><xliff:g id="COUNT_1">%1$d</xliff:g> אנשים</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%1$d</xliff:g> אנשים</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> אנשים</item>
+      <item quantity="one">אדם <xliff:g id="COUNT_0">%1$d</xliff:g></item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"הקלד שם של איש קשר לפני צירופו לאחר."</string>
     <string name="copy_text" msgid="3257145021583508761">"העתק ללוח"</string>
     <string name="set_default" msgid="4417505153468300351">"קבע כברירת מחדל"</string>
@@ -208,7 +222,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"טקסט שהועתק"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"למחוק את השינויים שביצעת?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"הגדר את הפרופיל שלי"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"הגדרת הפרופיל שלי"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"הקלד שם של אדם"</string>
     <string name="group_name_hint" msgid="238359485263401293">"שם הקבוצה"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"הפרופיל המקומי שלי"</string>
@@ -220,7 +234,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"איש הקשר החדש שלך לא יגובה. להוסיף חשבון שמגבה אנשי קשר באופן מקוון?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"איש הקשר החדש שלך יסונכרן עם <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"ניתן לסנכרן את איש הקשר החדש שלך עם אחד מהחשבונות הבאים. באיזה מהם ברצונך להשתמש?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"הוסף איש קשר חדש"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"הוספת איש קשר חדש"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ערוך איש קשר"</string>
     <string name="keep_local" msgid="1258761699192993322">"שמור באופן מקומי"</string>
     <string name="add_account" msgid="8201790677994503186">"הוסף חשבון"</string>

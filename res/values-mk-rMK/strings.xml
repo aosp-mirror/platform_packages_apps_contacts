@@ -63,7 +63,7 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Препорачани контакти"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Сите контакти"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Поврзани контакти"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Подеси мелодија"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Постави мелодија"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Сите повици кон говорна пошта"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Не можете да избришете контакти од сметки само за читање, но можете да ги сокриете во вашите списоци со контакти."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Овој контакт содржи информации од повеќе сметки. Информациите од сметки само за читање ќе бидат скриени во вашите списоци со контакти, а не избришани."</string>
@@ -81,7 +81,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Не се достапни слики на таблетот."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Не се достапни слики на телефонот."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Фотографија за контакт"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Прилагоди име на етикета"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Приспособи име на етикета"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Испрати повици директно на говорна пошта"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Отстрани фотографија"</string>
     <string name="noContacts" msgid="8579310973261953559">"Нема контакти."</string>
@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не можеа да се зачуваат промените на контактот."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Групата е зачувана."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Не можеа да се зачуваат промените на групата."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"1 контакт со телефонски број"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> контакти со телефонски броеви"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> контакт со телефонски број</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> контакти со телефонски броеви</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Нема контакти со телефонски броеви"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1 пронајден"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> пронајдени"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> пронајден</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> пронајдени</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Нема контакти"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1 пронајден"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> пронајдени"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> пронајден</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> пронајдени</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Сите контакти"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Омилени"</string>
     <string name="callBack" msgid="5498224409038809224">"Повикај назад"</string>
@@ -160,20 +160,20 @@
     <string name="primary_photo" msgid="8517942231868516999">"Пр. фотографија"</string>
     <string name="description_star" msgid="2605854427360036550">"омилено"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Уреди контакт"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"не се споени"</item>
-    <item quantity="other" msgid="425683718017380845">"споени од <xliff:g id="COUNT">%0$d</xliff:g> извори"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="one"> споен од <xliff:g id="COUNT">%0$d</xliff:g> извор</item>
+      <item quantity="other"> споени од <xliff:g id="COUNT">%0$d</xliff:g> извори</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Да го поврзе тековниот контакт со избраниот контакт?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Да се префрли на уредување на избраниот контакт? Информациите што ги внесовте досега ќе бидат копирани."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Копирај во Мои контакти"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Додај во Мои контакти"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Адресар <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"Прилагодено"</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"Подесувања"</string>
-    <string name="menu_settings" msgid="377929915873428211">"Подесувања"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"Поставки"</string>
+    <string name="menu_settings" msgid="377929915873428211">"Поставки"</string>
     <string name="menu_help" msgid="5123887102216637725">"Помош"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"Опции за екран"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Опции за приказ"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Телефонски број"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Додај во контакти"</string>
@@ -184,31 +184,31 @@
     <string name="social_widget_label" msgid="6378905543028924592">"Контакт"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Се вчитува..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Создај нов контакт"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Пријави се на сметка"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Најави се на сметка"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Увези контакти"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Создај нова група"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Создај нова група"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 група"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> групи"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> група</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> групи</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Избриши ја групата „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“? (Контактите нема да се избришат.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> лице од <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> лица од <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> лице"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> лица"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> лице од <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> лица од <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> лице</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> лица</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Впишете го името на контактот пред да го поврзете со друг."</string>
     <string name="copy_text" msgid="3257145021583508761">"Копирај во клип-табла"</string>
-    <string name="set_default" msgid="4417505153468300351">"Подеси стандарден метод"</string>
+    <string name="set_default" msgid="4417505153468300351">"Постави стандарден метод"</string>
     <string name="clear_default" msgid="7193185801596678067">"Исчисти стандарден метод"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текстот е копиран"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Отфрли ги своите промени?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Подеси мој профил"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Постави мој профил"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Впиши име на лице"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Име на групата"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мој локален профил"</string>
@@ -217,7 +217,7 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"Апликацијата Контакти работи подобро со сметка на Google.\n\n• Пристапете од кој било прелистувач.\n• Направете резервна копија од контактите безбедно."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Чувајте ги вашите контакти безбедни дури и ако го изгубите вашиот телефон: синхронизирајте се со онлајн услуга."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додај сметка"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Нема да се направи резервна копија на вашиот нов контакт. Додадете сметка што прави резервна копија на контакти онлајн?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Нема да се направи резервна копија на вашиот нов контакт. Ќе додадете сметка што прави онлајн-резервна копија на контакти?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Вашиот нов контакт ќе се синхронизира со <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Може да го синхронизирате вашиот нов контакт со една од следниве сметки. Која сакате да ја користите?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додај нов контакт"</string>
@@ -257,7 +257,7 @@
     <string name="content_description_expand_editor" msgid="1111381475901897470">"Кликнете за да го проширите уредникот за контакти."</string>
     <string name="content_description_collapse_editor" msgid="7598061318022977825">"Кликнете за да го соберете уредникот за контакти."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"насоки до локација"</string>
-    <string name="content_description_recent_sms" msgid="1666389577263317445">"неодамнешна СМС-порака. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. кликни за да одговориш"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"неодамнешна SMS-порака. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. кликни за да одговориш"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"дојдовен"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"појдовен"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"пропуштен"</string>

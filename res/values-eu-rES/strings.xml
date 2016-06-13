@@ -64,7 +64,7 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Kontaktu guztiak"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Batu diren kontaktuak"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ezarri tonua"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Erantzungailuko dei guztiak"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Dei guztiak erantzungailura"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Ezin dituzu irakurtzeko soilik diren kontuetako kontaktuak ezabatu, baina zure kontaktuen zerrendatik ezkuta ditzakezu."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Kontaktu honek hainbat kontutako informazioa du. Irakurtzeko soilik diren kontuetako informazioa kontaktuen zerrendatik ezkutatuko da, baina ez da ezabatuko."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Kontaktua ezabatzen baduzu, hainbat kontutako informazioa ezabatuko da."</string>
@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ezin izan dira gorde kontaktuari egindako aldaketak."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Taldea gorde da."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Ezin izan dira gorde taldeari egindako aldaketak."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"1 kontaktuk telefono-zenbakia du"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> kontaktuk telefono-zenbakiak dituzte"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktuk telefono-zenbakia dute</item>
+      <item quantity="one">Kontaktu batek telefono-zenbakia du</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Ez dago telefono-zenbakirik duen kontakturik"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1 aurkitu da"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> aurkitu dira"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> aurkitu dira</item>
+      <item quantity="one">Bat aurkitu da</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Ez dago kontakturik"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1 aurkitu da"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> aurkitu dira"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> aurkitu dira</item>
+      <item quantity="one">Bat aurkitu da</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Kontaktu guztiak"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Gogokoak"</string>
     <string name="callBack" msgid="5498224409038809224">"Itzuli deia"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"Argazki nagusia"</string>
     <string name="description_star" msgid="2605854427360036550">"gogokoa"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Editatu kontaktua"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"ez da bateratu"</item>
-    <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g> iturburutatik bateratuta"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> iturburutakoak bateratu dira</item>
+      <item quantity="one">ez da bateratu</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Uneko kontaktua eta hautatutako kontaktua batu nahi dituzu?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Hautatutako kontaktua editatu nahi duzu? Orain arte idatzi duzun informazioa kopiatu egingo da."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiatu Nire kontaktuetan"</string>
@@ -188,19 +188,19 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Inportatu kontaktuak"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Sortu taldea"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Sortu taldea"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 talde"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> talde"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> talde</item>
+      <item quantity="one">Talde bat</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" taldea ezabatu nahi duzu? (Ez dira kontaktuak ezabatuko.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> pertsona <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> taldetik"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> pertsona <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> taldetik"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> pertsona"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> pertsona"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> taldeko <xliff:g id="COUNT_2">%1$d</xliff:g> pertsona</item>
+      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g> taldeko <xliff:g id="COUNT_0">%1$d</xliff:g> pertsona</item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> pertsona</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> pertsona</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Idatzi kontaktuaren izena beste batekin batu aurretik."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiatu arbelean"</string>
     <string name="set_default" msgid="4417505153468300351">"Ezarri lehenetsi gisa"</string>

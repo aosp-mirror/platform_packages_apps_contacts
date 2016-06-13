@@ -46,7 +46,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"已加到我的最愛"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"編輯"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"刪除"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主畫面上"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主畫面"</string>
     <string name="menu_call" msgid="3992595586042260618">"致電聯絡人"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"分割"</string>
@@ -94,22 +94,22 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"無法儲存聯絡人變更。"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"群組已儲存。"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"無法儲存群組變更。"</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"1 個有電話號碼的聯絡人"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> 個有電話號碼的聯絡人"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位有電話號碼的聯絡人</item>
+      <item quantity="one">1 位有電話號碼的聯絡人</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"所有聯絡人資訊都沒有電話號碼"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"找到 1 位聯絡人"</item>
-    <item quantity="other" msgid="3852668542926965042">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="other">找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人</item>
+      <item quantity="one">找到 1 位聯絡人</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"沒有聯絡人"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"找到 1 位聯絡人"</item>
-    <item quantity="other" msgid="7988132539476575389">"找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other">找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人</item>
+      <item quantity="one">找到 1 位聯絡人</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"所有聯絡人"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"最愛聯絡人"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"常用聯絡人"</string>
     <string name="callBack" msgid="5498224409038809224">"回撥電話"</string>
     <string name="callAgain" msgid="3197312117049874778">"重撥"</string>
     <string name="returnCall" msgid="8171961914203617813">"回覆來電"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"主要相片"</string>
     <string name="description_star" msgid="2605854427360036550">"我的最愛"</string>
     <string name="edit_contact" msgid="7529281274005689512">"編輯聯絡人"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"未合併"</item>
-    <item quantity="other" msgid="425683718017380845">"從 <xliff:g id="COUNT">%0$d</xliff:g> 個來源合併"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="other">已從 <xliff:g id="COUNT">%0$d</xliff:g> 個來源合併</item>
+      <item quantity="one">未合併</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"要將目前聯絡人與所選聯絡人合併嗎？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切換至編輯所選聯絡人嗎？您目前已輸入的資訊將會被複製。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"複製到我的通訊錄"</string>
@@ -188,19 +188,19 @@
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"匯入通訊錄"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"建立新群組"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"建立新群組"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 個群組"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> 個群組"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> 個群組</item>
+      <item quantity="one">1 個群組</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"要刪除「<xliff:g id="GROUP_LABEL">%1$s</xliff:g>」群組嗎？(這並不會刪除聯絡人本身。)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> 中有 <xliff:g id="COUNT_0">%1$d</xliff:g> 人"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> 中有 <xliff:g id="COUNT_0">%1$d</xliff:g> 人"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> 人"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> 人"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> 中有 <xliff:g id="COUNT_2">%1$d</xliff:g> 人</item>
+      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g> 中有 <xliff:g id="COUNT_0">%1$d</xliff:g> 人</item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> 人</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> 人</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"請先輸入聯絡人姓名，然後才能與另一個聯絡人合併。"</string>
     <string name="copy_text" msgid="3257145021583508761">"複製到剪貼簿"</string>
     <string name="set_default" msgid="4417505153468300351">"設為預設"</string>
@@ -217,7 +217,7 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"聯絡人與 Google 帳戶搭配使用的效能更卓越。\n\n• 透過任何網絡瀏覽器皆可存取。\n• 安全備份您的聯絡人。"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使丟失手機，也要確保通訊錄安全：與網上服務保持同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"新增帳戶"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"您的新聯絡人資料不會備份。要新增可在網上備份聯絡人資料的帳戶嗎？"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系統不會備份您的新聯絡人資料。要新增帳戶，在網上備份聯絡人資料嗎？"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"您的新聯絡人資料將與 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> 同步處理。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以透過下列其中一個帳戶同步處理您的新聯絡人資料。要使用哪個帳戶？"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增聯絡人"</string>

@@ -27,7 +27,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выбрать номер для отправки сообщения"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Добавление данных"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Выбор контакта"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Добавить контакт"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Создать контакт"</string>
     <string name="starredList" msgid="4817256136413959463">"Помеченные"</string>
     <string name="frequentList" msgid="7154768136473953056">"Часто вызываемые"</string>
     <string name="strequentList" msgid="5640192862059373511">"Избранное"</string>
@@ -58,7 +58,7 @@
     <string name="splitConfirmation" msgid="740190210499587175">"Этот контакт будет разделен."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Объединить"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Объединить контакты"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Выберите контакт, который хотите объединить с \"<xliff:g id="NAME">%s</xliff:g>\":"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Выберите контакт, который нужно объединить с \"<xliff:g id="NAME">%s</xliff:g>\":"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Показать все контакты"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Предлагаемые контакты"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Все контакты"</string>
@@ -69,11 +69,11 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Этот контакт содержит информацию из различных аккаунтов. Информация из аккаунтов, доступных только для чтения, будет скрыта в ваших списках контактов, но не удалена."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Удаление этого контакта приведет к потере данных из нескольких аккаунтов."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Этот контакт будет удален."</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Отмена"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"Удалить изменения"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Нет такого контакта."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Виджет \"Контакты\" добавлен на главный экран."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать новый контакт"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"Добавить контакт"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Создать контакт"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Создать контакт"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Организация"</item>
     <item msgid="7196592230748086755">"Примечание"</item>
@@ -84,30 +84,36 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Название"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Направлять вызовы в голосовую почту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Удалить фото"</string>
-    <string name="noContacts" msgid="8579310973261953559">"Нет контактов."</string>
+    <string name="noContacts" msgid="8579310973261953559">"Нет контактов"</string>
     <string name="noGroups" msgid="8614664663561385253">"Нет групп."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Для создания групп нужен аккаунт."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Здесь пока никого нет."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Чтобы добавить участников, откройте меню и нажмите \"Изменить\"."</string>
     <string name="savingContact" msgid="4075751076741924939">"Контакт сохраняется..."</string>
-    <string name="contactSavedToast" msgid="7152589189385441091">"Контакт сохранен."</string>
+    <string name="contactSavedToast" msgid="7152589189385441091">"Контакт сохранен"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не удалось сохранить изменения."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Группа сохранена."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Не удалось сохранить изменения."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"Контакты с номерами телефона: 1"</item>
-    <item quantity="other" msgid="3299954047880968205">"Контакты с номерами телефонов: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> контакт с номером телефона</item>
+      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> контакта с номером телефона</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> контактов с номером телефона</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> контактов с номером телефона</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Нет контактов с номерами телефонов"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"Найдено: 1"</item>
-    <item quantity="other" msgid="3852668542926965042">"Найдено: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="one">Найден <xliff:g id="COUNT">%d</xliff:g> контакт</item>
+      <item quantity="few">Найдено <xliff:g id="COUNT">%d</xliff:g> контакта</item>
+      <item quantity="many">Найдено <xliff:g id="COUNT">%d</xliff:g> контактов</item>
+      <item quantity="other">Найдено <xliff:g id="COUNT">%d</xliff:g> контактов</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Нет контактов"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"Найдено: 1"</item>
-    <item quantity="other" msgid="7988132539476575389">"Найдено: <xliff:g id="COUNT">%d</xliff:g>"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="one">Найден <xliff:g id="COUNT">%d</xliff:g> контакт</item>
+      <item quantity="few">Найдено <xliff:g id="COUNT">%d</xliff:g> контакта</item>
+      <item quantity="many">Найдено <xliff:g id="COUNT">%d</xliff:g> контактов</item>
+      <item quantity="other">Найдено <xliff:g id="COUNT">%d</xliff:g> контактов</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Все"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Избранные"</string>
     <string name="callBack" msgid="5498224409038809224">"Перезвонить"</string>
@@ -160,10 +166,12 @@
     <string name="primary_photo" msgid="8517942231868516999">"Основное фото"</string>
     <string name="description_star" msgid="2605854427360036550">"избранное"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Изменить контакт"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"не объединен"</item>
-    <item quantity="other" msgid="425683718017380845">"объединено из нескольких источников (<xliff:g id="COUNT">%0$d</xliff:g>)"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="one">Объединен <xliff:g id="COUNT">%0$d</xliff:g> контакт</item>
+      <item quantity="few">Объединены <xliff:g id="COUNT">%0$d</xliff:g> контакта</item>
+      <item quantity="many">Объединено <xliff:g id="COUNT">%0$d</xliff:g> контактов</item>
+      <item quantity="other">Объединено <xliff:g id="COUNT">%0$d</xliff:g> контактов</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Объединить текущий контакт с выбранным контактом?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Переключиться на редактирование выбранного контакта? Введенная информация будет скопирована."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Копировать в \"Мои контакты\""</string>
@@ -183,30 +191,36 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"Указать год"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Контакт"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Загрузка..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Создать новый контакт"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Создать контакт"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Войти в аккаунт"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Импортировать контакты"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Создание новой группы"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Создать группу"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 группа"</item>
-    <item quantity="other" msgid="1276758425904917367">"Групп: <xliff:g id="COUNT">%0$d</xliff:g>"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> группа</item>
+      <item quantity="few"><xliff:g id="COUNT">%0$d</xliff:g> группы</item>
+      <item quantity="many"><xliff:g id="COUNT">%0$d</xliff:g> групп</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> групп</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Действительно удалить группу \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Контакты не будут удалены.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"В группе <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> <xliff:g id="COUNT_0">%1$d</xliff:g> чел."</item>
-    <item quantity="other" msgid="8146027769011086349">"В группе <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> <xliff:g id="COUNT_0">%1$d</xliff:g> чел."</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> чел."</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> чел."</item>
-  </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Укажите имя контакта, который хотите объединить."</string>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> человек из <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="few"><xliff:g id="COUNT_2">%1$d</xliff:g> человека из <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="many"><xliff:g id="COUNT_2">%1$d</xliff:g> человек из <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> человек из <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="one">В группе <xliff:g id="COUNT_1">%1$d</xliff:g> человек</item>
+      <item quantity="few">В группе <xliff:g id="COUNT_1">%1$d</xliff:g> человека</item>
+      <item quantity="many">В группе <xliff:g id="COUNT_1">%1$d</xliff:g> человек</item>
+      <item quantity="other">В группе <xliff:g id="COUNT_1">%1$d</xliff:g> человек</item>
+    </plurals>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Укажите имя контакта, который нужно объединить."</string>
     <string name="copy_text" msgid="3257145021583508761">"Копировать в буфер обмена"</string>
     <string name="set_default" msgid="4417505153468300351">"Установить по умолчанию"</string>
     <string name="clear_default" msgid="7193185801596678067">"Удалить настройки по умолчанию"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текст скопирован"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Отменить изменения?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Удалить изменения?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> (<xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>)"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Настроить профиль"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Имя контакта"</string>

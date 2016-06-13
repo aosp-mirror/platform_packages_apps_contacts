@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Impossible d\'enregistrer les modifications apportées au contact."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Groupe enregistré"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Impossible d\'enregistrer les modifications apportées au groupe."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"1 contact avec numéro de téléphone"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> contacts avec des numéros de téléphone"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact avec un numéro de téléphone</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts avec un numéro de téléphone</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Aucun contact disposant d\'un numéro de téléphone"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1 contact trouvé"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> contacts trouvés"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> résultat</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> résultats</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Aucun contact"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1 contact trouvé"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> contacts trouvés"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> résultat</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> résultats</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Tous les contacts"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Favoris"</string>
     <string name="callBack" msgid="5498224409038809224">"Rappeler"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"Photo principale"</string>
     <string name="description_star" msgid="2605854427360036550">"favori"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Modifier un contact"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"1 contact non fusionné"</item>
-    <item quantity="other" msgid="425683718017380845">"fusionné à partir de <xliff:g id="COUNT">%0$d</xliff:g> sources"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="one">fusionné à partir de <xliff:g id="COUNT">%0$d</xliff:g> source</item>
+      <item quantity="other">fusionné à partir de <xliff:g id="COUNT">%0$d</xliff:g> sources</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Associer ce contact au contact sélectionné?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Modifier le contact sélectionné? Les informations saisies jusqu\'ici seront copiées."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copier dans \"Mes contacts\""</string>
@@ -185,22 +185,22 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Chargement en cours..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Créer un contact"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Se connecter à un compte"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Téléverser des contacts"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer des contacts"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Créer un groupe"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Créer un groupe"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"Un groupe"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> groupes"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="one"><xliff:g id="COUNT">%0$d</xliff:g> groupe</item>
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> groupes</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"Supprimer le groupe \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? Les contacts ne seront pas supprimés."</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g> contact dans <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g> contacts dans <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> contact"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> personne(s)"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> personne à partir de <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> personnes à partir de <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> personne</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> personnes</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Saisissez le nom du contact avant de l\'associer à un autre."</string>
     <string name="copy_text" msgid="3257145021583508761">"Copier dans le presse-papiers"</string>
     <string name="set_default" msgid="4417505153468300351">"Définir par défaut"</string>

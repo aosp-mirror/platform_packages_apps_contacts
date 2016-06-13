@@ -40,8 +40,8 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Жаңартулар"</string>
     <string name="searchHint" msgid="8482945356247760701">"Контактілерді іздеу"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Контактіні көру"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Сүйіктілерге қосу"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Сүйіктілерден алу"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Таңдаулыларға қосу"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Таңдаулылардан өшіру"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Таңдаулылардан жойылды"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Таңдаулыларға қосылды"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Жөндеу"</string>
@@ -49,22 +49,22 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Негізгі экранға орналастыру"</string>
     <string name="menu_call" msgid="3992595586042260618">"Контактіге қоңырау шалу"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Контактіге мәтін-хабар жіберу"</string>
-    <string name="menu_splitAggregate" msgid="8368636463748691868">"Ажырату"</string>
+    <string name="menu_splitAggregate" msgid="8368636463748691868">"Бөлу"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Жөндеу"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Жою"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Контакт қосу"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Топ қосу"</string>
-    <string name="splitConfirmation_title" msgid="633640935430370530">"Контакт ажыратылсын ба?"</string>
-    <string name="splitConfirmation" msgid="740190210499587175">"Бұл контакт бірнеше контактілерге ажыратылады."</string>
+    <string name="splitConfirmation_title" msgid="633640935430370530">"Контакт бөлінсін бе?"</string>
+    <string name="splitConfirmation" msgid="740190210499587175">"Бұл контакт бірнешеге бөлінеді."</string>
     <string name="menu_joinAggregate" msgid="5027981918265667970">"Қосылу"</string>
-    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Контактілерге қосылу"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> қосқыңыз келетін контактіні таңдаңыз:"</string>
+    <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Контактілерді біріктіру"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> екеуі бірігетін контактіні таңдаңыз:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Барлық контактілерді көрсету"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Ұсынылған контактілер"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Барлық контактілер"</string>
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"Қосылған контактілер"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Рингтонды орнату"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Дауыс-хабарына жасалған барлық қоңыраулар"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Тек дауыс поштасы"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Оқу үшін ғана есептік жазбаларындағы контактілерді жою мүмкін болмайды, бірақ контактілер тізімінде жасырып қоюға болады."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Бұл контактіде бірнеше есептік жазба ақпараты бар. Оқу үшін ғана есептік жазбаларының ақпараты контактілер тізімінде жасырын болады, жойылмайды."</string>
     <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Бұл контактіні жою бірнеше есептік жазбадан ақпарат жояды."</string>
@@ -72,8 +72,8 @@
     <string name="menu_discard" msgid="6854657936970228164">"Өзгертулерден бас тарту"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Мұндай контакт жоқ."</string>
     <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"Контакт виджет Негізгі экранға қосылды."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Жаңа контакт жасақтау"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"Жаңа контакт жасақтау"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Жаңа контакт құру"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Жаңа контакт құру"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Ұйым"</item>
     <item msgid="7196592230748086755">"Ескерту"</item>
@@ -81,7 +81,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Планшетте ешқандай фотосуреттер жоқ."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Телефонда ешқандай фотосуреттер жоқ."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Контакт фотосуреті"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Белгі атауын қалауыңызша өзгерту"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Реттелмелі белгі атауы"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Қоңырауларды тікелей дауыс хабарына жіберу"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Фотосуретті алу"</string>
     <string name="noContacts" msgid="8579310973261953559">"Ешқандай контактілер жоқ."</string>
@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Контакт өзгерістерін сақтай алмады."</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"Топ сақталды."</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"Топ өзгерістерін сақтау мүмкін болмады."</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"Телефон нөмірі бар 1 контакт"</item>
-    <item quantity="other" msgid="3299954047880968205">"Телефон нөмірі бар <xliff:g id="COUNT">%d</xliff:g> контактілер"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="other">Телефон нөмірі бар <xliff:g id="COUNT">%d</xliff:g> контакт</item>
+      <item quantity="one">Телефон нөмірі бар 1 контакт</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Телефон нөмірлері бар контактілер жоқ"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"1 табылды"</item>
-    <item quantity="other" msgid="3852668542926965042">"<xliff:g id="COUNT">%d</xliff:g> табылды"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> табылды</item>
+      <item quantity="one">1 табылды</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Контактілер жоқ"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"1 табылды"</item>
-    <item quantity="other" msgid="7988132539476575389">"<xliff:g id="COUNT">%d</xliff:g> табылды"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> табылды</item>
+      <item quantity="one">1 табылды</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Барлық контактілер"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"Таңдаулылар"</string>
     <string name="callBack" msgid="5498224409038809224">"Кері қоңырау шалу"</string>
@@ -133,7 +133,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Байланыс қосу"</string>
     <string name="recent" msgid="2659189233141493004">"Жуықта қолданылған"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Соңғы жаңартулар"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контактісі"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контакт"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Бұл қолданба арқылы жөнделмейді."</string>
@@ -160,20 +160,20 @@
     <string name="primary_photo" msgid="8517942231868516999">"Негізгі фотосурет"</string>
     <string name="description_star" msgid="2605854427360036550">"сүйікті"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Контактіні жөндеу"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"біріктірілмеген"</item>
-    <item quantity="other" msgid="425683718017380845">"<xliff:g id="COUNT">%0$d</xliff:g> дереккөздерден біріктірілген"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> көзден біріктірілген</item>
+      <item quantity="one">біріктірілмеген</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Ағымдағы контакт таңдалған контактіге қосылсын ба?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Таңдалған контактіні жөндеуге ауысуды қалайсыз ба? Осы уақытқа дейін сіз енгізген ақпараттың көшірмесі жасалады."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Менің контактілеріме көшіру"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Менің контактілерім тізіміне қосу"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> анықтамалық кітапшасы"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"Қалыпты"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"Реттелетін"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Параметрлер"</string>
     <string name="menu_settings" msgid="377929915873428211">"Параметрлер"</string>
     <string name="menu_help" msgid="5123887102216637725">"Көмек"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"Дисплей опциялары"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"Көрсету опциялары"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Телефон нөмірі"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Контактілерге қосу"</string>
@@ -183,32 +183,32 @@
     <string name="date_year_toggle" msgid="7356532842767854606">"Жылын жазу"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Контакт"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Жүктеуде…"</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Жаңа контакт жасақтау"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Жаңа контакт құру"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Есептік жазбаға кіру"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Контактілерді импорттау"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Жаңа топ жасақтау"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Жаңа топ жасақтау"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1 топ"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g> топ"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> топ</item>
+      <item quantity="one">1 топ</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" тобы жойылсын ба? (Контактілер жойылмайды.)"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="COUNT_0">%1$d</xliff:g>, барлығы <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> адамнан"</item>
-    <item quantity="other" msgid="8146027769011086349">"<xliff:g id="COUNT_0">%1$d</xliff:g>, барлығы <xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g> адамнан"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> адам"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> адам"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g> ішінен <xliff:g id="COUNT_2">%1$d</xliff:g> адам</item>
+      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g> ішінен <xliff:g id="COUNT_0">%1$d</xliff:g> адам</item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> адам</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> адам</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Басқа контактіге қосар алдында контактінің атын теру."</string>
-    <string name="copy_text" msgid="3257145021583508761">"Дерек алмастыру жадына сақтау"</string>
+    <string name="copy_text" msgid="3257145021583508761">"Аралық сақтағышқа көшіру"</string>
     <string name="set_default" msgid="4417505153468300351">"Бастапқы ретінде орнату"</string>
     <string name="clear_default" msgid="7193185801596678067">"Бастапқыны өшіру"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Мәтін көшірмесі жасалды"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Өзгертулер қабылданбасын ба?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Өзгертулер сақталмай-ақ қойсын ба?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Менің профайлымды реттеу"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Менің профилімді реттеу"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Адамның атын теру"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Топтың атауы"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Менің жергілікті профайлым"</string>
@@ -222,8 +222,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Жаңа контактіні келесі есептік жазбалардың біреуімен синхрондауға болады. Қайсысын қолдануды қалайсыз?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Жаңа контакт қосу"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Контактіні өңдеу"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Жергілікті ретінде сақтау"</string>
-    <string name="add_account" msgid="8201790677994503186">"Есептік жазба қосу"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Жергілікті сақтау"</string>
+    <string name="add_account" msgid="8201790677994503186">"Ес. жазба қосу"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Жаңа есептік жазба қосу"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Дерекқор файлдарын экспорттау"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"жаңа контакт қосу"</string>

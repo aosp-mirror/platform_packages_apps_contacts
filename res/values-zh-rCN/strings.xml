@@ -18,7 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"通讯录"</string>
     <string name="launcherActivityLabel" msgid="6497230399032392417">"通讯录"</string>
-    <string name="contactsList" msgid="8661624236494819731">"联系人"</string>
+    <string name="contactsList" msgid="8661624236494819731">"通讯录"</string>
     <string name="shortcutContact" msgid="749243779392912958">"联系人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接拨打电话"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"直接发送短信"</string>
@@ -65,9 +65,9 @@
     <string name="contactsJoinedMessage" msgid="7208148163607047389">"已合并联系人"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"设置铃声"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"所有来电转至语音信箱"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"您无法删除只读帐户中的联系人，但可以在联系人列表中将他们隐藏。"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"该联系人的信息中包含来自多个帐户的信息。来自只读帐户的信息将在您的联系人列表中隐藏，但不会删除。"</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"删除该联系人将会删除多个帐户中的信息。"</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"您无法删除只读帐号中的联系人，但可以在联系人列表中将他们隐藏。"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"该联系人的信息中包含来自多个帐号的信息。来自只读帐号的信息将在您的联系人列表中隐藏，但不会删除。"</string>
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"删除该联系人将会删除多个帐号中的信息。"</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"将会删除此联系人。"</string>
     <string name="menu_discard" msgid="6854657936970228164">"舍弃更改"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"该联系人不存在。"</string>
@@ -86,7 +86,7 @@
     <string name="removePhoto" msgid="4898105274130284565">"删除照片"</string>
     <string name="noContacts" msgid="8579310973261953559">"没有联系人。"</string>
     <string name="noGroups" msgid="8614664663561385253">"没有任何群组。"</string>
-    <string name="noAccounts" msgid="7768267764545265909">"您需要拥有一个帐户才能创建群组。"</string>
+    <string name="noAccounts" msgid="7768267764545265909">"您需要拥有一个帐号才能创建群组。"</string>
     <string name="emptyGroup" msgid="7502116218697177370">"此群组中没有联系人。"</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"要添加联系人，请修改该群组。"</string>
     <string name="savingContact" msgid="4075751076741924939">"正在保存联系人…"</string>
@@ -94,20 +94,20 @@
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"无法保存联系人更改。"</string>
     <string name="groupSavedToast" msgid="1168756874239833756">"群组已保存。"</string>
     <string name="groupSavedErrorToast" msgid="7984466936615304740">"无法保存所做的群组更改。"</string>
-  <plurals name="listTotalPhoneContacts">
-    <item quantity="one" msgid="3015357862286673986">"1 位联系人有电话号码"</item>
-    <item quantity="other" msgid="3299954047880968205">"<xliff:g id="COUNT">%d</xliff:g> 位联系人有电话号码"</item>
-  </plurals>
+    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 个有电话号码的联系人</item>
+      <item quantity="one">1 个有电话号码的联系人</item>
+    </plurals>
     <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"没有联系人拥有电话号码"</string>
-  <plurals name="listFoundAllContacts">
-    <item quantity="one" msgid="5517063038754171134">"找到 1 个联系人"</item>
-    <item quantity="other" msgid="3852668542926965042">"找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人"</item>
-  </plurals>
+    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
+      <item quantity="other">找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人</item>
+      <item quantity="one">找到 1 个联系人</item>
+    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"没有联系人"</string>
-  <plurals name="searchFoundContacts">
-    <item quantity="one" msgid="4826918429708286628">"找到 1 个联系人"</item>
-    <item quantity="other" msgid="7988132539476575389">"找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人"</item>
-  </plurals>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other">找到 <xliff:g id="COUNT">%d</xliff:g> 个联系人</item>
+      <item quantity="one">找到 1 个联系人</item>
+    </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"所有联系人"</string>
     <string name="favorites_tab_label" msgid="1524869648904016414">"收藏"</string>
     <string name="callBack" msgid="5498224409038809224">"回电"</string>
@@ -126,7 +126,7 @@
     <string name="menu_share" msgid="943789700636542260">"分享"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"添加到通讯录"</string>
     <string name="share_via" msgid="563121028023030093">"联系人分享方式"</string>
-    <string name="dialog_new_group_account" msgid="2318032089273496830">"要在哪个帐户下创建群组？"</string>
+    <string name="dialog_new_group_account" msgid="2318032089273496830">"要在哪个帐号下创建群组？"</string>
     <string name="audio_chat" msgid="2535716629358298691">"语音聊天"</string>
     <string name="video_chat" msgid="1872255818640336072">"视频聊天"</string>
     <string name="connections" msgid="8098440723172028350">"社交网络"</string>
@@ -160,10 +160,10 @@
     <string name="primary_photo" msgid="8517942231868516999">"主照片"</string>
     <string name="description_star" msgid="2605854427360036550">"收藏"</string>
     <string name="edit_contact" msgid="7529281274005689512">"编辑联系人"</string>
-  <plurals name="merge_info">
-    <item quantity="one" msgid="148365587896371969">"未合并"</item>
-    <item quantity="other" msgid="425683718017380845">"合并自 <xliff:g id="COUNT">%0$d</xliff:g> 个来源"</item>
-  </plurals>
+    <plurals name="merge_info" formatted="false" msgid="2489323424994280962">
+      <item quantity="other">已合并 <xliff:g id="COUNT">%0$d</xliff:g> 个联系人</item>
+      <item quantity="one">未合并任何联系人</item>
+    </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"要合并当前联系人与所选联系人吗？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切换至编辑所选联系人吗？系统会复制您到目前为止输入的所有信息。"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"复制到“我的联系人”"</string>
@@ -184,23 +184,23 @@
     <string name="social_widget_label" msgid="6378905543028924592">"联系人"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"正在加载..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"创建新联系人"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"登录帐户"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"登录帐号"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"导入联系人"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"创建新群组"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"创建新群组"</string>
-  <plurals name="num_groups_in_account">
-    <item quantity="one" msgid="2944819210288517794">"1个群组"</item>
-    <item quantity="other" msgid="1276758425904917367">"<xliff:g id="COUNT">%0$d</xliff:g>个群组"</item>
-  </plurals>
+    <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
+      <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> 个群组</item>
+      <item quantity="one">1 个群组</item>
+    </plurals>
     <string name="delete_group_dialog_message" msgid="7586856514337560529">"要删除群组“<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”（并不会删除联系人本身）吗？"</string>
-  <plurals name="num_contacts_in_group">
-    <item quantity="one" msgid="1352418549951013448">"<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>中有 <xliff:g id="COUNT_0">%1$d</xliff:g> 个联系人"</item>
-    <item quantity="other" msgid="8146027769011086349">"有 <xliff:g id="COUNT_0">%1$d</xliff:g> 人来自<xliff:g id="ACCOUNT_TYPE">%2$s</xliff:g>"</item>
-  </plurals>
-  <plurals name="group_list_num_contacts_in_group">
-    <item quantity="one" msgid="3323065321661972446">"<xliff:g id="COUNT">%1$d</xliff:g> 个人"</item>
-    <item quantity="other" msgid="6251996206137048525">"<xliff:g id="COUNT">%1$d</xliff:g> 个人"</item>
-  </plurals>
+    <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
+      <item quantity="other"><xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g>中有 <xliff:g id="COUNT_2">%1$d</xliff:g> 个联系人</item>
+      <item quantity="one"><xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g>中有 <xliff:g id="COUNT_0">%1$d</xliff:g> 个联系人</item>
+    </plurals>
+    <plurals name="group_list_num_contacts_in_group" formatted="false" msgid="8240460423614369023">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> 个联系人</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> 个联系人</item>
+    </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"与其他联系人合并，请先键入联系人姓名。"</string>
     <string name="copy_text" msgid="3257145021583508761">"复制到剪贴板"</string>
     <string name="set_default" msgid="4417505153468300351">"设置默认值"</string>
@@ -214,17 +214,17 @@
     <string name="local_profile_title" msgid="2021416826991393684">"我的本地个人资料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>个人资料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"显示所有联系人"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"登录Google帐户可获得更棒的通讯录使用体验。\n\n• 可通过任意浏览器访问。\n• 安全妥善地备份您的联系人数据。"</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"登录Google帐号可获得更棒的通讯录使用体验。\n\n• 可通过任意浏览器访问。\n• 安全妥善地备份您的联系人数据。"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手机丢了，也能确保您的联系人信息的安全性：与在线服务同步。"</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"添加帐户"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系统不会备份您的新联系人。要添加用于在线备份联系人的帐户吗？"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"添加帐号"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系统不会备份您的新联系人。要添加用于在线备份联系人的帐号吗？"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"您的新联系人将会同步到<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>。"</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以将您的新联系人同步到以下某个帐户。请选择要使用的帐户："</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"您可以将您的新联系人同步到以下某个帐号。请选择要使用的帐号："</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增联系人"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"修改联系人"</string>
     <string name="keep_local" msgid="1258761699192993322">"本地保存"</string>
-    <string name="add_account" msgid="8201790677994503186">"添加帐户"</string>
-    <string name="add_new_account" msgid="5748627740680940264">"添加新帐户"</string>
+    <string name="add_account" msgid="8201790677994503186">"添加帐号"</string>
+    <string name="add_new_account" msgid="5748627740680940264">"添加新帐号"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"导出数据库文件"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"添加新联系人"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"查看更多"</string>
@@ -249,7 +249,7 @@
     <string name="header_website_entry" msgid="1411467850000824745">"网站"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"活动"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"关系"</string>
-    <string name="header_account_entry" msgid="2684318506427891827">"帐户"</string>
+    <string name="header_account_entry" msgid="2684318506427891827">"帐号"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"姓名"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"电子邮件地址"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"电话号码"</string>
@@ -263,5 +263,5 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"未接电话"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"近期通话：<xliff:g id="CALL_TYPE">%s</xliff:g>，<xliff:g id="PHONE_NUMBER">%s</xliff:g>，<xliff:g id="DATE">%s</xliff:g>。点按可回拨。"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"请将联系人的环聊帐户信息输入到电子邮件地址字段或电话号码字段，以便获得更佳的环聊使用体验。"</string>
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"请将联系人的环聊帐号信息输入到电子邮件地址字段或电话号码字段，以便获得更佳的环聊使用体验。"</string>
 </resources>
