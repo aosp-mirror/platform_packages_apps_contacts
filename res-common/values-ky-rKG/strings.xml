@@ -212,7 +212,6 @@
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Байланыш метадайындарын шайкештирүү"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"Менин дайындарым"</string>
     <string name="set_up_profile" msgid="8396362096521360520">"Профилди жөндөө"</string>
-    <string name="me_contact_name" msgid="1899366267108364062">"Менин дайындарым: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="setting_about" msgid="3926137653588942297">"Байланыштар жөнүндө"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Жөндөөлөр"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Көрүнүктүү байланыштарды бөлүшүү"</string>

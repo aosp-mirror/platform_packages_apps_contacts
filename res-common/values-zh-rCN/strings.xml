@@ -212,7 +212,6 @@
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"同步联系人元数据"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"我的信息"</string>
     <string name="set_up_profile" msgid="8396362096521360520">"设置您的个人资料"</string>
-    <string name="me_contact_name" msgid="1899366267108364062">"我的个人资料：<xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="setting_about" msgid="3926137653588942297">"关于通讯录"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"设置"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"分享所显示的联系人"</string>

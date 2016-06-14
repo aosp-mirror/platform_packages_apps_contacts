@@ -212,7 +212,6 @@
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"සම්බන්ධතා පාරදත්ත සමමුහුර්ත කරන්න"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"මගේ තොරතුරු"</string>
     <string name="set_up_profile" msgid="8396362096521360520">"ඔබේ පැතිකඩ පිහිටුවන්න"</string>
-    <string name="me_contact_name" msgid="1899366267108364062">"මගේ සම්බන්ධතාව: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="setting_about" msgid="3926137653588942297">"සම්බන්ධතා ගැන"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"සැකසීම්"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"පෙනෙන සම්බන්ධතා බෙදාගන්න"</string>

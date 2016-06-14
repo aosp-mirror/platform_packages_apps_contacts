@@ -214,7 +214,6 @@
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Segerakkan metadata kenalan"</string>
     <string name="settings_my_info_title" msgid="583358944162385703">"Maklumat saya"</string>
     <string name="set_up_profile" msgid="8396362096521360520">"Sediakan profil anda"</string>
-    <string name="me_contact_name" msgid="1899366267108364062">"Maklumat Hubungan Saya: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="setting_about" msgid="3926137653588942297">"Perihal Kenalan"</string>
     <string name="activity_title_settings" msgid="3056389601004689380">"Tetapan"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Kongsi kenalan yang kelihatan"</string>
