@@ -75,6 +75,8 @@ import com.android.contacts.common.list.ViewPagerTabs;
 import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferenceActivity;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.Constants;
@@ -138,6 +140,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     private ContactsRequest mRequest;
 
     private ActionBarAdapter mActionBarAdapter;
+    private List<AccountWithDataSet> mWritableAccounts;
     private FloatingActionButtonController mFloatingActionButtonController;
     private View mFloatingActionButtonContainer;
     private boolean wasLastFabAnimationScaleIn = false;
@@ -563,10 +566,23 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     private void initializeFabVisibility() {
         final boolean hideFab = mActionBarAdapter.isSearchMode()
-                || mActionBarAdapter.isSelectionMode();
+                || mActionBarAdapter.isSelectionMode()
+                || !shouldShowFabForAccount();
         mFloatingActionButtonContainer.setVisibility(hideFab ? View.GONE : View.VISIBLE);
         mFloatingActionButtonController.resetIn();
         wasLastFabAnimationScaleIn = !hideFab;
+    }
+
+    private boolean shouldShowFabForAccount() {
+        return isCurrentAccountFilterWritable()
+                || isAllContactsFilter(mContactListFilterController.getFilter());
+    }
+
+    private boolean isCurrentAccountFilterWritable() {
+        final ContactListFilter currentFilter = mContactListFilterController.getFilter();
+        final AccountWithDataSet accountOfCurrentFilter = new AccountWithDataSet(
+                currentFilter.accountName, currentFilter.accountType, currentFilter.dataSet);
+        return mWritableAccounts != null && mWritableAccounts.contains(accountOfCurrentFilter);
     }
 
     private void showFabWithAnimation(boolean showFab) {
@@ -596,6 +612,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         }
 
         setFilterAndUpdateTitle(mContactListFilterController.getFilter());
+        showFabWithAnimation(shouldShowFabForAccount());
 
         invalidateOptionsMenuIfNeeded();
     }
@@ -981,6 +998,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             // Get rid of the default memu item overlay and show original account icons.
             menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
         }
+
+        mWritableAccounts = AccountTypeManager.getInstance(this).getAccounts(true);
+        initializeFabVisibility();
     }
 
     @Override
@@ -1057,8 +1077,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 if (mAllFragment.isSearchMode()) {
                     previousScreen = ScreenType.SEARCH;
                 } else {
-                    if (mAllFragment.getFilter().filterType ==
-                            ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+                    if (isAllContactsFilter(mContactListFilterController.getFilter())) {
                         if (position < mAllFragment.getAdapter().getNumberOfFavorites()) {
                             previousScreen = ScreenType.FAVORITES;
                         } else {
@@ -1558,7 +1577,11 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     // Persist filter only when it's of the type FILTER_TYPE_ALL_ACCOUNTS.
     private void persistFilterIfNeeded(ContactListFilter filter) {
-        mContactListFilterController.setContactListFilter(filter, /* persistent */
-                filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+        mContactListFilterController.setContactListFilter(filter,
+                /* persistent */ isAllContactsFilter(filter));
+    }
+
+    private boolean isAllContactsFilter(ContactListFilter filter) {
+        return filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS;
     }
 }
