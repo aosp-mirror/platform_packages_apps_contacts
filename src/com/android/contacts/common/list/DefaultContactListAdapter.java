@@ -134,6 +134,19 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
                     sortOrder = STREQUENT_SORT;
                 }
+            } else if (isGroupMembersFilter()) {
+                final ContactListFilter filter = getFilter();
+                configureUri(loader, directoryId, filter);
+		// TODO: This is not the normal type to filter URI so we load the non-search
+		// projection. Consider creating a specific group member adapter to make it more
+		// clear.
+                loader.setProjection(getProjection(/* forSearch */ false));
+                loader.setSelection(
+                        Contacts.DISPLAY_NAME_PRIMARY + " LIKE ?1 OR " +
+                        Contacts.DISPLAY_NAME_ALTERNATIVE + " LIKE ?1");
+                final String[] args = new String[1];
+                args[0] = query + "%";
+                loader.setSelectionArgs(args);
             } else {
                 final Builder builder = ContactsCompat.getContentUri().buildUpon();
                 appendSearchParameters(builder, query, directoryId);
@@ -164,6 +177,11 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             }
         }
         loader.setSortOrder(sortOrder);
+    }
+
+    private boolean isGroupMembersFilter() {
+        final ContactListFilter filter = getFilter();
+        return filter != null && filter.filterType == ContactListFilter.FILTER_TYPE_GROUP_MEMBERS;
     }
 
     /**
@@ -240,7 +258,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             final Uri.Builder builder = uri.buildUpon();
             builder.appendQueryParameter(
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
-            if (filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+            if (filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT
+                || filter.filterType == ContactListFilter.FILTER_TYPE_GROUP_MEMBERS) {
                 filter.addAccountQueryParameterToUrl(builder);
             }
             uri = builder.build();
@@ -290,6 +309,11 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             }
             case ContactListFilter.FILTER_TYPE_ACCOUNT: {
                 // We use query parameters for account filter, so no selection to add here.
+                break;
+            }
+            case ContactListFilter.FILTER_TYPE_GROUP_MEMBERS: {
+                // TODO(wjang): check if we need it
+                // selection.append(Contacts.IN_VISIBLE_GROUP + "=1");
                 break;
             }
         }

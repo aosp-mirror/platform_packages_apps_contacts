@@ -44,7 +44,7 @@ import java.util.Set;
  */
 public abstract class ContactListAdapter extends MultiSelectEntryContactListAdapter {
 
-    protected static class ContactQuery {
+    public static class ContactQuery {
         private static final String[] CONTACT_PROJECTION_PRIMARY = new String[] {
             Contacts._ID,                           // 0
             Contacts.DISPLAY_NAME_PRIMARY,          // 1
@@ -236,6 +236,14 @@ public abstract class ContactListAdapter extends MultiSelectEntryContactListAdap
                     ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(directoryId)).build();
         }
         return uri;
+    }
+
+    /**
+     * Returns the {@link Contacts#_ID} for the given {@link ListView} position.
+     */
+    public long getContactId(int position) {
+        final Cursor cursor = (Cursor) getItem(position);
+        return cursor == null ? -1 : cursor.getLong(ContactQuery.CONTACT_ID);
     }
 
     public boolean isEnterpriseContact(int position) {

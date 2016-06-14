@@ -35,6 +35,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     public static final int FILTER_TYPE_STARRED = -4;
     public static final int FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY = -5;
     public static final int FILTER_TYPE_SINGLE_CONTACT = -6;
+    public static final int FILTER_TYPE_GROUP_MEMBERS = -7;
 
     public static final int FILTER_TYPE_ACCOUNT = 0;
 
@@ -77,6 +78,12 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
                 accountName, dataSet, icon);
     }
 
+    public static ContactListFilter createGroupMembersFilter(String accountType, String accountName,
+            String dataSet) {
+        return new ContactListFilter(ContactListFilter.FILTER_TYPE_GROUP_MEMBERS, accountType,
+                accountName, dataSet, /* icon */ null);
+    }
+
     /**
      * Returns true if this filter is based on data and may become invalid over time.
      */
@@ -102,6 +109,8 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             case FILTER_TYPE_ACCOUNT:
                 return "account: " + accountType + (dataSet != null ? "/" + dataSet : "")
                         + " " + accountName;
+            case FILTER_TYPE_GROUP_MEMBERS:
+                return "group_members";
         }
         return super.toString();
     }
@@ -260,8 +269,10 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
      * @throws IllegalStateException if the filter type is not {@link #FILTER_TYPE_ACCOUNT}.
      */
     public Uri.Builder addAccountQueryParameterToUrl(Uri.Builder uriBuilder) {
-        if (filterType != FILTER_TYPE_ACCOUNT) {
-            throw new IllegalStateException("filterType must be FILTER_TYPE_ACCOUNT");
+        if (filterType != FILTER_TYPE_ACCOUNT
+                && filterType != FILTER_TYPE_GROUP_MEMBERS) {
+            throw new IllegalStateException(
+                    "filterType must be FILTER_TYPE_ACCOUNT or FILER_TYPE_GROUP_MEMBERS");
         }
         uriBuilder.appendQueryParameter(RawContacts.ACCOUNT_NAME, accountName);
         uriBuilder.appendQueryParameter(RawContacts.ACCOUNT_TYPE, accountType);
@@ -299,6 +310,8 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
                 return "FILTER_TYPE_SINGLE_CONTACT";
             case FILTER_TYPE_ACCOUNT:
                 return "FILTER_TYPE_ACCOUNT";
+            case FILTER_TYPE_GROUP_MEMBERS:
+                return "FILTER_TYPE_GROUP_MEMBERS";
             default:
                 return "(unknown)";
         }
