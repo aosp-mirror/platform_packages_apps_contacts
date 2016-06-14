@@ -40,16 +40,16 @@ public class UiIntentActions {
     public static final String GROUP_NAME_EXTRA_KEY = "com.android.contacts.extra.GROUP";
 
     /**
-     * The account used to filter potential raw contact groups members.
+     * The account used to filter potential new group members.
      */
     public static final String GROUP_ACCOUNT_WITH_DATA_SET =
             "com.android.contacts.extra.GROUP_ACCOUNT_WITH_DATA_SET";
 
     /**
-     * The raw contact IDs for existing group members.
+     * The contact IDs for existing group members.
      */
-    public static final String GROUP_RAW_CONTACT_IDS =
-            "com.android.contacts.extra.GROUP_RAW_CONTACT_IDS";
+    public static final String GROUP_CONTACT_IDS =
+            "com.android.contacts.extra.GROUP_CONTACT_IDS";
 
     /**
      * The action for the all contacts list tab.

@@ -97,7 +97,7 @@ public class ContactsIntentResolver {
                 request.setAccountWithDataSet(intent.<AccountWithDataSet> getParcelableExtra(
                         UiIntentActions.GROUP_ACCOUNT_WITH_DATA_SET));
                 request.setRawContactIds(intent.getStringArrayListExtra(
-                        UiIntentActions.GROUP_RAW_CONTACT_IDS));
+                        UiIntentActions.GROUP_CONTACT_IDS));
             }
         } else if (Intent.ACTION_CREATE_SHORTCUT.equals(action)) {
             String component = intent.getComponent().getClassName();

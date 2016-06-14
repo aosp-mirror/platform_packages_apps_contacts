@@ -139,10 +139,9 @@ public class ContactSelectionActivity extends ContactsActivity
                 .inflate(R.layout.custom_action_bar, null);
         mSearchView = (SearchView) mSearchViewContainer.findViewById(R.id.search_view);
 
-        // Postal address  group member,and legacy pickers don't support search, so just show
+        // Postal address pickers (and legacy pickers) don't support search, so just show
         // "HomeAsUp" button and title.
         if (mRequest.getActionCode() == ContactsRequest.ACTION_PICK_POSTAL ||
-                mRequest.getActionCode() == ContactsRequest.ACTION_PICK_GROUP_MEMBERS ||
                 mRequest.isLegacyCompatibilityMode()) {
             mSearchView.setVisibility(View.GONE);
             if (actionBar != null) {
@@ -359,9 +358,9 @@ public class ContactSelectionActivity extends ContactsActivity
             case ContactsRequest.ACTION_PICK_GROUP_MEMBERS: {
                 final AccountWithDataSet account = getIntent().getParcelableExtra(
                         UiIntentActions.GROUP_ACCOUNT_WITH_DATA_SET);
-                final ArrayList<String> rawContactIds = getIntent().getStringArrayListExtra(
-                        UiIntentActions.GROUP_RAW_CONTACT_IDS);
-                mListFragment = GroupMemberPickerFragment.newInstance(account, rawContactIds);
+                final ArrayList<String> contactIds = getIntent().getStringArrayListExtra(
+                        UiIntentActions.GROUP_CONTACT_IDS);
+                mListFragment = GroupMemberPickerFragment.newInstance(account, contactIds);
                 break;
             }
 
@@ -483,8 +482,10 @@ public class ContactSelectionActivity extends ContactsActivity
     private final class GroupMemberPickerListener implements GroupMemberPickerFragment.Listener {
 
         @Override
-        public void onGroupMemberClicked(Uri uri) {
-            returnPickerResult(uri);
+        public void onGroupMemberClicked(long contactId) {
+            final Intent intent = new Intent();
+            intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, contactId);
+            returnPickerResult(intent);
         }
     }
 

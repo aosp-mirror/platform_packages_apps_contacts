@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.common.R;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.preference.ContactsPreferences;
@@ -71,7 +72,7 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
 
     public GroupMembersListAdapter(Context context) {
         super(context, GroupMembersQuery.RAW_CONTACT_ID);
-        mUnknownNameText = context.getText(android.R.string.unknownName);
+        mUnknownNameText = context.getText(R.string.missing_name);
     }
 
     /** Sets the ID of the group whose members will be displayed. */

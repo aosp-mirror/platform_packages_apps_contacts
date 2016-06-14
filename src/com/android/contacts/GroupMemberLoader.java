@@ -54,14 +54,6 @@ public final class GroupMemberLoader extends CursorLoader {
 
     private final long mGroupId;
 
-    /**
-     * @return GroupMemberLoader object which can be used in group editor.
-     */
-    public static GroupMemberLoader constructLoaderForGroupEditorQuery(
-            Context context, long groupId) {
-        return new GroupMemberLoader(context, groupId, GroupEditorQuery.PROJECTION);
-    }
-
     private GroupMemberLoader(Context context, long groupId, String[] projection) {
         super(context);
         mGroupId = groupId;
