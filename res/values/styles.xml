@@ -134,8 +134,8 @@
         <item name="colorPrimary">@color/primary_color</item>
         <item name="android:colorAccent">@color/primary_color</item>
         <item name="colorAccent">@color/primary_color</item>
-        <item name="android:alertDialogTheme">@style/ContactsAlertDialogTheme</item>
-        <item name="alertDialogTheme">@style/ContactsAlertDialogTheme</item>
+        <item name="android:alertDialogTheme">@style/ContactsAlertDialogThemeAppCompat</item>
+        <item name="alertDialogTheme">@style/ContactsAlertDialogThemeAppCompat</item>
         <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
@@ -380,6 +380,11 @@
         since the Alert dialog is private. They are identical anyway. -->
     <style name="ContactsAlertDialogTheme" parent="@android:style/Theme.Material.Light.Dialog">
         <item name="android:colorAccent">@color/primary_color</item>
+    </style>
+
+    <style name="ContactsAlertDialogThemeAppCompat" parent="Theme.AppCompat.Light.Dialog.MinWidth">
+        <item name="android:colorAccent">@color/primary_color</item>
+        <item name="colorAccent">@color/primary_color</item>
     </style>
 
     <style name="EditKindIconStyle">
