@@ -52,24 +52,6 @@ public final class GroupMemberLoader extends CursorLoader {
         public static final int CONTACT_PHOTO_ID             = 5;
     }
 
-    public static class GroupDetailQuery {
-        private static final String[] PROJECTION = new String[] {
-            Data.CONTACT_ID,                        // 0
-            Data.PHOTO_URI,                         // 1
-            Data.LOOKUP_KEY,                        // 2
-            Data.DISPLAY_NAME_PRIMARY,              // 3
-            Data.CONTACT_PRESENCE,                  // 4
-            Data.CONTACT_STATUS,                    // 5
-        };
-
-        public static final int CONTACT_ID                   = 0;
-        public static final int CONTACT_PHOTO_URI            = 1;
-        public static final int CONTACT_LOOKUP_KEY           = 2;
-        public static final int CONTACT_DISPLAY_NAME_PRIMARY = 3;
-        public static final int CONTACT_PRESENCE_STATUS      = 4;
-        public static final int CONTACT_STATUS               = 5;
-    }
-
     private final long mGroupId;
 
     /**
