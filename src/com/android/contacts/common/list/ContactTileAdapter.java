@@ -94,11 +94,6 @@ public class ContactTileAdapter extends BaseAdapter {
 
         /**
          * Display all contacts from a group in the cursor
-         * Use {@link com.android.contacts.GroupMemberLoader}
-         * when passing {@link Cursor} into loadFromCusor method.
-         *
-         * Group member logic has been moved into GroupMemberTileAdapter.  This constant is still
-         * needed by calling classes.
          */
         GROUP_MEMBERS
     }
