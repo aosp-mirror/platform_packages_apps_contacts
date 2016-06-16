@@ -40,6 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Telefonar para o pager do trabalho"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Telefonar para <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Telefonar para um número MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Chamada)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Enviar mensagem de texto para <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Enviar mensagem de texto para o telefone de casa"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Enviar mensagem de texto para telemóvel"</string>
@@ -61,6 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Enviar mensagem de texto para o pager do trabalho"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Enviar mensagem de texto para <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Enviar mensagem de texto para um número MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Mensagem)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Fazer videochamada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Limpar contactos frequentes?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Limpa a lista de contactos frequentes nas aplicações Contactos e Telemóvel e força as aplicações de email a aprenderem as suas preferências de endereço de raiz."</string>
@@ -71,7 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Contactos"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Outro"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Diretório"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"Diretório de trabalho"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Diretório de trabalho"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Todos os contactos"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Eu"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"A pesquisar…"</string>
@@ -87,9 +89,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactados frequentemente"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ver contacto"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Todos os contactos com números de telefone"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"Contactos do perfil de trabalho"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Contactos do perfil de trabalho"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ver atualizações"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Apenas telemóvel, não sincronizado"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Apenas telemóvel, não sincronizado"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nome"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Pseudónimo"</string>
     <string name="full_name" msgid="885420216812981202">"Nome"</string>
@@ -105,7 +107,7 @@
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefone"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Email"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Endereço"</string>
-    <string name="imLabelsGroup" msgid="8733603247535725786">"Chat"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
     <string name="organizationLabelsGroup" msgid="961008074745871784">"Entidade"</string>
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Tipo de relação"</string>
     <string name="eventLabelsGroup" msgid="4801419345682462171">"Data especial"</string>
@@ -185,11 +187,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Não foi possível importar um ou mais ficheiros (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"A exportação de <xliff:g id="FILENAME">%s</xliff:g> terminou."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Exportação de contactos concluída."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Foi concluída a exportação dos contactos. Clique na notificação para partilhar contactos."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Toque para partilhar contactos."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"A exportação de <xliff:g id="FILENAME">%s</xliff:g> foi cancelada."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"A exportar dados do contacto"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Os dados de contactos estão a ser exportados para: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Os dados de contactos estão a ser exportados."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Não foi possível obter informações da base de dados"</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Não existem contactos exportáveis. Se tiver contactos no seu telemóvel, alguns fornecedores de dados podem não permitir a exportação dos contactos a partir do telemóvel."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Não existem contactos exportáveis. Se tiver contactos no seu telemóvel, alguns fornecedores de dados podem não permitir a exportação dos contactos a partir do telemóvel."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"O compositor vCard não iniciou corretamente."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Impossível exportar"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Os dados de contactos não foram exportados.\nMotivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -203,6 +207,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"O pedido de importação do vCard foi rejeitado. Tente novamente mais tarde."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"O <xliff:g id="FILENAME">%s</xliff:g> será exportado em breve."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"O ficheiro é exportado em breve."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Os contactos serão exportados brevemente."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"O pedido de exportação do vCard foi rejeitado. Tente novamente mais tarde."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contacto"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"A colocar vCard(s) em cache no armazenamento temporário local. A importação efetiva começará brevemente."</string>
@@ -219,10 +224,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nome próprio em primeiro lugar"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Apelido em primeiro lugar"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Conta predefinida para novos contactos"</string>
-    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Conta de sincronização de metadados de contactos"</string>
-    <string name="setting_about" msgid="3926137653588942297">"Acerca dos Contactos"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronizar metadados de contactos [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronizar metadados de contactos"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Acerca do Contactos"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"Definições"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partilhar contactos visíveis"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Falha ao partilhar os contactos visíveis."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Partilhar contactos favoritos"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Partilhar todos os contactos"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Falha ao partilhar os contactos."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importar/exportar contactos"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importar contactos"</string>
     <string name="share_error" msgid="665756457151793108">"Não é possível partilhar este contacto."</string>
@@ -264,6 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Política de Privacidade"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Termos de Utilização"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licenças de código aberto"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Falha ao abrir o URL."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> verificado"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> não verificado"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Efetuar videochamada"</string>

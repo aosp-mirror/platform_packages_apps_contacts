@@ -40,6 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Hubungi pager kantor"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Hubungi <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Hubungi MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Telepon)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"SMS <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"SMS rumah"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"SMS nomor seluler"</string>
@@ -61,6 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"SMS pager kantor"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"SMS <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"SMS MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (SMS)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Lakukan video call"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Hapus yang sering dihubungi?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Anda akan menghapus daftar yang sering dihubungi pada aplikasi Kontak dan Ponsel, serta memaksa aplikasi email untuk mempelajari preferensi penanganan dari awal."</string>
@@ -71,7 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Kontak"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Lainnya"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Direktori"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"Direktori Kerja"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Direktori kerja"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Semua kontak"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Saya"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Menelusuri…"</string>
@@ -87,9 +89,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Paling sering dihubungi"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Lihat kontak"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Semua kontak dengan nomor telepon"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"Kontak Profil Kerja"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Kontak profil kerja"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Lihat pembaruan"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Ponsel saja, tidak disinkronkan"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Ponsel saja, tidak disinkronkan"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nama"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Nama julukan"</string>
     <string name="full_name" msgid="885420216812981202">"Nama"</string>
@@ -185,11 +187,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Satu file atau lebih tidak dapat diimpor (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Selesai mengekspor <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Selesai mengekspor kontak."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Selesai mengekspor kontak, klik notifikasi untuk membagikan kontak."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Ketuk untuk membagikan kontak."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Batal mengekspor <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Mengekspor data kontak"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Data kontak Anda sedang diekspor ke: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Data kontak sedang diekspor."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Tidak dapat memperoleh informasi basis data."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Tidak ada kontak yang dapat diekspor. Jika Anda menyimpan kontak pada ponsel, beberapa penyedia data mungkin tidak mengizinkan kontak diekspor dari ponsel."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Tidak ada kontak yang dapat diekspor. Jika Anda menyimpan kontak pada ponsel, beberapa penyedia data mungkin tidak mengizinkan kontak diekspor dari ponsel."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Penyusun vCard tidak memulai dengan semestinya."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Tak dapat mengekspor"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Data kontak tidak diekspor.\nAlasan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -203,6 +207,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Permintaan impor vCard ditolak. Coba lagi nanti."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> akan segera diekspor."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"File akan segera diekspor."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Kontak akan segera diekspor."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Permintaan ekspor vCard ditolak. Coba lagi nanti."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontak"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Menyimpan vCard ke dalam cache penyimpanan lokal sementara. Impor yang sebenarnya akan segera dimulai."</string>
@@ -216,13 +221,18 @@
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Nama depan"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Nama belakang"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Format nama"</string>
-    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nama depan pertama"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nama belakang pertama"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Nama depan terlebih dulu"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Nama belakang terlebih dulu"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Akun default untuk kontak baru"</string>
-    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Akun sinkronisasi metadata kontak"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinkronkan metadata kontak [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinkronkan metadata kontak"</string>
     <string name="setting_about" msgid="3926137653588942297">"Tentang Kontak"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"Setelan"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Bagikan kontak yang terlihat"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Gagal membagikan kontak yang terlihat."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Bagikan kontak favorit"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Bagikan semua kontak"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Gagal membagikan kontak."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Impor/ekspor kontak"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Impor kontak"</string>
     <string name="share_error" msgid="665756457151793108">"Kontak ini tidak dapat dibagi."</string>
@@ -264,6 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Kebijakan privasi"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Persyaratan layanan"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Lisensi sumber terbuka"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Gagal membuka url."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> diperiksa"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> tidak diperiksa"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Lakukan video call"</string>

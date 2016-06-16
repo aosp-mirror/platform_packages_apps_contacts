@@ -40,6 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"काम पेजरमा कल गर्नुहोस्"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> लाई कल गर्नुहोस्"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS लाई कल गर्नुहोस्"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (फोन गर्नुहोस्)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"पाठ <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"पाठ घर"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"पाठ मोबाइल"</string>
@@ -61,6 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"पाठ काम पेजर"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"पाठ <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"पाठ MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (सन्देश पठाउनुहोस्)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"भिडियो कल बनाउनुहोस्"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"प्रायः सम्पर्क भएकालाई हटाउने?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"तपाईंले सम्पर्कहरू र फोन अनुप्रयोगहरूमा बारम्बार सम्पर्क गरेको सूची खाली गर्नुहुनेछ र स्क्रयाचबाट तपाईंको ठेगाना प्राथमिकताहरू सिक्नको लागि इमेल अनुप्रयोगहरूलाई दबाब दिनुहुनेछ।"</string>
@@ -71,7 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"सम्पर्कहरू"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"अन्य"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"निर्देशिका"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"कार्यको निर्देशिका"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"कार्यको निर्देशिका"</string>
     <string name="local_search_label" msgid="9094584931063745728">"सबै सम्पर्कहरू"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"मलाई"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"खोजी गरिँदै..."</string>
@@ -87,9 +89,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"लगातार सम्पर्क गरिएको"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"सम्पर्क हेर्नुहोस्"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"फोन नम्बर भएका सबै सम्पर्कहरू"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"कार्य प्रोफाइलको सम्पर्कहरू"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"कार्य प्रोफाइलका सम्पर्कहरू"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"अद्यावधिकहरू अवलोकन गर्नुहोस्"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"फोन मात्र, सिङ्क नभएको"</string>
+    <string name="account_phone" msgid="6104157990869081962">"फोन मात्र, सिंक नभएको"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"नाम"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"उपनाम"</string>
     <string name="full_name" msgid="885420216812981202">"नाम"</string>
@@ -101,7 +103,7 @@
     <string name="name_phonetic" msgid="2249169131785620210">"फोनेटिक नाम"</string>
     <string name="name_phonetic_given" msgid="2863316331175661852">"ध्वनितात्त्विक नाम"</string>
     <string name="name_phonetic_middle" msgid="5970174427249235577">"फोनेटिक मध्य नाम"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"ध्वनितात्त्विक थर"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"फोनेटिक थर"</string>
     <string name="phoneLabelsGroup" msgid="7913782787902007482">"फोन"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"इमेल गर्नुहोस्"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"ठेगाना"</string>
@@ -152,8 +154,8 @@
     <string name="list_filter_single" msgid="4553809449379139446">"ठेगाना"</string>
     <string name="display_ungrouped" msgid="3669471582032440138">"सबै अन्य सम्पर्कहरू"</string>
     <string name="display_all_contacts" msgid="7251385818740728862">"सबै सम्पर्कहरू"</string>
-    <string name="menu_sync_remove" msgid="6581565236520430269">"सिङ्क समूह हटाउनुहोस्"</string>
-    <string name="dialog_sync_add" msgid="1795682729089027675">"सिङ्क समूह थप्नुहोस्"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"सिंक समूह हटाउनुहोस्"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"सिंक समूह थप्नुहोस्"</string>
     <string name="display_more_groups" msgid="6304997485733158224">"अधिक समूहहरू..."</string>
     <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" सिङ्कबाट हटाइदै,  सिङ्कबाट समूहमा विभाजन नभएका सम्पर्कहरूलाई हटाउने छ।"</string>
     <string name="savingDisplayGroups" msgid="6863012138107446030">"प्रदर्शन विकल्पहरू बचत गर्दै ..."</string>
@@ -185,11 +187,16 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"एक वा बढी फाइलहरू आयात गर्न सकिएन (%s)।"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>निर्यात सकियो।"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"सम्पर्क ठेगानाहरू निर्यात गर्ने सकियो।"</string>
+    <!-- no translation found for exporting_vcard_finished_toast (5995505525489290221) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (3237211496215699092) -->
+    <skip />
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> निर्यात रद्द गरियो।"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"सम्पर्क डेटा निर्यात हुँदै"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"तपाईँको सम्पर्क डेटा  <xliff:g id="FILE_NAME">%s</xliff:g> मा निर्यात हुँदै छ।"</string>
+    <!-- no translation found for exporting_contact_list_message (141905615542638683) -->
+    <skip />
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"डेटाबेस जानकारी पाउन सकेन।"</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"निर्यात योग्य सम्पर्कहरू छैनन्। यदि तपाईँसँग फोनमा सम्पर्कहरू छन् भने केही डेटा प्रदायकहरूले फोनबाट सम्पर्कहरू निर्यात गर्ने अनुमति दिँदैनन्।"</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"निर्यात योग्य सम्पर्कहरू छैनन्। यदि तपाईँसँग फोनमा सम्पर्कहरू छन् भने केही डेटा प्रदायकहरूले फोनबाट सम्पर्कहरू निर्यात गर्ने अनुमति दिँदैनन्।"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard रचनाकार राम्ररी सुरु भएन।"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"निर्यात गर्न सकेन"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"सम्पर्क डेटा निर्यात गरिएको थिएन \n कारण: \" <xliff:g id="FAIL_REASON">%s</xliff:g> \""</string>
@@ -203,6 +210,8 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard आयात अनुरोध अस्वीकृत गरियो। पछि फेरि प्रयास गर्नुहोस्।"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> तुरुन्तै निर्यात गरिने छ।"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"फाइल तुरुन्तै निर्यात गरिने छ।"</string>
+    <!-- no translation found for contacts_export_will_start_message (4527597765334949574) -->
+    <skip />
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard निर्यात अनुरोध अस्वीकार गरियो। कृपया फेरि प्रयास गर्नुहोस्।"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"सम्पर्क"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"स्थानीय अस्थायी भण्डारणका लागि vCard (हरू) क्यास गर्दै ।  वास्तविक आयात छिट्टै सुरु हुने छ।"</string>
@@ -215,16 +224,21 @@
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"क्रमवद्घ गर्नुहोस्"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"नाम"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"थर"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"नाम ढाँचा"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"नामको ढाँचा"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"नाम पहिले"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"थर पहिला"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"थर पहिले"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"नयाँ सम्पर्कहरूका लागि पूर्वनिर्धारित खाता"</string>
-    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"मेटाडेटा सिंकको खातामा सम्पर्क गर्नुहोस्"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"सम्पर्क मेटाडाटा [DOGFOOD]लाई सिंक गर्नुहोस्"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"सम्पर्क मेटाडाटालाई सिंक गर्नुहोस्"</string>
     <string name="setting_about" msgid="3926137653588942297">"सम्पर्कहरूको बारेमा"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"सेटिङहरू"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"देखिने सम्पर्कहरू साझेदारी गर्नुहोस्"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"देख्न सकिने सम्पर्कहरू साझेदारी गर्न असफल भयो।"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"मनपर्ने सम्पर्क साझेदारी गर्नुहोस्"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"सबै सम्पर्क साझेदारी गर्नुहोस्"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"सम्पर्कहरू साझेदारी गर्न असफल भयो।"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"आयात/निर्यात सम्पर्कहरू"</string>
-    <string name="dialog_import" msgid="5177004290082451296">"सम्पर्क आयात गर्नुहोस्"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"सम्पर्कहरूलाई आयात गर्नुहोस्"</string>
     <string name="share_error" msgid="665756457151793108">"यस सम्पर्कलाई साझेदारी गर्न सकिँदैन।"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"साझेदारी गर्न कुनै सम्पर्क ठेगानाहरू छैनन्।"</string>
     <string name="menu_search" msgid="7464453023659824700">"खोज्नुहोस्"</string>
@@ -260,10 +274,11 @@
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"बिल्ड संस्करण"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"खुला स्रोत इजाजतपत्रहरू"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"खुला स्रोत सफ्टवेयरका लागि इजाजतपत्र विवरणहरू"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"खुला स्रोत सफ्टवेयरका लागि इजाजतपत्रका विवरणहरू"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"गोपनीयता नीति"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"सेवा सर्तहरू"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"खुलास्रोत इजाजतपत्रहरू"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"url खोल्न सकिएन।"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> जाँच गरियो"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> जाँच गरिएन"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"भिडियो कल गर्नुहोस्"</string>

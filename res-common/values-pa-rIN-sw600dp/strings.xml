@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (C) 2012 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="account_phone" msgid="4804592866198643905">"ਸਿਰਫ਼-ਟੈਬਲੈੱਟ, ਸਮਕਾਲੀਕਿਰਤ ਨਹੀਂ"</string>
+    <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"ਇੱਥੇ ਕੋਈ ਵੀ ਨਿਰਯਾਤ ਕਰਨਯੋਗ ਸੰਪਰਕ ਨਹੀਂ ਹਨ। ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਤੁਹਾਡੇ ਟੈਬਲੈੱਟ ਵਿੱਚ ਸੰਪਰਕ ਨਹੀਂ ਹਨ, ਤਾਂ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਕੁਝ ਡੈਟਾ ਪ੍ਰਦਾਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਟੈਬਲੈੱਟ ਤੋਂ ਨਿਰਯਾਤ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਨਾ ਦੇਣ।"</string>
+</resources>
