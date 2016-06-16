@@ -397,8 +397,9 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             case R.id.menu_add: {
                 final Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType(ContactsContract.Groups.CONTENT_ITEM_TYPE);
-                intent.putExtra(UiIntentActions.GROUP_ACCOUNT_WITH_DATA_SET,
-                        mGroupMetadata.createAccountWithDataSet());
+                intent.putExtra(UiIntentActions.GROUP_ACCOUNT_NAME, mGroupMetadata.accountName);
+                intent.putExtra(UiIntentActions.GROUP_ACCOUNT_TYPE, mGroupMetadata.accountType);
+                intent.putExtra(UiIntentActions.GROUP_ACCOUNT_DATA_SET, mGroupMetadata.dataSet);
                 intent.putExtra(UiIntentActions.GROUP_CONTACT_IDS,
                         getExistingGroupMemberContactIds());
                 startActivityForResult(intent, RESULT_GROUP_ADD_MEMBER);

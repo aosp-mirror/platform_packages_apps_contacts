@@ -16,6 +16,7 @@
 
 package com.android.contacts.list;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
@@ -94,8 +95,10 @@ public class ContactsIntentResolver {
                 request.setActionCode(ContactsRequest.ACTION_PICK_EMAIL);
             } else if (Groups.CONTENT_ITEM_TYPE.equals(resolvedType)) {
                 request.setActionCode(ContactsRequest.ACTION_PICK_GROUP_MEMBERS);
-                request.setAccountWithDataSet(intent.<AccountWithDataSet> getParcelableExtra(
-                        UiIntentActions.GROUP_ACCOUNT_WITH_DATA_SET));
+                request.setAccountWithDataSet(new AccountWithDataSet(
+                        intent.getStringExtra(UiIntentActions.GROUP_ACCOUNT_NAME),
+                        intent.getStringExtra(UiIntentActions.GROUP_ACCOUNT_TYPE),
+                        intent.getStringExtra(UiIntentActions.GROUP_ACCOUNT_DATA_SET)));
                 request.setRawContactIds(intent.getStringArrayListExtra(
                         UiIntentActions.GROUP_CONTACT_IDS));
             }
