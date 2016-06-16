@@ -20,6 +20,8 @@ import android.content.CursorLoader;
 import android.net.Uri;
 import android.provider.ContactsContract.Groups;
 
+import com.android.contacts.group.GroupUtil;
+
 /**
  * Group meta-data loader. Loads all groups or just a single group from the
  * database (if given a {@link Uri}).
@@ -52,7 +54,7 @@ public final class GroupMetaDataLoader extends CursorLoader {
         super(context, ensureIsGroupUri(groupUri), COLUMNS,
                 Groups.ACCOUNT_TYPE + " NOT NULL AND " + Groups.ACCOUNT_NAME + " NOT NULL AND "
                         + Groups.DELETED + "=0",
-                null, Groups.TITLE + " COLLATE NOCASE ASC");
+                null, GroupUtil.getGroupsSortOrder());
     }
 
     /**

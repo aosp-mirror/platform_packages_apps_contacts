@@ -20,6 +20,8 @@ import android.content.CursorLoader;
 import android.net.Uri;
 import android.provider.ContactsContract.Groups;
 
+import com.android.contacts.group.GroupUtil;
+
 /**
  * Group loader for the group list that includes details such as the number of contacts per group
  * and number of groups per account. This list is sorted by account type, account name, where the
@@ -56,12 +58,11 @@ public final class GroupListLoader extends CursorLoader {
     private static final Uri GROUP_LIST_URI = Groups.CONTENT_SUMMARY_URI;
 
     public GroupListLoader(Context context) {
-        // Sort groups from all accounts alphabettically and in a localized way.
         super(context,
                 GROUP_LIST_URI,
                 COLUMNS,
                 DEFAULT_SELECTION,
                 null,
-                Groups.TITLE + " COLLATE LOCALIZED ASC");
+                GroupUtil.getGroupsSortOrder());
     }
 }

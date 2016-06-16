@@ -149,4 +149,11 @@ public final class GroupUtil {
     private static boolean isSystemIdFFC(String systemId) {
         return !TextUtils.isEmpty(systemId) && FFC_GROUPS.contains(systemId);
     }
+
+    /**
+     * Sort groups alphabetically and in a localized way.
+     */
+    public static String getGroupsSortOrder() {
+        return Groups.TITLE + " COLLATE LOCALIZED ASC";
+    }
 }
