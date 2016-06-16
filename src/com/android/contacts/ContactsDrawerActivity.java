@@ -40,7 +40,6 @@ import android.view.ViewGroup;
 
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.compat.BlockedNumberContractCompat;
-import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
@@ -195,7 +194,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         // Create a menu item in the sub menu to add new groups
         final MenuItem menuItem = subMenu.add(R.id.nav_groups_items, Menu.NONE, Menu.NONE,
                 getString(R.string.menu_new_group_action_bar));
-        menuItem.setIcon(R.drawable.ic_menu_group_add);
+        menuItem.setIcon(R.drawable.ic_add);
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
