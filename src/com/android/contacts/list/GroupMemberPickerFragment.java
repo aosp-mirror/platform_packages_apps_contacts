@@ -29,7 +29,6 @@ import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListAdapter.ContactQuery;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.DefaultContactListAdapter;
-import com.android.contacts.common.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;
 
@@ -41,10 +40,14 @@ public class GroupMemberPickerFragment extends
 
     public static final String TAG = "GroupMemberPicker";
 
-    private static final String KEY_ACCOUNT = "account";
+    private static final String KEY_ACCOUNT_NAME = "accountName";
+    private static final String KEY_ACCOUNT_TYPE = "accountType";
+    private static final String KEY_ACCOUNT_DATA_SET = "accountDataSet";
     private static final String KEY_RAW_CONTACT_IDS = "rawContactIds";
 
-    private static final String ARG_ACCOUNT = "account";
+    private static final String ARG_ACCOUNT_NAME = "accountName";
+    private static final String ARG_ACCOUNT_TYPE = "accountType";
+    private static final String ARG_ACCOUNT_DATA_SET = "accountDataSet";
     private static final String ARG_RAW_CONTACT_IDS = "rawContactIds";
 
     /** Callbacks for host of {@link GroupMemberPickerFragment}. */
@@ -132,14 +135,18 @@ public class GroupMemberPickerFragment extends
         }
     }
 
-    private AccountWithDataSet mAccount;
+    private String mAccountName;
+    private String mAccountType;
+    private String mAccountDataSet;
     private ArrayList<String> mRawContactIds;
     private Listener mListener;
 
-    public static GroupMemberPickerFragment newInstance(AccountWithDataSet account,
-            ArrayList<String> rawContactIds) {
+    public static GroupMemberPickerFragment newInstance(String accountName, String accountType,
+            String accountDataSet, ArrayList<String> rawContactIds) {
         final Bundle args = new Bundle();
-        args.putParcelable(ARG_ACCOUNT, account);
+        args.putString(ARG_ACCOUNT_NAME, accountName);
+        args.putString(ARG_ACCOUNT_TYPE, accountType);
+        args.putString(ARG_ACCOUNT_DATA_SET, accountDataSet);
         args.putStringArrayList(ARG_RAW_CONTACT_IDS, rawContactIds);
 
         final GroupMemberPickerFragment fragment = new GroupMemberPickerFragment();
@@ -158,10 +165,14 @@ public class GroupMemberPickerFragment extends
     @Override
     public void onCreate(Bundle savedState) {
         if (savedState == null) {
-            mAccount = getArguments().getParcelable(ARG_ACCOUNT);
+            mAccountName = getArguments().getString(ARG_ACCOUNT_NAME);
+            mAccountType = getArguments().getString(ARG_ACCOUNT_TYPE);
+            mAccountDataSet = getArguments().getString(ARG_ACCOUNT_DATA_SET);
             mRawContactIds = getArguments().getStringArrayList(ARG_RAW_CONTACT_IDS);
         } else {
-            mAccount = savedState.getParcelable(KEY_ACCOUNT);
+            mAccountName = savedState.getString(KEY_ACCOUNT_NAME);
+            mAccountType = savedState.getString(KEY_ACCOUNT_TYPE);
+            mAccountDataSet = savedState.getString(KEY_ACCOUNT_DATA_SET);
             mRawContactIds = savedState.getStringArrayList(KEY_RAW_CONTACT_IDS);
         }
         super.onCreate(savedState);
@@ -170,7 +181,9 @@ public class GroupMemberPickerFragment extends
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(KEY_ACCOUNT, mAccount);
+        outState.putString(KEY_ACCOUNT_NAME, mAccountName);
+        outState.putString(KEY_ACCOUNT_TYPE, mAccountType);
+        outState.putString(KEY_ACCOUNT_DATA_SET, mAccountDataSet);
         outState.putStringArrayList(KEY_RAW_CONTACT_IDS, mRawContactIds);
     }
 
@@ -194,7 +207,7 @@ public class GroupMemberPickerFragment extends
     protected DefaultContactListAdapter createListAdapter() {
         final DefaultContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
         adapter.setFilter(ContactListFilter.createGroupMembersFilter(
-                mAccount.type, mAccount.name, mAccount.dataSet));
+                mAccountType, mAccountName, mAccountDataSet));
         adapter.setSectionHeaderDisplayEnabled(true);
         adapter.setDisplayPhotos(true);
         return adapter;

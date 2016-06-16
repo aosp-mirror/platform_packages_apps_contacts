@@ -356,11 +356,16 @@ public class ContactSelectionActivity extends ContactsActivity
             }
 
             case ContactsRequest.ACTION_PICK_GROUP_MEMBERS: {
-                final AccountWithDataSet account = getIntent().getParcelableExtra(
-                        UiIntentActions.GROUP_ACCOUNT_WITH_DATA_SET);
+                final String accountName = getIntent().getStringExtra(
+                        UiIntentActions.GROUP_ACCOUNT_NAME);
+                final String accountType = getIntent().getStringExtra(
+                        UiIntentActions.GROUP_ACCOUNT_TYPE);
+                final String accountDataSet = getIntent().getStringExtra(
+                        UiIntentActions.GROUP_ACCOUNT_DATA_SET);
                 final ArrayList<String> contactIds = getIntent().getStringArrayListExtra(
                         UiIntentActions.GROUP_CONTACT_IDS);
-                mListFragment = GroupMemberPickerFragment.newInstance(account, contactIds);
+                mListFragment = GroupMemberPickerFragment.newInstance(
+                        accountName, accountType, accountDataSet, contactIds);
                 break;
             }
 
