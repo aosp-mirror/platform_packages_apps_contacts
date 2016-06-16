@@ -28,10 +28,10 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"വിളിക്കാൻ ഒരു നമ്പർ തിരഞ്ഞെടുക്കുക"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"സന്ദേശമയയ്‌ക്കാൻ ഒരു നമ്പർ തിരഞ്ഞെടുക്കുക"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"കോണ്‍‌ടാക്റ്റിലേക്ക് ചേര്‍ക്കുക"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ഒരു കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കുക"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കൂ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
     <string name="starredList" msgid="4817256136413959463">"നക്ഷത്രമിട്ടവ"</string>
-    <string name="frequentList" msgid="7154768136473953056">"പതിവായി കോൺടാക്റ്റുചെയ്യുന്നവർ"</string>
+    <string name="frequentList" msgid="7154768136473953056">"പതിവ് കോൺടാക്റ്റുകൾ"</string>
     <string name="strequentList" msgid="5640192862059373511">"പ്രിയപ്പെട്ടവർ"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"കോൺടാക്റ്റ് വിശദാംശങ്ങൾ"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"കോൺടാ‌ക്‌റ്റ് തിരുത്തുക"</string>
@@ -190,8 +190,8 @@
     <string name="add_to_my_contacts" msgid="1068274916793627723">"എന്റെ കോൺടാക്റ്റുകളിൽ ചേർക്കുക"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ഡയറക്‌ടറി <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"ഇഷ്‌ടാനുസൃതം"</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"ക്രമീകരണങ്ങൾ"</string>
-    <string name="menu_settings" msgid="377929915873428211">"ക്രമീകരണങ്ങൾ"</string>
+    <string name="activity_title_settings" msgid="5464130076132770781">"ക്രമീകരണം"</string>
+    <string name="menu_settings" msgid="377929915873428211">"ക്രമീകരണം"</string>
     <string name="menu_help" msgid="1680178646764069976">"സഹായവും ഫീഡ്‌ബാക്കും"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ഡിസ്‌പ്ലേ ഓപ്‌ഷനുകൾ"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"സ്ഥിരമായി സജ്ജമാക്കുക"</string>
     <string name="clear_default" msgid="7193185801596678067">"സ്ഥിരമായത് മായ്‌ക്കുക"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"വാചകം പകർത്തി"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"നിങ്ങളുടെ മാറ്റങ്ങൾ നിരസിക്കണോ?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"തള്ളിക്കളയുക"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"നിങ്ങളുടെ മാറ്റങ്ങൾ തള്ളിക്കളയുകയും എഡിറ്റുചെയ്യൽ ഉപേക്ഷിക്കുകയും ചെയ്യണോ?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"തള്ളിക്കളയുക"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"എഡിറ്റുചെയ്യുന്നത് തുടരുക"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"പ്രൊഫൈൽ സജ്ജമാക്കൂ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"വ്യക്തിയുടെ പേര് ടൈപ്പുചെയ്യുക"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"എന്റെ പ്രാദേശിക പ്രൊഫൈൽ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"എന്റെ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> പ്രൊഫൈൽ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"എല്ലാ കോൺടാക്റ്റുകളും പ്രദർശിപ്പിക്കുന്നു"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"ഒരു Google അക്കൗണ്ടുള്ള കോൺടാക്‌റ്റുകൾക്ക് മികച്ച രീതിയിൽ പ്രവർത്തിക്കാനാകും.\n\n• ഏത് ബ്രൗസറിൽ നിന്നും ആക്‌സസ്സുചെയ്യുക.\n• നിങ്ങളുടെ കോൺടാക്റ്റുകൾ സുരക്ഷിതമായി ബാക്കപ്പുചെയ്യുക."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"നിങ്ങൾക്ക് ഫോൺ നഷ്‌ടമാകുകയാണെങ്കിൽപ്പോലും നിങ്ങളുടെ കോൺടാക്റ്റുകൾ സുരക്ഷിതമായി സൂക്ഷിക്കുക: ഒരു ഓൺലൈൻ സേവനവുമായി സമന്വയിപ്പിക്കുക."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ഒരു അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"നിങ്ങളുടെ പുതിയ കോൺടാക്റ്റ് ബാക്കപ്പുചെയ്യില്ല. കോൺടാക്റ്റുകളെ ഓൺലൈനിൽ ബാക്കപ്പുചെയ്യുന്ന ഒരു അക്കൗണ്ട് ചേർക്കണോ?"</string>
@@ -248,7 +248,7 @@
     <string name="add_new_account" msgid="5748627740680940264">"പുതിയ അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ഡാറ്റാബേസ് ഫയലുകൾ എക്‌സ്‌പോർട്ടുചെയ്യുക"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"പുതിയവ ചേർക്കൂ"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"കൂടുതല്‍ കാണുക"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"കൂടുതൽ‍ കാണുക"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"കുറച്ച് കാണുക"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"എല്ലാം കാണുക"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"പുതിയത്"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തിട്ടില്ല"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തു"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ഭാഷാ മാറ്റം പ്രതിഫലിപ്പിക്കുന്നതിന് കോൺടാക്റ്റ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്തുകൊണ്ടിരിക്കുന്നു.\n\nകാക്കുക..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"നമ്പർ ചേർക്കുക"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"നമ്പർ ബ്ലോക്കുചെയ്യുക"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"നമ്പർ ചേർക്കുക അല്ലെങ്കിൽ കോൺടാക്റ്റുകൾ തിരയുക"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> അൺബ്ലോക്കുചെയ്യണോ?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"അൺബ്ലോക്കുചെയ്യുക"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> ബ്ലോക്കുചെയ്യണോ?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"ബ്ലോക്കുചെയ്യുക"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> ബ്ലോക്കുചെയ്തു"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> അൺബ്ലോക്കുചെയ്തു"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> അസാധുവാണ്."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"കോൾ ബ്ലോക്കുചെയ്യൽ താൽക്കാലികമായി ഓഫാണ്"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"കഴിഞ്ഞ 48 മണിക്കൂറിനുള്ളിൽ നിങ്ങൾ ഈ ഫോണിൽ നിന്ന് അടിയന്തിര സേവനങ്ങളുമായി ബന്ധപ്പെട്ടതിനാൽ കോൾ ബ്ലോക്കുചെയ്യൽ പ്രവർത്തനരഹിതമാക്കി. 48 മണിക്കൂർ സമയപരിധി കഴിഞ്ഞയുടൻ ഇത് സ്വയമേവ പ്രവർത്തനക്ഷമമാക്കപ്പെടും."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"ഇമ്പോർട്ടുചെയ്യുക"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"നമ്പറുകൾ കാണുക"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"നമ്പർ ചേർക്കുക"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"48 മണിക്കൂർ നേരത്തേക്ക് കോൾ ബ്ലോക്കുചെയ്യൽ പ്രവർത്തനരഹിതമാക്കി"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"എമർജൻസി കോൾ നടത്തിയതിനാൽ പ്രവർത്തനരഹിതമാക്കി."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"പഴയപടിയാക്കുക"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"ഇതിനകം തന്നെ <xliff:g id="NUMBER">%1$s</xliff:g> ബ്ലോക്കുചെയ്തിരിക്കുന്നു"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"നമ്പർ അൺബ്ലോക്കുചെയ്യുക"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> എന്നതിന്റെ കോൺ‌ടാക്റ്റ് വിശദാംശങ്ങൾ"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"ഇമ്പോർട്ടുചെയ്യൽ പരാജയപ്പെട്ടു"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"നമ്പറുകൾ ഇമ്പോർട്ടുചെയ്യുക"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"നിങ്ങളുടെ കോൺടാക്റ്റുകൾ തിരയുന്നതിന് കോൺടാക്റ്റുകൾക്കുള്ള അനുമതികൾ ഓണാക്കുക."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"ഓണാക്കുക"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ബ്ലോക്കുചെയ്ത നമ്പറുകൾ"</string>
 </resources>

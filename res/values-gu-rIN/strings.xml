@@ -145,11 +145,11 @@
     <string name="description_plus_button" msgid="515164827856229880">"પ્લસ"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g> માંથી <xliff:g id="CURRENT_NUMBER">%s</xliff:g> સંપર્કો"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"તમારા સંપર્કોના નામ"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"આ ક્રિયાને હેન્ડલ કરવા માટે કોઈ એપ્લિકેશન મળી નહીં."</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"આ ક્રિયાને હેન્ડલ કરવા માટે કોઈ ઍપ્લિકેશન મળી નહીં."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"પાછલી સ્ક્રીન પર પાછા આવવા માટે ક્લિક કરો"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ફોન નંબર ઉમેરો"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ઇમેઇલ ઉમેરો"</string>
-    <string name="missing_app" msgid="1466111003546611387">"આ ક્રિયાને હેન્ડલ કરવા માટે કોઈ એપ્લિકેશન મળી નહીં."</string>
+    <string name="missing_app" msgid="1466111003546611387">"આ ક્રિયાને હેન્ડલ કરવા માટે કોઈ ઍપ્લિકેશન મળી નહીં."</string>
     <string name="menu_share" msgid="943789700636542260">"શેર કરો"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"સંપર્કોમાં ઉમેરો"</string>
     <string name="share_via" msgid="563121028023030093">"આના દ્વારા સંપર્ક શેર કરો"</string>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"ડિફોલ્ટ સેટ કરો"</string>
     <string name="clear_default" msgid="7193185801596678067">"ડિફોલ્ટ સાફ કરો"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"ટેક્સ્ટ કૉપિ કર્યો"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"તમારા ફેરફારો છોડી દઈએ?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"કાઢી નાખો"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"તમારા ફેરફારોને નિકાળીને સંપાદન છોડી દઈએ?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"નિકાળો"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"સંપાદન ચાલુ રાખો"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"મારી પ્રોફાઇલ સેટ કરો"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"વ્યક્તિનું નામ લખો"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"મારી સ્થાનિક પ્રોફાઇલ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"મારી <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> પ્રોફાઇલ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"તમામ સંપર્કો દર્શાવી રહ્યાં છે"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Google એકાઉન્ટ સાથે સંપર્કો વધુ સારી રીતે કાર્ય કરે છે.\n\n• તેને કોઈપણ વેબ બ્રાઉઝરથી ઍક્સેસ કરો\n• તમારા ફોટાનો સુરક્ષિત રૂપે બેક અપ લો."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"તમે તમારો ફોન ગુમાવી દો તો પણ તમારા સંપર્કોને સુરક્ષિત રાખો: ઓનલાઇન સેવા સાથે સમન્વયિત કરો."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"એક એકાઉન્ટ ઉમેરો"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"તમારા નવા સંપર્કનો બેક અપ લેવાશે નહીં. સંપર્કોનો ઓનલાઇન બેક અપ લેતાં એકાઉન્ટને ઉમેરીએ?"</string>
@@ -288,7 +288,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"વધુ ફીલ્ડ્સ"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ફોટો બદલો"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"સંપાદક ખોલવામાં નિષ્ફળ થયાં."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"મા સાચવી રહ્યાં છે"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"આમાં સાચવી રહ્યાં છે"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"વર્તમાનમાં <xliff:g id="ACCOUNT_NAME">%s</xliff:g> પર સાચવી રહ્યાં છે. ભિન્ન એકાઉન્ટ ચૂંટવા માટે બે વાર ટેપ કરો."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">લિંક કરેલ સંપર્કો (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"અજાણ્યાં એકાઉન્ટનો ફોટો ચેક ન કર્યો"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"અજાણ્યાં એકાઉન્ટનો ફોટો ચેક કર્યો"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ભાષામાં ફેરફાર પ્રતિબિંબિત કરવા માટે સંપર્ક સૂચિને અપડેટ કરવામાં આવી રહી છે.\n\nકૃપા કરીને રાહ જુઓ..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"નંબર ઉમેરો"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"નંબર અવરોધિત કરો"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"નંબર ઉમેરો અથવા સંપર્કો શોધો"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> ને અનાવરોધિત કરીએ?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"અનાવરોધિત કરો"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> ને અવરોધિત કરીએ?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"અવરોધિત કરો"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> અવરોધિત કર્યો"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> અનાવરોધિત કર્યો"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> અમાન્ય છે."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"કૉલ અવરોધિત કરવાનું અસ્થાયીરૂપે બંધ છે"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"કૉલ અવરોધિત કરવાનું અક્ષમ કરવામાં આવ્યું છે કારણ કે તમે આ ફોનમાંથી છેલ્લા 48 કલાકમાં કટોકટીની સેવાઓનો સંપર્ક કર્યો હતો. એકવાર 48 કલાકનો સમયગાળો સમાપ્ત થાય, પછી તે આપમેળે ફરીથી સક્ષમ કરવામાં આવશે."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"આયાત કરો"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"સંખ્યા જુઓ"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"નંબર ઉમેરો"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"કૉલ અવરોધિત કરવાનું 48 કલાક માટે અક્ષમ કરાયું"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"અક્ષમ કરાયું કારણ કે એક કટોકટીનો કૉલ કરવામાં આવ્યો હતો."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"પૂર્વવત્ કરો"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ને પહેલેથી અવરોધિત કરવામાં આવ્યો છે."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"નંબર અનાવરોધિત કરો"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> માટે સંપર્ક વિગતો"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"આયાત નિષ્ફળ થયું"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"નંબર્સ આયાત કરો"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"તમારા સંપર્કો શોધવા માટે, સંપર્કોની પરવાનગીઓ ચાલુ કરો."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"ચાલુ કરો"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"અવરોધિત નંબરો"</string>
 </resources>
