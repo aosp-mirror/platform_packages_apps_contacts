@@ -21,12 +21,9 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,15 +31,10 @@ import android.os.Parcelable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.QuickContact;
-import android.support.design.widget.NavigationView;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyCharacterMap;
@@ -60,11 +52,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
-import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.common.compat.BlockedNumberContractCompat;
-import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
@@ -78,16 +66,10 @@ import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
-import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
-import com.android.contacts.group.GroupListItem;
-import com.android.contacts.group.GroupUtil;
-import com.android.contacts.group.GroupsFragment;
-import com.android.contacts.interactions.AccountFiltersFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiContactDeleteListener;
@@ -100,9 +82,6 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.DialogManager;
-import com.android.contacts.util.PhoneCapabilityTester;
-import com.android.contactsbind.Assistants;
-import com.android.contactsbind.HelpUtils;
 
 import java.util.List;
 import java.util.Locale;
@@ -879,7 +858,22 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
     @Override
     public void onProviderStatusChange() {
+        reloadGroupsAndFiltersIfNeeded();
         updateViewConfiguration(false);
+    }
+
+    private void reloadGroupsAndFiltersIfNeeded() {
+        final int providerStatus = mProviderStatusWatcher.getProviderStatus();
+        final Menu menu = mNavigationView.getMenu();
+        final MenuItem groupsMenuItem = menu.findItem(R.id.nav_groups);
+        final SubMenu subMenu = groupsMenuItem.getSubMenu();
+
+        // Reload groups and filters if provider status changes to "normal" and there's no groups
+        // loaded or just a "Create new..." menu item is in the menu.
+        if (subMenu != null && subMenu.size() <= 1 && providerStatus == ProviderStatus.STATUS_NORMAL
+                && !mProviderStatus.equals(providerStatus)) {
+            loadGroupsAndFilters();
+        }
     }
 
     private void updateViewConfiguration(boolean forceUpdate) {
