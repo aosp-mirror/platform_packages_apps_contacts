@@ -296,11 +296,11 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             mMembersListFragment = GroupMembersListFragment.newInstance(groupUri);
             mMembersListFragment.setListener(this);
 
-            final FragmentManager fragmentManager = getFragmentManager();
-            final FragmentTransaction transaction = fragmentManager.beginTransaction();
+            final FragmentTransaction transaction = getFragmentManager().beginTransaction();
             addGroupsAndFiltersFragments(transaction);
-            transaction.replace(R.id.fragment_container_inner, mMembersListFragment,
-                    TAG_GROUP_MEMBERS).commit();
+            transaction.replace(
+                    R.id.fragment_container_inner, mMembersListFragment, TAG_GROUP_MEMBERS)
+                    .commitAllowingStateLoss();
 
             if (mGroupMetadata != null && mGroupMetadata.editable) {
                 mMembersListFragment.setCheckBoxListListener(this);
