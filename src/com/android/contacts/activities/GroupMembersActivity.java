@@ -195,8 +195,6 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
 
-        final FragmentManager fragmentManager = getFragmentManager();
-        final FragmentTransaction transaction = fragmentManager.beginTransaction();
         // Decide whether to prompt for the account and group name or start loading existing members
         if (mIsInsertAction) {
             // Check if we are in the middle of the insert flow.
@@ -220,14 +218,14 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 }
             }
         } else {
+            final FragmentManager fragmentManager = getFragmentManager();
             // Add the members list fragment
             mMembersListFragment = (GroupMembersListFragment)
                     fragmentManager.findFragmentByTag(TAG_GROUP_MEMBERS);
             if (mMembersListFragment == null) {
                 mMembersListFragment = GroupMembersListFragment.newInstance(getIntent().getData());
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, mMembersListFragment, TAG_GROUP_MEMBERS)
-                        .commit();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container_inner,
+                        mMembersListFragment, TAG_GROUP_MEMBERS).commitAllowingStateLoss();
             }
             mMembersListFragment.setListener(this);
             if (mGroupMetadata != null && mGroupMetadata.editable) {
