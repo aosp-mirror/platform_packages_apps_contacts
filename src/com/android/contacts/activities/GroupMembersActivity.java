@@ -28,6 +28,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -187,6 +188,10 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 /* portraitTabs */ null, /* landscapeTabs */ null, mToolbar,
                 R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
+
+        // Avoid showing default "Contacts" title before group metadata is loaded. The title will
+        // be changed to group name when onGroupMetadataLoaded() is called.
+        setActionBarTitle("");
 
         // Decide whether to prompt for the account and group name or start loading existing members
         if (mIsInsertAction) {
@@ -602,9 +607,16 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     public void onGroupMetadataLoaded(GroupMetadata groupMetadata) {
         mGroupMetadata = groupMetadata;
         if (!mIsInsertAction) {
-            getSupportActionBar().setTitle(mGroupMetadata.groupName);
+            setActionBarTitle(mGroupMetadata.groupName);
         }
         invalidateOptionsMenu();
+    }
+
+    private void setActionBarTitle(String title) {
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(title);
+        }
     }
 
     @Override
