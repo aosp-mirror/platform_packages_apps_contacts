@@ -125,7 +125,11 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             menu.removeItem(R.id.nav_help);
         }
 
-        // Set up fragment manager to load groups and filters.
+        loadGroupsAndFilters();
+    }
+
+    // Set up fragment manager to load groups and filters.
+    protected void loadGroupsAndFilters() {
         final FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
         addGroupsAndFiltersFragments(transaction);
@@ -189,6 +193,11 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     }
                 });
             }
+        }
+
+        // Don't show "Create new..." menu if there's no group-writable accounts available.
+        if (!ContactsUtils.areGroupWritableAccountsAvailable(this)) {
+            return;
         }
 
         // Create a menu item in the sub menu to add new groups
