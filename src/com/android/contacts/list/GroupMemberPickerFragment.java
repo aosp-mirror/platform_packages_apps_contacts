@@ -57,10 +57,7 @@ public class GroupMemberPickerFragment extends
         void onGroupMemberClicked(long contactId);
     }
 
-    /**
-     * Filters out raw contacts that are already in the group and also handles queries for contact
-     * photo IDs and lookup keys which cannot be retrieved from the raw contact table directly.
-     */
+    /** Filters out raw contacts that are already in the group. */
     private class FilterCursorWrapper extends CursorWrapper {
 
         private int[] mIndex;
@@ -74,7 +71,7 @@ public class GroupMemberPickerFragment extends
             mIndex = new int[mCount];
 
             if (Log.isLoggable(TAG, Log.VERBOSE)) {
-                Log.v(TAG, "FilterCursorWrapper starting cursor size is " + mCount);
+                Log.v(TAG, "RawContacts CursorWrapper start: " + mCount);
             }
 
             for (int i = 0; i < mCount; i++) {
@@ -89,7 +86,7 @@ public class GroupMemberPickerFragment extends
             super.moveToFirst();
 
             if (Log.isLoggable(TAG, Log.VERBOSE)) {
-                Log.v(TAG, "FilterCursorWrapper ending cursor size is" + mCount);
+                Log.v(TAG, "RawContacts CursorWrapper end: " + mCount);
             }
         }
 
