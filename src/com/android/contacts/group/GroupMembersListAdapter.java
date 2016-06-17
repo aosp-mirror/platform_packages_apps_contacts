@@ -73,6 +73,7 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
     public GroupMembersListAdapter(Context context) {
         super(context, GroupMembersQuery.RAW_CONTACT_ID);
         mUnknownNameText = context.getText(R.string.missing_name);
+        setSectionHeaderDisplayEnabled(true);
     }
 
     /** Sets the ID of the group whose members will be displayed. */
@@ -94,7 +95,6 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
                 .appendQueryParameter(ContactsContract.DIRECTORY_PARAM_KEY,
                         String.valueOf(Directory.DEFAULT))
                 .appendQueryParameter(Contacts.EXTRA_ADDRESS_BOOK_INDEX, "true")
-                .appendQueryParameter(Contacts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS, "true")
                 .build());
 
         loader.setSelection(Data.MIMETYPE + "=?" + " AND " + GroupMembership.GROUP_ROW_ID + "=?");
@@ -132,7 +132,6 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
         final ContactListItemView view =
                 super.newView(context, partition, cursor, position, parent);
         view.setUnknownNameText(mUnknownNameText);
-        view.setQuickContactEnabled(isQuickContactEnabled());
         return view;
     }
 
@@ -141,8 +140,19 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
         super.bindView(v, partition, cursor, position);
         final ContactListItemView view = (ContactListItemView) v;
         bindViewId(view, cursor, GroupMembersQuery.CONTACT_ID);
+        bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
         bindPhoto(view, cursor);
+    }
+
+    protected void bindSectionHeaderAndDivider(ContactListItemView view, int position) {
+        view.setIsSectionHeaderEnabled(isSectionHeaderDisplayEnabled());
+        if (isSectionHeaderDisplayEnabled()) {
+            final Placement placement = getItemPlacementInSection(position);
+            view.setSectionHeader(placement.sectionHeader);
+        } else {
+            view.setSectionHeader(null);
+        }
     }
 
     private void bindName(ContactListItemView view, Cursor cursor) {
