@@ -33,7 +33,7 @@ import com.android.contacts.R;
 import com.android.contacts.common.logging.ListEvent.ListType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.group.GroupMembersListAdapter.GroupMembersQuery;
+import com.android.contacts.group.GroupMembersAdapter.GroupMembersQuery;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 
 import java.util.ArrayList;
@@ -41,8 +41,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /** Displays the members of a group. */
-public class GroupMembersListFragment extends
-        MultiSelectContactsListFragment<GroupMembersListAdapter> {
+public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupMembersAdapter> {
 
     private static final String TAG = "GroupMembers";
 
@@ -53,8 +52,8 @@ public class GroupMembersListFragment extends
 
     private static final int LOADER_GROUP_METADATA = 0;
 
-    /** Callbacks for hosts of {@link GroupMembersListFragment}. */
-    public interface GroupMembersListListener {
+    /** Callbacks for hosts of {@link GroupMembersFragment}. */
+    public interface GroupMembersListener {
 
         /** Invoked after group metadata for the passed in group URI has loaded. */
         void onGroupMetadataLoaded(GroupMetadata groupMetadata);
@@ -183,22 +182,22 @@ public class GroupMembersListFragment extends
 
     private Uri mGroupUri;
 
-    private GroupMembersListListener mListener;
+    private GroupMembersListener mListener;
 
     private GroupMetadata mGroupMetadata;
 
     private Set<String> mGroupMemberContactIds = new HashSet();
 
-    public static GroupMembersListFragment newInstance(Uri groupUri) {
+    public static GroupMembersFragment newInstance(Uri groupUri) {
         final Bundle args = new Bundle();
         args.putParcelable(ARG_GROUP_URI, groupUri);
 
-        final GroupMembersListFragment fragment = new GroupMembersListFragment();
+        final GroupMembersFragment fragment = new GroupMembersFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public GroupMembersListFragment() {
+    public GroupMembersFragment() {
         setHasOptionsMenu(true);
 
         setPhotoLoaderEnabled(true);
@@ -209,7 +208,7 @@ public class GroupMembersListFragment extends
         setListType(ListType.GROUP);
     }
 
-    public void setListener(GroupMembersListListener listener) {
+    public void setListener(GroupMembersListener listener) {
         mListener = listener;
     }
 
@@ -298,8 +297,8 @@ public class GroupMembersListFragment extends
     }
 
     @Override
-    protected GroupMembersListAdapter createListAdapter() {
-        final GroupMembersListAdapter adapter = new GroupMembersListAdapter(getContext());
+    protected GroupMembersAdapter createListAdapter() {
+        final GroupMembersAdapter adapter = new GroupMembersAdapter(getContext());
         adapter.setDisplayPhotos(true);
         return adapter;
     }

@@ -44,7 +44,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.group.GroupMembersListFragment;
+import com.android.contacts.group.GroupMembersFragment;
 import com.android.contacts.group.GroupMetadata;
 import com.android.contacts.group.GroupNameEditDialogFragment;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
@@ -62,7 +62,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         ActionBarAdapter.Listener,
         MultiSelectContactsListFragment.OnCheckBoxListActionListener,
         SelectAccountDialogFragment.Listener,
-        GroupMembersListFragment.GroupMembersListListener,
+        GroupMembersFragment.GroupMembersListener,
         GroupNameEditDialogFragment.Listener {
 
     private static final String TAG = "GroupMembers";
@@ -156,7 +156,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
     private GroupMetadata mGroupMetadata;
 
-    private GroupMembersListFragment mMembersListFragment;
+    private GroupMembersFragment mMembersFragment;
 
     private Uri mGroupUri;
     private boolean mIsInsertAction;
@@ -213,16 +213,16 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         } else {
             final FragmentManager fragmentManager = getFragmentManager();
             // Add the members list fragment
-            mMembersListFragment = (GroupMembersListFragment)
+            mMembersFragment = (GroupMembersFragment)
                     fragmentManager.findFragmentByTag(TAG_GROUP_MEMBERS);
-            if (mMembersListFragment == null) {
-                mMembersListFragment = GroupMembersListFragment.newInstance(getIntent().getData());
+            if (mMembersFragment == null) {
+                mMembersFragment = GroupMembersFragment.newInstance(getIntent().getData());
                 fragmentManager.beginTransaction().replace(R.id.fragment_container_inner,
-                        mMembersListFragment, TAG_GROUP_MEMBERS).commitAllowingStateLoss();
+                        mMembersFragment, TAG_GROUP_MEMBERS).commitAllowingStateLoss();
             }
-            mMembersListFragment.setListener(this);
+            mMembersFragment.setListener(this);
             if (mGroupMetadata != null && mGroupMetadata.editable) {
-                mMembersListFragment.setCheckBoxListListener(this);
+                mMembersFragment.setCheckBoxListListener(this);
             }
         }
 
@@ -284,17 +284,16 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             Toast.makeText(this, getToastMessageForSaveAction(newIntent.getAction()),
                     Toast.LENGTH_SHORT).show();
 
-            mMembersListFragment = GroupMembersListFragment.newInstance(groupUri);
-            mMembersListFragment.setListener(this);
+            mMembersFragment = GroupMembersFragment.newInstance(groupUri);
+            mMembersFragment.setListener(this);
 
             final FragmentTransaction transaction = getFragmentManager().beginTransaction();
             addGroupsAndFiltersFragments(transaction);
-            transaction.replace(
-                    R.id.fragment_container_inner, mMembersListFragment, TAG_GROUP_MEMBERS)
+            transaction.replace(R.id.fragment_container_inner, mMembersFragment, TAG_GROUP_MEMBERS)
                     .commitAllowingStateLoss();
 
             if (mGroupMetadata != null && mGroupMetadata.editable) {
-                mMembersListFragment.setCheckBoxListListener(this);
+                mMembersFragment.setCheckBoxListListener(this);
             }
 
             invalidateOptionsMenu();
@@ -392,7 +391,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 intent.putExtra(UiIntentActions.GROUP_ACCOUNT_TYPE, mGroupMetadata.accountType);
                 intent.putExtra(UiIntentActions.GROUP_ACCOUNT_DATA_SET, mGroupMetadata.dataSet);
                 intent.putExtra(UiIntentActions.GROUP_CONTACT_IDS,
-                        mMembersListFragment.getMemberContactIds());
+                        mMembersFragment.getMemberContactIds());
                 startActivityForResult(intent, RESULT_GROUP_ADD_MEMBER);
                 return true;
             }
@@ -406,7 +405,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 return true;
             }
             case R.id.menu_remove_from_group: {
-                if (mMembersListFragment == null) {
+                if (mMembersFragment == null) {
                     return false;
                 }
                 logListEvent();
@@ -418,7 +417,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     }
 
     private void deleteGroup() {
-        if (mMembersListFragment.getMemberCount() == 0) {
+        if (mMembersFragment.getMemberCount() == 0) {
             final Intent intent = ContactSaveService.createGroupDeletionIntent(
                     this, mGroupMetadata.groupId,
                     GroupMembersActivity.class, ACTION_DELETE_GROUP);
@@ -432,15 +431,15 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     private void logListEvent() {
         Logger.logListEvent(
                 ListEvent.ActionType.REMOVE_LABEL,
-                mMembersListFragment.getListType(),
-                mMembersListFragment.getAdapter().getCount(),
+                mMembersFragment.getListType(),
+                mMembersFragment.getAdapter().getCount(),
                 /* clickedIndex */ -1,
-                mMembersListFragment.getAdapter().getSelectedContactIdsArray().length);
+                mMembersFragment.getAdapter().getSelectedContactIdsArray().length);
     }
 
     private void removeSelectedContacts() {
         final long[] rawContactsToRemove =
-                mMembersListFragment.getAdapter().getSelectedContactIdsArray();
+                mMembersFragment.getAdapter().getSelectedContactIdsArray();
         final Intent intent = ContactSaveService.createGroupUpdateIntent(
                 this, mGroupMetadata.groupId, /* groupName */ null,
                 /* rawContactsToAdd */ null, rawContactsToRemove, getClass(),
@@ -461,8 +460,8 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             finish();
         } else if (mActionBarAdapter.isSelectionMode()) {
             mActionBarAdapter.setSelectionMode(false);
-            if (mMembersListFragment != null) {
-                mMembersListFragment.displayCheckBoxes(false);
+            if (mMembersFragment != null) {
+                mMembersFragment.displayCheckBoxes(false);
             }
         } else if (mActionBarAdapter.isSearchMode()) {
             mActionBarAdapter.setSearchMode(false);
@@ -522,16 +521,16 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     public void onAction(int action) {
         switch (action) {
             case ActionBarAdapter.Listener.Action.START_SELECTION_MODE:
-                if (mMembersListFragment != null) {
-                    mMembersListFragment.displayCheckBoxes(true);
+                if (mMembersFragment != null) {
+                    mMembersFragment.displayCheckBoxes(true);
                 }
                 invalidateOptionsMenu();
                 showFabWithAnimation(/* showFabWithAnimation = */ false);
                 break;
             case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
                 mActionBarAdapter.setSearchMode(false);
-                if (mMembersListFragment != null) {
-                    mMembersListFragment.displayCheckBoxes(false);
+                if (mMembersFragment != null) {
+                    mMembersFragment.displayCheckBoxes(false);
                 }
                 invalidateOptionsMenu();
                 showFabWithAnimation(/* showFabWithAnimation */ true);
@@ -564,7 +563,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
     @Override
     public void onSelectedContactIdsChanged() {
-        mActionBarAdapter.setSelectionCount(mMembersListFragment.getSelectedContactIds().size());
+        mActionBarAdapter.setSelectionCount(mMembersFragment.getSelectedContactIds().size());
     }
 
     @Override
@@ -615,7 +614,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
     @Override
     public void onGroupMemberListItemClicked(int position, Uri contactLookupUri) {
-        final int count = mMembersListFragment.getAdapter().getCount();
+        final int count = mMembersFragment.getAdapter().getCount();
         Logger.logListEvent(ListEvent.ActionType.CLICK, ListEvent.ListType.GROUP, count,
                 /* clickedIndex */ position, /* numSelected */ 0);
         final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(

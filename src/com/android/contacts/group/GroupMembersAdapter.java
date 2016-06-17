@@ -34,7 +34,7 @@ import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.preference.ContactsPreferences;
 
 /** Group members cursor adapter. */
-public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter {
+public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
 
     public static class GroupMembersQuery {
 
@@ -70,7 +70,7 @@ public class GroupMembersListAdapter extends MultiSelectEntryContactListAdapter 
     private final CharSequence mUnknownNameText;
     private long mGroupId;
 
-    public GroupMembersListAdapter(Context context) {
+    public GroupMembersAdapter(Context context) {
         super(context, GroupMembersQuery.RAW_CONTACT_ID);
         mUnknownNameText = context.getText(R.string.missing_name);
         setSectionHeaderDisplayEnabled(true);
