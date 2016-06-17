@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"பணியிடத்தின் பேஜர் எண்ணில் அழை"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> ஐ அழை"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS தொலைபேசி எண்ணில் அழை"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (அழை)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> க்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_home" msgid="7765831490534280540">"வீட்டு தொலைபேசி எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"மொபைல் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"பணியிட பேஜர் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> க்கு உரைச்செய்தி அனுப்பு"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS மொபைல் எண்ணிற்கு உரைச்செய்தி அனுப்பு"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (செய்தி அனுப்பு)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"வீடியோவில் அழை"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"அடிக்கடி தொடர்புகொண்ட தொடர்பை அழிக்கவா?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"தொடர்புகள் மற்றும் ஃபோன் பயன்பாடுகளில் உள்ள அடிக்கடி தொடர்பு கொண்டவர்களின் பட்டியல் அழிக்கப்பட்டு, தொடக்கத்திலிருந்து மீண்டும் உங்கள் முகவரியிடல் விருப்பத்தேர்வுகளை மின்னஞ்சல் பயன்பாடுகள் அறியும்படி செய்யப்படும்."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"தொடர்புகள்"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"பிற"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"கோப்பகம்"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"பணிக் கோப்பகம்"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"பணி கோப்பகம்"</string>
     <string name="local_search_label" msgid="9094584931063745728">"எல்லா தொடர்புகளும்"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"நான்"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"தேடுகிறது..."</string>
@@ -89,9 +87,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"அடிக்கடி தொடர்புகொண்டவர்கள்"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"தொடர்பைக் காட்டு"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"மொபைல் எண்களுடனான எல்லா தொடர்புகளும்"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"பணிச் சுயவிவரத் தொடர்புகள்"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"பணி சுயவிவரத் தொடர்புகள்"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"புதுப்பிப்புகளைக் காட்டு"</string>
-    <string name="account_phone" msgid="6104157990869081962">"மொபைல் மட்டும், ஒத்திசைக்கப்படவில்லை"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"மொபைல் மட்டும், ஒத்திசைக்கப்படவில்லை"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"பெயர்"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"செல்லப்பெயர்"</string>
     <string name="full_name" msgid="885420216812981202">"பெயர்"</string>
@@ -187,13 +185,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ஒன்று அல்லது அதற்கு மேற்பட்ட கோப்புகளை ஏற்றுமதி செய்ய முடியவில்லை (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> ஐ ஏற்றுமதி செய்வது முடிந்தது."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"தொடர்புகளை ஏற்றுவது முடிந்தது."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"தொடர்புகள் ஏற்றப்பட்டன. தொடர்புகளைப் பகிர, அறிவிப்பைக் கிளிக் செய்யவும்."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"தொடர்புகளைப் பகிர, தட்டவும்."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> ஐ ஏற்றுமதி செய்வது ரத்துசெய்யப்பட்டது."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"தொடர்பு தரவை ஏற்றுமதி செய்கிறது"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"தொடர்புத் தரவு ஏற்றப்படுகிறது."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"தொடர்பின் தரவு ஏற்றுமதி செய்யப்படுகிறது: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"தரவுத்தளத் தகவலைப் பெற முடியவில்லை."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"ஏற்றுமதி செய்யத்தக்க தொடர்புகள் இல்லை. மொபைலில் தொடர்புகள் இல்லை எனில், மொபைலிலிருந்து தொடர்புகளை ஏற்றுமதி செய்வதற்குச் சில தரவு வழங்குநர்கள் அனுமதிக்காமல் போகலாம்."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"ஏற்றுமதி செய்யத்தக்க தொடர்புகள் இல்லை. மொபைலில் தொடர்புகள் இல்லை எனில், மொபைலிலிருந்து தொடர்புகளை ஏற்றுமதி செய்வதற்குச் சில தரவு வழங்குநர்கள் அனுமதிக்காமல் போகலாம்."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard தொகுப்பான் முறையாகத் தொடங்கவில்லை."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ஏற்றுமதி செய்ய முடியவில்லை"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"தொடர்பு தரவு ஏற்றுமதி செய்யப்படவில்லை.\nகாரணம்: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -207,7 +203,6 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard இன் இறக்குமதி கோரிக்கை நிராகரிக்கப்பட்டது. பிறகு முயற்சிக்கவும்."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> விரைவில் ஏற்றுமதி செய்யப்படும்."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"கோப்பு விரைவில் ஏற்றப்படும்."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"கூடிய விரைவில் தொடர்புகள் ஏற்றப்படும்."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard இன் ஏற்றுமதி கோரிக்கை நிராகரிக்கப்பட்டது. பிறகு முயற்சிக்கவும்."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"தொடர்பு"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(களை) ஐ அகச் சேமிப்பிடத்தில் தற்காலிகமாகச் சேமிக்கிறது. அசல் இறக்குமதி உடனடியாக தொடங்கப்படும்."</string>
@@ -224,15 +219,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"முதல் பெயர் முதலில்"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"இறுதிப் பெயர் முதலில்"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"புதிய தொடர்புகளுக்கான இயல்பு கணக்கு"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"தொடர்பின் மீத்தரவை ஒத்திசை [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"தொடர்பின் மீத்தரவை ஒத்திசை"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"தொடர்பின் மீத்தரவை ஒத்திசைப்பதற்கான கணக்கு"</string>
     <string name="setting_about" msgid="3926137653588942297">"தொடர்புகள் விவரம்"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"அமைப்புகள்"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"தெரியும் தொடர்புகளைப் பகிர்"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"தெரியும் தொடர்புகளைப் பகிர்வதில் தோல்வி."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"பிடித்த தொடர்புகளைப் பகிர்"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"எல்லா தொடர்புகளையும் பகிர்"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"தொடர்புகளைப் பகிர முடியவில்லை."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"தொடர்புகளை இறக்கு/ஏற்று"</string>
     <string name="dialog_import" msgid="5177004290082451296">"தொடர்புகளை இறக்குமதி செய்தல்"</string>
     <string name="share_error" msgid="665756457151793108">"தொடர்பைப் பகிர முடியவில்லை."</string>
@@ -268,13 +258,12 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. படிக்காதவை (<xliff:g id="COUNT_3">%2$d</xliff:g>). </item>
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. படிக்காதது (<xliff:g id="COUNT_1">%2$d</xliff:g>). </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"பதிப்பு எண்"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"அகநிரல் பதிப்பு"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"ஓப்பன் சோர்ஸ் உரிமங்கள்"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ஓப்பன் சோர்ஸ் மென்பொருளுக்கான உரிம விவரங்கள்"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"தனியுரிமைக் கொள்கை"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"சேவை விதிமுறைகள்"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ஓப்பன் சோர்ஸ் உரிமங்கள்"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"urlஐத் திறக்க முடியவில்லை."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> தேர்ந்தெடுக்கப்பட்டது"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> தேர்ந்தெடுக்கப்படவில்லை"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"வீடியோ அழைப்பைச் செய்"</string>

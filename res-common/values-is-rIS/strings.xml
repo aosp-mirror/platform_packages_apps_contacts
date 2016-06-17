@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Hringja í vinnusímboða"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Hringja í <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Hringja í MMS-númer"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (hringja)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Senda textaskilaboð í <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Senda textaskilaboð heim"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Senda textaskilaboð í farsíma"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Senda textaskilaboð í vinnusímboða"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Senda textaskilaboð til <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Senda textaskilaboð í MMS-númer"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (senda SMS)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Hringja myndsímtal"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Hreinsa mest notaða tengiliði?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Þetta hreinsar tengiliðina sem þú hefur mest samskipti við úr forritunum Tengiliðir og Sími og þvingar tölvupóstforrit til að læra upp á nýtt hvernig þú notar netföng."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Tengiliðir"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Aðrir"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Skrá"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Vinnuskrá"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Vinnuskrá"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Allir tengiliðir"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ég"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Leitar…"</string>
@@ -89,9 +87,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Oft haft samband við"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Skoða tengilið"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Allir tengiliðir með símanúmer"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Tengiliðir í vinnusniði"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Tengiliðir í vinnusniði"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Skoða uppfærslur"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Aðeins í símanum, ekki samstilltur"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Aðeins í símanum, ekki samstilltur"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nafn"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Gælunafn"</string>
     <string name="full_name" msgid="885420216812981202">"Nafn"</string>
@@ -187,13 +185,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Ekki tókst að flytja inn eina eða fleiri skrár (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Útflutningi á <xliff:g id="FILENAME">%s</xliff:g> lokið."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Útflutningi tengiliða lokið."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Útflutningi tengiliða lokið, smelltu á tilkynninguna til að deila tengiliðum."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Ýttu til að deila tengiliðum."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Hætt við útflutning á <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Flytur út tengiliðagögn"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"Verið er að flytja út tengiliðagögnin þín."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Verið er að flytja tengiliðagögnin þín út í skrána: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Ekki tókst að sækja upplýsingar úr gagnagrunni."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Engir tengiliðir til útflutnings. Ef þú ert með tengiliði í símanum getur verið að vissar gagnaveitur leyfi ekki útflutning tengiliða úr símanum."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Engir tengiliðir til útflutnings. Ef þú ert með tengiliði í símanum getur verið að vissar gagnaveitur leyfi ekki útflutning tengiliða úr símanum."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Ræsing vCard-skrifviðmótsins tókst ekki."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Flutningur mistókst"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Tengiliðagögn voru ekki flutt út.\nÁstæða: „<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -207,7 +203,6 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Beiðni um innflutning vCard-skrár hafnað. Reyndu aftur síðar."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> verður flutt út innan skamms."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Skráin verður flutt út innan skamms."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Tengiliðir verður fluttir út eftir smástund."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Beiðni um útflutning vCard-skrár hafnað. Reyndu aftur síðar."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"tengiliður"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"Setur vCard í skyndiminni í staðbundinni geymslu. Raunverulegur innflutningur hefst innan skamms."</string>
@@ -224,15 +219,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Fornafn fyrst"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Eftirnafn fyrst"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Sjálfgefinn reikningur fyrir nýja tengiliði"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Samstilla lýsigögn tengiliða [INNANHÚSSÚTGÁFA]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Samstilla lýsigögn tengiliða"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Hafa samband við samhæfðan lýsigagnareikning"</string>
     <string name="setting_about" msgid="3926137653588942297">"Um tengiliði"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"Stillingar"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Deila sýnilegum tengiliðum"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Mistókst að deila sýnilegum tengiliðum."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Deila eftirlætistengiliðum"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Deila öllum tengiliðum"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"Ekki tókst að deila tengiliðum."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Tengiliðir fluttir inn/út"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Flytja tengiliði inn"</string>
     <string name="share_error" msgid="665756457151793108">"Ekki er hægt að deila þessum tengilið."</string>
@@ -274,7 +264,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Persónuverndarstefna"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Þjónustuskilmálar"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Leyfi opins kóða"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"Ekki tókst að opna slóðina."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"Merkt við <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Ekki merkt við <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Hringja myndsímtal"</string>

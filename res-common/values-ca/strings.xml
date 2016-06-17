@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Truca al cercapersones de la feina"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Truca al <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Truca al número MMS"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (truca-li)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Envia SMS al <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Envia un SMS a casa"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Envia un SMS al mòbil"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Envia un SMS al cercapersones de la feina"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Envia un SMS a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Envia un MMS"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (envia-li un missatge)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Fes una videotrucada"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vols esborrar els contactes freqüents?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"S\'esborrarà la llista de contactes més freqüents a les aplicacions Contactes i Telèfon i es forçarà les aplicacions de correu electrònic a obtenir informació nova sobre les teves preferències pel que fa a adreces."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Contactes"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Altres"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Directori"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Directori de la feina"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Directori de la feina"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Tots els contactes"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Jo"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"S\'està cercant..."</string>
@@ -89,9 +87,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Contactes freqüents"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Mostra el contacte"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Tots els contactes que tenen números de telèfon"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Contactes del perfil professional"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Contactes del perfil professional"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Mostra les actualitzacions"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Només telèfon, sense sincronitzar"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Només telèfon, sense sincronitzar"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nom"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Àlies"</string>
     <string name="full_name" msgid="885420216812981202">"Nom"</string>
@@ -187,13 +185,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"No s\'ha pogut importar un dels fitxers com a mínim (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Exportació de <xliff:g id="FILENAME">%s</xliff:g> finalitzada."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"S\'han acabat d\'exportar els contactes."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"S\'han acabat d\'exportar els contactes; fes clic a la notificació per compartir-los."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Toca per compartir els contactes."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"S\'ha cancel·lat l\'exportació de: <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"S\'estan exportant les dades de contacte"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"S\'estan exportant les dades de contacte."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"S\'estan exportant les teves dades de contacte a: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"No s\'ha pogut obtenir informació de la base de dades."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"No hi ha cap contacte que es pugui exportar. Si en tens algun al telèfon, és possible que hi hagi proveïdors de dades que no permetin que els contactes s\'exportin des del telèfon."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"No hi ha cap contacte que es pugui exportar. Si en tens algun al telèfon, és possible que hi hagi proveïdors de dades que no permetin que els contactes s\'exportin des del telèfon."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"No s\'ha iniciat correctament el creador de vCard."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Error en exportar"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"No s\'han exportat les dades de contacte.\nMotiu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -207,7 +203,6 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"S\'ha rebutjat la sol·licitud per importar la vCard. Torna-ho a provar més tard."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> s\'exportarà en breu."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"El fitxer s\'exportarà en breu."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Aviat s\'exportaran els contactes."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"S\'ha rebutjat la sol·licitud per exportar la vCard. Torna-ho a provar més tard."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"contacte"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"S\'estan desant les vCard a l\'emmagatzematge temporal local. La importació real començarà aviat."</string>
@@ -224,15 +219,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Primer el nom"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Primer els cognoms"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Compte predeterminat per als contactes nous"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronitza les metadades dels contactes [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronitza les metadades dels contactes"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Compte de sincronització de metadades de contacte"</string>
     <string name="setting_about" msgid="3926137653588942297">"Sobre Contactes"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"Configuració"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Comparteix contactes visibles"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Error en compartir els contactes visibles."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Comparteix els contactes preferits"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Comparteix tots els contactes"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"No s\'han pogut compartir els contactes."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importa/exporta contactes"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importa contactes"</string>
     <string name="share_error" msgid="665756457151793108">"No es pot compartir aquest contacte."</string>
@@ -245,7 +235,7 @@
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Preferits"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"No hi ha cap contacte."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"No hi ha cap contacte visible."</string>
-    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"Sense preferits"</string>
+    <string name="listTotalAllContactsZeroStarred" msgid="2747107662985362061">"No hi ha cap preferit"</string>
     <string name="listTotalAllContactsZeroGroup" msgid="7450331854661098879">"No hi ha cap contacte a <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Esborra contactes freqüents"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Selecciona una targeta SIM"</string>
@@ -274,7 +264,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Política de privadesa"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Condicions del servei"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Llicències de programari lliure"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"No s\'ha pogut obrir l\'URL."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"S\'ha marcat <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"No s\'ha marcat <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Fa una videotrucada"</string>

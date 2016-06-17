@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Sesli arama yap (iş çağrı cihazı)"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Sesli arama yap (<xliff:g id="ASSISTANT">%s</xliff:g>)"</string>
     <string name="call_mms" msgid="8998771923464696960">"Sesli arama yap (MMS)"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Telefon et)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"SMS gönder (<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
     <string name="sms_home" msgid="7765831490534280540">"SMS gönder (ev)"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"SMS gönder (mobil)"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"SMS gönder (iş çağrı cihazı)"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"SMS gönder (<xliff:g id="ASSISTANT">%s</xliff:g>)"</string>
     <string name="sms_mms" msgid="4887206338311086612">"SMS gönder (MMS)"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Mesaj gönder)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Video görüşmesi yap"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Sık iletişim kurulanlar silinsin mi?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Kişiler ve Telefon uygulamalarındaki sık iletişim kurulanlar listesini temizleyecek ve e-posta uygulamalarını adres tercihlerinizi en baştan öğrenmeye zorlayacaksınız."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Kişiler"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Diğer"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Dizin"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"İş dizini"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"İş Dizini"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Tüm kişiler"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ben"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Aranıyor…"</string>
@@ -89,9 +87,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Sık iletişim kurulanlar"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Kişiyi görüntüle"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Telefon numarası olan tüm kişiler"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"İş profili kişileri"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"İş Profili kişileri"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Güncellemeleri görüntüle"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Yalnızca telefonda saklanan, senkronize olmayan"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Yalnızca telefonda saklanan, senkronize olmayan"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Adı"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Takma ad"</string>
     <string name="full_name" msgid="885420216812981202">"Adı"</string>
@@ -187,13 +185,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Bir veya daha fazla dosya içe aktarılamadı (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> dosyasını dışa aktarma tamamlandı."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Kişileri dışa aktarma işlemi tamamlandı."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Kişileri dışa aktarma işlemi tamamlandı. Dışa aktarılan kişileri paylaşmak için bildirimi tıklayın."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Kişileri paylaşmak için hafifçe dokunun."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> dosyasını dışa aktarma iptal edildi."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kişi verileri dışa aktarılıyor"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"Kişi verileri dışa aktarılıyor."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Kişi verileriniz şu dosyaya aktarılıyor: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Veritabanı bilgileri alınamadı."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Dışa aktarılabilecek kişi yok. Telefonunuzda kişileriniz varsa, bazı veri sağlayıcıları kişilerin telefondan dışa aktarılmasına izin vermeyebilir."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Dışa aktarılabilecek kişi yok. Telefonunuzda kişileriniz varsa, bazı veri sağlayıcıları kişilerin telefondan dışa aktarılmasına izin vermeyebilir."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard oluşturucu düzgün başlamadı."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Dışa aktarılamadı"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Kişi verileri dışa aktarılamadı.\nNedeni: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -207,7 +203,6 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard\'ı içe aktarma isteği reddedildi. Daha sonra tekrar deneyin."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> kısa bir süre içinde dışa aktarılacak."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Dosya kısa bir süre sonra dışa aktarılacak."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Kişiler kısa sürede dışa aktarılacak."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard\'ı dışa aktarma isteği reddedildi. Daha sonra tekrar deneyin."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kişi"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard\'lar geçici bir yerel depolama alanında önbelleğe alınıyor. Asıl içe aktarma işlemi kısa süre içinde başlayacak."</string>
@@ -224,15 +219,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Önce ad"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Önce soyadı"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Yeni kişiler için varsayılan hesap"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Kişi meta verilerini senkronize et [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Kişi meta verilerini senkronize et"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Kişi meta veri senkronizasyon hesabı"</string>
     <string name="setting_about" msgid="3926137653588942297">"Kişiler Hakkında"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"Ayarlar"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Görülebilir kişileri paylaş"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Görünür kişiler paylaşılamadı."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Favori kişileri paylaş"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Tüm kişileri paylaş"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"Kişiler paylaşılamadı."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Kişileri içe/dışa aktar"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Kişileri içe aktar"</string>
     <string name="share_error" msgid="665756457151793108">"Bu kişi paylaşılamıyor."</string>
@@ -274,7 +264,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Gizlilik politikası"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Hizmet şartları"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Açık kaynak lisansları"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"URL açılamadı."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> işaretlendi"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> işaretlenmedi"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Video görüşmesi yap"</string>

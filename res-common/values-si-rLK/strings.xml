@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"කාර්යාල පේජරය අමතන්න"</string>
     <string name="call_assistant" msgid="5188990854852312696">"<xliff:g id="ASSISTANT">%s</xliff:g> අමතන්න"</string>
     <string name="call_mms" msgid="8998771923464696960">"MMS අමතන්න"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (ඇමතුම)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"<xliff:g id="CUSTOM">%s</xliff:g> ට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="sms_home" msgid="7765831490534280540">"නිවසට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"ජංගම දුරකථනයට කෙටි පණිවිඩයක් යවන්න"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"කාර්යාල පේජරයට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"<xliff:g id="ASSISTANT">%s</xliff:g> ට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="sms_mms" msgid="4887206338311086612">"MMS වෙත කෙටි පණිවිඩයක් යවන්න"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (පණිවිඩය)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"වීඩියෝ ඇමතුමක් ලබාගන්න"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"නිතරම සම්බන්ධ වන අය හිස් කරන්නද?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"ඔබ සම්බන්ධතා සහ දුරකථන යෙදුම්වලින් නිතරම සම්බන්ධ වුණු අයගේ ලැයිස්තුව හිස් කර, මුල සිටම ඔබගේ ලිපින අභිරුචි ඉගෙනීමට ඊ-තැපැල් යෙදුම්වලට බල කරයි."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"සම්බන්ධතා"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"වෙනත්"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"නාමාවලිය"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"කාර්යාල සම්බන්ධතා නාමාවලිය"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"කාර්යාල සම්බන්ධතා නාමාවලිය"</string>
     <string name="local_search_label" msgid="9094584931063745728">"සියලුම සම්බන්ධතා"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"මම"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"සොයමින්..."</string>
@@ -89,9 +87,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"නිතරම සම්බන්ධ වන"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"සම්බන්ධතාව පෙන්වන්න"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"දුරකථන අංක සහිත සම්බන්ධතා"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"කාර්යාල පැතිකඩ සම්බන්ධතා"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"කාර්යාල පැතිකඩ සම්බන්ධතා"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"යාවත්කාලීන වීම් පෙන්වන්න"</string>
-    <string name="account_phone" msgid="6104157990869081962">"දුරකථනය-පමණි, සමමුහුර්ත නොකරනලද"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"දුරකථනය-පමණි, සමමුහුර්ත නොකරනලද"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"නම‍"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"අපනාමය"</string>
     <string name="full_name" msgid="885420216812981202">"නම‍"</string>
@@ -187,13 +185,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ගොනු එකක් හෝ කිහිපයක් ආයාත කිරීමට නොහැකි විය (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> නිර්යාත කිරීම සම්පූර්ණ කෙරුණි."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"සම්බන්ධතා නිර්යාත කිරීම සම්පූර්ණ කෙරුණි."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"සම්බන්ධතා නිර්යාත කිරීම අවසන්ය, සම්බන්ධතා බෙදා ගැනීමට දැනුම්දීම ක්ලික් කරන්න."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"සම්බන්ධතා බෙදා ගැනීමට තට්ටු කරන්න."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> නිර්යාත කිරීම අවලංගු කෙරුණි."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"සම්බන්ධතා දත්ත නිර්යාත කිරීම"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"සම්බන්ධතා දත්ත නිර්යාත කරමින් තිබේ."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"<xliff:g id="FILE_NAME">%s</xliff:g> වෙත ඔබගේ සම්බන්ධතා දත්ත නිර්යාත කරමින් පවතී."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"දත්ත සමුදායේ තොරතුරු ලබාගත නොහැකි විය."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"නිර්යාත කළ හැකි සම්බන්ධතා නැත. ඔබගේ දුරකථනයේ සම්බන්ධතා තිබේ නම්, සමහර දත්ත සපයන්නන් දුරකථනයෙන් සම්බන්ධතා නිර්යාත කිරීමට අවසර ලබා නොදිය හැක."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"නිර්යාත කළ හැකි සම්බන්ධතා නැත. ඔබගේ දුරකථනයේ සම්බන්ධතා තිබේ නම්, සමහර දත්ත සපයන්නන් දුරකථනයෙන් සම්බන්ධතා නිර්යාත කිරීමට අවසර ලබා නොදිය හැක."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard සකසනය නිවැරදිව පටන් ගත්තේ නැත."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"නිර්යාත කළ නොහැකි වීය"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"සම්බන්ධතා දත්ත නිර්යාත නොකරන ලදි.\nහේතුව: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -207,7 +203,6 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard ආයාත ඉල්ලීම ප්‍රතික්ෂේප කරන ලදි. පසුව නැවත උත්සාහ කරන්න."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> කෙටි වේලාවකින් නිර්යාත කරනු ඇත."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ගොනුව කෙටි වේලාවකින් නිර්යාත කරනු ඇත."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"ටික වේලාවකින් සම්බන්ධතා නිර්යාත කරනු ඇත."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard නිර්යාත අයැදුම ප්‍රතික්ෂේප කරන ලදි. පසුව නැවත උත්සාහ කරන්න."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"සම්බන්ධතාවය"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"පෙදෙසි තාවකාලික ආචයනයට vCard(s) හැඹිලිගත කරමින් පවතී. සැබෑ ආයාත කිරීම ඉක්මනින් පටන් ගනු ඇත."</string>
@@ -224,15 +219,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"මුල් නම මුලින්ම"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"අවසාන නම මුලින්ම"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"නව සම්බන්ධතා සඳහා පෙරනිමි ගිණුම"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"සම්බන්ධතා පාරදත්ත සමමුහුර්ත කරන්න [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"සම්බන්ධතා පාරදත්ත සමමුහුර්ත කරන්න"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"සම්බන්ධතා පාරදත්ත සමමුහුර්ත ගිණුම"</string>
     <string name="setting_about" msgid="3926137653588942297">"සම්බන්ධතා ගැන"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"සැකසීම්"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"පෙනෙන සම්බන්ධතා බෙදාගන්න"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"දෘශ්‍යමාන සම්බන්ධතා බෙදා ගැනීම අසාර්ථක විය."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"ප්‍රියතම සම්බන්ධතා බෙදා ගන්න"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"සියලු සම්බන්ධතා බෙදා ගන්න"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"සම්බන්ධතා බෙදා ගැනීම අසාර්ථක විය."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"සම්බන්ධතා ආයාත/නිර්යාත කිරීම"</string>
     <string name="dialog_import" msgid="5177004290082451296">"සම්බන්ධතා ආයාත කරන්න"</string>
     <string name="share_error" msgid="665756457151793108">"මෙම සම්බන්ධතාව බෙදා ගත නොහැක."</string>
@@ -274,7 +264,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"රහස්‍යතා ප්‍රතිපත්තිය"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"සේවා නියම"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"විවෘත මූලාශ්‍ර බලපත්‍ර"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"url විවෘත කිරීමට අසමත් විය."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ලකුණු කරන ලදී"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ලකුණු කර නැත"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"වීඩියෝ ඇමතුම සිදු කිරීම"</string>
