@@ -168,4 +168,9 @@
     <!-- Background color for the call subject history view. -->
     <color name="call_subject_history_background">#ffffff</color>
     <color name="search_video_call_icon_tint">@color/searchbox_hint_text_color</color>
+
+    <!-- Text color for an action in a snackbar. -->
+    <color name="snackbar_action_text">#40c4ff</color>
+    <!-- Background color for a snackbar. -->
+    <color name="snackbar_background">#333333</color>
 </resources>
