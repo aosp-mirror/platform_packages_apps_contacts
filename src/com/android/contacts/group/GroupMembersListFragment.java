@@ -19,25 +19,30 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
+import android.database.CursorWrapper;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.android.contacts.GroupListLoader;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.common.logging.ListEvent.ListType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.group.GroupMembersListAdapter.GroupMembersQuery;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 /** Displays the members of a group. */
-public class GroupMembersListFragment extends MultiSelectContactsListFragment {
+public class GroupMembersListFragment extends
+        MultiSelectContactsListFragment<GroupMembersListAdapter> {
 
     private static final String TAG = "GroupMembers";
 
@@ -47,7 +52,6 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
     private static final String ARG_GROUP_URI = "groupUri";
 
     private static final int LOADER_GROUP_METADATA = 0;
-    private static final int LOADER_GROUP_LIST_DETAILS = 1;
 
     /** Callbacks for hosts of {@link GroupMembersListFragment}. */
     public interface GroupMembersListListener {
@@ -62,7 +66,83 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
         void onGroupMemberListItemClicked(int position, Uri contactLookupUri);
     }
 
-    /** Step 1 of loading group metadata. */
+    /** Filters out duplicate contacts. */
+    private class FilterCursorWrapper extends CursorWrapper {
+
+        private int[] mIndex;
+        private int mCount = 0;
+        private int mPos = 0;
+
+        public FilterCursorWrapper(Cursor cursor) {
+            super(cursor);
+
+            mCount = super.getCount();
+            mIndex = new int[mCount];
+
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "Group members CursorWrapper start: " + mCount);
+            }
+
+            mGroupMemberContactIds.clear();
+            for (int i = 0; i < mCount; i++) {
+                super.moveToPosition(i);
+                final String contactId = getString(GroupMembersQuery.CONTACT_ID);
+                if (!mGroupMemberContactIds.contains(contactId)) {
+                    mIndex[mPos++] = i;
+                    mGroupMemberContactIds.add(contactId);
+                }
+            }
+            mCount = mPos;
+            mPos = 0;
+            super.moveToFirst();
+
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "Group members CursorWrapper end: " + mCount);
+            }
+        }
+
+        @Override
+        public boolean move(int offset) {
+            return moveToPosition(mPos + offset);
+        }
+
+        @Override
+        public boolean moveToNext() {
+            return moveToPosition(mPos + 1);
+        }
+
+        @Override
+        public boolean moveToPrevious() {
+            return moveToPosition(mPos - 1);
+        }
+
+        @Override
+        public boolean moveToFirst() {
+            return moveToPosition(0);
+        }
+
+        @Override
+        public boolean moveToLast() {
+            return moveToPosition(mCount - 1);
+        }
+
+        @Override
+        public boolean moveToPosition(int position) {
+            if (position >= mCount || position < 0) return false;
+            return super.moveToPosition(mIndex[position]);
+        }
+
+        @Override
+        public int getCount() {
+            return mCount;
+        }
+
+        @Override
+        public int getPosition() {
+            return mPos;
+        }
+    }
+
     private final LoaderCallbacks<Cursor> mGroupMetadataCallbacks = new LoaderCallbacks<Cursor>() {
 
         @Override
@@ -94,39 +174,6 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
                     mGroupMetadata.accountType, mGroupMetadata.dataSet);
             mGroupMetadata.editable = accountType.isGroupMembershipEditable();
 
-            getLoaderManager().restartLoader(LOADER_GROUP_LIST_DETAILS, null, mGroupListCallbacks);
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Cursor> loader) {}
-    };
-
-    /** Step 2 of loading group metadata. */
-    private final LoaderCallbacks<Cursor> mGroupListCallbacks = new LoaderCallbacks<Cursor>() {
-
-        @Override
-        public CursorLoader onCreateLoader(int id, Bundle args) {
-            final GroupListLoader groupListLoader = new GroupListLoader(getActivity());
-
-            groupListLoader.setSelection(GroupListLoader.DEFAULT_SELECTION
-                    + " AND " + ContactsContract.Groups._ID + "=?");
-
-            final String[] selectionArgs = new String[1];
-            selectionArgs[0] = Long.toString(mGroupMetadata.groupId);
-            groupListLoader.setSelectionArgs(selectionArgs);
-
-            return groupListLoader;
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-            if (cursor == null || cursor.isClosed()) {
-                Log.e(TAG, "Failed to load group list details");
-                return;
-            }
-            if (cursor.moveToNext()) {
-                mGroupMetadata.memberCount = cursor.getInt(GroupListLoader.MEMBER_COUNT);
-            }
             onGroupMetadataLoaded();
         }
 
@@ -139,6 +186,8 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
     private GroupMembersListListener mListener;
 
     private GroupMetadata mGroupMetadata;
+
+    private Set<String> mGroupMemberContactIds = new HashSet();
 
     public static GroupMembersListFragment newInstance(Uri groupUri) {
         final Bundle args = new Bundle();
@@ -164,6 +213,14 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
         mListener = listener;
     }
 
+    public ArrayList<String> getMemberContactIds() {
+        return  new ArrayList<>(mGroupMemberContactIds);
+    }
+
+    public int getMemberCount() {
+        return mGroupMemberContactIds.size();
+    }
+
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
@@ -185,6 +242,30 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
     }
 
     @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data != null) {
+            final FilterCursorWrapper cursorWrapper = new FilterCursorWrapper(data);
+            bindMembersCount(cursorWrapper.getCount());
+            super.onLoadFinished(loader, cursorWrapper);
+        }
+    }
+
+    private void bindMembersCount(int memberCount) {
+        final View accountFilterContainer = getView().findViewById(
+                R.id.account_filter_header_container);
+        if (memberCount >= 0) {
+            accountFilterContainer.setVisibility(View.VISIBLE);
+
+            final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
+                    R.id.account_filter_header);
+            accountFilterHeader.setText(getResources().getQuantityString(
+                    R.plurals.group_members_count, memberCount, memberCount));
+        } else {
+            accountFilterContainer.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(KEY_GROUP_URI, mGroupUri);
@@ -195,21 +276,6 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
         if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Loaded " + mGroupMetadata);
 
         maybeAttachCheckBoxListener();
-
-        // Bind the members count
-        final View accountFilterContainer = getView().findViewById(
-                R.id.account_filter_header_container);
-        if (mGroupMetadata.memberCount >= 0) {
-            accountFilterContainer.setVisibility(View.VISIBLE);
-
-            final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
-                    R.id.account_filter_header);
-            accountFilterHeader.setText(getResources().getQuantityString(
-                    R.plurals.group_members_count, mGroupMetadata.memberCount,
-                    mGroupMetadata.memberCount));
-        } else {
-            accountFilterContainer.setVisibility(View.GONE);
-        }
 
         if (mListener != null) {
             mListener.onGroupMetadataLoaded(mGroupMetadata);
@@ -236,11 +302,6 @@ public class GroupMembersListFragment extends MultiSelectContactsListFragment {
         final GroupMembersListAdapter adapter = new GroupMembersListAdapter(getContext());
         adapter.setDisplayPhotos(true);
         return adapter;
-    }
-
-    @Override
-    public GroupMembersListAdapter getAdapter() {
-        return (GroupMembersListAdapter) super.getAdapter();
     }
 
     @Override

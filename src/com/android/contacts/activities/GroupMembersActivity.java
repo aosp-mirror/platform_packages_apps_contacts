@@ -17,10 +17,8 @@ package com.android.contacts.activities;
 
 import android.accounts.Account;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.app.FragmentTransaction;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -30,7 +28,6 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v4.view.GravityCompat;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,8 +35,6 @@ import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
-import com.android.contacts.GroupMemberLoader;
-import com.android.contacts.GroupMemberLoader.GroupEditorQuery;
 import com.android.contacts.R;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.logging.ListEvent;
@@ -49,7 +44,6 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.group.GroupMembersListAdapter.GroupMembersQuery;
 import com.android.contacts.group.GroupMembersListFragment;
 import com.android.contacts.group.GroupMetadata;
 import com.android.contacts.group.GroupNameEditDialogFragment;
@@ -59,7 +53,6 @@ import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.quickcontact.QuickContactActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -355,7 +348,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (mGroupMetadata == null || mGroupMetadata.memberCount < 0) {
+        if (mGroupMetadata == null) {
             // Hide menu options until metadata is fully loaded
             return false;
         }
@@ -399,7 +392,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 intent.putExtra(UiIntentActions.GROUP_ACCOUNT_TYPE, mGroupMetadata.accountType);
                 intent.putExtra(UiIntentActions.GROUP_ACCOUNT_DATA_SET, mGroupMetadata.dataSet);
                 intent.putExtra(UiIntentActions.GROUP_CONTACT_IDS,
-                        getExistingGroupMemberContactIds());
+                        mMembersListFragment.getMemberContactIds());
                 startActivityForResult(intent, RESULT_GROUP_ADD_MEMBER);
                 return true;
             }
@@ -424,19 +417,8 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         return super.onOptionsItemSelected(item);
     }
 
-    private ArrayList<String> getExistingGroupMemberContactIds() {
-        final ArrayList<String> contactIds = new ArrayList<>();
-        final Cursor cursor = mMembersListFragment.getAdapter().getCursor(/* partition */ 0);
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                contactIds.add(cursor.getString(GroupMembersQuery.CONTACT_ID));
-            } while (cursor.moveToNext());
-        }
-        return contactIds;
-    }
-
     private void deleteGroup() {
-        if (mGroupMetadata.memberCount == 0) {
+        if (mMembersListFragment.getMemberCount() == 0) {
             final Intent intent = ContactSaveService.createGroupDeletionIntent(
                     this, mGroupMetadata.groupId,
                     GroupMembersActivity.class, ACTION_DELETE_GROUP);

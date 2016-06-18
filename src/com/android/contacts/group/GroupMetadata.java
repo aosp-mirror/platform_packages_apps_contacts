@@ -46,7 +46,6 @@ public final class GroupMetadata implements Parcelable {
     public String groupName;
     public boolean readOnly;
     public boolean editable;
-    public int memberCount = -1;
 
     public GroupMetadata() {
     }
@@ -64,7 +63,6 @@ public final class GroupMetadata implements Parcelable {
         groupName = source.readString();
         readOnly = source.readInt() == 1;
         editable = source.readInt() == 1;
-        memberCount = source.readInt();
     }
 
     @Override
@@ -77,7 +75,6 @@ public final class GroupMetadata implements Parcelable {
         dest.writeString(groupName);
         dest.writeInt(readOnly ? 1 : 0);
         dest.writeInt(editable ? 1 : 0);
-        dest.writeInt(memberCount);
     }
 
     /** Whether all metadata fields are set. */
@@ -85,8 +82,7 @@ public final class GroupMetadata implements Parcelable {
         return uri != null
                 && !TextUtils.isEmpty(accountName)
                 && !TextUtils.isEmpty(groupName)
-                && groupId > 0
-                && memberCount >= 0;
+                && groupId > 0;
     }
 
     public AccountWithDataSet createAccountWithDataSet() {
@@ -114,7 +110,6 @@ public final class GroupMetadata implements Parcelable {
                 " groupName=" + groupName +
                 " readOnly=" + readOnly +
                 " editable=" + editable +
-                " memberCount=" + memberCount +
                 " isValid=" + isValid() +
                 "]";
     }
