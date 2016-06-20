@@ -153,9 +153,7 @@ public class GroupMemberPickerFragment extends
 
     public GroupMemberPickerFragment() {
         setPhotoLoaderEnabled(true);
-        setSectionHeaderDisplayEnabled(false);
-        setVisibleScrollbarEnabled(true);
-
+        setSectionHeaderDisplayEnabled(true);
         setHasOptionsMenu(true);
     }
 
@@ -196,6 +194,9 @@ public class GroupMemberPickerFragment extends
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null) {
+            // Wait until contacts are loaded before showing the scrollbar
+            setVisibleScrollbarEnabled(true);
+
             super.onLoadFinished(loader, new FilterCursorWrapper(data));
         }
     }

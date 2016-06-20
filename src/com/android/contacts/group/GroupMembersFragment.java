@@ -198,13 +198,10 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     }
 
     public GroupMembersFragment() {
-        setHasOptionsMenu(true);
-
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
-        // Don't show the scrollbar until after group members have been loaded
-        setVisibleScrollbarEnabled(false);
-        setQuickContactEnabled(false);
+        setHasOptionsMenu(true);
+
         setListType(ListType.GROUP);
     }
 
@@ -243,6 +240,9 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null) {
+            // Wait until contacts are loaded before showing the scrollbar
+            setVisibleScrollbarEnabled(true);
+
             final FilterCursorWrapper cursorWrapper = new FilterCursorWrapper(data);
             bindMembersCount(cursorWrapper.getCount());
             super.onLoadFinished(loader, cursorWrapper);
@@ -299,6 +299,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     @Override
     protected GroupMembersAdapter createListAdapter() {
         final GroupMembersAdapter adapter = new GroupMembersAdapter(getContext());
+        adapter.setSectionHeaderDisplayEnabled(true);
         adapter.setDisplayPhotos(true);
         return adapter;
     }
