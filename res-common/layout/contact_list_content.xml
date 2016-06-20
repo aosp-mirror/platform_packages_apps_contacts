@@ -27,6 +27,13 @@
     android:layout_height="match_parent"
     android:background="?attr/contact_browser_background" >
 
+    <FrameLayout
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+    </FrameLayout>
+
     <!-- Shown only when an Account filter is set.
          - paddingTop should be here to show "shade" effect correctly. -->
     <include layout="@layout/account_filter_header" />
