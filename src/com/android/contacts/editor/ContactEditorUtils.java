@@ -203,10 +203,11 @@ public class ContactEditorUtils {
     }
 
     /**
-     * @return true if the contact editor should show the "accounts changed" notification, that is:
-     * - If it's the first launch.
-     * - Or, if the default account has been removed.
-     * (And some extra sanity check)
+     * @return false if there is only one writable account or no requirement to return true is met.
+     *         true if the contact editor should show the "accounts changed" notification, that is:
+     *              - If it's the first launch.
+     *              - Or, if the default account has been removed.
+     *              (And some extra sanity check)
      *
      * Note if this method returns {@code false}, the caller can safely assume that
      * {@link #getDefaultAccount} will return a valid account.  (Either an account which still
@@ -214,11 +215,15 @@ public class ContactEditorUtils {
      */
     @NeededForTesting
     public boolean shouldShowAccountChangedNotification() {
+        final List<AccountWithDataSet> currentWritableAccounts = getWritableAccounts();
+
+        if (currentWritableAccounts.size() == 1) {
+            return false;
+        }
+
         if (isFirstLaunch()) {
             return true;
         }
-
-        final List<AccountWithDataSet> currentWritableAccounts = getWritableAccounts();
 
         final AccountWithDataSet defaultAccount = getDefaultAccount();
 
