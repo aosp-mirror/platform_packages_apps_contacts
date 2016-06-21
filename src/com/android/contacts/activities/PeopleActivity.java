@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import android.accounts.Account;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -29,6 +30,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.QuickContact;
 import android.support.v13.app.FragmentPagerAdapter;
@@ -1348,6 +1350,15 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                 Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
                 Bundle extras = getIntent().getExtras();
                 if (extras != null) {
+                    final ContactListFilter filter = mContactListFilterController.getFilter();
+                    // If we are in account view, we pass the account explicitly in order to
+                    // create contact in the account. This will prevent the default account dialog
+                    // from being displayed.
+                    if (!isAllContactsFilter(filter)) {
+                        final Account account = new Account(filter.accountName, filter.accountType);
+                        extras.putParcelable(Intents.Insert.EXTRA_ACCOUNT, account);
+                        extras.putString(Intents.Insert.EXTRA_DATA_SET, filter.dataSet);
+                    }
                     intent.putExtras(extras);
                 }
                 try {
