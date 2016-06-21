@@ -20,13 +20,6 @@ package com.android.contacts.common;
  */
 public final class Experiments {
 
-    /**
-     * Search study boolean indicating whether to order starred and frequently occurring
-     * search results first.
-     */
-    public static final String FLAG_SEARCH_STREQUENTS_FIRST =
-            "Search__order_strequent_results_first";
-
     private Experiments() {
     }
 }

@@ -41,7 +41,6 @@ public final class Flags {
 
     private Flags() {
         mMap = new HashMap<>();
-        mMap.put(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false);
     }
 
     public boolean getBoolean(String flagName) {
