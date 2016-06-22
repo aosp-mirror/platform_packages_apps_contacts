@@ -16,51 +16,46 @@
 
 package com.android.contacts.activities;
 
-import android.app.ActionBar;
-import android.app.ActionBar.LayoutParams;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.SearchView;
-import android.widget.SearchView.OnCloseListener;
-import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 
-import com.android.contacts.ContactsActivity;
+import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.list.ContactEntryListFragment;
-import com.android.contacts.list.GroupMemberPickerFragment;
-import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.list.DirectoryListLoader;
+import com.android.contacts.common.list.OnPhoneNumberPickerActionListener;
+import com.android.contacts.common.list.PhoneNumberPickerFragment;
+import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.list.ContactPickerFragment;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
-import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.list.EmailAddressPickerFragment;
+import com.android.contacts.list.GroupMemberPickerFragment;
 import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.LegacyPhoneNumberPickerFragment;
+import com.android.contacts.list.MultiSelectContactsListFragment;
+import com.android.contacts.list.MultiSelectContactsListFragment.OnCheckBoxListActionListener;
 import com.android.contacts.list.OnContactPickerActionListener;
 import com.android.contacts.list.OnEmailAddressPickerActionListener;
-import com.android.contacts.list.UiIntentActions;
-import com.android.contacts.common.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.list.OnPostalAddressPickerActionListener;
-import com.android.contacts.common.list.PhoneNumberPickerFragment;
 import com.android.contacts.list.PostalAddressPickerFragment;
+import com.android.contacts.list.UiIntentActions;
 
 import java.util.ArrayList;
 
@@ -68,10 +63,10 @@ import java.util.ArrayList;
  * Displays a list of contacts (or phone numbers or postal addresses) for the
  * purposes of selecting one.
  */
-public class ContactSelectionActivity extends ContactsActivity
-        implements View.OnCreateContextMenuListener, OnQueryTextListener, OnClickListener,
-                OnCloseListener, OnFocusChangeListener {
-    private static final String TAG = "ContactSelectionActivity";
+public class ContactSelectionActivity extends AppCompatContactsActivity implements
+        View.OnCreateContextMenuListener, ActionBarAdapter.Listener, OnClickListener,
+        OnFocusChangeListener, OnCheckBoxListActionListener {
+    private static final String TAG = "ContactSelection";
 
     private static final String KEY_ACTION_CODE = "actionCode";
     private static final String KEY_SEARCH_MODE = "searchMode";
@@ -85,8 +80,9 @@ public class ContactSelectionActivity extends ContactsActivity
     private boolean mIsSearchSupported;
 
     private ContactsRequest mRequest;
-    private SearchView mSearchView;
-    private View mSearchViewContainer;
+
+    private ActionBarAdapter mActionBarAdapter;
+    private Toolbar mToolbar;
 
     public ContactSelectionActivity() {
         mIntentResolver = new ContactsIntentResolver(this);
@@ -121,8 +117,6 @@ public class ContactSelectionActivity extends ContactsActivity
             return;
         }
 
-        configureActivityTitle();
-
         setContentView(R.layout.contact_picker);
 
         if (mActionCode != mRequest.getActionCode()) {
@@ -130,63 +124,46 @@ public class ContactSelectionActivity extends ContactsActivity
             configureListFragment();
         }
 
-        prepareSearchViewAndActionBar();
+        prepareSearchViewAndActionBar(savedState);
+        configureActivityTitle();
     }
 
-    private void prepareSearchViewAndActionBar() {
-        final ActionBar actionBar = getActionBar();
-        mSearchViewContainer = LayoutInflater.from(actionBar.getThemedContext())
-                .inflate(R.layout.custom_action_bar, null);
-        mSearchView = (SearchView) mSearchViewContainer.findViewById(R.id.search_view);
+    public boolean isSelectionMode() {
+        return mActionBarAdapter.isSelectionMode();
+    }
+
+    public boolean isSearchMode() {
+        return mActionBarAdapter.isSearchMode();
+    }
+
+    private void prepareSearchViewAndActionBar(Bundle savedState) {
+        mToolbar = getView(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
+        // Add a shadow under the toolbar.
+        ViewUtil.addRectangularOutlineProvider(findViewById(R.id.toolbar_parent), getResources());
+
+        mActionBarAdapter = new ActionBarAdapter(this, this, getSupportActionBar(),
+                /* portraitTabs */ null, /* landscapeTabs */ null, mToolbar,
+                R.string.enter_contact_name);
+        mActionBarAdapter.setShowHomeIcon(true);
+        mActionBarAdapter.setShowHomeAsUp(true);
+        mActionBarAdapter.setTransparentStatuBar(false);
+        mActionBarAdapter.initialize(savedState, mRequest);
 
         // Postal address pickers (and legacy pickers) don't support search, so just show
         // "HomeAsUp" button and title.
         if (mRequest.getActionCode() == ContactsRequest.ACTION_PICK_POSTAL ||
                 mRequest.isLegacyCompatibilityMode()) {
-            mSearchView.setVisibility(View.GONE);
-            if (actionBar != null) {
-                actionBar.setDisplayShowHomeEnabled(true);
-                actionBar.setDisplayHomeAsUpEnabled(true);
-                actionBar.setDisplayShowTitleEnabled(true);
-            }
             mIsSearchSupported = false;
-            configureSearchMode();
-            return;
+        } else {
+            mIsSearchSupported = true;
         }
-
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        // In order to make the SearchView look like "shown via search menu", we need to
-        // manually setup its state. See also DialtactsActivity.java and ActionBarAdapter.java.
-        mSearchView.setIconifiedByDefault(true);
-        mSearchView.setQueryHint(getString(R.string.hint_findContacts));
-        mSearchView.setIconified(false);
-        mSearchView.setFocusable(true);
-
-        mSearchView.setOnQueryTextListener(this);
-        mSearchView.setOnCloseListener(this);
-        mSearchView.setOnQueryTextFocusChangeListener(this);
-
-        actionBar.setCustomView(mSearchViewContainer,
-                new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        actionBar.setDisplayShowCustomEnabled(true);
-
-        mIsSearchSupported = true;
         configureSearchMode();
     }
 
     private void configureSearchMode() {
-        final ActionBar actionBar = getActionBar();
-        if (mIsSearchMode) {
-            actionBar.setDisplayShowTitleEnabled(false);
-            mSearchViewContainer.setVisibility(View.VISIBLE);
-            mSearchView.requestFocus();
-        } else {
-            actionBar.setDisplayShowTitleEnabled(true);
-            mSearchViewContainer.setVisibility(View.GONE);
-            mSearchView.setQuery(null, true);
-        }
+        mActionBarAdapter.setSearchMode(mIsSearchMode);
         invalidateOptionsMenu();
     }
 
@@ -215,66 +192,59 @@ public class ContactSelectionActivity extends ContactsActivity
 
     private void configureActivityTitle() {
         if (!TextUtils.isEmpty(mRequest.getActivityTitle())) {
-            setTitle(mRequest.getActivityTitle());
+            getSupportActionBar().setTitle(mRequest.getActivityTitle());
             return;
         }
-
+        int titleResId = -1;
         int actionCode = mRequest.getActionCode();
         switch (actionCode) {
             case ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT: {
-                setTitle(R.string.contactInsertOrEditActivityTitle);
+                titleResId = R.string.contactInsertOrEditActivityTitle;
                 break;
             }
-
             case ContactsRequest.ACTION_PICK_CONTACT: {
-                setTitle(R.string.contactPickerActivityTitle);
+                titleResId = R.string.contactPickerActivityTitle;
                 break;
             }
-
             case ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT: {
-                setTitle(R.string.contactPickerActivityTitle);
+                titleResId = R.string.contactPickerActivityTitle;
                 break;
             }
-
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT: {
-                setTitle(R.string.shortcutActivityTitle);
+                titleResId = R.string.shortcutActivityTitle;
                 break;
             }
-
             case ContactsRequest.ACTION_PICK_PHONE: {
-                setTitle(R.string.contactPickerActivityTitle);
+                titleResId = R.string.contactPickerActivityTitle;
                 break;
             }
-
             case ContactsRequest.ACTION_PICK_EMAIL: {
-                setTitle(R.string.contactPickerActivityTitle);
+                titleResId = R.string.contactPickerActivityTitle;
                 break;
             }
-
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
-                setTitle(R.string.callShortcutActivityTitle);
+                titleResId = R.string.callShortcutActivityTitle;
                 break;
             }
-
             case ContactsRequest.ACTION_CREATE_SHORTCUT_SMS: {
-                setTitle(R.string.messageShortcutActivityTitle);
+                titleResId = R.string.messageShortcutActivityTitle;
                 break;
             }
-
             case ContactsRequest.ACTION_PICK_POSTAL: {
-                setTitle(R.string.contactPickerActivityTitle);
+                titleResId = R.string.contactPickerActivityTitle;
                 break;
             }
-
             case ContactsRequest.ACTION_PICK_JOIN: {
-                setTitle(R.string.titleJoinContactDataWith);
+                titleResId = R.string.titleJoinContactDataWith;
                 break;
             }
-
             case ContactsRequest.ACTION_PICK_GROUP_MEMBERS: {
-                setTitle(R.string.contactPickerActivityTitle);
+                titleResId = R.string.contactPickerActivityTitle;
                 break;
             }
+        }
+        if (titleResId > 0) {
+            getSupportActionBar().setTitle(titleResId);
         }
     }
 
@@ -411,9 +381,73 @@ public class ContactSelectionActivity extends ContactsActivity
         } else if (mListFragment instanceof GroupMemberPickerFragment) {
             ((GroupMemberPickerFragment) mListFragment).setListener(
                     new GroupMemberPickerListener());
+            getMultiSelectListFragment().setCheckBoxListListener(this);
         } else {
             throw new IllegalStateException("Unsupported list fragment type: " + mListFragment);
         }
+    }
+
+    private MultiSelectContactsListFragment getMultiSelectListFragment() {
+        if (mListFragment instanceof MultiSelectContactsListFragment) {
+            return (MultiSelectContactsListFragment) mListFragment;
+        }
+        return null;
+    }
+
+    @Override
+    public void onAction(int action) {
+        switch (action) {
+            case ActionBarAdapter.Listener.Action.START_SEARCH_MODE:
+                mIsSearchMode = true;
+                configureSearchMode();
+                break;
+            case ActionBarAdapter.Listener.Action.CHANGE_SEARCH_QUERY:
+                final String queryString = mActionBarAdapter.getQueryString();
+                mListFragment.setQueryString(queryString, /* delaySelection */ false);
+                break;
+            case ActionBarAdapter.Listener.Action.START_SELECTION_MODE:
+                if (getMultiSelectListFragment() != null) {
+                    getMultiSelectListFragment().displayCheckBoxes(true);
+                }
+                invalidateOptionsMenu();
+                break;
+            case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
+                mActionBarAdapter.setSearchMode(false);
+                if (getMultiSelectListFragment() != null) {
+                    getMultiSelectListFragment().displayCheckBoxes(false);
+                }
+                invalidateOptionsMenu();
+                break;
+        }
+    }
+
+    @Override
+    public void onSelectedTabChanged() {
+    }
+
+    @Override
+    public void onUpButtonPressed() {
+        onBackPressed();
+    }
+
+    @Override
+    public void onStartDisplayingCheckBoxes() {
+        mActionBarAdapter.setSelectionMode(true);
+    }
+
+    @Override
+    public void onSelectedContactIdsChanged() {
+        if (mListFragment instanceof MultiSelectContactsListFragment) {
+            mActionBarAdapter.setSelectionCount(((MultiSelectContactsListFragment) mListFragment)
+                    .getSelectedContactIds().size());
+            // Show or hide the multi select "Done" button
+            invalidateOptionsMenu();
+        }
+    }
+
+    @Override
+    public void onStopDisplayingCheckBoxes() {
+        mActionBarAdapter.setSelectionMode(false);
     }
 
     private final class ContactPickerActionListener implements OnContactPickerActionListener {
@@ -492,6 +526,18 @@ public class ContactSelectionActivity extends ContactsActivity
             intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, contactId);
             returnPickerResult(intent);
         }
+
+        @Override
+        public void onGroupMembersSelected(long[] contactIds) {
+            final Intent intent = new Intent();
+            intent.putExtra(UiIntentActions.TARGET_CONTACT_IDS_EXTRA_KEY, contactIds);
+            returnPickerResult(intent);
+        }
+
+        @Override
+        public void onSelectGroupMembers() {
+            mActionBarAdapter.setSelectionMode(true);
+        }
     }
 
     private final class PostalAddressPickerActionListener implements
@@ -529,30 +575,11 @@ public class ContactSelectionActivity extends ContactsActivity
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
-        mListFragment.setQueryString(newText, true);
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onClose() {
-        if (!TextUtils.isEmpty(mSearchView.getQuery())) {
-            mSearchView.setQuery(null, true);
-        }
-        return true;
-    }
-
-    @Override
     public void onFocusChange(View view, boolean hasFocus) {
         switch (view.getId()) {
             case R.id.search_view: {
                 if (hasFocus) {
-                    showInputMethod(mSearchView.findFocus());
+                    mActionBarAdapter.setFocusOnSearchView();
                 }
             }
         }
@@ -600,16 +627,6 @@ public class ContactSelectionActivity extends ContactsActivity
         startActivityAndForwardResult(intent);
     }
 
-    private void showInputMethod(View view) {
-        final InputMethodManager imm = (InputMethodManager)
-                getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
-            if (!imm.showSoftInput(view, 0)) {
-                Log.w(TAG, "Failed to show soft input method.");
-            }
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -631,6 +648,8 @@ public class ContactSelectionActivity extends ContactsActivity
         if (mIsSearchMode) {
             mIsSearchMode = false;
             configureSearchMode();
+        } else if (isSelectionMode()) {
+            mActionBarAdapter.setSelectionMode(false);
         } else {
             super.onBackPressed();
         }

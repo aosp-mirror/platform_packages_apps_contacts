@@ -90,15 +90,15 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     private static class AddGroupMembersAsyncTask extends AsyncTask<Void, Void, Intent> {
 
         private final Context mContext;
-        private final long mContactId;
+        private final long[] mContactIds;
         private final long mGroupId;
         private final String mAccountName;
         private final String mAccountType;
 
-        AddGroupMembersAsyncTask(Context context, long contactId, long groupId, String accountName,
-                String accountType) {
+        AddGroupMembersAsyncTask(Context context, long[] contactIds, long groupId,
+                String accountName, String accountType) {
             mContext = context;
-            mContactId = contactId;
+            mContactIds = contactIds;
             mGroupId = groupId;
             mAccountName = accountName;
             mAccountType = accountType;
@@ -124,11 +124,17 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                     .appendQueryParameter(RawContacts.ACCOUNT_TYPE, mAccountType)
                     .build();
             final String[] projection = new String[]{RawContacts._ID};
-            final String selection = RawContacts.CONTACT_ID + "=?";
-            final String[] selectionArgs = new String[1];
-            selectionArgs[0] = Long.toString(mContactId);
+            final StringBuilder selection = new StringBuilder();
+            final String[] selectionArgs = new String[mContactIds.length];
+            for (int i = 0; i < mContactIds.length; i++) {
+                if (i > 0) {
+                    selection.append(" OR ");
+                }
+                selection.append(RawContacts.CONTACT_ID).append("=?");
+                selectionArgs[i] = Long.toString(mContactIds[i]);
+            }
             final Cursor cursor = mContext.getContentResolver().query(
-                    rawContactUri, projection, selection, selectionArgs, null, null);
+                    rawContactUri, projection, selection.toString(), selectionArgs, null, null);
             final long[] rawContactIds = new long[cursor.getCount()];
             try {
                 int i = 0;
@@ -473,9 +479,17 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RESULT_GROUP_ADD_MEMBER && resultCode == RESULT_OK && data != null) {
-            final long contactId = data.getLongExtra(
-                    UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, -1);
-            new AddGroupMembersAsyncTask(this, contactId, mGroupMetadata.groupId,
+            long[] contactIds = data.getLongArrayExtra(
+                    UiIntentActions.TARGET_CONTACT_IDS_EXTRA_KEY);
+            if (contactIds == null) {
+                final long contactId = data.getLongExtra(
+                        UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, -1);
+                if (contactId > -1) {
+                    contactIds = new long[1];
+                    contactIds[0] = contactId;
+                }
+            }
+            new AddGroupMembersAsyncTask(this, contactIds, mGroupMetadata.groupId,
                     mGroupMetadata.accountName, mGroupMetadata.accountType)
                     .execute();
         }

@@ -81,6 +81,7 @@ public class ActionBarAdapter implements OnCloseListener {
 
     private boolean mSelectionMode;
     private boolean mSearchMode;
+    private boolean mTransparentStatuBar;
     private String mQueryString;
 
     private EditText mSearchView;
@@ -314,6 +315,11 @@ public class ActionBarAdapter implements OnCloseListener {
         return mSelectionMode;
     }
 
+    /** Whether to make the status bar transparent. */
+    public void setTransparentStatuBar(boolean flag) {
+        mTransparentStatuBar = flag;
+    }
+
     public void setSearchMode(boolean flag) {
         if (mSearchMode != flag) {
             mSearchMode = flag;
@@ -517,6 +523,10 @@ public class ActionBarAdapter implements OnCloseListener {
             final int cabStatusBarColor = mActivity.getResources().getColor(
                     R.color.contextual_selection_bar_status_bar_color);
             mActivity.getWindow().setStatusBarColor(cabStatusBarColor);
+        } else if (!mTransparentStatuBar) {
+            final int normalStatusBarColor = ContextCompat.getColor(
+                    mActivity, R.color.primary_color_dark);
+            mActivity.getWindow().setStatusBarColor(normalStatusBarColor);
         } else {
             mActivity.getWindow().setStatusBarColor(Color.TRANSPARENT);
         }

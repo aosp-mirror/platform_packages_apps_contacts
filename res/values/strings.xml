@@ -139,6 +139,12 @@
     <!-- Menu item to search for contacts to add to the currently selected label. CHAR LIMIT=30] -->
     <string name="menu_addToGroup">Add contact</string>
 
+    <!-- Menu item to select multiple contacts to add to the currently selected label. CHAR LIMIT=30] -->
+    <string name="menu_selectForGroup">Select contacts</string>
+
+    <!-- Menu item to add selected contacts to the currently selected label. CHAR LIMIT=30] -->
+    <string name="menu_addContactsToGroup">Add contacts</string>
+
     <!-- Menu item to remove the currently selected contacts from the currently selected label. [CHAR LIMIT=60] -->
     <string name="menu_removeFromGroup">Remove from label</string>
 
@@ -334,8 +340,8 @@
     <!-- Toast displayed when contacts are removed from a label. [CHAR LIMIT=50] -->
     <string name="groupMembersRemovedToast">Removed contacts</string>
 
-    <!-- Toast displayed when a contact is added to a label. [CHAR LIMIT=50] -->
-    <string name="groupMembersAddedToast">Added contact</string>
+    <!-- Toast displayed when one or more contacts is added to a label. [CHAR LIMIT=50] -->
+    <string name="groupMembersAddedToast">Added to label</string>
 
     <!-- Toast displayed when saving a label failed [CHAR LIMIT=70] -->
     <string name="groupSavedErrorToast">Couldn\'t save label changes.</string>

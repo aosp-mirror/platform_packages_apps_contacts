@@ -123,4 +123,7 @@ public class UiIntentActions {
      */
     public static final String TARGET_CONTACT_ID_EXTRA_KEY
             = "com.android.contacts.action.CONTACT_ID";
+
+    public static final String TARGET_CONTACT_IDS_EXTRA_KEY
+            = "com.android.contacts.action.CONTACT_IDS";
 }
