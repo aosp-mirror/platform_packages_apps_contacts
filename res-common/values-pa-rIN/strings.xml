@@ -176,7 +176,7 @@
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ਨੂੰ ਖੋਲ੍ਹ ਨਹੀਂ ਸਕਿਆ: <xliff:g id="EXACT_REASON">%s</xliff:g>।"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"ਐਕਸਪੋਰਟ ਚਾਲੂ ਨਹੀੰ ਕਰ ਸਕਿਆ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"।"</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ਕੋਈ ਵੀ ਨਿਰਯਾਤ ਕਰਨ ਯੋਗ ਸੰਪਰਕ ਨਹੀਂ ਹਨ।"</string>
-    <string name="missing_required_permission" msgid="3120850759881656369">"ਤੁਸੀਂ ਇੱਕ ਲੁੜੀਂਦੀ ਅਨੁਮਤੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਇਆ ਹੈ।"</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"ਤੁਸੀਂ ਇੱਕ ਲੁੜੀਂਦੀ ਅਨੁਮਤੀ ਨੂੰ ਅਯੋਗ ਬਣਾਇਆ ਹੈ।"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"ਨਿਰਯਾਤ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਅਸ਼ੁੱਧੀ ਵਾਪਰੀ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"।"</string>
     <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ਲੁੜੀਂਦਾ ਫਾਈਲ ਨਾਮ ਬਹੁਤ ਜ਼ਿਆਦਾ ਵੱਡਾ ਹੈ (\"<xliff:g id="FILENAME">%s</xliff:g>\")।"</string>
     <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O ਅਸ਼ੁੱਧੀ"</string>
@@ -222,7 +222,7 @@
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"ਆਖਰੀ ਨਾਮ"</string>
     <string name="display_options_view_names_as" msgid="3232196224409242435">"ਨਾਮ ਦੀ ਵੰਨਗੀ"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ਪਹਿਲਾਂ ਪਹਿਲਾ ਨਾਮ"</string>
-    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ਪਹਿਲਾਂ ਆਖ਼ਰੀ ਨਾਮ"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ਪਹਿਲਾਂ ਆਖਰੀ ਨਾਮ"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"ਨਵੇਂ ਸੰਪਰਕਾਂ ਲਈ ਪੂਰਵ-ਨਿਰਧਾਰਤ ਖਾਤਾ"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"ਸੰਪਰਕ ਮੈਟਾਡੈਟੇ ਨੂੰ ਸਮਕਾਲੀ ਕਰੋ [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ਸੰਪਰਕ ਮੈਟਾਡੈਟੇ ਨੂੰ ਸਮਕਾਲੀ ਕਰੋ"</string>
@@ -268,7 +268,7 @@
       <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>। <xliff:g id="COUNT_3">%2$d</xliff:g> ਬਿਨਾਂ ਪੜ੍ਹੀਆਂ ਆਈਟਮਾਂ। </item>
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>। <xliff:g id="COUNT_3">%2$d</xliff:g> ਬਿਨਾਂ ਪੜ੍ਹੀਆਂ ਆਈਟਮਾਂ। </item>
     </plurals>
-    <string name="about_build_version" msgid="4221971683776635130">"ਨਿਰਮਾਣ ਸੰਸਕਰਣ"</string>
+    <string name="about_build_version" msgid="4221971683776635130">"ਨਿਰਮਾਣ ਸਰੂਪ"</string>
     <string name="about_open_source_licenses" msgid="3224958101863814649">"ਖੁੱਲ੍ਹਾ ਸ੍ਰੋਤ ਲਾਇਸੰਸ"</string>
     <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"ਖੁੱਲ੍ਹਾ ਸ੍ਰੋਤ ਸਾਫਟਵੇਅਰ ਲਈ ਲਾਇਸੰਸ ਵੇਰਵੇ"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"ਪਰਦੇਦਾਰੀ ਨੀਤੀ"</string>
