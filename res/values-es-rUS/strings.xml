@@ -47,14 +47,14 @@
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Eliminado de favoritos"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Agregado a favoritos"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Editar"</string>
-    <string name="menu_deleteContact" msgid="6788644058868189393">"Eliminar"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"Borrar"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Cambiar foto"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Colocar en pantalla principal"</string>
     <string name="menu_call" msgid="3992595586042260618">"Llamar al contacto"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar texto al contacto"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Desvincular"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Editar"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"Eliminar"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"Borrar"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Agregar contacto"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Agregar grupo"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"¿Deseas desvincular este contacto en múltiples contactos?"</string>
@@ -212,7 +212,7 @@
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupos</item>
       <item quantity="one">1 grupo</item>
     </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"¿Deseas eliminar el grupo \" <xliff:g id="GROUP_LABEL">%1$s</xliff:g> \"? (No se eliminarán los contactos)."</string>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"¿Deseas borrar el grupo \" <xliff:g id="GROUP_LABEL">%1$s</xliff:g> \"? (No se borrarán los contactos)."</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> personas de <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persona de <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>
@@ -288,8 +288,8 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Más campos"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Cambiar foto"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"No se pudo abrir el editor."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Guardando en"</string>
-    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Guardando contacto en <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Presiona dos veces para elegir una cuenta diferente."</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Se guarda en"</string>
+    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Actualmente los contactos se guardan en <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Presiona dos veces para elegir otra cuenta."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Contactos vinculados (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Contacto vinculado</item>

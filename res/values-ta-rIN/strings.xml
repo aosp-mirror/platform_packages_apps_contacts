@@ -76,7 +76,7 @@
       <item quantity="one">தொடர்பு நீக்கப்பட்டது</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ரிங்டோனை அமை"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"எல்லா அழைப்புகளையும் குரலஞ்சலிற்கு திருப்பு"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"அழைப்புகளை குரலஞ்சலிற்கு திருப்பு"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"படிக்க மட்டுமேயான கணக்குகளிலிருந்து தொடர்புகளை நீக்க முடியாது, ஆனால் அவற்றை மறைக்கலாம்."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"மறை"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"நீக்குவதற்குத் தேர்ந்தெடுத்த தொடர்பில் பல கணக்குகளின் விவரங்கள் உள்ளன. படிக்க மட்டுமேயான கணக்குகளின் விவரங்கள் மறைக்கப்படுமே தவிர நீக்கப்படாது."</string>
@@ -152,7 +152,7 @@
     <string name="missing_app" msgid="1466111003546611387">"இந்தச் செயலைச் செய்ய பயன்பாடு எதுவுமில்லை."</string>
     <string name="menu_share" msgid="943789700636542260">"பகிர்"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"தொடர்புகளில் சேர்"</string>
-    <string name="share_via" msgid="563121028023030093">"இதன் வழியாக தொடர்பைப் பகிர்"</string>
+    <string name="share_via" msgid="563121028023030093">"தொடர்பை இதில் பகிர்:"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"கணக்கின் கீழ் குழுவை உருவாக்கவும்"</string>
     <string name="audio_chat" msgid="2535716629358298691">"குரல் அரட்டை"</string>
     <string name="video_chat" msgid="1872255818640336072">"வீடியோ அரட்டை"</string>

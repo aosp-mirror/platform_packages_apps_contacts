@@ -48,7 +48,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"נוסף למועדפים"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"ערוך"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"מחק"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"שנה תמונה"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"החלפת תמונה"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"הצב במסך הבית"</string>
     <string name="menu_call" msgid="3992595586042260618">"התקשר לאיש קשר"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
@@ -300,7 +300,7 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"אתה: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏Hangouts פועל טוב יותר כשאתה מזין את מזהה ה-Hangouts של המשתמש בשדה האימייל או בשדה הטלפון."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"עוד שדות"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"שנה תמונה"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"החלפת תמונה"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"פתיחת העורך נכשלה."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"שומר ב-"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"נשמר כרגע ב-<xliff:g id="ACCOUNT_NAME">%s</xliff:g>. הקש פעמיים כדי לבחור חשבון אחר."</string>

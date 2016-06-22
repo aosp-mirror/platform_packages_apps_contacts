@@ -67,9 +67,9 @@
     <string name="menu_save" msgid="1727844363591825909">"บันทึก"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"ลิงก์รายชื่อติดต่อ"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"เลือกรายชื่อติดต่อที่คุณต้องการลิงก์กับ <xliff:g id="NAME">%s</xliff:g>:"</string>
-    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"แสดงรายชื่อในสมุดโทรศัพท์ทั้งหมด"</string>
+    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"แสดงรายชื่อติดต่อทั้งหมด"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"รายชื่อที่แนะนำ"</string>
-    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"รายชื่อในสมุดโทรศัพท์ทั้งหมด"</string>
+    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"รายชื่อติดต่อทั้งหมด"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ลิงก์รายชื่อติดต่อแล้ว"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">รายชื่อติดต่อที่ลบแล้ว</item>
@@ -238,7 +238,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"แสดงรายชื่อติดต่อทั้งหมด"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"เก็บรายชื่อติดต่อของคุณไว้อย่างปลอดภัยด้วยการซิงค์กับบริการออนไลน์แม้ว่าคุณจะทำโทรศัพท์หาย"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"เพิ่มบัญชี"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ผู้ติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลผู้ติดต่อออนไลน์หรือไม่"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"รายชื่อติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลรายชื่อติดต่อออนไลน์ไหม"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"รายชื่อติดต่อใหม่จะบันทึกไว้ใน <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"เลือกบัญชีเริ่มต้นสำหรับรายชื่อติดต่อใหม่:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"เพิ่มรายชื่อติดต่อ"</string>

@@ -22,8 +22,8 @@
     <string name="editContactActivityLabel" msgid="1129944572070802839">"పరిచయాన్ని సవరించండి"</string>
     <string name="contactsList" msgid="8661624236494819731">"పరిచయాలు"</string>
     <string name="shortcutContact" msgid="749243779392912958">"పరిచయం"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"డైరెక్ట్ డయల్"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"డైరెక్ట్ సందేశం"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"నేరుగా డయల్"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"నేరుగా సందేశం"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"పరిచయం యొక్క సత్వరమార్గాన్ని ఎంచుకోండి"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"కాల్ చేయాల్సిన నంబర్‌ను ఎంచుకోండి"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"సందేశం పంపడానికి నంబర్‌ను ఎంచుకోండి"</string>

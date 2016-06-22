@@ -63,9 +63,9 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"जतन करा आणि दुवा रद्द करा"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"आपण आधीपासून केलेले बदल आपण जतन करू आणि निवडलेल्या संपर्काशी दुवा जोडू इच्छिता?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"जतन करा आणि दुवा जोडा"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"दुवा"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"दुवा साधा"</string>
     <string name="menu_save" msgid="1727844363591825909">"जतन करा"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"संपर्कांचा दुवा जोडा"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"संपर्कांचा दुवा साधा"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"आपण <xliff:g id="NAME">%s</xliff:g> सह ज्या संपर्काचा दुवा जोडू इच्छिता तो निवडा:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सर्व संपर्क दर्शवा"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"सूचित संपर्क"</string>
@@ -76,13 +76,13 @@
       <item quantity="other">संपर्क हटविले</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिंगटोन सेट करा"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"व्हॉइसमेलवरील सर्व कॉल"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"सर्व कॉल व्हॉइसमेलवर"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"आपल्‍या केवळ-वाचनीय खात्यांमधील संपर्क हटविले जाऊ शकत नाहीत परंतु ते लपविले जाऊ शकतात."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"लपवा"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"जो संपर्क हटवायचा आहे त्यामध्‍ये एकाधिक खात्यांमधील तपशील आहेत. केवळ-वाचनीय खात्यांमधील तपशील लपविले जातील, हटविले जाणार नाहीत."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"दुवा साधण्‍यासाठी आपण कमीतकमी दोन संपर्क निवडलेले असणे आवश्‍यक आहे."</string>
     <string name="batch_link_confirmation" msgid="5845237114309114908">"निवडलेल्या संपर्कांचा दुवा जोडायचा?"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"दुवा"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"दुवा साधा"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"हा संपर्क हटवायचा?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"निवडलेले संपर्क हटवायचे?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"आपल्‍या केवळ-वाचनीय खात्यांमधील संपर्क हटविले जाऊ शकत नाहीत परंतु ते लपविले जाऊ शकतात."</string>
@@ -193,7 +193,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिंग्ज"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिंग्ज"</string>
     <string name="menu_help" msgid="1680178646764069976">"मदत आणि अभिप्राय"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"पर्याय प्रदर्शित करा"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"प्रदर्शन पर्याय"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"फोन नंबर"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"संपर्कांमध्ये जोडा"</string>

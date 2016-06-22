@@ -145,11 +145,11 @@
     <string name="description_plus_button" msgid="515164827856229880">"પ્લસ"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g> માંથી <xliff:g id="CURRENT_NUMBER">%s</xliff:g> સંપર્કો"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"તમારા સંપર્કોના નામ"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"આ ક્રિયાને હેન્ડલ કરવા માટે કોઈ એપ્લિકેશન મળી નહીં."</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"આ ક્રિયાને હેન્ડલ કરવા માટે કોઈ ઍપ્લિકેશન મળી નહીં."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"પાછલી સ્ક્રીન પર પાછા આવવા માટે ક્લિક કરો"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ફોન નંબર ઉમેરો"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ઇમેઇલ ઉમેરો"</string>
-    <string name="missing_app" msgid="1466111003546611387">"આ ક્રિયાને હેન્ડલ કરવા માટે કોઈ એપ્લિકેશન મળી નહીં."</string>
+    <string name="missing_app" msgid="1466111003546611387">"આ ક્રિયાને હેન્ડલ કરવા માટે કોઈ ઍપ્લિકેશન મળી નહીં."</string>
     <string name="menu_share" msgid="943789700636542260">"શેર કરો"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"સંપર્કોમાં ઉમેરો"</string>
     <string name="share_via" msgid="563121028023030093">"આના દ્વારા સંપર્ક શેર કરો"</string>
@@ -288,7 +288,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"વધુ ફીલ્ડ્સ"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ફોટો બદલો"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"સંપાદક ખોલવામાં નિષ્ફળ થયાં."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"મા સાચવી રહ્યાં છે"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"આમાં સાચવી રહ્યાં છે"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"વર્તમાનમાં <xliff:g id="ACCOUNT_NAME">%s</xliff:g> પર સાચવી રહ્યાં છે. ભિન્ન એકાઉન્ટ ચૂંટવા માટે બે વાર ટેપ કરો."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">લિંક કરેલ સંપર્કો (<xliff:g id="COUNT">%d</xliff:g>)</item>

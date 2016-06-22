@@ -63,9 +63,9 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Stoor en verdeel"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Wil jy graag die veranderinge wat jy reeds aangebring het, stoor en koppel aan die kontak wat gekies is?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Stoor en koppel"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Voeg saam"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Koppel"</string>
     <string name="menu_save" msgid="1727844363591825909">"Stoor"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Skakel kontakte"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Koppel kontakte"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Kies die kontak wat jy aan <xliff:g id="NAME">%s</xliff:g> wil skakel:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Wys alle kontakte"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Voorgestelde kontakte"</string>
@@ -80,7 +80,7 @@
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontakte van jou leesalleen-rekeninge af kan nie uitgevee word nie, maar hulle kan versteek word."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Versteek"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Die kontak wat uitgevee gaan word, bevat besonderhede van veelvuldige rekeninge af. Besonderhede van leesalleen-rekeninge af sal versteek word, nie uitgevee word nie."</string>
-    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Jy moet minstens twee kontakte kies om hulle saam te voeg."</string>
+    <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Jy moet minstens twee kontakte kies om hulle te koppel."</string>
     <string name="batch_link_confirmation" msgid="5845237114309114908">"Koppel gekose kontakte?"</string>
     <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Koppel"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Vee hierdie kontak uit?"</string>
@@ -313,7 +313,7 @@
     <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Hierdie kontak"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Moontlike duplikate"</string>
-    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Hierdie kontakte kan dalk dieselfde persoon wees. Jy kan hulle as \'n enkele kontak saamvoeg."</string>
+    <string name="suggestion_card_help_message" msgid="4474061044387181093">"Hierdie kontakte kan dalk dieselfde persoon wees. Jy kan hulle as \'n enkele kontak koppel."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Saamgevoegde kontakte"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Van jou rekeninge af"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Neem \'n foto"</string>
