@@ -24,11 +24,11 @@
     <string name="shortcutContact" msgid="749243779392912958">"পরিচিতি"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"সরাসরি ডায়াল"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"সরাসরি বার্তা"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"শর্টকার্ট করতে একটি পরিচিতি চয়ন করুন"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"কল করার জন্য একটি নম্বর চয়ন করুন"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"বার্তা পাঠানোর জন্য একটি নম্বর চয়ন করুন"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"শর্টকার্ট করতে একটি পরিচিতি বেছে নিন"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"কল করার জন্য একটি নম্বর বেছে নিন"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"বার্তা পাঠানোর জন্য একটি নম্বর বেছে নিন"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"পরিচিতিতে যোগ করুন"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"একটি পরিচিতি চয়ন করুন"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"একটি পরিচিতি বেছে নিন"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"নতুন পরিচিতি তৈরি করুন"</string>
     <string name="starredList" msgid="4817256136413959463">"তারকা চিহ্নিত"</string>
     <string name="frequentList" msgid="7154768136473953056">"ঘন ঘন"</string>
@@ -66,7 +66,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"লিঙ্ক করুন"</string>
     <string name="menu_save" msgid="1727844363591825909">"সংরক্ষণ করুন"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"পরিচিতিগুলি লিঙ্ক করুন"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"যে পরিচিতিটিকে <xliff:g id="NAME">%s</xliff:g> এর সাথে লিঙ্ক করতে চান চয়ন করুন:"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"যে পরিচিতিটিকে <xliff:g id="NAME">%s</xliff:g> এর সাথে লিঙ্ক করতে চান বেছে নিন:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"সকল পরিচিতি দেখান"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"প্রস্তাবিত পরিচিতিগুলি"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"সকল পরিচিতি"</string>
@@ -168,7 +168,7 @@
     <string name="group_read_only" msgid="1061762906115697637">"এই ডিভাইসে সম্পাদনযোগ্য নয়৷"</string>
     <string name="take_photo" msgid="7496128293167402354">"ফটো তুলুন"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"নতুন ফটো তুলুন"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"ফটো চয়ন করুন"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"ফটো বেছে নিন"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"নতুন ফটো নির্বাচন করুন"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"পরিচিতি তালিকা আপডেট করা হচ্ছে৷"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"অনুসন্ধান করছে..."</string>
@@ -240,7 +240,7 @@
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"একটি অ্যাকাউন্ট যোগ করুন"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"আপনার নতুন পরিচিতিটির ব্যাকআপ নেওয়া হবে না৷ পরিচিতিগুলিকে অনলাইনে ব্যাকআপ নেওয়ার জন্য একটি অ্যাকাউন্ট যুক্ত করবেন?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"নতুন পরিচিতিগুলি <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> এ সংরক্ষণ করা হবে৷"</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"নতুন পরিচিতিগুলির জন্য একটি ডিফল্ট অ্যাকাউন্ট চয়ন করুন:"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"নতুন পরিচিতিগুলির জন্য একটি ডিফল্ট অ্যাকাউন্ট বেছে নিন:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"নতুন পরিচিতি জুড়ুন"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"পরিচিতি সম্পাদনা করুন"</string>
     <string name="keep_local" msgid="1258761699192993322">"স্থানীয় ভাবে রাখুন"</string>
@@ -288,7 +288,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"আরো ফিল্ড"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ফটো পরিবর্তন করুন"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"সম্পাদক খুলতে ব্যর্থ হচ্ছে৷"</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"এ সংরক্ষণ করা হচ্ছে"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"এতে সংরক্ষণ করা হচ্ছে"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"বর্তমানে <xliff:g id="ACCOUNT_NAME">%s</xliff:g> এ সংরক্ষণ করা হচ্ছে৷ কোনো আলাদা অ্যাকাউন্ট চয়ন করার জন্য দুবার আলতো চপুন৷"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>
@@ -318,7 +318,7 @@
     <string name="from_your_accounts" msgid="1746293107836889912">"আপনার অ্যাকাউন্টগুলি থেকে"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"একটি ফটো তুলুন"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"সকল ফটো"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"ফটো চয়ন করুন"</string>
+    <string name="photo_picker_title" msgid="5272832995550042801">"ফটো বেছে নিন"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> থেকে"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> মুছুন"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> মুছুন"</string>

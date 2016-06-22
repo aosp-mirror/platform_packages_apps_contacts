@@ -168,7 +168,7 @@
     <string name="group_read_only" msgid="1061762906115697637">"Kan inte redigeras i den här enheten."</string>
     <string name="take_photo" msgid="7496128293167402354">"Ta en bild"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ta ny bild"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"Välj foto"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Välj bild"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Välj ett nytt foto"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktlistan uppdateras."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Söker …"</string>
@@ -318,7 +318,7 @@
     <string name="from_your_accounts" msgid="1746293107836889912">"Från dina konton"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Ta en bild"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Alla foton"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Välj foto"</string>
+    <string name="photo_picker_title" msgid="5272832995550042801">"Välj bild"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Från <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"Radera <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Radera <xliff:g id="DATA_KIND">%s</xliff:g>"</string>

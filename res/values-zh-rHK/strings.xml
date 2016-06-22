@@ -49,7 +49,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"編輯"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"刪除"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"變更相片"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主畫面上"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主畫面"</string>
     <string name="menu_call" msgid="3992595586042260618">"致電聯絡人"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"解除連結"</string>
@@ -66,7 +66,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"連結"</string>
     <string name="menu_save" msgid="1727844363591825909">"儲存"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"連結聯絡人"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"選擇您想與<xliff:g id="NAME">%s</xliff:g>連結的聯絡人："</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"選擇要連結至<xliff:g id="NAME">%s</xliff:g>的聯絡人："</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"顯示所有聯絡人"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建議的聯絡人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
@@ -136,7 +136,7 @@
       <item quantity="one">找到 1 位聯絡人</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"全部"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"最愛聯絡人"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"常用聯絡人"</string>
     <string name="callBack" msgid="5498224409038809224">"回撥電話"</string>
     <string name="callAgain" msgid="3197312117049874778">"重撥"</string>
     <string name="returnCall" msgid="8171961914203617813">"回覆來電"</string>
@@ -238,7 +238,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使丟失手機，也要確保通訊錄安全：與網上服務保持同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"新增帳戶"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"您的新聯絡人資料不會備份。要新增可在網上備份聯絡人資料的帳戶嗎？"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系統不會備份您的新聯絡人資料。要新增帳戶，在網上備份聯絡人資料嗎？"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"新聯絡人將會儲存至 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"為新聯絡人選擇預設帳戶："</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增聯絡人"</string>

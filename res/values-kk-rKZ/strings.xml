@@ -42,8 +42,8 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Жаңартулар"</string>
     <string name="searchHint" msgid="8482945356247760701">"Контактілерді іздеу"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Контактіні көру"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Сүйіктілерге қосу"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Сүйіктілерден алу"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Таңдаулыларға қосу"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Таңдаулылардан өшіру"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Таңдаулылардан жойылды"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Таңдаулыларға қосылды"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Жөндеу"</string>
@@ -66,7 +66,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Байланыстыру"</string>
     <string name="menu_save" msgid="1727844363591825909">"Сақтау"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Контактілерді байланыстыру"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> байланыстыру керек контактіні таңдаңыз:"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> өзара байланысатын контактіні таңдаңыз:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Барлық контактілерді көрсету"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Ұсынылған контактілер"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Барлық контактілер"</string>
@@ -160,7 +160,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Байланыс қосу"</string>
     <string name="recent" msgid="2659189233141493004">"Жуықта қолданылған"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Соңғы жаңартулар"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контактісі"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контакт"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> есептік жазбасы"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -222,7 +222,7 @@
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> адам</item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Басқа контактімен байланыстыру алдында контактінің атын теріңіз."</string>
-    <string name="copy_text" msgid="3257145021583508761">"Дерек алмастыру жадына сақтау"</string>
+    <string name="copy_text" msgid="3257145021583508761">"Аралық сақтағышқа көшіру"</string>
     <string name="set_default" msgid="4417505153468300351">"Бастапқы ретінде орнату"</string>
     <string name="clear_default" msgid="7193185801596678067">"Бастапқыны өшіру"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Мәтін көшірмесі жасалды"</string>
@@ -230,7 +230,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Алып тастау"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Өңдеуді жалғастыру"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Менің профайлымды реттеу"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Менің профилімді реттеу"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Адамның атын теру"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Топтың атауы"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Менің жергілікті профайлым"</string>

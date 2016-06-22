@@ -66,13 +66,13 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Link"</string>
     <string name="menu_save" msgid="1727844363591825909">"Gem"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Link kontaktpersoner"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Vælg den kontaktperson, der skal knyttes til <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Vælg den kontaktperson, der skal linkes til <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Vis alle kontakter"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Foreslåede kontakter"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakter"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontaktpersonerne er linket"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
-      <item quantity="one">Kontaktpersonerne blev slettet</item>
+      <item quantity="one">Kontaktpersonen blev slettet</item>
       <item quantity="other">Kontaktpersonerne blev slettet</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Angiv ringetone"</string>
@@ -205,7 +205,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Indlæser…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Opret ny kontaktperson"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Tilføj konto"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer kontaktpersoner"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importér kontaktpersoner"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Opret en ny gruppe"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Opret en ny gruppe"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">

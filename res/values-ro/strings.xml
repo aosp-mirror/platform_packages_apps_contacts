@@ -27,9 +27,9 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Alegeți o persoană din agendă pentru a crea o comandă rapidă"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Alegeți un număr pentru apelare"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Alegeți un număr pentru trimiterea mesajului"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Adăugați la persoana de contact"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Adăugați pentru persoană"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Alegeți o persoană de contact"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Creați intrare nouă în Agendă"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Creați o intrare nouă"</string>
     <string name="starredList" msgid="4817256136413959463">"Cu stea"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frecvent"</string>
     <string name="strequentList" msgid="5640192862059373511">"Favorite"</string>
@@ -49,7 +49,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Editați"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Ștergeți"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Schimbați fotografia"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plasați în ecranul de pornire"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plasați pe ecranul de pornire"</string>
     <string name="menu_call" msgid="3992595586042260618">"Apelați persoana din agendă"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Trimiteți mesaj text către o persoană din agendă"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Disociați"</string>
@@ -65,11 +65,11 @@
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Salvați și asociați"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Asociați"</string>
     <string name="menu_save" msgid="1727844363591825909">"Salvați"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Asociați persoanele de contact"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Asociați persoane de contact"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Alegeți persoana de contact pe care doriți să o asociați cu <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Afișați toate persoanele din agendă"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Persoane din agendă sugerate"</string>
-    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Toate persoanele din agendă"</string>
+    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Toată agenda"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Persoanele de contact au fost asociate"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="few">Persoane de contact șterse</item>
@@ -77,7 +77,7 @@
       <item quantity="one">Persoană de contact ștearsă</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setați ton apel"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Toate apel. către mesag. voc."</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Numai mesagerie vocală"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Persoanele de contact din conturile numai în citire nu pot fi șterse, dar pot fi ascunse."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Ascundeți"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Persoana de contact care va fi ștearsă are detalii din mai multe conturi. Detaliile din conturile numai în citire vor fi ascunse, nu șterse."</string>
@@ -96,7 +96,7 @@
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Persoana de contact a fost adăugată pe ecranul de pornire."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Persoana de contact <xliff:g id="NAME">%s</xliff:g> a fost adăugată pe ecranul de pornire."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Creați o intrare nouă în agendă"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"Creați o intrare nouă în Agendă"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"Creați o intrare nouă"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"Organizație"</item>
     <item msgid="7196592230748086755">"Notă"</item>
@@ -144,7 +144,7 @@
     <string name="callBack" msgid="5498224409038809224">"Apelați din nou"</string>
     <string name="callAgain" msgid="3197312117049874778">"Apelați din nou"</string>
     <string name="returnCall" msgid="8171961914203617813">"Apelați înapoi"</string>
-    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Adăugați „<xliff:g id="EMAIL">%s</xliff:g>” la persoanele din agendă?"</string>
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Adăugați „<xliff:g id="EMAIL">%s</xliff:g>” în agendă?"</string>
     <string name="description_contact_photo" msgid="3387458082667894062">"fotografia persoanei din agendă"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> din <xliff:g id="TOTAL_NUMBER">%s</xliff:g> (de) persoane din agendă"</string>
@@ -154,8 +154,8 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Adăugați un număr de telefon"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Adăugați o adresă de e-mail"</string>
     <string name="missing_app" msgid="1466111003546611387">"Nu s-a găsit o aplicație care să îndeplinească această acțiune."</string>
-    <string name="menu_share" msgid="943789700636542260">"Distribuiți"</string>
-    <string name="menu_add_contact" msgid="3198704337220892684">"Adăugați în Agendă"</string>
+    <string name="menu_share" msgid="943789700636542260">"Trimiteți"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Adăugați în agendă"</string>
     <string name="share_via" msgid="563121028023030093">"Distribuiți persoana din agendă prin"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Creați un grup în contul"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Chat vocal"</string>
@@ -200,7 +200,7 @@
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opțiuni de afișare"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Număr de telefon"</string>
-    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Adăugați în Agendă"</string>
+    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Adăugați în agendă"</string>
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Adăug. la pers. din ag."</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Închideți"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
@@ -245,12 +245,12 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Se afișează toată agenda"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Păstrați agenda dvs. în condiții de siguranță, chiar dacă pierdeți telefonul, prin sincronizarea acesteia cu un serviciu online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adăugați un cont"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Pentru noul contact nu se va crea o copie de rezervă. Adăugați un cont care creează online copii de rezervă pentru contacte?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Pentru noua persoană de contact nu se va face backup. Adăugați un cont care face backup online pentru persoane de contact?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Persoanele noi de contact vor fi salvate în <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Alegeți un cont prestabilit pentru persoanele de contact noi:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adăugați contact nou"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adăugați o persoană"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editați intrarea"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Păstrați local"</string>
+    <string name="keep_local" msgid="1258761699192993322">"Numai local"</string>
     <string name="add_account" msgid="8201790677994503186">"Adăugați un cont"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Adăugați un cont nou"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportați fișierele bazei de date"</string>
@@ -274,7 +274,7 @@
     <string name="header_organization_entry" msgid="8515394955666265406">"Organizație"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Pseudonim"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"Notă"</string>
-    <string name="header_website_entry" msgid="1411467850000824745">"Site web"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"Site"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Eveniment"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Relație"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"Cont"</string>

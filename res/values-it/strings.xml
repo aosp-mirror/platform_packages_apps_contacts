@@ -42,7 +42,7 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Aggiornamenti"</string>
     <string name="searchHint" msgid="8482945356247760701">"Cerca contatti"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Visualizza contatto"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Aggiungi a preferiti"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Aggiungi ai preferiti"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Rimuovi dai preferiti"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Rimosso dai preferiti"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Aggiunto ai preferiti"</string>
