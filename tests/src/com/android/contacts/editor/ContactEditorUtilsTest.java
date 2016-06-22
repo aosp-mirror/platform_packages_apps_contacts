@@ -175,7 +175,6 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
      * 0 accounts.
      */
     public void testShouldShowAccountChangedNotification_0Accounts() {
-        // There's always at least one writable type...
         setAccountTypes(TYPE1);
 
         // First launch -- always true.
@@ -250,8 +249,8 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         setAccountTypes(TYPE1, TYPE2);
         setAccounts(ACCOUNT_1_A);
 
-        // First launch -- always true.
-        assertTrue(mTarget.shouldShowAccountChangedNotification());
+        // Always returns false when 1 writable account.
+        assertFalse(mTarget.shouldShowAccountChangedNotification());
 
         // User saves a new contact.
         mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_A);
@@ -267,7 +266,6 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
      * 0 accounts, and the user selected "local only".
      */
     public void testShouldShowAccountChangedNotification_0Account_localOnly() {
-        // There's always at least one writable type...
         setAccountTypes(TYPE1);
 
         // First launch -- always true.
