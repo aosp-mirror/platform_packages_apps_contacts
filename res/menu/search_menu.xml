@@ -13,10 +13,11 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:contacts="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_ab_search"
         android:title="@string/menu_search"
-        android:showAsAction="always" />
+        contacts:showAsAction="always" />
 </menu>

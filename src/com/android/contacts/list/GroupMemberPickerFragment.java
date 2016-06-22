@@ -15,17 +15,21 @@
  */
 package com.android.contacts.list;
 
+import android.app.Activity;
 import android.content.Loader;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.R;
-import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListAdapter.ContactQuery;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.DefaultContactListAdapter;
@@ -36,7 +40,7 @@ import java.util.ArrayList;
  * Fragment containing raw contacts for a specified account that are not already in a group.
  */
 public class GroupMemberPickerFragment extends
-        ContactEntryListFragment<DefaultContactListAdapter> {
+        MultiSelectContactsListFragment<DefaultContactListAdapter> {
 
     public static final String TAG = "GroupMemberPicker";
 
@@ -55,6 +59,12 @@ public class GroupMemberPickerFragment extends
 
         /** Invoked when a potential group member is selected. */
         void onGroupMemberClicked(long contactId);
+
+        /** Invoked when multiple potential group members are selected. */
+        void onGroupMembersSelected(long[] contactIds);
+
+        /** Invoked when user has initiated multiple selection mode. */
+        void onSelectGroupMembers();
     }
 
     /** Filters out raw contacts that are already in the group. */
@@ -213,11 +223,76 @@ public class GroupMemberPickerFragment extends
 
     @Override
     protected void onItemClick(int position, long id) {
+        if (getAdapter().isDisplayingCheckBoxes()) {
+            super.onItemClick(position, id);
+            return;
+        }
         if (mListener != null) {
             final long contactId = getAdapter().getContactId(position);
             if (contactId > 0) {
                 mListener.onGroupMemberClicked(contactId);
             }
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        super.onCreateOptionsMenu(menu, menuInflater);
+        menuInflater.inflate(R.menu.group_member_picker, menu);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        final ContactSelectionActivity activity = getContactSelectionActivity();
+        final boolean isSearchMode = activity == null ? false : activity.isSearchMode();
+        final boolean isSelectionMode = activity == null ? false : activity.isSelectionMode();
+
+        // Added in ContactSelectionActivity but we must account for selection mode
+        setVisible(menu, R.id.menu_search, !isSearchMode && !isSelectionMode);
+
+        setVisible(menu, R.id.menu_done, !isSearchMode && isSelectionMode &&
+                getAdapter().getSelectedContactIds().size() > 0);
+        setVisible(menu, R.id.menu_select, !isSearchMode && !isSelectionMode);
+    }
+
+    private ContactSelectionActivity getContactSelectionActivity() {
+        final Activity activity = getActivity();
+        if (activity != null && activity instanceof ContactSelectionActivity) {
+            return (ContactSelectionActivity) activity;
+        }
+        return null;
+    }
+
+    private static void setVisible(Menu menu, int id, boolean visible) {
+        final MenuItem menuItem = menu.findItem(id);
+        if (menuItem != null) {
+            menuItem.setVisible(visible);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                final Activity activity = getActivity();
+                if (activity != null) {
+                    activity.onBackPressed();
+                }
+                return true;
+            }
+            case R.id.menu_done: {
+                if (mListener != null) {
+                    mListener.onGroupMembersSelected(getAdapter().getSelectedContactIdsArray());
+                }
+                return true;
+            }
+            case R.id.menu_select: {
+                if (mListener != null) {
+                    mListener.onSelectGroupMembers();
+                }
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

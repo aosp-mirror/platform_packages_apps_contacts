@@ -221,18 +221,6 @@
         <item name="titleTextAppearance">@style/ContactsActionBarTitleTextAppCompat</item>
     </style>
 
-    <style name="ContactsPickerActionBarStyle" parent="@style/ContactsActionBarStyle">
-        <!-- when first loading, don't show title or up button -->
-        <item name="android:displayOptions"></item>
-    </style>
-
-    <style name="ContactPickerSearchTheme" parent="@style/PeopleTheme">
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorHint">?android:textColorHintInverse</item>
-        <item name="android:colorControlActivated">?android:textColorHintInverse</item>
-        <item name="android:colorControlNormal">@android:color/white</item>
-    </style>
-
     <!-- Text in the action bar at the top of the screen -->
     <style name="ContactsActionBarTitleText"
            parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
@@ -276,13 +264,7 @@
         <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
-    <style name="ContactPickerTheme" parent="@style/PeopleTheme" >
-        <item name="android:actionBarStyle">@style/ContactsPickerActionBarStyle</item>
-    </style>
-
-    <style name="ContactPickerLayout" parent="ContactPickerTheme">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
+    <style name="ContactPickerTheme" parent="PeopleActivityTheme" >
     </style>
 
     <style name="ContactsPreferencesTheme" parent="@style/PeopleTheme">
