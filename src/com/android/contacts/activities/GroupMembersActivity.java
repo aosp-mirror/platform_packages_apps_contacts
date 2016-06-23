@@ -85,20 +85,25 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     private static final int RESULT_GROUP_ADD_MEMBER = 100;
 
     /**
-     * Starts an Intent to add the raw contacts for a given contact ID to a group.
-     * Only the raw contacts that belong to the specified account are added.
+     * Starts an Intent to add/remove the raw contacts for the given contact IDs to/from a group.
+     * Only the raw contacts that belong to the specified account are added or removed.
      */
-    private static class AddGroupMembersAsyncTask extends AsyncTask<Void, Void, Intent> {
+    private static class UpdateGroupMembersAsyncTask extends AsyncTask<Void, Void, Intent> {
+
+        static final int TYPE_ADD = 0;
+        static final int TYPE_REMOVE = 1;
 
         private final Context mContext;
+        private final int mType;
         private final long[] mContactIds;
         private final long mGroupId;
         private final String mAccountName;
         private final String mAccountType;
 
-        AddGroupMembersAsyncTask(Context context, long[] contactIds, long groupId,
-                String accountName, String accountType) {
+        private UpdateGroupMembersAsyncTask(int type, Context context, long[] contactIds,
+                long groupId, String accountName, String accountType) {
             mContext = context;
+            mType = type;
             mContactIds = contactIds;
             mGroupId = groupId;
             mAccountName = accountName;
@@ -107,19 +112,30 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
         @Override
         protected Intent doInBackground(Void... params) {
-            final long[] rawContactIdsToAdd = getRawContactIdsToAdd();
-            if (rawContactIdsToAdd.length == 0) {
+            final long[] rawContactIds = getRawContactIds();
+            if (rawContactIds.length == 0) {
                 return null;
             }
+            final long[] rawContactIdsToAdd;
+            final long[] rawContactIdsToRemove;
+            if (mType == TYPE_ADD) {
+                rawContactIdsToAdd = rawContactIds;
+                rawContactIdsToRemove = null;
+            } else if (mType == TYPE_REMOVE) {
+                rawContactIdsToAdd = null;
+                rawContactIdsToRemove = rawContactIds;
+            } else {
+                throw new IllegalStateException("Unrecognized type " + mType);
+            }
             return ContactSaveService.createGroupUpdateIntent(
-                    mContext, mGroupId, /* newLabel */ null,
-                    rawContactIdsToAdd, /* rawContactIdsToRemove */ null,
-                    GroupMembersActivity.class, GroupMembersActivity.ACTION_ADD_TO_GROUP);
+                    mContext, mGroupId, /* newLabel */ null, rawContactIdsToAdd,
+                    rawContactIdsToRemove, GroupMembersActivity.class,
+                    GroupMembersActivity.ACTION_ADD_TO_GROUP);
         }
 
         // TODO(wjang): prune raw contacts that are already in the group; ContactSaveService will
         // log a warning if the raw contact is already a member and keep going but it is not ideal.
-        private long[] getRawContactIdsToAdd() {
+        private long[] getRawContactIds() {
             final Uri rawContactUri = RawContacts.CONTENT_URI.buildUpon()
                     .appendQueryParameter(RawContacts.ACCOUNT_NAME, mAccountName)
                     .appendQueryParameter(RawContacts.ACCOUNT_TYPE, mAccountType)
@@ -449,13 +465,10 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     }
 
     private void removeSelectedContacts() {
-        final long[] rawContactsToRemove =
-                mMembersFragment.getAdapter().getSelectedContactIdsArray();
-        final Intent intent = ContactSaveService.createGroupUpdateIntent(
-                this, mGroupMetadata.groupId, /* groupName */ null,
-                /* rawContactsToAdd */ null, rawContactsToRemove, getClass(),
-                ACTION_REMOVE_FROM_GROUP);
-        startService(intent);
+        final long[] contactIds = mMembersFragment.getAdapter().getSelectedContactIdsArray();
+        new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_REMOVE,
+                this, contactIds, mGroupMetadata.groupId, mGroupMetadata.accountName,
+                mGroupMetadata.accountType).execute();
 
         mActionBarAdapter.setSelectionMode(false);
     }
@@ -494,9 +507,9 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                     contactIds[0] = contactId;
                 }
             }
-            new AddGroupMembersAsyncTask(this, contactIds, mGroupMetadata.groupId,
-                    mGroupMetadata.accountName, mGroupMetadata.accountType)
-                    .execute();
+            new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_ADD,
+                    this, contactIds, mGroupMetadata.groupId, mGroupMetadata.accountName,
+                    mGroupMetadata.accountType).execute();
         }
     }
 

@@ -71,7 +71,7 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
     private long mGroupId;
 
     public GroupMembersAdapter(Context context) {
-        super(context, GroupMembersQuery.RAW_CONTACT_ID);
+        super(context, GroupMembersQuery.CONTACT_ID);
         mUnknownNameText = context.getText(R.string.missing_name);
         setSectionHeaderDisplayEnabled(true);
     }
