@@ -2,6 +2,6 @@
 <!-- Copyright 2014 Google Inc. All Rights Reserved. -->
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android" >
-    <size android:width="2dp" />
+    <size android:width="2dp" android:height="22dp" />
     <solid android:color="@color/dialtacts_theme_color" />
 </shape>

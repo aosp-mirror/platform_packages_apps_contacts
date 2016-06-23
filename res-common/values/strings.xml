@@ -653,7 +653,7 @@
     <string name="menu_search">Search</string>
 
     <!-- Query hint displayed inside the search field [CHAR LIMIT=64] -->
-    <string name="hint_findContacts">Find contacts</string>
+    <string name="hint_findContacts">Search contacts</string>
 
     <!-- The description text for the favorites tab.
 
