@@ -55,6 +55,10 @@
     <string name="menu_renameGroup" msgid="7169512355179757182">"إعادة تسمية التصنيف"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"حذف التصنيف"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"إضافة جهة اتصال"</string>
+    <!-- no translation found for menu_selectForGroup (3999234528229376098) -->
+    <skip />
+    <!-- no translation found for menu_addContactsToGroup (655196688840626483) -->
+    <skip />
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"الإزالة من تصنيف"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"إضافة جهة اتصال"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"إنشاء مجموعة جديدة…"</string>
@@ -129,7 +133,8 @@
     <string name="groupCreatedToast" msgid="1924195126172834870">"تم إنشاء التصنيف"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"تم تحديث التصنيف"</string>
     <string name="groupMembersRemovedToast" msgid="2683813023881480814">"تمت إزالة جهة الاتصال"</string>
-    <string name="groupMembersAddedToast" msgid="3335172811673427991">"تمت إضافة جهة الاتصال"</string>
+    <!-- no translation found for groupMembersAddedToast (4824834898718972768) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"لا يمكن حفظ التغييرات على التصنيف."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="zero">لا توجد أية جهات اتصال بها أرقام هواتف (<xliff:g id="COUNT">%d</xliff:g>)</item>

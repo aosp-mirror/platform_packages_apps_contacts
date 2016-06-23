@@ -55,6 +55,10 @@
     <string name="menu_renameGroup" msgid="7169512355179757182">"重新命名標籤"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"刪除標籤"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"新增聯絡人"</string>
+    <!-- no translation found for menu_selectForGroup (3999234528229376098) -->
+    <skip />
+    <!-- no translation found for menu_addContactsToGroup (655196688840626483) -->
+    <skip />
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"從標籤中移除"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"新增聯絡人"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"新建..."</string>
@@ -121,7 +125,8 @@
     <string name="groupCreatedToast" msgid="1924195126172834870">"已建立標籤"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"已更新標籤"</string>
     <string name="groupMembersRemovedToast" msgid="2683813023881480814">"已移除聯絡人"</string>
-    <string name="groupMembersAddedToast" msgid="3335172811673427991">"已新增聯絡人"</string>
+    <!-- no translation found for groupMembersAddedToast (4824834898718972768) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"無法儲存標籤的變更內容。"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位有電話號碼的聯絡人</item>

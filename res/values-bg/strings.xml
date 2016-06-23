@@ -55,6 +55,10 @@
     <string name="menu_renameGroup" msgid="7169512355179757182">"Преименуване на етикета"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Изтриване на етикета"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Добавяне на контакт"</string>
+    <!-- no translation found for menu_selectForGroup (3999234528229376098) -->
+    <skip />
+    <!-- no translation found for menu_addContactsToGroup (655196688840626483) -->
+    <skip />
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Премахване от етикета"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Добавяне на контакт"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Създаване на ново…"</string>
@@ -121,7 +125,8 @@
     <string name="groupCreatedToast" msgid="1924195126172834870">"Етикетът бе създаден"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Етикетът бе актуализиран"</string>
     <string name="groupMembersRemovedToast" msgid="2683813023881480814">"Контактите бяха премахнати"</string>
-    <string name="groupMembersAddedToast" msgid="3335172811673427991">"Контактът бе добавен"</string>
+    <!-- no translation found for groupMembersAddedToast (4824834898718972768) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Промените в етикета не можаха да бъдат запазени."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> контакта с телефонен номер</item>
