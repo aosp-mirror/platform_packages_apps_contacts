@@ -33,5 +33,5 @@
         android:hint="@string/group_name_dialog_hint"
         android:inputType="textCapWords|textNoSuggestions"
         android:singleLine="true"
-        android:maxLength="40"/>
+        android:maxLength="@integer/group_name_max_length"/>
 </LinearLayout>

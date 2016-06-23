@@ -19,7 +19,10 @@
     <!-- Number of lines the QuickContact title can have -->
     <integer name="quickcontact_title_lines">1</integer>
 
-    <!-- Max suggestions limit showing in quick contact suggestion card [CHAR LIMIT=30]-->
+    <!-- Max suggestions limit showing in quick contact suggestion card -->
     <integer name="quickcontact_suggestions_limit">10</integer>
+
+    <!-- The maximum allowed group name length -->
+    <integer name="group_name_max_length">40</integer>
 
 </resources>
