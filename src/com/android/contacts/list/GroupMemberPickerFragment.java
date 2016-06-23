@@ -20,6 +20,8 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,9 +34,12 @@ import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.R;
 import com.android.contacts.common.list.ContactListAdapter.ContactQuery;
 import com.android.contacts.common.list.ContactListFilter;
+import com.android.contacts.common.list.ContactsSectionIndexer;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Fragment containing raw contacts for a specified account that are not already in a group.
@@ -84,13 +89,64 @@ public class GroupMemberPickerFragment extends
                 Log.v(TAG, "RawContacts CursorWrapper start: " + mCount);
             }
 
+            final Bundle bundle = cursor.getExtras();
+            boolean hasSections = bundle.containsKey(Contacts.EXTRA_ADDRESS_BOOK_INDEX_TITLES)
+                    && bundle.containsKey(Contacts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
+            boolean needsTrimming = false;
+
+            String sections[] = new String[]{};
+            int counts[] = new int[]{};
+            ContactsSectionIndexer indexer = null;
+            if (hasSections) {
+                sections = bundle.getStringArray(Contacts.EXTRA_ADDRESS_BOOK_INDEX_TITLES);
+                counts = bundle.getIntArray(Contacts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
+
+                indexer = new ContactsSectionIndexer(sections, counts);
+                final int positions[] = indexer.getPositions();
+
+                // The sum of the last element in counts[] and the last element in positions[] is
+                // the total number of remaining elements in cursor. If mCount is more than
+                // what's in the indexer now, then we don't need to trim.
+                needsTrimming =
+                        mCount <= (counts[counts.length - 1] + positions[positions.length - 1]);
+
+                if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                    Log.v(TAG, "sections before: " + Arrays.toString(sections));
+                    Log.v(TAG, "counts before: " + Arrays.toString(counts));
+                    Log.v(TAG, "positions: " + Arrays.toString(positions));
+                    Log.v(TAG, "mCount: " + mCount);
+                }
+            }
+
             for (int i = 0; i < mCount; i++) {
                 super.moveToPosition(i);
                 final String contactId = getString(ContactQuery.CONTACT_ID);
                 if (!mRawContactIds.contains(contactId)) {
                     mIndex[mPos++] = i;
+                } else if (needsTrimming) {
+                    int filteredContact = indexer.getSectionForPosition(i);
+                    if (filteredContact < counts.length && filteredContact >= 0) {
+                        counts[filteredContact]--;
+                        if (counts[filteredContact] == 0) {
+                            sections[filteredContact] = "";
+                        }
+                    }
                 }
             }
+
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "sections  after: " + Arrays.toString(sections));
+                Log.v(TAG, "counts  after: " + Arrays.toString(counts));
+                Log.v(TAG, "mIndex: " + Arrays.toString(mIndex));
+            }
+
+            if (needsTrimming) {
+                final String[] newSections = clearEmptyString(sections);
+                bundle.putStringArray(Contacts.EXTRA_ADDRESS_BOOK_INDEX_TITLES, newSections);
+                final int[] newCounts = clearZeros(counts);
+                bundle.putIntArray(Contacts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS, newCounts);
+            }
+
             mCount = mPos;
             mPos = 0;
             super.moveToFirst();
@@ -98,6 +154,30 @@ public class GroupMemberPickerFragment extends
             if (Log.isLoggable(TAG, Log.VERBOSE)) {
                 Log.v(TAG, "RawContacts CursorWrapper end: " + mCount);
             }
+        }
+
+        private String[] clearEmptyString(String[] strings) {
+            final List<String> list = new ArrayList<>();
+            for (String s : strings) {
+                if (!TextUtils.isEmpty(s)) {
+                    list.add(s);
+                }
+            }
+            return list.toArray(new String[list.size()]);
+        }
+
+        private int[] clearZeros(int[] numbers) {
+            final List<Integer> list = new ArrayList<>();
+            for (int n : numbers) {
+                if (n > 0) {
+                    list.add(n);
+                }
+            }
+            final int[] array = new int[list.size()];
+            for(int i = 0; i < list.size(); i++) {
+                array[i] = list.get(i);
+            }
+            return array;
         }
 
         @Override
