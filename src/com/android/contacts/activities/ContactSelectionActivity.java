@@ -412,6 +412,7 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
                 invalidateOptionsMenu();
                 break;
             case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
+                mListFragment.setQueryString("", /* delaySelection */ false);
                 mActionBarAdapter.setSearchMode(false);
                 if (getMultiSelectListFragment() != null) {
                     getMultiSelectListFragment().displayCheckBoxes(false);
