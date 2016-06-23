@@ -643,6 +643,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         return mQueryString;
     }
 
+    // TODO: the paramter delaySelection is not in use, and let's remove it.
     public void setQueryString(String queryString, boolean delaySelection) {
         if (!TextUtils.equals(mQueryString, queryString)) {
             if (mShowEmptyListForEmptyQuery && mAdapter != null && mListView != null) {

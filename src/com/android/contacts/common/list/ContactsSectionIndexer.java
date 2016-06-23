@@ -70,6 +70,10 @@ public class ContactsSectionIndexer implements SectionIndexer {
         return mSections;
     }
 
+    public int[] getPositions() {
+        return mPositions;
+    }
+
     public int getPositionForSection(int section) {
         if (section < 0 || section >= mSections.length) {
             return -1;
