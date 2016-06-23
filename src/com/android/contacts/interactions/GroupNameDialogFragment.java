@@ -22,6 +22,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnShowListener;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -46,6 +47,8 @@ public abstract class GroupNameDialogFragment extends DialogFragment {
         final LayoutInflater layoutInflater = LayoutInflater.from(builder.getContext());
         final View view = layoutInflater.inflate(R.layout.group_name_dialog, null);
         final EditText editText = (EditText) view.findViewById(R.id.group_label);
+        final int maxLength = getResources().getInteger(R.integer.group_name_max_length);
+        editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(maxLength) });
         initializeGroupLabelEditText(editText);
 
         builder.setTitle(getTitleResourceId());

@@ -117,7 +117,11 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
                 mGroupNameEditText = (EditText) alertDialog.findViewById(android.R.id.text1);
                 if (!TextUtils.isEmpty(mGroupName)) {
                     mGroupNameEditText.setText(mGroupName);
-                    mGroupNameEditText.setSelection(mGroupName.length());
+                    // Guard against already created group names that are longer than the max
+                    final int maxLength = getResources().getInteger(
+                            R.integer.group_name_max_length);
+                    mGroupNameEditText.setSelection(
+                            mGroupName.length() > maxLength ? maxLength : mGroupName.length());
                 }
 
                 final Button createButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
