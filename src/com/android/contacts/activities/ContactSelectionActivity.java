@@ -188,6 +188,9 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_ACTION_CODE, mActionCode);
         outState.putBoolean(KEY_SEARCH_MODE, mIsSearchMode);
+        if (mActionBarAdapter != null) {
+            mActionBarAdapter.onSaveInstanceState(outState);
+        }
     }
 
     private void configureActivityTitle() {
