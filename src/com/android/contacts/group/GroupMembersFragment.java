@@ -63,6 +63,9 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
 
         /** Invoked when a group member in the list is clicked. */
         void onGroupMemberListItemClicked(int position, Uri contactLookupUri);
+
+        /** Invoked when a the delete button for a group member in the list is clicked. */
+        void onGroupMemberListItemDeleted(int position, long contactId);
     }
 
     /** Filters out duplicate contacts. */
@@ -209,6 +212,10 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         mListener = listener;
     }
 
+    public void displayDeleteButtons(boolean displayDeleteButtons) {
+        getAdapter().setDisplayDeleteButtons(displayDeleteButtons);
+    }
+
     public ArrayList<String> getMemberContactIds() {
         return  new ArrayList<>(mGroupMemberContactIds);
     }
@@ -328,8 +335,13 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             return;
         }
         if (mListener != null) {
-            final Uri contactLookupUri = getAdapter().getContactLookupUri(position);
-            mListener.onGroupMemberListItemClicked(position, contactLookupUri);
+            if (getAdapter().getDisplayDeleteButtons()) {
+                final long contactId = getAdapter().getContactId(position);
+                mListener.onGroupMemberListItemDeleted(position, contactId);
+            } else {
+                final Uri contactLookupUri = getAdapter().getContactLookupUri(position);
+                mListener.onGroupMemberListItemClicked(position, contactLookupUri);
+            }
         }
     }
 }

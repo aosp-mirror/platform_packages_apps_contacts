@@ -71,6 +71,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     private static final String KEY_IS_INSERT_ACTION = "isInsertAction";
     private static final String KEY_GROUP_URI = "groupUri";
     private static final String KEY_GROUP_METADATA = "groupMetadata";
+    private static final String KEY_IS_EDIT_MODE = "editMode";
 
     private static final String TAG_GROUP_MEMBERS = "groupMembers";
     private static final String TAG_SELECT_ACCOUNT_DIALOG = "selectAccountDialog";
@@ -118,19 +119,21 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             }
             final long[] rawContactIdsToAdd;
             final long[] rawContactIdsToRemove;
+            final String action;
             if (mType == TYPE_ADD) {
                 rawContactIdsToAdd = rawContactIds;
                 rawContactIdsToRemove = null;
+                action = GroupMembersActivity.ACTION_ADD_TO_GROUP;
             } else if (mType == TYPE_REMOVE) {
                 rawContactIdsToAdd = null;
                 rawContactIdsToRemove = rawContactIds;
+                action = GroupMembersActivity.ACTION_REMOVE_FROM_GROUP;
             } else {
                 throw new IllegalStateException("Unrecognized type " + mType);
             }
             return ContactSaveService.createGroupUpdateIntent(
                     mContext, mGroupId, /* newLabel */ null, rawContactIdsToAdd,
-                    rawContactIdsToRemove, GroupMembersActivity.class,
-                    GroupMembersActivity.ACTION_ADD_TO_GROUP);
+                    rawContactIdsToRemove, GroupMembersActivity.class, action);
         }
 
         // TODO(wjang): prune raw contacts that are already in the group; ContactSaveService will
@@ -177,12 +180,13 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
     private ActionBarAdapter mActionBarAdapter;
 
-    private GroupMetadata mGroupMetadata;
-
     private GroupMembersFragment mMembersFragment;
 
     private Uri mGroupUri;
     private boolean mIsInsertAction;
+    private boolean mIsEditMode;
+
+    private GroupMetadata mGroupMetadata;
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -192,6 +196,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         if (savedState != null) {
             mGroupUri = savedState.getParcelable(KEY_GROUP_URI);
             mIsInsertAction = savedState.getBoolean(KEY_IS_INSERT_ACTION);
+            mIsEditMode = savedState.getBoolean(KEY_IS_EDIT_MODE);
             mGroupMetadata = savedState.getParcelable(KEY_GROUP_METADATA);
         } else {
             mGroupUri = getIntent().getData();
@@ -265,8 +270,9 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         if (mActionBarAdapter != null) {
             mActionBarAdapter.onSaveInstanceState(outState);
         }
-        outState.putBoolean(KEY_IS_INSERT_ACTION, mIsInsertAction);
         outState.putParcelable(KEY_GROUP_URI, mGroupUri);
+        outState.putBoolean(KEY_IS_INSERT_ACTION, mIsInsertAction);
+        outState.putBoolean(KEY_IS_EDIT_MODE, mIsEditMode);
         outState.putParcelable(KEY_GROUP_METADATA, mGroupMetadata);
     }
 
@@ -293,14 +299,13 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         super.onNewIntent(newIntent);
 
         if (isDeleteAction(newIntent.getAction())) {
-            Toast.makeText(this, R.string.groupDeletedToast, Toast.LENGTH_SHORT).show();
+            toast(R.string.groupDeletedToast);
             setResult(RESULT_OK);
             finish();
         } else if (isSaveAction(newIntent.getAction())) {
             final Uri groupUri = newIntent.getData();
             if (groupUri == null) {
-                Toast.makeText(this, R.string.groupSavedErrorToast, Toast.LENGTH_SHORT).show();
-                setResultCanceledAndFinish();
+                setResultCanceledAndFinish(R.string.groupSavedErrorToast);
                 return;
             }
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + groupUri);
@@ -308,22 +313,14 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             mGroupUri = groupUri;
             mIsInsertAction = false;
 
-            Toast.makeText(this, getToastMessageForSaveAction(newIntent.getAction()),
-                    Toast.LENGTH_SHORT).show();
+            toast(getToastMessageForSaveAction(newIntent.getAction()));
 
-            mMembersFragment = GroupMembersFragment.newInstance(groupUri);
-            mMembersFragment.setListener(this);
-
-            final FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            addGroupsAndFiltersFragments(transaction);
-            transaction.replace(R.id.fragment_container_inner, mMembersFragment, TAG_GROUP_MEMBERS)
-                    .commitAllowingStateLoss();
-
-            if (mGroupMetadata != null && mGroupMetadata.editable) {
-                mMembersFragment.setCheckBoxListListener(this);
+            // If we're editing the group, don't reload the fragment so the user can
+            // continue to remove group members one by one
+            if (!mIsEditMode && !ACTION_REMOVE_FROM_GROUP.equals(newIntent.getAction())) {
+                replaceGroupMembersFragment();
+                invalidateOptionsMenu();
             }
-
-            invalidateOptionsMenu();
         }
     }
 
@@ -344,6 +341,18 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         if (ACTION_ADD_TO_GROUP.equals(action)) return R.string.groupMembersAddedToast;
         if (ACTION_REMOVE_FROM_GROUP.equals(action)) return R.string.groupMembersRemovedToast;
         throw new IllegalArgumentException("Unhanded contact save action " + action);
+    }
+
+    private void replaceGroupMembersFragment() {
+        mMembersFragment = GroupMembersFragment.newInstance(mGroupUri);
+        mMembersFragment.setListener(this);
+        final FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        addGroupsAndFiltersFragments(transaction);
+        transaction.replace(R.id.fragment_container_inner, mMembersFragment, TAG_GROUP_MEMBERS)
+                .commitAllowingStateLoss();
+        if (mGroupMetadata != null && mGroupMetadata.editable) {
+            mMembersFragment.setCheckBoxListListener(this);
+        }
     }
 
     @Override
@@ -392,7 +401,9 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         setVisible(menu, R.id.menu_add, isGroupEditable && !isSelectionMode);
         setVisible(menu, R.id.menu_rename_group, isGroupEditable && !isSelectionMode);
         setVisible(menu, R.id.menu_delete_group, !isGroupReadOnly && !isSelectionMode);
-        setVisible(menu, R.id.menu_remove_from_group, isGroupEditable && isSelectionMode);
+        setVisible(menu, R.id.menu_edit_group, isGroupEditable && !mIsEditMode);
+        setVisible(menu, R.id.menu_remove_from_group, isGroupEditable && isSelectionMode &&
+                !mIsEditMode);
 
         return true;
     }
@@ -429,6 +440,15 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             }
             case R.id.menu_delete_group: {
                 deleteGroup();
+                return true;
+            }
+            case R.id.menu_edit_group: {
+                if (mMembersFragment == null) {
+                    return false;
+                }
+                mIsEditMode = true;
+                mActionBarAdapter.setSelectionMode(true);
+                mMembersFragment.displayDeleteButtons(true);
                 return true;
             }
             case R.id.menu_remove_from_group: {
@@ -482,6 +502,12 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             mDrawer.closeDrawer(GravityCompat.START);
         } else if (mIsInsertAction) {
             finish();
+        } else if (mIsEditMode) {
+            mIsEditMode = false;
+            mActionBarAdapter.setSelectionMode(false);
+            if (mMembersFragment != null) {
+                mMembersFragment.displayDeleteButtons(false);
+            }
         } else if (mActionBarAdapter.isSelectionMode()) {
             mActionBarAdapter.setSelectionMode(false);
             if (mMembersFragment != null) {
@@ -525,12 +551,16 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         setResultCanceledAndFinish(-1);
     }
 
-    private void setResultCanceledAndFinish(int toastResId) {
-        if (toastResId >= 0) {
-            Toast.makeText(this, toastResId, Toast.LENGTH_SHORT).show();
-        }
+    private void setResultCanceledAndFinish(int resId) {
+        toast(resId);
         setResult(RESULT_CANCELED);
         finish();
+    }
+
+    private void toast(int resId) {
+        if (resId >= 0) {
+            Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
+        }
     }
 
     // SelectAccountDialogFragment.Listener callbacks
@@ -554,7 +584,11 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         switch (action) {
             case ActionBarAdapter.Listener.Action.START_SELECTION_MODE:
                 if (mMembersFragment != null) {
-                    mMembersFragment.displayCheckBoxes(true);
+                    if (mIsEditMode) {
+                        mMembersFragment.displayDeleteButtons(true);
+                    } else {
+                        mMembersFragment.displayCheckBoxes(true);
+                    }
                 }
                 invalidateOptionsMenu();
                 showFabWithAnimation(/* showFabWithAnimation = */ false);
@@ -562,7 +596,11 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
                 mActionBarAdapter.setSearchMode(false);
                 if (mMembersFragment != null) {
-                    mMembersFragment.displayCheckBoxes(false);
+                    if (mIsEditMode) {
+                        mMembersFragment.displayDeleteButtons(false);
+                    } else {
+                        mMembersFragment.displayCheckBoxes(false);
+                    }
                 }
                 invalidateOptionsMenu();
                 showFabWithAnimation(/* showFabWithAnimation */ true);
@@ -660,5 +698,14 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
         intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.LIST_GROUP);
         startActivity(intent);
+    }
+
+    @Override
+    public void onGroupMemberListItemDeleted(int position, long contactId) {
+        final long[] contactIds = new long[1];
+        contactIds[0] = contactId;
+        new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_REMOVE,
+                this, contactIds, mGroupMetadata.groupId, mGroupMetadata.accountName,
+                mGroupMetadata.accountType).execute();
     }
 }
