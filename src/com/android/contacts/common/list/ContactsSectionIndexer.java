@@ -30,7 +30,7 @@ public class ContactsSectionIndexer implements SectionIndexer {
     private String[] mSections;
     private int[] mPositions;
     private int mCount;
-    private static final String BLANK_HEADER_STRING = "\u2013";
+    private static final String BLANK_HEADER_STRING = "\u2026"; // ellipsis
 
     /**
      * Constructor.
