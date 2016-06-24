@@ -55,6 +55,10 @@
     <string name="menu_renameGroup" msgid="7169512355179757182">"အညွှန်းအမည်ပြောင်းပါ"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"အညွှန်းကိုဖျက်ပါ"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"အဆက်အသွယ်ထည့်ပါ"</string>
+    <!-- no translation found for menu_selectForGroup (3999234528229376098) -->
+    <skip />
+    <!-- no translation found for menu_addContactsToGroup (655196688840626483) -->
+    <skip />
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"အညွှန်းမှဖယ်ရှားပါ"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"အဆက်အသွယ်ထည့်ပါ"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"အသစ်ဖန်တီးပါ…"</string>
@@ -121,7 +125,8 @@
     <string name="groupCreatedToast" msgid="1924195126172834870">"အညွှန်းဖန်တီးပြီးပါပြီ"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"အညွှန်းကို အပ်ဒိတ်လုပ်ပြီးပါပြီ"</string>
     <string name="groupMembersRemovedToast" msgid="2683813023881480814">"အဆက်အသွယ်များကို ဖယ်ရှားပြီးပါပြီ"</string>
-    <string name="groupMembersAddedToast" msgid="3335172811673427991">"အဆက်အသွယ်ထည့်ပြီးပါပြီ"</string>
+    <!-- no translation found for groupMembersAddedToast (4824834898718972768) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"အညွှန်းအပြောင်းအလဲများကို သိမ်း၍မရပါ။"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ဖုန်းနံပါတ်များပါသောအဆက်အသွယ်<xliff:g id="COUNT">%d</xliff:g>ခု</item>

@@ -55,6 +55,10 @@
     <string name="menu_renameGroup" msgid="7169512355179757182">"Label umbenennen"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Label löschen"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Kontakt hinzufügen"</string>
+    <!-- no translation found for menu_selectForGroup (3999234528229376098) -->
+    <skip />
+    <!-- no translation found for menu_addContactsToGroup (655196688840626483) -->
+    <skip />
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Aus Label entfernen"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Kontakt hinzufügen"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Neu erstellen…"</string>
@@ -121,7 +125,8 @@
     <string name="groupCreatedToast" msgid="1924195126172834870">"Label erstellt"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Label aktualisiert"</string>
     <string name="groupMembersRemovedToast" msgid="2683813023881480814">"Kontakte entfernt"</string>
-    <string name="groupMembersAddedToast" msgid="3335172811673427991">"Kontakt hinzugefügt"</string>
+    <!-- no translation found for groupMembersAddedToast (4824834898718972768) -->
+    <skip />
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Änderungen am Label konnten nicht gespeichert werden."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Kontakte mit Telefonnummern</item>
