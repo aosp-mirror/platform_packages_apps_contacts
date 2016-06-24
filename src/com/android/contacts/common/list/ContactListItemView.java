@@ -1285,7 +1285,7 @@ public class ContactListItemView extends ViewGroup
             mDeleteImageButton = new AppCompatImageButton(getContext());
             // Make non-focusable, so the rest of the ContactListItemView can be clicked.
             mDeleteImageButton.setFocusable(false);
-            mDeleteImageButton.setImageResource(R.drawable.ic_highlight_off_black_24dp);
+            mDeleteImageButton.setImageResource(R.drawable.ic_cancel_black_24dp);
             mDeleteImageButton.setBackgroundColor(Color.TRANSPARENT);
             addView(mDeleteImageButton);
         }
