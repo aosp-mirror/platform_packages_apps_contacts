@@ -148,7 +148,6 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
                 R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
         mActionBarAdapter.setShowHomeAsUp(true);
-        mActionBarAdapter.setTransparentStatuBar(false);
         mActionBarAdapter.initialize(savedState, mRequest);
 
         // Postal address pickers (and legacy pickers) don't support search, so just show
