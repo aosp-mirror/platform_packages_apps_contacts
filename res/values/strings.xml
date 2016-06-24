@@ -651,7 +651,7 @@
     </string>
 
     <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
-    <string name="enter_contact_name">Type person\'s name</string>
+    <string name="enter_contact_name">Search contacts</string>
 
     <!-- Hint text in the label name box in the edit label view. [CHAR LIMIT=20]-->
     <string name="group_name_hint">Label\'s name</string>
