@@ -338,7 +338,7 @@
     <string name="groupUpdatedToast">Label updated</string>
 
     <!-- Toast displayed when contacts are removed from a label. [CHAR LIMIT=50] -->
-    <string name="groupMembersRemovedToast">Removed contacts</string>
+    <string name="groupMembersRemovedToast">Removed from label</string>
 
     <!-- Toast displayed when one or more contacts is added to a label. [CHAR LIMIT=50] -->
     <string name="groupMembersAddedToast">Added to label</string>

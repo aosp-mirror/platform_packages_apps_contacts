@@ -69,6 +69,7 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
 
     private final CharSequence mUnknownNameText;
     private long mGroupId;
+    private boolean mDisplayDeleteButtons;
 
     public GroupMembersAdapter(Context context) {
         super(context, GroupMembersQuery.CONTACT_ID);
@@ -87,6 +88,21 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
         final long contactId = cursor.getLong(GroupMembersQuery.CONTACT_ID);
         final String lookupKey = cursor.getString(GroupMembersQuery.CONTACT_LOOKUP_KEY);
         return Contacts.getLookupUri(contactId, lookupKey);
+    }
+
+    /** Returns the ID of the contact at the given position in the underlying cursor. */
+    public long getContactId(int position) {
+        final Cursor cursor = (Cursor) getItem(position);
+        return cursor.getLong(GroupMembersQuery.CONTACT_ID);
+    }
+
+    public void setDisplayDeleteButtons(boolean displayDeleteButtons) {
+        mDisplayDeleteButtons = displayDeleteButtons;
+        notifyDataSetChanged();
+    }
+
+    public boolean getDisplayDeleteButtons() {
+        return mDisplayDeleteButtons;
     }
 
     @Override
@@ -143,6 +159,7 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
         bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
         bindPhoto(view, cursor);
+        bindDeleteButton(view);
     }
 
     protected void bindSectionHeaderAndDivider(ContactListItemView view, int position) {
@@ -169,5 +186,13 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
                 : null;
         getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false, getCircularPhotos(),
                 imageRequest);
+    }
+
+    private void bindDeleteButton(final ContactListItemView view) {
+        if (mDisplayDeleteButtons) {
+            view.getDeleteImageButton();
+        } else {
+            view.hideDeleteImageButton();
+        }
     }
 }
