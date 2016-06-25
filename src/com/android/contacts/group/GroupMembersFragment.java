@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
+import com.android.contacts.common.list.ContactsSectionIndexer;
 import com.android.contacts.common.logging.ListEvent.ListType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
@@ -38,6 +40,7 @@ import com.android.contacts.list.MultiSelectContactsListFragment;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /** Displays the members of a group. */
@@ -81,9 +84,18 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             mCount = super.getCount();
             mIndex = new int[mCount];
 
+            final List<Integer> indicesToFilter = new ArrayList<>();
+
             if (Log.isLoggable(TAG, Log.VERBOSE)) {
                 Log.v(TAG, "Group members CursorWrapper start: " + mCount);
             }
+
+            final Bundle bundle = cursor.getExtras();
+            final String sections[] = bundle.getStringArray(Contacts
+                    .EXTRA_ADDRESS_BOOK_INDEX_TITLES);
+            final int counts[] = bundle.getIntArray(Contacts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS);
+            final ContactsSectionIndexer indexer = (sections == null || counts == null)
+                    ? null : new ContactsSectionIndexer(sections, counts);
 
             mGroupMemberContactIds.clear();
             for (int i = 0; i < mCount; i++) {
@@ -92,8 +104,15 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 if (!mGroupMemberContactIds.contains(contactId)) {
                     mIndex[mPos++] = i;
                     mGroupMemberContactIds.add(contactId);
+                } else {
+                    indicesToFilter.add(i);
                 }
             }
+
+            if (indexer != null && GroupUtil.needTrimming(mCount, counts, indexer.getPositions())) {
+                GroupUtil.updateBundle(bundle, indexer, indicesToFilter, sections, counts);
+            }
+
             mCount = mPos;
             mPos = 0;
             super.moveToFirst();

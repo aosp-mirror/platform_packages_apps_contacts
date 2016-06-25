@@ -21,6 +21,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -29,11 +31,14 @@ import com.android.contacts.GroupListLoader;
 import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.common.list.ContactsSectionIndexer;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.google.common.base.Objects;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -155,5 +160,62 @@ public final class GroupUtil {
      */
     public static String getGroupsSortOrder() {
         return Groups.TITLE + " COLLATE LOCALIZED ASC";
+    }
+
+    /**
+     * The sum of the last element in counts[] and the last element in positions[] is the total
+     * number of remaining elements in cursor. If count is more than what's in the indexer now,
+     * then we don't need to trim.
+     */
+    public static boolean needTrimming(int count, int[] counts, int[] positions) {
+        // The sum of the last element in counts[] and the last element in positions[] is
+        // the total number of remaining elements in cursor. If mCount is more than
+        // what's in the indexer now, then we don't need to trim.
+        return positions.length > 0 && counts.length > 0
+                && count <= (counts[counts.length - 1] + positions[positions.length - 1]);
+    }
+
+    /**
+     * Update Bundle extras so as to update indexer.
+     */
+    public static void updateBundle(Bundle bundle, ContactsSectionIndexer indexer,
+            List<Integer> subscripts, String[] sections, int[] counts) {
+        for (int i : subscripts) {
+            final int filteredContact = indexer.getSectionForPosition(i);
+            if (filteredContact < counts.length && filteredContact >= 0) {
+                counts[filteredContact]--;
+                if (counts[filteredContact] == 0) {
+                    sections[filteredContact] = "";
+                }
+            }
+        }
+        final String[] newSections = clearEmptyString(sections);
+        bundle.putStringArray(Contacts.EXTRA_ADDRESS_BOOK_INDEX_TITLES, newSections);
+        final int[] newCounts = clearZeros(counts);
+        bundle.putIntArray(Contacts.EXTRA_ADDRESS_BOOK_INDEX_COUNTS, newCounts);
+    }
+
+    private static String[] clearEmptyString(String[] strings) {
+        final List<String> list = new ArrayList<>();
+        for (String s : strings) {
+            if (!TextUtils.isEmpty(s)) {
+                list.add(s);
+            }
+        }
+        return list.toArray(new String[list.size()]);
+    }
+
+    private static int[] clearZeros(int[] numbers) {
+        final List<Integer> list = new ArrayList<>();
+        for (int n : numbers) {
+            if (n > 0) {
+                list.add(n);
+            }
+        }
+        final int[] array = new int[list.size()];
+        for(int i = 0; i < list.size(); i++) {
+            array[i] = list.get(i);
+        }
+        return array;
     }
 }
