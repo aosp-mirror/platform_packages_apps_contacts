@@ -170,7 +170,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
             for (ValuesDelta entry : mState.getMimeEntries(mKind.mimeType)) {
                 // Skip entries that aren't visible
                 if (!entry.isVisible()) continue;
-                if (isEmptyNoop(entry)) continue;
 
                 createEditorView(entry);
             }
@@ -203,20 +202,6 @@ public class KindSectionView extends LinearLayout implements EditorListener {
         }
         mEditors.addView(view);
         return view;
-    }
-
-    /**
-     * Tests whether the given item has no changes (so it exists in the database) but is empty
-     */
-    private boolean isEmptyNoop(ValuesDelta item) {
-        if (!item.isNoop()) return false;
-        final int fieldCount = mKind.fieldList.size();
-        for (int i = 0; i < fieldCount; i++) {
-            final String column = mKind.fieldList.get(i).column;
-            final String value = item.getAsString(column);
-            if (!TextUtils.isEmpty(value)) return false;
-        }
-        return true;
     }
 
     /**
