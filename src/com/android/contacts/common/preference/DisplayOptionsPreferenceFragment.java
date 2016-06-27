@@ -29,6 +29,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.provider.BlockedNumberContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Profile;
 import android.telecom.TelecomManager;
@@ -36,7 +37,6 @@ import android.telephony.TelephonyManager;
 
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.R;
-import com.android.contacts.common.compat.BlockedNumberContractCompat;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.compat.TelephonyManagerCompat;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
@@ -232,7 +232,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         final boolean isPhone = TelephonyManagerCompat.isVoiceCapable(
                 (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE));
         final boolean showBlockedNumbers = isPhone && ContactsUtils.FLAG_N_FEATURE
-                && BlockedNumberContractCompat.canCurrentUserBlockNumbers(getContext());
+                && BlockedNumberContract.canCurrentUserBlockNumbers(getContext());
         if (!showBlockedNumbers) {
             getPreferenceScreen().removePreference(findPreference(KEY_BLOCKED_NUMBERS));
         }
