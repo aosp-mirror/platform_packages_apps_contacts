@@ -224,7 +224,7 @@
     <string name="share_error" msgid="665756457151793108">"Den här kontakten kan inte delas."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Det finns inga kontakter att dela."</string>
     <string name="menu_search" msgid="7464453023659824700">"Sök"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Sök efter kontakter"</string>
+    <string name="hint_findContacts" msgid="5348098493767051775">"Sök efter kontakter"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoriter"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Inga kontakter."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Rensa listan över kontakter"</string>

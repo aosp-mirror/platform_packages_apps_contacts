@@ -225,7 +225,7 @@
     <string name="share_error" msgid="665756457151793108">"Овај контакт не може да се дели."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Нема контаката за дељење."</string>
     <string name="menu_search" msgid="7464453023659824700">"Претражи"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Пронађите контакте"</string>
+    <string name="hint_findContacts" msgid="5348098493767051775">"Претражите контакте"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Омиљено"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Нема контаката."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Обриши често контактиране"</string>

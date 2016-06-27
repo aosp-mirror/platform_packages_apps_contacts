@@ -224,7 +224,7 @@
     <string name="share_error" msgid="665756457151793108">"ဒီလိပ်စာအား မျှဝေလို့ မရပါ"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"မျှဝေရန် အဆက်အသွယ်များမရှိပါ။"</string>
     <string name="menu_search" msgid="7464453023659824700">"ရှာဖွေခြင်း"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"အဆက်အသွယ်များရှာပါ"</string>
+    <string name="hint_findContacts" msgid="5348098493767051775">"အဆက်အသွယ်များရှာပါ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"အနှစ်သက်ဆုံးများ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"အဆက်အသွယ်များမရှိပါ"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"မကြာခဏအရာများအား ဖယ်ရှားရန်"</string>

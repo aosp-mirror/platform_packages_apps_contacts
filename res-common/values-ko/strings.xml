@@ -224,7 +224,7 @@
     <string name="share_error" msgid="665756457151793108">"연락처를 공유할 수 없습니다."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"공유할 연락처가 없습니다."</string>
     <string name="menu_search" msgid="7464453023659824700">"검색"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"연락처 찾기"</string>
+    <string name="hint_findContacts" msgid="5348098493767051775">"연락처 검색"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"즐겨찾기"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"연락처가 없습니다."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"자주 연락하는 사람 목록 삭제"</string>

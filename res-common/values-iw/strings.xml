@@ -226,7 +226,7 @@
     <string name="share_error" msgid="665756457151793108">"לא ניתן לשתף איש קשר זה."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"אין אנשי קשר לשיתוף."</string>
     <string name="menu_search" msgid="7464453023659824700">"חפש"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"חפש אנשי קשר"</string>
+    <string name="hint_findContacts" msgid="5348098493767051775">"חיפוש אנשי קשר"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"מועדפים"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"אין אנשי קשר."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"מחק אנשי קשר קבועים"</string>

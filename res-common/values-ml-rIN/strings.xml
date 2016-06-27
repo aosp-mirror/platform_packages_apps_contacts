@@ -224,7 +224,8 @@
     <string name="share_error" msgid="665756457151793108">"ഈ കോൺടാക്റ്റ് പങ്കിടാനാകില്ല."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"പങ്കിടാൻ കോൺടാക്റ്റുകളൊന്നും ഇല്ല."</string>
     <string name="menu_search" msgid="7464453023659824700">"തിരയുക"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"കോൺടാക്റ്റ് കണ്ടെത്തൂ"</string>
+    <!-- no translation found for hint_findContacts (5348098493767051775) -->
+    <skip />
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"പ്രിയപ്പെട്ടവർ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"കോൺടാക്റ്റുകൾ ഒന്നുമില്ല."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"സ്ഥിരംവിളിക്കുന്നവരെ മായ്‌ക്കൂ"</string>

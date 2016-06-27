@@ -224,7 +224,8 @@
     <string name="share_error" msgid="665756457151793108">"Dit contact kan niet worden gedeeld."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Er zijn geen contacten om te delen."</string>
     <string name="menu_search" msgid="7464453023659824700">"Zoeken"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Contacten zoeken"</string>
+    <!-- no translation found for hint_findContacts (5348098493767051775) -->
+    <skip />
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favorieten"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Geen contacten."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Regelmatige contacten wissen"</string>
