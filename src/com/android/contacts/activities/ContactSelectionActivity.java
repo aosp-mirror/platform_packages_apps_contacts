@@ -242,7 +242,7 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
                 break;
             }
             case ContactsRequest.ACTION_PICK_GROUP_MEMBERS: {
-                titleResId = R.string.contactPickerActivityTitle;
+                titleResId = R.string.groupMemberPickerActivityTitle;
                 break;
             }
         }

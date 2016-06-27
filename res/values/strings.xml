@@ -59,6 +59,9 @@
     <!-- Activity title when the user is selecting a contact.  [CHAR LIMIT=128] -->
     <string name="contactPickerActivityTitle">Choose a contact</string>
 
+    <!-- Activity title when the user is selecting a new label member. [CHAR LIMIT=128] -->
+    <string name="groupMemberPickerActivityTitle">Select</string>
+
     <!-- Entry that prompts user to select a newly created contact.  [CHAR LIMIT=30] -->
     <string name="header_entry_contact_list_adapter_header_title">Create new contact</string>
 

@@ -381,6 +381,10 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         finish();
     }
 
+    public boolean isEditMode() {
+        return mIsEditMode;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (mGroupMetadata == null) {
@@ -398,7 +402,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         final boolean isGroupEditable = mGroupMetadata != null && mGroupMetadata.editable;
         final boolean isGroupReadOnly = mGroupMetadata != null && mGroupMetadata.readOnly;
 
-        setVisible(menu, R.id.menu_add, isGroupEditable && !isSelectionMode);
+        setVisible(menu, R.id.menu_add, isGroupEditable && mIsEditMode);
         setVisible(menu, R.id.menu_rename_group, !isGroupReadOnly && !isSelectionMode);
         setVisible(menu, R.id.menu_delete_group, !isGroupReadOnly && !isSelectionMode);
         setVisible(menu, R.id.menu_edit_group, isGroupEditable && !mIsEditMode && !isSelectionMode);
@@ -666,7 +670,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         }
     }
 
-    // GroupsMembersListFragment callbacks
+    // GroupMembersFragment callbacks
 
     @Override
     public void onGroupMetadataLoaded(GroupMetadata groupMetadata) {

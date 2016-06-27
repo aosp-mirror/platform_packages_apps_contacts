@@ -15,6 +15,7 @@
  */
 package com.android.contacts.group;
 
+import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
@@ -31,6 +32,7 @@ import android.widget.TextView;
 
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
+import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.list.ContactsSectionIndexer;
 import com.android.contacts.common.logging.ListEvent.ListType;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -362,5 +364,16 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 mListener.onGroupMemberListItemClicked(position, contactLookupUri);
             }
         }
+    }
+
+    @Override
+    protected boolean onItemLongClick(int position, long id) {
+        final Activity activity = getActivity();
+        if (activity != null && activity instanceof GroupMembersActivity) {
+            if (((GroupMembersActivity) activity).isEditMode()) {
+                return true;
+            }
+        }
+        return super.onItemLongClick(position, id);
     }
 }
