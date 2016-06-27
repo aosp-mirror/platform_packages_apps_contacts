@@ -25,7 +25,6 @@ import android.preference.PreferenceFragment;
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.commonbind.ObjectFactory;
 
 import java.util.List;
@@ -91,4 +90,3 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment {
         return getActivity();
     }
 }
-
