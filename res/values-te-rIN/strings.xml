@@ -55,10 +55,8 @@
     <string name="menu_renameGroup" msgid="7169512355179757182">"లేబుల్ పేరును మార్చు"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"లేబుల్‌ను తొలగించు"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"పరిచయాన్ని జోడించు"</string>
-    <!-- no translation found for menu_selectForGroup (3999234528229376098) -->
-    <skip />
-    <!-- no translation found for menu_addContactsToGroup (655196688840626483) -->
-    <skip />
+    <string name="menu_selectForGroup" msgid="3999234528229376098">"పరిచయాలను ఎంచుకోండి"</string>
+    <string name="menu_addContactsToGroup" msgid="655196688840626483">"పరిచయాలను జోడించు"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"లేబుల్ నుండి తీసివేయి"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"పరిచయాన్ని జోడించు"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"కొత్తది సృష్టించు…"</string>
@@ -124,9 +122,9 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"లేబుల్ తొలగించబడింది"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"లేబుల్ సృష్టించబడింది"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"లేబుల్ నవీకరించబడింది"</string>
-    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"పరిచయాలు తీసివేయబడ్డాయి"</string>
-    <!-- no translation found for groupMembersAddedToast (4824834898718972768) -->
+    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
     <skip />
+    <string name="groupMembersAddedToast" msgid="4824834898718972768">"లేబుల్‌కు జోడించబడింది/జోడించబడ్డాయి"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"లేబుల్ మార్పులను సేవ్ చేయలేకపోయింది."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ఫోన్ నంబర్‌లు ఉన్న <xliff:g id="COUNT">%d</xliff:g> పరిచయాలు</item>
@@ -227,7 +225,8 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"విస్మరించు"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"సవరణను కొనసాగించు"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="enter_contact_name" msgid="1738391320566349924">"వ్యక్తి పేరు టైప్ చేయండి"</string>
+    <!-- no translation found for enter_contact_name (4594274696120278368) -->
+    <skip />
     <string name="group_name_hint" msgid="7614490821934528478">"లేబుల్ యొక్క పేరు"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"నా స్థానిక ప్రొఫైల్"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"నా <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ప్రొఫైల్"</string>

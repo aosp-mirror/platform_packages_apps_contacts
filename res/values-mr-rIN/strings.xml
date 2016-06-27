@@ -55,10 +55,8 @@
     <string name="menu_renameGroup" msgid="7169512355179757182">"लेबल पुनर्नामित करा"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"लेबल हटवा"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"संपर्क जोडा"</string>
-    <!-- no translation found for menu_selectForGroup (3999234528229376098) -->
-    <skip />
-    <!-- no translation found for menu_addContactsToGroup (655196688840626483) -->
-    <skip />
+    <string name="menu_selectForGroup" msgid="3999234528229376098">"संपर्क निवडा"</string>
+    <string name="menu_addContactsToGroup" msgid="655196688840626483">"संपर्क जोडा"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"लेबलवरून काढा"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"संपर्क जोडा"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"नवीन तयार करा…"</string>
@@ -124,9 +122,9 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"लेबल हटविले"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"लेबल तयार केले"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"लेबल अद्यतनित केले"</string>
-    <string name="groupMembersRemovedToast" msgid="2683813023881480814">"काढलेले संपर्क"</string>
-    <!-- no translation found for groupMembersAddedToast (4824834898718972768) -->
+    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
     <skip />
+    <string name="groupMembersAddedToast" msgid="4824834898718972768">"लेबलमध्ये जोडले"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"लेबल बदल जतन करणे शक्य झाले नाही."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">फोन नंबरसह <xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
@@ -227,7 +225,8 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"टाकून द्या"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"संपादन करणे सुरु ठेवा"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="enter_contact_name" msgid="1738391320566349924">"व्‍यक्तीचे नाव टाईप करा"</string>
+    <!-- no translation found for enter_contact_name (4594274696120278368) -->
+    <skip />
     <string name="group_name_hint" msgid="7614490821934528478">"लेबलचे नाव"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"माझे स्थानिक प्रोफाइल"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"माझे <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफाईल"</string>
