@@ -86,7 +86,6 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
         String sortOrder = null;
         if (isSearchMode()) {
-            final Flags flags = Flags.getInstance(mContext);
             String query = getQueryString();
             if (query == null) query = "";
             query = query.trim();
@@ -114,7 +113,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 appendSearchParameters(builder, query, directoryId);
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
-                if (flags.getBoolean(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false)) {
+                if (Flags.getInstance(mContext).getBoolean(
+                        Experiments.FLAG_SEARCH_STREQUENTS_FIRST)) {
                     sortOrder = STREQUENT_SORT;
                 }
             }

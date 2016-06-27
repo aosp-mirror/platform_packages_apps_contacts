@@ -17,6 +17,11 @@ package com.android.contacts.commonbind.experiments;
 
 import android.content.Context;
 
+import com.android.contacts.common.Experiments;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Provides getters for experiment flags.
  * This stub class is designed to be overwritten by an overlay.
@@ -24,6 +29,8 @@ import android.content.Context;
 public final class Flags {
 
     private static Flags sInstance;
+
+    private Map<String,Boolean> mMap;
 
     public static Flags getInstance(Context context) {
         if (sInstance == null) {
@@ -33,29 +40,11 @@ public final class Flags {
     }
 
     private Flags() {
+        mMap = new HashMap<>();
+        mMap.put(Experiments.FLAG_SEARCH_STREQUENTS_FIRST, false);
     }
 
-    public boolean getBoolean(String flagName, boolean defValue) {
-        return defValue;
-    }
-
-    public byte[] getBytes(String flagName, byte[] defValue) {
-        return defValue;
-    }
-
-    public double getDouble(String flagName, double defValue) {
-        return defValue;
-    }
-
-    public int getInt(String flagName, int defValue) {
-        return defValue;
-    }
-
-    public long getLong(String flagName, long defValue) {
-        return defValue;
-    }
-
-    public String getString(String flagName, String defValue) {
-        return defValue;
+    public boolean getBoolean(String flagName) {
+        return mMap.containsKey(flagName) ? getBoolean(flagName) : false;
     }
 }
