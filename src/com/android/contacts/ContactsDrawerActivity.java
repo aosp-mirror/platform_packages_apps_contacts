@@ -49,6 +49,7 @@ import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.group.GroupListItem;
+import com.android.contacts.group.GroupMetadata;
 import com.android.contacts.group.GroupUtil;
 import com.android.contacts.group.GroupsFragment;
 import com.android.contacts.group.GroupsFragment.GroupsListener;
@@ -59,7 +60,11 @@ import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contactsbind.Assistants;
 import com.android.contactsbind.HelpUtils;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * A common superclass for Contacts activities with a navigation drawer.
@@ -80,6 +85,13 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     protected NavigationView mNavigationView;
     protected GroupsFragment mGroupsFragment;
     protected AccountFiltersFragment mAccountFiltersFragment;
+
+    // Checkable menu item lookup maps. Every map declared here should be added to
+    // clearCheckedMenus() so that they can be cleared.
+    // TODO find a better way to handle selected menu item state, when swicthing to fragments.
+    protected Map<Long, MenuItem> mGroupMenuMap = new HashMap<>();
+    protected Map<ContactListFilter, MenuItem> mFilterMenuMap = new HashMap<>();
+    protected Map<Integer, MenuItem> mIdMenuMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedState) {
@@ -109,6 +121,10 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         mNavigationView.setNavigationItemSelectedListener(this);
 
         final Menu menu = mNavigationView.getMenu();
+
+        final MenuItem allContacts = menu.findItem(R.id.nav_all_contacts);
+        mIdMenuMap.put(R.id.nav_all_contacts, allContacts);
+
         final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this)
                 && ContactsUtils.FLAG_N_FEATURE
                 && BlockedNumberContractCompat.canCurrentUserBlockNumbers(this);
@@ -119,6 +135,9 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
         if (Assistants.getDuplicatesActivityIntent(this) == null) {
             menu.removeItem(R.id.nav_find_duplicates);
+        } else {
+            final MenuItem findDup = menu.findItem(R.id.nav_find_duplicates);
+            mIdMenuMap.put(R.id.nav_find_duplicates, findDup);
         }
 
         if (!HelpUtils.isHelpAndFeedbackAvailable()) {
@@ -126,6 +145,19 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
 
         loadGroupsAndFilters();
+
+        if (isDuplicatesActivity()) {
+            clearCheckedMenus();
+            mIdMenuMap.get(R.id.nav_find_duplicates).setCheckable(true);
+            mIdMenuMap.get(R.id.nav_find_duplicates).setChecked(true);
+        }
+    }
+
+    /**
+     * Returns true if child class is DuplicatesActivity
+     */
+    protected boolean isDuplicatesActivity() {
+        return false;
     }
 
     // Set up fragment manager to load groups and filters.
@@ -174,6 +206,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         final MenuItem groupsMenuItem = menu.findItem(R.id.nav_groups);
         final SubMenu subMenu = groupsMenuItem.getSubMenu();
         subMenu.removeGroup(R.id.nav_groups_items);
+        mGroupMenuMap = new HashMap<>();
 
         if (groupListItems != null) {
             // Add each group
@@ -184,6 +217,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 final String title = groupListItem.getTitle();
                 final MenuItem menuItem =
                         subMenu.add(R.id.nav_groups_items, Menu.NONE, Menu.NONE, title);
+                mGroupMenuMap.put(groupListItem.getGroupId(), menuItem);
                 menuItem.setIcon(R.drawable.ic_menu_label);
                 menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
@@ -211,6 +245,27 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 return true;
             }
         });
+
+        if (getGroupMetadata() != null) {
+            updateGroupMenu(getGroupMetadata());
+        }
+    }
+
+    protected void updateGroupMenu(GroupMetadata groupMetadata) {
+        clearCheckedMenus();
+        if (groupMetadata != null && mGroupMenuMap != null
+                && mGroupMenuMap.get(groupMetadata.groupId) != null) {
+            mGroupMenuMap.get(groupMetadata.groupId).setCheckable(true);
+            mGroupMenuMap.get(groupMetadata.groupId).setChecked(true);
+        }
+    }
+
+    /**
+     * Returns group metadata if the child class is {@link GroupMembersActivity}, and null
+     * otherwise.
+     */
+    protected GroupMetadata getGroupMetadata() {
+        return null;
     }
 
     protected void onGroupMenuItemClicked(long groupId) {
@@ -229,6 +284,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         final MenuItem filtersMenuItem = menu.findItem(R.id.nav_filters);
         final SubMenu subMenu = filtersMenuItem.getSubMenu();
         subMenu.removeGroup(R.id.nav_filters_items);
+        mFilterMenuMap = new HashMap<>();
 
         if (accountFilterItems == null || accountFilterItems.size() < 2) {
             return;
@@ -239,6 +295,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             final String accountName = filter.accountName;
             final MenuItem menuItem = subMenu.add(R.id.nav_filters_items, Menu.NONE, Menu.NONE,
                     accountName);
+            mFilterMenuMap.put(filter, menuItem);
             final Intent intent = new Intent();
             intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
             menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -257,10 +314,36 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             // Get rid of the default memu item overlay and show original account icons.
             menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
         }
+
+        if (getContactListFilter() != null) {
+            updateFilterMenu(getContactListFilter());
+        }
+    }
+
+    protected void updateFilterMenu(ContactListFilter filter) {
+        clearCheckedMenus();
+        if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+            if (mIdMenuMap != null && mIdMenuMap.get(R.id.nav_all_contacts) != null) {
+                mIdMenuMap.get(R.id.nav_all_contacts).setCheckable(true);
+                mIdMenuMap.get(R.id.nav_all_contacts).setChecked(true);
+            }
+        } else {
+            if (mFilterMenuMap != null && mFilterMenuMap.get(filter) != null) {
+                mFilterMenuMap.get(filter).setCheckable(true);
+                mFilterMenuMap.get(filter).setChecked(true);
+            }
+        }
     }
 
     /**
-     * @return true if the child activity should finish after launching another activity.
+     * Returns the current filter if the child class is {@link PeopleActivity}, and null otherwise.
+     */
+    protected ContactListFilter getContactListFilter() {
+        return null;
+    }
+
+    /**
+     * Returns true if the child activity should finish after launching another activity.
      */
     protected abstract boolean shouldFinish();
 
@@ -318,4 +401,18 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         return ContactListFilter.createFilterWithType(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
     }
 
+    private void clearCheckedMenus() {
+        clearCheckedMenu(mFilterMenuMap);
+        clearCheckedMenu(mGroupMenuMap);
+        clearCheckedMenu(mIdMenuMap);
+    }
+
+    private void clearCheckedMenu(Map<?, MenuItem> map) {
+        final Iterator it = map.entrySet().iterator();
+        while (it.hasNext()) {
+            Entry pair = (Entry)it.next();
+            map.get(pair.getKey()).setCheckable(false);
+            map.get(pair.getKey()).setChecked(false);
+        }
+    }
 }

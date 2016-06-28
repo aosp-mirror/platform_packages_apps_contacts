@@ -21,6 +21,8 @@
 
     <color name="action_bar_background">#0288d1</color>
 
+    <color name="nav_item_selected_background">#0f000000</color>
+
     <color name="background_social_updates">#ffeeeeee</color>
 
     <color name="action_bar_button_text_color">#FFFFFF</color>
