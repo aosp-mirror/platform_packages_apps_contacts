@@ -75,6 +75,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private static final String KEY_ADJUST_SELECTION_BOUNDS_ENABLED =
             "adjustSelectionBoundsEnabled";
     private static final String KEY_SEARCH_MODE = "searchMode";
+    private static final String KEY_DISPLAY_DIRECTORY_HEADER = "displayDirectoryHeader";
     private static final String KEY_VISIBLE_SCROLLBAR_ENABLED = "visibleScrollbarEnabled";
     private static final String KEY_SCROLLBAR_POSITION = "scrollbarPosition";
     private static final String KEY_QUERY_STRING = "queryString";
@@ -102,6 +103,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mAdjustSelectionBoundsEnabled = true;
     private boolean mIncludeFavorites;
     private boolean mSearchMode;
+    private boolean mDisplayDirectoryHeader = true;
     private boolean mVisibleScrollbarEnabled;
     private boolean mShowEmptyListForEmptyQuery;
     private int mVerticalScrollbarPosition = getDefaultVerticalScrollbarPosition();
@@ -258,6 +260,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         outState.putBoolean(KEY_QUICK_CONTACT_ENABLED, mQuickContactEnabled);
         outState.putBoolean(KEY_ADJUST_SELECTION_BOUNDS_ENABLED, mAdjustSelectionBoundsEnabled);
         outState.putBoolean(KEY_SEARCH_MODE, mSearchMode);
+        outState.putBoolean(KEY_DISPLAY_DIRECTORY_HEADER, mDisplayDirectoryHeader);
         outState.putBoolean(KEY_VISIBLE_SCROLLBAR_ENABLED, mVisibleScrollbarEnabled);
         outState.putInt(KEY_SCROLLBAR_POSITION, mVerticalScrollbarPosition);
         outState.putInt(KEY_DIRECTORY_SEARCH_MODE, mDirectorySearchMode);
@@ -292,6 +295,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mQuickContactEnabled = savedState.getBoolean(KEY_QUICK_CONTACT_ENABLED);
         mAdjustSelectionBoundsEnabled = savedState.getBoolean(KEY_ADJUST_SELECTION_BOUNDS_ENABLED);
         mSearchMode = savedState.getBoolean(KEY_SEARCH_MODE);
+        mDisplayDirectoryHeader = savedState.getBoolean(KEY_DISPLAY_DIRECTORY_HEADER);
         mVisibleScrollbarEnabled = savedState.getBoolean(KEY_VISIBLE_SCROLLBAR_ENABLED);
         mVerticalScrollbarPosition = savedState.getInt(KEY_SCROLLBAR_POSITION);
         mDirectorySearchMode = savedState.getInt(KEY_DIRECTORY_SEARCH_MODE);
@@ -600,6 +604,10 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         }
     }
 
+    public void setDisplayDirectoryHeader(boolean flag) {
+        mDisplayDirectoryHeader = flag;
+    }
+
     /**
      * Enter/exit search mode. This is method is tightly related to the current query, and should
      * only be called by {@link #setQueryString}.
@@ -626,13 +634,25 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                     // should be cleaned up on exiting the search mode.
                     mAdapter.removeDirectoriesAfterDefault();
                 }
-                mAdapter.configureDefaultPartition(false, flag);
+                mAdapter.configureDefaultPartition(false, shouldDisplayDirectoryHeader());
             }
 
             if (mListView != null) {
                 mListView.setFastScrollEnabled(!flag);
             }
         }
+    }
+
+    /**
+     * When not in search mode, directory header should always be hidden.
+     * When in search mode, directory header should be displayed when mDisplayDirectoryHeader is
+     * set to true. (mDisplayDirectoryHeader default value is true)
+     */
+    private boolean shouldDisplayDirectoryHeader() {
+        if (!mSearchMode) {
+            return false;
+        }
+        return mDisplayDirectoryHeader;
     }
 
     public final boolean isSearchMode() {
@@ -738,7 +758,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
 
         boolean searchMode = isSearchMode();
         mAdapter.setSearchMode(searchMode);
-        mAdapter.configureDefaultPartition(false, searchMode);
+        mAdapter.configureDefaultPartition(false, shouldDisplayDirectoryHeader());
         mAdapter.setPhotoLoader(mPhotoManager);
         mListView.setAdapter(mAdapter);
 
