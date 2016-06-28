@@ -285,8 +285,8 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
 
             final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
                     R.id.account_filter_header);
-            accountFilterHeader.setText(getResources().getQuantityString(
-                    R.plurals.group_members_count, memberCount, memberCount));
+            accountFilterHeader.setText(mGroupMetadata.accountName);
+            accountFilterHeader.setAllCaps(false);
         } else {
             accountFilterContainer.setVisibility(View.GONE);
         }

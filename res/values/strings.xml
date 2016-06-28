@@ -288,13 +288,6 @@
     <!-- The text displayed when the contacts list is empty while displaying all contacts [CHAR LIMIT=NONE] -->
     <string name="noContacts">No contacts</string>
 
-    <!-- Label list header title with the number of members in the label. [CHAR LIMIT=30] -->
-    <plurals name="group_members_count">
-        <item quantity="zero">No contacts</item>
-        <item quantity="one">1 contact</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
-    </plurals>
-
     <!-- The text displayed when the labels list is empty while displaying all labels [CHAR LIMIT=30] -->
     <string name="noGroups">No labels.</string>
 
