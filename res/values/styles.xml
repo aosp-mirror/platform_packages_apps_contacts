@@ -307,27 +307,7 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="Theme.PhotoSelector" parent="@android:style/Theme.Holo.Light">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
     <style name="GroupMembershipSizeTextAppearance" parent="@android:style/TextAppearance.Small"/>
-
-    <style name="PeopleNavigationDropDownTextAppearance">
-        <item name="android:textColor">@color/primary_text_color</item>
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="PeopleNavigationDropDownHeaderTextAppearance">
-        <item name="android:textColor">@color/primary_text_color</item>
-        <item name="android:textSize">18sp</item>
-    </style>
 
     <style name="ExpandingEntryCardStyle">
         <item name="android:elevation">@dimen/expanding_entry_card_elevation</item>
@@ -405,5 +385,9 @@
         <item name="android:textSize">10sp</item>
         <item name="android:textColor">#363636</item>
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="NavigationDrawerMenuItemTextAppearance">
+        <item name="android:ellipsize">end</item>
     </style>
 </resources>
