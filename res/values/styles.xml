@@ -173,7 +173,7 @@
     </style>
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="spinBars">true</item>
+        <item name="spinBars">false</item>
         <item name="color">@android:color/white</item>
         <item name="android:color">@android:color/white</item>
     </style>

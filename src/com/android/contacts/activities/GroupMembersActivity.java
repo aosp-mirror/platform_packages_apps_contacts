@@ -359,20 +359,12 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     protected void onGroupMenuItemClicked(long groupId) {
         if (mGroupMetadata.groupId != groupId) {
             super.onGroupMenuItemClicked(groupId);
-            finish();
         }
-        mDrawer.closeDrawer(GravityCompat.START);
     }
 
     @Override
     protected boolean shouldFinish() {
         return true;
-    }
-
-    @Override
-    protected void switchToAllContacts() {
-        super.switchToAllContacts();
-        finish();
     }
 
     @Override
@@ -520,6 +512,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         } else if (mActionBarAdapter.isSearchMode()) {
             mActionBarAdapter.setSearchMode(false);
         } else {
+            switchToAllContacts();
             super.onBackPressed();
         }
     }

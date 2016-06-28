@@ -25,6 +25,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -36,10 +37,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.compat.BlockedNumberContractCompat;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
@@ -79,8 +82,51 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     protected static final String GROUPS_TAG = "groups";
     protected static final String FILTERS_TAG = "filters";
 
+    private class ContactsActionBarDrawerToggle extends ActionBarDrawerToggle {
+
+        private Runnable mRunnable;
+
+        public ContactsActionBarDrawerToggle(AppCompatActivity activity, DrawerLayout drawerLayout,
+                Toolbar toolbar, int openDrawerContentDescRes, int closeDrawerContentDescRes) {
+            super(activity, drawerLayout, toolbar, openDrawerContentDescRes,
+                    closeDrawerContentDescRes);
+        }
+
+        @Override
+        public void onDrawerOpened(View drawerView) {
+            super.onDrawerOpened(drawerView);
+            invalidateOptionsMenu();
+        }
+
+        @Override
+        public void onDrawerClosed(View view) {
+            super.onDrawerClosed(view);
+            invalidateOptionsMenu();
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+            super.onDrawerStateChanged(newState);
+            // Set transparent status bar when drawer starts to move.
+            if (CompatUtils.isLollipopCompatible() && newState != DrawerLayout.STATE_IDLE
+                    && getWindow().getStatusBarColor() == ContextCompat.getColor
+                    (ContactsDrawerActivity.this, R.color.primary_color_dark)) {
+                getWindow().setStatusBarColor(Color.TRANSPARENT);
+            }
+            if (mRunnable != null && newState == DrawerLayout.STATE_IDLE) {
+                mRunnable.run();
+                mRunnable = null;
+            }
+        }
+
+        public void runWhenIdle(Runnable runnable) {
+            mRunnable = runnable;
+        }
+    }
+
     protected ContactListFilterController mContactListFilterController;
     protected DrawerLayout mDrawer;
+    protected ContactsActionBarDrawerToggle mToggle;
     protected Toolbar mToolbar;
     protected NavigationView mNavigationView;
     protected GroupsFragment mGroupsFragment;
@@ -111,10 +157,10 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
         // Set up hamburger button.
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar,
+        mToggle = new ContactsActionBarDrawerToggle(this, mDrawer, mToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawer.setDrawerListener(toggle);
-        toggle.syncState();
+        mDrawer.setDrawerListener(mToggle);
+        mToggle.syncState();
 
         // Set up hamburger menu items.
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -222,7 +268,13 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        onGroupMenuItemClicked(groupListItem.getGroupId());
+                        mToggle.runWhenIdle(new Runnable() {
+                            @Override
+                            public void run() {
+                                onGroupMenuItemClicked(groupListItem.getGroupId());
+                            }
+                        });
+                        mDrawer.closeDrawer(GravityCompat.START);
                         return true;
                     }
                 });
@@ -241,7 +293,13 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                onCreateGroupMenuItemClicked();
+                mToggle.runWhenIdle(new Runnable() {
+                    @Override
+                    public void run() {
+                        onCreateGroupMenuItemClicked();
+                    }
+                });
+                mDrawer.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
@@ -269,13 +327,14 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     }
 
     protected void onGroupMenuItemClicked(long groupId) {
-        final Intent intent = GroupUtil.createViewGroupIntent(this, groupId);
-        startActivity(intent);
+        startActivity(GroupUtil.createViewGroupIntent(this, groupId));
+        if (shouldFinish()) {
+            finish();
+        }
     }
 
     protected void onCreateGroupMenuItemClicked() {
         startActivity(GroupUtil.createAddGroupIntent(this));
-        mDrawer.closeDrawer(GravityCompat.START);
     }
 
     @Override
@@ -301,12 +360,18 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
+                    mToggle.runWhenIdle(new Runnable() {
+                        @Override
+                        public void run() {
+                            AccountFilterUtil.handleAccountFilterResult(
+                                    mContactListFilterController, AppCompatActivity.RESULT_OK,
+                                    intent);
+                            if (shouldFinish()) {
+                                finish();
+                            }
+                        }
+                    });
                     mDrawer.closeDrawer(GravityCompat.START);
-                    AccountFilterUtil.handleAccountFilterResult(mContactListFilterController,
-                            AppCompatActivity.RESULT_OK, intent);
-                    if (shouldFinish()) {
-                        finish();
-                    }
                     return true;
                 }
             });
@@ -348,26 +413,32 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     protected abstract boolean shouldFinish();
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(final MenuItem item) {
         final int id = item.getItemId();
 
-        if (id == R.id.nav_settings) {
-            startActivity(createPreferenceIntent());
-        } else if (id == R.id.nav_help) {
-            HelpUtils.launchHelpAndFeedbackForMainScreen(this);
-        } else if (id == R.id.nav_all_contacts) {
-            switchToAllContacts();
-        } else if (id == R.id.nav_blocked_numbers) {
-            final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
-                    (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
-            ImplicitIntentsUtil.startActivityInApp(this, intent);
-        } else if (id == R.id.nav_find_duplicates) {
-            launchFindDuplicates();
-        } else if (item.getIntent() != null) {
-            ImplicitIntentsUtil.startActivityInApp(this, item.getIntent());
-        } else {
-            Log.w(TAG, "Unhandled navigation view item selection");
-        }
+        mToggle.runWhenIdle(new Runnable() {
+            @Override
+            public void run() {
+                if (id == R.id.nav_settings) {
+                    startActivity(createPreferenceIntent());
+                } else if (id == R.id.nav_help) {
+                    HelpUtils.launchHelpAndFeedbackForMainScreen(ContactsDrawerActivity.this);
+                } else if (id == R.id.nav_all_contacts) {
+                    switchToAllContacts();
+                } else if (id == R.id.nav_blocked_numbers) {
+                    final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
+                            (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
+                    startActivity(intent);
+                } else if (id == R.id.nav_find_duplicates) {
+                    launchFindDuplicates();
+                } else if (item.getIntent() != null) {
+                    ImplicitIntentsUtil.startActivityInApp(ContactsDrawerActivity.this,
+                            item.getIntent());
+                } else {
+                    Log.w(TAG, "Unhandled navigation view item selection");
+                }
+            }
+        });
 
         mDrawer.closeDrawer(GravityCompat.START);
         return true;
@@ -390,6 +461,9 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
         AccountFilterUtil.handleAccountFilterResult(
                 mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
+        if (shouldFinish()) {
+            finish();
+        }
     }
 
     protected void launchFindDuplicates() {

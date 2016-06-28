@@ -852,13 +852,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     }
 
     @Override
-    protected void onGroupMenuItemClicked(long groupId) {
-        switchToAllContacts();
-        super.onGroupMenuItemClicked(groupId);
-        mDrawer.closeDrawer(GravityCompat.START);
-    }
-
-    @Override
     public void onProviderStatusChange() {
         reloadGroupsAndFiltersIfNeeded();
         updateViewConfiguration(false);
