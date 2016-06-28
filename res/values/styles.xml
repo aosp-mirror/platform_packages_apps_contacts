@@ -111,6 +111,8 @@
         <!-- Style for the tab bar text (for text on tabs) -->
         <item name="android:actionBarTabTextStyle">@style/ContactsActionBarTabTextStyle</item>
         <item name="actionBarTabTextStyle">@style/ContactsActionBarTabTextStyle</item>
+        <item name="android:actionButtonStyle">@style/ContactsActionButtonStyle</item>
+        <item name="actionButtonStyle">@style/ContactsActionButtonStyle</item>
         <!--  Drawable for the back button -->
         <item name="android:homeAsUpIndicator">@drawable/ic_back_arrow</item>
         <item name="homeAsUpIndicator">@drawable/ic_back_arrow</item>
@@ -172,6 +174,11 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 
+    <style name="ContactsActionButtonStyle" parent="Widget.AppCompat.ActionButton">
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">false</item>
         <item name="color">@android:color/white</item>
@@ -220,6 +227,7 @@
     <!-- Text in the action bar at the top of the screen -->
     <style name="ContactsActionBarTitleText"
            parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
+        <item name="android:textSize">20dp</item>
         <item name="android:textColor">@color/actionbar_text_color</item>
     </style>
 
