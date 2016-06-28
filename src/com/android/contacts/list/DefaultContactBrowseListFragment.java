@@ -50,6 +50,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setQuickContactEnabled(false);
         setSectionHeaderDisplayEnabled(true);
         setVisibleScrollbarEnabled(true);
+        setDisplayDirectoryHeader(false);
     }
 
     @Override
