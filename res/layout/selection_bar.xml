@@ -24,7 +24,7 @@
         android:id="@+id/selection_close"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/ic_back_arrow"
+        android:src="@drawable/ic_close_black_24dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_menu_back_from_search"
         android:layout_gravity="center_vertical|start"
