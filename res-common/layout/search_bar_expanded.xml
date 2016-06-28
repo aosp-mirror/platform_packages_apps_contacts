@@ -53,7 +53,7 @@
         android:layout_height="@dimen/search_box_close_icon_size"
         android:layout_width="@dimen/search_box_close_icon_size"
         android:padding="@dimen/search_box_close_icon_padding"
-        android:src="@drawable/ic_close_dk"
+        android:src="@drawable/ic_close_black_24dp"
         android:clickable="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/description_clear_search"
