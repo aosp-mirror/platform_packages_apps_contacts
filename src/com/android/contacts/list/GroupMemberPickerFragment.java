@@ -28,6 +28,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.R;
@@ -185,6 +186,7 @@ public class GroupMemberPickerFragment extends
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setHasOptionsMenu(true);
+        setDisplayDirectoryHeader(false);
     }
 
     @Override
@@ -226,6 +228,15 @@ public class GroupMemberPickerFragment extends
         if (data != null) {
             // Wait until contacts are loaded before showing the scrollbar
             setVisibleScrollbarEnabled(true);
+
+            // Bind account filter header.
+            final View accountFilterContainer = getView().findViewById(
+                    R.id.account_filter_header_container);
+            accountFilterContainer.setVisibility(View.VISIBLE);
+            final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
+                    R.id.account_filter_header);
+            accountFilterHeader.setText(mAccountName);
+            accountFilterHeader.setAllCaps(false);
 
             super.onLoadFinished(loader, new FilterCursorWrapper(data));
         }
