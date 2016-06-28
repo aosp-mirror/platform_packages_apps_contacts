@@ -140,11 +140,11 @@
     <color name="actionbar_unselected_text_color">#a6ffffff</color>
 
     <!-- Text color of the search box text as entered by user  -->
-    <color name="searchbox_text_color">#66000000</color>
+    <color name="searchbox_text_color">#000000</color>
     <!-- Background color of the search box -->
     <color name="searchbox_background_color">#ffffff</color>
 
-    <color name="searchbox_hint_text_color">#737373</color>
+    <color name="searchbox_hint_text_color">#66000000</color>
     <color name="searchbox_icon_tint">@color/searchbox_hint_text_color</color>
 
     <color name="search_shortcut_icon_color">@color/dialtacts_theme_color</color>
