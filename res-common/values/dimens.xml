@@ -129,7 +129,7 @@
     <!-- Left margin of the text field in the search box. -->
     <dimen name="search_box_text_left_margin">15dp</dimen>
     <!-- Search box text size -->
-    <dimen name="search_text_size">14dp</dimen>
+    <dimen name="search_text_size">16sp</dimen>
 
     <!-- Top margin for the Frequently Contacted section title -->
     <dimen name="frequently_contacted_title_top_margin_when_first_row">16dp</dimen>
