@@ -108,10 +108,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         public void onDrawerStateChanged(int newState) {
             super.onDrawerStateChanged(newState);
             // Set transparent status bar when drawer starts to move.
-            if (CompatUtils.isLollipopCompatible() && newState != DrawerLayout.STATE_IDLE
-                    && getWindow().getStatusBarColor() == ContextCompat.getColor
-                    (ContactsDrawerActivity.this, R.color.primary_color_dark)) {
-                getWindow().setStatusBarColor(Color.TRANSPARENT);
+            if (newState != DrawerLayout.STATE_IDLE) {
+                makeStatusBarTransparent();
             }
             if (mRunnable != null && newState == DrawerLayout.STATE_IDLE) {
                 mRunnable.run();
@@ -196,6 +194,22 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             clearCheckedMenus();
             mIdMenuMap.get(R.id.nav_find_duplicates).setCheckable(true);
             mIdMenuMap.get(R.id.nav_find_duplicates).setChecked(true);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            makeStatusBarTransparent();
+        }
+    }
+
+    private void makeStatusBarTransparent() {
+        if (CompatUtils.isLollipopCompatible()
+                && getWindow().getStatusBarColor() ==
+                        ContextCompat.getColor(this, R.color.primary_color_dark)) {
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
     }
 
