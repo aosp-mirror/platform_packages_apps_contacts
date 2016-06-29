@@ -34,6 +34,7 @@ import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.list.ContactsSectionIndexer;
+import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.logging.ListEvent.ListType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
@@ -46,7 +47,8 @@ import java.util.List;
 import java.util.Set;
 
 /** Displays the members of a group. */
-public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupMembersAdapter> {
+public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupMembersAdapter>
+        implements MultiSelectEntryContactListAdapter.DeleteContactListener {
 
     private static final String TAG = "GroupMembers";
 
@@ -329,6 +331,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         final GroupMembersAdapter adapter = new GroupMembersAdapter(getContext());
         adapter.setSectionHeaderDisplayEnabled(true);
         adapter.setDisplayPhotos(true);
+        adapter.setDeleteContactListener(this);
         return adapter;
     }
 
@@ -356,13 +359,8 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             return;
         }
         if (mListener != null) {
-            if (getAdapter().getDisplayDeleteButtons()) {
-                final long contactId = getAdapter().getContactId(position);
-                mListener.onGroupMemberListItemDeleted(position, contactId);
-            } else {
-                final Uri contactLookupUri = getAdapter().getContactLookupUri(position);
-                mListener.onGroupMemberListItemClicked(position, contactLookupUri);
-            }
+            final Uri contactLookupUri = getAdapter().getContactLookupUri(position);
+            mListener.onGroupMemberListItemClicked(position, contactLookupUri);
         }
     }
 
@@ -375,5 +373,11 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             }
         }
         return super.onItemLongClick(position, id);
+    }
+
+    @Override
+    public void onContactDeleteClicked(int position) {
+        final long contactId = getAdapter().getContactId(position);
+        mListener.onGroupMemberListItemDeleted(position, contactId);
     }
 }
