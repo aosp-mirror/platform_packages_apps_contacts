@@ -159,7 +159,7 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
         bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
         bindPhoto(view, cursor);
-        bindDeleteButton(view);
+        bindDeleteButton(view, position);
     }
 
     protected void bindSectionHeaderAndDivider(ContactListItemView view, int position) {
@@ -188,9 +188,9 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
                 imageRequest);
     }
 
-    private void bindDeleteButton(final ContactListItemView view) {
+    private void bindDeleteButton(final ContactListItemView view, int position) {
         if (mDisplayDeleteButtons) {
-            view.getDeleteImageButton();
+            view.getDeleteImageButton(getDeleteContactListener(), position);
         } else {
             view.hideDeleteImageButton();
         }
