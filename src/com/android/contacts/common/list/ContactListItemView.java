@@ -665,16 +665,18 @@ public class ContactListItemView extends ViewGroup
 
         if (isVisible(mDeleteImageButton)) {
             final int photoTop = topBound + (bottomBound - topBound - mDeleteImageButtonHeight) / 2;
+            final int mDeleteImageButtonSize = mDeleteImageButtonHeight > mDeleteImageButtonWidth
+                    ? mDeleteImageButtonHeight : mDeleteImageButtonWidth;
             if (mPhotoPosition == PhotoPosition.LEFT) {
-                mDeleteImageButton.layout(rightBound - mDeleteImageButtonWidth,
+                mDeleteImageButton.layout(rightBound - mDeleteImageButtonSize,
                         photoTop,
                         rightBound,
-                        photoTop + mDeleteImageButtonHeight);
+                        photoTop + mDeleteImageButtonSize);
             } else {
                 mDeleteImageButton.layout(leftBound,
                         photoTop,
-                        leftBound + mDeleteImageButtonWidth,
-                        photoTop + mDeleteImageButtonHeight);
+                        leftBound + mDeleteImageButtonSize,
+                        photoTop + mDeleteImageButtonSize);
             }
         }
 
@@ -1280,15 +1282,26 @@ public class ContactListItemView extends ViewGroup
     /**
      * Returns the {@link AppCompatImageButton} delete button, creating it if necessary.
      */
-    public AppCompatImageButton getDeleteImageButton() {
+    public AppCompatImageButton getDeleteImageButton(
+            final MultiSelectEntryContactListAdapter.DeleteContactListener listener,
+            final int position) {
         if (mDeleteImageButton == null) {
             mDeleteImageButton = new AppCompatImageButton(getContext());
-            // Make non-focusable, so the rest of the ContactListItemView can be clicked.
-            mDeleteImageButton.setFocusable(false);
             mDeleteImageButton.setImageResource(R.drawable.ic_cancel_black_24dp);
+            mDeleteImageButton.setScaleType(ScaleType.CENTER);
             mDeleteImageButton.setBackgroundColor(Color.TRANSPARENT);
             addView(mDeleteImageButton);
         }
+        // Reset onClickListener because after reloading the view, position might be changed.
+        mDeleteImageButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Inform the adapter that delete icon was clicked.
+                if (listener != null) {
+                    listener.onContactDeleteClicked(position);
+                }
+            }
+        });
         return mDeleteImageButton;
     }
 

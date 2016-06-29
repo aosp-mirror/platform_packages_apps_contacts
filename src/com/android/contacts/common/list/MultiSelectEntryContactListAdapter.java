@@ -32,6 +32,7 @@ import java.util.TreeSet;
 public abstract class MultiSelectEntryContactListAdapter extends ContactEntryListAdapter {
 
     private SelectedContactsListener mSelectedContactsListener;
+    private DeleteContactListener mDeleteContactListener;
     private TreeSet<Long> mSelectedContactIds = new TreeSet<Long>();
     private boolean mDisplayCheckBoxes;
     private final int mContactIdColumnIndex;
@@ -39,6 +40,10 @@ public abstract class MultiSelectEntryContactListAdapter extends ContactEntryLis
     public interface SelectedContactsListener {
         void onSelectedContactsChanged();
         void onSelectedContactsChangedViaCheckBox();
+    }
+
+    public interface DeleteContactListener {
+        void onContactDeleteClicked(int position);
     }
 
     /**
@@ -58,6 +63,14 @@ public abstract class MultiSelectEntryContactListAdapter extends ContactEntryLis
      */
     public int getContactColumnIdIndex() {
         return mContactIdColumnIndex;
+    }
+
+    public DeleteContactListener getDeleteContactListener() {
+        return mDeleteContactListener;
+    }
+
+    public void setDeleteContactListener(DeleteContactListener deleteContactListener) {
+        mDeleteContactListener = deleteContactListener;
     }
 
     public void setSelectedContactsListener(SelectedContactsListener listener) {
