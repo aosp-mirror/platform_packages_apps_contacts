@@ -23,7 +23,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
@@ -354,6 +353,11 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         }
     }
 
+    public void startGroupAddMemberActivity() {
+        startActivityForResult(GroupUtil.createPickMemberIntent(mGroupMetadata,
+                mMembersFragment.getMemberContactIds()), RESULT_GROUP_ADD_MEMBER);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -362,14 +366,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 return true;
             }
             case R.id.menu_add: {
-                final Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType(ContactsContract.Groups.CONTENT_ITEM_TYPE);
-                intent.putExtra(UiIntentActions.GROUP_ACCOUNT_NAME, mGroupMetadata.accountName);
-                intent.putExtra(UiIntentActions.GROUP_ACCOUNT_TYPE, mGroupMetadata.accountType);
-                intent.putExtra(UiIntentActions.GROUP_ACCOUNT_DATA_SET, mGroupMetadata.dataSet);
-                intent.putExtra(UiIntentActions.GROUP_CONTACT_IDS,
-                        mMembersFragment.getMemberContactIds());
-                startActivityForResult(intent, RESULT_GROUP_ADD_MEMBER);
+                startGroupAddMemberActivity();
                 return true;
             }
             case R.id.menu_rename_group: {

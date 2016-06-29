@@ -278,4 +278,10 @@
     <dimen name="nav_activity_horizontal_margin">16dp</dimen>
     <dimen name="nav_activity_vertical_margin">16dp</dimen>
 
+    <!-- Top and Bottom padding for the text for empty group view-->
+    <dimen name="empty_group_view_text_padding_top">32dp</dimen>
+    <dimen name="empty_group_view_text_padding_bottom">16dp</dimen>
+
+    <!-- Width for the image for empty group view-->
+    <dimen name="empty_group_view_image_width">232dp</dimen>
 </resources>
