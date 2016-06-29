@@ -27,13 +27,6 @@
     android:layout_height="match_parent"
     android:background="?attr/contact_browser_background" >
 
-    <FrameLayout
-        android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-    </FrameLayout>
-
     <!-- Shown only when an Account filter is set.
          - paddingTop should be here to show "shade" effect correctly. -->
     <include layout="@layout/account_filter_header" />
@@ -41,7 +34,9 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:id="@+id/contact_list">
+
         <include layout="@layout/contact_list_card"/>
         <view
             class="com.android.contacts.common.list.PinnedHeaderListView"
