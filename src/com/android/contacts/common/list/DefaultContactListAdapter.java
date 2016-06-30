@@ -113,10 +113,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 appendSearchParameters(builder, query, directoryId);
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
-                if (Flags.getInstance(mContext).getBoolean(
-                        Experiments.FLAG_SEARCH_STREQUENTS_FIRST)) {
-                    sortOrder = STREQUENT_SORT;
-                }
+                sortOrder = STREQUENT_SORT;
             }
         } else {
             final ContactListFilter filter = getFilter();
