@@ -119,10 +119,7 @@ public class EditorUiUtilsTest extends AndroidTestCase {
         assertNotNull(pair);
         assertEquals(getContext().getString(R.string.from_account_format, ACCOUNT_NAME),
                 pair.first); // somebody@lunkedin.com
-        assertEquals(
-                getContext().getString(R.string.account_type_format,
-                        getContext().getString(R.string.account_phone)),
-                pair.second); // "Phone-only, unsynced contact"
+        assertEquals(getContext().getString(R.string.account_phone), pair.second); // Device
     }
 
     public void testGetAccountInfo_NoAccountName_DisplayLabel() {
@@ -133,6 +130,14 @@ public class EditorUiUtilsTest extends AndroidTestCase {
         assertNull(pair.first);
         assertEquals(getContext().getString(R.string.account_type_format, DISPLAY_LABEL),
                 pair.second); // LunkedIn contact
+
+        final Pair pairDevice = EditorUiUtils.getAccountInfo(
+                getContext(),
+                /* accountName =*/ null,
+                new MockAccountType(getContext().getString(R.string.account_phone)));
+        assertNotNull(pairDevice);
+        assertNull(pairDevice.first);
+        assertEquals(getContext().getString(R.string.account_phone), pairDevice.second); // Device
     }
 
     public void testGetAccountInfo_NoAccountName_NoDisplayLabel() {
@@ -141,10 +146,7 @@ public class EditorUiUtilsTest extends AndroidTestCase {
 
         assertNotNull(pair);
         assertNull(pair.first);
-        assertEquals(
-                getContext().getString(R.string.account_type_format,
-                        getContext().getString(R.string.account_phone)),
-                pair.second); // "Phone-only, unsynced contact"
+        assertEquals(getContext().getString(R.string.account_phone), pair.second); // Device
     }
 
     public void testGetRingtongStrFromUri_lessThanOrEqualsToM() {

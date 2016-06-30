@@ -137,28 +137,25 @@ public class EditorUiUtils {
     public static Pair<String,String> getAccountInfo(Context context, String accountName,
             AccountType accountType) {
         CharSequence accountTypeDisplayLabel = accountType.getDisplayLabel(context);
-        if (TextUtils.isEmpty(accountTypeDisplayLabel)) {
+        if (TextUtils.isEmpty(accountTypeDisplayLabel)
+                || TextUtils.equals(
+                        context.getString(R.string.account_phone), accountTypeDisplayLabel)) {
             accountTypeDisplayLabel = context.getString(R.string.account_phone);
+        } else if (GoogleAccountType.ACCOUNT_TYPE.equals(accountType.accountType)
+                && accountType.dataSet == null){
+            accountTypeDisplayLabel = context.getString(R.string.google_account_type_format,
+                    accountTypeDisplayLabel);
+        } else {
+            accountTypeDisplayLabel = context.getString(R.string.account_type_format,
+                    accountTypeDisplayLabel);
         }
 
         if (TextUtils.isEmpty(accountName)) {
-            return new Pair<>(
-                    /* accountName =*/ null,
-                    context.getString(R.string.account_type_format, accountTypeDisplayLabel));
+            return new Pair<>(/* accountName */ null, accountTypeDisplayLabel.toString());
         }
 
-        final String accountNameDisplayLabel =
-                context.getString(R.string.from_account_format, accountName);
-
-        if (GoogleAccountType.ACCOUNT_TYPE.equals(accountType.accountType)
-                && accountType.dataSet == null) {
-            return new Pair<>(
-                    accountNameDisplayLabel,
-                    context.getString(R.string.google_account_type_format, accountTypeDisplayLabel));
-        }
-        return new Pair<>(
-                accountNameDisplayLabel,
-                context.getString(R.string.account_type_format, accountTypeDisplayLabel));
+        return new Pair<>(context.getString(R.string.from_account_format, accountName),
+                accountTypeDisplayLabel.toString());
     }
 
     /**
