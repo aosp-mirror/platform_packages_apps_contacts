@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Trieu un número per enviar-hi un missatge"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Afegeix al contacte"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Tria un contacte"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Selecciona"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crea un contacte"</string>
     <string name="starredList" msgid="4817256136413959463">"Destacats"</string>
     <string name="frequentList" msgid="7154768136473953056">"Freqüent"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Envia les trucades directament a la bústia de veu"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Elimina la foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"No hi ha cap contacte"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactes</item>
-      <item quantity="one">1 contacte</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"No hi ha cap etiqueta."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Per crear grups necessites un compte."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"No hi ha ningú amb aquesta etiqueta."</string>
@@ -122,8 +119,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"L\'etiqueta s\'ha suprimit"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"L\'etiqueta s\'ha creat"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"L\'etiqueta s\'ha actualitzat"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"S\'han suprimit de l\'etiqueta"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"S\'ha afegit a l\'etiqueta"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"No s\'han pogut desar els canvis fets a l\'etiqueta."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -225,8 +221,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Descarta"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Continua editant"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"Cerca als contactes"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"Nom de l\'etiqueta"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"El meu perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil de <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

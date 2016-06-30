@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ਸੁਨੇਹੇ ਲਈ ਇੱਕ ਨੰਬਰ ਚੁਣੋ"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ਸੰਪਰਕ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ਇੱਕ ਸੰਪਰਕ ਚੁਣੋ"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ਚੁਣੋ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ਨਵਾਂ ਸੰਪਰਕ ਬਣਾਓ"</string>
     <string name="starredList" msgid="4817256136413959463">"ਸਟਾਰ ਵਾਲੇ"</string>
     <string name="frequentList" msgid="7154768136473953056">"ਅਕਸਰ"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ਸਿੱਧੇ ਵੌਇਸਮੇਲ ਵਿੱਚ ਕਾਲਾਂ ਭੇਜੋ"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ਫੋਟੋ ਹਟਾਓ"</string>
     <string name="noContacts" msgid="4955659076981974652">"ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ਸੰਪਰਕ</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ਸੰਪਰਕ</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"ਕੋਈ ਲੇਬਲ ਨਹੀਂ।"</string>
     <string name="noAccounts" msgid="7768267764545265909">"ਸਮੂਹ ਬਣਾਉਣ ਲਈ ਤੁਹਾਨੂੰ ਇੱਕ ਖਾਤਾ ਬਣਾਉਣ ਦੀ ਲੋੜ ਹੈ।"</string>
     <string name="emptyGroup" msgid="3741795311081911842">"ਇਸ ਲੇਬਲ ਨਾਲ ਕੋਈ ਲੋਕ ਨਹੀਂ।"</string>
@@ -122,8 +119,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"ਲੇਬਲ ਮਿਟਾਇਆ ਗਿਆ"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"ਲੇਬਲ ਬਣਾਇਆ ਗਿਆ"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"ਲੇਬਲ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ਲੇਬਲ ਤੋਂ ਹਟਾਏ ਗਏ"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ਲੇਬਲ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"ਲੇਬਲ ਬਦਲਾਆਂ ਨੂੰ ਰੱਖਿਅਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ।"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -225,8 +221,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ਛੱਡੋ"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"ਸੋਧ ਕਰਦੇ ਰਹੋ"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"ਸੰਪਰਕ ਖੋਜੋ"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"ਲੇਬਲ ਦਾ ਨਾਮ"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ਮੇਰੀ ਸਥਾਨਕ ਪ੍ਰੋਫਾਈਲ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ਮੇਰੀ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ਪ੍ਰੋਫਾਈਲ"</string>

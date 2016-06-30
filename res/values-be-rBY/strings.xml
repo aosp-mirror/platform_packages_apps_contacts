@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выберыце нумар для адпраўкi паведамлення"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Дадаць у кантакт"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Выберыце кантакт"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Выбраць"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Стварыць новы кантакт"</string>
     <string name="starredList" msgid="4817256136413959463">"Пазначана"</string>
     <string name="frequentList" msgid="7154768136473953056">"Частыя"</string>
@@ -105,12 +106,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Адпраўляць выклікі непасрэдна на галасавую пошту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Выдаліць фота"</string>
     <string name="noContacts" msgid="4955659076981974652">"Няма кантактаў"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> кантакт</item>
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> кантакты</item>
-      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> кантактаў</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> кантакту</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Метак няма."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Для стварэння групы патрабуецца ўліковы запіс."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Пад гэтай меткай карыстальнікаў няма."</string>
@@ -126,9 +121,8 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"Метка выдалена"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Створана метка"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Метка абноўлена"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
-    <string name="groupMembersAddedToast" msgid="4824834898718972768">"Дадана да этыкеткі"</string>
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Выдалена з меткі"</string>
+    <string name="groupMembersAddedToast" msgid="4824834898718972768">"Дададзена да этыкеткі"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Не ўдалося захаваць змяненні меткі."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> кантакт з нумарам(і) тэлефона(ў)</item>
@@ -237,8 +231,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Адхіліць"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Працягнуць рэдагаванне"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"Пошук кантактаў"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"Назва меткі"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мой лакальны профіль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мой профіль у <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

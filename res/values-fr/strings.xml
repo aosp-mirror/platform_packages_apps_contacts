@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Choisissez le numéro auquel envoyer le message"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Ajouter au contact"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Sélectionner un contact"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Sélectionner"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Créer un contact"</string>
     <string name="starredList" msgid="4817256136413959463">"Favoris"</string>
     <string name="frequentList" msgid="7154768136473953056">"Contacts fréquents"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Renvoyer les appels directement vers la messagerie vocale"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Supprimer la photo"</string>
     <string name="noContacts" msgid="4955659076981974652">"Aucun contact"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Aucun libellé."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Vous devez posséder un compte pour créer des groupes."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Aucun contact n\'est associé à ce libellé."</string>
@@ -122,8 +119,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"Libellé supprimé"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Libellé créé"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Libellé mis à jour"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Contact retiré du libellé"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Ajout au libellé effectué"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Impossible d\'enregistrer les changements apportés au libellé."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -225,8 +221,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Supprimer"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Poursuivre les modifications"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"Rechercher des contacts"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"Nom du libellé"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mon profil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mon profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

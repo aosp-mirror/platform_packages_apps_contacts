@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"စာတိုပို့ရန် နံပါတ်တစ်ခုရွေးပါ"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"လိပ်စာသို့ထည့်ပါ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"လိပ်စာတစ်ခုရွေးပါ"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ရွေးရန်"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"အဆက်အသွယ် အသစ် ဖန်တီးရန်"</string>
     <string name="starredList" msgid="4817256136413959463">"စတားပေးထားသော အရာ"</string>
     <string name="frequentList" msgid="7154768136473953056">"မကြာခဏ"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ဖုန်းများအား အသံစာပို့စနစ်သို့ ပို့လိုက်ပါ"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ပုံအားဖယ်ရှားပါ"</string>
     <string name="noContacts" msgid="4955659076981974652">"အဆက်အသွယ်များမရှိပါ"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="other">အဆက်အသွယ် <xliff:g id="COUNT">%d</xliff:g> ခု</item>
-      <item quantity="one">အဆက်အသွယ် ၁ ခု</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"အညွှန်းများမရှိပါ။"</string>
     <string name="noAccounts" msgid="7768267764545265909">"အုပ်စုများ ပြုလုပ်ရန် အကောင့်တစ်ခု လိုအပ်ပါသည်"</string>
     <string name="emptyGroup" msgid="3741795311081911842">"ဤအညွှန်းနှင့် မည်သူမျှမရှိပါ။"</string>

@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Scegli un numero a cui inviare il messaggio"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Aggiungi al contatto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Scegli un contatto"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Seleziona"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crea nuovo contatto"</string>
     <string name="starredList" msgid="4817256136413959463">"Speciali"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frequenti"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Inoltra chiamate direttamente alla segreteria"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Rimuovi foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"Nessun contatto"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contatti</item>
-      <item quantity="one">1 contatto</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Nessuna etichetta."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Per creare gruppi è necessario un account."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Nessuna persona con questa etichetta."</string>
@@ -122,8 +119,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"Etichetta eliminata"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Etichetta creata"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Etichetta aggiornata"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Rimossa da etichetta"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Aggiunti all\'etichetta"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Impossibile salvare le modifiche all\'etichetta."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -225,8 +221,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Ignora"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Continua la modifica"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"Cerca contatti"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"Nome dell\'etichetta"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Il mio profilo locale"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Il mio profilo <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

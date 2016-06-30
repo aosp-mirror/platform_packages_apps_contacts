@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Výběr čísla pro zprávu"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Přidat do kontaktu"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Vyberte kontakt"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Vybrat"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Vytvořte nový kontakt"</string>
     <string name="starredList" msgid="4817256136413959463">"Označené hvězdičkou"</string>
     <string name="frequentList" msgid="7154768136473953056">"Časté"</string>
@@ -105,12 +106,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Přesměrovat hovory přímo do hlasové schránky"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Odebrat fotografii"</string>
     <string name="noContacts" msgid="4955659076981974652">"Žádné kontakty"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> kontakty</item>
-      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> kontaktu</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktů</item>
-      <item quantity="one">1 kontakt</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Žádné štítky."</string>
     <string name="noAccounts" msgid="7768267764545265909">"K vytváření skupin potřebujete účet."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Žádní lidé s tímto štítkem."</string>
@@ -126,8 +121,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"Štítek byl smazán"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Štítek byl vytvořen"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Štítek byl aktualizován"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Odebráno ze štítku"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Přidáno do štítku"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Změny štítku se nepodařilo uložit."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -237,8 +231,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Zrušit"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Pokračovat v úpravách"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"Vyhledejte kontakty"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"Název štítku"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Můj místní profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Můj profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

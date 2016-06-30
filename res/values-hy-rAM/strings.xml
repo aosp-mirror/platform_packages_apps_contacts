@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Ընտրել համարը՝ հաղորդագրելու համար"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Ավելացնել կոնտակտին"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Ընտրել կոնտակտ"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Ընտրել"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Ստեղծել նոր կոնտակտ"</string>
     <string name="starredList" msgid="4817256136413959463">"Աստղանշված"</string>
     <string name="frequentList" msgid="7154768136473953056">"Հաճախակի"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Ուղարկել զանգերը անմիջապես ձայնային փոստին"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Հեռացնել լուսանկարը"</string>
     <string name="noContacts" msgid="4955659076981974652">"Կոնտակտներ չկան"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contacts</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> կոնտակտ</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Պիտակներ չկան"</string>
     <string name="noAccounts" msgid="7768267764545265909">"Խմբեր ստեղծելու համար դուք պետք է հաշիվ ունենաք:"</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Այս պիտակով մարդիկ չկան:"</string>
@@ -122,8 +119,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"Պիտակը ջնջվեց"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Պիտակը ստեղծվեց"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Պիտակը թարմացվեց"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Հեռացվել է պիտակից"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Ավելացվեց պիտակին"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Չհաջողվեց պահել պիտակի փոփոխությունները:"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -225,8 +221,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Անտեսել"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Շարունակել խմբագրումը"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"Որոնեք կոնտակտներ"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"Պիտակի անունը"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Իմ տեղային պրոֆիլը"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Իմ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> պրոֆիլը"</string>
