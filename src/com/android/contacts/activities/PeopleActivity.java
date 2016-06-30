@@ -541,13 +541,13 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                 startSearchOrSelectionMode();
                 break;
             case ActionBarAdapter.Listener.Action.BEGIN_STOPPING_SEARCH_AND_SELECTION_MODE:
-                showFabWithAnimation(/* showFabWithAnimation = */ true);
+                showFabWithAnimation(shouldShowFabForAccount());
                 break;
             case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
                 setQueryTextToFragment("");
                 updateFragmentsVisibility();
                 invalidateOptionsMenu();
-                showFabWithAnimation(/* showFabWithAnimation = */ true);
+                showFabWithAnimation(shouldShowFabForAccount());
                 break;
             case ActionBarAdapter.Listener.Action.CHANGE_SEARCH_QUERY:
                 final String queryString = mActionBarAdapter.getQueryString();
@@ -564,7 +564,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         configureFragments(false /* from request */);
         updateFragmentsVisibility();
         invalidateOptionsMenu();
-        showFabWithAnimation(/* showFabWithAnimation = */ false);
+        showFabWithAnimation(/* showFab */ false);
     }
 
     @Override
