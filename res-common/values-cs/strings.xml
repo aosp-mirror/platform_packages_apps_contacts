@@ -226,8 +226,7 @@
     <string name="share_error" msgid="665756457151793108">"Tento kontakt nelze sdílet."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Nejsou dostupné žádné kontakty ke sdílení."</string>
     <string name="menu_search" msgid="7464453023659824700">"Hledat"</string>
-    <!-- no translation found for hint_findContacts (5348098493767051775) -->
-    <skip />
+    <string name="hint_findContacts" msgid="5348098493767051775">"Vyhledejte kontakty"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Oblíbené"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Žádné kontakty."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Vymazat často kontaktované"</string>
