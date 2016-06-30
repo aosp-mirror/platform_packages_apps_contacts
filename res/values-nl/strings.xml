@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Kies een nummer voor bericht"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Aan contact toevoegen"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Een contact kiezen"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Selecteren"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Nieuw contact maken"</string>
     <string name="starredList" msgid="4817256136413959463">"Met ster"</string>
     <string name="frequentList" msgid="7154768136473953056">"Vaak"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Oproepen rechtstreeks naar voicemail verzenden"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Foto verwijderen"</string>
     <string name="noContacts" msgid="4955659076981974652">"Geen contacten"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacten</item>
-      <item quantity="one">1 contact</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Geen labels."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Je hebt een account nodig om groepen te maken."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Geen mensen met dit label."</string>
@@ -122,8 +119,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"Label verwijderd"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Label gemaakt"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Label geüpdatet"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Verwijderd uit label"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Toegevoegd aan label"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Kan labelwijzigingen niet opslaan."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -225,8 +221,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Weggooien"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Blijven bewerken"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"Contacten zoeken"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"Naam van het label"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mijn lokale profiel"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mijn <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profiel"</string>

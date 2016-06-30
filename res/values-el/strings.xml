@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Επιλογή ενός αριθμού για μήνυμα"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Προσθήκη σε επαφή"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Επιλέξτε μια επαφή"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Επιλογή"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Δημιουργία νέας επαφής"</string>
     <string name="starredList" msgid="4817256136413959463">"Με αστέρι"</string>
     <string name="frequentList" msgid="7154768136473953056">"Συχνές"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Αποστολή κλήσεων απευθείας στον αυτόματο τηλεφωνητή"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Κατάργηση εικόνας"</string>
     <string name="noContacts" msgid="4955659076981974652">"Δεν υπάρχουν επαφές"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> επαφές</item>
-      <item quantity="one">1 επαφή</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Δεν υπάρχουν ετικέτες."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Για να δημιουργήσετε ομάδες πρέπει να έχετε έναν λογαριασμό."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Δεν υπάρχουν άτομα με αυτή την ετικέτα."</string>

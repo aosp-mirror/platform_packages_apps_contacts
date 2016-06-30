@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Välj ett nummer för meddelandet"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Lägg till kontakt"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Välj en kontakt"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Välj"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Skapa ny kontakt"</string>
     <string name="starredList" msgid="4817256136413959463">"Stjärnmärkta"</string>
     <string name="frequentList" msgid="7154768136473953056">"Ofta"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Skicka samtal direkt till röstbrevlåda"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Ta bort foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"Inga kontakter"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontakter</item>
-      <item quantity="one">En kontakt</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Inga etiketter."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Om du vill skapa grupper måste du ha ett konto."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Inga personer med den här etiketten."</string>

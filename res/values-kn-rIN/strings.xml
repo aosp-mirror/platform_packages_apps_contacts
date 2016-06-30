@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ಸಂದೇಶಕ್ಕಾಗಿ ಸಂಖ್ಯೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ಸಂಪರ್ಕಕ್ಕೆ ಸೇರಿಸು"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ಸಂಪರ್ಕ ಆಯ್ಕೆ ಮಾಡಿ"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ಹೊಸ ಸಂಪರ್ಕ ರಚಿಸಿ"</string>
     <string name="starredList" msgid="4817256136413959463">"ನಕ್ಷತ್ರ ಹಾಕಿರುವುದು"</string>
     <string name="frequentList" msgid="7154768136473953056">"ಆಗಾಗ್ಗೆ"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ಕರೆಗಳನ್ನು ನೇರವಾಗಿ ಧ್ವನಿಮೇಲ್‌ಗೆ ಕಳುಹಿಸಿ"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ಫೋಟೋ ತೆಗೆದುಹಾಕಿ"</string>
     <string name="noContacts" msgid="4955659076981974652">"ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ಸಂಪರ್ಕಗಳು</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ಸಂಪರ್ಕಗಳು</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"ಯಾವುದೇ ಲೇಬಲ್‌ಗಳಿಲ್ಲ."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ಗುಂಪುಗಳನ್ನು ರಚಿಸಲು ನಿಮಗೆ ಖಾತೆಯ ಅಗತ್ಯವಿದೆ."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"ಈ ಲೇಬಲ್‌ನೊಂದಿಗೆ ಯಾವ ಜನರೂ ಇಲ್ಲ."</string>
@@ -122,8 +119,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"ಲೇಬಲ್ ಅಳಿಸಲಾಗಿದೆ"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"ಲೇಬಲ್ ರಚಿಸಲಾಗಿದೆ"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"ಲೇಬಲ್ ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗಿದೆ"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ಲೇಬಲ್‌ನಿಂದ ತೆಗೆದುಹಾಕಲಾಗಿದೆ"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ಲೇಬಲ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"ಲೇಬಲ್ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -225,8 +221,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ತ್ಯಜಿಸು"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"ಸಂಪಾದಿಸುತ್ತಿರಿ"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"ಲೇಬಲ್‌‌ನ ಹೆಸರು"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ನನ್ನ ಸ್ಥಳೀಯ ಪ್ರೊಫೈಲ್"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ನನ್ನ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ಪ್ರೊಫೈಲ್‌"</string>

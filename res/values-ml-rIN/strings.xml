@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"സന്ദേശമയയ്‌ക്കാൻ ഒരു നമ്പർ തിരഞ്ഞെടുക്കുക"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"കോണ്‍‌ടാക്റ്റിലേക്ക് ചേര്‍ക്കുക"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കൂ"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"തിരഞ്ഞെടുക്കുക"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
     <string name="starredList" msgid="4817256136413959463">"നക്ഷത്രമിട്ടവ"</string>
     <string name="frequentList" msgid="7154768136473953056">"പതിവ് കോൺടാക്റ്റുകൾ"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"കോളുകൾ നേരിട്ട് വോയ്‌സ്‌മെയിലിലേക്ക് അയയ്‌ക്കുക"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ഫോട്ടോ നീക്കംചെയ്യുക"</string>
     <string name="noContacts" msgid="4955659076981974652">"കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> കോൺടാക്‌റ്റുകൾ</item>
-      <item quantity="one">ഒരു കോൺടാക്‌റ്റ്</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"ലേബലുകളൊന്നുമില്ല."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ഗ്രൂപ്പുകൾ സൃഷ്‌ടിക്കാൻ നിങ്ങൾക്ക് ഒരു അക്കൗണ്ട് ആവശ്യമാണ്."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"ഈ ലേബലുള്ള ആരുമില്ല."</string>
@@ -122,8 +119,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"ലേബൽ ഇല്ലാതാക്കി"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"ലേബൽ സൃഷ്‌ടിച്ചു"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"ലേബൽ അപ്ഡേറ്റുചെയ്‌തു"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ലേബലിൽ നിന്ന് നീക്കംചെയ്‌തു"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ലേബലിൽ ചേർത്തു"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"ലേബൽ മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -225,8 +221,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"തള്ളിക്കളയുക"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"എഡിറ്റുചെയ്യുന്നത് തുടരുക"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"ലേബലിന്റെ പേര്"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"എന്റെ പ്രാദേശിക പ്രൊഫൈൽ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"എന്റെ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> പ്രൊഫൈൽ"</string>

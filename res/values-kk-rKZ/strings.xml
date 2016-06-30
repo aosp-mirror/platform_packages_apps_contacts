@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Хабар жіберетін нөмірді таңдау"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Контактілерге қосу"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Контакт таңдау"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Таңдау"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Жаңа контакт жасау"</string>
     <string name="starredList" msgid="4817256136413959463">"Жұлдызшалы"</string>
     <string name="frequentList" msgid="7154768136473953056">"Жиі"</string>
@@ -56,7 +57,7 @@
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Белгіні жою"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Контакт қосу"</string>
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Контактілер таңдау"</string>
-    <string name="menu_addContactsToGroup" msgid="655196688840626483">"Байланыс қосу"</string>
+    <string name="menu_addContactsToGroup" msgid="655196688840626483">"Контактілерді қосу"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Белгіден алып тастау"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Контакт қосу"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Жаңасын жасау…"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Қоңырауларды тікелей дауыс хабарына жіберу"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Фотосуретті алу"</string>
     <string name="noContacts" msgid="4955659076981974652">"Контактілер жоқ"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> контакт</item>
-      <item quantity="one">1 контакт</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Белгілер жоқ."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Топтар жасақтау үшін есептік жазба қажет."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Бұл белгісі бар адамдар жоқ."</string>

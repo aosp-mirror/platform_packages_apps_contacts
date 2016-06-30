@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"選擇傳訊號碼"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"新增至通訊錄"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"選擇聯絡人"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"選取"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"建立新聯絡人"</string>
     <string name="starredList" msgid="4817256136413959463">"已加星號"</string>
     <string name="frequentList" msgid="7154768136473953056">"常用聯絡人"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接將來電轉到留言信箱"</string>
     <string name="removePhoto" msgid="4898105274130284565">"移除相片"</string>
     <string name="noContacts" msgid="4955659076981974652">"沒有聯絡人"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位聯絡人</item>
-      <item quantity="one">1 位聯絡人</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"無標籤。"</string>
     <string name="noAccounts" msgid="7768267764545265909">"如要建立群組，您需要有一個帳戶。"</string>
     <string name="emptyGroup" msgid="3741795311081911842">"沒有人有此標籤。"</string>

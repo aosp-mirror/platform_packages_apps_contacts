@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выбрать номер для отправки сообщения"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Добавление данных"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Выбор контакта"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Выбор"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Создать контакт"</string>
     <string name="starredList" msgid="4817256136413959463">"Помеченные"</string>
     <string name="frequentList" msgid="7154768136473953056">"Часто вызываемые"</string>
@@ -105,12 +106,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Направлять вызовы в голосовую почту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Удалить фото"</string>
     <string name="noContacts" msgid="4955659076981974652">"Нет контактов"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> контакт</item>
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> контакта</item>
-      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> контактов</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> контакта</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Нет ярлыков."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Для создания групп нужен аккаунт."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Нет людей с таким ярлыком."</string>
@@ -126,8 +121,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"Группа удалена"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Ярлык создан"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Ярлык обновлен"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Контакты удалены из группы"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Добавлено"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Не удалось сохранить изменения"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -237,8 +231,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Отменить"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Продолжить редактирование"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> (<xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>)"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"Поиск контактов"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"Название ярлыка"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мой профиль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мой профиль <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"اختيار رقم لإرسال رسالة له"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"إضافة إلى جهة اتصال"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"اختيار جهة اتصال"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"تحديد"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"إنشاء جهة اتصال جديدة"</string>
     <string name="starredList" msgid="4817256136413959463">"مميّزة بنجمة"</string>
     <string name="frequentList" msgid="7154768136473953056">"متكررة"</string>
@@ -107,14 +108,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"إرسال المكالمات إلى البريد الصوتي مباشرة"</string>
     <string name="removePhoto" msgid="4898105274130284565">"إزالة الصور"</string>
     <string name="noContacts" msgid="4955659076981974652">"ليست هناك جهات اتصال"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="zero">لا توجد جهات اتصال</item>
-      <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> جهات اتصال</item>
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> جهات اتصال</item>
-      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> جهة اتصال</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> جهة اتصال</item>
-      <item quantity="one">جهة اتصال واحدة</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"لا تصنيف"</string>
     <string name="noAccounts" msgid="7768267764545265909">"يجب توفير حساب لإنشاء مجموعات."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"لا يوجد أشخاص يحملون هذا التصنيف."</string>
@@ -130,8 +123,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"تم حذف التصنيف"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"تم إنشاء التصنيف"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"تم تحديث التصنيف"</string>
-    <!-- no translation found for groupMembersRemovedToast (3510563559799376603) -->
-    <skip />
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"تمت الإزالة من التصنيف"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"تمت الإضافة إلى التصنيف"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"لا يمكن حفظ التغييرات على التصنيف."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -249,8 +241,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"تجاهل"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"متابعة التعديلات"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <!-- no translation found for enter_contact_name (4594274696120278368) -->
-    <skip />
+    <string name="enter_contact_name" msgid="4594274696120278368">"البحث في جهات الاتصال"</string>
     <string name="group_name_hint" msgid="7614490821934528478">"اسم التصنيف"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ملفي الشخصي المحلي"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ملفي الشخصي في <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

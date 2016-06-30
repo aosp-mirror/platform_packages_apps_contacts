@@ -29,6 +29,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Зурвас илгээх дугаарыг сонгох"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Харилцагчид нэмэх"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Харилцагч сонгоно уу"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Сонгох"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Шинэ харилцагч үүсгэх"</string>
     <string name="starredList" msgid="4817256136413959463">"Одтой"</string>
     <string name="frequentList" msgid="7154768136473953056">"Байнга"</string>
@@ -103,10 +104,6 @@
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Дуут шуудан руу шууд дуудлага хийх"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Зургийг арилгах"</string>
     <string name="noContacts" msgid="4955659076981974652">"Харилцагч байхгүй"</string>
-    <plurals name="group_members_count" formatted="false" msgid="620697380488759823">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> харилцагч</item>
-      <item quantity="one">1 харилцагч</item>
-    </plurals>
     <string name="noGroups" msgid="4607906327968232225">"Шошго байхгүй."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Бүлгэм үүсгэхийн тулд танд бүртгэл хэрэгтэй."</string>
     <string name="emptyGroup" msgid="3741795311081911842">"Ийм шошготой хүн байхгүй."</string>
