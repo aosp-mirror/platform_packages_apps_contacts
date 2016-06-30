@@ -20,9 +20,15 @@
         android:key="myInfo"
         android:title="@string/settings_my_info_title"/>
 
-    <com.android.contacts.common.preference.DefaultAccountPreference
+    <Preference
         android:icon="@null"
         android:key="accounts"
+        android:title="@string/settings_accounts">
+    </Preference>
+
+    <com.android.contacts.common.preference.DefaultAccountPreference
+        android:icon="@null"
+        android:key="defaultAccount"
         android:title="@string/default_editor_account"
         android:dialogTitle="@string/default_editor_account" />
 
