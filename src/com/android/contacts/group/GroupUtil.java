@@ -53,6 +53,8 @@ public final class GroupUtil {
     private static final Set<String> FFC_GROUPS =
             new HashSet(Arrays.asList("Friends", "Family", "Coworkers"));
 
+    public static final String EXTRA_GROUP_NAME = "groupName";
+
     private GroupUtil() {
     }
 
@@ -118,10 +120,11 @@ public final class GroupUtil {
     }
 
     /** Returns an Intent to view the details of the group identified by the given ID. */
-    public static Intent createViewGroupIntent(Context context, long groupId) {
+    public static Intent createViewGroupIntent(Context context, long groupId, String title) {
         final Intent intent = new Intent(context, GroupMembersActivity.class);
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(ContentUris.withAppendedId(Groups.CONTENT_URI, groupId));
+        intent.putExtra(EXTRA_GROUP_NAME, title);
         return intent;
     }
 
