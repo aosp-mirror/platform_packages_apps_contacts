@@ -285,7 +285,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                         mToggle.runWhenIdle(new Runnable() {
                             @Override
                             public void run() {
-                                onGroupMenuItemClicked(groupListItem.getGroupId());
+                                onGroupMenuItemClicked(groupListItem.getGroupId(),
+                                        groupListItem.getTitle());
                             }
                         });
                         mDrawer.closeDrawer(GravityCompat.START);
@@ -340,8 +341,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         return null;
     }
 
-    protected void onGroupMenuItemClicked(long groupId) {
-        startActivity(GroupUtil.createViewGroupIntent(this, groupId));
+    protected void onGroupMenuItemClicked(long groupId, String title) {
+        startActivity(GroupUtil.createViewGroupIntent(this, groupId, title));
         if (shouldFinish()) {
             finish();
         }

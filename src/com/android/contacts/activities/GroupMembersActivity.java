@@ -48,6 +48,7 @@ import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.group.GroupMembersFragment;
 import com.android.contacts.group.GroupMetadata;
 import com.android.contacts.group.GroupNameEditDialogFragment;
+import com.android.contacts.group.GroupUtil;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.MultiSelectContactsListFragment;
@@ -218,7 +219,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
         // Avoid showing default "Contacts" title before group metadata is loaded. The title will
         // be changed to group name when onGroupMetadataLoaded() is called.
-        setActionBarTitle("");
+        setActionBarTitle(getIntent().getStringExtra(GroupUtil.EXTRA_GROUP_NAME));
 
         // Decide whether to prompt for the account and group name or start loading existing members
         if (mIsInsertAction) {
@@ -356,9 +357,9 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     }
 
     @Override
-    protected void onGroupMenuItemClicked(long groupId) {
+    protected void onGroupMenuItemClicked(long groupId, String title) {
         if (mGroupMetadata.groupId != groupId) {
-            super.onGroupMenuItemClicked(groupId);
+            super.onGroupMenuItemClicked(groupId, title);
         }
     }
 
