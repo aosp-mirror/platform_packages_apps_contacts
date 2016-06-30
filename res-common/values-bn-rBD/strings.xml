@@ -224,8 +224,7 @@
     <string name="share_error" msgid="665756457151793108">"এই পরিচিতিটিকে শেয়ার করা যাবে না৷"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"শেয়ার করার জন্য কোনো পরিচিতি নেই৷"</string>
     <string name="menu_search" msgid="7464453023659824700">"অনুসন্ধান করুন"</string>
-    <!-- no translation found for hint_findContacts (5348098493767051775) -->
-    <skip />
+    <string name="hint_findContacts" msgid="5348098493767051775">"পরিচিতিগুলি খুঁজুন"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"পছন্দগুলি"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"কোনো পরিচিতি নেই৷"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"পুনরাবৃত্তি সাফ করুন"</string>

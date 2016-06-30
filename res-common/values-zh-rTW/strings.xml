@@ -224,8 +224,7 @@
     <string name="share_error" msgid="665756457151793108">"無法分享這位聯絡人的資料。"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"沒有任何聯絡人資料可供分享。"</string>
     <string name="menu_search" msgid="7464453023659824700">"搜尋"</string>
-    <!-- no translation found for hint_findContacts (5348098493767051775) -->
-    <skip />
+    <string name="hint_findContacts" msgid="5348098493767051775">"搜尋聯絡人"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"常用聯絡人"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"沒有聯絡人。"</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"清除常用聯絡人"</string>

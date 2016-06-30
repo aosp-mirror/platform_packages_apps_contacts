@@ -228,8 +228,7 @@
     <string name="share_error" msgid="665756457151793108">"Este contacto no se puede compartir."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"No hay contactos que compartir."</string>
     <string name="menu_search" msgid="7464453023659824700">"Buscar"</string>
-    <!-- no translation found for hint_findContacts (5348098493767051775) -->
-    <skip />
+    <string name="hint_findContacts" msgid="5348098493767051775">"Buscar contactos"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoritos"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"No hay ningún contacto."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Borrar frecuentes"</string>

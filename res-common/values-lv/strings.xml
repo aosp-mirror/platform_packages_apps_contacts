@@ -225,8 +225,7 @@
     <string name="share_error" msgid="665756457151793108">"Šīs kontaktpersonas datus nevar kopīgot."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Nav nevienas kontaktpersonas, ko kopīgot."</string>
     <string name="menu_search" msgid="7464453023659824700">"Meklēt"</string>
-    <!-- no translation found for hint_findContacts (5348098493767051775) -->
-    <skip />
+    <string name="hint_findContacts" msgid="5348098493767051775">"Meklēt kontaktpersonas"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Izlase"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nav kontaktpersonu."</string>
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Dzēst bieži lietotos kontaktus"</string>
