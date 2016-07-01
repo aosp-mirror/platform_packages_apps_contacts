@@ -292,4 +292,7 @@
 
     <!-- Minimum height for group name EditText -->
     <dimen name="group_name_edit_text_min_height">48dp</dimen>
+
+    <!-- Distance to pull down before causing a refresh. -->
+    <dimen name="pull_to_refresh_distance">40dp</dimen>
 </resources>

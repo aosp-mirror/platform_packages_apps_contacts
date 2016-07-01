@@ -15,11 +15,17 @@
  */
 package com.android.contacts.list;
 
+import android.accounts.Account;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.provider.ContactsContract;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,13 +35,19 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.Experiments;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.FavoritesAndContactsLoader;
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.commonbind.experiments.Flags;
+
+import java.util.List;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
@@ -45,6 +57,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private View mSearchHeaderView;
     private View mSearchProgress;
     private TextView mSearchProgressText;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -119,6 +132,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
 
+        if (Flags.getInstance(getActivity()).getBoolean(Experiments.PULL_TO_REFRESH)) {
+            initSwipeRefreshLayout();
+
+        }
         // Putting the header view inside a container will allow us to make
         // it invisible later. See checkHeaderViewVisibility()
         FrameLayout headerContainer = new FrameLayout(inflater.getContext());
@@ -129,6 +146,62 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         mSearchProgress = getView().findViewById(R.id.search_progress);
         mSearchProgressText = (TextView) mSearchHeaderView.findViewById(R.id.totalContactsText);
+    }
+
+    private void initSwipeRefreshLayout() {
+        mSwipeRefreshLayout = (SwipeRefreshLayout) mView.findViewById(R.id.swipe_refresh);
+        if (mSwipeRefreshLayout == null) {
+            return;
+        }
+
+        mSwipeRefreshLayout.setEnabled(true);
+        // Request sync contacts
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                syncContacts(mFilter);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 3000 /* spinning time */);
+            }
+        });
+        mSwipeRefreshLayout.setColorSchemeResources(
+                R.color.swipe_refresh_color1,
+                R.color.swipe_refresh_color2,
+                R.color.swipe_refresh_color3,
+                R.color.swipe_refresh_color4);
+        mSwipeRefreshLayout.setDistanceToTriggerSync(
+                (int) getResources().getDimension(R.dimen.pull_to_refresh_distance));
+    }
+
+    /** Request sync for Google accounts(not include G+ accounts) in filter. */
+    private void syncContacts(ContactListFilter filter) {
+        if (filter == null) {
+            return;
+        }
+        final Bundle bundle = new Bundle();
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+
+        if (GoogleAccountType.ACCOUNT_TYPE.equals(filter.accountType) && filter.dataSet == null) {
+            final Account account = new Account(filter.accountName, filter.accountType);
+            ContentResolver.requestSync(account, ContactsContract.AUTHORITY, bundle);
+        } else {
+            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(
+                    getActivity()).getAccounts(/* contactsWritableOnly= */ true);
+            if (accounts != null && accounts.size() > 0) {
+                for (AccountWithDataSet account : accounts) {
+                    if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type)
+                            && filter.dataSet == null) {
+                        ContentResolver.requestSync(new Account(account.name, account.type),
+                                ContactsContract.AUTHORITY, bundle);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -178,5 +251,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 showSearchProgress(false);
             }
         }
+    }
+
+    public SwipeRefreshLayout getSwipeRefreshLayout() {
+        return mSwipeRefreshLayout;
     }
 }

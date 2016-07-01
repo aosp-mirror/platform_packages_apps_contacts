@@ -37,6 +37,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyCharacterMap;
@@ -54,6 +55,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
+import com.android.contacts.common.Experiments;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -72,6 +74,7 @@ import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
+import com.android.contacts.commonbind.experiments.Flags;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction;
@@ -1407,6 +1410,47 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                 actionBarTitle = getString(R.string.contactsList);
             }
             getSupportActionBar().setTitle(actionBarTitle);
+        }
+
+        // Determine whether the account has pullToRefresh feature
+        if (Flags.getInstance(this).getBoolean(Experiments.PULL_TO_REFRESH)) {
+            setSwipeRefreshLayoutEnabledOrNot(filter);
+        }
+    }
+
+    private void setSwipeRefreshLayoutEnabledOrNot(ContactListFilter filter) {
+        final SwipeRefreshLayout swipeRefreshLayout = mAllFragment.getSwipeRefreshLayout();
+        if (swipeRefreshLayout == null) {
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Can not load swipeRefreshLayout, swipeRefreshLayout is null");
+            }
+            return;
+        }
+        swipeRefreshLayout.setRefreshing(false);
+        swipeRefreshLayout.setEnabled(false);
+
+        if (mActionBarAdapter.isSearchMode()) {
+            return;
+        }
+
+        if (GoogleAccountType.ACCOUNT_TYPE.equals(filter.accountType) && filter.dataSet == null
+                && filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+            swipeRefreshLayout.setEnabled(true);
+            return;
+        }
+        // TODO(samchen): check against both FILTER_TYPE_ALL_ACCOUNTS and FILTER_TYPE_DEFAULT
+        if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
+                    .getAccounts(/* contactsWritableOnly */ true);
+            if (accounts != null && accounts.size() > 0) {
+                for (AccountWithDataSet account : accounts) {
+                    if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type)
+                            && filter.dataSet == null) {
+                        swipeRefreshLayout.setEnabled(true);
+                        return;
+                    }
+                }
+            }
         }
     }
 
