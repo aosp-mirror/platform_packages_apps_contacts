@@ -15,6 +15,6 @@
   ~ limitations under the License
   -->
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:src="@drawable/ic_close_black_24dp"
+    android:src="@drawable/ic_close_dk"
     android:autoMirrored="true"
     android:tint="@android:color/black" />
