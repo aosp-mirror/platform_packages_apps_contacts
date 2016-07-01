@@ -24,7 +24,7 @@
     <string name="call_mobile" msgid="8618334085824709009">"Զանգել շարժականին"</string>
     <string name="call_work" msgid="8299062439076337075">"Զանգել աշխաատավայր"</string>
     <string name="call_fax_work" msgid="3770754834467992571">"Զանգել աշխատավայրի ֆաքսին"</string>
-    <string name="call_fax_home" msgid="6219051113573396065">"Զանգել տան ֆաքսին"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Զանգել տնային ֆաքսին"</string>
     <string name="call_pager" msgid="3038080882899955112">"Զանգել փեյջերին"</string>
     <string name="call_other" msgid="4472141328347894937">"Զանգել"</string>
     <string name="call_callback" msgid="687494744634190411">"Հետզանգել"</string>
@@ -40,13 +40,12 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Զանգել աշխատավայրի փեյջերին"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Զանգել <xliff:g id="ASSISTANT">%s</xliff:g>-ին"</string>
     <string name="call_mms" msgid="8998771923464696960">"Զանգել MMS համարին"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Զանգ)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Հաղորդագրել <xliff:g id="CUSTOM">%s</xliff:g>-ին"</string>
     <string name="sms_home" msgid="7765831490534280540">"Հաղորդագրել տուն"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Հաղորդագրել բջջայինին"</string>
     <string name="sms_work" msgid="3910570578912367742">"Հաղորդագրել աշխատանքայինին"</string>
     <string name="sms_fax_work" msgid="909086167151248212">"Հաղորդագրել աշխատանքային ֆաքսի համարին"</string>
-    <string name="sms_fax_home" msgid="4145442497939634875">"Հաղորդագրել տան ֆաքսի համարին"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Հաղորդագրել տնային ֆաքսի համարին"</string>
     <string name="sms_pager" msgid="5664381349583724906">"Հաղորդագրել փեյջերին"</string>
     <string name="sms_other" msgid="910895193552957097">"Հաղորդագրել"</string>
     <string name="sms_callback" msgid="728414485478941361">"Հաղորդագրել հետզանգման համարին"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Հաղորդագրել աշխատանքային փեյջերին"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Հաղորդագրել <xliff:g id="ASSISTANT">%s</xliff:g>-ին"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Հաղորդագրել MMS համարին"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Հաղորդագրություն)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Կատարել տեսազանգ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Մաքրե՞լ հաճախակի հաղորդակցվածները"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Դուք կմաքրեք հաճախակի հաղորդակցվողների ցանկը Կոնտակտներ և Հեռախոս հավելվածներում, և ձեր էլփոստի ծրագիրը զրոյից կսովորի ձեր հասցեագրումների նախընտրությունները:"</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Կոնտակտներ"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Այլ"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Գրացուցակ"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Աշխատանքային գրացուցակ"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Աշխատանքային գրացուցակ"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Բոլոր կոնտակտները"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ես"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Որոնում..."</string>
@@ -89,22 +87,22 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Հաճախակի հաղորդակցվող"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Դիտել կոնտակտը"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Բոլոր հեռախոսահամարներով կոնտատկները"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Աշխատանքային պրոֆիլի կոնտակտներ"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Աշխատանքային պրոֆիլի կոնտակտներ"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Դիտել թարմացումները"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Միայն սարքում, չհամաժամեցված"</string>
-    <string name="nameLabelsGroup" msgid="1817502703362057154">"Անուն"</string>
-    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Մականուն"</string>
-    <string name="full_name" msgid="885420216812981202">"Անուն"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Միայն հեռախոսային, չհամաժամեցված"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Անունը"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Մականունը"</string>
+    <string name="full_name" msgid="885420216812981202">"Անունը"</string>
     <string name="name_given" msgid="4153709115654909377">"Անուն"</string>
     <string name="name_family" msgid="5317387657540738981">"Ազգանուն"</string>
-    <string name="name_prefix" msgid="8219879405071462309">"Անվան նախածանց"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Անվան նախածանցը"</string>
     <string name="name_middle" msgid="3951610314424632183">"Հայրանուն"</string>
-    <string name="name_suffix" msgid="5436984808550075931">"Անվան վերջնածանց"</string>
-    <string name="name_phonetic" msgid="2249169131785620210">"Անունը՝ տառադարձված"</string>
-    <string name="name_phonetic_given" msgid="2863316331175661852">"Անունը՝ տառադարձված"</string>
-    <string name="name_phonetic_middle" msgid="5970174427249235577">"Հայրանունը՝ տառադարձված"</string>
-    <string name="name_phonetic_family" msgid="1572398622239414464">"Ազգանունը՝ տառադարձված"</string>
-    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Հեռախոս"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Անվան վերջնածանցը"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Հնչյունաբանական անունը"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Անունը՝ տառադարձությամբ"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Հնչյունաբանական հայրանունը"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Ազգանունը՝ տառադարձությամբ"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Հեռախոսը"</string>
     <string name="emailLabelsGroup" msgid="4696310712601184208">"Էլփոստ"</string>
     <string name="postalLabelsGroup" msgid="3727124282406728557">"Հասցեն"</string>
     <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
@@ -112,10 +110,10 @@
     <string name="relationLabelsGroup" msgid="3585294036166325520">"Հարաբերություն"</string>
     <string name="eventLabelsGroup" msgid="4801419345682462171">"Հատուկ ամսաթիվ"</string>
     <string name="sms" msgid="8086289395154598654">"Տեքստային հաղորդագրություն"</string>
-    <string name="postal_address" msgid="7692926530081579786">"Հասցե"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Հասցեն"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Ընկերությունը"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Պաշտոն"</string>
-    <string name="label_notes" msgid="3997277594846722699">"Նշումներ"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Վերնագիրը"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Գրառումներ"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Վեբ-կայք"</string>
     <string name="groupsLabel" msgid="3574316547053047551">"Խմբերը"</string>
@@ -125,13 +123,13 @@
     <string name="email_other" msgid="4601881243553289615">"Էլփոստ"</string>
     <string name="email_custom" msgid="5777583741581538870">"Նամակագրել <xliff:g id="CUSTOM">%s</xliff:g>-ին"</string>
     <string name="email" msgid="5624424151176351591">"Էլփոստ"</string>
-    <string name="postal_street" msgid="881349814077356134">"Փողոց"</string>
-    <string name="postal_pobox" msgid="1799978742074885091">"Բաժանորդային արկղ"</string>
-    <string name="postal_neighborhood" msgid="3721092668038527674">"Թաղամաս"</string>
-    <string name="postal_city" msgid="3173008531169519309">"Քաղաք"</string>
-    <string name="postal_region" msgid="1695206048198921115">"Նահանգ/շրջան"</string>
-    <string name="postal_postcode" msgid="6542806670034753265">"Փոստային դասիչ"</string>
-    <string name="postal_country" msgid="3988452247038791892">"Երկիր"</string>
+    <string name="postal_street" msgid="881349814077356134">"Փողոցը"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Բաժանորդային արկղը"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Շրջակայքը"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Քաղաքը"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Նահանգը"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Փոստային կոդը"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Երկիրը"</string>
     <string name="map_home" msgid="1221397355014741634">"Դիտել տան հասցեն"</string>
     <string name="map_work" msgid="9015981646907637207">"Դիտել աշխատավայրի հասցեն"</string>
     <string name="map_other" msgid="55098598855607997">"Դիտել հասցեն"</string>
@@ -147,7 +145,7 @@
     <string name="chat" msgid="6297650784873558837">"Զրույց"</string>
     <string name="description_minus_button" msgid="2142439445814730827">"ջնջել"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Ընդարձակել կամ սեղմել անունների դաշտերը"</string>
-    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Ընդարձակել կամ կոծկել տառադարձված անվան դաշտերը"</string>
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Ընդարձակել կամ կոծկել հնչյունաբանական անվան դաշտերը"</string>
     <string name="list_filter_all_accounts" msgid="4265359896628915784">"Բոլոր կոնտակտները"</string>
     <string name="list_filter_all_starred" msgid="9060325494254507806">"Աստղանշված"</string>
     <string name="list_filter_customize" msgid="2352794292558465089">"Հարմարեցնել"</string>
@@ -187,13 +185,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Հնարավոր չէ ներմուծել մեկ կամ ավելի ֆայլեր (%s):"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g>-ի արտահանումը ավարտվեց:"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Կոնտակտների արտահանումը ավարտվեց:"</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Կոնտակտներն արտահանվեցին: Սեղմեք ծանուցումը՝ դրանք հասանելի դարձնելու համար:"</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Հպեք՝ կոնտակտները հասանելի դարձնելու համար:"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g>-ի արտահանումը չեղարկվեց:"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Կոնտակտային տվյալների արտահանում"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"Կոնտակտային տվյալներն արտահանվում են:"</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Ձեր կոնտակտային տվյալները արտահանվում են <xliff:g id="FILE_NAME">%s</xliff:g>:"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Հնարավոր չէ ստանալ տվյալների շտեմարանի տեղեկատվությունը:"</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Արտահանելի կոնտակտներ չկան: Եթե ​​դուք ձեր հեռախոսի մեջ ունեք կոնտակտներ, հնարավոր է՝ որոշ տվյալների մատակարարներ չեն թույլատրում հեռախոսից կոնտակտների արտահանումը:"</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Արտահանելի կոնտակտներ չկան: Եթե ​​դուք ձեր հեռախոսի մեջ ունեք կոնտակտներ, հնարավոր է՝ որոշ տվյալների մատակարարներ չեն թույլատրում հեռախոսից կոնտակտների արտահանումը:"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard-ի կազմիչը ճիշտ չի մեկնարկել:"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Հնարավոր չէ արտահանել"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Կոնտակտային տվյալները չեն արտահանվել:\nՊատճառը՝ «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
@@ -207,7 +203,6 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard-ի ներմուծման հայցը մերժվել է: Կրկին փորձեք ավելի ուշ:"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g>-ը կարտահանվի շուտով:"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Ֆայլը շուտով կարտահանվի:"</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Կոնտակտները շուտով կարտահանվեն:"</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard-ի արտահանման հայցը մերժվեց: Փորձեք կրկին ավելի ուշ:"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"կոնտակտ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard(եր)-ի քեշավորում ժամանակավոր պաոց: Փաստացի ներմուծումը կսկսվի շուտով:"</string>
@@ -218,21 +213,16 @@
     <string name="progress_notifier_message" msgid="359931715339778107">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>-ի ներմուծում"</string>
     <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Արտահանել .vcf ֆայլ"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Դասավորել ըստ"</string>
-    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Անունի"</string>
-    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Ազգանունի"</string>
-    <string name="display_options_view_names_as" msgid="3232196224409242435">"Անվան ձևաչափ"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Անուն"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Ազգանուն"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Անվան ձևաչափը"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Սկզբում՝ անունը"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Սկզբում՝ ազգանունը"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Կանխադրված հաշիվ նոր կոնտակտների համար"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Համաժամացնել կոնտակտի մետատվյալները [ՆԵՐՔԻՆ ՓՈՐՁԱՐԿՄԱՆ ՆՊԱՏԱԿՈՎ]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Համաժամացնել կոնտակտի մետատվյալները"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Կոնտակտի մետատվյալների համաժամացման հաշիվ"</string>
     <string name="setting_about" msgid="3926137653588942297">"Կոնտակտների մասին"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"Կարգավորումներ"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Փոխանցել տեսանելի կոնտակտները"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Չհաջողվեց համօգտագործել տեսանելի կոնտակտները:"</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Տրամադրել նախընտրած կոնտակտները"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Տրամադրել բոլոր կոնտակտները"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"Չհաջողվեց տրամադրել կոնտակտները:"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Կոնտակտների ներմուծում/արտահանում"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Ներմուծել կոնտակտներ"</string>
     <string name="share_error" msgid="665756457151793108">"Հնարավոր չէ տարածել կոնտակտը:"</string>
@@ -265,16 +255,15 @@
     <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
     <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
-      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթերցված տարր: </item>
-      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթերցված տարր: </item>
+      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթարցված տարր: </item>
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>: <xliff:g id="COUNT_3">%2$d</xliff:g> չընթարցված տարր: </item>
     </plurals>
     <string name="about_build_version" msgid="4221971683776635130">"Թողարկման տարբերակը"</string>
-    <string name="about_open_source_licenses" msgid="3224958101863814649">"Բաց կոդով ծրագրերի արտոնագրեր"</string>
-    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Բաց կոդով ծրագրային ապահովման արտոնագրերի մանրամասներ"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Բաց աղբյուրով լիցենզիաներ"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Լիցենզիայի մանրամասներ բաց աղբյուրով ծրագրային ապահովման համար"</string>
     <string name="about_privacy_policy" msgid="8458337666582973913">"Գաղտնիության քաղաքականություն"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Օգտագործման պայմաններ"</string>
-    <string name="activity_title_licenses" msgid="7812517458691564230">"Բաց կոդով ծրագրերի արտոնագրեր"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"Չհաջողվեց բացել url-ը:"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Բաց աղբյուրով լիցենզիաներ"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> հաշիվը նշվել է"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> հաշիվը չի նշվել"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Կատարել տեսազանգ"</string>

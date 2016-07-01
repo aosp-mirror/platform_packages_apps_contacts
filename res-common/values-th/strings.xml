@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"โทรเข้าเพจเจอร์ที่ทำงาน"</string>
     <string name="call_assistant" msgid="5188990854852312696">"โทรหา <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"โทรหา MMS"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (โทร)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"ส่งข้อความถึง <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"ส่งข้อความเข้าโทรศัพท์บ้าน"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"ส่งข้อความเข้ามือถือ"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"ส่งข้อความเข้าเพจเจอร์ที่ทำงาน"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"ส่งข้อความถึง <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"ส่งข้อความถึง MMS"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (ข้อความ)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"ใช้แฮงเอาท์วิดีโอ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ล้างรายชื่อที่ติดต่อบ่อยไหม"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"คุณจะล้างรายชื่อของผู้ที่ติดต่อด้วยบ่อยๆ ในแอปพลิเคชัน Contacts  และ Phone และบังคับให้แอปพลิเคชันอีเมลเรียนรู้ค่ากำหนดที่อยู่ของคุณใหม่ตั้งแต่ต้น"</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"สมุดโทรศัพท์"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"อื่นๆ"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ไดเรกทอรี"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"ไดเรกทอรีที่ทำงาน"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"ไดเรกทอรีที่ทำงาน"</string>
     <string name="local_search_label" msgid="9094584931063745728">"รายชื่อติดต่อทั้งหมด"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"ฉัน"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"กำลังค้นหา…"</string>
@@ -89,9 +87,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"ติดต่อบ่อยครั้ง"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"ดูรายชื่อติดต่อ"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"รายชื่อติดต่อทั้งหมดที่มีหมายเลขโทรศัพท์"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"รายชื่อติดต่อในโปรไฟล์งาน"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"รายชื่อติดต่อในโปรไฟล์งาน"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"ดูการอัปเดต"</string>
-    <string name="account_phone" msgid="6104157990869081962">"โทรศัพท์เท่านั้น ไม่ซิงค์"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"โทรศัพท์เท่านั้น ไม่ซิงค์"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"ชื่อ"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ชื่อเล่น"</string>
     <string name="full_name" msgid="885420216812981202">"ชื่อ"</string>
@@ -187,13 +185,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ไม่สามารถนำเข้าไฟล์ตั้งแต่หนึ่งไฟล์ขึ้นไป (%s)"</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"ส่งออก <xliff:g id="FILENAME">%s</xliff:g> เสร็จแล้ว"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"ส่งออกรายชื่อติดต่อเรียบร้อยแล้ว"</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"ส่งออกรายชื่อติดต่อเสร็จแล้ว คลิกการแจ้งเตือนเพื่อแชร์รายชื่อติดต่อ"</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"แตะเพื่อแชร์รายชื่อติดต่อ"</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"ยกเลิกการส่งออก <xliff:g id="FILENAME">%s</xliff:g> แล้ว"</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"กำลังส่งออกข้อมูลสมุดโทรศัพท์"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"กำลังส่งออกข้อมูลรายชื่อติดต่อ"</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"กำลังส่งออกข้อมูลรายชื่อติดต่อของคุณไปยัง: <xliff:g id="FILE_NAME">%s</xliff:g>"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ไม่สามารถดึงข้อมูลจากฐานข้อมูล"</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"ไม่มีรายชื่อติดต่อที่สามารถส่งออกได้ หากคุณมีรายชื่อติดต่ออยู่ในโทรศัพท์ของคุณจริงๆ อาจเป็นเพราะผู้ให้บริการข้อมูลบางรายไม่อนุญาตให้ส่งออกรายชื่อติดต่อจากโทรศัพท์"</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"ไม่มีรายชื่อติดต่อที่สามารถส่งออกได้ หากคุณมีรายชื่อติดต่ออยู่ในโทรศัพท์ของคุณจริงๆ อาจเป็นเพราะผู้ให้บริการข้อมูลบางรายไม่อนุญาตให้ส่งออกรายชื่อติดต่อจากโทรศัพท์"</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"โปรแกรมเขียนข้อความ vCard เริ่มการทำงานไม่ถูกต้อง"</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ไม่สามารถส่งออก"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"ไม่ได้ส่งออกข้อมูลรายชื่อติดต่อ\nสาเหตุ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -207,7 +203,6 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"คำขอนำเข้า vCard ถูกปฏิเสธ ลองใหม่ภายหลัง"</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"การส่งออก <xliff:g id="FILENAME">%s</xliff:g> จะเกิดขึ้นในไม่ช้า"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ระบบจะส่งออกไฟล์ในอีกสักครู่"</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"ระบบจะส่งออกรายชื่อติดต่อในไม่ช้า"</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"คำขอส่งออก vCard ถูกปฏิเสธ ลองใหม่ภายหลัง"</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"รายชื่อติดต่อ"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"กำลังแคช vCard ไปยังที่จัดเก็บข้อมูลชั่วคราวในตัวเครื่อง การนำเข้าจริงจะเริ่มต้นในอีกสักครู่"</string>
@@ -224,15 +219,10 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ชื่อขึ้นก่อน"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"นามสกุลขึ้นก่อน"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"บัญชีเริ่มต้นสำหรับรายชื่อติดต่อใหม่"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"ซิงค์ข้อมูลเมตาของรายชื่อติดต่อ [การลองใช้]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ซิงค์ข้อมูลเมตาของรายชื่อติดต่อ"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"ติดต่อบัญชีซิงค์ข้อมูลเมตา"</string>
     <string name="setting_about" msgid="3926137653588942297">"เกี่ยวกับ \"รายชื่อติดต่อ\""</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"การตั้งค่า"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"แชร์รายชื่อติดต่อที่มองเห็น"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ไม่สามารถแชร์รายชื่อติดต่อที่มองเห็นได้"</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"แชร์รายชื่อติดต่อโปรด"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"แชร์รายชื่อติดต่อทั้งหมด"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"ไม่สามารถแชร์รายชื่อติดต่อ"</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"นำเข้า/ส่งออกรายชื่อติดต่อ"</string>
     <string name="dialog_import" msgid="5177004290082451296">"นำเข้ารายชื่อติดต่อ"</string>
     <string name="share_error" msgid="665756457151793108">"ไม่สามารถแชร์รายชื่อติดต่อนี้ได้"</string>
@@ -274,7 +264,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"นโยบายส่วนบุคคล"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"ข้อกำหนดในการให้บริการ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ใบอนุญาตโอเพนซอร์ส"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"เปิด URL ไม่สำเร็จ"</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"เลือก <xliff:g id="ACCOUNT_INFO">%s</xliff:g> แล้ว"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"ไม่ได้เลือก <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"เริ่มแฮงเอาท์วิดีโอ"</string>

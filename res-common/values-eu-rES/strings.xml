@@ -40,7 +40,6 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Deitu laneko bilagailura"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Deitu <xliff:g id="ASSISTANT">%s</xliff:g> zenbakira"</string>
     <string name="call_mms" msgid="8998771923464696960">"Deitu MMS zenbakira"</string>
-    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (deitu)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Bidali testu-mezua honi: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Bidali testu-mezua etxera"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Bidali testu-mezua mugikorrera"</string>
@@ -62,7 +61,6 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Bidali testu-mezua laneko bilagailura"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Bidali testu-mezua honi: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Bidali testu-mezua MMS zenbakira"</string>
-    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (bidali SMS mezua)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Egin bideo-deia"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Sarri erabilitako kontaktuak garbitu?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Kontaktuak eta Telefonoa aplikazioetako sarri erabilitako kontaktuen zerrenda garbituko duzu; beraz, posta elektronikoaren aplikazioek helbideen hobespenak hutsetik ikasi beharko dituzte."</string>
@@ -73,7 +71,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Kontaktuak"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Beste bat"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Direktorioa"</string>
-    <string name="directory_search_label_work" msgid="7396227297795426967">"Laneko kontaktuak"</string>
+    <string name="directory_search_label_work" msgid="8927844610764999234">"Laneko kontaktuak"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Kontaktu guztiak"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Ni"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Bilatzen…"</string>
@@ -89,9 +87,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Sarri kontaktatutakoak"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Ikusi kontaktua"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Telefono-zenbakiak dituzten kontaktu guztiak"</string>
-    <string name="list_filter_phones_work" msgid="5226451114859079417">"Laneko profileko kontaktuak"</string>
+    <string name="list_filter_phones_work" msgid="484839599760375521">"Laneko profileko kontaktuak"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Ikusi berritasunak"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Telefonoan soilik, sinkronizatu gabeko"</string>
+    <string name="account_phone" product="default" msgid="6104157990869081962">"Telefonoan soilik, sinkronizatu gabe"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Izena"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Goitizena"</string>
     <string name="full_name" msgid="885420216812981202">"Izena"</string>
@@ -114,7 +112,7 @@
     <string name="sms" msgid="8086289395154598654">"Testu-mezua"</string>
     <string name="postal_address" msgid="7692926530081579786">"Helbidea"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Enpresa"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Lanpostua"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Izena"</string>
     <string name="label_notes" msgid="3997277594846722699">"Oharrak"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Webgunea"</string>
@@ -187,13 +185,11 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Ezin izan da fitxategi bat edo gehiago inportatu (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Amaitu <xliff:g id="FILENAME">%s</xliff:g> esportatzen."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Esportatu dira kontaktuak."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Esportatu dira kontaktuak. Haiek partekatzeko, sakatu jakinarazpena."</string>
-    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Sakatu kontaktuak partekatzeko."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"<xliff:g id="FILENAME">%s</xliff:g> fitxategia esportatzeari utzi zaio."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontaktatzeko datuak esportatzen"</string>
-    <string name="exporting_contact_list_message" msgid="141905615542638683">"Kontaktuen datuak esportatzen ari gara."</string>
+    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Zurekin kontaktatzeko datuak fitxategi honetara esportatzen ari dira: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Ezin izan da datu-baseko informazioa lortu."</string>
-    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Ez dago esporta daitekeen kontakturik. Telefonoan kontaktuak badituzu, baliteke datu-hornitzaileek kontaktuak telefonotik esportatzen ez uztea."</string>
+    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Ez dago esporta daitekeen kontakturik. Telefonoan kontaktuak badituzu, baliteke datu-hornitzaileek kontaktuak telefonotik esportatzen ez uztea."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard txartelen idazlea ez da behar bezala hasi."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Ezin da esportatu"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Ez dira kontaktuaren datuak esportatu.\nArrazoia: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -207,7 +203,6 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"vCard fitxategia inportatzeko eskaera ukatu da. Saiatu geroago."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> fitxategia laster esportatuko da."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Laster esportatuko da fitxategia."</string>
-    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Laster esportatuko dira kontaktuak."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"vCard fitxategia esportatzeko eskaera ukatu da. Saiatu berriro geroago."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontaktua"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard-ak aldi baterako biltegi lokalaren cachean gordetzen ari dira. Inportazioa bera laster hasiko da."</string>
@@ -224,16 +219,11 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Izena lehenengo"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Abizena lehenengo"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Kontaktu berriak gordetzeko kontu lehenetsia"</string>
-    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinkronizatu kontaktuen metadatuak [PROBAKO BERTSIOA]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinkronizatu kontaktuen metadatuak"</string>
+    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Kontaktuen metadatuen sinkronizazio-kontua"</string>
     <string name="setting_about" msgid="3926137653588942297">"Kontaktuak zerbitzuari buruz"</string>
-    <string name="activity_title_settings" msgid="3056389601004689380">"Ezarpenak"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Partekatu ikusgai dauden kontaktuak"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Ezin izan dira partekatu ikusgai dauden kontaktuak."</string>
-    <string name="share_favorite_contacts" msgid="2838432887118216222">"Partekatu gogoko kontaktuak"</string>
-    <string name="share_contacts" msgid="6404040163340914061">"Partekatu kontaktu guztiak"</string>
-    <string name="share_contacts_failure" msgid="3498837575583860197">"Ezin izan dira partekatu kontaktuak."</string>
-    <string name="dialog_import_export" msgid="1125776851100740858">"Inportatu/Esportatu kontaktuak"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Inportatu edo esportatu kontaktuak"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Inportatu kontaktuak"</string>
     <string name="share_error" msgid="665756457151793108">"Ezin da kontaktua partekatu."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Ez dago parteka daitekeen kontakturik."</string>
@@ -241,7 +231,7 @@
     <string name="menu_contacts_filter" msgid="586356478145511794">"Bistaratzeko kontaktuak"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Bistaratzeko kontaktuak"</string>
     <string name="custom_list_filter" msgid="582616656313514803">"Definitu ikuspegi pertsonalizatua"</string>
-    <string name="hint_findContacts" msgid="28151707326753522">"Bilatu kontaktuak"</string>
+    <string name="hint_findContacts" msgid="28151707326753522">"Aurkitu kontaktuak"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Gogokoak"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ez dago kontakturik."</string>
     <string name="listTotalAllContactsZeroCustom" msgid="5661794891640163617">"Ez dago ikusgai dagoen kontakturik."</string>
@@ -250,7 +240,7 @@
     <string name="menu_clear_frequents" msgid="8492322695770647639">"Garbitu sarri erabilitakoak"</string>
     <string name="menu_select_sim" msgid="7814841439832447299">"Hautatu SIM txartela"</string>
     <string name="menu_accounts" msgid="2944004960829403994">"Kudeatu kontuak"</string>
-    <string name="menu_import_export" msgid="6446229463809981669">"Inportatu/Esportatu"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Inportatu/esportatu"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"<xliff:g id="SOURCE">%1$s</xliff:g> bidez"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g>, <xliff:g id="SOURCE">%2$s</xliff:g> bidez"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"gelditu bilaketa"</string>
@@ -274,7 +264,6 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Pribatutasun-gidalerroak"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Zerbitzu-baldintzak"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Kode irekiko lizentziak"</string>
-    <string name="url_open_error_toast" msgid="7557601281695424805">"Ezin izan da ireki URLa."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> hautatuta"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> hautatu gabe"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Egin bideo-deia"</string>
