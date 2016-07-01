@@ -207,8 +207,8 @@
 
     <!-- Title for data source when creating or editing a contact that doesn't
          belong to a specific account.  This contact will only exist on the phone
-         and will not be synced. -->
-    <string name="account_phone">Phone-only, unsynced</string>
+         and will not be synced. [CHAR LIMIT=20]  -->
+    <string name="account_phone">Device</string>
 
     <!-- Header that expands to list all name types when editing a structured name of a contact
          [CHAR LIMIT=20] -->
