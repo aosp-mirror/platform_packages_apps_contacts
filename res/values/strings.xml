@@ -898,9 +898,6 @@
     <!-- Text shown in the contacts app while the background process updates contacts after a locale change [CHAR LIMIT=150]-->
     <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.\n\nPlease wait&#8230;</string>
 
-    <!-- The menu item to open blocked numbers activity [CHAR LIMIT=60]-->
-    <string name="menu_blocked_numbers">Blocked numbers</string>
-
     <!-- The menu item to open the link/merge duplicates activity. [CHAR LIMIT=20]-->
     <string name="menu_duplicates">Duplicates</string>
 
