@@ -55,6 +55,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
 
     private static final String KEY_ABOUT = "about";
     private static final String KEY_ACCOUNTS = "accounts";
+    private static final String KEY_DEFAULT_ACCOUNT = "defaultAccount";
     private static final String KEY_DISPLAY_ORDER = "displayOrder";
     private static final String KEY_IMPORT_EXPORT = "importExport";
     private static final String KEY_MY_INFO = "myInfo";
@@ -171,6 +172,10 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         mAreContactsAvailable = args.getBoolean(ARG_CONTACTS_AVAILABLE);
 
         mMyInfoPreference = findPreference(KEY_MY_INFO);
+
+        final Preference accountsPreference = findPreference(KEY_ACCOUNTS);
+        accountsPreference.setOnPreferenceClickListener(this);
+
         final Preference importExportPreference = findPreference(KEY_IMPORT_EXPORT);
         importExportPreference.setOnPreferenceClickListener(this);
 
@@ -209,7 +214,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(
                 /* contactWritableOnly */ true);
         if (accounts.isEmpty()) {
-            getPreferenceScreen().removePreference(findPreference(KEY_ACCOUNTS));
+            getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
         }
     }
 
@@ -273,6 +278,9 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
                 intent.putExtra(mNewLocalProfileExtra, true);
             }
             ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
+            return true;
+        } else if (KEY_ACCOUNTS.equals(prefKey)) {
+            ((ContactsPreferenceActivity) getActivity()).showAccountsFragment();
             return true;
         }
         return false;
