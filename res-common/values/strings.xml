@@ -601,6 +601,12 @@
     <!-- An allowable value for the "view names as" contact display option  -->
     <string name="display_options_view_family_name_first">Last name first</string>
 
+    <!--Lable of the "Accounts" in settings [CHAR LIMIT=30]-->
+    <string name="settings_accounts">Accounts</string>
+
+    <!--Lable of the "Add account" in Accounts settings [CHAR LIMIT=60]-->
+    <string name="add_account_label">Add account</string>
+
     <!--Label of the "default account" setting option to set default editor account. [CHAR LIMIT=80]-->
     <string name="default_editor_account">Default account for new contacts</string>
 
