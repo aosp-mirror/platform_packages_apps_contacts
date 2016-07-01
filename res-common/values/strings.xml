@@ -684,6 +684,9 @@
     <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
     <string name="menu_import_export">Import/export</string>
 
+    <!-- The menu item to open blocked numbers activity [CHAR LIMIT=60]-->
+    <string name="menu_blocked_numbers">Blocked numbers</string>
+
     <!-- The font-family to use for tab text.
          Do not translate. -->
     <string name="tab_font_family">sans-serif</string>
