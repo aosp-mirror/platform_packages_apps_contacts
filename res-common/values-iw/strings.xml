@@ -40,6 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"התקשר לזימונית של העבודה"</string>
     <string name="call_assistant" msgid="5188990854852312696">"התקשר אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"‏התקשר ל-MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (שיחה)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"שלח הודעת טקסט אל <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"שלח הודעת טקסט לבית"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"שלח הודעת טקסט לנייד"</string>
@@ -61,6 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"שלח הודעת טקסט לזימונית של עבודה"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"שלח הודעת טקסט אל <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"‏שלח הודעת טקסט ל-MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (הודעה)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"בצע שיחת וידאו"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"האם למחוק אנשי קשר קבועים?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"הפעולה הזו תמחק מהאפליקציות \'אנשים\' ו\'טלפון\' את רשימת אנשי הקשר שאיתם אתה יוצר קשר בתדירות גבוהה, ויהיה עליך ללמד מחדש את אפליקציות האימייל את הכתובות המועדפות עליך."</string>
@@ -71,7 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"אנשי קשר"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"אחר"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"ספריה"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"ספריית עבודה"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"ספריית עבודה"</string>
     <string name="local_search_label" msgid="9094584931063745728">"כל אנשי הקשר"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"אני"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"מחפש…"</string>
@@ -89,9 +91,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"בקשר לעתים קרובות"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"הצג איש קשר"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"כל אנשי הקשר עם מספרי טלפון"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"אנשי קשר של פרופיל עבודה"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"אנשי הקשר של פרופיל העבודה"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"הצג עדכונים"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"טלפון בלבד, לא מסונכרן"</string>
+    <string name="account_phone" msgid="6104157990869081962">"טלפון בלבד, לא מסונכרן"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"שם"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"כינוי"</string>
     <string name="full_name" msgid="885420216812981202">"שם"</string>
@@ -187,11 +189,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"‏לא ניתן היה לייבא קובץ אחד או יותר (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> הסתיים."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"ייצוא אנשי הקשר הושלם."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"יצוא אנשי הקשר הסתיים, לחץ על ההודעה כדי לשתף אנשי קשר."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"הקש כדי לשתף אנשי קשר."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> בוטל."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"מייצא נתונים של אנשי קשר"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"נתוני אנשי הקשר שלך מיוצאים אל: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"יצוא הנתונים של אנשי הקשר מתבצע כעת."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"לא ניתן היה לקבל מידע ממסד הנתונים."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"אין אנשי קשר הניתנים לייצוא. אם מוגדרים אנשי קשר בטלפון שלך, ייתכן שספקי נתונים מסוימים אינם מאפשרים ייצוא של אנשי קשר מהטלפון."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"אין אנשי קשר הניתנים לייצוא. אם מוגדרים אנשי קשר בטלפון שלך, ייתכן שספקי נתונים מסוימים אינם מאפשרים ייצוא של אנשי קשר מהטלפון."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"‏יישום יצירת ה-vCard לא הופעל כהלכה."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"לא ניתן היה לייצא"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"נתוני אנשי הקשר לא יוצאו.\nסיבה: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -205,6 +209,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"‏הבקשה לייבוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> יתבצע תוך זמן קצר."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ייצוא הקובץ יתבצע בעוד זמן קצר."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"יצוא אנשי הקשר יבוצע תוך זמן קצר."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"‏הבקשה לייצוא ה-vCard נדחתה. נסה שוב מאוחר יותר."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"איש קשר"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"‏קובצי ה-vCard נשמרים כקבצים באחסון מקומי זמני. הייבוא בפועל יחל בקרוב."</string>
@@ -221,10 +226,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"שם פרטי יופיע ראשון"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"שם משפחה יופיע ראשון"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"חשבון ברירת מחדל לאנשי קשר חדשים"</string>
-    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"חשבון לסנכרון מטא נתונים של אנשי קשר"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"שתף מטא נתונים של איש קשר [ניסוי המוצר לפני הפצה]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"שתף מטא נתונים של איש קשר"</string>
     <string name="setting_about" msgid="3926137653588942297">"מידע על אנשי קשר"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"הגדרות"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"שתף אנשי קשר שמוצגים כעת"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"שיתוף של התוכן הגלוי נכשל."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"שתף אנשי קשר מועדפים"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"שתף את כל אנשי הקשר"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"הניסיון לשתף את אנשי הקשר נכשל."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"יבא/יצא אנשי קשר"</string>
     <string name="dialog_import" msgid="5177004290082451296">"יבא אנשי קשר"</string>
     <string name="share_error" msgid="665756457151793108">"לא ניתן לשתף איש קשר זה."</string>
@@ -268,6 +278,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"מדיניות פרטיות"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"תנאים והגבלות"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"רישיונות קוד פתוח"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"לא ניתן לפתוח את כתובת האתר."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> מסומן"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> לא מסומן"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"בצע שיחת וידאו"</string>

@@ -40,6 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Ring upp jobbpersonsökare"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Ring <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Ring upp MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (ring)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Skicka SMS till <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Skicka SMS till hem"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Skicka SMS till mobil"</string>
@@ -61,6 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Skicka SMS till jobbpersonsökare"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Skicka SMS till <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Skicka SMS till MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (meddelande)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Ring videosamtal"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vill du rensa listan?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Du rensar listan över personer som du kontaktar ofta i apparna Kontakter och Telefon. E-postappar tvingas lära sig dina mottagarinställningar från början."</string>
@@ -71,7 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Kontakter"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Annan"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Katalog"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"Jobbkatalog"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Jobbkatalog"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Alla kontakter"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Jag"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Söker ..."</string>
@@ -87,9 +89,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Kontaktar ofta"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Visa kontakt"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Alla kontakter med telefonnummer"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"Kontakter i jobbprofilen"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Kontakter i jobbprofilen"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Visa uppdateringar"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Bara telefon (osynkad)"</string>
+    <string name="account_phone" msgid="6104157990869081962">"Bara telefon (osynkad)"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Namn"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Smeknamn"</string>
     <string name="full_name" msgid="885420216812981202">"Namn"</string>
@@ -185,11 +187,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"En eller flera filer kunde inte importeras (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"<xliff:g id="FILENAME">%s</xliff:g> har exporterats."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Kontakterna har exporterats."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Kontakterna har exporterats. Klicka på aviseringen om du vill dela kontakterna."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Tryck här om du vill dela kontakterna."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Exporten av <xliff:g id="FILENAME">%s</xliff:g> avbröts."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kontaktuppgifter exporteras"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Kontaktuppgifterna exporteras till: <xliff:g id="FILE_NAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Kontaktuppgifterna exporteras."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Det gick inte att hämta databasinformation."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Det finns inga kontakter att exportera. Om du har kontakter på mobilen kanske vissa dataleverantörer inte tillåter att kontakterna exporteras från mobilen."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Det finns inga kontakter att exportera. Om du har kontakter på mobilen kanske vissa dataleverantörer inte tillåter att kontakterna exporteras från mobilen."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"vCard-kompositören initierades inte korrekt."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Kunde inte exportera"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Kontaktuppgifterna exporterades inte.\nOrsak: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
@@ -203,6 +207,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Begäran om vCard-import avvisades. Försök igen vid ett senare tillfälle."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> exporteras snart."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Filen kommer snart att exporteras."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Kontakterna exporteras inom kort."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Begäran om vCard-export avvisades. Försök igen vid ett senare tillfälle."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard-fil(er) cachelagras till en lokal tillfällig lagringsenhet. Den faktiska importen börjar snart."</string>
@@ -219,10 +224,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Förnamn först"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Efternamn först"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Standardkonto för nya kontakter"</string>
-    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Kontaktmetadata för synkroniseringskonto"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Synkronisera metadata för kontakter [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Synkronisera metadata för kontakter"</string>
     <string name="setting_about" msgid="3926137653588942297">"Om Kontakter"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"Inställningar"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Dela synliga kontakter"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Det gick inte att dela synliga kontakter."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Dela favoritkontakterna"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Dela alla kontakter"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Det gick inte att dela kontakterna."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Importera/exportera kontakter"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Importera kontakter"</string>
     <string name="share_error" msgid="665756457151793108">"Den här kontakten kan inte delas."</string>
@@ -264,6 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Sekretesspolicy"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Användarvillkor"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licenser för öppen källkod"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Det gick inte att öppna webbadressen."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> har markerats"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> har inte markerats"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Ring ett videosamtal"</string>

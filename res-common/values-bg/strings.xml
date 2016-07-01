@@ -40,6 +40,7 @@
     <string name="call_work_pager" msgid="3036932765279753793">"Обаждане на служебен пейджър"</string>
     <string name="call_assistant" msgid="5188990854852312696">"Обаждане на <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="call_mms" msgid="8998771923464696960">"Обаждане на MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (обаждане)"</string>
     <string name="sms_custom" msgid="4601748252470175865">"Изпращане на SMS на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7765831490534280540">"Изпращaне на SMS на домашен"</string>
     <string name="sms_mobile" msgid="8387632124165893103">"Изпращане на SMS на мобилен"</string>
@@ -61,6 +62,7 @@
     <string name="sms_work_pager" msgid="499303540738557836">"Изпращане на SMS на служебен пейджър"</string>
     <string name="sms_assistant" msgid="2677586547377136683">"Изпращане на SMS на <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4887206338311086612">"Изпращане на SMS на MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (изпращане на съобщение)"</string>
     <string name="description_video_call" msgid="4907306403398614909">"Провеждане на видеообаждане"</string>
     <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Да се изчистят ли често търсените?"</string>
     <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Ще изчистите списъка с често търсените в приложенията Контакти и Телефон и ще принудите приложенията за имейл да научат предпочитанията ви за адресите, започвайки отначало."</string>
@@ -71,7 +73,7 @@
     <string name="contactsList" msgid="7140022347217602605">"Контакти"</string>
     <string name="local_invisible_directory" msgid="8934840494825588347">"Други"</string>
     <string name="directory_search_label" msgid="4484648822765516947">"Директория"</string>
-    <string name="directory_search_label_work" msgid="8927844610764999234">"Служебен указател"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Служебен указател"</string>
     <string name="local_search_label" msgid="9094584931063745728">"Всички контакти"</string>
     <string name="user_profile_contacts_list_header" msgid="8436133790234197565">"Аз"</string>
     <string name="search_results_searching" msgid="9022794597388306615">"Търси се…"</string>
@@ -87,9 +89,9 @@
     <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Често търсени"</string>
     <string name="description_view_contact_detail" msgid="2756753096193839285">"Преглед на контакта"</string>
     <string name="list_filter_phones" msgid="3692815632088465422">"Всички контакти с телефонни номера"</string>
-    <string name="list_filter_phones_work" msgid="484839599760375521">"Контакти в служебния потребителски профил"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Контакти в служебния потребителски профил"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Преглед на актуализациите"</string>
-    <string name="account_phone" product="default" msgid="6104157990869081962">"Само в тел., несинхрон."</string>
+    <string name="account_phone" msgid="6104157990869081962">"Само в тел., несинхрон."</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Име"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Псевдоним"</string>
     <string name="full_name" msgid="885420216812981202">"Име"</string>
@@ -112,7 +114,7 @@
     <string name="sms" msgid="8086289395154598654">"Текстово съобщение"</string>
     <string name="postal_address" msgid="7692926530081579786">"Адрес"</string>
     <string name="ghostData_company" msgid="22470841482615409">"Фирма"</string>
-    <string name="ghostData_title" msgid="6221293237772204604">"Наименование"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Длъжност"</string>
     <string name="label_notes" msgid="3997277594846722699">"Бележки"</string>
     <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="8620657380165071493">"Уебсайт"</string>
@@ -185,11 +187,13 @@
     <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Един или повече файла не можаха да бъдат импортирани (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Експортирането на „<xliff:g id="FILENAME">%s</xliff:g>“ завърши."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Експортирането на контактите завърши."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Експортирането на контактите завърши. Кликнете върху известието, за да ги споделите."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Докоснете, за да споделите контактите."</string>
     <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Експортирането на „<xliff:g id="FILENAME">%s</xliff:g>“ е анулирано."</string>
     <string name="exporting_contact_list_title" msgid="5663945499580026953">"Експортиране на данни за контакти"</string>
-    <string name="exporting_contact_list_message" msgid="3955619563572081300">"Данните за контактите ви се експортират във: „<xliff:g id="FILE_NAME">%s</xliff:g>“."</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Данните за контактите се експортират."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Информацията за базата от данни не можа да бъде получена."</string>
-    <string name="composer_has_no_exportable_contact" product="default" msgid="7063040740576745307">"Няма контакти, позволяващи експортиране. Ако в телефона си имате контакти, е възможно някои доставчици на данни да не позволяват експортирането им извън него."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Няма контакти, позволяващи експортиране. Ако в телефона си имате контакти, е възможно някои доставчици на данни да не позволяват експортирането им извън него."</string>
     <string name="composer_not_initialized" msgid="6514403866246950877">"Създателят на vCard не се стартира правилно."</string>
     <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Не се експортираха"</string>
     <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Данните за контакта не бяха експортирани.\nПричина: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
@@ -203,6 +207,7 @@
     <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Заявката за импортиране на vCard бе отхвърлена. Опитайте отново по-късно."</string>
     <string name="vcard_export_will_start_message" msgid="2168853666316526278">"„<xliff:g id="FILENAME">%s</xliff:g>“ ще се експортира скоро."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Файлът ще се експортира скоро."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Контактите ще бъдат експортирани скоро."</string>
     <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Заявката за експортиране на vCard бе отхвърлена. Опитайте отново по-късно."</string>
     <string name="vcard_unknown_filename" msgid="4832657686149881554">"контакт"</string>
     <string name="caching_vcard_message" msgid="6635485116655518520">"vCard се кешира/т във временно локално хранилище. Самото импортиране ще започне скоро."</string>
@@ -211,7 +216,7 @@
     <string name="confirm_export_title" msgid="3240899428149018226">"Да се експортират ли контактите?"</string>
     <string name="caching_vcard_title" msgid="9185299351381102305">"Кешира се"</string>
     <string name="progress_notifier_message" msgid="359931715339778107">"Импортира/т се <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Експорт. като .vcf файл"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Експортиране като .vcf файл"</string>
     <string name="display_options_sort_list_by" msgid="8635268562263708102">"Сортиране по"</string>
     <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Собствено име"</string>
     <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Фамилно име"</string>
@@ -219,10 +224,15 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Първо собственото име"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Първо фамилното име"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Стандартен профил за новите контакти"</string>
-    <string name="contact_metadata_sync_account" msgid="1787463969598716702">"Профил за синхронизиране на метаданните на контактите"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Синхронизиране на метаданните за контактите [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Синхронизиране на метаданните за контактите"</string>
     <string name="setting_about" msgid="3926137653588942297">"Всичко за Контакти"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"Настройки"</string>
     <string name="share_visible_contacts" msgid="2150662668080757107">"Споделяне на видимите контакти"</string>
     <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Споделянето на видимите контакти не бе успешно."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Споделяне на любимите контакти"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Споделяне на всички контакти"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Споделянето на контактите не бе успешно."</string>
     <string name="dialog_import_export" msgid="1125776851100740858">"Импортиране/eкспортиране на контакти"</string>
     <string name="dialog_import" msgid="5177004290082451296">"Импортиране на контактите"</string>
     <string name="share_error" msgid="665756457151793108">"Този контакт не може да бъде споделен."</string>
@@ -264,6 +274,7 @@
     <string name="about_privacy_policy" msgid="8458337666582973913">"Декларация за поверителност"</string>
     <string name="about_terms_of_service" msgid="628537491496465267">"Общи условия"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Лицензи за отворен код"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Отварянето на URL адреса не бе успешно."</string>
     <string name="account_filter_view_checked" msgid="4368757211136754319">"За <xliff:g id="ACCOUNT_INFO">%s</xliff:g> е поставена отметка"</string>
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"За <xliff:g id="ACCOUNT_INFO">%s</xliff:g> не е поставена отметка"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Извършване на видеообаждане"</string>
