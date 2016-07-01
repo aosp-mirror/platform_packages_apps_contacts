@@ -24,10 +24,6 @@
             android:icon="@drawable/ic_menu_filter"
             android:title="@string/contactsList" />
         <item
-            android:id="@+id/nav_blocked_numbers"
-            android:icon="@drawable/ic_menu_blocked_numbers"
-            android:title="@string/menu_blocked_numbers"/>
-        <item
             android:id="@+id/nav_find_duplicates"
             android:icon="@drawable/ic_menu_duplicates"
             android:title="@string/menu_duplicates"/>

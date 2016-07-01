@@ -31,7 +31,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.telecom.TelecomManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,9 +40,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.compat.BlockedNumberContractCompat;
 import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.preference.ContactsPreferenceActivity;
@@ -59,7 +56,6 @@ import com.android.contacts.group.GroupsFragment.GroupsListener;
 import com.android.contacts.interactions.AccountFiltersFragment;
 import com.android.contacts.interactions.AccountFiltersFragment.AccountFiltersListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
-import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contactsbind.Assistants;
 import com.android.contactsbind.HelpUtils;
 
@@ -168,14 +164,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
         final MenuItem allContacts = menu.findItem(R.id.nav_all_contacts);
         mIdMenuMap.put(R.id.nav_all_contacts, allContacts);
-
-        final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this)
-                && ContactsUtils.FLAG_N_FEATURE
-                && BlockedNumberContractCompat.canCurrentUserBlockNumbers(this);
-
-        if (!showBlockedNumbers) {
-            menu.removeItem(R.id.nav_blocked_numbers);
-        }
 
         if (Assistants.getDuplicatesActivityIntent(this) == null) {
             menu.removeItem(R.id.nav_find_duplicates);
@@ -440,10 +428,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     HelpUtils.launchHelpAndFeedbackForMainScreen(ContactsDrawerActivity.this);
                 } else if (id == R.id.nav_all_contacts) {
                     switchToAllContacts();
-                } else if (id == R.id.nav_blocked_numbers) {
-                    final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
-                            (TelecomManager) getSystemService(Context.TELECOM_SERVICE));
-                    startActivity(intent);
                 } else if (id == R.id.nav_find_duplicates) {
                     launchFindDuplicates();
                 } else if (item.getIntent() != null) {
