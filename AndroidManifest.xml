@@ -63,7 +63,7 @@
         <activity android:name=".activities.PeopleActivity"
             android:label="@string/launcherActivityLabel"
             android:theme="@style/PeopleActivityTheme"
-            android:clearTaskOnLaunch="true"
+            android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
             android:resizeableActivity="true"
         >
