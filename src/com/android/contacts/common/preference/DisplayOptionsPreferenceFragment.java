@@ -31,8 +31,14 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Profile;
+import android.telecom.TelecomManager;
+import android.telephony.TelephonyManager;
 
+import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.R;
+import com.android.contacts.common.compat.BlockedNumberContractCompat;
+import com.android.contacts.common.compat.TelecomManagerUtil;
+import com.android.contacts.common.compat.TelephonyManagerCompat;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -56,6 +62,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     private static final String KEY_ABOUT = "about";
     private static final String KEY_ACCOUNTS = "accounts";
     private static final String KEY_DEFAULT_ACCOUNT = "defaultAccount";
+    private static final String KEY_BLOCKED_NUMBERS = "blockedNumbers";
     private static final String KEY_DISPLAY_ORDER = "displayOrder";
     private static final String KEY_IMPORT_EXPORT = "importExport";
     private static final String KEY_MY_INFO = "myInfo";
@@ -179,6 +186,11 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         final Preference importExportPreference = findPreference(KEY_IMPORT_EXPORT);
         importExportPreference.setOnPreferenceClickListener(this);
 
+        final Preference blockedNumbersPreference = findPreference(KEY_BLOCKED_NUMBERS);
+        if (blockedNumbersPreference != null) {
+            blockedNumbersPreference.setOnPreferenceClickListener(this);
+        }
+
         final Preference aboutPreference = findPreference(KEY_ABOUT);
         aboutPreference.setOnPreferenceClickListener(this);
     }
@@ -215,6 +227,14 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
                 /* contactWritableOnly */ true);
         if (accounts.isEmpty()) {
             getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
+        }
+
+        final boolean isPhone = TelephonyManagerCompat.isVoiceCapable(
+                (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE));
+        final boolean showBlockedNumbers = isPhone && ContactsUtils.FLAG_N_FEATURE
+                && BlockedNumberContractCompat.canCurrentUserBlockNumbers(getContext());
+        if (!showBlockedNumbers) {
+            getPreferenceScreen().removePreference(findPreference(KEY_BLOCKED_NUMBERS));
         }
     }
 
@@ -281,6 +301,11 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             return true;
         } else if (KEY_ACCOUNTS.equals(prefKey)) {
             ((ContactsPreferenceActivity) getActivity()).showAccountsFragment();
+            return true;
+        } else if (KEY_BLOCKED_NUMBERS.equals(prefKey)) {
+            final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
+                    (TelecomManager) getContext().getSystemService(Context.TELECOM_SERVICE));
+            startActivity(intent);
             return true;
         }
         return false;
