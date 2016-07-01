@@ -160,7 +160,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Verbindung hinzufügen"</string>
     <string name="recent" msgid="2659189233141493004">"Neueste Nachrichten"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Neueste Updates"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-Kontakt"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> Kontakt"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-Konto"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"Als Standard festlegen"</string>
     <string name="clear_default" msgid="7193185801596678067">"Als Standard löschen"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text kopiert"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Sollen die Änderungen verworfen werden?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Verwerfen"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Möchtest du die Änderungen verwerfen und den Bearbeitungsmodus beenden?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Verwerfen"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Bearbeitung fortsetzen"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Mein Profil einrichten"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Namen der Person eingeben"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Mein lokales Profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mein <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-Profil"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle Kontakte werden angezeigt."</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Die App \"Kontakte\" funktioniert am besten mit einem Google-Konto.\n\n• Du kannst über alle Webbrowser darauf zugreifen.\n• Sichere und schütze deine Kontakte."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Synchronisierung mit einem Online-Service: Deine Kontakte sind dann auch sicher, wenn du dein Telefon verlierst."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto hinzufügen"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Dein neuer Kontakt wird nicht gesichert. Konto für die Online-Sicherung von Kontakten hinzufügen?"</string>
@@ -265,7 +265,7 @@
     <string name="date_time_set" msgid="4761419824439606690">"Festlegen"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"Chat"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organisation"</string>
-    <string name="header_nickname_entry" msgid="6743561883967451485">"Nickname"</string>
+    <string name="header_nickname_entry" msgid="6743561883967451485">"Alias"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"Notiz"</string>
     <string name="header_website_entry" msgid="1411467850000824745">"Website"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Termin"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto aus unbekanntem Konto nicht ausgewählt"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto aus unbekanntem Konto ausgewählt"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Die Kontaktliste wird an die geänderte Sprache angepasst.\n\nBitte warten..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Nummer hinzufügen"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Nummer blockieren"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Nummer hinzufügen oder in Kontakten suchen"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Blockierung von <xliff:g id="NUMBER">%1$s</xliff:g> aufheben?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"BLOCKIERUNG AUFHEBEN"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> blockieren?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"BLOCKIEREN"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> blockiert"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"Blockierung von <xliff:g id="NUMBER">%1$s</xliff:g> aufgehoben"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> ist ungültig."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Anrufblockierung vorübergehend aus"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Die Anrufblockierung wurde deaktiviert, weil du innerhalb der letzten 48 Stunden mit diesem Telefon den Notruf gewählt hast. Nach Ablauf dieser 48-Stunden-Frist wird die Blockierung automatisch wieder aktiviert."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Importieren"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Nummern anzeigen"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Nummer hinzufügen"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Anrufblockierung für 48 Stunden deaktiviert"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Deaktiviert, da ein Notruf getätigt wurde."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"Rückgängig"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ist bereits blockiert."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Blockierung der Nummer aufheben"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Kontaktdetails für <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Import fehlgeschlagen"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Nummern importieren"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Aktiviere die Berechtigungen \"Kontakte\", um deine Kontakte zu suchen."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Aktivieren"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blockierte Nummern"</string>
 </resources>

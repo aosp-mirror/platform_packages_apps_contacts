@@ -49,7 +49,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"編輯"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"刪除"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"變更相片"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主畫面上"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主畫面"</string>
     <string name="menu_call" msgid="3992595586042260618">"致電聯絡人"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"解除連結"</string>
@@ -66,7 +66,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"連結"</string>
     <string name="menu_save" msgid="1727844363591825909">"儲存"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"連結聯絡人"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"選擇您想與<xliff:g id="NAME">%s</xliff:g>連結的聯絡人："</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"選擇要連結至<xliff:g id="NAME">%s</xliff:g>的聯絡人："</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"顯示所有聯絡人"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建議的聯絡人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
@@ -136,7 +136,7 @@
       <item quantity="one">找到 1 位聯絡人</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="5948889261993124839">"全部"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"最愛聯絡人"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"常用聯絡人"</string>
     <string name="callBack" msgid="5498224409038809224">"回撥電話"</string>
     <string name="callAgain" msgid="3197312117049874778">"重撥"</string>
     <string name="returnCall" msgid="8171961914203617813">"回覆來電"</string>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"設為預設"</string>
     <string name="clear_default" msgid="7193185801596678067">"清除預設值"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"文字已複製"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"要丟棄更改嗎？"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"捨棄"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"要捨棄變更並停止編輯嗎？"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"捨棄"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"繼續編輯"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"設定我的個人資料"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"輸入聯絡人名字"</string>
@@ -235,10 +236,9 @@
     <string name="local_profile_title" msgid="2021416826991393684">"我的本機個人資料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 個人資料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"聯絡人與 Google 帳戶搭配使用的效能更卓越。\n\n• 透過任何網絡瀏覽器皆可存取。\n• 安全備份您的聯絡人。"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使丟失手機，也要確保通訊錄安全：與網上服務保持同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"新增帳戶"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"您的新聯絡人資料不會備份。要新增可在網上備份聯絡人資料的帳戶嗎？"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"系統不會備份您的新聯絡人資料。要新增帳戶，在網上備份聯絡人資料嗎？"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"新聯絡人將會儲存至 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"為新聯絡人選擇預設帳戶："</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增聯絡人"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"未勾選不明帳戶中的相片"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"已勾選不明帳戶中的相片"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"正在更新聯絡人清單以反映語言變更。\n\n請稍候…"</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"新增電話號碼"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"封鎖號碼"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"新增號碼或搜尋聯絡人"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"要解除封鎖 <xliff:g id="NUMBER">%1$s</xliff:g> 嗎？"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"解除封鎖"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"要封鎖 <xliff:g id="NUMBER">%1$s</xliff:g> 嗎？"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"封鎖"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"已封鎖 <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"已解除封鎖 <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> 無效。"</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"暫時關閉來電封鎖功能"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"您在過去 48 小時內曾經使用此手機聯絡緊急服務，因此來電封鎖功能已停用。系統會在 48 小時期限結束後自動重新啟用功能。"</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"匯入"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"查看電話號碼"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"新增電話號碼"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"已停用來電封鎖 (48 小時)"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"已撥打緊急電話，已停用來電封鎖功能。"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"復原"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"已封鎖 <xliff:g id="NUMBER">%1$s</xliff:g>。"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"解除封鎖號碼"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"「<xliff:g id="NAMEORNUMBER">%1$s</xliff:g>」的聯絡人詳細資料"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"匯入失敗"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"匯入號碼"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"如要搜尋聯絡人，請開啟「通訊錄」權限。"</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"開放權限"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"已封鎖的號碼"</string>
 </resources>

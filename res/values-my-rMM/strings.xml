@@ -48,7 +48,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"အကြိုက်ဆုံးများ ထဲကို ထည့်ပြီး"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"ပြင်ဆင်ရန်"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ဖျက်ရန်"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"ဓာတ်ပုံ ပြောင်းလဲ"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"ဓာတ်ပုံပြောင်းရန်"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ပင်မစာမျက်နှာတွင် တင်ထားပါ"</string>
     <string name="menu_call" msgid="3992595586042260618">"အဆက်အသွယ်ကို ခေါ်ပါ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"အဆက်အသွယ်ကို စာတိုပို့ရန်"</string>
@@ -65,8 +65,8 @@
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"သိမ်းထားလျက် ချိတ်ဆက်ပေးပါ"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"လင့်ခ်"</string>
     <string name="menu_save" msgid="1727844363591825909">"သိမ်းဆည်းရန်"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"အဆက်အသွယ်များကို ကွင်းဆက်ချိတ်ပါ"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> နှင့်ကွင်းဆက်ချိတ်လိုသည့် အဆက်အသွယ်ကိုရွေးပါ −"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"အဆက်အသွယ်များ ချိတ်ဆက်ရန်"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> နှင့်ချိတ်လိုသည့် အဆက်အသွယ်ကို ရွေးပါ −"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"အဆက်အသွယ်များအားလုံးအားပြပါ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"အကြုံပြုလိုသော အဆက်အသွယ်များ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"လိပ်စာများအားလုံး"</string>
@@ -145,14 +145,14 @@
     <string name="description_plus_button" msgid="515164827856229880">"အပေါင်း"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ၏ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> လိပ်စာ"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"အဆက်အသွယ်များ၏နာမည်များ"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အပလီကေးရှင်း မရှိပါ။"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အက်ပ် မရှိပါ။"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ယခင် မျက်နှာပြင်သို့ ပြန်ရန် ကလစ်ပါ"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်း နံပါတ် ထည့်ရန်"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်းနံပါတ် ထည့်ပါ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"အီးမေးလ် ထည့်ရန်"</string>
-    <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အပလီကေးရှင်း မရှိပါ။"</string>
+    <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အက်ပ် မရှိပါ။"</string>
     <string name="menu_share" msgid="943789700636542260">"မျှဝေခြင်း"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"အဆက်အသွယ်များ ထဲသို့ ထည့်ရန်"</string>
-    <string name="share_via" msgid="563121028023030093">"မှ အဆယ်အသွယ်အား မျှဝေခြင်း"</string>
+    <string name="share_via" msgid="563121028023030093">"အောက်ပါတို့မှတဆင့် အဆယ်အသွယ်ကို မျှဝေသည်"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"အကောင့်အောက်မှာ အုပ်စုပြုလုပ်ပါ"</string>
     <string name="audio_chat" msgid="2535716629358298691">"အသံဖြင့် ချက်တင်း"</string>
     <string name="video_chat" msgid="1872255818640336072">"ဗီဒီယိုဖြင့်စကားပြောခြင်း"</string>
@@ -192,7 +192,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"မိမိစိတ်ကြိုက်"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"အပြင်အဆင်များ"</string>
     <string name="menu_settings" msgid="377929915873428211">"အပြင်အဆင်များ"</string>
-    <string name="menu_help" msgid="1680178646764069976">"အကူအညီ &amp;amp၊ တုံ့ပြန်ချက်"</string>
+    <string name="menu_help" msgid="1680178646764069976">"အကူအညီနှင့် အကြံပြုချက်"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ပြသမှုအတွက်ရွေးစရာများ"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"ဖုန်းနံပါတ်"</string>
@@ -204,8 +204,8 @@
     <string name="social_widget_label" msgid="6378905543028924592">"အဆက်အသွယ်"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ဖွင့်နေစဉ်…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"အဆက်အသွယ်သစ်တစ်ခု ပြုလုပ်ပါ"</string>
-    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"အကောင့် ထည့်ရန်"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"အဆက်အသွယ်များ တင်သွင်းပါ"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"အကောင့်ထည့်ရန်"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"အဆက်အသွယ်များ သွင်းပါ"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"အုပ်စုသစ်ပြုလုပ်ရန်"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"အုပ်စုအသစ်ပြုလုပ်ရန်"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
@@ -226,32 +226,32 @@
     <string name="set_default" msgid="4417505153468300351">"ပုံသေအဖြစ် သတ်မှတ်ခြင်း"</string>
     <string name="clear_default" msgid="7193185801596678067">"မူရင်းများကို ရှင်းလင်းခြင်း"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"စာသားကူးယူပြီး"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"ပြင်မှုများအား စွန့်ပစ်မလား"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"စွန့်ပစ်ပါ"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"သင့်ပြောင်းလဲမှုများကို စွန့်ပစ်ပြီး တည်းဖြတ်မှုကို ရပ်မလား။"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"စွန့်ပစ်ရန်"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"ဆက်လက်တည်းဖြတ်ပါ"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"မိမိကိုယ်ရေးအကောင့်အား ပြုလုပ်ရန်"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"မိမိပရိုဖိုင်းအား သတ်မှတ်ရန်"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"လူနာမည်ရိုက်ထည့်ပါ"</string>
-    <string name="group_name_hint" msgid="238359485263401293">"အုပ်စု၏နာမည်"</string>
+    <string name="group_name_hint" msgid="238359485263401293">"အုပ်စု၏အမည်"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"မိမိ၏ဖုန်းမှပရိုဖိုင်လ်"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ကျွန်ုပ်၏ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ကိုယ်ရေးအကောင့်"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"အဆက်အသွယ်အားလုံးအားပြနေစဉ်"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"အဆက်အသွယ်များ၏ အလုပ်မှာ Google အကောင့်နှင့် ပိုအဆင်ပြေသည်။\n\n• မည်သည့် ဝက်ဘ် ဘရောင်ဇာဖြင့် မဆို ချဉ်းကပ်ပါ။\n• သင်၏ အဆက်အသွယ်များကို စိတ်ချရစွာ ဘက်အာပ် လုပ်ထားပါ။"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"အွန်လိုင်း ဝန်ဆောင်မှုဖြင့် ထပ်တူကျအောင် ပြုလုပ်ထားခြင်းအားဖြင့် ဖုန်းပျောက်သွားသည့်တိုင်အောင် အဆက်အသွယ်များအား လုံခြုံစွာ သိမ်းထားနိုင်ပါသည်"</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"အကောင့် ထပ်ဖြည့်ပါ"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"သင့် အဆက်အသွယ်အသစ်ကို အရံသိမ်းဆည်းထားခြင်း မရှိပါ။ အဆယ်အသွယ်များကို အွန်လိုင်းပေါ်မှာ အရံသိမ်းဆည်းပေးရန် အကောင့်သစ် ထပ်ထည့်ချင်ပါသလား"</string>
+    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"အကောင့်တစ်ခုထည့်ပါ"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"သင်၏အဆက်အသွယ်အသစ်ကို မိတ္တူကူးမထားပါ။ အဆယ်အသွယ်များကို အွန်လိုင်းတွင် ကူးထားရန် အကောင့်သစ် ထပ်ထည့်ချင်ပါသလား။"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"အဆက်အသွယ် အသစ်ကို <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> တွင်သိမ်းလိုက်ပါမည်။"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"အဆက်အသွယ် အသစ်များအတွက် မူရင်းအကောင့်ကို ရွေးပါ။"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"အဆက်အသွယ်သစ် ထည့်မည်"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"အဆက်အသွယ်အားပြင်ရန်"</string>
     <string name="keep_local" msgid="1258761699192993322">"ဖုန်းထဲတွင်သာသိမ်းပါ"</string>
-    <string name="add_account" msgid="8201790677994503186">"အကောင့်ထပ်ထည့်ရန်"</string>
+    <string name="add_account" msgid="8201790677994503186">"အကောင့်ထည့်ရန်"</string>
     <string name="add_new_account" msgid="5748627740680940264">"အကောင့်အသစ်ထည့်ပါ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ဒေ့ဘာဘေ့စ်ဖိုင်များကို အပြင်သို့ထုတ်ပါ"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"အဆက်အသွယ် အသစ်ကို ထည့်ရန်"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"ပိုပြီး ကြည့်ရန်"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"လျှော့ပြီး ကြည့်ရန်"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"အားလုံးကို ကြည့်ရန်"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"မကြာမီတုန်းက"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"မကြာမီက"</string>
     <string name="about_card_title" msgid="2920942314212825637">"အကြောင်း"</string>
     <string name="send_message" msgid="8938418965550543196">"စာတို ပို့ရန်"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"ကိုယ်ပိုင် ကော်ပီကို ဖန်တီးနေ..."</string>
@@ -286,7 +286,7 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"သင်: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"အီးမေးအကွက် သို့မဟုတ် ဖုန်းနံပါတ် အကွက်တွင် တစ်ခြားသူ၏ Hangouts  အမှတ်သညာအား သင်ရိုက်ထည့်သည့်အခါ Hangouts ပိုမိုလွယ်ကူကောင်းမွန်စွာ အလုပ်လုပ်သည်။"</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"နောက်ထပ် အကွက်များ"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ဓာတ်ပုံ ပြောင်းလဲ"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ဓာတ်ပုံပြောင်းရန်"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"တည်းဖြတ်သူကို ဖွင့်ခြင်းမအောင်မြင်ပါ။"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"သိမ်းဆည်းရန်နေရာ"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"လောလောဆယ်မှာ <xliff:g id="ACCOUNT_NAME">%s</xliff:g>သို့ သိမ်းဆည်းနေသည်။ အခြားအကောင့်ကို ရွေးရန် နှစ်ကြိမ် တို့ပါ။"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"အမည်မသိအကောင့်မှ ဓာတ်ပုံဓာတ်ပုံ မစစ်ဆေးရသေးပါ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"အမည်မသိအကောင့်မှ ဓာတ်ပုံ စစ်ဆေးပြီးပါပြီ"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ဆက်သွယ်ရန် စာရင်းကို ဘာသာစကားဆိုင်ရာ အပြောင်းအလဲအား ထင်ဟပ်ပေးရန် အပ်ဒိတ် လုပ်ပေးနေပါသည်။ \n\nခဏစောင့်ပါ..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"နံပါတ် ထည့်သွင်းပါ"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"နံပါတ်ကို ပိတ်ဆို့ရန်"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"နံပါတ်ပေါင်းထည့်ပါ သို့မဟုတ် အဆက်အသွယ်များ ရှာဖွေပါ"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> အား ပိတ်ဆို့မှု ဖယ်ရှားလိုက်ရမလား။"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ပိတ်ဆို့ခြင်းမှ ဖယ်ရှားပါ"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g>ကို ပိတ်ဆို့မလား။"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"ပိတ်ဆို့ပါ"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> ကိုပိတ်ဆို့လိုက်ပါပြီ"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> ကိုပိတ်ဆို့ခြင်းမှ ဖယ်ရှားလိုက်ပါပြီ"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> သည်တရားမဝင်ပါ။"</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"ခေါ်ဆိုမှုပိတ်ဆို့ခြင်း ယာယီပိတ်ထားသည်"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"သင်သည် လွန်ခဲ့သည့် ၄၈ နာရီအတွင်း ဤဖုန်းဖြင့် အရေးပေါ်ဌာနကိုဖုန်း ခေါ်ဆိုခဲ့သောကြောင့် ခေါ်ဆိုမှုပိတ်ဆို့ခြင်းကို ဖြုတ်ထားသည်။ ၄၈ နာရီကျော်လွန်သည်နှင့် ၎င်းကိုအလိုအလျောက် ပြန်ဖွင့်ပေးပါမည်။"</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"တင်သွင်းရန်"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"နံပါတ်များကို ကြည့်ရန်"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"နံပါတ် ထည့်သွင်းပါ"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"ခေါ်ဆိုမှုပိတ်ဆို့ခြင်းကို ၄၈ နာရီပိတ်ထားသည်"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"အရေးပေါ်ခေါ်ဆိုမှု ပြုလုပ်ခဲ့သည့်အတွက် ပိတ်ထားပါသည်။"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"နောက်ပြန်လုပ်ပါ"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> အားပိတ်ဆို့ထားပြီးပါပြီ။"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"နံပါတ်ကို ဖွင့်မည်"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> ရဲ့ အဆက်အသွယ် အသေးစိတ်"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"တင်သွင်းမှု မအောင်မြင်ပါ"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"နံပါတ်များ သွင်းရန်"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"သင့်အဆက်အသွယ်များကို ရှာဖွေရန်၊ အဆက်အသွယ်ခွင့်ပြုချက်များကို ဖွင့်ပါ။"</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"ဖွင့်ထားရန်"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ပိတ်ဆို့ထားသည့် နံပါတ်များ"</string>
 </resources>

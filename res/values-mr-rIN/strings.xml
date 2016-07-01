@@ -63,9 +63,9 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"जतन करा आणि दुवा रद्द करा"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"आपण आधीपासून केलेले बदल आपण जतन करू आणि निवडलेल्या संपर्काशी दुवा जोडू इच्छिता?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"जतन करा आणि दुवा जोडा"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"दुवा"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"दुवा साधा"</string>
     <string name="menu_save" msgid="1727844363591825909">"जतन करा"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"संपर्कांचा दुवा जोडा"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"संपर्कांचा दुवा साधा"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"आपण <xliff:g id="NAME">%s</xliff:g> सह ज्या संपर्काचा दुवा जोडू इच्छिता तो निवडा:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सर्व संपर्क दर्शवा"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"सूचित संपर्क"</string>
@@ -76,13 +76,13 @@
       <item quantity="other">संपर्क हटविले</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिंगटोन सेट करा"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"व्हॉइसमेलवरील सर्व कॉल"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"सर्व कॉल व्हॉइसमेलवर"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"आपल्‍या केवळ-वाचनीय खात्यांमधील संपर्क हटविले जाऊ शकत नाहीत परंतु ते लपविले जाऊ शकतात."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"लपवा"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"जो संपर्क हटवायचा आहे त्यामध्‍ये एकाधिक खात्यांमधील तपशील आहेत. केवळ-वाचनीय खात्यांमधील तपशील लपविले जातील, हटविले जाणार नाहीत."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"दुवा साधण्‍यासाठी आपण कमीतकमी दोन संपर्क निवडलेले असणे आवश्‍यक आहे."</string>
     <string name="batch_link_confirmation" msgid="5845237114309114908">"निवडलेल्या संपर्कांचा दुवा जोडायचा?"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"दुवा"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"दुवा साधा"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"हा संपर्क हटवायचा?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"निवडलेले संपर्क हटवायचे?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"आपल्‍या केवळ-वाचनीय खात्यांमधील संपर्क हटविले जाऊ शकत नाहीत परंतु ते लपविले जाऊ शकतात."</string>
@@ -193,7 +193,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिंग्ज"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिंग्ज"</string>
     <string name="menu_help" msgid="1680178646764069976">"मदत आणि अभिप्राय"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"पर्याय प्रदर्शित करा"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"प्रदर्शन पर्याय"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"फोन नंबर"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"संपर्कांमध्ये जोडा"</string>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"डीफॉल्ट म्हणून सेट करा"</string>
     <string name="clear_default" msgid="7193185801596678067">"डीफॉल्ट साफ करा"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"मजकूर कॉपी केला"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"आपले बदल टाकून द्यायचे?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"टाकून द्या"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"आपले बदल टाकून देऊन संपादन सोडायचे?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"टाकून द्या"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"संपादन करणे सुरु ठेवा"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"माझे प्रोफाईल सेट करा"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"व्‍यक्तीचे नाव टाईप करा"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"माझे स्थानिक प्रोफाइल"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"माझे <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफाईल"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सर्व संपर्क प्रदर्शित करीत आहे"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"संपर्क Google खात्‍यासह अधिक चांगले कार्य करतात.\n\n• कोणत्‍याही वेब ब्राउझर वरून प्रवेश करा.\n• आपल्‍या संपर्कांचा सुरक्षितपणे बॅक अप घ्‍या."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"आपण आपला फोन गमावला तरीही आपले संपर्क सुरक्षित ठेवा: ऑनलाइन सेवेसह संकालित करा."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"खाते जोडा"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"आपल्‍या नवीन संपर्काचा बॅकअप घेतला जाणार नाही. संपर्कांचे ऑनलाइन बॅकअप घेणारे खाते जोडायचे?"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"अज्ञात खात्यामधील फोटो चेक केला नाही"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"अज्ञात खात्यामधील फोटो चेक केला"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"भाषेचे बदल प्रतिबिंबित करण्यासाठी संपर्क सूची अद्यतनित केली जात आहे. \n\nकृपया प्रतीक्षा करा..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"नंबर जोडा"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"नंबर अवरोधित करा"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"नंबर जोडा किंवा संपर्क शोधा"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> ला अनावरोधित करायचे?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"अनावरोधित करा"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> अवरोधित करायचा?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"अवरोधित करा"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> अवरोधित केला"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> अनावरोधित केला"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> अवैध आहे."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"कॉल अवरोधित करणे तात्पुरते बंद"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"आपण मागील 48 तासात या फोनवरून आणीबाणी सेवांशी संपर्क साधला असल्याने कॉल अवरोधित करणे अक्षम केले गेले आहे. एकदा 48 तासांचा कालावधी कालबाह्य झाला की ते स्वयंचलितपणे पुन्हा सक्षम केले जाईल."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"आयात करा"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"नंबर पहा"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"नंबर जोडा"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"कॉल अवरोधित करणे 48 तासांसाठी अक्षम केले"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"एक आणीबाणीचा कॉल केल्‍याने अक्षम केले."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"पूर्ववत करा"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> आधीच अवरोधित केलेला आहे."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"नंबर अनावरोधित करा"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> साठी संपर्क तपशील"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"आयात अयशस्वी झाले"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"नंबर अायात करा"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"आपले संपर्क शोधण्‍यासाठी, संपर्क परवानग्या चालू करा."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"चालू करा"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"अवरोधित केलेले नंबर"</string>
 </resources>

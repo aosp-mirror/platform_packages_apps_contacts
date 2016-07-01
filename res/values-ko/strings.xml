@@ -130,7 +130,7 @@
       <item quantity="other">연락처 <xliff:g id="COUNT">%d</xliff:g>개</item>
       <item quantity="one">연락처 1개</item>
     </plurals>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"주소록 없음"</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"연락처 없음"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
       <item quantity="other">연락처 <xliff:g id="COUNT">%d</xliff:g>개</item>
       <item quantity="one">연락처 1개</item>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"기본으로 설정"</string>
     <string name="clear_default" msgid="7193185801596678067">"기본 설정 지우기"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"텍스트 복사됨"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"변경사항을 삭제하시겠습니까?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"삭제"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"변경사항을 취소하고 수정을 중단하시겠습니까?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"취소"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"계속 수정"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"내 프로필 설정"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"이름 입력"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"내 로컬 프로필"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"내 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 프로필"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"모든 연락처 표시"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"주소록은 Google 계정에서 사용할 때 더 효과적입니다.\n\n• 어떤 웹 브라우저에서든 액세스할 수 있습니다.\n• 주소록을 안전하게 백업할 수 있습니다."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"온라인 서비스와 동기화되므로 휴대전화를 잃어버려도 주소록을 안전하게 유지할 수 있습니다."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"계정 추가"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"새 연락처는 백업되지 않습니다. 온라인에 주소록을 백업할 계정을 추가하시겠습니까?"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"알 수 없는 계정의 사진이 선택되지 않음"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"알 수 없는 계정의 사진이 선택됨"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"변경된 언어를 반영하도록 연락처 목록을 업데이트하는 중입니다.\n\n잠시 기다려 주세요."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"번호 추가"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"번호 차단"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"번호 추가 또는 연락처 검색"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g>번을 차단 해제할까요?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"차단 해제"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g>번을 차단할까요?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"차단"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> 차단됨"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> 차단 해제됨"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g>번은 잘못된 번호입니다."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"통화 차단 기능이 일시적으로 중지됨"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"지난 48시간 이내에 이 휴대전화를 사용해 응급 서비스에 연락했으므로 통화 차단 기능이 중지되었습니다. 48시간이 지나면 통화 차단 기능이 자동으로 다시 사용 설정됩니다."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"가져오기"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"개수 보기"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"번호 추가"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"통화 차단이 48시간 동안 중지됨"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"긴급 통화를 사용했기 때문에 중지되었습니다."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"실행취소"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g>번은 이미 차단되었습니다."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"번호 차단 해제"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g>의 연락처 세부정보"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"가져오지 못했습니다."</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"번호 가져오기"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"주소록을 검색하려면 주소록 권한을 사용하도록 설정하세요."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"사용"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"차단된 번호"</string>
 </resources>

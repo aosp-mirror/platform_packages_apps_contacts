@@ -48,7 +48,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"נוסף למועדפים"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"ערוך"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"מחק"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"שנה תמונה"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"החלפת תמונה"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"הצב במסך הבית"</string>
     <string name="menu_call" msgid="3992595586042260618">"התקשר לאיש קשר"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
@@ -240,8 +240,9 @@
     <string name="set_default" msgid="4417505153468300351">"קבע כברירת מחדל"</string>
     <string name="clear_default" msgid="7193185801596678067">"נקה ברירת מחדל"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"טקסט שהועתק"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"למחוק את השינויים שביצעת?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"מחק"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"האם להתעלם מהשינויים שביצעת ולהפסיק לערוך?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"מחק"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"המשך לערוך"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"הגדרת הפרופיל שלי"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"הקלד שם של אדם"</string>
@@ -249,7 +250,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"הפרופיל המקומי שלי"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"פרופיל <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> שלי"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"מציג את כל אנשי הקשר"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"‏\'אנשי קשר\' פועל טוב יותר עם ​​חשבון Google‏.\n\n• קבל גישה מכל דפדפן אינטרנט.\n• גבה את אנשי הקשר באופן מאובטח."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"דאג שלא תאבד את אנשי הקשר שלך גם אם הטלפון שלך יאבד: בצע סנכרון עם שירות מקוון."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"הוסף חשבון"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"איש הקשר החדש שלך לא יגובה. להוסיף חשבון שמגבה אנשי קשר באופן מקוון?"</string>
@@ -300,7 +300,7 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"אתה: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏Hangouts פועל טוב יותר כשאתה מזין את מזהה ה-Hangouts של המשתמש בשדה האימייל או בשדה הטלפון."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"עוד שדות"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"שנה תמונה"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"החלפת תמונה"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"פתיחת העורך נכשלה."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"שומר ב-"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"נשמר כרגע ב-<xliff:g id="ACCOUNT_NAME">%s</xliff:g>. הקש פעמיים כדי לבחור חשבון אחר."</string>
@@ -349,39 +349,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"לא סומנה תמונה מחשבון לא ידוע"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"סומנה תמונה מחשבון לא ידוע"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"רשימת אנשי הקשר מתעדכנת כדי לשקף את החלפת השפה.\n\nהמתן..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"הוסף מספר"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"חסום מספר"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"הוסף מספר או חפש אנשי קשר"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"האם לבטל את חסימת המספר <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ביטול חסימה"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"האם לחסום את המספר <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"חסום"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> חסום"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"בוטלה החסימה של <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> אינו חוקי."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"חסימת השיחות מושבתת באופן זמני"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"חסימת השיחות הושבתה מפני שיצרת קשר מטלפון זה עם שירותי חירום במהלך 48 השעות האחרונות. הפונקציה תופעל מחדש באופן אוטומטי בתום 48 השעות."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"יבא"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"הצג מספרים"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"הוסף מספר"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"חסימת השיחות הושבתה ל-48 שעות"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"מושבתת מפני שבוצעה שיחת חירום."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"בטל"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> כבר חסום."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"בטל חסימת מספר"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"פרטי יצירת קשר עבור <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"הייבוא נכשל"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"יבא מספרים"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"כדי לחפש באנשי הקשר, הפעל את ההרשאה \'אנשי קשר\'."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"הפעל"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"מספרים חסומים"</string>
 </resources>

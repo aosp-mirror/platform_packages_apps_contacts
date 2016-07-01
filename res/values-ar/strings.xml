@@ -254,8 +254,9 @@
     <string name="set_default" msgid="4417505153468300351">"تعيين كافتراضي"</string>
     <string name="clear_default" msgid="7193185801596678067">"محو الإعدادات الافتراضية"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"تم نسخ النص"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"هل تريد تجاهل التغييرات؟"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"تجاهل"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"هل تريد تجاهل التغييرات ومغادرة التعديل؟"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"تجاهل"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"متابعة التعديلات"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"إعداد الملف الشخصي"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"اكتب اسم الشخص"</string>
@@ -263,7 +264,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"ملفي الشخصي المحلي"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ملفي الشخصي في <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"عرض جميع جهات الاتصال"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"‏تعمل جهات الاتصال بشكلٍ أفضل من خلال حساب Google.\n\n• يمكنك الدخول من أي متصفح ويب.\n• يمكنك الاحتفاظ بنسخة احتياطية من جهات اتصالك بشكلٍ آمن."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"يمكنك الاحتفاظ بجهات اتصالك في أمان حتى إذا فقدت هاتفك: من خلال المزامنة مع خدمة عبر الإنترنت."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"إضافة حساب"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"لن يتم الاحتفاظ بنسخة احتياطية من جهة الاتصال الجديدة. هل تريد إضافة حساب يحتفظ بنسخة احتياطية من جهات الاتصال على الإنترنت؟"</string>
@@ -371,39 +371,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"لم يتم تحديد صورة من حساب غير معروف"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"تم تحديد صورة من حساب غير معروف"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"يتم تحديث قائمة جهات الاتصال لتعكس التغيير الذي حدث في اللغة.\n\nالرجاء الانتظار..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"إضافة رقم"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"حظر الرقم"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"إضافة رقم أو البحث في جهات الاتصال"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"هل تريد إزالة حظر <xliff:g id="NUMBER">%1$s</xliff:g>؟"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"إلغاء الحظر"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"هل تريد حظر الرقم <xliff:g id="NUMBER">%1$s</xliff:g>؟"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"حظر"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"تم حظر <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"تم إلغاء حظر <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> غير صالح."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"حظر المكالمات معطّل مؤقتًا"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"تم تعطيل حظر المكالمات لأنك اتصلت بخدمات الطوارئ خلال 48 ساعة ماضية. وستتم إعادة تمكينه تلقائيًا بعد انتهاء هذه الفترة التي تبلغ 48 ساعة."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"استيراد"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"عرض الأرقام"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"إضافة رقم"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"تم تعطيل حظر المكالمات لمدة 48 ساعة."</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"تم التعطيل نظرًا لإجراء مكالمة طوارئ."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"تراجع"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"تم حظر <xliff:g id="NUMBER">%1$s</xliff:g>."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"إلغاء حظر الرقم"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"تفاصيل جهة الاتصال بـ <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"أخفق الاستيراد"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"استيراد الأرقام"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"للبحث عن جهات الاتصال، عليك تشغيل أذونات جهات الاتصال."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"تشغيل"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"الأرقام المحظورة"</string>
 </resources>
