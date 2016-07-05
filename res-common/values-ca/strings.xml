@@ -89,7 +89,7 @@
     <string name="list_filter_phones" msgid="3692815632088465422">"Tots els contactes que tenen números de telèfon"</string>
     <string name="list_filter_phones_work" msgid="5226451114859079417">"Contactes del perfil professional"</string>
     <string name="view_updates_from_group" msgid="3310864388165884352">"Mostra les actualitzacions"</string>
-    <string name="account_phone" msgid="6104157990869081962">"Només telèfon, sense sincronitzar"</string>
+    <string name="account_phone" msgid="325867897209266837">"Dispositiu"</string>
     <string name="nameLabelsGroup" msgid="1817502703362057154">"Nom"</string>
     <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Àlies"</string>
     <string name="full_name" msgid="885420216812981202">"Nom"</string>
@@ -207,6 +207,8 @@
     <string name="display_options_view_names_as" msgid="3232196224409242435">"Format del nom"</string>
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Primer el nom"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Primer els cognoms"</string>
+    <string name="settings_accounts" msgid="7534308574729401912">"Comptes"</string>
+    <string name="add_account_label" msgid="2079214920181912644">"Afegeix un compte"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Compte predeterminat per als contactes nous"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sincronitza les metadades dels contactes [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sincronitza les metadades dels contactes"</string>
@@ -231,6 +233,7 @@
     <string name="menu_select_sim" msgid="7814841439832447299">"Selecciona una targeta SIM"</string>
     <string name="menu_accounts" msgid="2944004960829403994">"Gestiona els comptes"</string>
     <string name="menu_import_export" msgid="6446229463809981669">"Importa/exporta"</string>
+    <string name="menu_blocked_numbers" msgid="2865529727926197975">"Números bloquejats"</string>
     <string name="contact_status_update_attribution" msgid="8419168578670128134">"mitjançant <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> mitjançant <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="1138551123844019647">"Atura la cerca."</string>
