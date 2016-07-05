@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"未选中来自未知帐号的照片"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"已选中来自未知帐号的照片"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"正在更新联系人列表，以反映语言的变更。\n\n请稍候…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"已屏蔽的号码"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"重复的联系人"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"打开抽屉式导航栏"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"关闭抽屉式导航栏"</string>

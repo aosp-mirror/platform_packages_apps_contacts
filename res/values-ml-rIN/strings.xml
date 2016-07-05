@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തിട്ടില്ല"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തു"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"ഭാഷാ മാറ്റം പ്രതിഫലിപ്പിക്കുന്നതിന് കോൺടാക്റ്റ് ലിസ്റ്റ് അപ്‌ഡേറ്റ് ചെയ്യുന്നു.\n\nകാത്തിരിക്കുക..."</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ബ്ലോക്കുചെയ്ത നമ്പറുകൾ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ഡ്യൂപ്ലിക്കേറ്റുകൾ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"നാവിഗേഷൻ ഡ്രോയർ തുറക്കുക"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"നാവിഗേഷൻ ഡ്രോയർ അടയ്‌ക്കുക"</string>

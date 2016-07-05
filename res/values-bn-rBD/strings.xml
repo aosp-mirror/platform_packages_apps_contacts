@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়নি"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়েছে"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"ভাষা পরিবর্তন দেখানোর জন্য পরিচিতির তালিকা আপডেট করা হচ্ছে৷\n\n অনুগ্রহ করে অপেক্ষা করুন…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"অবরোধ করা নম্বরগুলি"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"সদৃশগুলি"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"নেভিগেশান ড্রয়ার খুলুন"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"নেভিগেশান ড্রয়ার বন্ধ করুন"</string>

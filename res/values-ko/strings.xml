@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"알 수 없는 계정의 사진이 선택되지 않음"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"알 수 없는 계정의 사진이 선택됨"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"변경된 언어를 반영하도록 연락처 목록을 업데이트하는 중입니다.\n\n잠시 기다려 주세요."</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"차단된 번호"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"중복된 활동"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"탐색 창 열기"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"탐색 창 닫기"</string>

@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"अज्ञात खाताको तस्बिर जाँच गरिएन"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"अज्ञात खाताको तस्बिर जाँच गरियो"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"भाषाको परिवर्तनलाई प्रतिबिम्बित गर्न सम्पर्क सूची अद्यावधिक भइरहेको छ।\n\nकृपया कुर्नुहोस्..."</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"रोकिएका नम्बरहरू"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"प्रतिलिपिहरू"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"नेभिगेसन ड्रअर खोल्नुहोस्"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"नेभिगेसन ड्रअर बन्द गर्नुहोस्"</string>

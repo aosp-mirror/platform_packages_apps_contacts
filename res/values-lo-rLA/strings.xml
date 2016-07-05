@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ບໍ່ໄດ້ໝາຍເອົາຮູບຖ່າຍຈາກບັນຊີທີ່ບໍ່ຮູ້ຈັກແລ້ວ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ໝາຍເອົາຮູບຖ່າຍຈາກບັນຊີທີ່ບໍ່ຮູ້ຈັກແລ້ວ"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"ລາຍຊື່ຜູ້ຕິດຕໍ່ກຳລັງຖືກອັບເດດຕາມການປ່ຽນແປງຂອງພາສາ.\n\nກະລຸນາລໍຖ້າ..."</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ເບີໂທທີ່ບລັອກໄວ້"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ລາຍການຊໍ້າກັນ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ເປີດແຖບການນຳທາງ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ປິດແຖບການນຳທາງ"</string>

@@ -326,7 +326,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Slika sa nepoznatog naloga nije označena"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Slika sa nepoznatog naloga je označena"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Lista kontakata se ažurira da bi se primenila promena jezika.\n\nSačekajte…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokirani brojevi"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Duplikati"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Otvori fioku za navigaciju"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Zatvori fioku za navigaciju"</string>

@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Isithombe esivela ku-akhawunti engaziwa asithikhiwe"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Isithombe esivela ku-akhawunti engaziwa sithikhiwe"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Uhlu loxhumana nabo liyabuyekezwa ukuze libonise ushintsho lolimi.\n\nSicela ulinde..."</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Izinombolo ezivinjiwe"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Impinda"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Vula ikhabethe lokuzulazula"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Vala ikhabethe lokuzulazula"</string>

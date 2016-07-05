@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"తెలియని ఖాతా నుండి అందించబడిన ఫోటో ఎంచుకోబడలేదు"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"తెలియని ఖాతా నుండి అందించబడిన ఫోటో ఎంచుకోబడింది"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"భాష మార్పును ప్రతిఫలింపజేయడానికి పరిచయ జాబితా నవీకరించబడుతోంది.\n\nదయచేసి వేచి ఉండండి…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"బ్లాక్ చేయబడిన నంబర్‌లు"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"నకిలీలు"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"నావిగేషన్ డ్రాయర్‌ను తెరుస్తుంది"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"నావిగేషన్ డ్రాయర్‌ను మూసివేస్తుంది"</string>

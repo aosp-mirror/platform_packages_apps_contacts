@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"No se seleccionó la foto de una cuenta desconocida"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Se seleccionó la foto de una cuenta desconocida"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"La lista de contactos se está actualizando para reflejar el cambio de idioma.\n\nEspera…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Números bloqueados"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Duplicados"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Abrir panel lateral de navegación"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Cerrar panel lateral de navegación"</string>

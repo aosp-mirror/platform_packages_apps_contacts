@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Chưa chọn ảnh từ tài khoản không xác định"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Đã chọn ảnh từ tài khoản không xác định"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Danh bạ đang được cập nhật để phản ánh thay đổi ngôn ngữ.\n\nVui lòng đợi…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Số bị chặn"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Liên hệ trùng lặp"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Mở ngăn điều hướng"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Đóng ngăn điều hướng"</string>

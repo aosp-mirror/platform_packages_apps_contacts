@@ -326,7 +326,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Nav atzīmēts fotoattēls no nezināma konta"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Atzīmēts fotoattēls no nezināma konta"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Kontaktpersonu saraksts tiek atjaunināts, lai atainotu valodas maiņu.\n\nLūdzu, uzgaidiet…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Bloķētie numuri"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Dublikāti"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Atvērt navigācijas atvilktni"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Aizvērt navigācijas atvilktni"</string>

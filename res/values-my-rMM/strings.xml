@@ -145,11 +145,11 @@
     <string name="description_plus_button" msgid="515164827856229880">"အပေါင်း"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ၏ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> လိပ်စာ"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"အဆက်အသွယ်များ၏နာမည်များ"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အက်ပ် မရှိပါ။"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အက်ပ်မရှိပါ။"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ယခင် မျက်နှာပြင်သို့ ပြန်ရန် ကလစ်ပါ"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်းနံပါတ် ထည့်ပါ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"အီးမေးလ် ထည့်ရန်"</string>
-    <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အက်ပ် မရှိပါ။"</string>
+    <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အက်ပ်မရှိပါ။"</string>
     <string name="menu_share" msgid="943789700636542260">"မျှဝေခြင်း"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"အဆက်အသွယ်များ ထဲသို့ ထည့်ရန်"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
@@ -287,7 +287,7 @@
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"ကွင်းဆက်ချိတ်ထားသည့် အကောင့် <xliff:g id="COUNT">%d</xliff:g> ခု"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"အဆက်အသွယ်များ ချိတ်ဆက်ပါ"</string>
-    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ပယ်ဖျက်ပါ"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"မလုပ်တော့"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
       <item quantity="other">ဖြစ်နိုင်သည့် မိတ္တုပွား <xliff:g id="COUNT">%d</xliff:g> ခု</item>
       <item quantity="one">ဖြစ်နိုင်သည့် မိတ္တုပွား ၁ ခု</item>
@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"အမည်မသိအကောင့်မှ ဓာတ်ပုံဓာတ်ပုံ မစစ်ဆေးရသေးပါ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"အမည်မသိအကောင့်မှ ဓာတ်ပုံ စစ်ဆေးပြီးပါပြီ"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"ဘာသာစကားအပြောင်းအလဲကို ထင်ဟပ်ပေးရန် အဆက်အသွယ်စာရင်းကို မွမ်းမံနေပါသည်။\n\nခဏစောင့်ပေးပါ…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ပိတ်ဆို့ထားသည့် နံပါတ်များ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"မိတ္တူပွားများ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"လမ်းညွှန်ချက်အကွက်ကို ဖွင့်ပါ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"လမ်းညွှန်ချက်အကွက်ကို ပိတ်ပါ"</string>

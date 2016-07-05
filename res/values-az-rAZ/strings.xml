@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Naməlum hesabdan olan foto yoxlanmadı"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Naməlum hesabdan olan foto yoxlandı"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Kontakt siyahısı dilin dəyişməsinə uyğun olaraq güncəlləşir.\n\nLütfən, gözləyin..."</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Bloklanmış nömrələr"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Dublikatlar"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Naviqasiya siyirməsini açın"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Naviqasiya siyirməsini qapadın"</string>

@@ -335,7 +335,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Fotka z neznámeho účtu nebola začiarknutá"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotka z neznámeho účtu bola začiarknutá"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"V súvislosti so zmenou jazyka sa aktualizuje zoznam kontaktov.\n\nPočkajte, prosím…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokované čísla"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Duplikáty"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Otvoriť navigačný vysúvací panel"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Zavrieť navigačný vysúvací panel"</string>

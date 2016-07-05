@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"نامعلوم اکاؤنٹ سے تصویر نشان زد نہیں ہے"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"نامعلوم اکاؤنٹ سے تصویر نشان زد ہے"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"زبان کی تبدیلی کو منعکس کرنے کیلئے رابطہ فہرست اپ ڈیٹ ہو رہی ہے\n\nبراہ کرم انتظار کریں…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"مسدود کردہ نمبرز"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ڈپلیکیٹس"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"نیویگیشن دراز کھولیں"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"نیویگیشن دراز بند کریں"</string>

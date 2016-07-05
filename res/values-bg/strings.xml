@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Неизбрана снимка от неизвестен профил"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Избрана снимка от неизвестен профил"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Списъкът с контакти се актуализира, за да отрази промяната на езика.\n\nМоля, изчакайте…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Блокирани номера"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Дублирани"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Отваряне на слоя за навигация"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Затваряне на слоя за навигация"</string>

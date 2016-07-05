@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Hindi nilagyan ng check ang larawan mula sa isang hindi kilalang account"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Nalagyan na ng check ang larawan mula sa isang hindi kilalang account"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Ina-update ang listahan ng contact upang ipakita ang pagbabago ng wika.\n\nPakihintay…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Mga naka-block na numero"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Mga Duplicate"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Binubuksan ang navigation drawer"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Isinasara ang navigation drawer"</string>

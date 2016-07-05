@@ -317,7 +317,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"不明なアカウントの写真は選択されていません"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"不明なアカウントの写真が選択されています"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"言語の変更に合わせて連絡先リストを更新しています。\n\nしばらくお待ちください..."</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ブロックした番号"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"重複"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ナビゲーションドロワーを開く"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ナビゲーションドロワーを閉じる"</string>

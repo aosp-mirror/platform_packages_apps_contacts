@@ -326,7 +326,6 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Fotografie neselectată dintr-un cont necunoscut"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotografie selectată dintr-un cont necunoscut"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Se actualizează lista de persoane din agendă pentru a reflecta modificarea limbii.\n\nAșteptați…"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Numere blocate"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Dubluri"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Deschideți panoul de navigare"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Închideți panoul de navigare"</string>
