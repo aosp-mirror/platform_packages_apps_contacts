@@ -520,9 +520,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             return;
         }
 
-        // Scroll to top after filter is changed.
-        mAllFragment.getListView().setSelectionAfterHeaderView();
-
         setFilterAndUpdateTitle(mContactListFilterController.getFilter());
         showFabWithAnimation(shouldShowFabForAccount());
 
