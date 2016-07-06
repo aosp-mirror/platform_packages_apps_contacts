@@ -19,7 +19,7 @@
     android:versionCode="10505"
     android:versionName="1.5.5">
 
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="23" />
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="24" />
 
     <original-package android:name="com.android.contacts" />
 

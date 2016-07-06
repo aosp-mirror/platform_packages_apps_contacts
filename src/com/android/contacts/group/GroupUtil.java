@@ -33,6 +33,7 @@ import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.list.ContactsSectionIndexer;
 import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.common.testing.NeededForTesting;
 import com.google.common.base.Objects;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ import java.util.Set;
 /**
  * Group utility methods.
  */
+@NeededForTesting
 public final class GroupUtil {
 
     private static final String LEGACY_CONTACTS_AUTHORITY = "contacts";
@@ -170,6 +172,7 @@ public final class GroupUtil {
      * number of remaining elements in cursor. If count is more than what's in the indexer now,
      * then we don't need to trim.
      */
+    @NeededForTesting
     public static boolean needTrimming(int count, int[] counts, int[] positions) {
         // The sum of the last element in counts[] and the last element in positions[] is
         // the total number of remaining elements in cursor. If mCount is more than
@@ -181,6 +184,7 @@ public final class GroupUtil {
     /**
      * Update Bundle extras so as to update indexer.
      */
+    @NeededForTesting
     public static void updateBundle(Bundle bundle, ContactsSectionIndexer indexer,
             List<Integer> subscripts, String[] sections, int[] counts) {
         for (int i : subscripts) {
