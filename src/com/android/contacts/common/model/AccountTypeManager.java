@@ -169,7 +169,7 @@ public abstract class AccountTypeManager {
      * @return true when this instance contains the given account.
      */
     public boolean contains(AccountWithDataSet account, boolean contactWritableOnly) {
-        for (AccountWithDataSet account_2 : getAccounts(false)) {
+        for (AccountWithDataSet account_2 : getAccounts(contactWritableOnly)) {
             if (account.equals(account_2)) {
                 return true;
             }

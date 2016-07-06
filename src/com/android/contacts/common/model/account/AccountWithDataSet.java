@@ -55,6 +55,9 @@ public class AccountWithDataSet implements Parcelable {
     private static final Uri RAW_CONTACTS_URI_LIMIT_1 = RawContacts.CONTENT_URI.buildUpon()
             .appendQueryParameter(ContactsContract.LIMIT_PARAM_KEY, "1").build();
 
+    public static final String LOCAL_ACCOUNT_SELECTION = RawContacts.ACCOUNT_TYPE + " IS NULL AND "
+            + RawContacts.ACCOUNT_NAME + " IS NULL AND "
+            + RawContacts.DATA_SET + " IS NULL";
 
     public AccountWithDataSet(String name, String type, String dataSet) {
         this.name = emptyToNull(name);
@@ -75,7 +78,11 @@ public class AccountWithDataSet implements Parcelable {
     }
 
     public boolean isLocalAccount() {
-        return name == null && type == null;
+        return name == null && type == null && dataSet == null;
+    }
+
+    public static AccountWithDataSet getLocalAccount() {
+        return new AccountWithDataSet(null, null, null);
     }
 
     public Account getAccountOrNull() {
@@ -115,16 +122,20 @@ public class AccountWithDataSet implements Parcelable {
      * Touches DB.  Don't use in the UI thread.
      */
     public boolean hasData(Context context) {
-        final String BASE_SELECTION =
-                RawContacts.ACCOUNT_TYPE + " = ?" + " AND " + RawContacts.ACCOUNT_NAME + " = ?";
-        final String selection;
-        final String[] args;
-        if (TextUtils.isEmpty(dataSet)) {
-            selection = BASE_SELECTION + " AND " + RawContacts.DATA_SET + " IS NULL";
-            args = new String[] {type, name};
+        String selection;
+        String[] args = null;
+        if (isLocalAccount()) {
+            selection = LOCAL_ACCOUNT_SELECTION;
         } else {
-            selection = BASE_SELECTION + " AND " + RawContacts.DATA_SET + " = ?";
-            args = new String[] {type, name, dataSet};
+            final String BASE_SELECTION =
+                    RawContacts.ACCOUNT_TYPE + " = ?" + " AND " + RawContacts.ACCOUNT_NAME + " = ?";
+            if (TextUtils.isEmpty(dataSet)) {
+                selection = BASE_SELECTION + " AND " + RawContacts.DATA_SET + " IS NULL";
+                args = new String[] {type, name};
+            } else {
+                selection = BASE_SELECTION + " AND " + RawContacts.DATA_SET + " = ?";
+                args = new String[] {type, name, dataSet};
+            }
         }
 
         final Cursor c = context.getContentResolver().query(RAW_CONTACTS_URI_LIMIT_1,

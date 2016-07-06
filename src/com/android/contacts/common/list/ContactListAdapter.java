@@ -20,6 +20,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.SearchSnippets;
 import android.text.TextUtils;
@@ -409,5 +410,35 @@ public abstract class ContactListAdapter extends MultiSelectEntryContactListAdap
                 return ContactQuery.CONTACT_PROJECTION_ALTERNATIVE;
             }
         }
+    }
+
+    /**
+     * @return Projection from Data that is useful for children.
+     */
+    protected final String[] getDataProjectionForContacts(boolean forSearch) {
+        final int sortOrder = getContactNameDisplayOrder();
+        if (forSearch) {
+            if (sortOrder == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
+                return replaceFirstString(ContactQuery.FILTER_PROJECTION_PRIMARY);
+            } else {
+                return replaceFirstString(ContactQuery.FILTER_PROJECTION_ALTERNATIVE);
+            }
+        } else {
+            if (sortOrder == ContactsPreferences.DISPLAY_ORDER_PRIMARY) {
+                return replaceFirstString(ContactQuery.CONTACT_PROJECTION_PRIMARY);
+            } else {
+                return replaceFirstString(ContactQuery.CONTACT_PROJECTION_ALTERNATIVE);
+            }
+        }
+    }
+
+    /**
+     * @param sourceProjection
+     * @return Replace the first String of sourceProjection with Data.CONTACT_ID.
+     */
+    private String[] replaceFirstString(String[] sourceProjection) {
+        String[] result = sourceProjection.clone();
+        result[0] = Data.CONTACT_ID;
+        return result;
     }
 }

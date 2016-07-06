@@ -36,6 +36,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     public static final int FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY = -5;
     public static final int FILTER_TYPE_SINGLE_CONTACT = -6;
     public static final int FILTER_TYPE_GROUP_MEMBERS = -7;
+    public static final int FILTER_TYPE_DEVICE_CONTACTS = -8;
 
     public static final int FILTER_TYPE_ACCOUNT = 0;
 
@@ -84,6 +85,11 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
                 accountName, dataSet, /* icon */ null);
     }
 
+    public static ContactListFilter createDeviceContactsFilter(Drawable icon) {
+        return new ContactListFilter(ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS,
+                /* accountType= */ null, /* accountName= */ null, /* dataSet= */ null, icon);
+    }
+
     /**
      * Returns true if this filter is based on data and may become invalid over time.
      */
@@ -111,6 +117,8 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
                         + " " + accountName;
             case FILTER_TYPE_GROUP_MEMBERS:
                 return "group_members";
+            case FILTER_TYPE_DEVICE_CONTACTS:
+                return "device_contacts";
         }
         return super.toString();
     }
@@ -312,6 +320,8 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
                 return "FILTER_TYPE_ACCOUNT";
             case FILTER_TYPE_GROUP_MEMBERS:
                 return "FILTER_TYPE_GROUP_MEMBERS";
+            case FILTER_TYPE_DEVICE_CONTACTS:
+                return "FILTER_TYPE_DEVICE_CONTACTS";
             default:
                 return "(unknown)";
         }

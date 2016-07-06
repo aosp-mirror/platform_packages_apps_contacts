@@ -25,13 +25,16 @@ import android.net.Uri.Builder;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
+import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippets;
 import android.text.TextUtils;
 import android.view.View;
 
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.ContactsCompat;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.commonbind.experiments.Flags;
 
@@ -118,7 +121,12 @@ public class DefaultContactListAdapter extends ContactListAdapter {
         } else {
             final ContactListFilter filter = getFilter();
             configureUri(loader, directoryId, filter);
-            loader.setProjection(getProjection(false));
+            if (filter != null
+                    && filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
+                loader.setProjection(getDataProjectionForContacts(false));
+            } else {
+                loader.setProjection(getProjection(false));
+            }
             configureSelection(loader, directoryId, filter);
         }
 
@@ -156,12 +164,16 @@ public class DefaultContactListAdapter extends ContactListAdapter {
 
     protected void configureUri(CursorLoader loader, long directoryId, ContactListFilter filter) {
         Uri uri = Contacts.CONTENT_URI;
-        if (filter != null && filter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
-            String lookupKey = getSelectedContactLookupKey();
-            if (lookupKey != null) {
-                uri = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey);
-            } else {
-                uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, getSelectedContactId());
+        if (filter != null) {
+            if (filter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
+                String lookupKey = getSelectedContactLookupKey();
+                if (lookupKey != null) {
+                    uri = Uri.withAppendedPath(Contacts.CONTENT_LOOKUP_URI, lookupKey);
+                } else {
+                    uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, getSelectedContactId());
+                }
+            } else if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
+                uri = Data.CONTENT_URI;
             }
         }
 
@@ -232,6 +244,10 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             case ContactListFilter.FILTER_TYPE_GROUP_MEMBERS: {
                 // TODO(wjang): check if we need it
                 // selection.append(Contacts.IN_VISIBLE_GROUP + "=1");
+                break;
+            }
+            case ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS: {
+                selection.append(AccountWithDataSet.LOCAL_ACCOUNT_SELECTION);
                 break;
             }
         }
