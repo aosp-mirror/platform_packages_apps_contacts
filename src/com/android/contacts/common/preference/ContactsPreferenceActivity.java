@@ -37,7 +37,6 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
         ProfileListener {
 
     private static final String TAG_ABOUT = "about_contacts";
-    private static final String TAG_ACCOUNTS = "accounts";
     private static final String TAG_DISPLAY_OPTIONS = "display_options";
 
     private String mNewLocalProfileExtra;
@@ -80,26 +79,13 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
         } else {
             final AboutPreferenceFragment aboutFragment = (AboutPreferenceFragment)
                     getFragmentManager().findFragmentByTag(TAG_ABOUT);
-            final AccountsPreferenceFragment accountsFragment = (AccountsPreferenceFragment)
-                    getFragmentManager().findFragmentByTag(TAG_ACCOUNTS);
 
             if (aboutFragment != null) {
                 setActivityTitle(R.string.setting_about);
-            } else if (accountsFragment != null) {
-                setActivityTitle(R.string.settings_accounts);
             } else {
                 setActivityTitle(R.string.activity_title_settings);
             }
         }
-    }
-
-    protected void showAccountsFragment() {
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, AccountsPreferenceFragment.newInstance(),
-                        TAG_ACCOUNTS)
-                .addToBackStack(null)
-                .commit();
-        setActivityTitle(R.string.settings_accounts);
     }
 
     protected void showAboutFragment() {

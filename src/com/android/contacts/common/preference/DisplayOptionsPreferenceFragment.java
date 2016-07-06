@@ -300,7 +300,8 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
             return true;
         } else if (KEY_ACCOUNTS.equals(prefKey)) {
-            ((ContactsPreferenceActivity) getActivity()).showAccountsFragment();
+            final Intent intent = ImplicitIntentsUtil.getIntentForAccounts();
+            ImplicitIntentsUtil.startActivityOutsideApp(getContext(), intent);
             return true;
         } else if (KEY_BLOCKED_NUMBERS.equals(prefKey)) {
             final Intent intent = TelecomManagerUtil.createManageBlockedNumbersIntent(
