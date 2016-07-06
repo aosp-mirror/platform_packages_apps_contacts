@@ -116,6 +116,16 @@ public class ImplicitIntentsUtil {
     }
 
     /**
+     * Starts Accounts activity in OS->Settings->Accounts.
+     */
+    public static Intent getIntentForAccounts() {
+        final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
+        intent.putExtra(Settings.EXTRA_AUTHORITIES,
+                new String[]{ContactsContract.AUTHORITY});
+        return intent;
+    }
+
+    /**
      * Returns a copy of {@param intent} with a class name set, if a class inside this app
      * has a corresponding intent filter.
      */
