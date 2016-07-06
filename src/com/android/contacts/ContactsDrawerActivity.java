@@ -354,9 +354,11 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
         for (int i = 0; i < accountFilterItems.size(); i++) {
             final ContactListFilter filter = accountFilterItems.get(i);
-            final String accountName = filter.accountName;
+            final String menuName =
+                    filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS
+                            ? getString(R.string.account_phone) : filter.accountName;
             final MenuItem menuItem = subMenu.add(R.id.nav_filters_items, Menu.NONE, Menu.NONE,
-                    accountName);
+                    menuName);
             mFilterMenuMap.put(filter, menuItem);
             final Intent intent = new Intent();
             intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
