@@ -51,7 +51,7 @@ public class ShareVCardActivity extends ExportVCardActivity {
             file.createNewFile();
         } catch (IOException e) {
             Log.e(LOG_TAG, "Failed to create .vcf file, because: " + e);
-            unbindAndFinish();
+            finish();
             return;
         }
 
@@ -63,7 +63,7 @@ public class ShareVCardActivity extends ExportVCardActivity {
         // The connection object will call finish().
         mService.handleExportRequest(request, new NotificationImportExportListener(
                 ShareVCardActivity.this));
-        unbindAndFinish();
+        finish();
     }
 
     /**

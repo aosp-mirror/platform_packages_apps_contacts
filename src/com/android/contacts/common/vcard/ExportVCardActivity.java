@@ -147,7 +147,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
                     Log.d(LOG_TAG, "create document cancelled or no data returned");
                 }
             }
-            unbindAndFinish();
+            finish();
         }
     }
 
@@ -161,7 +161,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
         startActivityForResult(getCreateDocIntent(), REQUEST_CREATE_DOCUMENT);
     }
 
-    // Use synchronized since we don't want to call unbindAndFinish() just after this call.
+    // Use synchronized since we don't want to call finish() just after this call.
     @Override
     public synchronized void onServiceDisconnected(ComponentName name) {
         if (DEBUG) Log.d(LOG_TAG, "onServiceDisconnected()");
@@ -202,20 +202,29 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
     @Override
     public void onClick(DialogInterface dialog, int which) {
         if (DEBUG) Log.d(LOG_TAG, "ExportVCardActivity#onClick() is called");
-        unbindAndFinish();
+        finish();
     }
 
     @Override
     public void onCancel(DialogInterface dialog) {
         if (DEBUG) Log.d(LOG_TAG, "ExportVCardActivity#onCancel() is called");
         mProcessOngoing = false;
-        unbindAndFinish();
+        finish();
     }
 
     @Override
     public void unbindService(ServiceConnection conn) {
         mProcessOngoing = false;
         super.unbindService(conn);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mConnected) {
+            unbindService(this);
+            mConnected = false;
+        }
+        super.onDestroy();
     }
 
     /**
@@ -233,13 +242,5 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
             }
         }
         return null;
-    }
-
-    protected synchronized void unbindAndFinish() {
-        if (mConnected) {
-            unbindService(this);
-            mConnected = false;
-        }
-        finish();
     }
 }
