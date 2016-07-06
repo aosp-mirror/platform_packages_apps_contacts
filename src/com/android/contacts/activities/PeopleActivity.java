@@ -489,7 +489,9 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         final ContactListFilter currentFilter = mContactListFilterController.getFilter();
         final AccountWithDataSet accountOfCurrentFilter = new AccountWithDataSet(
                 currentFilter.accountName, currentFilter.accountType, currentFilter.dataSet);
-        return mWritableAccounts != null && mWritableAccounts.contains(accountOfCurrentFilter);
+        return accountOfCurrentFilter.isLocalAccount()
+                || (mWritableAccounts != null
+                && mWritableAccounts.contains(accountOfCurrentFilter));
     }
 
     private void showFabWithAnimation(boolean showFab) {
@@ -1350,7 +1352,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                     // If we are in account view, we pass the account explicitly in order to
                     // create contact in the account. This will prevent the default account dialog
                     // from being displayed.
-                    if (!isAllContactsFilter(filter)) {
+                    if (!isAllContactsFilter(filter) && !isDeviceContactsFilter(filter)) {
                         final Account account = new Account(filter.accountName, filter.accountType);
                         extras.putParcelable(Intents.Insert.EXTRA_ACCOUNT, account);
                         extras.putString(Intents.Insert.EXTRA_DATA_SET, filter.dataSet);
@@ -1392,8 +1394,14 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         updateFilterMenu(filter);
 
         if (getSupportActionBar() != null) {
-            final String actionBarTitle = TextUtils.isEmpty(filter.accountName) ?
-                    getString(R.string.contactsList) : filter.accountName;
+            String actionBarTitle = null;
+            if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
+                actionBarTitle = getString(R.string.account_phone);
+            } else if (!TextUtils.isEmpty(filter.accountName)) {
+                actionBarTitle = filter.accountName;
+            } else {
+                actionBarTitle = getString(R.string.contactsList);
+            }
             getSupportActionBar().setTitle(actionBarTitle);
         }
     }
@@ -1406,6 +1414,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
     private boolean isAllContactsFilter(ContactListFilter filter) {
         return filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS;
+    }
+
+    private boolean isDeviceContactsFilter(ContactListFilter filter) {
+        return filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS;
     }
 
     @Override
