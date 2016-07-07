@@ -18,8 +18,8 @@
 
     <!-- Title for data source when creating or editing a contact that doesn't
          belong to a specific account.  This contact will only exist on the phone
-         and will not be synced. -->
-    <string name="account_phone">Tablet-only, unsynced</string>
+         and will not be synced. [CHAR LIMIT=20] -->
+    <string name="account_phone">Device</string>
 
     <!-- This error message shown when the user actually have no contact
          (e.g. just after data-wiping), or, data providers of the contact list prohibits their
