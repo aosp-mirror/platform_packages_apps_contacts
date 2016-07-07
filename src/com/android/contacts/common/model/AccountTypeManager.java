@@ -116,6 +116,11 @@ public abstract class AccountTypeManager {
     public abstract List<AccountWithDataSet> getAccounts(boolean contactWritableOnly);
 
     /**
+     * Sort accounts based on default account.
+     */
+    public abstract void sortAccounts(AccountWithDataSet defaultAccount);
+
+    /**
      * Returns the list of accounts that are group writable.
      */
     public abstract List<AccountWithDataSet> getGroupWritableAccounts();
@@ -175,6 +180,54 @@ public abstract class AccountTypeManager {
             }
         }
         return false;
+    }
+}
+
+class AccountComparator implements Comparator<AccountWithDataSet> {
+    private AccountWithDataSet mDefaultAccount;
+
+    public AccountComparator(AccountWithDataSet defaultAccount) {
+        mDefaultAccount = defaultAccount;
+    }
+
+    @Override
+    public int compare(AccountWithDataSet a, AccountWithDataSet b) {
+        if (Objects.equal(a.name, b.name) && Objects.equal(a.type, b.type)
+                && Objects.equal(a.dataSet, b.dataSet)) {
+            return 0;
+        } else if (b.name == null || b.type == null) {
+            return -1;
+        } else if (a.name == null || a.type == null) {
+            return 1;
+        } else if (isWritableGoogleAccount(a) && a.equals(mDefaultAccount)) {
+            return -1;
+        } else if (isWritableGoogleAccount(b) && b.equals(mDefaultAccount)) {
+            return 1;
+        } else if (isWritableGoogleAccount(a) && !isWritableGoogleAccount(b)) {
+            return -1;
+        } else if (isWritableGoogleAccount(b) && !isWritableGoogleAccount(a)) {
+            return 1;
+        } else {
+            int diff = a.name.compareToIgnoreCase(b.name);
+            if (diff != 0) {
+                return diff;
+            }
+            diff = a.type.compareToIgnoreCase(b.type);
+            if (diff != 0) {
+                return diff;
+            }
+
+            // Accounts without data sets get sorted before those that have them.
+            if (a.dataSet != null) {
+                return b.dataSet == null ? 1 : a.dataSet.compareToIgnoreCase(b.dataSet);
+            } else {
+                return -1;
+            }
+        }
+    }
+
+    private static boolean isWritableGoogleAccount(AccountWithDataSet account) {
+        return GoogleAccountType.ACCOUNT_TYPE.equals(account.type) && account.dataSet == null;
     }
 }
 
@@ -246,37 +299,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     /* A latch that ensures that asynchronous initialization completes before data is used */
     private volatile CountDownLatch mInitializationLatch = new CountDownLatch(1);
-
-    private static final Comparator<AccountWithDataSet> ACCOUNT_COMPARATOR =
-        new Comparator<AccountWithDataSet>() {
-        @Override
-        public int compare(AccountWithDataSet a, AccountWithDataSet b) {
-            if (Objects.equal(a.name, b.name) && Objects.equal(a.type, b.type)
-                    && Objects.equal(a.dataSet, b.dataSet)) {
-                return 0;
-            } else if (b.name == null || b.type == null) {
-                return -1;
-            } else if (a.name == null || a.type == null) {
-                return 1;
-            } else {
-                int diff = a.name.compareToIgnoreCase(b.name);
-                if (diff != 0) {
-                    return diff;
-                }
-                diff = a.type.compareToIgnoreCase(b.type);
-                if (diff != 0) {
-                    return diff;
-                }
-
-                // Accounts without data sets get sorted before those that have them.
-                if (a.dataSet != null) {
-                    return b.dataSet == null ? 1 : a.dataSet.compareToIgnoreCase(b.dataSet);
-                } else {
-                    return -1;
-                }
-            }
-        }
-    };
 
     /**
      * Internal constructor that only performs initial parsing.
@@ -499,9 +521,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
             }
         }
 
-        Collections.sort(allAccounts, ACCOUNT_COMPARATOR);
-        Collections.sort(contactWritableAccounts, ACCOUNT_COMPARATOR);
-        Collections.sort(groupWritableAccounts, ACCOUNT_COMPARATOR);
+        final AccountComparator accountComparator = new AccountComparator(null);
+        Collections.sort(allAccounts, accountComparator);
+        Collections.sort(contactWritableAccounts, accountComparator);
+        Collections.sort(groupWritableAccounts, accountComparator);
 
         timings.addSplit("Loaded accounts");
 
@@ -569,6 +592,16 @@ class AccountTypeManagerImpl extends AccountTypeManager
     public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
         ensureAccountsLoaded();
         return contactWritableOnly ? mContactWritableAccounts : mAccounts;
+    }
+
+    /**
+     * Sort accounts based on default account.
+     */
+    @Override
+    public void sortAccounts(AccountWithDataSet defaultAccount) {
+        Collections.sort(mAccounts, new AccountComparator(defaultAccount));
+        Collections.sort(mContactWritableAccounts, new AccountComparator(defaultAccount));
+        Collections.sort(mGroupWritableAccounts, new AccountComparator(defaultAccount));
     }
 
     /**
