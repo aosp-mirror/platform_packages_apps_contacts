@@ -29,7 +29,7 @@
         android:id="@+id/toolbar_frame"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/actionbar_background_color">
+        android:background="?attr/colorPrimary">
 
         <!-- the attribute padding removes the gap between this Toolbar and its parent FrameLayout on tablet -->
         <android.support.v7.widget.Toolbar
