@@ -46,7 +46,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
 
     /** Callbacks for hosts of the {@link GroupNameEditDialogFragment}. */
     public interface Listener {
-        void onGroupNameEdit(String groupName);
+        void onGroupNameEdit(String groupName, boolean isInsert);
         void onGroupNameEditCancelled();
     }
 
@@ -105,7 +105,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
                 .setPositiveButton(android.R.string.ok, new OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getListener().onGroupNameEdit(getGroupName());
+                        getListener().onGroupNameEdit(getGroupName(), mIsInsert);
                     }
                 });
 

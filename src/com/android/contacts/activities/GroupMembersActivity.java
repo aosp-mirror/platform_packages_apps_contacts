@@ -15,7 +15,6 @@
  */
 package com.android.contacts.activities;
 
-import android.accounts.Account;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -25,7 +24,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.RawContacts;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
@@ -37,13 +35,9 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
-import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.group.GroupMembersFragment;
 import com.android.contacts.group.GroupMetadata;
@@ -55,31 +49,25 @@ import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.quickcontact.QuickContactActivity;
 
-import java.util.List;
-
 /**
  * Displays the members of a group and allows the user to edit it.
  */
 public class GroupMembersActivity extends ContactsDrawerActivity implements
         ActionBarAdapter.Listener,
         MultiSelectContactsListFragment.OnCheckBoxListActionListener,
-        SelectAccountDialogFragment.Listener,
         GroupMembersFragment.GroupMembersListener,
         GroupNameEditDialogFragment.Listener {
 
     private static final String TAG = "GroupMembers";
 
-    private static final String KEY_IS_INSERT_ACTION = "isInsertAction";
     private static final String KEY_GROUP_URI = "groupUri";
     private static final String KEY_GROUP_METADATA = "groupMetadata";
     private static final String KEY_IS_EDIT_MODE = "editMode";
 
     private static final String TAG_GROUP_MEMBERS = "groupMembers";
-    private static final String TAG_SELECT_ACCOUNT_DIALOG = "selectAccountDialog";
     private static final String TAG_GROUP_NAME_EDIT_DIALOG = "groupNameEditDialog";
 
     private static final String ACTION_DELETE_GROUP = "deleteGroup";
-    private static final String ACTION_CREATE_GROUP = "createGroup";
     private static final String ACTION_UPDATE_GROUP = "updateGroup";
     private static final String ACTION_ADD_TO_GROUP = "addToGroup";
     private static final String ACTION_REMOVE_FROM_GROUP = "removeFromGroup";
@@ -184,7 +172,6 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     private GroupMembersFragment mMembersFragment;
 
     private Uri mGroupUri;
-    private boolean mIsInsertAction;
     private boolean mIsEditMode;
 
     private GroupMetadata mGroupMetadata;
@@ -196,14 +183,12 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         // Parse the Intent
         if (savedState != null) {
             mGroupUri = savedState.getParcelable(KEY_GROUP_URI);
-            mIsInsertAction = savedState.getBoolean(KEY_IS_INSERT_ACTION);
             mIsEditMode = savedState.getBoolean(KEY_IS_EDIT_MODE);
             mGroupMetadata = savedState.getParcelable(KEY_GROUP_METADATA);
         } else {
             mGroupUri = getIntent().getData();
-            mIsInsertAction = Intent.ACTION_INSERT.equals(getIntent().getAction());
         }
-        if (!mIsInsertAction && mGroupUri == null) {
+        if (mGroupUri == null) {
             setResultCanceledAndFinish(R.string.groupLoadErrorToast);
             return;
         }
@@ -221,42 +206,18 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         // be changed to group name when onGroupMetadataLoaded() is called.
         setActionBarTitle(getIntent().getStringExtra(GroupUtil.EXTRA_GROUP_NAME));
 
-        // Decide whether to prompt for the account and group name or start loading existing members
-        if (mIsInsertAction) {
-            // Check if we are in the middle of the insert flow.
-            if (!isSelectAccountDialogFound() && !isGroupNameEditDialogFound()) {
-
-                // Create metadata to hold the account info
-                mGroupMetadata = new GroupMetadata();
-
-                // Select the account to create the group
-                final Bundle extras = getIntent().getExtras();
-                final Account account = extras == null ? null :
-                        (Account) extras.getParcelable(Intents.Insert.EXTRA_ACCOUNT);
-                if (account == null) {
-                    selectAccount();
-                } else {
-                    final String dataSet = extras == null
-                            ? null : extras.getString(Intents.Insert.EXTRA_DATA_SET);
-                    final AccountWithDataSet accountWithDataSet = new AccountWithDataSet(
-                            account.name, account.type, dataSet);
-                    onAccountChosen(accountWithDataSet, /* extraArgs */ null);
-                }
-            }
-        } else {
-            final FragmentManager fragmentManager = getFragmentManager();
-            // Add the members list fragment
-            mMembersFragment = (GroupMembersFragment)
-                    fragmentManager.findFragmentByTag(TAG_GROUP_MEMBERS);
-            if (mMembersFragment == null) {
-                mMembersFragment = GroupMembersFragment.newInstance(getIntent().getData());
-                fragmentManager.beginTransaction().replace(R.id.fragment_container_inner,
-                        mMembersFragment, TAG_GROUP_MEMBERS).commitAllowingStateLoss();
-            }
-            mMembersFragment.setListener(this);
-            if (mGroupMetadata != null && mGroupMetadata.editable) {
-                mMembersFragment.setCheckBoxListListener(this);
-            }
+        // Add the members list fragment
+        final FragmentManager fragmentManager = getFragmentManager();
+        mMembersFragment = (GroupMembersFragment)
+                fragmentManager.findFragmentByTag(TAG_GROUP_MEMBERS);
+        if (mMembersFragment == null) {
+            mMembersFragment = GroupMembersFragment.newInstance(getIntent().getData());
+            fragmentManager.beginTransaction().replace(R.id.fragment_container_inner,
+                    mMembersFragment, TAG_GROUP_MEMBERS).commitAllowingStateLoss();
+        }
+        mMembersFragment.setListener(this);
+        if (mGroupMetadata != null && mGroupMetadata.editable) {
+            mMembersFragment.setCheckBoxListListener(this);
         }
 
         // Delay action bar initialization until after the fragment is added
@@ -272,33 +233,17 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             mActionBarAdapter.onSaveInstanceState(outState);
         }
         outState.putParcelable(KEY_GROUP_URI, mGroupUri);
-        outState.putBoolean(KEY_IS_INSERT_ACTION, mIsInsertAction);
         outState.putBoolean(KEY_IS_EDIT_MODE, mIsEditMode);
         outState.putParcelable(KEY_GROUP_METADATA, mGroupMetadata);
-    }
-
-    private void selectAccount() {
-        final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
-                .getAccounts(/* writable */ true);
-        if (accounts.isEmpty()) {
-            setResultCanceledAndFinish();
-            return;
-        }
-        // If there is a single writable account, use it w/o showing a dialog.
-        if (accounts.size() == 1) {
-            onAccountChosen(accounts.get(0), /* extraArgs */ null);
-            return;
-        }
-        SelectAccountDialogFragment.show(getFragmentManager(), null,
-                R.string.dialog_new_group_account, AccountListFilter.ACCOUNTS_GROUP_WRITABLE,
-                /* extraArgs */ null, TAG_SELECT_ACCOUNT_DIALOG);
     }
 
     // Invoked with results from the ContactSaveService
     @Override
     protected void onNewIntent(Intent newIntent) {
-        super.onNewIntent(newIntent);
-
+        if (ContactsDrawerActivity.ACTION_CREATE_GROUP.equals(newIntent.getAction())) {
+            super.onNewIntent(newIntent);
+            return;
+        }
         if (isDeleteAction(newIntent.getAction())) {
             toast(R.string.groupDeletedToast);
             setResult(RESULT_OK);
@@ -312,7 +257,6 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + groupUri);
 
             mGroupUri = groupUri;
-            mIsInsertAction = false;
 
             toast(getToastMessageForSaveAction(newIntent.getAction()));
 
@@ -330,14 +274,12 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     }
 
     private static boolean isSaveAction(String action) {
-        return ACTION_CREATE_GROUP.equals(action)
-                || ACTION_UPDATE_GROUP.equals(action)
+        return ACTION_UPDATE_GROUP.equals(action)
                 || ACTION_ADD_TO_GROUP.equals(action)
                 || ACTION_REMOVE_FROM_GROUP.equals(action);
     }
 
     private static int getToastMessageForSaveAction(String action) {
-        if (ACTION_CREATE_GROUP.equals(action)) return R.string.groupCreatedToast;
         if (ACTION_UPDATE_GROUP.equals(action)) return R.string.groupUpdatedToast;
         if (ACTION_ADD_TO_GROUP.equals(action)) return R.string.groupMembersAddedToast;
         if (ACTION_REMOVE_FROM_GROUP.equals(action)) return R.string.groupMembersRemovedToast;
@@ -497,8 +439,6 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         }
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
-        } else if (mIsInsertAction) {
-            finish();
         } else if (mIsEditMode) {
             mIsEditMode = false;
             mActionBarAdapter.setSelectionMode(false);
@@ -537,18 +477,6 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         }
     }
 
-    private boolean isSelectAccountDialogFound() {
-        return getFragmentManager().findFragmentByTag(TAG_SELECT_ACCOUNT_DIALOG) != null;
-    }
-
-    private boolean isGroupNameEditDialogFound() {
-        return getFragmentManager().findFragmentByTag(TAG_GROUP_NAME_EDIT_DIALOG) != null;
-    }
-
-    private void setResultCanceledAndFinish() {
-        setResultCanceledAndFinish(-1);
-    }
-
     private void setResultCanceledAndFinish(int resId) {
         toast(resId);
         setResult(RESULT_CANCELED);
@@ -559,20 +487,6 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         if (resId >= 0) {
             Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
         }
-    }
-
-    // SelectAccountDialogFragment.Listener callbacks
-
-    @Override
-    public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
-        mGroupMetadata.setGroupAccountMetadata(account);
-        GroupNameEditDialogFragment.showInsertDialog(
-                getFragmentManager(), TAG_GROUP_NAME_EDIT_DIALOG);
-    }
-
-    @Override
-    public void onAccountSelectorCancelled() {
-        setResultCanceledAndFinish();
     }
 
     // ActionBarAdapter callbacks
@@ -642,26 +556,18 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     // GroupNameEditDialogFragment.Listener callbacks
 
     @Override
-    public void onGroupNameEdit(String groupName) {
-        final Intent saveIntent;
-        if (mIsInsertAction) {
-            saveIntent = ContactSaveService.createNewGroupIntent(this,
-                    mGroupMetadata.createAccountWithDataSet(), groupName,
-                    /* rawContactsToAdd */ null, GroupMembersActivity.class,
-                    ACTION_CREATE_GROUP);
-        } else {
-            saveIntent = ContactSaveService.createGroupRenameIntent(this,
-                    mGroupMetadata.groupId, groupName, GroupMembersActivity.class,
-                    ACTION_UPDATE_GROUP);
+    public void onGroupNameEdit(String groupName, boolean isInsert) {
+        if (isInsert) {
+            super.onGroupNameEdit(groupName, isInsert);
+            return;
         }
-        startService(saveIntent);
+        startService(ContactSaveService.createGroupRenameIntent(this,
+                mGroupMetadata.groupId, groupName, GroupMembersActivity.class,
+                ACTION_UPDATE_GROUP));
     }
 
     @Override
     public void onGroupNameEditCancelled() {
-        if (mIsInsertAction) {
-            setResultCanceledAndFinish();
-        }
     }
 
     // GroupMembersFragment callbacks
@@ -669,12 +575,8 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     @Override
     public void onGroupMetadataLoaded(GroupMetadata groupMetadata) {
         mGroupMetadata = groupMetadata;
-
         updateGroupMenu(mGroupMetadata);
-
-        if (!mIsInsertAction) {
-            setActionBarTitle(mGroupMetadata.groupName);
-        }
+        setActionBarTitle(mGroupMetadata.groupName);
         invalidateOptionsMenu();
     }
 

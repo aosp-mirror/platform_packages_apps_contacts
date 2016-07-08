@@ -237,6 +237,11 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
     @Override
     protected void onNewIntent(Intent intent) {
+        if (ContactsDrawerActivity.ACTION_CREATE_GROUP.equals(intent.getAction())) {
+            super.onNewIntent(intent);
+            return;
+        }
+
         setIntent(intent);
         if (!processIntent(true)) {
             finish();

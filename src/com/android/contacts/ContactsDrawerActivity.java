@@ -16,12 +16,15 @@
 
 package com.android.contacts;
 
+import android.accounts.Account;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.Intents;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
@@ -37,18 +40,25 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferenceActivity;
 import com.android.contacts.common.util.AccountFilterUtil;
+import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupMetadata;
+import com.android.contacts.group.GroupNameEditDialogFragment;
 import com.android.contacts.group.GroupUtil;
 import com.android.contacts.group.GroupsFragment;
 import com.android.contacts.group.GroupsFragment.GroupsListener;
@@ -70,12 +80,20 @@ import java.util.Map.Entry;
 public abstract class ContactsDrawerActivity extends AppCompatContactsActivity implements
         AccountFiltersListener,
         GroupsListener,
-        NavigationView.OnNavigationItemSelectedListener {
+        NavigationView.OnNavigationItemSelectedListener,
+        SelectAccountDialogFragment.Listener,
+        GroupNameEditDialogFragment.Listener {
 
     protected static String TAG = "ContactsDrawerActivity";
 
-    protected static final String GROUPS_TAG = "groups";
-    protected static final String FILTERS_TAG = "filters";
+    private static final String TAG_GROUPS = "groups";
+    private static final String TAG_FILTERS = "filters";
+    private static final String TAG_SELECT_ACCOUNT_DIALOG = "selectAccountDialog";
+    private static final String TAG_GROUP_NAME_EDIT_DIALOG = "groupNameEditDialog";
+
+    private static final String KEY_NEW_GROUP_ACCOUNT = "newGroupAccount";
+
+    protected static final String ACTION_CREATE_GROUP = "createGroup";
 
     private class ContactsActionBarDrawerToggle extends ActionBarDrawerToggle {
 
@@ -132,6 +150,9 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     protected Map<ContactListFilter, MenuItem> mFilterMenuMap = new HashMap<>();
     protected Map<Integer, MenuItem> mIdMenuMap = new HashMap<>();
 
+    // The account the new group will be created under.
+    private AccountWithDataSet mNewGroupAccount;
+
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
@@ -182,6 +203,19 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             mIdMenuMap.get(R.id.nav_find_duplicates).setCheckable(true);
             mIdMenuMap.get(R.id.nav_find_duplicates).setChecked(true);
         }
+
+        if (savedState != null && savedState.containsKey(KEY_NEW_GROUP_ACCOUNT)) {
+            mNewGroupAccount = AccountWithDataSet.unstringify(
+                    savedState.getString(KEY_NEW_GROUP_ACCOUNT));
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mNewGroupAccount != null) {
+            outState.putString(KEY_NEW_GROUP_ACCOUNT, mNewGroupAccount.stringify());
+        }
     }
 
     @Override
@@ -197,6 +231,22 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 && getWindow().getStatusBarColor() ==
                         ContextCompat.getColor(this, R.color.primary_color_dark)) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent newIntent) {
+        if (ACTION_CREATE_GROUP.equals(newIntent.getAction())) {
+            final Uri groupUri = newIntent.getData();
+            if (groupUri == null) {
+                Toast.makeText(this, R.string.groupSavedErrorToast, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + groupUri);
+            Toast.makeText(this, R.string.groupCreatedToast, Toast.LENGTH_SHORT).show();
+            startActivity(GroupUtil.createViewGroupIntent(this, groupUri, /* title */ null));
+        } else {
+            super.onNewIntent(newIntent);
         }
     }
 
@@ -227,18 +277,18 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     protected void addGroupsAndFiltersFragments(FragmentTransaction transaction) {
         final FragmentManager fragmentManager = getFragmentManager();
-        mGroupsFragment = (GroupsFragment) fragmentManager.findFragmentByTag(GROUPS_TAG);
+        mGroupsFragment = (GroupsFragment) fragmentManager.findFragmentByTag(TAG_GROUPS);
         mAccountFiltersFragment = (AccountFiltersFragment)
-                fragmentManager.findFragmentByTag(FILTERS_TAG);
+                fragmentManager.findFragmentByTag(TAG_FILTERS);
 
         if (mGroupsFragment == null && ContactsUtils.areGroupWritableAccountsAvailable(this)) {
             mGroupsFragment = new GroupsFragment();
-            transaction.add(mGroupsFragment, GROUPS_TAG);
+            transaction.add(mGroupsFragment, TAG_GROUPS);
         }
 
         if (mAccountFiltersFragment == null) {
             mAccountFiltersFragment = new AccountFiltersFragment();
-            transaction.add(mAccountFiltersFragment, FILTERS_TAG);
+            transaction.add(mAccountFiltersFragment, TAG_FILTERS);
         }
 
         if (ContactsUtils.areGroupWritableAccountsAvailable(this) && mGroupsFragment != null) {
@@ -335,8 +385,20 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
     }
 
-    protected void onCreateGroupMenuItemClicked() {
-        startActivity(GroupUtil.createAddGroupIntent(this));
+    private void onCreateGroupMenuItemClicked() {
+        // Select the account to create the group
+        final Bundle extras = getIntent().getExtras();
+        final Account account = extras == null ? null :
+                (Account) extras.getParcelable(Intents.Insert.EXTRA_ACCOUNT);
+        if (account == null) {
+            selectAccount();
+        } else {
+            final String dataSet = extras == null
+                    ? null : extras.getString(Intents.Insert.EXTRA_DATA_SET);
+            final AccountWithDataSet accountWithDataSet = new AccountWithDataSet(
+                    account.name, account.type, dataSet);
+            onAccountChosen(accountWithDataSet, /* extraArgs */ null);
+        }
     }
 
     @Override
@@ -488,5 +550,50 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             map.get(pair.getKey()).setCheckable(false);
             map.get(pair.getKey()).setChecked(false);
         }
+    }
+
+    private void selectAccount() {
+        final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
+                .getAccounts(/* writable */ true);
+        if (accounts.isEmpty()) {
+            // We shouldn't present the add group button if there are no writable accounts
+            // but check it since it's possible we are started with an Intent.
+            Toast.makeText(this, R.string.groupCreateFailedToast, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        // If there is a single writable account, use it w/o showing a dialog.
+        if (accounts.size() == 1) {
+            onAccountChosen(accounts.get(0), /* extraArgs */ null);
+            return;
+        }
+        SelectAccountDialogFragment.show(getFragmentManager(), null,
+                R.string.dialog_new_group_account, AccountListFilter.ACCOUNTS_GROUP_WRITABLE,
+                /* extraArgs */ null, TAG_SELECT_ACCOUNT_DIALOG);
+    }
+
+    @Override
+    public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
+        mNewGroupAccount = account;
+        GroupNameEditDialogFragment.showInsertDialog(
+                getFragmentManager(), TAG_GROUP_NAME_EDIT_DIALOG);
+    }
+
+    @Override
+    public void onAccountSelectorCancelled() {
+    }
+
+    @Override
+    public void onGroupNameEdit(String groupName, boolean isInsert) {
+        if (mNewGroupAccount == null) {
+            Toast.makeText(this, R.string.groupCreateFailedToast, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        startService(ContactSaveService.createNewGroupIntent(this,
+                mNewGroupAccount, groupName, /* rawContactsToAdd */ null, getClass(),
+                ACTION_CREATE_GROUP));
+    }
+
+    @Override
+    public void onGroupNameEditCancelled() {
     }
 }

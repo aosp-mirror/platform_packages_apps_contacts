@@ -114,20 +114,19 @@ public final class GroupUtil {
         }
     }
 
-    /** Returns an Intent to create a new group. */
-    public static Intent createAddGroupIntent(Context context) {
+    /** Returns an Intent to view the details of the group identified by the given URI. */
+    public static Intent createViewGroupIntent(Context context, Uri groupUri, String title) {
         final Intent intent = new Intent(context, GroupMembersActivity.class);
-        intent.setAction(Intent.ACTION_INSERT);
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(groupUri);
+        intent.putExtra(EXTRA_GROUP_NAME, title);
         return intent;
     }
 
     /** Returns an Intent to view the details of the group identified by the given ID. */
     public static Intent createViewGroupIntent(Context context, long groupId, String title) {
-        final Intent intent = new Intent(context, GroupMembersActivity.class);
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(ContentUris.withAppendedId(Groups.CONTENT_URI, groupId));
-        intent.putExtra(EXTRA_GROUP_NAME, title);
-        return intent;
+        return createViewGroupIntent(context,
+                ContentUris.withAppendedId(Groups.CONTENT_URI, groupId), title);
     }
 
     /**

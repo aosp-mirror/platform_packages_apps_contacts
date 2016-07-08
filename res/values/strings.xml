@@ -324,11 +324,14 @@
     <!-- Toast displayed when a label is saved [CHAR LIMIT=30] -->
     <string name="groupSavedToast">Label saved</string>
 
-    <!-- Toast displayed when a label name is delted. [CHAR LIMIT=50] -->
+    <!-- Toast displayed when a label name is deleted. [CHAR LIMIT=50] -->
     <string name="groupDeletedToast">Label deleted</string>
 
-    <!-- Toast displayed when a label name is updated. [CHAR LIMIT=50] -->
+    <!-- Toast displayed when a new label name is created. [CHAR LIMIT=50] -->
     <string name="groupCreatedToast">Label created</string>
+
+    <!-- Toast displayed when a new label name cannot be created. [CHAR LIMIT=50] -->
+    <string name="groupCreateFailedToast">Can\'t create label</string>
 
     <!-- Toast displayed when a new label is created. [CHAR LIMIT=50] -->
     <string name="groupUpdatedToast">Label updated</string>

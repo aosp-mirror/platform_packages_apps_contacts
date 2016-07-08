@@ -85,16 +85,6 @@ public final class GroupMetadata implements Parcelable {
                 && groupId > 0;
     }
 
-    public AccountWithDataSet createAccountWithDataSet() {
-        return new AccountWithDataSet(accountName, accountType, dataSet);
-    }
-
-    public void setGroupAccountMetadata(AccountWithDataSet account) {
-        accountName = account.name;
-        accountType = account.type;
-        dataSet = account.dataSet;
-    }
-
     @Override
     public int describeContents() {
         return 0;
