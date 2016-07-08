@@ -16,6 +16,7 @@
 
 package com.android.contacts.quickcontact;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
@@ -957,16 +958,16 @@ public class QuickContactActivity extends ContactsActivity
         // 3. App has permission.
         // Permission explanation card is displayed only for case 1.
         final boolean hasCalendarPermission = PermissionsUtil.hasPermission(
-                this, RequestDesiredPermissionsActivity.DESIRED_PERMISSIONS[0]);
+                this, Manifest.permission.READ_CALENDAR);
         final boolean hasSMSPermission = PermissionsUtil.hasPermission(
-                this, RequestDesiredPermissionsActivity.DESIRED_PERMISSIONS[1]);
+                this, Manifest.permission.READ_SMS);
 
         final boolean wasCalendarPermissionDenied =
                 ActivityCompat.shouldShowRequestPermissionRationale(
-                        this, RequestDesiredPermissionsActivity.DESIRED_PERMISSIONS[0]);
+                        this, Manifest.permission.READ_CALENDAR);
         final boolean wasSMSPermissionDenied =
                 ActivityCompat.shouldShowRequestPermissionRationale(
-                        this, RequestDesiredPermissionsActivity.DESIRED_PERMISSIONS[1]);
+                        this, Manifest.permission.READ_SMS);
 
         final boolean shouldDisplayCalendarMessage =
                 !hasCalendarPermission && !wasCalendarPermissionDenied;

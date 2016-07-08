@@ -50,6 +50,8 @@
     <!-- Following used for Contact metadata syncing -->
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
+    <uses-feature android:name="android.hardware.telephony" required="false"/>
+
     <application
         android:name="com.android.contacts.ContactsApplication"
         android:label="@string/applicationLabel"
