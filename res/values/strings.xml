@@ -441,8 +441,8 @@
     <!-- Title for the update label dialog. CHAR LIMIT=40] -->
     <string name="group_name_dialog_update_title">Rename label</string>
 
-    <!-- Hint for the label name input field on the insert and update label dialogs [CHAR LIMIT=30] -->
-    <string name="group_name_dialog_hint">Label name</string>
+    <!-- Hint for the label name input field on the insert and update label dialogs [CHAR LIMIT=15] -->
+    <string name="group_name_dialog_hint">Label</string>
 
     <!-- Generic action string for starting an audio chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
     <string name="audio_chat">Voice chat</string>
@@ -510,7 +510,7 @@
     <string name="event_edit_field_hint_text">Date</string>
 
     <!-- The button to add an label field to a contact in the Raw Contact Editor [CHAR LIMIT=15] -->
-    <string name="group_edit_field_hint_text">Label name</string>
+    <string name="group_edit_field_hint_text">Label</string>
 
     <!-- Button used for changing a photo in the Raw Contact Editor [CHAR LIMIT=15] -->
     <string name="change_photo">Change</string>
@@ -652,8 +652,8 @@
     <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
     <string name="enter_contact_name">Search contacts</string>
 
-    <!-- Hint text in the label name box in the edit label view. [CHAR LIMIT=20]-->
-    <string name="group_name_hint">Label\'s name</string>
+    <!-- Title of edit label view  [CHAR LIMIT=20]-->
+    <string name="title_edit_group">Edit Label</string>
 
     <!-- Header label in the contact editor for a profile that is local to the device only (and not associated with any account) [CHAR LIMIT=25] -->
     <string name="local_profile_title">My local profile</string>

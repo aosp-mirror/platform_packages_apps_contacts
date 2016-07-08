@@ -21,7 +21,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
@@ -507,6 +506,13 @@ public class ActionBarAdapter implements OnCloseListener {
             textView.setVisibility(View.VISIBLE);
         }
         textView.setText(String.valueOf(selectionCount));
+    }
+
+    public void setActionBarTitle(String title) {
+        final TextView textView =
+                (TextView) mSelectionContainer.findViewById(R.id.selection_count_text);
+        textView.setVisibility(View.VISIBLE);
+        textView.setText(title);
     }
 
     private void updateStatusBarColor() {
