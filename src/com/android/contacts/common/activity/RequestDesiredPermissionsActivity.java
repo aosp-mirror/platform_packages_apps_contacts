@@ -19,7 +19,11 @@ package com.android.contacts.common.activity;
 import android.Manifest.permission;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Requests permissions that are not absolutely required by the calling Activity;
@@ -32,21 +36,11 @@ import android.os.Bundle;
  */
 public class RequestDesiredPermissionsActivity extends RequestPermissionsActivityBase {
 
-    public static final String[] DESIRED_PERMISSIONS = new String[] {
-            // Calendar group
-            permission.READ_CALENDAR,
-            // SMS group
-            permission.READ_SMS,
-    };
+    private static String[] sDesiredPermissions;
 
     @Override
-    protected String[] getRequiredPermissions() {
-        return DESIRED_PERMISSIONS;
-    }
-
-    @Override
-    protected String[] getDesiredPermissions() {
-        return DESIRED_PERMISSIONS;
+    protected String[] getPermissions() {
+        return getPermissions(getPackageManager());
     }
 
     /**
@@ -61,8 +55,24 @@ public class RequestDesiredPermissionsActivity extends RequestPermissionsActivit
         if (extras != null && extras.getBoolean(EXTRA_STARTED_PERMISSIONS_ACTIVITY, false)) {
             return false;
         }
-        return startPermissionActivity(activity, DESIRED_PERMISSIONS,
+        return startPermissionActivity(activity,
+                getPermissions(activity.getPackageManager()),
                 RequestDesiredPermissionsActivity.class);
+    }
+
+    private static String[] getPermissions(PackageManager packageManager) {
+        if (sDesiredPermissions == null) {
+            final List<String> permissions = new ArrayList<>();
+            // Calendar group
+            permissions.add(permission.READ_CALENDAR);
+
+            if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+                // SMS group
+                permissions.add(permission.READ_SMS);
+            }
+            sDesiredPermissions = permissions.toArray(new String[0]);
+        }
+        return sDesiredPermissions;
     }
 
     @Override

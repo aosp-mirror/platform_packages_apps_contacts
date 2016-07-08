@@ -34,14 +34,7 @@ public class RequestImportVCardPermissionsActivity extends RequestPermissionsAct
     };
 
     @Override
-    protected String[] getRequiredPermissions() {
-        return REQUIRED_PERMISSIONS;
-    }
-
-    @Override
-    protected String[] getDesiredPermissions() {
-        // Since this is used as an ostensible part of Dialer, lets be less pushy about asking for
-        // unnecessary permissions here.
+    protected String[] getPermissions() {
         return REQUIRED_PERMISSIONS;
     }
 

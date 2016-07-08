@@ -21,52 +21,50 @@ import com.android.contacts.common.R;
 import android.Manifest.permission;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Activity that requests permissions needed for activities exported from Contacts.
  */
 public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
 
-    private static final String[] REQUIRED_PERMISSIONS = new String[]{
-            // "Contacts" group. Without this permission, the Contacts app is useless.
-            permission.GET_ACCOUNTS,
-            permission.READ_CONTACTS,
-            permission.WRITE_CONTACTS,
-            // "Phone" group. This is only used in a few places such as QuickContactActivity and
-            // ImportExportDialogFragment. We could work around missing this permission with a bit
-            // of work.
-            permission.CALL_PHONE,
-            permission.READ_CALL_LOG,
-            permission.READ_PHONE_STATE,
-    };
+    private static String[] sRequiredPermissions;
 
     @Override
-    protected String[] getRequiredPermissions() {
-        return REQUIRED_PERMISSIONS;
-    }
-
-    @Override
-    protected String[] getDesiredPermissions() {
-        return new String[]{
-                // Contacts group
-                permission.GET_ACCOUNTS,
-                permission.READ_CONTACTS,
-                permission.WRITE_CONTACTS,
-                // Phone group
-                permission.CALL_PHONE,
-                permission.READ_CALL_LOG,
-                permission.READ_PHONE_STATE,
-                // Calendar group
-                permission.READ_CALENDAR,
-                // SMS group
-                permission.READ_SMS,
-        };
+    protected String[] getPermissions() {
+        return getPermissions(getPackageManager());
     }
 
     public static boolean startPermissionActivity(Activity activity) {
-        return startPermissionActivity(activity, REQUIRED_PERMISSIONS,
+        return startPermissionActivity(activity,
+                getPermissions(activity.getPackageManager()),
                 RequestPermissionsActivity.class);
+    }
+
+    private static String[] getPermissions(PackageManager packageManager) {
+        if (sRequiredPermissions == null) {
+            final List<String> permissions = new ArrayList<>();
+            // Contacts group
+            permissions.add(permission.GET_ACCOUNTS);
+            permissions.add(permission.READ_CONTACTS);
+            permissions.add(permission.WRITE_CONTACTS);
+
+            if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+                // Phone group
+                // These are only used in a few places such as QuickContactActivity and
+                // ImportExportDialogFragment.  We work around missing this permission when
+                // telephony is not available on the device (i.e. on tablets).
+                permissions.add(permission.CALL_PHONE);
+                permissions.add(permission.READ_CALL_LOG);
+                permissions.add(permission.READ_PHONE_STATE);
+            }
+            sRequiredPermissions = permissions.toArray(new String[0]);
+        }
+        return sRequiredPermissions;
     }
 
     @Override
