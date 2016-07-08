@@ -104,22 +104,12 @@ public class ImplicitIntentsUtil {
     }
 
     /**
-     * When adding account
-     * open the same UI screen for user to choose account
+     * Returns an Intent to open the Settings add account activity filtered to only
+     * display contact provider account types.
      */
     public static Intent getIntentForAddingAccount() {
         final Intent intent = new Intent(Settings.ACTION_ADD_ACCOUNT);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        intent.putExtra(Settings.EXTRA_AUTHORITIES,
-                new String[]{ContactsContract.AUTHORITY});
-        return intent;
-    }
-
-    /**
-     * Starts Accounts activity in OS->Settings->Accounts.
-     */
-    public static Intent getIntentForAccounts() {
-        final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
         intent.putExtra(Settings.EXTRA_AUTHORITIES,
                 new String[]{ContactsContract.AUTHORITY});
         return intent;
