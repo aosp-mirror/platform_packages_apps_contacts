@@ -16,7 +16,6 @@
 
 package com.android.contacts.common.activity;
 
-import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.util.PermissionsUtil;
 
@@ -32,8 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Activity that asks the user for all {@link #getDesiredPermissions} if any of
- * {@link #getRequiredPermissions} are missing.
+ * Activity that asks the user for all {@link #getPermissions} if any are missing.
  *
  * NOTE: As a result of b/22095159, this can behave oddly in the case where the final permission
  * you are requesting causes an application restart.
@@ -50,16 +48,10 @@ public abstract class RequestPermissionsActivityBase extends Activity
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
     /**
-     * @return list of permissions that are needed in order for {@link #PREVIOUS_ACTIVITY_INTENT} to
-     * operate. You only need to return a single permission per permission group you care about.
+     * @return list of permissions that are needed in order for {@link #PREVIOUS_ACTIVITY_INTENT}
+     * to operate. You only need to return a single permission per permission group you care about.
      */
-    protected abstract String[] getRequiredPermissions();
-
-    /**
-     * @return list of permissions that would be useful for {@link #PREVIOUS_ACTIVITY_INTENT} to
-     * operate. You only need to return a single permission per permission group you care about.
-     */
-    protected abstract String[] getDesiredPermissions();
+    protected abstract String[] getPermissions();
 
     protected Intent mPreviousActivityIntent;
 
@@ -113,7 +105,7 @@ public abstract class RequestPermissionsActivityBase extends Activity
     }
 
     private boolean isPermissionRequired(String p) {
-        return Arrays.asList(getRequiredPermissions()).contains(p);
+        return Arrays.asList(getPermissions()).contains(p);
     }
 
     private void requestPermissions() {
@@ -121,7 +113,7 @@ public abstract class RequestPermissionsActivityBase extends Activity
         try {
             // Construct a list of missing permissions
             final ArrayList<String> unsatisfiedPermissions = new ArrayList<>();
-            for (String permission : getDesiredPermissions()) {
+            for (String permission : getPermissions()) {
                 if (!PermissionsUtil.hasPermission(this, permission)) {
                     unsatisfiedPermissions.add(permission);
                 }
