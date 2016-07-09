@@ -20,10 +20,10 @@ import android.app.Activity;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.list.ContactListFilter;
@@ -100,6 +100,7 @@ public class AccountFilterUtil {
     private static List<ContactListFilter> loadAccountFilters(Context context) {
         final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
+        accountTypeManager.sortAccounts(/* defaultAccount */ getDefaultAccount(context));
         final List<AccountWithDataSet> accounts =
                 accountTypeManager.getAccounts(/* contactWritableOnly */ false);
         final List<AccountWithDataSet> writableAccounts =
@@ -131,5 +132,22 @@ public class AccountFilterUtil {
         final ArrayList<ContactListFilter> result = Lists.newArrayList();
         result.addAll(accountFilters);
         return result;
+    }
+
+    private static AccountWithDataSet getDefaultAccount(Context context) {
+        final SharedPreferences prefs =
+                context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        final String defaultAccountKey =
+                context.getResources().getString(R.string.contact_editor_default_account_key);
+        final String defaultAccountString = prefs.getString(defaultAccountKey, null);
+        if (TextUtils.isEmpty(defaultAccountString)) {
+            return null;
+        }
+        try {
+            return AccountWithDataSet.unstringify(defaultAccountString);
+        } catch (IllegalArgumentException exception) {
+            Log.e(TAG, "Error with retrieving default account " + exception.toString(), exception);
+            return null;
+        }
     }
 }
