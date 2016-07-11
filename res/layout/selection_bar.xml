@@ -39,4 +39,15 @@
         android:layout_gravity="center_vertical|start"
         style="@style/ContactsActionBarTitleTextAppCompat" />
 
+    <TextView
+        android:id="@+id/add_contacts"
+        android:layout_marginEnd="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical|end"
+        android:text="@string/menu_add_contacts"
+        android:textColor="@color/actionbar_text_color"
+        android:textStyle="bold"/>
+
 </FrameLayout>
