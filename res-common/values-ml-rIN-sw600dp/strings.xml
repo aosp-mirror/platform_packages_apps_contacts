@@ -17,6 +17,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"ടാബ്‌ലെറ്റിൽ മാത്രമുള്ളത്, സമന്വയിപ്പിക്കില്ല"</string>
+    <!-- no translation found for account_phone (3986576492011309404) -->
+    <skip />
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"എക്‌സ്‌പോർട്ടുചെയ്യാനാകുന്ന കോൺടാക്റ്റുകളൊന്നുമില്ല. നിങ്ങളുടെ ടാബ്‌ലെറ്റിൽ കോൺടാക്റ്റുകളുണ്ടെങ്കിൽ, ടാബ്‌ലെറ്റിൽ നിന്നും കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യാൻ ചില സേവന ദാതാക്കൾ അനുവദിക്കാനിടയില്ല."</string>
 </resources>

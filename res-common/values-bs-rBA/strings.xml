@@ -209,7 +209,6 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Ime prvo"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Prezime prvo"</string>
     <string name="settings_accounts" msgid="7534308574729401912">"Računi"</string>
-    <string name="add_account_label" msgid="2079214920181912644">"Dodaj račun"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Zadani račun za nove kontakte"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Sinhroniziraj metapodatke kontakata [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Sinhroniziraj metapodatke kontakata"</string>

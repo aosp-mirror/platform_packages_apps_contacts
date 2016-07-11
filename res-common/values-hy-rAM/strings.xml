@@ -208,7 +208,6 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Սկզբում՝ անունը"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Սկզբում՝ ազգանունը"</string>
     <string name="settings_accounts" msgid="7534308574729401912">"Հաշիվներ"</string>
-    <string name="add_account_label" msgid="2079214920181912644">"Ավելացնել հաշիվ"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Կանխադրված հաշիվ նոր կոնտակտների համար"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Համաժամացնել կոնտակտի մետատվյալները [ՆԵՐՔԻՆ ՓՈՐՁԱՐԿՄԱՆ ՆՊԱՏԱԿՈՎ]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Համաժամացնել կոնտակտի մետատվյալները"</string>
@@ -241,7 +240,7 @@
     <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Կոնտակտի ցուցադրման ընտրանքները"</string>
     <string name="select_account_dialog_title" msgid="5509088895267310568">"Հաշիվ"</string>
     <string name="set_default_account" msgid="3865970860434642695">"Միշտ օգտագործել սա՝ զանգերի համար"</string>
-    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Զանգահարել հետևյալով"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Զանգել հետևյալով"</string>
     <string name="call_with_a_note" msgid="8453800473226831257">"Գրառումով զանգ"</string>
     <string name="call_subject_hint" msgid="2270115162050853866">"Մուտքագրեք նշում՝ զանգի հետ ուղարկելու համար ..."</string>
     <string name="send_and_call_button" msgid="7459507823002185202">"ՈՒՂԱՐԿԵԼ ԵՎ ԶԱՆԳԵԼ"</string>

@@ -208,7 +208,6 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"முதல் பெயர் முதலில்"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"இறுதிப் பெயர் முதலில்"</string>
     <string name="settings_accounts" msgid="7534308574729401912">"கணக்குகள்"</string>
-    <string name="add_account_label" msgid="2079214920181912644">"கணக்கைச் சேர்"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"புதிய தொடர்புகளுக்கான இயல்பு கணக்கு"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"தொடர்பின் மீத்தரவை ஒத்திசை [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"தொடர்பின் மீத்தரவை ஒத்திசை"</string>

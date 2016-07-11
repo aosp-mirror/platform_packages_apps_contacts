@@ -208,7 +208,6 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ชื่อขึ้นก่อน"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"นามสกุลขึ้นก่อน"</string>
     <string name="settings_accounts" msgid="7534308574729401912">"บัญชี"</string>
-    <string name="add_account_label" msgid="2079214920181912644">"เพิ่มบัญชี"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"บัญชีเริ่มต้นสำหรับรายชื่อติดต่อใหม่"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"ซิงค์ข้อมูลเมตาของรายชื่อติดต่อ [การลองใช้]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ซิงค์ข้อมูลเมตาของรายชื่อติดต่อ"</string>

@@ -210,7 +210,6 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Спачатку імя"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Спачатку прозвішча"</string>
     <string name="settings_accounts" msgid="7534308574729401912">"Уліковыя запісы"</string>
-    <string name="add_account_label" msgid="2079214920181912644">"Дадаць уліковы запіс"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Стандартны ўліковы запіс для новых кантактаў"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Сінхранізаваць метаданыя пра кантакты [ДЛЯ СУПРАЦОЎНІКАЎ]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Сінхранізаваць метаданыя пра кантакты"</string>

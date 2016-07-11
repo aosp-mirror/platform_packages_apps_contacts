@@ -208,7 +208,6 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"​ຊື່​ກ່ອນ"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"​ນາມ​ສະ​ກຸນ​ກ່ອນ"</string>
     <string name="settings_accounts" msgid="7534308574729401912">"ບັນຊີ"</string>
-    <string name="add_account_label" msgid="2079214920181912644">"ເພີ່ມບັນຊີ"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"ບັນ​ຊີ​ເລີ່ມຕົ້ນ​ສຳ​ລັບ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໃໝ່"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"ຊິ້ງຂໍ້ມູນເມຕາເດຕາຂອງລາຍຊື່ຜູ້ຕິດຕໍ່ [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ຊິ້ງຂໍ້ມູນເມຕາເດຕາຂອງລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
