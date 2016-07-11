@@ -23,6 +23,7 @@ import android.content.DialogInterface.OnShowListener;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ import com.android.contacts.R;
 /**
  * A common superclass for creating and renaming groups.
  */
+// TODO: consolidate it with GroupNameEditDialogFragment
 public abstract class GroupNameDialogFragment extends DialogFragment {
     protected abstract int getTitleResourceId();
     protected abstract void initializeGroupLabelEditText(EditText editText);
@@ -49,6 +51,7 @@ public abstract class GroupNameDialogFragment extends DialogFragment {
         final EditText editText = (EditText) view.findViewById(R.id.group_label);
         final int maxLength = getResources().getInteger(R.integer.group_name_max_length);
         editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(maxLength) });
+        editText.setInputType(InputType.TYPE_CLASS_TEXT);
         initializeGroupLabelEditText(editText);
 
         builder.setTitle(getTitleResourceId());

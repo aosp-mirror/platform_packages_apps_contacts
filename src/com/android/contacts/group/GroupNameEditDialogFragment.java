@@ -27,6 +27,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -98,6 +99,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
                 .setNegativeButton(android.R.string.cancel, new OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        hideInputMethod();
                         getListener().onGroupNameEditCancelled();
                         dismiss();
                     }
@@ -111,6 +113,8 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
 
         // Disable the create button when the name is empty
         final AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
@@ -123,6 +127,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
                     mGroupNameEditText.setSelection(
                             mGroupName.length() > maxLength ? maxLength : mGroupName.length());
                 }
+                showInputMethod(mGroupNameEditText);
 
                 final Button createButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
                 createButton.setEnabled(!TextUtils.isEmpty(getGroupName()));
@@ -140,10 +145,9 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
                         createButton.setEnabled(!TextUtils.isEmpty(s));
                     }
                 });
-
-                showInputMethod(mGroupNameEditText);
             }
         });
+
         return alertDialog;
     }
 
@@ -165,6 +169,14 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
                 Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.showSoftInput(view, /* flags */ 0);
+        }
+    }
+
+    private void hideInputMethod() {
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        if (imm != null && mGroupNameEditText != null) {
+            imm.hideSoftInputFromWindow(mGroupNameEditText.getWindowToken(), /* flags */ 0);
         }
     }
 
