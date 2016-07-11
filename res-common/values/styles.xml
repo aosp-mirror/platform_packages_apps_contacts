@@ -21,10 +21,10 @@
     </style>
 
     <style name="SectionHeaderStyle" parent="@android:style/TextAppearance.Large">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/section_header_text_color</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="DirectoryHeaderStyle" parent="@android:style/TextAppearance.Small">
