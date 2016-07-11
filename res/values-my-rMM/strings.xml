@@ -90,7 +90,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"ဖျက်ခံရမည့် အဆက်အသွယ်များထဲတွင် အကောင့် အများအပြားဆိုင်ရာ အသေးစိတ်များ ပါရှိနေသည်။ ဖတ်ရန် သက်သက် အကောင့်များထံမှ အသေးစိတ်များကို ဝှက်ထားမည်၊ ဖျက်ခံရမည် မဟုတ်ပါ။"</string>
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"ဤအဆက်အသွယ်ကို ဖျက်လိုက်လျှင် အကောင့် အများအပြားထဲက အသေးစိတ်များကိုပါ ဖျက်ပစ်မည်။"</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"ဤအဆက်အသွယ်ကို ဖျက်မလား။"</string>
-    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"ဖျက်ပါ"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"ဖျက်ရန်"</string>
     <string name="menu_discard" msgid="6854657936970228164">"အပြောင်းအလဲများ စွန့်ပစ်ရန်"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"လိပ်စာ မရှိပါ"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"အဆက်အသွယ်ကို ပင်မ မျက်နှာပြင်သို့ ထည့်လိုက်ပြီ။"</string>
@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"အညွှန်းကို သိမ်းပြီးပါပြီ"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"အညွှန်းဖျက်ပြီးပါပြီ"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"အညွှန်းဖန်တီးပြီးပါပြီ"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"အညွှန်းကို အပ်ဒိတ်လုပ်ပြီးပါပြီ"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"အညွှန်းမှ ဖယ်ရှားပြီးပါပြီ"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"အညွှန်းသို့ ထည့်ထားပါသည်"</string>

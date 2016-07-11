@@ -122,6 +122,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"تم حفظ التصنيف"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"تم حذف التصنيف"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"تم إنشاء التصنيف"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"تم تحديث التصنيف"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"تمت الإزالة من التصنيف"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"تمت الإضافة إلى التصنيف"</string>

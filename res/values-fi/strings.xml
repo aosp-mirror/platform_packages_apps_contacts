@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Tunniste tallennettiin."</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Tunniste poistettiin."</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Tunniste luotiin."</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Tunniste päivitettiin."</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Poistettu tunnisteesta"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Lisätty tunnisteeseen"</string>

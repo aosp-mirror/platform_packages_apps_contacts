@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"标签已保存"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"已删除标签"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"已创建标签"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"已更新标签"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"已从标签中移除"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"已添加到标签"</string>

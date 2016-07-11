@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"บันทึกป้ายกำกับแล้ว"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"ลบป้ายกำกับออกแล้ว"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"สร้างป้ายกำกับแล้ว"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"อัปเดตป้ายกำกับแล้ว"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"นำออกจากป้ายกำกับแล้ว"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"เพิ่มรายชื่อติดต่อไปยังป้ายกำกับแล้ว"</string>

@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Gardouse a etiqueta"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Eliminouse a etiqueta"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Creouse a etiqueta"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Actualizouse a etiqueta"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Eliminouse da etiqueta"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Engadiuse á etiqueta"</string>
