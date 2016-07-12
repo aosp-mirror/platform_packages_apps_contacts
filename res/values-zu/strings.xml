@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Ilebula ilondoloziwe"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Ilebula isusiwe"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Ilebula idaliwe"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Ilebula libuyekeziwe"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Kususiwe kulebula"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Kungeziwe kulebuli"</string>

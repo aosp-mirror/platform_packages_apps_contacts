@@ -120,6 +120,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Мітку збережено"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Мітку видалено"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Мітку створено"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Мітку оновлено"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Вилучено з мітки"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Додано мітку"</string>

@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Címke mentve"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Címke törölve"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Címke létrehozva"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Címke frissítve"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Eltávolítva a címkéből"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Hozzáadva a címkéhez"</string>

@@ -120,6 +120,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Etykieta została zapisana"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Etykieta usunięta"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Etykieta została utworzona"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Etykieta została zaktualizowana"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Usunięty z etykiety"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Dodano do etykiety"</string>

@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"ບັນທຶກປ້າຍກຳກັບແລ້ວ"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"ລຶບປ້າຍກຳກັບແລ້ວ"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"ສ້າງປ້າຍກຳກັບແລ້ວ"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"ອັບເດດປ້າຍກຳກັບແລ້ວ"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ລຶບອອກຈາກປ້າຍກຳກັບແລ້ວ"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ເພີ່ມໃສ່ປ້າຍກຳກັບແລ້ວ"</string>

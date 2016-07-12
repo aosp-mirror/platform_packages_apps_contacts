@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"បាន​រក្សាទុក​ស្លាក"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"បានលុបស្លាក"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"បាន​បង្កើត​ស្លាក"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"បាន​ធ្វើ​​បច្ចុប្បន្នភាព​ស្លាក"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"បាន​យក​ចេញ​ពី​ស្លាក"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"បាន​បន្ថែម​ទៅ​ស្លាក"</string>

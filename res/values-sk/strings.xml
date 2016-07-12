@@ -120,6 +120,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Štítok bol uložený"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Štítok bol odstránený"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Štítok bol vytvorený"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Štítok bol aktualizovaný"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Odstránené zo štítka"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Pridané do štítka"</string>

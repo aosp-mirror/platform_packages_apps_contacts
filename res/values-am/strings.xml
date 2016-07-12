@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"መሰየሚያ ተቀምጧል"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"መሰየሚያ ተሰርዟል"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"መሰየሚያ ተፈጥሯል"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"መሰየሚያ ዘምኗል"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ከመሰየሚያ ተወግዷል"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ወደ ስያሜ ታክሏል"</string>

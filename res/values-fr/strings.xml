@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Libellé enregistré"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Libellé supprimé"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Libellé créé"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Libellé mis à jour"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Contact retiré du libellé"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Ajout au libellé effectué"</string>

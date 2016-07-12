@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"लेबललाई सुरक्षित गरियो"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"लेबल मेटाइयो"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"लेबल सिर्जना गरियो"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"लेबललाई अद्यावधिक गरियो"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"लेबलबाट हटाइयो"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"लेबलमा थपियो"</string>

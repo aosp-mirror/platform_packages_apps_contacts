@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Na-save ang label"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Na-delete ang label"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Nagawa ang label"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"In-update ang label"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Inalis sa label"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Idinagdag sa label"</string>

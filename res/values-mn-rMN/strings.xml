@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Шошгыг хадгалсан"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Шошгыг устгасан"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Шошго үүсгэсэн"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Шошгыг шинэчилсэн"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Шошгоос хассан"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Шошгонд нэмсэн"</string>

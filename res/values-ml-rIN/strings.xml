@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"ലേബൽ സംരക്ഷിച്ചു"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"ലേബൽ ഇല്ലാതാക്കി"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"ലേബൽ സൃഷ്‌ടിച്ചു"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"ലേബൽ അപ്ഡേറ്റുചെയ്‌തു"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ലേബലിൽ നിന്ന് നീക്കംചെയ്‌തു"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ലേബലിൽ ചേർത്തു"</string>

@@ -118,6 +118,8 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"برچسب ذخیره شد"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"برچسب حذف شد"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"برچسب ایجاد شد"</string>
+    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
+    <skip />
     <string name="groupUpdatedToast" msgid="3667977658676267687">"برچسب به‌روزرسانی شد"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"از برچسب حذف شد"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"به برچسب اضافه شد"</string>
