@@ -48,6 +48,7 @@ import android.widget.ListView;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.R;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ListEvent.ActionType;
 import com.android.contacts.common.preference.ContactsPreferences;
@@ -460,6 +461,13 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                 }
                 mDirectoryListStatus = STATUS_NOT_LOADED;
                 getLoaderManager().destroyLoader(DIRECTORY_LOADER_ID);
+
+                // Hide section header if the list is small and there are no starred contacts.
+                final int minListCount = getResources().getInteger(
+                        R.integer.min_contacts_for_alphabetic_index);
+                if (data.getCount() < minListCount && mAdapter.getNumberOfFavorites() == 0) {
+                    mAdapter.setSectionHeaderDisplayEnabled(false);
+                }
             }
         }
     }
