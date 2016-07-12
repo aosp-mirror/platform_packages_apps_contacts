@@ -17,6 +17,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"Samo v tabličnem računalniku, nesinhroniziran"</string>
+    <!-- no translation found for account_phone (3986576492011309404) -->
+    <skip />
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"Ni stikov za izvoz. Če imate v tabličnem računalniku stike, nekateri ponudniki podatkov morda ne omogočajo izvoza stikov iz njega."</string>
 </resources>

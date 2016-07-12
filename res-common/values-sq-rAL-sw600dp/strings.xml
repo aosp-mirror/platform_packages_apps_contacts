@@ -17,6 +17,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"Vetëm në tablet, i pasinkronizuar"</string>
+    <!-- no translation found for account_phone (3986576492011309404) -->
+    <skip />
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"Nuk ka kontakte që mund të eksportohen. Nëse ke kontakte në tabletin tënd, disa ofrues të të dhënave mund të mos lejojnë që kontaktet të eksportohen nga tableti."</string>
 </resources>

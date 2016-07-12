@@ -17,6 +17,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="account_phone" msgid="4804592866198643905">"الجهاز اللوحي فقط، غير متزامنة"</string>
+    <!-- no translation found for account_phone (3986576492011309404) -->
+    <skip />
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"ليست هناك أية جهات اتصال قابلة للتصدير. إذا كانت لديك جهات اتصال على الجهاز اللوحي، فإن بعض موفري البيانات لا يسمحون بتصدير جهات الاتصال من الجهاز اللوحي."</string>
 </resources>

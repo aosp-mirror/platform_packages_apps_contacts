@@ -143,7 +143,7 @@
     <string name="chat_icq" msgid="7538190395602030726">"ICQ သုံး၍ ချက်တင်ပြုလုပ်ခြင်း"</string>
     <string name="chat_jabber" msgid="4525546665986350869">"Jabberသုံး၍ ချက်တင်ပြုလုပ်ခြင်း"</string>
     <string name="chat" msgid="6297650784873558837">"ချက်တင်းပြောသည်"</string>
-    <string name="description_minus_button" msgid="2142439445814730827">"ဖျက်သည်"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"ဖျက်ရန်"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"နာမည်အကွက်များအား ဖြန့်ချ သို့မဟုတ် လိပ်တင်ပါ"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"အသံထွက်ဆိုင်ရာ အကွက်များကို တိုးချဲ့ သို့မဟုတ် ခေါက်သိမ်းပါ"</string>
     <string name="menu_done" msgid="32470053723443112">"ပြီးပါပြီ"</string>
@@ -208,7 +208,6 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ပထမ အမည် ဦးစွာ"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"နောက်ဆုံး အမည် ဦးစွာ"</string>
     <string name="settings_accounts" msgid="7534308574729401912">"အကောင့်များ"</string>
-    <string name="add_account_label" msgid="2079214920181912644">"အကောင့်ထည့်ရန်"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"အဆက်အသွယ် အသစ်များအတွက် မူရင်း အကောင့်"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"အဆက်အသွယ် မက်တာဒေတာကို စင့်ခ်လုပ်ပါ [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"အဆက်အသွယ် မက်တာဒေတာကို စင့်ခ်လုပ်ပါ"</string>

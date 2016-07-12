@@ -208,7 +208,6 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Fornavn først"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Efternavn først"</string>
     <string name="settings_accounts" msgid="7534308574729401912">"Konti"</string>
-    <string name="add_account_label" msgid="2079214920181912644">"Tilføj konto"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"Standardkonto til nye kontaktpersoner"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Synkroniser metadata for kontaktpersoner [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Synkroniser metadata for kontaktpersoner"</string>

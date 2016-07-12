@@ -208,7 +208,6 @@
     <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ಮೊದಲ ಹೆಸರು ಮೊದಲು"</string>
     <string name="display_options_view_family_name_first" msgid="8133167685885174166">"ಕೊನೆಯ ಹೆಸರು ಮೊದಲು"</string>
     <string name="settings_accounts" msgid="7534308574729401912">"ಖಾತೆಗಳು"</string>
-    <string name="add_account_label" msgid="2079214920181912644">"ಖಾತೆ ಸೇರಿಸಿ"</string>
     <string name="default_editor_account" msgid="4338725881650654966">"ಹೊಸ ಸಂಪರ್ಕಗಳಿಗೆ ಡಿಫಾಲ್ಟ್‌ ಖಾತೆ"</string>
     <string name="sync_contact_metadata_title" msgid="8322455849769727129">"ಸಂಪರ್ಕ ಮೆಟಾಡೇಟಾವನ್ನು ಸಿಂಕ್ ಮಾಡಿ [DOGFOOD]"</string>
     <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ಸಂಪರ್ಕ ಮೆಟಾಡೇಟಾವನ್ನು ಸಿಂಕ್ ಮಾಡಿ"</string>
