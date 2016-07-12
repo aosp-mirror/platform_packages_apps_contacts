@@ -20,9 +20,6 @@
          in contacts/group lists. -->
     <dimen name="list_header_extra_top_padding">0dip</dimen>
 
-    <!-- Minimum height used with @drawable/list_section_divider_holo_custom.
-         Right now the drawable has implicit 32dip minimal height, which is confusing.
-         This value is for making the hidden configuration explicit in xml. -->
     <dimen name="list_section_divider_min_height">32dip</dimen>
 
     <dimen name="directory_header_extra_top_padding">18dp</dimen>
@@ -49,6 +46,9 @@
     <dimen name="contact_browser_list_header_left_margin">16dip</dimen>
     <dimen name="contact_browser_list_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
     <dimen name="contact_browser_list_item_text_indent">8dip</dimen>
+    <dimen name="contact_browser_list_header_height">48dp</dimen>
+    <dimen name="contact_browser_list_header_icon_size">24dp</dimen>
+    <dimen name="contact_browser_list_header_text_margin">20dp</dimen>
     <!-- Width of a contact list item section header. -->
     <dimen name="contact_list_section_header_width">48dp</dimen>
 
@@ -127,7 +127,7 @@
     <!-- Padding around back arrow icon in the search box -->
     <dimen name="search_box_navigation_icon_margin">14dp</dimen>
     <!-- Left margin of the text field in the search box. -->
-    <dimen name="search_box_text_left_margin">15dp</dimen>
+    <dimen name="search_box_text_left_margin">8dp</dimen>
     <!-- Search box text size -->
     <dimen name="search_text_size">16sp</dimen>
 

@@ -43,7 +43,6 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:layout_height">wrap_content</item>
         <!-- See comments for @dimen/list_section_divider_min_height -->
         <item name="android:minHeight">@dimen/list_section_divider_min_height</item>
-        <item name="android:background">@drawable/list_section_divider_holo_custom</item>
         <item name="android:textAppearance">@style/DirectoryHeaderStyle</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">8dip</item>
