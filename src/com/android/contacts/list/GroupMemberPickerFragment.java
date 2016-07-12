@@ -28,7 +28,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.R;
@@ -36,6 +35,7 @@ import com.android.contacts.common.list.ContactListAdapter.ContactQuery;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactsSectionIndexer;
 import com.android.contacts.common.list.DefaultContactListAdapter;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.group.GroupUtil;
 
 import java.util.ArrayList;
@@ -229,16 +229,15 @@ public class GroupMemberPickerFragment extends
             // Wait until contacts are loaded before showing the scrollbar
             setVisibleScrollbarEnabled(true);
 
-            // Bind account filter header.
+            final FilterCursorWrapper cursorWrapper = new FilterCursorWrapper(data);
             final View accountFilterContainer = getView().findViewById(
                     R.id.account_filter_header_container);
-            accountFilterContainer.setVisibility(View.VISIBLE);
-            final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
-                    R.id.account_filter_header);
-            accountFilterHeader.setText(mAccountName);
-            accountFilterHeader.setAllCaps(false);
+            final AccountWithDataSet accountWithDataSet = new AccountWithDataSet(mAccountName,
+                    mAccountType, mAccountDataSet);
+            bindListHeader(getContext(), getListView(), accountFilterContainer,
+                    accountWithDataSet, cursorWrapper.getCount());
 
-            super.onLoadFinished(loader, new FilterCursorWrapper(data));
+            super.onLoadFinished(loader, cursorWrapper);
         }
     }
 

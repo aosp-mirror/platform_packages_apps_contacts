@@ -37,7 +37,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
@@ -47,6 +46,7 @@ import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.logging.ListEvent.ListType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.group.GroupMembersAdapter.GroupMembersQuery;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 
@@ -293,16 +293,13 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 R.id.account_filter_header_container);
         final View emptyGroupView = getView().findViewById(R.id.empty_group);
         if (memberCount > 0) {
-            accountFilterContainer.setVisibility(View.VISIBLE);
-
-            final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
-                    R.id.account_filter_header);
-            accountFilterHeader.setText(mGroupMetadata.accountName);
-            accountFilterHeader.setAllCaps(false);
-
+            final AccountWithDataSet accountWithDataSet = new AccountWithDataSet(
+                    mGroupMetadata.accountName, mGroupMetadata.accountType, mGroupMetadata.dataSet);
+            bindListHeader(getContext(), getListView(), accountFilterContainer,
+                    accountWithDataSet, memberCount);
             emptyGroupView.setVisibility(View.GONE);
         } else {
-            accountFilterContainer.setVisibility(View.GONE);
+            hideHeaderAndAddPadding(getContext(), getListView(), accountFilterContainer);
             emptyGroupView.setVisibility(View.VISIBLE);
         }
     }

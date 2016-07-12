@@ -59,7 +59,7 @@
         <item name="android:colorPrimary">@color/primary_color</item>
         <item name="android:colorAccent">@color/primary_color</item>
         <item name="android:alertDialogTheme">@style/ContactsAlertDialogTheme</item>
-        <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
+        <item name="list_item_height">@dimen/contact_browser_list_item_height</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
         <item name="list_section_header_height">24dip</item>
@@ -91,6 +91,7 @@
         <item name="contact_browser_list_padding_right">0dip</item>
         <item name="contact_browser_background">@color/background_primary</item>
         <item name="list_item_text_indent">@dimen/contact_browser_list_item_text_indent</item>
+        <item name="list_item_text_offset_top">-2dp</item>
         <!-- Favorites -->
         <item name="favorites_padding_bottom">0dip</item>
     </style>
@@ -134,7 +135,7 @@
         <item name="colorAccent">@color/primary_color</item>
         <item name="android:alertDialogTheme">@style/ContactsAlertDialogThemeAppCompat</item>
         <item name="alertDialogTheme">@style/ContactsAlertDialogThemeAppCompat</item>
-        <item name="list_item_height">?android:attr/listPreferredItemHeight</item>
+        <item name="list_item_height">@dimen/contact_browser_list_item_height</item>
         <item name="activated_background">@drawable/list_item_activated_background</item>
         <item name="section_header_background">@drawable/list_title_holo</item>
         <item name="list_section_header_height">24dip</item>
@@ -169,6 +170,7 @@
         <item name="contact_browser_list_padding_right">0dip</item>
         <item name="contact_browser_background">@color/background_primary</item>
         <item name="list_item_text_indent">@dimen/contact_browser_list_item_text_indent</item>
+        <item name="list_item_text_offset_top">-2dp</item>
         <!-- Favorites -->
         <item name="favorites_padding_bottom">0dip</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>

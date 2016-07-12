@@ -17,22 +17,25 @@ package com.android.contacts.list;
 
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
 import android.net.Uri;
-import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.list.ContactListAdapter;
+import com.android.contacts.common.list.ContactListFilter;
+import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.FavoritesAndContactsLoader;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
@@ -56,6 +59,29 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     @Override
     public CursorLoader createCursorLoader(Context context) {
         return new FavoritesAndContactsLoader(context);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        bindListHeader(data.getCount());
+        super.onLoadFinished(loader, data);
+    }
+
+    private void bindListHeader(int numberOfContacts) {
+        final View accountFilterContainer = getView().findViewById(
+                R.id.account_filter_header_container);
+        final ContactListFilterController contactListFilterController =
+                ContactListFilterController.getInstance(getContext());
+        final ContactListFilter filter = contactListFilterController.getFilter();
+        if (!isSearchMode()
+                && filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+            final AccountWithDataSet accountWithDataSet = new AccountWithDataSet(
+                    filter.accountName, filter.accountType, filter.dataSet);
+            bindListHeader(getContext(), getListView(), accountFilterContainer,
+                    accountWithDataSet, numberOfContacts);
+        } else {
+            hideHeaderAndAddPadding(getContext(), getListView(), accountFilterContainer);
+        }
     }
 
     @Override

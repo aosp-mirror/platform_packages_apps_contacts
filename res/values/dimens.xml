@@ -260,7 +260,9 @@
       @dimen/contact_browser_list_item_photo_size) / 2 or greater. Otherwise, this padding
       will never take affect inside list items. As a result, the padding at the very top
       of ListView's will not match the padding inside list items -->
-    <dimen name="contact_browser_list_item_padding_top_or_bottom">12dp</dimen>
+    <dimen name="contact_browser_list_item_padding_top_or_bottom">8dp</dimen>
+
+    <dimen name="contact_browser_list_item_height">56dp</dimen>
 
     <!-- Ideal item width in photo picker -->
     <dimen name="photo_picker_item_ideal_width">135dp</dimen>

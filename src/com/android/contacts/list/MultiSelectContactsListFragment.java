@@ -16,18 +16,30 @@
 
 package com.android.contacts.list;
 
+import com.android.contacts.R;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter.SelectedContactsListener;
 import com.android.contacts.common.logging.ListEvent.ActionType;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.SearchState;
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.GoogleAccountType;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
+import android.widget.AbsListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -269,4 +281,69 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         }
         return searchState;
     }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+            int totalItemCount) {
+        final View accountFilterContainer = getView().findViewById(
+                R.id.account_filter_header_container);
+        if (accountFilterContainer == null) {
+            return;
+        }
+        if (firstVisibleItem == 0) {
+            accountFilterContainer.setBackground(
+                    new ColorDrawable(getResources().getColor(R.color.background_primary)));
+        } else {
+            accountFilterContainer.setBackground(
+                    getResources().getDrawable(R.drawable.account_header_background));
+        }
+    }
+
+    /**
+     * Show account icon, count of contacts and account name in the header of the list.
+     */
+    protected void bindListHeader(Context context, View listView, View accountFilterContainer,
+            AccountWithDataSet accountWithDataSet, int memberCount) {
+        if (memberCount < 0) {
+            hideHeaderAndAddPadding(context, listView, accountFilterContainer);
+            return;
+        }
+
+        // Show header and remove top padding of the list
+        accountFilterContainer.setVisibility(View.VISIBLE);
+        listView.setPadding(0, 0, 0, 0);
+
+        // Set text of count of contacts and account name (if it's a Google account)
+        final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
+                R.id.account_filter_header);
+        final String headerText =  String.format(context.getResources().getQuantityString(
+                R.plurals.contacts_count, memberCount), memberCount);
+        final StringBuilder sb = new StringBuilder(headerText);
+        if (GoogleAccountType.ACCOUNT_TYPE.equals(accountWithDataSet.type)) {
+            sb.append(" \u00B7 "); // Unicode character 'MIDDLE DOT'
+            sb.append(accountWithDataSet.name);
+        }
+        accountFilterHeader.setText(sb.toString());
+        accountFilterHeader.setAllCaps(false);
+
+        // Set icon of the account
+        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
+        final AccountType accountType = accountTypeManager.getAccountType(
+                accountWithDataSet.type, accountWithDataSet.dataSet);
+        final Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
+        final ImageView accountFilterHeaderIcon = (ImageView) accountFilterContainer
+                .findViewById(R.id.account_filter_icon);
+        accountFilterHeaderIcon.setImageDrawable(icon);
+    }
+
+    /**
+     * Hide header of list view and add padding to the top of list view.
+     */
+    protected void hideHeaderAndAddPadding(Context context, View listView,
+            View accountFilterContainer) {
+        accountFilterContainer.setVisibility(View.GONE);
+        listView.setPadding(0, context.getResources().getDimensionPixelSize(
+                R.dimen.contact_browser_list_item_padding_top_or_bottom), 0, 0);
+    }
+
 }

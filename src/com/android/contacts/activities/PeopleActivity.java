@@ -68,6 +68,7 @@ import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
@@ -1398,16 +1399,23 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         updateFilterMenu(filter);
 
         if (getSupportActionBar() != null) {
-            String actionBarTitle = null;
+            String actionBarTitle;
             if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
                 actionBarTitle = getString(R.string.account_phone);
             } else if (!TextUtils.isEmpty(filter.accountName)) {
-                actionBarTitle = filter.accountName;
+                actionBarTitle = getActionBarTitleForAccount(filter);
             } else {
                 actionBarTitle = getString(R.string.contactsList);
             }
             getSupportActionBar().setTitle(actionBarTitle);
         }
+    }
+
+    private String getActionBarTitleForAccount(ContactListFilter filter) {
+        if (GoogleAccountType.ACCOUNT_TYPE.equals(filter.accountType)) {
+            return getString(R.string.title_from_google);
+        }
+        return getString(R.string.title_from_other_accounts, filter.accountName);
     }
 
     // Persist filter only when it's of the type FILTER_TYPE_ALL_ACCOUNTS.

@@ -206,6 +206,18 @@
         <item quantity="other">Contacts deleted</item>
     </plurals>
 
+    <!-- List header indicating the number of contacts in the list [CHAR LIMIT=30] -->
+    <plurals name="contacts_count">
+        <item quantity="one">1 contact</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
+    </plurals>
+
+    <!-- Activity title indicating contacts are from a Google account [CHAR LIMIT=30] -->
+    <string name="title_from_google">From Google</string>
+
+    <!-- Activity title indicating contacts are from a specific account [CHAR LIMIT=15] -->
+    <string name="title_from_other_accounts">From <xliff:g id="account">%s</xliff:g></string>
+
     <!-- Menu item that opens the Options activity for a given contact [CHAR LIMIT=15] -->
     <string name="menu_set_ring_tone">Set ringtone</string>
 
