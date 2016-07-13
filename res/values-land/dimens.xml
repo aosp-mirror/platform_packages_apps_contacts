@@ -18,4 +18,10 @@
     <dimen name="dialpad_digits_text_size">28sp</dimen>
     <dimen name="dialpad_digits_margin_bottom">50dip</dimen>
     <dimen name="editor_type_label_width">120dip</dimen>
+
+    <!-- Top padding for the text for empty group view-->
+    <dimen name="empty_group_view_text_padding_top">20dp</dimen>
+
+    <!-- Width for the image for empty group view-->
+    <dimen name="empty_group_view_image_width">176dp</dimen>
 </resources>

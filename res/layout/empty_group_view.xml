@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/empty_group"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/empty_state_background"
+    android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/empty_group_image"
+        android:layout_width="@dimen/empty_group_view_image_width"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
+        android:src="@drawable/label_empty"/>
+
+    <TextView
+        android:id="@+id/empty_group_view_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/empty_group_view_text_padding_top"
+        android:paddingBottom="@dimen/empty_group_view_text_padding_bottom"
+        android:text="@string/emptyGroup"
+        style="@style/EmptyStateTextStyle"/>
+
+    <Button
+        android:id="@+id/add_member_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/menu_addContactsToGroup"
+        style="@style/AddContactsButtonStyle"/>
+</LinearLayout>

@@ -295,7 +295,7 @@
     <string name="noAccounts">To create groups you need an account.</string>
 
     <!-- The text displayed when there are no members that have this label while displaying the label detail page [CHAR LIMIT=70] -->
-    <string name="emptyGroup">No people with this label.</string>
+    <string name="emptyGroup">No contacts with this label</string>
 
     <!-- Toast displayed when a contact is saved [CHAR LIMIT=NONE] -->
     <string name="contactSavedToast">Contact saved</string>

@@ -34,6 +34,7 @@ import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.list.ContactsSectionIndexer;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.testing.NeededForTesting;
+import com.android.contacts.list.UiIntentActions;
 import com.google.common.base.Objects;
 
 import java.util.ArrayList;
@@ -127,6 +128,18 @@ public final class GroupUtil {
     public static Intent createViewGroupIntent(Context context, long groupId, String title) {
         return createViewGroupIntent(context,
                 ContentUris.withAppendedId(Groups.CONTENT_URI, groupId), title);
+    }
+
+    /** Returns an Intent to pick contacts to add to a group. */
+    public static Intent createPickMemberIntent(
+            GroupMetadata groupMetadata, ArrayList<String> memberContactIds) {
+        final Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(Groups.CONTENT_ITEM_TYPE);
+        intent.putExtra(UiIntentActions.GROUP_ACCOUNT_NAME, groupMetadata.accountName);
+        intent.putExtra(UiIntentActions.GROUP_ACCOUNT_TYPE, groupMetadata.accountType);
+        intent.putExtra(UiIntentActions.GROUP_ACCOUNT_DATA_SET, groupMetadata.dataSet);
+        intent.putExtra(UiIntentActions.GROUP_CONTACT_IDS, memberContactIds);
+        return intent;
     }
 
     /**
