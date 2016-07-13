@@ -1290,6 +1290,8 @@ public class ContactListItemView extends ViewGroup
             mDeleteImageButton.setImageResource(R.drawable.ic_cancel_black_24dp);
             mDeleteImageButton.setScaleType(ScaleType.CENTER);
             mDeleteImageButton.setBackgroundColor(Color.TRANSPARENT);
+            mDeleteImageButton.setContentDescription(
+                    getResources().getString(R.string.description_delete_contact));
             addView(mDeleteImageButton);
         }
         // Reset onClickListener because after reloading the view, position might be changed.
