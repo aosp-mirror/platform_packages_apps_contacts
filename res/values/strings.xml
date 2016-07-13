@@ -527,6 +527,10 @@
     <!-- The title of the Edit-Contact screen -->
     <string name="edit_contact">Edit contact</string>
 
+    <!-- Content description for the fake action menu up button as used
+         inside edit or select. [CHAR LIMIT=NONE] -->
+    <string name="action_menu_back_from_edit_select">close</string>
+
     <!-- The message in a confirmation dialog shown when the user selects a
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
     <string name="aggregation_suggestion_join_dialog_message">Link
