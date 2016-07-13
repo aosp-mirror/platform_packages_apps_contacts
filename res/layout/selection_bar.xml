@@ -26,7 +26,7 @@
         android:layout_height="48dp"
         android:src="@drawable/ic_close_black_24dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/action_menu_back_from_search"
+        android:contentDescription="@string/action_menu_back_from_edit_select"
         android:layout_gravity="center_vertical|start"
         android:tint="@android:color/white" />
 
