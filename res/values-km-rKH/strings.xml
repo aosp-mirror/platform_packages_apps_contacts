@@ -106,7 +106,8 @@
     <string name="noContacts" msgid="4955659076981974652">"គ្មាន​ទំនាក់ទំនង"</string>
     <string name="noGroups" msgid="4607906327968232225">"គ្មានស្លាក។"</string>
     <string name="noAccounts" msgid="7768267764545265909">"ដើម្បី​បង្កើត​ក្រុម​អ្នក​ចាំបាច់​ត្រូវ​មាន​គណនី​មួយ។"</string>
-    <string name="emptyGroup" msgid="3741795311081911842">"មិនមានមនុស្សដែលមានស្លាកនេះ​ទេ។"</string>
+    <!-- no translation found for emptyGroup (5102411903247859575) -->
+    <skip />
     <string name="contactSavedToast" msgid="9171862279493213075">"បាន​រក្សាទុក​ទំនាក់ទំនង"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ទំនាក់ទំនងដែលមិនបានតភ្ជាប់"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"មិន​អាច​រក្សាទុក​ការ​ប្ដូរ​ទំនាក់ទំនង។"</string>
@@ -118,8 +119,7 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"បាន​រក្សាទុក​ស្លាក"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"បានលុបស្លាក"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"បាន​បង្កើត​ស្លាក"</string>
-    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
-    <skip />
+    <string name="groupCreateFailedToast" msgid="4359093891863474299">"មិនអាចបង្កើតស្លាក"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"បាន​ធ្វើ​​បច្ចុប្បន្នភាព​ស្លាក"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"បាន​យក​ចេញ​ពី​ស្លាក"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"បាន​បន្ថែម​ទៅ​ស្លាក"</string>
@@ -161,7 +161,8 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"ជ្រើសគណនី"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"បង្កើតស្លាក"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"ប្ដូរឈ្មោះស្លាក"</string>
-    <string name="group_name_dialog_hint" msgid="7624523157537700160">"ឈ្មោះស្លាក"</string>
+    <!-- no translation found for group_name_dialog_hint (5122118085780669813) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"ជជែក​ជា​សំឡេង"</string>
     <string name="video_chat" msgid="1872255818640336072">"ជជែក​ជា​វីដេអូ"</string>
     <string name="connections" msgid="8098440723172028350">"ការ​តភ្ជាប់"</string>
@@ -185,11 +186,14 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"បន្ថែម​ថ្មី"</string>
     <string name="add_organization" msgid="7311893231158291197">"បន្ថែម​ស្ថាប័ន"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"កាលបរិច្ឆេទ"</string>
-    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"ឈ្មោះស្លាក"</string>
+    <!-- no translation found for group_edit_field_hint_text (8038224059926963133) -->
+    <skip />
     <string name="change_photo" msgid="8530597935483526383">"ផ្លាស់ប្ដូរ"</string>
     <string name="primary_photo" msgid="8517942231868516999">"រូបថតបឋម"</string>
     <string name="description_star" msgid="2605854427360036550">"សំណព្វ"</string>
     <string name="edit_contact" msgid="7529281274005689512">"កែ​ទំនាក់ទំនង"</string>
+    <!-- no translation found for action_menu_back_from_edit_select (6435476408621731420) -->
+    <skip />
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"តភ្ជាប់ទំនាក់ទំនងបច្ចុប្បន្នជាមួយទំនាក់ទំនងដែលបានជ្រើស?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ប្ដូរ​ដើម្បី​កែ​ទំនាក់ទំនង​ដែល​បាន​ជ្រើស? ព័ត៌មាន​ដែល​អ្នក​បញ្ចូល​នឹង​បាន​ចម្លង។"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"ចម្លង​ទៅ​ទំនាក់ទំនង​របស់​ខ្ញុំ"</string>
@@ -224,7 +228,8 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"នៅ​បន្ត​កែសម្រួល"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"ស្វែងរក​ទំនាក់ទំនង"</string>
-    <string name="group_name_hint" msgid="7614490821934528478">"ឈ្មោះ​របស់​​ស្លាក"</string>
+    <!-- no translation found for title_edit_group (1258790269665184368) -->
+    <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"ប្រវត្តិរូប​មូលដ្ឋាន​របស់​ខ្ញុំ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ប្រវត្តិរូប <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> របស់​ខ្ញុំ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"បង្ហាញ​ទំនាក់ទំនង​ទាំងអស់"</string>

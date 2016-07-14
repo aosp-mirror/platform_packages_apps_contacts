@@ -106,7 +106,8 @@
     <string name="noContacts" msgid="4955659076981974652">"No hi ha cap contacte"</string>
     <string name="noGroups" msgid="4607906327968232225">"No hi ha cap etiqueta."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Per crear grups necessites un compte."</string>
-    <string name="emptyGroup" msgid="3741795311081911842">"No hi ha ningú amb aquesta etiqueta."</string>
+    <!-- no translation found for emptyGroup (5102411903247859575) -->
+    <skip />
     <string name="contactSavedToast" msgid="9171862279493213075">"S\'ha desat el contacte"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Els contactes s\'han desenllaçat"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"No s\'han pogut desar els canvis al contacte."</string>
@@ -118,8 +119,7 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"L\'etiqueta s\'ha desat"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"L\'etiqueta s\'ha suprimit"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"L\'etiqueta s\'ha creat"</string>
-    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
-    <skip />
+    <string name="groupCreateFailedToast" msgid="4359093891863474299">"L\'etiqueta no es pot crear"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"L\'etiqueta s\'ha actualitzat"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"S\'han suprimit de l\'etiqueta"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"S\'ha afegit a l\'etiqueta"</string>
@@ -161,7 +161,8 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Tria un compte"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Crea una etiqueta"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Canvia el nom de l\'etiqueta"</string>
-    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Nom de l\'etiqueta"</string>
+    <!-- no translation found for group_name_dialog_hint (5122118085780669813) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"Xat de veu"</string>
     <string name="video_chat" msgid="1872255818640336072">"Xat de vídeo"</string>
     <string name="connections" msgid="8098440723172028350">"Connexions"</string>
@@ -185,11 +186,14 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Afegeix-ne un"</string>
     <string name="add_organization" msgid="7311893231158291197">"Afegeix organització"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Data"</string>
-    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"Nom d\'etiqueta"</string>
+    <!-- no translation found for group_edit_field_hint_text (8038224059926963133) -->
+    <skip />
     <string name="change_photo" msgid="8530597935483526383">"Canvia"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Foto principal"</string>
     <string name="description_star" msgid="2605854427360036550">"preferit"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Edita contacte"</string>
+    <!-- no translation found for action_menu_back_from_edit_select (6435476408621731420) -->
+    <skip />
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Vols enllaçar el contacte actual amb el contacte seleccionat?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Vols canviar per editar el contacte seleccionat? Es copiarà la informació que hagis introduït fins ara."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copia a Els meus contactes"</string>
@@ -224,7 +228,8 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Continua editant"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Cerca als contactes"</string>
-    <string name="group_name_hint" msgid="7614490821934528478">"Nom de l\'etiqueta"</string>
+    <!-- no translation found for title_edit_group (1258790269665184368) -->
+    <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"El meu perfil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"El meu perfil de <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"S\'estan mostrant tots els contactes"</string>
