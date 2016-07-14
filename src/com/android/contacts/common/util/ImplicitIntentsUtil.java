@@ -27,6 +27,8 @@ import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
 import android.text.TextUtils;
 
+import com.android.contacts.common.model.account.GoogleAccountType;
+
 import java.util.List;
 
 /**
@@ -108,10 +110,21 @@ public class ImplicitIntentsUtil {
      * display contact provider account types.
      */
     public static Intent getIntentForAddingAccount() {
-        final Intent intent = new Intent(Settings.ACTION_ADD_ACCOUNT);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
         intent.putExtra(Settings.EXTRA_AUTHORITIES,
                 new String[]{ContactsContract.AUTHORITY});
+        return intent;
+    }
+
+    /**
+     * Returns an Intent to add a google account.
+     */
+    public static Intent getIntentForAddingGoogleAccount() {
+        final Intent intent = new Intent(Settings.ACTION_ADD_ACCOUNT);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+        intent.putExtra(Settings.EXTRA_ACCOUNT_TYPES,
+                new String[]{GoogleAccountType.ACCOUNT_TYPE});
         return intent;
     }
 
