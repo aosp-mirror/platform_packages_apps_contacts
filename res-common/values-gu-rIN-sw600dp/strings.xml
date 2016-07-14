@@ -17,7 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for account_phone (3986576492011309404) -->
-    <skip />
+    <string name="account_phone" msgid="3986576492011309404">"ઉપકરણ"</string>
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"કોઈ નિકાસયોગ્ય સંપર્કો નથી. જો તમારી પાસે તમારા ટેબ્લેટ પર કોઈ સંપર્કો નથી, તો કેટલાક ડેટા પ્રદાતા ટેબ્લેટ પરથી સંપર્કોને નિકાસ કરવાની મંજૂરી આપી શકશે નહીં."</string>
 </resources>

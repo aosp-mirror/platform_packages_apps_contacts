@@ -17,7 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for account_phone (3986576492011309404) -->
-    <skip />
+    <string name="account_phone" msgid="3986576492011309404">"آلہ"</string>
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"برآمد کرنے لائق کوئی رابطے نہیں ہیں۔ اگر آپ کے ٹیبلٹ پر واقعی رابطے ہیں تو ممکن ہے کچھ ڈیٹا فراہم کنندگان رابطوں کو ٹیبلٹ سے برآمد کیے جانے کی اجازت نہ دیتے ہوں۔"</string>
 </resources>
