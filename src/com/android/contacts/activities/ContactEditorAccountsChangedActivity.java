@@ -70,7 +70,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
     private final OnClickListener mAddAccountClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            final Intent intent = ImplicitIntentsUtil.getIntentForAddingAccount();
+            final Intent intent = ImplicitIntentsUtil.getIntentForAddingGoogleAccount();
             startActivityForResult(intent, SUBACTIVITY_ADD_NEW_ACCOUNT);
         }
     };

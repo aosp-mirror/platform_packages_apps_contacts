@@ -1027,7 +1027,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
         @Override
         public void onAddAccountAction() {
-            final Intent intent = ImplicitIntentsUtil.getIntentForAddingAccount();
+            final Intent intent = ImplicitIntentsUtil.getIntentForAddingGoogleAccount();
             ImplicitIntentsUtil.startActivityOutsideApp(PeopleActivity.this, intent);
         }
 
