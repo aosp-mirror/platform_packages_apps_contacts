@@ -258,4 +258,6 @@
     <string name="activity_title_licenses" msgid="7812517458691564230">"ओपन सोर्स लाइसेंस"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url खोलने में विफल रहा."</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"वीडियो कॉल करें"</string>
+    <!-- no translation found for description_delete_contact (5792859265342550501) -->
+    <skip />
 </resources>

@@ -17,7 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for account_phone (3986576492011309404) -->
-    <skip />
+    <string name="account_phone" msgid="3986576492011309404">"ডিভাইস"</string>
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"এখানে রপ্তানিযোগ্য কোনো পরিচিতি নেই৷ আপনার ট্যাবলেটে পরিচিতি থাকলে, কিছু ডেটা সরবরাহকারী আপনার ট্যাবলেট থেকে সেই পরিচিতিগুলিকে রপ্তানি করা মঞ্জুর নাও করতে পারে৷"</string>
 </resources>

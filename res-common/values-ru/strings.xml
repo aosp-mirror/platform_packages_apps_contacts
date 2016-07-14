@@ -262,4 +262,6 @@
     <string name="activity_title_licenses" msgid="7812517458691564230">"Лицензии открытого ПО"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Не удалось открыть URL."</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Видеовызов"</string>
+    <!-- no translation found for description_delete_contact (5792859265342550501) -->
+    <skip />
 </resources>

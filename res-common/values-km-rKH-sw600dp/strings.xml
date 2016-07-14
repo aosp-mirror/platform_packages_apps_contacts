@@ -17,7 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for account_phone (3986576492011309404) -->
-    <skip />
+    <string name="account_phone" msgid="3986576492011309404">"ឧបករណ៍"</string>
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"មិនមានទំនាក់ទំនងដែលអាចនាំចេញបានទេ។ ប្រសិនបើអ្នកពិតជាមានទំនាក់ទំនងនៅក្នុងថេប្លេតរបស់អ្នកមែន នោះក្រុមហ៊ុនផ្ដល់ទិន្នន័យប្រហែលជាមិនអនុញ្ញាតឲ្យធ្វើការនាំចេញទំនាក់ទំនងទាំងនោះពីថេប្លេតនោះទេ។"</string>
 </resources>

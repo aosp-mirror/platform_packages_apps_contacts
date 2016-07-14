@@ -17,7 +17,6 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- no translation found for account_phone (3986576492011309404) -->
-    <skip />
+    <string name="account_phone" msgid="3986576492011309404">"裝置"</string>
     <string name="composer_has_no_exportable_contact" msgid="441543908614399381">"沒有可匯出的聯絡人。如果您的平板電腦中確實有聯絡人資料，那麼可能是部分資料提供者不允許您將聯絡人資料從平板電腦匯出。"</string>
 </resources>
