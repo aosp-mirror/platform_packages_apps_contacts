@@ -54,6 +54,9 @@ public abstract class ContactListFilterController {
      */
     public abstract ContactListFilter getFilter();
 
+    /**  Whether the persisted filter is a custom filter. */
+    public abstract boolean isCustomFilterPersisted();
+
     /**
      * @param filter the filter
      * @param persistent True when the given filter should be saved soon. False when the filter
@@ -105,13 +108,20 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
         return mFilter;
     }
 
+    @Override
+    public boolean isCustomFilterPersisted() {
+        final ContactListFilter filter =
+                ContactListFilter.restoreDefaultPreferences(getSharedPreferences());
+        return filter != null && filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM;
+    }
+
     private SharedPreferences getSharedPreferences() {
         return PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
     @Override
     public void setContactListFilter(ContactListFilter filter, boolean persistent) {
-        setContactListFilter(filter, persistent, true);
+        setContactListFilter(filter, persistent, /* notifyListeners */ true);
     }
 
     private void setContactListFilter(ContactListFilter filter, boolean persistent,
@@ -130,7 +140,7 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
     @Override
     public void selectCustomFilter() {
         setContactListFilter(ContactListFilter.createFilterWithType(
-                ContactListFilter.FILTER_TYPE_CUSTOM), true);
+                ContactListFilter.FILTER_TYPE_CUSTOM), /* persistent */ true);
     }
 
     private void notifyContactListFilterChanged() {

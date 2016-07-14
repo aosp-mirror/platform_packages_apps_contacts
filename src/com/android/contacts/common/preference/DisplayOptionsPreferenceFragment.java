@@ -40,9 +40,14 @@ import com.android.contacts.common.R;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.compat.TelephonyManagerCompat;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
+import com.android.contacts.common.list.AccountFilterActivity;
+import com.android.contacts.common.list.ContactListFilter;
+import com.android.contacts.common.list.ContactListFilterController;
+import com.android.contacts.common.list.CustomContactListFilterActivity;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.commonbind.ObjectFactory;
 
@@ -54,6 +59,8 @@ import java.util.List;
 public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         implements Preference.OnPreferenceClickListener {
 
+    private static final int REQUEST_CODE_CUSTOM_CONTACTS_FILTER = 0;
+
     private static final String ARG_CONTACTS_AVAILABLE = "are_contacts_available";
     private static final String ARG_MODE_FULLY_EXPANDED = "mode_fully_expanded";
     private static final String ARG_NEW_LOCAL_PROFILE = "new_local_profile";
@@ -64,6 +71,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     private static final String KEY_DEFAULT_ACCOUNT = "defaultAccount";
     private static final String KEY_BLOCKED_NUMBERS = "blockedNumbers";
     private static final String KEY_DISPLAY_ORDER = "displayOrder";
+    private static final String KEY_CUSTOM_CONTACTS_FILTER = "customContactsFilter";
     private static final String KEY_IMPORT_EXPORT = "importExport";
     private static final String KEY_MY_INFO = "myInfo";
     private static final String KEY_SORT_ORDER = "sortOrder";
@@ -193,6 +201,11 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
 
         final Preference aboutPreference = findPreference(KEY_ABOUT);
         aboutPreference.setOnPreferenceClickListener(this);
+
+        final Preference customFilterPreference = findPreference(KEY_CUSTOM_CONTACTS_FILTER);
+        if (customFilterPreference != null) {
+            customFilterPreference.setOnPreferenceClickListener(this);
+        }
     }
 
     @Override
@@ -308,8 +321,24 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
                     (TelecomManager) getContext().getSystemService(Context.TELECOM_SERVICE));
             startActivity(intent);
             return true;
+        } else if (KEY_CUSTOM_CONTACTS_FILTER.equals(prefKey)) {
+            final ContactListFilter filter =
+                    ContactListFilterController.getInstance(getContext()).getFilter();
+            AccountFilterUtil.startAccountFilterActivityForResult(
+                    this, REQUEST_CODE_CUSTOM_CONTACTS_FILTER, filter);
         }
         return false;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_CUSTOM_CONTACTS_FILTER
+                && resultCode == Activity.RESULT_OK) {
+            AccountFilterUtil.handleAccountFilterResult(
+                    ContactListFilterController.getInstance(getContext()), resultCode, data);
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
 

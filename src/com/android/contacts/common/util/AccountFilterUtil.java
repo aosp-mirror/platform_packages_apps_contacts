@@ -17,6 +17,7 @@
 package com.android.contacts.common.util;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -43,16 +45,35 @@ import java.util.List;
 public class AccountFilterUtil {
     private static final String TAG = AccountFilterUtil.class.getSimpleName();
 
-    public static final String EXTRA_CONTACT_LIST_FILTER = "contactListFilter";
+     /**
+      * Launches account filter setting Activity using
+      * {@link Fragment#startActivityForResult(Intent, int)}.
+      *
+      * @param requestCode requestCode for {@link Activity#startActivityForResult(Intent, int)}
+      * @param currentFilter currently-selected filter, so that it can be displayed as activated.
+      */
+     public static void startAccountFilterActivityForResult(
+             Fragment fragment, int requestCode, ContactListFilter currentFilter) {
+         final Activity activity = fragment.getActivity();
+         if (activity != null) {
+             final Intent intent = new Intent(activity, AccountFilterActivity.class);
+             fragment.startActivityForResult(intent, requestCode);
+         } else {
+             Log.w(TAG, "getActivity() returned null. Ignored");
+         }
+     }
 
     /**
+     * Useful method to handle onActivityResult() for
+     * {@link #startAccountFilterActivityForResult(Fragment, int, ContactListFilter)}.
+     *
      * This will update filter via a given ContactListFilterController.
      */
     public static void handleAccountFilterResult(
             ContactListFilterController filterController, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             final ContactListFilter filter = (ContactListFilter)
-                    data.getParcelableExtra(EXTRA_CONTACT_LIST_FILTER);
+                    data.getParcelableExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER);
             if (filter == null) {
                 return;
             }
