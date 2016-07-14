@@ -1291,6 +1291,12 @@ public class ContactListItemView extends ViewGroup
             mDeleteImageButton.setBackgroundColor(Color.TRANSPARENT);
             mDeleteImageButton.setContentDescription(
                     getResources().getString(R.string.description_delete_contact));
+            if (CompatUtils. isLollipopCompatible()) {
+                final TypedValue typedValue = new TypedValue();
+                getContext().getTheme().resolveAttribute(
+                        android.R.attr.selectableItemBackgroundBorderless, typedValue, true);
+                mDeleteImageButton.setBackgroundResource(typedValue.resourceId);
+            }
             addView(mDeleteImageButton);
         }
         // Reset onClickListener because after reloading the view, position might be changed.
