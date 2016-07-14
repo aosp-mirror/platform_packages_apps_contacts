@@ -137,6 +137,12 @@
     <!-- Color of action bar text. Ensure this stays in sync with packages/Telephony
     phone_settings_actionbar_text_color-->
     <color name="actionbar_text_color">#ffffff</color>
+    <!-- 54% black for icons -->
+    <color name="actionbar_icon_color_grey">#8C000000</color>
+    <!-- 87% black for actionbar text -->
+    <color name="actionbar_text_color_black">#DF000000</color>
+    <!-- Solid grey for status bar overlay-->
+    <color name="actionbar_color_grey_solid">#777777</color>
     <color name="actionbar_unselected_text_color">#a6ffffff</color>
 
     <!-- Text color of the search box text as entered by user  -->

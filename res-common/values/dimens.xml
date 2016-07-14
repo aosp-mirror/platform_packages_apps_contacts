@@ -131,6 +131,8 @@
     <!-- Search box text size -->
     <dimen name="search_text_size">16sp</dimen>
 
+    <item name="close_icon_alpha" format="float" type="dimen">0.54</item>
+
     <!-- Top margin for the Frequently Contacted section title -->
     <dimen name="frequently_contacted_title_top_margin_when_first_row">16dp</dimen>
     <!-- Top margin for the Frequently Contacted section title, when the title is the first

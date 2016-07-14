@@ -57,6 +57,6 @@
         android:clickable="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/description_clear_search"
-        android:tint="@color/searchbox_icon_tint"/>
+        android:alpha="@dimen/close_icon_alpha" />
 
 </LinearLayout>
