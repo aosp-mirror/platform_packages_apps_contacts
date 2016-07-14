@@ -28,16 +28,19 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_menu_back_from_edit_select"
         android:layout_gravity="center_vertical|start"
-        android:tint="@android:color/white" />
+        android:alpha="@dimen/close_icon_alpha" />
 
     <TextView
         android:id="@+id/selection_count_text"
         android:layout_marginStart="72dp"
+        android:layout_marginEnd="@dimen/edit_group_end_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_gravity="center_vertical|start"
-        style="@style/ContactsActionBarTitleTextAppCompat" />
+        android:singleLine="true"
+        android:ellipsize="end"
+        style="@style/ContactsActionBarTitleTextBlack" />
 
     <TextView
         android:id="@+id/add_contacts"
@@ -47,7 +50,7 @@
         android:visibility="gone"
         android:layout_gravity="center_vertical|end"
         android:text="@string/menu_add_contacts"
-        android:textColor="@color/actionbar_text_color"
+        android:textColor="@color/primary_color"
         android:textStyle="bold"/>
 
 </FrameLayout>

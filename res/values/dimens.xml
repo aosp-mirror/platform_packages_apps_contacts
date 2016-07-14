@@ -286,4 +286,7 @@
 
     <!-- Width for the image for empty group view-->
     <dimen name="empty_group_view_image_width">232dp</dimen>
+
+    <!-- End margin of edit group title -->
+    <dimen name="edit_group_end_margin">72dp</dimen>
 </resources>

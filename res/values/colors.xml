@@ -30,9 +30,9 @@
     <color name="actionbar_background_color">@color/primary_color</color>
     <color name="actionbar_background_color_dark">@color/primary_color_dark</color>
 
-    <color name="contextual_selection_bar_color">#616161</color>
+    <color name="contextual_selection_bar_color">#f6f6f6</color>
     <!-- Color of the status bar above the contextual selection bar. -->
-    <color name="contextual_selection_bar_status_bar_color">#424242</color>
+    <color name="contextual_selection_bar_status_bar_color">#bababa</color>
 
     <color name="primary_color_dark">#0277bd</color>
     <color name="primary_color">#0288d1</color>
