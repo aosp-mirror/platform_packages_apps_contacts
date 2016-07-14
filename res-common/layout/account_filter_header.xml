@@ -17,28 +17,29 @@
 <!-- Layout showing the type of account filter
      (e.g. All contacts filter, custom filter, etc.),
      which is the header of all contact lists. -->
-
-<!-- Solely used to set a background color -->
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/account_filter_header_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/contact_browser_list_header_height"
+    android:paddingTop="@dimen/list_header_extra_top_padding"
+    android:visibility="gone"
+    android:orientation="horizontal"
     android:background="@color/background_primary">
-    <!-- Used to show the touch feedback -->
-    <FrameLayout
-        android:id="@+id/account_filter_header_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/list_header_extra_top_padding"
+
+    <ImageView
+        android:id="@+id/account_filter_icon"
+        android:layout_height="@dimen/contact_browser_list_header_icon_size"
+        android:layout_width="@dimen/contact_browser_list_header_icon_size"
         android:layout_marginStart="@dimen/contact_browser_list_header_left_margin"
+        android:layout_gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/account_filter_header"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/contact_browser_list_header_text_margin"
         android:layout_marginEnd="@dimen/contact_browser_list_header_right_margin"
-        android:background="?android:attr/selectableItemBackground"
-        android:visibility="gone">
-        <!-- Shows the text and underlining -->
-        <TextView
-            android:id="@+id/account_filter_header"
-            style="@style/ContactListSeparatorTextViewStyle"
-            android:paddingLeft="@dimen/contact_browser_list_item_text_indent"
-            android:paddingStart="@dimen/contact_browser_list_item_text_indent" />
-    </FrameLayout>
-</FrameLayout>
+        style="@style/ContactListSeparatorTextViewStyle"
+        android:paddingLeft="@dimen/contact_browser_list_item_text_indent"
+        android:paddingStart="@dimen/contact_browser_list_item_text_indent" />
+</LinearLayout>
