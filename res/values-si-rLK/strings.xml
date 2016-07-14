@@ -106,7 +106,8 @@
     <string name="noContacts" msgid="4955659076981974652">"සම්බන්ධතා නැත"</string>
     <string name="noGroups" msgid="4607906327968232225">"ලේබල නැත."</string>
     <string name="noAccounts" msgid="7768267764545265909">"කණ්ඩායම් නිර්මාණය කිරීමට ඔබට ගිණුමක් අවශ්‍ය වේ."</string>
-    <string name="emptyGroup" msgid="3741795311081911842">"මෙම ලේබලය හා පුද්ගලයන් නැත."</string>
+    <!-- no translation found for emptyGroup (5102411903247859575) -->
+    <skip />
     <string name="contactSavedToast" msgid="9171862279493213075">"සම්බන්ධතාවය සුරකින ලදි"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"සම්බන්ධතා සබැඳි ඉවත් කරන ලදී"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"සම්බන්ධතා වෙනස්කම් සුරැකීමට නොහැක."</string>
@@ -118,8 +119,7 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"ලේබලය සුරැකිණි"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"ලේබලය මකන ලදී"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"ලේබලය තනන ලදී"</string>
-    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
-    <skip />
+    <string name="groupCreateFailedToast" msgid="4359093891863474299">"ලේබලය තැනීමට නොහැකිය"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"ලේබලය යාවත්කාලීන කරන ලදී"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ලේබලයෙන් ඉවත් කෙරිණි"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ලේබලයට එක් කෙරිණි"</string>
@@ -161,7 +161,8 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"ගිණුම තෝරන්න"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"ලේබලය තනන්න"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"ලේබලය නැවත නම් කරන්න"</string>
-    <string name="group_name_dialog_hint" msgid="7624523157537700160">"ලේබල නම"</string>
+    <!-- no translation found for group_name_dialog_hint (5122118085780669813) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"හඬ කතාබහ"</string>
     <string name="video_chat" msgid="1872255818640336072">"වීඩියෝ කතාබස්"</string>
     <string name="connections" msgid="8098440723172028350">"සම්බන්ධතා"</string>
@@ -185,11 +186,14 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"නව දෙයක් එක් කරන්න"</string>
     <string name="add_organization" msgid="7311893231158291197">"සංවිධානය එක් කරන්න"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"දිනය"</string>
-    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"ලේබල නම"</string>
+    <!-- no translation found for group_edit_field_hint_text (8038224059926963133) -->
+    <skip />
     <string name="change_photo" msgid="8530597935483526383">"වෙනස් කරන්න"</string>
     <string name="primary_photo" msgid="8517942231868516999">"ප්‍රාථමික රූප"</string>
     <string name="description_star" msgid="2605854427360036550">"ප්‍රියතම"</string>
     <string name="edit_contact" msgid="7529281274005689512">"සම්බන්ධතාව සංස්කරණය කරන්න"</string>
+    <!-- no translation found for action_menu_back_from_edit_select (6435476408621731420) -->
+    <skip />
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"වත්මන් සම්බන්ධතාව තෝරන ලද සම්බන්ධතාව සමඟ සබැඳි කරන්නද?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"තෝරාගෙන ඇති සම්බන්ධතාවය සංස්කරණය කිරීමට මාරු වෙන්නද? ඔබ දැනට ඇතුළු කළ තොරතුරු පිටපත් වනු ඇත."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"මගේ සම්බන්ධතා වෙතට පිටපත් කරන්න"</string>
@@ -224,7 +228,8 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"සංස්කරණය කරගෙන යන්න"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"සම්බන්ධතා සොයන්න"</string>
-    <string name="group_name_hint" msgid="7614490821934528478">"ලේබලයෙහි නම"</string>
+    <!-- no translation found for title_edit_group (1258790269665184368) -->
+    <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"මගේ දේශීය පැතිකඩ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"මගේ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> පැතිකඩ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"සියලු සම්බන්ධතා පෙන්වමින්"</string>

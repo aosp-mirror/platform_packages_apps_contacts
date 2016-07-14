@@ -108,7 +108,8 @@
     <string name="noContacts" msgid="4955659076981974652">"Контактів немає"</string>
     <string name="noGroups" msgid="4607906327968232225">"Немає міток."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Для створення груп потрібен обліковий запис."</string>
-    <string name="emptyGroup" msgid="3741795311081911842">"Немає людей з цією міткою."</string>
+    <!-- no translation found for emptyGroup (5102411903247859575) -->
+    <skip />
     <string name="contactSavedToast" msgid="9171862279493213075">"Контакт збережено"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Контакти розділено"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Не вдалося зберегти зміни в контакті."</string>
@@ -120,8 +121,7 @@
     <string name="groupSavedToast" msgid="6491495462357722285">"Мітку збережено"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Мітку видалено"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Мітку створено"</string>
-    <!-- no translation found for groupCreateFailedToast (4359093891863474299) -->
-    <skip />
+    <string name="groupCreateFailedToast" msgid="4359093891863474299">"Не вдається створити мітку"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Мітку оновлено"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Вилучено з мітки"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Додано мітку"</string>
@@ -171,7 +171,8 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Вибір облікового запису"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Створити мітку"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Перейменувати мітку"</string>
-    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Назва мітки"</string>
+    <!-- no translation found for group_name_dialog_hint (5122118085780669813) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"Голосовий чат"</string>
     <string name="video_chat" msgid="1872255818640336072">"Відеочат"</string>
     <string name="connections" msgid="8098440723172028350">"Зв’язки"</string>
@@ -195,11 +196,14 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Додати новий запис"</string>
     <string name="add_organization" msgid="7311893231158291197">"Додати організацію"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Дата"</string>
-    <string name="group_edit_field_hint_text" msgid="1317257094829217672">"Назва мітки"</string>
+    <!-- no translation found for group_edit_field_hint_text (8038224059926963133) -->
+    <skip />
     <string name="change_photo" msgid="8530597935483526383">"Змінити"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Основн. фото"</string>
     <string name="description_star" msgid="2605854427360036550">"вибране"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Редаг. контакта"</string>
+    <!-- no translation found for action_menu_back_from_edit_select (6435476408621731420) -->
+    <skip />
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Об’єднати поточний контакт із вибраним контактом?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Перейти до редагування вибраного контакта? Введену досі інформацію буде скопійовано."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Копіювати в мої контакти"</string>
@@ -234,7 +238,8 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Продовжити редагування"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Пошук контактів"</string>
-    <string name="group_name_hint" msgid="7614490821934528478">"Назва мітки"</string>
+    <!-- no translation found for title_edit_group (1258790269665184368) -->
+    <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Мій локальний профіль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мій профіль на <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Відображаються всі контакти"</string>
