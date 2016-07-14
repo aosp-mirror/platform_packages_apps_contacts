@@ -49,6 +49,7 @@ import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
+import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -465,7 +466,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     positionOfLastFilter, menuName);
             mFilterMenuMap.put(filter, menuItem);
             final Intent intent = new Intent();
-            intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
+            intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);
             menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -496,7 +497,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     protected void updateFilterMenu(ContactListFilter filter) {
         clearCheckedMenus();
-        if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+        if (ContactListFilter.isContactsFilterType(filter)) {
             if (mIdMenuMap != null && mIdMenuMap.get(R.id.nav_all_contacts) != null) {
                 mIdMenuMap.get(R.id.nav_all_contacts).setCheckable(true);
                 mIdMenuMap.get(R.id.nav_all_contacts).setChecked(true);
@@ -512,7 +513,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     }
 
     /**
-     * Returns the current filter if the child class is {@link PeopleActivity}, and null otherwise.
+     * Returns the current filter if the child class is PeopleActivity, and null otherwise.
      */
     protected ContactListFilter getContactListFilter() {
         return null;
@@ -526,7 +527,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
         final int id = item.getItemId();
-
         mToggle.runWhenIdle(new Runnable() {
             @Override
             public void run() {
@@ -564,8 +564,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     protected void switchToAllContacts() {
         final Intent intent = new Intent();
-        final ContactListFilter filter = createAllAccountsFilter();
-        intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
+        final ContactListFilter filter = createContactsFilter();
+        intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);
         AccountFilterUtil.handleAccountFilterResult(
                 mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
         if (shouldFinish()) {
@@ -578,8 +578,17 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 Assistants.getDuplicatesActivityIntent(this));
     }
 
-    protected ContactListFilter createAllAccountsFilter() {
-        return ContactListFilter.createFilterWithType(ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+    /**
+     * Returns a {@link ContactListFilter} of type
+     * {@link ContactListFilter#FILTER_TYPE_ALL_ACCOUNTS}, or if a custom "Contacts to display"
+     * filter has been set, then one of type {@link ContactListFilter#FILTER_TYPE_CUSTOM}.
+     */
+    protected ContactListFilter createContactsFilter() {
+        final int filterType =
+                ContactListFilterController.getInstance(this).isCustomFilterPersisted()
+                        ? ContactListFilter.FILTER_TYPE_CUSTOM
+                        : ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS;
+        return ContactListFilter.createFilterWithType(filterType);
     }
 
     private void clearCheckedMenus() {
@@ -587,7 +596,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         clearCheckedMenu(mGroupMenuMap);
         clearCheckedMenu(mIdMenuMap);
     }
-
     private void clearCheckedMenu(Map<?, MenuItem> map) {
         final Iterator it = map.entrySet().iterator();
         while (it.hasNext()) {

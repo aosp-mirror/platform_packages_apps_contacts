@@ -299,6 +299,19 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         }
     }
 
+    protected void bindListHeaderCustom(View listView, View accountFilterContainer) {
+        bindListHeaderCommon(listView, accountFilterContainer);
+
+        final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
+                R.id.account_filter_header);
+        accountFilterHeader.setText(R.string.listCustomView);
+        accountFilterHeader.setAllCaps(false);
+
+        final ImageView accountFilterHeaderIcon = (ImageView) accountFilterContainer
+                .findViewById(R.id.account_filter_icon);
+        accountFilterHeaderIcon.setVisibility(View.INVISIBLE);
+    }
+
     /**
      * Show account icon, count of contacts and account name in the header of the list.
      */
@@ -309,9 +322,7 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
             return;
         }
 
-        // Show header and remove top padding of the list
-        accountFilterContainer.setVisibility(View.VISIBLE);
-        listView.setPadding(0, 0, 0, 0);
+        bindListHeaderCommon(listView, accountFilterContainer);
 
         // Set text of count of contacts and account name (if it's a Google account)
         final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
@@ -333,7 +344,14 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         final Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
         final ImageView accountFilterHeaderIcon = (ImageView) accountFilterContainer
                 .findViewById(R.id.account_filter_icon);
+        accountFilterHeaderIcon.setVisibility(View.VISIBLE);
         accountFilterHeaderIcon.setImageDrawable(icon);
+    }
+
+    private void bindListHeaderCommon(View listView, View accountFilterContainer) {
+        // Show header and remove top padding of the list
+        accountFilterContainer.setVisibility(View.VISIBLE);
+        listView.setPadding(0, 0, 0, 0);
     }
 
     /**

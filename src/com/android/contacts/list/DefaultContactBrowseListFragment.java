@@ -73,8 +73,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         final ContactListFilterController contactListFilterController =
                 ContactListFilterController.getInstance(getContext());
         final ContactListFilter filter = contactListFilterController.getFilter();
-        if (!isSearchMode()
-                && filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+        if (isSearchMode()) {
+            hideHeaderAndAddPadding(getContext(), getListView(), accountFilterContainer);
+        } else if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+            bindListHeaderCustom(getListView(), accountFilterContainer);
+        } else if (filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
             final AccountWithDataSet accountWithDataSet = new AccountWithDataSet(
                     filter.accountName, filter.accountType, filter.dataSet);
             bindListHeader(getContext(), getListView(), accountFilterContainer,

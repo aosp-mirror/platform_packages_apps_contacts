@@ -225,7 +225,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         // This is useful when user upgrades app while an account filter or a custom filter was
         // stored in sharedPreference in a previous version of Contacts app.
         final ContactListFilter filter = mIsRecreatedInstance
-                ? mContactListFilterController.getFilter() : createAllAccountsFilter();
+                ? mContactListFilterController.getFilter() : createContactsFilter();
         persistFilterIfNeeded(filter);
 
         createViewsAndFragments(savedState);
@@ -434,7 +434,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             final int tabToOpen;
             switch (actionCode) {
                 case ContactsRequest.ACTION_ALL_CONTACTS:
-                    filter = createAllAccountsFilter();
+                    filter = createContactsFilter();
                     tabToOpen = TabState.ALL;
                     break;
                 case ContactsRequest.ACTION_CONTACTS_WITH_PHONES:
@@ -460,7 +460,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             }
 
             if (filter != null) {
-                mContactListFilterController.setContactListFilter(filter, false);
+                mContactListFilterController.setContactListFilter(filter, /* persistent */ false);
                 searchMode = false;
             }
 
@@ -985,7 +985,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             ContactListFilter currentFilter = mAllFragment.getFilter();
             if (currentFilter != null
                     && currentFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
-                filter = createAllAccountsFilter();
+                filter = createContactsFilter();
                 setFilterAndUpdateTitle(filter);
             } else {
                 filter = ContactListFilter.createFilterWithType(
@@ -1307,8 +1307,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                 Logger.logScreenView(this, ScreenType.SEARCH_EXIT);
                 Logger.logSearchEvent(mAllFragment.createSearchState());
             }
-        } else if (mContactListFilterController.getFilter().filterType !=
-                ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+        } else if (!isAllContactsFilter(mContactListFilterController.getFilter())) {
             switchToAllContacts();
         } else {
             super.onBackPressed();
@@ -1392,7 +1391,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
     private void setFilterAndUpdateTitle(ContactListFilter filter, boolean restoreSelectedUri) {
         mAllFragment.setFilter(filter, restoreSelectedUri);
-        final int listType =  filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
+        final int listType = isAllContactsFilter(filter)
                 ? ListEvent.ListType.ALL_CONTACTS : ListEvent.ListType.ACCOUNT;
         mAllFragment.setListType(listType);
 
@@ -1425,7 +1424,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     }
 
     private boolean isAllContactsFilter(ContactListFilter filter) {
-        return filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS;
+        return ContactListFilter.isContactsFilterType(filter);
     }
 
     private boolean isDeviceContactsFilter(ContactListFilter filter) {
