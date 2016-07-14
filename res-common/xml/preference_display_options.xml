@@ -46,6 +46,11 @@
 
     <Preference
         android:icon="@null"
+        android:key="customContactsFilter"
+        android:title="@string/menu_contacts_filter"/>
+
+    <Preference
+        android:icon="@null"
         android:key="importExport"
         android:title="@string/menu_import_export"/>
 
