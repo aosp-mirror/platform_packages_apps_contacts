@@ -69,6 +69,7 @@ import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
@@ -2683,8 +2684,9 @@ public class QuickContactActivity extends ContactsActivity
                 Trace.endSection();
                 Trace.beginSection("initialize permission explanation card");
 
-                final Drawable historyIcon = getResources().getDrawable(
-                        R.drawable.ic_history_24dp).mutate();
+                final Drawable historyIcon = VectorDrawableCompat.create(
+                        getResources(), R.drawable.ic_history_24dp, null);
+
                 final Entry permissionExplanationEntry = new Entry(CARD_ENTRY_ID_REQUEST_PERMISSION,
                         historyIcon, getString(R.string.permission_explanation_header),
                         mPermissionExplanationCardSubHeader, /* subHeaderIcon = */ null,
