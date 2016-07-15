@@ -32,7 +32,10 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -95,6 +98,13 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     protected static final String ACTION_CREATE_GROUP = "createGroup";
 
+    // TODO(wenyiw): remove all the code related to these constants after switching to fragments.
+    // Positions of "all contacts" and "duplicates" in navigation drawer.
+    private static final int ALL_CONTACTS_POSITION = 1;
+    private static final int DUPLICATES_POSITION = 2;
+    // Gap between two menu groups, including a separator, a menu group header.
+    private static final int GAP_BETWEEN_TWO_MENU_GROUPS = 2;
+
     private class ContactsActionBarDrawerToggle extends ActionBarDrawerToggle {
 
         private Runnable mRunnable;
@@ -153,6 +163,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     // The account the new group will be created under.
     private AccountWithDataSet mNewGroupAccount;
 
+    private int mPositionOfLastGroup;
+
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
@@ -202,12 +214,27 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             clearCheckedMenus();
             mIdMenuMap.get(R.id.nav_find_duplicates).setCheckable(true);
             mIdMenuMap.get(R.id.nav_find_duplicates).setChecked(true);
+            updateScrollPosition(DUPLICATES_POSITION);
         }
 
         if (savedState != null && savedState.containsKey(KEY_NEW_GROUP_ACCOUNT)) {
             mNewGroupAccount = AccountWithDataSet.unstringify(
                     savedState.getString(KEY_NEW_GROUP_ACCOUNT));
         }
+    }
+
+    private void updateScrollPosition(int position) {
+        final RecyclerView recyclerView = (RecyclerView) mNavigationView.getChildAt(0);
+        final LinearLayoutManager layoutManager =
+                (LinearLayoutManager) recyclerView.getLayoutManager();
+
+        // Get screen height
+        final DisplayMetrics metrics = getResources().getDisplayMetrics();
+        final int height = metrics.heightPixels;
+
+        // Set 1/3 screen height as offset if possible.
+        layoutManager.scrollToPositionWithOffset(position, height / 3);
+        recyclerView.requestLayout();
     }
 
     @Override
@@ -227,9 +254,10 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     }
 
     private void makeStatusBarTransparent() {
-        if (CompatUtils.isLollipopCompatible()
-                && getWindow().getStatusBarColor() ==
-                        ContextCompat.getColor(this, R.color.primary_color_dark)) {
+        // Avoid making status bar transparent when action bar's selection mode is on.
+        if (getWindow().getStatusBarColor() !=
+                ContextCompat.getColor(this, R.color.contextual_selection_bar_status_bar_color)
+                        && CompatUtils.isLollipopCompatible()) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
     }
@@ -312,15 +340,18 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         subMenu.removeGroup(R.id.nav_groups_items);
         mGroupMenuMap = new HashMap<>();
 
+        mPositionOfLastGroup = DUPLICATES_POSITION + GAP_BETWEEN_TWO_MENU_GROUPS;
+
         if (groupListItems != null) {
             // Add each group
             for (final GroupListItem groupListItem : groupListItems) {
                 if (GroupUtil.isEmptyFFCGroup(groupListItem)) {
                     continue;
                 }
+                mPositionOfLastGroup++;
                 final String title = groupListItem.getTitle();
                 final MenuItem menuItem =
-                        subMenu.add(R.id.nav_groups_items, Menu.NONE, Menu.NONE, title);
+                        subMenu.add(R.id.nav_groups_items, Menu.NONE, mPositionOfLastGroup, title);
                 mGroupMenuMap.put(groupListItem.getGroupId(), menuItem);
                 menuItem.setIcon(R.drawable.ic_menu_label);
                 menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -345,9 +376,10 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             return;
         }
 
+        mPositionOfLastGroup++;
         // Create a menu item in the sub menu to add new groups
-        final MenuItem menuItem = subMenu.add(R.id.nav_groups_items, Menu.NONE, Menu.NONE,
-                getString(R.string.menu_new_group_action_bar));
+        final MenuItem menuItem = subMenu.add(R.id.nav_groups_items, Menu.NONE,
+                mPositionOfLastGroup, getString(R.string.menu_new_group_action_bar));
         menuItem.setIcon(R.drawable.ic_add);
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -374,6 +406,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 && mGroupMenuMap.get(groupMetadata.groupId) != null) {
             mGroupMenuMap.get(groupMetadata.groupId).setCheckable(true);
             mGroupMenuMap.get(groupMetadata.groupId).setChecked(true);
+            updateScrollPosition(mGroupMenuMap.get(groupMetadata.groupId).getOrder());
         }
     }
 
@@ -420,13 +453,16 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             return;
         }
 
+        int positionOfLastFilter = mPositionOfLastGroup + GAP_BETWEEN_TWO_MENU_GROUPS;
+
         for (int i = 0; i < accountFilterItems.size(); i++) {
+            positionOfLastFilter++;
             final ContactListFilter filter = accountFilterItems.get(i);
             final String menuName =
                     filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS
                             ? getString(R.string.account_phone) : filter.accountName;
-            final MenuItem menuItem = subMenu.add(R.id.nav_filters_items, Menu.NONE, Menu.NONE,
-                    menuName);
+            final MenuItem menuItem = subMenu.add(R.id.nav_filters_items, Menu.NONE,
+                    positionOfLastFilter, menuName);
             mFilterMenuMap.put(filter, menuItem);
             final Intent intent = new Intent();
             intent.putExtra(AccountFilterUtil.EXTRA_CONTACT_LIST_FILTER, filter);
@@ -449,7 +485,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 }
             });
             menuItem.setIcon(filter.icon);
-            // Get rid of the default memu item overlay and show original account icons.
+            // Get rid of the default menu item overlay and show original account icons.
             menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
         }
 
@@ -464,11 +500,13 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             if (mIdMenuMap != null && mIdMenuMap.get(R.id.nav_all_contacts) != null) {
                 mIdMenuMap.get(R.id.nav_all_contacts).setCheckable(true);
                 mIdMenuMap.get(R.id.nav_all_contacts).setChecked(true);
+                updateScrollPosition(ALL_CONTACTS_POSITION);
             }
         } else {
             if (mFilterMenuMap != null && mFilterMenuMap.get(filter) != null) {
                 mFilterMenuMap.get(filter).setCheckable(true);
                 mFilterMenuMap.get(filter).setChecked(true);
+                updateScrollPosition(mFilterMenuMap.get(filter).getOrder());
             }
         }
     }
