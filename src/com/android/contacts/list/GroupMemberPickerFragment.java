@@ -279,9 +279,6 @@ public class GroupMemberPickerFragment extends
 
         // Added in ContactSelectionActivity but we must account for selection mode
         setVisible(menu, R.id.menu_search, !isSearchMode && !isSelectionMode);
-
-        setVisible(menu, R.id.menu_done, isSelectionMode &&
-                getAdapter().getSelectedContactIds().size() > 0);
         setVisible(menu, R.id.menu_select, !isSearchMode && !isSelectionMode);
     }
 
@@ -307,12 +304,6 @@ public class GroupMemberPickerFragment extends
                 final Activity activity = getActivity();
                 if (activity != null) {
                     activity.onBackPressed();
-                }
-                return true;
-            }
-            case R.id.menu_done: {
-                if (mListener != null) {
-                    mListener.onGroupMembersSelected(getAdapter().getSelectedContactIdsArray());
                 }
                 return true;
             }

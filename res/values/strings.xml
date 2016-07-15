@@ -438,6 +438,9 @@
     <!-- The menu item to add the the currently viewed contact to your contacts [CHAR LIMIT=30] -->
     <string name="menu_add_contact">Add to contacts</string>
 
+    <!-- The menu item to add the the currently selected contacts to a label [CHAR LIMIT=10] -->
+    <string name="menu_add_contacts">Add</string>
+
     <!-- Dialog title when picking the application to share one or multiple contacts with. [CHAR LIMIT=40] -->
     <plurals name="title_share_via">
         <item quantity="one">Share contact via</item>

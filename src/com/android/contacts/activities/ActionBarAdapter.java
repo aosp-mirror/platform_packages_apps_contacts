@@ -156,6 +156,10 @@ public class ActionBarAdapter implements OnCloseListener {
         return mSearchView;
     }
 
+    public View getSelectionContainer() {
+        return mSelectionContainer;
+    }
+
     private void setupTabs(Context context) {
         final TypedArray attributeArray = context.obtainStyledAttributes(
                 new int[]{android.R.attr.actionBarSize});

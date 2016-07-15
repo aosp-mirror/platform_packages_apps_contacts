@@ -31,6 +31,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.contacts.AppCompatContactsActivity;
@@ -441,10 +442,31 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
     @Override
     public void onSelectedContactIdsChanged() {
         if (mListFragment instanceof MultiSelectContactsListFragment) {
-            mActionBarAdapter.setSelectionCount(((MultiSelectContactsListFragment) mListFragment)
-                    .getSelectedContactIds().size());
+            final int count = getMultiSelectListFragment().getSelectedContactIds().size();
+            mActionBarAdapter.setSelectionCount(count);
+            updateAddContactsButton(count);
+
             // Show or hide the multi select "Done" button
             invalidateOptionsMenu();
+        }
+    }
+
+    private void updateAddContactsButton(int count) {
+        final TextView textView = (TextView) mActionBarAdapter.getSelectionContainer()
+                .findViewById(R.id.add_contacts);
+        if (count > 0) {
+            textView.setVisibility(View.VISIBLE);
+            textView.setAllCaps(true);
+            textView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final long[] contactIds =
+                            getMultiSelectListFragment().getSelectedContactIdsArray();
+                    returnSelectedContacts(contactIds);
+                }
+            });
+        } else {
+            textView.setVisibility(View.GONE);
         }
     }
 
@@ -532,15 +554,19 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
 
         @Override
         public void onGroupMembersSelected(long[] contactIds) {
-            final Intent intent = new Intent();
-            intent.putExtra(UiIntentActions.TARGET_CONTACT_IDS_EXTRA_KEY, contactIds);
-            returnPickerResult(intent);
+            returnSelectedContacts(contactIds);
         }
 
         @Override
         public void onSelectGroupMembers() {
             mActionBarAdapter.setSelectionMode(true);
         }
+    }
+
+    private void returnSelectedContacts(long[] contactIds) {
+        final Intent intent = new Intent();
+        intent.putExtra(UiIntentActions.TARGET_CONTACT_IDS_EXTRA_KEY, contactIds);
+        returnPickerResult(intent);
     }
 
     private final class PostalAddressPickerActionListener implements
