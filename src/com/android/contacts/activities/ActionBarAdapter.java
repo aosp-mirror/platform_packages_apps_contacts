@@ -20,6 +20,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -33,8 +34,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.SearchView.OnCloseListener;
 import android.view.View.OnClickListener;
@@ -45,6 +48,8 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.list.ContactsRequest;
+
+import java.util.ArrayList;
 
 /**
  * Adapter for the action bar at the top of the Contacts activity.
@@ -421,6 +426,8 @@ public class ActionBarAdapter implements OnCloseListener {
     private void update(boolean skipAnimation) {
         updateStatusBarColor();
 
+        updateOverflowButtonColor();
+
         final boolean isSelectionModeChanging
                 = (mSelectionContainer.getParent() == null) == mSelectionMode;
         final boolean isSwitchingFromSearchToSelection =
@@ -500,6 +507,45 @@ public class ActionBarAdapter implements OnCloseListener {
                 });
             }
         }
+    }
+
+    /**
+     * Find overflow menu ImageView by its content description and update its color.
+     */
+    private void updateOverflowButtonColor() {
+        final String overflowDescription = mActivity.getResources().getString(
+                R.string.abc_action_menu_overflow_description);
+        final ViewGroup decorView = (ViewGroup) mActivity.getWindow().getDecorView();
+        final ViewTreeObserver viewTreeObserver = decorView.getViewTreeObserver();
+        viewTreeObserver.addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        // Find the overflow ImageView.
+                        final ArrayList<View> outViews = new ArrayList<>();
+                        decorView.findViewsWithText(outViews, overflowDescription,
+                                View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+                        if (outViews.isEmpty()) {
+                            return;
+                        }
+                        final ImageView overflow = (ImageView) outViews.get(0);
+                        overflow.setImageResource(R.drawable.ic_more_vert);
+
+                        // Update the overflow image color.
+                        final int iconColor;
+                        if (mSelectionMode) {
+                            iconColor = mActivity.getResources().getColor(
+                                    R.color.actionbar_color_grey_solid);
+                        } else {
+                            iconColor = mActivity.getResources().getColor(
+                                    R.color.actionbar_text_color);
+                        }
+                        overflow.setImageTintList(ColorStateList.valueOf(iconColor));
+
+                        // We're done, remove the listener.
+                        decorView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
     }
 
     public void setSelectionCount(int selectionCount) {

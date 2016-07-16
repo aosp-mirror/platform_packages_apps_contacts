@@ -672,7 +672,7 @@
     <string name="enter_contact_name">Search contacts</string>
 
     <!-- Title of edit label view  [CHAR LIMIT=20]-->
-    <string name="title_edit_group">Edit Label</string>
+    <string name="title_edit_group">Edit Label: <xliff:g id="group_name" example="Friends">%1$s</xliff:g></string>
 
     <!-- Header label in the contact editor for a profile that is local to the device only (and not associated with any account) [CHAR LIMIT=25] -->
     <string name="local_profile_title">My local profile</string>

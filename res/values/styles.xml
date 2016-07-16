@@ -238,6 +238,10 @@
         <item name="android:textColor">@color/actionbar_text_color</item>
     </style>
 
+    <style name="ContactsActionBarTitleTextBlack" parent="@style/ContactsActionBarTitleTextAppCompat">
+        <item name="android:textColor">@color/actionbar_text_color_black</item>
+    </style>
+
     <!-- Styling for the tab bar; handles styling of the divider line. -->
     <style name="ContactsActionBarTabBarStyle"
            parent="@android:style/Widget.Material.ActionBar.TabBar">
