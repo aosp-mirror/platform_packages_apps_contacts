@@ -119,7 +119,7 @@
     <!-- Padding around the icon in the search box. -->
     <dimen name="search_box_icon_margin">4dp</dimen>
     <!-- Size of the icon (voice search, back arrow) in the search box. -->
-    <dimen name="search_box_icon_size">36dp</dimen>
+    <dimen name="search_box_icon_size">48dp</dimen>
     <!-- Size of the close icon.-->
     <dimen name="search_box_close_icon_size">56dp</dimen>
     <!-- Padding around the close button. It's visible size without padding is 24dp. -->
