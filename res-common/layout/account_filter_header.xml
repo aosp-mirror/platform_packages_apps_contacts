@@ -31,7 +31,7 @@
         android:id="@+id/account_filter_icon"
         android:layout_height="@dimen/contact_browser_list_header_icon_size"
         android:layout_width="@dimen/contact_browser_list_header_icon_size"
-        android:layout_marginStart="@dimen/contact_browser_list_header_left_margin"
+        android:layout_marginStart="@dimen/contact_browser_list_header_icon_left_margin"
         android:layout_gravity="center_vertical"/>
 
     <TextView
