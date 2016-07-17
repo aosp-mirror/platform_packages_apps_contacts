@@ -351,7 +351,7 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
     private void bindListHeaderCommon(View listView, View accountFilterContainer) {
         // Show header and remove top padding of the list
         accountFilterContainer.setVisibility(View.VISIBLE);
-        listView.setPadding(0, 0, 0, 0);
+        setListViewPaddingTop(listView, /* paddingTop */ 0);
     }
 
     /**
@@ -360,8 +360,14 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
     protected void hideHeaderAndAddPadding(Context context, View listView,
             View accountFilterContainer) {
         accountFilterContainer.setVisibility(View.GONE);
-        listView.setPadding(0, context.getResources().getDimensionPixelSize(
-                R.dimen.contact_browser_list_item_padding_top_or_bottom), 0, 0);
+        setListViewPaddingTop(listView,
+                /* paddingTop */ context.getResources().getDimensionPixelSize(
+                        R.dimen.contact_browser_list_item_padding_top_or_bottom));
+    }
+
+    private void setListViewPaddingTop(View listView, int paddingTop) {
+        listView.setPadding(listView.getPaddingLeft(), paddingTop, listView.getPaddingRight(),
+                listView.getPaddingBottom());
     }
 
 }
