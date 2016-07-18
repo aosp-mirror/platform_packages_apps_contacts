@@ -45,17 +45,24 @@
     <dimen name="contact_filter_right_margin">16dip</dimen>
     <dimen name="contact_filter_item_min_height">48dip</dimen>
     <dimen name="contact_filter_icon_size">32dip</dimen>
+    <dimen name="contact_filter_list_item_height">56dp</dimen>
+    <dimen name="contact_filter_list_item_padding_start">16dp</dimen>
+    <!-- contact_filter_indicator is the arrow in expandable list view -->
+    <dimen name="contact_filter_indicator_padding_start">10dp</dimen>
+    <dimen name="contact_filter_indicator_padding_end">50dp</dimen>
+    <dimen name="contact_filter_action_button_width">72dp</dimen>
 
     <!-- Padding to be used between a visible scrollbar and the contact list -->
     <dimen name="list_visible_scrollbar_padding">32dip</dimen>
 
     <dimen name="contact_browser_list_header_icon_left_margin">16dp</dimen>
+    <dimen name="contact_browser_list_header_icon_right_margin">14dp</dimen>
     <dimen name="contact_browser_list_header_left_margin">16dip</dimen>
     <dimen name="contact_browser_list_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
     <dimen name="contact_browser_list_item_text_indent">8dip</dimen>
     <dimen name="contact_browser_list_header_height">48dp</dimen>
     <dimen name="contact_browser_list_header_icon_size">24dp</dimen>
-    <dimen name="contact_browser_list_header_text_margin">24dp</dimen>
+    <dimen name="contact_browser_list_header_text_margin">10dp</dimen>
     <!-- Width of a contact list item section header. -->
     <dimen name="contact_list_section_header_width">48dp</dimen>
 

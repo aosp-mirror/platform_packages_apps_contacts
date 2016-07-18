@@ -701,6 +701,9 @@
     <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
     <string name="custom_list_filter">Define customized view</string>
 
+    <!-- Menu item to save changes to custom filter. [CHAR LIMIT=15] -->
+    <string name="menu_custom_filter_save">Save</string>
+
     <!-- Query hint displayed inside the search field [CHAR LIMIT=64] -->
     <string name="hint_findContacts">Search contacts</string>
 

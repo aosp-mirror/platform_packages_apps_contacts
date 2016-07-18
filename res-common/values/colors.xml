@@ -179,4 +179,8 @@
     <color name="snackbar_action_text">#40c4ff</color>
     <!-- Background color for a snackbar. -->
     <color name="snackbar_background">#333333</color>
+
+    <!-- Color of account/custom filters -->
+    <color name="account_filter_text_color">@color/actionbar_text_color_black</color>
+    <color name="custom_filter_divider">#dbdbdb</color>
 </resources>
