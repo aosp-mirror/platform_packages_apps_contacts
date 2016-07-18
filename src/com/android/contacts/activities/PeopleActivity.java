@@ -29,6 +29,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.BlockedNumberContract;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.ProviderStatus;
@@ -58,7 +59,6 @@ import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.compat.TelecomManagerUtil;
-import com.android.contacts.common.compat.BlockedNumberContractCompat;
 import com.android.contacts.common.dialog.ClearFrequentsDialog;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -1103,7 +1103,7 @@ public class PeopleActivity extends ContactsActivity implements
         final boolean showMiscOptions = !isSearchOrSelectionMode;
         final boolean showBlockedNumbers = PhoneCapabilityTester.isPhone(this)
                 && ContactsUtils.FLAG_N_FEATURE
-                && BlockedNumberContractCompat.canCurrentUserBlockNumbers(this);
+                && BlockedNumberContract.canCurrentUserBlockNumbers(this);
         makeMenuItemVisible(menu, R.id.menu_search, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_import_export, showMiscOptions);
         makeMenuItemVisible(menu, R.id.menu_accounts, showMiscOptions);
