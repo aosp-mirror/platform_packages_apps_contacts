@@ -32,6 +32,8 @@ import android.content.Loader;
 import android.content.OperationApplicationException;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -42,6 +44,7 @@ import android.provider.ContactsContract.Settings;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
@@ -73,10 +76,9 @@ import java.util.Iterator;
  * Shows a list of all available {@link Groups} available, letting the user
  * select which ones they want to be visible.
  */
-public class CustomContactListFilterActivity extends Activity
-        implements View.OnClickListener, ExpandableListView.OnChildClickListener,
-        LoaderCallbacks<CustomContactListFilterActivity.AccountSet>
-{
+public class CustomContactListFilterActivity extends Activity implements
+        ExpandableListView.OnChildClickListener,
+        LoaderCallbacks<CustomContactListFilterActivity.AccountSet> {
     private static final String TAG = "CustomContactListFilterActivity";
 
     private static final int ACCOUNT_SET_LOADER_ID = 1;
@@ -94,13 +96,23 @@ public class CustomContactListFilterActivity extends Activity
         mList = (ExpandableListView) findViewById(android.R.id.list);
         mList.setOnChildClickListener(this);
         mList.setHeaderDividersEnabled(true);
+        mList.setChildDivider(new ColorDrawable(Color.TRANSPARENT));
+
+        mList.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(final View v, final int left, final int top, final int right,
+                    final int bottom, final int oldLeft, final int oldTop, final int oldRight,
+                    final int oldBottom) {
+                mList.setIndicatorBounds(
+                        mList.getWidth() - getResources().getDimensionPixelSize(
+                                R.dimen.contact_filter_indicator_padding_end),
+                        mList.getWidth() - getResources().getDimensionPixelSize(
+                                R.dimen.contact_filter_indicator_padding_start));
+            }
+        });
+
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         mAdapter = new DisplayAdapter(this);
-
-        final LayoutInflater inflater = getLayoutInflater();
-
-        findViewById(R.id.btn_done).setOnClickListener(this);
-        findViewById(R.id.btn_discard).setOnClickListener(this);
 
         mList.setOnCreateContextMenuListener(this);
 
@@ -589,6 +601,12 @@ public class CustomContactListFilterActivity extends Activity
             text1.setVisibility(account.mName == null ? View.GONE : View.VISIBLE);
             text2.setText(accountType.getDisplayLabel(mContext));
 
+            final int textColor = mContext.getResources().getColor(isExpanded
+                    ? R.color.dialtacts_theme_color
+                    : R.color.account_filter_text_color);
+            text1.setTextColor(textColor);
+            text2.setTextColor(textColor);
+
             return convertView;
         }
 
@@ -621,6 +639,10 @@ public class CustomContactListFilterActivity extends Activity
                 text1.setText(R.string.display_more_groups);
                 text2.setVisibility(View.GONE);
             }
+
+            // Show divider at bottom only for the last child.
+            final View dividerBottom = convertView.findViewById(R.id.adapter_divider_bottom);
+            dividerBottom.setVisibility(isLastChild ? View.VISIBLE : View.GONE);
 
             return convertView;
         }
@@ -682,15 +704,6 @@ public class CustomContactListFilterActivity extends Activity
         @Override
         public boolean isChildSelectable(int groupPosition, int childPosition) {
             return true;
-        }
-    }
-
-    /** {@inheritDoc} */
-    public void onClick(View view) {
-        if (view.getId() == R.id.btn_done) {
-            this.doSaveAction();
-        } else if (view.getId() == R.id.btn_discard) {
-            this.finish();
         }
     }
 
@@ -906,12 +919,26 @@ public class CustomContactListFilterActivity extends Activity
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        final MenuItem menuItem = menu.add(Menu.NONE, R.id.menu_save, Menu.NONE,
+                R.string.menu_custom_filter_save);
+        menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // Pretend cancel.
                 setResult(Activity.RESULT_CANCELED);
                 finish();
+                return true;
+            case R.id.menu_save:
+                this.doSaveAction();
                 return true;
             default:
                 break;
