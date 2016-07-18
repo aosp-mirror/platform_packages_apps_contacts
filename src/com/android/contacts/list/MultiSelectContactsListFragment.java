@@ -327,14 +327,13 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         // Set text of count of contacts and account name (if it's a Google account)
         final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
                 R.id.account_filter_header);
-        final String headerText =  String.format(context.getResources().getQuantityString(
-                R.plurals.contacts_count, memberCount), memberCount);
-        final StringBuilder sb = new StringBuilder(headerText);
-        if (GoogleAccountType.ACCOUNT_TYPE.equals(accountWithDataSet.type)) {
-            sb.append(" \u00B7 "); // Unicode character 'MIDDLE DOT'
-            sb.append(accountWithDataSet.name);
-        }
-        accountFilterHeader.setText(sb.toString());
+        final String headerText = GoogleAccountType.ACCOUNT_TYPE.equals(accountWithDataSet.type)
+                ? String.format(context.getResources().getQuantityString(
+                        R.plurals.contacts_count_with_account, memberCount),
+                                memberCount, accountWithDataSet.name)
+                : context.getResources().getQuantityString(
+                        R.plurals.contacts_count, memberCount, memberCount);
+        accountFilterHeader.setText(headerText);
         accountFilterHeader.setAllCaps(false);
 
         // Set icon of the account

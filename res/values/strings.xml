@@ -208,8 +208,14 @@
 
     <!-- List header indicating the number of contacts in the list [CHAR LIMIT=30] -->
     <plurals name="contacts_count">
-        <item quantity="one">1 contact</item>
+        <item quantity="one"><xliff:g id="count">%d</xliff:g> contact</item>
         <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
+    </plurals>
+
+    <!-- List header indicating the number of contacts and account name in the list [CHAR LIMIT=30] -->
+    <plurals name="contacts_count_with_account">
+        <item quantity="one"><xliff:g id="count">%d</xliff:g> contact · <xliff:g id="account">%s</xliff:g></item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts · <xliff:g id="account">%s</xliff:g></item>
     </plurals>
 
     <!-- Activity title indicating contacts are from a Google account [CHAR LIMIT=30] -->
