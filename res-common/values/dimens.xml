@@ -49,12 +49,13 @@
     <!-- Padding to be used between a visible scrollbar and the contact list -->
     <dimen name="list_visible_scrollbar_padding">32dip</dimen>
 
+    <dimen name="contact_browser_list_header_icon_left_margin">16dp</dimen>
     <dimen name="contact_browser_list_header_left_margin">16dip</dimen>
     <dimen name="contact_browser_list_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
     <dimen name="contact_browser_list_item_text_indent">8dip</dimen>
     <dimen name="contact_browser_list_header_height">48dp</dimen>
     <dimen name="contact_browser_list_header_icon_size">24dp</dimen>
-    <dimen name="contact_browser_list_header_text_margin">20dp</dimen>
+    <dimen name="contact_browser_list_header_text_margin">24dp</dimen>
     <!-- Width of a contact list item section header. -->
     <dimen name="contact_list_section_header_width">48dp</dimen>
 
