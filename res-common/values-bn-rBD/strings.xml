@@ -146,8 +146,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"মুছুন"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"নামের ক্ষেত্রটিকে প্রসারিত বা সঙ্কুচিত করুন"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"ফোনেটিক নামের ক্ষেত্রটিকে প্রসারিত বা সঙ্কুচিত করুন"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"সকল পরিচিতি"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"তারকা চিহ্নিত"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"নিজের সুবিধামতো করুন"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"পরিচিতি"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"অন্যান্য সকল পরিচিতি"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"সকল পরিচিতি"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"সমন্বয় গোষ্ঠী সরান"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"সমন্বয় গোষ্ঠী যোগ করুন"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"আরো গোষ্ঠী…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"সমন্বয় থেকে \"<xliff:g id="GROUP">%s</xliff:g>\" সরানো হলে তা সমন্বয় থেকে যেকোনো অগোষ্ঠীবদ্ধ পরিচিতিগুলিকেও সরাবে৷"</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"প্রদর্শনের বিকল্পগুলি সংরক্ষণ করা হচ্ছে..."</string>
     <string name="menu_done" msgid="32470053723443112">"সম্পন্ন হয়েছে"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"বাতিল করুন"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"কাস্টম দৃশ্যে পরিচিতিগুলি"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"আমদানি করা পরিচিতিগুলি এতে সংরক্ষণ করুন:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"সিম কার্ড থেকে আমদানি করুন"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> SIM থেকে আমদানি করুন - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -225,6 +237,9 @@
     <string name="share_error" msgid="665756457151793108">"এই পরিচিতিটিকে শেয়ার করা যাবে না৷"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"শেয়ার করার জন্য কোনো পরিচিতি নেই৷"</string>
     <string name="menu_search" msgid="7464453023659824700">"অনুসন্ধান করুন"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"দেখানোর জন্য পরিচিতিগুলি"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"দেখানোর জন্য পরিচিতিগুলি"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"কাস্টম দর্শন নির্ধারণ করুন"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"পরিচিতিগুলি খুঁজুন"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"পছন্দগুলি"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"কোনো পরিচিতি নেই৷"</string>
@@ -257,7 +272,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"পরিষেবার শর্তাবলী"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"মুক্ত উৎস লাইসেন্সগুলি"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url খুলতে ব্যর্থ হয়েছে৷"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> এ টিক চিহ্ন দেওয়া হয়েছে"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> এ টিক চিহ্ন দেওয়া হয়নি"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"ভিডিও কল করুন"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"মুছুন"</string>
 </resources>

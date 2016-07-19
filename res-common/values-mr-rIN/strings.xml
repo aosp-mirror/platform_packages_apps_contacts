@@ -146,8 +146,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"हटवा"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"नाव फील्‍ड विस्‍तृत करा किंवा संकुचित करा"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"ध्वन्यात्मक नाव फील्ड विस्तृत करा किंवा संकुचित करा"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"सर्व संपर्क"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"तारांकित"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"सानुकूलित करा"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"संपर्क"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"इतर सर्व संपर्क"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"सर्व संपर्क"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"संकालन समूह काढून टाका"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"संकालन गट जोडा"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"अधिक गट..."</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"संकालन करा मधून \"<xliff:g id="GROUP">%s</xliff:g>\" हटविल्‍याने संकालन करा मधून कोणत्‍याही गटबद्ध न केलेल्‍या संपर्कांना देखील हटवेल."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"प्रदर्शन पर्याय जतन करत आहे…"</string>
     <string name="menu_done" msgid="32470053723443112">"पूर्ण झाले"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"रद्द करा"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"सानुकूल दृश्यामधील संपर्क"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"आयात केलेले संपर्क यावर जतन करा:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"सिमकार्डवरुन आयात करा"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> SIM वरून आयात करा"</string>
@@ -225,6 +237,9 @@
     <string name="share_error" msgid="665756457151793108">"हा संपर्क सामायिक केला जाऊ शकत नाही."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"सामायिक करण्यासाठी कोणतेही संपर्क नाहीत."</string>
     <string name="menu_search" msgid="7464453023659824700">"शोधा"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"प्रदर्शित करण्यासाठी संपर्क"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"प्रदर्शित करण्यासाठी संपर्क"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"सानुकूल दृश्य परिभाषित करा"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"संपर्क शोधा"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"आवडते"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"कोणतेही संपर्क नाहीत."</string>
@@ -257,7 +272,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"सेवा अटी"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"मुक्त स्त्रोत परवाने"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url उघडण्यात अयशस्वी झाले."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> चेक केले"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> चेक केले नाही"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"व्हिडिओ कॉल करा"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"हटवा"</string>
 </resources>

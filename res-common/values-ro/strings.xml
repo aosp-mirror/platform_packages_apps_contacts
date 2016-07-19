@@ -147,8 +147,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"ștergeți"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Extindeți sau restrângeți câmpurile pentru nume"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Extindeți sau restrângeți câmpurile pentru nume fonetice"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Toată agenda"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Cu stea"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Personalizați"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Persoana de contact"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Toate celelalte contacte"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Toată agenda"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Eliminați grup de sincronizare"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Adăugați grup de sincronizare"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Mai multe grupuri…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Eliminarea grupului „<xliff:g id="GROUP">%s</xliff:g>” din sincronizare va elimina, de asemenea, din sincronizare orice persoană de contact care nu face parte dintr-un grup."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Se salvează opțiunile de afișare…"</string>
     <string name="menu_done" msgid="32470053723443112">"Terminat"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Anulați"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Agenda în afișarea personalizată"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Salvați persoanele de contact importate în:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importați de pe cardul SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importați de pe cardul SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -226,6 +238,9 @@
     <string name="share_error" msgid="665756457151793108">"Nu se poate permite accesul la această intrare."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Nu există persoane de contact de trimis."</string>
     <string name="menu_search" msgid="7464453023659824700">"Căutați"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Agendă de afișat"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Agendă de afișat"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Definiți afișarea personalizată"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Căutați în Agendă"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Preferate"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nicio persoană de contact."</string>
@@ -259,7 +274,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"Termeni și condiții"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Licențe open source"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Adresa URL nu a putut fi deschisă."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"Contul <xliff:g id="ACCOUNT_INFO">%s</xliff:g> este selectat"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Contul <xliff:g id="ACCOUNT_INFO">%s</xliff:g> nu este selectat"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Efectuați un apel video"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"Ștergeți"</string>
 </resources>

@@ -146,8 +146,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"ဖျက်ရန်"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"နာမည်အကွက်များအား ဖြန့်ချ သို့မဟုတ် လိပ်တင်ပါ"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"အသံထွက်ဆိုင်ရာ အကွက်များကို တိုးချဲ့ သို့မဟုတ် ခေါက်သိမ်းပါ"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"လိပ်စာများအားလုံး"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"စတားပေးထားသော အရာ"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"မိမိစိတ်ကြိုက်ပြုလုပ်ခြင်း"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"အဆက်အသွယ်"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"တခြားအဆက်အသွယ်များအားလုံး"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"လိပ်စာများအားလုံး"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"ထပ်တူပြုလုပ်ခြင်း အုပ်စုအား ဖယ်ရှားရန်"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"ထပ်တူပြုလုပ်မှု အုပ်စုများ ထပ်ထည့်ပါ"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"ပိုမိုသော အုပ်စုများ…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\"<xliff:g id="GROUP">%s</xliff:g>\" အား ထပ်တူပြုလုပ်ခြင်းမှ ဖယ်ထုတ်ခြင်းသည် တခြား အုပ်စုမလုပ်ထားသော အဆက်အသွယ်များအားလည်း ဖယ်ထုတ်ပါလိမ့်မည်။"</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"ပြသမှု ရွေးချယ်ခြင်းများ သိမ်းဆည်နေစဉ်…"</string>
     <string name="menu_done" msgid="32470053723443112">"ပြီးပါပြီ"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"မလုပ်တော့"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"မိမိစိတ်ကြိုက် မြင်ကွင်းမှ"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"သွင်းထားသည့် အဆက်အသွယ်များကို သိမ်းဆည်းရန် −"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"ဆင်းမ်ကဒ်ထဲမှ အထဲသို့သွင်းရန်"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"ဆင်းမ်ကဒ်မှ သွင်းယူရန် <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -225,6 +237,9 @@
     <string name="share_error" msgid="665756457151793108">"ဒီလိပ်စာအား မျှဝေလို့ မရပါ"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"မျှဝေရန် အဆက်အသွယ်များမရှိပါ။"</string>
     <string name="menu_search" msgid="7464453023659824700">"ရှာဖွေခြင်း"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"ပြရန် အဆက်အသွယ်များ"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"အဆက်အသွယ်များပြရန်"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"မိမိစိတ်ကြိုက်မြင်ကွင်း သတ်မှတ်ပါ"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"အဆက်အသွယ်များရှာပါ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"အနှစ်သက်ဆုံးများ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"အဆက်အသွယ်များမရှိပါ"</string>
@@ -257,7 +272,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"ဝန်ဆောင်မှုဆိုင်ရာ စည်းမျဉ်းများ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"အခမဲ့ ရင်းမြစ် လိုင်စင်များ"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url ကို ဖွင့်၍မရပါ။"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ကိုစစ်ဆေးပြီးပါပြီ"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ကိုမစစ်ဆေးရသေးပါ"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"ဗီဒီယို ခေါ်ဆိုမှုကို ပြုလုပ်ပါ"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"ဖျက်ရန်"</string>
 </resources>

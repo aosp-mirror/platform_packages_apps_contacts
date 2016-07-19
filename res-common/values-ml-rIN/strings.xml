@@ -146,8 +146,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"ഇല്ലാതാക്കുക"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"പേരിന്റെ ഫീൽഡുകൾ വിപുലീകരിക്കുക അല്ലെങ്കിൽ ചുരുക്കുക"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"ഫോണിറ്റിക്ക് പേരിന്റെ ഫീൽഡുകൾ വികസിപ്പിക്കുക അല്ലെങ്കിൽ ചുരുക്കുക"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"എല്ലാ കോൺടാക്റ്റുകളും"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"നക്ഷത്രമിട്ടവ"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"ഇഷ്‌ടാനുസൃതമാക്കുക"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"കോൺടാക്റ്റ്"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"മറ്റെല്ലാ കോൺടാക്റ്റുകളും"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"എല്ലാ കോൺടാക്റ്റുകളും"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"സമന്വയ ഗ്രൂപ്പ് നീക്കംചെയ്യുക"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"സമന്വയ ഗ്രൂപ്പ് ചേർക്കുക"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"കൂടുതൽ ഗ്രൂപ്പുകൾ…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"സമന്വയത്തിൽ നിന്നും \"<xliff:g id="GROUP">%s</xliff:g>\" നീക്കംചെയ്യുന്നത്, സമന്വയത്തിൽ നിന്നും ഗ്രൂപ്പുചെയ്യാത്ത എല്ലാ കോൺടാക്റ്റുകളേയും നീക്കംചെയ്യുന്നതിനിടയാക്കും."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"ഡിസ്‌പ്ലേ ഓപ്‌ഷനുകൾ സംരക്ഷിക്കുന്നു…"</string>
     <string name="menu_done" msgid="32470053723443112">"പൂർത്തിയായി"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"റദ്ദാക്കുക"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"ഇഷ്‌ടാനുസൃതകാഴ്‌ചയിലെ കോൺടാക്റ്റ്"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"ഇമ്പോർട്ടുചെയ്ത കോൺടാക്റ്റുകൾ ഇനിപ്പറയുന്നതിലേക്ക് സംരക്ഷിക്കുക:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"സിം കാർഡിൽ നിന്നും ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM-ൽ നിന്ന് ഇമ്പോർട്ടുചെയ്യുക <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -225,6 +237,9 @@
     <string name="share_error" msgid="665756457151793108">"ഈ കോൺടാക്റ്റ് പങ്കിടാനാകില്ല."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"പങ്കിടാൻ കോൺടാക്റ്റുകളൊന്നും ഇല്ല."</string>
     <string name="menu_search" msgid="7464453023659824700">"തിരയുക"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"ദൃശ്യമാക്കേണ്ടവ"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ദൃശ്യമാക്കേണ്ടവ"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"കസ്റ്റം കാഴ്‌ച നിശ്ചയിക്കൂ"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"പ്രിയപ്പെട്ടവർ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"കോൺടാക്റ്റുകൾ ഒന്നുമില്ല."</string>
@@ -257,7 +272,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"സേവന നിബന്ധനകൾ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"ഓപ്പൺ സോഴ്‌സ് ലൈസൻസ്"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"url തുറക്കാനായില്ല."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ചെക്കുചെയ്തു"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ചെക്കുചെയ്തില്ല"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"വീഡിയോ കോൾ ചെയ്യുക"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"ഇല്ലാതാക്കുക"</string>
 </resources>

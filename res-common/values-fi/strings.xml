@@ -146,8 +146,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"poista"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Laajenna tai tiivistä nimikentät"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Laajenna tai tiivistä foneettiset nimikentät"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Kaikki yhteystiedot"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Tähdelliset"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Muokkaa"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Yhteystieto"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Kaikki muut yhteystiedot"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Kaikki yhteystiedot"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Poista synkronointiryhmä"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Lisää synkronointiryhmä"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Lisää ryhmiä…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Ryhmän <xliff:g id="GROUP">%s</xliff:g> poistaminen synkronoinnista lopettaa myös ryhmittelemättömien yhteystietojen synkronoinnin."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Tallennetaan näyttövalintoja…"</string>
     <string name="menu_done" msgid="32470053723443112">"Valmis"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Peruuta"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Muokatun näkymän yhteystiedot"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Tallenna tuodut yhteystiedot kohteeseen"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Tuo SIM-kortilta"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Tuo SIM-kortilta <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -225,6 +237,9 @@
     <string name="share_error" msgid="665756457151793108">"Yhteystieto ei jaettavissa"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Jaettavia yhteystietoja ei ole."</string>
     <string name="menu_search" msgid="7464453023659824700">"Haku"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Näytettävät yhteystiedot"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Näytettävät yhteystiedot"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Määritä oma näkymä"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Hae yhteystiedoista"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Suosikit"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ei yhteystietoja."</string>
@@ -257,7 +272,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"Käyttöehdot"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Avoimen lähdekoodin käyttöluvat"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"URL-osoitteen avaus epäonnistui."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> valittu"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ei valittu"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Soita videopuhelu"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"Poista"</string>
 </resources>
