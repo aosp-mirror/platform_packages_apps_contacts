@@ -24,6 +24,8 @@ import android.os.Parcelable;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
+import com.android.contacts.common.logging.ListEvent;
+
 /**
  * Contact list filter parameters.
  */
@@ -99,6 +101,32 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
                 || filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
                 || filterType == ContactListFilter.FILTER_TYPE_CUSTOM;
     }
+
+    /** Returns the {@link ListEvent.ListType} for the type of this filter. */
+    public int toListType() {
+        switch (filterType) {
+            case FILTER_TYPE_DEFAULT:
+                // Fall through
+            case FILTER_TYPE_ALL_ACCOUNTS:
+                return ListEvent.ListType.ALL_CONTACTS;
+            case FILTER_TYPE_CUSTOM:
+                return ListEvent.ListType.CUSTOM;
+            case FILTER_TYPE_STARRED:
+                return ListEvent.ListType.STARRED;
+            case FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY:
+                return ListEvent.ListType.PHONE_NUMBERS;
+            case FILTER_TYPE_SINGLE_CONTACT:
+                return ListEvent.ListType.SINGLE_CONTACT;
+            case FILTER_TYPE_ACCOUNT:
+                return ListEvent.ListType.ACCOUNT;
+            case FILTER_TYPE_GROUP_MEMBERS:
+                return ListEvent.ListType.GROUP;
+            case FILTER_TYPE_DEVICE_CONTACTS:
+                return ListEvent.ListType.DEVICE;
+        }
+        return ListEvent.ListType.UNKNOWN_LIST;
+    }
+
 
     /**
      * Returns true if this filter is based on data and may become invalid over time.

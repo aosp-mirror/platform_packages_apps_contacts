@@ -61,6 +61,18 @@ public final class ListEvent {
         public static final int ACCOUNT = 2;
         public static final int GROUP = 3;
         public static final int SEARCH_RESULT = 4;
+        public static final int DEVICE = 5;
+        public static final int CUSTOM = 6;
+        public static final int STARRED = 7;
+        public static final int PHONE_NUMBERS = 8;
+        public static final int SINGLE_CONTACT = 9;
+        public static final int PICK_CONTACT = 10;
+        public static final int PICK_CONTACT_FOR_SHORTCUT = 11;
+        public static final int PICK_PHONE = 12;
+        public static final int PICK_EMAIL = 13;
+        public static final int PICK_POSTAL = 14;
+        public static final int PICK_JOIN = 15;
+        public static final int PICK_GROUP_MEMBERS = 16;
 
         private ListType() {
         }
