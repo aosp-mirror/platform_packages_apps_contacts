@@ -146,8 +146,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"삭제"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"이름 입력란 펼치기/접기"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"이름(소리나는 대로) 입력란 펼치기 또는 접기"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"모든 주소록"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"별표"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"맞춤설정"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"연락처"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"다른 모든 주소록"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"모든 주소록"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"동기화 그룹 삭제"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"동기화 그룹 추가"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"그룹 더보기..."</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"\'<xliff:g id="GROUP">%s</xliff:g>\'을(를) 동기화에서 제거하면 그룹화되지 않은 연락처도 동기화에서 제거됩니다."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"표시 옵션 저장 중..."</string>
     <string name="menu_done" msgid="32470053723443112">"완료"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"취소"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"주소록 맞춤 보기"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"가져온 주소록을 저장할 계정:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM 카드에서 가져오기"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>에서 가져오기"</string>
@@ -225,6 +237,9 @@
     <string name="share_error" msgid="665756457151793108">"연락처를 공유할 수 없습니다."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"공유할 연락처가 없습니다."</string>
     <string name="menu_search" msgid="7464453023659824700">"검색"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"표시할 연락처"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"표시할 연락처"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"맞춤 보기 정의"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"연락처 검색"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"즐겨찾기"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"연락처가 없습니다."</string>
@@ -257,7 +272,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"서비스 약관"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"오픈소스 라이선스"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"URL을 열지 못했습니다."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> 선택함"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> 선택 안함"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"화상 통화 걸기"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"삭제"</string>
 </resources>

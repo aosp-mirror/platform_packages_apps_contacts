@@ -146,8 +146,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"xóa"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Mở rộng hoặc thu gọn trường tên"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Mở rộng hoặc thu gọn trường tên theo phiên âm"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Tất cả liên hệ"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Có gắn dấu sao"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Tùy chỉnh"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Liên hệ"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Tất cả liên hệ khác"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Tất cả liên hệ"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Xóa nhóm đồng bộ hóa"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Thêm nhóm đồng bộ hóa"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Nhóm khác…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Xóa \"<xliff:g id="GROUP">%s</xliff:g>\" khỏi đồng bộ hóa cũng sẽ xóa bất kỳ liên hệ nào chưa được nhóm khỏi đồng bộ hóa."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Đang lưu tuỳ chọn hiển thị…"</string>
     <string name="menu_done" msgid="32470053723443112">"Xong"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Hủy"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Danh bạ ở chế độ xem tùy chỉnh"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Lưu danh bạ đã nhập vào:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Nhập từ thẻ SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Nhập từ SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -229,6 +241,9 @@
     <string name="share_error" msgid="665756457151793108">"Không thể chia sẻ liên hệ này."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Không có liên hệ nào để chia sẻ."</string>
     <string name="menu_search" msgid="7464453023659824700">"Tìm kiếm"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Danh bạ hiển thị"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Danh bạ hiển thị"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Xác định kiểu xem tùy chỉnh"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Tìm kiếm trong danh bạ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Mục yêu thích"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Không có địa chỉ liên hệ nào."</string>
@@ -261,7 +276,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"Điều khoản dịch vụ"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Giấy phép nguồn mở"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Không mở được url."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"Đã kiểm tra <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Chưa kiểm tra <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Gọi điện video"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"Xóa"</string>
 </resources>

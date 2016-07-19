@@ -146,8 +146,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"删除"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"展开或折叠姓名字段"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"展开或折叠姓名拼音字段"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"所有联系人"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"已加星标"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"自定义"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"联系人"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"其他所有联系人"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"所有联系人"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"删除同步群组"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"添加同步群组"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"更多群组..."</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"如果您停止同步“<xliff:g id="GROUP">%s</xliff:g>”，将同时停止同步所有未分组的联系人。"</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"正在保存显示选项..."</string>
     <string name="menu_done" msgid="32470053723443112">"完成"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"取消"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"自定义视图中的联系人"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"将导入的联系人保存到："</string>
     <string name="import_from_sim" msgid="4749894687871835873">"从 SIM 卡导入"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"从 SIM 卡“<xliff:g id="SIM_NAME">^1</xliff:g>” - <xliff:g id="SIM_NUMBER">^2</xliff:g> 导入"</string>
@@ -225,6 +237,9 @@
     <string name="share_error" msgid="665756457151793108">"无法分享此联系人。"</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"没有可供分享的联系人。"</string>
     <string name="menu_search" msgid="7464453023659824700">"搜索"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"要显示的联系人"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"要显示的联系人"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"自定义视图"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"搜索联系人"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"收藏"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"没有联系人。"</string>
@@ -257,7 +272,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"服务条款"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"开放源代码许可"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"无法打开网址。"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"已选中 <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"未选中 <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"发起视频通话"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"删除"</string>
 </resources>

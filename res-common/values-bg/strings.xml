@@ -146,8 +146,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"изтриване"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Разгъване или свиване на полетата с името"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Разгъване или свиване на полетата за фонетични имена"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Всички контакти"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Със звезда"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Персонализиране"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Контакт"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Всички други контакти"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Всички контакти"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Премахване на група за синхронизиране"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Добавяне на група за синхронизиране"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Още групи…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Ако синхронизирането на „<xliff:g id="GROUP">%s</xliff:g>“ спре, то ще спре и за негрупираните контакти."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Опциите за показване се запазват…"</string>
     <string name="menu_done" msgid="32470053723443112">"Готово"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Отказ"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"Контакти в персонал. изглед"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Запазване на импортираните контакти във:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Импортиране от SIM карта"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Импортиране от SIM картата „<xliff:g id="SIM_NAME">^1</xliff:g>“ – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -225,6 +237,9 @@
     <string name="share_error" msgid="665756457151793108">"Този контакт не може да бъде споделен."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"Няма контакти за споделяне."</string>
     <string name="menu_search" msgid="7464453023659824700">"Търсене"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Контакти за показване"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Контакти за показване"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"Определяне на изглед"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Търсене в контактите"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Любими"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Няма контакти."</string>
@@ -257,7 +272,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"Общи условия"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"Лицензи за отворен код"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"Отварянето на URL адреса не бе успешно."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"За <xliff:g id="ACCOUNT_INFO">%s</xliff:g> е поставена отметка"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"За <xliff:g id="ACCOUNT_INFO">%s</xliff:g> не е поставена отметка"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Извършване на видеообаждане"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"Изтриване"</string>
 </resources>

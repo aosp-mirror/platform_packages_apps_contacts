@@ -150,8 +150,20 @@
     <string name="description_minus_button" msgid="2142439445814730827">"حذف"</string>
     <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"توسيع أو تصغير حقول الاسم"</string>
     <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"توسيع أو تصغير حقول الاسم الصوتي"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"جميع جهات الاتصال"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"مميّزة بنجمة"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"تخصيص"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"جهة الاتصال"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"جميع جهات الاتصال الأخرى"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"جميع جهات الاتصال"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"إزالة مجموعة متزامنة"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"إضافة مجموعة متزامنة"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"مزيد من المجموعات..."</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"ستؤدي إزالة \"<xliff:g id="GROUP">%s</xliff:g>\"من المزامنة أيضًا إلى إزالة أية جهات اتصال غير مجمعة من المزامنة."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"جارٍ حفظ خيارات العرض..."</string>
     <string name="menu_done" msgid="32470053723443112">"تم"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"إلغاء"</string>
+    <string name="listCustomView" msgid="1915154113477432033">"جهات الاتصال في عرض مخصص"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"حفظ جهات الاتصال المستوردة إلى:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"‏استيراد من شريحة SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"‏استيراد من شريحة SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -229,6 +241,9 @@
     <string name="share_error" msgid="665756457151793108">"لا يمكن مشاركة جهة الاتصال هذه."</string>
     <string name="no_contact_to_share" msgid="5749367538191552509">"ليست هناك جهات اتصال لمشاركتها."</string>
     <string name="menu_search" msgid="7464453023659824700">"البحث"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"جهات الاتصال المعروضة"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"جهات الاتصال المعروضة"</string>
+    <string name="custom_list_filter" msgid="582616656313514803">"تحديد عرض مخصص"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"البحث في جهات الاتصال"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"المفضلة"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ليست هناك جهات اتصال."</string>
@@ -265,7 +280,8 @@
     <string name="about_terms_of_service" msgid="628537491496465267">"بنود الخدمة"</string>
     <string name="activity_title_licenses" msgid="7812517458691564230">"تراخيص البرامج مفتوحة المصدر"</string>
     <string name="url_open_error_toast" msgid="7557601281695424805">"‏فشل فتح عنوان URL."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"تم تحديد <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"لم يتم تحديد <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"إجراء مكالمة فيديو"</string>
-    <!-- no translation found for description_delete_contact (5792859265342550501) -->
-    <skip />
+    <string name="description_delete_contact" msgid="5792859265342550501">"حذف"</string>
 </resources>
