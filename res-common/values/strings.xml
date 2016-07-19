@@ -385,6 +385,9 @@
     <!-- Contact list filter selection indicating that the list shows only the selected contact [CHAR LIMIT=64] -->
     <string name="list_filter_single">Contact</string>
 
+    <!-- Contact list filter preference summary indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
+    <string name="list_filter_custom_preference">Custom view</string>
+
     <!-- List title for a special contacts group that covers all contacts. [CHAR LIMIT=25] -->
     <string name="display_ungrouped">All other contacts</string>
 
