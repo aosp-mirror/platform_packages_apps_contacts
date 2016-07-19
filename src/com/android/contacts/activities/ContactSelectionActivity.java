@@ -41,6 +41,7 @@ import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.common.list.PhoneNumberPickerFragment;
+import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.list.ContactPickerFragment;
@@ -261,6 +262,7 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
                 fragment.setEditMode(true);
                 fragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
                 fragment.setCreateContactEnabled(!mRequest.isSearchMode());
+                fragment.setListType(ListEvent.ListType.PICK_CONTACT);
                 mListFragment = fragment;
                 break;
             }
@@ -269,6 +271,7 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
             case ContactsRequest.ACTION_PICK_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setIncludeFavorites(mRequest.shouldIncludeFavorites());
+                fragment.setListType(ListEvent.ListType.PICK_CONTACT);
                 mListFragment = fragment;
                 break;
             }
@@ -276,6 +279,7 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
             case ContactsRequest.ACTION_PICK_OR_CREATE_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setCreateContactEnabled(!mRequest.isSearchMode());
+                fragment.setListType(ListEvent.ListType.PICK_CONTACT);
                 mListFragment = fragment;
                 break;
             }
@@ -283,25 +287,28 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CONTACT: {
                 ContactPickerFragment fragment = new ContactPickerFragment();
                 fragment.setShortcutRequested(true);
+                fragment.setListType(ListEvent.ListType.PICK_CONTACT_FOR_SHORTCUT);
                 mListFragment = fragment;
                 break;
             }
 
             case ContactsRequest.ACTION_PICK_PHONE: {
                 PhoneNumberPickerFragment fragment = getPhoneNumberPickerFragment(mRequest);
+                fragment.setListType(ListEvent.ListType.PICK_PHONE);
                 mListFragment = fragment;
                 break;
             }
 
             case ContactsRequest.ACTION_PICK_EMAIL: {
                 mListFragment = new EmailAddressPickerFragment();
+                mListFragment.setListType(ListEvent.ListType.PICK_EMAIL);
                 break;
             }
 
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
                 PhoneNumberPickerFragment fragment = getPhoneNumberPickerFragment(mRequest);
                 fragment.setShortcutAction(Intent.ACTION_CALL);
-
+                fragment.setListType(ListEvent.ListType.PICK_CONTACT_FOR_SHORTCUT);
                 mListFragment = fragment;
                 break;
             }
@@ -309,14 +316,14 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
             case ContactsRequest.ACTION_CREATE_SHORTCUT_SMS: {
                 PhoneNumberPickerFragment fragment = getPhoneNumberPickerFragment(mRequest);
                 fragment.setShortcutAction(Intent.ACTION_SENDTO);
-
+                fragment.setListType(ListEvent.ListType.PICK_CONTACT_FOR_SHORTCUT);
                 mListFragment = fragment;
                 break;
             }
 
             case ContactsRequest.ACTION_PICK_POSTAL: {
                 PostalAddressPickerFragment fragment = new PostalAddressPickerFragment();
-
+                fragment.setListType(ListEvent.ListType.PICK_POSTAL);
                 mListFragment = fragment;
                 break;
             }
@@ -324,6 +331,7 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
             case ContactsRequest.ACTION_PICK_JOIN: {
                 JoinContactListFragment joinFragment = new JoinContactListFragment();
                 joinFragment.setTargetContactId(getTargetContactId());
+                joinFragment.setListType(ListEvent.ListType.PICK_JOIN);
                 mListFragment = joinFragment;
                 break;
             }
@@ -339,6 +347,7 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
                         UiIntentActions.GROUP_CONTACT_IDS);
                 mListFragment = GroupMemberPickerFragment.newInstance(
                         accountName, accountType, accountDataSet, contactIds);
+                mListFragment.setListType(ListEvent.ListType.PICK_GROUP_MEMBERS);
                 break;
             }
 

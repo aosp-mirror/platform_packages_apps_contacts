@@ -335,7 +335,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
         mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
         mAllFragment.setCheckBoxListListener(new CheckBoxListListener());
-        mAllFragment.setListType(ListEvent.ListType.ALL_CONTACTS);
+        mAllFragment.setListType(mContactListFilterController.getFilterListType());
 
         // Hide all fragments for now.  We adjust visibility when we get onSelectedTabChanged()
         // from ActionBarAdapter.
@@ -1391,9 +1391,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
     private void setFilterAndUpdateTitle(ContactListFilter filter, boolean restoreSelectedUri) {
         mAllFragment.setFilter(filter, restoreSelectedUri);
-        final int listType = isAllContactsFilter(filter)
-                ? ListEvent.ListType.ALL_CONTACTS : ListEvent.ListType.ACCOUNT;
-        mAllFragment.setListType(listType);
+
+        mAllFragment.setListType(mContactListFilterController.getFilterListType());
 
         updateFilterMenu(filter);
 
