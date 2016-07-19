@@ -81,6 +81,14 @@
       <item quantity="other">אנשי קשר נמחקו</item>
       <item quantity="one">איש קשר נמחק</item>
     </plurals>
+    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
+      <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר</item>
+      <item quantity="one">איש קשר אחד</item>
+    </plurals>
+    <string name="title_from_google" msgid="4664084747121207202">"‏מ-Google"</string>
+    <string name="title_from_other_accounts" msgid="8307885412426754288">"מ-<xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"הגדר רינגטון"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"כל השיחות לתא הקולי"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"לא ניתן למחוק אנשי קשר מחשבונות לקריאה-בלבד, אך ניתן להסתיר אותם."</string>
@@ -108,8 +116,7 @@
     <string name="noContacts" msgid="4955659076981974652">"אין אנשי קשר"</string>
     <string name="noGroups" msgid="4607906327968232225">"אין תוויות."</string>
     <string name="noAccounts" msgid="7768267764545265909">"כדי ליצור קבוצות, נחוץ חשבון."</string>
-    <!-- no translation found for emptyGroup (5102411903247859575) -->
-    <skip />
+    <string name="emptyGroup" msgid="5102411903247859575">"אין אנשי קשר עם התווית הזו"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"איש הקשר נשמר"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"בוטל הקישור לאנשי קשר"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"לא ניתן לשמור את השינויים באנשי הקשר."</string>
@@ -162,6 +169,7 @@
     <string name="missing_app" msgid="1466111003546611387">"לא נמצאה אפליקציה שיכולה לטפל בפעולה זו."</string>
     <string name="menu_share" msgid="943789700636542260">"שתף"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"הוסף לאנשי הקשר"</string>
+    <string name="menu_add_contacts" msgid="4465646512002163011">"הוסף"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
       <item quantity="two">שתף את אנשי הקשר באמצעות</item>
       <item quantity="many">שתף את אנשי הקשר באמצעות</item>
@@ -171,8 +179,7 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"בחר חשבון"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"יצירת תווית"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"שינוי השם של התווית"</string>
-    <!-- no translation found for group_name_dialog_hint (5122118085780669813) -->
-    <skip />
+    <string name="group_name_dialog_hint" msgid="5122118085780669813">"תווית"</string>
     <string name="audio_chat" msgid="2535716629358298691">"צ\'אט קולי"</string>
     <string name="video_chat" msgid="1872255818640336072">"Hangout"</string>
     <string name="connections" msgid="8098440723172028350">"חיבורים"</string>
@@ -196,14 +203,12 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"הוסף חדש"</string>
     <string name="add_organization" msgid="7311893231158291197">"הוסף ארגון"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"תאריך"</string>
-    <!-- no translation found for group_edit_field_hint_text (8038224059926963133) -->
-    <skip />
+    <string name="group_edit_field_hint_text" msgid="8038224059926963133">"תווית"</string>
     <string name="change_photo" msgid="8530597935483526383">"שנה"</string>
     <string name="primary_photo" msgid="8517942231868516999">"תמונה ראשית"</string>
     <string name="description_star" msgid="2605854427360036550">"מועדף"</string>
     <string name="edit_contact" msgid="7529281274005689512">"ערוך איש קשר"</string>
-    <!-- no translation found for action_menu_back_from_edit_select (6435476408621731420) -->
-    <skip />
+    <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"סגירה"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"לקשר את איש הקשר הנוכחי לאיש הקשר שנבחר?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"לעבור לעריכה של איש הקשר שנבחר? המידע שהזנת עד עכשיו יועתק."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"העתק אל \'אנשי הקשר שלי\'"</string>
@@ -238,7 +243,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"המשך לערוך"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"חיפוש אנשי קשר"</string>
-    <!-- no translation found for title_edit_group (1258790269665184368) -->
+    <!-- no translation found for title_edit_group (1889302367574226969) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"הפרופיל המקומי שלי"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"פרופיל <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> שלי"</string>

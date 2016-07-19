@@ -79,6 +79,12 @@
       <item quantity="other"> επαφές διαγράφηκαν</item>
       <item quantity="one"> επαφή διαγράφηκε</item>
     </plurals>
+    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> επαφές</item>
+      <item quantity="one">1 επαφή</item>
+    </plurals>
+    <string name="title_from_google" msgid="4664084747121207202">"Από την Google"</string>
+    <string name="title_from_other_accounts" msgid="8307885412426754288">"Από: <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ήχος κλήσης"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Όλες οι κλήσ. στον τηλεφωνητή"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Δεν είναι δυνατή η διαγραφή επαφών από λογαριασμούς που προορίζονται μόνο για ανάγνωση, αλλά είναι δυνατή η απόκρυψή τους."</string>
@@ -106,8 +112,7 @@
     <string name="noContacts" msgid="4955659076981974652">"Δεν υπάρχουν επαφές"</string>
     <string name="noGroups" msgid="4607906327968232225">"Δεν υπάρχουν ετικέτες."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Για να δημιουργήσετε ομάδες πρέπει να έχετε έναν λογαριασμό."</string>
-    <!-- no translation found for emptyGroup (5102411903247859575) -->
-    <skip />
+    <string name="emptyGroup" msgid="5102411903247859575">"Δεν υπάρχουν επαφές με αυτήν την εκτικέτα"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Η επαφή αποθηκεύτηκε"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Οι επαφές αποσυνδέθηκαν"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στις επαφές."</string>
@@ -154,6 +159,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Δεν βρέθηκε εφαρμογή για τη διαχείριση αυτής της ενέργειας."</string>
     <string name="menu_share" msgid="943789700636542260">"Κοινοποίηση"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Προσθήκη στις επαφές"</string>
+    <string name="menu_add_contacts" msgid="4465646512002163011">"Προσθήκη"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
       <item quantity="other">Κοινοποίηση επαφών μέσω</item>
       <item quantity="one">Κοινοποίηση επαφής μέσω</item>
@@ -161,8 +167,7 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Επιλογή λογαριασμού"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Δημιουργία ετικέτας"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Μετονομασία ετικέτας"</string>
-    <!-- no translation found for group_name_dialog_hint (5122118085780669813) -->
-    <skip />
+    <string name="group_name_dialog_hint" msgid="5122118085780669813">"Ετικέτα"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Φωνητική συνομιλία"</string>
     <string name="video_chat" msgid="1872255818640336072">"Συζήτηση μέσω βίντεο"</string>
     <string name="connections" msgid="8098440723172028350">"Συνδέσεις"</string>
@@ -186,14 +191,12 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Προσθήκη νέου"</string>
     <string name="add_organization" msgid="7311893231158291197">"Προσθήκη οργανισμού"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Ημερομηνία"</string>
-    <!-- no translation found for group_edit_field_hint_text (8038224059926963133) -->
-    <skip />
+    <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Ετικέτα"</string>
     <string name="change_photo" msgid="8530597935483526383">"Αλλαγή"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Κύρια φωτογραφία"</string>
     <string name="description_star" msgid="2605854427360036550">"αγαπημένο"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Επεξεργασία"</string>
-    <!-- no translation found for action_menu_back_from_edit_select (6435476408621731420) -->
-    <skip />
+    <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"κλείσιμο"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Να γίνει σύνδεση της τρέχουσας επαφής με την επιλεγμένη επαφή;"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Να γίνει μετάβαση σε επεξεργασία της επιλεγμένης επαφής; Θα γίνει αντιγραφή των στοιχείων που έχετε εισαγάγει μέχρι τώρα."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Αντιγραφή στις Επαφές μου"</string>
@@ -228,7 +231,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Συνέχεια επεξεργασίας"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Αναζήτηση επαφών"</string>
-    <!-- no translation found for title_edit_group (1258790269665184368) -->
+    <!-- no translation found for title_edit_group (1889302367574226969) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Τοπικό προφίλ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Προφίλ μου <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

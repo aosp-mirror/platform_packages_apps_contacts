@@ -79,6 +79,12 @@
       <item quantity="one">Contact supprimé</item>
       <item quantity="other">Contacts supprimés</item>
     </plurals>
+    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts</item>
+    </plurals>
+    <string name="title_from_google" msgid="4664084747121207202">"De Google"</string>
+    <string name="title_from_other_accounts" msgid="8307885412426754288">"De <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Régler sonnerie"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Tous appels vers messag. voc."</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Les contacts issus de vos comptes en lecture seule ne peuvent pas être supprimés, mais ils peuvent être masqués."</string>
@@ -106,8 +112,7 @@
     <string name="noContacts" msgid="4955659076981974652">"Aucun contact"</string>
     <string name="noGroups" msgid="4607906327968232225">"Aucune étiquette."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Vous devez posséder un compte pour créer des groupes."</string>
-    <!-- no translation found for emptyGroup (5102411903247859575) -->
-    <skip />
+    <string name="emptyGroup" msgid="5102411903247859575">"Aucun contact avec cette étiquette"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Contact enregistré."</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"La fusion des contacts a été annulée"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Impossible d\'enregistrer les modifications apportées au contact."</string>
@@ -154,6 +159,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Aucune application pouvant gérer cette action n\'a été trouvée."</string>
     <string name="menu_share" msgid="943789700636542260">"Partager"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Ajouter aux contacts"</string>
+    <string name="menu_add_contacts" msgid="4465646512002163011">"Ajouter"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
       <item quantity="one">Partager le contact par</item>
       <item quantity="other">Partager les contacts par</item>
@@ -161,8 +167,7 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Choisir un compte"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Créer une étiquette"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Renommer l\'étiquette"</string>
-    <!-- no translation found for group_name_dialog_hint (5122118085780669813) -->
-    <skip />
+    <string name="group_name_dialog_hint" msgid="5122118085780669813">"Étiquette"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Clavardage audio"</string>
     <string name="video_chat" msgid="1872255818640336072">"Clavardage vidéo"</string>
     <string name="connections" msgid="8098440723172028350">"Liens"</string>
@@ -186,14 +191,12 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Ajouter"</string>
     <string name="add_organization" msgid="7311893231158291197">"Ajouter une entreprise"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Date"</string>
-    <!-- no translation found for group_edit_field_hint_text (8038224059926963133) -->
-    <skip />
+    <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Étiquette"</string>
     <string name="change_photo" msgid="8530597935483526383">"Modifier"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Photo principale"</string>
     <string name="description_star" msgid="2605854427360036550">"favori"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Modifier un contact"</string>
-    <!-- no translation found for action_menu_back_from_edit_select (6435476408621731420) -->
-    <skip />
+    <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"fermer"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Associer ce contact au contact sélectionné?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Modifier le contact sélectionné? Les informations saisies jusqu\'ici seront copiées."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Copier dans \"Mes contacts\""</string>
@@ -228,7 +231,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Continuer les modifications"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Rechercher dans les contacts"</string>
-    <!-- no translation found for title_edit_group (1258790269665184368) -->
+    <!-- no translation found for title_edit_group (1889302367574226969) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Mon profil local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mon profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
