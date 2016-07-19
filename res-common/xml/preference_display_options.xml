@@ -32,6 +32,11 @@
         android:title="@string/default_editor_account"
         android:dialogTitle="@string/default_editor_account" />
 
+    <Preference
+        android:icon="@null"
+        android:key="customContactsFilter"
+        android:title="@string/menu_contacts_filter"/>
+
     <com.android.contacts.common.preference.SortOrderPreference
         android:icon="@null"
         android:key="sortOrder"
@@ -43,11 +48,6 @@
         android:key="displayOrder"
         android:title="@string/display_options_view_names_as"
         android:dialogTitle="@string/display_options_view_names_as" />
-
-    <Preference
-        android:icon="@null"
-        android:key="customContactsFilter"
-        android:title="@string/menu_contacts_filter"/>
 
     <Preference
         android:icon="@null"
