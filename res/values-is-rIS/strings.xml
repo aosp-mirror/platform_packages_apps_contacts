@@ -79,6 +79,12 @@
       <item quantity="one">Tengiliðum eytt</item>
       <item quantity="other">Tengiliðum eytt</item>
     </plurals>
+    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> tengiliður</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> tengiliðir</item>
+    </plurals>
+    <string name="title_from_google" msgid="4664084747121207202">"Af Google"</string>
+    <string name="title_from_other_accounts" msgid="8307885412426754288">"Af <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Velja hringitón"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Öll símtöl í talhólf"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Ekki er hægt að eyða tengiliðum af skrifvörðum reikningum, en þá er hægt að fela."</string>
@@ -106,8 +112,7 @@
     <string name="noContacts" msgid="4955659076981974652">"Engir tengiliðir"</string>
     <string name="noGroups" msgid="4607906327968232225">"Engir flokkar."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Þú þarft að vera með reikning til að geta búið til hópa."</string>
-    <!-- no translation found for emptyGroup (5102411903247859575) -->
-    <skip />
+    <string name="emptyGroup" msgid="5102411903247859575">"Engir tengiliðir í þessum flokki"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Tengiliður vistaður"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Tengiliðir aðskildir"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ekki tókst að vista breytingar á tengiliðnum."</string>
@@ -154,6 +159,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Ekkert forrit fannst sem getur framkvæmt þessa aðgerð."</string>
     <string name="menu_share" msgid="943789700636542260">"Deila"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Bæta við tengiliði"</string>
+    <string name="menu_add_contacts" msgid="4465646512002163011">"Bæta við"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
       <item quantity="one">Deila tengiliðum í gegnum</item>
       <item quantity="other">Deila tengiliðum í gegnum</item>
@@ -161,8 +167,7 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Veldu reikning"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Búa til flokk"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Endurnefna flokk"</string>
-    <!-- no translation found for group_name_dialog_hint (5122118085780669813) -->
-    <skip />
+    <string name="group_name_dialog_hint" msgid="5122118085780669813">"Flokkur"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Símtalsspjall"</string>
     <string name="video_chat" msgid="1872255818640336072">"Myndspjall"</string>
     <string name="connections" msgid="8098440723172028350">"Tengingar"</string>
@@ -186,14 +191,12 @@
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Bæta nýjum við"</string>
     <string name="add_organization" msgid="7311893231158291197">"Bæta fyrirtæki við"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Dagsetning"</string>
-    <!-- no translation found for group_edit_field_hint_text (8038224059926963133) -->
-    <skip />
+    <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Flokkur"</string>
     <string name="change_photo" msgid="8530597935483526383">"Breyta"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Aðalmynd"</string>
     <string name="description_star" msgid="2605854427360036550">"uppáhald"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Breyta tengilið"</string>
-    <!-- no translation found for action_menu_back_from_edit_select (6435476408621731420) -->
-    <skip />
+    <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"loka"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Viltu tengja saman núverandi tengilið og valda tengiliðinn?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Skipta yfir í að breyta völdum tengilið? Upplýsingarnar sem þú hefur sett inn nú þegar verða afritaðar."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Afrita í tengiliðina mína"</string>
@@ -228,7 +231,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Breyta áfram"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Leita í tengiliðum"</string>
-    <!-- no translation found for title_edit_group (1258790269665184368) -->
+    <!-- no translation found for title_edit_group (1889302367574226969) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Staðbundinn prófíll"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> prófíllinn minn"</string>
