@@ -27,5 +27,6 @@
     <EditText
         android:id="@+id/group_label"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/group_name_edit_text_min_height"/>
 </FrameLayout>
