@@ -94,10 +94,10 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
      * Whether the given {@link ContactListFilter} has a filter type that should be displayed as
      * the default contacts list view.
      */
-    public static boolean isContactsFilterType(ContactListFilter filter) {
-        if (filter == null) return false;
-        return filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
-                || filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM;
+    public boolean isContactsFilterType() {
+        return filterType == ContactListFilter.FILTER_TYPE_DEFAULT
+                || filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
+                || filterType == ContactListFilter.FILTER_TYPE_CUSTOM;
     }
 
     /**

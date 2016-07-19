@@ -40,10 +40,8 @@ import com.android.contacts.common.R;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.compat.TelephonyManagerCompat;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
-import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
-import com.android.contacts.common.list.CustomContactListFilterActivity;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -205,6 +203,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         final Preference customFilterPreference = findPreference(KEY_CUSTOM_CONTACTS_FILTER);
         if (customFilterPreference != null) {
             customFilterPreference.setOnPreferenceClickListener(this);
+            setCustomContactsFilterSummary();
         }
     }
 
@@ -336,8 +335,27 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
                 && resultCode == Activity.RESULT_OK) {
             AccountFilterUtil.handleAccountFilterResult(
                     ContactListFilterController.getInstance(getContext()), resultCode, data);
+            setCustomContactsFilterSummary();
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    private void setCustomContactsFilterSummary() {
+        final Preference customFilterPreference = findPreference(KEY_CUSTOM_CONTACTS_FILTER);
+        if (customFilterPreference != null) {
+            final ContactListFilter filter =
+                    ContactListFilterController.getInstance(getContext()).getFilter();
+            if (filter != null) {
+                if (filter.filterType == ContactListFilter.FILTER_TYPE_DEFAULT ||
+                        filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+                    customFilterPreference.setSummary(R.string.list_filter_all_accounts);
+                } else if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+                    customFilterPreference.setSummary(R.string.list_filter_custom_preference);
+                } else {
+                    customFilterPreference.setSummary(null);
+                }
+            }
         }
     }
 }
