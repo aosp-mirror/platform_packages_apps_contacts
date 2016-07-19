@@ -348,6 +348,8 @@
             android:name=".activities.CompactContactEditorActivity"
             android:label="@string/editContactActivityLabel"
             android:theme="@style/EditorActivityTheme"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
             android:windowSoftInputMode="stateHidden|adjustResize">
 
             <intent-filter android:label="@string/editContactDescription">
