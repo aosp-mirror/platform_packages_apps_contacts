@@ -1424,7 +1424,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     }
 
     private boolean isAllContactsFilter(ContactListFilter filter) {
-        return ContactListFilter.isContactsFilterType(filter);
+        return filter != null && filter.isContactsFilterType();
     }
 
     private boolean isDeviceContactsFilter(ContactListFilter filter) {

@@ -497,7 +497,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     protected void updateFilterMenu(ContactListFilter filter) {
         clearCheckedMenus();
-        if (ContactListFilter.isContactsFilterType(filter)) {
+        if (filter != null && filter.isContactsFilterType()) {
             if (mIdMenuMap != null && mIdMenuMap.get(R.id.nav_all_contacts) != null) {
                 mIdMenuMap.get(R.id.nav_all_contacts).setCheckable(true);
                 mIdMenuMap.get(R.id.nav_all_contacts).setChecked(true);
