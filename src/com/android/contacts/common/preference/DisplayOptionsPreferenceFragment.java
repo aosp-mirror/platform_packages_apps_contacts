@@ -351,7 +351,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
                         filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
                     customFilterPreference.setSummary(R.string.list_filter_all_accounts);
                 } else if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
-                    customFilterPreference.setSummary(R.string.list_filter_custom_preference);
+                    customFilterPreference.setSummary(R.string.listCustomView);
                 } else {
                     customFilterPreference.setSummary(null);
                 }
