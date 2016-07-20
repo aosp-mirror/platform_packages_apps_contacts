@@ -375,7 +375,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     }
 
     public int getNumberOfFavorites() {
-        return mIncludeFavorites ? mNumberOfFavorites : 0;
+        return mNumberOfFavorites;
     }
 
     private void setSectionHeader(int resId, int numberOfItems) {
