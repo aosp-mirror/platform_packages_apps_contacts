@@ -84,4 +84,9 @@
     <!-- Color of background of all empty states. -->
     <color name="empty_state_background">#efefef</color>
 
+    <!-- Colors of swipeRefreshLayout's spinning circle. -->
+    <color name="swipe_refresh_color1">#0f9d58</color>
+    <color name="swipe_refresh_color2">#dd4b37</color>
+    <color name="swipe_refresh_color3">#4285f4</color>
+    <color name="swipe_refresh_color4">#f4b400</color>
 </resources>
