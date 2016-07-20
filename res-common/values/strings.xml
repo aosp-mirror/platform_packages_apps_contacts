@@ -840,6 +840,9 @@
          [CHAR LIMIT=NONE]-->
     <string name="description_search_video_call">Place video call</string>
 
-    <!-- Content description of delete contact button-->
+    <!-- Content description of delete contact button [CHAR LIMIT=30]-->
     <string name="description_delete_contact">Delete</string>
+
+    <!-- Content description for (...) in no name header [CHAR LIMIT=30]-->
+    <string name="description_no_name_header">Ellipsis</string>
 </resources>
