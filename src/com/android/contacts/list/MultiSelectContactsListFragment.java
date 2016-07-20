@@ -309,7 +309,7 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
 
         final ImageView accountFilterHeaderIcon = (ImageView) accountFilterContainer
                 .findViewById(R.id.account_filter_icon);
-        accountFilterHeaderIcon.setVisibility(View.INVISIBLE);
+        accountFilterHeaderIcon.setVisibility(View.GONE);
     }
 
     /**
