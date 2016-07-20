@@ -17,60 +17,77 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:minHeight="@dimen/contact_filter_list_item_height"
     android:gravity="center_vertical"
-    android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-    android:paddingRight="?android:attr/scrollbarSize"
-    android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
-    android:paddingEnd="?android:attr/scrollbarSize"
->
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="6dip"
-        android:layout_marginEnd="6dip"
-        android:layout_marginTop="6dip"
-        android:layout_marginBottom="6dip"
-        android:layout_weight="1"
-        android:duplicateParentState="true"
-    >
-
-        <TextView
-            android:id="@android:id/text1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:duplicateParentState="true"
-        />
-
-        <TextView
-            android:id="@android:id/text2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@android:id/text1"
-            android:layout_alignLeft="@android:id/text1"
-            android:layout_alignStart="@android:id/text1"
-            android:maxLines="2"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:duplicateParentState="true"
-        />
-
-    </RelativeLayout>
-
-    <CheckBox
-        android:id="@android:id/checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="4dip"
-        android:layout_marginEnd="4dip"
-        android:focusable="false"
-        android:clickable="false"
+        android:minHeight="@dimen/contact_filter_list_item_height"
         android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:duplicateParentState="true"
-    />
+        android:paddingLeft="@dimen/contact_filter_list_item_padding_start"
+        android:paddingRight="?android:attr/scrollbarSize"
+        android:paddingStart="@dimen/contact_filter_list_item_padding_start"
+        android:paddingEnd="?android:attr/scrollbarSize">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="6dip"
+            android:layout_marginEnd="6dip"
+            android:layout_marginTop="6dip"
+            android:layout_marginBottom="6dip"
+            android:layout_weight="1"
+            android:duplicateParentState="true"
+        >
+
+            <TextView
+                android:id="@android:id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:textSize="@dimen/contact_browser_list_item_text_size"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/account_filter_text_color"
+                android:duplicateParentState="true"
+            />
+
+            <TextView
+                android:id="@android:id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@android:id/text1"
+                android:layout_alignLeft="@android:id/text1"
+                android:layout_alignStart="@android:id/text1"
+                android:maxLines="2"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/account_filter_text_color"
+                android:duplicateParentState="true"
+            />
+
+        </RelativeLayout>
+
+        <CheckBox
+            android:id="@android:id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dip"
+            android:layout_marginEnd="4dip"
+            android:focusable="false"
+            android:clickable="false"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:duplicateParentState="true"
+        />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/adapter_divider_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/custom_filter_divider" />
 
 </LinearLayout>

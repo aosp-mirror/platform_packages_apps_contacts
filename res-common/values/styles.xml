@@ -70,6 +70,14 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
 
     <style name="ContactListFilterTheme" parent="@android:Theme.Holo.Light">
         <item name="android:listViewStyle">@style/ListViewStyle</item>
+        <item name="android:actionButtonStyle">@style/FilterActionButtonStyle</item>
+    </style>
+
+    <!-- Adding padding to action button doesn't move it to left, we increase the button width to
+     make margin between the button and screen edge 16dp -->
+    <style name="FilterActionButtonStyle" parent="@android:Widget.ActionButton">
+        <item name="android:minWidth">@dimen/contact_filter_action_button_width</item>
+        <item name="android:textColor">@color/actionbar_text_color</item>
     </style>
 
     <style name="CustomContactListFilterView" parent="ContactListFilterTheme">
