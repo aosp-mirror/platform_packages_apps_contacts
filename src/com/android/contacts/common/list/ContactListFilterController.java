@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 
@@ -53,6 +54,8 @@ public abstract class ContactListFilterController {
      * Return the currently-active filter.
      */
     public abstract ContactListFilter getFilter();
+
+    public abstract int getFilterListType();
 
     /**  Whether the persisted filter is a custom filter. */
     public abstract boolean isCustomFilterPersisted();
@@ -106,6 +109,11 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
     @Override
     public ContactListFilter getFilter() {
         return mFilter;
+    }
+
+    @Override
+    public int getFilterListType() {
+        return mFilter == null ? ListEvent.ListType.UNKNOWN_LIST : mFilter.toListType();
     }
 
     @Override

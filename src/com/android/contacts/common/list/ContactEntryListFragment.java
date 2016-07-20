@@ -452,15 +452,19 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
                     }
                 }
             } else {
-                if (!mDataLoaded || mLogListEvents) {
-                    Logger.logListEvent(ActionType.LOAD, getListType(), getAdapter().getCount(),
-                        /* clickedIndex */ -1, /* numSelected */ 0);
-                    mLogListEvents = false;
-                    mDataLoaded = true;
-                }
+                maybeLogListEvent();
                 mDirectoryListStatus = STATUS_NOT_LOADED;
                 getLoaderManager().destroyLoader(DIRECTORY_LOADER_ID);
             }
+        }
+    }
+
+    protected void maybeLogListEvent() {
+        if (!mDataLoaded || mLogListEvents) {
+            Logger.logListEvent(ActionType.LOAD, getListType(), getAdapter().getCount(),
+                        /* clickedIndex */ -1, /* numSelected */ 0);
+            mLogListEvents = false;
+            mDataLoaded = true;
         }
     }
 
