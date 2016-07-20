@@ -21,13 +21,16 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.SyncStatusObserver;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
@@ -90,6 +93,7 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.SyncUtil;
 
 import java.util.List;
 import java.util.Locale;
@@ -166,6 +170,53 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     /** Sequential ID assigned to each instance; used for logging */
     private final int mInstanceId;
     private static final AtomicInteger sNextInstanceId = new AtomicInteger();
+
+    private Object mStatusChangeListenerHandle;
+
+    private final Handler mHandler = new Handler();
+
+    private SyncStatusObserver mSyncStatusObserver = new SyncStatusObserver() {
+        public void onStatusChanged(int which) {
+            mHandler.post(new Runnable() {
+                public void run() {
+                    onSyncStateUpdated();
+                }
+            });
+        }
+    };
+
+    // Update sync status for accounts in current ContactListFilter
+    private void onSyncStateUpdated() {
+        if (mActionBarAdapter.isSearchMode()) {
+            return;
+        }
+
+        final ContactListFilter filter = mContactListFilterController.getFilter();
+        if (filter != null) {
+            final SwipeRefreshLayout swipeRefreshLayout = mAllFragment.getSwipeRefreshLayout();
+            if (swipeRefreshLayout == null) {
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "Can not load swipeRefreshLayout, swipeRefreshLayout is null");
+                }
+                return;
+            }
+
+            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
+                    .getAccounts(/* contactsWritableOnly */ true);
+            final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
+            // If one of the accounts is active or pending, use spinning circle to indicate one of
+            // the syncs is in progress.
+            if (syncableAccounts != null && syncableAccounts.size() > 0) {
+                for (Account account: syncableAccounts) {
+                    if (SyncUtil.isSyncStatusPendingOrActive(account)) {
+                        swipeRefreshLayout.setRefreshing(true);
+                        return;
+                    }
+                }
+            }
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    }
 
     public PeopleActivity() {
         mInstanceId = sNextInstanceId.getAndIncrement();
@@ -394,6 +445,11 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         mOptionsMenuContactsAvailable = false;
         mProviderStatusWatcher.stop();
         super.onPause();
+
+        if (Flags.getInstance(this).getBoolean(Experiments.PULL_TO_REFRESH)) {
+            ContentResolver.removeStatusChangeListener(mStatusChangeListenerHandle);
+            onSyncStateUpdated();
+        }
     }
 
     @Override
@@ -413,6 +469,15 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         // Current tab may have changed since the last onSaveInstanceState().  Make sure
         // the actual contents match the tab.
         updateFragmentsVisibility();
+
+        if (Flags.getInstance(this).getBoolean(Experiments.PULL_TO_REFRESH)) {
+            mStatusChangeListenerHandle = ContentResolver.addStatusChangeListener(
+                    ContentResolver.SYNC_OBSERVER_TYPE_ACTIVE
+                            | ContentResolver.SYNC_OBSERVER_TYPE_PENDING
+                            | ContentResolver.SYNC_OBSERVER_TYPE_SETTINGS,
+                    mSyncStatusObserver);
+            onSyncStateUpdated();
+        }
     }
 
     @Override
@@ -1432,30 +1497,15 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             }
             return;
         }
+
         swipeRefreshLayout.setRefreshing(false);
         swipeRefreshLayout.setEnabled(false);
 
-        if (mActionBarAdapter.isSearchMode()) {
-            return;
-        }
-
-        if (GoogleAccountType.ACCOUNT_TYPE.equals(filter.accountType) && filter.dataSet == null
-                && filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
-            swipeRefreshLayout.setEnabled(true);
-            return;
-        }
-        // TODO(samchen): check against both FILTER_TYPE_ALL_ACCOUNTS and FILTER_TYPE_DEFAULT
-        if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+        if (filter != null && !mActionBarAdapter.isSearchMode()) {
             final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
                     .getAccounts(/* contactsWritableOnly */ true);
-            if (accounts != null && accounts.size() > 0) {
-                for (AccountWithDataSet account : accounts) {
-                    if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type)
-                            && filter.dataSet == null) {
-                        swipeRefreshLayout.setEnabled(true);
-                        return;
-                    }
-                }
+            if (filter.isSyncable(accounts)) {
+                swipeRefreshLayout.setEnabled(true);
             }
         }
     }

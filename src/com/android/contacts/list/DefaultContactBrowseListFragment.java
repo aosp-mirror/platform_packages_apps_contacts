@@ -23,7 +23,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
@@ -44,8 +43,8 @@ import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.FavoritesAndContactsLoader;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.commonbind.experiments.Flags;
+import com.android.contacts.util.SyncUtil;
 
 import java.util.List;
 
@@ -160,12 +159,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             @Override
             public void onRefresh() {
                 syncContacts(mFilter);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mSwipeRefreshLayout.setRefreshing(false);
-                    }
-                }, 3000 /* spinning time */);
             }
         });
         mSwipeRefreshLayout.setColorSchemeResources(
@@ -177,7 +170,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 (int) getResources().getDimension(R.dimen.pull_to_refresh_distance));
     }
 
-    /** Request sync for Google accounts(not include G+ accounts) in filter. */
+    /** Request sync for Google accounts(not include Google+ accounts) in filter. */
     private void syncContacts(ContactListFilter filter) {
         if (filter == null) {
             return;
@@ -186,19 +179,13 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
 
-        if (GoogleAccountType.ACCOUNT_TYPE.equals(filter.accountType) && filter.dataSet == null) {
-            final Account account = new Account(filter.accountName, filter.accountType);
-            ContentResolver.requestSync(account, ContactsContract.AUTHORITY, bundle);
-        } else {
-            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(
-                    getActivity()).getAccounts(/* contactsWritableOnly= */ true);
-            if (accounts != null && accounts.size() > 0) {
-                for (AccountWithDataSet account : accounts) {
-                    if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type)
-                            && filter.dataSet == null) {
-                        ContentResolver.requestSync(new Account(account.name, account.type),
-                                ContactsContract.AUTHORITY, bundle);
-                    }
+        final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(
+                getActivity()).getAccounts(/* contactsWritableOnly */ true);
+        final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
+        if (syncableAccounts != null && syncableAccounts.size() > 0) {
+            for (Account account : syncableAccounts) {
+                if (!SyncUtil.isSyncStatusPendingOrActive(account)) {
+                    ContentResolver.requestSync(account, ContactsContract.AUTHORITY, bundle);
                 }
             }
         }
