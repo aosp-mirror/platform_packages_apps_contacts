@@ -274,8 +274,6 @@
             android:label="@string/quickContactActivityLabel"
             android:theme="@style/Theme.QuickContact"
             android:launchMode="singleTop"
-            android:excludeFromRecents="true"
-            android:taskAffinity=""
             android:windowSoftInputMode="stateUnchanged">
 
             <intent-filter>
