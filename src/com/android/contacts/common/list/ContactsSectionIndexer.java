@@ -27,10 +27,11 @@ import java.util.Arrays;
  */
 public class ContactsSectionIndexer implements SectionIndexer {
 
+    protected static final String BLANK_HEADER_STRING = "\u2026"; // ellipsis
+
     private String[] mSections;
     private int[] mPositions;
     private int mCount;
-    private static final String BLANK_HEADER_STRING = "\u2026"; // ellipsis
 
     /**
      * Constructor.

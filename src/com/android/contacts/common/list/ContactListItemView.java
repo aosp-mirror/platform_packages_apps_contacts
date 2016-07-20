@@ -984,6 +984,15 @@ public class ContactListItemView extends ViewGroup
             setMarqueeText(mHeaderTextView, title);
             mHeaderTextView.setVisibility(View.VISIBLE);
             mHeaderTextView.setAllCaps(true);
+            if (ContactsSectionIndexer.BLANK_HEADER_STRING.equals(title)) {
+                // No name header (...)
+                mHeaderTextView.setContentDescription(
+                        getContext().getString(R.string.description_no_name_header));
+            } else if (getContext().getString(R.string.star_sign).equals(title)) {
+                // Starred header
+                mHeaderTextView.setContentDescription(
+                        getContext().getString(R.string.list_filter_all_starred));
+            }
         } else if (mHeaderTextView != null) {
             mHeaderTextView.setVisibility(View.GONE);
         }
