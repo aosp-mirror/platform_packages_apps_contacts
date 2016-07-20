@@ -385,9 +385,6 @@
     <!-- Contact list filter selection indicating that the list shows only the selected contact [CHAR LIMIT=64] -->
     <string name="list_filter_single">Contact</string>
 
-    <!-- Contact list filter preference summary indicating that the list shows groups chosen by the user [CHAR LIMIT=64] -->
-    <string name="list_filter_custom_preference">Custom view</string>
-
     <!-- List title for a special contacts group that covers all contacts. [CHAR LIMIT=25] -->
     <string name="display_ungrouped">All other contacts</string>
 
@@ -416,8 +413,8 @@
     <!-- Menu item to indicate you want to cancel the current editing process and NOT save the changes you've made [CHAR LIMIT=12] -->
     <string name="menu_doNotSave">Cancel</string>
 
-    <!-- Displayed at the top of the contacts showing single contact. [CHAR LIMIT=64] -->
-    <string name="listCustomView">Contacts in custom view</string>
+    <!-- Displayed at the top of the contacts showing single contact. [CHAR LIMIT=50] -->
+    <string name="listCustomView">Customized view</string>
 
     <!-- Message asking user to select an account to save contacts imported from vcard or SIM card [CHAR LIMIT=64] -->
     <string name="dialog_new_contact_account">Save imported contacts to:</string>
@@ -702,7 +699,7 @@
     <string name="activity_title_contacts_filter">Contacts to display</string>
 
     <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
-    <string name="custom_list_filter">Define custom view</string>
+    <string name="custom_list_filter">Define customized view</string>
 
     <!-- Query hint displayed inside the search field [CHAR LIMIT=64] -->
     <string name="hint_findContacts">Search contacts</string>
