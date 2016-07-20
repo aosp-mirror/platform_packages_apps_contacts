@@ -36,7 +36,4 @@
 
     <!-- A big number to make sure "About contacts" always showing at the bottom of Settings.-->
     <integer name="about_contacts_order_number">100</integer>
-
-    <!-- The minimum number of contacts required before the alphabetic index is displayed. -->
-    <integer name="min_contacts_for_alphabetic_index">30</integer>
 </resources>
