@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -104,6 +105,8 @@ public class AggregationSuggestionView extends LinearLayout {
             dataText = suggestion.emailAddress;
         } else if (suggestion.phoneNumber != null) {
             dataText = suggestion.phoneNumber;
+            // Phone numbers should always be in LTR mode.
+            data.setTextDirection(View.TEXT_DIRECTION_LTR);
         }
         data.setText(dataText);
     }
