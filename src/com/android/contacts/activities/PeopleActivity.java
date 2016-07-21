@@ -48,6 +48,7 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -57,6 +58,7 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListFilter;
@@ -1409,6 +1411,11 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                 actionBarTitle = getString(R.string.contactsList);
             }
             getSupportActionBar().setTitle(actionBarTitle);
+            if (CompatUtils.isNCompatible()) {
+                this.setTitle(actionBarTitle);
+                getWindow().getDecorView()
+                        .sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+            }
         }
 
         // Determine whether the account has pullToRefresh feature
