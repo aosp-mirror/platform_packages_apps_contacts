@@ -131,7 +131,7 @@
     <string name="menu_splitAggregate">Unlink</string>
 
     <!-- Menu item that edits the currently selected label [CHAR LIMIT=30] -->
-    <string name="menu_editGroup">Edit</string>
+    <string name="menu_editGroup">Remove contacts</string>
 
     <!-- Menu item to rename the currently selected label [CHAR LIMIT=30] -->
     <string name="menu_renameGroup">Rename label</string>
