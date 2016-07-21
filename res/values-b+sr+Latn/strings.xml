@@ -164,7 +164,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Dodaj vezu"</string>
     <string name="recent" msgid="2659189233141493004">"Nedavno"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Nedavna ažuriranja"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakt"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> nalog"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -295,7 +295,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Još polja"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Promenite sliku"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Otvaranje uređivača nije uspelo."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Čuva se na"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Čuva se"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Trenutno se čuva na nalogu <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Dodirnite dvaput da biste izabrali drugi nalog."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Objedinjeni kontakti (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -327,7 +327,7 @@
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Izgleda da su ovi kontakti ista osoba. Možete da ih objedinite u jedan kontakt."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Objedinjeni kontakti"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Sa vaših naloga"</string>
-    <string name="take_a_photo_button" msgid="6268693854069113488">"Snimi sliku"</string>
+    <string name="take_a_photo_button" msgid="6268693854069113488">"Slikaj"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Sve slike"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Izaberite sliku"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Sa <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
