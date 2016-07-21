@@ -183,4 +183,6 @@
     <!-- Color of account/custom filters -->
     <color name="account_filter_text_color">@color/actionbar_text_color_black</color>
     <color name="custom_filter_divider">#dbdbdb</color>
+
+    <color name="material_star_pink">#f50057</color>
 </resources>

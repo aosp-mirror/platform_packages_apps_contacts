@@ -85,7 +85,7 @@
     <dimen name="contact_browser_list_item_text_size">16sp</dimen>
     <dimen name="contact_browser_list_item_photo_size">40dp</dimen>
     <dimen name="contact_browser_list_item_gap_between_image_and_text">15dp</dimen>
-    <dimen name="contact_browser_list_item_gap_between_indexer_and_image">6dp</dimen>
+    <dimen name="contact_browser_list_item_gap_between_indexer_and_image">20dp</dimen>
     <dimen name="contact_browser_list_top_margin">12dp</dimen>
 
     <!-- Dimensions for "No contacts" string in PhoneFavoriteFragment for the All contacts
