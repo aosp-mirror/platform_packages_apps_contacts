@@ -31,7 +31,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"انتخاب مخاطب"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ایجاد مخاطب جدید"</string>
     <string name="starredList" msgid="4817256136413959463">"ستاره‌دار"</string>
-    <string name="frequentList" msgid="7154768136473953056">"مکرر"</string>
+    <string name="frequentList" msgid="7154768136473953056">"همیشگی"</string>
     <string name="strequentList" msgid="5640192862059373511">"موارد دلخواه"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"اطلاعات تماس"</string>
     <string name="editContactDescription" msgid="2947202828256214947">"ویرایش مخاطب"</string>
