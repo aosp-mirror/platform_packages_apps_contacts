@@ -103,6 +103,7 @@ public class ContactListItemView extends ViewGroup
     private Drawable mActivatedBackgroundDrawable;
     private int mVideoCallIconSize = 32;
     private int mVideoCallIconMargin = 16;
+    private int mGapFromScrollBar = 20;
 
     // Set in onLayout. Represent left and right position of the View on the screen.
     private int mLeftOffset;
@@ -651,14 +652,14 @@ public class ContactListItemView extends ViewGroup
         if (isVisible(mCheckBox)) {
             final int photoTop = topBound + (bottomBound - topBound - mCheckBoxHeight) / 2;
             if (mPhotoPosition == PhotoPosition.LEFT) {
-                mCheckBox.layout(rightBound - mCheckBoxWidth,
+                mCheckBox.layout(rightBound - mGapFromScrollBar - mCheckBoxWidth,
                         photoTop,
-                        rightBound,
+                        rightBound - mGapFromScrollBar,
                         photoTop + mCheckBoxHeight);
             } else {
-                mCheckBox.layout(leftBound,
+                mCheckBox.layout(leftBound + mGapFromScrollBar,
                         photoTop,
-                        leftBound + mCheckBoxWidth,
+                        leftBound + mGapFromScrollBar + mCheckBoxWidth,
                         photoTop + mCheckBoxHeight);
             }
         }
