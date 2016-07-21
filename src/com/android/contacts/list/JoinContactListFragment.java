@@ -34,6 +34,7 @@ import android.widget.TextView;
 import com.android.contacts.R;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListItemView;
+import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.list.JoinContactLoader.JoinContactLoaderResult;
 
 /**
@@ -85,6 +86,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
                         final Cursor suggestionsCursor =
                                 ((JoinContactLoaderResult) data).suggestionCursor;
                         onContactListLoaded(suggestionsCursor, data);
+                        maybeLogListEvent();
                     }
                     break;
                 }
@@ -101,6 +103,8 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
         setSectionHeaderDisplayEnabled(true);
         setVisibleScrollbarEnabled(false);
         setQuickContactEnabled(false);
+        setListType(ListEvent.ListType.PICK_JOIN);
+        setLogListEvents(true);
     }
 
     public void setOnContactPickerActionListener(OnContactPickerActionListener listener) {
