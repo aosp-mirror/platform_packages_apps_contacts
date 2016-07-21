@@ -174,7 +174,7 @@ public class ContactListItemView extends ViewGroup
     private PhotoPosition mPhotoPosition = getDefaultPhotoPosition(false /* normal/non opposite */);
 
     // Header layout data
-    private TextView mHeaderTextView;
+    private View mHeaderView;
     private boolean mIsSectionHeaderEnabled;
 
     // The views inside the contact view
@@ -593,8 +593,8 @@ public class ContactListItemView extends ViewGroup
         height = Math.max(height, preferredHeight);
 
         // Measure the header if it is visible.
-        if (mHeaderTextView != null && mHeaderTextView.getVisibility() == VISIBLE) {
-            mHeaderTextView.measure(
+        if (mHeaderView != null && mHeaderView.getVisibility() == VISIBLE) {
+            mHeaderView.measure(
                     MeasureSpec.makeMeasureSpec(mHeaderWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
         }
@@ -617,11 +617,11 @@ public class ContactListItemView extends ViewGroup
 
         // Put the section header on the left side of the contact view.
         if (mIsSectionHeaderEnabled) {
-            if (mHeaderTextView != null) {
-                int headerHeight = mHeaderTextView.getMeasuredHeight();
+            if (mHeaderView != null) {
+                int headerHeight = mHeaderView.getMeasuredHeight();
                 int headerTopBound = (bottomBound + topBound - headerHeight) / 2 + mTextOffsetTop;
 
-                mHeaderTextView.layout(
+                mHeaderView.layout(
                         isLayoutRtl ? rightBound - mHeaderWidth : leftBound,
                         headerTopBound,
                         isLayoutRtl ? rightBound : leftBound + mHeaderWidth,
@@ -975,28 +975,54 @@ public class ContactListItemView extends ViewGroup
      */
     public void setSectionHeader(String title) {
         if (!TextUtils.isEmpty(title)) {
-            if (mHeaderTextView == null) {
-                mHeaderTextView = new TextView(getContext());
-                mHeaderTextView.setTextAppearance(getContext(), R.style.SectionHeaderStyle);
-                mHeaderTextView.setGravity(
-                        ViewUtil.isViewLayoutRtl(this) ? Gravity.RIGHT : Gravity.LEFT);
-                addView(mHeaderTextView);
+            if (TextUtils.equals(getContext().getString(R.string.star_sign), title)) {
+                if (mHeaderView == null || mHeaderView instanceof TextView) {
+                    addStarImageHeader();
+                }
+            } else {
+                if (mHeaderView == null || mHeaderView instanceof ImageView ) {
+                    addTextHeader(title);
+                } else {
+                    updateHeaderText(((TextView) mHeaderView), title);
+                }
             }
-            setMarqueeText(mHeaderTextView, title);
-            mHeaderTextView.setVisibility(View.VISIBLE);
-            mHeaderTextView.setAllCaps(true);
-            if (ContactsSectionIndexer.BLANK_HEADER_STRING.equals(title)) {
-                // No name header (...)
-                mHeaderTextView.setContentDescription(
-                        getContext().getString(R.string.description_no_name_header));
-            } else if (getContext().getString(R.string.star_sign).equals(title)) {
-                // Starred header
-                mHeaderTextView.setContentDescription(
-                        getContext().getString(R.string.list_filter_all_starred));
-            }
-        } else if (mHeaderTextView != null) {
-            mHeaderTextView.setVisibility(View.GONE);
+        } else if (mHeaderView != null) {
+            mHeaderView.setVisibility(View.GONE);
         }
+    }
+
+    private void addTextHeader(String title) {
+        removeView(mHeaderView);
+        mHeaderView = new TextView(getContext());
+        final TextView headerTextView = ((TextView) mHeaderView);
+        headerTextView.setTextAppearance(getContext(), R.style.SectionHeaderStyle);
+        headerTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+        updateHeaderText(headerTextView, title);
+        addView(headerTextView);
+    }
+
+    private void updateHeaderText(TextView headerTextView, String title) {
+        setMarqueeText(headerTextView, title);
+        headerTextView.setAllCaps(true);
+        if (ContactsSectionIndexer.BLANK_HEADER_STRING.equals(title)) {
+            headerTextView.setContentDescription(
+                    getContext().getString(R.string.description_no_name_header));
+        }
+        headerTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void addStarImageHeader() {
+        removeView(mHeaderView);
+        mHeaderView = new ImageView(getContext());
+        final ImageView headerImageView = ((ImageView) mHeaderView);
+        headerImageView.setImageDrawable(
+                getResources().getDrawable(R.drawable.ic_material_star, getContext().getTheme()));
+        headerImageView.setImageTintList(ColorStateList.valueOf(getResources()
+                .getColor(R.color.material_star_pink)));
+        headerImageView.setContentDescription(
+                getContext().getString(R.string.list_filter_all_starred));
+        headerImageView.setVisibility(View.VISIBLE);
+        addView(headerImageView);
     }
 
     public void setIsSectionHeaderEnabled(boolean isSectionHeaderEnabled) {

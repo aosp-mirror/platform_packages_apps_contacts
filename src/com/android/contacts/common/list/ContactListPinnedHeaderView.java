@@ -57,8 +57,7 @@ public class ContactListPinnedHeaderView extends TextView {
         setTextAppearance(getContext(), R.style.SectionHeaderStyle);
         setLayoutParams(new LayoutParams(widthIncludingPadding, LayoutParams.WRAP_CONTENT));
         setLayoutDirection(parent.getLayoutDirection());
-        setGravity(Gravity.CENTER_VERTICAL |
-                (ViewUtil.isViewLayoutRtl(this) ? Gravity.RIGHT : Gravity.LEFT));
+        setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
 
         // Apply text top offset. Multiply by two, because we are implementing this by padding for a
         // vertically centered view, rather than adjusting the position directly via a layout.
