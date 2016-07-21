@@ -2106,7 +2106,7 @@ public class QuickContactActivity extends ContactsActivity
                         // If a secondDataItem is available, use it to build an entry with
                         // alternate actions
                         if (secondDataItem != null) {
-                            icon = res.getDrawable(R.drawable.ic_google_plus_24dp);
+                            icon = res.getDrawable(R.drawable.ic_google_plus_black_24dp);
                             alternateIcon = res.getDrawable(R.drawable.ic_add_to_circles_black_24);
                             final GPlusOrHangoutsDataItemModel itemModel =
                                     new GPlusOrHangoutsDataItemModel(intent, alternateIntent,
@@ -2124,7 +2124,7 @@ public class QuickContactActivity extends ContactsActivity
                                     intent.getDataString())) {
                                 icon = res.getDrawable(R.drawable.ic_add_to_circles_black_24);
                             } else {
-                                icon = res.getDrawable(R.drawable.ic_google_plus_24dp);
+                                icon = res.getDrawable(R.drawable.ic_google_plus_black_24dp);
                             }
                         }
                         break;
