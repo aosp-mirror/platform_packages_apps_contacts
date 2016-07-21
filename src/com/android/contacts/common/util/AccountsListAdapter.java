@@ -100,11 +100,7 @@ public final class AccountsListAdapter extends BaseAdapter {
         final AccountType accountType = mAccountTypes.getAccountType(account.type, account.dataSet);
 
         text1.setText(accountType.getDisplayLabel(mContext));
-
-        // For email addresses, we don't want to truncate at end, which might cut off the domain
-        // name.
         text2.setText(account.name);
-        text2.setEllipsize(TruncateAt.MIDDLE);
 
         icon.setImageDrawable(accountType.getDisplayIcon(mContext));
 
