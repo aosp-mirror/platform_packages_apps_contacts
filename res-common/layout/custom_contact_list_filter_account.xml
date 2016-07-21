@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:ellipsize="marquee"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceListItem"
             android:duplicateParentState="true" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_alignLeft="@android:id/text1"
             android:layout_alignStart="@android:id/text1"
             android:maxLines="1"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="?android:attr/textAppearanceListItemSecondary"
             android:textColor="?android:attr/textColorTertiary"
             android:duplicateParentState="true" />
 

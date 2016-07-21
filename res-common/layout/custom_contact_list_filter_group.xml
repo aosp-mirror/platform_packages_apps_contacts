@@ -48,8 +48,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:ellipsize="marquee"
-                android:textSize="@dimen/contact_browser_list_item_text_size"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="?android:attr/textAppearanceListItem"
                 android:textColor="@color/account_filter_text_color"
                 android:duplicateParentState="true"
             />
@@ -62,7 +61,7 @@
                 android:layout_alignLeft="@android:id/text1"
                 android:layout_alignStart="@android:id/text1"
                 android:maxLines="2"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textAppearance="?android:attr/textAppearanceListItemSecondary"
                 android:textColor="@color/account_filter_text_color"
                 android:duplicateParentState="true"
             />
@@ -73,8 +72,6 @@
             android:id="@android:id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="4dip"
-            android:layout_marginEnd="4dip"
             android:focusable="false"
             android:clickable="false"
             android:gravity="center_vertical"

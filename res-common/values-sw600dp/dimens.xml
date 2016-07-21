@@ -23,6 +23,7 @@
     <dimen name="contact_browser_list_header_text_margin">18dp</dimen>
 
     <dimen name="contact_filter_list_item_padding_start">24dp</dimen>
+    <dimen name="contact_filter_left_margin">16dp</dimen>
 
     <!-- Right margin of the floating action button -->
     <dimen name="floating_action_button_margin_right">32dp</dimen>

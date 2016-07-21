@@ -41,15 +41,15 @@
     <dimen name="contact_tile_shadowbox_height">48sp</dimen>
 
     <!-- For contact filter setting screens -->
-    <dimen name="contact_filter_left_margin">16dip</dimen>
+    <dimen name="contact_filter_left_margin">8dp</dimen>
     <dimen name="contact_filter_right_margin">16dip</dimen>
     <dimen name="contact_filter_item_min_height">48dip</dimen>
     <dimen name="contact_filter_icon_size">32dip</dimen>
     <dimen name="contact_filter_list_item_height">56dp</dimen>
     <dimen name="contact_filter_list_item_padding_start">16dp</dimen>
     <!-- contact_filter_indicator is the arrow in expandable list view -->
-    <dimen name="contact_filter_indicator_padding_start">10dp</dimen>
-    <dimen name="contact_filter_indicator_padding_end">50dp</dimen>
+    <dimen name="contact_filter_indicator_padding_start">6dp</dimen>
+    <dimen name="contact_filter_indicator_padding_end">46dp</dimen>
     <dimen name="contact_filter_action_button_width">72dp</dimen>
 
     <!-- Padding to be used between a visible scrollbar and the contact list -->
