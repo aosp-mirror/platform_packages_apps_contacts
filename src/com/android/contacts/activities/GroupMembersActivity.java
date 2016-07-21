@@ -186,6 +186,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             mGroupMetadata = savedState.getParcelable(KEY_GROUP_METADATA);
         } else {
             mGroupUri = getIntent().getData();
+            setTitle(getIntent().getStringExtra(GroupUtil.EXTRA_GROUP_NAME));
         }
         if (mGroupUri == null) {
             setResultCanceledAndFinish(R.string.groupLoadErrorToast);
@@ -200,10 +201,6 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 /* portraitTabs */ null, /* landscapeTabs */ null, mToolbar,
                 R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
-
-        // Avoid showing default "Contacts" title before group metadata is loaded. The title will
-        // be changed to group name when onGroupMetadataLoaded() is called.
-        setActionBarTitle(getIntent().getStringExtra(GroupUtil.EXTRA_GROUP_NAME));
 
         // Add the members list fragment
         final FragmentManager fragmentManager = getFragmentManager();
@@ -580,15 +577,8 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     public void onGroupMetadataLoaded(GroupMetadata groupMetadata) {
         mGroupMetadata = groupMetadata;
         updateGroupMenu(mGroupMetadata);
-        setActionBarTitle(mGroupMetadata.groupName);
+        setTitle(mGroupMetadata.groupName);
         invalidateOptionsMenu();
-    }
-
-    private void setActionBarTitle(String title) {
-        final ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(title);
-        }
     }
 
     @Override
