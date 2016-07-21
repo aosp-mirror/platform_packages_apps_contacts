@@ -336,7 +336,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         final boolean isGroupEditable = mGroupMetadata != null && mGroupMetadata.editable;
         final boolean isGroupReadOnly = mGroupMetadata != null && mGroupMetadata.readOnly;
 
-        setVisible(menu, R.id.menu_add, isGroupEditable && mIsEditMode);
+        setVisible(menu, R.id.menu_add, isGroupEditable && !isSelectionMode);
         setVisible(menu, R.id.menu_rename_group, !isGroupReadOnly && !isSelectionMode);
         setVisible(menu, R.id.menu_delete_group, !isGroupReadOnly && !isSelectionMode);
         setVisible(menu, R.id.menu_edit_group, isGroupEditable && !mIsEditMode && !isSelectionMode);
