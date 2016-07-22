@@ -677,8 +677,8 @@
     <!-- Label to instruct the user to type in a contact's name to add the contact as a member of the current group. [CHAR LIMIT=64] -->
     <string name="enter_contact_name">Search contacts</string>
 
-    <!-- Title of edit label view  [CHAR LIMIT=20]-->
-    <string name="title_edit_group">Edit Label: <xliff:g id="group_name" example="Friends">%1$s</xliff:g></string>
+    <!-- Title of the edit label view in selection mode when contacts are being selected for removal.[CHAR LIMIT=40] -->
+    <string name="title_edit_group">Remove contacts</string>
 
     <!-- Header label in the contact editor for a profile that is local to the device only (and not associated with any account) [CHAR LIMIT=25] -->
     <string name="local_profile_title">My local profile</string>

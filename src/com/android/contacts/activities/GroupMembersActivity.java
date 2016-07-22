@@ -492,8 +492,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 if (mMembersFragment != null) {
                     if (mIsEditMode) {
                         mMembersFragment.displayDeleteButtons(true);
-                        mActionBarAdapter.setActionBarTitle(
-                                getString(R.string.title_edit_group, mGroupMetadata.groupName));
+                        mActionBarAdapter.setActionBarTitle(getString(R.string.title_edit_group));
                     } else {
                         mMembersFragment.displayCheckBoxes(true);
                     }
@@ -542,8 +541,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     @Override
     public void onSelectedContactIdsChanged() {
         if (mIsEditMode) {
-            mActionBarAdapter.setActionBarTitle(
-                    getString(R.string.title_edit_group, mGroupMetadata.groupName));
+            mActionBarAdapter.setActionBarTitle(getString(R.string.title_edit_group));
         } else {
             mActionBarAdapter.setSelectionCount(mMembersFragment.getSelectedContactIds().size());
         }
