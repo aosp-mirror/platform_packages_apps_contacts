@@ -15,5 +15,5 @@
   ~ limitations under the License
   -->
 <resources>
-    <integer name="floating_action_button_animation_duration">250</integer>
+    <integer name="floating_action_button_animation_duration">175</integer>
 </resources>
