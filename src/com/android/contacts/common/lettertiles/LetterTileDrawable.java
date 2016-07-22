@@ -63,6 +63,9 @@ public class LetterTileDrawable extends Drawable {
     public static final int TYPE_VOICEMAIL = 3;
     public static final int TYPE_DEFAULT = TYPE_PERSON;
 
+    /** 54% opacity */
+    private static final int ALPHA = 138;
+
     private int mContactType = TYPE_DEFAULT;
     private float mScale = 1.0f;
     private float mOffset = 0.0f;
@@ -78,7 +81,7 @@ public class LetterTileDrawable extends Drawable {
             sTileFontColor = res.getColor(R.color.letter_tile_font_color);
             sLetterToTileRatio = res.getFraction(R.dimen.letter_to_tile_ratio, 1, 1);
             DEFAULT_PERSON_AVATAR = BitmapFactory.decodeResource(res,
-                    R.drawable.ic_person_white_120dp);
+                    R.drawable.ic_person_avatar);
             DEFAULT_BUSINESS_AVATAR = BitmapFactory.decodeResource(res,
                     R.drawable.ic_business_white_120dp);
             DEFAULT_VOICEMAIL_AVATAR = BitmapFactory.decodeResource(res,
@@ -124,7 +127,11 @@ public class LetterTileDrawable extends Drawable {
         // Source rectangle remains the entire bounds of the source bitmap.
         sRect.set(0, 0, width, height);
 
-        canvas.drawBitmap(bitmap, sRect, destRect, mPaint);
+        sPaint.setTextAlign(Align.CENTER);
+        sPaint.setAntiAlias(true);
+        sPaint.setAlpha(ALPHA);
+
+        canvas.drawBitmap(bitmap, sRect, destRect, sPaint);
     }
 
     private void drawLetterTile(final Canvas canvas) {
@@ -149,9 +156,10 @@ public class LetterTileDrawable extends Drawable {
 
             // Scale text by canvas bounds and user selected scaling factor
             sPaint.setTextSize(mScale * sLetterToTileRatio * minDimension);
-            //sPaint.setTextSize(sTileLetterFontSize);
             sPaint.getTextBounds(sFirstChar, 0, 1, sRect);
+            sPaint.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
             sPaint.setColor(sTileFontColor);
+            sPaint.setAlpha(ALPHA);
 
             // Draw the letter in the canvas, vertically shifted up or down by the user-defined
             // offset
