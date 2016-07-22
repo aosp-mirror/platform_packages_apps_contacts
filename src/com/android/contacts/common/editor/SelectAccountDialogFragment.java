@@ -24,6 +24,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -99,7 +101,9 @@ public final class SelectAccountDialogFragment extends DialogFragment {
             }
         };
 
-        builder.setTitle(args.getInt(KEY_TITLE_RES_ID));
+        final TextView title = (TextView) View.inflate(getActivity(), R.layout.dialog_title, null);
+        title.setText(args.getInt(KEY_TITLE_RES_ID));
+        builder.setCustomTitle(title);
         builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
         final AlertDialog result = builder.create();
         return result;
