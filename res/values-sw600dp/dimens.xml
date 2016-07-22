@@ -25,7 +25,7 @@
     <dimen name="contact_browser_list_item_text_size">18sp</dimen>
     <dimen name="contact_browser_list_item_photo_size">50dp</dimen>
     <dimen name="contact_browser_list_item_gap_between_image_and_text">25dp</dimen>
-    <dimen name="contact_browser_list_item_gap_between_indexer_and_image">15dp</dimen>
+    <dimen name="contact_browser_list_item_gap_between_indexer_and_image">29dp</dimen>
     <dimen name="contact_browser_list_top_margin">18dp</dimen>
 
     <dimen name="quick_contact_photo_container_height">360dip</dimen>
