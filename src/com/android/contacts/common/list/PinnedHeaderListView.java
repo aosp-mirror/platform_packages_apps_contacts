@@ -428,9 +428,9 @@ public class PinnedHeaderListView extends AutoScrollListView
             final int x = (int)ev.getX();
             for (int i = mSize; --i >= 0;) {
                 PinnedHeader header = mHeaders[i];
-                // For RTL layouts, this also takes into account that the scrollbar is on the left
-                // side.
-                final int padding = getPaddingLeft();
+                final int padding = ViewUtil.isViewLayoutRtl(this) ?
+                        getWidth() - mHeaderPaddingStart - header.view.getWidth() :
+                        mHeaderPaddingStart;
                 if (header.visible && header.y <= y && header.y + header.height > y &&
                         x >= padding && padding + header.view.getWidth() >= x) {
                     mHeaderTouched = true;
@@ -456,7 +456,7 @@ public class PinnedHeaderListView extends AutoScrollListView
             return true;
         }
         return super.onTouchEvent(ev);
-    };
+    }
 
     private boolean smoothScrollToPartition(int partition) {
         if (mAdapter == null) {

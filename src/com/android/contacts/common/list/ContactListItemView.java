@@ -1007,6 +1007,8 @@ public class ContactListItemView extends ViewGroup
         if (ContactsSectionIndexer.BLANK_HEADER_STRING.equals(title)) {
             headerTextView.setContentDescription(
                     getContext().getString(R.string.description_no_name_header));
+        } else {
+            headerTextView.setContentDescription(title);
         }
         headerTextView.setVisibility(View.VISIBLE);
     }
