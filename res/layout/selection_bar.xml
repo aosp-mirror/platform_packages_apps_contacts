@@ -22,8 +22,8 @@
 
     <ImageButton
         android:id="@+id/selection_close"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/selection_bar_close_icon_size"
+        android:layout_height="@dimen/selection_bar_close_icon_size"
         android:layout_gravity="center_vertical|start"
         android:alpha="@dimen/close_icon_alpha"
         android:background="?attr/selectableItemBackgroundBorderless"
