@@ -76,7 +76,7 @@
     <dimen name="shortcut_overlay_text_background_padding">1dp</dimen>
 
     <!-- Width of height of an icon from a third-party app in the networks section of the contact card. -->
-    <dimen name="detail_network_icon_size">32dip</dimen>
+    <dimen name="detail_network_icon_size">40dp</dimen>
 
     <!-- Empty message margins -->
     <dimen name="empty_message_top_margin">48dip</dimen>
