@@ -426,7 +426,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
     }
 
-    private void onCreateGroupMenuItemClicked() {
+    protected void onCreateGroupMenuItemClicked() {
         // Select the account to create the group
         final Bundle extras = getIntent().getExtras();
         final Account account = extras == null ? null :
