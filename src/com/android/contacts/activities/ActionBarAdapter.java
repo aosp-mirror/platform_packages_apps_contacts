@@ -98,6 +98,7 @@ public class ActionBarAdapter implements OnCloseListener {
 
     private int mMaxPortraitTabHeight;
     private int mMaxToolbarContentInsetStart;
+    private int mActionBarAnimationDuration;
 
     private final Activity mActivity;
     private final SharedPreferences mPrefs;
@@ -144,6 +145,8 @@ public class ActionBarAdapter implements OnCloseListener {
         mToolBarFrame = (FrameLayout) mToolbar.getParent();
         mMaxToolbarContentInsetStart = mToolbar.getContentInsetStart();
         mSearchHintResId = searchHintResId;
+        mActionBarAnimationDuration =
+                mActivity.getResources().getInteger(R.integer.action_bar_animation_duration);
 
         setupSearchAndSelectionViews();
         setupTabs(mActivity);
@@ -465,7 +468,7 @@ public class ActionBarAdapter implements OnCloseListener {
             if (mSelectionMode) {
                 addSelectionContainer();
                 mSelectionContainer.setAlpha(0);
-                mSelectionContainer.animate().alpha(1);
+                mSelectionContainer.animate().alpha(1).setDuration(mActionBarAnimationDuration);
                 animateTabHeightChange(mMaxPortraitTabHeight, 0);
                 updateDisplayOptions(isSearchModeChanging);
             } else {
@@ -474,7 +477,8 @@ public class ActionBarAdapter implements OnCloseListener {
                 }
                 mSelectionContainer.setAlpha(1);
                 animateTabHeightChange(0, mMaxPortraitTabHeight);
-                mSelectionContainer.animate().alpha(0).withEndAction(new Runnable() {
+                mSelectionContainer.animate().alpha(0).setDuration(mActionBarAnimationDuration)
+                        .withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         updateDisplayOptions(isSearchModeChanging);
@@ -491,13 +495,14 @@ public class ActionBarAdapter implements OnCloseListener {
             if (mSearchMode) {
                 addSearchContainer();
                 mSearchContainer.setAlpha(0);
-                mSearchContainer.animate().alpha(1);
+                mSearchContainer.animate().alpha(1).setDuration(mActionBarAnimationDuration);
                 animateTabHeightChange(mMaxPortraitTabHeight, 0);
                 updateDisplayOptions(isSearchModeChanging);
             } else {
                 mSearchContainer.setAlpha(1);
                 animateTabHeightChange(0, mMaxPortraitTabHeight);
-                mSearchContainer.animate().alpha(0).withEndAction(new Runnable() {
+                mSearchContainer.animate().alpha(0).setDuration(mActionBarAnimationDuration)
+                        .withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         updateDisplayOptions(isSearchModeChanging);

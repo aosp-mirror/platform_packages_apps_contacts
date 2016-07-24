@@ -25,4 +25,7 @@
     <!-- The maximum allowed group name length -->
     <integer name="group_name_max_length">40</integer>
 
+    <!-- Fade in/out duration of search and selection -->
+    <integer name="action_bar_animation_duration">195</integer>
+
 </resources>
