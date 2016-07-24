@@ -64,7 +64,7 @@
     <dimen name="contact_browser_list_header_icon_size">24dp</dimen>
     <dimen name="contact_browser_list_header_text_margin">10dp</dimen>
     <!-- Width of a contact list item section header. -->
-    <dimen name="contact_list_section_header_width">48dp</dimen>
+    <dimen name="contact_list_section_header_width">56dp</dimen>
 
     <!-- Size of the shortcut icon. 0dip means: use the system default -->
     <dimen name="shortcut_icon_size">0dip</dimen>
@@ -85,7 +85,7 @@
     <dimen name="contact_browser_list_item_text_size">16sp</dimen>
     <dimen name="contact_browser_list_item_photo_size">40dp</dimen>
     <dimen name="contact_browser_list_item_gap_between_image_and_text">15dp</dimen>
-    <dimen name="contact_browser_list_item_gap_between_indexer_and_image">20dp</dimen>
+    <dimen name="contact_browser_list_item_gap_between_indexer_and_image">16dp</dimen>
     <dimen name="contact_browser_list_top_margin">12dp</dimen>
 
     <!-- Dimensions for "No contacts" string in PhoneFavoriteFragment for the All contacts
