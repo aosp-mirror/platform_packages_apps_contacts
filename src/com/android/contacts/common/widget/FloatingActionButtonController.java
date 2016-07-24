@@ -36,9 +36,9 @@ public class FloatingActionButtonController {
     public static final int ALIGN_QUARTER_END = 1;
     public static final int ALIGN_END = 2;
 
-    private static final int FAB_SCALE_IN_DURATION = 266;
-    private static final int FAB_SCALE_IN_FADE_IN_DELAY = 100;
-    private static final int FAB_ICON_FADE_OUT_DURATION = 66;
+    private static final int FAB_SCALE_IN_DURATION = 186;
+    private static final int FAB_SCALE_IN_FADE_IN_DELAY = 70;
+    private static final int FAB_ICON_FADE_OUT_DURATION = 46;
 
     private final int mAnimationDuration;
     private final int mFloatingActionButtonWidth;
