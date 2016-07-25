@@ -976,14 +976,22 @@ public class ContactListItemView extends ViewGroup
     public void setSectionHeader(String title) {
         if (!TextUtils.isEmpty(title)) {
             if (TextUtils.equals(getContext().getString(R.string.star_sign), title)) {
-                if (mHeaderView == null || mHeaderView instanceof TextView) {
+                if (mHeaderView == null) {
                     addStarImageHeader();
+                } else if (mHeaderView instanceof TextView) {
+                    removeView(mHeaderView);
+                    addStarImageHeader();
+                } else {
+                    mHeaderView.setVisibility(View.VISIBLE);
                 }
             } else {
-                if (mHeaderView == null || mHeaderView instanceof ImageView ) {
+                if (mHeaderView == null) {
+                    addTextHeader(title);
+                } else if (mHeaderView instanceof ImageView) {
+                    removeView(mHeaderView);
                     addTextHeader(title);
                 } else {
-                    updateHeaderText(((TextView) mHeaderView), title);
+                    updateHeaderText((TextView) mHeaderView, title);
                 }
             }
         } else if (mHeaderView != null) {
@@ -992,9 +1000,8 @@ public class ContactListItemView extends ViewGroup
     }
 
     private void addTextHeader(String title) {
-        removeView(mHeaderView);
         mHeaderView = new TextView(getContext());
-        final TextView headerTextView = ((TextView) mHeaderView);
+        final TextView headerTextView = (TextView) mHeaderView;
         headerTextView.setTextAppearance(getContext(), R.style.SectionHeaderStyle);
         headerTextView.setGravity(Gravity.CENTER_HORIZONTAL);
         updateHeaderText(headerTextView, title);
@@ -1014,9 +1021,8 @@ public class ContactListItemView extends ViewGroup
     }
 
     private void addStarImageHeader() {
-        removeView(mHeaderView);
         mHeaderView = new ImageView(getContext());
-        final ImageView headerImageView = ((ImageView) mHeaderView);
+        final ImageView headerImageView = (ImageView) mHeaderView;
         headerImageView.setImageDrawable(
                 getResources().getDrawable(R.drawable.ic_material_star, getContext().getTheme()));
         headerImageView.setImageTintList(ColorStateList.valueOf(getResources()
