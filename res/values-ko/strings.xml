@@ -52,7 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"연락처로 전화 걸기"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"연락처에 문자 보내기"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"연결 해제"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"수정"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"연락처 삭제"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"라벨 이름 바꾸기"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"라벨 삭제"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"연락처 추가"</string>
@@ -79,9 +79,13 @@
       <item quantity="other">연락처 삭제됨</item>
       <item quantity="one">연락처 삭제됨</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="other">연락처 <xliff:g id="COUNT">%d</xliff:g>개</item>
-      <item quantity="one">연락처 1개</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="other">연락처 <xliff:g id="COUNT_1">%d</xliff:g>개</item>
+      <item quantity="one">연락처 <xliff:g id="COUNT_0">%d</xliff:g>개</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="other">연락처 <xliff:g id="COUNT_2">%d</xliff:g>개 · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one">연락처 <xliff:g id="COUNT_0">%d</xliff:g>개 · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Google에서 제공"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> 계정 연락처"</string>
@@ -231,8 +235,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"계속 수정"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"연락처 검색"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"연락처 삭제"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"내 로컬 프로필"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"내 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 프로필"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"모든 연락처 표시"</string>

@@ -52,7 +52,8 @@
     <string name="menu_call" msgid="3992595586042260618">"Выклікаць кантакт"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Паведамленне кантакту"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Выдаліць сувязь"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Рэдагаваць"</string>
+    <!-- no translation found for menu_editGroup (6696843438454341063) -->
+    <skip />
     <string name="menu_renameGroup" msgid="7169512355179757182">"Перайменаваць метку"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Выдаліць метку"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Дадаць кантакт"</string>
@@ -81,11 +82,17 @@
       <item quantity="many">Кантакты выдалены</item>
       <item quantity="other">Кантакты выдалены</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> кантакт</item>
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> кантакты</item>
-      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> кантактаў</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> кантакту</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> кантакт</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> кантакты</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> кантактаў</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> кантакту</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="one"><xliff:g id="COUNT_2">%d</xliff:g> кантакт · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="few"><xliff:g id="COUNT_2">%d</xliff:g> кантакты · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="many"><xliff:g id="COUNT_2">%d</xliff:g> кантактаў · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> кантакту · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"З Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"З <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
@@ -243,7 +250,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Працягнуць рэдагаванне"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Пошук кантактаў"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
+    <!-- no translation found for title_edit_group (8602752287270586734) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Мой лакальны профіль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мой профіль у <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

@@ -52,7 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"পরিচিতিকে কল করুন"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"পরিচিতিকে পাঠ্য বার্তা পাঠান"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"লিঙ্কমুক্ত করুন"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"সম্পাদনা করুন"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"পরিচিতিগুলি সরান"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"লেবেলের পুনঃনামকরণ করুন"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"লেবেল মুছুন"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"পরিচিতি যোগ করুন"</string>
@@ -79,9 +79,13 @@
       <item quantity="one">পরিচিতিগুলি মোছা হয়েছে</item>
       <item quantity="other">পরিচিতিগুলি মোছা হয়েছে</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g>টি পরিচিতি</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g>টি পরিচিতি</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="one"><xliff:g id="COUNT_2">%d</xliff:g>টি পরিচিতি · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g>টি পরিচিতি · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Google থেকে"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> থেকে"</string>
@@ -231,8 +235,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"সম্পাদনা করা চালিয়ে যান"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"পরিচিতিগুলি খুঁজুন"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"পরিচিতিগুলি সরান"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"আমার স্থানীয় প্রোফাইল"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"আমার <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> প্রোফাইল"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"সমস্ত পরিচিতি দেখানো হচ্ছে"</string>
