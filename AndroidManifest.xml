@@ -138,6 +138,12 @@
                 <data android:mimeType="vnd.android.cursor.dir/contact" />
             </intent-filter>
 
+            <intent-filter>
+                <action android:name="android.intent.action.INSERT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/group" />
+            </intent-filter>
+
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable"
             />
@@ -173,6 +179,7 @@
                 <data android:mimeType="vnd.android.cursor.dir/postal-address_v2" />
                 <data android:mimeType="vnd.android.cursor.dir/postal-address" />
                 <data android:mimeType="vnd.android.cursor.dir/email_v2" />
+                <data android:mimeType="vnd.android.cursor.dir/group"/>
             </intent-filter>
 
             <intent-filter>
@@ -267,7 +274,20 @@
 
         <!-- Displays the members of a group in a list -->
         <activity android:name=".activities.GroupMembersActivity"
-            android:theme="@style/PeopleActivityTheme"/>
+            android:theme="@style/PeopleActivityTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/group" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/group" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".quickcontact.QuickContactActivity"
