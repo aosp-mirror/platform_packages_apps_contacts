@@ -49,9 +49,6 @@ import java.util.Set;
 @NeededForTesting
 public final class GroupUtil {
 
-    private static final String LEGACY_CONTACTS_AUTHORITY = "contacts";
-    private static final String LEGACY_CONTACTS_URI = "content://contacts/groups";
-
     // System IDs of FFC groups in Google accounts
     private static final Set<String> FFC_GROUPS =
             new HashSet(Arrays.asList("Friends", "Family", "Coworkers"));
@@ -134,27 +131,12 @@ public final class GroupUtil {
     public static Intent createPickMemberIntent(
             GroupMetadata groupMetadata, ArrayList<String> memberContactIds) {
         final Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType(Groups.CONTENT_ITEM_TYPE);
+        intent.setType(Groups.CONTENT_TYPE);
         intent.putExtra(UiIntentActions.GROUP_ACCOUNT_NAME, groupMetadata.accountName);
         intent.putExtra(UiIntentActions.GROUP_ACCOUNT_TYPE, groupMetadata.accountType);
         intent.putExtra(UiIntentActions.GROUP_ACCOUNT_DATA_SET, groupMetadata.dataSet);
         intent.putExtra(UiIntentActions.GROUP_CONTACT_IDS, memberContactIds);
         return intent;
-    }
-
-    /**
-     * Converts the given group Uri to the legacy format if the legacy authority was specified
-     * in the given Uri.
-     */
-    // TODO(wjang):
-    public static Uri maybeConvertToLegacyUri(Uri groupUri) {
-        final String requestAuthority = groupUri.getAuthority();
-        if (!LEGACY_CONTACTS_AUTHORITY.equals(requestAuthority)) {
-            return groupUri;
-        }
-        final long groupId = ContentUris.parseId(groupUri);
-        final Uri legacyContentUri = Uri.parse(LEGACY_CONTACTS_URI);
-        return ContentUris.withAppendedId(legacyContentUri, groupId);
     }
 
     /**
