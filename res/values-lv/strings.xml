@@ -52,7 +52,8 @@
     <string name="menu_call" msgid="3992595586042260618">"Zvanīt kontaktpersonai"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Sūtīt īsziņu kontaktpersonai"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Atsaistīt"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Rediģēt"</string>
+    <!-- no translation found for menu_editGroup (6696843438454341063) -->
+    <skip />
     <string name="menu_renameGroup" msgid="7169512355179757182">"Pārdēvēt iezīmi"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Dzēst iezīmi"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Pievienot kontaktpersonu"</string>
@@ -80,10 +81,15 @@
       <item quantity="one">Kontaktpersonas ir izdzēstas</item>
       <item quantity="other">Kontaktpersonas ir izdzēstas</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="zero"><xliff:g id="COUNT">%d</xliff:g> kontaktpersonu</item>
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontaktpersona</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktpersonas</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="zero"><xliff:g id="COUNT_1">%d</xliff:g> kontaktpersonas</item>
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> kontaktpersona</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> kontaktpersonas</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="zero"><xliff:g id="COUNT_2">%d</xliff:g> kontaktpersonas (<xliff:g id="ACCOUNT_3">%s</xliff:g>)</item>
+      <item quantity="one"><xliff:g id="COUNT_2">%d</xliff:g> kontaktpersona (<xliff:g id="ACCOUNT_3">%s</xliff:g>)</item>
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> kontaktpersonas (<xliff:g id="ACCOUNT_3">%s</xliff:g>)</item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"No Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"No konta <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
@@ -237,7 +243,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Turpināt rediģēšanu"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> — <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Meklēt kontaktpersonas"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
+    <!-- no translation found for title_edit_group (8602752287270586734) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Mans vietējais profils"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mans <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profils"</string>

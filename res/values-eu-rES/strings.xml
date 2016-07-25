@@ -52,7 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Deitu kontaktuari"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Bidali testu-mezua kontaktuari"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Desestekatu"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Editatu"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"Kendu kontaktuak"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Aldatu etiketaren izena"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Ezabatu etiketa"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Gehitu kontaktua"</string>
@@ -79,9 +79,13 @@
       <item quantity="other">Ezabatu dira kontaktuak</item>
       <item quantity="one">Ezabatu da kontaktua</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktu</item>
-      <item quantity="one">1 kontaktu</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> kontaktu</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> kontaktu</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> kontaktu · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> kontaktu · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Google-koak"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> kontukoak"</string>
@@ -231,8 +235,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Jarraitu editatzen"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> (<xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>)"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Bilatu kontaktuetan"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Kendu kontaktuak"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Gailuko profila"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Nire <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profila"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Kontaktu guztiak bistaratzen"</string>

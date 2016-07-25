@@ -52,7 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Позови контакт"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Пошаљи SMS контакту"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Раздвоји"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Измени"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"Уклони контакте"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Преименуј ознаку"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Избриши ознаку"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Додај контакт"</string>
@@ -80,10 +80,15 @@
       <item quantity="few">Контакти су избрисани</item>
       <item quantity="other">Контакти су избрисани</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> контакт</item>
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> контакта</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> контаката</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> контакт</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> контакта</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> контаката</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="one"><xliff:g id="COUNT_2">%d</xliff:g> контакт · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="few"><xliff:g id="COUNT_2">%d</xliff:g> контакта · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> контаката · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Са Google-а"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Са <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
@@ -237,8 +242,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Настави изменe"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Претражите контакте"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Уклоните контакте"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мој локални профил"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мој <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профил"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Приказани су сви контакти"</string>

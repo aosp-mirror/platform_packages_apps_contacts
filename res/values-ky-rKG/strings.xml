@@ -52,7 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Байланышка чалуу"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Байланышка SMS жазуу"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Ажыратуу"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Өзгөртүү"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"Байланыштарды алып салуу"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Энбелгинин аталышын өзгөртүү"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Энбелгини жок кылуу"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Байланыш кошуу"</string>
@@ -79,12 +79,16 @@
       <item quantity="other">Байланыштар жок кылынды</item>
       <item quantity="one">Байланыш жок кылынды</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> байланыш</item>
-      <item quantity="one">1 байланыш</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> байланыш</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> байланыш</item>
     </plurals>
-    <string name="title_from_google" msgid="4664084747121207202">"Google-дан"</string>
-    <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g>-дан"</string>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> байланыш · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> байланыш · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
+    </plurals>
+    <string name="title_from_google" msgid="4664084747121207202">"Google каттоо эсебинен"</string>
+    <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> каттоо эсбнен"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Рингтон коюу"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Үн почтасы гана"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Окуу үчүн гана арналган каттоо эсебиңизден байланыштарды жок кылуу мүмкүн эмес, бирок аларды жашырып койсо болот."</string>
@@ -231,8 +235,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Түзөтө берүү"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Байланыштардан издеп көрүңүз"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Байланыштарды алып салуу"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Менин жергиликтүү профайлым"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Менин <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профайлым"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Бардык байланыштарды көрсөтүү"</string>

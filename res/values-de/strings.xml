@@ -52,7 +52,8 @@
     <string name="menu_call" msgid="3992595586042260618">"Kontakt anrufen"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS an Kontakt"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Verknüpfung aufheben"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Bearbeiten"</string>
+    <!-- no translation found for menu_editGroup (6696843438454341063) -->
+    <skip />
     <string name="menu_renameGroup" msgid="7169512355179757182">"Label umbenennen"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Label löschen"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Kontakt hinzufügen"</string>
@@ -79,9 +80,13 @@
       <item quantity="other">Kontakte gelöscht</item>
       <item quantity="one">Kontakt gelöscht</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Kontakte</item>
-      <item quantity="one">1 Kontakt</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> Kontakte</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> Kontakt</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> Kontakte · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> Kontakt · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Von Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Von <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
@@ -231,7 +236,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Bearbeitung fortsetzen"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Kontakte suchen"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
+    <!-- no translation found for title_edit_group (8602752287270586734) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Mein lokales Profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mein <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-Profil"</string>
