@@ -49,6 +49,8 @@
     <uses-permission android:name="com.android.voicemail.permission.READ_VOICEMAIL" />
     <!-- Following used for Contact metadata syncing -->
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <!-- Following used for getting the status of the contacts sync adapter -->
+    <uses-permission android:name="android.permission.READ_SYNC_STATS" />
 
     <uses-feature android:name="android.hardware.telephony" required="false"/>
 
