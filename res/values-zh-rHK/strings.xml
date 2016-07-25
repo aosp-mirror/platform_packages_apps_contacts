@@ -52,7 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"致電聯絡人"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"解除連結"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"編輯"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"移除聯絡人"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"重新命名標籤"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"刪除標籤"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"新增聯絡人"</string>
@@ -79,9 +79,13 @@
       <item quantity="other">已刪除聯絡人</item>
       <item quantity="one">已刪除聯絡人</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位聯絡人</item>
-      <item quantity="one">1 位聯絡人</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> 位聯絡人</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> 位聯絡人</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> 位聯絡人 · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> 位聯絡人 · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"來自 Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"來自「<xliff:g id="ACCOUNT">%s</xliff:g>」"</string>
@@ -231,8 +235,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"繼續編輯"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"搜尋聯絡人"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"移除聯絡人"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"我的本機個人資料"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"我的 <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> 個人資料"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>

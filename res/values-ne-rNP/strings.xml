@@ -52,7 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"सम्पर्कलाई कल गर्नुहोस्"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"पाठ सम्पर्क"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"अनलिंक"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"सम्पादन गर्नुहोस्"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"सम्पर्कहरू हटाउनुहोस्"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"लेबलको पुन:नामाकरण गर्नुहोस्"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"लेबल मेटाउनुहोस"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"सम्पर्क थप्नुहोस्"</string>
@@ -79,9 +79,13 @@
       <item quantity="other">सम्पर्क ठेगानाहरू मेटिए</item>
       <item quantity="one"> सम्पर्क ठेगाना मेटियो</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> सम्पर्कहरू</item>
-      <item quantity="one">१ सम्पर्क</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> सम्पर्कहरू</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> सम्पर्क</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> सम्पर्कहरू · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> सम्पर्क · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Google बाट"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> बाट"</string>
@@ -231,8 +235,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"सम्पादन गरिरहनुहोस्"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"सम्पर्कहरू खोज्नुहोस्"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"सम्पर्कहरू हटाउनुहोस्"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"मेरो स्थानीय प्रोफाइल"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"मेरो <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफाइल"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सबै सम्पर्कहरू प्रदर्शन गरिदै"</string>

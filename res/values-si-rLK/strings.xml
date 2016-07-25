@@ -52,7 +52,8 @@
     <string name="menu_call" msgid="3992595586042260618">"සම්බන්ධතාව අමතන්න"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"සම්බන්ධතාවයට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"සබැඳි ඉවත් කරන්න"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"සංස්කරණය කරන්න"</string>
+    <!-- no translation found for menu_editGroup (6696843438454341063) -->
+    <skip />
     <string name="menu_renameGroup" msgid="7169512355179757182">"ලේබලය නැවත නම් කරන්න"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"ලේබලය මකන්න"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"සම්බන්ධතාව එක් කරන්න"</string>
@@ -79,9 +80,13 @@
       <item quantity="one">සම්බන්ධතා මකන ලදී</item>
       <item quantity="other">සම්බන්ධතා මකන ලදී</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="one">සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g></item>
-      <item quantity="other">සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g></item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="one">සම්බන්ධතා <xliff:g id="COUNT_1">%d</xliff:g></item>
+      <item quantity="other">සම්බන්ධතා <xliff:g id="COUNT_1">%d</xliff:g></item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="one"><xliff:g id="COUNT_2">%d</xliff:g> සම්බන්ධතා · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> සම්බන්ධතා · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Google වෙතින්"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> වෙතින්"</string>
@@ -231,7 +236,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"සංස්කරණය කරගෙන යන්න"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"සම්බන්ධතා සොයන්න"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
+    <!-- no translation found for title_edit_group (8602752287270586734) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"මගේ දේශීය පැතිකඩ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"මගේ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> පැතිකඩ"</string>
