@@ -21,19 +21,7 @@
         android:id="@+id/list_card"
         android:visibility="invisible">
     <View
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="@integer/contact_list_space_layout_weight"
-            android:background="@color/background_primary"/>
-    <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@color/contact_all_list_background_color"
-            android:layout_weight="@integer/contact_list_card_layout_weight"
-            android:elevation="@dimen/contact_list_card_elevation"/>
-    <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="@integer/contact_list_space_layout_weight"
-            android:background="@color/background_primary"/>
+            android:background="@color/contact_all_list_background_color"/>
 </LinearLayout>
