@@ -51,7 +51,6 @@ import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ListEvent.ActionType;
 import com.android.contacts.common.preference.ContactsPreferences;
-import com.android.contacts.common.util.ContactListViewUtils;
 
 import java.util.Locale;
 
@@ -811,18 +810,6 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         configurePhotoLoader();
 
         getAdapter().setFragmentRootView(getView());
-
-        ContactListViewUtils.applyCardPaddingToView(getResources(), mListView, mView);
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (getActivity() != null && getView() != null && !hidden) {
-            // If the padding was last applied when in a hidden state, it may have been applied
-            // incorrectly. Therefore we need to reapply it.
-            ContactListViewUtils.applyCardPaddingToView(getResources(), mListView, getView());
-        }
     }
 
     protected void configurePhotoLoader() {
