@@ -18,11 +18,11 @@ package com.android.contacts.group;
 
 import android.app.Fragment;
 import android.app.LoaderManager;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.android.contacts.GroupListLoader;
 
@@ -33,6 +33,8 @@ import java.util.List;
  * Loads groups and group metadata for all accounts.
  */
 public final class GroupsFragment extends Fragment {
+
+    private static final String TAG = GroupsFragment.class.getSimpleName();
 
     private static final int LOADER_GROUPS = 1;
 
@@ -57,12 +59,26 @@ public final class GroupsFragment extends Fragment {
 
                 @Override
                 public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-                    mGroupListItems.clear();
+                    final List<GroupListItem> newGroupListItems = new ArrayList<>();
                     for (int i = 0; i < data.getCount(); i++) {
                         if (data.moveToNext()) {
-                            mGroupListItems.add(GroupUtil.getGroupListItem(data, i));
+                            newGroupListItems.add(GroupUtil.getGroupListItem(data, i));
                         }
                     }
+
+                    if (mGroupListItems.equals(newGroupListItems)) {
+                        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                            Log.v(TAG, "The same groups loaded, returning.");
+                        }
+                        return;
+                    }
+
+                    if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                        Log.v(TAG, "New group(s) loaded.");
+                    }
+
+                    mGroupListItems.clear();
+                    mGroupListItems.addAll(newGroupListItems);
                     if (mListener != null) {
                         mListener.onGroupsLoaded(mGroupListItems);
                     }
