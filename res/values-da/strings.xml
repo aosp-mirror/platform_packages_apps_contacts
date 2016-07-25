@@ -52,7 +52,8 @@
     <string name="menu_call" msgid="3992595586042260618">"Ring til kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send sms til kontakt"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Fjern link"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Rediger"</string>
+    <!-- no translation found for menu_editGroup (6696843438454341063) -->
+    <skip />
     <string name="menu_renameGroup" msgid="7169512355179757182">"Omdøb etiket"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Slet etiket"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Tilføj kontaktperson"</string>
@@ -79,9 +80,13 @@
       <item quantity="one">Kontaktpersonen blev slettet</item>
       <item quantity="other">Kontaktpersonerne blev slettet</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontaktperson</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktpersoner</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> kontaktperson</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> kontaktpersoner</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="one"><xliff:g id="COUNT_2">%d</xliff:g> kontaktperson · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> kontaktpersoner · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Fra Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Fra <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
@@ -231,7 +236,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Fortsæt redigering"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Søg i kontaktpersoner"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
+    <!-- no translation found for title_edit_group (8602752287270586734) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokale profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Min <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profil"</string>

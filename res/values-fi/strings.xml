@@ -52,7 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Soita"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Lähetä tekstiviesti yhteystiedolle"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Poista linkitys"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Muokkaa"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"Poista yhteystiedot"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Nimeä tunniste uudelleen"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Poista tunniste"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Lisää yhteystieto"</string>
@@ -79,9 +79,13 @@
       <item quantity="other">Yhteystiedot poistettu</item>
       <item quantity="one">Yhteystieto poistettu</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> yhteystietoa</item>
-      <item quantity="one">1 yhteystieto</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> yhteystietoa</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> yhteystieto</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> yhteystietoa, <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> yhteystieto, <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Googlelta"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Tililtä <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
@@ -231,8 +235,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Jatka muokkausta"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Hae yhteystiedoista"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Poista yhteystiedot"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Oma paikallinen profiili"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Oma <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profiili"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Kaikki kontaktit"</string>

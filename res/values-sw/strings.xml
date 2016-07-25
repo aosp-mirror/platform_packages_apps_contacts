@@ -52,7 +52,8 @@
     <string name="menu_call" msgid="3992595586042260618">"Mpigie"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Tuma ujumbe kwa anwani"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Tenganisha"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Badilisha"</string>
+    <!-- no translation found for menu_editGroup (6696843438454341063) -->
+    <skip />
     <string name="menu_renameGroup" msgid="7169512355179757182">"Badilisha jina la lebo"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Futa lebo"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Ongeza anwani"</string>
@@ -79,9 +80,13 @@
       <item quantity="other">Anwani zimefutwa</item>
       <item quantity="one">Anwani imefutwa</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="other">Anwani <xliff:g id="COUNT">%d</xliff:g></item>
-      <item quantity="one">Anwani 1</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="other">Anwani <xliff:g id="COUNT_1">%d</xliff:g></item>
+      <item quantity="one">Anwani <xliff:g id="COUNT_0">%d</xliff:g></item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="other">Anwani <xliff:g id="COUNT_2">%d</xliff:g> · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one">Anwani <xliff:g id="COUNT_0">%d</xliff:g> · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Kutoka Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Kutoka <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
@@ -231,7 +236,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Endelea kubadilisha"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Tafuta anwani"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
+    <!-- no translation found for title_edit_group (8602752287270586734) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Wasifu wangu wa ndani."</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Wasifu wangu wa <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

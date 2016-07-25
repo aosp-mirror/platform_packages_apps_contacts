@@ -52,7 +52,8 @@
     <string name="menu_call" msgid="3992595586042260618">"Zavolať kontaktu"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Odoslať správu kontaktu"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Zrušiť prepojenie"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Upraviť"</string>
+    <!-- no translation found for menu_editGroup (6696843438454341063) -->
+    <skip />
     <string name="menu_renameGroup" msgid="7169512355179757182">"Premenovať štítok"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Odstrániť štítok"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Pridať kontakt"</string>
@@ -81,11 +82,17 @@
       <item quantity="other">Kontakty boli odstránené</item>
       <item quantity="one">Kontakt bol odstránený</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> kontakty</item>
-      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> kontaktu</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktov</item>
-      <item quantity="one">1 kontakt</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> kontakty</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> kontaktu</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> kontaktov</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> kontakt</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="few"><xliff:g id="COUNT_2">%d</xliff:g> kontakty · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="many"><xliff:g id="COUNT_2">%d</xliff:g> kontaktu · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> kontaktov · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> kontakt · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Z Googlu"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Z účtu <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
@@ -243,7 +250,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Pokračovať v úprave"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Hľadať v kontaktoch"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
+    <!-- no translation found for title_edit_group (8602752287270586734) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Môj miestny profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Môj profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>

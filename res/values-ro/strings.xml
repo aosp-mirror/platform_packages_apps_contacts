@@ -52,7 +52,8 @@
     <string name="menu_call" msgid="3992595586042260618">"Apelați persoana din agendă"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Trimiteți mesaj text către o persoană din agendă"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Disociați"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"Editați"</string>
+    <!-- no translation found for menu_editGroup (6696843438454341063) -->
+    <skip />
     <string name="menu_renameGroup" msgid="7169512355179757182">"Redenumiți eticheta"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Ștergeți eticheta"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Adăugați o persoană"</string>
@@ -80,10 +81,15 @@
       <item quantity="other">Persoane de contact șterse</item>
       <item quantity="one">Persoană de contact ștearsă</item>
     </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="3287407967505649458">
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> persoane de contact</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> de persoane de contact</item>
-      <item quantity="one">O persoană de contact</item>
+    <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> persoane de contact</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> de persoane de contact</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> persoană de contact</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
+      <item quantity="few"><xliff:g id="COUNT_2">%d</xliff:g> persoane de contact · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> de persoane de contact · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> persoană de contact · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Din Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Din <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
@@ -237,7 +243,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Editați în continuare"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Căutați în Agendă"</string>
-    <!-- no translation found for title_edit_group (1889302367574226969) -->
+    <!-- no translation found for title_edit_group (8602752287270586734) -->
     <skip />
     <string name="local_profile_title" msgid="2021416826991393684">"Profilul meu local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profilul meu <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
