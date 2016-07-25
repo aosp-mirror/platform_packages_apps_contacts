@@ -16,6 +16,7 @@
 
 package com.android.contacts.list;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
@@ -130,9 +131,6 @@ public class ContactsIntentResolver {
             }
         } else if (Intent.ACTION_INSERT_OR_EDIT.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_INSERT_OR_EDIT_CONTACT);
-        } else if (Intent.ACTION_INSERT.equals(action) &&
-                Groups.CONTENT_TYPE.equals(intent.getType())) {
-            request.setActionCode(ContactsRequest.ACTION_INSERT_GROUP);
         } else if (Intent.ACTION_SEARCH.equals(action)) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             // If the {@link SearchManager.QUERY} is empty, then check if a phone number

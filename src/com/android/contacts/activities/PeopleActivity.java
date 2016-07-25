@@ -284,18 +284,12 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             return false;
         }
 
-        switch (mRequest.getActionCode()) {
-            case ContactsRequest.ACTION_VIEW_CONTACT: {
-                final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
-                        mRequest.getContactUri(), QuickContactActivity.MODE_FULLY_EXPANDED);
-                intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
-                ImplicitIntentsUtil.startActivityInApp(this, intent);
-                return false;
-            }
-            case ContactsRequest.ACTION_INSERT_GROUP: {
-                onCreateGroupMenuItemClicked();
-                return true;
-            }
+        if (mRequest.getActionCode() == ContactsRequest.ACTION_VIEW_CONTACT) {
+            final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
+                    mRequest.getContactUri(), QuickContactActivity.MODE_FULLY_EXPANDED);
+            intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
+            ImplicitIntentsUtil.startActivityInApp(this, intent);
+            return false;
         }
         return true;
     }

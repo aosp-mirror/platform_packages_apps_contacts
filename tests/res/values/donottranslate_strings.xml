@@ -39,14 +39,13 @@
         <item>ACTION_INSERT_OR_EDIT</item>
         <item>ACTION_INSERT_OR_EDIT_PHONE_NUMBER</item>
         <item>ACTION_INSERT_OR_EDIT_EMAIL_ADDRESS</item>
-        <item>ACTION_INSERT_GROUP</item>
         <item>ACTION_SEARCH (call button)</item>
         <item>ACTION_SEARCH: contact</item>
         <item>ACTION_SEARCH: email</item>
         <item>ACTION_SEARCH: phone</item>
         <item>SEARCH_SUGGESTION_CLICKED: contact</item>
 
-        <!-- Edit -->
+        <!-- Edit Contact -->
         <item>EDIT (content uri with only id)</item>
         <item>EDIT (lookup uri without id)</item>
         <item>EDIT (lookup uri)</item>
@@ -58,15 +57,13 @@
         <item>EDIT (create new contact for account with data)</item>
         <item>EDIT (create new raw contact)</item>
         <item>EDIT (create new legacy)</item>
-        <item>EDIT (group)</item>
 
-        <!-- View -->
+        <!-- View Contact -->
         <item>VIEW (content uri with only id)</item>
         <item>VIEW (lookup uri without id)</item>
         <item>VIEW (lookup uri)</item>
         <item>VIEW (called for raw contact)</item>
         <item>VIEW (legacy style uri)</item>
-        <item>VIEW (group)</item>
 
         <!-- Various ways to start Contacts -->
         <item>QuickContactTestsActivity</item>

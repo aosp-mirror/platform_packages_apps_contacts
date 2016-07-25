@@ -42,9 +42,6 @@ public class ContactsRequest {
     /** Show potential new members of a specific group */
     public static final int ACTION_PICK_GROUP_MEMBERS = 21;
 
-    /** Create a new group */
-    public static final int ACTION_INSERT_GROUP = 22;
-
     /** Show all starred contacts */
     public static final int ACTION_STARRED = 30;
 
