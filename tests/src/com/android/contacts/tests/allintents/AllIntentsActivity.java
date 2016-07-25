@@ -35,7 +35,6 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.RawContacts;
@@ -44,7 +43,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.contacts.GroupListLoader;
 import com.android.contacts.tests.R;
 import com.android.contacts.tests.quickcontact.QuickContactTestsActivity;
 
@@ -87,7 +85,6 @@ public class AllIntentsActivity extends ListActivity
         ACTION_INSERT_OR_EDIT,
         ACTION_INSERT_OR_EDIT_PHONE_NUMBER,
         ACTION_INSERT_OR_EDIT_EMAIL_ADDRESS,
-        ACTION_INSERT_GROUP,
         ACTION_SEARCH_CALL,
         ACTION_SEARCH_CONTACT,
         ACTION_SEARCH_EMAIL,
@@ -104,13 +101,11 @@ public class AllIntentsActivity extends ListActivity
         EDIT_NEW_CONTACT_FOR_ACCOUNT_WITH_DATA,
         EDIT_NEW_RAW_CONTACT,
         EDIT_NEW_LEGACY,
-        EDIT_GROUP,
         VIEW_CONTACT,
         VIEW_CONTACT_LOOKUP,
         VIEW_CONTACT_LOOKUP_ID,
         VIEW_RAW_CONTACT,
         VIEW_LEGACY,
-        VIEW_GROUP,
         QUICK_CONTACT_TESTS_ACTIVITY;
 
         public static ContactsIntent get(int ordinal) {
@@ -243,12 +238,6 @@ public class AllIntentsActivity extends ListActivity
                 startActivity(intent);
                 break;
             }
-            case ACTION_INSERT_GROUP: {
-                final Intent intent = new Intent(Intent.ACTION_INSERT);
-                intent.setType(Groups.CONTENT_TYPE);
-                startActivity(intent);
-                break;
-            }
             case ACTION_SEARCH_CALL: {
                 Intent intent = new Intent(Intent.ACTION_SEARCH);
                 intent.putExtra(SearchManager.ACTION_MSG, "call");
@@ -369,13 +358,6 @@ public class AllIntentsActivity extends ListActivity
                 startActivity(new Intent(Intent.ACTION_INSERT, legacyContentUri));
                 break;
             }
-            case EDIT_GROUP: {
-                final Intent intent = findArbitraryGroupIntent(Intent.ACTION_EDIT);
-                if (intent != null) {
-                    startActivity(intent);
-                }
-                break;
-            }
             case VIEW_CONTACT: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
                 if (contactId != -1) {
@@ -435,13 +417,6 @@ public class AllIntentsActivity extends ListActivity
                         final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                     }
-                }
-                break;
-            }
-            case VIEW_GROUP: {
-                final Intent intent = findArbitraryGroupIntent(Intent.ACTION_VIEW);
-                if (intent != null) {
-                    startActivity(intent);
                 }
                 break;
             }
@@ -518,34 +493,6 @@ public class AllIntentsActivity extends ListActivity
         }
         Toast.makeText(this, "Failed to find a raw contact of contact with ID " + contactId +
                 ". Aborting", Toast.LENGTH_SHORT).show();
-        return -1;
-    }
-
-    private Intent findArbitraryGroupIntent(String action) {
-        final long groupId = findArbitraryGroup();
-        if (groupId == -1) return  null;
-        final Intent intent = new Intent(action) ;
-        intent.setData(ContentUris.withAppendedId(Groups.CONTENT_URI, groupId));
-        // TODO: ContactsProvider2#getType does handle the group mimetype
-        intent.setClassName("com.google.android.contacts",
-                "com.android.contacts.activities.GroupMembersActivity");
-        return intent;
-    }
-
-    private long findArbitraryGroup() {
-        final Cursor cursor = getContentResolver().query(Groups.CONTENT_URI,
-                new String[] { Groups._ID },
-                GroupListLoader.DEFAULT_SELECTION,
-                null,
-                "RANDOM() LIMIT 1");
-        try {
-            if (cursor.moveToFirst()) {
-                return cursor.getLong(0);
-            }
-        } finally {
-            cursor.close();
-        }
-        Toast.makeText(this, "Failed to find any group. Aborting.", Toast.LENGTH_SHORT).show();
         return -1;
     }
 
