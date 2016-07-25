@@ -92,7 +92,7 @@ public class ContactsIntentResolver {
                 request.setLegacyCompatibilityMode(true);
             } else if (Email.CONTENT_TYPE.equals(resolvedType)) {
                 request.setActionCode(ContactsRequest.ACTION_PICK_EMAIL);
-            } else if (Groups.CONTENT_ITEM_TYPE.equals(resolvedType)) {
+            } else if (Groups.CONTENT_TYPE.equals(resolvedType)) {
                 request.setActionCode(ContactsRequest.ACTION_PICK_GROUP_MEMBERS);
                 request.setAccountWithDataSet(new AccountWithDataSet(
                         intent.getStringExtra(UiIntentActions.GROUP_ACCOUNT_NAME),
