@@ -159,7 +159,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"ಪ್ರದರ್ಶನ ಆಯ್ಕೆಗಳನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ..."</string>
     <string name="menu_done" msgid="32470053723443112">"ಮುಗಿದಿದೆ"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"ರದ್ದುಮಾಡು"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"ಕಸ್ಟಮ್‌ ವೀಕ್ಷಣೆಯಲ್ಲಿನ ಸಂಪರ್ಕಗಳು"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"ಕಸ್ಟಮೈಸ್ ಮಾಡಿದ ವೀಕ್ಷಣೆ"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"ಆಮದು ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳನ್ನು ಇಲ್ಲಿ ಉಳಿಸಿ:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> SIM ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
@@ -239,7 +239,8 @@
     <string name="menu_search" msgid="7464453023659824700">"ಹುಡುಕು"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"ಪ್ರದರ್ಶನ ಸಂಪರ್ಕಗಳು"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ಪ್ರದರ್ಶನ ಸಂಪರ್ಕಗಳು"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"ಕಸ್ಟಮ್ ವೀಕ್ಷಣೆ ವಿವರಿಸಿ"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"ಕಸ್ಟಮೈಸ್ ಮಾಡಿದ ವೀಕ್ಷಣೆಯನ್ನು ವಿವರಿಸಿ"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"ಉಳಿಸು"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ಮೆಚ್ಚಿನವುಗಳು"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ."</string>
@@ -276,4 +277,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ಪರಿಶೀಲಿಸಲಾಗಿಲ್ಲ"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"ವೀಡಿಯೊ ಕರೆ ಮಾಡಿ"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"ಅಳಿಸಿ"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"ಎಲಿಪ್ಸಿಸ್"</string>
 </resources>

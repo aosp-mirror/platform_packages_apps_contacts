@@ -160,7 +160,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Se salvează opțiunile de afișare…"</string>
     <string name="menu_done" msgid="32470053723443112">"Terminat"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Anulați"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Agenda în afișarea personalizată"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"Afișare personalizată"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Salvați persoanele de contact importate în:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importați de pe cardul SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importați de pe cardul SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -240,7 +240,8 @@
     <string name="menu_search" msgid="7464453023659824700">"Căutați"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Agendă de afișat"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Agendă de afișat"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definiți afișarea personalizată"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"Definiți afișarea personalizată"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"Salvați"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Căutați în Agendă"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Preferate"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Nicio persoană de contact."</string>
@@ -278,4 +279,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Contul <xliff:g id="ACCOUNT_INFO">%s</xliff:g> nu este selectat"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Efectuați un apel video"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"Ștergeți"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"Puncte de suspensie"</string>
 </resources>

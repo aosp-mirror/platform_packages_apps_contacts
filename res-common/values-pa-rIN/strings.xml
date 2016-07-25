@@ -159,7 +159,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"ਡਿਸਪਲੇ ਚੋਣਾਂ ਸੁਰੱਖਿਅਤ ਕਰ ਰਿਹਾ ਹੈ…"</string>
     <string name="menu_done" msgid="32470053723443112">"ਹੋ ਗਿਆ"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"ਰੱਦ ਕਰੋ"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"ਕਸਟਮ ਦ੍ਰਿਸ਼ ਵਿੱਚ ਸੰਪਰਕ"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"ਵਿਸ਼ੇਸ਼-ਵਿਉਂਤਬੱਧ ਕੀਤਾ ਦ੍ਰਿਸ਼"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"ਆਯਾਤ ਕੀਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਇਸ ਵਿੱਚ ਰੱਖਿਅਤ ਕਰੋ:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM ਕਾਰਡ ਵਿੱਚੋਂ ਆਯਾਤ ਕਰੋ"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> ਵਿੱਚੋਂ ਆਯਾਤ ਕਰੋ"</string>
@@ -239,7 +239,8 @@
     <string name="menu_search" msgid="7464453023659824700">"ਖੋਜੋ"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"ਡਿਸਪਲੇ ਕਰਨ ਲਈ ਸੰਪਰਕ"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"ਡਿਸਪਲੇ ਕਰਨ ਲਈ ਸੰਪਰਕ"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"ਕਸਟਮ ਦ੍ਰਿਸ਼ ਨਿਰਧਾਰਿਤ ਕਰੋ"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"ਵਿਸ਼ੇਸ਼-ਵਿਉਂਤਬੱਧ ਕੀਤੇ ਦ੍ਰਿਸ਼ ਨੂੰ ਪ੍ਰਭਾਸ਼ਿਤ ਕਰੋ"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"ਰੱਖਿਅਤ ਕਰੋ"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"ਸੰਪਰਕ ਖੋਜੋ"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"ਮਨਪਸੰਦ"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ।"</string>
@@ -276,4 +277,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ਜਾਂਚੀ ਨਹੀਂ ਗਈ"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"ਵੀਡੀਓ ਕਾਲ ਕਰੋ"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"ਮਿਟਾਓ"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"ਪਦ-ਲੋਪ ਚਿੰਨ੍ਹ"</string>
 </resources>

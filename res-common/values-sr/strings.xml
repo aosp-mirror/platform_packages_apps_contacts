@@ -160,7 +160,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Чување опција приказа..."</string>
     <string name="menu_done" msgid="32470053723443112">"Готово"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Откажи"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Контакти у прилагођеном приказу"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"Прилагођени приказ"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Сачувајте увезене контакте на:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Увези са SIM картице"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Увоз са SIM картице <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -240,7 +240,8 @@
     <string name="menu_search" msgid="7464453023659824700">"Претражи"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Контакти за приказ"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Контакти за приказ"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Прилагођени приказ"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"Дефиниши прилагођени приказ"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"Сачувај"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Претражите контакте"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Омиљено"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Нема контаката."</string>
@@ -278,4 +279,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Није означено: <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Упути видео позив"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"Избришите"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"Три тачке"</string>
 </resources>

@@ -159,7 +159,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Kuvavalikute salvestamine ..."</string>
     <string name="menu_done" msgid="32470053723443112">"Valmis"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Tühista"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Kontaktid kohandatud vaates"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"Kohandatud vaade"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Salvestage imporditud kontaktid kontole:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Impordi SIM-kaardilt"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importimine SIM-kaardilt <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -239,7 +239,8 @@
     <string name="menu_search" msgid="7464453023659824700">"Otsing"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Kuvatavad kontaktisikud"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kuvatavad kontaktisikud"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Kohandatud vaate määramine"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"Kohandatud vaate määramine"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"Salvesta"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Otsige kontakte"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Lemmikud"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Kontaktid puuduvad."</string>
@@ -276,4 +277,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Üksus <xliff:g id="ACCOUNT_INFO">%s</xliff:g> pole märgitud"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Videokõne tegemine"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"Kustuta"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"Mõttepunktid"</string>
 </resources>

@@ -159,7 +159,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"正在保存显示选项..."</string>
     <string name="menu_done" msgid="32470053723443112">"完成"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"取消"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"自定义视图中的联系人"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"自定义视图"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"将导入的联系人保存到："</string>
     <string name="import_from_sim" msgid="4749894687871835873">"从 SIM 卡导入"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"从 SIM 卡“<xliff:g id="SIM_NAME">^1</xliff:g>” - <xliff:g id="SIM_NUMBER">^2</xliff:g> 导入"</string>
@@ -239,7 +239,8 @@
     <string name="menu_search" msgid="7464453023659824700">"搜索"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"要显示的联系人"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"要显示的联系人"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"自定义视图"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"自定义联系人视图"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"保存"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"搜索联系人"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"收藏"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"没有联系人。"</string>
@@ -276,4 +277,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"未选中 <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"发起视频通话"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"删除"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"省略号"</string>
 </resources>

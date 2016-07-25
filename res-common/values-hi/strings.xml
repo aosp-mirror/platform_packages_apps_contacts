@@ -159,7 +159,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"प्रदर्शन विकल्प सहेज रहा है…"</string>
     <string name="menu_done" msgid="32470053723443112">"पूर्ण"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"अभी नहीं"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"कस्टम दृश्य में संपर्क"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"कस्टमाइज़ किया गया दृश्य"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"आयातित संपर्कों को इसमें सहेजें:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"सिम कार्ड से आयात करें"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> सिम से आयात करें"</string>
@@ -239,7 +239,8 @@
     <string name="menu_search" msgid="7464453023659824700">"खोजें"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"दिखाने के लिए संपर्क"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"दिखाने के लिए संपर्क"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"कस्टम दृश्य निर्धारित करें"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"कस्टमाइज़ किए गए दृश्य को परिभाषित करें"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"सहेजें"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"संपर्क खोजें"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"पसंदीदा"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"कोई संपर्क नहीं."</string>
@@ -276,4 +277,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> चेक नहीं किया गया"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"वीडियो कॉल करें"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"हटाएं"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"पदलोप चिह्न"</string>
 </resources>

@@ -159,7 +159,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"S\'estan desant les opcions de visualització..."</string>
     <string name="menu_done" msgid="32470053723443112">"Fet"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Cancel·la"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Contactes en visualització personalitzada"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"Visualització personalitzada"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Desa els contactes importats a:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Importa de la targeta SIM"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Importa des de la targeta SIM <xliff:g id="SIM_NAME">^1</xliff:g> (<xliff:g id="SIM_NUMBER">^2</xliff:g>)"</string>
@@ -239,7 +239,8 @@
     <string name="menu_search" msgid="7464453023659824700">"Cerca"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Contactes per mostrar"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Contactes per mostrar"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Defineix visualització personalitzada"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"Defineix la visualització personalitzada"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"Desa"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Cerca als contactes"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Preferits"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"No hi ha cap contacte."</string>
@@ -276,4 +277,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"No s\'ha marcat <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Fa una videotrucada"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"Suprimeix"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"Punts suspensius"</string>
 </resources>

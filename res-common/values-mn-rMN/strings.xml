@@ -159,7 +159,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Харуулах тохиргоог хадгалж байна…"</string>
     <string name="menu_done" msgid="32470053723443112">"Дууссан"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Цуцлах"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Хувийн тохиргоотой харагдац дахь харилцагчид"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"Тусгай харагдац"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Импортолсон харилцагчийн хаягийг хадгалах:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM картаас импорт хийх"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>-с импортлох"</string>
@@ -241,7 +241,8 @@
     <string name="menu_search" msgid="7464453023659824700">"Хайх"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Харуулах харилцагчид"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Харуулах харилцагчид"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Хувийн тохиргоот харагдацыг тодорхойлох"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"Тусгай харагдацыг тодорхойлох"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"Хадгалах"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Харилцагчдаас хайх"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Таалагддаг"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Харилцагч байхгүй."</string>
@@ -278,4 +279,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g>-г шалгаагүй"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Видео дуудлага хийх"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"Устгах"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"Олон цэг"</string>
 </resources>

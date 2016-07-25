@@ -159,7 +159,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"표시 옵션 저장 중..."</string>
     <string name="menu_done" msgid="32470053723443112">"완료"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"취소"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"주소록 맞춤 보기"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"맞춤설정 보기"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"가져온 주소록을 저장할 계정:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM 카드에서 가져오기"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>에서 가져오기"</string>
@@ -239,7 +239,8 @@
     <string name="menu_search" msgid="7464453023659824700">"검색"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"표시할 연락처"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"표시할 연락처"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"맞춤 보기 정의"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"맞춤설정 보기 정의"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"저장"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"연락처 검색"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"즐겨찾기"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"연락처가 없습니다."</string>
@@ -276,4 +277,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> 선택 안함"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"화상 통화 걸기"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"삭제"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"생략 기호"</string>
 </resources>

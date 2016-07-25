@@ -159,7 +159,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Bistaratze-aukerak gordetzen…"</string>
     <string name="menu_done" msgid="32470053723443112">"Eginda"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Utzi"</string>
-    <string name="listCustomView" msgid="1915154113477432033">"Ikuspegi pertsonalizatuko kontaktuak"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"Ikuspegi pertsonalizatua"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Gorde inportatutako kontaktuak hemen:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"Inportatu SIM txarteletik"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"Inportatu SIM honetatik: <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
@@ -239,7 +239,8 @@
     <string name="menu_search" msgid="7464453023659824700">"Bilatu"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Bistaratzeko kontaktuak"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Bistaratzeko kontaktuak"</string>
-    <string name="custom_list_filter" msgid="582616656313514803">"Definitu ikuspegi pertsonalizatua"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"Zehaztu ikuspegi pertsonalizatua"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"Gorde"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Bilatu kontaktuetan"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Gogokoak"</string>
     <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ez dago kontakturik."</string>
@@ -276,4 +277,5 @@
     <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> hautatu gabe"</string>
     <string name="description_search_video_call" msgid="1699305143973045516">"Egin bideo-deia"</string>
     <string name="description_delete_contact" msgid="5792859265342550501">"Ezabatu"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"Elipsia"</string>
 </resources>
