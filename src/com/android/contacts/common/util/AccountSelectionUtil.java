@@ -151,11 +151,14 @@ public class AccountSelectionUtil {
                 }
             };
         }
-        return new AlertDialog.Builder(context)
-            .setTitle(R.string.dialog_new_contact_account)
-            .setSingleChoiceItems(accountAdapter, 0, onClickListener)
-            .setOnCancelListener(onCancelListener)
-            .create();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final TextView title = (TextView) View.inflate(context, R.layout.dialog_title, null);
+        title.setText(R.string.dialog_new_contact_account);
+        builder.setCustomTitle(title);
+        builder.setSingleChoiceItems(accountAdapter, 0, onClickListener);
+        builder.setOnCancelListener(onCancelListener);
+        final AlertDialog result = builder.create();
+        return result;
     }
 
     public static void doImport(Context context, int resId, AccountWithDataSet account,
