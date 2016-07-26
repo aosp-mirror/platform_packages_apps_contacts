@@ -634,6 +634,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                 updateFragmentsVisibility();
                 invalidateOptionsMenu();
                 showFabWithAnimation(shouldShowFabForAccount());
+                // Determine whether the account has pullToRefresh feature
+                if (Flags.getInstance(this).getBoolean(Experiments.PULL_TO_REFRESH)) {
+                    setSwipeRefreshLayoutEnabledOrNot(mContactListFilterController.getFilter());
+                }
                 break;
             case ActionBarAdapter.Listener.Action.CHANGE_SEARCH_QUERY:
                 final String queryString = mActionBarAdapter.getQueryString();
