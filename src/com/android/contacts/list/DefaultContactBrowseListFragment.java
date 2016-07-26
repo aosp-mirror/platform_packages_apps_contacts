@@ -88,7 +88,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     private void bindListHeader(int numberOfContacts) {
         final ContactListFilter filter = getFilter();
-        if (!isSearchMode() && numberOfContacts <= 0) {
+        // If the phone has at least one Google account whose sync status is unsyncable or pending
+        // or active, we have to make mAccountFilterContainer visible.
+        if (!isSearchMode() && numberOfContacts <= 0 && shouldShowEmptyView(filter)) {
             if (filter != null && filter.isContactsFilterType()) {
                 makeViewVisible(mEmptyHomeView);
             } else {
@@ -109,6 +111,38 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         } else {
             hideHeaderAndAddPadding(getContext(), getListView(), mAccountFilterContainer);
         }
+    }
+
+    /**
+     * If at least one Google account is unsyncable or its sync status is pending or active, we
+     * should not show empty view even if the number of contacts is 0. We should show sync status
+     * with empty list instead.
+     */
+    private boolean shouldShowEmptyView(ContactListFilter filter) {
+        if (filter == null) {
+            return true;
+        }
+        // TODO(samchen) : Check ContactListFilter.FILTER_TYPE_CUSTOM
+        if (ContactListFilter.FILTER_TYPE_DEFAULT == filter.filterType
+                || ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS == filter.filterType) {
+            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(getContext())
+                    .getAccounts(/* contactsWritableOnly */ true);
+            final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
+
+            if (syncableAccounts != null && syncableAccounts.size() > 0) {
+                for (Account account : syncableAccounts) {
+                    if (SyncUtil.isSyncStatusPendingOrActive(account)
+                            || SyncUtil.isUnsyncableGoogleAccount(account)) {
+                        return false;
+                    }
+                }
+            }
+        } else if (ContactListFilter.FILTER_TYPE_ACCOUNT == filter.filterType) {
+            final Account account = new Account(filter.accountName, filter.accountType);
+            return !(SyncUtil.isSyncStatusPendingOrActive(account)
+                    || SyncUtil.isUnsyncableGoogleAccount(account));
+        }
+        return true;
     }
 
     // Show the view that's specified by id and hide the other two.
@@ -251,7 +285,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 (int) getResources().getDimension(R.dimen.pull_to_refresh_distance));
     }
 
-    /** Request sync for Google accounts(not include Google+ accounts) in filter. */
+    /**
+     * Request sync for the Google accounts (not include Google+ accounts) specified by the given
+     * filter.
+     */
     private void syncContacts(ContactListFilter filter) {
         if (filter == null) {
             return;
@@ -265,7 +302,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
         if (syncableAccounts != null && syncableAccounts.size() > 0) {
             for (Account account : syncableAccounts) {
-                if (!SyncUtil.isSyncStatusPendingOrActive(account)) {
+                 // We can prioritize Contacts sync if sync is not initialized yet.
+                if (!SyncUtil.isSyncStatusPendingOrActive(account)
+                        || SyncUtil.isUnsyncableGoogleAccount(account)) {
                     ContentResolver.requestSync(account, ContactsContract.AUTHORITY, bundle);
                 }
             }
