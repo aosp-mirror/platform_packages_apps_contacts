@@ -637,12 +637,10 @@ public class ContactListItemView extends ViewGroup
         mBoundsWithoutHeader.set(left + leftBound, topBound, left + rightBound, bottomBound);
         mLeftOffset = left + leftBound;
         mRightOffset = left + rightBound;
-        if (mIsSectionHeaderEnabled) {
-            if (isLayoutRtl) {
-                rightBound -= mGapBetweenIndexerAndImage;
-            } else {
-                leftBound += mGapBetweenIndexerAndImage;
-            }
+        if (isLayoutRtl) {
+            rightBound -= mGapBetweenIndexerAndImage;
+        } else {
+            leftBound += mGapBetweenIndexerAndImage;
         }
 
         if (mActivatedStateSupported && isActivated()) {
