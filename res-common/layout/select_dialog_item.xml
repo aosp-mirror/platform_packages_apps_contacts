@@ -25,6 +25,7 @@
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textAlignment="viewStart"
     android:textColor="?android:attr/textColorAlertDialogListItem"
     android:gravity="center_vertical"
     android:paddingStart="24dip"
