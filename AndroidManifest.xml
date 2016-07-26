@@ -52,7 +52,7 @@
     <!-- Following used for getting the status of the contacts sync adapter -->
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
 
-    <uses-feature android:name="android.hardware.telephony" required="false"/>
+    <uses-feature android:name="android.hardware.telephony" android:required="false"/>
 
     <application
         android:name="com.android.contacts.ContactsApplication"
