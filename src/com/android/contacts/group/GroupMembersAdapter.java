@@ -73,8 +73,8 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
 
     public GroupMembersAdapter(Context context) {
         super(context, GroupMembersQuery.CONTACT_ID);
+
         mUnknownNameText = context.getText(R.string.missing_name);
-        setSectionHeaderDisplayEnabled(true);
     }
 
     /** Sets the ID of the group whose members will be displayed. */
@@ -83,7 +83,7 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
     }
 
     /** Returns the lookup Uri for the contact at the given position in the underlying cursor. */
-    public Uri getContactLookupUri(int position) {
+    public Uri getContactUri(int position) {
         final Cursor cursor = (Cursor) getItem(position);
         final long contactId = cursor.getLong(GroupMembersQuery.CONTACT_ID);
         final String lookupKey = cursor.getString(GroupMembersQuery.CONTACT_LOOKUP_KEY);
@@ -135,13 +135,6 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
         return ((Cursor) getItem(position)).getString(GroupMembersQuery.CONTACT_DISPLAY_NAME);
     }
 
-    public Uri getContactUri(int position) {
-        final Cursor cursor = (Cursor) getItem(position);
-        final long contactId = cursor.getLong(GroupMembersQuery.CONTACT_ID);
-        final String lookupKey = cursor.getString(GroupMembersQuery.CONTACT_LOOKUP_KEY);
-        return Contacts.getLookupUri(contactId, lookupKey);
-    }
-
     @Override
     protected ContactListItemView newView(Context context, int partition, Cursor cursor,
             int position, ViewGroup parent) {
@@ -155,7 +148,6 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
     protected void bindView(View v, int partition, Cursor cursor, int position) {
         super.bindView(v, partition, cursor, position);
         final ContactListItemView view = (ContactListItemView) v;
-        bindViewId(view, cursor, GroupMembersQuery.CONTACT_ID);
         bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
         bindPhoto(view, cursor);

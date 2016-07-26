@@ -148,8 +148,15 @@ public class GroupMemberPickerFragment extends
 
         @Override
         public boolean moveToPosition(int position) {
-            if (position >= mCount || position < 0) return false;
-            return super.moveToPosition(mIndex[position]);
+            if (position >= mCount) {
+                mPos = mCount;
+                return false;
+            } else if (position < 0) {
+                mPos = -1;
+                return false;
+            }
+            mPos = mIndex[position];
+            return super.moveToPosition(mPos);
         }
 
         @Override
