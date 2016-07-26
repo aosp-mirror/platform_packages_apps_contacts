@@ -146,9 +146,19 @@ public abstract class MultiSelectEntryContactListAdapter extends ContactEntryLis
     }
 
     @Override
+    public long getItemId(int position) {
+        Cursor cursor = (Cursor) getItem(position);
+        if (cursor != null) {
+            return cursor.getLong(getContactColumnIdIndex());
+        }
+        return 0;
+     }
+
+    @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         super.bindView(itemView, partition, cursor, position);
         final ContactListItemView view = (ContactListItemView) itemView;
+        bindViewId(view, cursor, getContactColumnIdIndex());
         bindCheckBox(view, cursor, position, partition == ContactsContract.Directory.DEFAULT);
     }
 
