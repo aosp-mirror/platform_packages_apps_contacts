@@ -336,11 +336,17 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         setVisible(menu, R.id.menu_add, isGroupEditable && !isSelectionMode);
         setVisible(menu, R.id.menu_rename_group, !isGroupReadOnly && !isSelectionMode);
         setVisible(menu, R.id.menu_delete_group, !isGroupReadOnly && !isSelectionMode);
-        setVisible(menu, R.id.menu_edit_group, isGroupEditable && !mIsEditMode && !isSelectionMode);
+        setVisible(menu, R.id.menu_edit_group, isGroupEditable && !mIsEditMode && !isSelectionMode
+                && !isGroupEmpty());
         setVisible(menu, R.id.menu_remove_from_group, isGroupEditable && isSelectionMode &&
                 !mIsEditMode);
 
         return true;
+    }
+
+    private boolean isGroupEmpty() {
+        return mMembersFragment != null && mMembersFragment.getAdapter() != null &&
+                mMembersFragment.getAdapter().isEmpty();
     }
 
     private static void setVisible(Menu menu, int id, boolean visible) {
