@@ -24,6 +24,7 @@
 
     <dimen name="directory_header_extra_top_padding">18dp</dimen>
     <dimen name="directory_header_extra_bottom_padding">8dp</dimen>
+    <dimen name="directory_header_left_padding">16dp</dimen>
 
     <!--  Horizontal padding in between contact tiles -->
     <dimen name="contact_tile_divider_padding">23dip</dimen>
