@@ -43,6 +43,7 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.contacts.activities.GroupMembersActivity;
@@ -53,6 +54,7 @@ import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferenceActivity;
 import com.android.contacts.common.util.AccountFilterUtil;
@@ -488,6 +490,16 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             menuItem.setIcon(filter.icon);
             // Get rid of the default menu item overlay and show original account icons.
             menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
+            // Create a dummy action view to attach extra hidden content description to the menuItem
+            // for Talkback. We want Talkback to read out the account type but not have it be part
+            // of the menuItem title.
+            final AccountType account = AccountTypeManager.getInstance(this)
+                    .getAccountType(filter.accountType, filter.dataSet);
+            LinearLayout view = (LinearLayout) LayoutInflater.from(this)
+                    .inflate(R.layout.account_type_info, null);
+            view.setContentDescription(account.getDisplayLabel(this));
+            view.setVisibility(View.VISIBLE);
+            menuItem.setActionView(view);
         }
 
         if (getContactListFilter() != null) {
