@@ -10,8 +10,9 @@
 
     <ImageView
         android:id="@+id/empty_group_image"
-        android:layout_width="@dimen/empty_group_view_image_width"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/empty_group_view_image_height"
+        android:paddingTop="@dimen/empty_group_view_image_padding_top"
         android:scaleType="centerInside"
         android:adjustViewBounds="true"
         android:src="@drawable/label_empty"/>
