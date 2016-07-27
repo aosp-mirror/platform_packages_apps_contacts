@@ -41,6 +41,7 @@
         android:layout_marginStart="@dimen/contact_browser_list_header_text_margin"
         android:layout_marginEnd="@dimen/contact_browser_list_header_right_margin"
         style="@style/ContactListSeparatorTextViewStyle"
+        android:textAlignment="viewStart"
         android:paddingLeft="@dimen/contact_browser_list_item_text_indent"
         android:paddingStart="@dimen/contact_browser_list_item_text_indent" />
 </LinearLayout>
