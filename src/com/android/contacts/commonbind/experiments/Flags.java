@@ -44,6 +44,6 @@ public final class Flags {
     }
 
     public boolean getBoolean(String flagName) {
-        return mMap.containsKey(flagName) ? getBoolean(flagName) : false;
+        return mMap.containsKey(flagName) ? mMap.get(flagName) : false;
     }
 }
