@@ -292,4 +292,7 @@
 
     <!-- Minimum height for group name EditText -->
     <dimen name="group_name_edit_text_min_height">48dp</dimen>
+
+    <!-- Elevation of contact list header -->
+    <dimen name="contact_list_header_elevation">2dp</dimen>
 </resources>

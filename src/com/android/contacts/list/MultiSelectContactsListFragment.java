@@ -30,12 +30,13 @@ import com.android.contacts.common.model.account.GoogleAccountType;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.AbsListView;
 import android.widget.ImageView;
@@ -291,11 +292,10 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
             return;
         }
         if (firstVisibleItem == 0) {
-            accountFilterContainer.setBackground(
-                    new ColorDrawable(getResources().getColor(R.color.background_primary)));
+            ViewCompat.setElevation(accountFilterContainer, 0);
         } else {
-            accountFilterContainer.setBackground(
-                    getResources().getDrawable(R.drawable.account_header_background));
+            ViewCompat.setElevation(accountFilterContainer,
+                    getResources().getDimension(R.dimen.contact_list_header_elevation));
         }
     }
 
@@ -343,8 +343,47 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         final Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
         final ImageView accountFilterHeaderIcon = (ImageView) accountFilterContainer
                 .findViewById(R.id.account_filter_icon);
+
+        // If it's a writable Google account, we set icon size as 24dp; otherwise, we set it as
+        // 20dp. And we need to change margin accordingly. This is because the Google icon looks
+        // smaller when the icons are of the same size.
+        if (accountType instanceof GoogleAccountType) {
+            accountFilterHeaderIcon.getLayoutParams().height = getResources()
+                    .getDimensionPixelOffset(R.dimen.contact_browser_list_header_icon_size);
+            accountFilterHeaderIcon.getLayoutParams().width =
+                    accountFilterHeaderIcon.getLayoutParams().height;
+
+            setMargins(accountFilterHeaderIcon,
+                    getResources().getDimensionPixelOffset(
+                            R.dimen.contact_browser_list_header_icon_left_margin),
+                    getResources().getDimensionPixelOffset(
+                            R.dimen.contact_browser_list_header_icon_right_margin));
+        } else {
+            accountFilterHeaderIcon.getLayoutParams().height = getResources()
+                    .getDimensionPixelOffset(R.dimen.contact_browser_list_header_icon_size_alt);
+            accountFilterHeaderIcon.getLayoutParams().width =
+                    accountFilterHeaderIcon.getLayoutParams().height;
+
+            setMargins(accountFilterHeaderIcon,
+                    getResources().getDimensionPixelOffset(
+                            R.dimen.contact_browser_list_header_icon_left_margin_alt),
+                    getResources().getDimensionPixelOffset(
+                            R.dimen.contact_browser_list_header_icon_right_margin_alt));
+        }
+        accountFilterHeaderIcon.requestLayout();
+
         accountFilterHeaderIcon.setVisibility(View.VISIBLE);
         accountFilterHeaderIcon.setImageDrawable(icon);
+    }
+
+    private void setMargins(View v, int l, int r) {
+        if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            p.setMarginStart(l);
+            p.setMarginEnd(r);
+            v.setLayoutParams(p);
+            v.requestLayout();
+        }
     }
 
     private void bindListHeaderCommon(View listView, View accountFilterContainer) {
