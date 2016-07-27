@@ -1142,7 +1142,8 @@ public class ContactSaveService extends IntentService {
 
     /**
      * Creates an intent that can be sent to this service to split a contact into it's constituent
-     * pieces.
+     * pieces. This will set the raw contact ids to TYPE_AUTOMATIC for AggregationExceptions so
+     * they may be re-merged by the auto-aggregator.
      */
     public static Intent createSplitContactIntent(Context context, long[][] rawContactIds,
             ResultReceiver receiver) {
@@ -1193,7 +1194,7 @@ public class ContactSaveService extends IntentService {
     }
 
     /**
-     * Adds insert aggregation exception ContentProviderOperations between {@param rawContactIds1}
+     * Insert aggregation exception ContentProviderOperations between {@param rawContactIds1}
      * and {@param rawContactIds2} to {@param operations}.
      * @return false if an error occurred, true otherwise.
      */
@@ -1546,13 +1547,13 @@ public class ContactSaveService extends IntentService {
     }
 
     /**
-     * Construct a {@link AggregationExceptions#TYPE_KEEP_SEPARATE} ContentProviderOperation.
+     * Construct a {@link AggregationExceptions#TYPE_AUTOMATIC} ContentProviderOperation.
      */
     private void buildSplitContactDiff(ArrayList<ContentProviderOperation> operations,
             long rawContactId1, long rawContactId2) {
         final Builder builder =
                 ContentProviderOperation.newUpdate(AggregationExceptions.CONTENT_URI);
-        builder.withValue(AggregationExceptions.TYPE, AggregationExceptions.TYPE_KEEP_SEPARATE);
+        builder.withValue(AggregationExceptions.TYPE, AggregationExceptions.TYPE_AUTOMATIC);
         builder.withValue(AggregationExceptions.RAW_CONTACT_ID1, rawContactId1);
         builder.withValue(AggregationExceptions.RAW_CONTACT_ID2, rawContactId2);
         operations.add(builder.build());
