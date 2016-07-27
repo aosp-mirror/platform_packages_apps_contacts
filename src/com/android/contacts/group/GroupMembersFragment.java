@@ -17,7 +17,6 @@ package com.android.contacts.group;
 
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.content.res.Configuration;
@@ -162,8 +161,15 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
 
         @Override
         public boolean moveToPosition(int position) {
-            if (position >= mCount || position < 0) return false;
-            return super.moveToPosition(mIndex[position]);
+            if (position >= mCount) {
+                mPos = mCount;
+                return false;
+            } else if (position < 0) {
+                mPos = -1;
+                return false;
+            }
+            mPos = mIndex[position];
+            return super.moveToPosition(mPos);
         }
 
         @Override
@@ -397,8 +403,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             return;
         }
         if (mListener != null) {
-            final Uri contactLookupUri = getAdapter().getContactLookupUri(position);
-            mListener.onGroupMemberListItemClicked(position, contactLookupUri);
+            mListener.onGroupMemberListItemClicked(position, uri);
         }
     }
 
