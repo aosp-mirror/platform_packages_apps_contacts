@@ -958,21 +958,25 @@ public class QuickContactActivity extends ContactsActivity
         // 2. App doesn't have permission, user denied it previously.
         // 3. App has permission.
         // Permission explanation card is displayed only for case 1.
+        final boolean hasTelephonyFeature =
+                getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+
         final boolean hasCalendarPermission = PermissionsUtil.hasPermission(
                 this, Manifest.permission.READ_CALENDAR);
-        final boolean hasSMSPermission = PermissionsUtil.hasPermission(
-                this, Manifest.permission.READ_SMS);
+        final boolean hasSMSPermission = hasTelephonyFeature
+                && PermissionsUtil.hasPermission(this, Manifest.permission.READ_SMS);
 
         final boolean wasCalendarPermissionDenied =
                 ActivityCompat.shouldShowRequestPermissionRationale(
                         this, Manifest.permission.READ_CALENDAR);
         final boolean wasSMSPermissionDenied =
-                ActivityCompat.shouldShowRequestPermissionRationale(
+                hasTelephonyFeature && ActivityCompat.shouldShowRequestPermissionRationale(
                         this, Manifest.permission.READ_SMS);
 
         final boolean shouldDisplayCalendarMessage =
                 !hasCalendarPermission && !wasCalendarPermissionDenied;
-        final boolean shouldDisplaySMSMessage = !hasSMSPermission && !wasSMSPermissionDenied;
+        final boolean shouldDisplaySMSMessage =
+                hasTelephonyFeature && !hasSMSPermission && !wasSMSPermissionDenied;
         mShouldShowPermissionExplanation = shouldDisplayCalendarMessage || shouldDisplaySMSMessage;
 
         if (shouldDisplayCalendarMessage && shouldDisplaySMSMessage) {
