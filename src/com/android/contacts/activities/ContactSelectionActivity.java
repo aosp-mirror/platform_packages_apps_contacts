@@ -683,11 +683,11 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
             return;
         }
 
-        if (mIsSearchMode) {
+        if (isSelectionMode()) {
+            mActionBarAdapter.setSelectionMode(false);
+        } else if (mIsSearchMode) {
             mIsSearchMode = false;
             configureSearchMode();
-        } else if (isSelectionMode()) {
-            mActionBarAdapter.setSelectionMode(false);
         } else {
             super.onBackPressed();
         }
