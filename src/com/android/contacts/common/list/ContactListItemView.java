@@ -98,6 +98,7 @@ public class ContactListItemView extends ViewGroup
     private int mPresenceIconSize = 16;
     private int mTextIndent = 0;
     private int mTextOffsetTop;
+    private int mAvatarOffsetTop;
     private int mNameTextViewTextSize;
     private int mHeaderWidth;
     private Drawable mActivatedBackgroundDrawable;
@@ -306,6 +307,8 @@ public class ContactListItemView extends ViewGroup
                     R.styleable.ContactListItemView_list_item_text_indent, mTextIndent);
             mTextOffsetTop = a.getDimensionPixelOffset(
                     R.styleable.ContactListItemView_list_item_text_offset_top, mTextOffsetTop);
+            mAvatarOffsetTop = a.getDimensionPixelOffset(
+                    R.styleable.ContactListItemView_list_item_avatar_offset_top, mAvatarOffsetTop);
             mDataViewWidthWeight = a.getInteger(
                     R.styleable.ContactListItemView_list_item_data_width_weight,
                     mDataViewWidthWeight);
@@ -684,7 +687,8 @@ public class ContactListItemView extends ViewGroup
             // Photo is the left most view. All the other Views should on the right of the photo.
             if (photoView != null) {
                 // Center the photo vertically
-                final int photoTop = topBound + (bottomBound - topBound - mPhotoViewHeight) / 2;
+                final int photoTop = topBound + (bottomBound - topBound - mPhotoViewHeight) / 2
+                        + mAvatarOffsetTop;
                 photoView.layout(
                         leftBound,
                         photoTop,
@@ -699,7 +703,8 @@ public class ContactListItemView extends ViewGroup
             // Photo is the right most view. Right bound should be adjusted that way.
             if (photoView != null) {
                 // Center the photo vertically
-                final int photoTop = topBound + (bottomBound - topBound - mPhotoViewHeight) / 2;
+                final int photoTop = topBound + (bottomBound - topBound - mPhotoViewHeight) / 2
+                        + mAvatarOffsetTop;
                 photoView.layout(
                         rightBound - mPhotoViewWidth,
                         photoTop,
