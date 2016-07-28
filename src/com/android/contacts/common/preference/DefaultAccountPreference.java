@@ -20,6 +20,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.preference.ListPreference;
 import android.util.AttributeSet;
+import android.view.View;
 
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
@@ -43,6 +44,12 @@ public class DefaultAccountPreference extends ListPreference {
     public DefaultAccountPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         prepare();
+    }
+
+    @Override
+    protected View onCreateDialogView() {
+        prepare();
+        return super.onCreateDialogView();
     }
 
     private void prepare() {
