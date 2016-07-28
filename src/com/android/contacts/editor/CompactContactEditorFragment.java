@@ -228,6 +228,10 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
 
     @Override
     public void onEditorsBound() {
+        final Activity activity = getActivity();
+        if (activity == null || activity.isFinishing()) {
+            return;
+        }
         getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupsLoaderListener);
     }
 
