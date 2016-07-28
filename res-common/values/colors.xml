@@ -185,4 +185,7 @@
     <color name="custom_filter_divider">#dbdbdb</color>
 
     <color name="material_star_pink">#f50057</color>
+
+    <!-- Primary text color in Contacts app -->
+    <color name="contacts_text_color">#333333</color>
 </resources>

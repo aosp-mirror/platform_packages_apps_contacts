@@ -22,7 +22,7 @@
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
     android:textSize="20sp"
-    android:textColor="#000000"
+    android:textColor="@color/contacts_text_color"
     android:textStyle="bold"
     android:ellipsize="end"
 />
