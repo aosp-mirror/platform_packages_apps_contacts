@@ -20,4 +20,7 @@
     <!-- Layout weight of ListViews in PeopleActivityfor tile favorites list and all
          contacts list in PeopleActivity -->
     <integer name="contact_list_card_layout_weight">6</integer>
+
+    <!-- Top margin ratio for the image for empty group view-->
+    <integer name="empty_group_view_image_margin">8</integer>
 </resources>

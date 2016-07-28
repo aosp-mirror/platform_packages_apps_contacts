@@ -370,11 +370,9 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         final Resources resources = getContext().getResources();
         final DisplayMetrics metrics = resources.getDisplayMetrics();
         final int height = metrics.heightPixels;
-        if (resources.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            params.setMargins(0, height / 8, 0, 0);
-        } else {
-            params.setMargins(0, height / 6, 0, 0);
-        }
+
+        params.setMargins(0,
+                height / getResources().getInteger(R.integer.empty_group_view_image_margin), 0, 0);
         params.gravity = Gravity.CENTER_HORIZONTAL;
         image.setLayoutParams(params);
 

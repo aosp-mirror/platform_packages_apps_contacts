@@ -280,12 +280,15 @@
     <dimen name="nav_activity_horizontal_margin">16dp</dimen>
     <dimen name="nav_activity_vertical_margin">16dp</dimen>
 
+    <!-- Top padding for the image for empty group view-->
+    <dimen name="empty_group_view_image_padding_top">8dp</dimen>
+
+    <!-- Height for the image for empty group view-->
+    <dimen name="empty_group_view_image_height">180dp</dimen>
+
     <!-- Top and Bottom padding for the text for empty group view-->
     <dimen name="empty_group_view_text_padding_top">32dp</dimen>
     <dimen name="empty_group_view_text_padding_bottom">16dp</dimen>
-
-    <!-- Width for the image for empty group view-->
-    <dimen name="empty_group_view_image_width">232dp</dimen>
 
     <!-- End margin of edit group title -->
     <dimen name="edit_group_end_margin">72dp</dimen>

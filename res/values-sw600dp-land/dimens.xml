@@ -18,4 +18,11 @@
     <dimen name="quick_contact_photo_container_height">180dip</dimen>
     <dimen name="detail_contact_photo_size">192dip</dimen>
     <dimen name="detail_contact_photo_margin">16dip</dimen>
+
+    <!-- Height for the image for empty group view-->
+    <dimen name="empty_group_view_image_height">180dp</dimen>
+
+    <!-- Top and Bottom padding for the text for empty group view-->
+    <dimen name="empty_group_view_text_padding_top">32dp</dimen>
+    <dimen name="empty_group_view_text_padding_bottom">16dp</dimen>
 </resources>
