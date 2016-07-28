@@ -28,4 +28,6 @@
     <!-- Fade in/out duration of search and selection -->
     <integer name="action_bar_animation_duration">195</integer>
 
+    <!-- Top margin ratio for the image for empty group view-->
+    <integer name="empty_group_view_image_margin">6</integer>
 </resources>
