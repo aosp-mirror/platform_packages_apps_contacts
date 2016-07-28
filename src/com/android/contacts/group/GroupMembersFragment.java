@@ -19,14 +19,11 @@ import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -363,16 +360,13 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
         final View view = inflater.inflate(R.layout.contact_list_content, /* root */ null);
         final View emptyGroupView = inflater.inflate(R.layout.empty_group_view, null);
+
         final ImageView image = (ImageView) emptyGroupView.findViewById(R.id.empty_group_image);
         final LinearLayout.LayoutParams params =
                 (LinearLayout.LayoutParams) image.getLayoutParams();
-
-        final Resources resources = getContext().getResources();
-        final DisplayMetrics metrics = resources.getDisplayMetrics();
-        final int height = metrics.heightPixels;
-
-        params.setMargins(0,
-                height / getResources().getInteger(R.integer.empty_group_view_image_margin), 0, 0);
+        final int screenHeight = getResources().getDisplayMetrics().heightPixels;
+        params.setMargins(0, screenHeight /
+                getResources().getInteger(R.integer.empty_group_view_image_margin_divisor), 0, 0);
         params.gravity = Gravity.CENTER_HORIZONTAL;
         image.setLayoutParams(params);
 

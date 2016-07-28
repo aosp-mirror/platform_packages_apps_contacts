@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!-- Top margin ratio for the image for empty group view -->
+    <integer name="empty_group_view_image_margin_divisor">4</integer>
+</resources>

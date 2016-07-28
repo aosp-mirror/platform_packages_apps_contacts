@@ -48,6 +48,6 @@
     <!-- End margin of edit group title -->
     <dimen name="edit_group_end_margin">80dp</dimen>
 
-    <!-- Top padding for the image for empty group view-->
+    <!-- Top padding for the image for empty group view -->
     <dimen name="empty_group_view_image_padding_top">0dp</dimen>
 </resources>
