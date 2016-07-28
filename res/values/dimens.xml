@@ -295,4 +295,7 @@
 
     <!-- Distance to pull down before causing a refresh. -->
     <dimen name="pull_to_refresh_distance">40dp</dimen>
+
+    <!-- Elevation of contact list header -->
+    <dimen name="contact_list_header_elevation">2dp</dimen>
 </resources>

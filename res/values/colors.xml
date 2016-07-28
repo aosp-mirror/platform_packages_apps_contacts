@@ -60,9 +60,6 @@
     <!-- Background color of pinned header items. -->
     <color name="list_item_pinned_header_color">@color/background_primary</color>
 
-    <!-- 8% black. -->
-    <color name="list_item_account_header_border_color">#15000000</color>
-
     <!-- Color of the mime-type icons inside the editor. 50% black. -->
     <color name="editor_icon_color">#7f7f7f</color>
 
