@@ -765,6 +765,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                 mCurTransaction = mFragmentManager.beginTransaction();
             }
             Fragment f = getFragment(position);
+            if (!mIsRecreatedInstance && (f instanceof DefaultContactBrowseListFragment)) {
+                mCurTransaction.setCustomAnimations(android.R.animator.fade_in,
+                        android.R.animator.fade_out);
+            }
             mCurTransaction.show(f);
 
             // Non primary pages are not visible.
