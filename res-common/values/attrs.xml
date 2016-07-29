@@ -61,6 +61,7 @@
         <attr name="list_item_name_text_size" format="dimension"/>
         <attr name="list_item_text_indent" format="dimension"/>
         <attr name="list_item_text_offset_top" format="dimension"/>
+        <attr name="list_item_avatar_offset_top" format="dimension"/>
         <attr name="list_item_data_width_weight" format="integer"/>
         <attr name="list_item_label_width_weight" format="integer"/>
         <attr name="list_item_video_call_icon_size" format="dimension"/>
