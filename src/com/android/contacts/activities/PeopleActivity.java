@@ -187,7 +187,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
     // Update sync status for accounts in current ContactListFilter
     private void onSyncStateUpdated() {
-        if (mActionBarAdapter.isSearchMode()) {
+        if (mActionBarAdapter.isSearchMode() || mActionBarAdapter.isSelectionMode()) {
             return;
         }
 
@@ -1507,7 +1507,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         swipeRefreshLayout.setRefreshing(false);
         swipeRefreshLayout.setEnabled(false);
 
-        if (filter != null && !mActionBarAdapter.isSearchMode()) {
+        if (filter != null && !mActionBarAdapter.isSearchMode()
+                && !mActionBarAdapter.isSelectionMode()) {
             final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
                     .getAccounts(/* contactsWritableOnly */ true);
             if (filter.isSyncable(accounts)) {
