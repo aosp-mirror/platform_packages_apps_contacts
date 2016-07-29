@@ -255,9 +255,14 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
             toast(getToastMessageForSaveAction(newIntent.getAction()));
 
-            // If we're editing the group, don't reload the fragment so the user can
-            // continue to remove group members one by one
-            if (!mIsEditMode && !ACTION_REMOVE_FROM_GROUP.equals(newIntent.getAction())) {
+            if (mIsEditMode) {
+                // If we're removing group members one at a time, don't reload the fragment so
+                // the user can continue to remove group members one by one
+                if (getGroupCount() == 1) {
+                    // If we're deleting the last group member, exit edit mode
+                    onBackPressed();
+                }
+            } else if (!ACTION_REMOVE_FROM_GROUP.equals(newIntent.getAction())) {
                 replaceGroupMembersFragment();
                 invalidateOptionsMenu();
             }
@@ -279,6 +284,11 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         if (ACTION_ADD_TO_GROUP.equals(action)) return R.string.groupMembersAddedToast;
         if (ACTION_REMOVE_FROM_GROUP.equals(action)) return R.string.groupMembersRemovedToast;
         throw new IllegalArgumentException("Unhanded contact save action " + action);
+    }
+
+    private int getGroupCount() {
+        return mMembersFragment != null && mMembersFragment.getAdapter() != null
+                ? mMembersFragment.getAdapter().getCount() : -1;
     }
 
     private void replaceGroupMembersFragment() {
