@@ -23,7 +23,6 @@
     <dimen name="group_detail_border_padding">16dip</dimen>
     <dimen name="search_view_width">400dip</dimen>
     <dimen name="contact_browser_list_item_text_size">18sp</dimen>
-    <dimen name="contact_browser_list_item_photo_size">50dp</dimen>
     <dimen name="contact_browser_list_item_gap_between_image_and_text">25dp</dimen>
     <dimen name="contact_browser_list_item_gap_between_indexer_and_image">25dp</dimen>
     <dimen name="contact_browser_list_top_margin">18dp</dimen>
