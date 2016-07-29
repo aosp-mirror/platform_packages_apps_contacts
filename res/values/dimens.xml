@@ -248,7 +248,8 @@
          We have to be more careful in landscape. -->
     <dimen name="people_activity_landscape_tabs_text_size">8dp</dimen>
 
-    <dimen name="update_contact_list_top_margin">120dp</dimen>
+    <!-- Top margin of the text message when provider status is busy -->
+    <dimen name="update_contact_list_top_margin">188dp</dimen>
 
     <dimen name="expanding_entry_card_item_icon_height">24dp</dimen>
     <dimen name="expanding_entry_card_item_icon_width">24dp</dimen>
@@ -305,4 +306,19 @@
 
     <!-- Extra margin above image in empty account view -->
     <dimen name="empty_account_view_image_offset">30dp</dimen>
+
+    <!-- Margin offset b/w the image top and app bar bottom for no account empty view -->
+    <dimen name="contacts_no_account_empty_image_offset">230dp</dimen>
+
+    <!-- Width for the image for contacts no account empty view -->
+    <dimen name="contacts_no_account_empty_image_width">180dp</dimen>
+
+    <!-- Top padding for the text for no account empty view -->
+    <dimen name="contacts_no_account_empty_text_padding_top">32dp</dimen>
+
+    <!-- Top padding for add account button for no account empty view -->
+    <dimen name="contacts_no_account_empty_button_padding_top">16dp</dimen>
+
+    <!-- Margin b/w add account button and import contacts button for no account empty view -->
+    <dimen name="contacts_no_account_buttons_margin">8dp</dimen>
 </resources>

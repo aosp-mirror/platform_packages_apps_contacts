@@ -28,6 +28,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -66,6 +67,17 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mView = inflater.inflate(R.layout.contacts_unavailable_fragment, null);
 
         mImageView = (ImageView) mView.findViewById(R.id.empty_image);
+        final LinearLayout.LayoutParams layoutParams =
+                (LinearLayout.LayoutParams) mImageView.getLayoutParams();
+        final int screenHeight = getResources().getDisplayMetrics().heightPixels;
+        final int topMargin =
+                screenHeight / getResources()
+                        .getInteger(R.integer.contacts_no_account_empty_image_margin_divisor)
+                - getResources()
+                        .getDimensionPixelSize(R.dimen.contacts_no_account_empty_image_offset);
+        layoutParams.setMargins(0, topMargin, 0, 0);
+        layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
+        mImageView.setLayoutParams(layoutParams);
 
         mMessageView = (TextView) mView.findViewById(R.id.message);
         mAddAccountButton = (Button) mView.findViewById(R.id.add_account_button);
@@ -127,20 +139,17 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
      */
     private void updateViewsForBusyStatus(int resId) {
         mMessageView.setText(resId);
-        mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
         mMessageView.setVisibility(View.VISIBLE);
+        mImageView.setVisibility(View.GONE);
         updateButtonVisibilty(View.GONE);
         mProgress.setVisibility(View.VISIBLE);
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            final ViewGroup.MarginLayoutParams lp =
-                    (ViewGroup.MarginLayoutParams) mMessageView.getLayoutParams();
-            final int marginTop =
-                    (int) getResources().getDimension(R.dimen.update_contact_list_top_margin);
-            lp.setMargins(0, marginTop, 0, 0);
-            mImageView.setVisibility(View.GONE);
-        } else {
-            mImageView.setVisibility(View.INVISIBLE);
-        }
+
+        final ViewGroup.MarginLayoutParams layoutParams =
+                (ViewGroup.MarginLayoutParams) mMessageView.getLayoutParams();
+        final int marginTop =
+                (int) getResources().getDimension(R.dimen.update_contact_list_top_margin);
+        layoutParams.setMargins(0, marginTop, 0, 0);
+        mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
     @Override
@@ -173,7 +182,6 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
                 mMessageView.setVisibility(View.VISIBLE);
                 if (callerTab == TabState.ALL) {
-                    mImageView.setImageResource(R.drawable.ic_person_black_128dp);
                     updateButtonVisibilty(View.VISIBLE);
                 }
             } else {

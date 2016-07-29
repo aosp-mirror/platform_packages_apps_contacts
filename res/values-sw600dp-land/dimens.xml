@@ -27,4 +27,10 @@
 
     <!-- Gap b/w image view and top of the screen in empty main view -->
     <dimen name="empty_home_view_image_offset">175dp</dimen>
+
+    <!-- Width for the image for contacts no account empty view -->
+    <dimen name="contacts_no_account_empty_image_width">180dp</dimen>
+
+    <!-- Margin offset b/w the image top and app bar bottom for no account empty view -->
+    <dimen name="contacts_no_account_empty_image_offset">175dp</dimen>
 </resources>
