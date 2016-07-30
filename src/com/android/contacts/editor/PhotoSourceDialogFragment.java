@@ -26,6 +26,8 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -91,8 +93,10 @@ public class PhotoSourceDialogFragment extends DialogFragment {
         };
 
         // Build the AlertDialog
+        final TextView title = (TextView) View.inflate(getActivity(), R.layout.dialog_title, null);
+        title.setText(R.string.menu_change_photo);
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.menu_change_photo);
+        builder.setCustomTitle(title);
         builder.setItems(items, clickListener);
         builder.setNegativeButton(android.R.string.cancel, /* listener =*/ null);
         return builder.create();
