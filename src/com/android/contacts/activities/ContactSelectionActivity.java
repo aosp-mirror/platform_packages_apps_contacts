@@ -685,6 +685,9 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
 
         if (isSelectionMode()) {
             mActionBarAdapter.setSelectionMode(false);
+            if (getMultiSelectListFragment() != null) {
+                getMultiSelectListFragment().displayCheckBoxes(false);
+            }
         } else if (mIsSearchMode) {
             mIsSearchMode = false;
             configureSearchMode();
