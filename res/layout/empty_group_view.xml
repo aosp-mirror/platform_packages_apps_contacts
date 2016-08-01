@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingTop="@dimen/empty_group_view_text_padding_top"
-        android:paddingBottom="@dimen/empty_group_view_text_padding_bottom"
         android:text="@string/emptyGroup"
         style="@style/EmptyStateTextStyle"/>
 

@@ -22,7 +22,6 @@
     <!-- Height for the image for empty group view-->
     <dimen name="empty_group_view_image_height">180dp</dimen>
 
-    <!-- Top and Bottom padding for the text for empty group view-->
+    <!-- Top padding for the text for empty group view -->
     <dimen name="empty_group_view_text_padding_top">32dp</dimen>
-    <dimen name="empty_group_view_text_padding_bottom">16dp</dimen>
 </resources>
