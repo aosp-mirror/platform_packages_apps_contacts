@@ -18,11 +18,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingTop="24dp"
+    android:paddingTop="18dp"
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
     android:textSize="20sp"
     android:textColor="@color/contacts_text_color"
-    android:textStyle="bold"
+    android:fontFamily="sans-serif-medium"
     android:ellipsize="end"
 />
