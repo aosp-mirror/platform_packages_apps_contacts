@@ -112,6 +112,7 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_CONTACT_URI = "contactUri";
     public static final String EXTRA_CONTACT_IDS = "contactIds";
     public static final String EXTRA_STARRED_FLAG = "starred";
+    public static final String EXTRA_DISPLAY_NAME = "extraDisplayName";
 
     public static final String ACTION_SET_SUPER_PRIMARY = "setSuperPrimary";
     public static final String ACTION_CLEAR_PRIMARY = "clearPrimary";
@@ -1293,6 +1294,7 @@ public class ContactSaveService extends IntentService {
 
     private void joinSeveralContacts(Intent intent) {
         final long[] contactIds = intent.getLongArrayExtra(EXTRA_CONTACT_IDS);
+
         final ResultReceiver receiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER);
 
         // Load raw contact IDs for all contacts involved.
@@ -1334,14 +1336,38 @@ public class ContactSaveService extends IntentService {
             }
             return;
         }
+
         if (receiver != null) {
             final Bundle result = new Bundle();
             result.putSerializable(EXTRA_RAW_CONTACT_IDS, separatedRawContactIds);
+            result.putString(EXTRA_DISPLAY_NAME, queryNameOfLinkedContacts(contactIds));
             receiver.send(CONTACTS_LINKED, result);
         } else {
             showToast(R.string.contactsJoinedMessage);
         }
     }
+
+    // Get the display name of the top-level contact after the contacts have been linked.
+    private String queryNameOfLinkedContacts(long[] contactIds) {
+        final StringBuilder whereBuilder = new StringBuilder(Contacts._ID).append(" IN (");
+        final String[] whereArgs = new String[contactIds.length];
+        for (int i = 0; i < contactIds.length; i++) {
+            whereArgs[i] = String.valueOf(contactIds[i]);
+            whereBuilder.append("?,");
+        }
+        whereBuilder.deleteCharAt(whereBuilder.length() - 1).append(')');
+        final Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
+                new String[]{Contacts.DISPLAY_NAME}, whereBuilder.toString(), whereArgs, null);
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getString(0);
+            }
+            return null;
+        } finally {
+            cursor.close();
+        }
+    }
+
 
     /** Returns true if the batch was successfully applied and false otherwise. */
     private boolean applyOperations(ContentResolver resolver,
