@@ -25,6 +25,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="gone"
     android:background="?attr/contact_browser_background" >
 
     <!-- Shown only when an Account filter is set.
@@ -50,6 +51,7 @@
             android:paddingTop="?attr/list_item_padding_top"
             android:clipToPadding="false"
             android:fastScrollEnabled="true"
+            android:visibility="gone"
             android:fadingEdge="none" />
         <ProgressBar
             android:id="@+id/search_progress"

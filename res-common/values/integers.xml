@@ -36,4 +36,7 @@
 
     <!-- A big number to make sure "About contacts" always showing at the bottom of Settings.-->
     <integer name="about_contacts_order_number">100</integer>
+
+    <!-- Duration of the animations when a contact list loads. -->
+    <integer name="lists_on_load_animation_duration">190</integer>
 </resources>
