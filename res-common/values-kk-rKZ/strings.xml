@@ -159,7 +159,7 @@
     <string name="savingDisplayGroups" msgid="6863012138107446030">"Дисплей опцияларын сақтау…"</string>
     <string name="menu_done" msgid="32470053723443112">"Дайын"</string>
     <string name="menu_doNotSave" msgid="6012426160993364871">"Бас тарту"</string>
-    <string name="listCustomView" msgid="6028436654382131381">"Теңшелген көрініс"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"Реттелген көрініс"</string>
     <string name="dialog_new_contact_account" msgid="32435918254518570">"Импортталған контактілерді келесіге сақтау:"</string>
     <string name="import_from_sim" msgid="4749894687871835873">"SIM картадан импорттау"</string>
     <string name="import_from_sim_summary" msgid="2306434118233541675">"<xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g> SIM картасынан импорттау"</string>
@@ -243,7 +243,7 @@
     <string name="menu_search" msgid="7464453023659824700">"Іздеу"</string>
     <string name="menu_contacts_filter" msgid="586356478145511794">"Көрсетілетін контактілер"</string>
     <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Көрсетілетін контактілер"</string>
-    <string name="custom_list_filter" msgid="4075228878875354341">"Теңшелген көріністі анықтау"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"Реттелген көріністі анықтау"</string>
     <string name="menu_custom_filter_save" msgid="6026814211328635312">"Сақтау"</string>
     <string name="hint_findContacts" msgid="5348098493767051775">"Контактілерді іздеу"</string>
     <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Сүйіктілер"</string>

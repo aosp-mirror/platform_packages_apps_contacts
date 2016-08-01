@@ -168,7 +168,7 @@
     <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"وارد کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شود؟"</string>
     <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"صادر کردن به <xliff:g id="FILENAME">%s</xliff:g> لغو شود؟"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"وارد/صادرکردن کارت ویزیت لغو نمی‌شود"</string>
-    <string name="fail_reason_unknown" msgid="8541352164960008557">"خطای ناشناخته."</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"خطای ناشناس."</string>
     <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" باز نشد: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"صادر کننده راه‌اندازی نشد: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"هیچ مخاطب قابل صدوری موجود نیست."</string>
