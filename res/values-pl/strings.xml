@@ -52,8 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Zadzwoń do kontaktu"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Wyślij tekst do kontaktu"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Rozłącz"</string>
-    <!-- no translation found for menu_editGroup (6696843438454341063) -->
-    <skip />
+    <string name="menu_editGroup" msgid="6696843438454341063">"Usuń kontakty"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Zmień nazwę etykiety"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Usuń etykietę"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Dodaj kontakt"</string>
@@ -250,19 +249,18 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Edytuj dalej"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Szukaj kontaktów"</string>
-    <!-- no translation found for title_edit_group (8602752287270586734) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Usuń kontakty"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mój profil lokalny"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mój profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Wyświetlanie wszystkich kontaktów"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Zapewnij bezpieczeństwo swoich kontaktów nawet w przypadku utraty telefonu: włącz synchronizację z usługą online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Dodaj konto"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kopia zapasowa nowego kontaktu nie zostanie utworzona. Dodać konto, na którym kopie zapasowe kontaktów będą tworzone online?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Nowe kontakty zostaną zapisane na koncie <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Wybierz domyślne konto dla nowych kontaktów:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dodaj nowy kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edytuj kontakt"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Przechowuj lokalnie"</string>
     <string name="add_account" msgid="8201790677994503186">"Dodaj konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj nowe konto"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksportuj pliki bazy danych"</string>
