@@ -17,6 +17,6 @@
     <!-- Number of lines the QuickContact title can have -->
     <integer name="quickcontact_title_lines">2</integer>
 
-    <!-- Top margin ratio for the image for empty group view-->
-    <integer name="empty_group_view_image_margin">12</integer>
+    <!-- Top margin ratio for the image for empty group view -->
+    <integer name="empty_group_view_image_margin_divisor">12</integer>
 </resources>
