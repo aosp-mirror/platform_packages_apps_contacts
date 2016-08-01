@@ -148,7 +148,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
 
             // This button allows the user to continue editing the contact as a phone-only
             // local contact.
-            leftButton.setText(getString(R.string.keep_local));
+            leftButton.setText(getString(android.R.string.cancel));
             leftButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
