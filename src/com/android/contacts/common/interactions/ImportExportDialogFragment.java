@@ -218,10 +218,12 @@ public class ImportExportDialogFragment extends DialogFragment
                 }
             }
         };
+        final TextView title = (TextView) View.inflate(getActivity(), R.layout.dialog_title, null);
+        title.setText(contactsAreAvailable
+                ? R.string.dialog_import_export
+                : R.string.dialog_import);
         return new AlertDialog.Builder(getActivity())
-                .setTitle(contactsAreAvailable
-                        ? R.string.dialog_import_export
-                        : R.string.dialog_import)
+                .setCustomTitle(title)
                 .setSingleChoiceItems(adapter, -1, clickListener)
                 .create();
     }
