@@ -16,6 +16,23 @@
 
 package com.android.contacts.list;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.v4.view.ViewCompat;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.android.contacts.R;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
@@ -27,20 +44,6 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.GoogleAccountType;
-
-import android.content.Context;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.v4.view.ViewCompat;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityEvent;
-import android.widget.AbsListView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +57,7 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         extends ContactEntryListFragment<T>
         implements SelectedContactsListener {
 
+    protected boolean mAnimateOnLoad;
     private static final String TAG = "MultiContactsList";
 
     public interface OnCheckBoxListActionListener {
@@ -89,9 +93,23 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         mSearchResultClicked = false;
     }
 
+    public void setAnimateOnLoad(boolean shouldAnimate) {
+        mAnimateOnLoad = shouldAnimate;
+    }
+
     @Override
     public void onSelectedContactsChanged() {
         if (mCheckBoxListListener != null) mCheckBoxListListener.onSelectedContactIdsChanged();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        if (savedInstanceState == null && mAnimateOnLoad) {
+            setLayoutAnimation(getListView(), R.anim.slide_and_fade_in_layout_animation);
+        }
+        return getView();
     }
 
     @Override
@@ -281,6 +299,27 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
             }
         }
         return searchState;
+    }
+
+    protected void setLayoutAnimation(final ViewGroup view, int animationId) {
+        if (view == null) {
+            return;
+        }
+        view.setLayoutAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                view.setLayoutAnimation(null);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+        view.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getActivity(), animationId));
     }
 
     @Override
