@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/group_name_edit_text_min_height"
         android:layout_marginBottom="4dp"
-        android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginTop="16dp"
         android:hint="@string/group_name_dialog_hint"
