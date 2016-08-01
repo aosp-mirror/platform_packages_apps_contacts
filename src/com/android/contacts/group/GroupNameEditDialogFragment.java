@@ -31,6 +31,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.contacts.R;
 
@@ -91,10 +92,12 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Build a dialog with two buttons and a view of a single EditText input field
+        final TextView title = (TextView) View.inflate(getActivity(), R.layout.dialog_title, null);
+        title.setText(mIsInsert
+                ? R.string.group_name_dialog_insert_title
+                : R.string.group_name_dialog_update_title);
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
-                .setTitle(mIsInsert
-                        ? R.string.group_name_dialog_insert_title
-                        : R.string.group_name_dialog_update_title)
+                .setCustomTitle(title)
                 .setView(R.layout.group_name_edit_dialog)
                 .setNegativeButton(android.R.string.cancel, new OnClickListener() {
                     @Override
