@@ -90,7 +90,7 @@ public final class AccountsListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final View resultView = convertView != null ? convertView :
                 mInflater.inflate(mCustomLayout > 0 ? mCustomLayout :
-                        R.layout.account_selector_list_item, parent, false);
+                        R.layout.account_selector_list_item_condensed, parent, false);
 
         final TextView text1 = (TextView) resultView.findViewById(android.R.id.text1);
         final TextView text2 = (TextView) resultView.findViewById(android.R.id.text2);
