@@ -241,12 +241,12 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"అన్ని పరిచయాలను ప్రదర్శిస్తోంది"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"మీరు మీ ఫోన్‌ను పోగొట్టుకున్నప్పటికీ మీ పరిచయాలను సురక్షితంగా ఉంచుకోండి: ఆన్‌లైన్ సేవతో సమకాలీకరించండి."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ఖాతాను జోడించండి"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"మీ కొత్త పరిచయం బ్యాకప్ చేయబడదు. ఆన్‌లైన్‌లో పరిచయాలను బ్యాకప్ చేసే ఖాతాను జోడించాలా?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"కొత్త పరిచయాలు <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>కి సేవ్ చేయబడతాయి."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"కొత్త పరిచయాల కోసం డిఫాల్ట్ ఖాతాను ఎంచుకోండి:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"కొత్త పరిచయం చేర్చు"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"సవరించండి"</string>
-    <string name="keep_local" msgid="1258761699192993322">"స్థానికంగా ఉంచండి"</string>
     <string name="add_account" msgid="8201790677994503186">"ఖాతాను జోడించు"</string>
     <string name="add_new_account" msgid="5748627740680940264">"కొత్త ఖాతాను జోడించు"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"డేటాబేస్ ఫైల్‌లను ఎగుమతి చేయి"</string>

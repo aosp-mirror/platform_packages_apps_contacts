@@ -52,8 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Tawagan ang contact"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Mag-text sa contact"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"I-unlink"</string>
-    <!-- no translation found for menu_editGroup (6696843438454341063) -->
-    <skip />
+    <string name="menu_editGroup" msgid="6696843438454341063">"Alisin ang mga contact"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Palitan ang pangalan ng label"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"I-delete ang label"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Magdagdag ng contact"</string>
@@ -236,19 +235,18 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Patuloy na mag-edit"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Maghanap ng mga contact"</string>
-    <!-- no translation found for title_edit_group (8602752287270586734) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Alisin ang mga contact"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Aking lokal na profile"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Aking <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> na profile"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ipinapakita ang lahat ng contact"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Panatilihing ligtas ang iyong mga contact kahit na mawala mo ang iyong telepono: mag-synchronize sa isang online na serbisyo."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Magdagdag ng account"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Hindi maba-back up ang iyong bagong contact. Magdagdag ng account na nagba-back up ng mga contact online?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Mase-save ang mga bagong contact sa <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Pumili ng default na account para sa mga bagong contact:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Mag-add ng contact"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"I-edit"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Panatilihing lokal"</string>
     <string name="add_account" msgid="8201790677994503186">"Magdagdag ng account"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Magdagdag ng bagong account"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"I-export ang mga file ng database"</string>

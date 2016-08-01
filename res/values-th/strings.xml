@@ -241,12 +241,12 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"แสดงรายชื่อติดต่อทั้งหมด"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"เก็บรายชื่อติดต่อของคุณไว้อย่างปลอดภัยด้วยการซิงค์กับบริการออนไลน์แม้ว่าคุณจะทำโทรศัพท์หาย"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"เพิ่มบัญชี"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"รายชื่อติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลรายชื่อติดต่อออนไลน์ไหม"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"รายชื่อติดต่อใหม่จะบันทึกไว้ใน <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"เลือกบัญชีเริ่มต้นสำหรับรายชื่อติดต่อใหม่:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"เพิ่มรายชื่อติดต่อ"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"แก้ไขรายชื่อติดต่อ"</string>
-    <string name="keep_local" msgid="1258761699192993322">"จัดเก็บในตัวเครื่อง"</string>
     <string name="add_account" msgid="8201790677994503186">"เพิ่มบัญชี"</string>
     <string name="add_new_account" msgid="5748627740680940264">"เพิ่มบัญชีใหม่"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ส่งออกไฟล์ฐานข้อมูล"</string>

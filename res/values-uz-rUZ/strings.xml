@@ -241,12 +241,12 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Barcha kontaktlar ko‘rsatilmoqda"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Onlayn xizmat yordamida sinxronlab, telefoningiz yo‘qolganda ham kontaktlaringizni saqlab qoling."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Hisob qo‘shish"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Yangi kontaktning zaxira nusxasi saqlanmaydi. Kontaktlarni internetga saqlash uchun hisob qo‘shilsinmi?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Yangi kontaktlar <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> hisobiga saqlanadi."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Yangi kontaktlar uchun birlamchi hisobni tanlang:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Yangi kontakt qo‘shish"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Kontaktni tahrirlash"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Qurilmaga saqlash"</string>
     <string name="add_account" msgid="8201790677994503186">"Hisob qo‘shish"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Yangi hisob qo‘shish"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Ma’lumotlar bazasi fayllarini eksport qilish"</string>
@@ -320,7 +320,7 @@
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Bog‘langan kontaktlar"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Hisoblaringizdan olingan"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Suratga olish"</string>
-    <string name="all_photos_button" msgid="1943122929420111351">"Barcha rasmlar"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"Barcha suratlar"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Surat tanlash"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> tomonidan"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>ni o‘chirish"</string>

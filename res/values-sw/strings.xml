@@ -52,8 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Mpigie"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Tuma ujumbe kwa anwani"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Tenganisha"</string>
-    <!-- no translation found for menu_editGroup (6696843438454341063) -->
-    <skip />
+    <string name="menu_editGroup" msgid="6696843438454341063">"Ondoa anwani"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Badilisha jina la lebo"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Futa lebo"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Ongeza anwani"</string>
@@ -236,19 +235,18 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Endelea kubadilisha"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Tafuta anwani"</string>
-    <!-- no translation found for title_edit_group (8602752287270586734) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Ondoa anwani"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Wasifu wangu wa ndani."</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Wasifu wangu wa <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Inaonyesha anwani zote"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Weka anwani za unaowasiliana nao salama hata ukipoteza simu yako: sawazisha kwa huduma iliyo mtandaoni."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Ongeza akaunti"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Anwani yako mpya haitakuwa na nakala rudufu. Je, ungependa kuongeza akaunti ambayo inahifadhi nakala za anwani mtandaoni?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Anwani mpya zitahifadhiwa kwenye <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Chagua akaunti ya msingi ya anwani mpya:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ongeza anwani mpya"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Badilisha anwani"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Weka ndani ya kifaa"</string>
     <string name="add_account" msgid="8201790677994503186">"Ongeza akaunti"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ongeza akaunti mpya"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Hamisha faili za hifadhidata"</string>
