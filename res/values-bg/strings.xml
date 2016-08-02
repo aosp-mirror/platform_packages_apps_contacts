@@ -52,8 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Обаждане на контакт"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Изпращaне на SMS на контакт"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Разделяне"</string>
-    <!-- no translation found for menu_editGroup (6696843438454341063) -->
-    <skip />
+    <string name="menu_editGroup" msgid="6696843438454341063">"Премахване на контакти"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Преименуване на етикета"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Изтриване на етикета"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Добавяне на контакт"</string>
@@ -236,19 +235,18 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Продължаване с редактирането"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Търсене в контактите"</string>
-    <!-- no translation found for title_edit_group (8602752287270586734) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Премахване на контакти"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Моят локален потр. профил"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Потр. ми профил <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Показват се всички контакти"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Погрижете се за безопасността на контактите си, ако загубите своя телефон: синхронизирайте с онлайн услуга."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Добавяне на профил"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"За новия ви контакт няма да бъде създадено резервно копие. Да се добави ли профил, в който да се създават такива копия на контактите онлайн?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Новите контакти ще се запазват в/ъв <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Изберете стандартен профил за новите контакти:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Добавяне"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Редактиране"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Съхраняване локално"</string>
     <string name="add_account" msgid="8201790677994503186">"Добавяне"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Добавяне на нов профил"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Експортиране на файловете на базата от данни"</string>

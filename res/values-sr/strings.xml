@@ -248,12 +248,12 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Приказани су сви контакти"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Очувајте безбедност контаката чак и ако изгубите телефон – синхронизујте са услугом на мрежи."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Додавање налога"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Неће бити направљена резервна копија новог контакта. Желите ли да додате налог који прави резервну копију контаката онлајн?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Нови контакти ће бити сачувани на налогу <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Изаберите подразумевани налог за нове контакте:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додај нови контакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Измени контакт"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Задржи локално"</string>
     <string name="add_account" msgid="8201790677994503186">"Додај налог"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Додај нови налог"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Извези датотеке базе података"</string>

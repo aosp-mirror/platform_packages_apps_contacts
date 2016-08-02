@@ -241,12 +241,12 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Бардык байланыштарды көрсөтүү"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Телефонуңузду жоготсоңуз дагы, байланыштарыңызды жоготпоңуз: онлайн кызмат менен синхрондоңуз."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Эсеп кошуу"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Жаңы байланыштын камдык көчүрмөсү сакталбайт. Байланыштарды Интернетте сактоо үчүн каттоо эсеби кошулсунбу?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Жаңы байланыштар <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ичине сакталат."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Жаңы байланыштар үчүн демейки каттоо эсебин тандаңыз:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Жаңы байланыш кошуу"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Байланышты түзөтүү"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Компьютерге сактоо"</string>
     <string name="add_account" msgid="8201790677994503186">"Эсеп кошуу"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Жаңы эсеп кошуу"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Берилиштер корлорунун файлдарын экспорттоо"</string>

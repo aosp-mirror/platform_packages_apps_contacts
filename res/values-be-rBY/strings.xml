@@ -52,8 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Выклікаць кантакт"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Паведамленне кантакту"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Выдаліць сувязь"</string>
-    <!-- no translation found for menu_editGroup (6696843438454341063) -->
-    <skip />
+    <string name="menu_editGroup" msgid="6696843438454341063">"Выдаліць кантакты"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Перайменаваць метку"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Выдаліць метку"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Дадаць кантакт"</string>
@@ -250,19 +249,18 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Працягнуць рэдагаванне"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Пошук кантактаў"</string>
-    <!-- no translation found for title_edit_group (8602752287270586734) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Выдаліць кантакты"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мой лакальны профіль"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мой профіль у <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Адлюстраванне ўсіх кантактаў"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Абаранiце свае кантакты, нават калі страціце тэлефон: сінхранізуйце iх з вэб-службай."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Дадаць уліковы запіс"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Рэзервовая копiя вашага новага кантакту не будзе створана. Дадаць улiковы запiс, у якiм будуць захоўвацца рэзервовыя копii кантактаў у Iнтэрнэце?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Новыя кантакты будуць захаваны ва ўліковы запіс <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Выбраць уліковы запіс па змаўчанні для новых кантактаў:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Дадаць новы кантакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Рэдагаваць кантакт"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Захоўваць лакальна"</string>
     <string name="add_account" msgid="8201790677994503186">"Дадаць уліковы запіс"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Дадаць новы ўліковы запіс"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Экспарт базы дадзеных файлаў"</string>

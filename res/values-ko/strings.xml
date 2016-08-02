@@ -241,12 +241,12 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"모든 연락처 표시"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"온라인 서비스와 동기화되므로 휴대전화를 잃어버려도 주소록을 안전하게 유지할 수 있습니다."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"계정 추가"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"새 연락처는 백업되지 않습니다. 온라인에 주소록을 백업할 계정을 추가하시겠습니까?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"새 연락처가 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>에 저장됩니다."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"새 연락처에 대한 기본 계정 선택:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"새 연락처 추가"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"연락처 수정"</string>
-    <string name="keep_local" msgid="1258761699192993322">"오프라인 보관"</string>
     <string name="add_account" msgid="8201790677994503186">"계정 추가"</string>
     <string name="add_new_account" msgid="5748627740680940264">"새 계정 추가"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"데이터베이스 파일 내보내기"</string>
