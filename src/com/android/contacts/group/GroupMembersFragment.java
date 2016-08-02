@@ -288,6 +288,8 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             final FilterCursorWrapper cursorWrapper = new FilterCursorWrapper(data);
             bindMembersCount(cursorWrapper.getCount());
             super.onLoadFinished(loader, cursorWrapper);
+            // Update state of menu items (e.g. "Remove contacts") based on number of group members.
+            getActivity().invalidateOptionsMenu();
         }
     }
 
