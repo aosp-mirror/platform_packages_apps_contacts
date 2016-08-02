@@ -50,4 +50,10 @@
 
     <!-- Top padding for the image for empty group view -->
     <dimen name="empty_group_view_image_padding_top">0dp</dimen>
+
+    <!-- Top and bottom padding for the text for empty account view -->
+    <dimen name="empty_account_view_text_padding_top">32dp</dimen>
+
+    <!-- Gap b/w image view and top of the screen in empty main view -->
+    <dimen name="empty_home_view_image_offset">218dp</dimen>
 </resources>

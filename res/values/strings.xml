@@ -315,6 +315,12 @@
     <!-- The text displayed when there are no members that have this label while displaying the label detail page [CHAR LIMIT=70] -->
     <string name="emptyGroup">No contacts with this label</string>
 
+    <!-- The text displayed when there's no contacts in this account [CHAR LIMIT=70] -->
+    <string name="emptyAccount">No contacts in this account</string>
+
+    <!-- The text displayed when there's no contacts in the main contacts list [CHAR LIMIT=70] -->
+    <string name="emptyMainList">Your contacts list is empty</string>
+
     <!-- Toast displayed when a contact is saved [CHAR LIMIT=NONE] -->
     <string name="contactSavedToast">Contact saved</string>
 
