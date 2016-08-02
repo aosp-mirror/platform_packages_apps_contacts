@@ -86,4 +86,7 @@
     <color name="swipe_refresh_color2">#dd4b37</color>
     <color name="swipe_refresh_color3">#4285f4</color>
     <color name="swipe_refresh_color4">#f4b400</color>
+
+    <!-- Color of hamburger icon in promo -->
+    <color name="hamburger_feature_highlight_inner_color">#00ffffff</color>
 </resources>

@@ -28,15 +28,16 @@ LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
     --extra-packages com.android.contacts.common \
     --extra-packages com.android.phone.common \
+    --extra-packages com.google.android.libraries.material.featurehighlight \
     --extra-packages android.support.design \
     --extra-packages android.support.v7.appcompat \
     --extra-packages android.support.v7.cardview \
     --extra-packages android.support.v7.recyclerview
 
+LOCAL_STATIC_JAVA_AAR_LIBRARIES := aar_feature_highlight
+
 LOCAL_STATIC_JAVA_LIBRARIES := \
-    com.android.vcard \
     android-common \
-    guava \
     android-support-design \
     android-support-v13 \
     android-support-v7-appcompat \
@@ -44,7 +45,15 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-v7-recyclerview \
     android-support-v7-palette \
     android-support-v4 \
-    libphonenumber
+    com.android.vcard \
+    guava \
+    libphonenumber \
+    lib_animation \
+    lib_math \
+    lib_navigation_finder \
+    lib_path \
+    lib_util_objects \
+    lib_util_preconditions
 
 LOCAL_PACKAGE_NAME := Contacts
 LOCAL_CERTIFICATE := shared
@@ -56,6 +65,22 @@ LOCAL_SDK_VERSION := current
 LOCAL_MIN_SDK_VERSION := 21
 
 include $(BUILD_PACKAGE)
+
+#########################################################################################
+
+include $(CLEAR_VARS)
+# Import FeatureHighlight aar and its dependencies.
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := aar_feature_highlight:libs/featurehighlight.aar \
+    lib_animation:libs/libanimation.jar \
+    lib_math:libs/libmath.jar \
+    lib_navigation_finder:libs/libappcompat.jar \
+    lib_path:libs/libpath.jar \
+    lib_util_objects:libs/libutil_Objects.jar \
+    lib_util_preconditions:libs/libutil_Preconditions.jar
+
+include $(BUILD_MULTI_PREBUILT)
+
+#########################################################################################
 
 # Use the folloing include to make our test apk.
 include $(call all-makefiles-under,$(LOCAL_PATH))
