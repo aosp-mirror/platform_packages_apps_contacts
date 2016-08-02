@@ -345,7 +345,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         final Preference customFilterPreference = findPreference(KEY_CUSTOM_CONTACTS_FILTER);
         if (customFilterPreference != null) {
             final ContactListFilter filter =
-                    ContactListFilterController.getInstance(getContext()).getFilter();
+                    ContactListFilterController.getInstance(getContext()).getPersistedFilter();
             if (filter != null) {
                 if (filter.filterType == ContactListFilter.FILTER_TYPE_DEFAULT ||
                         filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {

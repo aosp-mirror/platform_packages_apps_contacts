@@ -57,8 +57,11 @@ public abstract class ContactListFilterController {
 
     public abstract int getFilterListType();
 
-    /**  Whether the persisted filter is a custom filter. */
+    /** Whether the persisted filter is a custom filter. */
     public abstract boolean isCustomFilterPersisted();
+
+    /** Returns the persisted filter. */
+    public abstract ContactListFilter getPersistedFilter();
 
     /**
      * @param filter the filter
@@ -118,9 +121,13 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
 
     @Override
     public boolean isCustomFilterPersisted() {
-        final ContactListFilter filter =
-                ContactListFilter.restoreDefaultPreferences(getSharedPreferences());
+        final ContactListFilter filter = getPersistedFilter();
         return filter != null && filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM;
+    }
+
+    @Override
+    public ContactListFilter getPersistedFilter() {
+        return ContactListFilter.restoreDefaultPreferences(getSharedPreferences());
     }
 
     private SharedPreferences getSharedPreferences() {
