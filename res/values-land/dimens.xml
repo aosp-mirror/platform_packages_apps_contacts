@@ -19,6 +19,9 @@
     <dimen name="dialpad_digits_margin_bottom">50dip</dimen>
     <dimen name="editor_type_label_width">120dip</dimen>
 
+    <!-- Top margin of the text message when provider status is busy -->
+    <dimen name="update_contact_list_top_margin">120dp</dimen>
+
     <!-- Top padding for the image for empty group view-->
     <dimen name="empty_group_view_image_padding_top">0dp</dimen>
 
@@ -36,4 +39,13 @@
 
     <!-- Extra margin above image in empty account view -->
     <dimen name="empty_account_view_image_offset">0dp</dimen>
+
+    <!-- Margin offset b/w the image top and app bar bottom for no account empty view -->
+    <dimen name="contacts_no_account_empty_image_offset">151dp</dimen>
+
+    <!-- Width for the image for contacts no account empty view -->
+    <dimen name="contacts_no_account_empty_image_width">150dp</dimen>
+
+    <!-- Top padding for the text for no account empty view -->
+    <dimen name="contacts_no_account_empty_text_padding_top">16dp</dimen>
 </resources>

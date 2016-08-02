@@ -33,4 +33,7 @@
 
     <!-- Top margin ratio for the image for empty account view -->
     <integer name="empty_account_view_image_margin_divisor">4</integer>
+
+    <!-- Top margin ratio for the image for empty contacts view-->
+    <integer name="contacts_no_account_empty_image_margin_divisor">2</integer>
 </resources>
