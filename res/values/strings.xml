@@ -959,4 +959,9 @@
     <!-- Content displayed in QuickContact activity after Contacts app receiving
          SMS permission [CHAR LIMIT=40] -->
     <string name="permission_explanation_subheader_SMS">Messages</string>
+
+    <!-- The header text for hamburger promo [CHAR LIMIT=60]-->
+    <string name="hamburger_feature_highlight_header">Organize your list</string>
+    <!-- The body text for hamburger promo [CHAR LIMIT=200]-->
+    <string name="hamburger_feature_highlight_body">Clean up duplicates &amp; group contacts by label</string>
 </resources>

@@ -81,4 +81,6 @@
     <!-- Color of background of all empty states. -->
     <color name="empty_state_background">#efefef</color>
 
+    <!-- Color of hamburger icon in promo -->
+    <color name="hamburger_feature_highlight_inner_color">#00ffffff</color>
 </resources>

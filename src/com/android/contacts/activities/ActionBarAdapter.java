@@ -48,6 +48,8 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.list.ContactsRequest;
+import com.google.android.libraries.material.featurehighlight.FeatureHighlight;
+import com.google.android.libraries.material.featurehighlight.appcompat.ToolbarNavigationIconFinder;
 
 import java.util.ArrayList;
 
@@ -83,6 +85,9 @@ public class ActionBarAdapter implements OnCloseListener {
 
     private static final String PERSISTENT_LAST_TAB = "actionBarAdapter.lastTab";
 
+    private static final String PREFERENCE_KEY_SHOULD_SHOW_HAMBURGER_FEATURE_HIGHLIGHT =
+            "shouldShowHamburgerFeatureHighlight";
+
     private boolean mSelectionMode;
     private boolean mSearchMode;
     private String mQueryString;
@@ -117,6 +122,8 @@ public class ActionBarAdapter implements OnCloseListener {
     private boolean mShowHomeAsUp;
 
     private int mSearchHintResId;
+
+    private FeatureHighlight mHamburgerFeatureHighlight;
 
     public interface TabState {
         public static int ALL = 0;
@@ -232,6 +239,7 @@ public class ActionBarAdapter implements OnCloseListener {
             mQueryString = request.getQueryString();
             mCurrentTab = loadLastTabPreference();
             mSelectionMode = false;
+            addHamburgerHighlight();
         } else {
             mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
             mSelectionMode = savedState.getBoolean(EXTRA_KEY_SELECTED_MODE);
@@ -424,6 +432,37 @@ public class ActionBarAdapter implements OnCloseListener {
             // Pass the mask here to preserve other flags that we're not interested here.
             mActionBar.setDisplayOptions(newFlags, MASK);
         }
+    }
+
+    private void addHamburgerHighlight() {
+        if (mHamburgerFeatureHighlight == null) {
+            mHamburgerFeatureHighlight = FeatureHighlight.Builder
+                    .forView(new ToolbarNavigationIconFinder())
+                    .setHeader(mActivity.getResources().getString(
+                            R.string.hamburger_feature_highlight_header))
+                    .setBody(mActivity.getResources().getString(
+                            R.string.hamburger_feature_highlight_body))
+                    .setInnerColor(mActivity.getResources().getColor(
+                            R.color.hamburger_feature_highlight_inner_color))
+                    .build();
+        }
+    }
+
+    public FeatureHighlight getHamburgerFeatureHighlight() {
+        return mHamburgerFeatureHighlight;
+    }
+
+    public boolean shouldShowHamburgerFeatureHighlight(Context context) {
+        final SharedPreferences prefs = context.getSharedPreferences(
+                context.getPackageName(), Context.MODE_PRIVATE);
+        return prefs.getBoolean(PREFERENCE_KEY_SHOULD_SHOW_HAMBURGER_FEATURE_HIGHLIGHT, true);
+    }
+
+    public void setHamburgerFeatureHighlightShown(Context context) {
+        final SharedPreferences prefs = context.getSharedPreferences(
+                context.getPackageName(), Context.MODE_PRIVATE);
+        prefs.edit().putBoolean(PREFERENCE_KEY_SHOULD_SHOW_HAMBURGER_FEATURE_HIGHLIGHT, false)
+                .apply();
     }
 
     private void update(boolean skipAnimation) {

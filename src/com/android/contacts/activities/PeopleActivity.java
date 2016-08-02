@@ -87,6 +87,7 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.DialogManager;
+import com.google.android.libraries.material.featurehighlight.FeatureHighlight;
 
 import java.util.List;
 import java.util.Locale;
@@ -236,6 +237,15 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate finish");
         }
         getWindow().setBackgroundDrawable(null);
+
+        if (mActionBarAdapter.shouldShowHamburgerFeatureHighlight(this)) {
+            final FeatureHighlight hamburgerFeatureHighlight =
+                    mActionBarAdapter.getHamburgerFeatureHighlight();
+            if (hamburgerFeatureHighlight != null) {
+                hamburgerFeatureHighlight.show(this);
+                mActionBarAdapter.setHamburgerFeatureHighlightShown(this);
+            }
+        }
     }
 
     @Override
