@@ -973,7 +973,11 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
         View contactsUnavailableView = findViewById(R.id.contacts_unavailable_view);
 
-        if (mProviderStatus.equals(ProviderStatus.STATUS_NORMAL)) {
+        // Change in CP2's provider status may not take effect immediately, see b/30566908.
+        // So we need to handle the case where provider status is STATUS_EMPTY and there is
+        // actually at least one real account (not "local" account) on device.
+        if ((mProviderStatus.equals(ProviderStatus.STATUS_EMPTY) && hasNonLocalAccount())
+                || mProviderStatus.equals(ProviderStatus.STATUS_NORMAL)) {
             // Ensure that the mTabPager is visible; we may have made it invisible below.
             contactsUnavailableView.setVisibility(View.GONE);
             if (mTabPager != null) {
@@ -1010,6 +1014,19 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         }
 
         invalidateOptionsMenuIfNeeded();
+    }
+
+    // Returns true if there are real accounts (not "local" account) in the list of accounts.
+    private boolean hasNonLocalAccount() {
+        final List<AccountWithDataSet> allAccounts =
+                AccountTypeManager.getInstance(this).getAccounts(/* contactWritableOnly */ false);
+        if (allAccounts == null || allAccounts.size() == 0) {
+            return false;
+        }
+        if (allAccounts.size() > 1) {
+            return true;
+        }
+        return !allAccounts.get(0).isLocalAccount();
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
@@ -1433,29 +1450,33 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.floating_action_button:
-                Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-                Bundle extras = getIntent().getExtras();
-                if (extras != null) {
-                    final ContactListFilter filter = mContactListFilterController.getFilter();
-                    // If we are in account view, we pass the account explicitly in order to
-                    // create contact in the account. This will prevent the default account dialog
-                    // from being displayed.
-                    if (!isAllContactsFilter(filter) && !isDeviceContactsFilter(filter)) {
-                        final Account account = new Account(filter.accountName, filter.accountType);
-                        extras.putParcelable(Intents.Insert.EXTRA_ACCOUNT, account);
-                        extras.putString(Intents.Insert.EXTRA_DATA_SET, filter.dataSet);
-                    }
-                    intent.putExtras(extras);
-                }
-                try {
-                    ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
-                } catch (ActivityNotFoundException ex) {
-                    Toast.makeText(PeopleActivity.this, R.string.missing_app,
-                            Toast.LENGTH_SHORT).show();
-                }
+                onFabClicked();
                 break;
             default:
                 Log.wtf(TAG, "Unexpected onClick event from " + view);
+        }
+    }
+
+    public void onFabClicked() {
+        final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+        final Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            final ContactListFilter filter = mContactListFilterController.getFilter();
+            // If we are in account view, we pass the account explicitly in order to
+            // create contact in the account. This will prevent the default account dialog
+            // from being displayed.
+            if (!isAllContactsFilter(filter) && !isDeviceContactsFilter(filter)) {
+                final Account account = new Account(filter.accountName, filter.accountType);
+                extras.putParcelable(Intents.Insert.EXTRA_ACCOUNT, account);
+                extras.putString(Intents.Insert.EXTRA_DATA_SET, filter.dataSet);
+            }
+            intent.putExtras(extras);
+        }
+        try {
+            ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
+        } catch (ActivityNotFoundException ex) {
+            Toast.makeText(PeopleActivity.this, R.string.missing_app,
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -22,9 +22,18 @@
     <!-- Top padding for the image for empty group view-->
     <dimen name="empty_group_view_image_padding_top">0dp</dimen>
 
-    <!-- Height for the image for empty group view-->
-    <dimen name="empty_group_view_image_height">150dp</dimen>
+    <!-- Height for the image for empty group and main view-->
+    <dimen name="empty_view_image_height">150dp</dimen>
 
     <!-- Top padding for the text for empty group view-->
     <dimen name="empty_group_view_text_padding_top">14dp</dimen>
+
+    <!-- Gap b/w image view and top of the screen in empty main view -->
+    <dimen name="empty_home_view_image_offset">151dp</dimen>
+
+    <!-- Top padding for the text for empty main view -->
+    <dimen name="empty_home_view_text_padding_top">16dp</dimen>
+
+    <!-- Extra margin above image in empty account view -->
+    <dimen name="empty_account_view_image_offset">0dp</dimen>
 </resources>

@@ -279,11 +279,14 @@
     <!-- Top padding for the image for empty group view -->
     <dimen name="empty_group_view_image_padding_top">8dp</dimen>
 
-    <!-- Height for the image for empty group view -->
-    <dimen name="empty_group_view_image_height">180dp</dimen>
+    <!-- Height for the image for empty group and main view-->
+    <dimen name="empty_view_image_height">180dp</dimen>
 
     <!-- Top padding for the text for empty group view -->
     <dimen name="empty_group_view_text_padding_top">32dp</dimen>
+
+    <!-- Top padding for the text for empty account view -->
+    <dimen name="empty_account_view_text_padding_top">24dp</dimen>
 
     <!-- End margin of edit group title -->
     <dimen name="edit_group_end_margin">72dp</dimen>
@@ -296,4 +299,13 @@
 
     <!-- Elevation of contact list header -->
     <dimen name="contact_list_header_elevation">2dp</dimen>
+
+    <!-- Gap b/w image view and top of the screen in empty main view -->
+    <dimen name="empty_home_view_image_offset">210dp</dimen>
+
+    <!-- Top padding for the text for empty main view -->
+    <dimen name="empty_home_view_text_padding_top">32dp</dimen>
+
+    <!-- Extra margin above image in empty account view -->
+    <dimen name="empty_account_view_image_offset">30dp</dimen>
 </resources>

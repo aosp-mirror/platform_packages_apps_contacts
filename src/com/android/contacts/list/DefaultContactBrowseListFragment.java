@@ -26,18 +26,22 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
-import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.FavoritesAndContactsLoader;
@@ -55,6 +59,9 @@ import java.util.List;
 public class DefaultContactBrowseListFragment extends ContactBrowseListFragment {
     private View mSearchHeaderView;
     private View mSearchProgress;
+    private View mEmptyAccountView;
+    private View mEmptyHomeView;
+    private View mAccountFilterContainer;
     private TextView mSearchProgressText;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -80,23 +87,36 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     private void bindListHeader(int numberOfContacts) {
-        final View accountFilterContainer = getView().findViewById(
-                R.id.account_filter_header_container);
-        final ContactListFilterController contactListFilterController =
-                ContactListFilterController.getInstance(getContext());
-        final ContactListFilter filter = contactListFilterController.getFilter();
+        final ContactListFilter filter = getFilter();
+        if (!isSearchMode() && numberOfContacts <= 0) {
+            if (filter != null && filter.isContactsFilterType()) {
+                makeViewVisible(mEmptyHomeView);
+            } else {
+                makeViewVisible(mEmptyAccountView);
+            }
+            return;
+        }
+        makeViewVisible(mAccountFilterContainer);
         if (isSearchMode()) {
-            hideHeaderAndAddPadding(getContext(), getListView(), accountFilterContainer);
+            hideHeaderAndAddPadding(getContext(), getListView(), mAccountFilterContainer);
         } else if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
-            bindListHeaderCustom(getListView(), accountFilterContainer);
+            bindListHeaderCustom(getListView(), mAccountFilterContainer);
         } else if (filter.filterType != ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
             final AccountWithDataSet accountWithDataSet = new AccountWithDataSet(
                     filter.accountName, filter.accountType, filter.dataSet);
-            bindListHeader(getContext(), getListView(), accountFilterContainer,
+            bindListHeader(getContext(), getListView(), mAccountFilterContainer,
                     accountWithDataSet, numberOfContacts);
         } else {
-            hideHeaderAndAddPadding(getContext(), getListView(), accountFilterContainer);
+            hideHeaderAndAddPadding(getContext(), getListView(), mAccountFilterContainer);
         }
+    }
+
+    // Show the view that's specified by id and hide the other two.
+    private void makeViewVisible(View view) {
+        mEmptyAccountView.setVisibility(view == mEmptyAccountView ? View.VISIBLE : View.GONE);
+        mEmptyHomeView.setVisibility(view == mEmptyHomeView ? View.VISIBLE : View.GONE);
+        mAccountFilterContainer.setVisibility(
+                view == mAccountFilterContainer ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -124,7 +144,68 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.contact_list_content, null);
+        final View view = inflater.inflate(R.layout.contact_list_content, null);
+
+        mAccountFilterContainer = view.findViewById(R.id.account_filter_header_container);
+
+        // Add empty main view and account view to list.
+        final FrameLayout contactListLayout = (FrameLayout) view.findViewById(R.id.contact_list);
+        mEmptyAccountView = getEmptyAccountView(inflater);
+        mEmptyHomeView = getEmptyHomeView(inflater);
+        contactListLayout.addView(mEmptyAccountView);
+        contactListLayout.addView(mEmptyHomeView);
+
+        return view;
+    }
+
+    private View getEmptyHomeView(LayoutInflater inflater) {
+        final View emptyHomeView = inflater.inflate(R.layout.empty_home_view, null);
+        // Set image margins.
+        final ImageView image = (ImageView) emptyHomeView.findViewById(R.id.empty_home_image);
+        final LayoutParams params = (LayoutParams) image.getLayoutParams();
+        final int screenHeight = getResources().getDisplayMetrics().heightPixels;
+        final int marginTop = screenHeight / 2 -
+                getResources().getDimensionPixelSize(R.dimen.empty_home_view_image_offset) ;
+        params.setMargins(0, marginTop, 0, 0);
+        params.gravity = Gravity.CENTER_HORIZONTAL;
+        image.setLayoutParams(params);
+
+        // Set up add contact button.
+        final Button addContactButton =
+                (Button) emptyHomeView.findViewById(R.id.add_contact_button);
+        addContactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((PeopleActivity) getActivity()).onFabClicked();
+            }
+        });
+        return emptyHomeView;
+    }
+
+    private View getEmptyAccountView(LayoutInflater inflater) {
+        final View emptyAccountView = inflater.inflate(R.layout.empty_account_view, null);
+        // Set image margins.
+        final ImageView image = (ImageView) emptyAccountView.findViewById(R.id.empty_account_image);
+        final LayoutParams params = (LayoutParams) image.getLayoutParams();
+        final int height = getResources().getDisplayMetrics().heightPixels;
+        final int divisor =
+                getResources().getInteger(R.integer.empty_account_view_image_margin_divisor);
+        final int offset =
+                getResources().getDimensionPixelSize(R.dimen.empty_account_view_image_offset);
+        params.setMargins(0, height / divisor + offset, 0, 0);
+        params.gravity = Gravity.CENTER_HORIZONTAL;
+        image.setLayoutParams(params);
+
+        // Set up add contact button.
+        final Button addContactButton =
+                (Button) emptyAccountView.findViewById(R.id.add_contact_button);
+        addContactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((PeopleActivity) getActivity()).onFabClicked();
+            }
+        });
+        return emptyAccountView;
     }
 
     @Override
