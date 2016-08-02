@@ -241,12 +241,12 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Menampilkan semua kontak"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tetap amankan kontak Anda jika kehilangan ponsel: sinkronkan dengan layanan online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Tambahkan akun"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Kontak baru Anda tidak akan dicadangkan. Tambahkan akun yang mencadangkan kontak secara online?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Kontak baru akan disimpan ke <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Pilih akun default untuk kontak baru:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Tambah kontak baru"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edit kontak"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Simpan secara lokal"</string>
     <string name="add_account" msgid="8201790677994503186">"Tambahkan akun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tambahkan akun baru"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Ekspor file basis data"</string>

@@ -52,8 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Helista kontaktile"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Saada kontaktile SMS"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Tühista linkimine"</string>
-    <!-- no translation found for menu_editGroup (6696843438454341063) -->
-    <skip />
+    <string name="menu_editGroup" msgid="6696843438454341063">"Eemalda kontaktid"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Nimeta silt ümber"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Kustuta silt"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Kontakti lisamine"</string>
@@ -236,19 +235,18 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Jätka muutmist"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Otsige kontakte"</string>
-    <!-- no translation found for title_edit_group (8602752287270586734) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Kontaktide eemaldamine"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Minu kohalik profiil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Minu profiil: <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Kõigi kontaktide kuvamine"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Hoidke oma kontaktid turvalisena ka siis, kui kaotate telefoni: sünkroonige need võrguteenusega."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto lisamine"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Teie uut kontakti ei varundata. Kas lisada konto, mis varundab kontakte veebis?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Uued kontaktid salvestatakse kontole <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Valige uute kontaktide jaoks vaikekonto:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Kontakti lisamine"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Kontakti muutmine"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Hoia kohalikuna"</string>
     <string name="add_account" msgid="8201790677994503186">"Lisa konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Lisa uus konto"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Andmebaasi failide eksportimine"</string>

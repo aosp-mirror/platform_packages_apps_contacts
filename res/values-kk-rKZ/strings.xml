@@ -52,8 +52,7 @@
     <string name="menu_call" msgid="3992595586042260618">"Контактіге қоңырау шалу"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Контактіге мәтін-хабар жіберу"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Ажырату"</string>
-    <!-- no translation found for menu_editGroup (6696843438454341063) -->
-    <skip />
+    <string name="menu_editGroup" msgid="6696843438454341063">"Контактілерді жою"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Белгінің атын өзгерту"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Белгіні жою"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Контакт қосу"</string>
@@ -236,19 +235,18 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Өңдеуді жалғастыру"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Контактілерді іздеу"</string>
-    <!-- no translation found for title_edit_group (8602752287270586734) -->
-    <skip />
+    <string name="title_edit_group" msgid="8602752287270586734">"Контактілерді жою"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Менің жергілікті профайлым"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Менің <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профайлым"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Барлық контактілер көрсетілуде"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Телефоныңыз жоғалған жағдайда контактілеріңізді сақтап қалыңыз: желі қызметімен синхрондаңыз."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Есептік жазба қосу"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Жаңа контактінің сақтық көшірмесі жасалмайды. Контактілердің желі арқылы көшірмесін жасайтын есептік жазба қосуды қалайсыз ба?"</string>
+    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
+    <skip />
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Жаңа контактілер <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> есептік жазбасында сақталады."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Жаңа контактілерге арналған әдепкі есептік жазбаны таңдаңыз:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Жаңа контакт қосу"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Контактіні өңдеу"</string>
-    <string name="keep_local" msgid="1258761699192993322">"Жергілікті сақтау"</string>
     <string name="add_account" msgid="8201790677994503186">"Ес. жазба қосу"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Жаңа есептік жазба қосу"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Дерекқор файлдарын экспорттау"</string>
