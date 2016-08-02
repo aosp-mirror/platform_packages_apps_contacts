@@ -38,9 +38,9 @@ import android.widget.TextView;
 
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.interactions.GroupCreationDialogFragment;
-import com.android.contacts.interactions.GroupCreationDialogFragment.OnGroupCreatedListener;
+import com.android.contacts.group.GroupNameEditDialogFragment;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.RawContactModifier;
@@ -55,6 +55,8 @@ import java.util.ArrayList;
  */
 public class GroupMembershipView extends LinearLayout
         implements OnClickListener, OnItemClickListener {
+
+    public static final String TAG_CREATE_GROUP_FRAGMENT = "createGroupDialog";
 
     private static final int CREATE_NEW_GROUP_GROUP_ID = 133;
 
@@ -449,17 +451,23 @@ public class GroupMembershipView extends LinearLayout
         UiClosables.closeQuietly(mPopup);
         mPopup = null;
 
-        GroupCreationDialogFragment.show(
+        final GroupNameEditDialogFragment dialog =
+                GroupNameEditDialogFragment.newInstanceForCreation(
+                        new AccountWithDataSet(mAccountName, mAccountType, mDataSet), null);
+
+        // If the device is rotated after the dialog is shown, the listener will become null,
+        // so that the popup from GroupMembershipView will not be shown.
+        dialog.setListener(new GroupNameEditDialogFragment.Listener() {
+            @Override
+            public void onGroupNameEditStarted(String groupName) {
+                mCreatedNewGroup = true;
+            }
+            @Override
+            public void onGroupNameEditCancelled() { }
+        });
+        dialog.show(
                 ((Activity) getContext()).getFragmentManager(),
-                mAccountType,
-                mAccountName,
-                mDataSet,
-                new OnGroupCreatedListener() {
-                    @Override
-                    public void onGroupCreated() {
-                        mCreatedNewGroup = true;
-                    }
-                });
+                TAG_CREATE_GROUP_FRAGMENT);
     }
 
 }
