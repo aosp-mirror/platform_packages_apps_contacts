@@ -88,8 +88,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         AccountFiltersListener,
         GroupsListener,
         NavigationView.OnNavigationItemSelectedListener,
-        SelectAccountDialogFragment.Listener,
-        GroupNameEditDialogFragment.Listener {
+        SelectAccountDialogFragment.Listener {
 
     protected static String TAG = "ContactsDrawerActivity";
 
@@ -650,26 +649,11 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     @Override
     public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
         mNewGroupAccount = account;
-        GroupNameEditDialogFragment.showInsertDialog(
-                getFragmentManager(), TAG_GROUP_NAME_EDIT_DIALOG);
+        GroupNameEditDialogFragment.newInstanceForCreation(mNewGroupAccount, ACTION_CREATE_GROUP)
+                .show(getFragmentManager(), TAG_GROUP_NAME_EDIT_DIALOG);
     }
 
     @Override
     public void onAccountSelectorCancelled() {
-    }
-
-    @Override
-    public void onGroupNameEdit(String groupName, boolean isInsert) {
-        if (mNewGroupAccount == null) {
-            Toast.makeText(this, R.string.groupCreateFailedToast, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        startService(ContactSaveService.createNewGroupIntent(this,
-                mNewGroupAccount, groupName, /* rawContactsToAdd */ null, getClass(),
-                ACTION_CREATE_GROUP));
-    }
-
-    @Override
-    public void onGroupNameEditCancelled() {
     }
 }

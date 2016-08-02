@@ -17,11 +17,18 @@ package com.android.contacts.group;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.FragmentManager;
+import android.app.LoaderManager;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.content.Loader;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -33,60 +40,99 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.google.common.base.Strings;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Edits the name of a group.
  */
-public final class GroupNameEditDialogFragment extends DialogFragment {
+public final class GroupNameEditDialogFragment extends DialogFragment implements
+        LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static final String KEY_IS_INSERT = "isInsert";
     private static final String KEY_GROUP_NAME = "groupName";
 
     private static final String ARG_IS_INSERT = "isInsert";
     private static final String ARG_GROUP_NAME = "groupName";
+    private static final String ARG_ACCOUNT = "account";
+    private static final String ARG_CALLBACK_ACTION = "callbackAction";
+    private static final String ARG_GROUP_ID = "groupId";
+
+    private static final long NO_GROUP_ID = -1;
+
 
     /** Callbacks for hosts of the {@link GroupNameEditDialogFragment}. */
     public interface Listener {
-        void onGroupNameEdit(String groupName, boolean isInsert);
+        void onGroupNameEditStarted(String name);
         void onGroupNameEditCancelled();
+
+        public static final Listener None = new Listener() {
+            @Override
+            public void onGroupNameEditStarted(String name) { }
+
+            @Override
+            public void onGroupNameEditCancelled() { }
+        };
     }
 
     private boolean mIsInsert;
     private String mGroupName;
+    private long mGroupId;
+    private Listener mListener;
+    private AccountWithDataSet mAccount;
     private EditText mGroupNameEditText;
+    private TextInputLayout mGroupNameTextLayout;
+    private Set<String> mExistingGroups = Collections.emptySet();
 
-    public static void showInsertDialog(FragmentManager fragmentManager, String tag) {
-        showDialog(fragmentManager, tag, /* isInsert */ true, /* groupName */ null);
+    public static GroupNameEditDialogFragment newInstanceForCreation(
+            AccountWithDataSet account, String callbackAction) {
+        return newInstance(account, callbackAction, NO_GROUP_ID, null);
     }
 
-    public static void showUpdateDialog(FragmentManager fragmentManager,
-            String tag, String groupName) {
-        showDialog(fragmentManager, tag, /* isInsert */ false, groupName);
+    public static GroupNameEditDialogFragment newInstanceForUpdate(
+            AccountWithDataSet account, String callbackAction, long groupId, String groupName) {
+        return newInstance(account, callbackAction, groupId, groupName);
     }
 
-    private static void showDialog(FragmentManager fragmentManager,
-            String tag, boolean isInsert, String groupName) {
+    private static GroupNameEditDialogFragment newInstance(
+            AccountWithDataSet account, String callbackAction, long groupId, String groupName) {
+        if (account == null || account.name == null || account.type == null) {
+            throw new IllegalArgumentException("Invalid account");
+        }
+        final boolean isInsert = groupId == NO_GROUP_ID;
         final Bundle args = new Bundle();
         args.putBoolean(ARG_IS_INSERT, isInsert);
+        args.putLong(ARG_GROUP_ID, groupId);
         args.putString(ARG_GROUP_NAME, groupName);
+        args.putParcelable(ARG_ACCOUNT, account);
+        args.putString(ARG_CALLBACK_ACTION, callbackAction);
 
         final GroupNameEditDialogFragment dialog = new GroupNameEditDialogFragment();
         dialog.setArguments(args);
-        dialog.show(fragmentManager, tag);
+        return dialog;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(STYLE_NORMAL, R.style.ContactsAlertDialogThemeAppCompat);
+        final Bundle args = getArguments();
         if (savedInstanceState == null) {
-            final Bundle args = getArguments();
-            mIsInsert = args.getBoolean(KEY_IS_INSERT);
             mGroupName = args.getString(KEY_GROUP_NAME);
         } else {
-            mIsInsert = savedInstanceState.getBoolean(ARG_IS_INSERT);
             mGroupName = savedInstanceState.getString(ARG_GROUP_NAME);
         }
+        mGroupId = args.getLong(ARG_GROUP_ID, NO_GROUP_ID);
+        mIsInsert = args.getBoolean(ARG_IS_INSERT, true);
+        mAccount = getArguments().getParcelable(ARG_ACCOUNT);
+
+        // There is only one loader so the id arg doesn't matter.
+        getLoaderManager().initLoader(0, null, this);
     }
 
     @Override
@@ -96,7 +142,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
         title.setText(mIsInsert
                 ? R.string.group_name_dialog_insert_title
                 : R.string.group_name_dialog_update_title);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), getTheme())
                 .setCustomTitle(title)
                 .setView(R.layout.group_name_edit_dialog)
                 .setNegativeButton(android.R.string.cancel, new OnClickListener() {
@@ -107,12 +153,9 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
                         dismiss();
                     }
                 })
-                .setPositiveButton(android.R.string.ok, new OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        getListener().onGroupNameEdit(getGroupName(), mIsInsert);
-                    }
-                });
+                // The Positive button listener is defined below in the OnShowListener to
+                // allow for input validation
+                .setPositiveButton(android.R.string.ok, null);
 
         // Disable the create button when the name is empty
         final AlertDialog alertDialog = builder.create();
@@ -122,6 +165,8 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
             @Override
             public void onShow(DialogInterface dialog) {
                 mGroupNameEditText = (EditText) alertDialog.findViewById(android.R.id.text1);
+                mGroupNameTextLayout =
+                        (TextInputLayout) alertDialog.findViewById(R.id.text_input_layout);
                 if (!TextUtils.isEmpty(mGroupName)) {
                     mGroupNameEditText.setText(mGroupName);
                     // Guard against already created group names that are longer than the max
@@ -134,6 +179,14 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
 
                 final Button createButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
                 createButton.setEnabled(!TextUtils.isEmpty(getGroupName()));
+
+                // Override the click listener to prevent dismissal if creating a duplicate group.
+                createButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        maybePersistCurrentGroupName(v);
+                    }
+                });
                 mGroupNameEditText.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -145,6 +198,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
 
                     @Override
                     public void afterTextChanged(Editable s) {
+                        mGroupNameTextLayout.setError(null);
                         createButton.setEnabled(!TextUtils.isEmpty(s));
                     }
                 });
@@ -152,6 +206,56 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
         });
 
         return alertDialog;
+    }
+
+    /**
+     * Sets the listener for the rename
+     *
+     * Setting a listener on a fragment is error prone since it will be lost if the fragment
+     * is recreated. This exists because it is used from a view class (GroupMembersView) which
+     * needs to modify it's state when this fragment updates the name.
+     *
+     * @param listener the listener. can be null
+     */
+    public void setListener(Listener listener) {
+        mListener = listener;
+    }
+
+    private boolean hasNameChanged() {
+        final String name = Strings.nullToEmpty(getGroupName());
+        final String originalName = getArguments().getString(ARG_GROUP_NAME);
+        return (mIsInsert && !name.isEmpty()) || !name.equals(originalName);
+    }
+
+    private void maybePersistCurrentGroupName(View button) {
+        if (!hasNameChanged()) {
+            dismiss();
+            return;
+        }
+        final String name = getGroupName();
+        // Note we don't check if the loader finished populating mExistingGroups. It's not the
+        // end of the world if the user ends up with a duplicate group and in practice it should
+        // never really happen (the query should complete much sooner than the user can edit the
+        // label)
+        if (mExistingGroups.contains(name)) {
+            mGroupNameTextLayout.setError(
+                    getString(R.string.groupExistsErrorMessage));
+            button.setEnabled(false);
+            return;
+        }
+        final String callbackAction = getArguments().getString(ARG_CALLBACK_ACTION);
+        final Intent serviceIntent;
+        if (mIsInsert) {
+            serviceIntent = ContactSaveService.createNewGroupIntent(getActivity(),
+                    new AccountWithDataSet(mAccount.name, mAccount.type, mAccount.dataSet),
+                    name, null, getActivity().getClass(), callbackAction);
+        } else {
+            serviceIntent = ContactSaveService.createGroupRenameIntent(getActivity(), mGroupId,
+                    name, getActivity().getClass(), callbackAction);
+        }
+        ContactSaveService.startService(getActivity(), serviceIntent);
+        getListener().onGroupNameEditStarted(name);
+        dismiss();
     }
 
     @Override
@@ -163,8 +267,59 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(KEY_IS_INSERT, mIsInsert);
         outState.putString(KEY_GROUP_NAME, getGroupName());
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        // Only a single loader so id is ignored.
+        return new CursorLoader(getActivity(), GroupNameQuery.URI,
+                GroupNameQuery.PROJECTION, GroupNameQuery.getSelection(mAccount),
+                GroupNameQuery.getSelectionArgs(mAccount), null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mExistingGroups = new HashSet<>();
+        while (data.moveToNext()) {
+            mExistingGroups.add(data.getString(GroupNameQuery.TITLE));
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+    }
+
+    /**
+     * Defines the structure of the query performed by the CursorLoader created by
+     * GroupNameEditDialogFragment
+     */
+    private static class GroupNameQuery {
+
+        public static final int TITLE = 0;
+        public static final Uri URI = ContactsContract.Groups.CONTENT_URI;
+        public static final String[] PROJECTION = new String[] { ContactsContract.Groups.TITLE };
+
+        public static String getSelection(AccountWithDataSet account) {
+            final StringBuilder builder = new StringBuilder();
+            builder.append(ContactsContract.Groups.ACCOUNT_NAME).append("=? AND ")
+                    .append(ContactsContract.Groups.ACCOUNT_TYPE).append("=?");
+            if (account.dataSet != null) {
+                builder.append(" AND ").append(ContactsContract.Groups.DATA_SET).append("=?");
+            }
+            return builder.toString();
+        }
+
+        public static String[] getSelectionArgs(AccountWithDataSet account) {
+            final int len = account.dataSet == null ? 2 : 3;
+            final String[] args = new String[len];
+            args[0] = account.name;
+            args[1] = account.type;
+            if (account.dataSet != null) {
+                args[2] = account.dataSet;
+            }
+            return args;
+        }
     }
 
     private void showInputMethod(View view) {
@@ -184,11 +339,13 @@ public final class GroupNameEditDialogFragment extends DialogFragment {
     }
 
     private Listener getListener() {
-        if (!(getActivity() instanceof Listener)) {
-            throw new ClassCastException(getActivity() + " must implement " +
-                    Listener.class.getName());
+        if (mListener != null) {
+            return mListener;
+        } else if (getActivity() instanceof Listener) {
+            return (Listener) getActivity();
+        } else {
+            return Listener.None;
         }
-        return (Listener) getActivity();
     }
 
     private String getGroupName() {
