@@ -48,8 +48,8 @@ import android.widget.ListView;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
 import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ListEvent.ActionType;
+import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.preference.ContactsPreferences;
 
 import java.util.Locale;
@@ -432,6 +432,9 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         if (!mEnabled) {
             return;
         }
+
+        getListView().setVisibility(View.VISIBLE);
+        getView().setVisibility(View.VISIBLE);
 
         int loaderId = loader.getId();
         if (loaderId == DIRECTORY_LOADER_ID) {
