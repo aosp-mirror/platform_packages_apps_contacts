@@ -113,10 +113,15 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Kohandatud sildi nimi"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Saada kõned otse kõneposti"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eemalda foto"</string>
-    <string name="noContacts" msgid="4955659076981974652">"Kontaktid puuduvad"</string>
+    <!-- no translation found for noContacts (2228592924476426108) -->
+    <skip />
     <string name="noGroups" msgid="4607906327968232225">"Silte pole."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Rühmade loomiseks vajate kontot."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Selle sildiga kontakte pole"</string>
+    <!-- no translation found for emptyAccount (6873962901497975964) -->
+    <skip />
+    <!-- no translation found for emptyMainList (2772242747899664460) -->
+    <skip />
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt on salvestatud."</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktide linkimine tühistati"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kontaktide muudatuste salvestamine ebaõnnestus."</string>
@@ -221,7 +226,8 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Laadimine ..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Loo uus kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Lisa konto"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Impordi kontaktid"</string>
+    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
+    <skip />
     <string name="create_group_dialog_title" msgid="5363404287877384473">"Uue sildi loomine"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Uue loomine …"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Kas kustutada silt „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? (Kontakte ei kustutata.)"</string>
@@ -339,4 +345,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Sündmused ja sõnumid"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Sündmused"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Sõnumid"</string>
+    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
+    <skip />
+    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
+    <skip />
 </resources>

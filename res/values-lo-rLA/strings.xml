@@ -113,10 +113,15 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ປ້າຍກຳກັບຊື່ກຳນົດເອງ"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ສົ່ງການໂທອອກໄປຫາຂໍ້ຄວາມສຽງໂດຍກົງ"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ລຶບຮູບພາບ"</string>
-    <string name="noContacts" msgid="4955659076981974652">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <!-- no translation found for noContacts (2228592924476426108) -->
+    <skip />
     <string name="noGroups" msgid="4607906327968232225">"ບໍ່ມີປ້າຍກຳກັບ."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ເພື່ອສ້າງກຸ່ມ ທ່ານຈະຕ້ອງມີບັນຊີກ່ອນ."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"ບໍ່ມີລາຍຊື່ຜູ້ຕິດຕໍ່ທີ່ມີປ້າຍກຳກັບນີ້"</string>
+    <!-- no translation found for emptyAccount (6873962901497975964) -->
+    <skip />
+    <!-- no translation found for emptyMainList (2772242747899664460) -->
+    <skip />
     <string name="contactSavedToast" msgid="9171862279493213075">"ບັນທຶກລາຍຊື່ຜູ່ຕິດຕໍ່ແລ້ວ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ຖອນ​ລິ້ງ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ແລ້ວ"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"ບໍ່ສາມາດບັນທຶກການແກ້ໄຂລາຍຊື່ຜູ່ຕິດຕໍ່ໄດ້."</string>
@@ -221,7 +226,8 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"ກຳລັງໂຫລດ..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"ເພີ່ມບັນຊີ"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"ນຳເຂົ້າລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
+    <skip />
     <string name="create_group_dialog_title" msgid="5363404287877384473">"ສ້າງປ້າຍກຳກັບໃໝ່"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"ສ້າງໃໝ່…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"ລຶບປ້າຍກຳກັບ \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ອອກບໍ? (ລາຍຊື່ຜູ້ຕິດຕໍ່ຈະບໍ່ຖືກລຶບອອກ.)"</string>
@@ -339,4 +345,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ນັດໝາຍ ແລະ ຂໍ້ຄວາມ"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ນັດໝາຍ"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"ຂໍ້ຄວາມ"</string>
+    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
+    <skip />
+    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
+    <skip />
 </resources>

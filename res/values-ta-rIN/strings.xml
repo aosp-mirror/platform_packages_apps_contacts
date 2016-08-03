@@ -113,10 +113,15 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"தனிப்பயன் லேபிள் பெயர்"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"அழைப்புகளை நேரடியாகக் குரலஞ்சலுக்கு அனுப்பு"</string>
     <string name="removePhoto" msgid="4898105274130284565">"படத்தை அகற்று"</string>
-    <string name="noContacts" msgid="4955659076981974652">"தொடர்புகள் இல்லை"</string>
+    <!-- no translation found for noContacts (2228592924476426108) -->
+    <skip />
     <string name="noGroups" msgid="4607906327968232225">"லேபிள்கள் இல்லை."</string>
     <string name="noAccounts" msgid="7768267764545265909">"குழுக்களை உருவாக்க கணக்கு அவசியம்."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"இந்த லேபிளைக் கொண்ட தொடர்புகள் இல்லை"</string>
+    <!-- no translation found for emptyAccount (6873962901497975964) -->
+    <skip />
+    <!-- no translation found for emptyMainList (2772242747899664460) -->
+    <skip />
     <string name="contactSavedToast" msgid="9171862279493213075">"தொடர்பு சேமிக்கப்பட்டது"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"தொடர்புகள் பிரிக்கப்பட்டன"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"தொடர்பின் மாற்றங்களைச் சேமிக்க முடியவில்லை."</string>
@@ -221,7 +226,8 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"ஏற்றுகிறது..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"புதிய தொடர்பை உருவாக்கு"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"கணக்கைச் சேர்"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"தொடர்புகளை இறக்குமதி செய்"</string>
+    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
+    <skip />
     <string name="create_group_dialog_title" msgid="5363404287877384473">"புதிய லேபிளை உருவாக்கு"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"புதியதை உருவாக்கு…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" லேபிளை நீக்கவா? (அதன் தொடர்புகள் நீக்கப்படாது.)"</string>
@@ -339,4 +345,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"நிகழ்வுகளும் செய்திகளும்"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"நிகழ்வுகள்"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"செய்திகள்"</string>
+    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
+    <skip />
+    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
+    <skip />
 </resources>
