@@ -119,10 +119,15 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nazwa etykiety niestandardowej"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Przekieruj połączenia bezpośrednio na pocztę głosową"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Usuń zdjęcie"</string>
-    <string name="noContacts" msgid="4955659076981974652">"Brak kontaktów"</string>
+    <!-- no translation found for noContacts (2228592924476426108) -->
+    <skip />
     <string name="noGroups" msgid="4607906327968232225">"Brak etykiet."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Do tworzenia grup niezbędne jest konto."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Brak kontaktów z tą etykietą"</string>
+    <!-- no translation found for emptyAccount (6873962901497975964) -->
+    <skip />
+    <!-- no translation found for emptyMainList (2772242747899664460) -->
+    <skip />
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt został zapisany"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontakty zostały odłączone"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nie można zapisać zmian kontaktu."</string>
@@ -235,7 +240,8 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Wczytywanie…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Utwórz nowy kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Dodaj konto"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importuj kontakty"</string>
+    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
+    <skip />
     <string name="create_group_dialog_title" msgid="5363404287877384473">"Utwórz nową etykietę"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Utwórz nową…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Usunąć etykietę „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? Kontakty nie zostaną usunięte."</string>
@@ -361,4 +367,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Wydarzenia i wiadomości"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Wydarzenia"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Wiadomości"</string>
+    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
+    <skip />
+    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
+    <skip />
 </resources>
