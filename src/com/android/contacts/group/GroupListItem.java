@@ -15,8 +15,6 @@
  */
 package com.android.contacts.group;
 
-import java.util.Objects;
-
 /**
  * Meta-data for a contact group.  We load all groups associated with the contact's
  * constituent accounts.
@@ -84,37 +82,5 @@ public final class GroupListItem {
 
     public String getSystemId() {
         return mSystemId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mAccountName, mAccountType, mDataSet, mGroupId, mTitle,
-                mIsFirstGroupInAccount, mMemberCount, mIsReadOnly, mSystemId);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-
-        if (!(other instanceof GroupListItem)) {
-            return false;
-        }
-
-        final GroupListItem otherGroup = (GroupListItem) other;
-        if (!Objects.equals(mAccountName, otherGroup.getAccountName())
-                || !Objects.equals(mAccountType, otherGroup.getAccountType())
-                || !Objects.equals(mDataSet, otherGroup.getDataSet())
-                || !(mGroupId == otherGroup.getGroupId())
-                || !Objects.equals(mTitle, otherGroup.getTitle())
-                || !(mIsFirstGroupInAccount == otherGroup.isFirstGroupInAccount())
-                || !(mMemberCount == otherGroup.getMemberCount())
-                || !(mIsReadOnly == otherGroup.isReadOnly())
-                || !Objects.equals(mSystemId, otherGroup.getSystemId())) {
-            return false;
-        }
-
-        return true;
     }
 }
