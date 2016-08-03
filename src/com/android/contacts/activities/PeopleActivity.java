@@ -87,6 +87,7 @@ import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.SharedPreferenceUtil;
 import com.google.android.libraries.material.featurehighlight.FeatureHighlight;
 
 import java.util.List;
@@ -237,13 +238,16 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate finish");
         }
         getWindow().setBackgroundDrawable(null);
+    }
 
-        if (mActionBarAdapter.shouldShowHamburgerFeatureHighlight(this)) {
+    private void maybeShowHamburgerFeatureHighlight() {
+        if (!mActionBarAdapter.isSearchMode() && !mActionBarAdapter.isSelectionMode()
+                && SharedPreferenceUtil.getShouldShowHamburgerPromo(this)) {
             final FeatureHighlight hamburgerFeatureHighlight =
                     mActionBarAdapter.getHamburgerFeatureHighlight();
             if (hamburgerFeatureHighlight != null) {
                 hamburgerFeatureHighlight.show(this);
-                mActionBarAdapter.setHamburgerFeatureHighlightShown(this);
+                SharedPreferenceUtil.setHamburgerPromoDisplayedBefore(this);
             }
         }
     }
@@ -426,6 +430,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         // Current tab may have changed since the last onSaveInstanceState().  Make sure
         // the actual contents match the tab.
         updateFragmentsVisibility();
+        maybeShowHamburgerFeatureHighlight();
     }
 
     @Override
@@ -574,6 +579,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
                 setQueryTextToFragment("");
                 updateFragmentsVisibility();
+                maybeShowHamburgerFeatureHighlight();
                 invalidateOptionsMenu();
                 showFabWithAnimation(shouldShowFabForAccount());
                 break;
@@ -593,6 +599,9 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         updateFragmentsVisibility();
         invalidateOptionsMenu();
         showFabWithAnimation(/* showFab */ false);
+        if (!SharedPreferenceUtil.getHamburgerPromoTriggerActionHappenedBefore(this)) {
+            SharedPreferenceUtil.setHamburgerPromoTriggerActionHappenedBefore(this);
+        }
     }
 
     @Override
