@@ -402,6 +402,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
         if (mAllFragment == null) {
             mAllFragment = new DefaultContactBrowseListFragment();
+            mAllFragment.setAnimateOnLoad(true);
             transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
         }
 
@@ -847,10 +848,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                 mCurTransaction = mFragmentManager.beginTransaction();
             }
             Fragment f = getFragment(position);
-            if (!mIsRecreatedInstance && (f instanceof DefaultContactBrowseListFragment)) {
-                mCurTransaction.setCustomAnimations(android.R.animator.fade_in,
-                        android.R.animator.fade_out);
-            }
             mCurTransaction.show(f);
 
             // Non primary pages are not visible.
