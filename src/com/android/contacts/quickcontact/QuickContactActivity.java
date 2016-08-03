@@ -171,6 +171,7 @@ import com.android.contacts.quickcontact.WebAddress.ParseException;
 import com.android.contacts.util.ImageViewDrawableSetter;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.SchedulingUtils;
+import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contacts.util.StructuredPostalUtils;
 import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
@@ -2546,6 +2547,13 @@ public class QuickContactActivity extends ContactsActivity
 
     @Override
     public void onBackPressed() {
+        final int previousScreenType = getIntent().getIntExtra
+                (EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
+        if ((previousScreenType == ScreenType.ALL_CONTACTS
+                || previousScreenType == ScreenType.FAVORITES)
+                && !SharedPreferenceUtil.getHamburgerPromoTriggerActionHappenedBefore(this)) {
+            SharedPreferenceUtil.setHamburgerPromoTriggerActionHappenedBefore(this);
+        }
         if (mScroller != null) {
             if (!mIsExitAnimationInProgress) {
                 mScroller.scrollOffBottom();

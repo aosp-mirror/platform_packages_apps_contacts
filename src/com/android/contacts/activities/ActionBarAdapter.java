@@ -85,9 +85,6 @@ public class ActionBarAdapter implements OnCloseListener {
 
     private static final String PERSISTENT_LAST_TAB = "actionBarAdapter.lastTab";
 
-    private static final String PREFERENCE_KEY_SHOULD_SHOW_HAMBURGER_FEATURE_HIGHLIGHT =
-            "shouldShowHamburgerFeatureHighlight";
-
     private boolean mSelectionMode;
     private boolean mSearchMode;
     private String mQueryString;
@@ -239,7 +236,6 @@ public class ActionBarAdapter implements OnCloseListener {
             mQueryString = request.getQueryString();
             mCurrentTab = loadLastTabPreference();
             mSelectionMode = false;
-            addHamburgerHighlight();
         } else {
             mSearchMode = savedState.getBoolean(EXTRA_KEY_SEARCH_MODE);
             mSelectionMode = savedState.getBoolean(EXTRA_KEY_SELECTED_MODE);
@@ -260,6 +256,7 @@ public class ActionBarAdapter implements OnCloseListener {
         if (mSearchMode && !TextUtils.isEmpty(mQueryString)) {
             setQueryString(mQueryString);
         }
+        addHamburgerFeatureHighlight();
     }
 
     public void setListener(Listener listener) {
@@ -434,7 +431,7 @@ public class ActionBarAdapter implements OnCloseListener {
         }
     }
 
-    private void addHamburgerHighlight() {
+    private void addHamburgerFeatureHighlight() {
         if (mHamburgerFeatureHighlight == null) {
             mHamburgerFeatureHighlight = FeatureHighlight.Builder
                     .forView(new ToolbarNavigationIconFinder())
@@ -450,19 +447,6 @@ public class ActionBarAdapter implements OnCloseListener {
 
     public FeatureHighlight getHamburgerFeatureHighlight() {
         return mHamburgerFeatureHighlight;
-    }
-
-    public boolean shouldShowHamburgerFeatureHighlight(Context context) {
-        final SharedPreferences prefs = context.getSharedPreferences(
-                context.getPackageName(), Context.MODE_PRIVATE);
-        return prefs.getBoolean(PREFERENCE_KEY_SHOULD_SHOW_HAMBURGER_FEATURE_HIGHLIGHT, true);
-    }
-
-    public void setHamburgerFeatureHighlightShown(Context context) {
-        final SharedPreferences prefs = context.getSharedPreferences(
-                context.getPackageName(), Context.MODE_PRIVATE);
-        prefs.edit().putBoolean(PREFERENCE_KEY_SHOULD_SHOW_HAMBURGER_FEATURE_HIGHLIGHT, false)
-                .apply();
     }
 
     private void update(boolean skipAnimation) {
