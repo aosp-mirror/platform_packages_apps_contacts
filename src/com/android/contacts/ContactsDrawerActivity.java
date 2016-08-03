@@ -71,6 +71,7 @@ import com.android.contacts.group.GroupsFragment.GroupsListener;
 import com.android.contacts.interactions.AccountFiltersFragment;
 import com.android.contacts.interactions.AccountFiltersFragment.AccountFiltersListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
+import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contactsbind.Assistants;
 import com.android.contactsbind.HelpUtils;
 
@@ -111,6 +112,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     private class ContactsActionBarDrawerToggle extends ActionBarDrawerToggle {
 
         private Runnable mRunnable;
+        private boolean mMenuClickedBefore = SharedPreferenceUtil.getHamburgerMenuClickedBefore(
+                ContactsDrawerActivity.this);
 
         public ContactsActionBarDrawerToggle(AppCompatActivity activity, DrawerLayout drawerLayout,
                 Toolbar toolbar, int openDrawerContentDescRes, int closeDrawerContentDescRes) {
@@ -121,6 +124,10 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         @Override
         public void onDrawerOpened(View drawerView) {
             super.onDrawerOpened(drawerView);
+            if (!mMenuClickedBefore) {
+                SharedPreferenceUtil.setHamburgerMenuClickedBefore(ContactsDrawerActivity.this);
+                mMenuClickedBefore = true;
+            }
             invalidateOptionsMenu();
         }
 
