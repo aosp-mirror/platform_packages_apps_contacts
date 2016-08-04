@@ -224,7 +224,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             clearCheckedMenus();
             mIdMenuMap.get(R.id.nav_find_duplicates).setCheckable(true);
             mIdMenuMap.get(R.id.nav_find_duplicates).setChecked(true);
-            updateScrollPosition(DUPLICATES_POSITION);
+            maybeUpdateScrollPosition(DUPLICATES_POSITION);
         }
 
         if (savedState != null && savedState.containsKey(KEY_NEW_GROUP_ACCOUNT)) {
@@ -233,7 +233,11 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
     }
 
-    private void updateScrollPosition(int position) {
+    private void maybeUpdateScrollPosition(int position) {
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Don't scroll menu when drawer open");
+            return;
+        }
         final RecyclerView recyclerView = (RecyclerView) mNavigationView.getChildAt(0);
         final LinearLayoutManager layoutManager =
                 (LinearLayoutManager) recyclerView.getLayoutManager();
@@ -416,7 +420,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 && mGroupMenuMap.get(groupMetadata.groupId) != null) {
             mGroupMenuMap.get(groupMetadata.groupId).setCheckable(true);
             mGroupMenuMap.get(groupMetadata.groupId).setChecked(true);
-            updateScrollPosition(mGroupMenuMap.get(groupMetadata.groupId).getOrder());
+            maybeUpdateScrollPosition(mGroupMenuMap.get(groupMetadata.groupId).getOrder());
         }
     }
 
@@ -520,13 +524,13 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             if (mIdMenuMap != null && mIdMenuMap.get(R.id.nav_all_contacts) != null) {
                 mIdMenuMap.get(R.id.nav_all_contacts).setCheckable(true);
                 mIdMenuMap.get(R.id.nav_all_contacts).setChecked(true);
-                updateScrollPosition(ALL_CONTACTS_POSITION);
+                maybeUpdateScrollPosition(ALL_CONTACTS_POSITION);
             }
         } else {
             if (mFilterMenuMap != null && mFilterMenuMap.get(filter) != null) {
                 mFilterMenuMap.get(filter).setCheckable(true);
                 mFilterMenuMap.get(filter).setChecked(true);
-                updateScrollPosition(mFilterMenuMap.get(filter).getOrder());
+                maybeUpdateScrollPosition(mFilterMenuMap.get(filter).getOrder());
             }
         }
     }
