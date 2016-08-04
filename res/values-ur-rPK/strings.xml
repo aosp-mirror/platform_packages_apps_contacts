@@ -113,10 +113,15 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"حسب ضرورت لیبل کا نام"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"کالیں براہ راست صوتی میل کو بھیجیں"</string>
     <string name="removePhoto" msgid="4898105274130284565">"تصویر ہٹائیں"</string>
-    <string name="noContacts" msgid="4955659076981974652">"کوئی رابطے نہیں ہیں"</string>
+    <!-- no translation found for noContacts (2228592924476426108) -->
+    <skip />
     <string name="noGroups" msgid="4607906327968232225">"کوئی لیبل نہیں۔"</string>
     <string name="noAccounts" msgid="7768267764545265909">"گروپس بنانے کیلئے آپ کو ایک اکاؤنٹ درکار ہے۔"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"اس لیبل کے ساتھ کوئی رابطے نہیں"</string>
+    <!-- no translation found for emptyAccount (6873962901497975964) -->
+    <skip />
+    <!-- no translation found for emptyMainList (2772242747899664460) -->
+    <skip />
     <string name="contactSavedToast" msgid="9171862279493213075">"رابطہ محفوظ ہوگیا"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"رابطے اَن لنک ہو گئے"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"رابطہ میں تبدیلیاں محفوظ نہیں ہوسکیں۔"</string>
@@ -221,7 +226,8 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"لوڈ ہو رہا ہے…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ایک نیا رابطہ بنائیں"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"اکاؤنٹ شامل کریں"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"رابطے درآمد کریں"</string>
+    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
+    <skip />
     <string name="create_group_dialog_title" msgid="5363404287877384473">"نیا لیبل بنائیں"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"‏نیا بنائیں‎…‎"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" لیبل حذف کریں؟ (رابطے حذف نہیں ہوں گے۔)"</string>
@@ -339,4 +345,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ایونٹس اور پیغامات"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ایونٹس"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"پیغامات"</string>
+    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
+    <skip />
+    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
+    <skip />
 </resources>
