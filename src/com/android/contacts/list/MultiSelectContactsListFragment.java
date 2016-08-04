@@ -330,7 +330,13 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         if (accountFilterContainer == null) {
             return;
         }
-        if (firstVisibleItem == 0) {
+
+        int firstCompletelyVisibleItem = firstVisibleItem;
+        if (view != null && view.getChildAt(0) != null && view.getChildAt(0).getTop() < 0) {
+            firstCompletelyVisibleItem++;
+        }
+
+        if (firstCompletelyVisibleItem == 0) {
             ViewCompat.setElevation(accountFilterContainer, 0);
         } else {
             ViewCompat.setElevation(accountFilterContainer,
