@@ -45,6 +45,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.contacts.GroupListLoader;
+import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.tests.R;
 import com.android.contacts.tests.quickcontact.QuickContactTestsActivity;
 
@@ -67,7 +68,6 @@ public class AllIntentsActivity extends ListActivity
             "com.android.contacts.activities.PeopleActivity";
 
     public enum ContactsIntent {
-        VIEW_CONTACT_WITHOUT_ID,
         ACTION_PICK_CONTACT,
         ACTION_PICK_CONTACT_LEGACY,
         ACTION_PICK_PHONE,
@@ -92,6 +92,7 @@ public class AllIntentsActivity extends ListActivity
         ACTION_SEARCH_CONTACT,
         ACTION_SEARCH_EMAIL,
         ACTION_SEARCH_PHONE,
+        ACTION_SEARCH_GENERAL,
         SEARCH_SUGGESTION_CLICKED_CONTACT,
         EDIT_CONTACT,
         EDIT_CONTACT_LOOKUP,
@@ -105,13 +106,22 @@ public class AllIntentsActivity extends ListActivity
         EDIT_NEW_RAW_CONTACT,
         EDIT_NEW_LEGACY,
         EDIT_GROUP,
+        VIEW_CONTACT_WITHOUT_ID,
+        VIEW_PERSON_WITHOUT_ID,
         VIEW_CONTACT,
         VIEW_CONTACT_LOOKUP,
         VIEW_CONTACT_LOOKUP_ID,
         VIEW_RAW_CONTACT,
         VIEW_LEGACY,
         VIEW_GROUP,
-        QUICK_CONTACT_TESTS_ACTIVITY;
+        QUICK_CONTACT_TESTS_ACTIVITY,
+        LIST_DEFAULT,
+        LIST_CONTACTS,
+        LIST_ALL_CONTACTS,
+        LIST_CONTACTS_WITH_PHONES,
+        LIST_STARRED,
+        LIST_FREQUENT,
+        LIST_STREQUENT;
 
         public static ContactsIntent get(int ordinal) {
             return values()[ordinal];
@@ -275,6 +285,12 @@ public class AllIntentsActivity extends ListActivity
                 startSearchResultActivity(intent);
                 break;
             }
+            case ACTION_SEARCH_GENERAL: {
+                Intent intent = new Intent(Intent.ACTION_SEARCH);
+                intent.putExtra(SearchManager.QUERY, "a");
+                startSearchResultActivity(intent);
+                break;
+            }
             case SEARCH_SUGGESTION_CLICKED_CONTACT: {
                 long contactId = findArbitraryContactWithPhoneNumber();
                 if (contactId != -1) {
@@ -389,6 +405,12 @@ public class AllIntentsActivity extends ListActivity
                 startActivity(new Intent(Intent.ACTION_VIEW, Contacts.CONTENT_URI));
                 break;
             }
+            case VIEW_PERSON_WITHOUT_ID: {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setType("vnd.android.cursor.dir/person");
+                startActivity(intent);
+                break;
+            }
             case VIEW_CONTACT_LOOKUP: {
                 final long contactId = findArbitraryContactWithPhoneNumber();
                 if (contactId != -1) {
@@ -447,6 +469,34 @@ public class AllIntentsActivity extends ListActivity
             }
             case QUICK_CONTACT_TESTS_ACTIVITY: {
                 startActivity(new Intent(this, QuickContactTestsActivity.class));
+                break;
+            }
+            case LIST_DEFAULT: {
+                startActivity(new Intent(UiIntentActions.LIST_DEFAULT));
+                break;
+            }
+            case LIST_CONTACTS: {
+                startActivity(new Intent(UiIntentActions.LIST_CONTACTS));
+                break;
+            }
+            case LIST_ALL_CONTACTS: {
+                startActivity(new Intent(UiIntentActions.LIST_ALL_CONTACTS_ACTION));
+                break;
+            }
+            case LIST_CONTACTS_WITH_PHONES: {
+                startActivity(new Intent(UiIntentActions.LIST_CONTACTS_WITH_PHONES_ACTION));
+                break;
+            }
+            case LIST_STARRED: {
+                startActivity(new Intent(UiIntentActions.LIST_STARRED_ACTION));
+                break;
+            }
+            case LIST_FREQUENT: {
+                startActivity(new Intent(UiIntentActions.LIST_FREQUENT_ACTION));
+                break;
+            }
+            case LIST_STREQUENT: {
+                startActivity(new Intent(UiIntentActions.LIST_STREQUENT_ACTION));
                 break;
             }
 

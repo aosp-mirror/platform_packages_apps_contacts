@@ -29,6 +29,12 @@ public class UiIntentActions {
             "com.android.contacts.action.LIST_DEFAULT";
 
     /**
+     * The action for contacts list tab.
+     */
+    public static final String LIST_CONTACTS =
+            "com.android.contacts.action.LIST_CONTACTS";
+
+    /**
      * The action for the contacts list tab.
      */
     public static final String LIST_GROUP_ACTION =
