@@ -113,10 +113,15 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ឈ្មោះ​ស្លាក​ផ្ទាល់ខ្លួន"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"បញ្ជូន​ការ​ហៅ​ដោយ​ផ្ទាល់​ទៅ​សារ​ជា​សំឡេង"</string>
     <string name="removePhoto" msgid="4898105274130284565">"លុប​រូបថត​ចេញ"</string>
-    <string name="noContacts" msgid="4955659076981974652">"គ្មាន​ទំនាក់ទំនង"</string>
+    <!-- no translation found for noContacts (2228592924476426108) -->
+    <skip />
     <string name="noGroups" msgid="4607906327968232225">"គ្មានស្លាក។"</string>
     <string name="noAccounts" msgid="7768267764545265909">"ដើម្បី​បង្កើត​ក្រុម​អ្នក​ចាំបាច់​ត្រូវ​មាន​គណនី​មួយ។"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"មិន​មាន​ទំនាក់ទំនង​ដែល​មាន​ស្លាក​នេះ"</string>
+    <!-- no translation found for emptyAccount (6873962901497975964) -->
+    <skip />
+    <!-- no translation found for emptyMainList (2772242747899664460) -->
+    <skip />
     <string name="contactSavedToast" msgid="9171862279493213075">"បាន​រក្សាទុក​ទំនាក់ទំនង"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ទំនាក់ទំនងដែលមិនបានតភ្ជាប់"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"មិន​អាច​រក្សាទុក​ការ​ប្ដូរ​ទំនាក់ទំនង។"</string>
@@ -221,7 +226,8 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"កំពុង​ផ្ទុក..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"បង្កើត​ទំនាក់ទំនង​ថ្មី"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"បញ្ចូលគណនី"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"នាំចូល​ទំនាក់ទំនង"</string>
+    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
+    <skip />
     <string name="create_group_dialog_title" msgid="5363404287877384473">"បង្កើតស្លាកថ្មី"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"បង្កើត​ថ្មី..."</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"លុប​​ស្លាក \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (ទំនាក់ទំនង​របស់​​ខ្លួន​ឯង​​នឹង​មិន​ត្រូវ​បាន​លុប​ទេ)"</string>
@@ -339,4 +345,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ព្រឹត្តិការណ៍ និង​សារ"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ព្រឹត្តិការណ៍"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"សារ"</string>
+    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
+    <skip />
+    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
+    <skip />
 </resources>
