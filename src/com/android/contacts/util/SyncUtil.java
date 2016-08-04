@@ -19,6 +19,10 @@ import android.accounts.Account;
 import android.content.ContentResolver;
 import android.provider.ContactsContract;
 
+import com.android.contacts.common.model.account.GoogleAccountType;
+
+import java.util.List;
+
 /**
  * Utilities related to sync.
  */
@@ -29,7 +33,20 @@ public final class SyncUtil {
     }
 
     public static final boolean isSyncStatusPendingOrActive(Account account) {
+        if (account == null) {
+            return false;
+        }
         return ContentResolver.isSyncPending(account, ContactsContract.AUTHORITY)
                 || ContentResolver.isSyncActive(account, ContactsContract.AUTHORITY);
+    }
+
+    /**
+     * Returns true if the given Google account is not syncable.
+     */
+    public static final boolean isUnsyncableGoogleAccount(Account account) {
+        if (account == null || !GoogleAccountType.ACCOUNT_TYPE.equals(account.type)) {
+            return false;
+        }
+        return ContentResolver.getIsSyncable(account, ContactsContract.AUTHORITY) <= 0;
     }
 }

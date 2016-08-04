@@ -210,7 +210,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             // the syncs is in progress.
             if (syncableAccounts != null && syncableAccounts.size() > 0) {
                 for (Account account: syncableAccounts) {
-                    if (SyncUtil.isSyncStatusPendingOrActive(account)) {
+                    if (SyncUtil.isSyncStatusPendingOrActive(account)
+                            || SyncUtil.isUnsyncableGoogleAccount(account)) {
                         swipeRefreshLayout.setRefreshing(true);
                         return;
                     }
