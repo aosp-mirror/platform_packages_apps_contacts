@@ -82,6 +82,7 @@ import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
+import com.android.contacts.list.DefaultContactBrowseListFragment.FeatureHighlightCallback;
 import com.android.contacts.list.MultiSelectContactsListFragment.OnCheckBoxListActionListener;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
@@ -104,7 +105,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         DialogManager.DialogShowingViewActivity,
         ContactListFilterController.ContactListFilterListener,
         ProviderStatusListener,
-        MultiContactDeleteListener {
+        MultiContactDeleteListener,
+        DefaultContactBrowseListFragment.FeatureHighlightCallback {
 
     private static final String TAG = "PeopleActivity";
 
@@ -356,6 +358,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
             transaction.add(R.id.tab_pager, mAllFragment, ALL_TAG);
         }
 
+        mAllFragment.setFeatureHighlightCallback(this);
         mAllFragment.setOnContactListActionListener(new ContactBrowserActionListener());
         mAllFragment.setCheckBoxListListener(new CheckBoxListListener());
         mAllFragment.setListType(mContactListFilterController.getFilterListType());
@@ -578,9 +581,14 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                 showFabWithAnimation(shouldShowFabForAccount());
                 break;
             case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
+                // If queryString is empty, fragment data will not be reloaded,
+                // so hamburger promo should be checked now.
+                // If not empty, promo should be checked and displayed after reloading. (b/30706521)
+                if (TextUtils.isEmpty(mAllFragment.getQueryString())) {
+                    maybeShowHamburgerFeatureHighlight();
+                }
                 setQueryTextToFragment("");
                 updateFragmentsVisibility();
-                maybeShowHamburgerFeatureHighlight();
                 invalidateOptionsMenu();
                 showFabWithAnimation(shouldShowFabForAccount());
                 break;
@@ -1492,5 +1500,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     @Override
     protected ContactListFilter getContactListFilter() {
         return mContactListFilterController.getFilter();
+    }
+
+    @Override
+    public void onLoadFinishedCallback() {
+        maybeShowHamburgerFeatureHighlight();
     }
 }

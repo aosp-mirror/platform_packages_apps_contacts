@@ -52,6 +52,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private View mEmptyHomeView;
     private View mAccountFilterContainer;
     private TextView mSearchProgressText;
+    private FeatureHighlightCallback mCallback;
+
+    public interface FeatureHighlightCallback {
+        void onLoadFinishedCallback();
+    }
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -63,6 +68,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setDisplayDirectoryHeader(false);
     }
 
+    public void setFeatureHighlightCallback(FeatureHighlightCallback callback) {
+        mCallback = callback;
+    }
+
     @Override
     public CursorLoader createCursorLoader(Context context) {
         return new FavoritesAndContactsLoader(context);
@@ -72,6 +81,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         bindListHeader(data.getCount());
         super.onLoadFinished(loader, data);
+        if (!isSearchMode() && mCallback != null) {
+            mCallback.onLoadFinishedCallback();
+        }
     }
 
     private void bindListHeader(int numberOfContacts) {
