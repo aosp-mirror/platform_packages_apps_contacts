@@ -123,22 +123,13 @@ public class AccountFilterUtil {
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
         accountTypeManager.sortAccounts(/* defaultAccount */ getDefaultAccount(context));
         final List<AccountWithDataSet> accounts =
-                accountTypeManager.getAccounts(/* contactWritableOnly */ false);
-        final List<AccountWithDataSet> writableAccounts =
                 accountTypeManager.getAccounts(/* contactWritableOnly */ true);
-        final AccountWithDataSet localAccount = AccountWithDataSet.getLocalAccount();
-        if ((writableAccounts == null || writableAccounts.size() == 0)
-                && !accounts.contains(localAccount)) {
-            // Add "local account" if there is no writable account.
-            accounts.add(localAccount);
-        }
 
         for (AccountWithDataSet account : accounts) {
             final AccountType accountType =
                     accountTypeManager.getAccountType(account.type, account.dataSet);
-            if ((accountType.isExtension() || !accountType.areContactsWritable())
-                    && !account.hasData(context)) {
-                // Hide extensions and read-only accounts with no raw_contacts.
+            if (accountType.isExtension() && !account.hasData(context)) {
+                // Hide extensions with no raw_contacts.
                 continue;
             }
             final Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
