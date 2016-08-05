@@ -239,7 +239,6 @@ public class QuickContactActivity extends ContactsActivity
 
     private static final String MIMETYPE_GPLUS_PROFILE =
             "vnd.android.cursor.item/vnd.googleplus.profile";
-    private static final String GPLUS_PROFILE_DATA_5_ADD_TO_CIRCLE = "addtocircle";
     private static final String GPLUS_PROFILE_DATA_5_VIEW_PROFILE = "view";
     private static final String MIMETYPE_HANGOUTS =
             "vnd.android.cursor.item/vnd.googleplus.profile.comm";
@@ -2108,30 +2107,7 @@ public class QuickContactActivity extends ContactsActivity
                 // Build advanced entry for known 3p types. Otherwise default to ResolveCache icon.
                 switch (mimetype) {
                     case MIMETYPE_GPLUS_PROFILE:
-                        // If a secondDataItem is available, use it to build an entry with
-                        // alternate actions
-                        if (secondDataItem != null) {
-                            icon = res.getDrawable(R.drawable.ic_google_plus_black_24dp);
-                            alternateIcon = res.getDrawable(R.drawable.ic_add_to_circles_black_24);
-                            final GPlusOrHangoutsDataItemModel itemModel =
-                                    new GPlusOrHangoutsDataItemModel(intent, alternateIntent,
-                                            dataItem, secondDataItem, alternateContentDescription,
-                                            header, text, context);
-
-                            populateGPlusOrHangoutsDataItemModel(itemModel);
-                            intent = itemModel.intent;
-                            alternateIntent = itemModel.alternateIntent;
-                            alternateContentDescription = itemModel.alternateContentDescription;
-                            header = itemModel.header;
-                            text = itemModel.text;
-                        } else {
-                            if (GPLUS_PROFILE_DATA_5_ADD_TO_CIRCLE.equals(
-                                    intent.getDataString())) {
-                                icon = res.getDrawable(R.drawable.ic_add_to_circles_black_24);
-                            } else {
-                                icon = res.getDrawable(R.drawable.ic_google_plus_black_24dp);
-                            }
-                        }
+                        icon = res.getDrawable(R.drawable.ic_google_plus_black_24dp);
                         break;
                     case MIMETYPE_HANGOUTS:
                         // If a secondDataItem is available, use it to build an entry with
@@ -2139,12 +2115,12 @@ public class QuickContactActivity extends ContactsActivity
                         if (secondDataItem != null) {
                             icon = res.getDrawable(R.drawable.ic_hangout_24dp);
                             alternateIcon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
-                            final GPlusOrHangoutsDataItemModel itemModel =
-                                    new GPlusOrHangoutsDataItemModel(intent, alternateIntent,
+                            final HangoutsDataItemModel itemModel =
+                                    new HangoutsDataItemModel(intent, alternateIntent,
                                             dataItem, secondDataItem, alternateContentDescription,
                                             header, text, context);
 
-                            populateGPlusOrHangoutsDataItemModel(itemModel);
+                            populateHangoutsDataItemModel(itemModel);
                             intent = itemModel.intent;
                             alternateIntent = itemModel.alternateIntent;
                             alternateContentDescription = itemModel.alternateContentDescription;
@@ -2216,9 +2192,10 @@ public class QuickContactActivity extends ContactsActivity
     private List<Entry> dataItemsToEntries(List<DataItem> dataItems,
             MutableString aboutCardTitleOut) {
         // Hangouts and G+ use two data items to create one entry.
-        if (dataItems.get(0).getMimeType().equals(MIMETYPE_GPLUS_PROFILE) ||
-                dataItems.get(0).getMimeType().equals(MIMETYPE_HANGOUTS)) {
-            return gPlusOrHangoutsDataItemsToEntries(dataItems);
+        if (dataItems.get(0).getMimeType().equals(MIMETYPE_GPLUS_PROFILE)) {
+            return gPlusDataItemsToEntries(dataItems);
+        } else if (dataItems.get(0).getMimeType().equals(MIMETYPE_HANGOUTS)) {
+            return hangoutsDataItemsToEntries(dataItems);
         } else {
             final List<Entry> entries = new ArrayList<>();
             for (DataItem dataItem : dataItems) {
@@ -2233,15 +2210,10 @@ public class QuickContactActivity extends ContactsActivity
     }
 
     /**
-     * G+ and Hangout entries are unique in that a single ExpandingEntryCardView.Entry consists
-     * of two data items. This method attempts to build each entry using the two data items if
-     * they are available. If there are more or less than two data items, a fall back is used
-     * and each data item gets its own entry.
+     * Put the data items into buckets based on the raw contact id
      */
-    private List<Entry> gPlusOrHangoutsDataItemsToEntries(List<DataItem> dataItems) {
-        final List<Entry> entries = new ArrayList<>();
+    private Map<Long, List<DataItem>> dataItemsToBucket(List<DataItem> dataItems) {
         final Map<Long, List<DataItem>> buckets = new HashMap<>();
-        // Put the data items into buckets based on the raw contact id
         for (DataItem dataItem : dataItems) {
             List<DataItem> bucket = buckets.get(dataItem.getRawContactId());
             if (bucket == null) {
@@ -2250,10 +2222,43 @@ public class QuickContactActivity extends ContactsActivity
             }
             bucket.add(dataItem);
         }
+        return buckets;
+    }
+
+    /**
+     * For G+ entries, a single ExpandingEntryCardView.Entry consists of two data items. This
+     * method use only the View profile to build entry.
+     */
+    private List<Entry> gPlusDataItemsToEntries(List<DataItem> dataItems) {
+        final List<Entry> entries = new ArrayList<>();
+
+        for (List<DataItem> bucket : dataItemsToBucket(dataItems).values()) {
+            for (DataItem dataItem : bucket) {
+                if (GPLUS_PROFILE_DATA_5_VIEW_PROFILE.equals(
+                        dataItem.getContentValues().getAsString(Data.DATA5))) {
+                    final Entry entry = dataItemToEntry(dataItem, /* secondDataItem = */ null,
+                            this, mContactData, /* aboutCardName = */ null);
+                    if (entry != null) {
+                        entries.add(entry);
+                    }
+                }
+            }
+        }
+        return entries;
+    }
+
+    /**
+     * For Hangouts entries, a single ExpandingEntryCardView.Entry consists of two data items. This
+     * method attempts to build each entry using the two data items if they are available. If there
+     * are more or less than two data items, a fall back is used and each data item gets its own
+     * entry.
+     */
+    private List<Entry> hangoutsDataItemsToEntries(List<DataItem> dataItems) {
+        final List<Entry> entries = new ArrayList<>();
 
         // Use the buckets to build entries. If a bucket contains two data items, build the special
         // entry, otherwise fall back to the normal entry.
-        for (List<DataItem> bucket : buckets.values()) {
+        for (List<DataItem> bucket : dataItemsToBucket(dataItems).values()) {
             if (bucket.size() == 2) {
                 // Use the pair to build an entry
                 final Entry entry = dataItemToEntry(bucket.get(0),
@@ -2276,10 +2281,10 @@ public class QuickContactActivity extends ContactsActivity
     }
 
     /**
-     * Used for statically passing around G+ or Hangouts data items and entry fields to
-     * populateGPlusOrHangoutsDataItemModel.
+     * Used for statically passing around Hangouts data items and entry fields to
+     * populateHangoutsDataItemModel.
      */
-    private static final class GPlusOrHangoutsDataItemModel {
+    private static final class HangoutsDataItemModel {
         public Intent intent;
         public Intent alternateIntent;
         public DataItem dataItem;
@@ -2289,7 +2294,7 @@ public class QuickContactActivity extends ContactsActivity
         public String text;
         public Context context;
 
-        public GPlusOrHangoutsDataItemModel(Intent intent, Intent alternateIntent, DataItem dataItem,
+        public HangoutsDataItemModel(Intent intent, Intent alternateIntent, DataItem dataItem,
                 DataItem secondDataItem, StringBuilder alternateContentDescription, String header,
                 String text, Context context) {
             this.intent = intent;
@@ -2303,18 +2308,16 @@ public class QuickContactActivity extends ContactsActivity
         }
     }
 
-    private static void populateGPlusOrHangoutsDataItemModel(
-            GPlusOrHangoutsDataItemModel dataModel) {
+    private static void populateHangoutsDataItemModel(
+            HangoutsDataItemModel dataModel) {
         final Intent secondIntent = new Intent(Intent.ACTION_VIEW);
         secondIntent.setDataAndType(ContentUris.withAppendedId(Data.CONTENT_URI,
                 dataModel.secondDataItem.getId()), dataModel.secondDataItem.getMimeType());
         // There is no guarantee the order the data items come in. Second
         // data item does not necessarily mean it's the alternate.
-        // Hangouts video and Add to circles should be alternate. Swap if needed
+        // Hangouts video should be alternate. Swap if needed
         if (HANGOUTS_DATA_5_VIDEO.equals(
-                dataModel.dataItem.getContentValues().getAsString(Data.DATA5)) ||
-                GPLUS_PROFILE_DATA_5_ADD_TO_CIRCLE.equals(
-                        dataModel.dataItem.getContentValues().getAsString(Data.DATA5))) {
+                dataModel.dataItem.getContentValues().getAsString(Data.DATA5))) {
             dataModel.alternateIntent = dataModel.intent;
             dataModel.alternateContentDescription = new StringBuilder(dataModel.header);
 
@@ -2323,9 +2326,7 @@ public class QuickContactActivity extends ContactsActivity
                     dataModel.secondDataItem.getDataKind());
             dataModel.text = dataModel.secondDataItem.getDataKind().typeColumn;
         } else if (HANGOUTS_DATA_5_MESSAGE.equals(
-                dataModel.dataItem.getContentValues().getAsString(Data.DATA5)) ||
-                GPLUS_PROFILE_DATA_5_VIEW_PROFILE.equals(
-                        dataModel.dataItem.getContentValues().getAsString(Data.DATA5))) {
+                dataModel.dataItem.getContentValues().getAsString(Data.DATA5))) {
             dataModel.alternateIntent = secondIntent;
             dataModel.alternateContentDescription = new StringBuilder(
                     dataModel.secondDataItem.buildDataStringForDisplay(dataModel.context,
