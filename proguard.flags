@@ -13,6 +13,7 @@
 # For test:
 -keep class com.android.contacts.commonbind.analytics.AnalyticsUtil { *;}
 -keep class com.android.contacts.interactions.** { *;}
+-keep class com.android.contacts.util.SyncUtil { *;}
 -keep class com.google.common.base.Objects { *;}
 -keep class com.google.common.base.Preconditions { *;}
 -keep class com.google.common.collect.Lists { *;}
