@@ -16,8 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.contacts"
-    android:versionCode="10511"
-    android:versionName="1.5.11">
+    android:versionCode="10512"
+    android:versionName="1.5.12">
 
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="25" />
 
