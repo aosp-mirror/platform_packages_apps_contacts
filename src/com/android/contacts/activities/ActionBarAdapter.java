@@ -439,8 +439,9 @@ public class ActionBarAdapter implements OnCloseListener {
                             R.string.hamburger_feature_highlight_header))
                     .setBody(mActivity.getResources().getString(
                             R.string.hamburger_feature_highlight_body))
-                    .setInnerColor(mActivity.getResources().getColor(
-                            R.color.hamburger_feature_highlight_inner_color))
+                    .setTargetDrawable(
+                            R.drawable.ic_menu_hamburger,
+                            ContextCompat.getColor(mActivity, R.color.primary_color))
                     .build();
         }
     }
