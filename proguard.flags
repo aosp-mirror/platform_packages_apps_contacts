@@ -9,6 +9,8 @@
   public void *(android.view.MenuItem);
 }
 
+-keep class com.google.android.libraries.material.featurehighlight.** { *;}
+
 -keep class com.android.contacts.common.** { *;}
 # For test:
 -keep class com.android.contacts.commonbind.analytics.AnalyticsUtil { *;}
