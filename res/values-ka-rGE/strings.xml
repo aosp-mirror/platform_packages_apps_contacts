@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"მორგებული ლეიბლის სახელი"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ზარების პირდაპირ ხმოვან ფოსტაში გაგზავნა"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ფოტოების წაშლა"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"თქვენი კონტაქტების სია ცარიელია"</string>
     <string name="noGroups" msgid="4607906327968232225">"ლეიბლები არ არის."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ჯგუფების შესაქმნელად გესაჭიროებათ ანგარიში."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"კონტაქტი ამ ლეიბლით არ არსებობს"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"ამ ანგარიშში კონტაქტები არ არის"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"თქვენი კონტაქტების სია ცარიელია"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"კონტაქტი შენახულია"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"კონტაქტების მიბმა გაუქმდა"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"კონტაქტის ცვლილებების შენახვა ვერ მოხერხდა."</string>
@@ -138,6 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ლეიბლიდან წაიშალა"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"დაემატა ლეიბლს"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"ლეიბლის ცვლილებების შენახვა ვერ მოხერხდა."</string>
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ეს ლეიბლი უკვე არსებობს"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> კონტაქტი ტელეფონის ნომრით</item>
       <item quantity="one">1 კონტაქტი ტელეფონის ნომრით</item>
@@ -226,9 +224,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"იტვირთება…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ახალი კონტაქტის შექმნა"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"ანგარიშის დამატება"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
-    <string name="create_group_dialog_title" msgid="5363404287877384473">"ახალი ლეიბლის შექმნა"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"იმპორტი"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"ახლის შექმნა…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"გსურთ ლეიბლის „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“ წაშლა? (თვითონ კონტაქტები არ წაიშლება)."</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"სხვა კონტაქტთან მიბმამდე აკრიფეთ კონტაქტის სახელი."</string>
@@ -247,8 +243,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ყველა კონტაქტის ჩვენება"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"შეინახეთ თქვენი კონტაქტები საიმედოდ ტელეფონის დაკარგვის შემთხვევაშიც კი: მოახდინეთ სინქრონიზაცია ონლაინ სერვისთან."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ანგარიშის დამატება"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"დაუთმეთ ორიოდე წუთი ანგარიშის დამატებას, რომლითაც შეიქმნება თქვენი კონტაქტების სარეზერვო ასლები Google-ში."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ახალი კონტაქტები შეინახება აქ: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"აირჩიეთ ნაგულისხმევი ანგარიში ახალი კონტაქტებისთვის:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ახალი კონტაქტ.დამატება"</string>
@@ -345,8 +340,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"მოვლენები და შეტყობინებები"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"მოვლენები"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"შეტყობინებები"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"მოახდინეთ თქვენი სიის ორგანიზება"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"დუბლიკატებისა და ჯგუფის კონტაქტების გასუფთავება ლეიბლის მიხედვით"</string>
 </resources>
