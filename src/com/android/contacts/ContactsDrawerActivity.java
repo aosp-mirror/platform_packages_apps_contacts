@@ -287,7 +287,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + groupUri);
             Toast.makeText(this, R.string.groupCreatedToast, Toast.LENGTH_SHORT).show();
             startActivity(GroupUtil.createViewGroupIntent(this, groupUri, /* title */ null));
-            if (this instanceof GroupMembersActivity) {
+            if (shouldFinish()) {
                 // If we created a group while viewing the members of an existing group (i.e.
                 // while on GroupMembersActivity), finish the current GroupMembersActivity so that
                 // hitting back from the new GroupMembersActivity that was just stared will open
