@@ -119,15 +119,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Імя карыстальніцкага цэтліка"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Адпраўляць выклікі непасрэдна на галасавую пошту"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Выдаліць фота"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"Ваш спіс кантактаў пусты"</string>
     <string name="noGroups" msgid="4607906327968232225">"Метак няма."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Для стварэння групы патрабуецца ўліковы запіс."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Няма кантактаў з гэтай меткай"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"Няма кантактаў у гэтым уліковым запісе"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"Ваш спіс кантактаў пусты"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Кантакт захаваны"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Кантакты адлучаны"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Немагчыма захаваць змены кантакта."</string>
@@ -144,6 +141,8 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Выдалена з меткі"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Дададзена да этыкеткі"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Не ўдалося захаваць змяненні меткі."</string>
+    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> кантакт з нумарам(і) тэлефона(ў)</item>
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> кантакты з нумарамі тэлефонаў</item>
@@ -240,9 +239,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Загрузка..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Стварыць новы кантакт"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Дадаць уліковы запіс"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
-    <string name="create_group_dialog_title" msgid="5363404287877384473">"Стварыць новую метку"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Імпартаваць"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Стварыць новую..."</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Выдаліць метку \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Самі кантакты не будуць выдалены.)"</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Перад звязваннем кантакту з іншым увядзіце імя кантакту."</string>
@@ -261,8 +258,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Адлюстраванне ўсіх кантактаў"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Абаранiце свае кантакты, нават калі страціце тэлефон: сінхранізуйце iх з вэб-службай."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Дадаць уліковы запіс"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Знайдзіце хвілінку, каб дадаць уліковы запіс, які зробіць рэзервовую копію вашых кантактаў у Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Новыя кантакты будуць захаваны ва ўліковы запіс <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Выбраць уліковы запіс па змаўчанні для новых кантактаў:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Дадаць новы кантакт"</string>
@@ -367,8 +363,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Падзеі і паведамленні"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Падзеі"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Паведамленні"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Арганізуйце свой спіс"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Выдаліце дублікаты і згрупуйце кантакты па пазнацы"</string>
 </resources>

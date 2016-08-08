@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nama label khusus"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Kirim panggilan ke kotak pesan secara langsung"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Hapus foto"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"Daftar kontak Anda kosong"</string>
     <string name="noGroups" msgid="4607906327968232225">"Tidak ada label."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Untuk membuat grup, Anda memerlukan sebuah akun."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Tidak ada kontak dengan label ini"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"Tidak ada kontak di akun ini"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"Daftar kontak Anda kosong"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontak disimpan"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontak dibatalkan tautannya"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Tidak dapat menyimpan perubahan kontak."</string>
@@ -138,6 +135,8 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Dihapus dari label"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Ditambahkan ke label"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Tidak dapat menyimpan perubahan label."</string>
+    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontak dengan nomor telepon</item>
       <item quantity="one">1 kontak dengan nomor telepon</item>
@@ -226,9 +225,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Memuat..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Buat kontak baru"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Tambahkan akun"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
-    <string name="create_group_dialog_title" msgid="5363404287877384473">"Buat label baru"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Impor"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Buat baru…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Hapus label \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Kontak tidak akan dihapus.)"</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Ketik nama kontak sebelum menautkan dengan lainnya."</string>
@@ -247,8 +244,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Menampilkan semua kontak"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tetap amankan kontak Anda jika kehilangan ponsel: sinkronkan dengan layanan online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Tambahkan akun"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Luangkan waktu untuk menambahkan akun yang akan mencadangkan kontak Anda ke Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Kontak baru akan disimpan ke <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Pilih akun default untuk kontak baru:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Tambah kontak baru"</string>
@@ -345,8 +341,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Acara dan Pesan"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Acara"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Pesan"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Atur daftar kontak Anda"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Membersihkan kontak duplikat &amp; grup berdasarkan label"</string>
 </resources>

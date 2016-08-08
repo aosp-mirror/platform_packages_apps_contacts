@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Emri i personalizuar i etiketës"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Dërgoji telefonatat drejtpërdrejt te posta zanore"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Hiqe fotografinë"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"Lista e kontakteve të tua është bosh"</string>
     <string name="noGroups" msgid="4607906327968232225">"S\'ka etiketa."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Për të krijuar grupe të duhet një llogari."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Nuk ka kontakte me këtë etiketë"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"Nuk ka kontakte në këtë llogari"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"Lista e kontakteve të tua është bosh"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakti u ruajt"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktet u shkëputën"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ndryshimet e kontaktit nuk mund të ruheshin."</string>
@@ -138,6 +135,8 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Hequr nga etiketa"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"U shtua në emërtim"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Nuk mund të ruhen ndryshimet e etiketës."</string>
+    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontakte me numra telefoni</item>
       <item quantity="one">1 kontakt me numër telefoni</item>
@@ -226,9 +225,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Po ngarkon..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Krijo një kontakt të ri"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Shto llogari"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
-    <string name="create_group_dialog_title" msgid="5363404287877384473">"Krijo etiketë të re"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Importo"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Krijo të re..."</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Të fshihet grupi \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Kontaktet nuk do të fshihen.)"</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Shkruaj emrin e kontaktit para se ta lidhësh me një tjetër."</string>
@@ -247,8 +244,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Po shfaq të gjitha kontaktet"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mbaji kontaktet e tua të sigurta edhe nëse të humbet telefoni. Sinkronizoji me një shërbim në linjë."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Shto një llogari"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Nevojitet një minutë për të shtuar një llogari që mban kopje rezervë të kontakteve në Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Kontaktet e reja do të ruhen në <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Zgjidh një llogari të parazgjedhur për kontaktet e reja:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Shto një kontakt të ri"</string>
@@ -345,8 +341,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Ngjarje dhe mesazhe"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Ngjarjet"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Mesazhet"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Organizo listën tënde"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Pastro dublikatat dhe kontaktet e grupit sipas emërtimit"</string>
 </resources>
