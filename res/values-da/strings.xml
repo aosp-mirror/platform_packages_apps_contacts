@@ -191,7 +191,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Indlæser…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Opret ny kontaktperson"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Log ind på en konto"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer kontaktpersoner"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importér kontaktpersoner"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Opret en ny gruppe"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Opret en ny gruppe"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">

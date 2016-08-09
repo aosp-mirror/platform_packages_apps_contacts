@@ -45,14 +45,14 @@
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Eliminado de favoritos"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Agregado a favoritos"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Editar"</string>
-    <string name="menu_deleteContact" msgid="6788644058868189393">"Eliminar"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"Borrar"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Cambiar foto"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Colocar en pantalla principal"</string>
     <string name="menu_call" msgid="3992595586042260618">"Llamar al contacto"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Enviar texto al contacto"</string>
     <string name="menu_splitAggregate" msgid="8368636463748691868">"Separar"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Editar"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"Eliminar"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"Borrar"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Agregar contacto"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Agregar grupo"</string>
     <string name="splitConfirmation_title" msgid="633640935430370530">"¿Dividir contacto?"</string>
@@ -68,14 +68,14 @@
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Contactos borrados"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Establecer tono"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Llamadas al buzón de voz"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"No puedes eliminar contactos de cuentas de solo lectura, pero puedes ocultarlos en tus listas de contactos."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"No puedes borrar contactos de cuentas de solo lectura, pero puedes ocultarlos en tus listas de contactos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contiene información de varias cuentas. La información de las cuentas de solo lectura se ocultará en tus listas de contactos, pero no se eliminará."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Debes seleccionar al menos dos contactos para efectuar una combinación."</string>
     <string name="batch_merge_confirmation" msgid="8551299480317422420">"Los contactos seleccionados se combinarán en un solo contacto."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"Se borrarán los contactos seleccionados."</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"La información de las cuentas de solo lectura no se eliminará, sino que se ocultará en las listas de contactos."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Estos contactos contienen información de varias cuentas. La información de las cuentas de solo lectura no se eliminará, sino que se ocultará en las listas de contactos."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Eliminar este contacto suprimirá la información de mútliples cuentas."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Borrar este contacto suprimirá la información de múltiples cuentas."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Este contacto se eliminará."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Descartar cambios"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"El contacto no existe."</string>
@@ -198,7 +198,7 @@
       <item quantity="other"><xliff:g id="COUNT">%0$d</xliff:g> grupos</item>
       <item quantity="one">1 grupo</item>
     </plurals>
-    <string name="delete_group_dialog_message" msgid="7586856514337560529">"¿Deseas eliminar el grupo \" <xliff:g id="GROUP_LABEL">%1$s</xliff:g> \"? (No se eliminarán los contactos)."</string>
+    <string name="delete_group_dialog_message" msgid="7586856514337560529">"¿Deseas borrar el grupo \" <xliff:g id="GROUP_LABEL">%1$s</xliff:g> \"? (No se borrarán los contactos)."</string>
     <plurals name="num_contacts_in_group" formatted="false" msgid="5520734553286350341">
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> personas de <xliff:g id="ACCOUNT_TYPE_3">%2$s</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persona de <xliff:g id="ACCOUNT_TYPE_1">%2$s</xliff:g></item>

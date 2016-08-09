@@ -40,7 +40,7 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Aggiornamenti"</string>
     <string name="searchHint" msgid="8482945356247760701">"Cerca contatti"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Visualizza contatto"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Aggiungi a preferiti"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Aggiungi ai preferiti"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Rimuovi dai preferiti"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Rimosso dai preferiti"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Aggiunto ai preferiti"</string>
@@ -212,7 +212,7 @@
     <string name="set_default" msgid="4417505153468300351">"Imposta come predefinito"</string>
     <string name="clear_default" msgid="7193185801596678067">"Cancella impostazione predefinita"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Testo copiato"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Annullare le modifiche?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Ignorare le modifiche?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Imposta il mio profilo"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Digita il nome della persona"</string>

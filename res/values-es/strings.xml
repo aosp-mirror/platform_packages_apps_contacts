@@ -26,7 +26,7 @@
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Elegir un número para la llamada"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Elegir un número para el mensaje"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Añadir al contacto"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Seleccionar un contacto"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Elige un contacto"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crear nuevo contacto"</string>
     <string name="starredList" msgid="4817256136413959463">"Destacados"</string>
     <string name="frequentList" msgid="7154768136473953056">"Frecuentes"</string>
@@ -40,8 +40,8 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Actividad"</string>
     <string name="searchHint" msgid="8482945356247760701">"Buscar contactos"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Ver contacto"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Añadir a \"Favoritos\""</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Eliminar de \"Favoritos\""</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Añadir a Favoritos"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Eliminar de Favoritos"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Eliminado de favoritos"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Añadido a favoritos"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Editar"</string>
@@ -112,7 +112,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
       <item quantity="one">1 contacto encontrado</item>
     </plurals>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"No hay contactos."</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"No hay contactos"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
       <item quantity="one">1 contacto encontrado</item>
@@ -142,7 +142,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Añadir conexión"</string>
     <string name="recent" msgid="2659189233141493004">"Reciente"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Actualizaciones recientes"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Contacto de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Cuenta de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -223,7 +223,7 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"La aplicación Contactos funciona mejor con una cuenta de Google.\n\n• Accede a tu lista de contactos desde cualquier navegador web.\n• Haz copias de seguridad de tus contactos de forma segura."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén tus contactos a salvo aunque pierdas el teléfono: sincronízalos con un servicio online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Añadir una cuenta"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No se hará una copia de seguridad del nuevo contacto. ¿Quieres añadir una cuenta para hacer copias de seguridad online de los contactos?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"No se hará copia de seguridad del nuevo contacto. ¿Quieres añadir una cuenta para hacer copias de seguridad online de los contactos?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Tu nuevo contacto se sincronizará con <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Puedes sincronizar tu nuevo contacto con una de las siguientes cuentas. ¿Cuál quieres usar?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Añadir contacto"</string>

@@ -22,11 +22,11 @@
     <string name="shortcutContact" msgid="749243779392912958">"পরিচিতি"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"সরাসরি ডায়াল"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"সরাসরি বার্তা"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"শর্টকার্ট করতে একটি পরিচিতি চয়ন করুন"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"কল করার জন্য একটি নম্বর চয়ন করুন"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"বার্তা পাঠানোর জন্য একটি নম্বর চয়ন করুন"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"শর্টকার্ট করতে একটি পরিচিতি বেছে নিন"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"কল করার জন্য একটি নম্বর বেছে নিন"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"বার্তা পাঠানোর জন্য একটি নম্বর বেছে নিন"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"পরিচিতিতে যোগ করুন"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"একটি পরিচিতি চয়ন করুন"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"একটি পরিচিতি বেছে নিন"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"নতুন পরিচিতি তৈরি করুন"</string>
     <string name="starredList" msgid="4817256136413959463">"তারকা চিহ্নিত"</string>
     <string name="frequentList" msgid="7154768136473953056">"ঘন ঘন"</string>
@@ -60,7 +60,7 @@
     <string name="menu_joinAggregate" msgid="4050157483569357666">"মার্জ করুন"</string>
     <string name="menu_save" msgid="1727844363591825909">"সংরক্ষণ করুন"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"পরিচিতিগুলিকে যোগ করুন"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> এর সাথে যোগ করতে চান সেই পরিচিতিটি চয়ন করুন:"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"<xliff:g id="NAME">%s</xliff:g> এর সাথে যোগ করতে চান সেই পরিচিতিটি বেছে নিন:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"সকল পরিচিতি দেখান"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"প্রস্তাবিত পরিচিতিগুলি"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"সকল পরিচিতি"</string>
@@ -132,9 +132,9 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ফোন নম্বর জুড়ুন"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ইমেল জুড়ুন"</string>
     <string name="missing_app" msgid="1466111003546611387">"এই ক্রিয়াটিকে চালনা করার জন্য কোনো অ্যাপ্লিকেশান পাওয়া যায়নি৷"</string>
-    <string name="menu_share" msgid="943789700636542260">"ভাগ করুন"</string>
+    <string name="menu_share" msgid="943789700636542260">"শেয়ার করুন"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"পরিচিতিগুলিতে জুড়ুন"</string>
-    <string name="share_via" msgid="563121028023030093">"এর মাধ্যমে পরিচিতি ভাগ করুন"</string>
+    <string name="share_via" msgid="563121028023030093">"এর মাধ্যমে পরিচিতি শেয়ার করুন"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"অ্যাকাউন্টের অধীনে গোষ্ঠী তৈরি করুন"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ভয়েস চ্যাট"</string>
     <string name="video_chat" msgid="1872255818640336072">"ভিডিও চ্যাট"</string>
@@ -150,7 +150,7 @@
     <string name="group_read_only" msgid="1061762906115697637">"এই ডিভাইসে সম্পাদনযোগ্য নয়৷"</string>
     <string name="take_photo" msgid="7496128293167402354">"ফটো তুলুন"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"নতুন ফটো তুলুন"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"ফটো চয়ন করুন"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"ফটো বেছে নিন"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"নতুন ফটো নির্বাচন করুন"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"পরিচিতি তালিকা আপডেট করা হচ্ছে৷"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"অনুসন্ধান করছে..."</string>
@@ -172,7 +172,7 @@
     </plurals>
     <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"নির্বাচিত পরিচিতির সঙ্গে বর্তমান পরিচিতিগুলি যোগ করবেন?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"নির্বাচিত পরিচিতি সম্পাদনায় নিয়ে যাবেন? আপনার এ পর্যন্ত প্রবেশ করানো তথ্য অনুলিপি করা হবে৷"</string>
-    <string name="menu_copyContact" msgid="1573960845106822639">"আমার পরিচিতিগুলিতে অনুলিপি করুন"</string>
+    <string name="menu_copyContact" msgid="1573960845106822639">"আমার পরিচিতিগুলিতে কপি করুন"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"আমার পরিচিতিগুলিতে যুক্ত করুন"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ডিরেক্টরি <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="list_filter_custom" msgid="8910173055702057002">"কাস্টম"</string>
@@ -190,7 +190,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"পরিচিতি"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"লোড হচ্ছে..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"একটি নতুন পরিচিতি তৈরি করুন"</string>
-    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"একটি অ্যাকাউন্টে সাইন ইন করুন"</string>
+    <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"একটি অ্যাকাউন্টে প্রবেশ করুন"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"পরিচিতিগুলি আমদানি করুন"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"নতুন গোষ্ঠী তৈরি করুন"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"নতুন গোষ্ঠী তৈরি করুন"</string>
@@ -208,7 +208,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> জন</item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"অন্য একটির সাথে যোগ করার আগে পরিচিতির নাম লিখুন৷"</string>
-    <string name="copy_text" msgid="3257145021583508761">"ক্লিপবোর্ডে অনুলিপি করুন"</string>
+    <string name="copy_text" msgid="3257145021583508761">"ক্লিপবোর্ডে কপি করুন"</string>
     <string name="set_default" msgid="4417505153468300351">"ডিফল্ট সেট করুন"</string>
     <string name="clear_default" msgid="7193185801596678067">"ডিফল্ট সাফ করুন"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"পাঠ্য অনুলিপি হয়েছে"</string>
