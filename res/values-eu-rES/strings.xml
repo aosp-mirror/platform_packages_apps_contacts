@@ -67,7 +67,7 @@
     <string name="contactsJoinedMessage" msgid="656936718666768589">"Kontaktuak bateratu dira"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Kontaktuak ezabatu dira"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ezarri tonua"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Erantzungailuko dei guztiak"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Dei guztiak erantzungailura"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Ezin dituzu irakurtzeko soilik diren kontuetako kontaktuak ezabatu, baina zure kontaktuen zerrendatik ezkuta ditzakezu."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Kontaktu honek hainbat kontutako informazioa du. Irakurtzeko soilik diren kontuetako informazioa kontaktuen zerrendatik ezkutatuko da, baina ez da ezabatuko."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Gutxienez bi kontaktu behar dituzu bateratu ahal izateko."</string>

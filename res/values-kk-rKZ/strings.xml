@@ -40,8 +40,8 @@
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Жаңартулар"</string>
     <string name="searchHint" msgid="8482945356247760701">"Контактілерді іздеу"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Контактіні көру"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Сүйіктілерге қосу"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Сүйіктілерден алу"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Таңдаулыларға қосу"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Таңдаулылардан өшіру"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Таңдаулылардан жойылды"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Таңдаулыларға қосылды"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Жөндеу"</string>
@@ -142,7 +142,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Байланыс қосу"</string>
     <string name="recent" msgid="2659189233141493004">"Жуықта қолданылған"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Соңғы жаңартулар"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контактісі"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контакт"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> есептік жазбасы"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -178,7 +178,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"Реттелетін"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Параметрлер"</string>
     <string name="menu_settings" msgid="377929915873428211">"Параметрлер"</string>
-    <string name="menu_help" msgid="1680178646764069976">"Анықтама және кері байланыс"</string>
+    <string name="menu_help" msgid="1680178646764069976">"Анықтама және пікір"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Көрсету опциялары"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Телефон нөмірі"</string>
@@ -208,13 +208,13 @@
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> адам</item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Басқа контактіге қосар алдында контактінің атын теру."</string>
-    <string name="copy_text" msgid="3257145021583508761">"Дерек алмастыру жадына сақтау"</string>
+    <string name="copy_text" msgid="3257145021583508761">"Аралық сақтағышқа көшіру"</string>
     <string name="set_default" msgid="4417505153468300351">"Бастапқы ретінде орнату"</string>
     <string name="clear_default" msgid="7193185801596678067">"Бастапқыны өшіру"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Мәтін көшірмесі жасалды"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Өзгертулер сақталмай-ақ қойсын ба?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Менің профайлымды реттеу"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Менің профилімді реттеу"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Адамның атын теру"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Топтың атауы"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Менің жергілікті профайлым"</string>

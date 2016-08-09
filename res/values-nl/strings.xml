@@ -60,7 +60,7 @@
     <string name="menu_joinAggregate" msgid="4050157483569357666">"Samenvoegen"</string>
     <string name="menu_save" msgid="1727844363591825909">"Opslaan"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"Contacten samenvoegen"</string>
-    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Selecteer het contact dat u met <xliff:g id="NAME">%s</xliff:g> wilt samenvoegen:"</string>
+    <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"Selecteer het contact dat je met <xliff:g id="NAME">%s</xliff:g> wilt samenvoegen:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Alle contacten weergeven"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Mogelijke contacten"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle contacten"</string>
@@ -68,14 +68,14 @@
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Contacten verwijderd"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Beltoon instellen"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle oproepen naar voicemail"</string>
-    <string name="readOnlyContactWarning" msgid="7808825687289848259">"U kunt contacten niet verwijderen uit alleen-lezen-accounts, maar u kunt ze verbergen in uw contactenlijst."</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Dit contact bevat gegevens uit meerdere accounts. Gegevens uit alleen-lezen accounts worden verborgen in uw contactenlijst, maar niet verwijderd."</string>
-    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"U moet minimaal twee contacten selecteren om te kunnen samenvoegen."</string>
+    <string name="readOnlyContactWarning" msgid="7808825687289848259">"Je kunt contacten niet verwijderen uit alleen-lezen-accounts, maar je kunt ze verbergen in je contactenlijst."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Dit contact bevat gegevens uit meerdere accounts. Gegevens uit alleen-lezen accounts worden verborgen in je contactenlijst, maar niet verwijderd."</string>
+    <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Je moet minimaal twee contacten selecteren om te kunnen samenvoegen."</string>
     <string name="batch_merge_confirmation" msgid="8551299480317422420">"De geselecteerde contacten worden samengevoegd tot één contact."</string>
     <string name="batch_delete_confirmation" msgid="2564172328268885394">"De geselecteerde contacten worden verwijderd."</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Gegevens uit alleen-lezen accounts worden verborgen in uw contactenlijst, maar niet verwijderd."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Deze contacten bevatten gegevens uit meerdere accounts. Gegevens uit alleen-lezen accounts worden verborgen in uw contactenlijst, maar niet verwijderd."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Als u dit contact verwijdert, worden gegevens van meerdere accounts verwijderd."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="6614878716815412523">"Gegevens uit alleen-lezen accounts worden verborgen in je contactenlijst, maar niet verwijderd."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="5189722181586680185">"Deze contacten bevatten gegevens uit meerdere accounts. Gegevens uit alleen-lezen accounts worden verborgen in je contactenlijst, maar niet verwijderd."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="938900978442960800">"Als je dit contact verwijdert, worden gegevens van meerdere accounts verwijderd."</string>
     <string name="deleteConfirmation" msgid="811706994761610640">"Dit contact wordt verwijderd."</string>
     <string name="menu_discard" msgid="6854657936970228164">"Wijzigingen niet opslaan"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Het contact bestaat niet."</string>
@@ -94,7 +94,7 @@
     <string name="removePhoto" msgid="4898105274130284565">"Foto verwijderen"</string>
     <string name="noContacts" msgid="8579310973261953559">"Geen contacten."</string>
     <string name="noGroups" msgid="8614664663561385253">"Geen groepen."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"U heeft een account nodig om groepen te maken."</string>
+    <string name="noAccounts" msgid="7768267764545265909">"Je hebt een account nodig om groepen te maken."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Geen personen in deze groep."</string>
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Bewerk de groep om leden toe te voegen."</string>
     <string name="savingContact" msgid="4075751076741924939">"Contact opslaan..."</string>
@@ -126,7 +126,7 @@
     <string name="description_contact_photo" msgid="3387458082667894062">"contactfoto"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> van <xliff:g id="TOTAL_NUMBER">%s</xliff:g> contacten"</string>
-    <string name="search_settings_description" msgid="2675223022992445813">"Namen van uw contacten"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Namen van je contacten"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Er is geen app gevonden om deze actie uit te voeren."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klik om terug te keren naar het vorige scherm"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Telefoonnummer toevoegen"</string>
@@ -170,8 +170,8 @@
       <item quantity="other">samengevoegd uit <xliff:g id="COUNT">%0$d</xliff:g> bronnen</item>
       <item quantity="one">niet samengevoegd</item>
     </plurals>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Wilt u het huidige contact samenvoegen met het geselecteerde contact?"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Wilt u overschakelen naar het bewerken van het geselecteerde contact? Gegevens die u tot nu toe heeft ingevoerd, worden gekopieerd."</string>
+    <string name="aggregation_suggestion_join_dialog_message" msgid="3842757977671434836">"Wil je het huidige contact samenvoegen met het geselecteerde contact?"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Wil je overschakelen naar het bewerken van het geselecteerde contact? Gegevens die je tot nu toe hebt ingevoerd, worden gekopieerd."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiëren naar mijn contacten"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Toevoegen aan Mijn contacten"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directory <xliff:g id="TYPE">%1$s</xliff:g>"</string>
@@ -207,7 +207,7 @@
       <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> mensen</item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> persoon</item>
     </plurals>
-    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Geef een contactnaam op voordat u dit contact samenvoegt met een ander contact."</string>
+    <string name="toast_join_with_empty_contact" msgid="2238581529864542985">"Geef een contactnaam op voordat je dit contact samenvoegt met een ander contact."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiëren naar klembord"</string>
     <string name="set_default" msgid="4417505153468300351">"Standaard instellen"</string>
     <string name="clear_default" msgid="7193185801596678067">"Standaardwaarden wissen"</string>
@@ -220,13 +220,13 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Mijn lokale profiel"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mijn <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profiel"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle contacten worden weergegeven"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Contacten werkt beter met een Google-account.\n\n• Toegang via elke webbrowser.\n• Veilig een back-up van uw contacten maken."</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Zorg dat uw contacten veilig zijn, zelfs wanneer u uw telefoon verliest: synchroniseer met een online service."</string>
+    <string name="no_account_prompt" msgid="6424883302325061025">"Contacten werkt beter met een Google-account.\n\n• Toegang via elke webbrowser.\n• Veilig een back-up van je contacten maken."</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Zorg dat je contacten veilig zijn, zelfs wanneer je je telefoon verliest: synchroniseer met een online service."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Account toevoegen"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Er wordt geen back-up van uw nieuwe contact gemaakt. Een account toevoegen waarmee online een back-up van contacten wordt gemaakt?"</string>
-    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Uw nieuwe contact wordt gesynchroniseerd met <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"U kunt uw nieuwe contact synchroniseren met een van de volgende accounts. Welk account wilt u gebruiken?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Nw contact toevoegen"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Er wordt geen back-up van je nieuwe contact gemaakt. Een account toevoegen waarmee online een back-up van contacten wordt gemaakt?"</string>
+    <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Je nieuwe contact wordt gesynchroniseerd met <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Je kunt je nieuwe contact synchroniseren met een van de volgende accounts. Welk account wil je gebruiken?"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Contact toevoegen"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Contact bewerken"</string>
     <string name="keep_local" msgid="1258761699192993322">"Lokaal opslaan"</string>
     <string name="add_account" msgid="8201790677994503186">"Account toevoegen"</string>
@@ -268,8 +268,8 @@
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"uitgaand"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"gemist"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"recente oproep. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. klik om terug te bellen"</string>
-    <string name="message_from_you_prefix" msgid="7180706529908434482">"U: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts werkt beter wanneer u de Hangouts-ID van de betreffende persoon in het veld \'E-mail\' of \'Telefoon\' opgeeft."</string>
+    <string name="message_from_you_prefix" msgid="7180706529908434482">"Jij: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts werkt beter wanneer je de Hangouts-ID van de betreffende persoon in het veld \'E-mail\' of \'Telefoon\' opgeeft."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Meer velden"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Foto wijzigen"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>

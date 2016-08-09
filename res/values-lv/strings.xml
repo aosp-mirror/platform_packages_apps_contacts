@@ -27,7 +27,7 @@
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Izvēlieties numuru, uz kuru sūtīt īsziņu"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Pievienot kontaktpersonai"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Kontaktpersonas izvēle"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Radiet jaunu kontaktpersonu"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Izveidojiet jaunu kontaktpersonu"</string>
     <string name="starredList" msgid="4817256136413959463">"Atzīmēti ar zvaigznīti"</string>
     <string name="frequentList" msgid="7154768136473953056">"Bieži"</string>
     <string name="strequentList" msgid="5640192862059373511">"Izlase"</string>

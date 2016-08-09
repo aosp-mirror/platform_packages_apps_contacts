@@ -67,7 +67,7 @@
     <string name="contactsJoinedMessage" msgid="656936718666768589">"संपर्क विलीन केले"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"संपर्क हटविले"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिंगटोन सेट करा"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"व्हॉइसमेलवरील सर्व कॉल"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"सर्व कॉल व्हॉइसमेलवर"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"आपण केवळ-वाचनीय खात्‍यांमधून संपर्क हटवू शकत नाही परंतु आपण ते आपल्‍या संपर्क सूचींमध्‍ये लपवू शकता."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"या संपर्कात एकाधिक खात्‍यांमधील माहिती आहे. केवळ-वाचनीय खात्यांमधील माहिती आपल्‍या संपर्क सूचींमध्‍ये लपविली जाईल, हटविली जाणार नाही."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"विलीन करण्‍यासाठी आपण कमीतकमी दोन संपर्क निवडलेले असणे आवश्‍यक आहे."</string>
@@ -79,7 +79,7 @@
     <string name="deleteConfirmation" msgid="811706994761610640">"हा संपर्क हटविला जाईल."</string>
     <string name="menu_discard" msgid="6854657936970228164">"बदल टाकून द्या"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"संपर्क अस्तित्वात नाही."</string>
-    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"मुख्‍यपृष्‍ठ स्‍क्रीनवर संपर्क विजेट जोडले."</string>
+    <string name="createContactShortcutSuccessful" msgid="7874133287558150877">"मुख्‍य स्‍क्रीनवर संपर्क विजेट जोडले."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"नवीन संपर्क तयार करा"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"नवीन संपर्क तयार करा"</string>
   <string-array name="otherLabels">
@@ -179,7 +179,7 @@
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिंग्ज"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिंग्ज"</string>
     <string name="menu_help" msgid="1680178646764069976">"मदत आणि अभिप्राय"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"पर्याय प्रदर्शित करा"</string>
+    <string name="preference_displayOptions" msgid="1341720270148252393">"प्रदर्शन पर्याय"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"फोन नंबर"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"संपर्कांमध्ये जोडा"</string>
