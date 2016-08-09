@@ -119,15 +119,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"שם תווית בהתאמה אישית"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"שלח שיחות ישירות לדואר הקולי"</string>
     <string name="removePhoto" msgid="4898105274130284565">"הסר תמונה"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"רשימת אנשי הקשר שלך ריקה"</string>
     <string name="noGroups" msgid="4607906327968232225">"אין תוויות."</string>
     <string name="noAccounts" msgid="7768267764545265909">"כדי ליצור קבוצות, נחוץ חשבון."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"אין אנשי קשר עם התווית הזו"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"אין אנשי קשר בחשבון הזה"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"רשימת אנשי הקשר שלך ריקה"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"איש הקשר נשמר"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"בוטל הקישור לאנשי קשר"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"לא ניתן לשמור את השינויים באנשי הקשר."</string>
@@ -240,8 +237,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"טוען..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"צור איש קשר חדש"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"הוסף חשבון"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"ייבא"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"יצירת תווית חדשה"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"צור חדשה…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"למחוק את התווית \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (אנשי הקשר המסומנים בתווית לא יימחקו)."</string>
@@ -261,8 +257,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"מציג את כל אנשי הקשר"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"דאג שלא תאבד את אנשי הקשר שלך גם אם הטלפון שלך יאבד: בצע סנכרון עם שירות מקוון."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"הוסף חשבון"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"‏הקדש דקה כדי להוסיף חשבון Google שבו תגבה את אנשי הקשר שלך."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"אנשי קשר חדשים יישמרו ב-<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"בחר חשבון ברירת מחדל לאנשי קשר חדשים:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"הוספת איש קשר חדש"</string>
@@ -367,8 +362,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"אירועים והודעות"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"אירועים"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"הודעות"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"סידור הרשימה"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"מחק עותקים כפולים וקבץ את אנשי הקשר לפי תוויות"</string>
 </resources>

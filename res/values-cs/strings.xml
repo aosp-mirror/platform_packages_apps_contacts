@@ -119,15 +119,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Vlastní název štítku"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Přesměrovat hovory přímo do hlasové schránky"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Odebrat fotografii"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"Váš seznam kontaktů je prázdný"</string>
     <string name="noGroups" msgid="4607906327968232225">"Žádné štítky."</string>
     <string name="noAccounts" msgid="7768267764545265909">"K vytváření skupin potřebujete účet."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Žádné kontakty s tímto štítkem"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"V tomto účtu nejsou uloženy žádné kontakty"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"Váš seznam kontaktů je prázdný"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt uložen"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Propojení kontaktů bylo zrušeno"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Změny kontaktů nelze uložit."</string>
@@ -240,8 +237,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Načítá se..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Vytvořit nový kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Přidat účet"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Importovat"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"Vytvořit nový štítek"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Nový štítek…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Smazat štítek <xliff:g id="GROUP_LABEL">%1$s</xliff:g>? (Samotné kontakty smazány nebudou.)"</string>
@@ -261,8 +257,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Zobrazují se všechny kontakty"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mějte kontakty v bezpečí, i když telefon ztratíte: synchronizujte je s některou online službou."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Přidat účet"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Přidejte svůj účet a nechte si kontakty zálohovat do Googlu."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Nové kontakty se uloží do účtu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Zvolte výchozí účet pro nové kontakty:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Přidat nový kontakt"</string>
@@ -367,8 +362,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Události a zprávy"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Události"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Zprávy"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Udělejte si v kontaktech pořádek"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Zbavte se duplicit a seskupte kontakty pod štítky"</string>
 </resources>

@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ഇഷ്‌ടാനുസൃത ലേബൽ പേര്"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"കോളുകൾ നേരിട്ട് വോയ്‌സ്‌മെയിലിലേക്ക് അയയ്‌ക്കുക"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ഫോട്ടോ നീക്കംചെയ്യുക"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"നിങ്ങളുടെ കോൺടാക്‌റ്റ് ലിസ്‌റ്റ് ശൂന്യമാണ്"</string>
     <string name="noGroups" msgid="4607906327968232225">"ലേബലുകളൊന്നുമില്ല."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ഗ്രൂപ്പുകൾ സൃഷ്‌ടിക്കാൻ നിങ്ങൾക്ക് ഒരു അക്കൗണ്ട് ആവശ്യമാണ്."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"ഈ ലേബലുള്ള കോൺടാക്‌റ്റുകളൊന്നുമില്ല"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"ഈ അക്കൗണ്ടിൽ കോൺടാക്‌റ്റുകളൊന്നുമില്ല"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"നിങ്ങളുടെ കോൺടാക്‌റ്റ് ലിസ്‌റ്റ് ശൂന്യമാണ്"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"കോൺടാക്റ്റ് സംരക്ഷിച്ചു"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"കോൺടാക്റ്റുകൾ അൺലിങ്കുചെയ്തു"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"കോൺടാക്റ്റ് മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
@@ -226,8 +223,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"ലോഡുചെയ്യുന്നു..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"അക്കൗണ്ട് ചേർക്കുക"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"പുതിയ ലേബല്‍ സൃഷ്ടിക്കൂ"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"പുതിയത് സൃഷ്‌ടിക്കുക…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ലേബൽ ഇല്ലാതാക്കണോ? (കോൺടാക്റ്റുകൾ സ്വയം ഇല്ലാതാക്കപ്പെടില്ല.)"</string>
@@ -247,8 +243,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"എല്ലാ കോൺടാക്റ്റുകളും പ്രദർശിപ്പിക്കുന്നു"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"നിങ്ങൾക്ക് ഫോൺ നഷ്‌ടമാകുകയാണെങ്കിൽപ്പോലും നിങ്ങളുടെ കോൺടാക്റ്റുകൾ സുരക്ഷിതമായി സൂക്ഷിക്കുക: ഒരു ഓൺലൈൻ സേവനവുമായി സമന്വയിപ്പിക്കുക."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ഒരു അക്കൗണ്ട് ചേർക്കുക"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"കുറച്ചുസമയമെടുത്ത് ഒരു അക്കൗണ്ട് ചേർക്കുക, അത് Google-ൽ നിങ്ങളുടെ കോൺടാക്‌റ്റുകളുടെ ബായ്‌ക്കപ്പെടുക്കുന്നതിനിടയാക്കും."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"പുതിയ കോൺടാക്റ്റുകൾ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> എന്ന അക്കൗണ്ടിലേക്ക് സംരക്ഷിക്കപ്പെടും."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"പുതിയ കോൺടാക്റ്റുകൾക്ക് ഒരു ഡിഫോൾട്ട് അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"പുതിയവ ചേർക്കൂ"</string>
@@ -345,8 +340,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ഇവന്റുകളും സന്ദേശങ്ങളും"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ഇവന്റുകൾ"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"സന്ദേശങ്ങള്‍‌"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"നിങ്ങളുടെ ലിസ്‌റ്റ് ഓർഗനൈസുചെയ്യുക"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"ലേബൽ പ്രകാരം ഡ്യൂപ്ലിക്കേറ്റുകളും ഗ്രൂപ്പ് കോൺടാക്‌റ്റുകളും മായ്‌ക്കുക"</string>
 </resources>

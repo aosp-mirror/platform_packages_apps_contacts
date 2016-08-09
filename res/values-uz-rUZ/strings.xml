@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Maxsus yorliq"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Qo‘ng‘iroqlarni to‘g‘ridan to‘g‘ri ovozli xabarga jo‘natish"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Suratni o‘chirish"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"Kontaktlar ro‘yxati bo‘sh"</string>
     <string name="noGroups" msgid="4607906327968232225">"Hech qanday yorliq yo‘q."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Guruh yaratish uchun hisobingiz bo‘lishi kerak."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Bunday yorliq bilan birorta kontakt yo‘q"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"Bu hisobda hech qanday kontakt yo‘q"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"Kontaktlar ro‘yxati bo‘sh"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt saqlandi"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktlar ajratildi"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Kontakt o‘zgarishlari saqlanmadi."</string>
@@ -226,8 +223,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Yuklanmoqda…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Yangi kontakt yaratish"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Hisob qo‘shish"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Import qilish"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"Yangi yorliq yaratish"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Yangi yorliq yaratish…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"“<xliff:g id="GROUP_LABEL">%1$s</xliff:g>” yorlig‘i o‘chirilsinmi? (Kontaktlar o‘chirilmaydi.)"</string>
@@ -247,8 +243,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Barcha kontaktlar ko‘rsatilmoqda"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Onlayn xizmat yordamida sinxronlab, telefoningiz yo‘qolganda ham kontaktlaringizni saqlab qoling."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Hisob qo‘shish"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Kontaktlar nusxasini Google xizmatlariga saqlash uchun hisob qo‘shing."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Yangi kontaktlar <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> hisobiga saqlanadi."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Yangi kontaktlar uchun birlamchi hisobni tanlang:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Yangi kontakt qo‘shish"</string>
@@ -345,8 +340,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Tadbirlar va xabarlar"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Tadbirlar"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Xabarlar"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Kontaktlarni tartibga soling"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Kontaktlarni yorliq bo‘yicha guruhlang va takroriy kontaktlarni o‘chirib tashlang"</string>
 </resources>

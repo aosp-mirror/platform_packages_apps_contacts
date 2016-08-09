@@ -116,15 +116,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Prilagođeni naziv oznake"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Pošalji pozive izravno u govornu poštu"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Ukloni fotografiju"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"Popis kontakata je prazan"</string>
     <string name="noGroups" msgid="4607906327968232225">"Nema oznaka."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Za stvaranje grupa potreban vam je račun"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Nema kontakata s tom oznakom"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"Nema kontakata na ovom računu"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"Popis kontakata je prazan"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt je spremljen"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Prekinuta je veza kontakata"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Promjene kontakta nije moguće spremiti."</string>
@@ -233,8 +230,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Učitavanje..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Izradi novi kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Dodaj račun"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Uvezi"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"Izrada nove oznake"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Izrada nove oznake…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Želite li izbrisati oznaku \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Kontakti se neće izbrisati.)"</string>
@@ -254,8 +250,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Prikaz svih kontakata"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Očuvajte sigurnost svojih kontakata čak i ako izgubite telefon, sinkronizirajte ih mrežnom uslugom."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Dodajte račun"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Odvojite jednu minutu da biste dodali račun koji će na Googleu sigurnosno kopirati sve vaše kontakte."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Novi kontakti spremat će se na račun <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Odaberite zadani račun za nove kontakte:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dodaj novi kontakt"</string>
@@ -356,8 +351,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Događaji i poruke"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Događaji"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Poruke"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Organiziranje popisa"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Brisanje duplikata i grupnih kontakata prema oznaci"</string>
 </resources>

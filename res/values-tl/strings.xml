@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Custom na pangalan ng label"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Ipadala ang mga tawag nang direkta sa voicemail"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Alisin ang larawan"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"Walang laman ang iyong listahan ng mga contact"</string>
     <string name="noGroups" msgid="4607906327968232225">"Walang mga label."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Upang lumikha ng mga pangkat kailangan mo ng isang account."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Walang mga contact na mayroong ganitong label"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"Walang mga contact sa account na ito"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"Walang laman ang iyong listahan ng mga contact"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Na-save ang contact"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Na-unlink ang mga contact"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Hindi ma-save ang mga pagbabago sa contact."</string>
@@ -226,8 +223,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Naglo-load…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Lumikha ng bagong contact"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Magdagdag ng account"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"I-import"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"Gumawa ng bagong label"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Gumawa ng bagong…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"I-delete ang label na \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Ang mga contact mismo ay hindi ide-delete.)"</string>
@@ -247,8 +243,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ipinapakita ang lahat ng contact"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Panatilihing ligtas ang iyong mga contact kahit na mawala mo ang iyong telepono: mag-synchronize sa isang online na serbisyo."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Magdagdag ng account"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Maglaan nang sandali upang magdagdag ng account na magba-back up ng iyong mga contact sa Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Mase-save ang mga bagong contact sa <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Pumili ng default na account para sa mga bagong contact:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Mag-add ng contact"</string>
@@ -345,8 +340,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Mga Event at Mga Mensahe"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Mga Event"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Mga Mensahe"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Ayusin ang iyong listahan"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Linisin ang mga duplicate at igrupo ang mga contact ayon sa label"</string>
 </resources>

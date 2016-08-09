@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre del campo personalizado"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Enviar llamadas directamente al buzón de voz"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminar foto"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"La lista de contactos está vacía"</string>
     <string name="noGroups" msgid="4607906327968232225">"Sin etiquetas."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Para poder crear grupos, necesitas una cuenta."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"No hay ningún contacto con esta etiqueta"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"No hay contactos en esta cuenta"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"La lista de contactos está vacía"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Contacto guardado"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Contactos desvinculados"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"No se han guardado los cambios del contacto."</string>
@@ -226,8 +223,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Cargando..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Crear un contacto"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Añadir cuenta"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Importar"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"Crear etiqueta nueva"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Crear…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"¿Seguro que quieres eliminar la etiqueta \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? Los contactos no se eliminarán."</string>
@@ -247,8 +243,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Mostrando todos los contactos"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantén tus contactos a salvo aunque pierdas el teléfono: sincronízalos con un servicio online."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Añadir una cuenta"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Dedica un minuto a añadir una cuenta que hará copias de seguridad de tus contactos en Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Los nuevos contactos se guardan en <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Selecciona una cuenta predeterminada para los contactos nuevos:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Añadir contacto"</string>
@@ -345,8 +340,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Eventos y mensajes"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Eventos"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Mensajes"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Organiza tu lista"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Elimina los contactos que tengas repetidos y agrúpalos por etiqueta"</string>
 </resources>

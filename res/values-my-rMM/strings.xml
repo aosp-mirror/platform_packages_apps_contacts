@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"စိတ်ကြိုက် လေဘယ်လ်နာမည်"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ဖုန်းများအား အသံစာပို့စနစ်သို့ ပို့လိုက်ပါ"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ပုံအားဖယ်ရှားပါ"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"သင့်အဆက်အသွယ်များစာရင်းတွင် မည်သူမျှမရှိပါ"</string>
     <string name="noGroups" msgid="4607906327968232225">"အညွှန်းများမရှိပါ။"</string>
     <string name="noAccounts" msgid="7768267764545265909">"အုပ်စုများ ပြုလုပ်ရန် အကောင့်တစ်ခု လိုအပ်ပါသည်"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"ဤအညွှန်းဖြင့်အဆက်အသွယ်များ မရှိပါ"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"ဤအကောင့်တွင် အဆက်အသွယ်များ မရှိပါ"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"သင့်အဆက်အသွယ်များစာရင်းတွင် မည်သူမျှမရှိပါ"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"အဆက်အသွယ်အား သိမ်းဆည်းပြီးပါပြီ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"အဆက်အသွယ်များကို ကွင်းဆက်ဖြုတ်လိုက်ပြီ"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"လိပ်စာပြောင်းလဲမှုအား သိမ်းဆည်းလို့မရပါ"</string>
@@ -226,8 +223,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"ဖွင့်နေစဉ်…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"အဆက်အသွယ်သစ်တစ်ခု ပြုလုပ်ပါ"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"အကောင့်ထည့်ရန်"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"တင်သွင်းရန်"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"အညွှန်းသစ်ဖန်တီးပါ"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"အသစ်ဖန်တီးပါ…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" အညွှန်းကို ဖျက်ပစ်မလား။ (အဆက်အသွယ်များအနေဖြင့် ပျက်သွားမည်မဟုတ်ပါ။)"</string>
@@ -247,8 +243,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"အဆက်အသွယ်အားလုံးအားပြနေစဉ်"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"အွန်လိုင်း ဝန်ဆောင်မှုဖြင့် ထပ်တူကျအောင် ပြုလုပ်ထားခြင်းအားဖြင့် ဖုန်းပျောက်သွားသည့်တိုင်အောင် အဆက်အသွယ်များအား လုံခြုံစွာ သိမ်းထားနိုင်ပါသည်"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"အကောင့်တစ်ခုထည့်ပါ"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Google သို့ သင့်အဆက်အသွယ်များကို မိတ္တူကူးယူပေးမည့် အကောင့်တစ်ခုထည့်ရန် တစ်မိနစ်လောက် အချိန်ပေးလိုက်ပါ။"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"အဆက်အသွယ် အသစ်ကို <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> တွင်သိမ်းလိုက်ပါမည်။"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"အဆက်အသွယ် အသစ်များအတွက် မူရင်းအကောင့်ကို ရွေးပါ။"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"အဆက်အသွယ်သစ် ထည့်မည်"</string>
@@ -345,8 +340,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"အစီအစဥ်များနှင့် မက်ဆေ့ဂျ်များ"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"အစီအစဥ်များ"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"မက်ဆေ့ဂျ်များ"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"သင့်စာရင်းကို စနစ်တကျစီစဉ်ပါ"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"အဖွဲ့အဆက်အသွယ်များ &amp; ထပ်နေသည်များကို အညွှန်းဖြင့် ရှင်းပါ"</string>
 </resources>
