@@ -262,7 +262,7 @@
     <string name="header_photo_entry" msgid="4438023151411853238">"Fotoğraf"</string>
     <string name="content_description_expand_editor" msgid="1111381475901897470">"Kişi düzenleyiciyi genişletmek için tıklayın."</string>
     <string name="content_description_collapse_editor" msgid="7598061318022977825">"Kişi düzenleyiciyi daraltmak için tıklayın."</string>
-    <string name="content_description_directions" msgid="2686791825798189335">"konum için yol tarifleri"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"konum için yol tarifi"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"son gelen sms. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. yanıtlamak için dokunun"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"gelen"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"giden"</string>

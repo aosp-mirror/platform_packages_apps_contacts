@@ -67,7 +67,7 @@
     <string name="contactsJoinedMessage" msgid="656936718666768589">"Stika sta bila združena"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Stiki so bili izbrisani"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastavi zvonj."</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Vsi klici na odzivnik"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Vsi klici v odzivnik"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Iz računov samo za branje stikov ni mogoče izbrisati, lahko pa jih skrijete na seznamih stikov."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Ta stik vsebuje podatke iz več računov. Podatki iz računov samo za branje ne bodo izbrisani s seznamov stikov, temveč bodo samo skriti."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Za združevanje morate izbrati vsaj dva stika."</string>
@@ -124,7 +124,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> najdenih</item>
     </plurals>
     <string name="all_contacts_tab_label" msgid="6250372293594147703">"Vsi stiki"</string>
-    <string name="favorites_tab_label" msgid="1524869648904016414">"Priljubljeno"</string>
+    <string name="favorites_tab_label" msgid="1524869648904016414">"Priljubljeni"</string>
     <string name="callBack" msgid="5498224409038809224">"Povratni klic"</string>
     <string name="callAgain" msgid="3197312117049874778">"Ponovi klic"</string>
     <string name="returnCall" msgid="8171961914203617813">"Povratni klic"</string>
@@ -240,7 +240,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Nov stik ne bo varnostno kopiran. Želite dodati račun za varnostno kopiranje stikov v internetu?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Nov stik bo sinhroniziran z računom <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Nov stik lahko sinhronizirate z enim od teh računov. Katerega želite uporabiti?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dod. novega stika"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dodaj nov stik"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Urejanje stika"</string>
     <string name="keep_local" msgid="1258761699192993322">"Ohrani lokalno"</string>
     <string name="add_account" msgid="8201790677994503186">"Dodaj račun"</string>

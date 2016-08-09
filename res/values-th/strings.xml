@@ -61,9 +61,9 @@
     <string name="menu_save" msgid="1727844363591825909">"บันทึก"</string>
     <string name="titleJoinContactDataWith" msgid="7684875775798635354">"รวมรายชื่อ"</string>
     <string name="blurbJoinContactDataWith" msgid="8736488417422708236">"เลือกรายชื่อติดต่อที่คุณต้องการรวมกับ <xliff:g id="NAME">%s</xliff:g>:"</string>
-    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"แสดงรายชื่อในสมุดโทรศัพท์ทั้งหมด"</string>
+    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"แสดงรายชื่อติดต่อทั้งหมด"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"รายชื่อที่แนะนำ"</string>
-    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"รายชื่อในสมุดโทรศัพท์ทั้งหมด"</string>
+    <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"รายชื่อติดต่อทั้งหมด"</string>
     <string name="contactsJoinedMessage" msgid="656936718666768589">"รวมรายชื่อติดต่อแล้ว"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"ลบรายชื่อติดต่อแล้ว"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ตั้งเสียงเรียกเข้า"</string>
@@ -223,7 +223,7 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"คุณจะใช้งานรายชื่อติดต่อได้ดีขึ้นโดยผ่านบัญชี Google\n\n• เข้าถึงได้จากเว็บเบราว์เซอร์ทุกชนิด\n• สำรองข้อมูลรายชื่อติดต่อของคุณอย่างปลอดภัย"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"เก็บรายชื่อติดต่อของคุณไว้อย่างปลอดภัยด้วยการซิงค์กับบริการออนไลน์แม้ว่าคุณจะทำโทรศัพท์หาย"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"เพิ่มบัญชี"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ผู้ติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลผู้ติดต่อออนไลน์หรือไม่"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"รายชื่อติดต่อใหม่ของคุณจะไม่ได้รับการสำรองข้อมูล เพิ่มบัญชีที่สำรองข้อมูลรายชื่อติดต่อออนไลน์ไหม"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"ผู้ติดต่อใหม่ของคุณจะซิงค์กับ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"คุณสามารถซิงค์ผู้ติดต่อใหม่กับบัญชีใด บัญชีหนึ่งต่อไปนี้ได้ คุณต้องการใช้บัญชีใด"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"เพิ่มรายชื่อติดต่อ"</string>

@@ -142,13 +142,13 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Adicionar ligação"</string>
     <string name="recent" msgid="2659189233141493004">"Recentes"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Atualiz. recentes"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Contacto do <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Contacto <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Conta <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"Não editável a partir desta aplicação."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Não editável neste aparelho"</string>
-    <string name="take_photo" msgid="7496128293167402354">"Tirar fotografia"</string>
+    <string name="take_photo" msgid="7496128293167402354">"Tirar foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Tirar nova fotografia"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Escolher fotografia"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Selecionar nova fotografia"</string>
@@ -214,7 +214,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"Texto copiado"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Rejeitar as alterações?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"Config. o perfil"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"Configurar o meu perfil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Introduza o nome da pessoa"</string>
     <string name="group_name_hint" msgid="238359485263401293">"Nome do Grupo"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"O meu perfil local"</string>
@@ -223,10 +223,10 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"A aplicação Contactos funciona melhor com uma Conta Google.\n\n• Aceda a partir de qualquer navegador de Internet.\n• Faça uma cópia de segurança dos seus contactos de forma segura."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Mantenha os seus contactos em segurança, mesmo em caso de perda do telemóvel: sincronize com um serviço on-line."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Adicionar uma conta"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será efetuada cópia de segurança do novo contacto. Adicionar uma conta que efetua a cópia de segurança dos contactos on-line?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será efetuada cópia de segurança do novo contacto. Pretende adicionar uma conta que efetue a cópia de segurança dos contactos online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"O novo contacto será sincronizado com <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Pode sincronizar o novo contacto com uma das seguintes contas. Qual a conta que deseja utilizar?"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adic. novo contacto"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adicionar novo contacto"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar contacto"</string>
     <string name="keep_local" msgid="1258761699192993322">"Manter localmente"</string>
     <string name="add_account" msgid="8201790677994503186">"Adicionar conta"</string>

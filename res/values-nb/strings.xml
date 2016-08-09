@@ -46,7 +46,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Lagt til i favoritter"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Rediger"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Slett"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"Endre bilde"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"Bytt bilde"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Plassér på startsiden"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ring kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Send SMS til kontakt"</string>
@@ -191,7 +191,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Laster inn …"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Opprett en ny kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="7911101713860139754">"Logg på en konto"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importer kontakter"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importér kontakter"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Opprett ny gruppe"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Opprett en ny gruppe"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
@@ -223,7 +223,7 @@
     <string name="no_account_prompt" msgid="6424883302325061025">"Kontakter fungerer bedre med en Google-konto.\n\n• Tilgang fra hvilken som helst nettleser.\n• Sikkerhetskopiér kontaktene dine på en trygg måte."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Hold kontaktene dine trygge selv om du mister telefonen: synkroniser med en nettbasert tjeneste."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Legg til en konto"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Den nye kontakten din blir ikke sikkerhetskopiert. Vil du legge til en konto som sikkerhetskopierer kontakter på nettet?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Den nye kontakten blir ikke sikkerhetskopiert. Vil du legge til en konto for sikkerhetskopiering av kontakter på nettet?"</string>
     <string name="contact_editor_prompt_one_account" msgid="8669032699767375976">"Den nye kontakten din blir synkronisert med <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="611828200100438242">"Du kan synkronisere den nye kontakten din med én av de følgende kontoene. Hvilken vil du bruke?"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Legg til ny kontakt"</string>
@@ -271,6 +271,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Du: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts fungerer bedre når du går inn i personenes Hangouts-identifikatorer i e-postfeltet eller telefonfeltet."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"Flere felt"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Endre bilde"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Bytt bilde"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>

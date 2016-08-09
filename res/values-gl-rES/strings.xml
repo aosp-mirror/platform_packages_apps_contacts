@@ -25,7 +25,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Seleccionar un atallo para o contacto"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Escolle un número ao que chamar"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Escolle un número ao que enviar unha mensaxe"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Engadir ao contacto"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Engadir a un contacto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Seleccionar un contacto"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crear novo contacto"</string>
     <string name="starredList" msgid="4817256136413959463">"Marcados con asterisco"</string>
@@ -67,7 +67,7 @@
     <string name="contactsJoinedMessage" msgid="656936718666768589">"Contactos combinados"</string>
     <string name="contacts_deleted_toast" msgid="286851430992788215">"Contactos eliminados"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Definir ton"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Todas as chamadas a correo voz"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Chamadas ao correo de voz"</string>
     <string name="readOnlyContactWarning" msgid="7808825687289848259">"Non podes eliminar contactos das contas de só lectura, pero podes ocultalos nas túas listas de contactos."</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2137170726670196909">"Este contacto contén información de varias contas. A información das contas de só lectura ocultarase nas túas listas de contactos, non se eliminará."</string>
     <string name="batch_merge_single_contact_warning" msgid="982585201970392110">"Necesitas seleccionar polo menos dous contactos para poder combinalos."</string>
@@ -86,7 +86,7 @@
     <item msgid="8287841928119937597">"Organización"</item>
     <item msgid="7196592230748086755">"Nota"</item>
   </string-array>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Non hai imaxes dispoñibles no tablet."</string>
+    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Non hai imaxes dispoñibles na tableta."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Non hai imaxes dispoñibles no teléfono."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nome de etiqueta personalizada"</string>
@@ -112,7 +112,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
       <item quantity="one">Un contacto encontrado</item>
     </plurals>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Sen contactos"</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Non hai contactos"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contactos encontrados</item>
       <item quantity="one">Un contacto encontrado</item>
@@ -178,7 +178,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"Personalizados"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Configuración"</string>
     <string name="menu_settings" msgid="377929915873428211">"Configuración"</string>
-    <string name="menu_help" msgid="1680178646764069976">"Axuda e opinión"</string>
+    <string name="menu_help" msgid="1680178646764069976">"Axuda e suxestións"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Opcións de visualización"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Número de teléfono"</string>

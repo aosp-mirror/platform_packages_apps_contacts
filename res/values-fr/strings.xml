@@ -212,7 +212,7 @@
     <string name="set_default" msgid="4417505153468300351">"Définir par défaut"</string>
     <string name="clear_default" msgid="7193185801596678067">"Effacer les valeurs par défaut"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texte copié"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Annuler les modifications ?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Supprimer les modifications ?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Configurer mon profil"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Saisissez le nom de la personne"</string>

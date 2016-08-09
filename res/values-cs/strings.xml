@@ -148,7 +148,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Přidat spojení"</string>
     <string name="recent" msgid="2659189233141493004">"Nedávné"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Poslední aktualizace"</string>
-    <string name="account_type_format" msgid="718948015590343010">"Kontakt ze zdroje <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="account_type_format" msgid="718948015590343010">"Zdroj kontaktu: <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Účet <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />

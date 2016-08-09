@@ -145,7 +145,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"Додај везу"</string>
     <string name="recent" msgid="2659189233141493004">"Недавно"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Недавна ажурирања"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контакт"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> налог"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />

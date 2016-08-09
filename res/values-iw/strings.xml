@@ -46,7 +46,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"נוסף למועדפים"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"ערוך"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"מחק"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"שנה תמונה"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"החלפת תמונה"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"הצב במסך הבית"</string>
     <string name="menu_call" msgid="3992595586042260618">"התקשר לאיש קשר"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
@@ -285,6 +285,6 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"אתה: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏Hangouts פועל טוב יותר כשאתה מזין את מזהה ה-Hangouts של המשתמש בשדה האימייל או בשדה הטלפון."</string>
     <string name="compact_editor_more_fields" msgid="2874181192382284115">"שדות נוספים"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"שנה תמונה"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"החלפת תמונה"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g>‏ (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
 </resources>
