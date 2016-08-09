@@ -141,8 +141,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Usunięty z etykiety"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Dodano do etykiety"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Nie udało się zapisać zmian w etykiecie."</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Ta etykieta już istnieje"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> kontakty z numerami telefonu</item>
       <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> kontaktów z numerami telefonu</item>

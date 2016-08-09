@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"已從標籤中移除"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"已新增到標籤中"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"無法儲存標籤的變更內容。"</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"該標籤已存在"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位有電話號碼的聯絡人</item>
       <item quantity="one">1 位有電話號碼的聯絡人</item>

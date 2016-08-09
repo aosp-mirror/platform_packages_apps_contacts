@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Đã bị xóa khỏi nhãn"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Đã thêm vào nhãn"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Không thể lưu thay đổi đối với nhãn."</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Nhãn đó đã tồn tại"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> liên hệ có số điện thoại</item>
       <item quantity="one">1 liên hệ có số điện thoại</item>
