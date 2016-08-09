@@ -89,7 +89,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"ဖျက်ခံရမည့် အဆက်အသွယ်များထဲတွင် အကောင့် အများအပြားဆိုင်ရာ အသေးစိတ်များ ပါရှိနေသည်။ ဖတ်ရန် သက်သက် အကောင့်များထံမှ အသေးစိတ်များကို ဝှက်ထားမည်၊ ဖျက်ခံရမည် မဟုတ်ပါ။"</string>
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"ဤအဆက်အသွယ်ကို ဖျက်လိုက်လျှင် အကောင့် အများအပြားထဲက အသေးစိတ်များကိုပါ ဖျက်ပစ်မည်။"</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"ဤအဆက်အသွယ်ကို ဖျက်မလား။"</string>
-    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"ဖျက်ပါ"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"ဖျက်ရန်"</string>
     <string name="menu_discard" msgid="6854657936970228164">"အပြောင်းအလဲများ စွန့်ပစ်ရန်"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"လိပ်စာ မရှိပါ"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"အဆက်အသွယ်ကို ပင်မ မျက်နှာပြင်သို့ ထည့်လိုက်ပြီ။"</string>
@@ -145,11 +145,11 @@
     <string name="description_plus_button" msgid="515164827856229880">"အပေါင်း"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ၏ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> လိပ်စာ"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"အဆက်အသွယ်များ၏နာမည်များ"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အက်ပ် မရှိပါ။"</string>
+    <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အက်ပ်မရှိပါ။"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ယခင် မျက်နှာပြင်သို့ ပြန်ရန် ကလစ်ပါ"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်းနံပါတ် ထည့်ပါ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"အီးမေးလ် ထည့်ရန်"</string>
-    <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အက်ပ် မရှိပါ။"</string>
+    <string name="missing_app" msgid="1466111003546611387">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်မည့် အက်ပ်မရှိပါ။"</string>
     <string name="menu_share" msgid="943789700636542260">"မျှဝေခြင်း"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"အဆက်အသွယ်များ ထဲသို့ ထည့်ရန်"</string>
     <string name="share_via" msgid="563121028023030093">"အောက်ပါတို့မှတဆင့် အဆယ်အသွယ်ကို မျှဝေသည်"</string>
@@ -297,7 +297,7 @@
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"ကွင်းဆက်ချိတ်ထားသည့် အကောင့် <xliff:g id="COUNT">%d</xliff:g> ခု"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"အဆက်အသွယ်များ ချိတ်ဆက်ပါ"</string>
-    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ပယ်ဖျက်ပါ"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"မလုပ်တော့"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
       <item quantity="other">ဖြစ်နိုင်သည့် မိတ္တုပွား <xliff:g id="COUNT">%d</xliff:g> ခု</item>
       <item quantity="one">ဖြစ်နိုင်သည့် မိတ္တုပွား ၁ ခု</item>

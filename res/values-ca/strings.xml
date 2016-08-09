@@ -253,7 +253,7 @@
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Mostra-ho tot"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Recents"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Quant a"</string>
-    <string name="send_message" msgid="8938418965550543196">"Envia el missatge"</string>
+    <string name="send_message" msgid="8938418965550543196">"Envia un missatge"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"S\'està creant una còpia personal..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Ahir"</string>
     <string name="tomorrow" msgid="6241969467795308581">"Demà"</string>

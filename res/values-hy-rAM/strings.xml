@@ -40,7 +40,7 @@
     <string name="insertGroupDescription" msgid="5658512271662210139">"Ստեղծել խումբ"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Տեղեկատվություն"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Թարմացումները"</string>
-    <string name="searchHint" msgid="8482945356247760701">"Որոնել կոնտակտներ"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Կոնտակտների որոնում"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Դիտել կոնտակտը"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Ավելացնել ընտրյալներում"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Հեռացնել ընտրյալներից"</string>
