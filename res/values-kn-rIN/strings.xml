@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ಲೇಬಲ್‌ನಿಂದ ತೆಗೆದುಹಾಕಲಾಗಿದೆ"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ಲೇಬಲ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"ಲೇಬಲ್ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ."</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ಆ ಲೇಬಲ್ ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ <xliff:g id="COUNT">%d</xliff:g> ಸಂಪರ್ಕಗಳು</item>
       <item quantity="other">ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ <xliff:g id="COUNT">%d</xliff:g> ಸಂಪರ್ಕಗಳು</item>

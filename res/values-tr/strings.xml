@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Etiketten kaldırıldı"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Etikete eklendi"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Etiket değişiklikleri kaydedilemedi."</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Bu etiket zaten var"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">Telefon numarası olan <xliff:g id="COUNT">%d</xliff:g> kişi</item>
       <item quantity="one">Telefon numarası olan 1 kişi</item>

@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"បាន​យក​ចេញ​ពី​ស្លាក"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"បាន​បន្ថែម​ទៅ​ស្លាក"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"មិនអាចរក្សាទុកការផ្លាស់ប្តូរស្លាក​បាន​ទេ។"</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ស្លាក​នោះ​មាន​រួច​ហើយ"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ទំនាក់ទំនង <xliff:g id="COUNT">%d</xliff:g> ដែលមានលេខទូរស័ព្ទ</item>
       <item quantity="one">ទំនាក់ទំនង 1 ដែលមានលេខទូរស័ព្ទ</item>

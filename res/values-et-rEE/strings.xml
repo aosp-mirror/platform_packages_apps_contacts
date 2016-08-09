@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Eemaldatud sildilt"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Lisati sildile"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Sildi muudatusi ei õnnestunud salvestada."</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"See silt on juba olemas"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> telefoninumbriga kontakti</item>
       <item quantity="one">1 telefoninumbriga kontakt</item>

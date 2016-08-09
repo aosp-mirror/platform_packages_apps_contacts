@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"লেবেল থেকে সরানো হয়েছে"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"লেবেল যোগ করা হয়েছে"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"লেবেল পরিবর্তনগুলি সংরক্ষণ করা গেল না।"</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"এই লেবেলটি ইতিমধ্যে রয়েছে"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">ফোন নম্বর সহ <xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
       <item quantity="other">ফোন নম্বর সহ <xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>

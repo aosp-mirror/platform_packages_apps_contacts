@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Yorliqdan olib tashlandi"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Yorliqqa qo‘shildi"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Yorliqdagi o‘zgarishlarni saqlab bo‘lmadi."</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Bunday yorliq allaqachon mavjud"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">Telefon raqami bor <xliff:g id="COUNT">%d</xliff:g> ta kontakt</item>
       <item quantity="one">Telefon raqami bor 1 ta kontakt</item>

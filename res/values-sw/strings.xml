@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Imeondolewa kwenye lebo"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Imeongezwa kwenye lebo"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Imeshindwa kuhifadhi mabadiliko ya lebo."</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Lebo hiyo tayari ipo"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> unaowasiliana nao wenye nambari za simu</item>
       <item quantity="one">1 unayewasiliana naye mwenye nambari ya simu</item>

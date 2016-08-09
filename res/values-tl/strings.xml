@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Inalis sa label"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Idinagdag sa label"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Hindi ma-save ang mga pagbabago sa label."</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Mayroon nang ganyang label"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact na may mga numero ng telepono</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> na contact na may mga numero ng telepono</item>

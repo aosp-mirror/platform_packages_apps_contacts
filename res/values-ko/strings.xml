@@ -135,8 +135,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"라벨에서 삭제됨"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"라벨에 추가됨"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"라벨 변경사항을 저장할 수 없습니다."</string>
-    <!-- no translation found for groupExistsErrorMessage (5196811283836946189) -->
-    <skip />
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"이미 존재하는 라벨입니다."</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">전화번호가 포함된 연락처 <xliff:g id="COUNT">%d</xliff:g>개</item>
       <item quantity="one">전화번호가 포함된 연락처 1개</item>
