@@ -299,8 +299,8 @@
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"KONTAKTLARNI BOG‘LASH"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"BEKOR QILISH"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ta taxminiy takror kontakt</item>
-      <item quantity="one">1 ta taxminiy takror kontakt</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ta takroriy kontakt</item>
+      <item quantity="one">1 ta takroriy kontakt</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ta bog‘langan kontakt</item>
@@ -317,7 +317,7 @@
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Bog‘langan kontaktlar"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Hisoblaringizdan olingan"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Suratga olish"</string>
-    <string name="all_photos_button" msgid="1943122929420111351">"Barcha rasmlar"</string>
+    <string name="all_photos_button" msgid="1943122929420111351">"Barcha suratlar"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Surat tanlash"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> tomonidan"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>ni o‘chirish"</string>
