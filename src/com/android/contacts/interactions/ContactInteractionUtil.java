@@ -26,9 +26,6 @@ import java.text.DateFormat;
 
 import java.util.Calendar;
 
-import com.android.contacts.R;
-
-
 /**
  * Utility methods for interactions and their loaders
  */
@@ -61,8 +58,7 @@ public class ContactInteractionUtil {
      * compareCalendar.
      * This formats the date based on a few conditions:
      * 1. If the timestamp is today, the time is shown
-     * 2. If the timestamp occurs tomorrow or yesterday, that is displayed
-     * 3. Otherwise {Month Date} format is used
+     * 2. Otherwise show full date and time
      */
     @NeededForTesting
     public static String formatDateStringFromTimestamp(long timestamp, Context context,
@@ -76,19 +72,9 @@ public class ContactInteractionUtil {
                     interactionCalendar.getTime());
         }
 
-        // Turn compareCalendar to yesterday
-        compareCalendar.add(Calendar.DAY_OF_YEAR, -1);
-        if (compareCalendarDayYear(interactionCalendar, compareCalendar)) {
-            return context.getString(R.string.yesterday);
-        }
-
-        // Turn compareCalendar to tomorrow
-        compareCalendar.add(Calendar.DAY_OF_YEAR, 2);
-        if (compareCalendarDayYear(interactionCalendar, compareCalendar)) {
-            return context.getString(R.string.tomorrow);
-        }
-        return DateUtils.formatDateTime(context, interactionCalendar.getTimeInMillis(),
-                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NO_YEAR);
+        return DateUtils.formatDateTime(context, timestamp, DateUtils.FORMAT_SHOW_TIME
+                | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_WEEKDAY
+                | DateUtils.FORMAT_SHOW_YEAR);
     }
 
     /**
