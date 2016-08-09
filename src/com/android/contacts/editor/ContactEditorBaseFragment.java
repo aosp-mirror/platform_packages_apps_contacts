@@ -788,6 +788,15 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
 
         // Save menu is invisible when there's only one read only contact in the editor.
         saveMenu.setVisible(!mRawContactDisplayAloneIsReadOnly);
+        if (saveMenu.isVisible()) {
+            // Since we're using a custom action layout we have to manually hook up the handler.
+            saveMenu.getActionView().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onOptionsItemSelected(saveMenu);
+                }
+            });
+        }
 
         if (mRawContactIdToDisplayAlone != -1 || mIsUserProfile) {
             sendToVoiceMailMenu.setVisible(false);
