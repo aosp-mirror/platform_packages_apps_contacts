@@ -1793,4 +1793,13 @@
 
     <!-- Content description for (...) in no name header [CHAR LIMIT=30]-->
     <string name="description_no_name_header">Ellipsis</string>
+
+    <!-- Formatted call duration displayed in recent card in QuickContact, for duration less than 1 minute -->
+    <string name="callDurationSecondFormat"><xliff:g id="seconds">%s</xliff:g> sec</string>
+
+    <!-- Formatted call duration displayed in recent card in QuickContact, for duration less than 1 hour -->
+    <string name="callDurationMinuteFormat"><xliff:g id="minutes">%s</xliff:g> min <xliff:g id="seconds">%s</xliff:g> sec</string>
+
+    <!-- Formatted call duration displayed in recent card in QuickContact, for duration more than 1 hour -->
+    <string name="callDurationHourFormat"><xliff:g id="minutes">%s</xliff:g> hr <xliff:g id="minutes">%s</xliff:g> min <xliff:g id="seconds">%s</xliff:g> sec</string>
 </resources>
