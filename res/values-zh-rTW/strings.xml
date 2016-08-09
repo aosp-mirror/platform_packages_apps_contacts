@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"自訂標籤名稱"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"直接將來電轉到語音信箱"</string>
     <string name="removePhoto" msgid="4898105274130284565">"移除相片"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"您的聯絡人清單沒有任何項目"</string>
     <string name="noGroups" msgid="4607906327968232225">"沒有任何標籤。"</string>
     <string name="noAccounts" msgid="7768267764545265909">"必須要有帳戶才能建立群組。"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"沒有任何聯絡人設有這個標籤"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"這個帳戶中沒有聯絡人"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"您的聯絡人清單沒有任何項目"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"聯絡人已儲存"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"已取消連結聯絡人"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"無法儲存聯絡人變更。"</string>
@@ -226,8 +223,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"載入中…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"建立新聯絡人"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"新增帳戶"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"匯入"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"建立新標籤"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"新建..."</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"要刪除「<xliff:g id="GROUP_LABEL">%1$s</xliff:g>」標籤嗎？(聯絡人本身不會遭到刪除。)"</string>
@@ -247,8 +243,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"顯示所有聯絡人"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"即使手機遺失，聯絡人資訊依然萬無一失：與線上服務保持同步。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"新增帳戶"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"請花幾分鐘時間新增帳戶，即可將您的聯絡人資料備份到 Google。"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"新聯絡人將儲存至 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"為新建立的聯絡人選擇一個預設帳戶："</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增聯絡人"</string>
@@ -345,8 +340,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"活動和訊息"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"活動"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"訊息"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"管理您的清單"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"清除重複的聯絡人並按標籤將聯絡人分組"</string>
 </resources>

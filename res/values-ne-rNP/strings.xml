@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"कस्टम लेबल नाम"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"कलहरू सिधै भ्वाइसमेलमा पठाउनुहोस्"</string>
     <string name="removePhoto" msgid="4898105274130284565">"तस्बिर मेट्नुहोस्"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"तपाईंको सम्पर्क ठेगानाहरूको सूची खाली छ"</string>
     <string name="noGroups" msgid="4607906327968232225">"कुनै पनि लेबल छैन।"</string>
     <string name="noAccounts" msgid="7768267764545265909">"समूह बनाउनका लागि एउटा खाताको आवश्यक्ता हुन्छ।"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"यो लेबल अन्तर्गत कुनै सम्पर्कहरू छैनन्"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"यस खातामा कुनै सम्पर्क ठेगानाहरू छैनन्"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"तपाईंको सम्पर्क ठेगानाहरूको सूची खाली छ"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"सम्पर्क बचत गरियो।"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"सम्पर्क ठेगानाहरू अनलिंक गरियो"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"सम्पर्क परिवर्तनहरू सुरक्षित गर्न सकेन।"</string>
@@ -226,8 +223,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"लोड हुँदै..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"एउटा नयाँ सम्पर्क बनाउनुहोस्"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"खाता थप्नुहोस्"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"आयात गर्नुहोस्"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"नयाँ लेबल सिर्जना गर्नुहोस्"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"नयाँ लेबल सिर्जना गर्नुहोस्..."</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" लेबललाई हटाउने हो? (सम्पर्कहरू मेटिने छैनन्।)"</string>
@@ -247,8 +243,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सबै सम्पर्कहरू प्रदर्शन गरिदै"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"तपाईँले फोन नै हराउनु भएको अवस्थामा पनि आफ्ना सम्पर्कहरूलाई सुरक्षित राख्नुहोस्: कुनै अनलाइन सेवासँग सिन्क्रोनाइज गर्नुहोस्।"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"एउटा खाता थप्नुहोस्"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"एक मिनेट जति लगाएर एउटा खाता थप्नुहोस् जसले तपाईंका सम्पर्कहरूलाई Google मा ब्याक अप गर्ने छ।"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"नयाँ सम्पर्कहरू <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> मा सुरक्षित गरिनेछन्।"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"नयाँ सम्पर्क ठेगानाहरूका लागि पूर्वनिर्धारित खाता छान्‍नुहोस्:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"नयाँ सम्पर्क थप्ने"</string>
@@ -345,8 +340,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"घटनाक्रम र सन्देशहरू"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"घटनाक्रमहरू"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"सन्देशहरू"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"आफ्नो सूची संगठित गर्नुहोस्"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"प्रतिलिपिहरू हटाउनुहोस् &amp; लेबलका आधारमा सम्पर्कहरूको समूह बनाउनुहोस्"</string>
 </resources>

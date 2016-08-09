@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nama label peribadi"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Hantar panggilan terus ke peti suara"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Alih keluar foto"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"Senarai kenalan anda kosong"</string>
     <string name="noGroups" msgid="4607906327968232225">"Tiada label."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Anda memerlukan akaun untuk membuat kumpulan."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Tiada kenalan dengan label ini"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"Tiada kenalan dalam akaun ini"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"Senarai kenalan anda kosong"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kenalan disimpan."</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kenalan dinyahpaut"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Tidak dapat menyimpan perubahan kenalan."</string>
@@ -226,8 +223,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"Memuatkan…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Buat kenalan baharu"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Tambahkan akaun"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Import"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"Buat label baharu"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Buat baharu…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Padamkan label \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Kenalan itu sendiri tidak akan dipadamkan.)"</string>
@@ -247,8 +243,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Memaparkan semua kenalan"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Pastikan kenalan anda selamat walaupun jika anda kehilangan telefon anda: segerakkan dengan perkhidmatan dalam talian."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Tambah akaun"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Luangkan sedikit masa untuk menambah akaun yang akan menyandarkan kenalan anda ke Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Kenalan baharu akan disimpan ke <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Pilih akaun lalai untuk kenalan baharu:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Tambah kenalan baru"</string>
@@ -345,8 +340,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Acara dan Mesej"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Acara"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Mesej"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Atur senarai anda"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Bersihkan pendua &amp; himpunkan kenalan mengikut label"</string>
 </resources>

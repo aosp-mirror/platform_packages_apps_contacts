@@ -113,15 +113,12 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"कस्टम लेबल नाम"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"सीधे वॉयस मेल पर कॉल भेजें"</string>
     <string name="removePhoto" msgid="4898105274130284565">"फ़ोटो निकालें"</string>
-    <!-- no translation found for noContacts (2228592924476426108) -->
-    <skip />
+    <string name="noContacts" msgid="2228592924476426108">"आपकी संपर्क सूची खाली है"</string>
     <string name="noGroups" msgid="4607906327968232225">"कोई लेबल नहीं."</string>
     <string name="noAccounts" msgid="7768267764545265909">"समूह बनाने के लिए आपको किसी खाते की आवश्‍यकता होती है."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"इस लेबल वाला कोई संपर्क नहीं"</string>
-    <!-- no translation found for emptyAccount (6873962901497975964) -->
-    <skip />
-    <!-- no translation found for emptyMainList (2772242747899664460) -->
-    <skip />
+    <string name="emptyAccount" msgid="6873962901497975964">"इस खाते में कोई संपर्क नहीं"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"आपकी संपर्क सूची खाली है"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"संपर्क सहेजा गया"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"संपर्क अनलिंक किए गए"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"संपर्क परिवर्तन सहेजे नहीं जा सके."</string>
@@ -226,8 +223,7 @@
     <string name="social_widget_loading" msgid="5327336597364074608">"लोड हो रहा है..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"एक नया संपर्क बनाएं"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"खाता जोड़ें"</string>
-    <!-- no translation found for contacts_unavailable_import_contacts (3182801738595937144) -->
-    <skip />
+    <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"आयात करें"</string>
     <string name="create_group_dialog_title" msgid="5363404287877384473">"नया लेबल बनाएं"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"नया बनाएं…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"लेबल \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" हटाएं? (संपर्क स्वयं नहीं हटाए जाएंगे.)"</string>
@@ -247,8 +243,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"सभी संपर्क प्रदर्शित कर रहा है"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"अपना फ़ोन खो देने पर भी अपने संपर्क सुरक्षित रखें: किसी ऑनलाइन सेवा से समन्‍वयित करें."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"कोई खाता जोड़ें"</string>
-    <!-- no translation found for contact_editor_prompt_zero_accounts (6648376557574360096) -->
-    <skip />
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"एक खाता जोड़ने के लिए कुछ समय दें जो Google में आपके संपर्कों का बैकअप लेगा."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"नए संपर्कों को <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> में सहेजा जाएगा."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"नए संपर्कों के लिए डिफ़ॉल्ट खाता चुनें:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"नया संपर्क जोड़ें"</string>
@@ -345,8 +340,6 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ईवेंट और संदेश"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ईवेंट"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"संदेश"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (7442308698936786415) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (6268711111318172098) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"अपनी सूची व्यवस्थित करें"</string>
+    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"डुप्लिकेट और समूह संपर्कों को लेबल द्वारा साफ़ करें"</string>
 </resources>
