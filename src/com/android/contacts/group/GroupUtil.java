@@ -219,4 +219,77 @@ public final class GroupUtil {
         }
         return array;
     }
+
+    /**
+     * Stores column ordering for the projection of a query of ContactsContract.Groups
+     */
+    public static final class GroupsProjection {
+        public final int groupId;
+        public final int title;
+        public final int summaryCount;
+        public final int systemId;
+        public final int accountName;
+        public final int accountType;
+        public final int dataSet;
+        public final int autoAdd;
+        public final int favorites;
+        public final int isReadOnly;
+        public final int deleted;
+
+        public GroupsProjection(Cursor cursor) {
+            groupId = cursor.getColumnIndex(Groups._ID);
+            title = cursor.getColumnIndex(Groups.TITLE);
+            summaryCount = cursor.getColumnIndex(Groups.SUMMARY_COUNT);
+            systemId = cursor.getColumnIndex(Groups.SYSTEM_ID);
+            accountName = cursor.getColumnIndex(Groups.ACCOUNT_NAME);
+            accountType = cursor.getColumnIndex(Groups.ACCOUNT_TYPE);
+            dataSet = cursor.getColumnIndex(Groups.DATA_SET);
+            autoAdd = cursor.getColumnIndex(Groups.AUTO_ADD);
+            favorites = cursor.getColumnIndex(Groups.FAVORITES);
+            isReadOnly = cursor.getColumnIndex(Groups.GROUP_IS_READ_ONLY);
+            deleted = cursor.getColumnIndex(Groups.DELETED);
+        }
+
+        public GroupsProjection(String[] projection) {
+            List<String> list = Arrays.asList(projection);
+            groupId = list.indexOf(Groups._ID);
+            title = list.indexOf(Groups.TITLE);
+            summaryCount = list.indexOf(Groups.SUMMARY_COUNT);
+            systemId = list.indexOf(Groups.SYSTEM_ID);
+            accountName = list.indexOf(Groups.ACCOUNT_NAME);
+            accountType = list.indexOf(Groups.ACCOUNT_TYPE);
+            dataSet = list.indexOf(Groups.DATA_SET);
+            autoAdd = list.indexOf(Groups.AUTO_ADD);
+            favorites = list.indexOf(Groups.FAVORITES);
+            isReadOnly = list.indexOf(Groups.GROUP_IS_READ_ONLY);
+            deleted = list.indexOf(Groups.DELETED);
+        }
+
+        public String getTitle(Cursor cursor) {
+            return cursor.getString(title);
+        }
+
+        public long getId(Cursor cursor) {
+            return cursor.getLong(groupId);
+        }
+
+        public String getSystemId(Cursor cursor) {
+            return cursor.getString(systemId);
+        }
+
+        public int getSummaryCount(Cursor cursor) {
+            return cursor.getInt(summaryCount);
+        }
+
+        public boolean isEmptyFFCGroup(Cursor cursor) {
+            if (accountType == -1 || isReadOnly == -1 ||
+                    systemId == -1 || summaryCount == -1) {
+                throw new IllegalArgumentException("Projection is missing required columns");
+            }
+            return GoogleAccountType.ACCOUNT_TYPE.equals(cursor.getString(accountType))
+                    && cursor.getInt(isReadOnly) != 0
+                    && isSystemIdFFC(cursor.getString(systemId))
+                    && cursor.getInt(summaryCount) <= 0;
+        }
+    }
 }
