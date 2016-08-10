@@ -37,6 +37,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -44,10 +45,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType.EditType;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.util.DialogManager;
@@ -86,6 +87,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private DialogManager mDialogManager = null;
     private EditorListener mListener;
     protected int mMinLineItemHeight;
+    private int mSelectedLabelIndex;
 
     /**
      * A marker in the spinner adapter of the currently selected custom type.
@@ -292,6 +294,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
      */
     public void rebuildLabel() {
         mEditTypeAdapter = new EditTypeAdapter(getContext());
+        mEditTypeAdapter.setSelectedIndex(mSelectedLabelIndex);
         mLabel.setAdapter(mEditTypeAdapter);
         if (mEditTypeAdapter.hasCustomSelection()) {
             mLabel.setSelection(mEditTypeAdapter.getPosition(CUSTOM_SELECTION));
@@ -518,6 +521,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
             // User picked type, and we're sure it's ok to actually write the entry.
             mType = selected;
             mEntry.put(mKind.typeColumn, mType.rawValue);
+            mSelectedLabelIndex = position;
             rebuildLabel();
             requestFocusForFirstEditField();
             onLabelRebuilt();
@@ -563,6 +567,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         private boolean mHasCustomSelection;
         private int mTextColorHintUnfocused;
         private int mTextColorDark;
+        private int mSelectedIndex;
 
         public EditTypeAdapter(Context context) {
             super(context, 0);
@@ -609,8 +614,11 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
         @Override
         public View getDropDownView(int position, View convertView, ViewGroup parent) {
-            return createViewFromResource(
+            final CheckedTextView dropDownView = (CheckedTextView) createViewFromResource(
                     position, convertView, parent, android.R.layout.simple_spinner_dropdown_item);
+            dropDownView.setBackground(getContext().getDrawable(R.drawable.drawer_item_background));
+            dropDownView.setChecked(position == mSelectedIndex);
+            return dropDownView;
         }
 
         private TextView createViewFromResource(int position, View convertView, ViewGroup parent,
@@ -635,6 +643,10 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
             }
             textView.setText(text);
             return textView;
+        }
+
+        public void setSelectedIndex(int selectedIndex) {
+            mSelectedIndex = selectedIndex;
         }
     }
 }
