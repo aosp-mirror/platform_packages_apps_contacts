@@ -231,6 +231,7 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
             actionBar.setTitle(getResources().getString(mActionBarTitleResId));
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_close_dk);
         }
     }
 
