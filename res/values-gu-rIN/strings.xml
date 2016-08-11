@@ -232,9 +232,9 @@
     <string name="set_default" msgid="4417505153468300351">"ડિફોલ્ટ સેટ કરો"</string>
     <string name="clear_default" msgid="7193185801596678067">"ડિફોલ્ટ સાફ કરો"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"ટેક્સ્ટ કૉપિ કર્યો"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"તમારા ફેરફારોને નિકાળીને સંપાદન છોડી દઈએ?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"ફેરફારો નિકાળીએ?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"નિકાળો"</string>
-    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"સંપાદન ચાલુ રાખો"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"રદ કરો"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"સંપર્કો શોધો"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"સંપર્કો દૂર કરો"</string>
@@ -259,7 +259,6 @@
     <string name="about_card_title" msgid="2920942314212825637">"વિશે"</string>
     <string name="send_message" msgid="8938418965550543196">"સંદેશ મોકલો"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"વ્યક્તિગત કૉપિ બનાવી રહ્યાં છે…"</string>
-    <string name="yesterday" msgid="6840858548955018569">"ગઈ કાલે"</string>
     <string name="tomorrow" msgid="6241969467795308581">"આવતીકાલે"</string>
     <string name="today" msgid="8041090779381781781">"આજે"</string>
     <string name="today_at_time_fmt" msgid="605665249491030460">"<xliff:g id="TIME_INTERVAL">%s</xliff:g> વાગ્યે આજે"</string>
