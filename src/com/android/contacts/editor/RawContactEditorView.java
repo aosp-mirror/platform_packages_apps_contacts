@@ -72,11 +72,6 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
     private ViewGroup mFields;
 
-    private View mAccountSelector;
-    private TextView mAccountSelectorTypeTextView;
-    private TextView mAccountSelectorNameTextView;
-
-    private View mAccountHeader;
     private TextView mAccountHeaderTypeTextView;
     private TextView mAccountHeaderNameTextView;
     private ImageView mAccountIconImageView;
@@ -140,24 +135,9 @@ public class RawContactEditorView extends BaseRawContactEditorView {
 
         mFields = (ViewGroup)findViewById(R.id.sect_fields);
 
-        mAccountHeader = findViewById(R.id.account_header_container);
         mAccountHeaderTypeTextView = (TextView) findViewById(R.id.account_type);
         mAccountHeaderNameTextView = (TextView) findViewById(R.id.account_name);
-        mAccountIconImageView = (ImageView) findViewById(android.R.id.icon);
-
-        // The same header is used by both full editor and read-only editor view. The header is
-        // left-aligned with read-only editor view but is not aligned well with full editor. So we
-        // need to shift the text in the header a little bit for full editor.
-        LinearLayout accountInfoView = (LinearLayout) findViewById(R.id.account_info);
-        final int topBottomPaddingDp = (int) getResources().getDimension(R.dimen
-                .editor_account_header_expandable_top_bottom_padding);
-        final int leftPaddingDp = (int) getResources().getDimension(R.dimen
-                .editor_account_header_expandable_left_padding);
-        accountInfoView.setPadding(leftPaddingDp, topBottomPaddingDp, 0, topBottomPaddingDp);
-
-        mAccountSelector = findViewById(R.id.account_selector_container);
-        mAccountSelectorTypeTextView = (TextView) findViewById(R.id.account_type_selector);
-        mAccountSelectorNameTextView = (TextView) findViewById(R.id.account_name_selector);
+        mAccountIconImageView = (ImageView) findViewById(R.id.account_type_icon);
     }
 
     @Override
@@ -215,16 +195,6 @@ public class RawContactEditorView extends BaseRawContactEditorView {
         }
         mAccountHeaderTypeTextView.setText(accountInfo.second);
         updateAccountHeaderContentDescription();
-
-        // The account selector and header are both used to display the same information.
-        mAccountSelectorTypeTextView.setText(mAccountHeaderTypeTextView.getText());
-        mAccountSelectorTypeTextView.setVisibility(mAccountHeaderTypeTextView.getVisibility());
-        mAccountSelectorNameTextView.setText(mAccountHeaderNameTextView.getText());
-        mAccountSelectorNameTextView.setVisibility(mAccountHeaderNameTextView.getVisibility());
-        // Showing the account header at the same time as the account selector drop down is
-        // confusing. They should be mutually exclusive.
-        mAccountHeader.setVisibility(mAccountSelector.getVisibility() == View.GONE
-                ? View.VISIBLE : View.GONE);
 
         mAccountIconImageView.setImageDrawable(state.getRawContactAccountType(getContext())
                 .getDisplayIcon(getContext()));

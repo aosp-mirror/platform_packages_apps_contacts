@@ -21,12 +21,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <!-- There are two mutually exclusive account headers that look significantly different.
-        The editor_account_selector is used when an account needs to be chosen. -->
     <include
-        layout="@layout/editor_account_header_expandable" />
-    <include
-        layout="@layout/editor_account_selector" />
+        layout="@layout/editor_account_header" />
 
     <LinearLayout
         android:id="@+id/collapsable_section"

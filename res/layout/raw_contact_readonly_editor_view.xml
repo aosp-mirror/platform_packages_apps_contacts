@@ -21,7 +21,7 @@
     android:orientation="vertical" >
 
     <include
-        layout="@layout/editor_account_header_expandable" />
+        layout="@layout/editor_account_header" />
 
     <LinearLayout
         android:id="@+id/collapsable_section"
