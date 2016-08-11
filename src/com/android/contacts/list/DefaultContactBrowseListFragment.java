@@ -20,6 +20,7 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -79,7 +80,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        bindListHeader(data.getCount());
+        if (loader.getId() == Directory.DEFAULT) {
+            bindListHeader(data.getCount());
+        }
         super.onLoadFinished(loader, data);
         if (!isSearchMode() && mCallback != null) {
             mCallback.onLoadFinishedCallback();
