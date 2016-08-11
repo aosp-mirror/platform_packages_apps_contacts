@@ -1,0 +1,84 @@
+/*
+ * Copyright (C) 2015 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.android.contacts.common.activity;
+
+import com.android.contacts.common.R;
+
+import android.Manifest.permission;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Activity that requests permissions needed for activities exported from Contacts.
+ */
+public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
+
+    private static String[] sRequiredPermissions;
+
+    @Override
+    protected String[] getPermissions() {
+        return getPermissions(getPackageManager());
+    }
+
+    public static boolean startPermissionActivity(Activity activity) {
+        return startPermissionActivity(activity,
+                getPermissions(activity.getPackageManager()),
+                RequestPermissionsActivity.class);
+    }
+
+    private static String[] getPermissions(PackageManager packageManager) {
+        if (sRequiredPermissions == null) {
+            final List<String> permissions = new ArrayList<>();
+            // Contacts group
+            permissions.add(permission.GET_ACCOUNTS);
+            permissions.add(permission.READ_CONTACTS);
+            permissions.add(permission.WRITE_CONTACTS);
+
+            if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+                // Phone group
+                // These are only used in a few places such as QuickContactActivity and
+                // ImportExportDialogFragment.  We work around missing this permission when
+                // telephony is not available on the device (i.e. on tablets).
+                permissions.add(permission.CALL_PHONE);
+                permissions.add(permission.READ_CALL_LOG);
+                permissions.add(permission.READ_PHONE_STATE);
+            }
+            sRequiredPermissions = permissions.toArray(new String[0]);
+        }
+        return sRequiredPermissions;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(
+            int requestCode, String permissions[], int[] grantResults) {
+        if (permissions != null && permissions.length > 0
+                && isAllGranted(permissions, grantResults)) {
+            mPreviousActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(mPreviousActivityIntent);
+            finish();
+            overridePendingTransition(0, 0);
+        } else {
+            Toast.makeText(this, R.string.missing_required_permission, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }
+}
