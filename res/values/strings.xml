@@ -751,8 +751,7 @@
 
     <!-- Toast that appears when you are copying a directory contact into your personal contacts -->
     <string name="toast_making_personal_copy">Creating a personal copy&#8230;</string>
-    <!-- Timestamp string for interactions from yesterday. [CHAR LIMIT=40] -->
-    <string name="yesterday">Yesterday</string>
+    <!-- Timestamp string for interactions from tomorrow. [CHAR LIMIT=40] -->
     <string name="tomorrow">Tomorrow</string>
     <!-- Timestamp string for interactions from today. [CHAR LIMIT=40] -->
     <string name="today">Today</string>
