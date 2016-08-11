@@ -232,9 +232,9 @@
     <string name="set_default" msgid="4417505153468300351">"സ്ഥിരമായി സജ്ജമാക്കുക"</string>
     <string name="clear_default" msgid="7193185801596678067">"സ്ഥിരമായത് മായ്‌ക്കുക"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"വാചകം പകർത്തി"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"നിങ്ങളുടെ മാറ്റങ്ങൾ തള്ളിക്കളയുകയും എഡിറ്റുചെയ്യൽ ഉപേക്ഷിക്കുകയും ചെയ്യണോ?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"മാറ്റങ്ങൾ നിരസിക്കണോ?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"തള്ളിക്കളയുക"</string>
-    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"എഡിറ്റുചെയ്യുന്നത് തുടരുക"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"റദ്ദാക്കൂ"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"കോൺടാക്‌റ്റുകൾ നീക്കംചെയ്യുക"</string>
@@ -259,7 +259,6 @@
     <string name="about_card_title" msgid="2920942314212825637">"ആമുഖം"</string>
     <string name="send_message" msgid="8938418965550543196">"സന്ദേശം അയയ്ക്കുക"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"ഒരു വ്യക്തിഗത പകർപ്പ് സൃഷ്‌ടിക്കുന്നു…"</string>
-    <string name="yesterday" msgid="6840858548955018569">"ഇന്നലെ"</string>
     <string name="tomorrow" msgid="6241969467795308581">"നാളെ"</string>
     <string name="today" msgid="8041090779381781781">"ഇന്ന്"</string>
     <string name="today_at_time_fmt" msgid="605665249491030460">"ഇന്ന് <xliff:g id="TIME_INTERVAL">%s</xliff:g> മണിയ്‌ക്ക്"</string>
