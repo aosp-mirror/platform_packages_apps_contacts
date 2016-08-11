@@ -32,22 +32,12 @@ public class GroupDeletionDialogFragment extends DialogFragment {
 
     private static final String ARG_GROUP_ID = "groupId";
     private static final String ARG_LABEL = "label";
-    private static final String ARG_SHOULD_END_ACTIVITY = "endActivity";
-    private static final String ARG_CALLBACK_ACTION = "callbackAction";
 
-    public static void show(FragmentManager fragmentManager, long groupId, String label,
-            boolean endActivity) {
-        show(fragmentManager, groupId, label, endActivity, /* callbackAction */ null);
-    }
-
-    public static void show(FragmentManager fragmentManager, long groupId, String label,
-            boolean endActivity, String callbackAction) {
+    public static void show(FragmentManager fragmentManager, long groupId, String label) {
         GroupDeletionDialogFragment dialog = new GroupDeletionDialogFragment();
         Bundle args = new Bundle();
         args.putLong(ARG_GROUP_ID, groupId);
         args.putString(ARG_LABEL, label);
-        args.putBoolean(ARG_SHOULD_END_ACTIVITY, endActivity);
-        args.putString(ARG_CALLBACK_ACTION, callbackAction);
         dialog.setArguments(args);
         dialog.show(fragmentManager, "deleteGroup");
     }
@@ -73,18 +63,9 @@ public class GroupDeletionDialogFragment extends DialogFragment {
     }
 
     protected void deleteGroup() {
-        Bundle arguments = getArguments();
-        long groupId = arguments.getLong(ARG_GROUP_ID);
-        final String callbackAction = arguments.getString(ARG_CALLBACK_ACTION);
-
+        final long groupId = getArguments().getLong(ARG_GROUP_ID);
         getActivity().startService(ContactSaveService.createGroupDeletionIntent(
-                getActivity(), groupId, getActivity().getClass(), callbackAction));
-        if (shouldEndActivity()) {
-            getActivity().finish();
-        }
-    }
-
-    private boolean shouldEndActivity() {
-        return getArguments().getBoolean(ARG_SHOULD_END_ACTIVITY);
+                getActivity(), groupId));
+        getActivity().finish();
     }
 }

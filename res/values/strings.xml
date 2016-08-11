@@ -348,7 +348,7 @@
     <!-- Toast displayed when a label is saved [CHAR LIMIT=30] -->
     <string name="groupSavedToast">Label saved</string>
 
-    <!-- Toast displayed when a label name is deleted. [CHAR LIMIT=50] -->
+    <!-- Toast or snackbar displayed when a label name is deleted. [CHAR LIMIT=50] -->
     <string name="groupDeletedToast">Label deleted</string>
 
     <!-- Toast displayed when a new label name is created. [CHAR LIMIT=50] -->
@@ -963,6 +963,10 @@
     <string name="hamburger_feature_highlight_header">Organize your list</string>
     <!-- The body text for hamburger promo [CHAR LIMIT=200]-->
     <string name="hamburger_feature_highlight_body">Clean up duplicates &amp; group contacts by label</string>
+
+    <!-- The label for the action shown in a snackbar after an operation that modifies some data is performed.
+         The user can click on the action to rollback the modification-->
+    <string name="undo">Undo</string>
 
     <!-- Toast shown when text is copied to the clipboard [CHAR LIMIT=64] -->
     <string name="toast_text_copied">Text copied</string>
