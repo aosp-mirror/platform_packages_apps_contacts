@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (C) 2012 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="toast_text_copied" msgid="8327159932780920627">"Teksten er kopiert"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Kopiér til utklippstavlen"</string>
+    <string name="call_custom" msgid="2786306789889210756">"Ring <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1479549630992276827">"Ring hjem"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Ring mobilnummer"</string>
+    <string name="call_work" msgid="8299062439076337075">"Ring arbeidsnummer"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"Ring faksnummer (arbeid)"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Ring faksnummer (hjemme)"</string>
+    <string name="call_pager" msgid="3038080882899955112">"Ring personsøkernummer"</string>
+    <string name="call_other" msgid="4472141328347894937">"Ring"</string>
+    <string name="call_callback" msgid="687494744634190411">"Ring tilbakeringingsnummer"</string>
+    <string name="call_car" msgid="9078083109758282133">"Ring til bilnummer"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Ring til firma (hovednummer)"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"Ring ISDN-nummer"</string>
+    <string name="call_main" msgid="4640261071249938558">"Ring hovednummer"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"Ring faksnummer"</string>
+    <string name="call_radio" msgid="9055749313292712021">"Ring radionummer"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Ring teleksnummer"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"Ring TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Ring mobilnummer (arbeid)"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Ring personsøkernummer (arbeid)"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"Ring <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="8998771923464696960">"Ring multimediemeldingnummer"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (ring)"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"Send tekstmelding til <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"Send tekstmelding til hjemmenummer"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"Send tekstmelding til mobilnummer"</string>
+    <string name="sms_work" msgid="3910570578912367742">"Send tekstmelding til arbeidsnummer"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"Send tekstmelding til faksnummer (arbeid)"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Send tekstmelding til faksnummer (hjemme)"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"Send tekstmelding til personsøkernummer"</string>
+    <string name="sms_other" msgid="910895193552957097">"Send tekstmelding"</string>
+    <string name="sms_callback" msgid="728414485478941361">"Send tekstmelding til tilbakeringingsnummer"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Send tekstmelding til bilnummer"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Send tekstmelding til firma (hovednummer)"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"Send tekstmelding til ISDN-nummer"</string>
+    <string name="sms_main" msgid="6815987840926184815">"Send tekstmelding til hovednummer"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"Send tekstmelding til faksnummer"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"Send tekstmelding til radionummer"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"Send tekstmelding til teleksnummer"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"Send tekstmelding til TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"Send tekstmelding til mobilnummer (arbeid)"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Send tekstmelding til personsøkernummer (arbeid)"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"Send tekstmelding til <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"Send tekstmelding til multimediemeldingnummer"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (send en melding)"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Utfør videoanrop"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Vil du fjerne ofte kontaktede personer?"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Du fjerner listen over ofte kontaktede personer i Kontakter- og Telefon-appene, og tvinger e-postappene til å lære seg adresseinnstillingene dine på nytt."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Fjerner ofte kontaktede personer ..."</string>
+    <string name="status_available" msgid="4832569677396634846">"Tilgjengelig"</string>
+    <string name="status_away" msgid="6267905184545881094">"Borte"</string>
+    <string name="status_busy" msgid="7111912905211403545">"Opptatt"</string>
+    <string name="contactsList" msgid="7140022347217602605">"Kontakter"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Annet"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"Katalog"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Jobbkatalog"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"Alle kontakter"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Søker ..."</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"Fant mer enn <xliff:g id="COUNT">%d</xliff:g>."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Ingen kontakter"</string>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> er funnet</item>
+      <item quantity="one">1 er funnet</item>
+    </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"Hurtigkontakt for <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(Uten navn)"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Ofte kontaktet"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Se kontakt"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Alle kontakter med telefonnumre"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Jobbprofilkontakter"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Se oppdateringer"</string>
+    <string name="account_phone" msgid="325867897209266837">"Enhet"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Navn"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Kallenavn"</string>
+    <string name="full_name" msgid="885420216812981202">"Navn"</string>
+    <string name="name_given" msgid="4153709115654909377">"Fornavn"</string>
+    <string name="name_family" msgid="5317387657540738981">"Etternavn"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Navneprefiks"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Mellomnavn"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Navnesuffiks"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Fonetisk navn"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Fonetisk fornavn"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Fonetisk mellomnavn"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Fonetisk etternavn"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telefon"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"E-post"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Adresse"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"Nettprat"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Organisasjon"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Tilknytning"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"Spesialdato"</string>
+    <string name="sms" msgid="8086289395154598654">"Tekstmelding"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Adresse"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"Firma"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Stilling"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Notater"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Nettsted"</string>
+    <string name="groupsLabel" msgid="2001597910276087197">"Etiketter"</string>
+    <string name="email_home" msgid="2230967805906450693">"Send e-post (privat)"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Send e-post (mobil)"</string>
+    <string name="email_work" msgid="7065971921227432400">"Send e-post (jobb)"</string>
+    <string name="email_other" msgid="4601881243553289615">"Send e-post"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Send e-post (<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
+    <string name="email" msgid="5624424151176351591">"E-post"</string>
+    <string name="postal_street" msgid="881349814077356134">"Gate"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"Postboks"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Nabolag"</string>
+    <string name="postal_city" msgid="3173008531169519309">"By"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Fylke/delstat"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Postnummer"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Land"</string>
+    <string name="map_home" msgid="1221397355014741634">"Se hjemmeadressen"</string>
+    <string name="map_work" msgid="9015981646907637207">"Se jobbadressen"</string>
+    <string name="map_other" msgid="55098598855607997">"Se adressen"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Se <xliff:g id="CUSTOM">%s</xliff:g>-adressen"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Nettprat med AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Nettprat med Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Nettprat med Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Nettprat med Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Nettprat med QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Nettprat med Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Nettprat med ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Nettprat med Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Nettprat"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"slett"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Vis eller skjul navnefelt"</string>
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Vis eller skjul fonetiske navnefelt"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Alle kontakter"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Med stjerne"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Tilpass"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Kontakt"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Alle andre kontakter"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Alle kontakter"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Fjern synkronisert gruppe"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Legg til synkronisert gruppe"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Flere grupper …"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Hvis du fjerner «<xliff:g id="GROUP">%s</xliff:g>» fra synkroniseringen, fjernes også alle ugrupperte kontakter fra synkroniseringen."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Lagrer visningsalternativer …"</string>
+    <string name="menu_done" msgid="32470053723443112">"Ferdig"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"Avbryt"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"Tilpasset visning"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"Lagre importerte kontakter i:"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Importér fra SIM-kort"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Importer fra .vcf-fil"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Vil du avbryte importeringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Vil du avbryte eksporteringen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Kunne ikke avbryte imp./eksp. av vCard"</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"Ukjent feil."</string>
+    <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Kan ikke åpne «<xliff:g id="FILE_NAME">%s</xliff:g>»: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Kunne ikke starte eksporteringen: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Du har ingen kontakter som kan eksporteres."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Du har slått av en nødvendig tillatelse."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Det oppsto en feil under eksporteringen: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Det obligatoriske filnavnet er for langt (<xliff:g id="FILENAME">%s</xliff:g>)."</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"Inn-/ut-feil"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Ikke nok minne. Det er mulig at filen er for stor."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Kan ikke analysere vCard pga. uventet årsak."</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"Formatet støttes ikke."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Kunne ikke hente metainformasjon for aktuell(e) vCard-fil(er)."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"En eller flere filer kan ikke importeres (%s)."</string>
+    <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Eksporteringen av <xliff:g id="FILENAME">%s</xliff:g> er fullført."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Eksportering av kontaktene er fullført."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Kontaktdataene er eksportert. Klikk på varselet for å dele kontaktene."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Trykk for å dele kontaktene."</string>
+    <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Eksporteringen av <xliff:g id="FILENAME">%s</xliff:g> ble avbrutt."</string>
+    <string name="exporting_contact_list_title" msgid="5663945499580026953">"Eksporterer kontaktdata"</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Kontaktdataene eksporteres."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Kunne ikke hente databaseinformasjon."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Du har ingen kontakter som kan eksporteres. Hvis du har kontakter på telefonen, kan det hende at dataleverandøren din ikke tillater at kontaktene eksporteres fra telefonen."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"vCard-oppretteren startet ikke som den skulle."</string>
+    <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Eksporten mislyktes"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Kontaktdataene ble ikke eksportert.\nÅrsak: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
+    <string name="importing_vcard_description" msgid="7206609625359484356">"Importerer <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Kunne ikke lese vCard-dataene"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Lesingen av vCard-dataene ble avbrutt"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"Importen av vCard-filen <xliff:g id="FILENAME">%s</xliff:g> er fullført"</string>
+    <string name="importing_vcard_canceled_title" msgid="556913863250769870">"Importeringen av <xliff:g id="FILENAME">%s</xliff:g> ble avbrutt"</string>
+    <string name="vcard_import_will_start_message" msgid="7184603116300604514">"<xliff:g id="FILENAME">%s</xliff:g> blir snart importert."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Filen importeres snart."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Forespørselen om vCard-importering ble avvist. Prøv på nytt senere."</string>
+    <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> blir snart eksportert."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Filen eksporteres snart."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Kontaktene eksporteres snart."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Forespørselen om eksport av vCard ble avvist. Prøv på nytt senere."</string>
+    <string name="vcard_unknown_filename" msgid="4832657686149881554">"kontakt"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"Bufrer vCard for import til lokal, midlertidig lagring. Selve importeringen starter snart."</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"Kunne ikke importere vCard."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"Kontakt mottatt via NFC"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"Vil du eksportere kontaktene?"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"Bufrer"</string>
+    <string name="progress_notifier_message" msgid="359931715339778107">"Importerer <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Eksportér til .vcf-fil"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Sortér etter"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Fornavn"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Etternavn"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Navneformat"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Fornavnet først"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Etternavnet først"</string>
+    <string name="settings_accounts" msgid="7534308574729401912">"Kontoer"</string>
+    <string name="default_editor_account" msgid="4338725881650654966">"Standardkonto for nye kontakter"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Synkroniser metadata for kontakter [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Synkroniser metadata for kontakter"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"Min informasjon"</string>
+    <string name="set_up_profile" msgid="8396362096521360520">"Konfigurer profilen din"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Om Kontakter"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"Innstillinger"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Del synlige kontakter"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Delingen av synlige kontakter mislyktes."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Del favorittkontaktene"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Del alle kontaktene"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Kunne ikke dele kontaktene."</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Importér/eksportér kontakter"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Importér kontakter"</string>
+    <string name="share_error" msgid="665756457151793108">"Denne kontakten kan ikke deles."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Det finnes ingen kontakter å dele."</string>
+    <string name="menu_search" msgid="7464453023659824700">"Søk"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Kontakter som skal vises"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Kontakter som skal vises"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"Definer tilpasset visning"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"Lagre"</string>
+    <string name="hint_findContacts" msgid="5348098493767051775">"Søk etter kontakter"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Favoritter"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Ingen kontakter."</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Fjern ofte kontaktede personer"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"Velg SIM-kort"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"Administrer kontoer"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Importér/eksportér"</string>
+    <string name="menu_blocked_numbers" msgid="2865529727926197975">"Blokkerte numre"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"via <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"avslutt søket"</string>
+    <string name="description_clear_search" msgid="3893511425518852086">"Slett søket"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Alternativer for visning av kontakter"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"Konto"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Bruk alltid dette for samtaler"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Ring med"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Ring med et notat"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Skriv et notat du vil sende med anropet …"</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"SEND OG RING"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> uleste elementer. </item>
+      <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> ulest element. </item>
+    </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"Delversjon"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Åpen kildekode-lisenser"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Lisensdetaljer for programvare med åpen kildekode"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Personvernregler"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"Vilkår for bruk"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Lisenser for åpen kildekode"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Kunne ikke åpne nettadressen."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"Det er merket av for <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Det er ikke merket av for <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="description_search_video_call" msgid="1699305143973045516">"Start et videoanrop"</string>
+    <string name="description_delete_contact" msgid="5792859265342550501">"Slett"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"Ellipse"</string>
+</resources>

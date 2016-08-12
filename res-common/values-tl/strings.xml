@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (C) 2012 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="toast_text_copied" msgid="8327159932780920627">"Kinopya ang teksto"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Kopyahin sa clipboard"</string>
+    <string name="call_custom" msgid="2786306789889210756">"Tawagan sa <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1479549630992276827">"Tawagan sa bahay"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Tawagan sa mobile"</string>
+    <string name="call_work" msgid="8299062439076337075">"Tawagan sa trabaho"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"Tawagan sa fax sa trabaho"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Tawagan sa fax sa bahay"</string>
+    <string name="call_pager" msgid="3038080882899955112">"Tawagan sa pager"</string>
+    <string name="call_other" msgid="4472141328347894937">"Tawagan"</string>
+    <string name="call_callback" msgid="687494744634190411">"Tawagan sa callback"</string>
+    <string name="call_car" msgid="9078083109758282133">"Tawagan sa kotse"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Tawagan sa pangunahing kumpanya"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"Tawagan sa ISDN"</string>
+    <string name="call_main" msgid="4640261071249938558">"Tawagan sa pangunahin"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"Tawagan sa fax"</string>
+    <string name="call_radio" msgid="9055749313292712021">"Tawagan sa radyo"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Tawagan sa telex"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"Tawagan sa TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Tawagan sa mobile sa trabaho"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Tawagan sa pager sa trabaho"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"Tawagan sa <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="8998771923464696960">"Tawagan sa MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Tawagan)"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"I-text sa <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"I-text sa bahay"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"I-text sa mobile"</string>
+    <string name="sms_work" msgid="3910570578912367742">"I-text sa trabaho"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"I-text sa fax sa trabaho"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"I-text sa fax sa bahay"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"I-text sa pager"</string>
+    <string name="sms_other" msgid="910895193552957097">"Mag-text"</string>
+    <string name="sms_callback" msgid="728414485478941361">"I-text sa callback"</string>
+    <string name="sms_car" msgid="8543669230270954512">"I-text sa kotse"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"I-text sa pangunahing kumpanya"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"I-text sa ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"I-text sa pangunahin"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"I-text sa fax"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"I-text sa radyo"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"I-text sa telex"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"I-text sa TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"I-text sa mobile sa trabaho"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"I-text sa pager sa trabaho"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"I-text sa <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"I-text sa MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Imensahe)"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Gumawa ng video call"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"I-clear ang madalas na kinontak"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Iki-clear mo ang listahan ng mga madalas na nakakaugnay sa mga app ng Mga Contact at Telepono at pupuwersahin mo ang mga app ng email na matutunan ang iyong mga kagustuhan sa pag-a-address mula sa simula."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Kini-clear madalas na inuugnayan…"</string>
+    <string name="status_available" msgid="4832569677396634846">"Available"</string>
+    <string name="status_away" msgid="6267905184545881094">"Wala"</string>
+    <string name="status_busy" msgid="7111912905211403545">"Abala"</string>
+    <string name="contactsList" msgid="7140022347217602605">"Mga Contact"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Iba pa"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"Direktoryo"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Directory sa trabaho"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"Lahat ng contact"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Naghahanap…"</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"Higit sa <xliff:g id="COUNT">%d</xliff:g> ang nakita."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Walang mga contact"</string>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ang nahanap</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ang nahanap</item>
+    </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"Mabilisang contact para kay <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(Walang pangalan)"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Madalas na kino-contact"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Tingnan ang contact"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Lahat ng contact na may mga numero ng telepono"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Mga contact ng profile sa trabaho"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Tingnan ang mga update"</string>
+    <string name="account_phone" msgid="325867897209266837">"Device"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Pangalan"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Palayaw"</string>
+    <string name="full_name" msgid="885420216812981202">"Pangalan"</string>
+    <string name="name_given" msgid="4153709115654909377">"Pangalan"</string>
+    <string name="name_family" msgid="5317387657540738981">"Apelyido"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Prefix ng pangalan"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Gitnang pangalan"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Suffix ng pangalan"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Phonetic na pangalan"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Phonetic na pangalan"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Phonetic na gitnang pangalan"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Phonetic na apelyido"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Telepono"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"Email"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Address"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Samahan"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Kaugnayan"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"Espesyal na petsa"</string>
+    <string name="sms" msgid="8086289395154598654">"Text message"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Address"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"Kumpanya"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Pamagat"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Mga Tala"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Website"</string>
+    <string name="groupsLabel" msgid="2001597910276087197">"Mga Label"</string>
+    <string name="email_home" msgid="2230967805906450693">"Mag-email sa bahay"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Mag-email sa mobile"</string>
+    <string name="email_work" msgid="7065971921227432400">"Mag-email sa trabaho"</string>
+    <string name="email_other" msgid="4601881243553289615">"Mag-email"</string>
+    <string name="email_custom" msgid="5777583741581538870">"Mag-email sa <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"Mag-email"</string>
+    <string name="postal_street" msgid="881349814077356134">"Kalye"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"PO box"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Kapitbahayan"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Lungsod"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Estado"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"ZIP code"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Bansa"</string>
+    <string name="map_home" msgid="1221397355014741634">"Tingnan ang address ng tahanan"</string>
+    <string name="map_work" msgid="9015981646907637207">"Tingnan ang address sa trabaho"</string>
+    <string name="map_other" msgid="55098598855607997">"Tingnan ang address"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Tingnan ang <xliff:g id="CUSTOM">%s</xliff:g> na address"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Makipag-chat gamit ang AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Makipag-chat gamit ang Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Makipag-chat gamit ang Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Makipag-chat gamit ang Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Makipag-chat gamit ang QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Makipag-chat gamit ang Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Makipag-chat gamit ang ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Makipag-chat gamit ang Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Chat"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"tanggalin"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Palawakin o tiklupin ang mga field ng pangalan"</string>
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Palakihin o i-collapse ang mga field ng phonetic na pangalan"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Lahat ng contact"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Naka-star"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"I-customize"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Contact"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Lahat ng iba pang contact"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Lahat ng contact"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Alisin ang pangkat sa pag-sync"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Magdagdag ng pangkat sa pag-sync"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Higit pang mga pangkat…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Aalisin din ng pag-alis sa \"<xliff:g id="GROUP">%s</xliff:g>\" mula sa sync ang anumang mga hindi nakapangkat na contact mula sa sync."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Sine-save ang mga pagpipilian sa pagpapakita…"</string>
+    <string name="menu_done" msgid="32470053723443112">"Tapos na"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"Kanselahin"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"Naka-customize na view"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"I-save ang mga ii-import na contact sa:"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"I-import mula sa SIM card"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"I-import mula sa SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"I-import mula sa SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Mag-import mula sa .vcf file"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Kanselahin ang pag-import ng <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Kanselahin ang pag-export ng <xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Di makansela pag-import/pag-export vCard"</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"Hindi alam na error."</string>
+    <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Hindi mabuksan ang \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Hindi masimulan ang exporter: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Walang na-e-export na contact."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Na-disable mo ang isang kinakailangang pahintulot."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"May naganap na error habang nag-e-export: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Masyadong mahaba ang kinakailangang filename (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"I/O na error"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Walang sapat na memory. Maaaring masyadong malaki ang file."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Hindi ma-parse ang vCard dahil sa isang hindi inaasahang dahilan."</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"Hindi sinusuportahan ang format."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Hindi makakolekta ng impormasyon ng meta ng ibinigay na (mga) vCard file."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Hindi ma-import ang isa o higit pang mga file (%s)."</string>
+    <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Tapos na ang pag-export ng <xliff:g id="FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Tapos nang i-export ang mga contact."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Tapos nang ma-export ang mga contact, i-click ang notification upang ibahagi ang mga contact."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"I-tap upang ibahagi ang mga contact."</string>
+    <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Kinansela ang pag-export ng <xliff:g id="FILENAME">%s</xliff:g>."</string>
+    <string name="exporting_contact_list_title" msgid="5663945499580026953">"Ine-export ang data ng contact"</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Ine-export ang data ng contact."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Hindi makuha ang impormasyon ng database."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Walang mga na-e-export na contact. Kung mayroon kang mga contact sa iyong telepono, maaaring hindi payagan ng ilang provider ng data na ma-export mula sa telepono ang mga contact."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"Hindi nagsimula nang maayos ang composer ng vCard."</string>
+    <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Hindi ma-export"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Hindi na-export ang data ng contact.\nDahilan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="importing_vcard_description" msgid="7206609625359484356">"Ini-import ang <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Hindi mabasa ang data ng vCard"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Kinansela ang pagbabasa ng data ng vCard"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"Tapos na ang pag-import ng vCard na <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_canceled_title" msgid="556913863250769870">"Kinansela ang pag-import ng <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="vcard_import_will_start_message" msgid="7184603116300604514">"Ii-import ang <xliff:g id="FILENAME">%s</xliff:g> sa ilang sandali."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Ii-import ang file sa ilang sandali."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Tinanggihan ang kahilingan sa pag-import ng vCard. Subukang muli sa ibang pagkakataon."</string>
+    <string name="vcard_export_will_start_message" msgid="2168853666316526278">"I-e-export ang <xliff:g id="FILENAME">%s</xliff:g> sa ilang sandali."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Ie-export ang file sa ilang sandali."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Ie-export ang mga contact sa ilang sandali."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Tinanggihan ang kahilingan sa pag-export ng vCard. Subukang muli sa ibang pagkakataon."</string>
+    <string name="vcard_unknown_filename" msgid="4832657686149881554">"contact"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"Kina-cache ang (mga) vCard sa lokal na pansamantalang storage. Magsisimula sa lalong madaling panahon ang aktwal na pag-import."</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"Hindi ma-import ang vCard."</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"Natanggap contact sa NFC"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"I-export ang mga contact?"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"Nagka-cache"</string>
+    <string name="progress_notifier_message" msgid="359931715339778107">"Nag-i-import ng <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"I-export sa .vcf file"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Uriin ayon sa"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Pangalan"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Apelyido"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Format ng pangalan"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Pangalan muna"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Apelyido muna"</string>
+    <string name="settings_accounts" msgid="7534308574729401912">"Mga Account"</string>
+    <string name="default_editor_account" msgid="4338725881650654966">"Default na account para sa mga bagong contact"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"I-sync ang metadata ng contact [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"I-sync ang metadata ng contact"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"Aking impormasyon"</string>
+    <string name="set_up_profile" msgid="8396362096521360520">"I-set up ang iyong profile"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Tungkol sa Mga Contact"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"Mga Setting"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Magbahagi ng mga nakikitang contact"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Hindi naibahagi ang mga nakikitang contact."</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Ibahagi ang mga paboritong contact"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Ibahagi ang lahat ng contact"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Hindi naibahagi ang mga contact."</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Mag-import/mag-export ng mga contact"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Mag-import ng mga contact"</string>
+    <string name="share_error" msgid="665756457151793108">"Hindi maibabahagi ang contact na ito."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Walang ibabahaging mga contact."</string>
+    <string name="menu_search" msgid="7464453023659824700">"Hanapin"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Mga contact na ipapakita"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Mga contact na ipapakita"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"Tukuyin ang naka-customize na view"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"I-save"</string>
+    <string name="hint_findContacts" msgid="5348098493767051775">"Maghanap ng mga contact"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Mga Paborito"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Walang mga contact."</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"I-clear ang mga frequent"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"Pumili ng SIM card"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"Pamahalaan ang mga account"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Mag-import/mag-export"</string>
+    <string name="menu_blocked_numbers" msgid="2865529727926197975">"Mga naka-block na numero"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"sa pamamagitan ng <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> sa pamamagitan ng <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"ihinto ang paghahanap"</string>
+    <string name="description_clear_search" msgid="3893511425518852086">"I-clear ang paghahanap"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Mga opsyon ng display ng contact"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"Account"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Gamitin ito palagi sa mga tawag"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Tumawag gamit ang"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Tumawag nang may kasamang tala"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Mag-type ng isang tala na ipadadala kasama ng tawag ..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"IPADALA &amp; TUMAWAG"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
+      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> hindi nabasang item. </item>
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> na hindi nabasang item. </item>
+    </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"Bersyon ng build"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Mga open source na lisensya"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Mga detalye ng lisensya para sa open source na software"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Patakaran sa privacy"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"Mga tuntunin ng serbisyo"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Mga open source na lisensya"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Nabigong buksan ang url."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"Nilagyan ng check ang <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"Hindi nilagyan ng check ang <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="description_search_video_call" msgid="1699305143973045516">"Magsimula ng video call"</string>
+    <string name="description_delete_contact" msgid="5792859265342550501">"I-delete"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"Ellipsis"</string>
+</resources>

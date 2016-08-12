@@ -1,0 +1,185 @@
+<!--
+  ~ Copyright (C) 2012 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+  -->
+
+<resources>
+
+    <!-- Padding between the action bar's bottom edge and the first header
+         in contacts/group lists. -->
+    <dimen name="list_header_extra_top_padding">0dip</dimen>
+
+    <dimen name="list_section_divider_min_height">32dip</dimen>
+
+    <dimen name="directory_header_extra_top_padding">18dp</dimen>
+    <dimen name="directory_header_extra_bottom_padding">8dp</dimen>
+    <dimen name="directory_header_left_padding">16dp</dimen>
+
+    <!--  Horizontal padding in between contact tiles -->
+    <dimen name="contact_tile_divider_padding">23dip</dimen>
+    <!--  Horizontal whitespace (both padding and margin) before the first tile and after the last tile -->
+    <dimen name="contact_tile_start_end_whitespace">16dip</dimen>
+
+    <!-- Left and right padding for a contact detail item -->
+    <dimen name="detail_item_side_margin">16dip</dimen>
+
+    <!-- ContactTile Layouts -->
+    <!--
+      Use sp instead of dip so that the shadowbox heights can all scale uniformly
+      when the font size is scaled for accessibility purposes
+    -->
+    <dimen name="contact_tile_shadowbox_height">48sp</dimen>
+
+    <!-- For contact filter setting screens -->
+    <dimen name="contact_filter_left_margin">8dp</dimen>
+    <dimen name="contact_filter_right_margin">16dip</dimen>
+    <dimen name="contact_filter_item_min_height">48dip</dimen>
+    <dimen name="contact_filter_icon_size">32dip</dimen>
+    <dimen name="contact_filter_list_item_height">56dp</dimen>
+    <dimen name="contact_filter_list_item_padding_start">16dp</dimen>
+    <!-- contact_filter_indicator is the arrow in expandable list view -->
+    <dimen name="contact_filter_indicator_padding_start">6dp</dimen>
+    <dimen name="contact_filter_indicator_padding_end">46dp</dimen>
+    <dimen name="contact_filter_action_button_width">72dp</dimen>
+
+    <!-- Padding to be used between a visible scrollbar and the contact list -->
+    <dimen name="list_visible_scrollbar_padding">32dip</dimen>
+
+    <dimen name="contact_browser_list_header_icon_left_margin">16dp</dimen>
+    <dimen name="contact_browser_list_header_icon_right_margin">14dp</dimen>
+    <dimen name="contact_browser_list_header_icon_left_margin_alt">18dp</dimen>
+    <dimen name="contact_browser_list_header_icon_right_margin_alt">16dp</dimen>
+    <dimen name="contact_browser_list_header_left_margin">16dip</dimen>
+    <dimen name="contact_browser_list_header_right_margin">@dimen/list_visible_scrollbar_padding</dimen>
+    <dimen name="contact_browser_list_item_text_indent">8dip</dimen>
+    <dimen name="contact_browser_list_header_height">48dp</dimen>
+    <dimen name="contact_browser_list_header_icon_size">24dp</dimen>
+    <dimen name="contact_browser_list_header_icon_size_alt">20dp</dimen>
+    <dimen name="contact_browser_list_header_text_margin">10dp</dimen>
+    <!-- Width of a contact list item section header. -->
+    <dimen name="contact_list_section_header_width">56dp</dimen>
+
+    <!-- Size of the shortcut icon. 0dip means: use the system default -->
+    <dimen name="shortcut_icon_size">0dip</dimen>
+
+    <!-- Text size of shortcut icon overlay text -->
+    <dimen name="shortcut_overlay_text_size">12dp</dimen>
+
+    <!-- Extra vertical padding for darkened background behind shortcut icon overlay text -->
+    <dimen name="shortcut_overlay_text_background_padding">1dp</dimen>
+
+    <!-- Width of height of an icon from a third-party app in the networks section of the contact card. -->
+    <dimen name="detail_network_icon_size">40dp</dimen>
+
+    <!-- Empty message margins -->
+    <dimen name="empty_message_top_margin">48dip</dimen>
+
+    <!-- contact browser list margins -->
+    <dimen name="contact_browser_list_item_text_size">16sp</dimen>
+    <dimen name="contact_browser_list_item_photo_size">40dp</dimen>
+    <dimen name="contact_browser_list_item_gap_between_image_and_text">15dp</dimen>
+    <dimen name="contact_browser_list_item_gap_between_indexer_and_image">16dp</dimen>
+    <dimen name="contact_browser_list_top_margin">12dp</dimen>
+
+    <!-- Dimensions for "No contacts" string in PhoneFavoriteFragment for the All contacts
+         with phone numbers section
+    -->
+    <dimen name="contact_phone_list_empty_description_size">20sp</dimen>
+    <dimen name="contact_phone_list_empty_description_padding">10dip</dimen>
+
+    <!-- Dimensions for contact letter tiles -->
+    <dimen name="tile_letter_font_size">40dp</dimen>
+    <dimen name="tile_letter_font_size_small">20dp</dimen>
+    <dimen name="tile_divider_width">1dp</dimen>
+    <item name="letter_to_tile_ratio" type="dimen">67%</item>
+
+    <!-- Height of the floating action button -->
+    <dimen name="floating_action_button_height">56dp</dimen>
+    <!-- Width of the floating action button -->
+    <dimen name="floating_action_button_width">56dp</dimen>
+    <!-- Corner radius of the floating action button -->
+    <dimen name="floating_action_button_radius">28dp</dimen>
+    <!-- Z translation of the floating action button -->
+    <dimen name="floating_action_button_translation_z">8dp</dimen>
+    <!-- Padding to be applied to the bottom of lists to make space for the floating action
+         button -->
+    <dimen name="floating_action_button_list_bottom_padding">88dp</dimen>
+    <!-- Right margin of the floating action button -->
+    <dimen name="floating_action_button_margin_right">16dp</dimen>
+    <!-- Bottom margin of the floating action button -->
+    <dimen name="floating_action_button_margin_bottom">16dp</dimen>
+    <!-- Offset of bottom margin of the floating action button used when dialpad is up -->
+    <dimen name="floating_action_button_dialpad_margin_bottom_offset">4dp</dimen>
+
+    <!-- Height of the selection indicator of a tab. -->
+    <dimen name="tab_selected_underline_height">2dp</dimen>
+    <!-- Size of text in tabs. -->
+    <dimen name="tab_text_size">14sp</dimen>
+    <dimen name="tab_elevation">2dp</dimen>
+    <dimen name="tab_unread_count_background_size">16dp</dimen>
+    <dimen name="tab_unread_count_background_radius">2dp</dimen>
+    <dimen name="tab_unread_count_margin_left">10dp</dimen>
+    <dimen name="tab_unread_count_margin_top">2dp</dimen>
+    <dimen name="tab_unread_count_text_size">12sp</dimen>
+    <dimen name="tab_unread_count_text_padding">2dp</dimen>
+
+    <!-- Padding around the icon in the search box. -->
+    <dimen name="search_box_icon_margin">4dp</dimen>
+    <!-- Size of the icon (voice search, back arrow) in the search box. -->
+    <dimen name="search_box_icon_size">56dp</dimen>
+    <!-- Size of the close icon.-->
+    <dimen name="search_box_close_icon_size">56dp</dimen>
+    <!-- Padding around the close button. It's visible size without padding is 24dp. -->
+    <dimen name="search_box_close_icon_padding">16dp</dimen>
+    <!-- End margin of the back arrow icon in the search box -->
+    <dimen name="search_box_navigation_icon_margin">8dp</dimen>
+    <!-- Left margin of the text field in the search box. -->
+    <dimen name="search_box_text_left_margin">8dp</dimen>
+    <!-- Search box text size -->
+    <dimen name="search_text_size">16sp</dimen>
+
+    <item name="close_icon_alpha" format="float" type="dimen">0.54</item>
+
+    <!-- Size of the close icon in selection bar.-->
+    <dimen name="selection_bar_close_icon_size">56dp</dimen>
+
+    <!-- Top margin for the Frequently Contacted section title -->
+    <dimen name="frequently_contacted_title_top_margin_when_first_row">16dp</dimen>
+    <!-- Top margin for the Frequently Contacted section title, when the title is the first
+         item in the list -->
+    <dimen name="frequently_contacted_title_top_margin">57dp</dimen>
+
+    <dimen name="frequently_contacted_title_text_size">24sp</dimen>
+
+    <!-- Size of icon for contacts number shortcuts -->
+    <dimen name="search_shortcut_radius">40dp</dimen>
+
+    <dimen name="contact_list_card_elevation">2dp</dimen>
+
+    <!-- Padding used around the periphery of the call subject dialog, as well as in between the
+         items. -->
+    <dimen name="call_subject_dialog_margin">20dp</dimen>
+    <!-- Padding used between lines of text in the call subject dialog. -->
+    <dimen name="call_subject_dialog_between_line_margin">8dp</dimen>
+    <!-- Size of the contact photo in the call subject dialog. -->
+    <dimen name="call_subject_dialog_contact_photo_size">50dp</dimen>
+    <!-- Margin above the edit text in the call subject dialog. -->
+    <dimen name="call_subject_dialog_edit_spacing">60dp</dimen>
+    <!-- Size of primary text in the call subject dialog. -->
+    <dimen name="call_subject_dialog_primary_text_size">16sp</dimen>
+    <!-- Size of secondary text in the call subject dialog. -->
+    <dimen name="call_subject_dialog_secondary_text_size">14sp</dimen>
+    <!-- Row padding for call subject history items. -->
+    <dimen name="call_subject_history_item_padding">15dp</dimen>
+</resources>
