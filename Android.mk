@@ -3,7 +3,6 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := optional
 
-contacts_common_dir := ../ContactsCommon
 phone_common_dir := ../PhoneCommon
 
 ifeq ($(TARGET_BUILD_APPS),)
@@ -12,9 +11,9 @@ else
 support_library_root_dir := prebuilts/sdk/current/support
 endif
 
-src_dirs := src $(contacts_common_dir)/src $(phone_common_dir)/src
-res_dirs := res res-aosp $(contacts_common_dir)/res $(contacts_common_dir)/icons/res $(phone_common_dir)/res
-asset_dirs := $(contacts_common_dir)/assets
+src_dirs := src src-bind $(phone_common_dir)/src
+res_dirs := res res-aosp res-common icons/res $(phone_common_dir)/res
+asset_dirs := assets
 
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs)) \
@@ -82,5 +81,5 @@ include $(BUILD_MULTI_PREBUILT)
 
 #########################################################################################
 
-# Use the folloing include to make our test apk.
+# Use the following include to make our test apk.
 include $(call all-makefiles-under,$(LOCAL_PATH))
