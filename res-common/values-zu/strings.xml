@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (C) 2012 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="toast_text_copied" msgid="8327159932780920627">"Umbhalo okopishiwe"</string>
+    <string name="copy_text" msgid="3424081789297978355">"Kopisha kubhodi lokunamathisela"</string>
+    <string name="call_custom" msgid="2786306789889210756">"Fonela ku-<xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1479549630992276827">"Fonela ekhaya"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"Fonela iselula"</string>
+    <string name="call_work" msgid="8299062439076337075">"Fonela emsebenzini"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"Fonela ifeksi yasemsebenzini"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"Fonela ifeksi yasekhaya"</string>
+    <string name="call_pager" msgid="3038080882899955112">"Fonela isicingo"</string>
+    <string name="call_other" msgid="4472141328347894937">"Fonela"</string>
+    <string name="call_callback" msgid="687494744634190411">"Fonela ukufonela emuva"</string>
+    <string name="call_car" msgid="9078083109758282133">"Fonela imoto"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"Fonela isisekelo senkampani"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"Fonela i-ISDN"</string>
+    <string name="call_main" msgid="4640261071249938558">"Fonela isisekelo"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"Fonela ifeksi"</string>
+    <string name="call_radio" msgid="9055749313292712021">"Fonela umsakazo"</string>
+    <string name="call_telex" msgid="2909886619224843563">"Fonela i-telex"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"Fonela i-TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"Fonela iselula yasemsebenzini"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"Fonela isicingo sasemsebenzini"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"Fonela <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="8998771923464696960">"Fonela i-MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Ikholi)"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"Bhalela ku-<xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"Bhalela ekhaya"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"Bhalela iselula"</string>
+    <string name="sms_work" msgid="3910570578912367742">"Bhalela emsebenzini"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"Bhalela ifeksi yasemsebenzini"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"Bhalela ifeksi yasekhaya"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"Bhalela isicingo"</string>
+    <string name="sms_other" msgid="910895193552957097">"Umbhalo"</string>
+    <string name="sms_callback" msgid="728414485478941361">"Bhalela ukufonela emuva"</string>
+    <string name="sms_car" msgid="8543669230270954512">"Bhalela imoto"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"Bhalela isisekelo senkampani"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"Bhalela i-ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"Bhalela isisekelo"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"Bhalela ifeksi"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"Bhalela umsakazo"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"Bhalela i-telex"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"Bhalela i-TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"Bhalela iselula yasemsebenzini"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"Bhalela isicingo sasemsebenzini"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"Bhalela ku-<xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"Bhala i-MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Umlayezo)"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"Yenza ikholi yevidiyo"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"Sula oxhumana nabo njalo?"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"Uzosula uhlu loxhumana nabo kakhulu kuzinhelo zokusebenza zokuxhumana noma zefoni, futhi uphoqelele izinhlelo zokusebenza ze-imeyili ukufunda izintandokazi zakho zekheli kusuka ekuqaleni."</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"Isula oxhumana nabo njalo…"</string>
+    <string name="status_available" msgid="4832569677396634846">"Ngiyatholakala"</string>
+    <string name="status_away" msgid="6267905184545881094">"Ngiphumile"</string>
+    <string name="status_busy" msgid="7111912905211403545">"Ngimatasa"</string>
+    <string name="contactsList" msgid="7140022347217602605">"Oxhumana nabo"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"Okunye"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"Uhla lwemibhalo"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"Uhla lwemibhalo lomsebenzi"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"Bonke oxhumana nabo"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"Iyasesha…"</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"Abangaphezu kuka-<xliff:g id="COUNT">%d</xliff:g> abatholakele."</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"Abekho oxhumana nabo"</string>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> abatholakele</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> abatholakele</item>
+    </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"Oxhumene naye ngokushesha ku-<xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(Alikho igama)"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"Abathintwa njalo"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"Buka oxhumana naye"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"Bonke othintana nabo kanye nezinombolo zabo zefoni"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"Oxhumana nabo bephrofayela yomsebenzi"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"Buka okubuyekeziwe"</string>
+    <string name="account_phone" msgid="325867897209266837">"Idivaysi"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"Igama"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"Isidlaliso"</string>
+    <string name="full_name" msgid="885420216812981202">"Igama"</string>
+    <string name="name_given" msgid="4153709115654909377">"Igama lokuqala"</string>
+    <string name="name_family" msgid="5317387657540738981">"Isibongo"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"Isiqalo segama"</string>
+    <string name="name_middle" msgid="3951610314424632183">"Igama eliphakathi"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"Isijobelelo segama"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"Igama lefonethikhi"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"Igama lokuqala lefonethiki"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"Igama lefonethikhi eliphakakathi"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"Isibongo sefonethiki"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"Ifoni"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"I-imeyili"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"Ikheli"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"I-IM"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"Inhlangano"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"Ubudlelwane"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"Idethi ekhethekile"</string>
+    <string name="sms" msgid="8086289395154598654">"Umlayezo wombhalo"</string>
+    <string name="postal_address" msgid="7692926530081579786">"Ikheli"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"Inkampani"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"Uhlobo lomsebenzi"</string>
+    <string name="label_notes" msgid="3997277594846722699">"Amanothi"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"Iwebhusayithi"</string>
+    <string name="groupsLabel" msgid="2001597910276087197">"Amalebula"</string>
+    <string name="email_home" msgid="2230967805906450693">"Thumela i-imeyili ekhaya"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"Thumela i-imeyili kuselula"</string>
+    <string name="email_work" msgid="7065971921227432400">"Thumela i-imeyili emsebenzini"</string>
+    <string name="email_other" msgid="4601881243553289615">"I-imeyili"</string>
+    <string name="email_custom" msgid="5777583741581538870">"I-imeyili <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"I-imeyili"</string>
+    <string name="postal_street" msgid="881349814077356134">"Umgwaqo"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"PO box"</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"Indawo yasekhaya"</string>
+    <string name="postal_city" msgid="3173008531169519309">"Idolobha"</string>
+    <string name="postal_region" msgid="1695206048198921115">"Isifunda"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"Ikhodi ye-ZIP"</string>
+    <string name="postal_country" msgid="3988452247038791892">"Izwe"</string>
+    <string name="map_home" msgid="1221397355014741634">"Buka ikheli lasekhaya"</string>
+    <string name="map_work" msgid="9015981646907637207">"Buka ikheli lasemsebenzini"</string>
+    <string name="map_other" msgid="55098598855607997">"Buka ikheli"</string>
+    <string name="map_custom" msgid="4943554530347163288">"Buka ikheli le-<xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"Xoxa usebenzisa i-AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"Xoxa usebenzisa i-Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"Xoxa usebenzisa i-Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"Xoxa usebenzisa i-Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"Xoxa usebenzisa i-QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"Xoxa usebenzisa i-Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"Xoxa usebenzisa i-ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"Xoxa usebenzisa i-Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"Xoxa"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"susa"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"Nweba noma goqa izinkambu zegama"</string>
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"Nweba noma goqa izinkambu zegama lefonotiki"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"Bonke oxhumana nabo"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"Okufakwe omakhanya"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"Enza ngendlela oyifisayo"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"Oxhumana naye"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"Bonke abanye oxhumana nabo"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"Bonke oxhumana nabo"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"Susa iqembu lokuvumelanisa"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"Engeza iqembu lokuvumelanisa"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"Amaqembu amaningi..."</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"Isusa i-\"<xliff:g id="GROUP">%s</xliff:g>\" kokuvumelanisiwe izophinde isuse nanoma yibaphi oxhumana nabo abangekho eqenjini kusukela ekuvumelanisaneni."</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"Ilondoloza izinketho zokubonisa"</string>
+    <string name="menu_done" msgid="32470053723443112">"Kwenziwe"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"Khansela"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"Ukubuka okungokwezifiso"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"Londoloza oxhumana nabo abangenisiwe ku-:"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"Landa kusuka kwikhadi le-SIM"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"Ngenisa kusuka ku-SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"Ngenisa kusuka ku-SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"Ngenisa kusukela kufayela le-.vcf"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"Khansela ukulandwa kwe-<xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"Khansela ukuthunyelwa kwe-<xliff:g id="FILENAME">%s</xliff:g>?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"Yehlulekile ukukhansela ukulanda/ukuthumela i-vCard"</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"Iphutha elingaziwa"</string>
+    <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"Ayikwazi ukuvula i-\"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"Ayikwazanga ukuqalisa isithumeli: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"Abekho oxhumana nabo abathumelekayo."</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"Ukhubaze imvume edingekayo."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"Kube khona iphutha ngesikhathi kuthunyelwa: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"Igama lefayela elidingekayo lide kakhulu (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"Iphutha le-I/O"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"Imemori enganele. Ifayela kungenzeka likhulu kakhulu."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"Yehlulekile ukunqunta i-vCard ngokwesizathu esingalindelekile"</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"Ifomethi ayisekelwe."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"Yehlulekile ukuqoqa ulwazi lwemetha noma amafayela we-vCard."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"Ifayela elilodwa noma amafayela angaphezulu ehlulekile ukulandwa (%s)."</string>
+    <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"Iqedile ukuthumela i-<xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"Iqedile ukukhipha oxhumana nabo."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"Iqedile ukuthumela oxhumana nabo, chofoza isaziso ukuze wabelane ngoxhumana nabo."</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"Thepha ukuze wabelane ngoxhumana nabo."</string>
+    <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"Ukulandwa kwe-<xliff:g id="FILENAME">%s</xliff:g> kukhanseliwe."</string>
+    <string name="exporting_contact_list_title" msgid="5663945499580026953">"Kuthunyelwa idatha yoxhumana naye"</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"Idatha yoxhumana nabo iyathunyelwa."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"Yehlulekile ukuthola ulwazi lwemininingo egciniwe."</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"Abekho oxhumana nabo abathumelekayo. Uma unabo oxhumana nabo kufoni yakho, abanye abahlinzeki bedatha kungenzeka bangavumeli labo oxhumana nabo ukuthi bathunyelwe kusukela kufoni."</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"Umqambi we-Vcard akazange aqale ngendlela efanele."</string>
+    <string name="exporting_contact_failed_title" msgid="6059039606302373945">"Yehlulekile ukuthumela"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"Idatha yoxhumana naye ayizange ithunyelwe.\nIsizathu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="importing_vcard_description" msgid="7206609625359484356">"Ilanda i-<xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"Yehlulekile ukufunda idatha ye-vCard"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"Ukufundwa kwe-vCard kukhanseliwe"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"Iqedile ukulanda i-vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_canceled_title" msgid="556913863250769870">"Ukulanda i-<xliff:g id="FILENAME">%s</xliff:g> kukhanseliwe"</string>
+    <string name="vcard_import_will_start_message" msgid="7184603116300604514">"<xliff:g id="FILENAME">%s</xliff:g> izothunyelwa maduzane."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"Ifayela lizothunyelwa maduzane."</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"Isicelo sokungenisa i-vCard sinqatshelwe. Zama futhi emuva kwesikhathi."</string>
+    <string name="vcard_export_will_start_message" msgid="2168853666316526278">"<xliff:g id="FILENAME">%s</xliff:g> izothunyelwa maduzane"</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"Ifayela lizokhishwa maduze."</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"Oxhumana nabo bazothunyelwa maduze."</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"Isicelo sokuthumela i-vCard sinqatshelwe. Sicela uzame futhi emuva kwesikhathi."</string>
+    <string name="vcard_unknown_filename" msgid="4832657686149881554">"oxhumana naye"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"Ifaka kunqolobane ama-vCard kusitoreji sesikhashana. Ukulandwa kwangempela kuzoqala khona maduze."</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"Yehlulekile ukulanda i-vCard"</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"Othintana naye utholakale nge-NFC"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"Thumela oxhumana nabo?"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"Ukulondoloza isikhashana"</string>
+    <string name="progress_notifier_message" msgid="359931715339778107">"Ilanda i-<xliff:g id="CURRENT_NUMBER">%s</xliff:g><xliff:g id="TOTAL_NUMBER">%s</xliff:g><xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"Thumela kufayela le-.vcf"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"Hlunga nge-"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"Igama lokuqala"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"Isibongo"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"Ifomethi yegama"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"Igama lokuqala kuqala"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"Isibongo kuqala"</string>
+    <string name="settings_accounts" msgid="7534308574729401912">"Ama-akhawunti"</string>
+    <string name="default_editor_account" msgid="4338725881650654966">"I-akhawunti ezenzakalelayo yoxhumana nabo abasha"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"Vumelanisa imethadatha yoxhumana naye [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"Vumelanisa imethadatha"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"Ulwazi lwami"</string>
+    <string name="set_up_profile" msgid="8396362096521360520">"Setha iphrofayela yakho"</string>
+    <string name="setting_about" msgid="3926137653588942297">"Mayelana noxhumana nabo"</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"Izilungiselelo"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"Yabelana noxhumana nabo ababonakalayo"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"Yehlulekile ukwabelana ngoxhumana nabo ababonakalayo"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"Yabelana ngoxhumana nabo obathandayo"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"Yabelana bonke oxhumana nabo"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"Yehlulekile ukwabelana ngoxhumana nabo."</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"Landa/thumela oxhumana nabo"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"Landa oxhumana nabo"</string>
+    <string name="share_error" msgid="665756457151793108">"Lona oxhumana naye ngeke ukwazi ukwabelana ngaye."</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"Abekho oxhumana nabo ongabelana nabo."</string>
+    <string name="menu_search" msgid="7464453023659824700">"Sesha"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"Othintana nabo abazoboniswa"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"Othintana nabo abazoboniswa"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"Cacisa ukubuka okungokwezifiso"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"Londoloza"</string>
+    <string name="hint_findContacts" msgid="5348098493767051775">"Sesha oxhumana nabo"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"Izindandokazi"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"Abekho othintana nabo."</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"Sula oxhumana nabo njalo"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"Khetha ikhadi le-SIM"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"Phatha ama-akhawunti"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"Ngenisa/ thekelisa"</string>
+    <string name="menu_blocked_numbers" msgid="2865529727926197975">"Izinombolo ezivinjiwe"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"nge-<xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> nge-<xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"misa ukusesha"</string>
+    <string name="description_clear_search" msgid="3893511425518852086">"Sula usesho"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"Izinketho zokubonisa oxhumana naye"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"I-Akhawunti"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"Njalo sebenzisa lokhu kumakholi"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"Shaya nge"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"Shaya ngenothi"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"Thayipha inothi ukuthumela nekholi ..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"THUMELA FUTHI USHAYE"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
+      <item quantity="one"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> izinto ezingafundiwe. </item>
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> izinto ezingafundiwe. </item>
+    </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"Inguqulo yesakhiwo"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"Amalayisensi womthombo ovulekile"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"Iminingwane yelayisensi yesofthiwe yomthombo ovulelekile"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"Inqubomgomo yobumfihlo"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"Imigomo yesevisi"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"Amalayisensi womthombo ovulekile"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"Yehlulekile ukuvula i-url."</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> kuhloliwe"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> akuhloliwe"</string>
+    <string name="description_search_video_call" msgid="1699305143973045516">"Yenza ikholi yevidiyo"</string>
+    <string name="description_delete_contact" msgid="5792859265342550501">"Susa"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"Okuqhubekayo"</string>
+</resources>

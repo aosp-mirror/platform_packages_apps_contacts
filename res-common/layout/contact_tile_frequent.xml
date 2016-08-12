@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2011 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<view
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    class="com.android.contacts.common.list.ContactTileFrequentView"
+    android:focusable="true"
+    android:background="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="?list_item_padding_top"
+        android:paddingBottom="?list_item_padding_bottom">
+
+        <com.android.contacts.common.widget.LayoutSuppressingImageView
+            android:id="@+id/contact_tile_image"
+            android:layout_width="?list_item_photo_size"
+            android:layout_height="?list_item_photo_size"
+            android:scaleType="centerCrop"
+            android:layout_marginEnd="?list_item_gap_between_image_and_text"/>
+
+        <TextView
+            android:id="@+id/contact_tile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/contact_browser_list_item_text_size"
+            android:singleLine="true"
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="3dip"
+            android:ellipsize="marquee"
+            android:textAlignment="viewStart" />
+
+    </LinearLayout>
+
+</view>

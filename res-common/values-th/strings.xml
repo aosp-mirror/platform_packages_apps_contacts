@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (C) 2012 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="toast_text_copied" msgid="8327159932780920627">"คัดลอกข้อความแล้ว"</string>
+    <string name="copy_text" msgid="3424081789297978355">"คัดลอกไปยังคลิปบอร์ด"</string>
+    <string name="call_custom" msgid="2786306789889210756">"โทรหา <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1479549630992276827">"โทรเข้าบ้าน"</string>
+    <string name="call_mobile" msgid="8618334085824709009">"โทรเข้ามือถือ"</string>
+    <string name="call_work" msgid="8299062439076337075">"โทรหาที่ทำงาน"</string>
+    <string name="call_fax_work" msgid="3770754834467992571">"โทรหาแฟกซ์ที่ทำงาน"</string>
+    <string name="call_fax_home" msgid="6219051113573396065">"โทรเข้าหมายเลขแฟกซ์ที่บ้าน"</string>
+    <string name="call_pager" msgid="3038080882899955112">"โทรหาเพจเจอร์"</string>
+    <string name="call_other" msgid="4472141328347894937">"โทร"</string>
+    <string name="call_callback" msgid="687494744634190411">"โทรหาหมายเลขติดต่อกลับ"</string>
+    <string name="call_car" msgid="9078083109758282133">"โทรเข้าโทรศัพท์ในรถ"</string>
+    <string name="call_company_main" msgid="8768047233970315359">"โทรหาโทรศัพท์หลักของบริษัท"</string>
+    <string name="call_isdn" msgid="3342482563847537747">"โทรหา ISDN"</string>
+    <string name="call_main" msgid="4640261071249938558">"โทรเข้าโทรศัพท์หลัก"</string>
+    <string name="call_other_fax" msgid="2536328553125487877">"โทรเข้าหมายเลขแฟกซ์"</string>
+    <string name="call_radio" msgid="9055749313292712021">"โทรเข้าวิทยุ"</string>
+    <string name="call_telex" msgid="2909886619224843563">"โทรเข้าหมายเลขเทเล็กซ์"</string>
+    <string name="call_tty_tdd" msgid="6704940636171078852">"โทรหา TTY/TDD"</string>
+    <string name="call_work_mobile" msgid="4408630608955148641">"โทรเข้ามือถือที่ทำงาน"</string>
+    <string name="call_work_pager" msgid="3036932765279753793">"โทรเข้าเพจเจอร์ที่ทำงาน"</string>
+    <string name="call_assistant" msgid="5188990854852312696">"โทรหา <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="8998771923464696960">"โทรหา MMS"</string>
+    <string name="call_by_shortcut" msgid="4053430514293064454">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (โทร)"</string>
+    <string name="sms_custom" msgid="4601748252470175865">"ส่งข้อความถึง <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_home" msgid="7765831490534280540">"ส่งข้อความเข้าโทรศัพท์บ้าน"</string>
+    <string name="sms_mobile" msgid="8387632124165893103">"ส่งข้อความเข้ามือถือ"</string>
+    <string name="sms_work" msgid="3910570578912367742">"ส่งข้อความถึงโทรศัพท์ที่ทำงาน"</string>
+    <string name="sms_fax_work" msgid="909086167151248212">"ส่งข้อความถึงแฟกซ์ที่ทำงาน"</string>
+    <string name="sms_fax_home" msgid="4145442497939634875">"ส่งข้อความเข้าหมายเลขแฟกซ์บ้าน"</string>
+    <string name="sms_pager" msgid="5664381349583724906">"ส่งข้อความถึงเพจเจอร์"</string>
+    <string name="sms_other" msgid="910895193552957097">"ข้อความ"</string>
+    <string name="sms_callback" msgid="728414485478941361">"ส่งข้อความถึงหมายเลขติดต่อกลับ"</string>
+    <string name="sms_car" msgid="8543669230270954512">"ส่งข้อความถึงรถยนต์"</string>
+    <string name="sms_company_main" msgid="5441902128445061862">"ส่งข้อความเข้าโทรศัพท์หลักของบริษัท"</string>
+    <string name="sms_isdn" msgid="7142483128948042667">"ส่งข้อความถึง ISDN"</string>
+    <string name="sms_main" msgid="6815987840926184815">"ส่งข้อความถึงโทรศัพท์หลัก"</string>
+    <string name="sms_other_fax" msgid="8649822154879781466">"ส่งข้อความถึงหมายเลขแฟกซ์"</string>
+    <string name="sms_radio" msgid="8750339218480745940">"ส่งข้อความถึงวิทยุ"</string>
+    <string name="sms_telex" msgid="5469333785775443999">"ส่งข้อความถึงเทเล็กซ์"</string>
+    <string name="sms_tty_tdd" msgid="5057886576150816002">"ส่งข้อความถึง TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="8426872094268475047">"ส่งข้อความถึงโทรศัพท์มือถือที่ทำงาน"</string>
+    <string name="sms_work_pager" msgid="499303540738557836">"ส่งข้อความเข้าเพจเจอร์ที่ทำงาน"</string>
+    <string name="sms_assistant" msgid="2677586547377136683">"ส่งข้อความถึง <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4887206338311086612">"ส่งข้อความถึง MMS"</string>
+    <string name="sms_by_shortcut" msgid="2675928528835074838">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (ข้อความ)"</string>
+    <string name="description_video_call" msgid="4907306403398614909">"ใช้แฮงเอาท์วิดีโอ"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="1482750234535491083">"ล้างรายชื่อที่ติดต่อบ่อยไหม"</string>
+    <string name="clearFrequentsConfirmation" msgid="1117709667923254374">"คุณจะล้างรายชื่อของผู้ที่ติดต่อด้วยบ่อยๆ ในแอปพลิเคชัน Contacts  และ Phone และบังคับให้แอปพลิเคชันอีเมลเรียนรู้ค่ากำหนดที่อยู่ของคุณใหม่ตั้งแต่ต้น"</string>
+    <string name="clearFrequentsProgress_title" msgid="3738406170865048982">"กำลังล้างรายชื่อที่ติดต่อบ่อย…"</string>
+    <string name="status_available" msgid="4832569677396634846">"พร้อมใช้งาน"</string>
+    <string name="status_away" msgid="6267905184545881094">"ไม่อยู่"</string>
+    <string name="status_busy" msgid="7111912905211403545">"ไม่ว่าง"</string>
+    <string name="contactsList" msgid="7140022347217602605">"สมุดโทรศัพท์"</string>
+    <string name="local_invisible_directory" msgid="8934840494825588347">"อื่นๆ"</string>
+    <string name="directory_search_label" msgid="4484648822765516947">"ไดเรกทอรี"</string>
+    <string name="directory_search_label_work" msgid="7396227297795426967">"ไดเรกทอรีที่ทำงาน"</string>
+    <string name="local_search_label" msgid="9094584931063745728">"รายชื่อติดต่อทั้งหมด"</string>
+    <string name="search_results_searching" msgid="9022794597388306615">"กำลังค้นหา…"</string>
+    <string name="foundTooManyContacts" msgid="3060037437459313616">"พบมากกว่า <xliff:g id="COUNT">%d</xliff:g> รายการ"</string>
+    <string name="listFoundAllContactsZero" msgid="4406036083994138930">"ไม่มีรายชื่อติดต่อ"</string>
+    <plurals name="searchFoundContacts" formatted="false" msgid="4016164064185890420">
+      <item quantity="other">พบ <xliff:g id="COUNT">%d</xliff:g> รายการ</item>
+      <item quantity="one">พบ 1 รายการ</item>
+    </plurals>
+    <string name="description_quick_contact_for" msgid="6355240770807101947">"สมุดโทรศัพท์ด่วนสำหรับ <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="missing_name" msgid="2633118852693000081">"(ไม่มีชื่อ)"</string>
+    <string name="favoritesFrequentContacted" msgid="2849493314447751970">"ติดต่อบ่อยครั้ง"</string>
+    <string name="description_view_contact_detail" msgid="2756753096193839285">"ดูรายชื่อติดต่อ"</string>
+    <string name="list_filter_phones" msgid="3692815632088465422">"รายชื่อติดต่อทั้งหมดที่มีหมายเลขโทรศัพท์"</string>
+    <string name="list_filter_phones_work" msgid="5226451114859079417">"รายชื่อติดต่อในโปรไฟล์งาน"</string>
+    <string name="view_updates_from_group" msgid="3310864388165884352">"ดูการอัปเดต"</string>
+    <string name="account_phone" msgid="325867897209266837">"อุปกรณ์"</string>
+    <string name="nameLabelsGroup" msgid="1817502703362057154">"ชื่อ"</string>
+    <string name="nicknameLabelsGroup" msgid="6312795212164843246">"ชื่อเล่น"</string>
+    <string name="full_name" msgid="885420216812981202">"ชื่อ"</string>
+    <string name="name_given" msgid="4153709115654909377">"ชื่อ"</string>
+    <string name="name_family" msgid="5317387657540738981">"นามสกุล"</string>
+    <string name="name_prefix" msgid="8219879405071462309">"คำนำหน้าชื่อ"</string>
+    <string name="name_middle" msgid="3951610314424632183">"ชื่อกลาง"</string>
+    <string name="name_suffix" msgid="5436984808550075931">"คำต่อท้ายชื่อ"</string>
+    <string name="name_phonetic" msgid="2249169131785620210">"คำอ่านชื่อ"</string>
+    <string name="name_phonetic_given" msgid="2863316331175661852">"การออกเสียงชื่อ"</string>
+    <string name="name_phonetic_middle" msgid="5970174427249235577">"ชื่อกลางแบบออกเสียง"</string>
+    <string name="name_phonetic_family" msgid="1572398622239414464">"การออกเสียงนามสกุล"</string>
+    <string name="phoneLabelsGroup" msgid="7913782787902007482">"โทรศัพท์"</string>
+    <string name="emailLabelsGroup" msgid="4696310712601184208">"อีเมล"</string>
+    <string name="postalLabelsGroup" msgid="3727124282406728557">"ที่อยู่"</string>
+    <string name="imLabelsGroup" msgid="8733603247535725786">"IM"</string>
+    <string name="organizationLabelsGroup" msgid="961008074745871784">"องค์กร"</string>
+    <string name="relationLabelsGroup" msgid="3585294036166325520">"ความเกี่ยวข้อง"</string>
+    <string name="eventLabelsGroup" msgid="4801419345682462171">"วันที่พิเศษ"</string>
+    <string name="sms" msgid="8086289395154598654">"ข้อความ"</string>
+    <string name="postal_address" msgid="7692926530081579786">"ที่อยู่"</string>
+    <string name="ghostData_company" msgid="22470841482615409">"บริษัท"</string>
+    <string name="ghostData_title" msgid="6221293237772204604">"ชื่อ"</string>
+    <string name="label_notes" msgid="3997277594846722699">"หมายเหตุ"</string>
+    <string name="label_sip_address" msgid="3754551597798479318">"SIP"</string>
+    <string name="websiteLabelsGroup" msgid="8620657380165071493">"เว็บไซต์"</string>
+    <string name="groupsLabel" msgid="2001597910276087197">"ป้ายกำกับ"</string>
+    <string name="email_home" msgid="2230967805906450693">"ส่งไปที่อีเมลส่วนตัว"</string>
+    <string name="email_mobile" msgid="7532438378678903685">"ส่งอีเมลเข้ามือถือ"</string>
+    <string name="email_work" msgid="7065971921227432400">"ส่งอีเมลถึงที่ทำงาน"</string>
+    <string name="email_other" msgid="4601881243553289615">"อีเมล"</string>
+    <string name="email_custom" msgid="5777583741581538870">"ส่งอีเมลถึง <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email" msgid="5624424151176351591">"อีเมล"</string>
+    <string name="postal_street" msgid="881349814077356134">"ถนน"</string>
+    <string name="postal_pobox" msgid="1799978742074885091">"ตู้ ปณ."</string>
+    <string name="postal_neighborhood" msgid="3721092668038527674">"ย่านใกล้เคียง"</string>
+    <string name="postal_city" msgid="3173008531169519309">"เมือง"</string>
+    <string name="postal_region" msgid="1695206048198921115">"รัฐ"</string>
+    <string name="postal_postcode" msgid="6542806670034753265">"รหัสไปรษณีย์"</string>
+    <string name="postal_country" msgid="3988452247038791892">"ประเทศ"</string>
+    <string name="map_home" msgid="1221397355014741634">"ดูที่อยู่บ้าน"</string>
+    <string name="map_work" msgid="9015981646907637207">"ดูที่อยู่ที่ทำงาน"</string>
+    <string name="map_other" msgid="55098598855607997">"ดูที่อยู่"</string>
+    <string name="map_custom" msgid="4943554530347163288">"ดูที่อยู่ <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="chat_aim" msgid="6479001490307452172">"แชทโดยใช้ AIM"</string>
+    <string name="chat_msn" msgid="627481952525245054">"แชทโดยใช้ Windows Live"</string>
+    <string name="chat_yahoo" msgid="5542489454092719897">"แชทโดยใช้ Yahoo"</string>
+    <string name="chat_skype" msgid="3145166404699830256">"แชทโดยใช้ Skype"</string>
+    <string name="chat_qq" msgid="2811762660890755082">"แชทโดยใช้ QQ"</string>
+    <string name="chat_gtalk" msgid="6043734883347741789">"แชทโดยใช้ Google Talk"</string>
+    <string name="chat_icq" msgid="7538190395602030726">"แชทโดยใช้ ICQ"</string>
+    <string name="chat_jabber" msgid="4525546665986350869">"แชทโดยใช้ Jabber"</string>
+    <string name="chat" msgid="6297650784873558837">"แชท"</string>
+    <string name="description_minus_button" msgid="2142439445814730827">"ลบ"</string>
+    <string name="expand_collapse_name_fields_description" msgid="5073419090665464541">"ขยายหรือยุบฟิลด์ชื่อ"</string>
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="5241493357460353777">"ขยายหรือยุบช่องคำอ่านชื่อ"</string>
+    <string name="list_filter_all_accounts" msgid="4265359896628915784">"รายชื่อติดต่อทั้งหมด"</string>
+    <string name="list_filter_all_starred" msgid="9060325494254507806">"ที่ติดดาว"</string>
+    <string name="list_filter_customize" msgid="2352794292558465089">"กำหนดค่า"</string>
+    <string name="list_filter_single" msgid="4553809449379139446">"รายชื่อติดต่อ"</string>
+    <string name="display_ungrouped" msgid="3669471582032440138">"รายชื่อติดต่ออื่นทั้งหมด"</string>
+    <string name="display_all_contacts" msgid="7251385818740728862">"รายชื่อติดต่อทั้งหมด"</string>
+    <string name="menu_sync_remove" msgid="6581565236520430269">"นำกลุ่มที่ซิงค์ออก"</string>
+    <string name="dialog_sync_add" msgid="1795682729089027675">"เพิ่มกลุ่มที่ซิงค์"</string>
+    <string name="display_more_groups" msgid="6304997485733158224">"กลุ่มเพิ่มเติม…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="7297678747857509619">"การนำ \"<xliff:g id="GROUP">%s</xliff:g>\" ออกจากการซิงค์จะนำรายชื่อติดต่อที่ไม่ได้จัดกลุ่มไว้ออกจากการซิงค์ด้วย"</string>
+    <string name="savingDisplayGroups" msgid="6863012138107446030">"กำลังบันทึกตัวเลือกการแสดงผล..."</string>
+    <string name="menu_done" msgid="32470053723443112">"เสร็จสิ้น"</string>
+    <string name="menu_doNotSave" msgid="6012426160993364871">"ยกเลิก"</string>
+    <string name="listCustomView" msgid="6028436654382131381">"มุมมองที่กำหนดเอง"</string>
+    <string name="dialog_new_contact_account" msgid="32435918254518570">"บันทึกรายชื่อติดต่อที่นำเข้าลงใน:"</string>
+    <string name="import_from_sim" msgid="4749894687871835873">"นำเข้าจากซิมการ์ด"</string>
+    <string name="import_from_sim_summary" msgid="2306434118233541675">"นำเข้าจากซิม <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="8498561004799710237">"นำเข้าจากซิม <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <string name="import_from_vcf_file" product="default" msgid="1381675161522633950">"นำเข้าจากไฟล์ .vcf"</string>
+    <string name="cancel_import_confirmation_message" msgid="7764915400478970495">"ยกเลิกการนำเข้า <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
+    <string name="cancel_export_confirmation_message" msgid="4063783315931861656">"ยกเลิกการส่งออก <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="7450212880694781527">"ไม่สามารถยกเลิกการนำเข้า/ส่งออก vCard"</string>
+    <string name="fail_reason_unknown" msgid="8541352164960008557">"ข้อผิดพลาดที่ไม่ทราบสาเหตุ"</string>
+    <string name="fail_reason_could_not_open_file" msgid="7041148341788958325">"ไม่สามารถเปิด \"<xliff:g id="FILE_NAME">%s</xliff:g>\": <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="1231982631020480035">"เริ่มใช้งานโปรแกรมส่งออกไม่ได้: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_no_exportable_contact" msgid="3717046989062541369">"ไม่มีรายชื่อติดต่อที่สามารถส่งออกได้"</string>
+    <string name="missing_required_permission" msgid="3120850759881656369">"คุณได้ปิดใช้สิทธิ์ที่จำเป็น"</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="8426833603664168716">"เกิดข้อผิดพลาดระหว่างส่งออก: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\""</string>
+    <string name="fail_reason_too_long_filename" msgid="3996610741248972232">"ชื่อไฟล์ที่ต้องระบุยาวเกินไป (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
+    <string name="fail_reason_io_error" msgid="7736686553669161933">"ข้อผิดพลาด I/O"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="3277485820827338116">"หน่วยความจำไม่เพียงพอ ไฟล์อาจใหญ่เกินไป"</string>
+    <string name="fail_reason_vcard_parse_error" msgid="514012644716565082">"ไม่สามารถแยกวิเคราะห์ vCard ด้วยเหตุผลที่ไม่คาดคิด"</string>
+    <string name="fail_reason_not_supported" msgid="388664373573337601">"ไม่สนับสนุนรูปแบบนี้"</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="3179066075701123895">"ไม่สามารถรวบรวมข้อมูลเมตาของ vCard ที่ระบุ"</string>
+    <string name="fail_reason_failed_to_read_files" msgid="9213844535907986665">"ไม่สามารถนำเข้าไฟล์ตั้งแต่หนึ่งไฟล์ขึ้นไป (%s)"</string>
+    <string name="exporting_vcard_finished_title" msgid="3581883972188707378">"ส่งออก <xliff:g id="FILENAME">%s</xliff:g> เสร็จแล้ว"</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="2953278060195308065">"ส่งออกรายชื่อติดต่อเรียบร้อยแล้ว"</string>
+    <string name="exporting_vcard_finished_toast" msgid="5995505525489290221">"ส่งออกรายชื่อติดต่อเสร็จแล้ว คลิกการแจ้งเตือนเพื่อแชร์รายชื่อติดต่อ"</string>
+    <string name="touch_to_share_contacts" msgid="3237211496215699092">"แตะเพื่อแชร์รายชื่อติดต่อ"</string>
+    <string name="exporting_vcard_canceled_title" msgid="6993607802553630980">"ยกเลิกการส่งออก <xliff:g id="FILENAME">%s</xliff:g> แล้ว"</string>
+    <string name="exporting_contact_list_title" msgid="5663945499580026953">"กำลังส่งออกข้อมูลสมุดโทรศัพท์"</string>
+    <string name="exporting_contact_list_message" msgid="141905615542638683">"กำลังส่งออกข้อมูลรายชื่อติดต่อ"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="7801276776746351694">"ไม่สามารถดึงข้อมูลจากฐานข้อมูล"</string>
+    <string name="composer_has_no_exportable_contact" msgid="7063040740576745307">"ไม่มีรายชื่อติดต่อที่สามารถส่งออกได้ หากคุณมีรายชื่อติดต่ออยู่ในโทรศัพท์ของคุณจริงๆ อาจเป็นเพราะผู้ให้บริการข้อมูลบางรายไม่อนุญาตให้ส่งออกรายชื่อติดต่อจากโทรศัพท์"</string>
+    <string name="composer_not_initialized" msgid="6514403866246950877">"โปรแกรมเขียนข้อความ vCard เริ่มการทำงานไม่ถูกต้อง"</string>
+    <string name="exporting_contact_failed_title" msgid="6059039606302373945">"ไม่สามารถส่งออก"</string>
+    <string name="exporting_contact_failed_message" msgid="3922498776695333328">"ไม่ได้ส่งออกข้อมูลรายชื่อติดต่อ\nสาเหตุ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="importing_vcard_description" msgid="7206609625359484356">"กำลังนำเข้า <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="reading_vcard_failed_title" msgid="4360989450476024034">"ไม่สามารถอ่านข้อมูล vCard"</string>
+    <string name="reading_vcard_canceled_title" msgid="1290217818311955708">"ยกเลิกการอ่านข้อมูล vCard แล้ว"</string>
+    <string name="importing_vcard_finished_title" msgid="5590676758277628951">"นำเข้า vCard <xliff:g id="FILENAME">%s</xliff:g> เรียบร้อยแล้ว"</string>
+    <string name="importing_vcard_canceled_title" msgid="556913863250769870">"ยกเลิกการนำเข้า <xliff:g id="FILENAME">%s</xliff:g> แล้ว"</string>
+    <string name="vcard_import_will_start_message" msgid="7184603116300604514">"การนำเข้า <xliff:g id="FILENAME">%s</xliff:g> จะเกิดขึ้นในไม่ช้า"</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="2560192057642180334">"ไฟล์จะถูกนำเข้าในไม่ช้า"</string>
+    <string name="vcard_import_request_rejected_message" msgid="5209363425953891316">"คำขอนำเข้า vCard ถูกปฏิเสธ ลองใหม่ภายหลัง"</string>
+    <string name="vcard_export_will_start_message" msgid="2168853666316526278">"การส่งออก <xliff:g id="FILENAME">%s</xliff:g> จะเกิดขึ้นในไม่ช้า"</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6418767460851707308">"ระบบจะส่งออกไฟล์ในอีกสักครู่"</string>
+    <string name="contacts_export_will_start_message" msgid="4527597765334949574">"ระบบจะส่งออกรายชื่อติดต่อในไม่ช้า"</string>
+    <string name="vcard_export_request_rejected_message" msgid="8044599716727705282">"คำขอส่งออก vCard ถูกปฏิเสธ ลองใหม่ภายหลัง"</string>
+    <string name="vcard_unknown_filename" msgid="4832657686149881554">"รายชื่อติดต่อ"</string>
+    <string name="caching_vcard_message" msgid="6635485116655518520">"กำลังแคช vCard ไปยังที่จัดเก็บข้อมูลชั่วคราวในตัวเครื่อง การนำเข้าจริงจะเริ่มต้นในอีกสักครู่"</string>
+    <string name="vcard_import_failed" msgid="4105296876768072508">"ไม่สามารถนำเข้า vCard"</string>
+    <string name="nfc_vcard_file_name" msgid="305679412445157370">"รับรายชื่อผ่าน NFC แล้ว"</string>
+    <string name="confirm_export_title" msgid="3240899428149018226">"ส่งออกรายชื่อติดต่อ"</string>
+    <string name="caching_vcard_title" msgid="9185299351381102305">"กำลังแคช"</string>
+    <string name="progress_notifier_message" msgid="359931715339778107">"กำลังนำเข้า <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4142192068495589925">"ส่งออกเป็นไฟล์ .vcf"</string>
+    <string name="display_options_sort_list_by" msgid="8635268562263708102">"จัดเรียงตาม"</string>
+    <string name="display_options_sort_by_given_name" msgid="7775798046001047995">"ชื่อ"</string>
+    <string name="display_options_sort_by_family_name" msgid="8196947856299225342">"นามสกุล"</string>
+    <string name="display_options_view_names_as" msgid="3232196224409242435">"รูปแบบชื่อ"</string>
+    <string name="display_options_view_given_name_first" msgid="7283772578267332801">"ชื่อขึ้นก่อน"</string>
+    <string name="display_options_view_family_name_first" msgid="8133167685885174166">"นามสกุลขึ้นก่อน"</string>
+    <string name="settings_accounts" msgid="7534308574729401912">"บัญชี"</string>
+    <string name="default_editor_account" msgid="4338725881650654966">"บัญชีเริ่มต้นสำหรับรายชื่อติดต่อใหม่"</string>
+    <string name="sync_contact_metadata_title" msgid="8322455849769727129">"ซิงค์ข้อมูลเมตาของรายชื่อติดต่อ [การลองใช้]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="4521648342253661374">"ซิงค์ข้อมูลเมตาของรายชื่อติดต่อ"</string>
+    <string name="settings_my_info_title" msgid="583358944162385703">"ข้อมูลของฉัน"</string>
+    <string name="set_up_profile" msgid="8396362096521360520">"ตั้งค่าโปรไฟล์ของคุณ"</string>
+    <string name="setting_about" msgid="3926137653588942297">"เกี่ยวกับ \"รายชื่อติดต่อ\""</string>
+    <string name="activity_title_settings" msgid="3056389601004689380">"การตั้งค่า"</string>
+    <string name="share_visible_contacts" msgid="2150662668080757107">"แชร์รายชื่อติดต่อที่มองเห็น"</string>
+    <string name="share_visible_contacts_failure" msgid="5895137872238059893">"ไม่สามารถแชร์รายชื่อติดต่อที่มองเห็นได้"</string>
+    <string name="share_favorite_contacts" msgid="2838432887118216222">"แชร์รายชื่อติดต่อโปรด"</string>
+    <string name="share_contacts" msgid="6404040163340914061">"แชร์รายชื่อติดต่อทั้งหมด"</string>
+    <string name="share_contacts_failure" msgid="3498837575583860197">"ไม่สามารถแชร์รายชื่อติดต่อ"</string>
+    <string name="dialog_import_export" msgid="1125776851100740858">"นำเข้า/ส่งออกรายชื่อติดต่อ"</string>
+    <string name="dialog_import" msgid="5177004290082451296">"นำเข้ารายชื่อติดต่อ"</string>
+    <string name="share_error" msgid="665756457151793108">"ไม่สามารถแชร์รายชื่อติดต่อนี้ได้"</string>
+    <string name="no_contact_to_share" msgid="5749367538191552509">"ไม่มีรายชื่อติดต่อที่จะแชร์"</string>
+    <string name="menu_search" msgid="7464453023659824700">"ค้นหา"</string>
+    <string name="menu_contacts_filter" msgid="586356478145511794">"รายชื่อติดต่อที่จะแสดง"</string>
+    <string name="activity_title_contacts_filter" msgid="7689519428197855166">"รายชื่อติดต่อที่จะแสดง"</string>
+    <string name="custom_list_filter" msgid="4075228878875354341">"กำหนดมุมมองที่กำหนดเอง"</string>
+    <string name="menu_custom_filter_save" msgid="6026814211328635312">"บันทึก"</string>
+    <string name="hint_findContacts" msgid="5348098493767051775">"ค้นหารายชื่อติดต่อ"</string>
+    <string name="contactsFavoritesLabel" msgid="1222038757062409949">"รายการโปรด"</string>
+    <string name="listTotalAllContactsZero" msgid="6041341919823872732">"ไม่มีรายชื่อติดต่อ"</string>
+    <string name="menu_clear_frequents" msgid="8492322695770647639">"ล้างรายชื่อที่ติดต่อบ่อย"</string>
+    <string name="menu_select_sim" msgid="7814841439832447299">"เลือกซิมการ์ด"</string>
+    <string name="menu_accounts" msgid="2944004960829403994">"จัดการบัญชี"</string>
+    <string name="menu_import_export" msgid="6446229463809981669">"นำเข้า/ส่งออก"</string>
+    <string name="menu_blocked_numbers" msgid="2865529727926197975">"หมายเลขที่ถูกบล็อก"</string>
+    <string name="contact_status_update_attribution" msgid="8419168578670128134">"ผ่านทาง <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7492465535645607473">"<xliff:g id="DATE">%1$s</xliff:g> ผ่านทาง <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
+    <string name="action_menu_back_from_search" msgid="1138551123844019647">"หยุดการค้นหา"</string>
+    <string name="description_clear_search" msgid="3893511425518852086">"ล้างการค้นหา"</string>
+    <string name="settings_contact_display_options_title" msgid="1020420603072835628">"ตัวเลือกการแสดงรายชื่อผู้ติดต่อ"</string>
+    <string name="select_account_dialog_title" msgid="5509088895267310568">"บัญชี"</string>
+    <string name="set_default_account" msgid="3865970860434642695">"ใช้ในการโทรทุกครั้ง"</string>
+    <string name="select_phone_account_for_calls" msgid="933905607702811164">"โทรด้วย"</string>
+    <string name="call_with_a_note" msgid="8453800473226831257">"โทรพร้อมโน้ต"</string>
+    <string name="call_subject_hint" msgid="2270115162050853866">"พิมพ์โน้ตเพื่อส่งพร้อมการโทร ..."</string>
+    <string name="send_and_call_button" msgid="7459507823002185202">"ส่งและโทร"</string>
+    <string name="call_subject_limit" msgid="4746194916585506281">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="517676698821671164">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="6318422670912575609">
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g> ยังไม่อ่าน <xliff:g id="COUNT_3">%2$d</xliff:g> รายการ </item>
+      <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g> ยังไม่อ่าน <xliff:g id="COUNT_1">%2$d</xliff:g> รายการ </item>
+    </plurals>
+    <string name="about_build_version" msgid="4221971683776635130">"เวอร์ชันบิวด์"</string>
+    <string name="about_open_source_licenses" msgid="3224958101863814649">"ใบอนุญาตโอเพนซอร์ส"</string>
+    <string name="about_open_source_licenses_summary" msgid="3009343539281606716">"รายละเอียดใบอนุญาตสำหรับซอฟต์แวร์โอเพนซอร์ส"</string>
+    <string name="about_privacy_policy" msgid="8458337666582973913">"นโยบายส่วนบุคคล"</string>
+    <string name="about_terms_of_service" msgid="628537491496465267">"ข้อกำหนดในการให้บริการ"</string>
+    <string name="activity_title_licenses" msgid="7812517458691564230">"ใบอนุญาตโอเพนซอร์ส"</string>
+    <string name="url_open_error_toast" msgid="7557601281695424805">"เปิด URL ไม่สำเร็จ"</string>
+    <string name="account_filter_view_checked" msgid="4368757211136754319">"เลือก <xliff:g id="ACCOUNT_INFO">%s</xliff:g> แล้ว"</string>
+    <string name="account_filter_view_not_checked" msgid="5652044086126815700">"ไม่ได้เลือก <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="description_search_video_call" msgid="1699305143973045516">"เริ่มแฮงเอาท์วิดีโอ"</string>
+    <string name="description_delete_contact" msgid="5792859265342550501">"ลบ"</string>
+    <string name="description_no_name_header" msgid="2537587931436174836">"จุดไข่ปลา"</string>
+</resources>
