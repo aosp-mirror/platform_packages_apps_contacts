@@ -7,7 +7,7 @@ LOCAL_CERTIFICATE := shared
 
 LOCAL_STATIC_JAVA_LIBRARIES := android-support-test
 
-src_dirs := src ../TestCommon/src
+src_dirs := src
 res_dirs := res res-common
 
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
