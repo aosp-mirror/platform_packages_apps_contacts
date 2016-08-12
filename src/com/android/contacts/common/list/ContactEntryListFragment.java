@@ -119,7 +119,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
     private boolean mEnabled = true;
 
     private T mAdapter;
-    private View mView;
+    protected View mView;
     private ListView mListView;
 
     /**

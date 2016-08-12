@@ -16,6 +16,7 @@
 
 package com.android.contacts.common.list;
 
+import android.accounts.Account;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -25,6 +26,11 @@ import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
 import com.android.contacts.common.logging.ListEvent;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.GoogleAccountType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Contact list filter parameters.
@@ -363,5 +369,60 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             default:
                 return "(unknown)";
         }
+    }
+
+    /**
+     * Returns true if this ContactListFilter contains at least one Google account.
+     * (see {@link #isGoogleAccountType)
+     */
+    public boolean isSyncable(List<AccountWithDataSet> accounts) {
+        // TODO(samchen): Check FILTER_TYPE_CUSTOM
+        if (isGoogleAccountType() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+            return true;
+        }
+        if (filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
+                || filterType == ContactListFilter.FILTER_TYPE_DEFAULT) {
+            if (accounts != null && accounts.size() > 0) {
+                // If we're showing all contacts and there is any Google account on the device then
+                // we're syncable.
+                for (AccountWithDataSet account : accounts) {
+                    if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type)
+                            && account.dataSet == null) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns the Google accounts (see {@link #isGoogleAccountType) for this ContactListFilter.
+     */
+    public List<Account> getSyncableAccounts(List<AccountWithDataSet> accounts) {
+        final List<Account> syncableAccounts = new ArrayList<>();
+        // TODO(samchen): Check FILTER_TYPE_CUSTOM
+        if (isGoogleAccountType() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+            syncableAccounts.add(new Account(accountName, accountType));
+        } else if (filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
+                || filterType == ContactListFilter.FILTER_TYPE_DEFAULT) {
+            if (accounts != null && accounts.size() > 0) {
+                for (AccountWithDataSet account : accounts) {
+                    if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type)
+                            && account.dataSet == null) {
+                        syncableAccounts.add(new Account(account.name, account.type));
+                    }
+                }
+            }
+        }
+        return syncableAccounts;
+    }
+
+    /**
+     * Returns true if this ContactListFilter is Google account type. (i.e. where
+     * accountType = "com.google" and dataSet = null)
+     */
+    public boolean isGoogleAccountType() {
+        return GoogleAccountType.ACCOUNT_TYPE.equals(accountType) && dataSet == null;
     }
 }

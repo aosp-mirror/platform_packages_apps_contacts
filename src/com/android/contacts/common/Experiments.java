@@ -20,6 +20,16 @@ package com.android.contacts.common;
  */
 public final class Experiments {
 
+    /**
+     * Flag to control pullToRefresh feature.
+     */
+    public static final String PULL_TO_REFRESH = "pull_to_refresh";
+
+    /**
+     * Search study boolean indicating whether to inject yenta search results before CP2 results.
+     */
+    public static final String SEARCH_YENTA = "Search__yenta";
+
     private Experiments() {
     }
 }

@@ -501,7 +501,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
             boolean syncable =
                 ContentResolver.getIsSyncable(account, ContactsContract.AUTHORITY) > 0;
 
-            if (syncable) {
+            if (syncable || GoogleAccountType.ACCOUNT_TYPE.equals(account.type)) {
                 List<AccountType> accountTypes = accountTypesByType.get(account.type);
                 if (accountTypes != null) {
                     // Add an account-with-data-set entry for each account type that is

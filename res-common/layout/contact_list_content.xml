@@ -39,20 +39,29 @@
         android:id="@+id/contact_list">
 
         <include layout="@layout/contact_list_card"/>
-        <view
-            class="com.android.contacts.common.list.PinnedHeaderListView"
-            android:id="@android:id/list"
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="?attr/contact_browser_list_padding_left"
-            android:layout_marginRight="?attr/contact_browser_list_padding_right"
-            android:layout_marginStart="?attr/contact_browser_list_padding_left"
-            android:layout_marginEnd="?attr/contact_browser_list_padding_right"
-            android:paddingTop="?attr/list_item_padding_top"
-            android:clipToPadding="false"
-            android:fastScrollEnabled="true"
-            android:visibility="gone"
-            android:fadingEdge="none" />
+            android:enabled="false" >
+
+            <view
+                class="com.android.contacts.common.list.PinnedHeaderListView"
+                android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="?attr/contact_browser_list_padding_left"
+                android:layout_marginRight="?attr/contact_browser_list_padding_right"
+                android:layout_marginStart="?attr/contact_browser_list_padding_left"
+                android:layout_marginEnd="?attr/contact_browser_list_padding_right"
+                android:paddingTop="?attr/list_item_padding_top"
+                android:clipToPadding="false"
+                android:fastScrollEnabled="true"
+		android:visibility="gone"
+                android:fadingEdge="none" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
         <ProgressBar
             android:id="@+id/search_progress"
             style="?android:attr/progressBarStyleLarge"

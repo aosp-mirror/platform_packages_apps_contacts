@@ -17,6 +17,8 @@
 package com.android.contacts.common.vcard;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -27,9 +29,11 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
@@ -59,6 +63,12 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
 
     private NdefRecord mRecord;
     private AccountWithDataSet mAccount;
+    private Handler mHandler = new Handler();
+
+    /**
+     * Notification id used when error happened before sending an import request to VCardServer.
+     */
+    private static final int FAILURE_NOTIFICATION_ID = 1;
 
     /* package */ class ImportTask extends AsyncTask<VCardService, Void, ImportRequest> {
         @Override
@@ -81,6 +91,10 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
 
         @Override
         public void onPostExecute(ImportRequest request) {
+            if (request == null) {
+                // Finish the activity in case of error so it doesn't stay in view.
+                finish();
+            }
             unbindService(NfcImportVCardActivity.this);
         }
     }
@@ -111,6 +125,8 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
                     parser.addInterpreter(detector);
                     parser.parse(is);
                 } catch (VCardVersionException e2) {
+                    Log.e(TAG, "vCard with unsupported version.");
+                    showFailureNotification(R.string.fail_reason_not_supported);
                     return null;
                 }
             } finally {
@@ -120,14 +136,16 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
                 }
             }
         } catch (IOException e) {
-            Log.e(TAG, "Failed reading vcard data", e);
+            Log.e(TAG, "Failed reading vCard data", e);
+            showFailureNotification(R.string.fail_reason_io_error);
             return null;
         } catch (VCardNestedException e) {
             Log.w(TAG, "Nested Exception is found (it may be false-positive).");
             // Go through without throwing the Exception, as we may be able to detect the
             // version before it
         } catch (VCardException e) {
-            Log.e(TAG, "Error parsing vcard", e);
+            Log.e(TAG, "Error parsing vCard", e);
+            showFailureNotification(R.string.fail_reason_not_supported);
             return null;
         }
 
@@ -242,7 +260,8 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
             Log.i(TAG, "Late import failure -- ignoring");
             return;
         }
-        // TODO: report failure
+        showFailureNotification(R.string.vcard_import_request_rejected_message);
+        finish();
     }
 
     @Override
@@ -268,5 +287,23 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
     @Override
     public void onComplete() {
         // do nothing
+    }
+
+    /* package */ void showFailureNotification(int reasonId) {
+        final NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        final Notification notification =
+                NotificationImportExportListener.constructImportFailureNotification(
+                        this,
+                        getString(reasonId));
+        notificationManager.notify(NotificationImportExportListener.FAILURE_NOTIFICATION_TAG,
+                FAILURE_NOTIFICATION_ID, notification);
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(NfcImportVCardActivity.this,
+                        getString(R.string.vcard_import_failed), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
