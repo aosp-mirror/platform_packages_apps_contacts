@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package src.com.android.contacts.common.model;
+package com.android.contacts.common.model;
 
 import android.content.ContentValues;
 import android.net.Uri;

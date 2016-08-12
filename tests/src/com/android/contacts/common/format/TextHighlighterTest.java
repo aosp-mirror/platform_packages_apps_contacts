@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package src.com.android.contacts.common.format;
+package com.android.contacts.common.format;
 
 import android.graphics.Typeface;
 import android.test.suitebuilder.annotation.SmallTest;
