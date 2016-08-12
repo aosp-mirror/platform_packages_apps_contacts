@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package src.com.android.contacts.common.util;
+package com.android.contacts.common.util;
 
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.test.AndroidTestCase;
