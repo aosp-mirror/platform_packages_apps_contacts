@@ -246,9 +246,11 @@
     <string name="set_default" msgid="4417505153468300351">"Nastaviť ako predvolené"</string>
     <string name="clear_default" msgid="7193185801596678067">"Vymazať predvolené nastavenia"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text bol skopírovaný"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Zahodiť zmeny a ukončiť upravovanie?"</string>
+    <!-- no translation found for cancel_confirmation_dialog_message (9008214737653278989) -->
+    <skip />
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Zahodiť"</string>
-    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Pokračovať v úprave"</string>
+    <!-- no translation found for cancel_confirmation_dialog_keep_editing_button (3316573928085916146) -->
+    <skip />
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Hľadať v kontaktoch"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Odstránenie kontaktov"</string>
@@ -273,7 +275,6 @@
     <string name="about_card_title" msgid="2920942314212825637">"O karte"</string>
     <string name="send_message" msgid="8938418965550543196">"Odoslať správu"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Prebieha vytváranie osobnej kópie..."</string>
-    <string name="yesterday" msgid="6840858548955018569">"Včera"</string>
     <string name="tomorrow" msgid="6241969467795308581">"Zajtra"</string>
     <string name="today" msgid="8041090779381781781">"Dnes"</string>
     <string name="today_at_time_fmt" msgid="605665249491030460">"Dnes o <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
