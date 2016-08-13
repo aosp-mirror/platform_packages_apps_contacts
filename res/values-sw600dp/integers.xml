@@ -3,4 +3,11 @@
 <resources>
     <!-- Top margin ratio for the image for empty group view -->
     <integer name="empty_group_view_image_margin_divisor">4</integer>
+
+    <integer name="contact_tile_column_count_in_favorites">3</integer>
+
+    <!-- The number of characters in the snippet before we need to tokenize and ellipse. -->
+    <!-- Yikes, there is less space on a tablet!  This makes the search experience rather
+         poor. Another reason to get rid of the exist tablet layout. -->
+    <integer name="snippet_length_before_tokenize">15</integer>
 </resources>

@@ -36,4 +36,27 @@
 
     <!-- Top margin ratio for the image for empty contacts view-->
     <integer name="contacts_no_account_empty_image_margin_divisor">2</integer>
+
+    <!--  Determines the number of columns in a ContactTileRow in the favorites tab -->
+    <integer name="contact_tile_column_count_in_favorites">2</integer>
+    <integer name="contact_tile_column_count_in_favorites_new">3</integer>
+
+    <!-- The number of characters in the snippet before we need to tokenize and ellipse. -->
+    <integer name="snippet_length_before_tokenize">30</integer>
+
+    <!-- Layout weight of space elements in contact list view.
+    Default to 0 to indicate no padding-->
+    <integer name="contact_list_space_layout_weight">0</integer>
+    <!-- Layout weight of card in contact list view.
+    Default to 0 to indicate no padding -->
+    <integer name="contact_list_card_layout_weight">0</integer>
+
+    <!-- Duration of the animations on the call subject dialog. -->
+    <integer name="call_subject_animation_duration">250</integer>
+
+    <!-- A big number to make sure "About contacts" always showing at the bottom of Settings.-->
+    <integer name="about_contacts_order_number">100</integer>
+
+    <!-- Duration of the animations when a contact list loads. -->
+    <integer name="lists_on_load_animation_duration">190</integer>
 </resources>

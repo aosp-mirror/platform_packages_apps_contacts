@@ -39,4 +39,81 @@
 
     <!-- File Authority for AOSP Contacts files -->
     <string name="contacts_file_provider_authority">com.android.contacts.files</string>
+    <!-- Flag indicating whether Contacts app is allowed to import contacts -->
+    <bool name="config_allow_import_from_vcf_file">true</bool>
+
+    <!-- If true, an option is shown in Display Options UI to choose a sort order -->
+    <bool name="config_sort_order_user_changeable">true</bool>
+
+    <!-- If true, the default sort order is primary (i.e. by given name) -->
+    <bool name="config_default_sort_order_primary">true</bool>
+
+    <!-- If true, an option is shown in Display Options UI to choose a name display order -->
+    <bool name="config_display_order_user_changeable">true</bool>
+
+    <!-- If true, the default sort order is primary (i.e. by given name) -->
+    <bool name="config_default_display_order_primary">true</bool>
+
+    <!-- If true, the order of name fields in the editor is primary (i.e. given name first) -->
+    <bool name="config_editor_field_order_primary">true</bool>
+
+    <!-- If true, an option is shown in Display Options UI to choose a default account -->
+    <bool name="config_default_account_user_changeable">true</bool>
+
+    <!-- Contacts preferences key for contact editor default account -->
+    <string name="contact_editor_default_account_key">ContactEditorUtils_default_account</string>
+
+    <!-- Contacts preferences key for contact editor anything saved -->
+    <string name="contact_editor_anything_saved_key">ContactEditorUtils_anything_saved</string>
+
+    <!-- The type of VCard for export. If you want to let the app emit vCard which is
+    specific to some vendor (like DoCoMo), specify this type (e.g. "docomo") -->
+    <string name="config_export_vcard_type" translatable="false">default</string>
+
+    <!-- The type of vcard for improt. If the vcard importer cannot guess the exact type
+    of a vCard type, the improter uses this type. -->
+    <string name="config_import_vcard_type" translatable="false">default</string>
+
+    <!-- Prefix of exported VCard file -->
+    <string name="config_export_file_prefix" translatable="false"></string>
+
+    <!-- Suffix of exported VCard file. Attached before an extension -->
+    <string name="config_export_file_suffix" translatable="false"></string>
+
+    <!-- Extension for exported VCard files -->
+    <string name="config_export_file_extension">vcf</string>
+
+    <!-- The filename that is suggested that users use when exporting vCards. Should include the .vcf extension. -->
+    <string name="exporting_vcard_filename" translatable="false">contacts.vcf</string>
+
+    <!-- Minimum number of exported VCard file index -->
+    <integer name="config_export_file_min_index">1</integer>
+
+    <!-- Maximum number of exported VCard file index -->
+    <integer name="config_export_file_max_index">99999</integer>
+
+    <!-- The list (separated by ',') of extensions should be checked in addition to
+     config_export_extension. e.g. If "aaa" is added to here and 00001.vcf and 00002.aaa
+     exist in a target directory, 00003.vcf becomes a next file name candidate.
+     Without this configuration, 00002.vcf becomes the candidate.-->
+    <string name="config_export_extensions_to_consider" translatable="false"></string>
+
+    <!-- If true, enable the "import contacts from SIM" feature if the device
+         has an appropriate SIM or ICC card.
+         Setting this flag to false in a resource overlay allows you to
+         entirely disable SIM import on a per-product basis. -->
+    <bool name="config_allow_sim_import">true</bool>
+
+    <!-- Flag indicating whether Contacts app is allowed to export contacts -->
+    <bool name="config_allow_export">true</bool>
+
+    <!-- Flag indicating whether Contacts app is allowed to share contacts with devices outside -->
+    <bool name="config_allow_share_contacts">true</bool>
+
+    <string name="pref_build_version_key">pref_build_version</string>
+    <string name="pref_open_source_licenses_key">pref_open_source_licenses</string>
+    <string name="pref_privacy_policy_key">pref_privacy_policy</string>
+    <string name="pref_terms_of_service_key">pref_terms_of_service</string>
+
+    <string name="star_sign">\u2605</string>
 </resources>

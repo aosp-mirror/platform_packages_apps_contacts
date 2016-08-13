@@ -20,4 +20,9 @@
     <!-- Layout weight of the content column for tile favorites list, all contacts list, and
          QuickContact -->
     <integer name="contact_list_card_layout_weight">81</integer>
+
+    <integer name="contact_tile_column_count_in_favorites">2</integer>
+
+    <!-- The number of characters in the snippet before we need to tokenize and ellipse. -->
+    <integer name="snippet_length_before_tokenize">20</integer>
 </resources>
