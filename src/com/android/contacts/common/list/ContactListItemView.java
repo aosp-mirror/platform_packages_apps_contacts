@@ -674,11 +674,13 @@ public class ContactListItemView extends ViewGroup
                         photoTop,
                         rightBound,
                         photoTop + mDeleteImageButtonSize);
+                rightBound -= mDeleteImageButtonSize;
             } else {
                 mDeleteImageButton.layout(leftBound,
                         photoTop,
                         leftBound + mDeleteImageButtonSize,
                         photoTop + mDeleteImageButtonSize);
+                leftBound += mDeleteImageButtonSize;
             }
         }
 

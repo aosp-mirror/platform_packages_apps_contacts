@@ -604,7 +604,7 @@ public class ActionBarAdapter implements OnCloseListener {
         }
 
         if (mSelectionMode) {
-            final int cabStatusBarColor =ContextCompat.getColor(
+            final int cabStatusBarColor = ContextCompat.getColor(
                     mActivity, R.color.contextual_selection_bar_status_bar_color);
             runStatusBarAnimation(/* colorTo */ cabStatusBarColor);
         } else {
