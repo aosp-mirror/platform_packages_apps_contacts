@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
@@ -35,6 +36,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -121,6 +123,8 @@ public class ActionBarAdapter implements OnCloseListener {
     private int mSearchHintResId;
 
     private FeatureHighlight mHamburgerFeatureHighlight;
+
+    private ValueAnimator mStatusBarAnimator;
 
     public interface TabState {
         public static int ALL = 0;
@@ -451,8 +455,6 @@ public class ActionBarAdapter implements OnCloseListener {
     }
 
     private void update(boolean skipAnimation) {
-        updateStatusBarColor();
-
         updateOverflowButtonColor();
 
         final boolean isSelectionModeChanging
@@ -462,6 +464,8 @@ public class ActionBarAdapter implements OnCloseListener {
         final boolean isSearchModeChanging
                 = (mSearchContainer.getParent() == null) == mSearchMode;
         final boolean isTabHeightChanging = isSearchModeChanging || isSelectionModeChanging;
+
+        updateStatusBarColor(isSelectionModeChanging && !isSearchModeChanging);
 
         // When skipAnimation=true, it is possible that we will switch from search mode
         // to selection mode directly. So we need to remove the undesired container in addition
@@ -594,18 +598,46 @@ public class ActionBarAdapter implements OnCloseListener {
         textView.setText(title);
     }
 
-    private void updateStatusBarColor() {
+    private void updateStatusBarColor(boolean shouldAnimate) {
         if (!CompatUtils.isLollipopCompatible()) {
             return; // we can't change the status bar color prior to Lollipop
         }
+
         if (mSelectionMode) {
-            final int cabStatusBarColor = mActivity.getResources().getColor(
-                    R.color.contextual_selection_bar_status_bar_color);
-            mActivity.getWindow().setStatusBarColor(cabStatusBarColor);
+            final int cabStatusBarColor =ContextCompat.getColor(
+                    mActivity, R.color.contextual_selection_bar_status_bar_color);
+            runStatusBarAnimation(/* colorTo */ cabStatusBarColor);
         } else {
             final int normalStatusBarColor = ContextCompat.getColor(
                     mActivity, R.color.primary_color_dark);
-            mActivity.getWindow().setStatusBarColor(normalStatusBarColor);
+            if (shouldAnimate) {
+                runStatusBarAnimation(/* colorTo */ normalStatusBarColor);
+            } else {
+                mActivity.getWindow().setStatusBarColor(normalStatusBarColor);
+            }
+        }
+    }
+
+    private void runStatusBarAnimation(int colorTo) {
+        final Window window = mActivity.getWindow();
+        if (window.getStatusBarColor() != colorTo) {
+            // Cancel running animation.
+            if (mStatusBarAnimator != null && mStatusBarAnimator.isRunning()) {
+                mStatusBarAnimator.cancel();
+            }
+            final int from = window.getStatusBarColor();
+            // Set up mStatusBarAnimator and run animation.
+            mStatusBarAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), from, colorTo);
+            mStatusBarAnimator.addUpdateListener(
+                    new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animator) {
+                            window.setStatusBarColor((Integer) animator.getAnimatedValue());
+                        }
+                    });
+            mStatusBarAnimator.setDuration(mActionBarAnimationDuration);
+            mStatusBarAnimator.setStartDelay(0);
+            mStatusBarAnimator.start();
         }
     }
 
