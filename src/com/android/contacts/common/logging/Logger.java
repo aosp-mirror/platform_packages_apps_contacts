@@ -18,7 +18,7 @@ package com.android.contacts.common.logging;
 import android.app.Activity;
 
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
-import com.android.contacts.commonbind.ObjectFactory;
+import com.android.contactsbind.ObjectFactory;
 
 /**
  * Logs analytics events.

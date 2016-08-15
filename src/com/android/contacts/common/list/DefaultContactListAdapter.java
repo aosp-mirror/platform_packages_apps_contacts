@@ -27,16 +27,14 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
-import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippets;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.ContactsCompat;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
-import com.android.contacts.commonbind.experiments.Flags;
+import com.android.contactsbind.experiments.Flags;
 
 import java.util.ArrayList;
 import java.util.List;

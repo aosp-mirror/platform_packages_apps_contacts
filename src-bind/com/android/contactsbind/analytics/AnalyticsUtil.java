@@ -12,7 +12,7 @@
  * the License.
  */
 
-package com.android.contacts.commonbind.analytics;
+package com.android.contactsbind.analytics;
 
 import android.app.Activity;
 import android.app.Application;

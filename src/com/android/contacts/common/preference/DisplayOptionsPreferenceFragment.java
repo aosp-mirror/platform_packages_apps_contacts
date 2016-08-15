@@ -47,7 +47,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.commonbind.ObjectFactory;
+import com.android.contactsbind.ObjectFactory;
 
 import java.util.List;
 

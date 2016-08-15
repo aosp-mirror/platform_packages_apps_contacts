@@ -29,7 +29,7 @@ import android.view.ViewGroup;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
-import com.android.contacts.commonbind.analytics.AnalyticsUtil;
+import com.android.contactsbind.analytics.AnalyticsUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
