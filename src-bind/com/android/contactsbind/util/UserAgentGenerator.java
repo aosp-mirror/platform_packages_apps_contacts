@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.contacts.commonbind.util;
+package com.android.contactsbind.util;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

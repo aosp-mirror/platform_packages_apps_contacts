@@ -31,7 +31,7 @@ import android.util.Log;
 
 import com.android.contacts.common.testing.InjectedServices;
 import com.android.contacts.common.util.Constants;
-import com.android.contacts.commonbind.analytics.AnalyticsUtil;
+import com.android.contactsbind.analytics.AnalyticsUtil;
 
 import com.android.contacts.common.testing.NeededForTesting;
 import com.google.common.annotations.VisibleForTesting;

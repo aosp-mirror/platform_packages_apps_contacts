@@ -60,7 +60,7 @@ import com.android.contacts.common.util.BitmapUtil;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.common.util.TrafficStatsTags;
 import com.android.contacts.common.util.UriUtils;
-import com.android.contacts.commonbind.util.UserAgentGenerator;
+import com.android.contactsbind.util.UserAgentGenerator;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;

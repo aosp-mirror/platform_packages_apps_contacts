@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package com.android.contacts.commonbind.experiments;
+package com.android.contactsbind.experiments;
 
 import android.content.Context;
 
