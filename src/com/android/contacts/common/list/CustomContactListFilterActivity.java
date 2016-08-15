@@ -19,6 +19,8 @@ package com.android.contacts.common.list;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.app.ProgressDialog;
 import android.content.AsyncTaskLoader;
@@ -30,14 +32,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.OperationApplicationException;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Settings;
@@ -81,12 +81,12 @@ public class CustomContactListFilterActivity extends Activity implements
         LoaderCallbacks<CustomContactListFilterActivity.AccountSet> {
     private static final String TAG = "CustomContactListFilterActivity";
 
+    public static final String EXTRA_CURRENT_LIST_FILTER_TYPE = "currentListFilterType";
+
     private static final int ACCOUNT_SET_LOADER_ID = 1;
 
     private ExpandableListView mList;
     private DisplayAdapter mAdapter;
-
-    private SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -111,7 +111,6 @@ public class CustomContactListFilterActivity extends Activity implements
             }
         });
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         mAdapter = new DisplayAdapter(this);
 
         mList.setOnCreateContextMenuListener(this);
@@ -837,6 +836,20 @@ public class CustomContactListFilterActivity extends Activity implements
         }
     }
 
+    private boolean hasUnsavedChanges() {
+        if (mAdapter == null || mAdapter.mAccounts == null) {
+            return false;
+        }
+        if (getCurrentListFilterType() != ContactListFilter.FILTER_TYPE_CUSTOM) {
+            return true;
+        }
+        final ArrayList<ContentProviderOperation> diff = mAdapter.mAccounts.buildDiff();
+        if (diff.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
     @SuppressWarnings("unchecked")
     private void doSaveAction() {
         if (mAdapter == null || mAdapter.mAccounts == null) {
@@ -933,9 +946,7 @@ public class CustomContactListFilterActivity extends Activity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // Pretend cancel.
-                setResult(Activity.RESULT_CANCELED);
-                finish();
+                confirmFinish();
                 return true;
             case R.id.menu_save:
                 this.doSaveAction();
@@ -944,5 +955,48 @@ public class CustomContactListFilterActivity extends Activity implements
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        confirmFinish();
+    }
+
+    private void confirmFinish() {
+        // Prompt the user whether they want to discard there customizations unless
+        // nothing will be changed.
+        if (hasUnsavedChanges()) {
+            new ConfirmNavigationDialogFragment().show(getFragmentManager(),
+                    "ConfirmNavigationDialog");
+        } else {
+            setResult(RESULT_CANCELED);
+            finish();
+        }
+    }
+
+    private int getCurrentListFilterType() {
+        return getIntent().getIntExtra(EXTRA_CURRENT_LIST_FILTER_TYPE,
+                ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+    }
+
+    public static class ConfirmNavigationDialogFragment
+            extends DialogFragment implements DialogInterface.OnClickListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            return new AlertDialog.Builder(getActivity(), getTheme())
+                    .setMessage(R.string.leave_customize_confirmation_dialog_message)
+                    .setNegativeButton(android.R.string.no, null)
+                    .setPositiveButton(android.R.string.yes, this)
+                    .create();
+        }
+
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            if (i == DialogInterface.BUTTON_POSITIVE) {
+                getActivity().setResult(RESULT_CANCELED);
+                getActivity().finish();
+            }
+        }
     }
 }

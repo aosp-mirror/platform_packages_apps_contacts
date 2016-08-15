@@ -90,8 +90,9 @@ public class AccountFilterActivity extends Activity implements AdapterView.OnIte
         if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
             mCustomFilterView = listFilterView;
             mIsCustomFilterViewSelected = listFilterView.isChecked();
-            final Intent intent = new Intent(this,
-                    CustomContactListFilterActivity.class);
+            final Intent intent = new Intent(this, CustomContactListFilterActivity.class)
+                    .putExtra(CustomContactListFilterActivity.EXTRA_CURRENT_LIST_FILTER_TYPE,
+                            mCurrentFilterType);
             listFilterView.setActivated(true);
             // Switching activity has the highest priority. So when we open another activity, the
             // announcement that indicates an account is checked will be interrupted. This is the
