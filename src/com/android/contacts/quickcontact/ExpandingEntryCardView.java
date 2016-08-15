@@ -497,12 +497,12 @@ public class ExpandingEntryCardView extends CardView {
         if (TextUtils.isEmpty(mTitleTextView.getText()) &&
                 entriesViewGroup.size() > 0) {
             final View entry = entriesViewGroup.get(0);
-            entry.setPadding(entry.getPaddingLeft(),
+            entry.setPaddingRelative(entry.getPaddingStart(),
                     getResources().getDimensionPixelSize(
                             R.dimen.expanding_entry_card_item_padding_top) +
                     getResources().getDimensionPixelSize(
                             R.dimen.expanding_entry_card_null_title_top_extra_padding),
-                    entry.getPaddingRight(),
+                    entry.getPaddingEnd(),
                     entry.getPaddingBottom());
         }
     }
