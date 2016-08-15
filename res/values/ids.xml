@@ -52,4 +52,29 @@
 
     <!-- Menu group ID for the contact filters -->
     <item type="id" name="nav_filters_items" />
+
+    <!-- For vcard.ImportVCardActivity -->
+    <item type="id" name="dialog_cache_vcard"/>
+    <item type="id" name="dialog_error_with_message"/>
+
+    <!-- For vcard.CancelActivity -->
+    <item type="id" name="dialog_cancel_confirmation"/>
+    <item type="id" name="dialog_cancel_failed"/>
+
+    <!-- For ExportVCardActivity -->
+    <item type="id" name="dialog_exporting_vcard"/>
+    <item type="id" name="dialog_fail_to_export_with_reason"/>
+
+    <!-- For Debug Purpose -->
+    <item type="id" name="cliv_name_textview"/>
+    <item type="id" name="cliv_phoneticname_textview"/>
+    <item type="id" name="cliv_label_textview"/>
+    <item type="id" name="cliv_data_view"/>
+
+    <!-- For tag ids used by ContactPhotoManager to tag views with contact details -->
+    <item type="id" name="tag_display_name"/>
+    <item type="id" name="tag_identifier"/>
+    <item type="id" name="tag_contact_type"/>
+
+    <item type="id" name="menu_save"/>
 </resources>

@@ -59,4 +59,22 @@
 
     <!-- Margin offset b/w the image top and app bar bottom for no account empty view -->
     <dimen name="contacts_no_account_empty_image_offset">238dp</dimen>
+
+    <dimen name="detail_item_side_margin">0dip</dimen>
+
+    <dimen name="contact_browser_list_header_left_margin">@dimen/list_visible_scrollbar_padding</dimen>
+    <dimen name="contact_browser_list_header_right_margin">24dip</dimen>
+    <dimen name="contact_browser_list_top_margin">16dip</dimen>
+
+    <!-- End margin of the account filter header icon -->
+    <dimen name="contact_browser_list_header_icon_right_margin">22dp</dimen>
+    <dimen name="contact_browser_list_header_icon_right_margin_alt">24dp</dimen>
+
+    <dimen name="contact_filter_list_item_padding_start">24dp</dimen>
+    <dimen name="contact_filter_left_margin">16dp</dimen>
+
+    <!-- Right margin of the floating action button -->
+    <dimen name="floating_action_button_margin_right">32dp</dimen>
+    <!-- Bottom margin of the floating action button -->
+    <dimen name="floating_action_button_margin_bottom">32dp</dimen>
 </resources>
