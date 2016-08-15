@@ -24,8 +24,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.provider.ContactsContract.Directory;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -48,8 +48,8 @@ import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.FavoritesAndContactsLoader;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.commonbind.experiments.Flags;
 import com.android.contacts.util.SyncUtil;
+import com.android.contactsbind.experiments.Flags;
 
 import java.util.List;
 

@@ -17,8 +17,6 @@ package com.android.contactsbind.experiments;
 
 import android.content.Context;
 
-import com.android.contacts.common.Experiments;
-
 import java.util.HashMap;
 import java.util.Map;
 
