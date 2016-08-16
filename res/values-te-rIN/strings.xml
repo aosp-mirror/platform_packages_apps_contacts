@@ -232,11 +232,9 @@
     <string name="set_default" msgid="4417505153468300351">"డిఫాల్ట్‌గా సెట్ చేయి"</string>
     <string name="clear_default" msgid="7193185801596678067">"డిఫాల్ట్‌ను క్లియర్ చేయి"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"వచనం కాపీ చేయబడింది"</string>
-    <!-- no translation found for cancel_confirmation_dialog_message (9008214737653278989) -->
-    <skip />
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"మార్పులను విస్మరించాలా?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"విస్మరించు"</string>
-    <!-- no translation found for cancel_confirmation_dialog_keep_editing_button (3316573928085916146) -->
-    <skip />
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"రద్దు చేయి"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"పరిచయాలను శోధించండి"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"పరిచయాలను తీసివేయండి"</string>
@@ -343,4 +341,334 @@
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"సందేశాలు"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"మీ జాబితాను ఉత్తమంగా నిర్వహించండి"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"నకిలీలను తొలగించండి &amp; పరిచయాలను లేబుల్ వారీగా వర్గీకరించండి"</string>
+    <string name="toast_text_copied" msgid="5143776250008541719">"వచనం కాపీ చేయబడింది"</string>
+    <string name="copy_text" msgid="3257145021583508761">"క్లిప్‌బోర్డ్‌కు కాపీ చేయి"</string>
+    <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g>కు కాల్ చేయండి"</string>
+    <string name="call_home" msgid="1990519474420545392">"ఇంటికి కాల్ చేయండి"</string>
+    <string name="call_mobile" msgid="7502236805487609178">"మొబైల్‌కు కాల్ చేయండి"</string>
+    <string name="call_work" msgid="5328785911463744028">"కార్యాలయానికి కాల్ చేయండి"</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"కార్యాలయ ఫ్యాక్స్‌కు కాల్ చేయండి"</string>
+    <string name="call_fax_home" msgid="8342175628887571876">"ఇంటి ఫ్యాక్స్‌కు కాల్ చేయండి"</string>
+    <string name="call_pager" msgid="9003902812293983281">"పేజర్‌కు కాల్ చేయండి"</string>
+    <string name="call_other" msgid="8563753966926932052">"కాల్ చేయండి"</string>
+    <string name="call_callback" msgid="1910165691349426858">"కాల్‌బ్యాక్‌కు కాల్ చేయండి"</string>
+    <string name="call_car" msgid="3280537320306436445">"కారుకు కాల్ చేయండి"</string>
+    <string name="call_company_main" msgid="6105120947138711257">"కంపెనీ ప్రధాన నంబర్‌కు కాల్ చేయండి"</string>
+    <string name="call_isdn" msgid="1541590690193403411">"ISDNకి కాల్ చేయండి"</string>
+    <string name="call_main" msgid="6082900571803441339">"ప్రధాన నంబర్‌కు కాల్ చేయండి"</string>
+    <string name="call_other_fax" msgid="5745314124619636674">"ఫ్యాక్స్‌కి కాల్ చేయండి"</string>
+    <string name="call_radio" msgid="8296755876398357063">"రేడియోకు కాల్ చేయండి"</string>
+    <string name="call_telex" msgid="2223170774548648114">"టెలెక్స్‌కు కాల్ చేయండి"</string>
+    <string name="call_tty_tdd" msgid="8951266948204379604">"TTY/TDDకి కాల్ చేయండి"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"కార్యాలయ మొబైల్‌కు కాల్ చేయండి"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"కార్యాలయ పేజర్‌కు కాల్ చేయండి"</string>
+    <string name="call_assistant" msgid="2141641383068514308">"<xliff:g id="ASSISTANT">%s</xliff:g>కు కాల్ చేయండి"</string>
+    <string name="call_mms" msgid="6274041545876221437">"MMSకు కాల్ చేయండి"</string>
+    <!-- no translation found for call_by_shortcut (2566802538698913124) -->
+    <skip />
+    <string name="sms_custom" msgid="5932736853732191825">"<xliff:g id="CUSTOM">%s</xliff:g>కు వచనం పంపండి"</string>
+    <string name="sms_home" msgid="7524332261493162995">"ఇంటికి వచనం పంపండి"</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"మొబైల్‌కు వచనం పంపండి"</string>
+    <string name="sms_work" msgid="2269624156655267740">"కార్యాలయానికి వచనం పంపండి"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"కార్యాలయం ఫ్యాక్స్‌కు వచనం పంపండి"</string>
+    <string name="sms_fax_home" msgid="9204042076306809634">"ఇంటి ఫ్యాక్స్‌కు వచనం పంపండి"</string>
+    <string name="sms_pager" msgid="7730404569637015192">"పేజర్‌కు వచనం పంపండి"</string>
+    <string name="sms_other" msgid="806127844607642331">"వచనం పంపండి"</string>
+    <string name="sms_callback" msgid="5004824430094288752">"కాల్‌బ్యాక్‌కు వచనం పంపండి"</string>
+    <string name="sms_car" msgid="7444227058437359641">"కారుకు వచనం పంపండి"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"కంపెనీ ప్రధాన నంబర్‌కు వచనం పంపండి"</string>
+    <string name="sms_isdn" msgid="8153785037515047845">"ISDNకి వచనం పంపండి"</string>
+    <string name="sms_main" msgid="8621625784504541679">"ప్రధాన నంబర్‌కు వచనం పంపండి"</string>
+    <string name="sms_other_fax" msgid="3888842199855843152">"ఫ్యాక్స్‌కు వచనం పంపండి"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"రేడియోకు వచనం పంపండి"</string>
+    <string name="sms_telex" msgid="9034802430065267848">"టెలెక్స్‌కు వచనం పంపండి"</string>
+    <string name="sms_tty_tdd" msgid="6782284969132531532">"TTY/TDDకి వచనం పంపండి"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"కార్యాలయ మొబైల్‌కు వచనం పంపండి"</string>
+    <string name="sms_work_pager" msgid="5566924423316960597">"కార్యాలయ పేజర్‌కు వచనం పంపండి"</string>
+    <string name="sms_assistant" msgid="2773424339923116234">"<xliff:g id="ASSISTANT">%s</xliff:g>కు వచనం పంపండి"</string>
+    <string name="sms_mms" msgid="4069352461380762677">"MMS నంబర్‌కు వచనం పంపండి"</string>
+    <!-- no translation found for sms_by_shortcut (7741770672976099517) -->
+    <skip />
+    <!-- no translation found for description_video_call (7120921378651700947) -->
+    <skip />
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేయాలా?"</string>
+    <!-- no translation found for clearFrequentsConfirmation (2270554975938265734) -->
+    <skip />
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేస్తోంది…"</string>
+    <string name="status_available" msgid="5586870015822828392">"అందుబాటులో ఉన్నారు"</string>
+    <string name="status_away" msgid="1838861100379804730">"దూరంగా ఉన్నారు"</string>
+    <string name="status_busy" msgid="9147992455450257136">"బిజీగా ఉన్నారు"</string>
+    <string name="contactsList" msgid="8661624236494819731">"పరిచయాలు"</string>
+    <string name="local_invisible_directory" msgid="6046691709127661065">"ఇతరం"</string>
+    <string name="directory_search_label" msgid="1887759056597975053">"డైరెక్టరీ"</string>
+    <!-- no translation found for directory_search_label_work (8618292129829443176) -->
+    <skip />
+    <string name="local_search_label" msgid="2551177578246113614">"అన్ని పరిచయాలు"</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"శోధిస్తోంది..."</string>
+    <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g> కంటే ఎక్కువ కనుగొనబడ్డాయి."</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"పరిచయాలు లేవు"</string>
+    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> కనుగొనబడ్డాయి</item>
+      <item quantity="one">1 కనుగొనబడింది</item>
+    </plurals>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g> కోసం త్వరిత సంప్రదింపు"</string>
+    <string name="missing_name" msgid="8745511583852904385">"(పేరు లేదు)"</string>
+    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"తరచుగా సంప్రదించబడినవి"</string>
+    <string name="description_view_contact_detail" msgid="9133251213656414807">"పరిచయాన్ని వీక్షించండి"</string>
+    <string name="list_filter_phones" msgid="735313795643493365">"ఫోన్ నంబర్‌లు గల అన్ని పరిచయాలు"</string>
+    <!-- no translation found for list_filter_phones_work (1470173699551475015) -->
+    <skip />
+    <string name="view_updates_from_group" msgid="1782685984905600034">"తాజా విషయాలను వీక్షించండి"</string>
+    <!-- no translation found for account_phone (7128032778471187553) -->
+    <skip />
+    <string name="nameLabelsGroup" msgid="2034640839640477827">"పేరు"</string>
+    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"మారుపేరు"</string>
+    <string name="full_name" msgid="6602579550613988977">"పేరు"</string>
+    <!-- no translation found for name_given (4280790853455320619) -->
+    <skip />
+    <!-- no translation found for name_family (7466985689626017037) -->
+    <skip />
+    <string name="name_prefix" msgid="59756378548779822">"పేరు ఆదిప్రత్యయం"</string>
+    <string name="name_middle" msgid="8467433655992690326">"మధ్య పేరు"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"పేరు అంత్యప్రత్యయం"</string>
+    <string name="name_phonetic" msgid="4259595234312430484">"ఫోనెటిక్ రూపంలో పేరు"</string>
+    <!-- no translation found for name_phonetic_given (8723179018384187631) -->
+    <skip />
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"ఫోనెటిక్ రూపంలో మధ్య పేరు"</string>
+    <!-- no translation found for name_phonetic_family (2640133663656011626) -->
+    <skip />
+    <string name="phoneLabelsGroup" msgid="6468091477851199285">"ఫోన్"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"ఇమెయిల్"</string>
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"చిరునామా"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
+    <string name="organizationLabelsGroup" msgid="2478611760751832035">"సంస్థ"</string>
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"సంబంధం"</string>
+    <!-- no translation found for eventLabelsGroup (7960408705307831289) -->
+    <skip />
+    <string name="sms" msgid="1756857139634224222">"వచన సందేశం"</string>
+    <string name="postal_address" msgid="8765560217149624536">"చిరునామా"</string>
+    <string name="ghostData_company" msgid="5414421120553765775">"కంపెనీ"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"శీర్షిక"</string>
+    <string name="label_notes" msgid="8337354953278341042">"గమనికలు"</string>
+    <!-- no translation found for label_sip_address (7252153678613978127) -->
+    <skip />
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"వెబ్‌సైట్"</string>
+    <!-- no translation found for groupsLabel (7000816729542098972) -->
+    <skip />
+    <string name="email_home" msgid="8573740658148184279">"ఇంటికి ఇమెయిల్ చేయండి"</string>
+    <string name="email_mobile" msgid="2042889209787989814">"మొబైల్‌కు ఇమెయిల్ చేయండి"</string>
+    <string name="email_work" msgid="2807430017302722689">"కార్యాలయానికి ఇమెయిల్ చేయండి"</string>
+    <string name="email_other" msgid="3454004077967657109">"ఇమెయిల్ చేయండి"</string>
+    <string name="email_custom" msgid="7548003991586214105">"<xliff:g id="CUSTOM">%s</xliff:g>కు ఇమెయిల్ చేయండి"</string>
+    <string name="email" msgid="5668400997660065897">"ఇమెయిల్ చేయండి"</string>
+    <string name="postal_street" msgid="8133143961580058972">"వీధి"</string>
+    <string name="postal_pobox" msgid="4431938829180269821">"PO పెట్టె"</string>
+    <string name="postal_neighborhood" msgid="1450783874558956739">"పరిసరాలు"</string>
+    <string name="postal_city" msgid="6597491300084895548">"నగరం"</string>
+    <string name="postal_region" msgid="6045263193478437672">"రాష్ట్రం"</string>
+    <string name="postal_postcode" msgid="572136414136673751">"జిప్ కోడ్"</string>
+    <string name="postal_country" msgid="7638264508416368690">"దేశం"</string>
+    <string name="map_home" msgid="1243547733423343982">"ఇంటి చిరునామాను వీక్షించండి"</string>
+    <string name="map_work" msgid="1360474076921878088">"కార్యాలయ చిరునామాను వీక్షించండి"</string>
+    <string name="map_other" msgid="3817820803587012641">"చిరునామాను వీక్షించండి"</string>
+    <string name="map_custom" msgid="6184363799976265281">"<xliff:g id="CUSTOM">%s</xliff:g> చిరునామాను వీక్షించండి"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"AIMని ఉపయోగించి చాట్ చేయండి"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"Windows Liveని ఉపయోగించి చాట్ చేయండి"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"Yahooని ఉపయోగించి చాట్ చేయండి"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"Skypeని ఉపయోగించి చాట్ చేయండి"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"QQని ఉపయోగించి చాట్ చేయండి"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"Google Talkని ఉపయోగించి చాట్ చేయండి"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"ICQని ఉపయోగించి చాట్ చేయండి"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"Jabberని ఉపయోగించి చాట్ చేయండి"</string>
+    <string name="chat" msgid="9025361898797412245">"చాట్ చేయండి"</string>
+    <string name="description_minus_button" msgid="6908099247930477551">"తొలగించు"</string>
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"పేరు ఫీల్డ్‌లను విస్తరింపజేయి లేదా కుదించు"</string>
+    <!-- no translation found for expand_collapse_phonetic_name_fields_description (3306777588073354509) -->
+    <skip />
+    <string name="list_filter_all_accounts" msgid="8908683398914322369">"అన్ని పరిచయాలు"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"నక్షత్రం గుర్తు ఉన్నవి"</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"అనుకూలీకరించు"</string>
+    <string name="list_filter_single" msgid="5871400283515893087">"పరిచయం"</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"అన్ని ఇతర పరిచయాలు"</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"అన్ని పరిచయాలు"</string>
+    <string name="menu_sync_remove" msgid="3266725887008450161">"సమకాలీకరణ సమూహాన్ని తీసివేయి"</string>
+    <string name="dialog_sync_add" msgid="8267045393119375803">"సమకాలీకరణ సమూహాన్ని జోడించండి"</string>
+    <string name="display_more_groups" msgid="2682547080423434170">"మరిన్ని సమూహాలు…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"సమకాలీకరణ నుండి \"<xliff:g id="GROUP">%s</xliff:g>\"ని తీసివేయడం వలన సమకాలీకరణ నుండి సమూహం చేయబడని పరిచయాలు కూడా తీసివేయబడతాయి."</string>
+    <string name="savingDisplayGroups" msgid="2133152192716475939">"ప్రదర్శన ఎంపికలను సేవ్ చేస్తోంది…"</string>
+    <string name="menu_done" msgid="796017761764190697">"పూర్తయింది"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"రద్దు చేయి"</string>
+    <!-- no translation found for listCustomView (1840624396582117590) -->
+    <skip />
+    <!-- no translation found for dialog_new_contact_account (4969619718062454756) -->
+    <skip />
+    <string name="import_from_sim" msgid="3859272228033941659">"SIM కార్డు నుండి దిగుమతి చేయండి"</string>
+    <!-- no translation found for import_from_sim_summary (5815105584445743740) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_no_number (880612418352086012) -->
+    <skip />
+    <!-- no translation found for import_from_vcf_file (5304572242183878086) -->
+    <skip />
+    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క దిగుమతిని రద్దు చేయాలా?"</string>
+    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క ఎగుమతిని రద్దు చేయాలా?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard దిగుమతి/ఎగుమతిని రద్దు చేయడం సాధ్యపడలేదు"</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"తెలియని లోపం."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\"ని తెరవడం సాధ్యపడలేదు: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"ఎక్స్‌పోర్టర్‌ను ప్రారంభించడం సాధ్యపడలేదు: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"ఎగమతి చేయగల పరిచయం లేదు."</string>
+    <!-- no translation found for missing_required_permission (5865884842972833120) -->
+    <skip />
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"ఎగుమతి సమయంలో లోపం సంభవించింది: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"అవసరమైన ఫైల్ పేరు (\"<xliff:g id="FILENAME">%s</xliff:g>\") చాలా పెద్దదిగా ఉంది."</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O లోపం"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"తగినంత మెమరీ లేదు. ఫైల్ చాలా పెద్దదిగా ఉండవచ్చు."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"ఊహించని కారణంగా vCardను అన్వయించడం సాధ్యపడలేదు."</string>
+    <string name="fail_reason_not_supported" msgid="8219562769267148825">"ఆకృతికి మద్దతు లేదు."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"అందించిన vCard ఫైల్(లు) యొక్క మెటా డేటా సమాచారాన్ని సేకరించడం సాధ్యపడలేదు."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"ఒకటి లేదా అంతకంటే ఎక్కువ ఫైల్‌లను (%s) దిగుమతి చేయడం సాధ్యపడలేదు."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g>ని ఎగుమతి చేయడం పూర్తయింది."</string>
+    <!-- no translation found for exporting_vcard_finished_title_fallback (6060472638008218274) -->
+    <skip />
+    <!-- no translation found for exporting_vcard_finished_toast (1739055986856453882) -->
+    <skip />
+    <!-- no translation found for touch_to_share_contacts (4882485525268469736) -->
+    <skip />
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"<xliff:g id="FILENAME">%s</xliff:g>ని ఎగుమతి చేయడం రద్దు చేయబడింది."</string>
+    <string name="exporting_contact_list_title" msgid="9072240631534457415">"పరిచయ డేటాను ఎగుమతి చేస్తోంది"</string>
+    <!-- no translation found for exporting_contact_list_message (3367949209642931952) -->
+    <skip />
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"డేటాబేస్ సమాచారాన్ని పొందడం సాధ్యపడలేదు."</string>
+    <string name="composer_has_no_exportable_contact" msgid="3296493229040294335">"ఎగుమతి చేయదగిన పరిచయాలు ఏవీ లేవు. మీరు మీ ఫోన్‌లో పరిచయాలు కలిగి ఉన్నప్పటికీ, కొందరు డేటా ప్రదాతలు పరిచయాలను ఫోన్ నుండి ఎగుమతి చేయడానికి అనుమతించకపోవచ్చు."</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"vCard కంపోజర్ సరిగ్గా ప్రారంభించబడలేదు."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"ఎగుమతి చేయడం సాధ్యపడలేదు"</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"పరిచయ డేటా ఎగుమతి చేయబడలేదు.\nకారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g>ని దిగుమతి చేస్తోంది"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard డేటాను చదవడం సాధ్యపడలేదు"</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"vCard డేటాను చదవడం రద్దు చేయబడింది"</string>
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g>ని దిగుమతి చేయడం పూర్తయింది"</string>
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g>ని దిగుమతి చేయడం రద్దు చేయబడింది"</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> కొద్దిసేపట్లో దిగుమతి చేయబడుతుంది."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"ఫైల్ కొద్దిసేపట్లో దిగుమతి చేయబడుతుంది."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"vCard దిగుమతి అభ్యర్థన తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
+    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> కొద్దిసేపట్లో ఎగుమతి చేయబడుతుంది."</string>
+    <!-- no translation found for vcard_export_will_start_message_fallback (6553826997490909749) -->
+    <skip />
+    <!-- no translation found for contacts_export_will_start_message (8538705791417534431) -->
+    <skip />
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"vCard ఎగుమతి అభ్యర్థన తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"పరిచయం"</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"vCard(ల)ను స్థానిక తాత్కాలిక నిల్వకు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"vCardని దిగుమతి చేయడం సాధ్యపడలేదు."</string>
+    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"పరిచయం NFC ద్వారా స్వీకరించబడింది"</string>
+    <string name="confirm_export_title" msgid="6834385377255286349">"పరిచయాలను ఎగుమతి చేయాలా?"</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"కాష్ చేస్తోంది"</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g>లో <xliff:g id="CURRENT_NUMBER">%s</xliff:g> దిగుమతి చేయబడుతోంది: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for export_to_vcf_file (4407527157056120858) -->
+    <skip />
+    <!-- no translation found for display_options_sort_list_by (7028809117272018712) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_given_name (2778421332815687873) -->
+    <skip />
+    <!-- no translation found for display_options_sort_by_family_name (2684905041926954793) -->
+    <skip />
+    <!-- no translation found for display_options_view_names_as (6514632499276563482) -->
+    <skip />
+    <!-- no translation found for display_options_view_given_name_first (3616004640258761473) -->
+    <skip />
+    <!-- no translation found for display_options_view_family_name_first (956445100777296467) -->
+    <skip />
+    <!-- no translation found for settings_accounts (350219740670774576) -->
+    <skip />
+    <!-- no translation found for default_editor_account (699591683362420991) -->
+    <skip />
+    <!-- no translation found for sync_contact_metadata_title (6957956139306960211) -->
+    <skip />
+    <!-- no translation found for sync_contact_metadata_dialog_title (6192335951588820553) -->
+    <skip />
+    <!-- no translation found for settings_my_info_title (1534272456405343119) -->
+    <skip />
+    <!-- no translation found for set_up_profile (7370213843590143771) -->
+    <skip />
+    <!-- no translation found for setting_about (7014388749752042863) -->
+    <skip />
+    <string name="activity_title_settings" msgid="5464130076132770781">"సెట్టింగ్‌లు"</string>
+    <string name="share_visible_contacts" msgid="890150378880783797">"కనిపించే పరిచయాలను భాగస్వామ్యం చేయండి"</string>
+    <!-- no translation found for share_visible_contacts_failure (7324717548166915560) -->
+    <skip />
+    <!-- no translation found for share_favorite_contacts (4280926751003081042) -->
+    <skip />
+    <!-- no translation found for share_contacts (8109287987498711664) -->
+    <skip />
+    <!-- no translation found for share_contacts_failure (1216431977330560559) -->
+    <skip />
+    <string name="dialog_import_export" msgid="4360648034889921624">"పరిచయాలను దిగుమతి/ఎగుమతి చేయండి"</string>
+    <string name="dialog_import" msgid="2431698729761448759">"పరిచయాలను దిగుమతి చేయండి"</string>
+    <string name="share_error" msgid="948429331673358107">"ఈ పరిచయాన్ని భాగస్వామ్యం చేయడం సాధ్యపడదు."</string>
+    <!-- no translation found for no_contact_to_share (1276397530378323033) -->
+    <skip />
+    <string name="menu_search" msgid="9147752853603483719">"శోధించు"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
+    <!-- no translation found for custom_list_filter (2105275443109077687) -->
+    <skip />
+    <!-- no translation found for menu_custom_filter_save (2679793632208086460) -->
+    <skip />
+    <!-- no translation found for hint_findContacts (7128627979899070325) -->
+    <skip />
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"ఇష్టమైనవి"</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"పరిచయాలు లేవు."</string>
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"తరచుగా ఉన్నవాటిని క్లియర్ చేయి"</string>
+    <string name="menu_select_sim" msgid="3603578201960504010">"SIM కార్డును ఎంచుకోండి"</string>
+    <!-- no translation found for menu_accounts (1424330057450189074) -->
+    <skip />
+    <string name="menu_import_export" msgid="26217871113229507">"దిగుమతి చేయి/ఎగుమతి చేయి"</string>
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"బ్లాక్ చేయబడిన నంబర్‌లు"</string>
+    <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> ద్వారా"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="SOURCE">%2$s</xliff:g> ద్వారా <xliff:g id="DATE">%1$s</xliff:g>"</string>
+    <!-- no translation found for action_menu_back_from_search (8793348588949233348) -->
+    <skip />
+    <string name="description_clear_search" msgid="688023606766232904">"శోధనను క్లియర్ చేయి"</string>
+    <!-- no translation found for settings_contact_display_options_title (4890258244494248687) -->
+    <skip />
+    <!-- no translation found for select_account_dialog_title (5478489655696599219) -->
+    <skip />
+    <!-- no translation found for set_default_account (4311613760725609801) -->
+    <skip />
+    <!-- no translation found for select_phone_account_for_calls (3810607744451014540) -->
+    <skip />
+    <!-- no translation found for call_with_a_note (8389827628360791676) -->
+    <skip />
+    <!-- no translation found for call_subject_hint (3637498418381454511) -->
+    <skip />
+    <!-- no translation found for send_and_call_button (7740295432834590737) -->
+    <skip />
+    <!-- no translation found for call_subject_limit (4545212901205397669) -->
+    <skip />
+    <!-- no translation found for call_subject_type_and_number (7667188212129152558) -->
+    <skip />
+    <!-- no translation found for tab_title_with_unread_items (7682024005130747825) -->
+    <!-- no translation found for about_build_version (1765533099416999801) -->
+    <skip />
+    <!-- no translation found for about_open_source_licenses (6479990452352919641) -->
+    <skip />
+    <!-- no translation found for about_open_source_licenses_summary (57418386931763994) -->
+    <skip />
+    <!-- no translation found for about_privacy_policy (3705518622499152626) -->
+    <skip />
+    <!-- no translation found for about_terms_of_service (4642400812150296723) -->
+    <skip />
+    <!-- no translation found for activity_title_licenses (5467767062737708066) -->
+    <skip />
+    <!-- no translation found for url_open_error_toast (452592089815420457) -->
+    <skip />
+    <!-- no translation found for account_filter_view_checked (6696859503887762213) -->
+    <skip />
+    <!-- no translation found for account_filter_view_not_checked (2248684521205038389) -->
+    <skip />
+    <!-- no translation found for description_search_video_call (5841525580339803272) -->
+    <skip />
+    <!-- no translation found for description_delete_contact (53835657343783663) -->
+    <skip />
+    <!-- no translation found for description_no_name_header (8884991311595943271) -->
+    <skip />
 </resources>
