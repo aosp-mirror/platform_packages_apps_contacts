@@ -90,6 +90,31 @@ public class ContactInteractionUtilTest extends AndroidTestCase {
                         getContext()));
     }
 
+    public void testFormatDuration_zero() {
+        assertEquals("0 sec",
+                ContactInteractionUtil.formatDuration(0, getContext()));
+    }
+
+    public void testFormatDuration_minZeroSec() {
+        assertEquals("1 min 0 sec",
+                ContactInteractionUtil.formatDuration(60, getContext()));
+    }
+
+    public void testFormatDuration_minSec() {
+        assertEquals("30 min 9 sec",
+                ContactInteractionUtil.formatDuration(1809, getContext()));
+    }
+
+    public void testFormatDuration_hrZeroMinZeroSec() {
+        assertEquals("1 hr 0 min 0 sec",
+                ContactInteractionUtil.formatDuration(3600, getContext()));
+    }
+
+    public void testFormatDuration_hrMinSec() {
+        assertEquals("2 hr 44 min 36 sec",
+                ContactInteractionUtil.formatDuration(9876, getContext()));
+    }
+
     private void setLocale(Locale locale) {
         Locale.setDefault(locale);
         Resources res = getContext().getResources();
