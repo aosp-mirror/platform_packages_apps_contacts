@@ -19,29 +19,33 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.database.MergeCursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
+import android.util.Log;
 
+import com.android.contactsbind.ObjectFactory;
+import com.android.contactsbind.search.AutocompleteHelper;
 import com.google.common.collect.Lists;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A loader for use in the default contact list, which will also query for favorite contacts
  * if configured to do so.
  */
-public class FavoritesAndContactsLoader extends CursorLoader {
+public class FavoritesAndContactsLoader extends CursorLoader implements AutocompleteHelper.Listener {
+
+    private static final int AUTOCOMPLETE_TIMEOUT_MS = 1000;
 
     private boolean mLoadFavorites;
 
     private String[] mProjection;
 
-    private Uri mExtraUri;
-    private String[] mExtraProjection;
-    private String mExtraSelection;
-    private String[] mExtraSelectionArgs;
-    private boolean mMergeExtraContactsAfterPrimary;
+    private String mAutocompleteQuery;
+    private CountDownLatch mAutocompleteLatch = new CountDownLatch(1);
+    private Cursor mAutocompleteCursor;
 
     public FavoritesAndContactsLoader(Context context) {
         super(context);
@@ -52,30 +56,13 @@ public class FavoritesAndContactsLoader extends CursorLoader {
         mLoadFavorites = flag;
     }
 
+    public void setAutocompleteQuery(String autocompleteQuery) {
+        mAutocompleteQuery = autocompleteQuery;
+    }
+
     public void setProjection(String[] projection) {
         super.setProjection(projection);
         mProjection = projection;
-    }
-
-    /** Configure an extra query and merge results in before the primary results. */
-    public void setLoadExtraContactsFirst(Uri uri, String[] projection) {
-        mExtraUri = uri;
-        mExtraProjection = projection;
-        mMergeExtraContactsAfterPrimary = false;
-    }
-
-    /** Configure an extra query and merge results in after the primary results. */
-    public void setLoadExtraContactsLast(Uri uri, String[] projection, String selection,
-            String[] selectionArgs) {
-        mExtraUri = uri;
-        mExtraProjection = projection;
-        mExtraSelection = selection;
-        mExtraSelectionArgs = selectionArgs;
-        mMergeExtraContactsAfterPrimary = true;
-    }
-
-    private boolean canLoadExtraContacts() {
-        return mExtraUri != null && mExtraProjection != null;
     }
 
     @Override
@@ -84,22 +71,36 @@ public class FavoritesAndContactsLoader extends CursorLoader {
         if (mLoadFavorites) {
             cursors.add(loadFavoritesContacts());
         }
-        if (canLoadExtraContacts() && !mMergeExtraContactsAfterPrimary) {
-            cursors.add(loadExtraContacts());
+
+        if (mAutocompleteQuery != null) {
+            final AutocompleteHelper autocompleteHelper =
+                    ObjectFactory.getAutocompleteHelper(getContext());
+            if (autocompleteHelper != null) {
+                autocompleteHelper.setListener(this);
+                autocompleteHelper.setProjection(mProjection);
+                autocompleteHelper.setQuery(mAutocompleteQuery);
+                try {
+                    if (!mAutocompleteLatch.await(AUTOCOMPLETE_TIMEOUT_MS, TimeUnit.MILLISECONDS)) {
+                        logw("Timeout expired before receiving autocompletions");
+                    }
+                } catch (InterruptedException e) {
+                    logw("Interrupted while waiting for autocompletions");
+                }
+                if (mAutocompleteCursor != null) {
+                    cursors.add(mAutocompleteCursor);
+                    // TODO: exclude these results from the main loader results, see b/30742359
+                }
+            }
         }
-        // ContactsCursor.loadInBackground() can return null; MergeCursor
-        // correctly handles null cursors.
-        Cursor cursor = null;
-        try {
-            cursor = super.loadInBackground();
-        } catch (NullPointerException | SecurityException e) {
-            // Ignore NPEs and SecurityExceptions thrown by providers
+
+        // TODO: if the autocomplete experiment in on, only show those results even if they're empty
+        final Cursor contactsCursor = mAutocompleteQuery == null ? loadContacts() : null;
+        if (mAutocompleteQuery == null) {
+            cursors.add(contactsCursor);
         }
-        final Cursor contactsCursor = cursor;
-        cursors.add(contactsCursor);
-        if (canLoadExtraContacts() && mMergeExtraContactsAfterPrimary) {
-            cursors.add(loadExtraContacts());
-        }
+        // Guard against passing an empty array to the MergeCursor constructor
+        if (cursors.isEmpty()) cursors.add(null);
+
         return new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) {
             @Override
             public Bundle getExtras() {
@@ -109,14 +110,36 @@ public class FavoritesAndContactsLoader extends CursorLoader {
         };
     }
 
-    private Cursor loadExtraContacts() {
-        return getContext().getContentResolver().query(
-                mExtraUri, mExtraProjection, mExtraSelection, mExtraSelectionArgs, null);
+    private Cursor loadContacts() {
+        // ContactsCursor.loadInBackground() can return null; MergeCursor
+        // correctly handles null cursors.
+        try {
+            return super.loadInBackground();
+        } catch (NullPointerException | SecurityException e) {
+            // Ignore NPEs and SecurityExceptions thrown by providers
+        }
+        return null;
     }
 
     private Cursor loadFavoritesContacts() {
         return getContext().getContentResolver().query(
                 Contacts.CONTENT_URI, mProjection, Contacts.STARRED + "=?", new String[]{"1"},
                 getSortOrder());
+    }
+
+    @Override
+    public void onAutocompletesAvailable(Cursor cursor) {
+        if (cursor == null || cursor.getCount() == 0) {
+            logw("Ignoring null or empty autocompletions");
+        } else {
+            mAutocompleteCursor = cursor;
+            mAutocompleteLatch.countDown();
+        }
+    }
+
+    private static void logw(String message) {
+        if (Log.isLoggable(AutocompleteHelper.TAG, Log.WARN)) {
+            Log.w(AutocompleteHelper.TAG, message);
+        }
     }
 }
