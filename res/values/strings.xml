@@ -369,6 +369,9 @@
     <!-- Toast displayed when saving a label failed [CHAR LIMIT=70] -->
     <string name="groupSavedErrorToast">Couldn\'t save label changes.</string>
 
+    <!-- Message displayed when creating a group with the same name as an existing group -->
+    <string name="groupExistsErrorMessage">That label already exists</string>
+
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" is selected -->
     <plurals name="listTotalPhoneContacts">
         <item quantity="one">1 contact with phone number</item>
@@ -631,9 +634,6 @@
     <!-- Button shown on the main contacts screen when there are no contacts on the device.
     Initiates a contact import dialog [CHAR LIMIT=128] -->
     <string name="contacts_unavailable_import_contacts">Import</string>
-
-    <!-- Title of the dialog that allows creation of a contact label [CHAR LIMIT=50] -->
-    <string name="create_group_dialog_title">Create new label</string>
 
     <!-- An item in the popup list of labels that triggers creation of a contact label [CHAR LIMIT=128] -->
     <string name="create_group_item_label">Create new&#8230;</string>

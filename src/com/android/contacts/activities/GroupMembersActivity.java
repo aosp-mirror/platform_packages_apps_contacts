@@ -36,6 +36,7 @@ import com.android.contacts.R;
 import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.group.GroupMembersFragment;
 import com.android.contacts.group.GroupMetadata;
@@ -53,8 +54,7 @@ import com.android.contacts.quickcontact.QuickContactActivity;
 public class GroupMembersActivity extends ContactsDrawerActivity implements
         ActionBarAdapter.Listener,
         MultiSelectContactsListFragment.OnCheckBoxListActionListener,
-        GroupMembersFragment.GroupMembersListener,
-        GroupNameEditDialogFragment.Listener {
+        GroupMembersFragment.GroupMembersListener {
 
     private static final String TAG = "GroupMembers";
 
@@ -382,8 +382,11 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 return true;
             }
             case R.id.menu_rename_group: {
-                GroupNameEditDialogFragment.showUpdateDialog(
-                        getFragmentManager(), TAG_GROUP_NAME_EDIT_DIALOG, mGroupMetadata.groupName);
+                GroupNameEditDialogFragment.newInstanceForUpdate(
+                        new AccountWithDataSet(mGroupMetadata.accountName,
+                                mGroupMetadata.accountType, mGroupMetadata.dataSet),
+                        ACTION_UPDATE_GROUP, mGroupMetadata.groupId, mGroupMetadata.groupName)
+                        .show(getFragmentManager(), TAG_GROUP_NAME_EDIT_DIALOG);
                 return true;
             }
             case R.id.menu_delete_group: {
@@ -565,23 +568,6 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     @Override
     public void onStopDisplayingCheckBoxes() {
         mActionBarAdapter.setSelectionMode(false);
-    }
-
-    // GroupNameEditDialogFragment.Listener callbacks
-
-    @Override
-    public void onGroupNameEdit(String groupName, boolean isInsert) {
-        if (isInsert) {
-            super.onGroupNameEdit(groupName, isInsert);
-            return;
-        }
-        startService(ContactSaveService.createGroupRenameIntent(this,
-                mGroupMetadata.groupId, groupName, GroupMembersActivity.class,
-                ACTION_UPDATE_GROUP));
-    }
-
-    @Override
-    public void onGroupNameEditCancelled() {
     }
 
     // GroupMembersFragment callbacks
