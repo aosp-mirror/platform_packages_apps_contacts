@@ -232,6 +232,10 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
     }
 
+    public Toolbar getToolbar() {
+        return mToolbar;
+    }
+
     private void maybeUpdateScrollPosition(int position) {
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Don't scroll menu when drawer open");
@@ -413,7 +417,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
     }
 
-    protected void updateGroupMenu(GroupMetadata groupMetadata) {
+    // TODO(wenyiw) the method is public for now; we should remove it after b/30944495 is fixed.
+    public void updateGroupMenu(GroupMetadata groupMetadata) {
         clearCheckedMenus();
         if (groupMetadata != null && mGroupMenuMap != null
                 && mGroupMenuMap.get(groupMetadata.groupId) != null) {
