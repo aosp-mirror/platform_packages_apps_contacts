@@ -87,9 +87,18 @@ public class CallLogInteraction implements ContactInteraction {
 
     @Override
     public String getViewFooter(Context context) {
-        Long date = getDate();
-        return date == null ? null : ContactInteractionUtil.formatDateStringFromTimestamp(
-                date, context);
+        final Long date = getDate();
+        if (date != null) {
+            final StringBuilder callDetail = new StringBuilder();
+            callDetail.append(ContactInteractionUtil.formatDateStringFromTimestamp(date, context));
+            final Long duration = getDuration();
+            if (duration != null) {
+                callDetail.append("\n");
+                callDetail.append(ContactInteractionUtil.formatDuration(duration, context));
+            }
+            return callDetail.toString();
+        }
+        return null;
     }
 
     @Override
