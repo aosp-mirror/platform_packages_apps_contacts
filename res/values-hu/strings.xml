@@ -51,7 +51,7 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Kezdőképernyőre"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ismerős hívása"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS küldése ismerősnek"</string>
-    <string name="menu_splitAggregate" msgid="2627252205317945563">"Társítás megszüntetése"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Szétválasztás"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"Névjegyek eltávolítása"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Címke átnevezése"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Címke törlése"</string>
@@ -62,12 +62,12 @@
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Névjegy hozzáadása"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Új létrehozása…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Szeretné több névjegyre szétbontani ezt a névjegyet?"</string>
-    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Szétbontás"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Szétválasztás"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Szeretné menteni a végrehajtott módosításokat, és több névjeggyé szétbontani ezt a névjegyet?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Mentés és szétbontás"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Szeretné menteni a végrehajtott módosításokat, és társítani a kiválasztott névjegyet?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Mentés és társítás"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Társítás"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Összekapcsolás"</string>
     <string name="menu_save" msgid="1727844363591825909">"Mentés"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Névjegyek társítása"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Válassza ki a névjegyet, amelyet a következővel szeretne társítani: <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -298,7 +298,7 @@
       <item quantity="other">Társított névjegyek (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Társított névjegy</item>
     </plurals>
-    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> társított névjegy"</string>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> összekapcsolt névjegy"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"NÉVJEGYEK TÁRSÍTÁSA"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"MÉGSE"</string>
@@ -318,7 +318,7 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Ez a névjegy"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Lehetséges ismétlődések"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Lehet, hogy ezek a névjegyek ugyanahhoz a személyhez tartoznak. Lehetőség van a névjegyek egyesítésére."</string>
-    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Társított névjegyek"</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Összekapcsolt névjegyek"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Az Ön fiókjaiból"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Fotó készítése"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Az összes fotó"</string>

@@ -115,7 +115,7 @@
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Слика контакта"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Назив прилагођене ознаке"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Шаљи позиве директно у гласовну пошту"</string>
-    <string name="removePhoto" msgid="4898105274130284565">"Уклони фотографију"</string>
+    <string name="removePhoto" msgid="4898105274130284565">"Уклони слику"</string>
     <string name="noContacts" msgid="2228592924476426108">"Листа контаката је празна"</string>
     <string name="noGroups" msgid="4607906327968232225">"Нема ознака."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Морате да имате налог да бисте могли да правите групе."</string>
@@ -160,7 +160,7 @@
     <string name="callAgain" msgid="3197312117049874778">"Позови поново"</string>
     <string name="returnCall" msgid="8171961914203617813">"Узврати позив"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Желите ли да додате имејл адресу „<xliff:g id="EMAIL">%s</xliff:g>“ у контакте?"</string>
-    <string name="description_contact_photo" msgid="3387458082667894062">"фотографија контакта"</string>
+    <string name="description_contact_photo" msgid="3387458082667894062">"слика контакта"</string>
     <string name="description_plus_button" msgid="515164827856229880">"плус"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> од <xliff:g id="TOTAL_NUMBER">%s</xliff:g> контак(а)та"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Имена контаката"</string>
@@ -191,8 +191,8 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> налог"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
-    <string name="take_photo" msgid="7496128293167402354">"Сними фотографију"</string>
-    <string name="take_new_photo" msgid="7341354729436576304">"Направи нову фотографију"</string>
+    <string name="take_photo" msgid="7496128293167402354">"Сликај"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"Сликај нову слику"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Изабери слику"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Изаберите нову слику"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Контакт листа се ажурира."</string>
