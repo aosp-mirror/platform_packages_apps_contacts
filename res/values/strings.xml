@@ -675,6 +675,9 @@
       and return to the editor [CHAR LIMIT=30] -->
     <string name="cancel_confirmation_dialog_keep_editing_button">Cancel</string>
 
+    <!-- Contents of the alert dialog when the user hits the Cancel button in the customize screen [CHAR LIMIT=128] -->
+    <string name="leave_customize_confirmation_dialog_message">Discard customizations?</string>
+
     <!-- Description of a call log entry, made of a call type and a date -->
     <string name="call_type_and_date">
         <xliff:g id="call_type" example="Friends">%1$s</xliff:g>  <xliff:g id="call_short_date" example="Friends">%2$s</xliff:g>
