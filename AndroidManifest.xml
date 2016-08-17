@@ -65,7 +65,6 @@
 
         <!-- The main Contacts activity with the contact list, favorites, and groups. -->
         <activity android:name=".activities.PeopleActivity"
-            android:label="@string/launcherActivityLabel"
             android:theme="@style/PeopleActivityTheme"
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
@@ -102,19 +101,19 @@
                 <category android:name="android.intent.category.TAB" />
             </intent-filter>
 
-            <intent-filter android:label="@string/starredList">
+            <intent-filter>
                 <action android:name="com.android.contacts.action.LIST_STARRED" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.TAB" />
             </intent-filter>
 
-            <intent-filter android:label="@string/frequentList">
+            <intent-filter>
                 <action android:name="com.android.contacts.action.LIST_FREQUENT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.TAB" />
             </intent-filter>
 
-            <intent-filter android:label="@string/strequentList">
+            <intent-filter>
                 <action android:name="com.android.contacts.action.LIST_STREQUENT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.TAB" />
@@ -155,7 +154,6 @@
         </activity>
 
         <activity android:name=".activities.ContactSelectionActivity"
-            android:label="@string/launcherActivityLabel"
             android:theme="@style/ContactPickerTheme"
             android:launchMode="singleTop"
             android:clearTaskOnLaunch="true"
@@ -243,25 +241,21 @@
 
         <activity
             android:name=".common.activity.RequestPermissionsActivity"
-            android:label="@string/launcherActivityLabel"
             android:theme="@style/PeopleTheme"
             android:exported="false"/>
 
         <activity
             android:name=".common.activity.RequestDesiredPermissionsActivity"
-            android:label="@string/launcherActivityLabel"
             android:theme="@style/PeopleTheme"
             android:exported="false"/>
 
         <activity
             android:name=".common.activity.RequestImportVCardPermissionsActivity"
-            android:label="@string/launcherActivityLabel"
             android:theme="@style/PeopleTheme"
             android:exported="false"/>
 
         <activity
             android:name=".activities.ShowOrCreateActivity"
-            android:label="@string/launcherActivityLabel"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar">
 
             <intent-filter>
@@ -291,7 +285,6 @@
 
         <activity
             android:name=".quickcontact.QuickContactActivity"
-            android:label="@string/quickContactActivityLabel"
             android:theme="@style/Theme.QuickContact"
             android:launchMode="singleTop"
             android:excludeFromRecents="true"
@@ -366,18 +359,17 @@
         <!-- Edit or create a contact with only the most important fields displayed initially. -->
         <activity
             android:name=".activities.CompactContactEditorActivity"
-            android:label="@string/editContactActivityLabel"
             android:theme="@style/EditorActivityTheme"
             android:windowSoftInputMode="stateHidden|adjustResize">
 
-            <intent-filter android:label="@string/editContactDescription">
+            <intent-filter>
                 <action android:name="android.intent.action.EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
                 <data android:mimeType="vnd.android.cursor.item/contact" />
                 <data android:mimeType="vnd.android.cursor.item/raw_contact" />
             </intent-filter>
-            <intent-filter android:label="@string/insertContactDescription">
+            <intent-filter>
                 <action android:name="android.intent.action.INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.dir/person" />
@@ -389,19 +381,18 @@
         <!-- Edit or create a contact with all fields displayed. -->
         <activity
             android:name=".activities.ContactEditorActivity"
-            android:label="@string/editContactActivityLabel"
             android:theme="@style/EditorActivityTheme"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:exported="false">
 
-            <intent-filter android:label="@string/editContactDescription">
+            <intent-filter>
                 <action android:name="com.android.contacts.action.FULL_EDIT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.item/person" />
                 <data android:mimeType="vnd.android.cursor.item/contact" />
                 <data android:mimeType="vnd.android.cursor.item/raw_contact" />
             </intent-filter>
-            <intent-filter android:label="@string/insertContactDescription">
+            <intent-filter>
                 <action android:name="com.android.contacts.action.FULL_INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.dir/person" />
@@ -440,7 +431,6 @@
 
         <!-- vCard related -->
         <activity android:name=".common.vcard.ImportVCardActivity"
-            android:label="@string/launcherActivityLabel"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
@@ -453,7 +443,6 @@
         </activity>
 
         <activity android:name=".common.vcard.NfcImportVCardActivity"
-            android:label="@string/launcherActivityLabel"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
@@ -465,19 +454,15 @@
         </activity>
 
         <activity android:name=".common.vcard.CancelActivity"
-            android:label="@string/launcherActivityLabel"
             android:theme="@style/BackgroundOnlyTheme" />
 
         <activity android:name=".common.vcard.SelectAccountActivity"
-            android:label="@string/launcherActivityLabel"
             android:theme="@style/BackgroundOnlyTheme" />
 
         <activity android:name=".common.vcard.ExportVCardActivity"
-            android:label="@string/launcherActivityLabel"
             android:theme="@style/BackgroundOnlyTheme" />
 
         <activity android:name=".common.vcard.ShareVCardActivity"
-                  android:label="@string/launcherActivityLabel"
                   android:theme="@style/BackgroundOnlyTheme" />
 
         <service
@@ -492,9 +477,7 @@
              are set lower, so that the user does not see a disambig dialog -->
         <activity
             android:name="com.android.contacts.NonPhoneActivity"
-            android:theme="@style/NonPhoneActivityTheme"
-            android:label="@string/launcherActivityLabel"
-            >
+            android:theme="@style/NonPhoneActivityTheme">
             <intent-filter android:priority="-1">
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
