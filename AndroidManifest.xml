@@ -137,6 +137,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="vnd.android.cursor.dir/person" />
                 <data android:mimeType="vnd.android.cursor.dir/contact" />
+                <data android:mimeType="vnd.android.cursor.item/group" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/group" />
             </intent-filter>
 
             <intent-filter>
@@ -265,23 +272,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:scheme="mailto" />
                 <data android:scheme="tel" />
-            </intent-filter>
-        </activity>
-
-        <!-- Displays the members of a group in a list -->
-        <activity android:name=".activities.GroupMembersActivity"
-            android:theme="@style/PeopleActivityTheme">
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/group" />
-            </intent-filter>
-
-            <intent-filter>
-                <action android:name="android.intent.action.EDIT" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/group" />
             </intent-filter>
         </activity>
 

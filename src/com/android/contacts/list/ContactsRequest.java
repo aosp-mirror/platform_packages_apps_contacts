@@ -45,6 +45,12 @@ public class ContactsRequest {
     /** Create a new group */
     public static final int ACTION_INSERT_GROUP = 22;
 
+    /** View a group */
+    public static final int ACTION_VIEW_GROUP = 23;
+
+    /** Edit a group */
+    public static final int ACTION_EDIT_GROUP = 24;
+
     /** Show all starred contacts */
     public static final int ACTION_STARRED = 30;
 

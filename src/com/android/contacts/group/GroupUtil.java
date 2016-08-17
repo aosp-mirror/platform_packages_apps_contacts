@@ -16,7 +16,6 @@
 
 package com.android.contacts.group;
 
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -29,7 +28,6 @@ import android.widget.ImageView;
 
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.activities.ContactSelectionActivity;
-import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.list.ContactsSectionIndexer;
@@ -116,21 +114,6 @@ public final class GroupUtil {
         }
     }
 
-    /** Returns an Intent to view the details of the group identified by the given URI. */
-    public static Intent createViewGroupIntent(Context context, Uri groupUri, String title) {
-        final Intent intent = new Intent(context, GroupMembersActivity.class);
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(groupUri);
-        intent.putExtra(EXTRA_GROUP_NAME, title);
-        return intent;
-    }
-
-    /** Returns an Intent to view the details of the group identified by the given ID. */
-    public static Intent createViewGroupIntent(Context context, long groupId, String title) {
-        return createViewGroupIntent(context,
-                ContentUris.withAppendedId(Groups.CONTENT_URI, groupId), title);
-    }
-
     /** Returns an Intent to pick contacts to add to a group. */
     public static Intent createPickMemberIntent(Context context,
             GroupMetadata groupMetadata, ArrayList<String> memberContactIds) {
@@ -157,6 +140,13 @@ public final class GroupUtil {
 
     private static boolean isSystemIdFFC(String systemId) {
         return !TextUtils.isEmpty(systemId) && FFC_GROUPS.contains(systemId);
+    }
+
+    /**
+     * Returns true the URI is a group URI.
+     */
+    public static boolean isGroupUri(Uri uri) {
+        return  uri != null && uri.toString().startsWith(Groups.CONTENT_URI.toString());
     }
 
     /**

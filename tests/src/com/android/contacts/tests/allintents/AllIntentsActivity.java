@@ -578,7 +578,7 @@ public class AllIntentsActivity extends ListActivity
         intent.setData(ContentUris.withAppendedId(Groups.CONTENT_URI, groupId));
         // TODO: ContactsProvider2#getType does handle the group mimetype
         intent.setClassName("com.google.android.contacts",
-                "com.android.contacts.activities.GroupMembersActivity");
+                "com.android.contacts.activities.PeopleActivity");
         return intent;
     }
 

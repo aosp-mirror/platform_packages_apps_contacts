@@ -22,7 +22,6 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Intents;
 import android.support.annotation.LayoutRes;
@@ -32,10 +31,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,7 +42,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.android.contacts.activities.GroupMembersActivity;
+import com.android.contacts.activities.ActionBarAdapter;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.editor.SelectAccountDialogFragment;
@@ -64,6 +60,7 @@ import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.group.GroupListItem;
+import com.android.contacts.group.GroupMembersFragment;
 import com.android.contacts.group.GroupMetadata;
 import com.android.contacts.group.GroupNameEditDialogFragment;
 import com.android.contacts.group.GroupUtil;
@@ -71,9 +68,10 @@ import com.android.contacts.group.GroupsFragment;
 import com.android.contacts.group.GroupsFragment.GroupsListener;
 import com.android.contacts.interactions.AccountFiltersFragment;
 import com.android.contacts.interactions.AccountFiltersFragment.AccountFiltersListener;
+import com.android.contacts.list.DefaultContactBrowseListFragment;
+import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.SharedPreferenceUtil;
-import com.android.contactsbind.Assistants;
 import com.android.contactsbind.HelpUtils;
 import com.android.contactsbind.ObjectFactory;
 
@@ -92,6 +90,15 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         NavigationView.OnNavigationItemSelectedListener,
         SelectAccountDialogFragment.Listener {
 
+    /** Possible views of Contacts app. */
+    public enum ContactsView {
+        NONE,
+        ALL_CONTACTS,
+        DUPLICATES,
+        GROUP_VIEW,
+        ACCOUNT_VIEW,
+    }
+
     protected static String TAG = "ContactsDrawerActivity";
 
     private static final String TAG_GROUPS = "groups";
@@ -100,15 +107,11 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     private static final String TAG_GROUP_NAME_EDIT_DIALOG = "groupNameEditDialog";
 
     private static final String KEY_NEW_GROUP_ACCOUNT = "newGroupAccount";
+    private static final String KEY_CONTACTS_VIEW = "contactsView";
 
     protected static final String ACTION_CREATE_GROUP = "createGroup";
 
-    // TODO(wenyiw): remove all the code related to these constants after switching to fragments.
-    // Positions of "all contacts" and "duplicates" in navigation drawer.
-    private static final int ALL_CONTACTS_POSITION = 1;
-    private static final int DUPLICATES_POSITION = 2;
-    // Gap between two menu groups, including a separator, a menu group header.
-    private static final int GAP_BETWEEN_TWO_MENU_GROUPS = 2;
+    protected ContactsView mCurrentView;
 
     private class ContactsActionBarDrawerToggle extends ActionBarDrawerToggle {
 
@@ -130,6 +133,33 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 mMenuClickedBefore = true;
             }
             invalidateOptionsMenu();
+            // Stop search and selection mode like Gmail and Keep. Otherwise, if user switches to
+            // another fragment in navigation drawer, the current search/selection mode will be
+            // overlaid by the action bar of the newly-created fragment.
+            stopSearchAndSelection();
+        }
+
+        private void stopSearchAndSelection() {
+            final MultiSelectContactsListFragment listFragment;
+            if (isAllContactsView() || isAccountView()) {
+                listFragment = getAllFragment();
+            } else if (isGroupView()) {
+                listFragment = getGroupFragment();
+            } else {
+                listFragment = null;
+            }
+            if (listFragment == null) {
+                return;
+            }
+            final ActionBarAdapter actionBarAdapter = listFragment.getActionBarAdapter();
+            if (actionBarAdapter == null) {
+                return;
+            }
+            if (actionBarAdapter.isSearchMode()) {
+                actionBarAdapter.setSearchMode(false);
+            } else if (actionBarAdapter.isSelectionMode()) {
+                actionBarAdapter.setSelectionMode(false);
+            }
         }
 
         @Override
@@ -164,18 +194,16 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     protected GroupsFragment mGroupsFragment;
     protected AccountFiltersFragment mAccountFiltersFragment;
 
-    // Checkable menu item lookup maps. Every map declared here should be added to
-    // clearCheckedMenus() so that they can be cleared.
-    // TODO find a better way to handle selected menu item state, when swicthing to fragments.
-    protected Map<Long, MenuItem> mGroupMenuMap = new HashMap<>();
-    protected Map<ContactListFilter, MenuItem> mFilterMenuMap = new HashMap<>();
-    protected Map<Integer, MenuItem> mIdMenuMap = new HashMap<>();
-
     // The account the new group will be created under.
     private AccountWithDataSet mNewGroupAccount;
     private DeviceAccountPresentationValues mDeviceAccountPresentationValues;
 
-    private int mPositionOfLastGroup;
+    // Checkable menu item lookup maps. Every map declared here should be added to
+    // clearCheckedMenus() so that they can be cleared.
+    // TODO find a better way to handle selected menu item state, when switching to fragments.
+    protected Map<Long, MenuItem> mGroupMenuMap = new HashMap<>();
+    protected Map<ContactListFilter, MenuItem> mFilterMenuMap = new HashMap<>();
+    protected Map<Integer, MenuItem> mIdMenuMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedState) {
@@ -202,34 +230,19 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         mDrawer.setDrawerListener(mToggle);
         mToggle.syncState();
 
+        // Set up navigation mode.
+        if (savedState != null) {
+            mCurrentView = ContactsView.values()[savedState.getInt(KEY_CONTACTS_VIEW)];
+        } else {
+            mCurrentView = ContactsView.ALL_CONTACTS;
+        }
+
         // Set up hamburger menu items.
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
-
-        final Menu menu = mNavigationView.getMenu();
-
-        final MenuItem allContacts = menu.findItem(R.id.nav_all_contacts);
-        mIdMenuMap.put(R.id.nav_all_contacts, allContacts);
-
-        if (Assistants.getDuplicatesActivityIntent(this) == null) {
-            menu.removeItem(R.id.nav_find_duplicates);
-        } else {
-            final MenuItem findDup = menu.findItem(R.id.nav_find_duplicates);
-            mIdMenuMap.put(R.id.nav_find_duplicates, findDup);
-        }
-
-        if (!HelpUtils.isHelpAndFeedbackAvailable()) {
-            menu.removeItem(R.id.nav_help);
-        }
+        setUpMenu();
 
         loadGroupsAndFilters();
-
-        if (isDuplicatesActivity()) {
-            clearCheckedMenus();
-            mIdMenuMap.get(R.id.nav_find_duplicates).setCheckable(true);
-            mIdMenuMap.get(R.id.nav_find_duplicates).setChecked(true);
-            maybeUpdateScrollPosition(DUPLICATES_POSITION);
-        }
 
         if (savedState != null && savedState.containsKey(KEY_NEW_GROUP_ACCOUNT)) {
             mNewGroupAccount = AccountWithDataSet.unstringify(
@@ -237,26 +250,32 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
     }
 
-    public Toolbar getToolbar() {
-        return mToolbar;
+    private void setUpMenu() {
+        final Menu menu = mNavigationView.getMenu();
+
+        if (ObjectFactory.getDuplicatesFragment() == null) {
+            menu.removeItem(R.id.nav_find_duplicates);
+        } else {
+            final MenuItem findDupMenu = menu.findItem(R.id.nav_find_duplicates);
+            mIdMenuMap.put(R.id.nav_find_duplicates, findDupMenu);
+            if (isDuplicatesView()) {
+                updateMenuSelection(findDupMenu);
+            }
+        }
+
+        if (!HelpUtils.isHelpAndFeedbackAvailable()) {
+            menu.removeItem(R.id.nav_help);
+        }
+
+        final MenuItem allContactsMenu = menu.findItem(R.id.nav_all_contacts);
+        mIdMenuMap.put(R.id.nav_all_contacts, allContactsMenu);
+        if (isAllContactsView()) {
+            updateMenuSelection(allContactsMenu);
+        }
     }
 
-    private void maybeUpdateScrollPosition(int position) {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-            if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Don't scroll menu when drawer open");
-            return;
-        }
-        final RecyclerView recyclerView = (RecyclerView) mNavigationView.getChildAt(0);
-        final LinearLayoutManager layoutManager =
-                (LinearLayoutManager) recyclerView.getLayoutManager();
-
-        // Get screen height
-        final DisplayMetrics metrics = getResources().getDisplayMetrics();
-        final int height = metrics.heightPixels;
-
-        // Set 1/3 screen height as offset if possible.
-        layoutManager.scrollToPositionWithOffset(position, height / 3);
-        recyclerView.requestLayout();
+    public Toolbar getToolbar() {
+        return mToolbar;
     }
 
     @Override
@@ -265,6 +284,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         if (mNewGroupAccount != null) {
             outState.putString(KEY_NEW_GROUP_ACCOUNT, mNewGroupAccount.stringify());
         }
+        outState.putInt(KEY_CONTACTS_VIEW, mCurrentView.ordinal());
     }
 
     @Override
@@ -282,37 +302,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                         && CompatUtils.isLollipopCompatible()) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
-    }
-
-    @Override
-    protected void onNewIntent(Intent newIntent) {
-        mContactListFilterController.checkFilterValidity(false);
-        if (ACTION_CREATE_GROUP.equals(newIntent.getAction())) {
-            final Uri groupUri = newIntent.getData();
-            if (groupUri == null) {
-                Toast.makeText(this, R.string.groupSavedErrorToast, Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + groupUri);
-            Toast.makeText(this, R.string.groupCreatedToast, Toast.LENGTH_SHORT).show();
-            startActivity(GroupUtil.createViewGroupIntent(this, groupUri, /* title */ null));
-            if (shouldFinish()) {
-                // If we created a group while viewing the members of an existing group (i.e.
-                // while on GroupMembersActivity), finish the current GroupMembersActivity so that
-                // hitting back from the new GroupMembersActivity that was just stared will open
-                // the all contacts list. See b/30047708.
-                finish();
-            }
-        } else {
-            super.onNewIntent(newIntent);
-        }
-    }
-
-    /**
-     * Returns true if child class is DuplicatesActivity
-     */
-    protected boolean isDuplicatesActivity() {
-        return false;
     }
 
     // Set up fragment manager to load groups and filters.
@@ -363,7 +352,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         subMenu.removeGroup(R.id.nav_groups_items);
         mGroupMenuMap = new HashMap<>();
 
-        mPositionOfLastGroup = DUPLICATES_POSITION + GAP_BETWEEN_TWO_MENU_GROUPS;
+        final GroupMetadata groupMetaData = getGroupMetadata();
 
         if (groupListItems != null) {
             // Add each group
@@ -371,11 +360,14 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 if (GroupUtil.isEmptyFFCGroup(groupListItem)) {
                     continue;
                 }
-                mPositionOfLastGroup++;
                 final String title = groupListItem.getTitle();
                 final MenuItem menuItem =
-                        subMenu.add(R.id.nav_groups_items, Menu.NONE, mPositionOfLastGroup, title);
+                        subMenu.add(R.id.nav_groups_items, Menu.NONE, Menu.NONE, title);
                 mGroupMenuMap.put(groupListItem.getGroupId(), menuItem);
+                if (isGroupView() && groupMetaData != null
+                        && groupMetaData.groupId == groupListItem.getGroupId()) {
+                    updateMenuSelection(menuItem);
+                }
                 menuItem.setIcon(R.drawable.ic_menu_label);
                 menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
@@ -385,6 +377,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                             public void run() {
                                 onGroupMenuItemClicked(groupListItem.getGroupId(),
                                         groupListItem.getTitle());
+                                updateMenuSelection(menuItem);
                             }
                         });
                         mDrawer.closeDrawer(GravityCompat.START);
@@ -399,10 +392,9 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             return;
         }
 
-        mPositionOfLastGroup++;
         // Create a menu item in the sub menu to add new groups
         final MenuItem menuItem = subMenu.add(R.id.nav_groups_items, Menu.NONE,
-                mPositionOfLastGroup, getString(R.string.menu_new_group_action_bar));
+                Menu.NONE, getString(R.string.menu_new_group_action_bar));
         menuItem.setIcon(R.drawable.ic_add);
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -418,36 +410,44 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             }
         });
 
-        if (getGroupMetadata() != null) {
-            updateGroupMenu(getGroupMetadata());
+        if (isGroupView() && groupMetaData != null) {
+            updateGroupMenu(groupMetaData);
         }
     }
 
-    // TODO(wenyiw) the method is public for now; we should remove it after b/30944495 is fixed.
     public void updateGroupMenu(GroupMetadata groupMetadata) {
         clearCheckedMenus();
         if (groupMetadata != null && mGroupMenuMap != null
                 && mGroupMenuMap.get(groupMetadata.groupId) != null) {
-            mGroupMenuMap.get(groupMetadata.groupId).setCheckable(true);
-            mGroupMenuMap.get(groupMetadata.groupId).setChecked(true);
-            maybeUpdateScrollPosition(mGroupMenuMap.get(groupMetadata.groupId).getOrder());
+            setMenuChecked(mGroupMenuMap.get(groupMetadata.groupId), true);
         }
     }
 
-    /**
-     * Returns group metadata if the child class is {@link GroupMembersActivity}, and null
-     * otherwise.
-     */
     protected GroupMetadata getGroupMetadata() {
         return null;
     }
 
-    protected void onGroupMenuItemClicked(long groupId, String title) {
-        startActivity(GroupUtil.createViewGroupIntent(this, groupId, title));
-        if (shouldFinish()) {
-            finish();
-        }
+    protected boolean isGroupView() {
+        return mCurrentView == ContactsView.GROUP_VIEW;
     }
+
+    protected boolean isDuplicatesView() {
+        return mCurrentView == ContactsView.DUPLICATES;
+    }
+
+    protected boolean isAllContactsView() {
+        return mCurrentView == ContactsView.ALL_CONTACTS;
+    }
+
+    protected boolean isAccountView() {
+        return mCurrentView == ContactsView.ACCOUNT_VIEW;
+    }
+
+    public boolean isInSecondLevel() {
+        return isGroupView() || isDuplicatesView();
+    }
+
+    protected abstract void onGroupMenuItemClicked(long groupId, String title);
 
     protected void onCreateGroupMenuItemClicked() {
         // Select the account to create the group
@@ -477,16 +477,16 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             return;
         }
 
-        int positionOfLastFilter = mPositionOfLastGroup + GAP_BETWEEN_TWO_MENU_GROUPS;
-
         mDeviceAccountPresentationValues.setFilters(accountFilterItems);
 
         for (int i = 0; i < accountFilterItems.size(); i++) {
-            positionOfLastFilter++;
             final ContactListFilter filter = accountFilterItems.get(i);
             final CharSequence menuName = mDeviceAccountPresentationValues.getLabel(i);
             final MenuItem menuItem = subMenu.add(R.id.nav_filters_items, Menu.NONE,
-                    positionOfLastFilter, menuName);
+                    Menu.NONE, menuName);
+            if (isAccountView() && filter == mContactListFilterController.getFilter()) {
+                updateMenuSelection(menuItem);
+            }
             mFilterMenuMap.put(filter, menuItem);
             final Intent intent = new Intent();
             intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);
@@ -496,12 +496,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     mToggle.runWhenIdle(new Runnable() {
                         @Override
                         public void run() {
-                            AccountFilterUtil.handleAccountFilterResult(
-                                    mContactListFilterController, AppCompatActivity.RESULT_OK,
-                                    intent);
-                            if (shouldFinish()) {
-                                finish();
-                            }
+                            onFilterMenuItemClicked(intent);
+                            updateMenuSelection(menuItem);
                         }
                     });
                     mDrawer.closeDrawer(GravityCompat.START);
@@ -523,39 +519,28 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             menuItem.setActionView(view);
         }
 
-        if (getContactListFilter() != null) {
-            updateFilterMenu(getContactListFilter());
+        if (isAccountView()) {
+            updateFilterMenu(mContactListFilterController.getFilter());
         }
     }
 
     public void updateFilterMenu(ContactListFilter filter) {
         clearCheckedMenus();
-        if (filter != null && filter.isContactsFilterType()) {
+        if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
             if (mIdMenuMap != null && mIdMenuMap.get(R.id.nav_all_contacts) != null) {
-                mIdMenuMap.get(R.id.nav_all_contacts).setCheckable(true);
-                mIdMenuMap.get(R.id.nav_all_contacts).setChecked(true);
-                maybeUpdateScrollPosition(ALL_CONTACTS_POSITION);
+                setMenuChecked(mIdMenuMap.get(R.id.nav_all_contacts), true);
             }
         } else {
             if (mFilterMenuMap != null && mFilterMenuMap.get(filter) != null) {
-                mFilterMenuMap.get(filter).setCheckable(true);
-                mFilterMenuMap.get(filter).setChecked(true);
-                maybeUpdateScrollPosition(mFilterMenuMap.get(filter).getOrder());
+                setMenuChecked(mFilterMenuMap.get(filter), true);
             }
         }
     }
 
-    /**
-     * Returns the current filter if the child class is PeopleActivity, and null otherwise.
-     */
-    protected ContactListFilter getContactListFilter() {
-        return null;
+    protected void onFilterMenuItemClicked(Intent intent) {
+        AccountFilterUtil.handleAccountFilterResult(mContactListFilterController,
+                AppCompatActivity.RESULT_OK, intent);
     }
-
-    /**
-     * Returns true if the child activity should finish after launching another activity.
-     */
-    protected abstract boolean shouldFinish();
 
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
@@ -570,7 +555,10 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 } else if (id == R.id.nav_all_contacts) {
                     switchToAllContacts();
                 } else if (id == R.id.nav_find_duplicates) {
-                    launchFindDuplicates();
+                    if (!isDuplicatesView()) {
+                        launchFindDuplicates();
+                        updateMenuSelection(item);
+                    }
                 } else if (item.getIntent() != null) {
                     ImplicitIntentsUtil.startActivityInApp(ContactsDrawerActivity.this,
                             item.getIntent());
@@ -595,34 +583,45 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         return intent;
     }
 
-    protected void switchToAllContacts() {
+    public void switchToAllContacts() {
         final Intent intent = new Intent();
         final ContactListFilter filter = AccountFilterUtil.createContactsFilter(this);
         intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);
         AccountFilterUtil.handleAccountFilterResult(
                 mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
-        if (shouldFinish()) {
-            finish();
-        }
+
+        final Menu menu = mNavigationView.getMenu();
+        final MenuItem allContacts = menu.findItem(R.id.nav_all_contacts);
+        updateMenuSelection(allContacts);
+
+        setTitle(getString(R.string.contactsList));
     }
 
-    protected void launchFindDuplicates() {
-        ImplicitIntentsUtil.startActivityInAppIfPossible(this,
-                Assistants.getDuplicatesActivityIntent(this));
-    }
+    protected abstract void launchFindDuplicates();
+
+    protected abstract DefaultContactBrowseListFragment getAllFragment();
+
+    protected abstract GroupMembersFragment getGroupFragment();
+
+    public abstract void showFabWithAnimation(boolean showFab);
 
     private void clearCheckedMenus() {
         clearCheckedMenu(mFilterMenuMap);
         clearCheckedMenu(mGroupMenuMap);
         clearCheckedMenu(mIdMenuMap);
     }
+
     private void clearCheckedMenu(Map<?, MenuItem> map) {
         final Iterator it = map.entrySet().iterator();
         while (it.hasNext()) {
-            Entry pair = (Entry)it.next();
-            map.get(pair.getKey()).setCheckable(false);
-            map.get(pair.getKey()).setChecked(false);
+            Entry pair = (Entry) it.next();
+            setMenuChecked(map.get(pair.getKey()), false);
         }
+    }
+
+    private void setMenuChecked(MenuItem menuItem, boolean checked) {
+        menuItem.setCheckable(checked);
+        menuItem.setChecked(checked);
     }
 
     private void selectAccount() {
@@ -653,5 +652,10 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     @Override
     public void onAccountSelectorCancelled() {
+    }
+
+    private void updateMenuSelection(MenuItem menuItem) {
+        clearCheckedMenus();
+        setMenuChecked(menuItem, true);
     }
 }

@@ -66,7 +66,7 @@ public final class GroupMetaDataLoader extends CursorLoader {
         if (groupUri == null) {
             throw new IllegalArgumentException("Uri must not be null");
         }
-        if (!groupUri.toString().startsWith(Groups.CONTENT_URI.toString())) {
+        if (!GroupUtil.isGroupUri(groupUri)) {
             throw new IllegalArgumentException("Invalid group Uri: " + groupUri);
         }
         return groupUri;

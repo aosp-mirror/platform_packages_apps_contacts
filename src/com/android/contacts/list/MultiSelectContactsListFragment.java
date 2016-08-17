@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.activities.ActionBarAdapter;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter.SelectedContactsListener;
@@ -458,4 +459,10 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
                 listView.getPaddingBottom());
     }
 
+    /**
+     * Returns the {@link ActionBarAdapter} object associated with list fragment.
+     */
+    public ActionBarAdapter getActionBarAdapter() {
+        return null;
+    }
 }

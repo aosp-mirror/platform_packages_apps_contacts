@@ -16,17 +16,22 @@
 
 package com.android.contacts.common.util;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ActivityNotFoundException;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Intents;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
@@ -173,5 +178,37 @@ public class AccountFilterUtil {
                         ? ContactListFilter.FILTER_TYPE_CUSTOM
                         : ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS;
         return ContactListFilter.createFilterWithType(filterType);
+    }
+
+    /**
+     * Start editor intent; and if filter is an account filter, we pass account info to editor so
+     * as to create a contact in that account.
+     */
+    public static void startEditorIntent(Context context, Intent src, ContactListFilter filter) {
+        final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+        intent.putExtras(src);
+
+        // If we are in account view, we pass the account explicitly in order to
+        // create contact in the account. This will prevent the default account dialog
+        // from being displayed.
+        if (!isAllContactsFilter(filter) && !isDeviceContactsFilter(filter)) {
+            final Account account = new Account(filter.accountName, filter.accountType);
+            intent.putExtra(Intents.Insert.EXTRA_ACCOUNT, account);
+            intent.putExtra(Intents.Insert.EXTRA_DATA_SET, filter.dataSet);
+        }
+
+        try {
+            ImplicitIntentsUtil.startActivityInApp(context, intent);
+        } catch (ActivityNotFoundException ex) {
+            Toast.makeText(context, R.string.missing_app, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static boolean isAllContactsFilter(ContactListFilter filter) {
+        return filter != null && filter.isContactsFilterType();
+    }
+
+    public static boolean isDeviceContactsFilter(ContactListFilter filter) {
+        return filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS;
     }
 }

@@ -35,6 +35,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.group.GroupUtil;
 
 /**
  * Parses a Contacts intent, extracting all relevant parts and packaging them
@@ -150,11 +151,19 @@ public class ContactsIntentResolver {
             if (ContactsContract.Contacts.CONTENT_TYPE.equals(resolvedType)
                     || android.provider.Contacts.People.CONTENT_TYPE.equals(resolvedType)) {
                 request.setActionCode(ContactsRequest.ACTION_ALL_CONTACTS);
-            } else {
+            } else if (!GroupUtil.isGroupUri(intent.getData())){
                 request.setActionCode(ContactsRequest.ACTION_VIEW_CONTACT);
                 request.setContactUri(intent.getData());
                 intent.setAction(Intent.ACTION_DEFAULT);
                 intent.setData(null);
+            } else {
+                request.setActionCode(ContactsRequest.ACTION_VIEW_GROUP);
+                request.setContactUri(intent.getData());
+            }
+        } else if (Intent.ACTION_EDIT.equals(action)) {
+            if (GroupUtil.isGroupUri(intent.getData())){
+                request.setActionCode(ContactsRequest.ACTION_EDIT_GROUP);
+                request.setContactUri(intent.getData());
             }
         // Since this is the filter activity it receives all intents
         // dispatched from the SearchManager for security reasons

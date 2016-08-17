@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
-import com.android.contacts.activities.GroupMembersActivity;
+import com.android.contacts.activities.PeopleActivity;
 
 /**
  * Starts an Intent to add/remove the raw contacts for the given contact IDs to/from a group.
@@ -75,7 +75,7 @@ public class UpdateGroupMembersAsyncTask extends AsyncTask<Void, Void, Intent> {
         }
         return ContactSaveService.createGroupUpdateIntent(
                 mContext, mGroupId, /* newLabel */ null, rawContactIdsToAdd,
-                rawContactIdsToRemove, GroupMembersActivity.class, action);
+                rawContactIdsToRemove, PeopleActivity.class, action);
     }
 
     // TODO(wjang): prune raw contacts that are already in the group; ContactSaveService will
