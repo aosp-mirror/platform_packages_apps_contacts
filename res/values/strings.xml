@@ -19,16 +19,6 @@
          that don't specify a label. -->
     <string name="applicationLabel">Contacts</string>
 
-    <!-- Title for the activity that launches Contacts.  This is the name
-         used in the Launcher icon. -->
-    <string name="launcherActivityLabel">Contacts</string>
-
-    <!-- Title for Quick Contact activity. -->
-    <string name="quickContactActivityLabel">View Contact</string>
-
-    <!-- Title for Edit Contact activity. -->
-    <string name="editContactActivityLabel">Edit Contact</string>
-
     <!-- Directory partition name -->
     <string name="contactsList">Contacts</string>
 
@@ -65,26 +55,8 @@
     <!-- Entry that prompts user to select a newly created contact.  [CHAR LIMIT=30] -->
     <string name="header_entry_contact_list_adapter_header_title">Create new contact</string>
 
-    <!-- Title for the activity that shows only starred contacts -->
-    <string name="starredList">Starred</string>
-
-    <!-- Title for the activity that shows only frequently contacted contacts -->
-    <string name="frequentList">Frequent</string>
-
-    <!-- Title for the activity that shows a mix of starred contacts and frequently contacted
-         contacts. -->
-    <string name="strequentList">Favorites</string>
-
     <!-- The title bar when viewing the contact details activity -->
     <string name="viewContactTitle">Contact details</string>
-
-    <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
-         editing a contact. This string represents the built in way to edit the contact. -->
-    <string name="editContactDescription">Edit contact</string>
-
-    <!-- The description presented to the user in the Intent choose when there are multiple activities that allow
-         creating a new contact. This string represents the built in way to create the contact. -->
-    <string name="insertContactDescription">Create contact</string>
 
     <!-- The tab label for the contact detail activity that displays information about the contact [CHAR LIMIT=15] -->
     <string name="contactDetailAbout">About</string>
