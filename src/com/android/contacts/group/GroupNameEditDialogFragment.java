@@ -25,9 +25,8 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.provider.ContactsContract.Groups;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -273,53 +272,32 @@ public final class GroupNameEditDialogFragment extends DialogFragment implements
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         // Only a single loader so id is ignored.
-        return new CursorLoader(getActivity(), GroupNameQuery.URI,
-                GroupNameQuery.PROJECTION, GroupNameQuery.getSelection(mAccount),
-                GroupNameQuery.getSelectionArgs(mAccount), null);
+        return new CursorLoader(getActivity(), Groups.CONTENT_SUMMARY_URI,
+                new String[] { Groups.TITLE, Groups.SYSTEM_ID, Groups.ACCOUNT_TYPE,
+                        Groups.SUMMARY_COUNT, Groups.GROUP_IS_READ_ONLY},
+                getSelection(), getSelectionArgs(), null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mExistingGroups = new HashSet<>();
+        final GroupUtil.GroupsProjection projection = new GroupUtil.GroupsProjection(data);
         while (data.moveToNext()) {
-            mExistingGroups.add(data.getString(GroupNameQuery.TITLE));
+            final String title = projection.getTitle(data);
+            // Empty system groups aren't shown in the nav drawer so it would be confusing to tell
+            // the user that they already exist. Instead we allow them to create a duplicate
+            // group in this case. This is how the web handles this case as well (it creates a
+            // new non-system group if a new group with a title that matches a system group is
+            // create).
+            if (projection.isEmptyFFCGroup(data)) {
+                continue;
+            }
+            mExistingGroups.add(title);
         }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-    }
-
-    /**
-     * Defines the structure of the query performed by the CursorLoader created by
-     * GroupNameEditDialogFragment
-     */
-    private static class GroupNameQuery {
-
-        public static final int TITLE = 0;
-        public static final Uri URI = ContactsContract.Groups.CONTENT_URI;
-        public static final String[] PROJECTION = new String[] { ContactsContract.Groups.TITLE };
-
-        public static String getSelection(AccountWithDataSet account) {
-            final StringBuilder builder = new StringBuilder();
-            builder.append(ContactsContract.Groups.ACCOUNT_NAME).append("=? AND ")
-                    .append(ContactsContract.Groups.ACCOUNT_TYPE).append("=?");
-            if (account.dataSet != null) {
-                builder.append(" AND ").append(ContactsContract.Groups.DATA_SET).append("=?");
-            }
-            return builder.toString();
-        }
-
-        public static String[] getSelectionArgs(AccountWithDataSet account) {
-            final int len = account.dataSet == null ? 2 : 3;
-            final String[] args = new String[len];
-            args[0] = account.name;
-            args[1] = account.type;
-            if (account.dataSet != null) {
-                args[2] = account.dataSet;
-            }
-            return args;
-        }
     }
 
     private void showInputMethod(View view) {
@@ -351,5 +329,28 @@ public final class GroupNameEditDialogFragment extends DialogFragment implements
     private String getGroupName() {
         return mGroupNameEditText == null || mGroupNameEditText.getText() == null
                 ? null : mGroupNameEditText.getText().toString();
+    }
+
+    private String getSelection() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(Groups.ACCOUNT_NAME).append("=? AND ")
+               .append(Groups.ACCOUNT_TYPE).append("=? AND ")
+               .append(Groups.DELETED).append("=?");
+        if (mAccount.dataSet != null) {
+            builder.append(" AND ").append(Groups.DATA_SET).append("=?");
+        }
+        return builder.toString();
+    }
+
+    private String[] getSelectionArgs() {
+        final int len = mAccount.dataSet == null ? 3 : 4;
+        final String[] args = new String[len];
+        args[0] = mAccount.name;
+        args[1] = mAccount.type;
+        args[2] = "0"; // Not deleted
+        if (mAccount.dataSet != null) {
+            args[3] = mAccount.dataSet;
+        }
+        return args;
     }
 }
