@@ -21,8 +21,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Rect;
@@ -33,12 +36,17 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.QuickContact;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -82,13 +90,13 @@ import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
-import com.android.contacts.list.DefaultContactBrowseListFragment.FeatureHighlightCallback;
 import com.android.contacts.list.MultiSelectContactsListFragment.OnCheckBoxListActionListener;
 import com.android.contacts.list.OnContactBrowserActionListener;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.SharedPreferenceUtil;
+import com.android.contacts.widget.FloatingActionButtonBehavior;
 import com.google.android.libraries.material.featurehighlight.FeatureHighlight;
 
 import java.util.List;
@@ -129,7 +137,11 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     private ProviderStatusWatcher mProviderStatusWatcher;
     private Integer mProviderStatus;
 
+    private BroadcastReceiver mSaveServiceListener;
+
     private boolean mOptionsMenuContactsAvailable;
+
+    private CoordinatorLayout mLayoutRoot;
 
     /**
      * Showing a list of Contacts. Also used for showing search results in search mode.
@@ -384,6 +396,17 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         initializeFabVisibility();
 
         invalidateOptionsMenuIfNeeded();
+
+        mLayoutRoot = (CoordinatorLayout) findViewById(R.id.root);
+
+        // Setup the FAB to animate upwards when a snackbar is shown in this activity.
+        // Normally the layout_behavior attribute could be used for this but for some reason it
+        // throws a ClassNotFoundException so  the layout parameters are set programmatically.
+        final CoordinatorLayout.LayoutParams fabParams = new CoordinatorLayout.LayoutParams(
+                (ViewGroup.MarginLayoutParams) mFloatingActionButtonContainer.getLayoutParams());
+        fabParams.setBehavior(new FloatingActionButtonBehavior());
+        fabParams.gravity = Gravity.BOTTOM | Gravity.END;
+        mFloatingActionButtonContainer.setLayoutParams(fabParams);
     }
 
     @Override
@@ -414,7 +437,11 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     protected void onPause() {
         mOptionsMenuContactsAvailable = false;
         mProviderStatusWatcher.stop();
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mSaveServiceListener);
+
         super.onPause();
+
     }
 
     @Override
@@ -435,6 +462,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         // the actual contents match the tab.
         updateFragmentsVisibility();
         maybeShowHamburgerFeatureHighlight();
+
+        mSaveServiceListener = new SaveServiceListener();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mSaveServiceListener,
+                new IntentFilter(ContactSaveService.BROADCAST_ACTION_GROUP_DELETED));
     }
 
     @Override
@@ -1505,5 +1536,31 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     @Override
     public void onLoadFinishedCallback() {
         maybeShowHamburgerFeatureHighlight();
+    }
+
+    private void onGroupDeleted(Intent intent) {
+        if (!ContactSaveService.canUndo(intent)) {
+            return;
+        }
+        Snackbar.make(mLayoutRoot, getString(R.string.groupDeletedToast), Snackbar.LENGTH_LONG)
+                .setAction(R.string.undo, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ContactSaveService.startService(PeopleActivity.this,
+                                ContactSaveService.createUndoIntent(PeopleActivity.this, intent));
+                    }
+                }).show();
+    }
+
+
+    private class SaveServiceListener extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            switch (intent.getAction()) {
+                case ContactSaveService.BROADCAST_ACTION_GROUP_DELETED:
+                    onGroupDeleted(intent);
+                    break;
+            }
+        }
     }
 }

@@ -29,6 +29,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,8 +46,8 @@ import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.os.ResultReceiver;
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.testing.NeededForTesting;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
 import com.android.contacts.util.ContactPhotoUtils;
@@ -131,6 +133,12 @@ public class ContactSaveService extends IntentService {
     public static final String ACTION_SET_RINGTONE = "setRingtone";
     public static final String EXTRA_CUSTOM_RINGTONE = "customRingtone";
 
+    public static final String ACTION_UNDO = "undo";
+    public static final String EXTRA_UNDO_ACTION = "undoAction";
+    public static final String EXTRA_UNDO_DATA = "undoData";
+
+    public static final String BROADCAST_ACTION_GROUP_DELETED = "groupDeleted";
+
     public static final int CP2_ERROR = 0;
     public static final int CONTACTS_LINKED = 1;
     public static final int CONTACTS_SPLIT = 2;
@@ -168,11 +176,18 @@ public class ContactSaveService extends IntentService {
             new CopyOnWriteArrayList<Listener>();
 
     private Handler mMainHandler;
+    private GroupsDao mGroupsDao;
 
     public ContactSaveService() {
         super(TAG);
         setIntentRedelivery(true);
         mMainHandler = new Handler(Looper.getMainLooper());
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mGroupsDao = new GroupsDaoImpl(this);
     }
 
     public static void registerListener(Listener listener) {
@@ -181,6 +196,10 @@ public class ContactSaveService extends IntentService {
                     + " receive callback from " + ContactSaveService.class.getName());
         }
         sListeners.add(0, listener);
+    }
+
+    public static boolean canUndo(Intent resultIntent) {
+        return resultIntent.hasExtra(EXTRA_UNDO_DATA);
     }
 
     public static void unregisterListener(Listener listener) {
@@ -285,6 +304,8 @@ public class ContactSaveService extends IntentService {
             setSendToVoicemail(intent);
         } else if (ACTION_SET_RINGTONE.equals(action)) {
             setRingtone(intent);
+        } else if (ACTION_UNDO.equals(action)) {
+            undo(intent);
         }
     }
 
@@ -706,16 +727,10 @@ public class ContactSaveService extends IntentService {
         String label = intent.getStringExtra(EXTRA_GROUP_LABEL);
         final long[] rawContactsToAdd = intent.getLongArrayExtra(EXTRA_RAW_CONTACTS_TO_ADD);
 
-        ContentValues values = new ContentValues();
-        values.put(Groups.ACCOUNT_TYPE, accountType);
-        values.put(Groups.ACCOUNT_NAME, accountName);
-        values.put(Groups.DATA_SET, dataSet);
-        values.put(Groups.TITLE, label);
-
-        final ContentResolver resolver = getContentResolver();
-
         // Create the new group
-        final Uri groupUri = resolver.insert(Groups.CONTENT_URI, values);
+        final Uri groupUri = mGroupsDao.create(label,
+                new AccountWithDataSet(accountName, accountType, dataSet));
+        final ContentResolver resolver = getContentResolver();
 
         // If there's no URI, then the insertion failed. Abort early because group members can't be
         // added if the group doesn't exist
@@ -727,6 +742,7 @@ public class ContactSaveService extends IntentService {
         // Add new group members
         addMembersToGroup(resolver, rawContactsToAdd, ContentUris.parseId(groupUri));
 
+        ContentValues values = new ContentValues();
         // TODO: Move this into the contact editor where it belongs. This needs to be integrated
         // with the way other intent extras that are passed to the {@link ContactEditorActivity}.
         values.clear();
@@ -780,18 +796,10 @@ public class ContactSaveService extends IntentService {
     /**
      * Creates an intent that can be sent to this service to delete a group.
      */
-    public static Intent createGroupDeletionIntent(Context context, long groupId,
-            Class<? extends Activity> callbackActivity, String callbackAction) {
-        Intent serviceIntent = new Intent(context, ContactSaveService.class);
+    public static Intent createGroupDeletionIntent(Context context, long groupId) {
+        final Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_DELETE_GROUP);
         serviceIntent.putExtra(ContactSaveService.EXTRA_GROUP_ID, groupId);
-
-        // Callback intent will be invoked by the service once the group is updated
-        if (callbackActivity != null && !TextUtils.isEmpty(callbackAction)) {
-            final Intent callbackIntent = new Intent(context, callbackActivity);
-            callbackIntent.setAction(callbackAction);
-            serviceIntent.putExtra(ContactSaveService.EXTRA_CALLBACK_INTENT, callbackIntent);
-        }
 
         return serviceIntent;
     }
@@ -802,17 +810,32 @@ public class ContactSaveService extends IntentService {
             Log.e(TAG, "Invalid arguments for deleteGroup request");
             return;
         }
+        final Uri groupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
 
-        getContentResolver().delete(
-                ContentUris.withAppendedId(Groups.CONTENT_URI, groupId), null, null);
+        final Intent callbackIntent = new Intent(BROADCAST_ACTION_GROUP_DELETED);
+        final Bundle undoData = mGroupsDao.captureDeletionUndoData(groupUri);
+        callbackIntent.putExtra(EXTRA_UNDO_ACTION, ACTION_DELETE_GROUP);
+        callbackIntent.putExtra(EXTRA_UNDO_DATA, undoData);
 
-        final Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
-        if (callbackIntent != null) {
-            final Uri groupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
-            callbackIntent.setData(groupUri);
-            deliverCallback(callbackIntent);
+        mGroupsDao.delete(groupUri);
+
+        LocalBroadcastManager.getInstance(this).sendBroadcast(callbackIntent);
+    }
+
+    public static Intent createUndoIntent(Context context, Intent resultIntent) {
+        final Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_UNDO);
+        serviceIntent.putExtras(resultIntent);
+        return serviceIntent;
+    }
+
+    private void undo(Intent intent) {
+        final String actionToUndo = intent.getStringExtra(EXTRA_UNDO_ACTION);
+        if (ACTION_DELETE_GROUP.equals(actionToUndo)) {
+            mGroupsDao.undoDeletion(intent.getBundleExtra(EXTRA_UNDO_DATA));
         }
     }
+
 
     /**
      * Creates an intent that can be sent to this service to rename a group as
@@ -1618,6 +1641,111 @@ public class ContactSaveService extends IntentService {
                 listener.onServiceCompleted(callbackIntent);
                 return;
             }
+        }
+    }
+
+    public interface GroupsDao {
+        Uri create(String title, AccountWithDataSet account);
+        int delete(Uri groupUri);
+        Bundle captureDeletionUndoData(Uri groupUri);
+        Uri undoDeletion(Bundle undoData);
+    }
+
+    @NeededForTesting
+    public static class GroupsDaoImpl implements GroupsDao {
+        @NeededForTesting
+        public static final String KEY_GROUP_DATA = "groupData";
+        @NeededForTesting
+        public static final String KEY_GROUP_MEMBERS = "groupMemberIds";
+
+        private static final String TAG = "GroupsDao";
+        private final Context context;
+        private final ContentResolver contentResolver;
+
+        public GroupsDaoImpl(Context context) {
+            this(context, context.getContentResolver());
+        }
+
+        public GroupsDaoImpl(Context context, ContentResolver contentResolver) {
+            this.context = context;
+            this.contentResolver = contentResolver;
+        }
+
+        public Bundle captureDeletionUndoData(Uri groupUri) {
+            final long groupId = ContentUris.parseId(groupUri);
+            final Bundle result = new Bundle();
+
+            final Cursor cursor = contentResolver.query(groupUri,
+                    new String[]{
+                            Groups.TITLE, Groups.NOTES, Groups.GROUP_VISIBLE,
+                            Groups.ACCOUNT_TYPE, Groups.ACCOUNT_NAME, Groups.DATA_SET,
+                            Groups.SHOULD_SYNC
+                    },
+                    Groups.DELETED + "=?", new String[] { "0" }, null);
+            try {
+                if (cursor.moveToFirst()) {
+                    final ContentValues groupValues = new ContentValues();
+                    DatabaseUtils.cursorRowToContentValues(cursor, groupValues);
+                    result.putParcelable(KEY_GROUP_DATA, groupValues);
+                } else {
+                    // Group doesn't exist.
+                    return result;
+                }
+            } finally {
+                cursor.close();
+            }
+
+            final Cursor membersCursor = contentResolver.query(
+                    Data.CONTENT_URI, new String[] { Data.RAW_CONTACT_ID },
+                    Data.MIMETYPE + "=? AND " + GroupMembership.GROUP_ROW_ID + "=?",
+                    new String[] { GroupMembership.CONTENT_ITEM_TYPE, String.valueOf(groupId) }, null);
+            final long[] memberIds = new long[membersCursor.getCount()];
+            int i = 0;
+            while (membersCursor.moveToNext()) {
+                memberIds[i++] = membersCursor.getLong(0);
+            }
+            result.putLongArray(KEY_GROUP_MEMBERS, memberIds);
+            return result;
+        }
+
+        public Uri undoDeletion(Bundle deletedGroupData) {
+            final ContentValues groupData = deletedGroupData.getParcelable(KEY_GROUP_DATA);
+            if (groupData == null) {
+                return null;
+            }
+            final Uri groupUri = contentResolver.insert(Groups.CONTENT_URI, groupData);
+            final long groupId = ContentUris.parseId(groupUri);
+
+            final long[] memberIds = deletedGroupData.getLongArray(KEY_GROUP_MEMBERS);
+            if (memberIds == null) {
+                return groupUri;
+            }
+            final ContentValues[] memberInsertions = new ContentValues[memberIds.length];
+            for (int i = 0; i < memberIds.length; i++) {
+                memberInsertions[i] = new ContentValues();
+                memberInsertions[i].put(Data.RAW_CONTACT_ID, memberIds[i]);
+                memberInsertions[i].put(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
+                memberInsertions[i].put(GroupMembership.GROUP_ROW_ID, groupId);
+            }
+            final int inserted = contentResolver.bulkInsert(Data.CONTENT_URI, memberInsertions);
+            if (inserted != memberIds.length) {
+                Log.e(TAG, "Could not recover some members for group deletion undo");
+            }
+
+            return groupUri;
+        }
+
+        public Uri create(String title, AccountWithDataSet account) {
+            final ContentValues values = new ContentValues();
+            values.put(Groups.TITLE, title);
+            values.put(Groups.ACCOUNT_NAME, account.name);
+            values.put(Groups.ACCOUNT_TYPE, account.type);
+            values.put(Groups.DATA_SET, account.dataSet);
+            return contentResolver.insert(Groups.CONTENT_URI, values);
+        }
+
+        public int delete(Uri groupUri) {
+            return contentResolver.delete(groupUri, null, null);
         }
     }
 }

@@ -33,6 +33,7 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
+import com.android.contacts.common.GroupMetaData;
 import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
@@ -416,13 +417,13 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
     private void deleteGroup() {
         if (mMembersFragment.getMemberCount() == 0) {
-            final Intent intent = ContactSaveService.createGroupDeletionIntent(
-                    this, mGroupMetadata.groupId,
-                    GroupMembersActivity.class, ACTION_DELETE_GROUP);
+            final Intent intent = ContactSaveService.createGroupDeletionIntent(this,
+                    mGroupMetadata.groupId);
             startService(intent);
+            finish();
         } else {
             GroupDeletionDialogFragment.show(getFragmentManager(), mGroupMetadata.groupId,
-                    mGroupMetadata.groupName, /* endActivity */ false, ACTION_DELETE_GROUP);
+                    mGroupMetadata.groupName);
         }
     }
 
