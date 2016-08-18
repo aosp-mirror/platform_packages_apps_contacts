@@ -237,11 +237,12 @@ public class GroupsDaoIntegrationTests extends InstrumentationTestCase {
 
     private void assertGroupWithTitleExists(String title) {
         final Cursor cursor = cr.query(ContactsContract.Groups.CONTENT_URI, null,
-                ContactsContract.Groups.TITLE + "=? AND " + ContactsContract.Groups.DELETED + "=?",
-                new String[] { title, "0" }, null, null);
-
+                ContactsContract.Groups.TITLE + "=? AND " +
+                        ContactsContract.Groups.DELETED + "=? AND " +
+                        ContactsContract.Groups.ACCOUNT_NAME + "=?",
+                new String[] { title, "0", mAccount.name }, null, null);
         try {
-            assertEquals(2, cursor.getCount());
+            assertTrue("No group exists with title \"" + title + "\"", cursor.getCount() > 0);
         } finally {
             cursor.close();
         }
