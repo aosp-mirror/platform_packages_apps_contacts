@@ -323,7 +323,7 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
         public void onEditOtherContactRequested(
                 Uri contactLookupUri, ArrayList<ContentValues> values) {
             final Intent intent = EditorIntents.createEditOtherContactIntent(
-                    contactLookupUri, values);
+                    ContactEditorBaseActivity.this, contactLookupUri, values);
             ImplicitIntentsUtil.startActivityInApp(ContactEditorBaseActivity.this, intent);
             finish();
         }

@@ -28,6 +28,7 @@ import android.provider.Settings;
 import android.text.TextUtils;
 
 import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.quickcontact.QuickContactActivity;
 
 import java.util.List;
 
@@ -95,9 +96,10 @@ public class ImplicitIntentsUtil {
     /**
      * Returns an implicit intent for opening QuickContacts.
      */
-    public static Intent composeQuickContactIntent(Uri contactLookupUri,
+    public static Intent composeQuickContactIntent(Context context, Uri contactLookupUri,
             int extraMode) {
-        final Intent intent = new Intent(QuickContact.ACTION_QUICK_CONTACT);
+        final Intent intent = new Intent(context, QuickContactActivity.class);
+        intent.setAction(QuickContact.ACTION_QUICK_CONTACT);
         intent.setData(contactLookupUri);
         intent.putExtra(QuickContact.EXTRA_MODE, extraMode);
         // Make sure not to show QuickContacts on top of another QuickContacts.

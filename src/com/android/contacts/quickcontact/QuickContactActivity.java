@@ -2793,7 +2793,7 @@ public class QuickContactActivity extends ContactsActivity
     }
 
     private Intent getEditContactIntent() {
-        return EditorIntents.createCompactEditContactIntent(
+        return EditorIntents.createCompactEditContactIntent(QuickContactActivity.this,
                 mContactData.getLookupUri(),
                 mHasComputedThemeColor
                         ? new MaterialPalette(mColorFilterColor, mStatusBarColor) : null,
@@ -3004,6 +3004,7 @@ public class QuickContactActivity extends ContactsActivity
                     intent.putExtra(ContactEditorFragment.INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION,
                             true);
 
+                    intent.setPackage(getPackageName());
                     startActivityForResult(intent, REQUEST_CODE_CONTACT_SELECTION_ACTIVITY);
                 } else if (InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)) {
                     InvisibleContactUtil.addToDefaultGroup(mContactData, this);

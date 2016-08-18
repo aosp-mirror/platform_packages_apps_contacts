@@ -42,6 +42,7 @@ import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.OnPhoneNumberPickerActionListener;
 import com.android.contacts.common.list.PhoneNumberPickerFragment;
 import com.android.contacts.common.logging.ListEvent;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.list.ContactPickerFragment;
@@ -493,7 +494,8 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
         @Override
         public void onEditContactAction(Uri contactLookupUri) {
             startActivityAndForwardResult(EditorIntents.createEditContactIntent(
-                    contactLookupUri, /* materialPalette =*/ null, /* photoId =*/ -1));
+                    ContactSelectionActivity.this, contactLookupUri, /* materialPalette =*/ null,
+                    /* photoId =*/ -1));
         }
 
         @Override
@@ -603,7 +605,7 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
             intent.putExtras(extras);
         }
         try {
-            startActivity(intent);
+            ImplicitIntentsUtil.startActivityInApp(ContactSelectionActivity.this, intent);
         } catch (ActivityNotFoundException e) {
             Log.e(TAG, "startActivity() failed: " + e);
             Toast.makeText(ContactSelectionActivity.this, R.string.missing_app,
