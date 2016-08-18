@@ -19,6 +19,7 @@ package com.android.contacts.common.model.account;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
@@ -39,6 +40,7 @@ import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.model.dataitem.CustomDataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.testing.NeededForTesting;
 import com.android.contacts.common.util.CommonDateUtils;
@@ -442,6 +444,13 @@ public abstract class BaseAccountType extends AccountType {
 
         kind.maxLinesForDisplay = MAX_LINES_FOR_GROUP;
 
+        return kind;
+    }
+
+    protected DataKind addDataKindCustomField(Context context) throws DefinitionException {
+        final DataKind kind = addKind(new DataKind(CustomDataItem.MIMETYPE_CUSTOM_FIELD,
+                R.string.label_custom_field, Weight.NONE, /* editable */ false));
+        kind.actionBody = new SimpleInflater(Data.DATA2);
         return kind;
     }
 

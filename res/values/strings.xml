@@ -1212,6 +1212,9 @@
          about a contact -->
     <string name="label_notes">Notes</string>
 
+    <!-- The label describing the custom field of a contact. [CHAR LIMIT=20] -->
+    <string name="label_custom_field">Custom</string>
+
     <!-- The label describing the SIP address field of a contact. [CHAR LIMIT=20] -->
     <string name="label_sip_address">SIP</string>
 

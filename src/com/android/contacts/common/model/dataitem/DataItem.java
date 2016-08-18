@@ -88,6 +88,8 @@ public class DataItem implements Collapser.Collapsible<DataItem> {
             return new IdentityDataItem(values);
         } else if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
             return new PhotoDataItem(values);
+        } else if (CustomDataItem.MIMETYPE_CUSTOM_FIELD.equals(mimeType)) {
+            return new CustomDataItem(values);
         }
 
         // generic

@@ -145,6 +145,7 @@ import com.android.contacts.common.model.dataitem.SipAddressDataItem;
 import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.common.model.dataitem.StructuredPostalDataItem;
 import com.android.contacts.common.model.dataitem.WebsiteDataItem;
+import com.android.contacts.common.model.dataitem.CustomDataItem;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.DateUtils;
@@ -347,6 +348,7 @@ public class QuickContactActivity extends ContactsActivity
             Im.CONTENT_ITEM_TYPE,
             GroupMembership.CONTENT_ITEM_TYPE,
             Identity.CONTENT_ITEM_TYPE,
+            CustomDataItem.MIMETYPE_CUSTOM_FIELD,
             Note.CONTENT_ITEM_TYPE);
 
     private static final BidiFormatter sBidiFormatter = BidiFormatter.getInstance();
@@ -1876,6 +1878,14 @@ public class QuickContactActivity extends ContactsActivity
                 entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header,
                         dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
             }
+        } else if (dataItem instanceof CustomDataItem) {
+            final CustomDataItem customDataItem = (CustomDataItem) dataItem;
+            final String summary = customDataItem.getSummary();
+            header = TextUtils.isEmpty(summary)
+                    ? res.getString(R.string.label_custom_field) : summary;
+            subHeader = customDataItem.getContent();
+            entryContextMenuInfo = new EntryContextMenuInfo(subHeader, header,
+                    dataItem.getMimeType(), dataItem.getId(), dataItem.isSuperPrimary());
         } else if (dataItem instanceof NoteDataItem) {
             final NoteDataItem note = (NoteDataItem) dataItem;
             header = res.getString(R.string.header_note_entry);

@@ -68,6 +68,7 @@ public class GoogleAccountType extends BaseAccountType {
             addDataKindGroupMembership(context);
             addDataKindRelation(context);
             addDataKindEvent(context);
+            addDataKindCustomField(context);
 
             mIsInitialized = true;
         } catch (DefinitionException e) {
