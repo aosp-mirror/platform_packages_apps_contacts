@@ -162,4 +162,17 @@ public class AccountFilterUtil {
             return null;
         }
     }
+
+    /**
+     * Returns a {@link ContactListFilter} of type
+     * {@link ContactListFilter#FILTER_TYPE_ALL_ACCOUNTS}, or if a custom "Contacts to display"
+     * filter has been set, then one of type {@link ContactListFilter#FILTER_TYPE_CUSTOM}.
+     */
+    public static ContactListFilter createContactsFilter(Context context) {
+        final int filterType =
+                ContactListFilterController.getInstance(context).isCustomFilterPersisted()
+                        ? ContactListFilter.FILTER_TYPE_CUSTOM
+                        : ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS;
+        return ContactListFilter.createFilterWithType(filterType);
+    }
 }
