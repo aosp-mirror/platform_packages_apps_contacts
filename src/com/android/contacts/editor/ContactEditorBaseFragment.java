@@ -61,6 +61,7 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
+import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
@@ -1476,8 +1477,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
-                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(lookupUri,
-                            QuickContactActivity.MODE_FULLY_EXPANDED);
+                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(getContext(),
+                            lookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
                     resultIntent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
                             ScreenType.EDITOR);
                     resultIntent.putExtra(QuickContactActivity.EXTRA_CONTACT_EDITED, true);
@@ -1533,7 +1534,8 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
 
         mContactIdForJoin = ContentUris.parseId(contactLookupUri);
-        final Intent intent = new Intent(UiIntentActions.PICK_JOIN_CONTACT_ACTION);
+        final Intent intent = new Intent(getContext(), ContactSelectionActivity.class);
+        intent.setAction(UiIntentActions.PICK_JOIN_CONTACT_ACTION);
         intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, mContactIdForJoin);
         startActivityForResult(intent, REQUEST_CODE_JOIN);
     }

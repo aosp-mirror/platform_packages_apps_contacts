@@ -367,7 +367,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         switch (mRequest.getActionCode()) {
             case ContactsRequest.ACTION_VIEW_CONTACT: {
                 final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
-                        mRequest.getContactUri(), QuickContactActivity.MODE_FULLY_EXPANDED);
+                        PeopleActivity.this, mRequest.getContactUri(),
+                        QuickContactActivity.MODE_FULLY_EXPANDED);
                 intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
                 ImplicitIntentsUtil.startActivityInApp(this, intent);
                 return false;
@@ -1101,7 +1102,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements
                         QuickContactActivity.MODE_FULLY_EXPANDED, null);
             } else {
                 final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
-                        contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
+                        PeopleActivity.this, contactLookupUri,
+                        QuickContactActivity.MODE_FULLY_EXPANDED);
                 final int previousScreen;
                 if (mAllFragment.isSearchMode()) {
                     previousScreen = ScreenType.SEARCH;
@@ -1178,7 +1180,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         @Override
         public void onCreateNewContactAction() {
             ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this,
-                    EditorIntents.createCompactInsertContactIntent());
+                    EditorIntents.createCompactInsertContactIntent(PeopleActivity.this));
         }
 
         @Override

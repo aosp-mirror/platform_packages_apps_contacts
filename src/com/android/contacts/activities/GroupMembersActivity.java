@@ -367,7 +367,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     }
 
     public void startGroupAddMemberActivity() {
-        startActivityForResult(GroupUtil.createPickMemberIntent(mGroupMetadata,
+        startActivityForResult(GroupUtil.createPickMemberIntent(this, mGroupMetadata,
                 mMembersFragment.getMemberContactIds()), RESULT_GROUP_ADD_MEMBER);
     }
 
@@ -596,7 +596,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         final int count = mMembersFragment.getAdapter().getCount();
         Logger.logListEvent(ListEvent.ActionType.CLICK, ListEvent.ListType.GROUP, count,
                 /* clickedIndex */ position, /* numSelected */ 0);
-        final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
+        final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(this,
                 contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
         intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.LIST_GROUP);
         startActivity(intent);

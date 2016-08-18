@@ -303,7 +303,8 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             final Intent intent;
             if (mHasProfile) {
                 final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, mProfileContactId);
-                intent = ImplicitIntentsUtil.composeQuickContactIntent(uri, mModeFullyExpanded);
+                intent = ImplicitIntentsUtil.composeQuickContactIntent(getContext(), uri,
+                        mModeFullyExpanded);
                 intent.putExtra(mPreviousScreenExtra, ScreenType.ME_CONTACT);
             } else {
                 intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
