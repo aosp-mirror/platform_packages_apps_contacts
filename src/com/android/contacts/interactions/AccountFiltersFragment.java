@@ -19,11 +19,16 @@ package com.android.contacts.interactions;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Loader;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.util.AccountFilterUtil;
+import com.android.contacts.common.util.DeviceLocalContactsFilterProvider;
+import com.android.contactsbind.ObjectFactory;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -32,6 +37,7 @@ import java.util.List;
 public class AccountFiltersFragment extends Fragment {
 
     private static final int LOADER_FILTERS = 1;
+    private static final int LOADER_DEVICE_LOCAL_CONTACTS = 3;
 
     /**
      * Callbacks for hosts of the {@link AccountFiltersFragment}.
@@ -44,6 +50,8 @@ public class AccountFiltersFragment extends Fragment {
         void onFiltersLoaded(List<ContactListFilter> accountFilterItems);
     }
 
+    private LoaderManager.LoaderCallbacks<Cursor> mDeviceLocalLoaderListener;
+
     private final LoaderManager.LoaderCallbacks<List<ContactListFilter>> mFiltersLoaderListener =
             new LoaderManager.LoaderCallbacks<List<ContactListFilter>> () {
                 @Override
@@ -54,24 +62,56 @@ public class AccountFiltersFragment extends Fragment {
                 @Override
                 public void onLoadFinished(
                         Loader<List<ContactListFilter>> loader, List<ContactListFilter> data) {
-                    if (mListener != null) {
-                        mListener.onFiltersLoaded(data);
+                    if (data == null) {
+                        mLoadedFilters = Collections.emptyList();
+                    } else {
+                        mLoadedFilters = data;
                     }
+                    notifyWithCurrentFilters();
                 }
 
                 public void onLoaderReset(Loader<List<ContactListFilter>> loader) {
                 }
             };
 
+
+    private List<ContactListFilter> mLoadedFilters = null;
+    private List<ContactListFilter> mDeviceLocalFilters = null;
     private AccountFiltersListener mListener;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mDeviceLocalLoaderListener = new DeviceLocalContactsFilterProvider(getActivity(),
+                ObjectFactory.getDeviceAccountFilter(getActivity())) {
+            @Override
+            public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+                super.onLoadFinished(loader, data);
+                mDeviceLocalFilters = getListFilters();
+                notifyWithCurrentFilters();
+            }
+        };
+    }
 
     @Override
     public void onStart() {
         getLoaderManager().initLoader(LOADER_FILTERS, null, mFiltersLoaderListener);
+        getLoaderManager().initLoader(LOADER_DEVICE_LOCAL_CONTACTS, null,
+                mDeviceLocalLoaderListener);
+
         super.onStart();
     }
 
     public void setListener(AccountFiltersListener listener) {
         mListener = listener;
+    }
+
+    private void notifyWithCurrentFilters() {
+        if (mListener == null || mLoadedFilters == null || mDeviceLocalFilters == null) return;
+
+        final List<ContactListFilter> result = new ArrayList<>(mLoadedFilters);
+        result.addAll(mDeviceLocalFilters);
+        mListener.onFiltersLoaded(result);
     }
 }

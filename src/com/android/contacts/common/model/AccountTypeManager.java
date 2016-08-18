@@ -53,6 +53,8 @@ import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.model.account.SamsungAccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.Constants;
+import com.android.contacts.common.util.DeviceAccountFilter;
+import com.android.contactsbind.ObjectFactory;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
@@ -63,6 +65,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -87,7 +90,8 @@ public abstract class AccountTypeManager {
         synchronized (mInitializationLock) {
             if (mAccountTypeManager == null) {
                 context = context.getApplicationContext();
-                mAccountTypeManager = new AccountTypeManagerImpl(context);
+                mAccountTypeManager = new AccountTypeManagerImpl(context,
+                        ObjectFactory.getDeviceAccountFilter(context));
             }
         }
         return mAccountTypeManager;
@@ -247,6 +251,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     private Context mContext;
     private AccountManager mAccountManager;
+    private DeviceAccountFilter mDeviceAccountFilter;
 
     private AccountType mFallbackAccountType;
 
@@ -301,9 +306,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
     /**
      * Internal constructor that only performs initial parsing.
      */
-    public AccountTypeManagerImpl(Context context) {
+    public AccountTypeManagerImpl(Context context, DeviceAccountFilter deviceAccountFilter) {
         mContext = context;
         mFallbackAccountType = new FallbackAccountType(context);
+        mDeviceAccountFilter = deviceAccountFilter;
 
         mAccountManager = AccountManager.get(mContext);
 
@@ -437,6 +443,8 @@ class AccountTypeManagerImpl extends AccountTypeManager
             } else if (SamsungAccountType.isSamsungAccountType(mContext, type,
                     auth.packageName)) {
                 accountType = new SamsungAccountType(mContext, auth.packageName, type);
+            } else if (mDeviceAccountFilter.isDeviceAccountType(type)) {
+                accountType = new FallbackAccountType(mContext);
             } else {
                 Log.d(TAG, "Registering external account type=" + type
                         + ", packageName=" + auth.packageName);
@@ -452,9 +460,13 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 }
             }
 
-            accountType.accountType = auth.type;
-            accountType.titleRes = auth.labelId;
-            accountType.iconRes = auth.iconId;
+            // TODO: this is a hack. For FallbackAccountType we want to use a default icon and
+            // label instead of what is pulled out of the authenticator
+            if (!(accountType instanceof FallbackAccountType)) {
+                accountType.accountType = auth.type;
+                accountType.titleRes = auth.labelId;
+                accountType.iconRes = auth.iconId;
+            }
 
             addAccountType(accountType, accountTypesByTypeAndDataSet, accountTypesByType);
 

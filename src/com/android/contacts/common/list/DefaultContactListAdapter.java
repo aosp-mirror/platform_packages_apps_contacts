@@ -245,7 +245,18 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 break;
             }
             case ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS: {
-                selection.append(AccountWithDataSet.LOCAL_ACCOUNT_SELECTION);
+                if (filter.accountType != null) {
+                    selection.append(ContactsContract.RawContacts.ACCOUNT_TYPE)
+                            .append("=?");
+                    selectionArgs.add(filter.accountType);
+                    if (filter.accountName != null) {
+                        selection.append(" AND ").append(ContactsContract.RawContacts.ACCOUNT_NAME)
+                                .append(("=?"));
+                        selectionArgs.add(filter.accountName);
+                    }
+                } else {
+                    selection.append(AccountWithDataSet.LOCAL_ACCOUNT_SELECTION);
+                }
                 break;
             }
         }

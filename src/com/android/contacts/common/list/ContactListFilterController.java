@@ -184,12 +184,6 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
                             ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), true, notifyListeners);
                 }
                 break;
-            case ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS:
-                if (!localAccountExists()) {
-                    setContactListFilter(ContactListFilter.createFilterWithType(
-                            ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS), true, notifyListeners);
-                }
-                break;
         }
     }
 
@@ -201,14 +195,5 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
         final AccountWithDataSet filterAccount = new AccountWithDataSet(
                 mFilter.accountName, mFilter.accountType, mFilter.dataSet);
         return accountTypeManager.contains(filterAccount, /* contactWritableOnly */ false);
-    }
-
-    /**
-     * @return true if the local account still exists.
-     */
-    private boolean localAccountExists() {
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
-        final AccountWithDataSet localAccount = AccountWithDataSet.getLocalAccount();
-        return accountTypeManager.contains(localAccount, /* contactWritableOnly */ false);
     }
 }

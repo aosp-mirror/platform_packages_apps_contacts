@@ -181,6 +181,8 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         int code = filterType;
         if (accountType != null) {
             code = code * 31 + accountType.hashCode();
+        }
+        if (accountName != null) {
             code = code * 31 + accountName.hashCode();
         }
         if (dataSet != null) {
