@@ -17,9 +17,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontaktuak"</string>
-    <string name="launcherActivityLabel" msgid="6497230399032392417">"Kontaktuak"</string>
-    <string name="quickContactActivityLabel" msgid="7985456650689347268">"Ikusi kontaktua"</string>
-    <string name="editContactActivityLabel" msgid="1129944572070802839">"Editatu kontaktua"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontaktuak"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontaktua"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Markatze zuzena"</string>
@@ -31,12 +28,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Aukeratu kontaktu bat"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Hautatu"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Sortu kontaktua"</string>
-    <string name="starredList" msgid="4817256136413959463">"Izardunak"</string>
-    <string name="frequentList" msgid="7154768136473953056">"Sarri"</string>
-    <string name="strequentList" msgid="5640192862059373511">"Gogokoak"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Kontaktuaren xehetasunak"</string>
-    <string name="editContactDescription" msgid="2947202828256214947">"Editatu kontaktua"</string>
-    <string name="insertContactDescription" msgid="4709878105452681987">"Sortu kontaktua"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Honi buruz"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Eguneratzeak"</string>
     <string name="searchHint" msgid="8482945356247760701">"Bilatu kontaktuetan"</string>
@@ -135,6 +127,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Kendu dira etiketatik"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Gehitu d(ir)a etiketan"</string>
     <string name="groupSavedErrorToast" msgid="8121032018490980184">"Ezin izan dira gorde etiketen aldaketak."</string>
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Badago etiketa"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktuk telefono-zenbakia dute</item>
       <item quantity="one">Kontaktu batek telefono-zenbakia du</item>
@@ -224,7 +217,6 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Sortu kontaktua"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Gehitu kontua"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Inportatu"</string>
-    <string name="create_group_dialog_title" msgid="5363404287877384473">"Sortu etiketa"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Sortu…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" taldea ezabatu nahi duzu? (Ez dira ezabatuko kontaktuak.)"</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Beste batekin lotu aurretik, idatzi kontaktuaren izena."</string>
@@ -235,6 +227,8 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Aldaketak baztertu nahi dituzu?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Baztertu"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Utzi"</string>
+    <!-- no translation found for leave_customize_confirmation_dialog_message (4277114551206032979) -->
+    <skip />
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> (<xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>)"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Bilatu kontaktuetan"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Kendu kontaktuak"</string>
@@ -341,6 +335,8 @@
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Mezuak"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Antolatu zerrenda"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Garbitu bikoiztuak eta taldekatu kontaktuak etiketen arabera"</string>
+    <!-- no translation found for undo (1425165101664071422) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"Testua kopiatu da"</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiatu arbelean"</string>
     <string name="call_custom" msgid="7756571794763171802">"Deitu <xliff:g id="CUSTOM">%s</xliff:g> zenbakira"</string>
@@ -364,8 +360,7 @@
     <string name="call_work_pager" msgid="3419348514157949008">"Deitu laneko bilagailura"</string>
     <string name="call_assistant" msgid="2141641383068514308">"Deitu <xliff:g id="ASSISTANT">%s</xliff:g> zenbakira"</string>
     <string name="call_mms" msgid="6274041545876221437">"Deitu MMS zenbakira"</string>
-    <!-- no translation found for call_by_shortcut (2566802538698913124) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (deitu)"</string>
     <string name="sms_custom" msgid="5932736853732191825">"Bidali testu-mezua <xliff:g id="CUSTOM">%s</xliff:g> zenbakira"</string>
     <string name="sms_home" msgid="7524332261493162995">"Bidali testu-mezua etxera"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"Bidali testu-mezua mugikorrera"</string>
@@ -387,13 +382,10 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"Bidali testu-mezua laneko bilagailura"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Bidali testu-mezua <xliff:g id="ASSISTANT">%s</xliff:g> zenbakira"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Bidali testu-mezua MMS zenbakira"</string>
-    <!-- no translation found for sms_by_shortcut (7741770672976099517) -->
-    <skip />
-    <!-- no translation found for description_video_call (7120921378651700947) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (bidali SMS mezua)"</string>
+    <string name="description_video_call" msgid="7120921378651700947">"Egin bideo-deia"</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Sarri erabilitako kontaktuak garbitu?"</string>
-    <!-- no translation found for clearFrequentsConfirmation (2270554975938265734) -->
-    <skip />
+    <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"Kontaktuak eta Telefonoa aplikazioetako maiz erabilitako kontaktuen zerrenda garbituko duzu. Beraz, berriro ikasi beharko dituzte helbideen hobespenak posta elektronikoaren aplikazioek."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Sarri erabilitako kontaktuak garbitzen…"</string>
     <string name="status_available" msgid="5586870015822828392">"Libre"</string>
     <string name="status_away" msgid="1838861100379804730">"Kanpoan"</string>
@@ -401,8 +393,7 @@
     <string name="contactsList" msgid="8661624236494819731">"Kontaktuak"</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Bestelakoak"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Direktorioa"</string>
-    <!-- no translation found for directory_search_label_work (8618292129829443176) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="8618292129829443176">"Laneko kontaktuak"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Kontaktu guztiak"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Bilatzen…"</string>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g> baino gehiago aurkitu dira."</string>
@@ -416,45 +407,36 @@
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Sarri kontaktatutakoak"</string>
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Ikusi kontaktua"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Telefono-zenbakiak dituzten kontaktu guztiak"</string>
-    <!-- no translation found for list_filter_phones_work (1470173699551475015) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="1470173699551475015">"Laneko profileko kontaktuak"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Ikusi berritasunak"</string>
-    <!-- no translation found for account_phone (7128032778471187553) -->
-    <skip />
+    <string name="account_phone" msgid="7128032778471187553">"Gailua"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Izena"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Goitizena"</string>
     <string name="full_name" msgid="6602579550613988977">"Izena"</string>
-    <!-- no translation found for name_given (4280790853455320619) -->
-    <skip />
-    <!-- no translation found for name_family (7466985689626017037) -->
-    <skip />
+    <string name="name_given" msgid="4280790853455320619">"Izena"</string>
+    <string name="name_family" msgid="7466985689626017037">"Abizena"</string>
     <string name="name_prefix" msgid="59756378548779822">"Izenaren aurrizkia"</string>
     <string name="name_middle" msgid="8467433655992690326">"Bigarren izena"</string>
     <string name="name_suffix" msgid="3855278445375651441">"Izenaren atzizkia"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Izen fonetikoa"</string>
-    <!-- no translation found for name_phonetic_given (8723179018384187631) -->
-    <skip />
+    <string name="name_phonetic_given" msgid="8723179018384187631">"Izen fonetikoa"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Bigarren izen fonetikoa"</string>
-    <!-- no translation found for name_phonetic_family (2640133663656011626) -->
-    <skip />
+    <string name="name_phonetic_family" msgid="2640133663656011626">"Abizen fonetikoa"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefonoa"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Helbide elektronikoa"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Helbidea"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Erakundea"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Harremana"</string>
-    <!-- no translation found for eventLabelsGroup (7960408705307831289) -->
-    <skip />
+    <string name="eventLabelsGroup" msgid="7960408705307831289">"Data berezia"</string>
     <string name="sms" msgid="1756857139634224222">"Testu-mezua"</string>
     <string name="postal_address" msgid="8765560217149624536">"Helbidea"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Enpresa"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Lanpostua"</string>
     <string name="label_notes" msgid="8337354953278341042">"Oharrak"</string>
-    <!-- no translation found for label_sip_address (7252153678613978127) -->
-    <skip />
+    <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Webgunea"</string>
-    <!-- no translation found for groupsLabel (7000816729542098972) -->
-    <skip />
+    <string name="groupsLabel" msgid="7000816729542098972">"Etiketak"</string>
     <string name="email_home" msgid="8573740658148184279">"Bidali mezu elektronikoa etxera"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Bidali mezu elektronikoa mugikorrera"</string>
     <string name="email_work" msgid="2807430017302722689">"Bidali mezu elektronikoa lanera"</string>
@@ -483,8 +465,7 @@
     <string name="chat" msgid="9025361898797412245">"Txata"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"ezabatu"</string>
     <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Zabaldu edo tolestu izenen eremuak"</string>
-    <!-- no translation found for expand_collapse_phonetic_name_fields_description (3306777588073354509) -->
-    <skip />
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="3306777588073354509">"Zabaldu edo tolestu izen fonetikoen eremuak"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Kontaktu guztiak"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Izardunak"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"Pertsonalizatua"</string>
@@ -498,17 +479,12 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Bistaratze-aukerak gordetzen…"</string>
     <string name="menu_done" msgid="796017761764190697">"Eginda"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Utzi"</string>
-    <!-- no translation found for listCustomView (1840624396582117590) -->
-    <skip />
-    <!-- no translation found for dialog_new_contact_account (4969619718062454756) -->
-    <skip />
+    <string name="listCustomView" msgid="1840624396582117590">"Ikuspegi pertsonalizatua"</string>
+    <string name="dialog_new_contact_account" msgid="4969619718062454756">"Gorde inportatutako kontaktuak hemen:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Inportatu SIM txarteletik"</string>
-    <!-- no translation found for import_from_sim_summary (5815105584445743740) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_no_number (880612418352086012) -->
-    <skip />
-    <!-- no translation found for import_from_vcf_file (5304572242183878086) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="5815105584445743740">"Inportatu SIM honetatik: <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Inportatu SIM honetatik: <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Inportatu .vcf fitxategitik"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> fitxategiaren inportazioa bertan behera utzi nahi duzu?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> fitxategiaren esportazioa bertan behera utzi nahi duzu?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Ezin da vCard inportazioa edo esportazioa utzi"</string>
@@ -516,8 +492,7 @@
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Ezin izan da \"<xliff:g id="FILE_NAME">%s</xliff:g>\" ireki. Arrazoia: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Ezin izan da esportatzailea hasi. Arrazoia: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Ez dago esporta daitekeen kontakturik."</string>
-    <!-- no translation found for missing_required_permission (5865884842972833120) -->
-    <skip />
+    <string name="missing_required_permission" msgid="5865884842972833120">"Beharrezkoa den baimen bat desgaitu duzu."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Errore bat gertatu da esportatu bitartean. Arrazoia: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Beharrezko fitxategi-izena luzeegia da (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"Sarrera- edo irteera-errorea"</string>
@@ -527,16 +502,12 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Ezin izan da emandako vCard txartelaren fitxategien meta-informazioa bildu."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Ezin izan da fitxategi bat edo gehiago inportatu (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Amaitu <xliff:g id="FILENAME">%s</xliff:g> esportatzen."</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (6060472638008218274) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_toast (1739055986856453882) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (4882485525268469736) -->
-    <skip />
+    <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Esportatu dira kontaktuak."</string>
+    <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"Esportatu dira kontaktuak. Haiek partekatzeko, egin klik jakinarazpenean."</string>
+    <string name="touch_to_share_contacts" msgid="4882485525268469736">"Sakatu kontaktuak partekatzeko."</string>
     <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"<xliff:g id="FILENAME">%s</xliff:g> fitxategia esportatzeari utzi zaio."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Kontaktuen datuak esportatzen"</string>
-    <!-- no translation found for exporting_contact_list_message (3367949209642931952) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="3367949209642931952">"Kontaktuen datuak esportatzen ari dira."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Ezin izan da datu-baseko informazioa lortu."</string>
     <string name="composer_has_no_exportable_contact" msgid="3296493229040294335">"Ez dago esporta daitekeen kontakturik. Telefonoan kontaktuak badituzu, baliteke datu-hornitzaileek kontaktuak telefonotik esportatzen ez uztea."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard txartelen idazlea ez da behar bezala hasi."</string>
@@ -551,10 +522,8 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Fitxategia laster inportatuko da."</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"vCard fitxategia inportatzeko eskaera ukatu da. Saiatu geroago."</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> fitxategia laster esportatuko da."</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6553826997490909749) -->
-    <skip />
-    <!-- no translation found for contacts_export_will_start_message (8538705791417534431) -->
-    <skip />
+    <string name="vcard_export_will_start_message_fallback" msgid="6553826997490909749">"Laster esportatuko da fitxategia."</string>
+    <string name="contacts_export_will_start_message" msgid="8538705791417534431">"Laster esportatuko dira kontaktuak."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"vCard fitxategia esportatzeko eskaera ukatu da. Saiatu berriro geroago."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontaktua"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"vCard-ak aldi baterako biltegi lokalaren cachean gordetzen ari dira. Inportazioa bera laster hasiko da."</string>
@@ -563,112 +532,76 @@
     <string name="confirm_export_title" msgid="6834385377255286349">"Kontaktuak esportatu nahi dituzu?"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Cachean gordetzen"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> inportatzen: <xliff:g id="NAME">%s</xliff:g>"</string>
-    <!-- no translation found for export_to_vcf_file (4407527157056120858) -->
-    <skip />
-    <!-- no translation found for display_options_sort_list_by (7028809117272018712) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (2778421332815687873) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (2684905041926954793) -->
-    <skip />
-    <!-- no translation found for display_options_view_names_as (6514632499276563482) -->
-    <skip />
-    <!-- no translation found for display_options_view_given_name_first (3616004640258761473) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (956445100777296467) -->
-    <skip />
-    <!-- no translation found for settings_accounts (350219740670774576) -->
-    <skip />
-    <!-- no translation found for default_editor_account (699591683362420991) -->
-    <skip />
-    <!-- no translation found for sync_contact_metadata_title (6957956139306960211) -->
-    <skip />
-    <!-- no translation found for sync_contact_metadata_dialog_title (6192335951588820553) -->
-    <skip />
-    <!-- no translation found for settings_my_info_title (1534272456405343119) -->
-    <skip />
-    <!-- no translation found for set_up_profile (7370213843590143771) -->
-    <skip />
-    <!-- no translation found for setting_about (7014388749752042863) -->
-    <skip />
+    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Esportatu .vcf gisa"</string>
+    <string name="display_options_sort_list_by" msgid="7028809117272018712">"Ordenatzeko irizpidea"</string>
+    <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Izena"</string>
+    <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Abizena"</string>
+    <string name="display_options_view_names_as" msgid="6514632499276563482">"Izenaren formatua"</string>
+    <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Izena lehenengo"</string>
+    <string name="display_options_view_family_name_first" msgid="956445100777296467">"Abizena lehenengo"</string>
+    <string name="settings_accounts" msgid="350219740670774576">"Kontuak"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"Kontaktu berriak gordetzeko kontu lehenetsia"</string>
+    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"Sinkronizatu kontaktuen metadatuak [PROBAKO BERTSIOA]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"Sinkronizatu kontaktuen metadatuak"</string>
+    <string name="settings_my_info_title" msgid="1534272456405343119">"Nire informazioa"</string>
+    <string name="set_up_profile" msgid="7370213843590143771">"Konfiguratu profila"</string>
+    <string name="setting_about" msgid="7014388749752042863">"Kontaktuak zerbitzuari buruz"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ezarpenak"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Partekatu ikusgai dauden kontaktuak"</string>
-    <!-- no translation found for share_visible_contacts_failure (7324717548166915560) -->
-    <skip />
-    <!-- no translation found for share_favorite_contacts (4280926751003081042) -->
-    <skip />
-    <!-- no translation found for share_contacts (8109287987498711664) -->
-    <skip />
-    <!-- no translation found for share_contacts_failure (1216431977330560559) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="7324717548166915560">"Ezin izan dira partekatu ikusgai dauden kontaktuak."</string>
+    <string name="share_favorite_contacts" msgid="4280926751003081042">"Partekatu gogoko kontaktuak"</string>
+    <string name="share_contacts" msgid="8109287987498711664">"Partekatu kontaktu guztiak"</string>
+    <string name="share_contacts_failure" msgid="1216431977330560559">"Ezin izan dira partekatu kontaktuak."</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"Inportatu edo esportatu kontaktuak"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Inportatu kontaktuak"</string>
     <string name="share_error" msgid="948429331673358107">"Ezin da kontaktua partekatu."</string>
-    <!-- no translation found for no_contact_to_share (1276397530378323033) -->
-    <skip />
+    <string name="no_contact_to_share" msgid="1276397530378323033">"Ez dago parteka daitekeen kontakturik."</string>
     <string name="menu_search" msgid="9147752853603483719">"Bilatu"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Bistaratzeko kontaktuak"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Bistaratzeko kontaktuak"</string>
-    <!-- no translation found for custom_list_filter (2105275443109077687) -->
-    <skip />
-    <!-- no translation found for menu_custom_filter_save (2679793632208086460) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (7128627979899070325) -->
-    <skip />
+    <string name="custom_list_filter" msgid="2105275443109077687">"Zehaztu ikuspegi pertsonalizatua"</string>
+    <string name="menu_custom_filter_save" msgid="2679793632208086460">"Gorde"</string>
+    <string name="hint_findContacts" msgid="7128627979899070325">"Bilatu kontaktuetan"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Gogokoak"</string>
     <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Ez dago kontakturik."</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Garbitu sarri erabilitakoak"</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"Hautatu SIM txartela"</string>
-    <!-- no translation found for menu_accounts (1424330057450189074) -->
-    <skip />
+    <string name="menu_accounts" msgid="1424330057450189074">"Kudeatu kontuak"</string>
     <string name="menu_import_export" msgid="26217871113229507">"Inportatu/Esportatu"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokeatutako zenbakiak"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> bidez"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>, <xliff:g id="SOURCE">%2$s</xliff:g> bidez"</string>
-    <!-- no translation found for action_menu_back_from_search (8793348588949233348) -->
-    <skip />
+    <string name="action_menu_back_from_search" msgid="8793348588949233348">"gelditu bilaketa"</string>
     <string name="description_clear_search" msgid="688023606766232904">"Garbitu bilaketa"</string>
-    <!-- no translation found for settings_contact_display_options_title (4890258244494248687) -->
+    <string name="settings_contact_display_options_title" msgid="4890258244494248687">"Kontaktuak bistaratzeko aukerak"</string>
+    <string name="select_account_dialog_title" msgid="5478489655696599219">"Kontua"</string>
+    <string name="set_default_account" msgid="4311613760725609801">"Erabili beti hau deietarako"</string>
+    <string name="select_phone_account_for_calls" msgid="3810607744451014540">"Deitu kontu honekin:"</string>
+    <string name="call_with_a_note" msgid="8389827628360791676">"Egin deia ohar batekin"</string>
+    <string name="call_subject_hint" msgid="3637498418381454511">"Idatzi deiarekin batera bidali beharreko oharra…"</string>
+    <string name="send_and_call_button" msgid="7740295432834590737">"BIDALI ETA DEITU"</string>
+    <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="7682024005130747825">
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. Irakurri gabeko <xliff:g id="COUNT_3">%2$d</xliff:g> elementu. </item>
+      <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. Irakurri gabeko <xliff:g id="COUNT_1">%2$d</xliff:g> elementu. </item>
+    </plurals>
+    <string name="about_build_version" msgid="1765533099416999801">"Konpilazioaren bertsioa"</string>
+    <string name="about_open_source_licenses" msgid="6479990452352919641">"Kode irekiko lizentziak"</string>
+    <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Kode irekiko softwarearen lizentziaren xehetasunak"</string>
+    <string name="about_privacy_policy" msgid="3705518622499152626">"Pribatutasun-gidalerroak"</string>
+    <string name="about_terms_of_service" msgid="4642400812150296723">"Zerbitzu-baldintzak"</string>
+    <string name="activity_title_licenses" msgid="5467767062737708066">"Kode irekiko lizentziak"</string>
+    <string name="url_open_error_toast" msgid="452592089815420457">"Ezin izan da ireki URLa."</string>
+    <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> hautatu da"</string>
+    <string name="account_filter_view_not_checked" msgid="2248684521205038389">"Ez da hautatu <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
+    <string name="description_search_video_call" msgid="5841525580339803272">"Egin bideo-deia"</string>
+    <string name="description_delete_contact" msgid="53835657343783663">"Ezabatu"</string>
+    <string name="description_no_name_header" msgid="8884991311595943271">"Elipsia"</string>
+    <!-- no translation found for callDurationSecondFormat (7067644915903528776) -->
     <skip />
-    <!-- no translation found for select_account_dialog_title (5478489655696599219) -->
+    <!-- no translation found for callDurationMinuteFormat (4647095486747447674) -->
     <skip />
-    <!-- no translation found for set_default_account (4311613760725609801) -->
-    <skip />
-    <!-- no translation found for select_phone_account_for_calls (3810607744451014540) -->
-    <skip />
-    <!-- no translation found for call_with_a_note (8389827628360791676) -->
-    <skip />
-    <!-- no translation found for call_subject_hint (3637498418381454511) -->
-    <skip />
-    <!-- no translation found for send_and_call_button (7740295432834590737) -->
-    <skip />
-    <!-- no translation found for call_subject_limit (4545212901205397669) -->
-    <skip />
-    <!-- no translation found for call_subject_type_and_number (7667188212129152558) -->
-    <skip />
-    <!-- no translation found for tab_title_with_unread_items (7682024005130747825) -->
-    <!-- no translation found for about_build_version (1765533099416999801) -->
-    <skip />
-    <!-- no translation found for about_open_source_licenses (6479990452352919641) -->
-    <skip />
-    <!-- no translation found for about_open_source_licenses_summary (57418386931763994) -->
-    <skip />
-    <!-- no translation found for about_privacy_policy (3705518622499152626) -->
-    <skip />
-    <!-- no translation found for about_terms_of_service (4642400812150296723) -->
-    <skip />
-    <!-- no translation found for activity_title_licenses (5467767062737708066) -->
-    <skip />
-    <!-- no translation found for url_open_error_toast (452592089815420457) -->
-    <skip />
-    <!-- no translation found for account_filter_view_checked (6696859503887762213) -->
-    <skip />
-    <!-- no translation found for account_filter_view_not_checked (2248684521205038389) -->
-    <skip />
-    <!-- no translation found for description_search_video_call (5841525580339803272) -->
-    <skip />
-    <!-- no translation found for description_delete_contact (53835657343783663) -->
-    <skip />
-    <!-- no translation found for description_no_name_header (8884991311595943271) -->
+    <!-- no translation found for callDurationHourFormat (7392254193808506640) -->
     <skip />
 </resources>
