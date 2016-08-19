@@ -19,16 +19,13 @@ package com.android.contacts.common.list;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.android.contacts.common.R;
-import com.android.contacts.common.util.ViewUtil;
 
 /**
  * A custom view for the pinned section header shown at the top of the contact list.
@@ -72,7 +69,7 @@ public class ContactListPinnedHeaderView extends TextView {
      * Sets section header or makes it invisible if the title is null.
      */
     public void setSectionHeaderTitle(String title) {
-        if (!TextUtils.isEmpty(title)) {
+        if (title != null) {
             setText(title);
             setVisibility(View.VISIBLE);
         } else {

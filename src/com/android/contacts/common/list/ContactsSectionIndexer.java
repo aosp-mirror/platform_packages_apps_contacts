@@ -55,6 +55,7 @@ public class ContactsSectionIndexer implements SectionIndexer {
         mPositions = new int[counts.length];
         int position = 0;
         for (int i = 0; i < counts.length; i++) {
+            // Enforce that there will be no null or empty sections.
             if (TextUtils.isEmpty(mSections[i])) {
                 mSections[i] = BLANK_HEADER_STRING;
             } else if (!mSections[i].equals(BLANK_HEADER_STRING)) {
@@ -101,10 +102,10 @@ public class ContactsSectionIndexer implements SectionIndexer {
         return index >= 0 ? index : -index - 2;
     }
 
-    public void setProfileAndFavoritesHeader(String header, int numberOfItemsToAdd) {
+    public void setFavoritesHeader(int numberOfItemsToAdd) {
         if (mSections != null) {
             // Don't do anything if the header is already set properly.
-            if (mSections.length > 0 && header.equals(mSections[0])) {
+            if (mSections.length > 0 && mSections[0].isEmpty()) {
                 return;
             }
 
@@ -112,7 +113,8 @@ public class ContactsSectionIndexer implements SectionIndexer {
             // special section at the top for it and shift everything else down.
             String[] tempSections = new String[mSections.length + 1];
             int[] tempPositions = new int[mPositions.length + 1];
-            tempSections[0] = header;
+            // Favorites section is empty to hide fast scroll preview.
+            tempSections[0] = "";
             tempPositions[0] = 0;
             for (int i = 1; i <= mPositions.length; i++) {
                 tempSections[i] = mSections[i - 1];
