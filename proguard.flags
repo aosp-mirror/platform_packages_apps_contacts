@@ -9,16 +9,19 @@
   public void *(android.view.MenuItem);
 }
 
+# Feature highlight library.  See b/29877098
 -keep class com.google.android.libraries.material.featurehighlight.** { *;}
 
+# Needed for tests
 -keep class com.android.contacts.common.** { *;}
-# For test:
--keep class com.android.contactsbind.analytics.AnalyticsUtil { *;}
 -keep class com.android.contacts.interactions.** { *;}
 -keep class com.google.common.base.Objects { *;}
 -keep class com.google.common.base.Preconditions { *;}
+-keep class com.google.common.collect.ImmutableMap { *;}
+-keep class com.google.common.collect.ImmutableSet { *;}
 -keep class com.google.common.collect.Lists { *;}
 -keep class com.google.common.collect.Maps { *;}
+-keep class com.google.common.collect.Multimap { *;}
 -keep class com.google.common.collect.Sets { *;}
 
 # Any class or method annotated with NeededForTesting or NeededForReflection.
@@ -28,10 +31,9 @@
 @com.android.contacts.common.testing.NeededForTesting *;
 @com.android.contacts.test.NeededForReflection *;
 }
+
 # Keep classes and methods that have the guava @VisibleForTesting annotation
 -keep @com.google.common.annotations.VisibleForTesting class *
 -keepclassmembers class * {
   @com.google.common.annotations.VisibleForTesting *;
 }
-
--verbose
