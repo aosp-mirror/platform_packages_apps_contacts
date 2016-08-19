@@ -2115,46 +2115,44 @@ public class QuickContactActivity extends ContactsActivity
                 final String mimetype = intent.getType();
 
                 // Build advanced entry for known 3p types. Otherwise default to ResolveCache icon.
-                switch (mimetype) {
-                    case MIMETYPE_GPLUS_PROFILE:
-                        icon = res.getDrawable(R.drawable.ic_google_plus_black_24dp);
-                        break;
-                    case MIMETYPE_HANGOUTS:
-                        // If a secondDataItem is available, use it to build an entry with
-                        // alternate actions
-                        if (secondDataItem != null) {
-                            icon = res.getDrawable(R.drawable.ic_hangout_24dp);
-                            alternateIcon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
-                            final HangoutsDataItemModel itemModel =
-                                    new HangoutsDataItemModel(intent, alternateIntent,
-                                            dataItem, secondDataItem, alternateContentDescription,
-                                            header, text, context);
+                if (MIMETYPE_HANGOUTS.equals(mimetype)) {
+                    // If a secondDataItem is available, use it to build an entry with
+                    // alternate actions
+                    if (secondDataItem != null) {
+                        icon = res.getDrawable(R.drawable.ic_hangout_24dp);
+                        alternateIcon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
+                        final HangoutsDataItemModel itemModel =
+                                new HangoutsDataItemModel(intent, alternateIntent,
+                                        dataItem, secondDataItem, alternateContentDescription,
+                                        header, text, context);
 
-                            populateHangoutsDataItemModel(itemModel);
-                            intent = itemModel.intent;
-                            alternateIntent = itemModel.alternateIntent;
-                            alternateContentDescription = itemModel.alternateContentDescription;
-                            header = itemModel.header;
-                            text = itemModel.text;
+                        populateHangoutsDataItemModel(itemModel);
+                        intent = itemModel.intent;
+                        alternateIntent = itemModel.alternateIntent;
+                        alternateContentDescription = itemModel.alternateContentDescription;
+                        header = itemModel.header;
+                        text = itemModel.text;
+                    } else {
+                        if (HANGOUTS_DATA_5_VIDEO.equals(intent.getDataString())) {
+                            icon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
                         } else {
-                            if (HANGOUTS_DATA_5_VIDEO.equals(intent.getDataString())) {
-                                icon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
-                            } else {
-                                icon = res.getDrawable(R.drawable.ic_hangout_24dp);
-                            }
+                            icon = res.getDrawable(R.drawable.ic_hangout_24dp);
                         }
-                        break;
-                    default:
+                    }
+                } else {
+                    icon = ResolveCache.getInstance(context).getIcon(
+                            dataItem.getMimeType(), intent);
+                    // Call mutate to create a new Drawable.ConstantState for color filtering
+                    if (icon != null) {
+                        icon.mutate();
+                    }
+                    shouldApplyColor = false;
+
+                    if (!MIMETYPE_GPLUS_PROFILE.equals(mimetype)) {
                         entryContextMenuInfo = new EntryContextMenuInfo(header, mimetype,
                                 dataItem.getMimeType(), dataItem.getId(),
                                 dataItem.isSuperPrimary());
-                        icon = ResolveCache.getInstance(context).getIcon(
-                                dataItem.getMimeType(), intent);
-                        // Call mutate to create a new Drawable.ConstantState for color filtering
-                        if (icon != null) {
-                            icon.mutate();
-                        }
-                        shouldApplyColor = false;
+                    }
                 }
             }
         }
