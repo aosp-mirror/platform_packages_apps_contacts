@@ -28,6 +28,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.android.contacts.GroupListLoader;
+import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
@@ -48,6 +49,11 @@ import java.util.Set;
  */
 @NeededForTesting
 public final class GroupUtil {
+
+    public static final String ACTION_DELETE_GROUP = "deleteGroup";
+    public static final String ACTION_UPDATE_GROUP = "updateGroup";
+    public static final String ACTION_ADD_TO_GROUP = "addToGroup";
+    public static final String ACTION_REMOVE_FROM_GROUP = "removeFromGroup";
 
     // System IDs of FFC groups in Google accounts
     private static final Set<String> FFC_GROUPS =
@@ -130,7 +136,7 @@ public final class GroupUtil {
     /** Returns an Intent to pick contacts to add to a group. */
     public static Intent createPickMemberIntent(Context context,
             GroupMetadata groupMetadata, ArrayList<String> memberContactIds) {
-        final Intent intent = new Intent(context, GroupMembersActivity.class);
+        final Intent intent = new Intent(context, ContactSelectionActivity.class);
         intent.setAction(Intent.ACTION_PICK);
         intent.setType(Groups.CONTENT_TYPE);
         intent.putExtra(UiIntentActions.GROUP_ACCOUNT_NAME, groupMetadata.accountName);

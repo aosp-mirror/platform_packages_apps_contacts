@@ -129,10 +129,15 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
             final TreeSet<Long> selectedContactIds = (TreeSet<Long>)
                     savedInstanceState.getSerializable(EXTRA_KEY_SELECTED_CONTACTS);
             getAdapter().setSelectedContactIds(selectedContactIds);
-            if (mCheckBoxListListener != null) {
-                mCheckBoxListListener.onSelectedContactIdsChanged();
-            }
             mSearchResultClicked = savedInstanceState.getBoolean(KEY_SEARCH_RESULT_CLICKED);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mCheckBoxListListener != null) {
+            mCheckBoxListListener.onSelectedContactIdsChanged();
         }
     }
 

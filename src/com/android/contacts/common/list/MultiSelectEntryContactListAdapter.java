@@ -113,9 +113,6 @@ public abstract class MultiSelectEntryContactListAdapter extends ContactEntryLis
      * Not guaranteed to work with all configurations of this adapter.
      */
     public void setDisplayCheckBoxes(boolean showCheckBoxes) {
-        if (!mDisplayCheckBoxes && showCheckBoxes) {
-            setSelectedContactIds(new TreeSet<Long>());
-        }
         mDisplayCheckBoxes = showCheckBoxes;
         notifyDataSetChanged();
         if (mSelectedContactsListener != null) {
