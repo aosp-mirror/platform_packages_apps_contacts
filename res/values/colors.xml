@@ -201,11 +201,6 @@
     <!-- Darker version of the actionbar color. Used for the status bar and navigation bar colors. -->
     <color name="actionbar_background_color_dark">#008aa1</color>
 
-    <color name="tab_ripple_color">@color/tab_accent_color</color>
-    <color name="tab_accent_color">#ffffff</color>
-    <color name="tab_selected_underline_color">@color/tab_accent_color</color>
-    <color name="tab_unread_count_background_color">#700f4b70</color>
-
     <!-- Color of the title to the Frequently Contacted section -->
     <color name="frequently_contacted_title_color">@color/actionbar_background_color</color>
 
@@ -218,7 +213,6 @@
     <color name="actionbar_text_color_black">#DF000000</color>
     <!-- Solid grey for status bar overlay-->
     <color name="actionbar_color_grey_solid">#777777</color>
-    <color name="actionbar_unselected_text_color">#a6ffffff</color>
 
     <!-- Text color of the search box text as entered by user  -->
     <color name="searchbox_text_color">#000000</color>

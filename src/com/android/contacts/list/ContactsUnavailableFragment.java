@@ -33,7 +33,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.activities.ActionBarAdapter.TabState;
 import com.android.contacts.common.compat.ProviderStatusCompat;
 
 /**
@@ -50,7 +49,6 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
     private ProgressBar mProgress;
     private View mButtonsContainer;
     private int mNoContactsMsgResId = -1;
-    private int mLastTab = -1;
 
     private OnContactsUnavailableActionListener mListener;
 
@@ -125,10 +123,6 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
      * Update views in the fragment when provider status is empty.
      */
     private void updateViewsForEmptyStatus() {
-        setTabInfo(mNoContactsMsgResId, mLastTab);
-        if (mLastTab == TabState.ALL) {
-            updateButtonVisibilty(View.VISIBLE);
-        }
         mProgress.setVisibility(View.GONE);
     }
 
@@ -164,29 +158,6 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
             case R.id.import_contacts_button:
                 mListener.onImportContactsFromFileAction();
                 break;
-        }
-    }
-
-    /**
-     * Set the message to be shown if no data is available for the selected tab
-     *
-     * @param resId - String resource ID of the message , -1 means view will not be visible
-     */
-    public void setTabInfo(int resId, int callerTab) {
-        mNoContactsMsgResId = resId;
-        mLastTab = callerTab;
-        if ((mMessageView != null) && (mProviderStatus != null) &&
-                mProviderStatus.equals(ProviderStatusCompat.STATUS_EMPTY)) {
-            if (resId != -1) {
-                mMessageView.setText(mNoContactsMsgResId);
-                mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
-                mMessageView.setVisibility(View.VISIBLE);
-                if (callerTab == TabState.ALL) {
-                    updateButtonVisibilty(View.VISIBLE);
-                }
-            } else {
-                mMessageView.setVisibility(View.GONE);
-            }
         }
     }
 

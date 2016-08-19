@@ -18,5 +18,4 @@
     <dimen name="group_editor_side_padding">64dip</dimen>
     <dimen name="contact_detail_list_top_padding">32dip</dimen>
     <dimen name="detail_contact_photo_size">256dip</dimen>
-    <dimen name="people_activity_landscape_tabs_text_size">16dp</dimen>
 </resources>

@@ -392,10 +392,6 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     }
 
     @Override
-    public void onSelectedTabChanged() {
-    }
-
-    @Override
     public void onUpButtonPressed() {
         getActivity().onBackPressed();
     }
@@ -452,8 +448,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         // be null (i.e. it can be null in onCreateView() of this fragment)
         final GroupMembersActivity activity = (GroupMembersActivity) getActivity();
         mActionBarAdapter = new ActionBarAdapter(activity, this, activity.getSupportActionBar(),
-                /* portraitTabs */ null, /* landscapeTabs */ null, activity.getToolbar(),
-                R.string.enter_contact_name);
+                activity.getToolbar(), R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
         final ContactsRequest contactsRequest = new ContactsRequest();
         contactsRequest.setActionCode(ContactsRequest.ACTION_GROUP);
