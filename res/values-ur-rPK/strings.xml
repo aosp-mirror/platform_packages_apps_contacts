@@ -17,9 +17,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"رابطے"</string>
-    <string name="launcherActivityLabel" msgid="6497230399032392417">"رابطے"</string>
-    <string name="quickContactActivityLabel" msgid="7985456650689347268">"رابطہ دیکھیں"</string>
-    <string name="editContactActivityLabel" msgid="1129944572070802839">"رابطہ میں ترمیم کریں"</string>
     <string name="contactsList" msgid="8661624236494819731">"رابطے"</string>
     <string name="shortcutContact" msgid="749243779392912958">"رابطہ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ڈائریکٹ ڈائل"</string>
@@ -31,12 +28,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ایک رابطہ منتخب کریں"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"منتخب کریں"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"نیا رابطہ بنائیں"</string>
-    <string name="starredList" msgid="4817256136413959463">"ستارے کے نشان والے"</string>
-    <string name="frequentList" msgid="7154768136473953056">"اکثر"</string>
-    <string name="strequentList" msgid="5640192862059373511">"پسندیدہ"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"رابطہ کی تفصیلات"</string>
-    <string name="editContactDescription" msgid="2947202828256214947">"رابطہ میں ترمیم کریں"</string>
-    <string name="insertContactDescription" msgid="4709878105452681987">"رابطہ بنائیں"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"تفصیل"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"اپ ڈیٹس"</string>
     <string name="searchHint" msgid="8482945356247760701">"رابطے تلاش کریں"</string>
@@ -235,6 +227,8 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"تبدیلیاں مسترد کریں؟"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"رد کریں"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"منسوخ کریں"</string>
+    <!-- no translation found for leave_customize_confirmation_dialog_message (4277114551206032979) -->
+    <skip />
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"رابطے تلاش کریں"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"رابطے ہٹائیں"</string>
@@ -341,6 +335,8 @@
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"پیغامات"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"اپنی فہرست کو منظم کریں"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"ڈپلیکیٹس صاف کریں اور رابطوں کو بلحاظ لیبل گروپ کریں"</string>
+    <!-- no translation found for undo (1425165101664071422) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"متن کاپی ہوگیا"</string>
     <string name="copy_text" msgid="3257145021583508761">"کلپ بورڈ میں کاپی کریں"</string>
     <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g> کو کال کریں"</string>
@@ -364,8 +360,7 @@
     <string name="call_work_pager" msgid="3419348514157949008">"دفتر کے پیجر پر کال کریں"</string>
     <string name="call_assistant" msgid="2141641383068514308">"<xliff:g id="ASSISTANT">%s</xliff:g> کو کال کریں"</string>
     <string name="call_mms" msgid="6274041545876221437">"‏MMS نمبر پر کال کریں"</string>
-    <!-- no translation found for call_by_shortcut (2566802538698913124) -->
-    <skip />
+    <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (کال کریں)"</string>
     <string name="sms_custom" msgid="5932736853732191825">"<xliff:g id="CUSTOM">%s</xliff:g> پر متن بھیجیں"</string>
     <string name="sms_home" msgid="7524332261493162995">"گھر کے نمبر پر متن بھیجیں"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"موبائل پر متن بھیجیں"</string>
@@ -387,13 +382,10 @@
     <string name="sms_work_pager" msgid="5566924423316960597">"دفتر کے پیجر پر متن بھیجیں"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"<xliff:g id="ASSISTANT">%s</xliff:g> پر متن بھیجیں"</string>
     <string name="sms_mms" msgid="4069352461380762677">"‏MMS نمبر پر متن بھیجیں"</string>
-    <!-- no translation found for sms_by_shortcut (7741770672976099517) -->
-    <skip />
-    <!-- no translation found for description_video_call (7120921378651700947) -->
-    <skip />
+    <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (پیغام بھیجیں)"</string>
+    <string name="description_video_call" msgid="7120921378651700947">"ویڈیو کال کریں"</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"اکثر رابطہ کردہ کو صاف کریں؟"</string>
-    <!-- no translation found for clearFrequentsConfirmation (2270554975938265734) -->
-    <skip />
+    <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"آپ رابطے اور فون ایپس میں اکثر رابطہ کردہ فہرست کو صاف کر دیں گے اور ای میل ایپس کو از سر نو اپنے پتے کی ترجیحات جاننے پر مجبور کریں گے۔"</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"اکثر رابطہ کردہ کو صاف کر رہا ہے…"</string>
     <string name="status_available" msgid="5586870015822828392">"دستیاب"</string>
     <string name="status_away" msgid="1838861100379804730">"دور"</string>
@@ -401,8 +393,7 @@
     <string name="contactsList" msgid="8661624236494819731">"رابطے"</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"دیگر"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"ڈائریکٹری"</string>
-    <!-- no translation found for directory_search_label_work (8618292129829443176) -->
-    <skip />
+    <string name="directory_search_label_work" msgid="8618292129829443176">"دفتری ڈائرکٹری"</string>
     <string name="local_search_label" msgid="2551177578246113614">"سبھی رابطے"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"تلاش کر رہا ہے…"</string>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g> سے زیادہ ملے۔"</string>
@@ -416,45 +407,36 @@
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"اکثر رابطہ کردہ"</string>
     <string name="description_view_contact_detail" msgid="9133251213656414807">"رابطہ دیکھیں"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"فون نمبرز والے سبھی رابطے"</string>
-    <!-- no translation found for list_filter_phones_work (1470173699551475015) -->
-    <skip />
+    <string name="list_filter_phones_work" msgid="1470173699551475015">"دفتری پروفائل رابطے"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"اپ ڈیٹس دیکھیں"</string>
-    <!-- no translation found for account_phone (7128032778471187553) -->
-    <skip />
+    <string name="account_phone" msgid="7128032778471187553">"آلہ"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"نام"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"عرفی نام"</string>
     <string name="full_name" msgid="6602579550613988977">"نام"</string>
-    <!-- no translation found for name_given (4280790853455320619) -->
-    <skip />
-    <!-- no translation found for name_family (7466985689626017037) -->
-    <skip />
+    <string name="name_given" msgid="4280790853455320619">"پہلا نام"</string>
+    <string name="name_family" msgid="7466985689626017037">"آخری نام"</string>
     <string name="name_prefix" msgid="59756378548779822">"نام کا سابقہ"</string>
     <string name="name_middle" msgid="8467433655992690326">"درمیانی نام"</string>
     <string name="name_suffix" msgid="3855278445375651441">"نام کا لاحقہ"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"فونیٹک نام"</string>
-    <!-- no translation found for name_phonetic_given (8723179018384187631) -->
-    <skip />
+    <string name="name_phonetic_given" msgid="8723179018384187631">"فونیٹک پہلا نام"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"فونیٹک درمیانی نام"</string>
-    <!-- no translation found for name_phonetic_family (2640133663656011626) -->
-    <skip />
+    <string name="name_phonetic_family" msgid="2640133663656011626">"فونیٹک آخری نام"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"فون"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"ای میل"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"پتہ"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"تنظیم"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"تعلق"</string>
-    <!-- no translation found for eventLabelsGroup (7960408705307831289) -->
-    <skip />
+    <string name="eventLabelsGroup" msgid="7960408705307831289">"خاص تاریخ"</string>
     <string name="sms" msgid="1756857139634224222">"متنی پیغام"</string>
     <string name="postal_address" msgid="8765560217149624536">"پتہ"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"کمپنی"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"عنوان"</string>
     <string name="label_notes" msgid="8337354953278341042">"نوٹس"</string>
-    <!-- no translation found for label_sip_address (7252153678613978127) -->
-    <skip />
+    <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"ویب سائٹ"</string>
-    <!-- no translation found for groupsLabel (7000816729542098972) -->
-    <skip />
+    <string name="groupsLabel" msgid="7000816729542098972">"لیبلز"</string>
     <string name="email_home" msgid="8573740658148184279">"گھر کے پتے پر ای میل کریں"</string>
     <string name="email_mobile" msgid="2042889209787989814">"موبائل پر ای میل کریں"</string>
     <string name="email_work" msgid="2807430017302722689">"دفتر کو ای میل کریں"</string>
@@ -483,8 +465,7 @@
     <string name="chat" msgid="9025361898797412245">"چیٹ"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"حذف کریں"</string>
     <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"نام کی فیلڈز کو پھیلائیں یا سکیڑیں"</string>
-    <!-- no translation found for expand_collapse_phonetic_name_fields_description (3306777588073354509) -->
-    <skip />
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="3306777588073354509">"فونیٹک نام کی فیلڈز کو پھیلائیں یا سکیڑیں"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"سبھی رابطے"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"ستارے کے نشان والے"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"مرضی کے مطابق بنائیں"</string>
@@ -498,17 +479,12 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"ڈسپلے کے اختیارات محفوظ کر رہا ہے…"</string>
     <string name="menu_done" msgid="796017761764190697">"ہوگیا"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"منسوخ کریں"</string>
-    <!-- no translation found for listCustomView (1840624396582117590) -->
-    <skip />
-    <!-- no translation found for dialog_new_contact_account (4969619718062454756) -->
-    <skip />
+    <string name="listCustomView" msgid="1840624396582117590">"حسب ضرورت منظر"</string>
+    <string name="dialog_new_contact_account" msgid="4969619718062454756">"درآمد کردہ رابطے اس میں محفوظ کریں:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"‏SIM کارڈ سے درآمد کریں"</string>
-    <!-- no translation found for import_from_sim_summary (5815105584445743740) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_no_number (880612418352086012) -->
-    <skip />
-    <!-- no translation found for import_from_vcf_file (5304572242183878086) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="5815105584445743740">"<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g> سے درآمد کریں"</string>
+    <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"<xliff:g id="SIM_NAME">%1$s</xliff:g> سے درآمد کریں"</string>
+    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"‏‎.vcf فائل سے درآمد کریں"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> کی درآمد منسوخ کریں"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> کی برآمد منسوخ کریں؟"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"‏vCard کی درآمد/برآمد کو منسوخ نہیں کرسکا"</string>
@@ -516,8 +492,7 @@
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" کو نہیں کھول سکا: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"۔"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"برآمد کنندہ شروع نہیں ہو سکا: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"۔"</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"کوئی قابل برآمد رابطہ نہیں ہے۔"</string>
-    <!-- no translation found for missing_required_permission (5865884842972833120) -->
-    <skip />
+    <string name="missing_required_permission" msgid="5865884842972833120">"آپ نے ایک درکار اجازت غیر فعال کر دی ہے۔"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"برآمد کرنے کے دوران ایک خرابی پیش آگئی: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"۔"</string>
     <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"مطلوبہ فائل کا نام کافی بڑا (\"<xliff:g id="FILENAME">%s</xliff:g>\") ہے۔"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"‏I/O خرابی"</string>
@@ -527,16 +502,12 @@
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"‏مقررہ vCard فائل (فائلوں) کی میٹا معلومات اکٹھا نہیں کرسکا۔"</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"‏ایک یا مزید فائلیں درآمد نہیں ہوسکیں (%s)۔"</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> کی برآمد مکمل ہوگئی۔"</string>
-    <!-- no translation found for exporting_vcard_finished_title_fallback (6060472638008218274) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_toast (1739055986856453882) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (4882485525268469736) -->
-    <skip />
+    <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"رابطوں کی برآمدگی مکمل ہو گئی۔"</string>
+    <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"رابطوں کی برآمدگی مکمل ہو گئی، رابطوں کا اشتراک کرنے کیلئے اطلاع پر کلک کریں۔"</string>
+    <string name="touch_to_share_contacts" msgid="4882485525268469736">"رابطوں کا اشتراک کرنے کے لئے تھپتھپائیں۔"</string>
     <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"<xliff:g id="FILENAME">%s</xliff:g> کی برآمد منسوخ ہوگئی۔"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"رابطہ کا ڈیٹا برآمد کر رہا ہے"</string>
-    <!-- no translation found for exporting_contact_list_message (3367949209642931952) -->
-    <skip />
+    <string name="exporting_contact_list_message" msgid="3367949209642931952">"رابطہ ڈیٹا برآمد ہو رہا ہے۔"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"ڈیٹابیس کی معلومات حاصل نہیں ہو سکی۔"</string>
     <string name="composer_has_no_exportable_contact" msgid="3296493229040294335">"برآمد کرنے لائق کوئی رابطے نہیں ہیں۔ اگر آپ کے فون پر واقعی رابطے ہیں تو ممکن ہے کچھ ڈیٹا فراہم کنندگان رابطوں کو فون سے برآمد کیے جانے کی اجازت نہ دیتے ہوں۔"</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"‏vCard کمپوزر مناسب طریقے سے شروع نہیں ہوا۔"</string>
@@ -551,10 +522,8 @@
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"فائل جلد ہی درآمد کی جائے گی۔"</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"‏vCard درآمد کرنے کی درخواست مسترد ہوگئی تھی۔ بعد میں دوبارہ کوشش کریں۔"</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> جلد ہی برآمد کی جائے گی۔"</string>
-    <!-- no translation found for vcard_export_will_start_message_fallback (6553826997490909749) -->
-    <skip />
-    <!-- no translation found for contacts_export_will_start_message (8538705791417534431) -->
-    <skip />
+    <string name="vcard_export_will_start_message_fallback" msgid="6553826997490909749">"فائل تھوڑی دیر میں برآمد کر دی جائے گی۔"</string>
+    <string name="contacts_export_will_start_message" msgid="8538705791417534431">"رابطے جلد ہی برآمد ہو جائیں گے۔"</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"‏vCard برآمد کرنے کی درخواست مسترد ہوگئی تھی۔ بعد میں دوبارہ کوشش کریں۔"</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"رابطہ"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"‏vCard(s)‎ کو مقامی عارضی اسٹوریج میں ذخیرہ کر رہا ہے۔ اصل درآمد جلد ہی شروع ہوگی۔"</string>
@@ -563,112 +532,76 @@
     <string name="confirm_export_title" msgid="6834385377255286349">"رابطے برآمد کریں؟"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"ذخیرہ کر رہا ہے"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g> درآمد کر رہا ہے"</string>
-    <!-- no translation found for export_to_vcf_file (4407527157056120858) -->
-    <skip />
-    <!-- no translation found for display_options_sort_list_by (7028809117272018712) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (2778421332815687873) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (2684905041926954793) -->
-    <skip />
-    <!-- no translation found for display_options_view_names_as (6514632499276563482) -->
-    <skip />
-    <!-- no translation found for display_options_view_given_name_first (3616004640258761473) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (956445100777296467) -->
-    <skip />
-    <!-- no translation found for settings_accounts (350219740670774576) -->
-    <skip />
-    <!-- no translation found for default_editor_account (699591683362420991) -->
-    <skip />
-    <!-- no translation found for sync_contact_metadata_title (6957956139306960211) -->
-    <skip />
-    <!-- no translation found for sync_contact_metadata_dialog_title (6192335951588820553) -->
-    <skip />
-    <!-- no translation found for settings_my_info_title (1534272456405343119) -->
-    <skip />
-    <!-- no translation found for set_up_profile (7370213843590143771) -->
-    <skip />
-    <!-- no translation found for setting_about (7014388749752042863) -->
-    <skip />
+    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"‏‎.vcf فائل میں برآمد کریں"</string>
+    <string name="display_options_sort_list_by" msgid="7028809117272018712">"ترتیب دیں بہ لحاظ"</string>
+    <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"پہلا نام"</string>
+    <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"آخری نام"</string>
+    <string name="display_options_view_names_as" msgid="6514632499276563482">"نام کا فارمیٹ"</string>
+    <string name="display_options_view_given_name_first" msgid="3616004640258761473">"پہلا نام پہلے"</string>
+    <string name="display_options_view_family_name_first" msgid="956445100777296467">"آخری نام پہلے"</string>
+    <string name="settings_accounts" msgid="350219740670774576">"اکاؤنٹس"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"نئے رابطوں کیلئے ڈیفالٹ اکاؤنٹ"</string>
+    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"‏رابطہ میٹا ڈیٹا مطابقت پذیر بنائیں [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"رابطہ میٹا ڈیٹا مطابقت پذیر بنائیں"</string>
+    <string name="settings_my_info_title" msgid="1534272456405343119">"میری معلومات"</string>
+    <string name="set_up_profile" msgid="7370213843590143771">"اپنے پروفائل کو ترتیب دیں"</string>
+    <string name="setting_about" msgid="7014388749752042863">"رابطے کے بارے میں"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ترتیبات"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"مرئی رابطوں کا اشتراک کریں"</string>
-    <!-- no translation found for share_visible_contacts_failure (7324717548166915560) -->
-    <skip />
-    <!-- no translation found for share_favorite_contacts (4280926751003081042) -->
-    <skip />
-    <!-- no translation found for share_contacts (8109287987498711664) -->
-    <skip />
-    <!-- no translation found for share_contacts_failure (1216431977330560559) -->
-    <skip />
+    <string name="share_visible_contacts_failure" msgid="7324717548166915560">"مرئی رابطوں کا اشتراک کرنے میں ناکام ہو گیا۔"</string>
+    <string name="share_favorite_contacts" msgid="4280926751003081042">"پسندیدہ رابطوں کا اشتراک کریں"</string>
+    <string name="share_contacts" msgid="8109287987498711664">"سارے رابطوں کا اشتراک کریں"</string>
+    <string name="share_contacts_failure" msgid="1216431977330560559">"رابطوں کا اشتراک کرنے میں ناکام۔"</string>
     <string name="dialog_import_export" msgid="4360648034889921624">"رابطے درآمد/برآمد کریں"</string>
     <string name="dialog_import" msgid="2431698729761448759">"رابطے درآمد کریں"</string>
     <string name="share_error" msgid="948429331673358107">"اس رابطہ کا اشتراک نہیں کیا جا سکتا۔"</string>
-    <!-- no translation found for no_contact_to_share (1276397530378323033) -->
-    <skip />
+    <string name="no_contact_to_share" msgid="1276397530378323033">"اشتراک کرنے کے لئے کوئی رابطے نہیں ہیں۔"</string>
     <string name="menu_search" msgid="9147752853603483719">"تلاش کریں"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ڈسپلے کرنے کیلئے رابطے"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ڈسپلے کرنے کیلئے رابطے"</string>
-    <!-- no translation found for custom_list_filter (2105275443109077687) -->
-    <skip />
-    <!-- no translation found for menu_custom_filter_save (2679793632208086460) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (7128627979899070325) -->
-    <skip />
+    <string name="custom_list_filter" msgid="2105275443109077687">"حسب ضرورت منظر طے کریں"</string>
+    <string name="menu_custom_filter_save" msgid="2679793632208086460">"محفوظ کریں"</string>
+    <string name="hint_findContacts" msgid="7128627979899070325">"رابطے تلاش کریں"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"پسندیدہ"</string>
     <string name="listTotalAllContactsZero" msgid="5513001821794568211">"کوئی رابطے نہیں ہیں۔"</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"اکثر و بیشتر کو صاف کریں"</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"‏SIM کارڈ منتخب کریں"</string>
-    <!-- no translation found for menu_accounts (1424330057450189074) -->
-    <skip />
+    <string name="menu_accounts" msgid="1424330057450189074">"اکاؤنٹس کا نظم کریں"</string>
     <string name="menu_import_export" msgid="26217871113229507">"درآمد/برآمد کریں"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"مسدود کردہ نمبرز"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"بذریعہ <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> بذریعہ <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
-    <!-- no translation found for action_menu_back_from_search (8793348588949233348) -->
-    <skip />
+    <string name="action_menu_back_from_search" msgid="8793348588949233348">"تلاش کرنا بند کریں"</string>
     <string name="description_clear_search" msgid="688023606766232904">"تلاش صاف کریں"</string>
-    <!-- no translation found for settings_contact_display_options_title (4890258244494248687) -->
+    <string name="settings_contact_display_options_title" msgid="4890258244494248687">"رابطہ کے ڈسپلے کے اختیارات"</string>
+    <string name="select_account_dialog_title" msgid="5478489655696599219">"اکاؤنٹ"</string>
+    <string name="set_default_account" msgid="4311613760725609801">"کالز کیلئے ہمیشہ اس کا استعمال کریں"</string>
+    <string name="select_phone_account_for_calls" msgid="3810607744451014540">"کال کریں مع"</string>
+    <string name="call_with_a_note" msgid="8389827628360791676">"ایک نوٹ کے ساتھ کال کریں"</string>
+    <string name="call_subject_hint" msgid="3637498418381454511">"کال کے ساتھ بھیجنے کیلئے ایک نوٹ ٹائپ کریں…"</string>
+    <string name="send_and_call_button" msgid="7740295432834590737">"بھیجیں اور کال کریں"</string>
+    <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="7682024005130747825">
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g> <xliff:g id="COUNT_3">%2$d</xliff:g> بغیر پڑھی ہوئی آئٹمز۔ </item>
+      <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g> <xliff:g id="COUNT_1">%2$d</xliff:g> بغیر پڑھی ہوئی آئٹم۔ </item>
+    </plurals>
+    <string name="about_build_version" msgid="1765533099416999801">"بلڈ ورژن"</string>
+    <string name="about_open_source_licenses" msgid="6479990452352919641">"اوپن سورس لائسنسز"</string>
+    <string name="about_open_source_licenses_summary" msgid="57418386931763994">"اوپن سورس سافٹ ویئر کیلئے لائسنس کی تفصیلات"</string>
+    <string name="about_privacy_policy" msgid="3705518622499152626">"رازداری کی پالیسی"</string>
+    <string name="about_terms_of_service" msgid="4642400812150296723">"سروس کی شرائط"</string>
+    <string name="activity_title_licenses" msgid="5467767062737708066">"اوپن سورس لائسنسز"</string>
+    <string name="url_open_error_toast" msgid="452592089815420457">"‏URL کھولنے میں ناکامی۔"</string>
+    <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> چیک ہو گیا"</string>
+    <string name="account_filter_view_not_checked" msgid="2248684521205038389">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> چیک نہیں ہوا"</string>
+    <string name="description_search_video_call" msgid="5841525580339803272">"ویڈیو کال کریں"</string>
+    <string name="description_delete_contact" msgid="53835657343783663">"حذف کریں"</string>
+    <string name="description_no_name_header" msgid="8884991311595943271">"ایلپسیس"</string>
+    <!-- no translation found for callDurationSecondFormat (7067644915903528776) -->
     <skip />
-    <!-- no translation found for select_account_dialog_title (5478489655696599219) -->
+    <!-- no translation found for callDurationMinuteFormat (4647095486747447674) -->
     <skip />
-    <!-- no translation found for set_default_account (4311613760725609801) -->
-    <skip />
-    <!-- no translation found for select_phone_account_for_calls (3810607744451014540) -->
-    <skip />
-    <!-- no translation found for call_with_a_note (8389827628360791676) -->
-    <skip />
-    <!-- no translation found for call_subject_hint (3637498418381454511) -->
-    <skip />
-    <!-- no translation found for send_and_call_button (7740295432834590737) -->
-    <skip />
-    <!-- no translation found for call_subject_limit (4545212901205397669) -->
-    <skip />
-    <!-- no translation found for call_subject_type_and_number (7667188212129152558) -->
-    <skip />
-    <!-- no translation found for tab_title_with_unread_items (7682024005130747825) -->
-    <!-- no translation found for about_build_version (1765533099416999801) -->
-    <skip />
-    <!-- no translation found for about_open_source_licenses (6479990452352919641) -->
-    <skip />
-    <!-- no translation found for about_open_source_licenses_summary (57418386931763994) -->
-    <skip />
-    <!-- no translation found for about_privacy_policy (3705518622499152626) -->
-    <skip />
-    <!-- no translation found for about_terms_of_service (4642400812150296723) -->
-    <skip />
-    <!-- no translation found for activity_title_licenses (5467767062737708066) -->
-    <skip />
-    <!-- no translation found for url_open_error_toast (452592089815420457) -->
-    <skip />
-    <!-- no translation found for account_filter_view_checked (6696859503887762213) -->
-    <skip />
-    <!-- no translation found for account_filter_view_not_checked (2248684521205038389) -->
-    <skip />
-    <!-- no translation found for description_search_video_call (5841525580339803272) -->
-    <skip />
-    <!-- no translation found for description_delete_contact (53835657343783663) -->
-    <skip />
-    <!-- no translation found for description_no_name_header (8884991311595943271) -->
+    <!-- no translation found for callDurationHourFormat (7392254193808506640) -->
     <skip />
 </resources>

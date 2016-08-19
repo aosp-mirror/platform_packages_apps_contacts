@@ -17,9 +17,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontaktlar"</string>
-    <string name="launcherActivityLabel" msgid="6497230399032392417">"Kontaktlar"</string>
-    <string name="quickContactActivityLabel" msgid="7985456650689347268">"Kontaktni ko‘rish"</string>
-    <string name="editContactActivityLabel" msgid="1129944572070802839">"Kontaktni tahrirlash"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontaktlar"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Tez terish"</string>
@@ -31,12 +28,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Kontaktni tanlang"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Tanlash"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Yangi kontakt yaratish"</string>
-    <string name="starredList" msgid="4817256136413959463">"Baho berilgan"</string>
-    <string name="frequentList" msgid="7154768136473953056">"Ko‘p gaplashilgan"</string>
-    <string name="strequentList" msgid="5640192862059373511">"Sevimlilar"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Kontakt tafsilotlari"</string>
-    <string name="editContactDescription" msgid="2947202828256214947">"Kontaktni tahrirlash"</string>
-    <string name="insertContactDescription" msgid="4709878105452681987">"Kontakt yaratish"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Aloqa ma’lumoti"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Yangilanishlar"</string>
     <string name="searchHint" msgid="8482945356247760701">"Kontaktlarni izlash"</string>
@@ -235,6 +227,8 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"O‘zgarishlar bekor qilinsinmi?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Bekor qilish"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Bekor qilish"</string>
+    <!-- no translation found for leave_customize_confirmation_dialog_message (4277114551206032979) -->
+    <skip />
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Kontaktlarni qidirish"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Kontaktlarni olib tashlash"</string>
@@ -341,505 +335,273 @@
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Xabarlar"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Kontaktlarni tartibga soling"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Kontaktlarni yorliq bo‘yicha guruhlang va takroriy kontaktlarni o‘chirib tashlang"</string>
+    <!-- no translation found for undo (1425165101664071422) -->
+    <skip />
     <string name="toast_text_copied" msgid="5143776250008541719">"Matndan nuxsa olindi"</string>
     <string name="copy_text" msgid="3257145021583508761">"Vaqtinchalik xotiraga nusxalash"</string>
-    <!-- no translation found for call_custom (7756571794763171802) -->
-    <skip />
-    <!-- no translation found for call_home (1990519474420545392) -->
-    <skip />
-    <!-- no translation found for call_mobile (7502236805487609178) -->
-    <skip />
-    <!-- no translation found for call_work (5328785911463744028) -->
-    <skip />
-    <!-- no translation found for call_fax_work (7467763592359059243) -->
-    <skip />
-    <!-- no translation found for call_fax_home (8342175628887571876) -->
-    <skip />
-    <!-- no translation found for call_pager (9003902812293983281) -->
-    <skip />
-    <!-- no translation found for call_other (8563753966926932052) -->
-    <skip />
-    <!-- no translation found for call_callback (1910165691349426858) -->
-    <skip />
-    <!-- no translation found for call_car (3280537320306436445) -->
-    <skip />
-    <!-- no translation found for call_company_main (6105120947138711257) -->
-    <skip />
-    <!-- no translation found for call_isdn (1541590690193403411) -->
-    <skip />
-    <!-- no translation found for call_main (6082900571803441339) -->
-    <skip />
-    <!-- no translation found for call_other_fax (5745314124619636674) -->
-    <skip />
-    <!-- no translation found for call_radio (8296755876398357063) -->
-    <skip />
-    <!-- no translation found for call_telex (2223170774548648114) -->
-    <skip />
-    <!-- no translation found for call_tty_tdd (8951266948204379604) -->
-    <skip />
-    <!-- no translation found for call_work_mobile (8707874281430105394) -->
-    <skip />
-    <!-- no translation found for call_work_pager (3419348514157949008) -->
-    <skip />
-    <!-- no translation found for call_assistant (2141641383068514308) -->
-    <skip />
-    <!-- no translation found for call_mms (6274041545876221437) -->
-    <skip />
-    <!-- no translation found for call_by_shortcut (2566802538698913124) -->
-    <skip />
-    <!-- no translation found for sms_custom (5932736853732191825) -->
-    <skip />
-    <!-- no translation found for sms_home (7524332261493162995) -->
-    <skip />
-    <!-- no translation found for sms_mobile (5200107250451030769) -->
-    <skip />
-    <!-- no translation found for sms_work (2269624156655267740) -->
-    <skip />
-    <!-- no translation found for sms_fax_work (8028189067816907075) -->
-    <skip />
-    <!-- no translation found for sms_fax_home (9204042076306809634) -->
-    <skip />
-    <!-- no translation found for sms_pager (7730404569637015192) -->
-    <skip />
-    <!-- no translation found for sms_other (806127844607642331) -->
-    <skip />
-    <!-- no translation found for sms_callback (5004824430094288752) -->
-    <skip />
-    <!-- no translation found for sms_car (7444227058437359641) -->
-    <skip />
-    <!-- no translation found for sms_company_main (118970873419678087) -->
-    <skip />
-    <!-- no translation found for sms_isdn (8153785037515047845) -->
-    <skip />
-    <!-- no translation found for sms_main (8621625784504541679) -->
-    <skip />
-    <!-- no translation found for sms_other_fax (3888842199855843152) -->
-    <skip />
-    <!-- no translation found for sms_radio (3329166673433967820) -->
-    <skip />
-    <!-- no translation found for sms_telex (9034802430065267848) -->
-    <skip />
-    <!-- no translation found for sms_tty_tdd (6782284969132531532) -->
-    <skip />
-    <!-- no translation found for sms_work_mobile (2459939960512702560) -->
-    <skip />
-    <!-- no translation found for sms_work_pager (5566924423316960597) -->
-    <skip />
-    <!-- no translation found for sms_assistant (2773424339923116234) -->
-    <skip />
-    <!-- no translation found for sms_mms (4069352461380762677) -->
-    <skip />
-    <!-- no translation found for sms_by_shortcut (7741770672976099517) -->
-    <skip />
-    <!-- no translation found for description_video_call (7120921378651700947) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation_title (766292372438450432) -->
-    <skip />
-    <!-- no translation found for clearFrequentsConfirmation (2270554975938265734) -->
-    <skip />
-    <!-- no translation found for clearFrequentsProgress_title (5157001637482794212) -->
-    <skip />
-    <!-- no translation found for status_available (5586870015822828392) -->
-    <skip />
-    <!-- no translation found for status_away (1838861100379804730) -->
-    <skip />
-    <!-- no translation found for status_busy (9147992455450257136) -->
-    <skip />
+    <string name="call_custom" msgid="7756571794763171802">"Qo‘ng‘iroq qilish: <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_home" msgid="1990519474420545392">"Uy telefon raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_mobile" msgid="7502236805487609178">"Mobil telefon raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_work" msgid="5328785911463744028">"Ishxona telefon raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"Ishxona faks raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_fax_home" msgid="8342175628887571876">"Uy faks raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_pager" msgid="9003902812293983281">"Peyjer raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_other" msgid="8563753966926932052">"Qo‘ng‘iroq qilish"</string>
+    <string name="call_callback" msgid="1910165691349426858">"Qayta aloqa raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_car" msgid="3280537320306436445">"Mashina telefon raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_company_main" msgid="6105120947138711257">"Kompaniya asosiy telefon raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_isdn" msgid="1541590690193403411">"ISDN telefon raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_main" msgid="6082900571803441339">"Asosiy telefon raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_other_fax" msgid="5745314124619636674">"Faks raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_radio" msgid="8296755876398357063">"Radio telefon raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_telex" msgid="2223170774548648114">"Teleks telefon raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_tty_tdd" msgid="8951266948204379604">"TTY/TDD telefon raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"Ishxona mobil telefoni raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"Ishxona peyjer raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_assistant" msgid="2141641383068514308">"Qo‘ng‘iroq qilish: <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_mms" msgid="6274041545876221437">"MMS raqamiga qo‘ng‘iroq qilish"</string>
+    <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Qo‘ng‘iroq qilish)"</string>
+    <string name="sms_custom" msgid="5932736853732191825">"<xliff:g id="CUSTOM">%s</xliff:g>ga sms jo‘natish"</string>
+    <string name="sms_home" msgid="7524332261493162995">"Uy telefoniga sms jo‘natish"</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"SMS: mobil"</string>
+    <string name="sms_work" msgid="2269624156655267740">"Ish telefoniga sms yozish"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"Ish faksiga sms jo‘natish"</string>
+    <string name="sms_fax_home" msgid="9204042076306809634">"Uy faksiga sms jo‘natish"</string>
+    <string name="sms_pager" msgid="7730404569637015192">"Peyjer raqamiga sms jo‘natish"</string>
+    <string name="sms_other" msgid="806127844607642331">"Matn"</string>
+    <string name="sms_callback" msgid="5004824430094288752">"Teskari qo‘ng‘iroq qilish raqamiga sms jo‘natish"</string>
+    <string name="sms_car" msgid="7444227058437359641">"Mashina telefoniga sms jo‘natish"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"Kompaniya asosiy telefoniga sms jo‘natish"</string>
+    <string name="sms_isdn" msgid="8153785037515047845">"ISDN telefonga sms jo‘natish"</string>
+    <string name="sms_main" msgid="8621625784504541679">"Asosiy telefonga sms jo‘natish"</string>
+    <string name="sms_other_fax" msgid="3888842199855843152">"Faks raqamiga sms jo‘natish"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"Radio telefonga sms jo‘natish"</string>
+    <string name="sms_telex" msgid="9034802430065267848">"Teleks telefoniga sms jo‘natish"</string>
+    <string name="sms_tty_tdd" msgid="6782284969132531532">"TTY/TDD telefoniga sms jo‘natish"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"SMS: ishxona (mobil)"</string>
+    <string name="sms_work_pager" msgid="5566924423316960597">"Ish peyjeriga sms jo‘natish"</string>
+    <string name="sms_assistant" msgid="2773424339923116234">"<xliff:g id="ASSISTANT">%s</xliff:g> telefon raqamiga SMS yuborish"</string>
+    <string name="sms_mms" msgid="4069352461380762677">"MMS telefonga sms jo‘natish"</string>
+    <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (SMS)"</string>
+    <string name="description_video_call" msgid="7120921378651700947">"Video qo‘ng‘iroq qilish"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Bu ro‘yxat tozalansinmi?"</string>
+    <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"Kontaktlar va Telefon ilovalaridagi tez-tez aloqa qilingan kontaktlar ro‘yxati tozalanadi. E-pochta ilovalari esa e-pochta manzillarini yangidan eslay boshlaydi."</string>
+    <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Ro‘yxat tozalanmoqda…"</string>
+    <string name="status_available" msgid="5586870015822828392">"Aloqada"</string>
+    <string name="status_away" msgid="1838861100379804730">"Tashqarida"</string>
+    <string name="status_busy" msgid="9147992455450257136">"Band"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontaktlar"</string>
-    <!-- no translation found for local_invisible_directory (6046691709127661065) -->
-    <skip />
-    <!-- no translation found for directory_search_label (1887759056597975053) -->
-    <skip />
-    <!-- no translation found for directory_search_label_work (8618292129829443176) -->
-    <skip />
-    <!-- no translation found for local_search_label (2551177578246113614) -->
-    <skip />
+    <string name="local_invisible_directory" msgid="6046691709127661065">"Boshqa"</string>
+    <string name="directory_search_label" msgid="1887759056597975053">"Katalog"</string>
+    <string name="directory_search_label_work" msgid="8618292129829443176">"Ishchi katalogi"</string>
+    <string name="local_search_label" msgid="2551177578246113614">"Barcha kontaktlar"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Qidirilmoqda…"</string>
-    <!-- no translation found for foundTooManyContacts (5163335650920020220) -->
-    <skip />
+    <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g> tadan ko‘proq kontakt topildi."</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Hech qanday kontakt yo‘q."</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ta topildi</item>
       <item quantity="one">1 ta topildi</item>
     </plurals>
-    <!-- no translation found for description_quick_contact_for (6737516415168327789) -->
-    <skip />
-    <!-- no translation found for missing_name (8745511583852904385) -->
-    <skip />
-    <!-- no translation found for favoritesFrequentContacted (6184232487472425690) -->
-    <skip />
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"Tezkor qo‘ng‘iroq, kontakt: <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="missing_name" msgid="8745511583852904385">"(Ismi yo‘q)"</string>
+    <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Tez-tez aloqa qilingan kontaktlar"</string>
     <string name="description_view_contact_detail" msgid="9133251213656414807">"Kontaktni ko‘rish"</string>
-    <!-- no translation found for list_filter_phones (735313795643493365) -->
-    <skip />
-    <!-- no translation found for list_filter_phones_work (1470173699551475015) -->
-    <skip />
-    <!-- no translation found for view_updates_from_group (1782685984905600034) -->
-    <skip />
-    <!-- no translation found for account_phone (7128032778471187553) -->
-    <skip />
-    <!-- no translation found for nameLabelsGroup (2034640839640477827) -->
-    <skip />
-    <!-- no translation found for nicknameLabelsGroup (2891682101053358010) -->
-    <skip />
-    <!-- no translation found for full_name (6602579550613988977) -->
-    <skip />
-    <!-- no translation found for name_given (4280790853455320619) -->
-    <skip />
-    <!-- no translation found for name_family (7466985689626017037) -->
-    <skip />
-    <!-- no translation found for name_prefix (59756378548779822) -->
-    <skip />
-    <!-- no translation found for name_middle (8467433655992690326) -->
-    <skip />
-    <!-- no translation found for name_suffix (3855278445375651441) -->
-    <skip />
-    <!-- no translation found for name_phonetic (4259595234312430484) -->
-    <skip />
-    <!-- no translation found for name_phonetic_given (8723179018384187631) -->
-    <skip />
-    <!-- no translation found for name_phonetic_middle (8643721493320405200) -->
-    <skip />
-    <!-- no translation found for name_phonetic_family (2640133663656011626) -->
-    <skip />
-    <!-- no translation found for phoneLabelsGroup (6468091477851199285) -->
-    <skip />
-    <!-- no translation found for emailLabelsGroup (8389931313045344406) -->
-    <skip />
-    <!-- no translation found for postalLabelsGroup (3487738141112589324) -->
-    <skip />
-    <!-- no translation found for imLabelsGroup (3898238486262614027) -->
-    <skip />
-    <!-- no translation found for organizationLabelsGroup (2478611760751832035) -->
-    <skip />
-    <!-- no translation found for relationLabelsGroup (1854373894284572781) -->
-    <skip />
-    <!-- no translation found for eventLabelsGroup (7960408705307831289) -->
-    <skip />
-    <!-- no translation found for sms (1756857139634224222) -->
-    <skip />
-    <!-- no translation found for postal_address (8765560217149624536) -->
-    <skip />
-    <!-- no translation found for ghostData_company (5414421120553765775) -->
-    <skip />
-    <!-- no translation found for ghostData_title (7496735200318496110) -->
-    <skip />
-    <!-- no translation found for label_notes (8337354953278341042) -->
-    <skip />
-    <!-- no translation found for label_sip_address (7252153678613978127) -->
-    <skip />
-    <!-- no translation found for websiteLabelsGroup (4202998982804009261) -->
-    <skip />
-    <!-- no translation found for groupsLabel (7000816729542098972) -->
-    <skip />
-    <!-- no translation found for email_home (8573740658148184279) -->
-    <skip />
-    <!-- no translation found for email_mobile (2042889209787989814) -->
-    <skip />
-    <!-- no translation found for email_work (2807430017302722689) -->
-    <skip />
-    <!-- no translation found for email_other (3454004077967657109) -->
-    <skip />
-    <!-- no translation found for email_custom (7548003991586214105) -->
-    <skip />
-    <!-- no translation found for email (5668400997660065897) -->
-    <skip />
-    <!-- no translation found for postal_street (8133143961580058972) -->
-    <skip />
-    <!-- no translation found for postal_pobox (4431938829180269821) -->
-    <skip />
-    <!-- no translation found for postal_neighborhood (1450783874558956739) -->
-    <skip />
-    <!-- no translation found for postal_city (6597491300084895548) -->
-    <skip />
-    <!-- no translation found for postal_region (6045263193478437672) -->
-    <skip />
-    <!-- no translation found for postal_postcode (572136414136673751) -->
-    <skip />
-    <!-- no translation found for postal_country (7638264508416368690) -->
-    <skip />
-    <!-- no translation found for map_home (1243547733423343982) -->
-    <skip />
-    <!-- no translation found for map_work (1360474076921878088) -->
-    <skip />
-    <!-- no translation found for map_other (3817820803587012641) -->
-    <skip />
-    <!-- no translation found for map_custom (6184363799976265281) -->
-    <skip />
-    <!-- no translation found for chat_aim (2588492205291249142) -->
-    <skip />
-    <!-- no translation found for chat_msn (8041633440091073484) -->
-    <skip />
-    <!-- no translation found for chat_yahoo (6629211142719943666) -->
-    <skip />
-    <!-- no translation found for chat_skype (1210045020427480566) -->
-    <skip />
-    <!-- no translation found for chat_qq (4294637812847719693) -->
-    <skip />
-    <!-- no translation found for chat_gtalk (981575737258117697) -->
-    <skip />
-    <!-- no translation found for chat_icq (8438405386153745775) -->
-    <skip />
-    <!-- no translation found for chat_jabber (7561444230307829609) -->
-    <skip />
-    <!-- no translation found for chat (9025361898797412245) -->
-    <skip />
-    <!-- no translation found for description_minus_button (6908099247930477551) -->
-    <skip />
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
-    <skip />
-    <!-- no translation found for expand_collapse_phonetic_name_fields_description (3306777588073354509) -->
-    <skip />
-    <!-- no translation found for list_filter_all_accounts (8908683398914322369) -->
-    <skip />
-    <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
-    <skip />
-    <!-- no translation found for list_filter_customize (4789963356004169321) -->
-    <skip />
-    <!-- no translation found for list_filter_single (5871400283515893087) -->
-    <skip />
-    <!-- no translation found for display_ungrouped (6885954210243119591) -->
-    <skip />
-    <!-- no translation found for display_all_contacts (2031647544742889505) -->
-    <skip />
-    <!-- no translation found for menu_sync_remove (3266725887008450161) -->
-    <skip />
-    <!-- no translation found for dialog_sync_add (8267045393119375803) -->
-    <skip />
-    <!-- no translation found for display_more_groups (2682547080423434170) -->
-    <skip />
-    <!-- no translation found for display_warn_remove_ungrouped (8872290721676651414) -->
-    <skip />
-    <!-- no translation found for savingDisplayGroups (2133152192716475939) -->
-    <skip />
-    <!-- no translation found for menu_done (796017761764190697) -->
-    <skip />
-    <!-- no translation found for menu_doNotSave (58593876893538465) -->
-    <skip />
-    <!-- no translation found for listCustomView (1840624396582117590) -->
-    <skip />
-    <!-- no translation found for dialog_new_contact_account (4969619718062454756) -->
-    <skip />
-    <!-- no translation found for import_from_sim (3859272228033941659) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary (5815105584445743740) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_no_number (880612418352086012) -->
-    <skip />
-    <!-- no translation found for import_from_vcf_file (5304572242183878086) -->
-    <skip />
-    <!-- no translation found for cancel_import_confirmation_message (3929951040347726757) -->
-    <skip />
-    <!-- no translation found for cancel_export_confirmation_message (1995462401949262638) -->
-    <skip />
-    <!-- no translation found for cancel_vcard_import_or_export_failed (6139900383366166706) -->
-    <skip />
-    <!-- no translation found for fail_reason_unknown (1714092345030570863) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_open_file (2067725459821997463) -->
-    <skip />
-    <!-- no translation found for fail_reason_could_not_initialize_exporter (707260459259688510) -->
-    <skip />
-    <!-- no translation found for fail_reason_no_exportable_contact (8728506011371262065) -->
-    <skip />
-    <!-- no translation found for missing_required_permission (5865884842972833120) -->
-    <skip />
-    <!-- no translation found for fail_reason_error_occurred_during_export (3018855323913649063) -->
-    <skip />
-    <!-- no translation found for fail_reason_too_long_filename (3393764245254738333) -->
-    <skip />
-    <!-- no translation found for fail_reason_io_error (6748358842976073255) -->
-    <skip />
-    <!-- no translation found for fail_reason_low_memory_during_import (875222757734882898) -->
-    <skip />
-    <!-- no translation found for fail_reason_vcard_parse_error (888263542360355784) -->
-    <skip />
-    <!-- no translation found for fail_reason_not_supported (8219562769267148825) -->
-    <skip />
-    <!-- no translation found for fail_reason_failed_to_collect_vcard_meta_info (6427931733267328564) -->
-    <skip />
-    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_title (4767045779458185251) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_title_fallback (6060472638008218274) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_finished_toast (1739055986856453882) -->
-    <skip />
-    <!-- no translation found for touch_to_share_contacts (4882485525268469736) -->
-    <skip />
-    <!-- no translation found for exporting_vcard_canceled_title (2652222370493306887) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_title (9072240631534457415) -->
-    <skip />
-    <!-- no translation found for exporting_contact_list_message (3367949209642931952) -->
-    <skip />
-    <!-- no translation found for composer_failed_to_get_database_infomation (1765944280846236723) -->
-    <skip />
-    <!-- no translation found for composer_has_no_exportable_contact (3296493229040294335) -->
-    <skip />
-    <!-- no translation found for composer_not_initialized (2321648986367005254) -->
-    <skip />
-    <!-- no translation found for exporting_contact_failed_title (4892358112409576342) -->
-    <skip />
-    <!-- no translation found for exporting_contact_failed_message (4938527850142003141) -->
-    <skip />
-    <!-- no translation found for importing_vcard_description (4245275224298571351) -->
-    <skip />
-    <!-- no translation found for reading_vcard_failed_title (4251647443358422855) -->
-    <skip />
-    <!-- no translation found for reading_vcard_canceled_title (1925216585981542019) -->
-    <skip />
-    <!-- no translation found for importing_vcard_finished_title (3341541727268747967) -->
-    <skip />
-    <!-- no translation found for importing_vcard_canceled_title (2147475978165599336) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message (2804911199145873396) -->
-    <skip />
-    <!-- no translation found for vcard_import_will_start_message_with_default_name (1022969530654129470) -->
-    <skip />
-    <!-- no translation found for vcard_import_request_rejected_message (2890471184508516011) -->
-    <skip />
-    <!-- no translation found for vcard_export_will_start_message (2210241345252081463) -->
-    <skip />
-    <!-- no translation found for vcard_export_will_start_message_fallback (6553826997490909749) -->
-    <skip />
-    <!-- no translation found for contacts_export_will_start_message (8538705791417534431) -->
-    <skip />
-    <!-- no translation found for vcard_export_request_rejected_message (2844874826431327531) -->
-    <skip />
-    <!-- no translation found for vcard_unknown_filename (7171709890959915954) -->
-    <skip />
-    <!-- no translation found for caching_vcard_message (4926308675041506756) -->
-    <skip />
-    <!-- no translation found for vcard_import_failed (5223531255894842406) -->
-    <skip />
-    <!-- no translation found for nfc_vcard_file_name (2823095213265993609) -->
-    <skip />
-    <!-- no translation found for confirm_export_title (6834385377255286349) -->
-    <skip />
-    <!-- no translation found for caching_vcard_title (1226272312940516605) -->
-    <skip />
-    <!-- no translation found for progress_notifier_message (2311011466908220528) -->
-    <skip />
-    <!-- no translation found for export_to_vcf_file (4407527157056120858) -->
-    <skip />
-    <!-- no translation found for display_options_sort_list_by (7028809117272018712) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_given_name (2778421332815687873) -->
-    <skip />
-    <!-- no translation found for display_options_sort_by_family_name (2684905041926954793) -->
-    <skip />
-    <!-- no translation found for display_options_view_names_as (6514632499276563482) -->
-    <skip />
-    <!-- no translation found for display_options_view_given_name_first (3616004640258761473) -->
-    <skip />
-    <!-- no translation found for display_options_view_family_name_first (956445100777296467) -->
-    <skip />
-    <!-- no translation found for settings_accounts (350219740670774576) -->
-    <skip />
-    <!-- no translation found for default_editor_account (699591683362420991) -->
-    <skip />
-    <!-- no translation found for sync_contact_metadata_title (6957956139306960211) -->
-    <skip />
-    <!-- no translation found for sync_contact_metadata_dialog_title (6192335951588820553) -->
-    <skip />
-    <!-- no translation found for settings_my_info_title (1534272456405343119) -->
-    <skip />
-    <!-- no translation found for set_up_profile (7370213843590143771) -->
-    <skip />
-    <!-- no translation found for setting_about (7014388749752042863) -->
-    <skip />
+    <string name="list_filter_phones" msgid="735313795643493365">"Telefon raqamiga ega kontaktlar"</string>
+    <string name="list_filter_phones_work" msgid="1470173699551475015">"Ishchi profili kontaktlari"</string>
+    <string name="view_updates_from_group" msgid="1782685984905600034">"Yangilanishlarni ko‘rish"</string>
+    <string name="account_phone" msgid="7128032778471187553">"Qurilma"</string>
+    <string name="nameLabelsGroup" msgid="2034640839640477827">"Ism"</string>
+    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Taxallus"</string>
+    <string name="full_name" msgid="6602579550613988977">"Ismi"</string>
+    <string name="name_given" msgid="4280790853455320619">"Ismi"</string>
+    <string name="name_family" msgid="7466985689626017037">"Familiyasi"</string>
+    <string name="name_prefix" msgid="59756378548779822">"Murojaat turi"</string>
+    <string name="name_middle" msgid="8467433655992690326">"Otasining ismi"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"Martabasi/unvoni"</string>
+    <string name="name_phonetic" msgid="4259595234312430484">"Ism talaffuzi"</string>
+    <string name="name_phonetic_given" msgid="8723179018384187631">"Ism talaffuzi"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"Otasining ismi talaffuzi"</string>
+    <string name="name_phonetic_family" msgid="2640133663656011626">"Familiya talaffuzi"</string>
+    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-pochta"</string>
+    <string name="postalLabelsGroup" msgid="3487738141112589324">"Manzil"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"Chat"</string>
+    <string name="organizationLabelsGroup" msgid="2478611760751832035">"Tashkilot"</string>
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Aloqadorligi"</string>
+    <string name="eventLabelsGroup" msgid="7960408705307831289">"Maxsus sana"</string>
+    <string name="sms" msgid="1756857139634224222">"SMS"</string>
+    <string name="postal_address" msgid="8765560217149624536">"Manzil"</string>
+    <string name="ghostData_company" msgid="5414421120553765775">"Kompaniya"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"Lavozimi"</string>
+    <string name="label_notes" msgid="8337354953278341042">"Qaydlar"</string>
+    <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Veb-sayt"</string>
+    <string name="groupsLabel" msgid="7000816729542098972">"Yorliqlar"</string>
+    <string name="email_home" msgid="8573740658148184279">"Uy e-pochtasiga xat yuborish"</string>
+    <string name="email_mobile" msgid="2042889209787989814">"Mobil e-pochtasiga xat yuborish"</string>
+    <string name="email_work" msgid="2807430017302722689">"Ishxona e-pochtasiga xat yuborish"</string>
+    <string name="email_other" msgid="3454004077967657109">"E-pochta xat yuborish"</string>
+    <string name="email_custom" msgid="7548003991586214105">"<xliff:g id="CUSTOM">%s</xliff:g> e-pochtasiga xat yuborish"</string>
+    <string name="email" msgid="5668400997660065897">"E-pochta"</string>
+    <string name="postal_street" msgid="8133143961580058972">"Ko‘cha"</string>
+    <string name="postal_pobox" msgid="4431938829180269821">"Pochta qutisi"</string>
+    <string name="postal_neighborhood" msgid="1450783874558956739">"Mahalla"</string>
+    <string name="postal_city" msgid="6597491300084895548">"Shahar"</string>
+    <string name="postal_region" msgid="6045263193478437672">"Viloyat"</string>
+    <string name="postal_postcode" msgid="572136414136673751">"Pochta indeksi"</string>
+    <string name="postal_country" msgid="7638264508416368690">"Davlat"</string>
+    <string name="map_home" msgid="1243547733423343982">"Uy manzilini ko‘rish"</string>
+    <string name="map_work" msgid="1360474076921878088">"Ishxona manzilini ko‘rish"</string>
+    <string name="map_other" msgid="3817820803587012641">"Manzilni ko‘rish"</string>
+    <string name="map_custom" msgid="6184363799976265281">"<xliff:g id="CUSTOM">%s</xliff:g> manzilini ko‘rish"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"AIM orqali chat qilish"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"Windows Live orqali chat qilish"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"Yahoo orqali chat qilish"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"Skype orqali chat qilish"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"QQ orqali chat qilish"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"Google Talk orqali chat qilish"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"ICQ orqali chat qilish"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"Jabber orqali chat qilish"</string>
+    <string name="chat" msgid="9025361898797412245">"Chat"</string>
+    <string name="description_minus_button" msgid="6908099247930477551">"o‘chirib tashlash"</string>
+    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Qo‘shimcha maydonlarni ko‘rsatish yoki berkitish"</string>
+    <string name="expand_collapse_phonetic_name_fields_description" msgid="3306777588073354509">"Transkripsiya qilingan ismlar maydonlarini ko‘rsatish yoki berkitish"</string>
+    <string name="list_filter_all_accounts" msgid="8908683398914322369">"Barcha kontaktlar"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"Yulduzcha qo‘yilganlar"</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Sozlash"</string>
+    <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"Boshqa kontaktlar"</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"Barcha kontaktlar"</string>
+    <string name="menu_sync_remove" msgid="3266725887008450161">"Sinxronlash guruhini olib tashlash"</string>
+    <string name="dialog_sync_add" msgid="8267045393119375803">"Sinxronlash guruhini qo‘shish"</string>
+    <string name="display_more_groups" msgid="2682547080423434170">"Ko‘proq guruhlar…"</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"<xliff:g id="GROUP">%s</xliff:g> guruhini sinxronlash to‘xtatilsa, guruhga qo‘shilmagan kontaktlar ham sinxronlanmay qoladi."</string>
+    <string name="savingDisplayGroups" msgid="2133152192716475939">"Parametrlar saqlanmoqda…"</string>
+    <string name="menu_done" msgid="796017761764190697">"Tayyor"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"Bekor qilish"</string>
+    <string name="listCustomView" msgid="1840624396582117590">"Maxsus ko‘rinish"</string>
+    <string name="dialog_new_contact_account" msgid="4969619718062454756">"Import qilingan kontaktlarni bu yerga saqlash:"</string>
+    <string name="import_from_sim" msgid="3859272228033941659">"SIM kartadan import qilish"</string>
+    <string name="import_from_sim_summary" msgid="5815105584445743740">"<xliff:g id="SIM_NAME">^1</xliff:g> SIM kartasidan import qilish (<xliff:g id="SIM_NUMBER">^2</xliff:g>)"</string>
+    <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM kartasidan import qilish"</string>
+    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"VCF fayldan import qilish"</string>
+    <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> faylini import qilish bekor qilinsinmi?"</string>
+    <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> faylini eksport qilish bekor qilinsinmi?"</string>
+    <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard faylini import/eksport qilishni bekor qilib bo‘lmadi."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"Noma’lum xato."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"<xliff:g id="FILE_NAME">%s</xliff:g> faylini ochib bo‘lmadi. Sababi: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Eksport qilish funksiyasini ishga tushirib bo‘lmaydi. Sababi: “<xliff:g id="EXACT_REASON">%s</xliff:g>”."</string>
+    <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Eksport qilish kontaktlar yo‘q."</string>
+    <string name="missing_required_permission" msgid="5865884842972833120">"Kerakli ruxsat o‘chirib qo‘yilgan."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Eksport qilish vaqtida xatolik yuz berdi. Sababi: “<xliff:g id="EXACT_REASON">%s</xliff:g>”."</string>
+    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Fayl nomi juda uzun (“<xliff:g id="FILENAME">%s</xliff:g>”)."</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O xato"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Xotira yetarli joy yo‘q. Fayl juda katta bo‘lishi mumkin."</string>
+    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"vCard faylini tahlil qilib bo‘lmadi."</string>
+    <string name="fail_reason_not_supported" msgid="8219562769267148825">"Bu format qo‘llab-quvvatlanmaydi."</string>
+    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"vCard fayllarning meta ma’lumotlarini yig‘ib bo‘lmadi."</string>
+    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Bir yoki bir necha fayllarni import qilib bo‘lmadi (%s)."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> faylini eksport qilish tugadi."</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Kontaktlar eksport qilindi."</string>
+    <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"Kontaktlar eksport qilindi. Ularni baham ko‘rish uchun bildirishnoma ustiga bosing."</string>
+    <string name="touch_to_share_contacts" msgid="4882485525268469736">"Kontaktlarni baham ko‘rish uchun bosing."</string>
+    <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"<xliff:g id="FILENAME">%s</xliff:g> faylini eksport qilish bekor qilindi."</string>
+    <string name="exporting_contact_list_title" msgid="9072240631534457415">"Kontakt ma’lumoti eksport qilinmoqda."</string>
+    <string name="exporting_contact_list_message" msgid="3367949209642931952">"Kontakt ma’lumotlari eksport qilinmoqda."</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Ma’lumotlar bazasiga kirib bo‘lmadi."</string>
+    <string name="composer_has_no_exportable_contact" msgid="3296493229040294335">"Eksport qilish uchun kontaktlar yo‘q. Ba’zi tarmoq operatorlari kontaktlarni telefondan eksport qilishga ruxsat bermagan bo‘lishi mumkin."</string>
+    <string name="composer_not_initialized" msgid="2321648986367005254">"vCard muharririni ishga tushirishda xatolik yuz berdi."</string>
+    <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Eksport qilinmadi"</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Kontakt ma’lumoti eksport qilinmadi.\nSababi: “<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
+    <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> import qilinmoqda"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard fayli ma’lumot-ni o‘qib bo‘lmadi"</string>
+    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"vCard faylini o‘qish bekor qilindi"</string>
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"<xliff:g id="FILENAME">%s</xliff:g> vCard fayli import qilindi"</string>
+    <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g> faylini import qilish bekor qilindi"</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> tezda import qilinadi."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Fayl tezda import qilinadi."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Tashrifnomani import qilish so‘rovi rad qilindi. Keyinroq urinib ko‘ring."</string>
+    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> tezda eksport qilinadi."</string>
+    <string name="vcard_export_will_start_message_fallback" msgid="6553826997490909749">"Fayl tez orada eksport qilinadi."</string>
+    <string name="contacts_export_will_start_message" msgid="8538705791417534431">"Kontaktlar tez orada eksport qilinadi."</string>
+    <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Tashrifnomani eksport qilish rad qilindi. Keyinroq urinib ko‘ring."</string>
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
+    <string name="caching_vcard_message" msgid="4926308675041506756">"vCard fayllari vaqtinchalik ichki xotira keshiga yuklanmoqda. Import qilish jarayoni tezda boshlanadi."</string>
+    <string name="vcard_import_failed" msgid="5223531255894842406">"Tashrifnoma import qilinmadi."</string>
+    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC orq. olindi"</string>
+    <string name="confirm_export_title" msgid="6834385377255286349">"Kontaktlar eksport qilinsinmi?"</string>
+    <string name="caching_vcard_title" msgid="1226272312940516605">"Keshga yuklanmoqda"</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"Import qilinmoqda: <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> – <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"VCF faylga eksport qilish"</string>
+    <string name="display_options_sort_list_by" msgid="7028809117272018712">"Saralash tartibi"</string>
+    <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Ismi"</string>
+    <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Familiyasi"</string>
+    <string name="display_options_view_names_as" msgid="6514632499276563482">"Ism formati"</string>
+    <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Avval ismi"</string>
+    <string name="display_options_view_family_name_first" msgid="956445100777296467">"Avval familiyasi"</string>
+    <string name="settings_accounts" msgid="350219740670774576">"Hisoblar"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"Yangi kontaktlar uchun asosiy hisob"</string>
+    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"Kontakt meta-ma’lumotlarini sinxronlash [DOGFOOD]"</string>
+    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"Kontakt meta-ma’lumotlarini sinxronlash"</string>
+    <string name="settings_my_info_title" msgid="1534272456405343119">"Mening ma’lumotlarim"</string>
+    <string name="set_up_profile" msgid="7370213843590143771">"Profilingizni sozlang"</string>
+    <string name="setting_about" msgid="7014388749752042863">"Kontaktlar ilovasi haqida"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Sozlamalar"</string>
-    <!-- no translation found for share_visible_contacts (890150378880783797) -->
-    <skip />
-    <!-- no translation found for share_visible_contacts_failure (7324717548166915560) -->
-    <skip />
-    <!-- no translation found for share_favorite_contacts (4280926751003081042) -->
-    <skip />
-    <!-- no translation found for share_contacts (8109287987498711664) -->
-    <skip />
-    <!-- no translation found for share_contacts_failure (1216431977330560559) -->
-    <skip />
-    <!-- no translation found for dialog_import_export (4360648034889921624) -->
-    <skip />
-    <!-- no translation found for dialog_import (2431698729761448759) -->
-    <skip />
-    <!-- no translation found for share_error (948429331673358107) -->
-    <skip />
-    <!-- no translation found for no_contact_to_share (1276397530378323033) -->
-    <skip />
-    <!-- no translation found for menu_search (9147752853603483719) -->
-    <skip />
-    <!-- no translation found for menu_contacts_filter (2165153460860262501) -->
-    <skip />
-    <!-- no translation found for activity_title_contacts_filter (8275542497615516969) -->
-    <skip />
-    <!-- no translation found for custom_list_filter (2105275443109077687) -->
-    <skip />
-    <!-- no translation found for menu_custom_filter_save (2679793632208086460) -->
-    <skip />
-    <!-- no translation found for hint_findContacts (7128627979899070325) -->
-    <skip />
-    <!-- no translation found for contactsFavoritesLabel (8417039765586853670) -->
-    <skip />
-    <!-- no translation found for listTotalAllContactsZero (5513001821794568211) -->
-    <skip />
-    <!-- no translation found for menu_clear_frequents (7688250191932838833) -->
-    <skip />
+    <string name="share_visible_contacts" msgid="890150378880783797">"Ko‘rinadigan kontaktlarni yuborish"</string>
+    <string name="share_visible_contacts_failure" msgid="7324717548166915560">"Ko‘rinadigan kontaktlarni yuborib bo‘lmadi."</string>
+    <string name="share_favorite_contacts" msgid="4280926751003081042">"Sevimli kontaktlarni yuborish"</string>
+    <string name="share_contacts" msgid="8109287987498711664">"Barcha kontaktlarni yuborish"</string>
+    <string name="share_contacts_failure" msgid="1216431977330560559">"Kontaktlarni yuborib bo‘lmadi."</string>
+    <string name="dialog_import_export" msgid="4360648034889921624">"Kontaktlarni import/eksport qilish"</string>
+    <string name="dialog_import" msgid="2431698729761448759">"Kontaktlarni import qilish"</string>
+    <string name="share_error" msgid="948429331673358107">"Bu kontaktni yuborib bo‘lmaydi."</string>
+    <string name="no_contact_to_share" msgid="1276397530378323033">"Yuborish uchun hech qanday kontakt yo‘q."</string>
+    <string name="menu_search" msgid="9147752853603483719">"Qidiruv"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Ko‘rsatiladigan kontaktlar"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Ko‘rsatiladigan kontaktlar"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"Maxsus ko‘rinishni sozlash"</string>
+    <string name="menu_custom_filter_save" msgid="2679793632208086460">"Saqlash"</string>
+    <string name="hint_findContacts" msgid="7128627979899070325">"Kontaktlar ichidan qidirish"</string>
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Sevimlilar"</string>
+    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Hech qanday kontakt yo‘q."</string>
+    <string name="menu_clear_frequents" msgid="7688250191932838833">"Tez-tez aloqa qiling. tozalash"</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"SIM kartani tanlash"</string>
-    <!-- no translation found for menu_accounts (1424330057450189074) -->
-    <skip />
-    <!-- no translation found for menu_import_export (26217871113229507) -->
-    <skip />
+    <string name="menu_accounts" msgid="1424330057450189074">"Hisoblarni boshqarish"</string>
+    <string name="menu_import_export" msgid="26217871113229507">"Import/eksport"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Bloklangan raqamlar"</string>
-    <!-- no translation found for contact_status_update_attribution (752179367353018597) -->
-    <skip />
-    <!-- no translation found for contact_status_update_attribution_with_date (7358045508107825068) -->
-    <skip />
-    <!-- no translation found for action_menu_back_from_search (8793348588949233348) -->
-    <skip />
+    <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> orqali"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> – <xliff:g id="SOURCE">%2$s</xliff:g> orqali"</string>
+    <string name="action_menu_back_from_search" msgid="8793348588949233348">"qidiruvni to‘xtatish"</string>
     <string name="description_clear_search" msgid="688023606766232904">"Izlashni tozalash"</string>
-    <!-- no translation found for settings_contact_display_options_title (4890258244494248687) -->
+    <string name="settings_contact_display_options_title" msgid="4890258244494248687">"Kontaktlarning namoyish etilishi parametrlari"</string>
+    <string name="select_account_dialog_title" msgid="5478489655696599219">"Hisob"</string>
+    <string name="set_default_account" msgid="4311613760725609801">"Har doim qo‘ng‘iroq. uchun foyd-sin"</string>
+    <string name="select_phone_account_for_calls" msgid="3810607744451014540">"Qo‘ng‘iroq qilish uchun hisob"</string>
+    <string name="call_with_a_note" msgid="8389827628360791676">"Qo‘ng‘iroq vaqtida matn yuborish"</string>
+    <string name="call_subject_hint" msgid="3637498418381454511">"Qo‘ng‘iroq vaqtida yuborishingiz kerak bo‘lgan matnni kiriting..."</string>
+    <string name="send_and_call_button" msgid="7740295432834590737">"XABAR YUBORISH VA QO‘NG‘. QILISH"</string>
+    <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
+    <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
+    <plurals name="tab_title_with_unread_items" formatted="false" msgid="7682024005130747825">
+      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> ta o‘qilmagan narsa. </item>
+      <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> ta o‘qilmagan narsa. </item>
+    </plurals>
+    <string name="about_build_version" msgid="1765533099416999801">"Versiyasi"</string>
+    <string name="about_open_source_licenses" msgid="6479990452352919641">"Ochiq kodli DT litsenziyalari"</string>
+    <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Ochiq kodli DT litsenziyalari haqida ma’lumot"</string>
+    <string name="about_privacy_policy" msgid="3705518622499152626">"Maxfiylik siyosati"</string>
+    <string name="about_terms_of_service" msgid="4642400812150296723">"Foydalanish shartlari"</string>
+    <string name="activity_title_licenses" msgid="5467767062737708066">"Ochiq kodli DT litsenziyalari"</string>
+    <string name="url_open_error_toast" msgid="452592089815420457">"URLni ochishda xatolik yuz berdi."</string>
+    <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> belgilangan"</string>
+    <string name="account_filter_view_not_checked" msgid="2248684521205038389">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> belgilanmagan"</string>
+    <string name="description_search_video_call" msgid="5841525580339803272">"Video qo‘ng‘iroq qilish"</string>
+    <string name="description_delete_contact" msgid="53835657343783663">"O‘chirib tashlash"</string>
+    <string name="description_no_name_header" msgid="8884991311595943271">"Uch nuqta"</string>
+    <!-- no translation found for callDurationSecondFormat (7067644915903528776) -->
     <skip />
-    <!-- no translation found for select_account_dialog_title (5478489655696599219) -->
+    <!-- no translation found for callDurationMinuteFormat (4647095486747447674) -->
     <skip />
-    <!-- no translation found for set_default_account (4311613760725609801) -->
-    <skip />
-    <!-- no translation found for select_phone_account_for_calls (3810607744451014540) -->
-    <skip />
-    <!-- no translation found for call_with_a_note (8389827628360791676) -->
-    <skip />
-    <!-- no translation found for call_subject_hint (3637498418381454511) -->
-    <skip />
-    <!-- no translation found for send_and_call_button (7740295432834590737) -->
-    <skip />
-    <!-- no translation found for call_subject_limit (4545212901205397669) -->
-    <skip />
-    <!-- no translation found for call_subject_type_and_number (7667188212129152558) -->
-    <skip />
-    <!-- no translation found for tab_title_with_unread_items (7682024005130747825) -->
-    <!-- no translation found for about_build_version (1765533099416999801) -->
-    <skip />
-    <!-- no translation found for about_open_source_licenses (6479990452352919641) -->
-    <skip />
-    <!-- no translation found for about_open_source_licenses_summary (57418386931763994) -->
-    <skip />
-    <!-- no translation found for about_privacy_policy (3705518622499152626) -->
-    <skip />
-    <!-- no translation found for about_terms_of_service (4642400812150296723) -->
-    <skip />
-    <!-- no translation found for activity_title_licenses (5467767062737708066) -->
-    <skip />
-    <!-- no translation found for url_open_error_toast (452592089815420457) -->
-    <skip />
-    <!-- no translation found for account_filter_view_checked (6696859503887762213) -->
-    <skip />
-    <!-- no translation found for account_filter_view_not_checked (2248684521205038389) -->
-    <skip />
-    <!-- no translation found for description_search_video_call (5841525580339803272) -->
-    <skip />
-    <!-- no translation found for description_delete_contact (53835657343783663) -->
-    <skip />
-    <!-- no translation found for description_no_name_header (8884991311595943271) -->
+    <!-- no translation found for callDurationHourFormat (7392254193808506640) -->
     <skip />
 </resources>
