@@ -36,17 +36,4 @@
             style="@style/ContactsToolbarStyle" />
 
     </FrameLayout>
-
-    <com.android.contacts.common.list.ViewPagerTabs
-        android:id="@+id/lists_pager_header"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:textAllCaps="true"
-        android:orientation="horizontal"
-        android:layout_gravity="top"
-        android:layout_weight="0"
-        android:layout_below="@id/toolbar"
-        android:visibility="gone"
-        style="@style/ContactsActionBarTabTextStyle" />
-
 </LinearLayout>

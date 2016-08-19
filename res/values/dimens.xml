@@ -238,16 +238,6 @@
     <dimen name="quickcontact_expanding_button_section_height">48dp</dimen>
     <dimen name="quickcontact_expanding_button_section_padding">8dp</dimen>
 
-    <!-- The width the that the tabs occupy in the ActionBar when in landscape mode.
-         426dp is the height of a "small" screen. We should leave 240dp for
-         the title and menu items -->
-    <dimen name="people_activity_landscape_tabs_width">186dip</dimen>
-    <!-- The size of the text displayed in the ActionBar tabs in landscape mode.
-         Text in the tabs should must be width dependent, otherwise it won't fit in the tabs.
-         In portrait mode, the tabs look okay when overflowing their allocated space.
-         We have to be more careful in landscape. -->
-    <dimen name="people_activity_landscape_tabs_text_size">8dp</dimen>
-
     <!-- Top margin of the text message when provider status is busy -->
     <dimen name="update_contact_list_top_margin">188dp</dimen>
 
@@ -431,17 +421,8 @@
     <!-- Offset of bottom margin of the floating action button used when dialpad is up -->
     <dimen name="floating_action_button_dialpad_margin_bottom_offset">4dp</dimen>
 
-    <!-- Height of the selection indicator of a tab. -->
-    <dimen name="tab_selected_underline_height">2dp</dimen>
     <!-- Size of text in tabs. -->
-    <dimen name="tab_text_size">14sp</dimen>
     <dimen name="tab_elevation">2dp</dimen>
-    <dimen name="tab_unread_count_background_size">16dp</dimen>
-    <dimen name="tab_unread_count_background_radius">2dp</dimen>
-    <dimen name="tab_unread_count_margin_left">10dp</dimen>
-    <dimen name="tab_unread_count_margin_top">2dp</dimen>
-    <dimen name="tab_unread_count_text_size">12sp</dimen>
-    <dimen name="tab_unread_count_text_padding">2dp</dimen>
 
     <!-- Padding around the icon in the search box. -->
     <dimen name="search_box_icon_margin">4dp</dimen>

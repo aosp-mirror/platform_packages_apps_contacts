@@ -41,10 +41,6 @@
 
     <style name="PeopleTheme" parent="@android:style/Theme.Material.Light">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
-        <!-- Style for the tab bar (for the divider between tabs) -->
-        <item name="android:actionBarTabBarStyle">@style/ContactsActionBarTabBarStyle</item>
-        <!-- Style for the tab bar text (for text on tabs) -->
-        <item name="android:actionBarTabTextStyle">@style/ContactsActionBarTabTextStyle</item>
         <!--  Drawable for the back button -->
         <item name="android:homeAsUpIndicator">@drawable/ic_back_arrow</item>
         <!-- Style for the overflow button in the actionbar. -->
@@ -107,12 +103,6 @@
         <!-- Styles that require AppCompat compatibility, remember to update both sets -->
         <item name="android:actionBarStyle">@style/ContactsActionBarStyleAppCompat</item>
         <item name="actionBarStyle">@style/ContactsActionBarStyleAppCompat</item>
-        <!-- Style for the tab bar (for the divider between tabs) -->
-        <item name="android:actionBarTabBarStyle">@style/ContactsActionBarTabBarStyle</item>
-        <item name="actionBarTabBarStyle">@style/ContactsActionBarTabBarStyle</item>
-        <!-- Style for the tab bar text (for text on tabs) -->
-        <item name="android:actionBarTabTextStyle">@style/ContactsActionBarTabTextStyle</item>
-        <item name="actionBarTabTextStyle">@style/ContactsActionBarTabTextStyle</item>
         <item name="android:actionButtonStyle">@style/ContactsActionButtonStyle</item>
         <item name="actionButtonStyle">@style/ContactsActionButtonStyle</item>
         <!--  Drawable for the back button -->
@@ -242,22 +232,6 @@
 
     <style name="ContactsActionBarTitleTextBlack" parent="@style/ContactsActionBarTitleTextAppCompat">
         <item name="android:textColor">@color/actionbar_text_color_black</item>
-    </style>
-
-    <!-- Styling for the tab bar; handles styling of the divider line. -->
-    <style name="ContactsActionBarTabBarStyle"
-           parent="@android:style/Widget.Material.ActionBar.TabBar">
-        <item name="android:showDividers">none</item>
-    </style>
-
-    <!-- Text style for tabs. -->
-    <style name="ContactsActionBarTabTextStyle"
-           parent="android:style/Widget.Material.Light.ActionBar.TabText">
-        <item name="android:textColor">@color/tab_text_color</item>
-        <item name="android:textSize">@dimen/tab_text_size</item>
-        <item name="android:fontFamily">@string/tab_font_family</item>
-        <item name="android:elevation">0dp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <!-- Action bar overflow menu icon. -->

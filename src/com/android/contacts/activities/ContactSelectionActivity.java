@@ -146,8 +146,7 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
         // Add a shadow under the toolbar.
         ViewUtil.addRectangularOutlineProvider(findViewById(R.id.toolbar_parent), getResources());
 
-        mActionBarAdapter = new ActionBarAdapter(this, this, getSupportActionBar(),
-                /* portraitTabs */ null, /* landscapeTabs */ null, mToolbar,
+        mActionBarAdapter = new ActionBarAdapter(this, this, getSupportActionBar(), mToolbar,
                 R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
         mActionBarAdapter.setShowHomeAsUp(true);
@@ -433,10 +432,6 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
                 invalidateOptionsMenu();
                 break;
         }
-    }
-
-    @Override
-    public void onSelectedTabChanged() {
     }
 
     @Override

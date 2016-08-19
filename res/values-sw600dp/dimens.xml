@@ -28,10 +28,6 @@
     <dimen name="contact_browser_list_top_margin">18dp</dimen>
 
     <dimen name="quick_contact_photo_container_height">360dip</dimen>
-    <!-- Height of the selection indicator of a tab. -->
-    <dimen name="tab_selected_underline_height">3dp</dimen>
-    <!-- Size of text in tabs. -->
-    <dimen name="tab_text_size">16sp</dimen>
 
     <!-- Because the "join" screen has the vertical scroll bar on right,
       we cannot use @dimen/contact_browser_list_header_left_margin as is. -->
