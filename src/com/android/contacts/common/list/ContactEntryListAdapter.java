@@ -370,7 +370,7 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
     public void setFavoritesSectionHeader(int numberOfFavorites) {
         if (mIncludeFavorites) {
             mNumberOfFavorites = numberOfFavorites;
-            setSectionHeader(R.string.star_sign, numberOfFavorites);
+            setSectionHeader(numberOfFavorites);
         }
     }
 
@@ -378,11 +378,10 @@ public abstract class ContactEntryListAdapter extends IndexerListAdapter {
         return mNumberOfFavorites;
     }
 
-    private void setSectionHeader(int resId, int numberOfItems) {
+    private void setSectionHeader(int numberOfItems) {
         SectionIndexer indexer = getIndexer();
         if (indexer != null) {
-            ((ContactsSectionIndexer) indexer).setProfileAndFavoritesHeader(
-                    getContext().getString(resId), numberOfItems);
+            ((ContactsSectionIndexer) indexer).setFavoritesHeader(numberOfItems);
         }
     }
 

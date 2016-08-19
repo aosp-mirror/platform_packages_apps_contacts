@@ -979,8 +979,9 @@ public class ContactListItemView extends ViewGroup
      * Sets section header or makes it invisible if the title is null.
      */
     public void setSectionHeader(String title) {
-        if (!TextUtils.isEmpty(title)) {
-            if (TextUtils.equals(getContext().getString(R.string.star_sign), title)) {
+        if (title != null) {
+            // Empty section title is the favorites so show the star here.
+            if (title.isEmpty()) {
                 if (mHeaderView == null) {
                     addStarImageHeader();
                 } else if (mHeaderView instanceof TextView) {

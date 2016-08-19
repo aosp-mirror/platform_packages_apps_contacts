@@ -114,6 +114,4 @@
     <string name="pref_open_source_licenses_key">pref_open_source_licenses</string>
     <string name="pref_privacy_policy_key">pref_privacy_policy</string>
     <string name="pref_terms_of_service_key">pref_terms_of_service</string>
-
-    <string name="star_sign">\u2605</string>
 </resources>

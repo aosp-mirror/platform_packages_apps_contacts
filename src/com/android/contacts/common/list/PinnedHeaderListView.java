@@ -19,7 +19,6 @@ package com.android.contacts.common.list;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,7 +30,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.android.contacts.common.R;
 import com.android.contacts.common.util.ViewUtil;
 
 /**
@@ -318,8 +316,7 @@ public class PinnedHeaderListView extends AutoScrollListView
         // Hide header when it's a star.
         // TODO: try showing the view even when it's a star;
         // if we have to hide the star view, then try hiding it in some higher layer.
-        header.visible = !TextUtils.equals(
-                ((TextView) header.view).getText(), getContext().getString(R.string.star_sign));
+        header.visible = !((TextView) header.view).getText().toString().isEmpty();
         header.state = FADING;
         header.alpha = MAX_ALPHA;
         header.animating = false;
