@@ -1644,6 +1644,7 @@ public class ContactSaveService extends IntentService {
         }
     }
 
+    @NeededForTesting
     public interface GroupsDao {
         Uri create(String title, AccountWithDataSet account);
         int delete(Uri groupUri);
@@ -1671,6 +1672,7 @@ public class ContactSaveService extends IntentService {
             this.contentResolver = contentResolver;
         }
 
+        @NeededForTesting
         public Bundle captureDeletionUndoData(Uri groupUri) {
             final long groupId = ContentUris.parseId(groupUri);
             final Bundle result = new Bundle();
@@ -1708,6 +1710,7 @@ public class ContactSaveService extends IntentService {
             return result;
         }
 
+        @NeededForTesting
         public Uri undoDeletion(Bundle deletedGroupData) {
             final ContentValues groupData = deletedGroupData.getParcelable(KEY_GROUP_DATA);
             if (groupData == null) {
@@ -1735,6 +1738,7 @@ public class ContactSaveService extends IntentService {
             return groupUri;
         }
 
+        @NeededForTesting
         public Uri create(String title, AccountWithDataSet account) {
             final ContentValues values = new ContentValues();
             values.put(Groups.TITLE, title);
@@ -1744,6 +1748,7 @@ public class ContactSaveService extends IntentService {
             return contentResolver.insert(Groups.CONTENT_URI, values);
         }
 
+        @NeededForTesting
         public int delete(Uri groupUri) {
             return contentResolver.delete(groupUri, null, null);
         }
