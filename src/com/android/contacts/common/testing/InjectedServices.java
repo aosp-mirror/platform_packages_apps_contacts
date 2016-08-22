@@ -29,14 +29,12 @@ import java.util.HashMap;
  * while running tests. Activities, Services and the Application should check
  * with this class to see if a particular service has been overridden.
  */
-@NeededForTesting
 public class InjectedServices {
 
     private ContentResolver mContentResolver;
     private SharedPreferences mSharedPreferences;
     private HashMap<String, Object> mSystemServices;
 
-    @NeededForTesting
     public void setContentResolver(ContentResolver contentResolver) {
         this.mContentResolver = contentResolver;
     }
@@ -45,7 +43,6 @@ public class InjectedServices {
         return mContentResolver;
     }
 
-    @NeededForTesting
     public void setSharedPreferences(SharedPreferences sharedPreferences) {
         this.mSharedPreferences = sharedPreferences;
     }
@@ -54,7 +51,6 @@ public class InjectedServices {
         return mSharedPreferences;
     }
 
-    @NeededForTesting
     public void setSystemService(String name, Object service) {
         if (mSystemServices == null) {
             mSystemServices = Maps.newHashMap();

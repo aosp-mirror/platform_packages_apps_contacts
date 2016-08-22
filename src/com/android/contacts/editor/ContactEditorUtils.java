@@ -26,7 +26,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.contacts.common.R;
-import com.android.contacts.common.testing.NeededForTesting;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -41,7 +40,6 @@ import java.util.Set;
 /**
  * Utility methods for the "account changed" notification in the new contact creation flow.
  */
-@NeededForTesting
 public class ContactEditorUtils {
     private static final String TAG = "ContactEditorUtils";
 
@@ -80,13 +78,11 @@ public class ContactEditorUtils {
         return sInstance;
     }
 
-    @NeededForTesting
     void cleanupForTest() {
         mPrefs.edit().remove(mDefaultAccountKey).remove(KEY_KNOWN_ACCOUNTS)
                 .remove(mAnythingSavedKey).apply();
     }
 
-    @NeededForTesting
     void removeDefaultAccountForTest() {
         mPrefs.edit().remove(mDefaultAccountKey).apply();
     }
@@ -120,7 +116,6 @@ public class ContactEditorUtils {
      * @param defaultAccount the account used to save a newly created contact.  Or pass {@code null}
      *     If the user selected "local only".
      */
-    @NeededForTesting
     public void saveDefaultAndAllAccounts(AccountWithDataSet defaultAccount) {
         final SharedPreferences.Editor editor = mPrefs.edit()
                 .putBoolean(mAnythingSavedKey, true);
@@ -213,7 +208,6 @@ public class ContactEditorUtils {
      * {@link #getDefaultAccount} will return a valid account.  (Either an account which still
      * exists, or {@code null} which should be interpreted as "local only".)
      */
-    @NeededForTesting
     public boolean shouldShowAccountChangedNotification() {
         final List<AccountWithDataSet> currentWritableAccounts = getWritableAccounts();
 
