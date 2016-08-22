@@ -385,7 +385,7 @@
     <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Boodskap)"</string>
     <string name="description_video_call" msgid="7120921378651700947">"Maak video-oproep"</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vee dikwels-gebruikte kontakte uit?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"Jy gaan die gereeld gekontak-lys in die Kontakte- en Foon-program uitvee en e-posprogramme dwing om jou adresvoorkeure van nuuts af te leer."</string>
+    <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"Jy gaan die lys van dikwels gebruikte kontakte in die Kontakte- en Foon-program uitvee en e-posprogramme dwing om jou adresvoorkeure van nuuts af te leer."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Vee tans dikwels-gebruikte kontakte uit..."</string>
     <string name="status_available" msgid="5586870015822828392">"Beskikbaar"</string>
     <string name="status_away" msgid="1838861100379804730">"Weg"</string>
@@ -434,6 +434,8 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Maatskappy"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Titel"</string>
     <string name="label_notes" msgid="8337354953278341042">"Notas"</string>
+    <!-- no translation found for label_custom_field (1994056912242214426) -->
+    <skip />
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Webwerf"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"Etikette"</string>
@@ -480,7 +482,7 @@
     <string name="menu_done" msgid="796017761764190697">"Klaar"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Kanselleer"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Gepasmaakte aansig"</string>
-    <string name="dialog_new_contact_account" msgid="4969619718062454756">"Stoor ingevoerde kontakte in:"</string>
+    <string name="dialog_new_contact_account" msgid="4969619718062454756">"Stoor ingevoerde kontakte na:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Voer in van SIM-kaart"</string>
     <string name="import_from_sim_summary" msgid="5815105584445743740">"Voer in vanaf <xliff:g id="SIM_NAME">^1</xliff:g> – <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Voer in vanaf <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
@@ -577,7 +579,7 @@
     <string name="select_account_dialog_title" msgid="5478489655696599219">"Rekening"</string>
     <string name="set_default_account" msgid="4311613760725609801">"Gebruik dit altyd vir oproepe"</string>
     <string name="select_phone_account_for_calls" msgid="3810607744451014540">"Bel met"</string>
-    <string name="call_with_a_note" msgid="8389827628360791676">"Oproep met \'n nota"</string>
+    <string name="call_with_a_note" msgid="8389827628360791676">"Bel met \'n nota"</string>
     <string name="call_subject_hint" msgid="3637498418381454511">"Tik \'n nota om saam met oproep te stuur …"</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"STUUR EN BEL"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>

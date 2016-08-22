@@ -227,8 +227,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Fleygja breytingum?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Fleygja"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Hætta við"</string>
-    <!-- no translation found for leave_customize_confirmation_dialog_message (4277114551206032979) -->
-    <skip />
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Fleygja sérstillingum?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Leita í tengiliðum"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Fjarlægja tengiliði"</string>
@@ -335,8 +334,7 @@
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Skilaboð"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Skipuleggðu listann þinn"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Hreinsaðu út tvítekningar og flokkaðu tengiliði"</string>
-    <!-- no translation found for undo (1425165101664071422) -->
-    <skip />
+    <string name="undo" msgid="1425165101664071422">"Afturkalla"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texti afritaður"</string>
     <string name="copy_text" msgid="3257145021583508761">"Afrita á klippiborð"</string>
     <string name="call_custom" msgid="7756571794763171802">"Hringja í <xliff:g id="CUSTOM">%s</xliff:g>"</string>
@@ -434,6 +432,8 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Fyrirtæki"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Titill"</string>
     <string name="label_notes" msgid="8337354953278341042">"Glósur"</string>
+    <!-- no translation found for label_custom_field (1994056912242214426) -->
+    <skip />
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Vefsvæði"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"Flokkar"</string>
@@ -598,10 +598,7 @@
     <string name="description_search_video_call" msgid="5841525580339803272">"Hringja myndsímtal"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"Eyða"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"Þrípunktur"</string>
-    <!-- no translation found for callDurationSecondFormat (7067644915903528776) -->
-    <skip />
-    <!-- no translation found for callDurationMinuteFormat (4647095486747447674) -->
-    <skip />
-    <!-- no translation found for callDurationHourFormat (7392254193808506640) -->
-    <skip />
+    <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> sek."</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> m. <xliff:g id="SECONDS">%s</xliff:g> sek."</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> klst. <xliff:g id="MINUTES_1">%s</xliff:g> mín. <xliff:g id="SECONDS">%s</xliff:g> sek."</string>
 </resources>
