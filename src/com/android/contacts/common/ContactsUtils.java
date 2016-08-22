@@ -29,7 +29,6 @@ import android.util.Pair;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.ImDataItem;
-import com.android.contacts.common.testing.NeededForTesting;
 import com.android.contacts.common.compat.ContactsCompat;
 import com.android.contacts.common.compat.DirectoryCompat;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -122,7 +121,6 @@ public class ContactsUtils {
     /**
      * Returns true if two objects are considered equal.  Two null references are equal here.
      */
-    @NeededForTesting
     public static boolean areObjectsEqual(Object a, Object b) {
         return a == b || (a != null && a.equals(b));
     }

@@ -35,7 +35,6 @@ import com.android.contacts.common.model.BuilderWrapper;
 import com.android.contacts.common.model.CPOWrapper;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.testing.NeededForTesting;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -183,7 +182,6 @@ public class RawContactDelta implements Parcelable {
      *     doesn't exist (may be a primary, or just a random item
      * @return
      */
-    @NeededForTesting
     public ValuesDelta getSuperPrimaryEntry(String mimeType, boolean forceSelection) {
         final ArrayList<ValuesDelta> mimeEntries = getMimeEntries(mimeType, false);
         if (mimeEntries == null) return null;

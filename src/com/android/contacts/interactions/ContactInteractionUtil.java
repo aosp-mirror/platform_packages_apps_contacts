@@ -20,8 +20,6 @@ import com.google.common.base.Preconditions;
 import android.content.Context;
 import android.text.format.DateUtils;
 
-import com.android.contacts.common.testing.NeededForTesting;
-
 import java.text.DateFormat;
 
 import java.util.Calendar;
@@ -36,7 +34,6 @@ public class ContactInteractionUtil {
     /**
      * @return a string like (?,?,?...) with {@param count} question marks.
      */
-    @NeededForTesting
     public static String questionMarks(int count) {
         Preconditions.checkArgument(count > 0);
         StringBuilder sb = new StringBuilder("(?");
@@ -50,7 +47,6 @@ public class ContactInteractionUtil {
      * Same as {@link formatDateStringFromTimestamp(long, Context, Calendar)} but uses the current
      * time.
      */
-    @NeededForTesting
     public static String formatDateStringFromTimestamp(long timestamp, Context context) {
         return formatDateStringFromTimestamp(timestamp, context, Calendar.getInstance());
     }
@@ -62,7 +58,6 @@ public class ContactInteractionUtil {
      * 1. If the timestamp is today, the time is shown
      * 2. Otherwise show full date and time
      */
-    @NeededForTesting
     public static String formatDateStringFromTimestamp(long timestamp, Context context,
             Calendar compareCalendar) {
         Calendar interactionCalendar = Calendar.getInstance();
@@ -91,7 +86,6 @@ public class ContactInteractionUtil {
      * Takes duration of the call in seconds.
      * Return the formatted duration in hr, min, sec order if they exist.
      */
-    @NeededForTesting
     public static String formatDuration(long callDuration, Context context) {
         final int hours = (int) callDuration / 3600;
         final int minutes = (int) (callDuration % 3600) / 60;

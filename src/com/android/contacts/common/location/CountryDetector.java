@@ -5,8 +5,6 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.contacts.common.testing.NeededForTesting;
-
 import java.util.Locale;
 
 /**
@@ -62,7 +60,6 @@ public class CountryDetector {
     /**
      * Factory method for {@link CountryDetector} that allows the caller to provide mock objects.
      */
-    @NeededForTesting
     public CountryDetector getInstanceForTest(Context context, TelephonyManager telephonyManager,
             LocaleProvider localeProvider) {
         return new CountryDetector(context, telephonyManager, localeProvider);

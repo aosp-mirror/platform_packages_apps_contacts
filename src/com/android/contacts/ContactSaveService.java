@@ -60,7 +60,6 @@ import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.testing.NeededForTesting;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
 import com.android.contacts.util.ContactPhotoUtils;
@@ -1644,7 +1643,6 @@ public class ContactSaveService extends IntentService {
         }
     }
 
-    @NeededForTesting
     public interface GroupsDao {
         Uri create(String title, AccountWithDataSet account);
         int delete(Uri groupUri);
@@ -1652,11 +1650,8 @@ public class ContactSaveService extends IntentService {
         Uri undoDeletion(Bundle undoData);
     }
 
-    @NeededForTesting
     public static class GroupsDaoImpl implements GroupsDao {
-        @NeededForTesting
         public static final String KEY_GROUP_DATA = "groupData";
-        @NeededForTesting
         public static final String KEY_GROUP_MEMBERS = "groupMemberIds";
 
         private static final String TAG = "GroupsDao";
@@ -1672,7 +1667,6 @@ public class ContactSaveService extends IntentService {
             this.contentResolver = contentResolver;
         }
 
-        @NeededForTesting
         public Bundle captureDeletionUndoData(Uri groupUri) {
             final long groupId = ContentUris.parseId(groupUri);
             final Bundle result = new Bundle();
@@ -1710,7 +1704,6 @@ public class ContactSaveService extends IntentService {
             return result;
         }
 
-        @NeededForTesting
         public Uri undoDeletion(Bundle deletedGroupData) {
             final ContentValues groupData = deletedGroupData.getParcelable(KEY_GROUP_DATA);
             if (groupData == null) {
@@ -1738,7 +1731,6 @@ public class ContactSaveService extends IntentService {
             return groupUri;
         }
 
-        @NeededForTesting
         public Uri create(String title, AccountWithDataSet account) {
             final ContentValues values = new ContentValues();
             values.put(Groups.TITLE, title);
@@ -1748,7 +1740,6 @@ public class ContactSaveService extends IntentService {
             return contentResolver.insert(Groups.CONTENT_URI, values);
         }
 
-        @NeededForTesting
         public int delete(Uri groupUri) {
             return contentResolver.delete(groupUri, null, null);
         }
