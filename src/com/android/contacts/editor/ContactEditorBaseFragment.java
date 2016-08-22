@@ -751,6 +751,11 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     }
 
     @Override
+    public Context getContext() {
+        return getActivity();
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
         inflater.inflate(R.menu.edit_contact, menu);
     }
@@ -1477,7 +1482,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
-                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(getContext(),
+                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(mContext,
                             lookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
                     resultIntent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
                             ScreenType.EDITOR);
@@ -1534,7 +1539,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
 
         mContactIdForJoin = ContentUris.parseId(contactLookupUri);
-        final Intent intent = new Intent(getContext(), ContactSelectionActivity.class);
+        final Intent intent = new Intent(mContext, ContactSelectionActivity.class);
         intent.setAction(UiIntentActions.PICK_JOIN_CONTACT_ACTION);
         intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, mContactIdForJoin);
         startActivityForResult(intent, REQUEST_CODE_JOIN);
