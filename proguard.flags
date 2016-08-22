@@ -76,6 +76,7 @@
 -keep class com.android.contacts.interactions.CallLogInteractionsLoader { *; }
 -keep class com.android.contacts.interactions.ContactDeletionInteraction { *; }
 -keep class com.android.contacts.interactions.ContactInteractionUtil { *; }
+-keep class com.android.contacts.util.SyncUtil { *; }
 -keep class com.android.contacts.widget.CompositeListAdapter { *; }
 -keep class com.google.common.base.Objects { *; }
 -keep class com.google.common.base.Preconditions { *; }
