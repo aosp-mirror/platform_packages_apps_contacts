@@ -458,6 +458,8 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Название"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Должность"</string>
     <string name="label_notes" msgid="8337354953278341042">"Примечания"</string>
+    <!-- no translation found for label_custom_field (1994056912242214426) -->
+    <skip />
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Веб-сайт"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"Группы"</string>

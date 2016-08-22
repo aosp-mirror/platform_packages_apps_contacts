@@ -227,8 +227,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"ပြင်ဆင်မှုများကို ဖယ်ပစ်မလား။"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"စွန့်ပစ်ရန်"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"မလုပ်တော့"</string>
-    <!-- no translation found for leave_customize_confirmation_dialog_message (4277114551206032979) -->
-    <skip />
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"စိတ်ကြိုက်ပြုလုပ်ခြင်းများကို ပယ်ဖျက်မလား။"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"အဆက်အသွယ်များရှာပါ"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"အဆက်အသွယ်များ ဖယ်ရှားရန်"</string>
@@ -335,8 +334,7 @@
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"မက်ဆေ့ဂျ်များ"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"သင့်စာရင်းကို စနစ်တကျစီစဉ်ပါ"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"အဖွဲ့အဆက်အသွယ်များ &amp; ထပ်နေသည်များကို အညွှန်းဖြင့် ရှင်းပါ"</string>
-    <!-- no translation found for undo (1425165101664071422) -->
-    <skip />
+    <string name="undo" msgid="1425165101664071422">"တစ်ဆင့်နောက်ပြန်ရန်"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"စာသားကူးယူပြီး"</string>
     <string name="copy_text" msgid="3257145021583508761">"ခဏကူးယူထားပါ"</string>
     <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g> ကို ခေါ်ရန်"</string>
@@ -434,6 +432,8 @@
     <string name="ghostData_company" msgid="5414421120553765775">"ကုမ္ပဏီ"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"ခေါင်းစဉ်"</string>
     <string name="label_notes" msgid="8337354953278341042">"မှတ်စုများ"</string>
+    <!-- no translation found for label_custom_field (1994056912242214426) -->
+    <skip />
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"ဝဘ်ဆိုဒ်"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"အညွှန်းများ"</string>
@@ -598,10 +598,7 @@
     <string name="description_search_video_call" msgid="5841525580339803272">"ဗီဒီယိုခေါ်ဆိုမှု ပြုလုပ်ရန်"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"ဖျက်ရန်"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"အစက်သုံးစက်"</string>
-    <!-- no translation found for callDurationSecondFormat (7067644915903528776) -->
-    <skip />
-    <!-- no translation found for callDurationMinuteFormat (4647095486747447674) -->
-    <skip />
-    <!-- no translation found for callDurationHourFormat (7392254193808506640) -->
-    <skip />
+    <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> စက္ကန့်"</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> မိနစ် <xliff:g id="SECONDS">%s</xliff:g> စက္ကန့်"</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> နာရီ <xliff:g id="MINUTES_1">%s</xliff:g> မိနစ် <xliff:g id="SECONDS">%s</xliff:g> စက္ကန့်"</string>
 </resources>

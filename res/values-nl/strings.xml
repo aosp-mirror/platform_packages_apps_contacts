@@ -227,8 +227,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Wijzigingen annuleren?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Weggooien"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Annuleren"</string>
-    <!-- no translation found for leave_customize_confirmation_dialog_message (4277114551206032979) -->
-    <skip />
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Wijzigingen niet opslaan?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Contacten zoeken"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Contacten verwijderen"</string>
@@ -335,8 +334,7 @@
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Berichten"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Je lijst ordenen"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Dubbele contacten opruimen en contacten groeperen op label"</string>
-    <!-- no translation found for undo (1425165101664071422) -->
-    <skip />
+    <string name="undo" msgid="1425165101664071422">"Ongedaan maken"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst gekopieerd"</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiëren naar klembord"</string>
     <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g> bellen"</string>
@@ -434,6 +432,8 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Bedrijf"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Titel"</string>
     <string name="label_notes" msgid="8337354953278341042">"Opmerkingen"</string>
+    <!-- no translation found for label_custom_field (1994056912242214426) -->
+    <skip />
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Website"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"Labels"</string>
@@ -598,10 +598,7 @@
     <string name="description_search_video_call" msgid="5841525580339803272">"Videogesprek starten"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"Verwijderen"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"Weglatingsteken"</string>
-    <!-- no translation found for callDurationSecondFormat (7067644915903528776) -->
-    <skip />
-    <!-- no translation found for callDurationMinuteFormat (4647095486747447674) -->
-    <skip />
-    <!-- no translation found for callDurationHourFormat (7392254193808506640) -->
-    <skip />
+    <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> sec"</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sec"</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> u <xliff:g id="MINUTES_1">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sec"</string>
 </resources>
