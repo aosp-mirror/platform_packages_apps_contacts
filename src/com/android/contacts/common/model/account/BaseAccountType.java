@@ -42,7 +42,6 @@ import android.view.inputmethod.EditorInfo;
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.dataitem.CustomDataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.common.testing.NeededForTesting;
 import com.android.contacts.common.util.CommonDateUtils;
 import com.android.contacts.common.util.ContactDisplayUtils;
 import com.google.common.collect.Lists;
@@ -501,7 +500,6 @@ public abstract class BaseAccountType extends AccountType {
                     + " mColumnName" + mColumnName;
         }
 
-        @NeededForTesting
         public String getColumnNameForTest() {
             return mColumnName;
         }
