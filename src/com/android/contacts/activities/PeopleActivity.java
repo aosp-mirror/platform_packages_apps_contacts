@@ -97,7 +97,7 @@ import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.DialogManager;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contacts.widget.FloatingActionButtonBehavior;
-import com.google.android.libraries.material.featurehighlight.FeatureHighlight;
+import com.android.contactsbind.FeatureHighlightHelper;
 
 import java.util.List;
 import java.util.Locale;
@@ -257,10 +257,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     private void maybeShowHamburgerFeatureHighlight() {
         if (!mActionBarAdapter.isSearchMode() && !mActionBarAdapter.isSelectionMode()
                 && SharedPreferenceUtil.getShouldShowHamburgerPromo(this)) {
-            final FeatureHighlight hamburgerFeatureHighlight =
-                    mActionBarAdapter.getHamburgerFeatureHighlight();
-            if (hamburgerFeatureHighlight != null) {
-                hamburgerFeatureHighlight.show(this);
+            if (FeatureHighlightHelper.showHamburgerFeatureHighlight(this)) {
                 SharedPreferenceUtil.setHamburgerPromoDisplayedBefore(this);
             }
         }
