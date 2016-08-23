@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package com.android.contacts.tests;
+package com.android.contacts.group;
 
 import com.android.contacts.common.list.ContactsSectionIndexer;
-import com.android.contacts.group.GroupUtil;
 
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
