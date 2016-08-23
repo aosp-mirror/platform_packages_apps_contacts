@@ -31,6 +31,7 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts.Data;
 import android.provider.ContactsContract.Contacts.Entity;
 import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.common.Collapser;
 import com.android.contacts.common.model.account.AccountType.EditType;
@@ -46,6 +47,7 @@ import java.util.List;
 /**
  * Test case for {@link DataItem}.
  */
+@SmallTest
 public class DataItemTests extends AndroidTestCase {
 
     private ContentValues mValues1;

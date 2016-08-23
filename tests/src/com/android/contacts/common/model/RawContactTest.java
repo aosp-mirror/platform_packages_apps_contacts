@@ -20,6 +20,7 @@ import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.common.model.RawContact;
 
@@ -28,6 +29,7 @@ import junit.framework.TestCase;
 /**
  * Unit test for {@link RawContact}.
  */
+@SmallTest
 public class RawContactTest extends TestCase {
 
     private RawContact buildRawContact() {

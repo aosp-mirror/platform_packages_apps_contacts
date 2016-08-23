@@ -17,7 +17,9 @@
 package com.android.contacts.common.compat;
 
 import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 
+@SmallTest
 public class CompatUtilsTest extends AndroidTestCase {
 
     public void testIsClassAvailable_NullClassName() {
