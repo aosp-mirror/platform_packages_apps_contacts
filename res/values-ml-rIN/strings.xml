@@ -227,8 +227,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"മാറ്റങ്ങൾ നിരസിക്കണോ?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"തള്ളിക്കളയുക"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"റദ്ദാക്കൂ"</string>
-    <!-- no translation found for leave_customize_confirmation_dialog_message (4277114551206032979) -->
-    <skip />
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"ഇഷ്‌ടാനുസൃതമാക്കലുകൾ തള്ളിക്കളയണോ?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"കോൺടാക്‌റ്റുകൾ നീക്കംചെയ്യുക"</string>
@@ -335,8 +334,7 @@
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"സന്ദേശങ്ങള്‍‌"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"നിങ്ങളുടെ ലിസ്‌റ്റ് ഓർഗനൈസുചെയ്യുക"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"ലേബൽ പ്രകാരം ഡ്യൂപ്ലിക്കേറ്റുകളും ഗ്രൂപ്പ് കോൺടാക്‌റ്റുകളും മായ്‌ക്കുക"</string>
-    <!-- no translation found for undo (1425165101664071422) -->
-    <skip />
+    <string name="undo" msgid="1425165101664071422">"പഴയപടിയാക്കുക"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"വാചകം പകർത്തി"</string>
     <string name="copy_text" msgid="3257145021583508761">"ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തുക"</string>
     <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g> എന്നതിൽ വിളിക്കുക"</string>
@@ -434,6 +432,8 @@
     <string name="ghostData_company" msgid="5414421120553765775">"കമ്പനി"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"ശീർഷകം"</string>
     <string name="label_notes" msgid="8337354953278341042">"കുറിപ്പുകള്‍"</string>
+    <!-- no translation found for label_custom_field (1994056912242214426) -->
+    <skip />
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"വെബ്‌സൈറ്റ്"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"ലേബലുകൾ"</string>
@@ -598,10 +598,7 @@
     <string name="description_search_video_call" msgid="5841525580339803272">"വീഡിയോ കോൾ ചെയ്യുക"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"ഇല്ലാതാക്കുക"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"എല്ലിപ്‌സിസ്"</string>
-    <!-- no translation found for callDurationSecondFormat (7067644915903528776) -->
-    <skip />
-    <!-- no translation found for callDurationMinuteFormat (4647095486747447674) -->
-    <skip />
-    <!-- no translation found for callDurationHourFormat (7392254193808506640) -->
-    <skip />
+    <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> സെ."</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> മി <xliff:g id="SECONDS">%s</xliff:g> സെ"</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> മണിക്കൂർ <xliff:g id="MINUTES_1">%s</xliff:g> മിനിറ്റ് <xliff:g id="SECONDS">%s</xliff:g> സെക്കൻഡ്"</string>
 </resources>
