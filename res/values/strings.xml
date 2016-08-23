@@ -950,7 +950,7 @@
 
     <!-- Action string for calling a custom phone number -->
     <string name="call_custom">Call
-        <xliff:g id="custom">%s</xliff:g>
+        <xliff:g id="custom_label" example="business">%s</xliff:g>
     </string>
     <!-- Action string for calling a home phone number -->
     <string name="call_home">Call home</string>
@@ -990,7 +990,7 @@
     <string name="call_work_pager">Call work pager</string>
     <!-- Action string for calling an assistant phone number -->
     <string name="call_assistant">Call
-        <xliff:g id="assistant">%s</xliff:g>
+        <xliff:g id="custom_label" example="assistant">%s</xliff:g>
     </string>
     <!-- Action string for calling a MMS phone number -->
     <string name="call_mms">Call MMS</string>
@@ -999,7 +999,7 @@
 
     <!-- Action string for sending an SMS to a custom phone number -->
     <string name="sms_custom">Text
-        <xliff:g id="custom">%s</xliff:g>
+        <xliff:g id="custom_label" example="business">%s</xliff:g>
     </string>
     <!-- Action string for sending an SMS to a home phone number -->
     <string name="sms_home">Text home</string>
@@ -1049,7 +1049,7 @@
     <!-- Description string for an action button to initiate a video call. -->
     <string name="description_video_call">Make video call</string>
 
-    <!-- Title of the confirmation dialog for clearing frequents. [CHAR LIMIT=37] -->
+    <!-- Title of the confirmation dialog for clearing frequents. [CHAR LIMIT=60] -->
     <string name="clearFrequentsConfirmation_title">Clear frequently contacted?</string>
 
     <!-- Confirmation dialog for clearing frequents. [CHAR LIMIT=NONE] -->
@@ -1058,7 +1058,7 @@
         scratch.
     </string>
 
-    <!-- Title of the "Clearing frequently contacted" progress-dialog [CHAR LIMIT=35] -->
+    <!-- Title of the "Clearing frequently contacted" progress-dialog [CHAR LIMIT=60] -->
     <string name="clearFrequentsProgress_title">Clearing frequently contacted\u2026</string>
 
     <!--  Used to display as default status when the contact is available for chat [CHAR LIMIT=19] -->
@@ -1202,10 +1202,10 @@
     <!-- Field title for the full postal address of a contact [CHAR LIMIT=64]-->
     <string name="postal_address">Address</string>
 
-    <!-- Hint text for the organization name when editing -->
+    <!-- Hint text for the organization name when editing a business/work contact. [CHAR LIMIT=64] -->
     <string name="ghostData_company">Company</string>
 
-    <!-- Hint text for the organization title when editing -->
+    <!-- Hint text for the organization title when editing a business/work contact. [CHAR LIMIT=64] -->
     <string name="ghostData_title">Title</string>
 
     <!-- The label describing the Notes field of a contact. This field allows free form text entry
@@ -1234,7 +1234,7 @@
     <!-- Action string for sending an email to an other email address -->
     <string name="email_other">Email</string>
     <!-- Action string for sending an email to a custom email address -->
-    <string name="email_custom">Email <xliff:g id="custom">%s</xliff:g></string>
+    <string name="email_custom">Email <xliff:g id="custom_label" example="business">%s</xliff:g></string>
 
     <!-- Generic action string for sending an email -->
     <string name="email">Email</string>
@@ -1261,7 +1261,7 @@
     <!-- Action string for viewing an other postal address -->
     <string name="map_other">View address</string>
     <!-- Action string for viewing a custom postal address -->
-    <string name="map_custom">View <xliff:g id="custom">%s</xliff:g> address</string>
+    <string name="map_custom">View <xliff:g id="custom_label" example="vacation">%s</xliff:g> address</string>
 
     <!-- Action string for starting an IM chat with the AIM protocol -->
     <string name="chat_aim">Chat using AIM</string>
@@ -1528,7 +1528,7 @@
     <!-- Message used when vCard import has failed. [CHAR LIMIT=40] -->
     <string name="vcard_import_failed">Couldn\'t import vCard.</string>
 
-    <!-- The "file name" displayed for vCards received directly via NFC [CHAR LIMIT=16] -->
+    <!-- The "file name" displayed for vCards received directly via NFC [CHAR LIMIT=50] -->
     <string name="nfc_vcard_file_name">Contact received over NFC</string>
 
     <!-- Dialog title shown when a user confirms whether he/she export Contact data. [CHAR LIMIT=32] -->
@@ -1648,7 +1648,7 @@
     <!-- Displayed at the top of the contacts showing the zero total number of contacts visible when "All contacts" is selected  [CHAR LIMIT=64]-->
     <string name="listTotalAllContactsZero">No contacts.</string>
 
-    <!--  The menu item to clear frequents [CHAR LIMIT=30] -->
+    <!--  The menu item to clear frequents [CHAR LIMIT=40] -->
     <string name="menu_clear_frequents">Clear frequents</string>
 
     <!-- Menu item to select SIM card -->
