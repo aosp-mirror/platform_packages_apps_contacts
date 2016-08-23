@@ -1371,7 +1371,7 @@
          [CHAR LIMIT=128] -->
     <string name="cancel_export_confirmation_message">Cancel export of <xliff:g id="filename" example="export.vcf">%s</xliff:g>?</string>
 
-    <!-- Title shown in a Dialog telling users cancel vCard import/export operation is failed. [CHAR LIMIT=40] -->
+    <!-- Title shown in a Dialog telling users cancel vCard import/export operation is failed. [CHAR LIMIT=80] -->
     <string name="cancel_vcard_import_or_export_failed">Couldn\'t cancel vCard import/export</string>
 
     <!-- The failed reason which should not be shown but it may in some buggy condition. [CHAR LIMIT=40] -->
