@@ -943,11 +943,6 @@
          The user can click on the action to rollback the modification-->
     <string name="undo">Undo</string>
 
-    <!-- Toast shown when text is copied to the clipboard [CHAR LIMIT=64] -->
-    <string name="toast_text_copied">Text copied</string>
-    <!-- Option displayed in context menu to copy long pressed item to clipboard [CHAR LIMIT=64] -->
-    <string name="copy_text">Copy to clipboard</string>
-
     <!-- Action string for calling a custom phone number -->
     <string name="call_custom">Call
         <xliff:g id="custom_label" example="business">%s</xliff:g>
@@ -1070,9 +1065,6 @@
     <!--  Used to display as default status when the contact is busy or Do not disturb for chat [CHAR LIMIT=19] -->
     <string name="status_busy">Busy</string>
 
-    <!-- Directory partition name (also exists in contacts) -->
-    <string name="contactsList">Contacts</string>
-
     <!-- The name of the invisible local contact directory -->
     <string name="local_invisible_directory">Other</string>
 
@@ -1085,22 +1077,8 @@
     <!-- The label in section header in the contact list for a local contacts [CHAR LIMIT=128] -->
     <string name="local_search_label">All contacts</string>
 
-    <!-- Title shown in the search result activity of contacts app while searching.  [CHAR LIMIT=20]
-         (also in contacts) -->
-    <string name="search_results_searching">Searching\u2026</string>
-
     <!-- Displayed at the top of search results indicating that more contacts were found than shown [CHAR LIMIT=64] -->
     <string name="foundTooManyContacts">More than <xliff:g id="count">%d</xliff:g> found.</string>
-
-    <!-- Displayed at the top of the contacts showing the zero total number of contacts found when "Only contacts with phones" not selected. [CHAR LIMIT=30]
-         (also in contacts) -->
-    <string name="listFoundAllContactsZero">No contacts</string>
-
-    <!-- Displayed at the top of the contacts showing the total number of contacts found when typing search query -->
-    <plurals name="searchFoundContacts">
-        <item quantity="one">1 found</item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> found</item>
-    </plurals>
 
     <!-- String describing the text for photo of a contact in a contacts list.
 
@@ -1589,9 +1567,6 @@
     <!-- Label of the "About" setting -->
     <string name="setting_about">About Contacts</string>
 
-    <!-- Title of the settings activity [CHAR LIMIT=64] -->
-    <string name="activity_title_settings">Settings</string>
-
     <!-- Action that shares visible contacts -->
     <string name="share_visible_contacts">Share visible contacts</string>
 
@@ -1707,7 +1682,7 @@
     <string name="call_with_a_note">Call with a note</string>
 
     <!-- Hint text shown in the call subject dialog. [CHAR LIMIT=255] -->
-    <string name="call_subject_hint">Type a note to send with call ...</string>
+    <string name="call_subject_hint">Type a note to send with call&#8230;</string>
 
     <!-- Button used to start a new call with the user entered subject. [CHAR LIMIT=32] -->
     <string name="send_and_call_button">SEND &amp; CALL</string>

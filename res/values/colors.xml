@@ -187,13 +187,8 @@
 
     <color name="letter_tile_font_color">#ffffff</color>
 
-    <!-- Background color of action bars. Ensure this stays in sync with packages/Telephony
-         actionbar_background_color. -->
-    <color name="actionbar_background_color">#0fc6dc</color>
     <!-- Color for icons in the actionbar -->
     <color name="actionbar_icon_color">#ffffff</color>
-    <!-- Darker version of the actionbar color. Used for the status bar and navigation bar colors. -->
-    <color name="actionbar_background_color_dark">#008aa1</color>
 
     <color name="tab_ripple_color">@color/tab_accent_color</color>
     <color name="tab_accent_color">#ffffff</color>
