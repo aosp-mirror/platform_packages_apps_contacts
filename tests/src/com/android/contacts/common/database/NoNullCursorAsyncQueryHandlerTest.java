@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.test.InstrumentationTestCase;
 import android.test.mock.MockContentProvider;
 import android.test.mock.MockContentResolver;
+import android.test.suitebuilder.annotation.SmallTest;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Unit test for {@link NoNullCursorAsyncQueryHandler}
  */
+@SmallTest
 public class NoNullCursorAsyncQueryHandlerTest extends InstrumentationTestCase {
 
     private MockContentResolver mMockContentResolver;

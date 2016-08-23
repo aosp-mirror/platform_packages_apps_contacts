@@ -18,6 +18,7 @@ package com.android.contacts.interactions;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -25,6 +26,7 @@ import java.util.Locale;
 /**
  * Tests for utility functions in {@link ContactInteractionUtil}
  */
+@SmallTest
 public class ContactInteractionUtilTest extends AndroidTestCase {
 
     private Locale mOriginalLocale;
