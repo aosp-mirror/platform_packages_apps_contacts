@@ -30,6 +30,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Data;
 import android.test.InstrumentationTestCase;
+import android.test.suitebuilder.annotation.MediumTest;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
 
@@ -39,6 +40,7 @@ import java.util.List;
 /**
  * Tests of GroupsDaoImpl that perform DB operations directly against CP2
  */
+@MediumTest
 public class GroupsDaoIntegrationTests extends InstrumentationTestCase {
 
     private ContentResolver mResolver;
