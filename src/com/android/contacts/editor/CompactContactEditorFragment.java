@@ -98,7 +98,9 @@ public class CompactContactEditorFragment extends ContactEditorBaseFragment impl
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
         editorView.setState(mState, getMaterialPalette(), mViewIdGenerator, mPhotoId,
-                mHasNewContact, mIsUserProfile, mAccountWithDataSet);
+                mHasNewContact, mIsUserProfile, mAccountWithDataSet,
+                mRawContactIdToDisplayAlone, mRawContactDisplayAloneIsReadOnly,
+                isEditingReadOnlyRawContactWithNewContact());
         if (mHasNewContact && !TextUtils.isEmpty(mReadOnlyDisplayName)) {
             mReadOnlyNameEditorView = editorView.getPrimaryNameEditorView();
             editorView.maybeSetReadOnlyDisplayNameAsPrimary(mReadOnlyDisplayName);
