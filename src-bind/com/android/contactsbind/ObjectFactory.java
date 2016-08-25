@@ -16,6 +16,8 @@ package com.android.contactsbind;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.preference.PreferenceManager;
 import com.android.contactsbind.search.AutocompleteHelper;
+import com.android.contacts.common.util.DeviceAccountFilter;
+import com.android.contacts.common.util.DeviceAccountPresentationValues;
 
 import android.content.Context;
 
@@ -32,5 +34,13 @@ public class ObjectFactory {
 
     public static AutocompleteHelper getAutocompleteHelper(Context context) {
         return null;
+    }
+
+    public static DeviceAccountPresentationValues createDeviceAccountPresentationValues(Context context) {
+        return new DeviceAccountPresentationValues.Default(context);
+    }
+
+    public static DeviceAccountFilter getDeviceAccountFilter(Context context) {
+        return DeviceAccountFilter.ONLY_NULL;
     }
 }

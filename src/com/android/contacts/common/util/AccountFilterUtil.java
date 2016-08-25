@@ -33,7 +33,6 @@ import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;

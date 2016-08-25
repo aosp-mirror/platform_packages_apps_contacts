@@ -59,6 +59,7 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferenceActivity;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
+import com.android.contacts.common.util.DeviceAccountPresentationValues;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.ContactEditorFragment;
@@ -74,6 +75,7 @@ import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contactsbind.Assistants;
 import com.android.contactsbind.HelpUtils;
+import com.android.contactsbind.ObjectFactory;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -171,6 +173,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     // The account the new group will be created under.
     private AccountWithDataSet mNewGroupAccount;
+    private DeviceAccountPresentationValues mDeviceAccountPresentationValues;
 
     private int mPositionOfLastGroup;
 
@@ -182,6 +185,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         mContactListFilterController.checkFilterValidity(false);
 
         super.setContentView(R.layout.contacts_drawer_activity);
+
+        mDeviceAccountPresentationValues = ObjectFactory.createDeviceAccountPresentationValues(this);
 
         // Set up the action bar.
         mToolbar = getView(R.id.toolbar);
@@ -473,12 +478,12 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
         int positionOfLastFilter = mPositionOfLastGroup + GAP_BETWEEN_TWO_MENU_GROUPS;
 
+        mDeviceAccountPresentationValues.setFilters(accountFilterItems);
+
         for (int i = 0; i < accountFilterItems.size(); i++) {
             positionOfLastFilter++;
             final ContactListFilter filter = accountFilterItems.get(i);
-            final String menuName =
-                    filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS
-                            ? getString(R.string.account_phone) : filter.accountName;
+            final CharSequence menuName = mDeviceAccountPresentationValues.getLabel(i);
             final MenuItem menuItem = subMenu.add(R.id.nav_filters_items, Menu.NONE,
                     positionOfLastFilter, menuName);
             mFilterMenuMap.put(filter, menuItem);
@@ -502,7 +507,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     return true;
                 }
             });
-            menuItem.setIcon(filter.icon);
+            menuItem.setIcon(mDeviceAccountPresentationValues.getIcon(i));
             // Get rid of the default menu item overlay and show original account icons.
             menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
             // Create a dummy action view to attach extra hidden content description to the menuItem

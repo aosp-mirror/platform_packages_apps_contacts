@@ -1115,6 +1115,11 @@
          and will not be synced. [CHAR LIMIT=20]  -->
     <string name="account_phone">Device</string>
 
+    <!-- Title for data source when creating or editing a contact that is stored on the
+         devices SIM card. This contact will only exist on the phone and will not be synced.
+         [CHAR LIMIT=20]  -->
+    <string name="account_sim">SIM</string>
+
     <!-- Header that expands to list all name types when editing a structured name of a contact
          [CHAR LIMIT=20] -->
     <string name="nameLabelsGroup">Name</string>
