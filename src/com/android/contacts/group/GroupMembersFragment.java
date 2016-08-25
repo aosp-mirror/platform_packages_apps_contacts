@@ -46,7 +46,7 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
 import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.list.ContactsSectionIndexer;
-import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
+import com.android.contacts.common.list.MultiSelectEntryContactListAdapter.DeleteContactListener;
 import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.ListEvent.ListType;
 import com.android.contacts.common.logging.Logger;
@@ -68,10 +68,7 @@ import java.util.List;
 import java.util.Set;
 
 /** Displays the members of a group. */
-public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupMembersAdapter>
-        implements ActionBarAdapter.Listener,
-        MultiSelectContactsListFragment.OnCheckBoxListActionListener,
-        MultiSelectEntryContactListAdapter.DeleteContactListener {
+public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupMembersAdapter> {
 
     private static final String TAG = "GroupMembers";
 
@@ -363,62 +360,63 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         }
     }
 
-    // ActionBarAdapter callbacks
+    private final ActionBarAdapter.Listener mActionBarListener = new ActionBarAdapter.Listener() {
+        @Override
+        public void onAction(int action) {
+            switch (action) {
+                case ActionBarAdapter.Listener.Action.START_SELECTION_MODE:
+                    if (mIsEditMode) {
+                        displayDeleteButtons(true);
+                        mActionBarAdapter.setActionBarTitle(getString(R.string.title_edit_group));
+                    } else {
+                        displayCheckBoxes(true);
+                    }
+                    getActivity().invalidateOptionsMenu();
+                    break;
+                case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
+                    mActionBarAdapter.setSearchMode(false);
+                    if (mIsEditMode) {
+                        displayDeleteButtons(false);
+                    } else {
+                        displayCheckBoxes(false);
+                    }
+                    getActivity().invalidateOptionsMenu();
+                    break;
+                case ActionBarAdapter.Listener.Action.BEGIN_STOPPING_SEARCH_AND_SELECTION_MODE:
+                    break;
+            }
+        }
 
-    @Override
-    public void onAction(int action) {
-        switch (action) {
-            case ActionBarAdapter.Listener.Action.START_SELECTION_MODE:
-                if (mIsEditMode) {
-                    displayDeleteButtons(true);
-                    getActionBarAdapter().setActionBarTitle(getString(R.string.title_edit_group));
-                } else {
-                    displayCheckBoxes(true);
+        @Override
+        public void onUpButtonPressed() {
+            getActivity().onBackPressed();
+        }
+    };
+
+    private final OnCheckBoxListActionListener mCheckBoxListener =
+            new OnCheckBoxListActionListener() {
+                @Override
+                public void onStartDisplayingCheckBoxes() {
+                    mActionBarAdapter.setSelectionMode(true);
                 }
-                getActivity().invalidateOptionsMenu();
-                break;
-            case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
-                getActionBarAdapter().setSearchMode(false);
-                if (mIsEditMode) {
-                    displayDeleteButtons(false);
-                } else {
-                    displayCheckBoxes(false);
+
+                @Override
+                public void onSelectedContactIdsChanged() {
+                    if (mActionBarAdapter == null) {
+                        return;
+                    }
+                    if (mIsEditMode) {
+                        mActionBarAdapter.setActionBarTitle(getString(R.string.title_edit_group));
+                    } else {
+                        mActionBarAdapter.setSelectionCount(getSelectedContactIds().size());
+                    }
                 }
-                getActivity().invalidateOptionsMenu();
-                break;
-            case ActionBarAdapter.Listener.Action.BEGIN_STOPPING_SEARCH_AND_SELECTION_MODE:
-                break;
-        }
-    }
 
-    @Override
-    public void onUpButtonPressed() {
-        getActivity().onBackPressed();
-    }
-
-    // MultiSelect checkbox callbacks
-
-    @Override
-    public void onStartDisplayingCheckBoxes() {
-        mActionBarAdapter.setSelectionMode(true);
-    }
-
-    @Override
-    public void onSelectedContactIdsChanged() {
-        if (mActionBarAdapter == null) {
-            return;
-        }
-        if (mIsEditMode) {
-            mActionBarAdapter.setActionBarTitle(getString(R.string.title_edit_group));
-        } else {
-            mActionBarAdapter.setSelectionCount(getSelectedContactIds().size());
-        }
-    }
-
-    @Override
-    public void onStopDisplayingCheckBoxes() {
-        mActionBarAdapter.setSelectionMode(false);
-    }
+                @Override
+                public void onStopDisplayingCheckBoxes() {
+                    mActionBarAdapter.setSelectionMode(false);
+                }
+            };
 
     private void logListEvent() {
         Logger.logListEvent(
@@ -447,8 +445,8 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         // This is the first safe place in the fragment lifecycle to know getActivity() will not
         // be null (i.e. it can be null in onCreateView() of this fragment)
         final GroupMembersActivity activity = (GroupMembersActivity) getActivity();
-        mActionBarAdapter = new ActionBarAdapter(activity, this, activity.getSupportActionBar(),
-                activity.getToolbar(), R.string.enter_contact_name);
+        mActionBarAdapter = new ActionBarAdapter(activity, mActionBarListener,
+                activity.getSupportActionBar(), activity.getToolbar(), R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
         final ContactsRequest contactsRequest = new ContactsRequest();
         contactsRequest.setActionCode(ContactsRequest.ACTION_GROUP);
@@ -489,9 +487,15 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             mGroupUri = savedState.getParcelable(KEY_GROUP_URI);
             mGroupMetadata = savedState.getParcelable(KEY_GROUP_METADATA);
         }
-        if (mGroupMetadata != null && mGroupMetadata.editable) {
-            setCheckBoxListListener(this);
-        }
+        maybeAttachCheckBoxListener();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Re-register the listener, which may have been cleared when onSaveInstanceState was
+        // called. See also: onSaveInstanceState
+        mActionBarAdapter.setListener(mActionBarListener);
     }
 
     @Override
@@ -537,6 +541,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (mActionBarAdapter != null) {
+            mActionBarAdapter.setListener(null);
             mActionBarAdapter.onSaveInstanceState(outState);
         }
         outState.putBoolean(KEY_IS_EDIT_MODE, mIsEditMode);
@@ -561,12 +566,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     private void maybeAttachCheckBoxListener() {
         // Don't attach the multi select check box listener if we can't edit the group
         if (mGroupMetadata != null && mGroupMetadata.editable) {
-            try {
-                setCheckBoxListListener(this);
-            } catch (ClassCastException e) {
-                throw new ClassCastException(getActivity() + " must implement " +
-                        OnCheckBoxListActionListener.class.getSimpleName());
-            }
+            setCheckBoxListListener(mCheckBoxListener);
         }
     }
 
@@ -575,7 +575,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         final GroupMembersAdapter adapter = new GroupMembersAdapter(getContext());
         adapter.setSectionHeaderDisplayEnabled(true);
         adapter.setDisplayPhotos(true);
-        adapter.setDeleteContactListener(this);
+        adapter.setDeleteContactListener(new DeletionListener());
         return adapter;
     }
 
@@ -647,17 +647,27 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         return super.onItemLongClick(position, id);
     }
 
-    @Override
-    public void onContactDeleteClicked(int position) {
-        final long contactId = getAdapter().getContactId(position);
-        final long[] contactIds = new long[1];
-        contactIds[0] = contactId;
-        new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_REMOVE,
-                getContext(), contactIds, mGroupMetadata.groupId, mGroupMetadata.accountName,
-                mGroupMetadata.accountType).execute();
+    private final class DeletionListener implements DeleteContactListener {
+        @Override
+        public void onContactDeleteClicked(int position) {
+            final long contactId = getAdapter().getContactId(position);
+            final long[] contactIds = new long[1];
+            contactIds[0] = contactId;
+            new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_REMOVE,
+                    getContext(), contactIds, mGroupMetadata.groupId, mGroupMetadata.accountName,
+                    mGroupMetadata.accountType).execute();
+        }
     }
 
     public GroupMetadata getGroupMetadata() {
         return mGroupMetadata;
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mActionBarAdapter != null) {
+            mActionBarAdapter.setListener(null);
+        }
+        super.onDestroy();
     }
 }
