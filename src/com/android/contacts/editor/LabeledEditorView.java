@@ -303,13 +303,13 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
                             mEntry.getAsString(mType.customColumn),
                             getContext().getString(mKind.titleRes)));
         } else {
-            if (mType != null) {
+            if (mType != null && mType.labelRes > 0 && mKind.titleRes > 0) {
                 mLabel.setSelection(mEditTypeAdapter.getPosition(mType));
                 mDeleteContainer.setContentDescription(
                         getContext().getString(R.string.editor_delete_view_description,
                                 getContext().getString(mType.labelRes),
                                 getContext().getString(mKind.titleRes)));
-            } else {
+            } else if (mKind.titleRes > 0) {
                 mDeleteContainer.setContentDescription(
                         getContext().getString(R.string.editor_delete_view_description_short,
                                 getContext().getString(mKind.titleRes)));
@@ -409,8 +409,9 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
         final boolean hasTypes = RawContactModifier.hasEditTypes(kind);
         setupLabelButton(hasTypes);
         mLabel.setEnabled(!readOnly && isEnabled());
-        mLabel.setContentDescription(getContext().getResources().getString(mKind.titleRes));
-
+        if (mKind.titleRes > 0) {
+            mLabel.setContentDescription(getContext().getResources().getString(mKind.titleRes));
+        }
         mType = RawContactModifier.getCurrentType(entry, kind);
         rebuildLabel();
     }
