@@ -254,4 +254,7 @@
 
     <!-- Primary text color in Contacts app -->
     <color name="contacts_text_color">#333333</color>
+
+    <!-- tint color for device account icons -->
+    <color name="device_account_tint_color">#7f7f7f</color>
 </resources>

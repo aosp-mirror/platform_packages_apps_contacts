@@ -16,10 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.R;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.GoogleAccountType;
-
 import android.content.Context;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -27,7 +23,11 @@ import android.os.Build;
 import android.provider.Settings;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
-import android.util.Pair;
+
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.R;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 
 /**
  * Tests {@link EditorUiUtils}.
@@ -42,6 +42,11 @@ public class EditorUiUtilsTest extends AndroidTestCase {
     private static final String GOOGLE_DISPLAY_LABEL = "Google";
 
     private static final String RINGTONE = "content://media/external/audio/media/31";
+
+    private static final AccountWithDataSet ACCOUNT =
+            new AccountWithDataSet(ACCOUNT_NAME, "some.account.type", null);
+    private static final AccountWithDataSet GOOGLE_ACCOUNT =
+            new AccountWithDataSet(ACCOUNT_NAME, "com.google", null);
 
     private static final class MockAccountType extends AccountType {
 
@@ -67,86 +72,65 @@ public class EditorUiUtilsTest extends AndroidTestCase {
         }
     }
 
-    public void testGetProfileAccountInfo_AccountName() {
-        final Pair pair = EditorUiUtils.getLocalAccountInfo(getContext(),
-                ACCOUNT_NAME, new MockAccountType(DISPLAY_LABEL));
+    public void testGetProfileAccountInfo_NonLocalAccount() {
+        final AccountDisplayInfo account = new AccountDisplayInfo(ACCOUNT, ACCOUNT_NAME,
+                DISPLAY_LABEL, /*icon*/ null, /*isDeviceAccount*/ false);
 
-        assertNotNull(pair);
-        assertEquals(ACCOUNT_NAME, pair.first);
-        assertEquals(getContext().getString(R.string.external_profile_title, DISPLAY_LABEL),
-                pair.second); // My LunkedIn profile
+        final String label = EditorUiUtils.getAccountHeaderLabelForMyProfile(getContext(),
+                account);
+
+        // My LunkedIn profile
+        final String expected = getContext()
+                .getString(R.string.external_profile_title, DISPLAY_LABEL);
+        assertEquals(expected, label);
     }
 
-    public void testGetProfileAccountInfo_NoAccountName() {
-        final Pair pair = EditorUiUtils.getLocalAccountInfo(getContext(),
-                /* accountName =*/ null, new MockAccountType(DISPLAY_LABEL));
 
-        assertNotNull(pair);
-        assertNull(pair.first);
-        assertEquals(getContext().getString(R.string.local_profile_title),
-                pair.second); // "My local profile
+    public void testGetProfileAccountInfo_DeviceLocalAccount() {
+        final AccountDisplayInfo account = new AccountDisplayInfo(ACCOUNT, "Device",
+                "Device", null, true);
+
+        final String label = EditorUiUtils.getAccountHeaderLabelForMyProfile(getContext(),
+                account);
+
+        // "My local profile"
+        final String expected = getContext().getString(R.string.local_profile_title);
+        assertEquals(expected, label);
     }
 
-    public void testGetAccountInfo_AccountName_DisplayLabel() {
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(),
-                ACCOUNT_NAME, new MockAccountType(DISPLAY_LABEL));
+    public void testGetAccountInfo_AccountType_NonGoogle() {
+        final AccountDisplayInfo account = new AccountDisplayInfo(ACCOUNT, ACCOUNT_NAME,
+                DISPLAY_LABEL, /*icon*/ null, /*isDeviceAccount*/ false);
 
-        assertNotNull(pair);
-        assertEquals(getContext().getString(R.string.from_account_format, ACCOUNT_NAME),
-                pair.first); // somebody@lunkedin.com
-        assertEquals(getContext().getString(R.string.account_type_format, DISPLAY_LABEL),
-                pair.second); // LunkedIn Contact
+        final String label = EditorUiUtils.getAccountTypeHeaderLabel(getContext(), account);
+
+        // LunkedIn Contact
+        final String expected = getContext().getString(R.string.account_type_format, DISPLAY_LABEL);
+        assertEquals(expected, label);
     }
 
-    public void testGetAccountInfo_AccountName_DisplayLabel_GoogleAccountType() {
-        final AccountType accountType = new MockAccountType(GOOGLE_DISPLAY_LABEL);
-        accountType.accountType = GoogleAccountType.ACCOUNT_TYPE;
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(),
-                GOOGLE_ACCOUNT_NAME, accountType);
+    public void testGetAccountInfo_AccountType_Google() {
+        final AccountDisplayInfo account = new AccountDisplayInfo(GOOGLE_ACCOUNT, ACCOUNT_NAME,
+                GOOGLE_DISPLAY_LABEL, /*icon*/ null, /*isDeviceAccount*/ false);
 
-        assertNotNull(pair);
-        assertEquals(getContext().getString(R.string.from_account_format, GOOGLE_ACCOUNT_NAME),
-                pair.first); // somebody@gmail.com
-        assertEquals(
-                getContext().getString(R.string.google_account_type_format, GOOGLE_DISPLAY_LABEL),
-                pair.second); // Google Account
+        final String label = EditorUiUtils.getAccountTypeHeaderLabel(getContext(), account);
+
+        // Google Account
+        final String expected = getContext().getString(R.string.google_account_type_format,
+                GOOGLE_DISPLAY_LABEL);
+        assertEquals(expected, label);
     }
 
-    public void testGetAccountInfo_AccountName_NoDisplayLabel() {
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(),
-                ACCOUNT_NAME, new MockAccountType(/* displayLabel =*/ null));
+  public void testGetAccountInfo_AccountType_DeviceAccount() {
+      final AccountWithDataSet deviceAccount = AccountWithDataSet.getLocalAccount();
+      final AccountDisplayInfo account = new AccountDisplayInfo(deviceAccount, "Device",
+              "Device", /*icon*/ null, /*isDeviceAccount*/ true);
 
-        assertNotNull(pair);
-        assertEquals(getContext().getString(R.string.from_account_format, ACCOUNT_NAME),
-                pair.first); // somebody@lunkedin.com
-        assertEquals(getContext().getString(R.string.account_phone), pair.second); // Device
-    }
+      final String label = EditorUiUtils.getAccountTypeHeaderLabel(getContext(), account);
 
-    public void testGetAccountInfo_NoAccountName_DisplayLabel() {
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(),
-                /* accountName =*/ null, new MockAccountType(DISPLAY_LABEL));
-
-        assertNotNull(pair);
-        assertNull(pair.first);
-        assertEquals(getContext().getString(R.string.account_type_format, DISPLAY_LABEL),
-                pair.second); // LunkedIn contact
-
-        final Pair pairDevice = EditorUiUtils.getAccountInfo(
-                getContext(),
-                /* accountName =*/ null,
-                new MockAccountType(getContext().getString(R.string.account_phone)));
-        assertNotNull(pairDevice);
-        assertNull(pairDevice.first);
-        assertEquals(getContext().getString(R.string.account_phone), pairDevice.second); // Device
-    }
-
-    public void testGetAccountInfo_NoAccountName_NoDisplayLabel() {
-        final Pair pair = EditorUiUtils.getAccountInfo(getContext(),
-                /* accountName =*/ null, new MockAccountType(/* displayLabel =*/ null));
-
-        assertNotNull(pair);
-        assertNull(pair.first);
-        assertEquals(getContext().getString(R.string.account_phone), pair.second); // Device
+      // "Device"
+      final String expected = getContext().getString(R.string.account_phone);
+      assertEquals(expected, label);
     }
 
     public void testGetRingtongStrFromUri_lessThanOrEqualsToM() {
@@ -183,6 +167,10 @@ public class EditorUiUtilsTest extends AndroidTestCase {
         assertNull(EditorUiUtils.getRingtoneUriFromString("", currentVersion));
         assertEquals(Uri.parse(RINGTONE), EditorUiUtils.getRingtoneUriFromString(RINGTONE,
                 currentVersion));
+    }
+
+    private AccountDisplayInfo createDisplayableAccount() {
+        return new AccountDisplayInfo(ACCOUNT, ACCOUNT_NAME, DISPLAY_LABEL, null, false);
     }
 
 }

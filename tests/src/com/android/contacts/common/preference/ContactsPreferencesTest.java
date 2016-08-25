@@ -142,9 +142,11 @@ public class ContactsPreferencesTest extends InstrumentationTestCase {
                 .thenReturn(new AccountWithDataSet("name1", "type1", "dataset1").stringify(),
                         new AccountWithDataSet("name2", "type2", "dataset2").stringify());
 
-        Assert.assertEquals("name1", mContactsPreferences.getDefaultAccount());
+        Assert.assertEquals(new AccountWithDataSet("name1", "type1", "dataset1"),
+                mContactsPreferences.getDefaultAccount());
         mContactsPreferences.refreshValue(ACCOUNT_KEY);
 
-        Assert.assertEquals("name2", mContactsPreferences.getDefaultAccount());
+        Assert.assertEquals(new AccountWithDataSet("name2", "type2", "dataset2"),
+                mContactsPreferences.getDefaultAccount());
     }
 }

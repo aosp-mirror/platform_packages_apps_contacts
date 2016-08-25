@@ -58,6 +58,7 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
+import com.android.contacts.activities.CompactContactEditorActivity;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
@@ -580,6 +581,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 mHasNewContact = true;
                 if (mAccountWithDataSet != null) {
                     createContact(mAccountWithDataSet);
+                } else if (mIntentExtras != null && mIntentExtras.getBoolean(
+                        ContactEditorBaseActivity.EXTRA_SAVE_TO_DEVICE_FLAG, false)) {
+                    createContact(null);
                 } else {
                     // No Account specified. Let the user choose
                     // Load Accounts async so that we can present them

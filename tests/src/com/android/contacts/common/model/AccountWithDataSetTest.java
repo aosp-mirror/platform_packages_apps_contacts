@@ -58,6 +58,14 @@ public class AccountWithDataSetTest extends AndroidTestCase {
         MoreAsserts.assertNotEqual(a3, a2r);
     }
 
+    public void testStringifyAndUnstringifyLocalAccount() {
+        final String stringified = AccountWithDataSet.getLocalAccount().stringify();
+
+        final AccountWithDataSet restored = AccountWithDataSet.unstringify(stringified);
+
+        assertEquals(AccountWithDataSet.getLocalAccount(), restored);
+    }
+
     public void testStringifyListAndUnstringify() {
         AccountWithDataSet a1 = new AccountWithDataSet("name1", "typeA", null);
         AccountWithDataSet a2 = new AccountWithDataSet("name2", "typeB", null);

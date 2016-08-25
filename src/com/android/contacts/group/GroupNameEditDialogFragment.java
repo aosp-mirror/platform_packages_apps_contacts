@@ -245,8 +245,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment implements
         final String callbackAction = getArguments().getString(ARG_CALLBACK_ACTION);
         final Intent serviceIntent;
         if (mIsInsert) {
-            serviceIntent = ContactSaveService.createNewGroupIntent(getActivity(),
-                    new AccountWithDataSet(mAccount.name, mAccount.type, mAccount.dataSet),
+            serviceIntent = ContactSaveService.createNewGroupIntent(getActivity(), mAccount,
                     name, null, getActivity().getClass(), callbackAction);
         } else {
             serviceIntent = ContactSaveService.createGroupRenameIntent(getActivity(), mGroupId,

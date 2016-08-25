@@ -25,6 +25,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
 import com.android.contacts.common.logging.ListEvent;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 
 /**
  * Contact list filter parameters.
@@ -328,6 +329,17 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             uriBuilder.appendQueryParameter(RawContacts.DATA_SET, dataSet);
         }
         return uriBuilder;
+    }
+
+    public AccountWithDataSet toAccountWithDataSet() {
+        if (filterType == FILTER_TYPE_ACCOUNT) {
+            return new AccountWithDataSet(accountName, accountType, dataSet);
+        } else if (filterType == FILTER_TYPE_DEVICE_CONTACTS) {
+            return AccountWithDataSet.getLocalAccount();
+        } else {
+            throw new IllegalStateException("Cannot create Account from filter type " +
+                    filterTypeToString(filterType));
+        }
     }
 
     public String toDebugString() {

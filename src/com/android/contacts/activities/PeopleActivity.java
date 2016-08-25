@@ -37,7 +37,6 @@ import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.ProviderStatus;
 import android.provider.ContactsContract.QuickContact;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
@@ -59,6 +58,8 @@ import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
@@ -78,7 +79,6 @@ import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
@@ -1441,19 +1441,24 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
     public void onFabClicked() {
         final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-        final Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            final ContactListFilter filter = mContactListFilterController.getFilter();
-            // If we are in account view, we pass the account explicitly in order to
-            // create contact in the account. This will prevent the default account dialog
-            // from being displayed.
-            if (!isAllContactsFilter(filter) && !isDeviceContactsFilter(filter)) {
-                final Account account = new Account(filter.accountName, filter.accountType);
-                extras.putParcelable(Intents.Insert.EXTRA_ACCOUNT, account);
-                extras.putString(Intents.Insert.EXTRA_DATA_SET, filter.dataSet);
-            }
-            intent.putExtras(extras);
+        // Copy our extras into the new intent.
+        intent.putExtras(getIntent());
+
+        final ContactListFilter filter = mContactListFilterController.getFilter();
+        // If we are in account view, we pass the account explicitly in order to
+        // create contact in the account. This will prevent the default account dialog
+        // from being displayed.
+        if (!isAllContactsFilter(filter) && filter.accountName != null &&
+                filter.accountType != null) {
+            final Account account = new Account(filter.accountName, filter.accountType);
+            intent.putExtra(Intents.Insert.EXTRA_ACCOUNT, account);
+            intent.putExtra(Intents.Insert.EXTRA_DATA_SET, filter.dataSet);
+        } else if (isDeviceContactsFilter(filter)) {
+            // It's OK to add this even though it's an implicit intent. If a different app
+            // receives the intent it should just ignore the flag.
+            intent.putExtra(CompactContactEditorActivity.EXTRA_SAVE_TO_DEVICE_FLAG, true);
         }
+
         try {
             ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this, intent);
         } catch (ActivityNotFoundException ex) {
@@ -1502,10 +1507,15 @@ public class PeopleActivity extends ContactsDrawerActivity implements
     }
 
     private String getActionBarTitleForAccount(ContactListFilter filter) {
-        if (GoogleAccountType.ACCOUNT_TYPE.equals(filter.accountType)) {
+        final AccountDisplayInfoFactory factory =
+                AccountDisplayInfoFactory.forWritableAccounts(this);
+        final AccountDisplayInfo displayableAccount = factory.getAccountDisplayInfoFor(filter);
+        if (displayableAccount.hasGoogleAccountType()) {
             return getString(R.string.title_from_google);
+        } else {
+            return displayableAccount.withFormattedName(this, R.string.title_from_other_accounts)
+                    .getNameLabel().toString();
         }
-        return getString(R.string.title_from_other_accounts, filter.accountName);
     }
 
     // Persist filter only when it's of the type FILTER_TYPE_ALL_ACCOUNTS.

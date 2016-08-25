@@ -13,19 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.contacts.common.util;
+package com.android.contacts.common.model.account;
 
-/**
- * Reports whether a value from RawContacts.ACCOUNT_TYPE should be considered a "Device"
- * account
- */
-public interface DeviceAccountFilter {
-    boolean isDeviceAccountType(String accountType);
+import android.content.Context;
 
-    public static DeviceAccountFilter ONLY_NULL = new DeviceAccountFilter() {
-        @Override
-        public boolean isDeviceAccountType(String accountType) {
-            return accountType == null;
-        }
-    };
+public class DeviceLocalAccountType extends FallbackAccountType {
+
+    private final boolean mGroupsEditable;
+
+    public DeviceLocalAccountType(Context context, boolean groupsEditable) {
+        super(context);
+        mGroupsEditable = groupsEditable;
+    }
+
+    public DeviceLocalAccountType(Context context) {
+        this(context, false);
+    }
+
+    @Override
+    public boolean isGroupMembershipEditable() {
+        return mGroupsEditable;
+    }
 }

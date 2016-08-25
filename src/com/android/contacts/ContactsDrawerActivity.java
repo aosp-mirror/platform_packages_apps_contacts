@@ -54,12 +54,10 @@ import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferenceActivity;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.common.util.DeviceAccountPresentationValues;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.ContactEditorFragment;
@@ -72,10 +70,11 @@ import com.android.contacts.group.GroupsFragment.GroupsListener;
 import com.android.contacts.interactions.AccountFiltersFragment;
 import com.android.contacts.interactions.AccountFiltersFragment.AccountFiltersListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contactsbind.Assistants;
 import com.android.contactsbind.HelpUtils;
-import com.android.contactsbind.ObjectFactory;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -173,7 +172,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     // The account the new group will be created under.
     private AccountWithDataSet mNewGroupAccount;
-    private DeviceAccountPresentationValues mDeviceAccountPresentationValues;
 
     private int mPositionOfLastGroup;
 
@@ -185,8 +183,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         mContactListFilterController.checkFilterValidity(false);
 
         super.setContentView(R.layout.contacts_drawer_activity);
-
-        mDeviceAccountPresentationValues = ObjectFactory.createDeviceAccountPresentationValues(this);
 
         // Set up the action bar.
         mToolbar = getView(R.id.toolbar);
@@ -461,6 +457,9 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     @Override
     public void onFiltersLoaded(List<ContactListFilter> accountFilterItems) {
+        final AccountDisplayInfoFactory accountDisplayFactory = AccountDisplayInfoFactory.
+                fromListFilters(this, accountFilterItems);
+
         final Menu menu = mNavigationView.getMenu();
         final MenuItem filtersMenuItem = menu.findItem(R.id.nav_filters);
         final SubMenu subMenu = filtersMenuItem.getSubMenu();
@@ -473,12 +472,12 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
         int positionOfLastFilter = mPositionOfLastGroup + GAP_BETWEEN_TWO_MENU_GROUPS;
 
-        mDeviceAccountPresentationValues.setFilters(accountFilterItems);
-
         for (int i = 0; i < accountFilterItems.size(); i++) {
             positionOfLastFilter++;
             final ContactListFilter filter = accountFilterItems.get(i);
-            final CharSequence menuName = mDeviceAccountPresentationValues.getLabel(i);
+            final AccountDisplayInfo displayableAccount =
+                    accountDisplayFactory.getAccountDisplayInfoFor(filter);
+            final CharSequence menuName = displayableAccount.getNameLabel();
             final MenuItem menuItem = subMenu.add(R.id.nav_filters_items, Menu.NONE,
                     positionOfLastFilter, menuName);
             mFilterMenuMap.put(filter, menuItem);
@@ -502,17 +501,15 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     return true;
                 }
             });
-            menuItem.setIcon(mDeviceAccountPresentationValues.getIcon(i));
+            menuItem.setIcon(displayableAccount.getIcon());
             // Get rid of the default menu item overlay and show original account icons.
             menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
             // Create a dummy action view to attach extra hidden content description to the menuItem
             // for Talkback. We want Talkback to read out the account type but not have it be part
             // of the menuItem title.
-            final AccountType account = AccountTypeManager.getInstance(this)
-                    .getAccountType(filter.accountType, filter.dataSet);
             LinearLayout view = (LinearLayout) LayoutInflater.from(this)
                     .inflate(R.layout.account_type_info, null);
-            view.setContentDescription(account.getDisplayLabel(this));
+            view.setContentDescription(displayableAccount.getTypeLabel());
             view.setVisibility(View.VISIBLE);
             menuItem.setActionView(view);
         }

@@ -29,6 +29,7 @@ import android.content.SyncAdapterType;
 import android.content.SyncStatusObserver;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -37,6 +38,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
 import android.provider.ContactsContract;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TimingLogger;
@@ -53,7 +55,7 @@ import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.model.account.SamsungAccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.Constants;
-import com.android.contacts.common.util.DeviceAccountFilter;
+import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 import com.android.contactsbind.ObjectFactory;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
@@ -65,12 +67,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import static com.android.contacts.common.util.DeviceLocalAccountTypeFactory.Util.isLocalAccountType;
 
 /**
  * Singleton holder for all parsed {@link AccountType} available on the
@@ -87,11 +90,16 @@ public abstract class AccountTypeManager {
      * the available authenticators. This method can safely be called from the UI thread.
      */
     public static AccountTypeManager getInstance(Context context) {
+        if (!hasRequiredPermissions(context)) {
+            // Hopefully any component that depends on the values returned by this class
+            // will be restarted if the permissions change.
+            return EMPTY;
+        }
         synchronized (mInitializationLock) {
             if (mAccountTypeManager == null) {
                 context = context.getApplicationContext();
                 mAccountTypeManager = new AccountTypeManagerImpl(context,
-                        ObjectFactory.getDeviceAccountFilter(context));
+                        ObjectFactory.getDeviceLocalAccountTypeFactory(context));
             }
         }
         return mAccountTypeManager;
@@ -109,6 +117,37 @@ public abstract class AccountTypeManager {
             mAccountTypeManager = mockManager;
         }
     }
+
+    private static final AccountTypeManager EMPTY = new AccountTypeManager() {
+        @Override
+        public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
+            return Collections.emptyList();
+        }
+
+        @Override
+        public void sortAccounts(AccountWithDataSet defaultAccount) {
+        }
+
+        @Override
+        public List<AccountWithDataSet> getGroupWritableAccounts() {
+            return Collections.emptyList();
+        }
+
+        @Override
+        public AccountType getAccountType(AccountTypeWithDataSet accountTypeWithDataSet) {
+            return null;
+        }
+
+        @Override
+        public Map<AccountTypeWithDataSet, AccountType> getUsableInvitableAccountTypes() {
+            return null;
+        }
+
+        @Override
+        public List<AccountType> getAccountTypes(boolean contactWritableOnly) {
+            return Collections.emptyList();
+        }
+    };
 
     /**
      * Returns the list of all accounts (if contactWritableOnly is false) or just the list of
@@ -183,6 +222,15 @@ public abstract class AccountTypeManager {
         }
         return false;
     }
+
+    private static boolean hasRequiredPermissions(Context context) {
+        final boolean canGetAccounts = ContextCompat.checkSelfPermission(context,
+                android.Manifest.permission.GET_ACCOUNTS) == PackageManager.PERMISSION_GRANTED;
+        final boolean canReadContacts = ContextCompat.checkSelfPermission(context,
+                android.Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
+        return canGetAccounts && canReadContacts;
+    }
+
 }
 
 class AccountComparator implements Comparator<AccountWithDataSet> {
@@ -251,7 +299,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     private Context mContext;
     private AccountManager mAccountManager;
-    private DeviceAccountFilter mDeviceAccountFilter;
+    private DeviceLocalAccountTypeFactory mDeviceLocalAccountTypeFactory;
 
     private AccountType mFallbackAccountType;
 
@@ -306,10 +354,11 @@ class AccountTypeManagerImpl extends AccountTypeManager
     /**
      * Internal constructor that only performs initial parsing.
      */
-    public AccountTypeManagerImpl(Context context, DeviceAccountFilter deviceAccountFilter) {
+    public AccountTypeManagerImpl(Context context,
+            DeviceLocalAccountTypeFactory deviceLocalAccountTypeFactory) {
         mContext = context;
         mFallbackAccountType = new FallbackAccountType(context);
-        mDeviceAccountFilter = deviceAccountFilter;
+        mDeviceLocalAccountTypeFactory = deviceLocalAccountTypeFactory;
 
         mAccountManager = AccountManager.get(mContext);
 
@@ -351,6 +400,27 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
         ContentResolver.addStatusChangeListener(ContentResolver.SYNC_OBSERVER_TYPE_SETTINGS, this);
 
+        // Observe changes to RAW_CONTACTS so that we will update the list of "Device" accounts
+        // if a new device contact is added.
+        mContext.getContentResolver().registerContentObserver(
+                ContactsContract.RawContacts.CONTENT_URI, /* notifyDescendents */ true,
+                new ContentObserver(mListenerHandler) {
+            @Override
+            public boolean deliverSelfNotifications() {
+                return true;
+            }
+
+            @Override
+            public void onChange(boolean selfChange) {
+                mListenerHandler.sendEmptyMessage(MESSAGE_LOAD_DATA);
+            }
+
+            @Override
+            public void onChange(boolean selfChange, Uri uri) {
+                mListenerHandler.sendEmptyMessage(MESSAGE_LOAD_DATA);
+            }
+        });
+
         mListenerHandler.sendEmptyMessage(MESSAGE_LOAD_DATA);
     }
 
@@ -378,6 +448,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         if (latch == null) {
             return;
         }
+
         while (true) {
             try {
                 latch.await();
@@ -443,8 +514,11 @@ class AccountTypeManagerImpl extends AccountTypeManager
             } else if (SamsungAccountType.isSamsungAccountType(mContext, type,
                     auth.packageName)) {
                 accountType = new SamsungAccountType(mContext, auth.packageName, type);
-            } else if (mDeviceAccountFilter.isDeviceAccountType(type)) {
-                accountType = new FallbackAccountType(mContext);
+            } else if (!ExternalAccountType.hasContactsXml(mContext, auth.packageName)
+                    && isLocalAccountType(mDeviceLocalAccountTypeFactory, type)) {
+                // This will be loaded by the DeviceLocalAccountLocator so don't try to create an
+                // ExternalAccountType for it.
+                continue;
             } else {
                 Log.d(TAG, "Registering external account type=" + type
                         + ", packageName=" + auth.packageName);
@@ -460,13 +534,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 }
             }
 
-            // TODO: this is a hack. For FallbackAccountType we want to use a default icon and
-            // label instead of what is pulled out of the authenticator
-            if (!(accountType instanceof FallbackAccountType)) {
-                accountType.accountType = auth.type;
-                accountType.titleRes = auth.labelId;
-                accountType.iconRes = auth.iconId;
-            }
+            accountType.initializeFieldsFromAuthenticator(auth);
 
             addAccountType(accountType, accountTypesByTypeAndDataSet, accountTypesByType);
 
@@ -505,6 +573,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         }
         timings.addSplit("Loaded account types");
 
+        boolean foundWritableGoogleAccount = false;
         // Map in accounts to associate the account names with each account type entry.
         Account[] accounts = mAccountManager.getAccounts();
         for (Account account : accounts) {
@@ -522,12 +591,50 @@ class AccountTypeManagerImpl extends AccountTypeManager
                         allAccounts.add(accountWithDataSet);
                         if (accountType.areContactsWritable()) {
                             contactWritableAccounts.add(accountWithDataSet);
+                            if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type)
+                                    && accountWithDataSet.dataSet == null) {
+                                foundWritableGoogleAccount = true;
+                            }
                         }
                         if (accountType.isGroupMembershipEditable()) {
                             groupWritableAccounts.add(accountWithDataSet);
                         }
                     }
                 }
+            }
+        }
+
+        final DeviceLocalAccountLocator deviceAccounts =
+                new DeviceLocalAccountLocator(mContext.getContentResolver(),
+                        mDeviceLocalAccountTypeFactory,
+                        allAccounts);
+        final List<AccountWithDataSet> localAccounts = deviceAccounts.getDeviceLocalAccounts();
+        allAccounts.addAll(localAccounts);
+
+        for (AccountWithDataSet localAccount : localAccounts) {
+            // Prefer a known type if it exists. This covers the case that a local account has an
+            // authenticator with a valid contacts.xml
+            AccountType localAccountType = accountTypesByTypeAndDataSet.get(
+                    localAccount.getAccountTypeWithDataSet());
+            if (localAccountType == null) {
+                localAccountType = mDeviceLocalAccountTypeFactory.getAccountType(localAccount.type);
+            }
+            accountTypesByTypeAndDataSet.put(localAccount.getAccountTypeWithDataSet(),
+                    localAccountType);
+
+            // Skip the null account if there is a Google account available. This is done because
+            // the Google account's sync adapter will automatically move accounts in the "null"
+            // account.  Hence, it would be confusing to still show it as an available writable
+            // account since contacts that were saved to it would magically change accounts when the
+            // sync adapter runs.
+            if (foundWritableGoogleAccount && localAccount.type == null) {
+                continue;
+            }
+            if (localAccountType.areContactsWritable()) {
+                contactWritableAccounts.add(localAccount);
+            }
+            if (localAccountType.isGroupMembershipEditable()) {
+                groupWritableAccounts.add(localAccount);
             }
         }
 

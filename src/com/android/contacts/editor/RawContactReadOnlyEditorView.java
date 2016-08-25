@@ -27,7 +27,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +35,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.R;
 import com.android.contacts.common.GeoUtil;
 import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
@@ -54,6 +55,8 @@ import java.util.ArrayList;
 public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         implements OnClickListener {
     private LayoutInflater mInflater;
+
+    private AccountDisplayInfoFactory mAccountDisplayInfoFactory;
 
     private TextView mName;
     private Button mEditExternallyButton;
@@ -93,6 +96,8 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         mAccountHeaderTypeTextView = (TextView) findViewById(R.id.account_type);
         mAccountHeaderNameTextView = (TextView) findViewById(R.id.account_name);
         mAccountIconImageView = (ImageView) findViewById(R.id.account_type_icon);
+
+        mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forAllAccounts(getContext());
     }
 
     /**
@@ -117,17 +122,29 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
         mAccountType = state.getAccountType();
         mDataSet = state.getDataSet();
 
-        final Pair<String,String> accountInfo = isProfile
-                ? EditorUiUtils.getLocalAccountInfo(getContext(), state.getAccountName(), type)
-                : EditorUiUtils.getAccountInfo(getContext(), state.getAccountName(), type);
-        if (accountInfo.first == null) {
-            // Hide this view so the other text view will be centered vertically
+
+        final AccountDisplayInfo account = mAccountDisplayInfoFactory
+                .getAccountDisplayInfoFor(state);
+
+        final String accountTypeLabel;
+        final String accountNameLabel;
+        if (isProfile) {
+            accountTypeLabel = EditorUiUtils.getAccountHeaderLabelForMyProfile(
+                    getContext(), account);
+            accountNameLabel = account.getNameLabel().toString();
+        } else {
+            accountTypeLabel = account.getTypeLabel().toString();
+            accountNameLabel = account.getNameLabel().toString();
+        }
+
+        if (!account.hasDistinctName()) {
+            // Hide this view so the other view will be centered vertically
             mAccountHeaderNameTextView.setVisibility(View.GONE);
         } else {
             mAccountHeaderNameTextView.setVisibility(View.VISIBLE);
-            mAccountHeaderNameTextView.setText(accountInfo.first);
+            mAccountHeaderNameTextView.setText(accountNameLabel);
         }
-        mAccountHeaderTypeTextView.setText(accountInfo.second);
+        mAccountHeaderTypeTextView.setText(accountTypeLabel);
         updateAccountHeaderContentDescription();
 
         mAccountIconImageView.setImageDrawable(state.getRawContactAccountType(getContext())

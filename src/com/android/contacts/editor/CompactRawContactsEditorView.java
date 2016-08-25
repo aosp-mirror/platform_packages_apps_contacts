@@ -16,6 +16,8 @@
 
 package com.android.contacts.editor;
 
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
@@ -319,6 +321,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private CompactRawContactsEditorView.Listener mListener;
 
     private AccountTypeManager mAccountTypeManager;
+    private AccountDisplayInfoFactory mAccountDisplayInfoFactory;
     private LayoutInflater mLayoutInflater;
 
     private ViewIdGenerator mViewIdGenerator;
@@ -372,6 +375,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         super.onFinishInflate();
 
         mAccountTypeManager = AccountTypeManager.getInstance(getContext());
+        mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forWritableAccounts(getContext());
         mLayoutInflater = (LayoutInflater)
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -727,26 +731,25 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         final RawContactDelta rawContactDelta =
                 mPrimaryNameKindSectionData.first.getRawContactDelta();
 
+        final AccountDisplayInfo account =
+                mAccountDisplayInfoFactory.getAccountDisplayInfoFor(rawContactDelta);
+
         // Get the account information for the primary raw contact delta
-        final Pair<String,String> accountInfo = mIsUserProfile
-                ? EditorUiUtils.getLocalAccountInfo(getContext(),
-                        rawContactDelta.getAccountName(),
-                        rawContactDelta.getAccountType(mAccountTypeManager))
-                : EditorUiUtils.getAccountInfo(getContext(),
-                        rawContactDelta.getAccountName(),
-                        rawContactDelta.getAccountType(mAccountTypeManager));
+        final String accountLabel = mIsUserProfile
+                ? EditorUiUtils.getAccountHeaderLabelForMyProfile(getContext(), account)
+                : account.getNameLabel().toString();
 
         // Either the account header or selector should be shown, not both.
         final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(getContext()).getAccounts(true);
         if (mHasNewContact && !mIsUserProfile) {
             if (accounts.size() > 1) {
-                addAccountSelector(accountInfo, rawContactDelta);
+                addAccountSelector(rawContactDelta, accountLabel);
             } else {
-                addAccountHeader(accountInfo);
+                addAccountHeader(accountLabel);
             }
         } else if (mIsUserProfile || !shouldHideAccountContainer(rawContactDeltas)) {
-            addAccountHeader(accountInfo);
+            addAccountHeader(accountLabel);
         }
 
         // The raw contact selector should only display linked raw contacts that can be edited in
@@ -800,14 +803,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return (writable > 1 || (writable > 0 && readonly > 0));
     }
 
-    private void addAccountHeader(Pair<String,String> accountInfo) {
+    private void addAccountHeader(String accountLabel) {
         mAccountHeaderContainer.setVisibility(View.VISIBLE);
 
         // Set the account name
-        final String accountName = TextUtils.isEmpty(accountInfo.first)
-                ? accountInfo.second : accountInfo.first;
         mAccountHeaderName.setVisibility(View.VISIBLE);
-        mAccountHeaderName.setText(accountName);
+        mAccountHeaderName.setText(accountLabel);
 
         // Set the account type
         final String selectorTitle = getResources().getString(
@@ -827,13 +828,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         // Set the content description
         mAccountHeaderContainer.setContentDescription(
-                EditorUiUtils.getAccountInfoContentDescription(accountName, selectorTitle));
+                EditorUiUtils.getAccountInfoContentDescription(accountLabel,
+                        selectorTitle));
     }
 
-    private void addAccountSelector(Pair<String,String> accountInfo,
-            final RawContactDelta rawContactDelta) {
+    private void addAccountSelector(final RawContactDelta rawContactDelta, CharSequence nameLabel) {
         // Show save to default account.
-        addAccountHeader(accountInfo);
+        addAccountHeader(nameLabel.toString());
         // Add handlers for choosing another account to save to.
         mAccountHeaderExpanderIcon.setVisibility(View.VISIBLE);
         mAccountHeaderContainer.setOnClickListener(new View.OnClickListener() {

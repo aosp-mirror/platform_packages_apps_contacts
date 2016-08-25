@@ -113,18 +113,13 @@ public class ContactEditorUtils {
      *
      * This should be called when saving a newly created contact.
      *
-     * @param defaultAccount the account used to save a newly created contact.  Or pass {@code null}
-     *     If the user selected "local only".
+     * @param defaultAccount the account used to save a newly created contact.
      */
     public void saveDefaultAndAllAccounts(AccountWithDataSet defaultAccount) {
         final SharedPreferences.Editor editor = mPrefs.edit()
                 .putBoolean(mAnythingSavedKey, true);
 
-        if (defaultAccount == null || defaultAccount.isLocalAccount()) {
-            // If the default is "local only", there should be no writable accounts.
-            // This should always be the case with our spec, but because we load the account list
-            // asynchronously using a worker thread, it is possible that there are accounts at this
-            // point. So if the default is null always clear the account list.
+        if (defaultAccount == null) {
             editor.remove(KEY_KNOWN_ACCOUNTS);
             editor.remove(mDefaultAccountKey);
         } else {
@@ -212,7 +207,9 @@ public class ContactEditorUtils {
         final List<AccountWithDataSet> currentWritableAccounts = getWritableAccounts();
 
         if (currentWritableAccounts.size() == 1) {
-            return false;
+            // TODO: This will only work for devices that use a null device account but it should
+            // probably should notify for other OEM device account types as well.
+            return isFirstLaunch() && currentWritableAccounts.get(0).isLocalAccount();
         }
 
         if (isFirstLaunch()) {
@@ -226,12 +223,10 @@ public class ContactEditorUtils {
             return true;
         }
 
-        // If there is an inconsistent state in the preferences file - default account is null
-        // ("local" account) while there are multiple accounts, then show the notification dialog.
-        // This shouldn't ever happen, but this should allow the user can get back into a normal
-        // state after they respond to the notification.
-        if ((defaultAccount == null || defaultAccount.isLocalAccount())
-                && currentWritableAccounts.size() > 0) {
+        // If there is an inconsistent state in the preferences file then show the notification
+        // dialog. This shouldn't ever happen, but this should allow the user can get back into a
+        // normal state after they respond to the notification.
+        if (defaultAccount == null) {
             Log.e(TAG, "Preferences file in an inconsistent state, request that the default account"
                     + " and current writable accounts be saved again");
             return true;

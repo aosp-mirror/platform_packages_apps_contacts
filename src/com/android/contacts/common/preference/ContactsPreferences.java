@@ -88,7 +88,7 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
     private final Context mContext;
     private int mSortOrder = PREFERENCE_UNASSIGNED;
     private int mDisplayOrder = PREFERENCE_UNASSIGNED;
-    private String mDefaultAccount = null;
+    private AccountWithDataSet mDefaultAccount = null;
     private ChangeListener mListener = null;
     private Handler mHandler;
     private final SharedPreferences mPreferences;
@@ -169,26 +169,24 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         return mContext.getResources().getBoolean(R.bool.config_default_account_user_changeable);
     }
 
-    public String getDefaultAccount() {
+    public AccountWithDataSet getDefaultAccount() {
         if (!isDefaultAccountUserChangeable()) {
             return mDefaultAccount;
         }
-        if (TextUtils.isEmpty(mDefaultAccount)) {
+        if (mDefaultAccount == null) {
             final String accountString = mPreferences
-                    .getString(mDefaultAccountKey, mDefaultAccount);
+                    .getString(mDefaultAccountKey, null);
             if (!TextUtils.isEmpty(accountString)) {
-                final AccountWithDataSet accountWithDataSet = AccountWithDataSet.unstringify(
-                        accountString);
-                mDefaultAccount = accountWithDataSet.name;
+                mDefaultAccount = AccountWithDataSet.unstringify(accountString);
             }
         }
         return mDefaultAccount;
     }
 
     public void setDefaultAccount(AccountWithDataSet accountWithDataSet) {
-        mDefaultAccount = accountWithDataSet == null ? null : accountWithDataSet.name;
+        mDefaultAccount = accountWithDataSet;
         final Editor editor = mPreferences.edit();
-        if (TextUtils.isEmpty(mDefaultAccount)) {
+        if (mDefaultAccount == null) {
             editor.remove(mDefaultAccountKey);
         } else {
             editor.putString(mDefaultAccountKey, accountWithDataSet.stringify());

@@ -15,8 +15,7 @@ package com.android.contactsbind;
 
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.preference.PreferenceManager;
-import com.android.contacts.common.util.DeviceAccountFilter;
-import com.android.contacts.common.util.DeviceAccountPresentationValues;
+import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 
 import android.content.Context;
 
@@ -31,11 +30,7 @@ public class ObjectFactory {
 
     public static PreferenceManager getPreferenceManager(Context context) { return null; }
 
-    public static DeviceAccountPresentationValues createDeviceAccountPresentationValues(Context context) {
-        return new DeviceAccountPresentationValues.Default(context);
-    }
-
-    public static DeviceAccountFilter getDeviceAccountFilter(Context context) {
-        return DeviceAccountFilter.ONLY_NULL;
+    public static DeviceLocalAccountTypeFactory getDeviceLocalAccountTypeFactory(Context context) {
+        return new DeviceLocalAccountTypeFactory.Default(context);
     }
 }
