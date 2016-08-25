@@ -26,8 +26,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.Keep;
+import android.support.annotation.VisibleForTesting;
 
 import com.android.contacts.common.list.ContactListFilter;
+import com.android.contacts.test.NeededForReflection;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -74,17 +77,9 @@ public class DeviceLocalContactsFilterProvider
 
     @Override
     public CursorLoader onCreateLoader(int i, Bundle bundle) {
-        final AccountManager accountManager = (AccountManager) mContext
-                .getSystemService(Context.ACCOUNT_SERVICE);
-        final Set<String> knownTypes = new HashSet<>();
-        final Account[] accounts = accountManager.getAccounts();
-        for (Account account : accounts) {
-            if (ContentResolver.getIsSyncable(account, ContactsContract.AUTHORITY) > 0) {
-                knownTypes.add(account.type);
-            }
+        if (mKnownAccountTypes == null) {
+            initKnownAccountTypes();
         }
-        mKnownAccountTypes = knownTypes.toArray(new String[knownTypes.size()]);
-
         return new CursorLoader(mContext, getUri(), PROJECTION, getSelection(),
                 getSelectionArgs(), null);
     }
@@ -126,6 +121,25 @@ public class DeviceLocalContactsFilterProvider
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
+    }
+
+    @Keep
+    @VisibleForTesting
+    public void setKnownAccountTypes(String... accountTypes) {
+        mKnownAccountTypes = accountTypes;
+    }
+
+    private void initKnownAccountTypes() {
+        final AccountManager accountManager = (AccountManager) mContext
+                .getSystemService(Context.ACCOUNT_SERVICE);
+        final Set<String> knownTypes = new HashSet<>();
+        final Account[] accounts = accountManager.getAccounts();
+        for (Account account : accounts) {
+            if (ContentResolver.getIsSyncable(account, ContactsContract.AUTHORITY) > 0) {
+                knownTypes.add(account.type);
+            }
+        }
+        mKnownAccountTypes = knownTypes.toArray(new String[knownTypes.size()]);
     }
 
     private Uri getUri() {

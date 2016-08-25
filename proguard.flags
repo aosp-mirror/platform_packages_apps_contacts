@@ -19,6 +19,7 @@
 -keep class com.android.contacts.common.database.NoNullCursorAsyncQueryHandler { *; }
 -keep class com.android.contacts.common.format.FormatUtils { *; }
 -keep class com.android.contacts.common.format.TextHighlighter { *; }
+-keep class com.android.contacts.common.list.ContactListFilter { *; }
 -keep class com.android.contacts.common.list.ContactListItemView { *; }
 -keep class com.android.contacts.common.list.ContactsSectionIndexer { *; }
 -keep class com.android.contacts.common.location.CountryDetector { *; }
@@ -66,6 +67,11 @@
 -keep class com.android.contacts.common.util.NameConverter { *; }
 -keep class com.android.contacts.common.util.SearchUtil { *; }
 -keep class com.android.contacts.common.util.SearchUtil$* { *; }
+-keep class com.android.contacts.common.util.DeviceAccountFilter { *; }
+-keep class com.android.contacts.common.util.DeviceAccountFilter$* { *; }
+-keep class com.android.contacts.common.util.DeviceAccountPresentationValues { *; }
+-keep class com.android.contacts.common.util.DeviceAccountPresentationValues$* { *; }
+-keep class com.android.contacts.common.util.DeviceLocalContactsFilterProvider { *; }
 -keep class com.android.contacts.ContactsApplication { *; }
 -keep class com.android.contacts.ContactSaveService { *; }
 -keep class com.android.contacts.ContactSaveService$* { *; }
@@ -86,11 +92,9 @@
 -keep class com.google.common.collect.Multimap { *; }
 -keep class com.google.common.collect.Sets { *; }
 
-# Any class or method annotated with NeededForTesting or NeededForReflection.
--keep @com.android.contacts.common.testing.NeededForTesting class *
+# Any class or method annotated with NeededForReflection.
 -keep @com.android.contacts.test.NeededForReflection class *
 -keepclassmembers class * {
-@com.android.contacts.common.testing.NeededForTesting *;
 @com.android.contacts.test.NeededForReflection *;
 }
 
