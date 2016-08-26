@@ -126,13 +126,12 @@ public class EditorIntents {
     }
 
     /**
-     * Returns an Intent to start the full editor for the given raw contact. The full editor will
-     * only display this one raw contact.
+     * Returns an Intent to start the compact editor for the given raw contact.
      */
     public static Intent createEditContactIntentForRawContact(Context context,
-            Uri rawContactUri, long rawContactId, boolean isReadOnly) {
-        final Intent intent = new Intent(ContactEditorBaseActivity.ACTION_EDIT, rawContactUri,
-                context, ContactEditorActivity.class);
+            Uri contactLookupUri, long rawContactId, boolean isReadOnly) {
+        final Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri, context,
+                CompactContactEditorActivity.class);
         intent.putExtra(ContactEditorFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE,
                 rawContactId);
         intent.putExtra(

@@ -327,6 +327,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private boolean mHasNewContact;
     private boolean mIsUserProfile;
     private AccountWithDataSet mPrimaryAccount;
+    private RawContactDeltaList mRawContactDeltas;
+    private long mRawContactIdToDisplayAlone = -1;
+    private boolean mRawContactDisplayAloneIsReadOnly;
+    private boolean mIsEditingReadOnlyRawContactWithNewContact;
     private Map<String,KindSectionDataList> mKindSectionDataMap = new HashMap<>();
 
     // Account header
@@ -621,7 +625,14 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     public void setState(RawContactDeltaList rawContactDeltas,
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
             long photoId, boolean hasNewContact, boolean isUserProfile,
-            AccountWithDataSet primaryAccount) {
+            AccountWithDataSet primaryAccount, long rawContactIdToDisplayAlone,
+            boolean rawContactDisplayAloneIsReadOnly,
+            boolean isEditingReadOnlyRawContactWithNewContact) {
+        mRawContactDeltas = rawContactDeltas;
+        mRawContactIdToDisplayAlone = rawContactIdToDisplayAlone;
+        mRawContactDisplayAloneIsReadOnly = rawContactDisplayAloneIsReadOnly;
+        mIsEditingReadOnlyRawContactWithNewContact = isEditingReadOnlyRawContactWithNewContact;
+
         mKindSectionDataMap.clear();
         mKindSectionViews.removeAllViews();
         mMoreFields.setVisibility(View.VISIBLE);
@@ -669,13 +680,46 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
 
         // Setup the view
-        addAccountInfo(rawContactDeltas);
         addPhotoView();
-        addKindSectionViews();
+        if (isSingleReadOnlyRawContact()) {
+            // We're want to display the inputs fields for a single read only raw contact
+            addReadOnlyRawContactEditorViews();
+            // Hide the "More fields" link
+            mMoreFields.setVisibility(View.GONE);
+        } else if (mIsEditingReadOnlyRawContactWithNewContact) {
+            // A new writable raw contact was created and joined with the read only contact
+            // that the user is trying to edit.
+            setupCompactEditorNormally();
 
-        if (mIsExpanded) showAllFields();
+            // TODO: Hide the raw contact selector since it will just contain the read-only raw
+            // contact and clicking that will just open the exact same editor.  When we clean up
+            // the whole account header, selector, and raw contact selector mess, we can prevent
+            // the selector from being displayed in a less hacky way.
+            mRawContactContainer.setVisibility(View.GONE);
+        } else if (mRawContactDeltas.size() > 1) {
+            // We're editing an aggregate composed of more than one writable raw contacts
 
+            // TODO: Don't render any input fields. Eventually we will show a list of account
+            // types and names but for now just show the account selector and hide the "More fields"
+            // link.
+            addAccountInfo(rawContactDeltas);
+            mMoreFields.setVisibility(View.GONE);
+        } else {
+            setupCompactEditorNormally();
+        }
         if (mListener != null) mListener.onEditorsBound();
+    }
+
+    private void setupCompactEditorNormally() {
+        addAccountInfo(mRawContactDeltas);
+        addKindSectionViews();
+        if (mIsExpanded) showAllFields();
+    }
+
+    private boolean isSingleReadOnlyRawContact() {
+        return mRawContactDeltas.size() == 1
+                && mRawContactDeltas.get(0).getRawContactId() == mRawContactIdToDisplayAlone
+                && mRawContactDisplayAloneIsReadOnly;
     }
 
     private void parseRawContactDeltas(RawContactDeltaList rawContactDeltas) {
@@ -692,8 +736,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             vlog("parse: " + dataKindSize + " dataKinds(s)");
             for (int i = 0; i < dataKindSize; i++) {
                 final DataKind dataKind = dataKinds.get(i);
-                if (dataKind == null || !dataKind.editable) {
-                    vlog("parse: " + i + " " + dataKind.mimeType + " dropped read-only");
+                if (dataKind == null) {
+                    vlog("parse: " + i + " " + dataKind.mimeType + " dropped null data kind");
                     continue;
                 }
                 final String mimeType = dataKind.mimeType;
@@ -729,6 +773,27 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return kindSectionDataList;
     }
 
+    private void addReadOnlyRawContactEditorViews() {
+        final LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
+                getContext());
+
+        for (int i = 0; i < mRawContactDeltas.size(); i++) {
+            final RawContactDelta rawContactDelta = mRawContactDeltas.get(i);
+            if (!rawContactDelta.isVisible()) continue;
+            final AccountType type = rawContactDelta.getAccountType(accountTypes);
+            if (type.areContactsWritable()) continue;
+
+            final BaseRawContactEditorView editor = (BaseRawContactEditorView) inflater.inflate(
+                        R.layout.raw_contact_readonly_editor_view, mKindSectionViews, false);
+            editor.setCollapsed(false);
+            mKindSectionViews.addView(editor);
+            editor.setState(rawContactDelta, type, mViewIdGenerator, mIsUserProfile);
+        }
+    }
+
+    // TODO: we have mRawContactDeltas, we don't need to pass the RawContactDeltaList to this method
     private void addAccountInfo(RawContactDeltaList rawContactDeltas) {
         mAccountHeaderContainer.setVisibility(View.GONE);
         mAccountSelectorContainer.setVisibility(View.GONE);

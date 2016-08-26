@@ -83,12 +83,16 @@ import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.UiClosables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.google.common.collect.UnmodifiableIterator;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
+
+import javax.annotation.Nullable;
 
 /**
  * Base Fragment for contact editors.
@@ -1165,8 +1169,24 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             return;
         }
 
+        // Prune raw contacts besides the one we want to edit
+        if (mRawContactIdToDisplayAlone > 0) {
+            final ImmutableList.Builder<RawContact> rawContactsBuilder =
+                    new ImmutableList.Builder<>();
+            for (RawContact rawContact : contact.getRawContacts()) {
+                if (rawContact.getId() == mRawContactIdToDisplayAlone) {
+                    rawContactsBuilder.add(rawContact);
+                    break;
+                }
+            }
+            mRawContacts = rawContactsBuilder.build();
+            Log.v(TAG, "Raw contact deltas trimmed from " + contact.getRawContacts().size() +
+                    " to " + mRawContacts.size());
+        } else {
+            mRawContacts = contact.getRawContacts();
+        }
+
         // See if this edit operation needs to be redirected to a custom editor
-        mRawContacts = contact.getRawContacts();
         if (mRawContacts.size() == 1) {
             RawContact rawContact = mRawContacts.get(0);
             String type = rawContact.getAccountTypeString();
@@ -1296,7 +1316,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 }
             }
             // Editor should always present a local profile for editing
-            if (!localProfileExists) {
+            // TODO(wjang): Need to figure out when this case comes up.  We can't do this if we're
+            // going to prune all but the one raw contact that we're trying to display by itself.
+            if (!localProfileExists && mRawContactIdToDisplayAlone <= 0) {
                 mState.add(createLocalRawContactDelta());
             }
         }
