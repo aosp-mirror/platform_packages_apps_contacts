@@ -286,6 +286,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     @Override
     protected void onNewIntent(Intent newIntent) {
+        mContactListFilterController.checkFilterValidity(false);
         if (ACTION_CREATE_GROUP.equals(newIntent.getAction())) {
             final Uri groupUri = newIntent.getData();
             if (groupUri == null) {
@@ -527,7 +528,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
     }
 
-    protected void updateFilterMenu(ContactListFilter filter) {
+    public void updateFilterMenu(ContactListFilter filter) {
         clearCheckedMenus();
         if (filter != null && filter.isContactsFilterType()) {
             if (mIdMenuMap != null && mIdMenuMap.get(R.id.nav_all_contacts) != null) {
@@ -596,7 +597,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     protected void switchToAllContacts() {
         final Intent intent = new Intent();
-        final ContactListFilter filter = createContactsFilter();
+        final ContactListFilter filter = AccountFilterUtil.createContactsFilter(this);
         intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);
         AccountFilterUtil.handleAccountFilterResult(
                 mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
@@ -608,19 +609,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     protected void launchFindDuplicates() {
         ImplicitIntentsUtil.startActivityInAppIfPossible(this,
                 Assistants.getDuplicatesActivityIntent(this));
-    }
-
-    /**
-     * Returns a {@link ContactListFilter} of type
-     * {@link ContactListFilter#FILTER_TYPE_ALL_ACCOUNTS}, or if a custom "Contacts to display"
-     * filter has been set, then one of type {@link ContactListFilter#FILTER_TYPE_CUSTOM}.
-     */
-    protected ContactListFilter createContactsFilter() {
-        final int filterType =
-                ContactListFilterController.getInstance(this).isCustomFilterPersisted()
-                        ? ContactListFilter.FILTER_TYPE_CUSTOM
-                        : ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS;
-        return ContactListFilter.createFilterWithType(filterType);
     }
 
     private void clearCheckedMenus() {

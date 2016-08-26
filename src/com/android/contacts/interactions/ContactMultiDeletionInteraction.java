@@ -75,21 +75,22 @@ public class ContactMultiDeletionInteraction extends Fragment
     private TreeSet<Long> mContactIds;
     private Context mContext;
     private AlertDialog mDialog;
+    private MultiContactDeleteListener mListener;
 
     /**
      * Starts the interaction.
      *
-     * @param activity the activity within which to start the interaction
+     * @param hostFragment the fragment within which to start the interaction
      * @param contactIds the IDs of contacts to be deleted
      * @return the newly created interaction
      */
     public static ContactMultiDeletionInteraction start(
-            Activity activity, TreeSet<Long> contactIds) {
+            Fragment hostFragment, TreeSet<Long> contactIds) {
         if (contactIds == null) {
             return null;
         }
 
-        final FragmentManager fragmentManager = activity.getFragmentManager();
+        final FragmentManager fragmentManager = hostFragment.getFragmentManager();
         ContactMultiDeletionInteraction fragment =
                 (ContactMultiDeletionInteraction) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
         if (fragment == null) {
@@ -291,13 +292,10 @@ public class ContactMultiDeletionInteraction extends Fragment
     protected void doDeleteContact(long[] contactIds) {
         mContext.startService(ContactSaveService.createDeleteMultipleContactsIntent(mContext,
                 contactIds));
-        notifyListenerActivity();
+        mListener.onDeletionFinished();
     }
 
-    private void notifyListenerActivity() {
-        if (getActivity() instanceof MultiContactDeleteListener) {
-            final MultiContactDeleteListener listener = (MultiContactDeleteListener) getActivity();
-            listener.onDeletionFinished();
-        }
+    public void setListener(MultiContactDeleteListener listener) {
+        mListener = listener;
     }
 }

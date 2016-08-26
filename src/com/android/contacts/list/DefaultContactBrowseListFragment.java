@@ -16,19 +16,31 @@
 package com.android.contacts.list;
 
 import android.accounts.Account;
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
@@ -37,27 +49,56 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
+import com.android.contacts.activities.ActionBarAdapter;
 import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.common.Experiments;
+import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
+import com.android.contacts.common.list.ContactListFilterController;
+import com.android.contacts.common.list.ContactListFilterController.ContactListFilterListener;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.FavoritesAndContactsLoader;
+import com.android.contacts.common.logging.ListEvent;
+import com.android.contacts.common.logging.Logger;
+import com.android.contacts.common.logging.ScreenEvent;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.common.util.AccountFilterUtil;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.interactions.ContactMultiDeletionInteraction;
+import com.android.contacts.interactions.ContactMultiDeletionInteraction.MultiContactDeleteListener;
+import com.android.contacts.quickcontact.QuickContactActivity;
+import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contacts.util.SyncUtil;
 import com.android.contactsbind.experiments.Flags;
 
+import com.google.android.libraries.material.featurehighlight.FeatureHighlight;
+
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
  * picking a contact with one of the PICK intents).
  */
 public class DefaultContactBrowseListFragment extends ContactBrowseListFragment {
+
+    private static final String TAG = "DefaultListFragment";
+    private static final String ENABLE_DEBUG_OPTIONS_HIDDEN_CODE = "debug debug!";
+    private static final String KEY_DELETION_IN_PROGRESS = "deletionInProgress";
+
+    private static final int ACTIVITY_REQUEST_CODE_SHARE = 0;
+
     private View mSearchHeaderView;
     private View mSearchProgress;
     private View mEmptyAccountView;
@@ -65,11 +106,114 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private View mAccountFilterContainer;
     private TextView mSearchProgressText;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private FeatureHighlightCallback mCallback;
 
-    public interface FeatureHighlightCallback {
-        void onLoadFinishedCallback();
-    }
+    private boolean mContactsAvailable;
+    private boolean mEnableDebugMenuOptions;
+    private boolean mIsRecreatedInstance;
+    private boolean mOptionsMenuContactsAvailable;
+
+    /**
+     * This is to tell whether we need to restart ContactMultiDeletionInteraction and set listener.
+     * if screen is rotated while deletion dialog is shown.
+     */
+    private boolean mIsDeletionInProgress;
+
+    /**
+     * This is to disable {@link #onOptionsItemSelected} when we trying to stop the
+     * activity/fragment.
+     */
+    private boolean mDisableOptionItemSelected;
+
+    private ActionBarAdapter mActionBarAdapter;
+    private ContactMultiDeletionInteraction mMultiDeletionInteraction;
+    private ContactsRequest mContactsRequest;
+    protected ContactListFilterController mContactListFilterController;
+
+    private final ContactListFilterListener mFilterListener = new ContactListFilterListener() {
+        @Override
+        public void onContactListFilterChanged() {
+            final ContactListFilter filter = mContactListFilterController.getFilter();
+            setFilterAndUpdateTitle(filter);
+
+            // Scroll to top after filter is changed.
+            getListView().setSelection(0);
+
+            getActivity().invalidateOptionsMenu();
+        }
+    };
+
+    private final ActionBarAdapter.Listener mActionBarListener = new ActionBarAdapter.Listener() {
+        @Override
+        public void onAction(int action) {
+            switch (action) {
+                case ActionBarAdapter.Listener.Action.START_SELECTION_MODE:
+                    displayCheckBoxes(true);
+                    startSearchOrSelectionMode();
+                    break;
+                case ActionBarAdapter.Listener.Action.START_SEARCH_MODE:
+                    if (!mIsRecreatedInstance) {
+                        Logger.logScreenView(getActivity(), ScreenEvent.ScreenType.SEARCH);
+                    }
+                    startSearchOrSelectionMode();
+                    break;
+                case ActionBarAdapter.Listener.Action.BEGIN_STOPPING_SEARCH_AND_SELECTION_MODE:
+                    ((PeopleActivity) getActivity()).showFabWithAnimation(/* showFab */ true);
+                    break;
+                case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
+                    // If queryString is empty, fragment data will not be reloaded,
+                    // so hamburger promo should be checked now.
+                    // Otherwise, promo should be checked and displayed after reloading, b/30706521.
+                    if (TextUtils.isEmpty(getQueryString())) {
+                        maybeShowHamburgerFeatureHighlight();
+                    }
+                    setQueryTextToFragment("");
+                    maybeHideCheckBoxes();
+                    getActivity().invalidateOptionsMenu();
+                    ((PeopleActivity) getActivity()).showFabWithAnimation(/* showFab */ true);
+                    // Determine whether the account has pullToRefresh feature
+                    if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
+                        setSwipeRefreshLayoutEnabledOrNot(getFilter());
+                    }
+                    break;
+                case ActionBarAdapter.Listener.Action.CHANGE_SEARCH_QUERY:
+                    final String queryString = mActionBarAdapter.getQueryString();
+                    setQueryTextToFragment(queryString);
+                    updateDebugOptionsVisibility(
+                            ENABLE_DEBUG_OPTIONS_HIDDEN_CODE.equals(queryString));
+                    break;
+                default:
+                    throw new IllegalStateException("Unknown ActionBarAdapter action: " + action);
+            }
+        }
+
+        private void startSearchOrSelectionMode() {
+            configureContactListFragment();
+            maybeHideCheckBoxes();
+            getActivity().invalidateOptionsMenu();
+            ((PeopleActivity) getActivity()).showFabWithAnimation(/* showFab */ false);
+            final Context context = getContext();
+            if (!SharedPreferenceUtil.getHamburgerPromoTriggerActionHappenedBefore(context)) {
+                SharedPreferenceUtil.setHamburgerPromoTriggerActionHappenedBefore(context);
+            }
+        }
+
+        private void updateDebugOptionsVisibility(boolean visible) {
+            if (mEnableDebugMenuOptions != visible) {
+                mEnableDebugMenuOptions = visible;
+                getActivity().invalidateOptionsMenu();
+            }
+        }
+
+        private void setQueryTextToFragment(String query) {
+            setQueryString(query, true);
+            setVisibleScrollbarEnabled(!isSearchMode());
+        }
+
+        @Override
+        public void onUpButtonPressed() {
+            getActivity().onBackPressed();
+        }
+    };
 
     public DefaultContactBrowseListFragment() {
         setPhotoLoaderEnabled(true);
@@ -79,10 +223,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setSectionHeaderDisplayEnabled(true);
         setVisibleScrollbarEnabled(true);
         setDisplayDirectoryHeader(false);
-    }
-
-    public void setFeatureHighlightCallback(FeatureHighlightCallback callback) {
-        mCallback = callback;
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -96,8 +237,21 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             bindListHeader(data.getCount());
         }
         super.onLoadFinished(loader, data);
-        if (!isSearchMode() && mCallback != null) {
-            mCallback.onLoadFinishedCallback();
+        if (!isSearchMode()) {
+            maybeShowHamburgerFeatureHighlight();
+        }
+    }
+
+    public void maybeShowHamburgerFeatureHighlight() {
+        if (mActionBarAdapter != null && !mActionBarAdapter.isSearchMode()
+                && !mActionBarAdapter.isSelectionMode()
+                && SharedPreferenceUtil.getShouldShowHamburgerPromo(getContext())) {
+            final FeatureHighlight hamburgerFeatureHighlight =
+                    mActionBarAdapter.getHamburgerFeatureHighlight();
+            if (hamburgerFeatureHighlight != null) {
+                hamburgerFeatureHighlight.show((FragmentActivity) getActivity());
+                SharedPreferenceUtil.setHamburgerPromoDisplayedBefore(getContext());
+            }
         }
     }
 
@@ -263,11 +417,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         if (Flags.getInstance(getActivity()).getBoolean(Experiments.PULL_TO_REFRESH)) {
             initSwipeRefreshLayout();
-
         }
         // Putting the header view inside a container will allow us to make
         // it invisible later. See checkHeaderViewVisibility()
-        FrameLayout headerContainer = new FrameLayout(inflater.getContext());
+        final FrameLayout headerContainer = new FrameLayout(inflater.getContext());
         mSearchHeaderView = inflater.inflate(R.layout.search_header, null, false);
         headerContainer.addView(mSearchHeaderView);
         getListView().addHeaderView(headerContainer, null, false);
@@ -317,13 +470,71 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
         if (syncableAccounts != null && syncableAccounts.size() > 0) {
             for (Account account : syncableAccounts) {
-                 // We can prioritize Contacts sync if sync is not initialized yet.
+                // We can prioritize Contacts sync if sync is not initialized yet.
                 if (!SyncUtil.isSyncStatusPendingOrActive(account)
                         || SyncUtil.isUnsyncableGoogleAccount(account)) {
                     ContentResolver.requestSync(account, ContactsContract.AUTHORITY, bundle);
                 }
             }
         }
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mIsRecreatedInstance = (savedInstanceState != null);
+        mContactListFilterController = ContactListFilterController.getInstance(getContext());
+        mContactListFilterController.checkFilterValidity(false);
+        mContactListFilterController.addListener(mFilterListener);
+
+        // Use FILTER_TYPE_ALL_ACCOUNTS filter if the instance is not a re-created one.
+        // This is useful when user upgrades app while an account filter or a custom filter was
+        // stored in sharedPreference in a previous version of Contacts app.
+        final ContactListFilter filter = mIsRecreatedInstance
+                ? mContactListFilterController.getFilter()
+                : AccountFilterUtil.createContactsFilter(getContext());
+        setContactListFilter(filter);
+
+        final ContactsDrawerActivity activity = (ContactsDrawerActivity) getActivity();
+        mActionBarAdapter = new ActionBarAdapter(activity, mActionBarListener,
+                activity.getSupportActionBar(), activity.getToolbar(), R.string.enter_contact_name);
+        mActionBarAdapter.setShowHomeIcon(true);
+        initializeActionBarAdapter(savedInstanceState);
+        if (isSearchMode()) {
+            mActionBarAdapter.setFocusOnSearchView();
+        }
+
+        setCheckBoxListListener(new CheckBoxListListener());
+        setOnContactListActionListener(new ContactBrowserActionListener());
+        if (mIsRecreatedInstance && savedInstanceState.getBoolean(KEY_DELETION_IN_PROGRESS)) {
+            deleteSelectedContacts();
+        }
+    }
+
+    public void initializeActionBarAdapter(Bundle savedInstanceState) {
+        if (mActionBarAdapter != null) {
+            mActionBarAdapter.initialize(savedInstanceState, mContactsRequest);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Re-register the listener, which may have been cleared when onSaveInstanceState was
+        // called. See also: onSaveInstanceState
+        mActionBarAdapter.setListener(mActionBarListener);
+        mDisableOptionItemSelected = false;
+        maybeHideCheckBoxes();
+    }
+
+    private void maybeHideCheckBoxes() {
+        if (!mActionBarAdapter.isSelectionMode()) {
+            displayCheckBoxes(false);
+        }
+    }
+
+    public ActionBarAdapter getActionBarAdapter(){
+        return mActionBarAdapter;
     }
 
     @Override
@@ -377,5 +588,424 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     public SwipeRefreshLayout getSwipeRefreshLayout() {
         return mSwipeRefreshLayout;
+    }
+
+    private final class CheckBoxListListener implements OnCheckBoxListActionListener {
+        @Override
+        public void onStartDisplayingCheckBoxes() {
+            mActionBarAdapter.setSelectionMode(true);
+            getActivity().invalidateOptionsMenu();
+        }
+
+        @Override
+        public void onSelectedContactIdsChanged() {
+            mActionBarAdapter.setSelectionCount(getSelectedContactIds().size());
+            getActivity().invalidateOptionsMenu();
+        }
+
+        @Override
+        public void onStopDisplayingCheckBoxes() {
+            mActionBarAdapter.setSelectionMode(false);
+        }
+    }
+
+    private void setFilterAndUpdateTitle(ContactListFilter filter) {
+        setFilterAndUpdateTitle(filter, true);
+    }
+
+    private void setFilterAndUpdateTitle(ContactListFilter filter, boolean restoreSelectedUri) {
+        setFilter(filter, restoreSelectedUri);
+        setListType(mContactListFilterController.getFilterListType());
+
+        ((ContactsDrawerActivity) getActivity()).updateFilterMenu(filter);
+
+        final String actionBarTitle;
+        if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
+            actionBarTitle = getString(R.string.account_phone);
+        } else if (!TextUtils.isEmpty(filter.accountName)) {
+            actionBarTitle = getActionBarTitleForAccount(filter);
+        } else {
+            actionBarTitle = getString(R.string.contactsList);
+        }
+        getActivity().setTitle(actionBarTitle);
+
+        if (CompatUtils.isNCompatible()) {
+            getActivity().setTitle(actionBarTitle);
+            getActivity().getWindow().getDecorView()
+                    .sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+        }
+        // Determine whether the account has pullToRefresh feature
+        if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
+            setSwipeRefreshLayoutEnabledOrNot(filter);
+        }
+    }
+
+    private String getActionBarTitleForAccount(ContactListFilter filter) {
+        if (GoogleAccountType.ACCOUNT_TYPE.equals(filter.accountType)) {
+            return getString(R.string.title_from_google);
+        }
+        return getString(R.string.title_from_other_accounts, filter.accountName);
+    }
+
+    public void setSwipeRefreshLayoutEnabledOrNot(ContactListFilter filter) {
+        final SwipeRefreshLayout swipeRefreshLayout = getSwipeRefreshLayout();
+        if (swipeRefreshLayout == null) {
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Can not load swipeRefreshLayout, swipeRefreshLayout is null");
+            }
+            return;
+        }
+
+        swipeRefreshLayout.setRefreshing(false);
+        swipeRefreshLayout.setEnabled(false);
+
+        if (filter != null && !mActionBarAdapter.isSearchMode()
+                && !mActionBarAdapter.isSelectionMode()) {
+            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(getContext())
+                    .getAccounts(/* contactsWritableOnly */ true);
+            if (filter.isSyncable(accounts)) {
+                swipeRefreshLayout.setEnabled(true);
+            }
+        }
+    }
+
+    public void configureContactListFragment() {
+        // Filter may be changed when activity is in background.
+        setFilterAndUpdateTitle(getFilter());
+        setVerticalScrollbarPosition(getScrollBarPosition());
+        setSelectionVisible(false);
+        getActivity().invalidateOptionsMenu();
+    }
+
+    private int getScrollBarPosition() {
+        final Locale locale = Locale.getDefault();
+        final boolean isRTL =
+                TextUtils.getLayoutDirectionFromLocale(locale) == View.LAYOUT_DIRECTION_RTL;
+        return isRTL ? View.SCROLLBAR_POSITION_LEFT : View.SCROLLBAR_POSITION_RIGHT;
+    }
+
+    private final class ContactBrowserActionListener implements OnContactBrowserActionListener {
+        ContactBrowserActionListener() {}
+
+        @Override
+        public void onSelectionChange() {
+
+        }
+
+        @Override
+        public void onViewContactAction(int position, Uri contactLookupUri,
+                boolean isEnterpriseContact) {
+            if (isEnterpriseContact) {
+                // No implicit intent as user may have a different contacts app in work profile.
+                ContactsContract.QuickContact.showQuickContact(getContext(), new Rect(),
+                        contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED, null);
+            } else {
+                final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
+                        getContext(), contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
+                final int previousScreen;
+                if (isSearchMode()) {
+                    previousScreen = ScreenEvent.ScreenType.SEARCH;
+                } else {
+                    if (isAllContactsFilter(mContactListFilterController.getFilter())) {
+                        if (position < getAdapter().getNumberOfFavorites()) {
+                            previousScreen = ScreenEvent.ScreenType.FAVORITES;
+                        } else {
+                            previousScreen = ScreenEvent.ScreenType.ALL_CONTACTS;
+                        }
+                    } else {
+                        previousScreen = ScreenEvent.ScreenType.LIST_ACCOUNT;
+                    }
+                }
+                Logger.logListEvent(ListEvent.ActionType.CLICK,
+                        /* listType */ getListTypeIncludingSearch(),
+                        /* count */ getAdapter().getCount(),
+                        /* clickedIndex */ position, /* numSelected */ 0);
+                intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, previousScreen);
+                ImplicitIntentsUtil.startActivityInApp(getContext(), intent);
+            }
+        }
+
+        @Override
+        public void onDeleteContactAction(Uri contactUri) {
+            ContactDeletionInteraction.start(getActivity(), contactUri, false);
+        }
+
+        @Override
+        public void onFinishAction() {
+            getActivity().onBackPressed();
+        }
+
+        @Override
+        public void onInvalidSelection() {
+            ContactListFilter filter;
+            ContactListFilter currentFilter = getFilter();
+            if (currentFilter != null
+                    && currentFilter.filterType == ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
+                filter = AccountFilterUtil.createContactsFilter(getContext());
+                setFilterAndUpdateTitle(filter);
+            } else {
+                filter = ContactListFilter.createFilterWithType(
+                        ContactListFilter.FILTER_TYPE_SINGLE_CONTACT);
+                setFilterAndUpdateTitle(filter, /* restoreSelectedUri */ false);
+            }
+            setContactListFilter(filter);
+        }
+    }
+
+    private boolean isAllContactsFilter(ContactListFilter filter) {
+        return filter != null && filter.isContactsFilterType();
+    }
+
+    public void setContactsAvailable(boolean contactsAvailable) {
+        mContactsAvailable = contactsAvailable;
+    }
+
+    /**
+     * Set filter via ContactListFilterController
+     */
+    public void setContactListFilter(ContactListFilter filter) {
+        mContactListFilterController.setContactListFilter(filter,
+                /* persistent */ isAllContactsFilter(filter));
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (!mContactsAvailable) {
+            // If contacts aren't available, hide all menu items.
+            return;
+        }
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.people_options, menu);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        mOptionsMenuContactsAvailable = mContactsAvailable;
+        if (!mOptionsMenuContactsAvailable) {
+            return;
+        }
+
+        final boolean isSearchOrSelectionMode = mActionBarAdapter.isSearchMode()
+                || mActionBarAdapter.isSelectionMode();
+        makeMenuItemVisible(menu, R.id.menu_search, !isSearchOrSelectionMode);
+
+        final boolean showSelectedContactOptions = mActionBarAdapter.isSelectionMode()
+                && getSelectedContactIds().size() != 0;
+        makeMenuItemVisible(menu, R.id.menu_share, showSelectedContactOptions);
+        makeMenuItemVisible(menu, R.id.menu_delete, showSelectedContactOptions);
+        final boolean showLinkContactsOptions = mActionBarAdapter.isSelectionMode()
+                && getSelectedContactIds().size() > 1;
+        makeMenuItemVisible(menu, R.id.menu_join, showLinkContactsOptions);
+
+        // Debug options need to be visible even in search mode.
+        makeMenuItemVisible(menu, R.id.export_database, mEnableDebugMenuOptions &&
+                hasExportIntentHandler());
+    }
+
+    private void makeMenuItemVisible(Menu menu, int itemId, boolean visible) {
+        final MenuItem item = menu.findItem(itemId);
+        if (item != null) {
+            item.setVisible(visible);
+        }
+    }
+
+    private boolean hasExportIntentHandler() {
+        final Intent intent = new Intent();
+        intent.setAction("com.android.providers.contacts.DUMP_DATABASE");
+        final List<ResolveInfo> receivers =
+                getContext().getPackageManager().queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        return receivers != null && receivers.size() > 0;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mDisableOptionItemSelected) {
+            return false;
+        }
+
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                // The home icon on the action bar is pressed
+                if (mActionBarAdapter.isUpShowing()) {
+                    // "UP" icon press -- should be treated as "back".
+                    getActivity().onBackPressed();
+                }
+                return true;
+            }
+            case R.id.menu_search: {
+                if (!mActionBarAdapter.isSelectionMode()) {
+                    mActionBarAdapter.setSearchMode(true);
+                }
+                return true;
+            }
+            case R.id.menu_share: {
+                shareSelectedContacts();
+                return true;
+            }
+            case R.id.menu_join: {
+                Logger.logListEvent(ListEvent.ActionType.LINK,
+                        /* listType */ getListTypeIncludingSearch(),
+                        /* count */ getAdapter().getCount(), /* clickedIndex */ -1,
+                        /* numSelected */ getAdapter().getSelectedContactIds().size());
+                joinSelectedContacts();
+                return true;
+            }
+            case R.id.menu_delete: {
+                deleteSelectedContacts();
+                return true;
+            }
+            case R.id.export_database: {
+                final Intent intent = new Intent("com.android.providers.contacts.DUMP_DATABASE");
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                ImplicitIntentsUtil.startActivityOutsideApp(getContext(), intent);
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Share all contacts that are currently selected in mAllFragment. This method is pretty
+     * inefficient for handling large numbers of contacts. I don't expect this to be a problem.
+     */
+    private void shareSelectedContacts() {
+        final StringBuilder uriListBuilder = new StringBuilder();
+        for (Long contactId : getSelectedContactIds()) {
+            final Uri contactUri = ContentUris.withAppendedId(
+                    ContactsContract.Contacts.CONTENT_URI, contactId);
+            final Uri lookupUri = ContactsContract.Contacts.getLookupUri(
+                    getContext().getContentResolver(), contactUri);
+            if (lookupUri == null) {
+                continue;
+            }
+            final List<String> pathSegments = lookupUri.getPathSegments();
+            if (pathSegments.size() < 2) {
+                continue;
+            }
+            final String lookupKey = pathSegments.get(pathSegments.size() - 2);
+            if (uriListBuilder.length() > 0) {
+                uriListBuilder.append(':');
+            }
+            uriListBuilder.append(Uri.encode(lookupKey));
+        }
+        if (uriListBuilder.length() == 0) {
+            return;
+        }
+        final Uri uri = Uri.withAppendedPath(
+                ContactsContract.Contacts.CONTENT_MULTI_VCARD_URI,
+                Uri.encode(uriListBuilder.toString()));
+        final Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType(ContactsContract.Contacts.CONTENT_VCARD_TYPE);
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        try {
+            startActivityForResult(Intent.createChooser(intent, getResources().getQuantityString(
+                    R.plurals.title_share_via,/* quantity */ getSelectedContactIds().size()))
+                    , ACTIVITY_REQUEST_CODE_SHARE);
+        } catch (final ActivityNotFoundException ex) {
+            Toast.makeText(getContext(), R.string.share_error, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void joinSelectedContacts() {
+        final Context context = getContext();
+        final Intent intent = ContactSaveService.createJoinSeveralContactsIntent(
+                context, getSelectedContactIdsArray());
+        context.startService(intent);
+
+        mActionBarAdapter.setSelectionMode(false);
+    }
+
+    private void deleteSelectedContacts() {
+        mMultiDeletionInteraction =
+                ContactMultiDeletionInteraction.start(this, getSelectedContactIds());
+        mMultiDeletionInteraction.setListener(new MultiDeleteListener());
+        mIsDeletionInProgress = true;
+    }
+
+    private final class MultiDeleteListener implements MultiContactDeleteListener {
+        @Override
+        public void onDeletionFinished() {
+            // The parameters count and numSelected are both the number of contacts before deletion.
+            Logger.logListEvent(ListEvent.ActionType.DELETE,
+                /* listType */ getListTypeIncludingSearch(),
+                /* count */ getAdapter().getCount(), /* clickedIndex */ -1,
+                /* numSelected */ getSelectedContactIds().size());
+            mActionBarAdapter.setSelectionMode(false);
+            mIsDeletionInProgress = false;
+        }
+    }
+
+    private int getListTypeIncludingSearch() {
+        return isSearchMode() ? ListEvent.ListType.SEARCH_RESULT : getListType();
+    }
+
+    public void setListType() {
+        mContactListFilterController = ContactListFilterController.getInstance(getContext());
+        setListType(mContactListFilterController.getFilterListType());
+    }
+
+    public void setContactsRequest(ContactsRequest contactsRequest) {
+        mContactsRequest = contactsRequest;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            // TODO: Using the new startActivityWithResultFromFragment API this should not be needed
+            // anymore
+            case ContactEntryListFragment.ACTIVITY_REQUEST_CODE_PICKER:
+                if (resultCode == Activity.RESULT_OK) {
+                    onPickerResult(data);
+                }
+            case ACTIVITY_REQUEST_CODE_SHARE:
+                Logger.logListEvent(ListEvent.ActionType.SHARE,
+                    /* listType */ getListTypeIncludingSearch(),
+                    /* count */ getAdapter().getCount(), /* clickedIndex */ -1,
+                    /* numSelected */ getAdapter().getSelectedContactIds().size());
+
+// TODO fix or remove multipicker code: ag/54762
+//                else if (resultCode == RESULT_CANCELED && mMode == MODE_PICK_MULTIPLE_PHONES) {
+//                    // Finish the activity if the sub activity was canceled as back key is used
+//                    // to confirm user selection in MODE_PICK_MULTIPLE_PHONES.
+//                    finish();
+//                }
+//                break;
+        }
+    }
+
+    public boolean getOptionsMenuContactsAvailable() {
+        return mOptionsMenuContactsAvailable;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Clear the listener to make sure we don't get callbacks after onSaveInstanceState,
+        // in order to avoid doing fragment transactions after it.
+        // TODO Figure out a better way to deal with the issue (ag/120686).
+        if (mActionBarAdapter != null) {
+            mActionBarAdapter.setListener(null);
+            mActionBarAdapter.onSaveInstanceState(outState);
+        }
+        mDisableOptionItemSelected = true;
+        outState.putBoolean(KEY_DELETION_IN_PROGRESS, mIsDeletionInProgress);
+    }
+
+    @Override
+    public void onPause() {
+        mOptionsMenuContactsAvailable = false;
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mActionBarAdapter != null) {
+            mActionBarAdapter.setListener(null);
+        }
+        if (mContactListFilterController != null) {
+            mContactListFilterController.removeListener(mFilterListener);
+        }
+        super.onDestroy();
     }
 }
