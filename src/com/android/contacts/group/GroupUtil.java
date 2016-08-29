@@ -28,6 +28,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.android.contacts.GroupListLoader;
+import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.activities.GroupMembersActivity;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
@@ -128,7 +129,7 @@ public final class GroupUtil {
     /** Returns an Intent to pick contacts to add to a group. */
     public static Intent createPickMemberIntent(Context context,
             GroupMetadata groupMetadata, ArrayList<String> memberContactIds) {
-        final Intent intent = new Intent(context, GroupMembersActivity.class);
+        final Intent intent = new Intent(context, ContactSelectionActivity.class);
         intent.setAction(Intent.ACTION_PICK);
         intent.setType(Groups.CONTENT_TYPE);
         intent.putExtra(UiIntentActions.GROUP_ACCOUNT_NAME, groupMetadata.accountName);
