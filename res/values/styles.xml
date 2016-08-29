@@ -285,6 +285,7 @@
 
     <style name="ContactListFilterTheme" parent="@style/PeopleTheme">
         <item name="android:listViewStyle">@style/ListViewStyle</item>
+        <item name="android:actionButtonStyle">@style/FilterActionButtonStyle</item>
     </style>
 
     <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent.NoTitleBar">
