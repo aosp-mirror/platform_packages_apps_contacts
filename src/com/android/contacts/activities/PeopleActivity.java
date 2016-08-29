@@ -78,7 +78,7 @@ import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.SyncUtil;
 import com.android.contactsbind.experiments.Flags;
 import com.android.contacts.widget.FloatingActionButtonBehavior;
-import com.google.android.libraries.material.featurehighlight.FeatureHighlight;
+import com.android.contactsbind.FeatureHighlightHelper;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;

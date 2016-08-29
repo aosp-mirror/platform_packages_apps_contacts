@@ -81,8 +81,7 @@ import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contacts.util.SyncUtil;
 import com.android.contactsbind.experiments.Flags;
-
-import com.google.android.libraries.material.featurehighlight.FeatureHighlight;
+import com.android.contactsbind.FeatureHighlightHelper;
 
 import java.util.List;
 import java.util.Locale;
@@ -243,13 +242,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     public void maybeShowHamburgerFeatureHighlight() {
-        if (mActionBarAdapter != null && !mActionBarAdapter.isSearchMode()
+        if (mActionBarAdapter!= null && !mActionBarAdapter.isSearchMode()
                 && !mActionBarAdapter.isSelectionMode()
                 && SharedPreferenceUtil.getShouldShowHamburgerPromo(getContext())) {
-            final FeatureHighlight hamburgerFeatureHighlight =
-                    mActionBarAdapter.getHamburgerFeatureHighlight();
-            if (hamburgerFeatureHighlight != null) {
-                hamburgerFeatureHighlight.show((FragmentActivity) getActivity());
+            if (FeatureHighlightHelper.showHamburgerFeatureHighlight(
+                    (FragmentActivity) getActivity())) {
                 SharedPreferenceUtil.setHamburgerPromoDisplayedBefore(getContext());
             }
         }
