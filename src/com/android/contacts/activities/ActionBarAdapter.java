@@ -50,8 +50,6 @@ import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.list.ContactsRequest;
-import com.google.android.libraries.material.featurehighlight.FeatureHighlight;
-import com.google.android.libraries.material.featurehighlight.appcompat.ToolbarNavigationIconFinder;
 
 import java.util.ArrayList;
 
@@ -121,8 +119,6 @@ public class ActionBarAdapter implements OnCloseListener {
     private boolean mShowHomeAsUp;
 
     private int mSearchHintResId;
-
-    private FeatureHighlight mHamburgerFeatureHighlight;
 
     private ValueAnimator mStatusBarAnimator;
 
@@ -260,7 +256,6 @@ public class ActionBarAdapter implements OnCloseListener {
         if (mSearchMode && !TextUtils.isEmpty(mQueryString)) {
             setQueryString(mQueryString);
         }
-        addHamburgerFeatureHighlight();
     }
 
     public void setListener(Listener listener) {
@@ -433,25 +428,6 @@ public class ActionBarAdapter implements OnCloseListener {
             // Pass the mask here to preserve other flags that we're not interested here.
             mActionBar.setDisplayOptions(newFlags, MASK);
         }
-    }
-
-    private void addHamburgerFeatureHighlight() {
-        if (mHamburgerFeatureHighlight == null) {
-            mHamburgerFeatureHighlight = FeatureHighlight.Builder
-                    .forView(new ToolbarNavigationIconFinder())
-                    .setHeader(mActivity.getResources().getString(
-                            R.string.hamburger_feature_highlight_header))
-                    .setBody(mActivity.getResources().getString(
-                            R.string.hamburger_feature_highlight_body))
-                    .setTargetDrawable(
-                            R.drawable.ic_menu_hamburger,
-                            ContextCompat.getColor(mActivity, R.color.primary_color))
-                    .build();
-        }
-    }
-
-    public FeatureHighlight getHamburgerFeatureHighlight() {
-        return mHamburgerFeatureHighlight;
     }
 
     private void update(boolean skipAnimation) {
