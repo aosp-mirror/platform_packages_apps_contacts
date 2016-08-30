@@ -686,12 +686,12 @@
     <!-- Message in the contact editor prompt that asks the user which account they want to save the newly created contact to. [CHAR LIMIT=NONE] -->
     <string name="contact_editor_prompt_multiple_accounts">Choose a default account for new contacts:</string>
 
-    <!-- Title of the ContactEditorActivity when creating a new contact. The char
+    <!-- Title of the editor activity when creating a new contact. The char
          limit is short and cannot be increased, since this needs to be displayed in a single line
          at a pre-determined text size. [CHAR LIMIT=20] -->
     <string name="contact_editor_title_new_contact">Add new contact</string>
 
-    <!-- Title of the ContactEditorActivity when editing a contact that already exists. The char
+    <!-- Title of the editor activity when editing a contact that already exists. The char
          limit is short and cannot be increased, since this needs to be displayed in a single line
          at a pre-determined text size. [CHAR LIMIT=20] -->
     <string name="contact_editor_title_existing_contact">Edit contact</string>

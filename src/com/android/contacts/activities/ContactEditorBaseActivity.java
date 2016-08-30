@@ -36,7 +36,6 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.editor.ContactEditorBaseFragment;
-import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.util.DialogManager;
@@ -49,20 +48,6 @@ import java.util.ArrayList;
 abstract public class ContactEditorBaseActivity extends ContactsActivity
         implements DialogManager.DialogShowingViewActivity {
     protected static final String TAG = "ContactEditorActivity";
-
-    /**
-     * Intent action to edit a contact with all available field inputs displayed.
-     *
-     * Only used to open the "fully expanded" editor -- {@link ContactEditorActivity}.
-     */
-    public static final String ACTION_EDIT = "com.android.contacts.action.FULL_EDIT";
-
-    /**
-     * Intent action to insert a new contact with all available field inputs displayed.
-     *
-     * Only used to open the "fully expanded" editor -- {@link ContactEditorActivity}.
-     */
-    public static final String ACTION_INSERT = "com.android.contacts.action.FULL_INSERT";
 
     public static final String ACTION_JOIN_COMPLETED = "joinCompleted";
     public static final String ACTION_SAVE_COMPLETED = "saveCompleted";
@@ -223,7 +208,7 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
 
         ActionBar actionBar = getActionBar();
         if (actionBar != null) {
-            if (Intent.ACTION_EDIT.equals(action) || ACTION_EDIT.equals(action)) {
+            if (Intent.ACTION_EDIT.equals(action)) {
                 mActionBarTitleResId = R.string.contact_editor_title_existing_contact;
             } else {
                 mActionBarTitleResId = R.string.contact_editor_title_new_contact;
@@ -254,15 +239,15 @@ abstract public class ContactEditorBaseActivity extends ContactsActivity
         }
 
         String action = intent.getAction();
-        if (Intent.ACTION_EDIT.equals(action) || ACTION_EDIT.equals(action)) {
+        if (Intent.ACTION_EDIT.equals(action)) {
             mFragment.setIntentExtras(intent.getExtras());
         } else if (ACTION_SAVE_COMPLETED.equals(action)) {
             mFragment.onSaveCompleted(true,
-                    intent.getIntExtra(ContactEditorFragment.SAVE_MODE_EXTRA_KEY,
+                    intent.getIntExtra(ContactEditorBaseFragment.SAVE_MODE_EXTRA_KEY,
                             ContactEditor.SaveMode.CLOSE),
                     intent.getBooleanExtra(ContactSaveService.EXTRA_SAVE_SUCCEEDED, false),
                     intent.getData(),
-                    intent.getLongExtra(ContactEditorFragment.JOIN_CONTACT_ID_EXTRA_KEY, -1));
+                    intent.getLongExtra(ContactEditorBaseFragment.JOIN_CONTACT_ID_EXTRA_KEY, -1));
         } else if (ACTION_JOIN_COMPLETED.equals(action)) {
             mFragment.onJoinCompleted(intent.getData());
         }

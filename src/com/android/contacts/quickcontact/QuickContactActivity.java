@@ -63,9 +63,9 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
-import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
@@ -129,8 +129,10 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContact;
+import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.dataitem.CustomDataItem;
 import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.dataitem.EmailDataItem;
@@ -145,10 +147,8 @@ import com.android.contacts.common.model.dataitem.SipAddressDataItem;
 import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.common.model.dataitem.StructuredPostalDataItem;
 import com.android.contacts.common.model.dataitem.WebsiteDataItem;
-import com.android.contacts.common.model.dataitem.CustomDataItem;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.DateUtils;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.common.util.PermissionsUtil;
@@ -157,7 +157,7 @@ import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.editor.AggregationSuggestionEngine;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
-import com.android.contacts.editor.ContactEditorFragment;
+import com.android.contacts.editor.ContactEditorBaseFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
@@ -178,10 +178,8 @@ import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 import com.android.contacts.widget.QuickContactImageView;
 import com.android.contactsbind.HelpUtils;
-
 import com.google.common.collect.Lists;
 
-import java.lang.SecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -2996,7 +2994,7 @@ public class QuickContactActivity extends ContactsActivity
                     intent.putExtra(Intents.Insert.DATA, values);
 
                     // If the contact can only export to the same account, add it to the intent.
-                    // Otherwise the ContactEditorFragment will show a dialog for selecting an
+                    // Otherwise the ContactEditorBaseFragment will show a dialog for selecting an
                     // account.
                     if (mContactData.getDirectoryExportSupport() ==
                             Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY) {
@@ -3009,7 +3007,8 @@ public class QuickContactActivity extends ContactsActivity
 
                     // Add this flag to disable the delete menu option on directory contact joins
                     // with local contacts. The delete option is ambiguous when joining contacts.
-                    intent.putExtra(ContactEditorFragment.INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION,
+                    intent.putExtra(
+                            ContactEditorBaseFragment.INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION,
                             true);
 
                     intent.setPackage(getPackageName());

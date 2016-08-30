@@ -743,7 +743,8 @@ public class ContactSaveService extends IntentService {
 
         ContentValues values = new ContentValues();
         // TODO: Move this into the contact editor where it belongs. This needs to be integrated
-        // with the way other intent extras that are passed to the {@link ContactEditorActivity}.
+        // with the way other intent extras that are passed to the
+        // {@link CompactContactEditorActivity}.
         values.clear();
         values.put(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
         values.put(GroupMembership.GROUP_ROW_ID, ContentUris.parseId(groupUri));

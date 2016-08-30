@@ -111,8 +111,6 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     private static final List<String> VALID_INTENT_ACTIONS = new ArrayList<String>() {{
         add(Intent.ACTION_EDIT);
         add(Intent.ACTION_INSERT);
-        add(ContactEditorBaseActivity.ACTION_EDIT);
-        add(ContactEditorBaseActivity.ACTION_INSERT);
         add(ContactEditorBaseActivity.ACTION_SAVE_COMPLETED);
     }};
 
@@ -358,7 +356,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     // Loaded data
     //
     // Used to store existing contact data so it can be re-applied during a rebind call,
-    // i.e. account switch.  Only used in {@link ContactEditorFragment}.
+    // i.e. account switch.
     protected ImmutableList<RawContact> mRawContacts;
     protected Cursor mGroupMetaData;
 
@@ -553,8 +551,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
             // The delta list may not have finished loading before orientation change happens.
             // In this case, there will be a saved state but deltas will be missing.  Reload from
             // database.
-            if (Intent.ACTION_EDIT.equals(mAction) ||
-                    ContactEditorBaseActivity.ACTION_EDIT.equals(mAction)) {
+            if (Intent.ACTION_EDIT.equals(mAction)) {
                 // Either
                 // 1) orientation change but load never finished.
                 // 2) not an orientation change so data needs to be loaded for first time.
@@ -576,11 +573,9 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
                 mAccountWithDataSet = new AccountWithDataSet(account.name, account.type, dataSet);
             }
 
-            if (Intent.ACTION_EDIT.equals(mAction) ||
-                    ContactEditorBaseActivity.ACTION_EDIT.equals(mAction)) {
+            if (Intent.ACTION_EDIT.equals(mAction)) {
                 mIsEdit = true;
-            } else if (Intent.ACTION_INSERT.equals(mAction) ||
-                    ContactEditorBaseActivity.ACTION_INSERT.equals(mAction)) {
+            } else if (Intent.ACTION_INSERT.equals(mAction)) {
                 mHasNewContact = true;
                 if (mAccountWithDataSet != null) {
                     createContact(mAccountWithDataSet);
@@ -780,12 +775,12 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         // Set visibility of menus
 
         // help menu depending on whether this is inserting or editing
-        if (isInsert(mAction) || mRawContactIdToDisplayAlone != -1) {
+        if (Intent.ACTION_INSERT.equals(mAction) || mRawContactIdToDisplayAlone != -1) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
             splitMenu.setVisible(false);
             joinMenu.setVisible(false);
             deleteMenu.setVisible(false);
-        } else if (isEdit(mAction)) {
+        } else if (Intent.ACTION_EDIT.equals(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
             splitMenu.setVisible(canUnlinkRawContacts());
             // Cannot join a user profile
@@ -1742,22 +1737,5 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         }
         // Otherwise pass back a lookup-style Uri
         return contactLookupUri;
-    }
-
-    /**
-     * Whether the argument Intent requested a contact insert action or not.
-     */
-    protected static boolean isInsert(Intent intent) {
-        return intent == null ? false : isInsert(intent.getAction());
-    }
-
-    protected static boolean isInsert(String action) {
-        return Intent.ACTION_INSERT.equals(action)
-                || ContactEditorBaseActivity.ACTION_INSERT.equals(action);
-    }
-
-    protected static boolean isEdit(String action) {
-        return Intent.ACTION_EDIT.equals(action)
-                || ContactEditorBaseActivity.ACTION_EDIT.equals(action);
     }
 }
