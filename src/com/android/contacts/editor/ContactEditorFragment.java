@@ -23,37 +23,29 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.ListPopupWindow;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorActivity;
-import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.util.AccountsListAdapter;
-import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.Editor.EditorListener;
 import com.android.contacts.util.ContactPhotoUtils;
-import com.android.contacts.util.UiClosables;
 
 import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Contact editor with all fields displayed.
@@ -212,12 +204,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
                         mContent, false);
             }
             editor.setListener(this);
-            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(mContext)
-                    .getAccounts(true);
-            if (mHasNewContact && !mNewLocalProfile && accounts.size() > 1) {
-                addAccountSwitcher(mState.get(0), editor);
-            }
-
             editor.setEnabled(isEnabled());
 
             if (mRawContactIdToDisplayAlone != -1) {
@@ -378,46 +364,6 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
         if (mRawContactIdRequestingPhoto == editor.getRawContactId()) {
             mCurrentPhotoHandler = photoHandler;
         }
-    }
-
-    private void addAccountSwitcher(
-            final RawContactDelta currentState, BaseRawContactEditorView editor) {
-        final AccountWithDataSet currentAccount = new AccountWithDataSet(
-                currentState.getAccountName(),
-                currentState.getAccountType(),
-                currentState.getDataSet());
-        final View accountView = editor.findViewById(R.id.account);
-        final View anchorView = editor.findViewById(R.id.account_selector_container);
-        if (accountView == null) {
-            return;
-        }
-        anchorView.setVisibility(View.VISIBLE);
-        accountView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final ListPopupWindow popup = new ListPopupWindow(mContext, null);
-                final AccountsListAdapter adapter =
-                        new AccountsListAdapter(mContext,
-                        AccountListFilter.ACCOUNTS_CONTACT_WRITABLE, currentAccount);
-                popup.setWidth(anchorView.getWidth());
-                popup.setAnchorView(anchorView);
-                popup.setAdapter(adapter);
-                popup.setModal(true);
-                popup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
-                popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position,
-                            long id) {
-                        UiClosables.closeQuietly(popup);
-                        AccountWithDataSet newAccount = adapter.getItem(position);
-                        if (!newAccount.equals(currentAccount)) {
-                            rebindEditorsForNewContact(currentState, currentAccount, newAccount);
-                        }
-                    }
-                });
-                popup.show();
-            }
-        });
     }
 
     @Override
