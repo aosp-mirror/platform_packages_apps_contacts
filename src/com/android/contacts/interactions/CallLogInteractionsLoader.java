@@ -24,6 +24,7 @@ import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.provider.CallLog.Calls;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.common.annotations.VisibleForTesting;
 
@@ -36,6 +37,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInteraction>> {
+
+    private static final String TAG = "CallLogInteractions";
 
     private final String[] mPhoneNumbers;
     private final String[] mSipNumbers;
@@ -129,8 +132,13 @@ public class CallLogInteractionsLoader extends AsyncTaskLoader<List<ContactInter
         // as we don't also set the {@link android.provider.CallLog.Calls.LIMIT_PARAM_KEY} that
         // becomes available in KK.
         final String orderByAndLimit = Calls.DATE + " DESC LIMIT " + mMaxToRetrieve;
-        final Cursor cursor = getContext().getContentResolver().query(uri, null, null, null,
-                orderByAndLimit);
+        Cursor cursor = null;
+        try {
+            cursor = getContext().getContentResolver().query(uri, null, null, null,
+                    orderByAndLimit);
+        } catch (Exception e) {
+            Log.e(TAG, "Can not query calllog", e);
+        }
         try {
             if (cursor == null || cursor.getCount() < 1) {
                 return Collections.emptyList();
