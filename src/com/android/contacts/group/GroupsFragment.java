@@ -56,6 +56,9 @@ public final class GroupsFragment extends Fragment {
 
                 @Override
                 public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+                    if (data == null) {
+                        return;
+                    }
                     mGroupListItems.clear();
                     for (int i = 0; i < data.getCount(); i++) {
                         if (data.moveToNext()) {
