@@ -19,9 +19,12 @@ package com.android.contacts.editor;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -76,6 +79,30 @@ public class ContactEditorUtils {
             sInstance = new ContactEditorUtils(context.getApplicationContext());
         }
         return sInstance;
+    }
+
+    /**
+     * Returns a legacy version of the given contactLookupUri if a legacy Uri was originally
+     * passed to the contact editor.
+     *
+     * @param contactLookupUri The Uri to possibly convert to legacy format.
+     * @param requestLookupUri The lookup Uri originally passed to the contact editor
+     *                         (via Intent data), may be null.
+     */
+    static Uri maybeConvertToLegacyLookupUri(Context context, Uri contactLookupUri,
+            Uri requestLookupUri) {
+        final String legacyAuthority = "contacts";
+        final String requestAuthority = requestLookupUri == null
+                ? null : requestLookupUri.getAuthority();
+        if (legacyAuthority.equals(requestAuthority)) {
+            // Build a legacy Uri if that is what was requested by caller
+            final long contactId = ContentUris.parseId(ContactsContract.Contacts.lookupContact(
+                    context.getContentResolver(), contactLookupUri));
+            final Uri legacyContentUri = Uri.parse("content://contacts/people");
+            return ContentUris.withAppendedId(legacyContentUri, contactId);
+        }
+        // Otherwise pass back a lookup-style Uri
+        return contactLookupUri;
     }
 
     void cleanupForTest() {

@@ -154,7 +154,7 @@ import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.editor.AggregationSuggestionEngine;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
-import com.android.contacts.editor.ContactEditorBaseFragment;
+import com.android.contacts.editor.CompactContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
@@ -2951,8 +2951,8 @@ public class QuickContactActivity extends ContactsActivity
                     intent.putExtra(Intents.Insert.DATA, values);
 
                     // If the contact can only export to the same account, add it to the intent.
-                    // Otherwise the ContactEditorBaseFragment will show a dialog for selecting an
-                    // account.
+                    // Otherwise the CompactContactEditorFragment will show a dialog for selecting
+                    // an account.
                     if (mContactData.getDirectoryExportSupport() ==
                             Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY) {
                         intent.putExtra(Intents.Insert.EXTRA_ACCOUNT,
@@ -2965,7 +2965,7 @@ public class QuickContactActivity extends ContactsActivity
                     // Add this flag to disable the delete menu option on directory contact joins
                     // with local contacts. The delete option is ambiguous when joining contacts.
                     intent.putExtra(
-                            ContactEditorBaseFragment.INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION,
+                            CompactContactEditorFragment.INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION,
                             true);
 
                     intent.setPackage(getPackageName());

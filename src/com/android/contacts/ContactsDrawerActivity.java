@@ -57,7 +57,7 @@ import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.DeviceAccountPresentationValues;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
-import com.android.contacts.editor.ContactEditorBaseFragment;
+import com.android.contacts.editor.CompactContactEditorFragment;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupMembersFragment;
@@ -575,7 +575,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     private Intent createPreferenceIntent() {
         final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
         intent.putExtra(ContactsPreferenceActivity.EXTRA_NEW_LOCAL_PROFILE,
-                ContactEditorBaseFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE);
+                CompactContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE);
         intent.putExtra(ContactsPreferenceActivity.EXTRA_MODE_FULLY_EXPANDED,
                 QuickContactActivity.MODE_FULLY_EXPANDED);
         intent.putExtra(ContactsPreferenceActivity.EXTRA_PREVIOUS_SCREEN_TYPE,

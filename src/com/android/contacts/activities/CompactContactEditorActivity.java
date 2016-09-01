@@ -28,7 +28,6 @@ import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.CompactContactEditorFragment;
 import com.android.contacts.editor.CompactPhotoSelectionFragment;
-import com.android.contacts.editor.ContactEditorBaseFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.editor.PhotoSourceDialogFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -154,7 +153,7 @@ public class CompactContactEditorActivity extends ContactsActivity implements
         /**
          * Sets the hosting Activity that will receive callbacks from the contact editor.
          */
-        void setListener(ContactEditorBaseFragment.Listener listener);
+        void setListener(CompactContactEditorFragment.Listener listener);
 
         /**
          * Initialize the contact editor.
@@ -273,8 +272,8 @@ public class CompactContactEditorActivity extends ContactsActivity implements
     private int mPhotoMode;
     private boolean mIsPhotoSelection;
 
-    private final ContactEditorBaseFragment.Listener  mFragmentListener =
-            new ContactEditorBaseFragment.Listener() {
+    private final CompactContactEditorFragment.Listener  mFragmentListener =
+            new CompactContactEditorFragment.Listener() {
 
                 @Override
                 public void onDeleteRequested(Uri contactUri) {
@@ -481,11 +480,11 @@ public class CompactContactEditorActivity extends ContactsActivity implements
             mFragment.setIntentExtras(intent.getExtras());
         } else if (ACTION_SAVE_COMPLETED.equals(action)) {
             mFragment.onSaveCompleted(true,
-                    intent.getIntExtra(ContactEditorBaseFragment.SAVE_MODE_EXTRA_KEY,
+                    intent.getIntExtra(CompactContactEditorFragment.SAVE_MODE_EXTRA_KEY,
                             ContactEditor.SaveMode.CLOSE),
                     intent.getBooleanExtra(ContactSaveService.EXTRA_SAVE_SUCCEEDED, false),
                     intent.getData(),
-                    intent.getLongExtra(ContactEditorBaseFragment.JOIN_CONTACT_ID_EXTRA_KEY, -1));
+                    intent.getLongExtra(CompactContactEditorFragment.JOIN_CONTACT_ID_EXTRA_KEY, -1));
         } else if (ACTION_JOIN_COMPLETED.equals(action)) {
             mFragment.onJoinCompleted(intent.getData());
         }
