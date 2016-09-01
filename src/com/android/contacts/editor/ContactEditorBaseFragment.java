@@ -58,9 +58,9 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
+import com.android.contacts.activities.CompactContactEditorActivity;
+import com.android.contacts.activities.CompactContactEditorActivity.ContactEditor;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
-import com.android.contacts.activities.ContactEditorBaseActivity;
-import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
 import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -81,18 +81,15 @@ import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.UiClosables;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.google.common.collect.UnmodifiableIterator;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Set;
-
-import javax.annotation.Nullable;
 
 /**
  * Base Fragment for contact editors.
@@ -111,7 +108,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     private static final List<String> VALID_INTENT_ACTIONS = new ArrayList<String>() {{
         add(Intent.ACTION_EDIT);
         add(Intent.ACTION_INSERT);
-        add(ContactEditorBaseActivity.ACTION_SAVE_COMPLETED);
+        add(CompactContactEditorActivity.ACTION_SAVE_COMPLETED);
     }};
 
     private static final String KEY_ACTION = "action";

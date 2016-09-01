@@ -51,7 +51,7 @@ import android.support.v4.os.ResultReceiver;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.contacts.activities.ContactEditorBaseActivity;
+import com.android.contacts.activities.CompactContactEditorActivity;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.database.ContactUpdateUtils;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -215,13 +215,13 @@ public class ContactSaveService extends IntentService {
         } catch (Exception exception) {
             final int resId;
             switch (saveMode) {
-                case ContactEditorBaseActivity.ContactEditor.SaveMode.SPLIT:
+                case CompactContactEditorActivity.ContactEditor.SaveMode.SPLIT:
                     resId = R.string.contactUnlinkErrorToast;
                     break;
-                case ContactEditorBaseActivity.ContactEditor.SaveMode.RELOAD:
+                case CompactContactEditorActivity.ContactEditor.SaveMode.RELOAD:
                     resId = R.string.contactJoinErrorToast;
                     break;
-                case ContactEditorBaseActivity.ContactEditor.SaveMode.CLOSE:
+                case CompactContactEditorActivity.ContactEditor.SaveMode.CLOSE:
                     resId = R.string.contactSavedErrorToast;
                     break;
                 default:

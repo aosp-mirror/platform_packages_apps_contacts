@@ -21,7 +21,6 @@ import android.accounts.Account;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
@@ -106,7 +105,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
-import com.android.contacts.activities.ContactEditorBaseActivity;
+import com.android.contacts.activities.CompactContactEditorActivity;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
@@ -130,7 +129,6 @@ import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.dataitem.CustomDataItem;
 import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
@@ -177,6 +175,7 @@ import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 import com.android.contacts.widget.QuickContactImageView;
 import com.android.contactsbind.HelpUtils;
+
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -1137,7 +1136,7 @@ public class QuickContactActivity extends ContactsActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         final boolean deletedOrSplit = requestCode == REQUEST_CODE_CONTACT_EDITOR_ACTIVITY &&
                 (resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED ||
-                resultCode == ContactEditorBaseActivity.RESULT_CODE_SPLIT);
+                resultCode == CompactContactEditorActivity.RESULT_CODE_SPLIT);
         setResult(resultCode, data);
         if (deletedOrSplit) {
             finish();
@@ -1177,7 +1176,7 @@ public class QuickContactActivity extends ContactsActivity
         }
         Uri lookupUri = intent.getData();
         if (intent.getBooleanExtra(EXTRA_CONTACT_EDITED, false)) {
-            setResult(ContactEditorBaseActivity.RESULT_CODE_EDITED);
+            setResult(CompactContactEditorActivity.RESULT_CODE_EDITED);
         }
 
         // Check to see whether it comes from the old version.

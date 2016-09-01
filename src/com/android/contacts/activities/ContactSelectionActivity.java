@@ -658,8 +658,8 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
 
     private void startCreateNewContactActivity() {
         Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
-        intent.putExtra(
-                ContactEditorBaseActivity.INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
+        intent.putExtra(CompactContactEditorActivity.
+                INTENT_KEY_FINISH_ACTIVITY_ON_SAVE_COMPLETED, true);
         startActivityAndForwardResult(intent);
     }
 
