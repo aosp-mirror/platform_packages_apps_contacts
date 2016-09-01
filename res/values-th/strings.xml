@@ -335,9 +335,7 @@
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"จัดระเบียบรายชื่อ"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"ลบรายชื่อซ้ำและจัดกลุ่มตามป้ายกำกับ"</string>
     <string name="undo" msgid="1425165101664071422">"เลิกทำ"</string>
-    <string name="toast_text_copied" msgid="5143776250008541719">"คัดลอกข้อความแล้ว"</string>
-    <string name="copy_text" msgid="3257145021583508761">"คัดลอกไปยังคลิปบอร์ด"</string>
-    <string name="call_custom" msgid="7756571794763171802">"โทรหา <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="call_custom" msgid="6385303130912713318">"โทร <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"โทรเข้าบ้าน"</string>
     <string name="call_mobile" msgid="7502236805487609178">"โทรเข้ามือถือ"</string>
     <string name="call_work" msgid="5328785911463744028">"โทรหาที่ทำงาน"</string>
@@ -356,10 +354,10 @@
     <string name="call_tty_tdd" msgid="8951266948204379604">"โทรหา TTY/TDD"</string>
     <string name="call_work_mobile" msgid="8707874281430105394">"โทรเข้ามือถือที่ทำงาน"</string>
     <string name="call_work_pager" msgid="3419348514157949008">"โทรเข้าเพจเจอร์ที่ทำงาน"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"โทรหา <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_assistant" msgid="670941612175068337">"โทร <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"โทรหา MMS"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (โทร)"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"ส่งข้อความถึง <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_custom" msgid="415060214233647603">"ส่งข้อความ <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7524332261493162995">"ส่งข้อความเข้าโทรศัพท์บ้าน"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"ส่งข้อความเข้ามือถือ"</string>
     <string name="sms_work" msgid="2269624156655267740">"ส่งข้อความถึงโทรศัพท์ที่ทำงาน"</string>
@@ -388,18 +386,11 @@
     <string name="status_available" msgid="5586870015822828392">"ว่าง"</string>
     <string name="status_away" msgid="1838861100379804730">"ไม่อยู่"</string>
     <string name="status_busy" msgid="9147992455450257136">"ไม่ว่าง"</string>
-    <string name="contactsList" msgid="8661624236494819731">"รายชื่อในสมุดโทรศัพท์"</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"อื่นๆ"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"ไดเรกทอรี"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"ไดเรกทอรีที่ทำงาน"</string>
     <string name="local_search_label" msgid="2551177578246113614">"รายชื่อติดต่อทั้งหมด"</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"กำลังค้นหา..."</string>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"พบมากกว่า <xliff:g id="COUNT">%d</xliff:g> รายการ"</string>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"ไม่มีรายชื่อติดต่อ"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="other">พบ <xliff:g id="COUNT">%d</xliff:g> รายการ</item>
-      <item quantity="one">พบ 1 รายการ</item>
-    </plurals>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"สมุดโทรศัพท์ด่วนสำหรับ <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="8745511583852904385">"(ไม่มีชื่อ)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"ที่ติดต่อบ่อยครั้ง"</string>
@@ -408,6 +399,7 @@
     <string name="list_filter_phones_work" msgid="1470173699551475015">"รายชื่อติดต่อในโปรไฟล์งาน"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"ดูการอัปเดต"</string>
     <string name="account_phone" msgid="7128032778471187553">"อุปกรณ์"</string>
+    <string name="account_sim" msgid="6519016427905087952">"ซิม"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"ชื่อ"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"ชื่อเล่น"</string>
     <string name="full_name" msgid="6602579550613988977">"ชื่อ"</string>
@@ -432,8 +424,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"บริษัท"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"ชื่อ"</string>
     <string name="label_notes" msgid="8337354953278341042">"หมายเหตุ"</string>
-    <!-- no translation found for label_custom_field (1994056912242214426) -->
-    <skip />
+    <string name="label_custom_field" msgid="1994056912242214426">"กำหนดเอง"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"เว็บไซต์"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"ป้ายกำกับ"</string>
@@ -441,7 +432,7 @@
     <string name="email_mobile" msgid="2042889209787989814">"ส่งอีเมลเข้ามือถือ"</string>
     <string name="email_work" msgid="2807430017302722689">"ส่งอีเมลถึงที่ทำงาน"</string>
     <string name="email_other" msgid="3454004077967657109">"อีเมล"</string>
-    <string name="email_custom" msgid="7548003991586214105">"อีเมล <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email_custom" msgid="5536404237099078802">"ส่งอีเมล <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"อีเมล"</string>
     <string name="postal_street" msgid="8133143961580058972">"ถนน"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"ตู้ ปณ."</string>
@@ -453,7 +444,7 @@
     <string name="map_home" msgid="1243547733423343982">"ดูที่อยู่บ้าน"</string>
     <string name="map_work" msgid="1360474076921878088">"ดูที่อยู่ที่ทำงาน"</string>
     <string name="map_other" msgid="3817820803587012641">"ดูที่อยู่"</string>
-    <string name="map_custom" msgid="6184363799976265281">"ดูที่อยู่ <xliff:g id="CUSTOM">%s</xliff:g> รายการ"</string>
+    <string name="map_custom" msgid="8761800628069473526">"ดูที่อยู่ <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="chat_aim" msgid="2588492205291249142">"แชทโดยใช้ AIM"</string>
     <string name="chat_msn" msgid="8041633440091073484">"แชทโดยใช้ Windows Live"</string>
     <string name="chat_yahoo" msgid="6629211142719943666">"แชทโดยใช้ Yahoo"</string>
@@ -546,7 +537,6 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"ข้อมูลของฉัน"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"ตั้งค่าโปรไฟล์ของคุณ"</string>
     <string name="setting_about" msgid="7014388749752042863">"เกี่ยวกับ \"รายชื่อติดต่อ\""</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"การตั้งค่า"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"แชร์สมุดโทรศัพท์ที่มองเห็น"</string>
     <string name="share_visible_contacts_failure" msgid="7324717548166915560">"ไม่สามารถแชร์รายชื่อติดต่อที่มองเห็นได้"</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"แชร์รายชื่อติดต่อโปรด"</string>
@@ -578,7 +568,7 @@
     <string name="set_default_account" msgid="4311613760725609801">"ใช้ในการโทรทุกครั้ง"</string>
     <string name="select_phone_account_for_calls" msgid="3810607744451014540">"โทรด้วย"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"โทรพร้อมโน้ต"</string>
-    <string name="call_subject_hint" msgid="3637498418381454511">"พิมพ์โน้ตเพื่อส่งพร้อมการโทร ..."</string>
+    <string name="call_subject_hint" msgid="3043028982108363572">"พิมพ์โน้ตเพื่อส่งพร้อมการโทร..."</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"ส่งและโทร"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>

@@ -335,9 +335,7 @@
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"목록 정리"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"중복된 항목을 정리하고 라벨로 연락처 그룹화"</string>
     <string name="undo" msgid="1425165101664071422">"실행취소"</string>
-    <string name="toast_text_copied" msgid="5143776250008541719">"텍스트 복사됨"</string>
-    <string name="copy_text" msgid="3257145021583508761">"클립보드에 복사"</string>
-    <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g>(으)로 전화걸기"</string>
+    <string name="call_custom" msgid="6385303130912713318">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>에 전화 걸기"</string>
     <string name="call_home" msgid="1990519474420545392">"집으로 전화걸기"</string>
     <string name="call_mobile" msgid="7502236805487609178">"휴대전화로 전화걸기"</string>
     <string name="call_work" msgid="5328785911463744028">"직장으로 전화걸기"</string>
@@ -356,10 +354,10 @@
     <string name="call_tty_tdd" msgid="8951266948204379604">"TTY/TDD 통화"</string>
     <string name="call_work_mobile" msgid="8707874281430105394">"직장 휴대전화로 전화걸기"</string>
     <string name="call_work_pager" msgid="3419348514157949008">"직장 호출기로 전화 걸기"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"<xliff:g id="ASSISTANT">%s</xliff:g>에게 전화"</string>
+    <string name="call_assistant" msgid="670941612175068337">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>에 전화 걸기"</string>
     <string name="call_mms" msgid="6274041545876221437">"MMS로 전화걸기"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g>(전화)"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"문자(<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
+    <string name="sms_custom" msgid="415060214233647603">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>에 문자 메시지 보내기"</string>
     <string name="sms_home" msgid="7524332261493162995">"집으로 문자 보내기"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"휴대전화로 문자 보내기"</string>
     <string name="sms_work" msgid="2269624156655267740">"직장으로 문자 보내기"</string>
@@ -388,18 +386,11 @@
     <string name="status_available" msgid="5586870015822828392">"대화 가능"</string>
     <string name="status_away" msgid="1838861100379804730">"자리 비움"</string>
     <string name="status_busy" msgid="9147992455450257136">"다른 용무 중"</string>
-    <string name="contactsList" msgid="8661624236494819731">"주소록"</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"기타"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"디렉토리"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"직장 디렉토리"</string>
     <string name="local_search_label" msgid="2551177578246113614">"모든 연락처"</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"검색 중…"</string>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g>개 이상 찾았습니다."</string>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"연락처 없음"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="other">연락처 <xliff:g id="COUNT">%d</xliff:g>개</item>
-      <item quantity="one">연락처 1개</item>
-    </plurals>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>님의 빠른 주소록"</string>
     <string name="missing_name" msgid="8745511583852904385">"(이름 없음)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"자주 연락하는 사람들의 연락처"</string>
@@ -408,6 +399,7 @@
     <string name="list_filter_phones_work" msgid="1470173699551475015">"직장 프로필 연락처"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"업데이트 보기"</string>
     <string name="account_phone" msgid="7128032778471187553">"기기"</string>
+    <string name="account_sim" msgid="6519016427905087952">"SIM"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"이름"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"닉네임"</string>
     <string name="full_name" msgid="6602579550613988977">"이름"</string>
@@ -432,8 +424,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"회사"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"직함"</string>
     <string name="label_notes" msgid="8337354953278341042">"메모"</string>
-    <!-- no translation found for label_custom_field (1994056912242214426) -->
-    <skip />
+    <string name="label_custom_field" msgid="1994056912242214426">"맞춤"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"웹사이트"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"라벨"</string>
@@ -441,7 +432,7 @@
     <string name="email_mobile" msgid="2042889209787989814">"모바일로 이메일 보내기"</string>
     <string name="email_work" msgid="2807430017302722689">"직장으로 이메일 보내기"</string>
     <string name="email_other" msgid="3454004077967657109">"이메일"</string>
-    <string name="email_custom" msgid="7548003991586214105">"이메일(<xliff:g id="CUSTOM">%s</xliff:g>)"</string>
+    <string name="email_custom" msgid="5536404237099078802">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>에 이메일 보내기"</string>
     <string name="email" msgid="5668400997660065897">"이메일"</string>
     <string name="postal_street" msgid="8133143961580058972">"번지"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"사서함"</string>
@@ -453,7 +444,7 @@
     <string name="map_home" msgid="1243547733423343982">"집 주소 보기"</string>
     <string name="map_work" msgid="1360474076921878088">"직장 주소 보기"</string>
     <string name="map_other" msgid="3817820803587012641">"주소 보기"</string>
-    <string name="map_custom" msgid="6184363799976265281">"<xliff:g id="CUSTOM">%s</xliff:g> 주소 보기"</string>
+    <string name="map_custom" msgid="8761800628069473526">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> 주소 보기"</string>
     <string name="chat_aim" msgid="2588492205291249142">"AIM으로 채팅"</string>
     <string name="chat_msn" msgid="8041633440091073484">"Windows Live로 채팅"</string>
     <string name="chat_yahoo" msgid="6629211142719943666">"Yahoo로 채팅"</string>
@@ -546,7 +537,6 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"내 정보"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"프로필 설정"</string>
     <string name="setting_about" msgid="7014388749752042863">"주소록 정보"</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"설정"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"표시되는 연락처 모두 공유"</string>
     <string name="share_visible_contacts_failure" msgid="7324717548166915560">"표시되는 연락처를 공유하지 못했습니다."</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"자주 사용하는 연락처 공유"</string>
@@ -578,7 +568,7 @@
     <string name="set_default_account" msgid="4311613760725609801">"통화에 항상 사용"</string>
     <string name="select_phone_account_for_calls" msgid="3810607744451014540">"전화 걸 때 사용할 계정"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"메모가 포함된 통화"</string>
-    <string name="call_subject_hint" msgid="3637498418381454511">"통화에 함께 전송할 메모를 입력하세요..."</string>
+    <string name="call_subject_hint" msgid="3043028982108363572">"통화에 함께 전송할 메모를 입력하세요."</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"보내기 및 통화"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
