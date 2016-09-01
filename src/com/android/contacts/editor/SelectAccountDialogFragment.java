@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.android.contacts.common.editor;
+package com.android.contacts.editor;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -43,9 +43,6 @@ public final class SelectAccountDialogFragment extends DialogFragment {
     private static final String KEY_TITLE_RES_ID = "title_res_id";
     private static final String KEY_LIST_FILTER = "list_filter";
     private static final String KEY_EXTRA_ARGS = "extra_args";
-
-    public SelectAccountDialogFragment() { // All fragments must have a public default constructor.
-    }
 
     /**
      * Show the dialog.

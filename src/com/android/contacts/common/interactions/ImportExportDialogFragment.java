@@ -44,7 +44,6 @@ import android.widget.Toast;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
-import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountSelectionUtil;
@@ -53,7 +52,7 @@ import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.vcard.ExportVCardActivity;
 import com.android.contacts.common.vcard.VCardCommonArguments;
 import com.android.contacts.common.vcard.ShareVCardActivity;
-import com.android.contactsbind.analytics.AnalyticsUtil;
+import com.android.contacts.editor.SelectAccountDialogFragment;
 
 import java.util.List;
 
