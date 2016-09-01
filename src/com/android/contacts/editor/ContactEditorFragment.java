@@ -520,6 +520,9 @@ public class ContactEditorFragment extends ContactEditorBaseFragment implements
 
         @Override
         public void startPhotoActivity(Intent intent, int requestCode, Uri photoUri) {
+            if (getActivity() == null) {
+                return;
+            }
             mRawContactIdRequestingPhoto = mEditor.getRawContactId();
             mCurrentPhotoHandler = this;
             mStatus = Status.SUB_ACTIVITY;
