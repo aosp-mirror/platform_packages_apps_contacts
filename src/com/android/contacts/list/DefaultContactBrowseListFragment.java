@@ -32,7 +32,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
@@ -55,7 +54,6 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
-import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -125,6 +123,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     private ActionBarAdapter mActionBarAdapter;
     private ContactMultiDeletionInteraction mMultiDeletionInteraction;
+    private ContactsDrawerActivity mActivity;
     private ContactsRequest mContactsRequest;
     protected ContactListFilterController mContactListFilterController;
 
@@ -137,7 +136,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             // Scroll to top after filter is changed.
             getListView().setSelection(0);
 
-            getActivity().invalidateOptionsMenu();
+            mActivity.invalidateOptionsMenu();
         }
     };
 
@@ -151,12 +150,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                     break;
                 case ActionBarAdapter.Listener.Action.START_SEARCH_MODE:
                     if (!mIsRecreatedInstance) {
-                        Logger.logScreenView(getActivity(), ScreenEvent.ScreenType.SEARCH);
+                        Logger.logScreenView(mActivity, ScreenEvent.ScreenType.SEARCH);
                     }
                     startSearchOrSelectionMode();
                     break;
                 case ActionBarAdapter.Listener.Action.BEGIN_STOPPING_SEARCH_AND_SELECTION_MODE:
-                    ((PeopleActivity) getActivity()).showFabWithAnimation(/* showFab */ true);
+                    mActivity.showFabWithAnimation(/* showFab */ true);
                     break;
                 case ActionBarAdapter.Listener.Action.STOP_SEARCH_AND_SELECTION_MODE:
                     // If queryString is empty, fragment data will not be reloaded,
@@ -167,8 +166,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                     }
                     setQueryTextToFragment("");
                     maybeHideCheckBoxes();
-                    getActivity().invalidateOptionsMenu();
-                    ((PeopleActivity) getActivity()).showFabWithAnimation(/* showFab */ true);
+                    mActivity.invalidateOptionsMenu();
+                    mActivity.showFabWithAnimation(/* showFab */ true);
                     // Determine whether the account has pullToRefresh feature
                     if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
                         setSwipeRefreshLayoutEnabledOrNot(getFilter());
@@ -188,8 +187,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         private void startSearchOrSelectionMode() {
             configureContactListFragment();
             maybeHideCheckBoxes();
-            getActivity().invalidateOptionsMenu();
-            ((PeopleActivity) getActivity()).showFabWithAnimation(/* showFab */ false);
+            mActivity.invalidateOptionsMenu();
+            mActivity.showFabWithAnimation(/* showFab */ false);
+
             final Context context = getContext();
             if (!SharedPreferenceUtil.getHamburgerPromoTriggerActionHappenedBefore(context)) {
                 SharedPreferenceUtil.setHamburgerPromoTriggerActionHappenedBefore(context);
@@ -199,7 +199,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         private void updateDebugOptionsVisibility(boolean visible) {
             if (mEnableDebugMenuOptions != visible) {
                 mEnableDebugMenuOptions = visible;
-                getActivity().invalidateOptionsMenu();
+                mActivity.invalidateOptionsMenu();
             }
         }
 
@@ -210,7 +210,14 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         @Override
         public void onUpButtonPressed() {
-            getActivity().onBackPressed();
+            mActivity.onBackPressed();
+        }
+    };
+
+    private final View.OnClickListener mAddContactListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AccountFilterUtil.startEditorIntent(getContext(), mActivity.getIntent(), getFilter());
         }
     };
 
@@ -245,8 +252,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         if (mActionBarAdapter!= null && !mActionBarAdapter.isSearchMode()
                 && !mActionBarAdapter.isSelectionMode()
                 && SharedPreferenceUtil.getShouldShowHamburgerPromo(getContext())) {
-            if (FeatureHighlightHelper.showHamburgerFeatureHighlight(
-                    (FragmentActivity) getActivity())) {
+            if (FeatureHighlightHelper.showHamburgerFeatureHighlight(mActivity)) {
                 SharedPreferenceUtil.setHamburgerPromoDisplayedBefore(getContext());
             }
         }
@@ -373,12 +379,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         // Set up add contact button.
         final Button addContactButton =
                 (Button) emptyHomeView.findViewById(R.id.add_contact_button);
-        addContactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((PeopleActivity) getActivity()).onFabClicked();
-            }
-        });
+        addContactButton.setOnClickListener(mAddContactListener);
         return emptyHomeView;
     }
 
@@ -399,12 +400,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         // Set up add contact button.
         final Button addContactButton =
                 (Button) emptyAccountView.findViewById(R.id.add_contact_button);
-        addContactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((PeopleActivity) getActivity()).onFabClicked();
-            }
-        });
+        addContactButton.setOnClickListener(mAddContactListener);
         return emptyAccountView;
     }
 
@@ -412,7 +408,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
 
-        if (Flags.getInstance(getActivity()).getBoolean(Experiments.PULL_TO_REFRESH)) {
+        if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
             initSwipeRefreshLayout();
         }
         // Putting the header view inside a container will allow us to make
@@ -463,7 +459,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
 
         final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(
-                getActivity()).getAccounts(/* contactsWritableOnly */ true);
+                getContext()).getAccounts(/* contactsWritableOnly */ true);
         final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
         if (syncableAccounts != null && syncableAccounts.size() > 0) {
             for (Account account : syncableAccounts) {
@@ -492,9 +488,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 : AccountFilterUtil.createContactsFilter(getContext());
         setContactListFilter(filter);
 
-        final ContactsDrawerActivity activity = (ContactsDrawerActivity) getActivity();
-        mActionBarAdapter = new ActionBarAdapter(activity, mActionBarListener,
-                activity.getSupportActionBar(), activity.getToolbar(), R.string.enter_contact_name);
+        mActivity = (ContactsDrawerActivity) getActivity();
+        mActionBarAdapter = new ActionBarAdapter(mActivity, mActionBarListener,
+                mActivity.getSupportActionBar(), mActivity.getToolbar(), R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
         initializeActionBarAdapter(savedInstanceState);
         if (isSearchMode()) {
@@ -591,13 +587,13 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         @Override
         public void onStartDisplayingCheckBoxes() {
             mActionBarAdapter.setSelectionMode(true);
-            getActivity().invalidateOptionsMenu();
+            mActivity.invalidateOptionsMenu();
         }
 
         @Override
         public void onSelectedContactIdsChanged() {
             mActionBarAdapter.setSelectionCount(getSelectedContactIds().size());
-            getActivity().invalidateOptionsMenu();
+            mActivity.invalidateOptionsMenu();
         }
 
         @Override
@@ -614,8 +610,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setFilter(filter, restoreSelectedUri);
         setListType(mContactListFilterController.getFilterListType());
 
-        ((ContactsDrawerActivity) getActivity()).updateFilterMenu(filter);
-
         final String actionBarTitle;
         if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
             actionBarTitle = getString(R.string.account_phone);
@@ -624,11 +618,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         } else {
             actionBarTitle = getString(R.string.contactsList);
         }
-        getActivity().setTitle(actionBarTitle);
+        mActivity.setTitle(actionBarTitle);
+        mActivity.updateFilterMenu(filter);
 
         if (CompatUtils.isNCompatible()) {
-            getActivity().setTitle(actionBarTitle);
-            getActivity().getWindow().getDecorView()
+            mActivity.getWindow().getDecorView()
                     .sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
         }
         // Determine whether the account has pullToRefresh feature
@@ -671,7 +665,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setFilterAndUpdateTitle(getFilter());
         setVerticalScrollbarPosition(getScrollBarPosition());
         setSelectionVisible(false);
-        getActivity().invalidateOptionsMenu();
+        mActivity.invalidateOptionsMenu();
     }
 
     private int getScrollBarPosition() {
@@ -724,12 +718,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         @Override
         public void onDeleteContactAction(Uri contactUri) {
-            ContactDeletionInteraction.start(getActivity(), contactUri, false);
+            ContactDeletionInteraction.start(mActivity, contactUri, false);
         }
 
         @Override
         public void onFinishAction() {
-            getActivity().onBackPressed();
+            mActivity.onBackPressed();
         }
 
         @Override
@@ -767,8 +761,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (!mContactsAvailable) {
-            // If contacts aren't available, hide all menu items.
+        if (!mContactsAvailable || mActivity.isInSecondLevel()) {
+            // If contacts aren't available or this fragment is not visible, hide all menu items.
             return;
         }
         super.onCreateOptionsMenu(menu, inflater);
@@ -826,7 +820,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 // The home icon on the action bar is pressed
                 if (mActionBarAdapter.isUpShowing()) {
                     // "UP" icon press -- should be treated as "back".
-                    getActivity().onBackPressed();
+                    mActivity.onBackPressed();
                 }
                 return true;
             }

@@ -19,6 +19,7 @@ import com.android.contactsbind.search.AutocompleteHelper;
 import com.android.contacts.common.util.DeviceAccountFilter;
 import com.android.contacts.common.util.DeviceAccountPresentationValues;
 
+import android.app.Fragment;
 import android.content.Context;
 
 /**
@@ -42,5 +43,13 @@ public class ObjectFactory {
 
     public static DeviceAccountFilter getDeviceAccountFilter(Context context) {
         return DeviceAccountFilter.ONLY_NULL;
+    }
+
+    public static Fragment getDuplicatesFragment() {
+        return null;
+    }
+
+    public static Fragment getDuplicatesUtilFragment() {
+        return null;
     }
 }

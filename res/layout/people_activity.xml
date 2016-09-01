@@ -20,35 +20,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/list_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-        <FrameLayout
-            android:id="@+id/contacts_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/toolbar_parent">
-            <FrameLayout
-                android:id="@+id/contacts_list_container"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/contacts_unavailable_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/toolbar_parent"
-            android:visibility="gone">
-            <FrameLayout
-                android:id="@+id/contacts_unavailable_container"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent" />
-        </FrameLayout>
-
-    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/contacts_list_container"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
 
     <include layout="@layout/floating_action_button" />
 </android.support.design.widget.CoordinatorLayout>
