@@ -1,4 +1,5 @@
 /*
+
  * Copyright (C) 2009 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -125,6 +126,9 @@ import com.android.contacts.common.list.ShortcutIntentBuilder;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
+import com.android.contacts.common.logging.QuickContactEvent.ContactType;
+import com.android.contacts.common.logging.QuickContactEvent.CardType;
+import com.android.contacts.common.logging.QuickContactEvent.ActionType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
@@ -213,6 +217,10 @@ public class QuickContactActivity extends ContactsActivity
 
     /** Used to pass the screen where the user came before launching this Activity. */
     public static final String EXTRA_PREVIOUS_SCREEN_TYPE = "previous_screen_type";
+    /** Used to pass the Contact card action. */
+    public static final String EXTRA_ACTION_TYPE = "action_type";
+    public static final String EXTRA_THIRD_PARTY_ACTION = "third_party_action";
+
     /** Used to tell the QuickContact that the previous contact was edited, so it can return an
      * activity result back to the original Activity that launched it. */
     public static final String EXTRA_CONTACT_EDITED = "contact_edited";
@@ -247,6 +255,15 @@ public class QuickContactActivity extends ContactsActivity
     private static final String HANGOUTS_DATA_5_MESSAGE = "conversation";
     private static final String CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY =
             "com.android.contacts.quickcontact.QuickContactActivity";
+
+    // Set true in {@link #onCreate} after orientation change for later use in processIntent().
+    private boolean mIsRecreatedInstance;
+
+    private boolean mShouldLog;
+
+    // Used to store and log the referrer package name and the contact type.
+    private String mReferrer;
+    private int mContactType;
 
     /**
      * The URI used to load the the Contact. Once the contact is loaded, use Contact#getLookupUri()
@@ -435,6 +452,11 @@ public class QuickContactActivity extends ContactsActivity
 
             mHasIntentLaunched = true;
             try {
+                final int actionType = intent.getIntExtra(EXTRA_ACTION_TYPE,
+                        ActionType.UNKNOWN_ACTION);
+                final String thirdPartyAction = intent.getStringExtra(EXTRA_THIRD_PARTY_ACTION);
+                Logger.logQuickContactEvent(mReferrer, mContactType,
+                        CardType.UNKNOWN_CARD, actionType, thirdPartyAction);
                 ImplicitIntentsUtil.startActivityInAppIfPossible(QuickContactActivity.this, intent);
             } catch (SecurityException ex) {
                 Toast.makeText(QuickContactActivity.this, R.string.missing_app,
@@ -955,6 +977,9 @@ public class QuickContactActivity extends ContactsActivity
             return;
         }
 
+        mIsRecreatedInstance = (savedInstanceState != null);
+        mShouldLog = true;
+
         // There're 3 states for each permission:
         // 1. App doesn't have permission, not asked user yet.
         // 2. App doesn't have permission, user denied it previously.
@@ -995,6 +1020,12 @@ public class QuickContactActivity extends ContactsActivity
         final int previousScreenType = getIntent().getIntExtra
                 (EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
         Logger.logScreenView(this, ScreenType.QUICK_CONTACT, previousScreenType);
+
+        mReferrer = getCallingPackage();
+        if (mReferrer == null && CompatUtils.isLollipopMr1Compatible() && getReferrer() != null) {
+            mReferrer = getReferrer().getAuthority();
+        }
+        mContactType = ContactType.UNKNOWN_TYPE;
 
         if (CompatUtils.isLollipopCompatible()) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -1245,9 +1276,13 @@ public class QuickContactActivity extends ContactsActivity
         mLookupUri = lookupUri;
         mExcludeMimes = intent.getStringArrayExtra(QuickContact.EXTRA_EXCLUDE_MIMES);
         if (oldLookupUri == null) {
+            // Should not log if only orientation changes.
+            mShouldLog = !mIsRecreatedInstance;
             mContactLoader = (ContactLoader) getLoaderManager().initLoader(
                     LOADER_CONTACT_ID, null, mLoaderContactCallbacks);
         } else if (oldLookupUri != mLookupUri) {
+            // Should log when reload happens, regardless of orientation change.
+            mShouldLog = true;
             // After copying a directory contact, the contact URI changes. Therefore,
             // we need to reload the new contact.
             destroyInteractionLoaders();
@@ -1316,7 +1351,26 @@ public class QuickContactActivity extends ContactsActivity
      */
     private void bindContactData(final Contact data) {
         Trace.beginSection("bindContactData");
+
+        final int actionType = mContactData == null ? ActionType.START : ActionType.UNKNOWN_ACTION;
         mContactData = data;
+
+        final int newContactType;
+        if (DirectoryContactUtil.isDirectoryContact(mContactData)) {
+            newContactType = ContactType.DIRECTORY;
+        } else if (InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)) {
+            newContactType = ContactType.INVISIBLE_AND_ADDABLE;
+        } else if (isContactEditable()) {
+            newContactType = ContactType.EDITABLE;
+        } else {
+            newContactType = ContactType.UNKNOWN_TYPE;
+        }
+        if (mShouldLog && mContactType != newContactType) {
+            Logger.logQuickContactEvent( mReferrer, newContactType, CardType.UNKNOWN_CARD,
+                    actionType, /* thirdPartyAction */ null);
+        }
+        mContactType = newContactType;
+
         invalidateOptionsMenu();
 
         Trace.endSection();
@@ -1550,6 +1604,10 @@ public class QuickContactActivity extends ContactsActivity
                     mExpandingEntryCardViewListener,
                     mScroller,
                     firstEntriesArePrioritizedMimeType);
+            if (mContactCard.getVisibility() == View.GONE && mShouldLog) {
+                Logger.logQuickContactEvent(mReferrer, mContactType, CardType.CONTACT,
+                        ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
+            }
             mContactCard.setVisibility(View.VISIBLE);
         } else {
             mContactCard.setVisibility(View.GONE);
@@ -1616,8 +1674,14 @@ public class QuickContactActivity extends ContactsActivity
 
         // If the Recent card is already initialized (all recent data is loaded), show the About
         // card if it has entries. Otherwise About card visibility will be set in bindRecentData()
-        if (isAllRecentDataLoaded() && aboutCardEntries.size() > 0) {
-            mAboutCard.setVisibility(View.VISIBLE);
+        if (aboutCardEntries.size() > 0) {
+            if (mAboutCard.getVisibility() == View.GONE && mShouldLog) {
+                Logger.logQuickContactEvent(mReferrer, mContactType, CardType.ABOUT,
+                        ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
+            }
+            if (isAllRecentDataLoaded()) {
+                mAboutCard.setVisibility(View.VISIBLE);
+            }
         }
         Trace.endSection();
     }
@@ -1668,6 +1732,10 @@ public class QuickContactActivity extends ContactsActivity
                 new PorterDuffColorFilter(subHeaderTextColor, PorterDuff.Mode.SRC_ATOP);
         mNoContactDetailsCard.initialize(promptEntries, 2, /* isExpanded = */ true,
                 /* isAlwaysExpanded = */ true, mExpandingEntryCardViewListener, mScroller);
+        if (mNoContactDetailsCard.getVisibility() == View.GONE && mShouldLog) {
+            Logger.logQuickContactEvent(mReferrer, mContactType, CardType.NO_CONTACT,
+                    ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
+        }
         mNoContactDetailsCard.setVisibility(View.VISIBLE);
         mNoContactDetailsCard.setEntryHeaderColor(subHeaderTextColor);
         mNoContactDetailsCard.setColorAndFilter(subHeaderTextColor, greyColorFilter);
@@ -1972,9 +2040,11 @@ public class QuickContactActivity extends ContactsActivity
                 iconResourceId = R.drawable.ic_phone_24dp;
                 if (PhoneCapabilityTester.isPhone(context)) {
                     intent = CallUtil.getCallIntent(phone.getNumber());
+                    intent.putExtra(EXTRA_ACTION_TYPE, ActionType.CALL);
                 }
                 alternateIntent = new Intent(Intent.ACTION_SENDTO,
                         Uri.fromParts(ContactsUtils.SCHEME_SMSTO, phone.getNumber(), null));
+                alternateIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.SMS);
 
                 alternateIcon = res.getDrawable(R.drawable.ic_message_24dp_mirrored);
                 alternateContentDescription.append(res.getString(R.string.sms_custom, header));
@@ -2018,6 +2088,7 @@ public class QuickContactActivity extends ContactsActivity
                         thirdAction = Entry.ACTION_INTENT;
                         thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
                                 CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
+                        thirdIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.VIDEOCALL);
                         thirdContentDescription =
                                 res.getString(R.string.description_video_call);
                     }
@@ -2030,6 +2101,7 @@ public class QuickContactActivity extends ContactsActivity
                 primaryContentDescription.append(res.getString(R.string.email_other)).append(" ");
                 final Uri mailUri = Uri.fromParts(ContactsUtils.SCHEME_MAILTO, address, null);
                 intent = new Intent(Intent.ACTION_SENDTO, mailUri);
+                intent.putExtra(EXTRA_ACTION_TYPE, ActionType.EMAIL);
                 header = email.getAddress();
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
                         res.getString(R.string.emailLabelsGroup), dataItem.getMimeType(),
@@ -2049,6 +2121,7 @@ public class QuickContactActivity extends ContactsActivity
             if (!TextUtils.isEmpty(postalAddress)) {
                 primaryContentDescription.append(res.getString(R.string.map_other)).append(" ");
                 intent = StructuredPostalUtils.getViewPostalAddressIntent(postalAddress);
+                intent.putExtra(EXTRA_ACTION_TYPE, ActionType.MAP);
                 header = postal.getFormattedAddress();
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
                         res.getString(R.string.postalLabelsGroup), dataItem.getMimeType(),
@@ -2061,6 +2134,7 @@ public class QuickContactActivity extends ContactsActivity
                 primaryContentDescription.append(header);
                 alternateIntent =
                         StructuredPostalUtils.getViewPostalAddressDirectionsIntent(postalAddress);
+                alternateIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.DIRECTIONS);
                 alternateIcon = res.getDrawable(R.drawable.ic_directions_24dp);
                 alternateContentDescription.append(res.getString(
                         R.string.content_description_directions)).append(" ").append(header);
@@ -2076,6 +2150,7 @@ public class QuickContactActivity extends ContactsActivity
                 if (PhoneCapabilityTester.isSipPhone(context)) {
                     final Uri callUri = Uri.fromParts(PhoneAccount.SCHEME_SIP, address, null);
                     intent = CallUtil.getCallIntent(callUri);
+                    intent.putExtra(EXTRA_ACTION_TYPE, ActionType.SIPCALL);
                 }
                 header = address;
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
@@ -2110,6 +2185,8 @@ public class QuickContactActivity extends ContactsActivity
             intent = new Intent(Intent.ACTION_VIEW);
             final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, dataItem.getId());
             intent.setDataAndType(uri, dataItem.getMimeType());
+            intent.putExtra(EXTRA_ACTION_TYPE, ActionType.THIRD_PARTY);
+            intent.putExtra(EXTRA_THIRD_PARTY_ACTION, header);
 
             if (intent != null) {
                 final String mimetype = intent.getType();
@@ -2321,6 +2398,11 @@ public class QuickContactActivity extends ContactsActivity
         final Intent secondIntent = new Intent(Intent.ACTION_VIEW);
         secondIntent.setDataAndType(ContentUris.withAppendedId(Data.CONTENT_URI,
                 dataModel.secondDataItem.getId()), dataModel.secondDataItem.getMimeType());
+        final String secondHeader= dataModel.secondDataItem.buildDataStringForDisplay(
+                dataModel.context, dataModel.secondDataItem.getDataKind());
+        secondIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.THIRD_PARTY);
+        secondIntent.putExtra(EXTRA_THIRD_PARTY_ACTION, secondHeader);
+
         // There is no guarantee the order the data items come in. Second
         // data item does not necessarily mean it's the alternate.
         // Hangouts video should be alternate. Swap if needed
@@ -2330,9 +2412,9 @@ public class QuickContactActivity extends ContactsActivity
             dataModel.alternateContentDescription = new StringBuilder(dataModel.header);
 
             dataModel.intent = secondIntent;
-            dataModel.header = dataModel.secondDataItem.buildDataStringForDisplay(dataModel.context,
-                    dataModel.secondDataItem.getDataKind());
+            dataModel.header = secondHeader;
             dataModel.text = dataModel.secondDataItem.getDataKind().typeColumn;
+
         } else if (HANGOUTS_DATA_5_MESSAGE.equals(
                 dataModel.dataItem.getContentValues().getAsString(Data.DATA5))) {
             dataModel.alternateIntent = secondIntent;
@@ -2699,6 +2781,10 @@ public class QuickContactActivity extends ContactsActivity
                     /* numInitialVisibleEntries = */ MIN_NUM_COLLAPSED_RECENT_ENTRIES_SHOWN,
                     /* isExpanded = */ mRecentCard.isExpanded(), /* isAlwaysExpanded = */ false,
                             mExpandingEntryCardViewListener, mScroller);
+                    if (mRecentCard.getVisibility() == View.GONE && mShouldLog) {
+                        Logger.logQuickContactEvent(mReferrer, mContactType, CardType.RECENT,
+                                ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
+                    }
                     mRecentCard.setVisibility(View.VISIBLE);
                 }
 
@@ -2741,6 +2827,11 @@ public class QuickContactActivity extends ContactsActivity
                 mPermissionExplanationCard.setEntrySubHeaderColor(subHeaderTextColor);
 
                 if (mShouldShowPermissionExplanation) {
+                    if (mPermissionExplanationCard.getVisibility() == View.GONE
+                            && mShouldLog) {
+                        Logger.logQuickContactEvent(mReferrer, mContactType, CardType.PERMISSION,
+                                ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
+                    }
                     mPermissionExplanationCard.setVisibility(View.VISIBLE);
                 } else {
                     mPermissionExplanationCard.setVisibility(View.GONE);
@@ -2819,31 +2910,22 @@ public class QuickContactActivity extends ContactsActivity
         ContactDeletionInteraction.start(this, contactUri, /* finishActivityWhenDone =*/ true);
     }
 
-    private void toggleStar(MenuItem starredMenuItem) {
-        // Make sure there is a contact
-        if (mContactData != null) {
-            // Read the current starred value from the UI instead of using the last
-            // loaded state. This allows rapid tapping without writing the same
-            // value several times
-            final boolean isStarred = starredMenuItem.isChecked();
+    private void toggleStar(MenuItem starredMenuItem, boolean isStarred) {
+        // To improve responsiveness, swap out the picture (and tag) in the UI already
+        ContactDisplayUtils.configureStarredMenuItem(starredMenuItem,
+                mContactData.isDirectoryEntry(), mContactData.isUserProfile(), !isStarred);
 
-            // To improve responsiveness, swap out the picture (and tag) in the UI already
-            ContactDisplayUtils.configureStarredMenuItem(starredMenuItem,
-                    mContactData.isDirectoryEntry(), mContactData.isUserProfile(),
-                    !isStarred);
+        // Now perform the real save
+        final Intent intent = ContactSaveService.createSetStarredIntent(
+                QuickContactActivity.this, mContactData.getLookupUri(), !isStarred);
+        startService(intent);
 
-            // Now perform the real save
-            final Intent intent = ContactSaveService.createSetStarredIntent(
-                    QuickContactActivity.this, mContactData.getLookupUri(), !isStarred);
-            startService(intent);
-
-            final CharSequence accessibilityText = !isStarred
-                    ? getResources().getText(R.string.description_action_menu_add_star)
-                    : getResources().getText(R.string.description_action_menu_remove_star);
-            // Accessibility actions need to have an associated view. We can't access the MenuItem's
-            // underlying view, so put this accessibility action on the root view.
-            mScroller.announceForAccessibility(accessibilityText);
-        }
+        final CharSequence accessibilityText = !isStarred
+                ? getResources().getText(R.string.description_action_menu_add_star)
+                : getResources().getText(R.string.description_action_menu_remove_star);
+        // Accessibility actions need to have an associated view. We can't access the MenuItem's
+        // underlying view, so put this accessibility action on the root view.
+        mScroller.announceForAccessibility(accessibilityText);
     }
 
     private void shareContact() {
@@ -2957,10 +3039,23 @@ public class QuickContactActivity extends ContactsActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_star:
-                toggleStar(item);
+                // Make sure there is a contact
+                if (mContactData != null) {
+                    // Read the current starred value from the UI instead of using the last
+                    // loaded state. This allows rapid tapping without writing the same
+                    // value several times
+                    final boolean isStarred = item.isChecked();
+                    Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                            isStarred ? ActionType.UNSTAR : ActionType.STAR,
+                            /* thirdPartyAction */ null);
+                    toggleStar(item, isStarred);
+                }
                 return true;
             case R.id.menu_edit:
                 if (DirectoryContactUtil.isDirectoryContact(mContactData)) {
+                    Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                            ActionType.ADD, /* thirdPartyAction */ null);
+
                     // This action is used to launch the contact selector, with the option of
                     // creating a new contact. Creating a new contact is an INSERT, while selecting
                     // an exisiting one is an edit. The fields in the edit screen will be
@@ -3015,30 +3110,44 @@ public class QuickContactActivity extends ContactsActivity
                     intent.setPackage(getPackageName());
                     startActivityForResult(intent, REQUEST_CODE_CONTACT_SELECTION_ACTIVITY);
                 } else if (InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)) {
+                    Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                            ActionType.ADD, /* thirdPartyAction */ null);
                     InvisibleContactUtil.addToDefaultGroup(mContactData, this);
                 } else if (isContactEditable()) {
+                    Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                            ActionType.EDIT, /* thirdPartyAction */ null);
                     editContact();
                 }
                 return true;
             case R.id.menu_delete:
+                Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                        ActionType.DELETE, /* thirdPartyAction */ null);
                 if (isContactEditable()) {
                     deleteContact();
                 }
                 return true;
             case R.id.menu_share:
+                Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                        ActionType.SHARE, /* thirdPartyAction */ null);
                 if (isContactShareable()) {
                     shareContact();
                 }
                 return true;
             case R.id.menu_create_contact_shortcut:
+                Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                        ActionType.SHORTCUT, /* thirdPartyAction */ null);
                 if (isShortcutCreatable()) {
                     createLauncherShortcutWithContact();
                 }
                 return true;
             case R.id.menu_help:
+                Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                        ActionType.HELP, /* thirdPartyAction */ null);
                 HelpUtils.launchHelpAndFeedbackForContactScreen(this);
                 return true;
             default:
+                Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                        ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
                 return super.onOptionsItemSelected(item);
         }
     }

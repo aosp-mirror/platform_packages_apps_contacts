@@ -79,7 +79,25 @@ public abstract class Logger {
         }
     }
 
+    /**
+     * Logs an event on QuickContact. See {@link QuickContactEvent} for definition of parameters.
+     */
+    public static void logQuickContactEvent(String referrer, int contactType, int cardType,
+            int actionType, String thirdPartyAction) {
+        final Logger logger = getInstance();
+        if (logger != null) {
+            final QuickContactEvent event = new QuickContactEvent();
+            event.referrer = referrer;
+            event.contactType = contactType;
+            event.cardType = cardType;
+            event.actionType = actionType;
+            event.thirdPartyAction = thirdPartyAction;
+            logger.logQuickContactEventImpl(event);
+        }
+    }
+
     public abstract void logScreenViewImpl(int screenType, int previousScreenType);
     public abstract void logSearchEventImpl(SearchState searchState);
     public abstract void logListEventImpl(ListEvent event);
+    public abstract void logQuickContactEventImpl(QuickContactEvent event);
 }
