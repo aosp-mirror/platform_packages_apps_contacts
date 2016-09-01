@@ -241,8 +241,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Скасаваць змены?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Адхіліць"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Скасаваць"</string>
-    <!-- no translation found for leave_customize_confirmation_dialog_message (4277114551206032979) -->
-    <skip />
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Скасаваць дапасаванні?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Пошук кантактаў"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Выдаліць кантакты"</string>
@@ -357,11 +356,8 @@
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Паведамленні"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Арганізуйце свой спіс"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Выдаліце дублікаты і згрупуйце кантакты па метках"</string>
-    <!-- no translation found for undo (1425165101664071422) -->
-    <skip />
-    <string name="toast_text_copied" msgid="5143776250008541719">"Тэкст скапіяваны"</string>
-    <string name="copy_text" msgid="3257145021583508761">"Скапіраваць у буфер абмену"</string>
-    <string name="call_custom" msgid="7756571794763171802">"Выклікаць <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="undo" msgid="1425165101664071422">"Адрабіць"</string>
+    <string name="call_custom" msgid="6385303130912713318">"Выклікаць <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Патэлефанаваць на хатні нумар"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Набраць нумар мабільнага тэлефону"</string>
     <string name="call_work" msgid="5328785911463744028">"Выклікаць працоўны нумар тэлефона"</string>
@@ -380,10 +376,10 @@
     <string name="call_tty_tdd" msgid="8951266948204379604">"Выклікаць TTY/TDD"</string>
     <string name="call_work_mobile" msgid="8707874281430105394">"Патэлефанаваць на працоўны мабільны"</string>
     <string name="call_work_pager" msgid="3419348514157949008">"Выклікаць працоўны пэйджар"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"Выклікаць <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_assistant" msgid="670941612175068337">"Выклікаць <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"Выклік MMS"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Выклікаць)"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"Тэкставае паведамленне на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_custom" msgid="415060214233647603">"Адправіць SMS на <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7524332261493162995">"Тэкставае паведамленне на хатні тэлефон"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"Тэкставае паведамленне на мабільны тэлефон"</string>
     <string name="sms_work" msgid="2269624156655267740">"Тэкставае паведамленне на працоўны тэлефон"</string>
@@ -412,20 +408,11 @@
     <string name="status_available" msgid="5586870015822828392">"Даступны"</string>
     <string name="status_away" msgid="1838861100379804730">"Адсутнічае"</string>
     <string name="status_busy" msgid="9147992455450257136">"Заняты"</string>
-    <string name="contactsList" msgid="8661624236494819731">"Кантакты"</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"Іншае"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"Дырэкторыя"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"Працоўны каталог"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Усе кантакты"</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"Пошук..."</string>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"Знойдзена вынікаў: больш за <xliff:g id="COUNT">%d</xliff:g>."</string>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Кантактаў няма"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> знойдзены</item>
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> знойдзены</item>
-      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> знойдзена</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> знойдзена</item>
-    </plurals>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"Хуткі кантакт для карыстальніка <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="8745511583852904385">"(Без назвы)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Частая сувязь"</string>
@@ -434,6 +421,7 @@
     <string name="list_filter_phones_work" msgid="1470173699551475015">"Кантакты працоўнага профілю"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Прагл. абнаўленняў"</string>
     <string name="account_phone" msgid="7128032778471187553">"Прылада"</string>
+    <string name="account_sim" msgid="6519016427905087952">"SIM"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Імя"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Псеўданiм"</string>
     <string name="full_name" msgid="6602579550613988977">"Iмя"</string>
@@ -458,8 +446,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"Кампанія"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Назва"</string>
     <string name="label_notes" msgid="8337354953278341042">"Нататкі"</string>
-    <!-- no translation found for label_custom_field (1994056912242214426) -->
-    <skip />
+    <string name="label_custom_field" msgid="1994056912242214426">"Карыстальніцкі"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Вэб-старонка"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"Меткі"</string>
@@ -467,7 +454,7 @@
     <string name="email_mobile" msgid="2042889209787989814">"Адправіць электронную пошту на мабільны адрас"</string>
     <string name="email_work" msgid="2807430017302722689">"Паведамленне на працоўную электронную пошту"</string>
     <string name="email_other" msgid="3454004077967657109">"Электронная пошта"</string>
-    <string name="email_custom" msgid="7548003991586214105">"Напiсаць паведамленне на <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email_custom" msgid="5536404237099078802">"Адправіць ліст на адрас <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"Электронная пошта"</string>
     <string name="postal_street" msgid="8133143961580058972">"Вуліца"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Паштовая скрыня"</string>
@@ -479,7 +466,7 @@
     <string name="map_home" msgid="1243547733423343982">"Прагледзець хатні адрас"</string>
     <string name="map_work" msgid="1360474076921878088">"Паглядзець працоўны адрас"</string>
     <string name="map_other" msgid="3817820803587012641">"Прагледзець адрас"</string>
-    <string name="map_custom" msgid="6184363799976265281">"Прагледзець адрас <xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="map_custom" msgid="8761800628069473526">"Паглядзець адрас <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="chat_aim" msgid="2588492205291249142">"Чат у AIM"</string>
     <string name="chat_msn" msgid="8041633440091073484">"Чат у Windows Live"</string>
     <string name="chat_yahoo" msgid="6629211142719943666">"Чат праз Yahoo"</string>
@@ -572,7 +559,6 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"Мая інфармацыя"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Наладзьце ваш профіль"</string>
     <string name="setting_about" msgid="7014388749752042863">"Інфармацыя аб Кантактах"</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"Налады"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"Адкрыць бачныя кантакты"</string>
     <string name="share_visible_contacts_failure" msgid="7324717548166915560">"Збой абагульвання бачных кантактаў."</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Абагуліць улюбёныя кантакты"</string>
@@ -604,7 +590,7 @@
     <string name="set_default_account" msgid="4311613760725609801">"Заўсёды ўжываць гэта для выклікаў"</string>
     <string name="select_phone_account_for_calls" msgid="3810607744451014540">"Выклікаць праз"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"Выклікаць з нататкай"</string>
-    <string name="call_subject_hint" msgid="3637498418381454511">"Увядзіце нататку, якую хочаце адправіць разам з выклікам…"</string>
+    <string name="call_subject_hint" msgid="3043028982108363572">"Увесці нататку для адпраўкі з выклікам…"</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"АДПРАВІЦЬ І ВЫКЛІКАЦЬ"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
@@ -626,10 +612,7 @@
     <string name="description_search_video_call" msgid="5841525580339803272">"Пачаць відэавыклік"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"Выдаліць"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"Шматкроп\'е"</string>
-    <!-- no translation found for callDurationSecondFormat (7067644915903528776) -->
-    <skip />
-    <!-- no translation found for callDurationMinuteFormat (4647095486747447674) -->
-    <skip />
-    <!-- no translation found for callDurationHourFormat (7392254193808506640) -->
-    <skip />
+    <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> c"</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> хв <xliff:g id="SECONDS">%s</xliff:g> с"</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> гадз <xliff:g id="MINUTES_1">%s</xliff:g> хв <xliff:g id="SECONDS">%s</xliff:g> с"</string>
 </resources>

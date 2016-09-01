@@ -227,8 +227,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"要捨棄變更嗎？"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"捨棄"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"取消"</string>
-    <!-- no translation found for leave_customize_confirmation_dialog_message (4277114551206032979) -->
-    <skip />
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"要捨棄自訂設定嗎？"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"搜尋聯絡人"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"移除聯絡人"</string>
@@ -335,11 +334,8 @@
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"訊息"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"管理您的清單"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"清除重複的聯絡人並按標籤將聯絡人分組"</string>
-    <!-- no translation found for undo (1425165101664071422) -->
-    <skip />
-    <string name="toast_text_copied" msgid="5143776250008541719">"文字已複製"</string>
-    <string name="copy_text" msgid="3257145021583508761">"複製到剪貼簿"</string>
-    <string name="call_custom" msgid="7756571794763171802">"去電<xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="undo" msgid="1425165101664071422">"復原"</string>
+    <string name="call_custom" msgid="6385303130912713318">"撥打<xliff:g id="CUSTOM_LABEL">%s</xliff:g>電話號碼"</string>
     <string name="call_home" msgid="1990519474420545392">"去電住家電話"</string>
     <string name="call_mobile" msgid="7502236805487609178">"去電行動裝置"</string>
     <string name="call_work" msgid="5328785911463744028">"去電公司電話"</string>
@@ -358,10 +354,10 @@
     <string name="call_tty_tdd" msgid="8951266948204379604">"去電 TTY/TDD"</string>
     <string name="call_work_mobile" msgid="8707874281430105394">"去電公司行動電話"</string>
     <string name="call_work_pager" msgid="3419348514157949008">"去電公司呼叫器"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"去電<xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="call_assistant" msgid="670941612175068337">"撥打<xliff:g id="CUSTOM_LABEL">%s</xliff:g>電話號碼"</string>
     <string name="call_mms" msgid="6274041545876221437">"去電 MMS"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (撥號)"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"傳送簡訊至<xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="sms_custom" msgid="415060214233647603">"傳送簡訊給<xliff:g id="CUSTOM_LABEL">%s</xliff:g>電話號碼"</string>
     <string name="sms_home" msgid="7524332261493162995">"傳送簡訊至住家電話"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"傳送簡訊至行動裝置"</string>
     <string name="sms_work" msgid="2269624156655267740">"傳送簡訊至公司電話"</string>
@@ -390,18 +386,11 @@
     <string name="status_available" msgid="5586870015822828392">"線上"</string>
     <string name="status_away" msgid="1838861100379804730">"離開"</string>
     <string name="status_busy" msgid="9147992455450257136">"忙碌"</string>
-    <string name="contactsList" msgid="8661624236494819731">"聯絡人"</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"其他"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"目錄"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"Work 聯絡人目錄"</string>
     <string name="local_search_label" msgid="2551177578246113614">"所有聯絡人"</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"搜尋中…"</string>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"找到 <xliff:g id="COUNT">%d</xliff:g> 位以上的聯絡人。"</string>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"沒有聯絡人"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="other">找到 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人</item>
-      <item quantity="one">找到 1 位聯絡人</item>
-    </plurals>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>的快速聯絡人相片"</string>
     <string name="missing_name" msgid="8745511583852904385">"(無姓名)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"常用聯絡人"</string>
@@ -410,6 +399,7 @@
     <string name="list_filter_phones_work" msgid="1470173699551475015">"Work 設定檔聯絡人"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"查看更新"</string>
     <string name="account_phone" msgid="7128032778471187553">"裝置"</string>
+    <string name="account_sim" msgid="6519016427905087952">"SIM 卡"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"姓名"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"暱稱"</string>
     <string name="full_name" msgid="6602579550613988977">"姓名"</string>
@@ -434,8 +424,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"職稱"</string>
     <string name="label_notes" msgid="8337354953278341042">"附註"</string>
-    <!-- no translation found for label_custom_field (1994056912242214426) -->
-    <skip />
+    <string name="label_custom_field" msgid="1994056912242214426">"自訂"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"網站"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"標籤"</string>
@@ -443,7 +432,7 @@
     <string name="email_mobile" msgid="2042889209787989814">"傳送電子郵件至行動裝置"</string>
     <string name="email_work" msgid="2807430017302722689">"傳送電子郵件至公司電子郵件地址"</string>
     <string name="email_other" msgid="3454004077967657109">"傳送電子郵件"</string>
-    <string name="email_custom" msgid="7548003991586214105">"傳送電子郵件至<xliff:g id="CUSTOM">%s</xliff:g>"</string>
+    <string name="email_custom" msgid="5536404237099078802">"傳送電子郵件給<xliff:g id="CUSTOM_LABEL">%s</xliff:g>電子郵件地址"</string>
     <string name="email" msgid="5668400997660065897">"傳送電子郵件"</string>
     <string name="postal_street" msgid="8133143961580058972">"街道"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"郵政信箱"</string>
@@ -455,7 +444,7 @@
     <string name="map_home" msgid="1243547733423343982">"檢視住家地址"</string>
     <string name="map_work" msgid="1360474076921878088">"檢視公司地址"</string>
     <string name="map_other" msgid="3817820803587012641">"檢視地址"</string>
-    <string name="map_custom" msgid="6184363799976265281">"檢視<xliff:g id="CUSTOM">%s</xliff:g>地址"</string>
+    <string name="map_custom" msgid="8761800628069473526">"查看<xliff:g id="CUSTOM_LABEL">%s</xliff:g>地址"</string>
     <string name="chat_aim" msgid="2588492205291249142">"使用 AIM 進行即時通訊"</string>
     <string name="chat_msn" msgid="8041633440091073484">"使用 Windows Live 進行即時通訊"</string>
     <string name="chat_yahoo" msgid="6629211142719943666">"使用 Yahoo 進行即時通訊"</string>
@@ -548,7 +537,6 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"我的資訊"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"設定你的個人資料"</string>
     <string name="setting_about" msgid="7014388749752042863">"關於聯絡人"</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"設定"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"分享正常顯示的聯絡人"</string>
     <string name="share_visible_contacts_failure" msgid="7324717548166915560">"無法分享目前顯示的聯絡人資料。"</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"分享常用聯絡人資料"</string>
@@ -580,7 +568,7 @@
     <string name="set_default_account" msgid="4311613760725609801">"一律使用這張 SIM 卡通話"</string>
     <string name="select_phone_account_for_calls" msgid="3810607744451014540">"選擇通話帳戶"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"撥號時傳送備註"</string>
-    <string name="call_subject_hint" msgid="3637498418381454511">"輸入可在撥號時傳送的備註..."</string>
+    <string name="call_subject_hint" msgid="3043028982108363572">"輸入可在撥號時傳送的備註..."</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"傳送並撥號"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
@@ -600,10 +588,7 @@
     <string name="description_search_video_call" msgid="5841525580339803272">"撥打視訊通話"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"刪除"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"省略符號"</string>
-    <!-- no translation found for callDurationSecondFormat (7067644915903528776) -->
-    <skip />
-    <!-- no translation found for callDurationMinuteFormat (4647095486747447674) -->
-    <skip />
-    <!-- no translation found for callDurationHourFormat (7392254193808506640) -->
-    <skip />
+    <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> 分鐘 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> 小時 <xliff:g id="MINUTES_1">%s</xliff:g> 分鐘 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
 </resources>
