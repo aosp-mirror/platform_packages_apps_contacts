@@ -118,7 +118,6 @@ import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.EventCompat;
 import com.android.contacts.common.compat.MultiWindowCompat;
 import com.android.contacts.common.dialog.CallSubjectDialog;
-import com.android.contacts.common.editor.SelectAccountDialogFragment;
 import com.android.contacts.common.interactions.TouchPointManager;
 import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.list.ShortcutIntentBuilder;
@@ -288,7 +287,6 @@ public class QuickContactActivity extends ContactsActivity
     private String mPermissionExplanationCardSubHeader = "";
 
     private MultiShrinkScroller mScroller;
-    private SelectAccountDialogFragmentListener mSelectAccountFragmentListener;
     private AsyncTask<Void, Void, Cp2DataCardModel> mEntriesAndActionsTask;
     private AsyncTask<Void, Void, Void> mRecentDataTask;
 
@@ -775,36 +773,6 @@ public class QuickContactActivity extends ContactsActivity
         }
     }
 
-    /**
-     * Headless fragment used to handle account selection callbacks invoked from
-     * {@link DirectoryContactUtil}.
-     */
-    public static class SelectAccountDialogFragmentListener extends Fragment
-            implements SelectAccountDialogFragment.Listener {
-
-        private QuickContactActivity mQuickContactActivity;
-
-        public SelectAccountDialogFragmentListener() {}
-
-        @Override
-        public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
-            DirectoryContactUtil.createCopy(mQuickContactActivity.mContactData.getContentValues(),
-                    account, mQuickContactActivity);
-        }
-
-        @Override
-        public void onAccountSelectorCancelled() {}
-
-        /**
-         * Set the parent activity. Since rotation can cause this fragment to be used across
-         * more than one activity instance, we need to explicitly set this value instead
-         * of making this class non-static.
-         */
-        public void setQuickContactActivity(QuickContactActivity quickContactActivity) {
-            mQuickContactActivity = quickContactActivity;
-        }
-    }
-
     final MultiShrinkScrollerListener mMultiShrinkScrollerListener
             = new MultiShrinkScrollerListener() {
         @Override
@@ -1118,16 +1086,6 @@ public class QuickContactActivity extends ContactsActivity
         mScroller.setVisibility(View.INVISIBLE);
 
         setHeaderNameText(R.string.missing_name);
-
-        mSelectAccountFragmentListener= (SelectAccountDialogFragmentListener) getFragmentManager()
-                .findFragmentByTag(FRAGMENT_TAG_SELECT_ACCOUNT);
-        if (mSelectAccountFragmentListener == null) {
-            mSelectAccountFragmentListener = new SelectAccountDialogFragmentListener();
-            getFragmentManager().beginTransaction().add(0, mSelectAccountFragmentListener,
-                    FRAGMENT_TAG_SELECT_ACCOUNT).commit();
-            mSelectAccountFragmentListener.setRetainInstance(true);
-        }
-        mSelectAccountFragmentListener.setQuickContactActivity(this);
 
         SchedulingUtils.doOnPreDraw(mScroller, /* drawNextFrame = */ true,
                 new Runnable() {
