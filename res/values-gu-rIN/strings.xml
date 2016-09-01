@@ -335,9 +335,7 @@
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"તમારી સૂચિ ગોઠવો"</string>
     <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"ડુપ્લિકેટ્સ સાફ કરો અને લેબલ દ્વારા સંપર્કોને જૂથબદ્ધ કરો"</string>
     <string name="undo" msgid="1425165101664071422">"પૂર્વવત્ કરો"</string>
-    <string name="toast_text_copied" msgid="5143776250008541719">"ટેક્સ્ટ કૉપિ કર્યો"</string>
-    <string name="copy_text" msgid="3257145021583508761">"ક્લિપબોર્ડ પર કૉપિ કરો"</string>
-    <string name="call_custom" msgid="7756571794763171802">"<xliff:g id="CUSTOM">%s</xliff:g> ને કૉલ કરો"</string>
+    <string name="call_custom" msgid="6385303130912713318">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> પર કૉલ કરો"</string>
     <string name="call_home" msgid="1990519474420545392">"ઘરે કૉલ કરો"</string>
     <string name="call_mobile" msgid="7502236805487609178">"મોબાઇલ પર કૉલ કરો"</string>
     <string name="call_work" msgid="5328785911463744028">"કાર્યાલય પર કૉલ કરો"</string>
@@ -356,10 +354,10 @@
     <string name="call_tty_tdd" msgid="8951266948204379604">"TTY/TDD પર કૉલ કરો"</string>
     <string name="call_work_mobile" msgid="8707874281430105394">"કાર્યાલયના મોબાઇલ પર કૉલ કરો"</string>
     <string name="call_work_pager" msgid="3419348514157949008">"કાર્યાલયના પેજર પર કૉલ કરો"</string>
-    <string name="call_assistant" msgid="2141641383068514308">"<xliff:g id="ASSISTANT">%s</xliff:g> ને કૉલ કરો"</string>
+    <string name="call_assistant" msgid="670941612175068337">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> પર કૉલ કરો"</string>
     <string name="call_mms" msgid="6274041545876221437">"MMS પર કૉલ કરો"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (કૉલ કરો)"</string>
-    <string name="sms_custom" msgid="5932736853732191825">"<xliff:g id="CUSTOM">%s</xliff:g> ને ટેક્સ્ટ કરો"</string>
+    <string name="sms_custom" msgid="415060214233647603">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> પર ટેક્સ્ટ મોકલો"</string>
     <string name="sms_home" msgid="7524332261493162995">"ઘરે ટેક્સ્ટ કરો"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"મોબાઇલ પર ટેક્સ્ટ કરો"</string>
     <string name="sms_work" msgid="2269624156655267740">"કાર્યાલય પર ટેક્સ્ટ કરો"</string>
@@ -388,18 +386,11 @@
     <string name="status_available" msgid="5586870015822828392">"ઉપલબ્ધ"</string>
     <string name="status_away" msgid="1838861100379804730">"દૂર"</string>
     <string name="status_busy" msgid="9147992455450257136">"વ્યસ્ત"</string>
-    <string name="contactsList" msgid="8661624236494819731">"સંપર્કો"</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"અન્ય"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"નિર્દેશિકા"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"કાર્ય નિર્દેશિકા"</string>
     <string name="local_search_label" msgid="2551177578246113614">"તમામ સંપર્કો"</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"શોધી રહ્યું છે..."</string>
     <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g> કરતાં વધુ મળ્યાં."</string>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"સંપર્કો નથી"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> મળ્યાં</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> મળ્યાં</item>
-    </plurals>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g> માટે ઝડપી સંપર્ક"</string>
     <string name="missing_name" msgid="8745511583852904385">"(નામ નથી)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"વારંવાર સંપર્ક કરેલા લોકો"</string>
@@ -408,6 +399,7 @@
     <string name="list_filter_phones_work" msgid="1470173699551475015">"કાર્ય પ્રોફાઇલના સંપર્કો"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"અપડેટ્સ જુઓ"</string>
     <string name="account_phone" msgid="7128032778471187553">"ઉપકરણ"</string>
+    <string name="account_sim" msgid="6519016427905087952">"SIM"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"નામ"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"ઉપનામ"</string>
     <string name="full_name" msgid="6602579550613988977">"નામ"</string>
@@ -432,8 +424,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"કંપની"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"શીર્ષક"</string>
     <string name="label_notes" msgid="8337354953278341042">"નોંધ"</string>
-    <!-- no translation found for label_custom_field (1994056912242214426) -->
-    <skip />
+    <string name="label_custom_field" msgid="1994056912242214426">"કસ્ટમ"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"વેબસાઇટ"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"લેબલ્સ"</string>
@@ -441,7 +432,7 @@
     <string name="email_mobile" msgid="2042889209787989814">"મોબાઇલ પર ઇમેઇલ કરો"</string>
     <string name="email_work" msgid="2807430017302722689">"કાર્યાલય પર ઇમેઇલ કરો"</string>
     <string name="email_other" msgid="3454004077967657109">"ઇમેઇલ"</string>
-    <string name="email_custom" msgid="7548003991586214105">"<xliff:g id="CUSTOM">%s</xliff:g> ને ઇમેઇલ કરો"</string>
+    <string name="email_custom" msgid="5536404237099078802">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> પર ઇમેઇલ મોકલો"</string>
     <string name="email" msgid="5668400997660065897">"ઇમેઇલ"</string>
     <string name="postal_street" msgid="8133143961580058972">"શેરી"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"પોસ્ટ બોક્સ"</string>
@@ -453,7 +444,7 @@
     <string name="map_home" msgid="1243547733423343982">"ઘરનું સરનામું જુઓ"</string>
     <string name="map_work" msgid="1360474076921878088">"કાર્યાલયનું સરનામું જુઓ"</string>
     <string name="map_other" msgid="3817820803587012641">"સરનામું જુઓ"</string>
-    <string name="map_custom" msgid="6184363799976265281">"<xliff:g id="CUSTOM">%s</xliff:g> સરનામું જુઓ"</string>
+    <string name="map_custom" msgid="8761800628069473526">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> સરનામું જુઓ"</string>
     <string name="chat_aim" msgid="2588492205291249142">"AIM નો ઉપયોગ કરીને ચેટ કરો"</string>
     <string name="chat_msn" msgid="8041633440091073484">"Windows Live નો ઉપયોગ કરીને ચેટ કરો"</string>
     <string name="chat_yahoo" msgid="6629211142719943666">"Yahoo નો ઉપયોગ કરીને ચેટ કરો"</string>
@@ -546,7 +537,6 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"મારી માહિતી"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"તમારી પ્રોફાઇલ સેટ કરો"</string>
     <string name="setting_about" msgid="7014388749752042863">"સંપર્કો વિશે"</string>
-    <string name="activity_title_settings" msgid="5464130076132770781">"સેટિંગ્સ"</string>
     <string name="share_visible_contacts" msgid="890150378880783797">"દૃશ્યક્ષમ સંપર્કોને શેર કરો"</string>
     <string name="share_visible_contacts_failure" msgid="7324717548166915560">"દૃશ્યક્ષમ સંપર્કો શેર કરવામાં નિષ્ફળ થયાં."</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"મનપસંદ સંપર્કોને શેર કરો"</string>
@@ -578,7 +568,7 @@
     <string name="set_default_account" msgid="4311613760725609801">"કૉલ્સ માટે આનો ઉપયોગ હંમેશાં કરો"</string>
     <string name="select_phone_account_for_calls" msgid="3810607744451014540">"આની સાથે કૉલ કરો"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"નોંધ સાથે કૉલ કરો"</string>
-    <string name="call_subject_hint" msgid="3637498418381454511">"કૉલ સાથે મોકલવા માટે એક નોંધ લખો ..."</string>
+    <string name="call_subject_hint" msgid="3043028982108363572">"કૉલ સાથે મોકલવા માટે એક નોંધ લખો…"</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"મોકલો અને કૉલ કરો"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
