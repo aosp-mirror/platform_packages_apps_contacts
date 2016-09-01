@@ -291,4 +291,5 @@ public class EditorUiUtils {
                 bitmap, size, size, /* filter =*/ false);
         return ContactPhotoUtils.compressBitmap(bitmapScaled);
     }
+
 }

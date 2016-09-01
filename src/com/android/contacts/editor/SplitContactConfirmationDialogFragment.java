@@ -49,7 +49,7 @@ public class SplitContactConfirmationDialogFragment extends DialogFragment {
         void onSplitContactConfirmed(boolean hasPendingChanges);
     }
 
-    public static void show(ContactEditorBaseFragment fragment, boolean hasPendingChanges) {
+    public static void show(CompactContactEditorFragment fragment, boolean hasPendingChanges) {
         final Bundle args = new Bundle();
         args.putBoolean(ARG_HAS_PENDING_CHANGES, hasPendingChanges);
 

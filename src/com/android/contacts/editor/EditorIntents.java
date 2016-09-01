@@ -69,7 +69,7 @@ public class EditorIntents {
         final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI,
                 context, CompactContactEditorActivity.class);
         intent.putExtra(
-                ContactEditorBaseFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE, isNewLocalProfile);
+                CompactContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE, isNewLocalProfile);
         if (rawContactDeltaList != null || displayName != null || phoneticName != null) {
             putRawContactDeltaValues(intent, rawContactDeltaList, displayName, phoneticName);
         }
@@ -86,7 +86,7 @@ public class EditorIntents {
                 CompactContactEditorActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
                 | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-        intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY, "");
+        intent.putExtra(CompactContactEditorFragment.INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY, "");
 
         // Pass on all the data that has been entered so far
         if (contentValues != null && contentValues.size() != 0) {
@@ -102,26 +102,28 @@ public class EditorIntents {
             Uri contactLookupUri, long rawContactId, boolean isReadOnly) {
         final Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri, context,
                 CompactContactEditorActivity.class);
-        intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE,
+        intent.putExtra(CompactContactEditorFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE,
                 rawContactId);
         intent.putExtra(
-                ContactEditorBaseFragment.INTENT_EXTRA_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY,
+                CompactContactEditorFragment.INTENT_EXTRA_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY,
                 isReadOnly);
         return intent;
     }
 
     private static void putMaterialPalette(Intent intent, MaterialPalette materialPalette) {
         if (materialPalette != null) {
-            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR,
+            intent.putExtra(
+                    CompactContactEditorFragment.INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR,
                     materialPalette.mPrimaryColor);
-            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR,
+            intent.putExtra(
+                    CompactContactEditorFragment.INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR,
                     materialPalette.mSecondaryColor);
         }
     }
 
     private static void putPhotoId(Intent intent, long photoId) {
         if (photoId >= 0) {
-            intent.putExtra(ContactEditorBaseFragment.INTENT_EXTRA_PHOTO_ID, photoId);
+            intent.putExtra(CompactContactEditorFragment.INTENT_EXTRA_PHOTO_ID, photoId);
         }
     }
 
