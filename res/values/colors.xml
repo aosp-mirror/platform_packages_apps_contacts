@@ -28,7 +28,6 @@
     <color name="action_bar_button_text_color">#FFFFFF</color>
 
     <color name="actionbar_background_color">@color/primary_color</color>
-    <color name="actionbar_background_color_dark">@color/primary_color_dark</color>
 
     <color name="contextual_selection_bar_color">#f6f6f6</color>
     <!-- Color of the status bar above the contextual selection bar. -->
@@ -36,6 +35,9 @@
 
     <color name="primary_color_dark">#0277bd</color>
     <color name="primary_color">#0288d1</color>
+
+    <color name="group_primary_color_dark">#546E7A</color>
+    <color name="group_primary_color">#607D8B</color>
 
     <!-- Color of the selected tab underline -->
     <color name="contacts_accent_color">#FFFFFF</color>

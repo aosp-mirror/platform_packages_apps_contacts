@@ -20,20 +20,22 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract.RawContacts;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
-import com.android.contacts.common.GroupMetaData;
 import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
@@ -195,6 +197,9 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
         // Set up the view
         setContentView(R.layout.group_members_activity);
+
+        findViewById(R.id.toolbar_frame).setBackgroundColor(
+                ContextCompat.getColor(this, R.color.group_primary_color));
 
         // Set up the action bar
         mActionBarAdapter = new ActionBarAdapter(this, this, getSupportActionBar(),

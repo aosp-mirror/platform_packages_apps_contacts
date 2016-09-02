@@ -103,6 +103,11 @@
         <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
+    <style name="GroupActivityTheme" parent="@style/PeopleActivityTheme">
+        <item name="android:colorPrimaryDark">@color/group_primary_color_dark</item>
+        <item name="colorPrimaryDark">@color/group_primary_color_dark</item>
+    </style>
+
     <style name="PeopleThemeAppCompat" parent="Theme.AppCompat.Light">
         <!-- Styles that require AppCompat compatibility, remember to update both sets -->
         <item name="android:actionBarStyle">@style/ContactsActionBarStyleAppCompat</item>
