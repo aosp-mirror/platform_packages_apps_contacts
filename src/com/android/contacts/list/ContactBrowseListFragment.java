@@ -415,8 +415,7 @@ public abstract class ContactBrowseListFragment extends
             }
         }
 
-        adapter.setIncludeFavorites(!searchMode
-                && mFilter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
+        adapter.setIncludeFavorites(!searchMode && mFilter.isContactsFilterType());
     }
 
     @Override
