@@ -1106,8 +1106,6 @@ public class QuickContactActivity extends ContactsActivity
         mPermissionExplanationCard.setOnClickListener(mEntryClickHandler);
         mNoContactDetailsCard.setOnClickListener(mEntryClickHandler);
         mContactCard.setOnClickListener(mEntryClickHandler);
-        mContactCard.setExpandButtonText(
-        getResources().getString(R.string.expanding_entry_card_view_see_all));
         mContactCard.setOnCreateContextMenuListener(mEntryContextMenuListener);
 
         mRecentCard.setOnClickListener(mEntryClickHandler);
@@ -1593,17 +1591,12 @@ public class QuickContactActivity extends ContactsActivity
         final String customAboutCardName = cp2DataCardModel.customAboutCardName;
 
         if (contactCardEntries.size() > 0) {
-            final boolean firstEntriesArePrioritizedMimeType =
-                    !TextUtils.isEmpty(mExtraPrioritizedMimeType) &&
-                    mCachedCp2DataCardModel.dataItemsMap.containsKey(mExtraPrioritizedMimeType) &&
-                    mCachedCp2DataCardModel.dataItemsMap.get(mExtraPrioritizedMimeType).size() != 0;
             mContactCard.initialize(contactCardEntries,
                     /* numInitialVisibleEntries = */ MIN_NUM_CONTACT_ENTRIES_SHOWN,
                     /* isExpanded = */ mContactCard.isExpanded(),
-                    /* isAlwaysExpanded = */ false,
+                    /* isAlwaysExpanded = */ true,
                     mExpandingEntryCardViewListener,
-                    mScroller,
-                    firstEntriesArePrioritizedMimeType);
+                    mScroller);
             if (mContactCard.getVisibility() == View.GONE && mShouldLog) {
                 Logger.logQuickContactEvent(mReferrer, mContactType, CardType.CONTACT,
                         ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
