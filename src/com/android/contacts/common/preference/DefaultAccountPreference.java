@@ -18,23 +18,22 @@ package com.android.contacts.common.preference;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.preference.ListPreference;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountTypeWithDataSet;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.AccountsListAdapter;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class DefaultAccountPreference extends ListPreference {
     private ContactsPreferences mPreferences;
     private Map<String, AccountWithDataSet> mAccountMap;
+    private int mClickedDialogEntryIndex;
+    private AccountsListAdapter mListAdapter;
 
     public DefaultAccountPreference(Context context) {
         super(context);
@@ -55,19 +54,20 @@ public class DefaultAccountPreference extends ListPreference {
     private void prepare() {
         mPreferences = new ContactsPreferences(getContext());
         mAccountMap = new HashMap<>();
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(getContext());
-        List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(true);
-        for (AccountWithDataSet account : accounts) {
+        mListAdapter = new AccountsListAdapter(getContext(),
+                AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE);
+        final String[] accountNamesArray = new String[mListAdapter.getCount()];
+        for (int i = 0; i < mListAdapter.getCount(); i++) {
+            final AccountWithDataSet account = mListAdapter.getItem(i);
             mAccountMap.put(account.name, account);
+            accountNamesArray[i] = account.name;
         }
-        final Set<String> accountNames = mAccountMap.keySet();
-        final String[] accountNamesArray = accountNames.toArray(new String[accountNames.size()]);
         setEntries(accountNamesArray);
         setEntryValues(accountNamesArray);
         final String defaultAccount = String.valueOf(mPreferences.getDefaultAccount());
-        if (accounts.size() == 1) {
-            setValue(accounts.get(0).name);
-        } else if (accountNames.contains(defaultAccount)) {
+        if (mListAdapter.getCount() == 1) {
+            setValue(mListAdapter.getItem(0).name);
+        } else if (mAccountMap.keySet().contains(defaultAccount)) {
             setValue(defaultAccount);
         } else {
             setValue(null);
@@ -98,9 +98,32 @@ public class DefaultAccountPreference extends ListPreference {
     }
 
     @Override
-    // UX recommendation is not to show cancel button on such lists.
     protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
         super.onPrepareDialogBuilder(builder);
+        // UX recommendation is not to show cancel button on such lists.
         builder.setNegativeButton(null, null);
+        // Override and do everything ListPreference does except relative to our custom adapter.
+        // onDialogClosed needs to be overridden as well since mClickedDialogEntryIndex is private
+        // in ListPreference.
+        builder.setAdapter(mListAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mClickedDialogEntryIndex = which;
+                // Clicking on an item simulates the positive button click,
+                // and dismisses the dialog.
+                DefaultAccountPreference.this.onClick(dialog, DialogInterface.BUTTON_POSITIVE);
+                dialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    protected void onDialogClosed(boolean positiveResult) {
+        if (positiveResult && mClickedDialogEntryIndex >= 0 && getEntryValues() != null) {
+            final String value = getEntryValues()[mClickedDialogEntryIndex].toString();
+            if (callChangeListener(value)) {
+                setValue(value);
+            }
+        }
     }
 }
