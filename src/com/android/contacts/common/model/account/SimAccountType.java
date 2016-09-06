@@ -15,28 +15,56 @@
  */
 package com.android.contacts.common.model.account;
 
+import android.accounts.AuthenticatorDescription;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 
 import com.android.contacts.R;
+import com.android.contacts.common.model.dataitem.DataKind;
+
+import java.util.Collections;
 
 /**
  * Account type for SIM card contacts
- *
- * TODO: Right now this is the same as FallbackAccountType with a different icon and label.
- * Instead it should setup it's own DataKinds that are known to work on SIM card.
  */
-public class SimAccountType extends FallbackAccountType {
+public class SimAccountType extends BaseAccountType {
 
     public SimAccountType(Context context) {
-        super(context);
         this.titleRes = R.string.account_sim;
         this.iconRes = R.drawable.ic_sim_card_tinted_24dp;
 
+        try {
+            addDataKindDisplayName(context);
+            // SIM cards probably don't natively support full structured name data (separate
+            // first and last names) but restricting to just a single field in
+            // StructuredNameEditorView will require more significant changes.
+            addDataKindStructuredName(context);
+
+            final DataKind phoneKind = addDataKindPhone(context);
+            phoneKind.typeOverallMax = 1;
+            // SIM card contacts don't necessarily support separate types (based on data exposed
+            // in Samsung and LG Contacts Apps.
+            phoneKind.typeList = Collections.emptyList();
+
+            mIsInitialized = true;
+        } catch (DefinitionException e) {
+            // Just fail fast. Because we're explicitly adding the fields in this class this
+            // exception should only happen in case of a bug.
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public boolean areContactsWritable() {
+        return true;
     }
 
     @Override
     public boolean isGroupMembershipEditable() {
         return false;
+    }
+
+    @Override
+    public void initializeFieldsFromAuthenticator(AuthenticatorDescription authenticator) {
+        // Do nothing. We want to use our local icon and title
     }
 }

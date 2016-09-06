@@ -31,6 +31,7 @@ import com.android.contacts.common.util.AccountsListAdapter;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.util.UiClosables;
 
+import android.animation.LayoutTransition;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
@@ -616,7 +617,13 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
             long photoId, boolean hasNewContact, boolean isUserProfile,
             AccountWithDataSet primaryAccount) {
+        // Enable layout animations for new contacts. This looks nicer when switching to and from
+        // an account that doesn't support profile photos (e.g. SIM accounts).
+        if (hasNewContact && getLayoutTransition() == null) {
+            setLayoutTransition(new LayoutTransition());
+        }
         mKindSectionDataMap.clear();
+        mKindSectionViewsMap.clear();
         mKindSectionViews.removeAllViews();
         mMoreFields.setVisibility(View.VISIBLE);
 
@@ -645,9 +652,11 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             return;
         }
 
+
         // Get the primary name kind section data
-        mPrimaryNameKindSectionData = mKindSectionDataMap.get(StructuredName.CONTENT_ITEM_TYPE)
-                .getEntryToWrite(/* id =*/ -1, mPrimaryAccount, mIsUserProfile);
+        mPrimaryNameKindSectionData =
+                getOrCreateKindSectionDataList(StructuredName.CONTENT_ITEM_TYPE)
+                        .getEntryToWrite(/* id =*/ -1, mPrimaryAccount, mIsUserProfile);
         if (mPrimaryNameKindSectionData != null) {
             // Ensure that a structured name and photo exists
             final RawContactDelta rawContactDelta =
@@ -666,6 +675,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         addAccountInfo(rawContactDeltas);
         addPhotoView();
         addKindSectionViews();
+
+        mMoreFields.setVisibility(hasMoreFields() ? View.VISIBLE : View.GONE);
 
         if (mIsExpanded) showAllFields();
 
@@ -913,13 +924,15 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private void addPhotoView() {
         // Get the kind section data and values delta that we will display in the photo view
         final KindSectionDataList kindSectionDataList =
-                mKindSectionDataMap.get(Photo.CONTENT_ITEM_TYPE);
+                getOrCreateKindSectionDataList(Photo.CONTENT_ITEM_TYPE);
         final Pair<KindSectionData,ValuesDelta> photoToDisplay =
                 kindSectionDataList.getEntryToDisplay(mPhotoId);
         if (photoToDisplay == null) {
             wlog("photo: no kind section data parsed");
             mPhotoView.setVisibility(View.GONE);
             return;
+        } else {
+            mPhotoView.setVisibility(View.VISIBLE);
         }
 
         // Set the photo view
@@ -1065,6 +1078,17 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         // Hide the more fields button
         mMoreFields.setVisibility(View.GONE);
+    }
+
+    private boolean hasMoreFields() {
+        for (List<CompactKindSectionView> sections : mKindSectionViewsMap.values()) {
+            for (CompactKindSectionView section : sections) {
+                if (section.getVisibility() != View.VISIBLE) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private static void vlog(String message) {
