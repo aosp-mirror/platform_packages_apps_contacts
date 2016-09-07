@@ -62,7 +62,7 @@ public final class QuickContactEvent {
         public static final int UNSTAR = 3;
         public static final int EDIT = 4;
         public static final int ADD = 5;
-        public static final int DELETE = 6;
+        public static final int REMOVE = 6;
         public static final int SHARE = 7;
         public static final int SHORTCUT = 8;
         public static final int HELP = 9;
@@ -71,7 +71,7 @@ public final class QuickContactEvent {
         public static final int VIDEOCALL = 12;
         public static final int EMAIL = 13;
         public static final int SIPCALL = 14;
-        public static final int MAP = 15;
+        public static final int ADDRESS = 15;
         public static final int DIRECTIONS = 16;
         public static final int THIRD_PARTY = 17;
     }
