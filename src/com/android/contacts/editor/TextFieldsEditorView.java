@@ -18,6 +18,7 @@ package com.android.contacts.editor;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
@@ -39,9 +40,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.contacts.R;
-import com.android.contacts.common.model.RawContactDelta;
-import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
+import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType.EditField;
 import com.android.contacts.common.model.dataitem.DataKind;
@@ -165,9 +166,10 @@ public class TextFieldsEditorView extends LabeledEditorView {
      * Creates or removes the type/label button. Doesn't do anything if already correctly configured
      */
     private void setupExpansionView(boolean shouldExist, boolean collapsed) {
-        mExpansionView.setImageResource(collapsed
-                ? R.drawable.ic_menu_expander_minimized_holo_light
-                : R.drawable.ic_menu_expander_maximized_holo_light);
+        final Drawable expandIcon = getContext().getDrawable(collapsed
+                ? R.drawable.ic_menu_expand_minimized_24dp
+                : R.drawable.ic_menu_expand_maximized_24dp);
+        mExpansionView.setImageDrawable(expandIcon);
         mExpansionViewContainer.setVisibility(shouldExist ? View.VISIBLE : View.INVISIBLE);
     }
 

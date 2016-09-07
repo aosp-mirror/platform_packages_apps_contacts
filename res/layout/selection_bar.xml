@@ -25,10 +25,10 @@
         android:layout_width="@dimen/selection_bar_close_icon_size"
         android:layout_height="@dimen/selection_bar_close_icon_size"
         android:layout_gravity="center_vertical|start"
-        android:alpha="@dimen/close_icon_alpha"
+        android:tint="@color/quantum_black_secondary_text"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_menu_back_from_edit_select"
-        android:src="@drawable/ic_close_black_24dp"/>
+        android:src="@drawable/ic_close_24dp"/>
 
     <TextView
         android:id="@+id/selection_count_text"

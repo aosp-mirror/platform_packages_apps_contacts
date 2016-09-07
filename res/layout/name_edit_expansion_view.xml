@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:duplicateParentState="true"
+        android:tint="@color/quantum_black_secondary_text"
         android:background="?android:attr/selectableItemBackground"
         android:paddingLeft="@dimen/editor_round_button_padding_left"
         android:paddingRight="@dimen/editor_round_button_padding_right"
