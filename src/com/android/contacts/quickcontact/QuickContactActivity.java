@@ -977,7 +977,7 @@ public class QuickContactActivity extends ContactsActivity
             return;
         }
 
-        mIsRecreatedInstance = (savedInstanceState != null);
+        mIsRecreatedInstance = savedInstanceState != null;
         mShouldLog = true;
 
         // There're 3 states for each permission:
@@ -1364,7 +1364,7 @@ public class QuickContactActivity extends ContactsActivity
             newContactType = ContactType.UNKNOWN_TYPE;
         }
         if (mShouldLog && mContactType != newContactType) {
-            Logger.logQuickContactEvent( mReferrer, newContactType, CardType.UNKNOWN_CARD,
+            Logger.logQuickContactEvent(mReferrer, newContactType, CardType.UNKNOWN_CARD,
                     actionType, /* thirdPartyAction */ null);
         }
         mContactType = newContactType;
@@ -2114,7 +2114,7 @@ public class QuickContactActivity extends ContactsActivity
             if (!TextUtils.isEmpty(postalAddress)) {
                 primaryContentDescription.append(res.getString(R.string.map_other)).append(" ");
                 intent = StructuredPostalUtils.getViewPostalAddressIntent(postalAddress);
-                intent.putExtra(EXTRA_ACTION_TYPE, ActionType.MAP);
+                intent.putExtra(EXTRA_ACTION_TYPE, ActionType.ADDRESS);
                 header = postal.getFormattedAddress();
                 entryContextMenuInfo = new EntryContextMenuInfo(header,
                         res.getString(R.string.postalLabelsGroup), dataItem.getMimeType(),
@@ -3114,7 +3114,7 @@ public class QuickContactActivity extends ContactsActivity
                 return true;
             case R.id.menu_delete:
                 Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
-                        ActionType.DELETE, /* thirdPartyAction */ null);
+                        ActionType.REMOVE, /* thirdPartyAction */ null);
                 if (isContactEditable()) {
                     deleteContact();
                 }
