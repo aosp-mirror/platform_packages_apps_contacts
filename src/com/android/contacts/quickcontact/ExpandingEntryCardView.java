@@ -244,8 +244,6 @@ public class ExpandingEntryCardView extends CardView {
     private View mExpandCollapseButton;
     private TextView mExpandCollapseTextView;
     private TextView mTitleTextView;
-    private CharSequence mExpandButtonText;
-    private CharSequence mCollapseButtonText;
     private OnClickListener mOnClickListener;
     private OnCreateContextMenuListener mOnCreateContextMenuListener;
     private boolean mIsExpanded = false;
@@ -263,11 +261,6 @@ public class ExpandingEntryCardView extends CardView {
     private final ImageView mExpandCollapseArrow;
     private int mThemeColor;
     private ColorFilter mThemeColorFilter;
-    /**
-     * Whether to prioritize the first entry type. If prioritized, we should show at least two
-     * of this entry type.
-     */
-    private boolean mShowFirstEntryTypeTwice;
     private boolean mIsAlwaysExpanded;
     /** The ViewGroup to run the expand/collapse animation on */
     private ViewGroup mAnimationViewGroup;
@@ -319,22 +312,14 @@ public class ExpandingEntryCardView extends CardView {
         mBadgeIds = new ArrayList<Integer>();
     }
 
-    public void initialize(List<List<Entry>> entries, int numInitialVisibleEntries,
-            boolean isExpanded, boolean isAlwaysExpanded, ExpandingEntryCardViewListener listener,
-            ViewGroup animationViewGroup) {
-        initialize(entries, numInitialVisibleEntries, isExpanded, isAlwaysExpanded,
-                listener, animationViewGroup, /* showFirstEntryTypeTwice = */ false);
-    }
-
     /**
      * Sets the Entry list to display.
      *
      * @param entries The Entry list to display.
      */
     public void initialize(List<List<Entry>> entries, int numInitialVisibleEntries,
-            boolean isExpanded, boolean isAlwaysExpanded,
-            ExpandingEntryCardViewListener listener, ViewGroup animationViewGroup,
-            boolean showFirstEntryTypeTwice) {
+            boolean isExpanded, boolean isAlwaysExpanded, ExpandingEntryCardViewListener listener,
+            ViewGroup animationViewGroup) {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         mIsExpanded = isExpanded;
         mIsAlwaysExpanded = isAlwaysExpanded;
@@ -344,7 +329,6 @@ public class ExpandingEntryCardView extends CardView {
         mEntries = entries;
         mNumEntries = 0;
         mAllEntriesInflated = false;
-        mShowFirstEntryTypeTwice = showFirstEntryTypeTwice;
         for (List<Entry> entryList : mEntries) {
             mNumEntries += entryList.size();
             mEntryViews.add(new ArrayList<View>());
@@ -366,30 +350,6 @@ public class ExpandingEntryCardView extends CardView {
         }
         insertEntriesIntoViewGroup();
         applyColor();
-    }
-
-    /**
-     * Sets the text for the expand button.
-     *
-     * @param expandButtonText The expand button text.
-     */
-    public void setExpandButtonText(CharSequence expandButtonText) {
-        mExpandButtonText = expandButtonText;
-        if (mExpandCollapseTextView != null && !mIsExpanded) {
-            mExpandCollapseTextView.setText(expandButtonText);
-        }
-    }
-
-    /**
-     * Sets the text for the expand button.
-     *
-     * @param expandButtonText The expand button text.
-     */
-    public void setCollapseButtonText(CharSequence expandButtonText) {
-        mCollapseButtonText = expandButtonText;
-        if (mExpandCollapseTextView != null && mIsExpanded) {
-            mExpandCollapseTextView.setText(mCollapseButtonText);
-        }
     }
 
     @Override
@@ -468,19 +428,9 @@ public class ExpandingEntryCardView extends CardView {
                 viewsToDisplay.add(entryViewList.get(0));
                 numInViewGroup++;
 
-                int indexInEntryViewList = 1;
-                if (mShowFirstEntryTypeTwice && i == 0 && entryViewList.size() > 1) {
-                    viewsToDisplay.add(entryViewList.get(1));
-                    numInViewGroup++;
-                    extraEntries--;
-                    indexInEntryViewList++;
-                }
-
                 // Insert entries in this list to hit mCollapsedEntriesCount.
-                for (int j = indexInEntryViewList;
-                        j < entryViewList.size() && numInViewGroup < mCollapsedEntriesCount &&
-                        extraEntries > 0;
-                        j++) {
+                for (int j = 1; j < entryViewList.size() && numInViewGroup < mCollapsedEntriesCount
+                        && extraEntries > 0; j++) {
                     viewsToDisplay.add(entryViewList.get(j));
                     numInViewGroup++;
                     extraEntries--;
@@ -532,21 +482,13 @@ public class ExpandingEntryCardView extends CardView {
     }
 
     private CharSequence getExpandButtonText() {
-        if (!TextUtils.isEmpty(mExpandButtonText)) {
-            return mExpandButtonText;
-        } else {
-            // Default to "See more".
-            return getResources().getText(R.string.expanding_entry_card_view_see_more);
-        }
+        // Default to "See more".
+        return getResources().getText(R.string.expanding_entry_card_view_see_more);
     }
 
     private CharSequence getCollapseButtonText() {
-        if (!TextUtils.isEmpty(mCollapseButtonText)) {
-            return mCollapseButtonText;
-        } else {
-            // Default to "See less".
-            return getResources().getText(R.string.expanding_entry_card_view_see_less);
-        }
+        // Default to "See less".
+        return getResources().getText(R.string.expanding_entry_card_view_see_less);
     }
 
     /**
@@ -569,18 +511,8 @@ public class ExpandingEntryCardView extends CardView {
                         /* showIcon = */ View.VISIBLE));
                 numInflated++;
 
-                int indexInEntryViewList = 1;
-                if (mShowFirstEntryTypeTwice && i == 0 && entryList.size() > 1) {
-                    entryViewList.add(createEntryView(layoutInflater, entryList.get(1),
-                        /* showIcon = */ View.INVISIBLE));
-                    numInflated++;
-                    extraEntries--;
-                    indexInEntryViewList++;
-                }
-
                 // Inflate entries in this list to hit mCollapsedEntriesCount.
-                for (int j = indexInEntryViewList; j < entryList.size()
-                        && numInflated < mCollapsedEntriesCount
+                for (int j = 1; j < entryList.size() && numInflated < mCollapsedEntriesCount
                         && extraEntries > 0; j++) {
                     entryViewList.add(createEntryView(layoutInflater, entryList.get(j),
                             /* showIcon = */ View.INVISIBLE));
@@ -851,10 +783,7 @@ public class ExpandingEntryCardView extends CardView {
             mBadgeContainer.removeAllViews();
         } else {
             int numberOfMimeTypesShown = mCollapsedEntriesCount;
-            if (mShowFirstEntryTypeTwice && mEntries.size() > 0
-                    && mEntries.get(0).size() > 1) {
-                numberOfMimeTypesShown--;
-            }
+
             // Inflate badges if not yet created
             if (mBadges.size() < mEntries.size() - numberOfMimeTypesShown) {
                 for (int i = numberOfMimeTypesShown; i < mEntries.size(); i++) {
