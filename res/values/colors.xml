@@ -14,6 +14,11 @@
      limitations under the License.
 -->
 <resources>
+    <!-- 54% black -->
+    <color name="quantum_black_secondary_text">#89000000</color>
+
+    <!-- 38% black -->
+    <color name="quantum_black_hint_text">#61000000</color>
 
     <color name="quickcontact_name_detail_background">#66000000</color>
     <color name="quickcontact_entry_sub_header_text_color">#737373</color>
