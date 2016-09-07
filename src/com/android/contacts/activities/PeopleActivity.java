@@ -49,8 +49,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.android.contacts.common.model.account.AccountDisplayInfo;
-import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
@@ -95,7 +93,9 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
     private static final String TAG = "PeopleActivity";
     private static final String TAG_ALL = "contacts-all";
     private static final String TAG_UNAVAILABLE = "contacts-unavailable";
+    private static final String TAG_GROUP_VIEW = "contacts-groups";
     private static final String TAG_DUPLICATES = "contacts-duplicates";
+    private static final String TAG_SECOND_LEVEL = "second-level";
     // Tag for DuplicatesUtilFragment.java
     public static final String TAG_DUPLICATES_UTIL = "DuplicatesUtilFragment";
 
@@ -205,7 +205,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         return String.format("%s@%d", getClass().getSimpleName(), mInstanceId);
     }
 
-    public boolean areContactsAvailable() {
+    private boolean areContactsAvailable() {
         return (mProviderStatus != null) && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
     }
 
@@ -213,7 +213,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
      * Initialize fragments that are (or may not be) in the layout.
      *
      * For the fragments that are in the layout, we initialize them in
-     * {@link #createViewsAndFragments(Bundle)} after inflating the layout.
+     * {@link #createViewsAndFragments()} after inflating the layout.
      *
      * However, the {@link ContactsUnavailableFragment} is a special fragment which may not
      * be in the layout, so we have to do the initialization here.
@@ -263,50 +263,34 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
     @Override
     protected void onNewIntent(Intent intent) {
-        if (ContactsDrawerActivity.ACTION_CREATE_GROUP.equals(intent.getAction())) {
+        if (GroupUtil.ACTION_CREATE_GROUP.equals(intent.getAction())) {
             mGroupUri = intent.getData();
             if (mGroupUri == null) {
                 toast(R.string.groupSavedErrorToast);
                 return;
             }
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + mGroupUri);
-            toast(R.string.groupCreatedToast);
-            switchToGroupView();
+            switchToOrUpdateGroupView(intent.getAction());
             return;
         }
 
-        if (isDeleteAction(intent.getAction())) {
+        if (isGroupDeleteAction(intent.getAction())) {
             toast(R.string.groupDeletedToast);
-            getFragmentManager().popBackStackImmediate();
+            popSecondLevel();
             mCurrentView = ContactsView.ALL_CONTACTS;
             showFabWithAnimation(/* showFab */ true);
             return;
         }
 
-        if (isSaveAction(intent.getAction())) {
-            final Uri groupUri = intent.getData();
-            if (groupUri == null) {
-                getFragmentManager().popBackStackImmediate();
+        if (isGroupSaveAction(intent.getAction())) {
+            mGroupUri = intent.getData();
+            if (mGroupUri == null) {
+                popSecondLevel();
                 toast(R.string.groupSavedErrorToast);
                 return;
             }
-            if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + groupUri);
-
-            mGroupUri = groupUri;
-
-            toast(getToastMessageForSaveAction(intent.getAction()));
-
-            if (mMembersFragment.isEditMode()) {
-                // If we're removing group members one at a time, don't reload the fragment so
-                // the user can continue to remove group members one by one
-                if (getGroupCount() == 1) {
-                    // If we're deleting the last group member, exit edit mode
-                    onBackPressed();
-                }
-            } else if (!GroupUtil.ACTION_REMOVE_FROM_GROUP.equals(intent.getAction())) {
-                switchToGroupView();
-                invalidateOptionsMenu();
-            }
+            if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + mGroupUri);
+            switchToOrUpdateGroupView(intent.getAction());
         }
 
         setIntent(intent);
@@ -332,27 +316,14 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         invalidateOptionsMenuIfNeeded();
     }
 
-    private int getGroupCount() {
-        return mMembersFragment != null && mMembersFragment.getAdapter() != null
-                ? mMembersFragment.getAdapter().getCount() : -1;
-    }
-
-    private static boolean isDeleteAction(String action) {
+    private static boolean isGroupDeleteAction(String action) {
         return GroupUtil.ACTION_DELETE_GROUP.equals(action);
     }
 
-    private static boolean isSaveAction(String action) {
+    private static boolean isGroupSaveAction(String action) {
         return GroupUtil.ACTION_UPDATE_GROUP.equals(action)
                 || GroupUtil.ACTION_ADD_TO_GROUP.equals(action)
                 || GroupUtil.ACTION_REMOVE_FROM_GROUP.equals(action);
-    }
-
-    private static int getToastMessageForSaveAction(String action) {
-        if (GroupUtil.ACTION_UPDATE_GROUP.equals(action)) return R.string.groupUpdatedToast;
-        if (GroupUtil.ACTION_ADD_TO_GROUP.equals(action)) return R.string.groupMembersAddedToast;
-        if (GroupUtil.ACTION_REMOVE_FROM_GROUP.equals(action))
-            return R.string.groupMembersRemovedToast;
-        throw new IllegalArgumentException("Unhanded contact save action " + action);
     }
 
     private void toast(int resId) {
@@ -411,9 +382,9 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
         setUpAllFragment(fragmentManager);
 
-        if (isGroupView() && mGroupUri != null) {
+        if (isGroupView()) {
             mMembersFragment = (GroupMembersFragment)
-                    fragmentManager.findFragmentByTag(mGroupUri.toString());
+                    fragmentManager.findFragmentByTag(TAG_GROUP_VIEW);
         }
 
         // Configure floating action button
@@ -445,7 +416,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
         if (mShouldSwitchToGroupView && !mIsRecreatedInstance) {
             mGroupUri = mRequest.getContactUri();
-            switchToGroupView();
+            switchToOrUpdateGroupView(GroupUtil.ACTION_SWITCH_GROUP);
             mShouldSwitchToGroupView = false;
         }
     }
@@ -743,7 +714,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
     private void invalidateOptionsMenuIfNeeded() {
         if (mAllFragment != null
-                || mAllFragment.getOptionsMenuContactsAvailable() != areContactsAvailable()) {
+                && mAllFragment.getOptionsMenuContactsAvailable() != areContactsAvailable()) {
             invalidateOptionsMenu();
         }
     }
@@ -788,9 +759,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             mDrawer.closeDrawer(GravityCompat.START);
         } else if (isGroupView()) {
             if (mMembersFragment.isEditMode()) {
-                mMembersFragment.setEditMode(false);
-                mMembersFragment.getActionBarAdapter().setSelectionMode(false);
-                mMembersFragment.displayDeleteButtons(false);
+                mMembersFragment.exitEditMode();
             } else if (mMembersFragment.getActionBarAdapter().isSelectionMode()) {
                 mMembersFragment.getActionBarAdapter().setSelectionMode(false);
                 mMembersFragment.displayCheckBoxes(false);
@@ -866,21 +835,27 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             return;
         }
         mGroupUri = ContentUris.withAppendedId(ContactsContract.Groups.CONTENT_URI, groupId);
-        switchToGroupView();
+        switchToOrUpdateGroupView(GroupUtil.ACTION_SWITCH_GROUP);
     }
 
     @Override
     protected void onFilterMenuItemClicked(Intent intent) {
-        super.onFilterMenuItemClicked(intent);
+        // We must pop second level first to "restart" mAllFragment, before changing filter.
         if (isInSecondLevel()) {
-            getFragmentManager().popBackStackImmediate();
+            popSecondLevel();
             showFabWithAnimation(/* showFab */ true);
         }
         mCurrentView = ContactsView.ACCOUNT_VIEW;
+        super.onFilterMenuItemClicked(intent);
     }
 
-    private void switchToGroupView() {
-        switchView(ContactsView.GROUP_VIEW);
+    private void switchToOrUpdateGroupView(String action) {
+        if (mMembersFragment != null) {
+            mCurrentView = ContactsView.GROUP_VIEW;
+            mMembersFragment.updateDisplayedGroup(mGroupUri, action);
+        } else {
+            switchView(ContactsView.GROUP_VIEW);
+        }
     }
 
     @Override
@@ -889,16 +864,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
     }
 
     private void switchView(ContactsView contactsView) {
-        maybePopBackStack();
         mCurrentView = contactsView;
         setUpNewFragment();
-    }
-
-    private void maybePopBackStack() {
-        final FragmentManager fragmentManager =  getFragmentManager();
-        if (isInSecondLevel()) {
-            fragmentManager.popBackStackImmediate();
-        }
     }
 
     private void setUpNewFragment() {
@@ -906,35 +873,41 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (isGroupView()) {
             mMembersFragment = GroupMembersFragment.newInstance(mGroupUri);
-            transaction.add(R.id.contacts_list_container, mMembersFragment, mGroupUri.toString());
+            transaction.replace(
+                    R.id.contacts_list_container, mMembersFragment, TAG_GROUP_VIEW);
         } else if (isDuplicatesView()) {
             final Fragment duplicatesFragment = ObjectFactory.getDuplicatesFragment();
             final Fragment duplicatesUtilFragment = ObjectFactory.getDuplicatesUtilFragment();
-            duplicatesUtilFragment.setTargetFragment(duplicatesFragment, /* requestCode */ 0);
-            transaction.add(R.id.contacts_list_container, duplicatesFragment, TAG_DUPLICATES);
-            transaction.add(duplicatesUtilFragment, TAG_DUPLICATES_UTIL);
+            if (duplicatesFragment != null && duplicatesUtilFragment != null) {
+                duplicatesUtilFragment.setTargetFragment(duplicatesFragment, /* requestCode */ 0);
+                transaction.replace(
+                        R.id.contacts_list_container, duplicatesFragment, TAG_DUPLICATES);
+                transaction.add(duplicatesUtilFragment, TAG_DUPLICATES_UTIL);
+            }
         }
-        transaction.hide(mAllFragment);
-        transaction.addToBackStack(null);
+        transaction.addToBackStack(TAG_SECOND_LEVEL);
         transaction.commit();
         fragmentManager.executePendingTransactions();
 
+        resetFilter();
         showFabWithAnimation(/* showFab */ false);
     }
 
     @Override
     public void switchToAllContacts() {
-        final FragmentManager fragmentManager = getFragmentManager();
         if (isInSecondLevel()) {
-            fragmentManager.popBackStackImmediate();
-            if (isGroupView()) {
-                mMembersFragment = null;
-            }
+            popSecondLevel();
         }
         mCurrentView = ContactsView.ALL_CONTACTS;
         showFabWithAnimation(/* showFab */ true);
 
         super.switchToAllContacts();
+    }
+
+    private void popSecondLevel() {
+        getFragmentManager().popBackStackImmediate(
+                TAG_SECOND_LEVEL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        mMembersFragment = null;
     }
 
     @Override

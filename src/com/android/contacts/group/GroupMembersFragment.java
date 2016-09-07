@@ -477,10 +477,6 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         return mIsEditMode;
     }
 
-    public void setEditMode(boolean isEditMode) {
-        mIsEditMode = isEditMode;
-    }
-
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
@@ -673,5 +669,52 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             mActionBarAdapter.setListener(null);
         }
         super.onDestroy();
+    }
+
+    public void updateDisplayedGroup(Uri newGroupUri, String action) {
+        if (!GroupUtil.ACTION_SWITCH_GROUP.equals(action)) {
+            toast(getToastMessageForSaveAction(action));
+        }
+
+        if (isEditMode() && getGroupCount() == 1) {
+            // If we're deleting the last group member, exit edit mode
+            exitEditMode();
+        } else if (!GroupUtil.ACTION_REMOVE_FROM_GROUP.equals(action)) {
+            mGroupUri = newGroupUri;
+            mGroupMetadata = null; // Clear mGroupMetadata to trigger a new load.
+            reloadData();
+            mActivity.invalidateOptionsMenu();
+        }
+    }
+
+    private static int getToastMessageForSaveAction(String action) {
+        switch(action) {
+            case GroupUtil.ACTION_UPDATE_GROUP:
+                return R.string.groupUpdatedToast;
+            case GroupUtil.ACTION_ADD_TO_GROUP:
+                return R.string.groupMembersAddedToast;
+            case GroupUtil.ACTION_REMOVE_FROM_GROUP:
+                return R.string.groupMembersRemovedToast;
+            case GroupUtil.ACTION_CREATE_GROUP:
+                return R.string.groupCreatedToast;
+            default:
+                throw new IllegalArgumentException("Unhandled contact save action " + action);
+        }
+    }
+
+    private void toast(int resId) {
+        if (resId >= 0) {
+            Toast.makeText(getContext(), resId, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private int getGroupCount() {
+        return getAdapter() != null ? getAdapter().getCount() : -1;
+    }
+
+    public void exitEditMode() {
+        mIsEditMode = false;
+        mActionBarAdapter.setSelectionMode(false);
+        displayDeleteButtons(false);
     }
 }

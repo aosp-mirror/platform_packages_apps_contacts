@@ -46,16 +46,16 @@ import java.util.Set;
  */
 public final class GroupUtil {
 
-    public static final String ACTION_DELETE_GROUP = "deleteGroup";
-    public static final String ACTION_UPDATE_GROUP = "updateGroup";
     public static final String ACTION_ADD_TO_GROUP = "addToGroup";
+    public static final String ACTION_CREATE_GROUP = "createGroup";
+    public static final String ACTION_DELETE_GROUP = "deleteGroup";
     public static final String ACTION_REMOVE_FROM_GROUP = "removeFromGroup";
+    public static final String ACTION_SWITCH_GROUP = "switchGroup";
+    public static final String ACTION_UPDATE_GROUP = "updateGroup";
 
     // System IDs of FFC groups in Google accounts
     private static final Set<String> FFC_GROUPS =
             new HashSet(Arrays.asList("Friends", "Family", "Coworkers"));
-
-    public static final String EXTRA_GROUP_NAME = "groupName";
 
     private GroupUtil() {
     }
