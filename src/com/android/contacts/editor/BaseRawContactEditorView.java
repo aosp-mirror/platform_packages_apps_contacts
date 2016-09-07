@@ -80,7 +80,7 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
         mPhoto.setEnabled(isEnabled());
 
         mAccountHeaderContainer = findViewById(R.id.account_header_container);
-        mExpandAccountButton = (ImageView) findViewById(R.id.expand_account_button);
+        mExpandAccountButton = (ImageView) findViewById(R.id.account_expander_icon);
         mCollapsibleSection = (LinearLayout) findViewById(R.id.collapsable_section);
         mAccountName = (TextView) findViewById(R.id.account_name);
         mAccountType = (TextView) findViewById(R.id.account_type);

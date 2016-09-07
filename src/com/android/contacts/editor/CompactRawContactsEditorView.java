@@ -338,12 +338,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private TextView mAccountHeaderType;
     private TextView mAccountHeaderName;
     private ImageView mAccountHeaderIcon;
-
-    // Account selector
-    private View mAccountSelectorContainer;
-    private View mAccountSelector;
-    private TextView mAccountSelectorType;
-    private TextView mAccountSelectorName;
+    private ImageView mAccountHeaderExpanderIcon;
 
     // Raw contacts selector
     private View mRawContactContainer;
@@ -385,16 +380,11 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         // Account header
-        mAccountHeaderContainer = findViewById(R.id.account_container);
+        mAccountHeaderContainer = findViewById(R.id.account_header_container);
         mAccountHeaderType = (TextView) findViewById(R.id.account_type);
         mAccountHeaderName = (TextView) findViewById(R.id.account_name);
         mAccountHeaderIcon = (ImageView) findViewById(R.id.account_type_icon);
-
-        // Account selector
-        mAccountSelectorContainer = findViewById(R.id.account_selector_container);
-        mAccountSelector = findViewById(R.id.account);
-        mAccountSelectorType = (TextView) findViewById(R.id.account_type_selector);
-        mAccountSelectorName = (TextView) findViewById(R.id.account_name_selector);
+        mAccountHeaderExpanderIcon = (ImageView) findViewById(R.id.account_expander_icon);
 
         // Raw contacts selector
         mRawContactContainer = findViewById(R.id.all_rawcontacts_accounts_container);
@@ -796,7 +786,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     // TODO: we have mRawContactDeltas, we don't need to pass the RawContactDeltaList to this method
     private void addAccountInfo(RawContactDeltaList rawContactDeltas) {
         mAccountHeaderContainer.setVisibility(View.GONE);
-        mAccountSelectorContainer.setVisibility(View.GONE);
         mRawContactContainer.setVisibility(View.GONE);
 
         if (mPrimaryNameKindSectionData == null) return;
@@ -908,24 +897,11 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private void addAccountSelector(Pair<String,String> accountInfo,
             final RawContactDelta rawContactDelta) {
-        mAccountSelectorContainer.setVisibility(View.VISIBLE);
-
-        if (TextUtils.isEmpty(accountInfo.first)) {
-            // Hide this view so the other text view will be centered vertically
-            mAccountSelectorName.setVisibility(View.GONE);
-        } else {
-            mAccountSelectorName.setVisibility(View.VISIBLE);
-            mAccountSelectorName.setText(accountInfo.first);
-        }
-
-        final String selectorTitle = getResources().getString(
-                R.string.compact_editor_account_selector_title);
-        mAccountSelectorType.setText(selectorTitle);
-
-        mAccountSelectorContainer.setContentDescription(getResources().getString(
-                R.string.compact_editor_account_selector_description, accountInfo.first));
-
-        mAccountSelectorContainer.setOnClickListener(new View.OnClickListener() {
+        // Show save to default account.
+        addAccountHeader(accountInfo);
+        // Add handlers for choosing another account to save to.
+        mAccountHeaderExpanderIcon.setVisibility(View.VISIBLE);
+        mAccountHeaderContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final ListPopupWindow popup = new ListPopupWindow(getContext(), null);
@@ -933,8 +909,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                         new AccountsListAdapter(getContext(),
                                 AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE,
                                 mPrimaryAccount);
-                popup.setWidth(mAccountSelectorContainer.getWidth());
-                popup.setAnchorView(mAccountSelectorContainer);
+                popup.setWidth(mAccountHeaderContainer.getWidth());
+                popup.setAnchorView(mAccountHeaderContainer);
                 popup.setAdapter(adapter);
                 popup.setModal(true);
                 popup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);

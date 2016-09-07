@@ -92,7 +92,7 @@ public class RawContactReadOnlyEditorView extends BaseRawContactEditorView
 
         mAccountHeaderTypeTextView = (TextView) findViewById(R.id.account_type);
         mAccountHeaderNameTextView = (TextView) findViewById(R.id.account_name);
-        mAccountIconImageView = (ImageView) findViewById(android.R.id.icon);
+        mAccountIconImageView = (ImageView) findViewById(R.id.account_type_icon);
     }
 
     /**
