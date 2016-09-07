@@ -68,6 +68,8 @@ import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.util.AccountFilterUtil;
@@ -632,10 +634,14 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     private String getActionBarTitleForAccount(ContactListFilter filter) {
-        if (GoogleAccountType.ACCOUNT_TYPE.equals(filter.accountType)) {
+        final AccountDisplayInfoFactory factory = AccountDisplayInfoFactory
+                .forAllAccounts(getActivity());
+        final AccountDisplayInfo account = factory.getAccountDisplayInfoFor(filter);
+        if (account.hasGoogleAccountType()) {
             return getString(R.string.title_from_google);
         }
-        return getString(R.string.title_from_other_accounts, filter.accountName);
+        return account.withFormattedName(getActivity(), R.string.title_from_other_accounts)
+                .getNameLabel().toString();
     }
 
     public void setSwipeRefreshLayoutEnabledOrNot(ContactListFilter filter) {
