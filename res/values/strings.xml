@@ -712,8 +712,6 @@
     <string name="expanding_entry_card_view_see_more">See more</string>
     <!-- Button Label to see less on an ExpandingEntryCardView [CHAR LIMIT=40] -->
     <string name="expanding_entry_card_view_see_less">See less</string>
-    <!-- Button Label to see all on an ExpandingEntryCardView [CHAR LIMIT=40] -->
-    <string name="expanding_entry_card_view_see_all">See all</string>
 
     <!-- Title of recent card. [CHAR LIMIT=60] -->
     <string name="recent_card_title">Recent</string>
