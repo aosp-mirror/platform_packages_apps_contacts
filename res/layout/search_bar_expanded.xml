@@ -53,10 +53,10 @@
         android:layout_height="@dimen/search_box_close_icon_size"
         android:layout_width="@dimen/search_box_close_icon_size"
         android:padding="@dimen/search_box_close_icon_padding"
-        android:src="@drawable/ic_close_black_24dp"
+        android:src="@drawable/ic_close_24dp"
+        android:tint="@color/quantum_black_secondary_text"
         android:clickable="true"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/description_clear_search"
-        android:alpha="@dimen/close_icon_alpha" />
+        android:contentDescription="@string/description_clear_search" />
 
 </LinearLayout>

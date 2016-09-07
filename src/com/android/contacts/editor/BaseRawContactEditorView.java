@@ -81,6 +81,7 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
 
         mAccountHeaderContainer = findViewById(R.id.account_header_container);
         mExpandAccountButton = (ImageView) findViewById(R.id.account_expander_icon);
+        mExpandAccountButton.setColorFilter(R.color.quantum_black_secondary_text);
         mCollapsibleSection = (LinearLayout) findViewById(R.id.collapsable_section);
         mAccountName = (TextView) findViewById(R.id.account_name);
         mAccountType = (TextView) findViewById(R.id.account_type);
@@ -187,11 +188,13 @@ public abstract class BaseRawContactEditorView extends LinearLayout {
         if (isCollapsed) {
             params.height = 0;
             mCollapsibleSection.setLayoutParams(params);
-            mExpandAccountButton.setImageResource(R.drawable.ic_menu_expander_minimized_holo_light);
+            mExpandAccountButton.setImageDrawable(getContext().getDrawable(
+                    R.drawable.ic_menu_expand_minimized_24dp));
         } else {
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             mCollapsibleSection.setLayoutParams(params);
-            mExpandAccountButton.setImageResource(R.drawable.ic_menu_expander_maximized_holo_light);
+            mExpandAccountButton.setImageDrawable(getContext().getDrawable(
+                    R.drawable.ic_menu_expand_maximized_24dp));
         }
     }
 

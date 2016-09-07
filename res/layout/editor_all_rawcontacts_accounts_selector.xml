@@ -45,7 +45,8 @@
             android:ellipsize="end" />
 
     <ImageView
-            android:src="@drawable/ic_menu_expander_minimized_holo_light"
+            android:src="@drawable/ic_menu_expand_minimized_24dp"
+            android:tint="@color/quantum_black_secondary_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
