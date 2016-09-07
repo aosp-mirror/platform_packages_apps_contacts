@@ -16,8 +16,7 @@ package com.android.contactsbind;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.preference.PreferenceManager;
 import com.android.contactsbind.search.AutocompleteHelper;
-import com.android.contacts.common.util.DeviceAccountFilter;
-import com.android.contacts.common.util.DeviceAccountPresentationValues;
+import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -37,12 +36,8 @@ public class ObjectFactory {
         return null;
     }
 
-    public static DeviceAccountPresentationValues createDeviceAccountPresentationValues(Context context) {
-        return new DeviceAccountPresentationValues.Default(context);
-    }
-
-    public static DeviceAccountFilter getDeviceAccountFilter(Context context) {
-        return DeviceAccountFilter.ONLY_NULL;
+    public static DeviceLocalAccountTypeFactory getDeviceLocalAccountTypeFactory(Context context) {
+        return new DeviceLocalAccountTypeFactory.Default(context);
     }
 
     public static Fragment getDuplicatesFragment() {

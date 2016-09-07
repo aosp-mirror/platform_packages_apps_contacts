@@ -272,7 +272,7 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         assertTrue(mTarget.shouldShowAccountChangedNotification());
 
         // We show the notification here, and user clicked "keep local" and saved an contact.
-        mTarget.saveDefaultAndAllAccounts(null);
+        mTarget.saveDefaultAndAllAccounts(AccountWithDataSet.getLocalAccount());
 
         // Now there are no accounts, and default account is null.
 

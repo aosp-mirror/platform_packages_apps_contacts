@@ -16,6 +16,7 @@
 
 package com.android.contacts.common.model.account;
 
+import android.accounts.AuthenticatorDescription;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -323,6 +324,12 @@ public abstract class AccountType {
      */
     public DataKind getKindForMimetype(String mimeType) {
         return this.mMimeKinds.get(mimeType);
+    }
+
+    public void initializeFieldsFromAuthenticator(AuthenticatorDescription authenticator) {
+        accountType = authenticator.type;
+        titleRes = authenticator.labelId;
+        iconRes = authenticator.iconId;
     }
 
     /**

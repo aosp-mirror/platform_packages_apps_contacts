@@ -106,7 +106,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
                     AccountListFilter.ACCOUNTS_CONTACT_WRITABLE);
             accountListView.setAdapter(mAccountListAdapter);
             accountListView.setOnItemClickListener(mAccountListItemClickListener);
-        } else if (numAccounts == 1) {
+        } else if (numAccounts == 1 && !accounts.get(0).isLocalAccount()) {
             // If the user has 1 writable account we will just show the user a message with 2
             // possible action buttons.
             view = View.inflate(this,

@@ -17,7 +17,6 @@
 package com.android.contacts.common.util;
 
 import android.content.Context;
-import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +24,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;
@@ -38,8 +38,7 @@ import java.util.List;
  */
 public final class AccountsListAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
-    private final List<AccountWithDataSet> mAccounts;
-    private final AccountTypeManager mAccountTypes;
+    private final List<AccountDisplayInfo> mAccountDisplayInfoList;
     private final Context mContext;
     private int mCustomLayout = -1;
 
@@ -63,22 +62,29 @@ public final class AccountsListAdapter extends BaseAdapter {
     public AccountsListAdapter(Context context, AccountListFilter accountListFilter,
             AccountWithDataSet currentAccount) {
         mContext = context;
-        mAccountTypes = AccountTypeManager.getInstance(context);
-        mAccounts = getAccounts(accountListFilter);
+        final List<AccountWithDataSet> accounts = getAccounts(accountListFilter);
         if (currentAccount != null
-                && !mAccounts.isEmpty()
-                && !mAccounts.get(0).equals(currentAccount)
-                && mAccounts.remove(currentAccount)) {
-            mAccounts.add(0, currentAccount);
+                && !accounts.isEmpty()
+                && !accounts.get(0).equals(currentAccount)
+                && accounts.remove(currentAccount)) {
+            accounts.add(0, currentAccount);
+        }
+
+        final AccountDisplayInfoFactory factory = new AccountDisplayInfoFactory(context,
+                accounts);
+        mAccountDisplayInfoList = new ArrayList<>(accounts.size());
+        for (AccountWithDataSet account : accounts) {
+            mAccountDisplayInfoList.add(factory.getAccountDisplayInfo(account));
         }
         mInflater = LayoutInflater.from(context);
     }
 
     private List<AccountWithDataSet> getAccounts(AccountListFilter accountListFilter) {
+        final AccountTypeManager typeManager = AccountTypeManager.getInstance(mContext);
         if (accountListFilter == AccountListFilter.ACCOUNTS_GROUP_WRITABLE) {
-            return new ArrayList<AccountWithDataSet>(mAccountTypes.getGroupWritableAccounts());
+            return new ArrayList<AccountWithDataSet>(typeManager.getGroupWritableAccounts());
         }
-        return new ArrayList<AccountWithDataSet>(mAccountTypes.getAccounts(
+        return new ArrayList<AccountWithDataSet>(typeManager.getAccounts(
                 accountListFilter == AccountListFilter.ACCOUNTS_CONTACT_WRITABLE));
     }
 
@@ -96,25 +102,22 @@ public final class AccountsListAdapter extends BaseAdapter {
         final TextView text2 = (TextView) resultView.findViewById(android.R.id.text2);
         final ImageView icon = (ImageView) resultView.findViewById(android.R.id.icon);
 
-        final AccountWithDataSet account = mAccounts.get(position);
-        final AccountType accountType = mAccountTypes.getAccountType(account.type, account.dataSet);
+        text1.setText(mAccountDisplayInfoList.get(position).getTypeLabel());
+        text2.setText(mAccountDisplayInfoList.get(position).getNameLabel());
 
-        text1.setText(accountType.getDisplayLabel(mContext));
-        text2.setText(account.name);
-
-        icon.setImageDrawable(accountType.getDisplayIcon(mContext));
+        icon.setImageDrawable(mAccountDisplayInfoList.get(position).getIcon());
 
         return resultView;
     }
 
     @Override
     public int getCount() {
-        return mAccounts.size();
+        return mAccountDisplayInfoList.size();
     }
 
     @Override
     public AccountWithDataSet getItem(int position) {
-        return mAccounts.get(position);
+        return mAccountDisplayInfoList.get(position).getSource();
     }
 
     @Override

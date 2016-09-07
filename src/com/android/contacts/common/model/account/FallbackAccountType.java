@@ -16,6 +16,7 @@
 
 package com.android.contacts.common.model.account;
 
+import android.accounts.AuthenticatorDescription;
 import android.content.Context;
 import android.util.Log;
 
@@ -68,6 +69,12 @@ public class FallbackAccountType extends BaseAccountType {
      */
     static AccountType createWithPackageNameForTest(Context context, String resPackageName) {
         return new FallbackAccountType(context, resPackageName);
+    }
+
+    @Override
+    public void initializeFieldsFromAuthenticator(AuthenticatorDescription authenticator) {
+        // Do nothing. For "Device" accounts we want to just display them using our own strings
+        // and icons.
     }
 
     @Override

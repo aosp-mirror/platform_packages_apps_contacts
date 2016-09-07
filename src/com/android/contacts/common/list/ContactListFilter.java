@@ -336,6 +336,17 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         return uriBuilder;
     }
 
+    public AccountWithDataSet toAccountWithDataSet() {
+        if (filterType == FILTER_TYPE_ACCOUNT) {
+            return new AccountWithDataSet(accountName, accountType, dataSet);
+        } else if (filterType == FILTER_TYPE_DEVICE_CONTACTS) {
+            return AccountWithDataSet.getLocalAccount();
+        } else {
+            throw new IllegalStateException("Cannot create Account from filter type " +
+                    filterTypeToString(filterType));
+        }
+    }
+
     public String toDebugString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("[filter type: " + filterType + " (" + filterTypeToString(filterType) + ")");

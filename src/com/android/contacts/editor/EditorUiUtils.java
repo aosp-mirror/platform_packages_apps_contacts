@@ -16,15 +16,14 @@
 
 package com.android.contacts.editor;
 
-import static android.provider.ContactsContract.CommonDataKinds.GroupMembership;
-import static android.provider.ContactsContract.CommonDataKinds.StructuredName;
-import static com.android.contacts.common.util.MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Im;
@@ -36,11 +35,7 @@ import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Build;
 import android.text.TextUtils;
-import android.util.Pair;
 import android.widget.ImageView;
 
 import com.android.contacts.R;
@@ -49,17 +44,19 @@ import com.android.contacts.common.ContactPhotoManager.DefaultImageProvider;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
+import com.android.contacts.common.model.account.AccountDisplayInfo;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.widget.QuickContactImageView;
-
 import com.google.common.collect.Maps;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+
+import static android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import static android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import static com.android.contacts.common.util.MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors;
 
 /**
  * Utility methods for creating contact editor.
@@ -111,52 +108,34 @@ public class EditorUiUtils {
         return id;
     }
 
-    /**
-     * Returns the account name and account type labels to display for local accounts.
-     */
-    public static Pair<String,String> getLocalAccountInfo(Context context,
-            String accountName, AccountType accountType) {
-        if (TextUtils.isEmpty(accountName)) {
-            return new Pair<>(
-                    /* accountName =*/ null,
-                    context.getString(R.string.local_profile_title));
+
+    public static String getAccountHeaderLabelForMyProfile(Context context,
+            AccountDisplayInfo displayableAccount) {
+        if (displayableAccount.isDeviceAccount()) {
+            return context.getString(R.string.local_profile_title);
+        } else {
+            return context.getString(R.string.external_profile_title,
+                    displayableAccount.getTypeLabel());
         }
-        return new Pair<>(
-                accountName,
-                context.getString(R.string.external_profile_title,
-                        accountType.getDisplayLabel(context)));
     }
 
-    /**
-     * Returns the account name and account type labels to display for the given account type.
-     */
-    public static Pair<String,String> getAccountInfo(Context context, String accountName,
-            AccountType accountType) {
-        CharSequence accountTypeDisplayLabel = accountType.getDisplayLabel(context);
-        if (TextUtils.isEmpty(accountTypeDisplayLabel)
-                || TextUtils.equals(
-                        context.getString(R.string.account_phone), accountTypeDisplayLabel)) {
-            accountTypeDisplayLabel = context.getString(R.string.account_phone);
-        } else if (GoogleAccountType.ACCOUNT_TYPE.equals(accountType.accountType)
-                && accountType.dataSet == null){
-            accountTypeDisplayLabel = context.getString(R.string.google_account_type_format,
-                    accountTypeDisplayLabel);
+    public static String getAccountTypeHeaderLabel(Context context, AccountDisplayInfo
+            displayableAccount)  {
+        if (displayableAccount.isDeviceAccount()) {
+            // Do nothing. Type label should be "Device"
+            return displayableAccount.getTypeLabel().toString();
+        } else if (displayableAccount.isGoogleAccount()) {
+            return context.getString(R.string.google_account_type_format,
+                    displayableAccount.getTypeLabel());
         } else {
-            accountTypeDisplayLabel = context.getString(R.string.account_type_format,
-                    accountTypeDisplayLabel);
+            return context.getString(R.string.account_type_format,
+                    displayableAccount.getTypeLabel());
         }
-
-        if (TextUtils.isEmpty(accountName)) {
-            return new Pair<>(/* accountName */ null, accountTypeDisplayLabel.toString());
-        }
-
-        return new Pair<>(context.getString(R.string.from_account_format, accountName),
-                accountTypeDisplayLabel.toString());
     }
 
     /**
      * Returns a content description String for the container of the account information
-     * returned by {@link #getAccountInfo}.
+     * returned by {@link #getAccountTypeHeaderLabel(Context, AccountDisplayInfo)}.
      */
     public static String getAccountInfoContentDescription(CharSequence accountName,
             CharSequence accountType) {

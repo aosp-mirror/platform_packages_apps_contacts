@@ -19,21 +19,19 @@ package com.android.contacts.common.preference;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.preference.ListPreference;
+import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountsListAdapter;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class DefaultAccountPreference extends ListPreference {
+public class DefaultAccountPreference extends DialogPreference {
     private ContactsPreferences mPreferences;
-    private Map<String, AccountWithDataSet> mAccountMap;
-    private int mClickedDialogEntryIndex;
     private AccountsListAdapter mListAdapter;
+    private AccountDisplayInfoFactory mAccountDisplayInfoFactory;
+    private int mChosenIndex = -1;
 
     public DefaultAccountPreference(Context context) {
         super(context);
@@ -53,25 +51,9 @@ public class DefaultAccountPreference extends ListPreference {
 
     private void prepare() {
         mPreferences = new ContactsPreferences(getContext());
-        mAccountMap = new HashMap<>();
         mListAdapter = new AccountsListAdapter(getContext(),
                 AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE);
-        final String[] accountNamesArray = new String[mListAdapter.getCount()];
-        for (int i = 0; i < mListAdapter.getCount(); i++) {
-            final AccountWithDataSet account = mListAdapter.getItem(i);
-            mAccountMap.put(account.name, account);
-            accountNamesArray[i] = account.name;
-        }
-        setEntries(accountNamesArray);
-        setEntryValues(accountNamesArray);
-        final String defaultAccount = String.valueOf(mPreferences.getDefaultAccount());
-        if (mListAdapter.getCount() == 1) {
-            setValue(mListAdapter.getItem(0).name);
-        } else if (mAccountMap.keySet().contains(defaultAccount)) {
-            setValue(defaultAccount);
-        } else {
-            setValue(null);
-        }
+        mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forWritableAccounts(getContext());
     }
 
     @Override
@@ -81,48 +63,39 @@ public class DefaultAccountPreference extends ListPreference {
 
     @Override
     public CharSequence getSummary() {
-        return mPreferences.getDefaultAccount();
-    }
-
-    @Override
-    protected boolean persistString(String value) {
-        if (value == null && mPreferences.getDefaultAccount() == null) {
-            return true;
-        }
-        if (value == null || mPreferences.getDefaultAccount() == null
-                || !value.equals(mPreferences.getDefaultAccount())) {
-            mPreferences.setDefaultAccount(mAccountMap.get(value));
-            notifyChanged();
-        }
-        return true;
+        final AccountWithDataSet defaultAccount = mPreferences.getDefaultAccount();
+        return defaultAccount == null ? null : mAccountDisplayInfoFactory
+                .getAccountDisplayInfo(defaultAccount).getNameLabel();
     }
 
     @Override
     protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
         super.onPrepareDialogBuilder(builder);
-        // UX recommendation is not to show cancel button on such lists.
+        // UX recommendation is not to show buttons on such lists.
         builder.setNegativeButton(null, null);
-        // Override and do everything ListPreference does except relative to our custom adapter.
-        // onDialogClosed needs to be overridden as well since mClickedDialogEntryIndex is private
-        // in ListPreference.
+        builder.setPositiveButton(null, null);
         builder.setAdapter(mListAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mClickedDialogEntryIndex = which;
-                // Clicking on an item simulates the positive button click,
-                // and dismisses the dialog.
-                DefaultAccountPreference.this.onClick(dialog, DialogInterface.BUTTON_POSITIVE);
-                dialog.dismiss();
+                mChosenIndex = which;
             }
         });
     }
 
     @Override
     protected void onDialogClosed(boolean positiveResult) {
-        if (positiveResult && mClickedDialogEntryIndex >= 0 && getEntryValues() != null) {
-            final String value = getEntryValues()[mClickedDialogEntryIndex].toString();
-            if (callChangeListener(value)) {
-                setValue(value);
+        final AccountWithDataSet currentDefault = mPreferences.getDefaultAccount();
+
+        if (mChosenIndex == -1) {
+            if (currentDefault != null) {
+                mPreferences.setDefaultAccount(null);
+                notifyChanged();
+            }
+        } else {
+            final AccountWithDataSet chosenAccount = mListAdapter.getItem(mChosenIndex);
+            if (!chosenAccount.equals(currentDefault)) {
+                mPreferences.setDefaultAccount(chosenAccount);
+                notifyChanged();
             }
         }
     }

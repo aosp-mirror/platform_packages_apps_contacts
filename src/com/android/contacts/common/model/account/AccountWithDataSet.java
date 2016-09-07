@@ -77,6 +77,8 @@ public class AccountWithDataSet implements Parcelable {
         mAccountTypeWithDataSet = AccountTypeWithDataSet.get(type, dataSet);
     }
 
+    // TODO: consider modifying or deleting this method. "local" accounts on some non-nexus devices
+    // have non-null values for name, type, and dataset
     public boolean isLocalAccount() {
         return name == null && type == null && dataSet == null;
     }

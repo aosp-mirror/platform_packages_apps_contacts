@@ -49,6 +49,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
@@ -833,9 +835,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
     }
 
     private void onGroupDeleted(Intent intent) {
-        if (!ContactSaveService.canUndo(intent)) {
-            return;
-        }
+        if (!ContactSaveService.canUndo(intent)) return;
+
         Snackbar.make(mLayoutRoot, getString(R.string.groupDeletedToast), Snackbar.LENGTH_LONG)
                 .setAction(R.string.undo, new View.OnClickListener() {
                     @Override

@@ -56,6 +56,8 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.TextView;
 
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.ValuesDelta;
@@ -71,6 +73,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Shows a list of all available {@link Groups} available, letting the user
@@ -139,7 +142,11 @@ public class CustomContactListFilterActivity extends Activity implements
             final ContentResolver resolver = context.getContentResolver();
 
             final AccountSet accounts = new AccountSet();
-            for (AccountWithDataSet account : accountTypes.getAccounts(false)) {
+
+            final List<AccountWithDataSet> sourceAccounts = accountTypes.getAccounts(false);
+            final AccountDisplayInfoFactory displayableAccountFactory =
+                    new AccountDisplayInfoFactory(context, sourceAccounts);
+            for (AccountWithDataSet account : sourceAccounts) {
                 final AccountType accountType = accountTypes.getAccountTypeForAccount(account);
                 if (accountType.isExtension() && !account.hasData(context)) {
                     // Extension with no data -- skip.
@@ -147,7 +154,8 @@ public class CustomContactListFilterActivity extends Activity implements
                 }
 
                 AccountDisplay accountDisplay =
-                        new AccountDisplay(resolver, account.name, account.type, account.dataSet);
+                        new AccountDisplay(resolver, account.name, account.type, account.dataSet,
+                                displayableAccountFactory.getAccountDisplayInfo(account));
 
                 final Uri.Builder groupsUri = Groups.CONTENT_URI.buildUpon()
                         .appendQueryParameter(Groups.ACCOUNT_NAME, account.name)
@@ -466,20 +474,30 @@ public class CustomContactListFilterActivity extends Activity implements
         public final String mName;
         public final String mType;
         public final String mDataSet;
+        public final AccountDisplayInfo mAccountDisplayInfo;
 
         public GroupDelta mUngrouped;
         public ArrayList<GroupDelta> mSyncedGroups = Lists.newArrayList();
         public ArrayList<GroupDelta> mUnsyncedGroups = Lists.newArrayList();
+
+        public GroupDelta getGroup(int position) {
+            if (position < mSyncedGroups.size()) {
+                return mSyncedGroups.get(position);
+            }
+            position -= mSyncedGroups.size();
+            return mUnsyncedGroups.get(position);
+        }
 
         /**
          * Build an {@link AccountDisplay} covering all {@link Groups} under the
          * given {@link AccountWithDataSet}.
          */
         public AccountDisplay(ContentResolver resolver, String accountName, String accountType,
-                String dataSet) {
+                String dataSet, AccountDisplayInfo displayableInfo) {
             mName = accountName;
             mType = accountType;
             mDataSet = dataSet;
+            mAccountDisplayInfo = displayableInfo;
         }
 
         /**
@@ -593,12 +611,11 @@ public class CustomContactListFilterActivity extends Activity implements
 
             final AccountDisplay account = (AccountDisplay)this.getGroup(groupPosition);
 
-            final AccountType accountType = mAccountTypes.getAccountType(
-                    account.mType, account.mDataSet);
-
-            text1.setText(account.mName);
-            text1.setVisibility(account.mName == null ? View.GONE : View.VISIBLE);
-            text2.setText(accountType.getDisplayLabel(mContext));
+            text1.setText(account.mAccountDisplayInfo.getNameLabel());
+            text1.setVisibility(!account.mAccountDisplayInfo.isDeviceAccount()
+                    || account.mAccountDisplayInfo.hasDistinctName()
+                    ? View.VISIBLE : View.GONE);
+            text2.setText(account.mAccountDisplayInfo.getTypeLabel());
 
             final int textColor = mContext.getResources().getColor(isExpanded
                     ? R.color.dialtacts_theme_color
@@ -650,9 +667,10 @@ public class CustomContactListFilterActivity extends Activity implements
         public Object getChild(int groupPosition, int childPosition) {
             final AccountDisplay account = mAccounts.get(groupPosition);
             final boolean validChild = childPosition >= 0
-                    && childPosition < account.mSyncedGroups.size();
+                    && childPosition < account.mSyncedGroups.size()
+                    + account.mUnsyncedGroups.size();
             if (validChild) {
-                return account.mSyncedGroups.get(childPosition);
+                return account.getGroup(childPosition);
             } else {
                 return null;
             }
@@ -673,8 +691,7 @@ public class CustomContactListFilterActivity extends Activity implements
         public int getChildrenCount(int groupPosition) {
             // Count is any synced groups, plus possible footer
             final AccountDisplay account = mAccounts.get(groupPosition);
-            final boolean anyHidden = account.mUnsyncedGroups.size() > 0;
-            return account.mSyncedGroups.size() + (anyHidden ? 1 : 0);
+            return account.mSyncedGroups.size() + account.mUnsyncedGroups.size();
         }
 
         @Override
