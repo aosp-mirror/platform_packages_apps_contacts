@@ -64,6 +64,15 @@ public class CompactContactEditorActivity extends ContactsActivity implements
     // 3 used for ContactDeletionInteraction.RESULT_CODE_DELETED
     public static final int RESULT_CODE_EDITED = 4;
 
+    /**
+     * The contact will be saved to the device local account when this is set for an insert. This
+     * is necessary because {@link android.accounts.Account} cannot be created with null values
+     * for the name and type and an Account is needed for
+     * {@link android.provider.ContactsContract.Intents.Insert#EXTRA_ACCOUNT}
+     */
+    public static final String EXTRA_SAVE_TO_DEVICE_FLAG =
+            "com.android.contacts.SAVE_TO_DEVICE_FLAG";
+
     private static final String TAG_COMPACT_EDITOR = "compact_editor";
     private static final String TAG_PHOTO_SELECTION = "photo_selector";
 

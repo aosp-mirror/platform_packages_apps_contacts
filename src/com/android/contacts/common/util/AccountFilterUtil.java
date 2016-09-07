@@ -32,6 +32,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.contacts.R;
+import com.android.contacts.activities.CompactContactEditorActivity;
 import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
@@ -191,10 +192,15 @@ public class AccountFilterUtil {
         // If we are in account view, we pass the account explicitly in order to
         // create contact in the account. This will prevent the default account dialog
         // from being displayed.
-        if (!isAllContactsFilter(filter) && !isDeviceContactsFilter(filter)) {
+        if (!isAllContactsFilter(filter) && filter.accountName != null
+                && filter.accountType != null) {
             final Account account = new Account(filter.accountName, filter.accountType);
             intent.putExtra(Intents.Insert.EXTRA_ACCOUNT, account);
             intent.putExtra(Intents.Insert.EXTRA_DATA_SET, filter.dataSet);
+        } else if (isDeviceContactsFilter(filter)) {
+            // It's OK to add this even though it's an implicit intent. If a different app
+            // receives the intent it should just ignore the flag.
+            intent.putExtra(CompactContactEditorActivity.EXTRA_SAVE_TO_DEVICE_FLAG, true);
         }
 
         try {

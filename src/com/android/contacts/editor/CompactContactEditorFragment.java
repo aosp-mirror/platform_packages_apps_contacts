@@ -602,6 +602,9 @@ public class CompactContactEditorFragment extends Fragment implements
                 mHasNewContact = true;
                 if (mAccountWithDataSet != null) {
                     createContact(mAccountWithDataSet);
+                } else if (mIntentExtras != null && mIntentExtras.getBoolean(
+                        CompactContactEditorActivity.EXTRA_SAVE_TO_DEVICE_FLAG, false)) {
+                    createContact(null);
                 } else {
                     // No Account specified. Let the user choose
                     // Load Accounts async so that we can present them
