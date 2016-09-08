@@ -54,6 +54,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
+import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -63,6 +64,7 @@ import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.list.ContactListFilterController.ContactListFilterListener;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
+import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.FavoritesAndContactsLoader;
 import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.Logger;
@@ -109,6 +111,16 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private boolean mEnableDebugMenuOptions;
     private boolean mIsRecreatedInstance;
     private boolean mOptionsMenuContactsAvailable;
+
+    /**
+     * If {@link #configureFragment()} is already called. Used to avoid calling it twice
+     * in {@link #onResume()}.
+     * (This initialization only needs to be done once in onResume() when the Activity was just
+     * created from scratch -- i.e. onCreate() was just called)
+     */
+    private boolean mFragmentInitialized;
+
+    private boolean mFromOnNewIntent;
 
     /**
      * This is to tell whether we need to restart ContactMultiDeletionInteraction and set listener.
@@ -248,7 +260,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         }
     }
 
-    public void maybeShowHamburgerFeatureHighlight() {
+    private void maybeShowHamburgerFeatureHighlight() {
         if (mActionBarAdapter!= null && !mActionBarAdapter.isSearchMode()
                 && !mActionBarAdapter.isSelectionMode()
                 && SharedPreferenceUtil.getShouldShowHamburgerPromo(getContext())) {
@@ -412,7 +424,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         mContactListFilterController.checkFilterValidity(false);
         mContactListFilterController.addListener(mFilterListener);
         // Use FILTER_TYPE_ALL_ACCOUNTS filter if the instance is not a re-created one.
-        // This is useful when user upgrades app while an account filter or a custom filter was
+        // This is useful when user upgrades app while an account filter was
         // stored in sharedPreference in a previous version of Contacts app.
         final ContactListFilter filter = mIsRecreatedInstance
                 ? mContactListFilterController.getFilter()
@@ -515,9 +527,75 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         }
     }
 
+    private void configureFragment() {
+        if (mFragmentInitialized && !mFromOnNewIntent) {
+            return;
+        }
+
+        mFragmentInitialized = true;
+
+        if (mFromOnNewIntent || !mIsRecreatedInstance) {
+            configureFragmentForRequest();
+        }
+
+        configureContactListFragment();
+    }
+
+    private void configureFragmentForRequest() {
+        ContactListFilter filter = null;
+        final int actionCode = mContactsRequest.getActionCode();
+        boolean searchMode = mContactsRequest.isSearchMode();
+        switch (actionCode) {
+            case ContactsRequest.ACTION_ALL_CONTACTS:
+                filter = AccountFilterUtil.createContactsFilter(getContext());
+                break;
+            case ContactsRequest.ACTION_CONTACTS_WITH_PHONES:
+                filter = ContactListFilter.createFilterWithType(
+                        ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY);
+                break;
+
+            case ContactsRequest.ACTION_FREQUENT:
+            case ContactsRequest.ACTION_STREQUENT:
+            case ContactsRequest.ACTION_STARRED:
+            case ContactsRequest.ACTION_VIEW_CONTACT:
+            default:
+                break;
+        }
+
+        if (filter != null) {
+            setContactListFilter(filter);
+            searchMode = false;
+        }
+
+        if (mContactsRequest.getContactUri() != null) {
+            searchMode = false;
+        }
+
+        mActionBarAdapter.setSearchMode(searchMode);
+        configureContactListFragmentForRequest();
+    }
+
+    private void configureContactListFragmentForRequest() {
+        final Uri contactUri = mContactsRequest.getContactUri();
+        if (contactUri != null) {
+            setSelectedContactUri(contactUri);
+        }
+
+        setQueryString(mActionBarAdapter.getQueryString(), true);
+        setVisibleScrollbarEnabled(!isSearchMode());
+
+        if (mContactsRequest.isDirectorySearchEnabled()) {
+            setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
+        } else {
+            setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+        configureFragment();
+        maybeShowHamburgerFeatureHighlight();
         // Re-register the listener, which may have been cleared when onSaveInstanceState was
         // called. See also: onSaveInstanceState
         mActionBarAdapter.setListener(mActionBarListener);
@@ -648,7 +726,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 .getNameLabel().toString();
     }
 
-    public void setSwipeRefreshLayoutEnabledOrNot(ContactListFilter filter) {
+    private void setSwipeRefreshLayoutEnabledOrNot(ContactListFilter filter) {
         final SwipeRefreshLayout swipeRefreshLayout = getSwipeRefreshLayout();
         if (swipeRefreshLayout == null) {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
@@ -670,7 +748,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         }
     }
 
-    public void configureContactListFragment() {
+    private void configureContactListFragment() {
         // Filter may be changed when activity is in background.
         setFilterAndUpdateTitle(getFilter());
         setVerticalScrollbarPosition(getScrollBarPosition());
@@ -764,7 +842,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     /**
      * Set filter via ContactListFilterController
      */
-    public void setContactListFilter(ContactListFilter filter) {
+    private void setContactListFilter(ContactListFilter filter) {
         mContactListFilterController.setContactListFilter(filter,
                 /* persistent */ isAllContactsFilter(filter));
     }
@@ -867,8 +945,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     /**
-     * Share all contacts that are currently selected in mAllFragment. This method is pretty
-     * inefficient for handling large numbers of contacts. I don't expect this to be a problem.
+     * Share all contacts that are currently selected. This method is pretty inefficient for
+     * handling large numbers of contacts. I don't expect this to be a problem.
      */
     private void shareSelectedContacts() {
         final StringBuilder uriListBuilder = new StringBuilder();
@@ -946,8 +1024,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setListType(mContactListFilterController.getFilterListType());
     }
 
-    public void setContactsRequest(ContactsRequest contactsRequest) {
+    public void setParameters(ContactsRequest contactsRequest, boolean fromOnNewIntent) {
         mContactsRequest = contactsRequest;
+        mFromOnNewIntent = fromOnNewIntent;
     }
 
     @Override
@@ -1008,5 +1087,21 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             mContactListFilterController.removeListener(mFilterListener);
         }
         super.onDestroy();
+    }
+
+    public boolean onKeyDown(int unicodeChar) {
+        if (mActionBarAdapter.isSelectionMode()) {
+            // Ignore keyboard input when in selection mode.
+            return true;
+        }
+
+        if (!mActionBarAdapter.isSearchMode()) {
+            final String query = new String(new int[]{unicodeChar}, 0, 1);
+            mActionBarAdapter.setSearchMode(true);
+            mActionBarAdapter.setQueryString(query);
+            return true;
+        }
+
+        return false;
     }
 }

@@ -56,7 +56,6 @@ import com.android.contacts.common.Experiments;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactListFilter;
-import com.android.contacts.common.list.DirectoryListLoader;
 import com.android.contacts.common.list.ProviderStatusWatcher;
 import com.android.contacts.common.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.common.logging.Logger;
@@ -132,14 +131,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
      */
     private boolean mIsRecreatedInstance;
 
-    /**
-     * If {@link #configureFragments(boolean)} is already called.  Used to avoid calling it twice
-     * in {@link #onStart}.
-     * (This initialization only needs to be done once in onStart() when the Activity was just
-     * created from scratch -- i.e. onCreate() was just called)
-     */
-    private boolean mFragmentInitialized;
-
     /** Sequential ID assigned to each instance; used for logging */
     private final int mInstanceId;
     private static final AtomicInteger sNextInstanceId = new AtomicInteger();
@@ -160,8 +151,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
     // Update sync status for accounts in current ContactListFilter
     private void onSyncStateUpdated() {
-        if (mAllFragment.getActionBarAdapter().isSearchMode()
-                || mAllFragment.getActionBarAdapter().isSelectionMode()) {
+        if (isAllFragmentInSearchMode() || isAllFragmentInSelectionMode()) {
             return;
         }
 
@@ -306,12 +296,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             // Re-initialize ActionBarAdapter because {@link #onNewIntent(Intent)} doesn't invoke
             // {@link Fragment#onActivityCreated(Bundle)} where we initialize ActionBarAdapter
             // initially.
-            mAllFragment.setContactsRequest(mRequest);
+            mAllFragment.setParameters(/* ContactsRequest */ mRequest, /* fromOnNewIntent */ true);
             mAllFragment.initializeActionBarAdapter(null);
         }
 
-        // Re-configure fragments.
-        configureFragments(true /* from request */);
         initializeFabVisibility();
         invalidateOptionsMenuIfNeeded();
     }
@@ -436,31 +424,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
         mAllFragment.setContactsAvailable(areContactsAvailable());
         mAllFragment.setListType();
-        mAllFragment.setContactsRequest(mRequest);
-    }
-
-    @Override
-    protected void onStart() {
-        if (!mFragmentInitialized && (!isInSecondLevel())) {
-            mFragmentInitialized = true;
-            /* Configure fragments if we haven't.
-             *
-             * Note it's a one-shot initialization, so we want to do this in {@link #onCreate}.
-             *
-             * However, because this method may indirectly touch views in fragments but fragments
-             * created in {@link #configureContentView} using a {@link FragmentTransaction} will NOT
-             * have views until {@link Activity#onCreate} finishes (they would if they were inflated
-             * from a layout), we need to do it here in {@link #onStart()}.
-             *
-             * (When {@link Fragment#onCreateView} is called is different in the former case and
-             * in the latter case, unfortunately.)
-             *
-             * Also, we skip most of the work in it if the activity is a re-created one.
-             * (so the argument.)
-             */
-            configureFragments(!mIsRecreatedInstance);
-        }
-        super.onStart();
+        mAllFragment.setParameters(/* ContactsRequest */ mRequest, /* fromOnNewIntent */ false);
     }
 
     @Override
@@ -492,9 +456,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
                     mSyncStatusObserver);
             onSyncStateUpdated();
         }
-        if (!isInSecondLevel()) {
-            mAllFragment.maybeShowHamburgerFeatureHighlight();
-        }
         initializeFabVisibility();
 
         mSaveServiceListener = new SaveServiceListener();
@@ -508,48 +469,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         super.onDestroy();
     }
 
-    private void configureFragments(boolean fromRequest) {
-        if (fromRequest) {
-            ContactListFilter filter = null;
-            int actionCode = mRequest.getActionCode();
-            boolean searchMode = mRequest.isSearchMode();
-            switch (actionCode) {
-                case ContactsRequest.ACTION_ALL_CONTACTS:
-                    filter = AccountFilterUtil.createContactsFilter(this);
-                    break;
-                case ContactsRequest.ACTION_CONTACTS_WITH_PHONES:
-                    filter = ContactListFilter.createFilterWithType(
-                            ContactListFilter.FILTER_TYPE_WITH_PHONE_NUMBERS_ONLY);
-                    break;
-
-                case ContactsRequest.ACTION_FREQUENT:
-                case ContactsRequest.ACTION_STREQUENT:
-                case ContactsRequest.ACTION_STARRED:
-                case ContactsRequest.ACTION_VIEW_CONTACT:
-                default:
-                    break;
-            }
-
-            if (filter != null) {
-                mAllFragment.setContactListFilter(filter);
-                searchMode = false;
-            }
-
-            if (mRequest.getContactUri() != null) {
-                searchMode = false;
-            }
-
-            if (!isInSecondLevel()) {
-                mAllFragment.getActionBarAdapter().setSearchMode(searchMode);
-                configureContactListFragmentForRequest();
-            }
-        }
-
-        if (!isInSecondLevel()) {
-            mAllFragment.configureContactListFragment();
-        }
-    }
-
     private void initializeFabVisibility() {
         mFloatingActionButtonContainer.setVisibility(shouldHideFab() ? View.GONE : View.VISIBLE);
         mFloatingActionButtonController.resetIn();
@@ -561,8 +480,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
                 || isInSecondLevel()) {
             return true;
         }
-        return mAllFragment.getActionBarAdapter().isSearchMode()
-                || mAllFragment.getActionBarAdapter().isSelectionMode();
+        return isAllFragmentInSearchMode() || isAllFragmentInSelectionMode();
     }
 
     public void showFabWithAnimation(boolean showFab) {
@@ -582,26 +500,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
                 mFloatingActionButtonController.scaleOut();
             }
             wasLastFabAnimationScaleIn = false;
-        }
-    }
-
-    private void setQueryTextToFragment(String query) {
-        mAllFragment.setQueryString(query, true);
-        mAllFragment.setVisibleScrollbarEnabled(!mAllFragment.isSearchMode());
-    }
-
-    private void configureContactListFragmentForRequest() {
-        Uri contactUri = mRequest.getContactUri();
-        if (contactUri != null) {
-            mAllFragment.setSelectedContactUri(contactUri);
-        }
-
-        setQueryTextToFragment(mAllFragment.getActionBarAdapter().getQueryString());
-
-        if (mRequest.isDirectorySearchEnabled()) {
-            mAllFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
-        } else {
-            mAllFragment.setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
         }
     }
 
@@ -726,22 +624,13 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // TODO move to the fragment
-
         // Bring up the search UI if the user starts typing
         final int unicodeChar = event.getUnicodeChar();
         if ((unicodeChar != 0)
                 // If COMBINING_ACCENT is set, it's not a unicode character.
                 && ((unicodeChar & KeyCharacterMap.COMBINING_ACCENT) == 0)
                 && !Character.isWhitespace(unicodeChar)) {
-            if (mAllFragment.getActionBarAdapter().isSelectionMode()) {
-                // Ignore keyboard input when in selection mode.
-                return true;
-            }
-            String query = new String(new int[]{unicodeChar}, 0, 1);
-            if (!mAllFragment.getActionBarAdapter().isSearchMode()) {
-                mAllFragment.getActionBarAdapter().setSearchMode(true);
-                mAllFragment.getActionBarAdapter().setQueryString(query);
+            if (mAllFragment.onKeyDown(unicodeChar)) {
                 return true;
             }
         }
@@ -770,10 +659,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             }
         } else if (isDuplicatesView()) {
             switchToAllContacts();
-        } else if (mAllFragment.getActionBarAdapter().isSelectionMode()) {
+        } else if (isAllFragmentInSelectionMode()) {
             mAllFragment.getActionBarAdapter().setSelectionMode(false);
             mAllFragment.displayCheckBoxes(false);
-        } else if (mAllFragment.getActionBarAdapter().isSearchMode()) {
+        } else if (isAllFragmentInSearchMode()) {
             mAllFragment.getActionBarAdapter().setSearchMode(false);
             if (mAllFragment.wasSearchResultClicked()) {
                 mAllFragment.resetSearchResultClicked();
@@ -789,6 +678,14 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         } else {
             super.onBackPressed();
         }
+    }
+
+    private boolean isAllFragmentInSelectionMode() {
+        return mAllFragment.getActionBarAdapter().isSelectionMode();
+    }
+
+    private boolean isAllFragmentInSearchMode() {
+        return mAllFragment.getActionBarAdapter().isSearchMode();
     }
 
     @Override
