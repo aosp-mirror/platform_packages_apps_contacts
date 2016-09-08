@@ -382,6 +382,11 @@ public class CompactKindSectionView extends LinearLayout {
         mEditors.addView(nameView);
 
         // Phonetic name
+        final DataKind phoneticNameKind = accountType
+                .getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME);
+        // The account type doesn't support phonetic name.
+        if (phoneticNameKind == null) return;
+
         final PhoneticNameEditorView phoneticNameView = (PhoneticNameEditorView) mLayoutInflater
                 .inflate(R.layout.phonetic_name_editor_view, mEditors, /* attachToRoot =*/ false);
         phoneticNameView.setEditorListener(new OtherNameKindEditorListener());
