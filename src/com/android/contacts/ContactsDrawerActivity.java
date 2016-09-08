@@ -322,21 +322,17 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     protected void addGroupsAndFiltersFragments(FragmentTransaction transaction) {
         final FragmentManager fragmentManager = getFragmentManager();
         mGroupsFragment = (GroupsFragment) fragmentManager.findFragmentByTag(TAG_GROUPS);
-        mAccountFiltersFragment = (AccountFiltersFragment)
-                fragmentManager.findFragmentByTag(TAG_FILTERS);
-
-        if (mGroupsFragment == null && ContactsUtils.areGroupWritableAccountsAvailable(this)) {
+        if (mGroupsFragment == null) {
             mGroupsFragment = new GroupsFragment();
             transaction.add(mGroupsFragment, TAG_GROUPS);
         }
+        mGroupsFragment.setListener(this);
 
+        mAccountFiltersFragment = (AccountFiltersFragment)
+                fragmentManager.findFragmentByTag(TAG_FILTERS);
         if (mAccountFiltersFragment == null) {
             mAccountFiltersFragment = new AccountFiltersFragment();
             transaction.add(mAccountFiltersFragment, TAG_FILTERS);
-        }
-
-        if (ContactsUtils.areGroupWritableAccountsAvailable(this) && mGroupsFragment != null) {
-            mGroupsFragment.setListener(this);
         }
         mAccountFiltersFragment.setListener(this);
     }
