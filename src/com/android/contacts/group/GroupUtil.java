@@ -128,12 +128,11 @@ public final class GroupUtil {
     }
 
     /**
-     * Returns true if it's an empty and read-only group of a Google account and the system ID of
+     * Returns true if it's an empty and read-only group and the system ID of
      * the group is one of "Friends", "Family" and "Coworkers".
      */
     public static boolean isEmptyFFCGroup(GroupListItem groupListItem) {
-        return GoogleAccountType.ACCOUNT_TYPE.equals(groupListItem.getAccountType())
-                && groupListItem.isReadOnly()
+        return groupListItem.isReadOnly()
                 && isSystemIdFFC(groupListItem.getSystemId())
                 && (groupListItem.getMemberCount() <= 0);
     }
