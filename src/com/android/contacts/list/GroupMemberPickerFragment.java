@@ -52,21 +52,18 @@ public class GroupMemberPickerFragment extends
     private static final String KEY_ACCOUNT_NAME = "accountName";
     private static final String KEY_ACCOUNT_TYPE = "accountType";
     private static final String KEY_ACCOUNT_DATA_SET = "accountDataSet";
-    private static final String KEY_RAW_CONTACT_IDS = "rawContactIds";
+    private static final String KEY_CONTACT_IDS = "contactIds";
 
     private static final String ARG_ACCOUNT_NAME = "accountName";
     private static final String ARG_ACCOUNT_TYPE = "accountType";
     private static final String ARG_ACCOUNT_DATA_SET = "accountDataSet";
-    private static final String ARG_RAW_CONTACT_IDS = "rawContactIds";
+    private static final String ARG_CONTACT_IDS = "contactIds";
 
     /** Callbacks for host of {@link GroupMemberPickerFragment}. */
     public interface Listener {
 
         /** Invoked when a potential group member is selected. */
         void onGroupMemberClicked(long contactId);
-
-        /** Invoked when multiple potential group members are selected. */
-        void onGroupMembersSelected(long[] contactIds);
 
         /** Invoked when user has initiated multiple selection mode. */
         void onSelectGroupMembers();
@@ -101,7 +98,7 @@ public class GroupMemberPickerFragment extends
             for (int i = 0; i < mCount; i++) {
                 super.moveToPosition(i);
                 final String contactId = getString(ContactQuery.CONTACT_ID);
-                if (!mRawContactIds.contains(contactId)) {
+                if (!mContactIds.contains(contactId)) {
                     mIndex[mPos++] = i;
                 } else {
                     indicesToFilter.add(i);
@@ -173,16 +170,16 @@ public class GroupMemberPickerFragment extends
     private String mAccountName;
     private String mAccountType;
     private String mAccountDataSet;
-    private ArrayList<String> mRawContactIds;
+    private ArrayList<String> mContactIds;
     private Listener mListener;
 
     public static GroupMemberPickerFragment newInstance(String accountName, String accountType,
-            String accountDataSet, ArrayList<String> rawContactIds) {
+            String accountDataSet, ArrayList<String> contactIds) {
         final Bundle args = new Bundle();
         args.putString(ARG_ACCOUNT_NAME, accountName);
         args.putString(ARG_ACCOUNT_TYPE, accountType);
         args.putString(ARG_ACCOUNT_DATA_SET, accountDataSet);
-        args.putStringArrayList(ARG_RAW_CONTACT_IDS, rawContactIds);
+        args.putStringArrayList(ARG_CONTACT_IDS, contactIds);
 
         final GroupMemberPickerFragment fragment = new GroupMemberPickerFragment();
         fragment.setArguments(args);
@@ -202,12 +199,12 @@ public class GroupMemberPickerFragment extends
             mAccountName = getArguments().getString(ARG_ACCOUNT_NAME);
             mAccountType = getArguments().getString(ARG_ACCOUNT_TYPE);
             mAccountDataSet = getArguments().getString(ARG_ACCOUNT_DATA_SET);
-            mRawContactIds = getArguments().getStringArrayList(ARG_RAW_CONTACT_IDS);
+            mContactIds = getArguments().getStringArrayList(ARG_CONTACT_IDS);
         } else {
             mAccountName = savedState.getString(KEY_ACCOUNT_NAME);
             mAccountType = savedState.getString(KEY_ACCOUNT_TYPE);
             mAccountDataSet = savedState.getString(KEY_ACCOUNT_DATA_SET);
-            mRawContactIds = savedState.getStringArrayList(KEY_RAW_CONTACT_IDS);
+            mContactIds = savedState.getStringArrayList(KEY_CONTACT_IDS);
         }
         super.onCreate(savedState);
     }
@@ -218,7 +215,7 @@ public class GroupMemberPickerFragment extends
         outState.putString(KEY_ACCOUNT_NAME, mAccountName);
         outState.putString(KEY_ACCOUNT_TYPE, mAccountType);
         outState.putString(KEY_ACCOUNT_DATA_SET, mAccountDataSet);
-        outState.putStringArrayList(KEY_RAW_CONTACT_IDS, mRawContactIds);
+        outState.putStringArrayList(KEY_CONTACT_IDS, mContactIds);
     }
 
     public void setListener(Listener listener) {

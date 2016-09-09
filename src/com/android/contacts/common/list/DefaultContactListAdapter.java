@@ -248,8 +248,6 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 break;
             }
             case ContactListFilter.FILTER_TYPE_GROUP_MEMBERS: {
-                // TODO(wjang): check if we need it
-                // selection.append(Contacts.IN_VISIBLE_GROUP + "=1");
                 break;
             }
             case ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS: {
