@@ -564,11 +564,6 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
         }
 
         @Override
-        public void onGroupMembersSelected(long[] contactIds) {
-            returnSelectedContacts(contactIds);
-        }
-
-        @Override
         public void onSelectGroupMembers() {
             mActionBarAdapter.setSelectionMode(true);
         }

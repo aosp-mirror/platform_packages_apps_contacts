@@ -25,17 +25,13 @@ import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 import android.text.TextUtils;
-import android.widget.ImageView;
 
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.activities.GroupMembersActivity;
-import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.list.ContactsSectionIndexer;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.list.UiIntentActions;
-import com.google.common.base.Objects;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,34 +77,15 @@ public final class GroupUtil {
             String previousGroupAccountType = cursor.getString(GroupListLoader.ACCOUNT_TYPE);
             String previousGroupDataSet = cursor.getString(GroupListLoader.DATA_SET);
 
-            if (accountName.equals(previousGroupAccountName) &&
-                    accountType.equals(previousGroupAccountType) &&
-                    Objects.equal(dataSet, previousGroupDataSet)) {
+            if (TextUtils.equals(accountName, previousGroupAccountName)
+                    && TextUtils.equals(accountType, previousGroupAccountType)
+                    && TextUtils.equals(dataSet, previousGroupDataSet)) {
                 isFirstGroupInAccount = false;
             }
         }
 
         return new GroupListItem(accountName, accountType, dataSet, groupId, title,
                 isFirstGroupInAccount, memberCount, isReadOnly, systemId);
-    }
-
-    /**
-     * @param identifier the {@link ContactPhotoManager.DefaultImageRequest#identifier}
-     *         to use for this the group member.
-     */
-    public static void bindPhoto(ContactPhotoManager photoManager, ImageView imageView,
-            long photoId, Uri photoUri, String displayName, String identifier) {
-        if (photoId == 0) {
-            final DefaultImageRequest defaultImageRequest = photoUri == null
-                    ? new DefaultImageRequest(displayName, identifier,
-                            /* circularPhotos */ true)
-                    : null;
-            photoManager.loadDirectoryPhoto(imageView, photoUri, /* darkTheme */ false,
-                        /* isCircular */ true, defaultImageRequest);
-        } else {
-            photoManager.loadThumbnail(imageView, photoId, /* darkTheme */ false,
-                        /* isCircular */ true, /* defaultImageRequest */ null);
-        }
     }
 
     /** Returns an Intent to view the details of the group identified by the given URI. */

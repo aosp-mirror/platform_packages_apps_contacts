@@ -315,7 +315,8 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     /**
      * Adds the account query parameters to the given {@code uriBuilder}.
      *
-     * @throws IllegalStateException if the filter type is not {@link #FILTER_TYPE_ACCOUNT}.
+     * @throws IllegalStateException if the filter type is not {@link #FILTER_TYPE_ACCOUNT} or
+     * {@link #FILTER_TYPE_GROUP_MEMBERS}.
      */
     public Uri.Builder addAccountQueryParameterToUrl(Uri.Builder uriBuilder) {
         if (filterType != FILTER_TYPE_ACCOUNT

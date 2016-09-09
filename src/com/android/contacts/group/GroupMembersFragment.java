@@ -252,7 +252,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     }
 
     public ArrayList<String> getMemberContactIds() {
-        return  new ArrayList<>(mGroupMemberContactIds);
+        return new ArrayList<>(mGroupMemberContactIds);
     }
 
     public int getMemberCount() {
