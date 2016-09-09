@@ -109,8 +109,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     private static final String KEY_NEW_GROUP_ACCOUNT = "newGroupAccount";
     private static final String KEY_CONTACTS_VIEW = "contactsView";
 
-    protected static final String ACTION_CREATE_GROUP = "createGroup";
-
     protected ContactsView mCurrentView;
 
     private class ContactsActionBarDrawerToggle extends ActionBarDrawerToggle {
@@ -521,7 +519,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
 
     public void updateFilterMenu(ContactListFilter filter) {
         clearCheckedMenus();
-        if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
+        if (filter != null && filter.isContactsFilterType()) {
             if (mIdMenuMap != null && mIdMenuMap.get(R.id.nav_all_contacts) != null) {
                 setMenuChecked(mIdMenuMap.get(R.id.nav_all_contacts), true);
             }
@@ -579,17 +577,21 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     }
 
     public void switchToAllContacts() {
-        final Intent intent = new Intent();
-        final ContactListFilter filter = AccountFilterUtil.createContactsFilter(this);
-        intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);
-        AccountFilterUtil.handleAccountFilterResult(
-                mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
+        resetFilter();
 
         final Menu menu = mNavigationView.getMenu();
         final MenuItem allContacts = menu.findItem(R.id.nav_all_contacts);
         updateMenuSelection(allContacts);
 
         setTitle(getString(R.string.contactsList));
+    }
+
+    protected void resetFilter() {
+        final Intent intent = new Intent();
+        final ContactListFilter filter = AccountFilterUtil.createContactsFilter(this);
+        intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);
+        AccountFilterUtil.handleAccountFilterResult(
+                mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
     }
 
     protected abstract void launchFindDuplicates();
@@ -641,7 +643,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     @Override
     public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
         mNewGroupAccount = account;
-        GroupNameEditDialogFragment.newInstanceForCreation(mNewGroupAccount, ACTION_CREATE_GROUP)
+        GroupNameEditDialogFragment.newInstanceForCreation(
+                mNewGroupAccount, GroupUtil.ACTION_CREATE_GROUP)
                 .show(getFragmentManager(), TAG_GROUP_NAME_EDIT_DIALOG);
     }
 

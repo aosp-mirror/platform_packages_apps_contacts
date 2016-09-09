@@ -71,7 +71,6 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountDisplayInfo;
 import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -124,10 +123,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private boolean mDisableOptionItemSelected;
 
     private ActionBarAdapter mActionBarAdapter;
-    private ContactMultiDeletionInteraction mMultiDeletionInteraction;
     private ContactsDrawerActivity mActivity;
     private ContactsRequest mContactsRequest;
-    protected ContactListFilterController mContactListFilterController;
+    private ContactListFilterController mContactListFilterController;
 
     private final ContactListFilterListener mFilterListener = new ContactListFilterListener() {
         @Override
@@ -407,6 +405,22 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     @Override
+    public void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
+        mIsRecreatedInstance = (savedState != null);
+        mContactListFilterController = ContactListFilterController.getInstance(getContext());
+        mContactListFilterController.checkFilterValidity(false);
+        mContactListFilterController.addListener(mFilterListener);
+        // Use FILTER_TYPE_ALL_ACCOUNTS filter if the instance is not a re-created one.
+        // This is useful when user upgrades app while an account filter or a custom filter was
+        // stored in sharedPreference in a previous version of Contacts app.
+        final ContactListFilter filter = mIsRecreatedInstance
+                ? mContactListFilterController.getFilter()
+                : AccountFilterUtil.createContactsFilter(getContext());
+        setContactListFilter(filter);
+    }
+
+    @Override
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
 
@@ -477,22 +491,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mIsRecreatedInstance = (savedInstanceState != null);
-        mContactListFilterController = ContactListFilterController.getInstance(getContext());
-        mContactListFilterController.checkFilterValidity(false);
-        mContactListFilterController.addListener(mFilterListener);
-
-        // Use FILTER_TYPE_ALL_ACCOUNTS filter if the instance is not a re-created one.
-        // This is useful when user upgrades app while an account filter or a custom filter was
-        // stored in sharedPreference in a previous version of Contacts app.
-        final ContactListFilter filter = mIsRecreatedInstance
-                ? mContactListFilterController.getFilter()
-                : AccountFilterUtil.createContactsFilter(getContext());
-        setContactListFilter(filter);
 
         mActivity = (ContactsDrawerActivity) getActivity();
         mActionBarAdapter = new ActionBarAdapter(mActivity, mActionBarListener,
-                mActivity.getSupportActionBar(), mActivity.getToolbar(), R.string.enter_contact_name);
+                mActivity.getSupportActionBar(), mActivity.getToolbar(),
+                R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
         initializeActionBarAdapter(savedInstanceState);
         if (isSearchMode()) {
@@ -501,7 +504,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         setCheckBoxListListener(new CheckBoxListListener());
         setOnContactListActionListener(new ContactBrowserActionListener());
-        if (mIsRecreatedInstance && savedInstanceState.getBoolean(KEY_DELETION_IN_PROGRESS)) {
+        if (savedInstanceState != null && savedInstanceState.getBoolean(KEY_DELETION_IN_PROGRESS)) {
             deleteSelectedContacts();
         }
     }
@@ -627,6 +630,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
             mActivity.getWindow().getDecorView()
                     .sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
         }
+
         // Determine whether the account has pullToRefresh feature
         if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
             setSwipeRefreshLayoutEnabledOrNot(filter);
@@ -635,12 +639,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     private String getActionBarTitleForAccount(ContactListFilter filter) {
         final AccountDisplayInfoFactory factory = AccountDisplayInfoFactory
-                .forAllAccounts(getActivity());
+                .forAllAccounts(getContext());
         final AccountDisplayInfo account = factory.getAccountDisplayInfoFor(filter);
         if (account.hasGoogleAccountType()) {
             return getString(R.string.title_from_google);
         }
-        return account.withFormattedName(getActivity(), R.string.title_from_other_accounts)
+        return account.withFormattedName(getContext(), R.string.title_from_other_accounts)
                 .getNameLabel().toString();
     }
 
@@ -914,9 +918,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     private void deleteSelectedContacts() {
-        mMultiDeletionInteraction =
+        final ContactMultiDeletionInteraction multiDeletionInteraction =
                 ContactMultiDeletionInteraction.start(this, getSelectedContactIds());
-        mMultiDeletionInteraction.setListener(new MultiDeleteListener());
+        multiDeletionInteraction.setListener(new MultiDeleteListener());
         mIsDeletionInProgress = true;
     }
 
