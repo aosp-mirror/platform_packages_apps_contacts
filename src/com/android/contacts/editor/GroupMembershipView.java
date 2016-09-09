@@ -181,6 +181,8 @@ public class GroupMembershipView extends LinearLayout
         mPrimaryTextColor = resources.getColor(R.color.primary_text_color);
         mHintTextColor = resources.getColor(R.color.editor_disabled_text_color);
         mNoGroupString = getContext().getString(R.string.group_edit_field_hint_text);
+        setFocusable(true);
+        setFocusableInTouchMode(true);
     }
 
     @Override
@@ -318,6 +320,7 @@ public class GroupMembershipView extends LinearLayout
             return;
         }
 
+        requestFocus();
         mAdapter = new GroupMembershipAdapter<GroupSelectionItem>(
                 getContext(), R.layout.group_membership_list_item);
 
