@@ -16,9 +16,9 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.R;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
@@ -29,13 +29,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.contacts.R;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.common.util.NameConverter;
 import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
+import com.android.contacts.common.util.NameConverter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -65,6 +66,16 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
 
     public StructuredNameEditorView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        final Resources res = getResources();
+        mCollapseButtonDescription = res
+                .getString(R.string.collapse_name_fields_description);
+        mExpandButtonDescription = res
+                .getString(R.string.expand_name_fields_description);
     }
 
     @Override
