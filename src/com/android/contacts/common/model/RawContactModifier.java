@@ -217,7 +217,7 @@ public class RawContactModifier {
      * displayed for users to pick.
      */
     public static boolean hasEditTypes(DataKind kind) {
-        return kind.typeList != null && kind.typeList.size() > 0;
+        return kind != null && kind.typeList != null && kind.typeList.size() > 0;
     }
 
     /**

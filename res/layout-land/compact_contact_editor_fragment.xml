@@ -19,7 +19,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/raw_contacts_editor_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/background_primary"
         android:orientation="horizontal"
         android:visibility="invisible">
@@ -39,14 +39,16 @@
             android:fadingEdge="none"
             android:fillViewport="true">
 
-        <LinearLayout android:layout_width="match_parent"
-                android:layout_height="match_parent"
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
             <include layout="@layout/editor_all_rawcontacts_accounts_selector" />
+
             <include layout="@layout/editor_account_header" />
 
-            <include layout="@layout/compact_contact_editor_fields"/>
+            <include layout="@layout/compact_contact_editor_fields" />
 
         </LinearLayout>
 
