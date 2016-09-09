@@ -142,8 +142,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private final ContactListFilterListener mFilterListener = new ContactListFilterListener() {
         @Override
         public void onContactListFilterChanged() {
-            final ContactListFilter filter = mContactListFilterController.getFilter();
-            setFilterAndUpdateTitle(filter);
+            setFilterAndUpdateTitle(getFilter());
 
             // Scroll to top after filter is changed.
             getListView().setSelection(0);
@@ -361,6 +360,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     @Override
+    public ContactListFilter getFilter() {
+        return mContactListFilterController.getFilter();
+    }
+
+    @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
         final View view = inflater.inflate(R.layout.contact_list_content, null);
 
@@ -427,7 +431,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         // This is useful when user upgrades app while an account filter was
         // stored in sharedPreference in a previous version of Contacts app.
         final ContactListFilter filter = mIsRecreatedInstance
-                ? mContactListFilterController.getFilter()
+                ? getFilter()
                 : AccountFilterUtil.createContactsFilter(getContext());
         setContactListFilter(filter);
     }
@@ -690,8 +694,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     }
 
     private void setFilterAndUpdateTitle(ContactListFilter filter, boolean restoreSelectedUri) {
-        setFilter(filter, restoreSelectedUri);
-        setListType(mContactListFilterController.getFilterListType());
+        setContactListFilter(filter);
+        updateListFilter(filter, restoreSelectedUri);
 
         final String actionBarTitle;
         if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
@@ -785,7 +789,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 if (isSearchMode()) {
                     previousScreen = ScreenEvent.ScreenType.SEARCH;
                 } else {
-                    if (isAllContactsFilter(mContactListFilterController.getFilter())) {
+                    if (isAllContactsFilter(getFilter())) {
                         if (position < getAdapter().getNumberOfFavorites()) {
                             previousScreen = ScreenEvent.ScreenType.FAVORITES;
                         } else {
@@ -1017,11 +1021,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
     private int getListTypeIncludingSearch() {
         return isSearchMode() ? ListEvent.ListType.SEARCH_RESULT : getListType();
-    }
-
-    public void setListType() {
-        mContactListFilterController = ContactListFilterController.getInstance(getContext());
-        setListType(mContactListFilterController.getFilterListType());
     }
 
     public void setParameters(ContactsRequest contactsRequest, boolean fromOnNewIntent) {

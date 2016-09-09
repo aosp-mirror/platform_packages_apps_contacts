@@ -423,7 +423,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         }
 
         mAllFragment.setContactsAvailable(areContactsAvailable());
-        mAllFragment.setListType();
+        mAllFragment.setListType(mContactListFilterController.getFilterListType());
         mAllFragment.setParameters(/* ContactsRequest */ mRequest, /* fromOnNewIntent */ false);
     }
 
