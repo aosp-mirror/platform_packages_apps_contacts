@@ -20,7 +20,6 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,7 +29,6 @@ import android.support.v4.view.GravityCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
@@ -42,7 +40,7 @@ import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.group.GroupMembersFragment;
-import com.android.contacts.group.GroupMetadata;
+import com.android.contacts.group.GroupMetaData;
 import com.android.contacts.group.GroupNameEditDialogFragment;
 import com.android.contacts.group.GroupUtil;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
@@ -126,8 +124,8 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                     rawContactIdsToRemove, GroupMembersActivity.class, action);
         }
 
-        // TODO(wjang): prune raw contacts that are already in the group; ContactSaveService will
-        // log a warning if the raw contact is already a member and keep going but it is not ideal.
+        // ContactSaveService will log a warning if the raw contact is already a member and keep
+        // going but it is not ideal, we could also prune raw contacts that are already members.
         private long[] getRawContactIds() {
             final Uri rawContactUri = RawContacts.CONTENT_URI.buildUpon()
                     .appendQueryParameter(RawContacts.ACCOUNT_NAME, mAccountName)
@@ -175,7 +173,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     private Uri mGroupUri;
     private boolean mIsEditMode;
 
-    private GroupMetadata mGroupMetadata;
+    private GroupMetaData mGroupMetaData;
 
     @Override
     public void onCreate(Bundle savedState) {
@@ -185,7 +183,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         if (savedState != null) {
             mGroupUri = savedState.getParcelable(KEY_GROUP_URI);
             mIsEditMode = savedState.getBoolean(KEY_IS_EDIT_MODE);
-            mGroupMetadata = savedState.getParcelable(KEY_GROUP_METADATA);
+            mGroupMetaData = savedState.getParcelable(KEY_GROUP_METADATA);
         } else {
             mGroupUri = getIntent().getData();
             setTitle(getIntent().getStringExtra(GroupUtil.EXTRA_GROUP_NAME));
@@ -217,7 +215,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                     mMembersFragment, TAG_GROUP_MEMBERS).commitAllowingStateLoss();
         }
         mMembersFragment.setListener(this);
-        if (mGroupMetadata != null && mGroupMetadata.editable) {
+        if (mGroupMetaData != null && mGroupMetaData.editable) {
             mMembersFragment.setCheckBoxListListener(this);
         }
 
@@ -235,7 +233,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         }
         outState.putParcelable(KEY_GROUP_URI, mGroupUri);
         outState.putBoolean(KEY_IS_EDIT_MODE, mIsEditMode);
-        outState.putParcelable(KEY_GROUP_METADATA, mGroupMetadata);
+        outState.putParcelable(KEY_GROUP_METADATA, mGroupMetaData);
     }
 
     // Invoked with results from the ContactSaveService
@@ -304,14 +302,14 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         addGroupsAndFiltersFragments(transaction);
         transaction.replace(R.id.fragment_container_inner, mMembersFragment, TAG_GROUP_MEMBERS)
                 .commitAllowingStateLoss();
-        if (mGroupMetadata != null && mGroupMetadata.editable) {
+        if (mGroupMetaData != null && mGroupMetaData.editable) {
             mMembersFragment.setCheckBoxListListener(this);
         }
     }
 
     @Override
     protected void onGroupMenuItemClicked(long groupId, String title) {
-        if (mGroupMetadata.groupId != groupId) {
+        if (mGroupMetaData.groupId != groupId) {
             super.onGroupMenuItemClicked(groupId, title);
         }
     }
@@ -333,7 +331,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (mGroupMetadata == null) {
+        if (mGroupMetaData == null) {
             // Hide menu options until metadata is fully loaded
             return false;
         }
@@ -345,8 +343,8 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         final boolean isSelectionMode = mActionBarAdapter.isSelectionMode();
-        final boolean isGroupEditable = mGroupMetadata != null && mGroupMetadata.editable;
-        final boolean isGroupReadOnly = mGroupMetadata != null && mGroupMetadata.readOnly;
+        final boolean isGroupEditable = mGroupMetaData != null && mGroupMetaData.editable;
+        final boolean isGroupReadOnly = mGroupMetaData != null && mGroupMetaData.readOnly;
 
         setVisible(menu, R.id.menu_add, isGroupEditable && !isSelectionMode);
         setVisible(menu, R.id.menu_rename_group, !isGroupReadOnly && !isSelectionMode);
@@ -372,7 +370,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     }
 
     public void startGroupAddMemberActivity() {
-        startActivityForResult(GroupUtil.createPickMemberIntent(this, mGroupMetadata,
+        startActivityForResult(GroupUtil.createPickMemberIntent(this, mGroupMetaData,
                 mMembersFragment.getMemberContactIds()), RESULT_GROUP_ADD_MEMBER);
     }
 
@@ -389,9 +387,9 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             }
             case R.id.menu_rename_group: {
                 GroupNameEditDialogFragment.newInstanceForUpdate(
-                        new AccountWithDataSet(mGroupMetadata.accountName,
-                                mGroupMetadata.accountType, mGroupMetadata.dataSet),
-                        ACTION_UPDATE_GROUP, mGroupMetadata.groupId, mGroupMetadata.groupName)
+                        new AccountWithDataSet(mGroupMetaData.accountName,
+                                mGroupMetaData.accountType, mGroupMetaData.dataSet),
+                        ACTION_UPDATE_GROUP, mGroupMetaData.groupId, mGroupMetaData.groupName)
                         .show(getFragmentManager(), TAG_GROUP_NAME_EDIT_DIALOG);
                 return true;
             }
@@ -423,12 +421,12 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     private void deleteGroup() {
         if (mMembersFragment.getMemberCount() == 0) {
             final Intent intent = ContactSaveService.createGroupDeletionIntent(this,
-                    mGroupMetadata.groupId);
+                    mGroupMetaData.groupId);
             startService(intent);
             finish();
         } else {
-            GroupDeletionDialogFragment.show(getFragmentManager(), mGroupMetadata.groupId,
-                    mGroupMetadata.groupName);
+            GroupDeletionDialogFragment.show(getFragmentManager(), mGroupMetaData.groupId,
+                    mGroupMetaData.groupName);
         }
     }
 
@@ -444,8 +442,8 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     private void removeSelectedContacts() {
         final long[] contactIds = mMembersFragment.getAdapter().getSelectedContactIdsArray();
         new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_REMOVE,
-                this, contactIds, mGroupMetadata.groupId, mGroupMetadata.accountName,
-                mGroupMetadata.accountType).execute();
+                this, contactIds, mGroupMetaData.groupId, mGroupMetaData.accountName,
+                mGroupMetaData.accountType).execute();
 
         mActionBarAdapter.setSelectionMode(false);
     }
@@ -490,8 +488,8 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
                 }
             }
             new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_ADD,
-                    this, contactIds, mGroupMetadata.groupId, mGroupMetadata.accountName,
-                    mGroupMetadata.accountType).execute();
+                    this, contactIds, mGroupMetaData.groupId, mGroupMetaData.accountName,
+                    mGroupMetaData.accountType).execute();
         }
     }
 
@@ -579,10 +577,10 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
     // GroupMembersFragment callbacks
 
     @Override
-    public void onGroupMetadataLoaded(GroupMetadata groupMetadata) {
-        mGroupMetadata = groupMetadata;
-        updateGroupMenu(mGroupMetadata);
-        setTitle(mGroupMetadata.groupName);
+    public void onGroupMetadataLoaded(GroupMetaData groupMetaData) {
+        mGroupMetaData = groupMetaData;
+        updateGroupMenu(mGroupMetaData);
+        setTitle(mGroupMetaData.groupName);
         invalidateOptionsMenu();
     }
 
@@ -591,9 +589,8 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         setResultCanceledAndFinish(R.string.groupLoadErrorToast);
     }
 
-    @Override
-    protected GroupMetadata getGroupMetadata() {
-        return mGroupMetadata;
+    protected GroupMetaData getGroupMetaData() {
+        return mGroupMetaData;
     }
 
     @Override
@@ -612,7 +609,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         final long[] contactIds = new long[1];
         contactIds[0] = contactId;
         new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_REMOVE,
-                this, contactIds, mGroupMetadata.groupId, mGroupMetadata.accountName,
-                mGroupMetadata.accountType).execute();
+                this, contactIds, mGroupMetaData.groupId, mGroupMetaData.accountName,
+                mGroupMetaData.accountType).execute();
     }
 }

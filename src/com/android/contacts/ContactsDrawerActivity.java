@@ -62,7 +62,7 @@ import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.group.GroupListItem;
-import com.android.contacts.group.GroupMetadata;
+import com.android.contacts.group.GroupMetaData;
 import com.android.contacts.group.GroupNameEditDialogFragment;
 import com.android.contacts.group.GroupUtil;
 import com.android.contacts.group.GroupsFragment;
@@ -405,18 +405,18 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             }
         });
 
-        if (getGroupMetadata() != null) {
-            updateGroupMenu(getGroupMetadata());
+        if (getGroupMetaData() != null) {
+            updateGroupMenu(getGroupMetaData());
         }
     }
 
-    protected void updateGroupMenu(GroupMetadata groupMetadata) {
+    protected void updateGroupMenu(GroupMetaData groupMetaData) {
         clearCheckedMenus();
-        if (groupMetadata != null && mGroupMenuMap != null
-                && mGroupMenuMap.get(groupMetadata.groupId) != null) {
-            mGroupMenuMap.get(groupMetadata.groupId).setCheckable(true);
-            mGroupMenuMap.get(groupMetadata.groupId).setChecked(true);
-            maybeUpdateScrollPosition(mGroupMenuMap.get(groupMetadata.groupId).getOrder());
+        if (groupMetaData != null && mGroupMenuMap != null
+                && mGroupMenuMap.get(groupMetaData.groupId) != null) {
+            mGroupMenuMap.get(groupMetaData.groupId).setCheckable(true);
+            mGroupMenuMap.get(groupMetaData.groupId).setChecked(true);
+            maybeUpdateScrollPosition(mGroupMenuMap.get(groupMetaData.groupId).getOrder());
         }
     }
 
@@ -424,7 +424,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
      * Returns group metadata if the child class is {@link GroupMembersActivity}, and null
      * otherwise.
      */
-    protected GroupMetadata getGroupMetadata() {
+    protected GroupMetaData getGroupMetaData() {
         return null;
     }
 

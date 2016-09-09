@@ -4,7 +4,6 @@ package com.android.contacts.quickcontact;
 import com.google.common.collect.Iterables;
 
 import com.android.contacts.ContactSaveService;
-import com.android.contacts.common.GroupMetaData;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.RawContact;
@@ -16,6 +15,7 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.dataitem.GroupMembershipDataItem;
+import com.android.contacts.group.GroupMetaData;
 
 import android.content.Context;
 import android.content.Intent;
@@ -103,10 +103,10 @@ public class InvisibleContactUtil {
     private static long getDefaultGroupId(List<GroupMetaData> groups) {
         long defaultGroupId = -1;
         for (GroupMetaData group : groups) {
-            if (group.isDefaultGroup()) {
+            if (group.defaultGroup) {
                 // two default groups? return neither
                 if (defaultGroupId != -1) return -1;
-                defaultGroupId = group.getGroupId();
+                defaultGroupId = group.groupId;
             }
         }
         return defaultGroupId;

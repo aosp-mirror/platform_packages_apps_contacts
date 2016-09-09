@@ -28,7 +28,7 @@ import com.android.contacts.group.GroupUtil;
  */
 public final class GroupMetaDataLoader extends CursorLoader {
 
-    private final static String[] COLUMNS = new String[] {
+    public final static String[] COLUMNS = new String[] {
         Groups.ACCOUNT_NAME,
         Groups.ACCOUNT_TYPE,
         Groups.DATA_SET,

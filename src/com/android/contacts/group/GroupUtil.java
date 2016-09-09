@@ -105,13 +105,13 @@ public final class GroupUtil {
 
     /** Returns an Intent to pick contacts to add to a group. */
     public static Intent createPickMemberIntent(Context context,
-            GroupMetadata groupMetadata, ArrayList<String> memberContactIds) {
+            GroupMetaData groupMetaData, ArrayList<String> memberContactIds) {
         final Intent intent = new Intent(context, ContactSelectionActivity.class);
         intent.setAction(Intent.ACTION_PICK);
         intent.setType(Groups.CONTENT_TYPE);
-        intent.putExtra(UiIntentActions.GROUP_ACCOUNT_NAME, groupMetadata.accountName);
-        intent.putExtra(UiIntentActions.GROUP_ACCOUNT_TYPE, groupMetadata.accountType);
-        intent.putExtra(UiIntentActions.GROUP_ACCOUNT_DATA_SET, groupMetadata.dataSet);
+        intent.putExtra(UiIntentActions.GROUP_ACCOUNT_NAME, groupMetaData.accountName);
+        intent.putExtra(UiIntentActions.GROUP_ACCOUNT_TYPE, groupMetaData.accountType);
+        intent.putExtra(UiIntentActions.GROUP_ACCOUNT_DATA_SET, groupMetaData.dataSet);
         intent.putExtra(UiIntentActions.GROUP_CONTACT_IDS, memberContactIds);
         return intent;
     }
