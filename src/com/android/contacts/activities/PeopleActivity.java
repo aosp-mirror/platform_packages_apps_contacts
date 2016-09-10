@@ -69,7 +69,7 @@ import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.group.GroupMembersFragment;
-import com.android.contacts.group.GroupMetadata;
+import com.android.contacts.group.GroupMetaData;
 import com.android.contacts.group.GroupUtil;
 import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
@@ -921,7 +921,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
     }
 
     @Override
-    protected GroupMetadata getGroupMetadata() {
-        return mMembersFragment == null ? null : mMembersFragment.getGroupMetadata();
+    protected GroupMetaData getGroupMetaData() {
+        return mMembersFragment == null ? null : mMembersFragment.getGroupMetaData();
     }
 }

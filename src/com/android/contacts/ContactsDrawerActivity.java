@@ -59,7 +59,7 @@ import com.android.contacts.editor.CompactContactEditorFragment;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupMembersFragment;
-import com.android.contacts.group.GroupMetadata;
+import com.android.contacts.group.GroupMetaData;
 import com.android.contacts.group.GroupNameEditDialogFragment;
 import com.android.contacts.group.GroupUtil;
 import com.android.contacts.group.GroupsFragment;
@@ -343,7 +343,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         subMenu.removeGroup(R.id.nav_groups_items);
         mGroupMenuMap = new HashMap<>();
 
-        final GroupMetadata groupMetaData = getGroupMetadata();
+        final GroupMetaData groupMetaData = getGroupMetaData();
 
         if (groupListItems != null) {
             // Add each group
@@ -406,15 +406,15 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
     }
 
-    public void updateGroupMenu(GroupMetadata groupMetadata) {
+    public void updateGroupMenu(GroupMetaData groupMetaData) {
         clearCheckedMenus();
-        if (groupMetadata != null && mGroupMenuMap != null
-                && mGroupMenuMap.get(groupMetadata.groupId) != null) {
-            setMenuChecked(mGroupMenuMap.get(groupMetadata.groupId), true);
+        if (groupMetaData != null && mGroupMenuMap != null
+                && mGroupMenuMap.get(groupMetaData.groupId) != null) {
+            setMenuChecked(mGroupMenuMap.get(groupMetaData.groupId), true);
         }
     }
 
-    protected GroupMetadata getGroupMetadata() {
+    protected GroupMetaData getGroupMetaData() {
         return null;
     }
 

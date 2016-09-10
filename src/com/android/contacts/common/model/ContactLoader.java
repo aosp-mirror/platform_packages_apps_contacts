@@ -38,8 +38,8 @@ import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.common.GeoUtil;
-import com.android.contacts.common.GroupMetaData;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountTypeWithDataSet;
@@ -50,6 +50,8 @@ import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.PhoneDataItem;
 import com.android.contacts.common.model.dataitem.PhotoDataItem;
+import com.android.contacts.group.GroupMetaData;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -290,26 +292,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         public static final int ACCOUNT_TYPE = 3;
         public static final int ACCOUNT_NAME = 4;
         public static final int EXPORT_SUPPORT = 5;
-    }
-
-    private static class GroupQuery {
-        static final String[] COLUMNS = new String[] {
-            Groups.ACCOUNT_NAME,
-            Groups.ACCOUNT_TYPE,
-            Groups.DATA_SET,
-            Groups._ID,
-            Groups.TITLE,
-            Groups.AUTO_ADD,
-            Groups.FAVORITES,
-        };
-
-        public static final int ACCOUNT_NAME = 0;
-        public static final int ACCOUNT_TYPE = 1;
-        public static final int DATA_SET = 2;
-        public static final int ID = 3;
-        public static final int TITLE = 4;
-        public static final int AUTO_ADD = 5;
-        public static final int FAVORITES = 6;
     }
 
     public void setLookupUri(Uri lookupUri) {
@@ -859,29 +841,14 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 selection.append(")");
             }
         }
-        final ImmutableList.Builder<GroupMetaData> groupListBuilder =
-                new ImmutableList.Builder<GroupMetaData>();
+        final ImmutableList.Builder<GroupMetaData> groupListBuilder = new ImmutableList.Builder<>();
         final Cursor cursor = getContext().getContentResolver().query(Groups.CONTENT_URI,
-                GroupQuery.COLUMNS, selection.toString(), selectionArgs.toArray(new String[0]),
-                null);
+                GroupMetaDataLoader.COLUMNS, selection.toString(),
+                selectionArgs.toArray(new String[0]), null);
         if (cursor != null) {
             try {
                 while (cursor.moveToNext()) {
-                    final String accountName = cursor.getString(GroupQuery.ACCOUNT_NAME);
-                    final String accountType = cursor.getString(GroupQuery.ACCOUNT_TYPE);
-                    final String dataSet = cursor.getString(GroupQuery.DATA_SET);
-                    final long groupId = cursor.getLong(GroupQuery.ID);
-                    final String title = cursor.getString(GroupQuery.TITLE);
-                    final boolean defaultGroup = cursor.isNull(GroupQuery.AUTO_ADD)
-                            ? false
-                            : cursor.getInt(GroupQuery.AUTO_ADD) != 0;
-                    final boolean favorites = cursor.isNull(GroupQuery.FAVORITES)
-                            ? false
-                            : cursor.getInt(GroupQuery.FAVORITES) != 0;
-
-                    groupListBuilder.add(new GroupMetaData(
-                                    accountName, accountType, dataSet, groupId, title, defaultGroup,
-                                    favorites));
+                    groupListBuilder.add(new GroupMetaData(getContext(), cursor));
                 }
             } finally {
                 cursor.close();
