@@ -1490,7 +1490,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
         if (getSupportActionBar() != null) {
             String actionBarTitle;
-            if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
+            if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS &&
+                    filter.accountName == null) {
                 actionBarTitle = getString(R.string.account_phone);
             } else if (!TextUtils.isEmpty(filter.accountName)) {
                 actionBarTitle = getActionBarTitleForAccount(filter);

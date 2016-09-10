@@ -18,10 +18,10 @@ package com.android.contacts.common.model;
 import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.database.Cursor;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.annotation.VisibleForTesting;
 
-import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 
@@ -39,6 +39,9 @@ import java.util.Set;
  */
 public class DeviceLocalAccountLocator {
 
+    // Note this class is assuming ACCOUNT_NAME and ACCOUNT_TYPE have same values in
+    // RawContacts, Groups, and Settings. This assumption simplifies the code somewhat and it
+    // is true right now and unlikely to ever change.
     @VisibleForTesting
     static String[] PROJECTION = new String[] {
             ContactsContract.RawContacts.ACCOUNT_NAME, ContactsContract.RawContacts.ACCOUNT_TYPE,
@@ -49,67 +52,99 @@ public class DeviceLocalAccountLocator {
     private static final int COL_TYPE = 1;
     private static final int COL_DATA_SET = 2;
 
-
     private final ContentResolver mResolver;
     private final DeviceLocalAccountTypeFactory mAccountTypeFactory;
-    private final Set<String> mKnownAccountTypes;
 
+    private final String mSelection;
+    private final String[] mSelectionArgs;
 
     public DeviceLocalAccountLocator(ContentResolver contentResolver,
             DeviceLocalAccountTypeFactory factory,
             List<AccountWithDataSet> knownAccounts) {
         mResolver = contentResolver;
         mAccountTypeFactory = factory;
-        mKnownAccountTypes = new HashSet<>();
+
+        final Set<String> knownAccountTypes = new HashSet<>();
         for (AccountWithDataSet account : knownAccounts) {
-            mKnownAccountTypes.add(account.type);
+            knownAccountTypes.add(account.type);
         }
+        mSelection = getSelection(knownAccountTypes);
+        mSelectionArgs = getSelectionArgs(knownAccountTypes);
     }
 
     public List<AccountWithDataSet> getDeviceLocalAccounts() {
-        final String[] selectionArgs = getSelectionArgs();
-        final Cursor cursor = mResolver.query(ContactsContract.RawContacts.CONTENT_URI, PROJECTION,
-                getSelection(), selectionArgs, null);
 
         final Set<AccountWithDataSet> localAccounts = new HashSet<>();
-        try {
-            while (cursor.moveToNext()) {
-                final String name = cursor.getString(COL_NAME);
-                final String type = cursor.getString(COL_TYPE);
-                final String dataSet = cursor.getString(COL_DATA_SET);
 
-                if (DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
-                        mAccountTypeFactory, type)) {
-                    localAccounts.add(new AccountWithDataSet(name, type, dataSet));
-                }
-            }
-        } finally {
-            cursor.close();
+        // Many device accounts have default groups associated with them.
+        addAccountsFromQuery(ContactsContract.Groups.CONTENT_URI, localAccounts);
+
+        addAccountsFromQuery(ContactsContract.Settings.CONTENT_URI, localAccounts);
+
+        if (localAccounts.isEmpty()) {
+            // It's probably safe to assume that if one of the earlier queries found a "device"
+            // account then this query isn't going to find any different device accounts.
+            // We skip this query because it probably is kind of expensive (relative to the other
+            // queries).
+            addAccountsFromQuery(ContactsContract.RawContacts.CONTENT_URI, localAccounts);
         }
 
         return new ArrayList<>(localAccounts);
     }
 
+    private void addAccountsFromQuery(Uri uri, Set<AccountWithDataSet> accounts) {
+        final Cursor cursor = mResolver.query(uri, PROJECTION, mSelection, mSelectionArgs, null);
+
+        if (cursor == null) return;
+
+        try {
+            addAccountsFromCursor(cursor, accounts);
+        } finally {
+            cursor.close();
+        }
+    }
+
+    private void addAccountsFromCursor(Cursor cursor, Set<AccountWithDataSet> accounts) {
+        while (cursor.moveToNext()) {
+            final String name = cursor.getString(COL_NAME);
+            final String type = cursor.getString(COL_TYPE);
+            final String dataSet = cursor.getString(COL_DATA_SET);
+
+            if (DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
+                    mAccountTypeFactory, type)) {
+                accounts.add(new AccountWithDataSet(name, type, dataSet));
+            }
+        }
+    }
+
     @VisibleForTesting
     public String getSelection() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append(ContactsContract.RawContacts.DELETED).append(" =0 AND (")
-                .append(ContactsContract.RawContacts.ACCOUNT_TYPE).append(" IS NULL");
-        if (mKnownAccountTypes.isEmpty()) {
-            return sb.append(')').toString();
-        }
-        sb.append(" OR ").append(ContactsContract.RawContacts.ACCOUNT_TYPE).append(" NOT IN (");
-        for (String ignored : mKnownAccountTypes) {
-            sb.append("?,");
-        }
-        // Remove trailing ','
-        sb.deleteCharAt(sb.length() - 1).append(')').append(')');
-
-        return sb.toString();
+        return mSelection;
     }
 
     @VisibleForTesting
     public String[] getSelectionArgs() {
-        return mKnownAccountTypes.toArray(new String[mKnownAccountTypes.size()]);
+        return mSelectionArgs;
+    }
+
+    private static String getSelection(Set<String> knownAccountTypes) {
+        final StringBuilder sb = new StringBuilder()
+                .append(ContactsContract.RawContacts.ACCOUNT_TYPE).append(" IS NULL");
+        if (knownAccountTypes.isEmpty()) {
+            return sb.toString();
+        }
+        sb.append(" OR ").append(ContactsContract.RawContacts.ACCOUNT_TYPE).append(" NOT IN (");
+        for (String ignored : knownAccountTypes) {
+            sb.append("?,");
+        }
+        // Remove trailing ','
+        sb.deleteCharAt(sb.length() - 1).append(')');
+        return sb.toString();
+    }
+
+    private static String[] getSelectionArgs(Set<String> knownAccountTypes) {
+        if (knownAccountTypes.isEmpty()) return null;
+
+        return knownAccountTypes.toArray(new String[knownAccountTypes.size()]);
     }
 }
