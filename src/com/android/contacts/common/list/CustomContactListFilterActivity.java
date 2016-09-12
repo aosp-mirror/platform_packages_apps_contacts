@@ -366,12 +366,13 @@ public class CustomContactListFilterActivity extends Activity implements
                 }
             } else {
                 final Integer titleRes = getAsInteger(Groups.TITLE_RES);
-                if (titleRes != null) {
+                if (titleRes != null && titleRes != 0) {
                     final String packageName = getAsString(Groups.RES_PACKAGE);
-                    return context.getPackageManager().getText(packageName, titleRes, null);
-                } else {
-                    return getAsString(Groups.TITLE);
+                    if (packageName != null) {
+                        return context.getPackageManager().getText(packageName, titleRes, null);
+                    }
                 }
+                return getAsString(Groups.TITLE);
             }
         }
 
