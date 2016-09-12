@@ -194,11 +194,7 @@ public abstract class ContactBrowseListFragment extends
         }
     }
 
-    public void setFilter(ContactListFilter filter) {
-        setFilter(filter, true);
-    }
-
-    public void setFilter(ContactListFilter filter, boolean restoreSelectedUri) {
+    public void updateListFilter(ContactListFilter filter, boolean restoreSelectedUri) {
         if (mFilter == null && filter == null) {
             return;
         }
@@ -210,16 +206,10 @@ public abstract class ContactBrowseListFragment extends
 
         Log.v(TAG, "New filter: " + filter);
 
-        setListType(filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
-                ? ListType.ALL_CONTACTS : ListType.ACCOUNT);
+        setListType(filter.toListType());
         setLogListEvents(true);
-
         mFilter = filter;
         mLastSelectedPosition = -1;
-
-        if (filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS) {
-            saveFilter();
-        }
 
         if (restoreSelectedUri) {
             mSelectedContactUri = null;
