@@ -17,9 +17,11 @@
 package com.android.contacts.editor;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
+import com.android.contacts.R;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.dataitem.DataKind;
@@ -99,6 +101,16 @@ public class PhoneticNameEditorView extends TextFieldsEditorView {
 
     public PhoneticNameEditorView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        final Resources res = getResources();
+        mCollapseButtonDescription = res
+                .getString(R.string.collapse_phonetic_name_fields_description);
+        mExpandButtonDescription = res
+                .getString(R.string.expand_phonetic_name_fields_description);
     }
 
     @Override

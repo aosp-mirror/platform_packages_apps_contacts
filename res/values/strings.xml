@@ -1278,11 +1278,28 @@
          fields corresponding to each part of the name (Name Prefix, First Name,
          Middle Name, Last Name, Name Suffix).
          [CHAR LIMIT=NONE] -->
-    <string name="expand_collapse_name_fields_description">Expand or collapse name fields</string>
+    <string name="expand_name_fields_description">Expand name fields</string>
 
-    <!-- Content description for the expand or collapse phonetic name fields button. [CHAR LIMIT=100] -->
-    <string name="expand_collapse_phonetic_name_fields_description">Expand or collapse phonetic
-        name fields</string>
+    <!-- Content description for the collapse name fields button. [CHAR LIMIT=NONE] -->
+    <string name="collapse_name_fields_description">Collapse name fields</string>
+
+    <!-- Content description for the expand phonetic name fields button. [CHAR LIMIT=NONE] -->
+    <string name="expand_phonetic_name_fields_description">Expand phonetic name fields</string>
+
+    <!-- Content description for the collapse phonetic name fields button. [CHAR LIMIT=NONE] -->
+    <string name="collapse_phonetic_name_fields_description">Collapse phonetic name fields</string>
+
+    <!-- Content description for a generic expand fields button. [CHAR LIMIT=NONE] -->
+    <string name="expand_fields_description">Expand</string>
+
+    <!-- Content description for a generic collapse fields button. [CHAR LIMIT=NONE] -->
+    <string name="collapse_fields_description">Collapse</string>
+
+    <!-- A11y announcement text for when a expand fields button is actioned. [CHAR LIMIT=NONE] -->
+    <string name="announce_expanded_fields">Expanded</string>
+
+    <!-- A11y announcement text for when a collapse fields button is actioned. [CHAR LIMIT=NONE] -->
+    <string name="announce_collapsed_fields">Collapsed</string>
 
     <!-- Contact list filter label indicating that the list is showing all available accounts [CHAR LIMIT=64] -->
     <string name="list_filter_all_accounts">All contacts</string>
