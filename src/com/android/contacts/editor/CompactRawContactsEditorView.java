@@ -16,22 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.common.model.account.AccountDisplayInfo;
-import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
-import com.android.contacts.R;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.RawContactDelta;
-import com.android.contacts.common.model.RawContactDeltaList;
-import com.android.contacts.common.model.RawContactModifier;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.common.util.AccountsListAdapter;
-import com.android.contacts.common.util.MaterialColorMapUtils;
-import com.android.contacts.util.UiClosables;
-
-import android.animation.LayoutTransition;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
@@ -68,6 +52,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactDeltaList;
+import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.dataitem.DataKind;
+import com.android.contacts.common.util.AccountsListAdapter;
+import com.android.contacts.common.util.MaterialColorMapUtils;
+import com.android.contacts.util.UiClosables;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -617,11 +616,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
             long photoId, boolean hasNewContact, boolean isUserProfile,
             AccountWithDataSet primaryAccount) {
-        // Enable layout animations for new contacts. This looks nicer when switching to and from
-        // an account that doesn't support profile photos (e.g. SIM accounts).
-        if (hasNewContact && getLayoutTransition() == null) {
-            setLayoutTransition(new LayoutTransition());
-        }
         mKindSectionDataMap.clear();
         mKindSectionViewsMap.clear();
         mKindSectionViews.removeAllViews();
