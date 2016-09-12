@@ -1378,6 +1378,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements
 
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
+        } else if (FeatureHighlightHelper.tryRemoveHighlight(this)) {
+            return;
         } else if (mActionBarAdapter.isSelectionMode()) {
             mActionBarAdapter.setSelectionMode(false);
             mAllFragment.displayCheckBoxes(false);
