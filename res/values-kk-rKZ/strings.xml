@@ -171,7 +171,7 @@
     <string name="video_chat" msgid="1872255818640336072">"Видео чат"</string>
     <string name="connections" msgid="8098440723172028350">"Байланыстар"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Байланыс қосу"</string>
-    <string name="recent" msgid="2659189233141493004">"Жуықта қолданылған"</string>
+    <string name="recent" msgid="2659189233141493004">"Соңғы"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Соңғы жаңартулар"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контакт"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> есептік жазбасы"</string>
@@ -247,7 +247,6 @@
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"жаңа контакт қосу"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Көбірек көру"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Азырақ көру"</string>
-    <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Барлығын көру"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Жақындағы"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Туралы"</string>
     <string name="send_message" msgid="8938418965550543196">"Хабарды жіберу"</string>
@@ -455,8 +454,22 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber арқылы чаттасу"</string>
     <string name="chat" msgid="9025361898797412245">"Чат"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"жою"</string>
-    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"Ат өрістерін жаю немесе жию"</string>
-    <string name="expand_collapse_phonetic_name_fields_description" msgid="3306777588073354509">"Атының транскрипциясы өрістерін жаю немесе жию"</string>
+    <!-- no translation found for expand_name_fields_description (6883935911480726652) -->
+    <skip />
+    <!-- no translation found for collapse_name_fields_description (4757877385895561556) -->
+    <skip />
+    <!-- no translation found for expand_phonetic_name_fields_description (3865726859582581741) -->
+    <skip />
+    <!-- no translation found for collapse_phonetic_name_fields_description (9102249481855019452) -->
+    <skip />
+    <!-- no translation found for expand_fields_description (8129294181216760037) -->
+    <skip />
+    <!-- no translation found for collapse_fields_description (1884143625854637874) -->
+    <skip />
+    <!-- no translation found for announce_expanded_fields (1075947220478530622) -->
+    <skip />
+    <!-- no translation found for announce_collapsed_fields (6414231530177338704) -->
+    <skip />
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Барлық контактілер"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Жұлдызшалы"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"Реттеу"</string>

@@ -261,7 +261,6 @@
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"הוסף איש קשר חדש"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"הצג יותר"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"הצג פחות"</string>
-    <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"הצג הכל"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"מהזמן האחרון"</string>
     <string name="about_card_title" msgid="2920942314212825637">"מידע כללי"</string>
     <string name="send_message" msgid="8938418965550543196">"שלח הודעה"</string>
@@ -477,8 +476,22 @@
     <string name="chat_jabber" msgid="7561444230307829609">"‏שוחח בצ\'אט באמצעות Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"שוחח בצ\'אט"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"מחק"</string>
-    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"הרחב או כווץ שמות של שדות"</string>
-    <string name="expand_collapse_phonetic_name_fields_description" msgid="3306777588073354509">"הרחבה או כיווץ של שדות השמות הפונטיים"</string>
+    <!-- no translation found for expand_name_fields_description (6883935911480726652) -->
+    <skip />
+    <!-- no translation found for collapse_name_fields_description (4757877385895561556) -->
+    <skip />
+    <!-- no translation found for expand_phonetic_name_fields_description (3865726859582581741) -->
+    <skip />
+    <!-- no translation found for collapse_phonetic_name_fields_description (9102249481855019452) -->
+    <skip />
+    <!-- no translation found for expand_fields_description (8129294181216760037) -->
+    <skip />
+    <!-- no translation found for collapse_fields_description (1884143625854637874) -->
+    <skip />
+    <!-- no translation found for announce_expanded_fields (1075947220478530622) -->
+    <skip />
+    <!-- no translation found for announce_collapsed_fields (6414231530177338704) -->
+    <skip />
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"כל אנשי הקשר"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"מסומן בכוכב"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"התאם אישית"</string>
