@@ -446,7 +446,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         final Account account = extras == null ? null :
                 (Account) extras.getParcelable(Intents.Insert.EXTRA_ACCOUNT);
         if (account == null) {
-            selectAccount();
+            selectAccountForNewGroup();
         } else {
             final String dataSet = extras == null
                     ? null : extras.getString(Intents.Insert.EXTRA_DATA_SET);
@@ -621,9 +621,9 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         menuItem.setChecked(checked);
     }
 
-    private void selectAccount() {
+    private void selectAccountForNewGroup() {
         final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
-                .getAccounts(/* writable */ true);
+                .getGroupWritableAccounts();
         if (accounts.isEmpty()) {
             // We shouldn't present the add group button if there are no writable accounts
             // but check it since it's possible we are started with an Intent.
