@@ -247,7 +247,6 @@
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"افزودن مخاطب جدید"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"مشاهده موارد بیشتر"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"مشاهده موارد کمتر"</string>
-    <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"مشاهده همه"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"اخیر"</string>
     <string name="about_card_title" msgid="2920942314212825637">"درباره"</string>
     <string name="send_message" msgid="8938418965550543196">"ارسال پیام"</string>
@@ -379,7 +378,7 @@
     <string name="sms_assistant" msgid="2773424339923116234">"ارسال متن به <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"ارسال متن به فراپیام"</string>
     <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (پیام)"</string>
-    <string name="description_video_call" msgid="7120921378651700947">"برقراری تماس ویدیویی"</string>
+    <string name="description_video_call" msgid="7120921378651700947">"برقراری تماس ویدئویی"</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"فهرست تماس مکرر با مخاطب پاک شود؟"</string>
     <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"با این کار فهرست افرادی که بیشتر با آنها تماس گرفته‌اید در برنامه‌های «مخاطبین» و «تلفن» پاک می‌کنید و برنامه‌های رایانامه را وادار می‌کنید تنظیمات برگزیده مخاطبینتان را از اول یاد بگیرند."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"در حال پاک کردن فهرست تماس مکرر..."</string>
@@ -455,8 +454,22 @@
     <string name="chat_jabber" msgid="7561444230307829609">"‏گپ با استفاده از Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"گپ"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"حذف"</string>
-    <string name="expand_collapse_name_fields_description" msgid="8682630859539604311">"بزرگ یا کوچک کردن قسمت‌های نام"</string>
-    <string name="expand_collapse_phonetic_name_fields_description" msgid="3306777588073354509">"بزرگ یا کوچک کردن فیلدهای نام‌آوایی"</string>
+    <!-- no translation found for expand_name_fields_description (6883935911480726652) -->
+    <skip />
+    <!-- no translation found for collapse_name_fields_description (4757877385895561556) -->
+    <skip />
+    <!-- no translation found for expand_phonetic_name_fields_description (3865726859582581741) -->
+    <skip />
+    <!-- no translation found for collapse_phonetic_name_fields_description (9102249481855019452) -->
+    <skip />
+    <!-- no translation found for expand_fields_description (8129294181216760037) -->
+    <skip />
+    <!-- no translation found for collapse_fields_description (1884143625854637874) -->
+    <skip />
+    <!-- no translation found for announce_expanded_fields (1075947220478530622) -->
+    <skip />
+    <!-- no translation found for announce_collapsed_fields (6414231530177338704) -->
+    <skip />
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"همه مخاطبین"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"ستاره‌دار"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"سفارشی کردن"</string>
@@ -585,7 +598,7 @@
     <string name="url_open_error_toast" msgid="452592089815420457">"نشانی وب باز نشد."</string>
     <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> علامت‌گذاری شد"</string>
     <string name="account_filter_view_not_checked" msgid="2248684521205038389">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> بدون علامت"</string>
-    <string name="description_search_video_call" msgid="5841525580339803272">"برقراری تماس ویدیویی"</string>
+    <string name="description_search_video_call" msgid="5841525580339803272">"برقراری تماس ویدئویی"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"حذف"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"سه نقطه"</string>
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> ثانیه"</string>

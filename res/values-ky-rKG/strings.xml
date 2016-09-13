@@ -247,7 +247,6 @@
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"жаңы байланыш кошуу"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Дагы көрүү"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Азыраак көрүү"</string>
-    <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Бардыгын көрүү"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Акыркы"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Жөнүндө"</string>
     <string name="send_message" msgid="8938418965550543196">"Билдирүү жөнөтүү"</string>
@@ -539,9 +538,22 @@
     <!-- no translation found for chat (9025361898797412245) -->
     <skip />
     <string name="description_minus_button" msgid="6908099247930477551">"жок кылуу"</string>
-    <!-- no translation found for expand_collapse_name_fields_description (8682630859539604311) -->
+    <!-- no translation found for expand_name_fields_description (6883935911480726652) -->
     <skip />
-    <string name="expand_collapse_phonetic_name_fields_description" msgid="3306777588073354509">"Адамдын аты-жөнү угулушу боюнча жазылган талааларды жайып көрсөтүү же жыйыштыруу"</string>
+    <!-- no translation found for collapse_name_fields_description (4757877385895561556) -->
+    <skip />
+    <!-- no translation found for expand_phonetic_name_fields_description (3865726859582581741) -->
+    <skip />
+    <!-- no translation found for collapse_phonetic_name_fields_description (9102249481855019452) -->
+    <skip />
+    <!-- no translation found for expand_fields_description (8129294181216760037) -->
+    <skip />
+    <!-- no translation found for collapse_fields_description (1884143625854637874) -->
+    <skip />
+    <!-- no translation found for announce_expanded_fields (1075947220478530622) -->
+    <skip />
+    <!-- no translation found for announce_collapsed_fields (6414231530177338704) -->
+    <skip />
     <!-- no translation found for list_filter_all_accounts (8908683398914322369) -->
     <skip />
     <!-- no translation found for list_filter_all_starred (5031734941601931356) -->
