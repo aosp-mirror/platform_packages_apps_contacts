@@ -21,20 +21,20 @@ import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.Entity;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.SmallTest;
+import android.test.suitebuilder.annotation.MediumTest;
 
 import com.android.contacts.ContactsApplication;
 import com.android.contacts.R;
-import com.android.contacts.common.test.FragmentTestActivity;
-import com.android.contacts.common.test.IntegrationTestUtils;
-import com.android.contacts.common.test.mocks.ContactsMockContext;
-import com.android.contacts.common.test.mocks.MockContentProvider;
-import com.android.contacts.common.test.mocks.MockContentProvider.Query;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.BaseAccountType;
-import com.android.contacts.common.testing.InjectedServices;
+import com.android.contacts.common.test.FragmentTestActivity;
+import com.android.contacts.common.test.IntegrationTestUtils;
+import com.android.contacts.common.test.mocks.ContactsMockContext;
 import com.android.contacts.common.test.mocks.MockAccountTypeManager;
+import com.android.contacts.common.test.mocks.MockContentProvider;
+import com.android.contacts.common.test.mocks.MockContentProvider.Query;
+import com.android.contacts.common.testing.InjectedServices;
 
 /**
  * Tests for {@link ContactDeletionInteraction}.
@@ -46,7 +46,7 @@ import com.android.contacts.common.test.mocks.MockAccountTypeManager;
  *   adb shell am instrument \
  *     -w com.android.contacts.tests/android.test.InstrumentationTestRunner
  */
-@SmallTest
+@MediumTest
 public class ContactDeletionInteractionTest
         extends ActivityInstrumentationTestCase2<FragmentTestActivity> {
     private static final Uri CONTACT_URI = ContentUris.withAppendedId(Contacts.CONTENT_URI, 13);
