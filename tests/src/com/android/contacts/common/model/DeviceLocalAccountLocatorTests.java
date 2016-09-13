@@ -15,6 +15,7 @@
  */
 package com.android.contacts.common.model;
 
+import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -27,17 +28,16 @@ import android.test.AndroidTestCase;
 import android.test.mock.MockContentResolver;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.common.model.DeviceLocalAccountLocator;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.test.mocks.MockContentProvider;
 import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 import com.android.contacts.tests.FakeDeviceAccountTypeFactory;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SmallTest
 public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
@@ -51,6 +51,11 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
                 Collections.<AccountWithDataSet>emptyList());
         sut.getDeviceLocalAccounts();
         // We didn't throw so it passed
+    }
+
+    public void test_getDeviceLocalAccounts_returnsEmptyListWhenQueryReturnsNull() {
+        final DeviceLocalAccountLocator sut = createWithQueryResult(null);
+        assertTrue(sut.getDeviceLocalAccounts().isEmpty());
     }
 
     public void test_getDeviceLocalAccounts_returnsEmptyListWhenNoRawContactsHaveDeviceType() {
@@ -107,6 +112,52 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
         assertTrue("Selection args is missing an expected value", args.contains("com.example.1"));
     }
 
+    public void test_getDeviceLocalAccounts_includesAccountsFromSettings() {
+        final DeviceLocalAccountTypeFactory stubFactory = new FakeDeviceAccountTypeFactory()
+                .withDeviceTypes(null, "vnd.sec.contact.phone")
+                .withSimTypes("vnd.sec.contact.sim");
+        final DeviceLocalAccountLocator sut = new DeviceLocalAccountLocator(
+                createContentResolverWithProvider(new FakeContactsProvider()
+                        .withQueryResult(ContactsContract.Settings.CONTENT_URI, queryResult(
+                                "phone_account", "vnd.sec.contact.phone",
+                                "sim_account", "vnd.sec.contact.sim"
+                ))), stubFactory, Collections.<AccountWithDataSet>emptyList());
+
+        assertEquals(2, sut.getDeviceLocalAccounts().size());
+    }
+
+    public void test_getDeviceLocalAccounts_includesAccountsFromGroups() {
+        final DeviceLocalAccountTypeFactory stubFactory = new FakeDeviceAccountTypeFactory()
+                .withDeviceTypes(null, "vnd.sec.contact.phone")
+                .withSimTypes("vnd.sec.contact.sim");
+        final DeviceLocalAccountLocator sut = new DeviceLocalAccountLocator(
+                createContentResolverWithProvider(new FakeContactsProvider()
+                        .withQueryResult(ContactsContract.Groups.CONTENT_URI, queryResult(
+                                "phone_account", "vnd.sec.contact.phone",
+                                "sim_account", "vnd.sec.contact.sim"
+                        ))), stubFactory, Collections.<AccountWithDataSet>emptyList());
+
+        assertEquals(2, sut.getDeviceLocalAccounts().size());
+    }
+
+    public void test_getDeviceLocalAccounts_onlyQueriesRawContactsIfNecessary() {
+        final DeviceLocalAccountTypeFactory stubFactory = new FakeDeviceAccountTypeFactory()
+                .withDeviceTypes(null, "vnd.sec.contact.phone")
+                .withSimTypes("vnd.sec.contact.sim");
+        final FakeContactsProvider contactsProvider = new FakeContactsProvider()
+                .withQueryResult(ContactsContract.Groups.CONTENT_URI, queryResult(
+                        "phone_account", "vnd.sec.contact.phone",
+                        "sim_account", "vnd.sec.contact.sim"
+                ));
+        final DeviceLocalAccountLocator sut = new DeviceLocalAccountLocator(
+                createContentResolverWithProvider(contactsProvider), stubFactory,
+                Collections.<AccountWithDataSet>emptyList());
+
+        sut.getDeviceLocalAccounts();
+
+        assertEquals(0, contactsProvider.getQueryCountFor(RawContacts.CONTENT_URI));
+    }
+
     private DeviceLocalAccountLocator createWithQueryResult(
             Cursor cursor) {
         final DeviceLocalAccountLocator locator = new DeviceLocalAccountLocator(
@@ -116,10 +167,17 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
         return locator;
     }
 
+    private ContentResolver createContentResolverWithProvider(ContentProvider contactsProvider) {
+        final MockContentResolver resolver = new MockContentResolver();
+        resolver.addProvider(ContactsContract.AUTHORITY, contactsProvider);
+        return resolver;
+    }
+
 
     private ContentResolver createStubResolverWithContentQueryResult(Cursor cursor) {
         final MockContentResolver resolver = new MockContentResolver();
-        resolver.addProvider(ContactsContract.AUTHORITY, new FakeContactsProvider(cursor));
+        resolver.addProvider(ContactsContract.AUTHORITY, new FakeContactsProvider()
+                .withDefaultQueryResult(cursor));
         return resolver;
     }
 
@@ -135,15 +193,19 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
 
     private static class FakeContactsProvider extends MockContentProvider {
         public Cursor mNextQueryResult;
+        public Map<Uri, Cursor> mNextResultMapping = new HashMap<>();
+        public Map<Uri, Integer> mQueryCountMapping = new HashMap<>();
 
         public FakeContactsProvider() {}
 
-        public FakeContactsProvider(Cursor result) {
-            mNextQueryResult = result;
+        public FakeContactsProvider withDefaultQueryResult(Cursor cursor) {
+            mNextQueryResult = cursor;
+            return this;
         }
 
-        public void setNextQueryResult(Cursor result) {
-            mNextQueryResult = result;
+        public FakeContactsProvider withQueryResult(Uri uri, Cursor cursor) {
+            mNextResultMapping.put(uri, cursor);
+            return this;
         }
 
         @Override
@@ -152,11 +214,35 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
             return query(uri, projection, selection, selectionArgs, sortOrder, null);
         }
 
+        public int getQueryCountFor(Uri uri) {
+            ensureCountInitialized(uri);
+            return mQueryCountMapping.get(uri);
+        }
+
         @Nullable
         @Override
         public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                 String sortOrder, CancellationSignal cancellationSignal) {
-            return mNextQueryResult;
+            incrementQueryCount(uri);
+
+            final Cursor result = mNextResultMapping.get(uri);
+            if (result == null) {
+                return mNextQueryResult;
+            } else {
+                return result;
+            }
+        }
+
+        private void ensureCountInitialized(Uri uri) {
+            if (!mQueryCountMapping.containsKey(uri)) {
+                mQueryCountMapping.put(uri, 0);
+            }
+        }
+
+        private void incrementQueryCount(Uri uri) {
+            ensureCountInitialized(uri);
+            final int count = mQueryCountMapping.get(uri);
+            mQueryCountMapping.put(uri, count + 1);
         }
     }
 }

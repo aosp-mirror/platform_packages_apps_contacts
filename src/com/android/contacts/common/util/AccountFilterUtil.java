@@ -22,7 +22,9 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -31,8 +33,10 @@ import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contactsbind.ObjectFactory;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -90,15 +94,17 @@ public class AccountFilterUtil {
      */
     public static class FilterLoader extends AsyncTaskLoader<List<ContactListFilter>> {
         private Context mContext;
+        private DeviceLocalAccountTypeFactory mDeviceLocalFactory;
 
         public FilterLoader(Context context) {
             super(context);
             mContext = context;
+            mDeviceLocalFactory = ObjectFactory.getDeviceLocalAccountTypeFactory(context);
         }
 
         @Override
         public List<ContactListFilter> loadInBackground() {
-            return loadAccountFilters(mContext);
+            return loadAccountFilters(mContext, mDeviceLocalFactory);
         }
 
         @Override
@@ -117,7 +123,8 @@ public class AccountFilterUtil {
         }
     }
 
-    private static List<ContactListFilter> loadAccountFilters(Context context) {
+    private static List<ContactListFilter> loadAccountFilters(Context context,
+            DeviceLocalAccountTypeFactory deviceAccountTypeFactory) {
         final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
         accountTypeManager.sortAccounts(/* defaultAccount */ getDefaultAccount(context));
@@ -127,13 +134,15 @@ public class AccountFilterUtil {
         for (AccountWithDataSet account : accounts) {
             final AccountType accountType =
                     accountTypeManager.getAccountType(account.type, account.dataSet);
-            if (accountType.isExtension() && !account.hasData(context)) {
-                // Hide extensions with no raw_contacts.
+            if ((accountType.isExtension() || DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
+                    deviceAccountTypeFactory, account.type)) && !account.hasData(context)) {
+                // Hide extensions and device accounts with no raw_contacts.
                 continue;
             }
             final Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
-            if (account.isLocalAccount()) {
-                accountFilters.add(ContactListFilter.createDeviceContactsFilter(icon));
+            if (DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
+                    deviceAccountTypeFactory, account.type)) {
+                accountFilters.add(ContactListFilter.createDeviceContactsFilter(icon, account));
             } else {
                 accountFilters.add(ContactListFilter.createAccountFilter(
                         account.type, account.name, account.dataSet, icon));
