@@ -98,6 +98,12 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
                 /* accountType= */ null, /* accountName= */ null, /* dataSet= */ null, icon);
     }
 
+    public static ContactListFilter createDeviceContactsFilter(Drawable icon,
+            AccountWithDataSet account) {
+        return new ContactListFilter(ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS,
+                account.type, account.name, account.dataSet, icon);
+    }
+
     /**
      * Whether the given {@link ContactListFilter} has a filter type that should be displayed as
      * the default contacts list view.
@@ -338,10 +344,8 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     }
 
     public AccountWithDataSet toAccountWithDataSet() {
-        if (filterType == FILTER_TYPE_ACCOUNT) {
+        if (filterType == FILTER_TYPE_ACCOUNT || filterType == FILTER_TYPE_DEVICE_CONTACTS) {
             return new AccountWithDataSet(accountName, accountType, dataSet);
-        } else if (filterType == FILTER_TYPE_DEVICE_CONTACTS) {
-            return AccountWithDataSet.getLocalAccount();
         } else {
             throw new IllegalStateException("Cannot create Account from filter type " +
                     filterTypeToString(filterType));

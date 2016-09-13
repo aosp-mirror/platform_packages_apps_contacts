@@ -139,6 +139,7 @@ public class AccountWithDataSet implements Parcelable {
                 args = new String[] {type, name, dataSet};
             }
         }
+        selection += " AND " + RawContacts.DELETED + "=0";
 
         final Cursor c = context.getContentResolver().query(RAW_CONTACTS_URI_LIMIT_1,
                 ID_PROJECTION, selection, args, null);
