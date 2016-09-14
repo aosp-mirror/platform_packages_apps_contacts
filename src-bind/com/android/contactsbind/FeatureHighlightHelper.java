@@ -26,4 +26,8 @@ public final class FeatureHighlightHelper {
     public static boolean showHamburgerFeatureHighlight(final FragmentActivity activity) {
         return false;
     }
+
+    public static boolean tryRemoveHighlight(final FragmentActivity activity) {
+        return false;
+    }
 }

@@ -659,9 +659,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             }
         } else if (isDuplicatesView()) {
             switchToAllContacts();
+        } else if (mAllFragment.tryRemoveHighlight()) {
+            return;
         } else if (isAllFragmentInSelectionMode()) {
             mAllFragment.getActionBarAdapter().setSelectionMode(false);
-            mAllFragment.displayCheckBoxes(false);
         } else if (isAllFragmentInSearchMode()) {
             mAllFragment.getActionBarAdapter().setSearchMode(false);
             if (mAllFragment.wasSearchResultClicked()) {
