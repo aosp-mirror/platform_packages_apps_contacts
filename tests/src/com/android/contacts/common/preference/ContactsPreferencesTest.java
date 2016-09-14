@@ -19,9 +19,8 @@ package com.android.contacts.common.preference;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.test.AndroidTestCase;
 import android.test.InstrumentationTestCase;
-import android.test.suitebuilder.annotation.MediumTest;
+import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
 
@@ -31,7 +30,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-@MediumTest
+@SmallTest
 public class ContactsPreferencesTest extends InstrumentationTestCase {
 
     private static final String ACCOUNT_KEY = "ACCOUNT_KEY";
