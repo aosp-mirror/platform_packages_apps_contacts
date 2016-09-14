@@ -88,15 +88,17 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         private final long mGroupId;
         private final String mAccountName;
         private final String mAccountType;
+        private final String mDataSet;
 
         private UpdateGroupMembersAsyncTask(int type, Context context, long[] contactIds,
-                long groupId, String accountName, String accountType) {
+                long groupId, String accountName, String accountType, String dataSet) {
             mContext = context;
             mType = type;
             mContactIds = contactIds;
             mGroupId = groupId;
             mAccountName = accountName;
             mAccountType = accountType;
+            mDataSet = dataSet;
         }
 
         @Override
@@ -127,10 +129,16 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         // ContactSaveService will log a warning if the raw contact is already a member and keep
         // going but it is not ideal, we could also prune raw contacts that are already members.
         private long[] getRawContactIds() {
-            final Uri rawContactUri = RawContacts.CONTENT_URI.buildUpon()
-                    .appendQueryParameter(RawContacts.ACCOUNT_NAME, mAccountName)
-                    .appendQueryParameter(RawContacts.ACCOUNT_TYPE, mAccountType)
-                    .build();
+            final Uri.Builder builder = RawContacts.CONTENT_URI.buildUpon();
+            // null account names are not valid, see ContactsProvider2#appendAccountFromParameter
+            if (mAccountName != null) {
+                builder.appendQueryParameter(RawContacts.ACCOUNT_NAME, mAccountName);
+                builder.appendQueryParameter(RawContacts.ACCOUNT_TYPE, mAccountType);
+            }
+            if (mDataSet != null) {
+                builder.appendQueryParameter(RawContacts.DATA_SET, mDataSet);
+            }
+            final Uri rawContactUri = builder.build();
             final String[] projection = new String[]{RawContacts._ID};
             final StringBuilder selection = new StringBuilder();
             final String[] selectionArgs = new String[mContactIds.length];
@@ -443,7 +451,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         final long[] contactIds = mMembersFragment.getAdapter().getSelectedContactIdsArray();
         new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_REMOVE,
                 this, contactIds, mGroupMetaData.groupId, mGroupMetaData.accountName,
-                mGroupMetaData.accountType).execute();
+                mGroupMetaData.accountType, mGroupMetaData.dataSet).execute();
 
         mActionBarAdapter.setSelectionMode(false);
     }
@@ -489,7 +497,7 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
             }
             new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_ADD,
                     this, contactIds, mGroupMetaData.groupId, mGroupMetaData.accountName,
-                    mGroupMetaData.accountType).execute();
+                    mGroupMetaData.accountType, mGroupMetaData.dataSet).execute();
         }
     }
 
@@ -610,6 +618,6 @@ public class GroupMembersActivity extends ContactsDrawerActivity implements
         contactIds[0] = contactId;
         new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_REMOVE,
                 this, contactIds, mGroupMetaData.groupId, mGroupMetaData.accountName,
-                mGroupMetaData.accountType).execute();
+                mGroupMetaData.accountType, mGroupMetaData.dataSet).execute();
     }
 }
