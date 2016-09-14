@@ -264,9 +264,6 @@ public class ExpandingEntryCardView extends CardView {
     private boolean mIsAlwaysExpanded;
     /** The ViewGroup to run the expand/collapse animation on */
     private ViewGroup mAnimationViewGroup;
-    private LinearLayout mBadgeContainer;
-    private final List<ImageView> mBadges;
-    private final List<Integer> mBadgeIds;
     private final int mDividerLineHeightPixels;
     /**
      * List to hold the separators. This saves us from reconstructing every expand/collapse and
@@ -304,12 +301,8 @@ public class ExpandingEntryCardView extends CardView {
         mExpandCollapseTextView = (TextView) mExpandCollapseButton.findViewById(R.id.text);
         mExpandCollapseArrow = (ImageView) mExpandCollapseButton.findViewById(R.id.arrow);
         mExpandCollapseButton.setOnClickListener(mExpandCollapseButtonListener);
-        mBadgeContainer = (LinearLayout) mExpandCollapseButton.findViewById(R.id.badge_container);
         mDividerLineHeightPixels = getResources()
                 .getDimensionPixelSize(R.dimen.divider_line_height);
-
-        mBadges = new ArrayList<ImageView>();
-        mBadgeIds = new ArrayList<Integer>();
     }
 
     /**
@@ -773,47 +766,7 @@ public class ExpandingEntryCardView extends CardView {
             animator.setDuration(duration);
             animator.start();
         }
-        updateBadges();
-
         mExpandCollapseTextView.setText(buttonText);
-    }
-
-    private void updateBadges() {
-        if (mIsExpanded) {
-            mBadgeContainer.removeAllViews();
-        } else {
-            int numberOfMimeTypesShown = mCollapsedEntriesCount;
-
-            // Inflate badges if not yet created
-            if (mBadges.size() < mEntries.size() - numberOfMimeTypesShown) {
-                for (int i = numberOfMimeTypesShown; i < mEntries.size(); i++) {
-                    Drawable badgeDrawable = mEntries.get(i).get(0).getIcon();
-                    int badgeResourceId = mEntries.get(i).get(0).getIconResourceId();
-                    // Do not add the same badge twice
-                    if (badgeResourceId != 0 && mBadgeIds.contains(badgeResourceId)) {
-                        continue;
-                    }
-                    if (badgeDrawable != null) {
-                        ImageView badgeView = new ImageView(getContext());
-                        LinearLayout.LayoutParams badgeViewParams = new LinearLayout.LayoutParams(
-                                (int) getResources().getDimension(
-                                        R.dimen.expanding_entry_card_item_icon_width),
-                                (int) getResources().getDimension(
-                                        R.dimen.expanding_entry_card_item_icon_height));
-                        badgeViewParams.setMarginEnd((int) getResources().getDimension(
-                                R.dimen.expanding_entry_card_badge_separator_margin));
-                        badgeView.setLayoutParams(badgeViewParams);
-                        badgeView.setImageDrawable(badgeDrawable);
-                        mBadges.add(badgeView);
-                        mBadgeIds.add(badgeResourceId);
-                    }
-                }
-            }
-            mBadgeContainer.removeAllViews();
-            for (ImageView badge : mBadges) {
-                mBadgeContainer.addView(badge);
-            }
-        }
     }
 
     private void expand() {

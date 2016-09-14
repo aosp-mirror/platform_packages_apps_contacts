@@ -214,7 +214,6 @@
     <dimen name="expanding_entry_card_item_icon_margin_right">12dp</dimen>
     <dimen name="expanding_entry_card_item_header_only_margin_top">6dp</dimen>
 
-    <dimen name="expanding_entry_card_badge_separator_margin">8dp</dimen>
     <dimen name="expanding_entry_card_card_corner_radius">2dp</dimen>
     <dimen name="expanding_entry_card_header_margin_bottom">2dp</dimen>
     <!-- The top margin when the sub header and text views are both gone -->
