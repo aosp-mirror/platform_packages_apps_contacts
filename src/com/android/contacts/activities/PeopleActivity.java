@@ -77,6 +77,7 @@ import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.SyncUtil;
+import com.android.contactsbind.FeatureHighlightHelper;
 import com.android.contactsbind.ObjectFactory;
 import com.android.contactsbind.experiments.Flags;
 import com.android.contacts.widget.FloatingActionButtonBehavior;
@@ -644,26 +645,57 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             return;
         }
 
+        // Handle the back event in drawer first.
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
-        } else if (isGroupView()) {
-            if (mMembersFragment.isEditMode()) {
-                mMembersFragment.exitEditMode();
-            } else if (mMembersFragment.getActionBarAdapter().isSelectionMode()) {
-                mMembersFragment.getActionBarAdapter().setSelectionMode(false);
-                mMembersFragment.displayCheckBoxes(false);
-            } else if (mMembersFragment.getActionBarAdapter().isSearchMode()) {
-                mMembersFragment.getActionBarAdapter().setSearchMode(false);
-            } else {
-                switchToAllContacts();
-            }
-        } else if (isDuplicatesView()) {
-            switchToAllContacts();
-        } else if (mAllFragment.tryRemoveHighlight()) {
             return;
-        } else if (isAllFragmentInSelectionMode()) {
+        }
+
+        // Handle the back event in "second level".
+        if (isGroupView()) {
+            onBackPressedGroupView();
+            return;
+        }
+
+        if (isDuplicatesView()) {
+            switchToAllContacts();
+            return;
+        }
+
+        // If feature highlight is present, let it handle the back event before mAllFragment.
+        if (FeatureHighlightHelper.tryRemoveHighlight(this)) {
+            return;
+        }
+
+        // Handle the back event in "first level" - mAllFragment.
+        if (maybeHandleInAllFragment()) {
+            return;
+        }
+
+        super.onBackPressed();
+    }
+
+    private void onBackPressedGroupView() {
+        if (mMembersFragment.isEditMode()) {
+            mMembersFragment.exitEditMode();
+        } else if (mMembersFragment.getActionBarAdapter().isSelectionMode()) {
+            mMembersFragment.getActionBarAdapter().setSelectionMode(false);
+            mMembersFragment.displayCheckBoxes(false);
+        } else if (mMembersFragment.getActionBarAdapter().isSearchMode()) {
+            mMembersFragment.getActionBarAdapter().setSearchMode(false);
+        } else {
+            switchToAllContacts();
+        }
+    }
+
+    // Returns true if back event is handled in this method.
+    private boolean maybeHandleInAllFragment() {
+        if (isAllFragmentInSelectionMode()) {
             mAllFragment.getActionBarAdapter().setSelectionMode(false);
-        } else if (isAllFragmentInSearchMode()) {
+            return true;
+        }
+
+        if (isAllFragmentInSearchMode()) {
             mAllFragment.getActionBarAdapter().setSearchMode(false);
             if (mAllFragment.wasSearchResultClicked()) {
                 mAllFragment.resetSearchResultClicked();
@@ -671,14 +703,18 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
                 Logger.logScreenView(this, ScreenType.SEARCH_EXIT);
                 Logger.logSearchEvent(mAllFragment.createSearchState());
             }
-        } else if (!AccountFilterUtil.isAllContactsFilter(mAllFragment.getFilter())
+            return true;
+        }
+
+        if (!AccountFilterUtil.isAllContactsFilter(mAllFragment.getFilter())
                 && !mAllFragment.isHidden()) {
             // If mAllFragment is hidden, then mContactsUnavailableFragment is visible so we
             // don't need to switch to all contacts.
             switchToAllContacts();
-        } else {
-            super.onBackPressed();
+            return true;
         }
+
+        return false;
     }
 
     private boolean isAllFragmentInSelectionMode() {

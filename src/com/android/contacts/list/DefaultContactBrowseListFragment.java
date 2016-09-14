@@ -269,10 +269,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         }
     }
 
-    public boolean tryRemoveHighlight() {
-        return FeatureHighlightHelper.tryRemoveHighlight(mActivity);
-    }
-
     private void bindListHeader(int numberOfContacts) {
         final ContactListFilter filter = getFilter();
         // If the phone has at least one Google account whose sync status is unsyncable or pending
