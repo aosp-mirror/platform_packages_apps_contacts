@@ -32,6 +32,8 @@ import com.android.contacts.quickcontact.QuickContactActivity;
 
 import java.util.List;
 
+import static com.android.contacts.common.list.ShortcutIntentBuilder.INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION;
+
 /**
  * Utility for forcing intents to be started inside the current app. This is useful for avoiding
  * senseless disambiguation dialogs. Ie, if a user clicks a contact inside Contacts we assume
@@ -127,6 +129,28 @@ public class ImplicitIntentsUtil {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
         intent.putExtra(Settings.EXTRA_ACCOUNT_TYPES,
                 new String[]{GoogleAccountType.ACCOUNT_TYPE});
+        return intent;
+    }
+
+    public static Intent getIntentForQuickContactLauncherShortcut(Context context, Uri contactUri) {
+        final Intent intent = composeQuickContactIntent(context, contactUri,
+                QuickContact.MODE_LARGE);
+        intent.setPackage(context.getPackageName());
+
+        // When starting from the launcher, start in a new, cleared task.
+        // CLEAR_WHEN_TASK_RESET cannot reset the root of a task, so we
+        // clear the whole thing preemptively here since QuickContactActivity will
+        // finish itself when launching other detail activities. We need to use
+        // Intent.FLAG_ACTIVITY_NO_ANIMATION since not all versions of launcher will respect
+        // the INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION intent extra.
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+        // Tell the launcher to not do its animation, because we are doing our own
+        intent.putExtra(INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION, true);
+
+        intent.putExtra(QuickContact.EXTRA_EXCLUDE_MIMES, (String[])null);
+
         return intent;
     }
 

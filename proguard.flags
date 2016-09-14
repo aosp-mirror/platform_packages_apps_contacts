@@ -76,6 +76,7 @@
 -keep class com.android.contacts.ContactsApplication { *; }
 -keep class com.android.contacts.ContactSaveService { *; }
 -keep class com.android.contacts.ContactSaveService$* { *; }
+-keep class com.android.contacts.DynamicShortcuts { *; }
 -keep class com.android.contacts.editor.ContactEditorUtils { *; }
 -keep class com.android.contacts.editor.EditorUiUtils { *; }
 -keep class com.android.contacts.group.GroupUtil { *; }

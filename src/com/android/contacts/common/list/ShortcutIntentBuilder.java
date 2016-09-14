@@ -47,6 +47,7 @@ import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.R;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 
 /**
  * Constructs shortcut intents.
@@ -265,26 +266,8 @@ public class ShortcutIntentBuilder {
             String lookupKey, byte[] bitmapData) {
         Drawable drawable = getPhotoDrawable(bitmapData, displayName, lookupKey);
 
-        // Use an implicit intent without a package name set. It is reasonable for a disambiguation
-        // dialog to appear when opening QuickContacts from the launcher. Plus, this will be more
-        // resistant to future package name changes done to Contacts.
-        Intent shortcutIntent = new Intent(ContactsContract.QuickContact.ACTION_QUICK_CONTACT);
-
-        // When starting from the launcher, start in a new, cleared task.
-        // CLEAR_WHEN_TASK_RESET cannot reset the root of a task, so we
-        // clear the whole thing preemptively here since QuickContactActivity will
-        // finish itself when launching other detail activities. We need to use
-        // Intent.FLAG_ACTIVITY_NO_ANIMATION since not all versions of launcher will respect
-        // the INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION intent extra.
-        shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
-        // Tell the launcher to not do its animation, because we are doing our own
-        shortcutIntent.putExtra(INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION, true);
-
-        shortcutIntent.setDataAndType(contactUri, contentType);
-        shortcutIntent.putExtra(ContactsContract.QuickContact.EXTRA_EXCLUDE_MIMES,
-                (String[]) null);
+        final Intent shortcutIntent = ImplicitIntentsUtil.getIntentForQuickContactLauncherShortcut(
+                mContext, contactUri);
 
         final Bitmap icon = generateQuickContactIcon(drawable);
 
