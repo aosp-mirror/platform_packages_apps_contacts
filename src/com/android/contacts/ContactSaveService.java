@@ -1360,17 +1360,26 @@ public class ContactSaveService extends IntentService {
             return;
         }
 
-        if (receiver != null) {
-            final Bundle result = new Bundle();
-            result.putSerializable(EXTRA_RAW_CONTACT_IDS, separatedRawContactIds);
-            result.putString(EXTRA_DISPLAY_NAME, queryNameOfLinkedContacts(contactIds));
-            receiver.send(CONTACTS_LINKED, result);
+
+        final String name = queryNameOfLinkedContacts(contactIds);
+        if (name != null) {
+            if (receiver != null) {
+                final Bundle result = new Bundle();
+                result.putSerializable(EXTRA_RAW_CONTACT_IDS, separatedRawContactIds);
+                result.putString(EXTRA_DISPLAY_NAME, name);
+                receiver.send(CONTACTS_LINKED, result);
+            } else {
+                showToast(R.string.contactsJoinedMessage);
+            }
         } else {
-            showToast(R.string.contactsJoinedMessage);
+            if (receiver != null) {
+                receiver.send(CP2_ERROR, new Bundle());
+            }
+            showToast(R.string.contactJoinErrorToast);
         }
     }
 
-    // Get the display name of the top-level contact after the contacts have been linked.
+    /** Get the display name of the top-level contact after the contacts have been linked. */
     private String queryNameOfLinkedContacts(long[] contactIds) {
         final StringBuilder whereBuilder = new StringBuilder(Contacts._ID).append(" IN (");
         final String[] whereArgs = new String[contactIds.length];
@@ -1380,23 +1389,41 @@ public class ContactSaveService extends IntentService {
         }
         whereBuilder.deleteCharAt(whereBuilder.length() - 1).append(')');
         final Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
-                new String[]{Contacts.DISPLAY_NAME}, whereBuilder.toString(), whereArgs, null);
+                new String[]{Contacts._ID, Contacts.DISPLAY_NAME},
+                whereBuilder.toString(), whereArgs, null);
+
+        String name = null;
+        long contactId = 0;
         try {
             if (cursor.moveToFirst()) {
-                return cursor.getString(0);
+                contactId = cursor.getLong(0);
+                name = cursor.getString(1);
             }
-            return null;
+            while(cursor.moveToNext()) {
+                if (cursor.getLong(0) != contactId) {
+                    return null;
+                }
+            }
+            return name == null ? "" : name;
         } finally {
-            cursor.close();
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
-
 
     /** Returns true if the batch was successfully applied and false otherwise. */
     private boolean applyOperations(ContentResolver resolver,
             ArrayList<ContentProviderOperation> operations) {
         try {
-            resolver.applyBatch(ContactsContract.AUTHORITY, operations);
+            final ContentProviderResult[] result =
+                    resolver.applyBatch(ContactsContract.AUTHORITY, operations);
+            for (int i = 0; i < result.length; ++i) {
+                // if no rows were modified in the operation then we count it as fail.
+                if (result[i].count < 0) {
+                    throw new OperationApplicationException();
+                }
+            }
             return true;
         } catch (RemoteException | OperationApplicationException e) {
             Log.e(TAG, "Failed to apply aggregation exception batch", e);
@@ -1461,19 +1488,12 @@ public class ContactSaveService extends IntentService {
             operations.add(builder.build());
         }
 
-        boolean success = false;
         // Apply all aggregation exceptions as one batch
-        try {
-            resolver.applyBatch(ContactsContract.AUTHORITY, operations);
-            showToast(R.string.contactsJoinedMessage);
-            success = true;
-        } catch (RemoteException | OperationApplicationException e) {
-            Log.e(TAG, "Failed to apply aggregation exception batch", e);
-            showToast(R.string.contactSavedErrorToast);
-        }
+        final boolean success = applyOperations(resolver, operations);
 
+        final String name = queryNameOfLinkedContacts(new long[] {contactId1, contactId2});
         Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
-        if (success) {
+        if (success && name != null) {
             Uri uri = RawContacts.getContactLookupUri(resolver,
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactIds[0]));
             callbackIntent.setData(uri);

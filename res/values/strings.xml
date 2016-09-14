@@ -300,19 +300,19 @@
     <string name="contactUnlinkedToast">Contacts unlinked</string>
 
     <!-- Toast displayed when saving a contact failed. [CHAR LIMIT=NONE] -->
-    <string name="contactSavedErrorToast">Couldn\'t save contact changes.</string>
+    <string name="contactSavedErrorToast">Couldn\'t save contact changes</string>
 
     <!-- Toast displayed when unlinking a contact failed. [CHAR LIMIT=NONE] -->
-    <string name="contactUnlinkErrorToast">Couldn\'t unlink contact.</string>
+    <string name="contactUnlinkErrorToast">Couldn\'t unlink contact</string>
 
     <!-- Toast displayed when linking a contact failed. [CHAR LIMIT=NONE] -->
-    <string name="contactJoinErrorToast">Couldn\'t link contact.</string>
+    <string name="contactJoinErrorToast">Couldn\'t link contact</string>
 
     <!-- Generic error default clause displayed when saving a contact failed. [CHAR LIMIT=NONE] -->
-    <string name="contactGenericErrorToast">Error saving contact.</string>
+    <string name="contactGenericErrorToast">Error saving contact</string>
 
     <!-- Toast displayed when saving a contact photo failed. [CHAR LIMIT=NONE] -->
-    <string name="contactPhotoSavedErrorToast">Couldn\'t save contact photo changes.</string>
+    <string name="contactPhotoSavedErrorToast">Couldn\'t save contact photo changes</string>
 
     <!-- Toast displayed when something goes wrong while loading a label. [CHAR LIMIT=70] -->
     <string name="groupLoadErrorToast">Failed to load label</string>
@@ -339,7 +339,7 @@
     <string name="groupMembersAddedToast">Added to label</string>
 
     <!-- Toast displayed when saving a label failed [CHAR LIMIT=70] -->
-    <string name="groupSavedErrorToast">Couldn\'t save label changes.</string>
+    <string name="groupSavedErrorToast">Couldn\'t save label changes</string>
 
     <!-- Message displayed when creating a group with the same name as an existing group -->
     <string name="groupExistsErrorMessage">That label already exists</string>
