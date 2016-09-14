@@ -335,9 +335,12 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
             throw new IllegalStateException(
                     "filterType must be FILTER_TYPE_ACCOUNT or FILER_TYPE_GROUP_MEMBERS");
         }
-        uriBuilder.appendQueryParameter(RawContacts.ACCOUNT_NAME, accountName);
-        uriBuilder.appendQueryParameter(RawContacts.ACCOUNT_TYPE, accountType);
-        if (!TextUtils.isEmpty(dataSet)) {
+        // null account names are not valid, see ContactsProvider2#appendAccountFromParameter
+        if (accountName != null) {
+            uriBuilder.appendQueryParameter(RawContacts.ACCOUNT_NAME, accountName);
+            uriBuilder.appendQueryParameter(RawContacts.ACCOUNT_TYPE, accountType);
+        }
+        if (dataSet != null) {
             uriBuilder.appendQueryParameter(RawContacts.DATA_SET, dataSet);
         }
         return uriBuilder;

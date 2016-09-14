@@ -22,6 +22,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.RawContacts;
 import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
@@ -42,15 +43,17 @@ public class UpdateGroupMembersAsyncTask extends AsyncTask<Void, Void, Intent> {
     private final long mGroupId;
     private final String mAccountName;
     private final String mAccountType;
+    private final String mDataSet;
 
     public UpdateGroupMembersAsyncTask(int type, Context context, long[] contactIds,
-            long groupId, String accountName, String accountType) {
+            long groupId, String accountName, String accountType, String dataSet) {
         mContext = context;
         mType = type;
         mContactIds = contactIds;
         mGroupId = groupId;
         mAccountName = accountName;
         mAccountType = accountType;
+        mDataSet = dataSet;
     }
 
     @Override
@@ -81,10 +84,16 @@ public class UpdateGroupMembersAsyncTask extends AsyncTask<Void, Void, Intent> {
     // TODO(wjang): prune raw contacts that are already in the group; ContactSaveService will
     // log a warning if the raw contact is already a member and keep going but it is not ideal.
     private long[] getRawContactIds() {
-        final Uri rawContactUri = ContactsContract.RawContacts.CONTENT_URI.buildUpon()
-                .appendQueryParameter(ContactsContract.RawContacts.ACCOUNT_NAME, mAccountName)
-                .appendQueryParameter(ContactsContract.RawContacts.ACCOUNT_TYPE, mAccountType)
-                .build();
+        final Uri.Builder builder = RawContacts.CONTENT_URI.buildUpon();
+        // null account names are not valid, see ContactsProvider2#appendAccountFromParameter
+        if (mAccountName != null) {
+            builder.appendQueryParameter(RawContacts.ACCOUNT_NAME, mAccountName);
+            builder.appendQueryParameter(RawContacts.ACCOUNT_TYPE, mAccountType);
+        }
+        if (mDataSet != null) {
+            builder.appendQueryParameter(RawContacts.DATA_SET, mDataSet);
+        }
+        final Uri rawContactUri = builder.build();
         final String[] projection = new String[]{ContactsContract.RawContacts._ID};
         final StringBuilder selection = new StringBuilder();
         final String[] selectionArgs = new String[mContactIds.length];

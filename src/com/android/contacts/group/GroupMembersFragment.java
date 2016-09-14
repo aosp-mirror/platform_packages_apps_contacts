@@ -318,7 +318,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         final long[] contactIds = getAdapter().getSelectedContactIdsArray();
         new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_REMOVE,
                 getContext(), contactIds, mGroupMetaData.groupId, mGroupMetaData.accountName,
-                mGroupMetaData.accountType).execute();
+                mGroupMetaData.accountType, mGroupMetaData.dataSet).execute();
 
         mActionBarAdapter.setSelectionMode(false);
     }
@@ -340,7 +340,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             new UpdateGroupMembersAsyncTask(
                     UpdateGroupMembersAsyncTask.TYPE_ADD,
                     getContext(), contactIds, mGroupMetaData.groupId, mGroupMetaData.accountName,
-                    mGroupMetaData.accountType).execute();
+                    mGroupMetaData.accountType, mGroupMetaData.dataSet).execute();
         }
     }
 
@@ -636,7 +636,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             contactIds[0] = contactId;
             new UpdateGroupMembersAsyncTask(UpdateGroupMembersAsyncTask.TYPE_REMOVE,
                     getContext(), contactIds, mGroupMetaData.groupId, mGroupMetaData.accountName,
-                    mGroupMetaData.accountType).execute();
+                    mGroupMetaData.accountType, mGroupMetaData.dataSet).execute();
         }
     }
 
