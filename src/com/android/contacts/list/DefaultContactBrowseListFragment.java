@@ -28,6 +28,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -69,8 +70,13 @@ import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.common.util.AccountFilterUtil;
+import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactMultiDeletionInteraction;
@@ -80,6 +86,7 @@ import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contacts.util.SyncUtil;
 import com.android.contactsbind.experiments.Flags;
 import com.android.contactsbind.FeatureHighlightHelper;
+import com.android.contactsbind.ObjectFactory;
 
 import java.util.List;
 import java.util.Locale;
@@ -135,6 +142,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private ContactsDrawerActivity mActivity;
     private ContactsRequest mContactsRequest;
     private ContactListFilterController mContactListFilterController;
+    private DeviceLocalAccountTypeFactory mDeviceLocalFactory;
 
     private final ActionBarAdapter.Listener mActionBarListener = new ActionBarAdapter.Listener() {
         @Override
@@ -426,13 +434,14 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         mIsRecreatedInstance = (savedState != null);
         mContactListFilterController = ContactListFilterController.getInstance(getContext());
         mContactListFilterController.checkFilterValidity(false);
-        // Use FILTER_TYPE_ALL_ACCOUNTS filter if the instance is not a re-created one.
-        // This is useful when user upgrades app while an account filter was
-        // stored in sharedPreference in a previous version of Contacts app.
-        final ContactListFilter filter = mIsRecreatedInstance
-                ? getFilter()
-                : AccountFilterUtil.createContactsFilter(getContext());
-        setContactListFilter(filter);
+        mDeviceLocalFactory = ObjectFactory.getDeviceLocalAccountTypeFactory(getContext());
+        if (!Flags.getInstance(getContext()).getBoolean(Experiments.ACCOUNT_SWITCHER)
+                && !mIsRecreatedInstance) {
+            // Use FILTER_TYPE_ALL_ACCOUNTS filter if the instance is not a re-created one.
+            // This is useful when user upgrades app while an account filter was
+            // stored in sharedPreference in a previous version of Contacts app.
+            setContactListFilter(AccountFilterUtil.createContactsFilter(getContext()));
+        }
     }
 
     @Override
@@ -825,7 +834,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
      */
     private void setContactListFilter(ContactListFilter filter) {
         mContactListFilterController.setContactListFilter(filter,
-                /* persistent */ isAllContactsFilter(filter));
+                AccountFilterUtil.shouldPersistFilter(getContext(), filter));
     }
 
     @Override

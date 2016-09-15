@@ -394,11 +394,11 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
 
     /**
      * Returns true if this ContactListFilter contains at least one Google account.
-     * (see {@link #isGoogleAccountType)
+     * (see {@link #isWritableGoogleTypeFilter )
      */
     public boolean isSyncable(List<AccountWithDataSet> accounts) {
         // TODO(samchen): Check FILTER_TYPE_CUSTOM
-        if (isGoogleAccountType() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+        if (isWritableGoogleTypeFilter() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
             return true;
         }
         if (filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
@@ -407,8 +407,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
                 // If we're showing all contacts and there is any Google account on the device then
                 // we're syncable.
                 for (AccountWithDataSet account : accounts) {
-                    if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type)
-                            && account.dataSet == null) {
+                    if (account.isWritableGoogleAccount()) {
                         return true;
                     }
                 }
@@ -418,19 +417,18 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     }
 
     /**
-     * Returns the Google accounts (see {@link #isGoogleAccountType) for this ContactListFilter.
+     * Returns the Google accounts (see {@link #isWritableGoogleTypeFilter ) for this ContactListFilter.
      */
     public List<Account> getSyncableAccounts(List<AccountWithDataSet> accounts) {
         final List<Account> syncableAccounts = new ArrayList<>();
         // TODO(samchen): Check FILTER_TYPE_CUSTOM
-        if (isGoogleAccountType() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+        if (isWritableGoogleTypeFilter() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
             syncableAccounts.add(new Account(accountName, accountType));
         } else if (filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
                 || filterType == ContactListFilter.FILTER_TYPE_DEFAULT) {
             if (accounts != null && accounts.size() > 0) {
                 for (AccountWithDataSet account : accounts) {
-                    if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type)
-                            && account.dataSet == null) {
+                    if (account.isWritableGoogleAccount()) {
                         syncableAccounts.add(new Account(account.name, account.type));
                     }
                 }
@@ -443,7 +441,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
      * Returns true if this ContactListFilter is Google account type. (i.e. where
      * accountType = "com.google" and dataSet = null)
      */
-    public boolean isGoogleAccountType() {
+    public boolean isWritableGoogleTypeFilter() {
         return GoogleAccountType.ACCOUNT_TYPE.equals(accountType) && dataSet == null;
     }
 }

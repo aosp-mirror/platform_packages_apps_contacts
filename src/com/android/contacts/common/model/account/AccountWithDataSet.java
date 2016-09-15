@@ -79,6 +79,10 @@ public class AccountWithDataSet implements Parcelable {
         mAccountTypeWithDataSet = AccountTypeWithDataSet.get(type, dataSet);
     }
 
+    public boolean isWritableGoogleAccount() {
+        return GoogleAccountType.ACCOUNT_TYPE.equals(type) && dataSet == null;
+    }
+
     public boolean isNullAccount() {
         return name == null && type == null && dataSet == null;
     }

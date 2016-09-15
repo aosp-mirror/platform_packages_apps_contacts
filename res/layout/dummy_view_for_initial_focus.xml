@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2016 The Android Open Source Project
+<!-- Copyright (C) 2016 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,19 +14,11 @@
      limitations under the License.
 -->
 
-<android.support.v4.widget.DrawerLayout
+<View
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
-
-    <!-- To prevent hamburger menu from getting the initial focus. -->
-    <include layout="@layout/dummy_view_for_initial_focus"/>
-
-    <include layout="@layout/contacts_main_content"/>
-
-    <include layout="@layout/navigation_view"/>
-</android.support.v4.widget.DrawerLayout>
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="1px"
+    android:layout_height="1px" >
+    <requestFocus/>
+</View>

@@ -1809,4 +1809,6 @@
     <!-- Toast shown on settings screen when importing from SIM completes with an error -->
     <string name="sim_import_failed_toast">Failed to import SIM contacts</string>
 
+    <!-- Error message displayed to user when they started the app, but could not sign in to Google's servers. [CHAR LIMIT=50]-->
+    <string name="connection_failed">Failed to sign in</string>
 </resources>

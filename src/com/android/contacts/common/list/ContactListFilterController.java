@@ -81,6 +81,8 @@ public abstract class ContactListFilterController {
      * which case, we should switch to the last saved filter in {@link SharedPreferences}.
      */
     public abstract void checkFilterValidity(boolean notifyListeners);
+
+    public abstract Context getContext();
 }
 
 /**
@@ -195,5 +197,10 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
         final AccountWithDataSet filterAccount = new AccountWithDataSet(
                 mFilter.accountName, mFilter.accountType, mFilter.dataSet);
         return accountTypeManager.contains(filterAccount, /* contactWritableOnly */ false);
+    }
+
+    @Override
+    public Context getContext() {
+        return mContext;
     }
 }
