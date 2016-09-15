@@ -16,6 +16,8 @@
 package com.android.contacts.interactions;
 
 import com.android.contacts.R;
+import com.android.contacts.common.GeoUtil;
+import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.util.BitmapUtil;
 import com.android.contacts.common.util.ContactDisplayUtils;
 
@@ -66,7 +68,14 @@ public class CallLogInteraction implements ContactInteraction {
 
     @Override
     public String getViewHeader(Context context) {
-        return getNumber();
+        String number = mValues.getAsString(Calls.NUMBER);
+        if (number != null) {
+            number = PhoneNumberUtilsCompat.formatNumber(number,
+                    PhoneNumberUtilsCompat.normalizeNumber(number),
+                    GeoUtil.getCurrentCountryIso(context));
+            return sBidiFormatter.unicodeWrap(number, TextDirectionHeuristics.LTR);
+        }
+        return null;
     }
 
     @Override
