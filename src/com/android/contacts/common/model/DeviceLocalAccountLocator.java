@@ -78,16 +78,8 @@ public class DeviceLocalAccountLocator {
 
         // Many device accounts have default groups associated with them.
         addAccountsFromQuery(ContactsContract.Groups.CONTENT_URI, localAccounts);
-
         addAccountsFromQuery(ContactsContract.Settings.CONTENT_URI, localAccounts);
-
-        if (localAccounts.isEmpty()) {
-            // It's probably safe to assume that if one of the earlier queries found a "device"
-            // account then this query isn't going to find any different device accounts.
-            // We skip this query because it probably is kind of expensive (relative to the other
-            // queries).
-            addAccountsFromQuery(ContactsContract.RawContacts.CONTENT_URI, localAccounts);
-        }
+        addAccountsFromQuery(ContactsContract.RawContacts.CONTENT_URI, localAccounts);
 
         return new ArrayList<>(localAccounts);
     }

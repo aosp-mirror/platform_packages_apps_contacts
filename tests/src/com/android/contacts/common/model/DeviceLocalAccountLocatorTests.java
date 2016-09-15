@@ -140,24 +140,6 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
         assertEquals(2, sut.getDeviceLocalAccounts().size());
     }
 
-    public void test_getDeviceLocalAccounts_onlyQueriesRawContactsIfNecessary() {
-        final DeviceLocalAccountTypeFactory stubFactory = new FakeDeviceAccountTypeFactory()
-                .withDeviceTypes(null, "vnd.sec.contact.phone")
-                .withSimTypes("vnd.sec.contact.sim");
-        final FakeContactsProvider contactsProvider = new FakeContactsProvider()
-                .withQueryResult(ContactsContract.Groups.CONTENT_URI, queryResult(
-                        "phone_account", "vnd.sec.contact.phone",
-                        "sim_account", "vnd.sec.contact.sim"
-                ));
-        final DeviceLocalAccountLocator sut = new DeviceLocalAccountLocator(
-                createContentResolverWithProvider(contactsProvider), stubFactory,
-                Collections.<AccountWithDataSet>emptyList());
-
-        sut.getDeviceLocalAccounts();
-
-        assertEquals(0, contactsProvider.getQueryCountFor(RawContacts.CONTENT_URI));
-    }
-
     private DeviceLocalAccountLocator createWithQueryResult(
             Cursor cursor) {
         final DeviceLocalAccountLocator locator = new DeviceLocalAccountLocator(
@@ -194,7 +176,6 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
     private static class FakeContactsProvider extends MockContentProvider {
         public Cursor mNextQueryResult;
         public Map<Uri, Cursor> mNextResultMapping = new HashMap<>();
-        public Map<Uri, Integer> mQueryCountMapping = new HashMap<>();
 
         public FakeContactsProvider() {}
 
@@ -214,35 +195,16 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
             return query(uri, projection, selection, selectionArgs, sortOrder, null);
         }
 
-        public int getQueryCountFor(Uri uri) {
-            ensureCountInitialized(uri);
-            return mQueryCountMapping.get(uri);
-        }
-
         @Nullable
         @Override
         public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                 String sortOrder, CancellationSignal cancellationSignal) {
-            incrementQueryCount(uri);
-
             final Cursor result = mNextResultMapping.get(uri);
             if (result == null) {
                 return mNextQueryResult;
             } else {
                 return result;
             }
-        }
-
-        private void ensureCountInitialized(Uri uri) {
-            if (!mQueryCountMapping.containsKey(uri)) {
-                mQueryCountMapping.put(uri, 0);
-            }
-        }
-
-        private void incrementQueryCount(Uri uri) {
-            ensureCountInitialized(uri);
-            final int count = mQueryCountMapping.get(uri);
-            mQueryCountMapping.put(uri, count + 1);
         }
     }
 }
