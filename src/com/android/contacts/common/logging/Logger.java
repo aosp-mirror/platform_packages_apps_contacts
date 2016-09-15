@@ -87,11 +87,11 @@ public abstract class Logger {
         final Logger logger = getInstance();
         if (logger != null) {
             final QuickContactEvent event = new QuickContactEvent();
-            event.referrer = referrer;
+            event.referrer = referrer == null ? "Unknown" : referrer;
             event.contactType = contactType;
             event.cardType = cardType;
             event.actionType = actionType;
-            event.thirdPartyAction = thirdPartyAction;
+            event.thirdPartyAction = thirdPartyAction == null ? "" : thirdPartyAction;
             logger.logQuickContactEventImpl(event);
         }
     }
