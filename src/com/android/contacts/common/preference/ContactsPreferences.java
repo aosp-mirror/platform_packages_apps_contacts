@@ -22,12 +22,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.support.annotation.NonNull;
@@ -36,7 +34,6 @@ import android.text.TextUtils;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.model.AccountTypeManager;
 
 import java.util.ArrayList;
@@ -79,10 +76,15 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
 
     public static final String CONTACT_METADATA_AUTHORITY = "com.android.contacts.metadata";
 
+    public static final String ONLY_CLEAR_DONOT_SYNC = "only_clear_donot_sync";
+
     public static final String SHOULD_CLEAR_METADATA_BEFORE_SYNCING =
             "should_clear_metadata_before_syncing";
 
-    public static final String ONLY_CLEAR_DONOT_SYNC = "only_clear_donot_sync";
+    private static final String NAV_DRAWER_FIRST_RECENT = "NavigationDrawer_first_recent";
+
+    private static final String NAV_DRAWER_SECOND_RECENT = "NavigationDrawer_second_recent";
+
     /**
      * Value to use when a preference is unassigned and needs to be read from the shared preferences
      */
@@ -244,6 +246,26 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         return false;
     }
 
+    public void setRecentAccounts(@NonNull List<String> recentAccounts) {
+        final int size = recentAccounts.size();
+        final Editor editor = mPreferences.edit();
+        editor.putString(NAV_DRAWER_FIRST_RECENT, size > 0 ? recentAccounts.get(0) : null);
+        editor.putString(NAV_DRAWER_SECOND_RECENT, size > 1 ? recentAccounts.get(1) : null);
+        editor.commit();
+    }
+
+    public void getRecentAccounts(List<String> recentAccounts) {
+        recentAccounts.clear();
+        String recent = mPreferences.getString(NAV_DRAWER_FIRST_RECENT, null);
+        if (recent != null) {
+            recentAccounts.add(recent);
+        }
+        recent = mPreferences.getString(NAV_DRAWER_SECOND_RECENT, null);
+        if (recent != null) {
+            recentAccounts.add(recent);
+        }
+    }
+
     public String getContactMetadataSyncAccountName() {
         final Account syncAccount = getContactMetadataSyncAccount();
         return syncAccount == null ? DO_NOT_SYNC_CONTACT_METADATA_MSG : syncAccount.name;
@@ -305,7 +327,7 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
         List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(true);
         for (AccountWithDataSet account : accounts) {
-            if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type) && account.dataSet == null) {
+            if (account.isWritableGoogleAccount()) {
                 focusGoogleAccounts.add(account.getAccountOrNull());
             }
         }

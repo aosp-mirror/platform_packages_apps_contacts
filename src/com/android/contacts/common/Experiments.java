@@ -21,6 +21,11 @@ package com.android.contacts.common;
 public final class Experiments {
 
     /**
+     * Experiment to enable account switcher
+     */
+    public static final String ACCOUNT_SWITCHER = "Account__account_switcher_enable";
+
+    /**
      * Whether to open contact sheet (aka smart profile) instead of our own QuickContact.
      */
     public static final String CONTACT_SHEET = "QuickContact__contact_sheet";

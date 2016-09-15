@@ -13,8 +13,10 @@
  */
 package com.android.contactsbind;
 
+import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.preference.PreferenceManager;
+import com.android.contacts.common.util.NavigationDrawer;
 import com.android.contactsbind.search.AutocompleteHelper;
 import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 
@@ -52,5 +54,9 @@ public class ObjectFactory {
 
     public static Intent getContactSheetIntent(Context context, Uri contactLookupUri) {
         return null;
+    }
+
+    public static NavigationDrawer getNavigationDrawer(ContactsDrawerActivity activity) {
+        return new NavigationDrawer.Default(activity);
     }
 }
