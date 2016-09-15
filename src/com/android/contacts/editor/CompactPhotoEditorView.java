@@ -16,13 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.R;
-import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
-import com.android.contacts.util.SchedulingUtils;
-import com.android.contacts.widget.QuickContactImageView;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -35,6 +28,13 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+
+import com.android.contacts.R;
+import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
+import com.android.contacts.util.SchedulingUtils;
+import com.android.contacts.widget.QuickContactImageView;
 
 /**
  * Displays a photo and calls the host back when the user clicks it.

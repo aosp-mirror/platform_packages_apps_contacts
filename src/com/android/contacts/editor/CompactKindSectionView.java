@@ -41,7 +41,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Version of {@link KindSectionView} that supports multiple RawContactDeltas.
+ * Custom view for an entire section of data as segmented by
+ * {@link DataKind} around a {@link Data#MIMETYPE}. This view shows a
+ * section header and a trigger for adding new {@link Data} rows.
  */
 public class CompactKindSectionView extends LinearLayout {
 
@@ -180,6 +182,7 @@ public class CompactKindSectionView extends LinearLayout {
 
     @Override
     protected void onFinishInflate() {
+        super.onFinishInflate();
         setDrawingCacheEnabled(true);
         setAlwaysDrawnWithCacheEnabled(true);
 
