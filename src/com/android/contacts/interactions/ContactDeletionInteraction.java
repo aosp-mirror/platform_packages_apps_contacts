@@ -66,6 +66,7 @@ public class ContactDeletionInteraction extends Fragment
         Entity.DATA_SET, // 2
         Entity.CONTACT_ID, // 3
         Entity.LOOKUP_KEY, // 4
+        Entity.DISPLAY_NAME, // 5
     };
 
     private static final int COLUMN_INDEX_RAW_CONTACT_ID = 0;
@@ -73,9 +74,11 @@ public class ContactDeletionInteraction extends Fragment
     private static final int COLUMN_INDEX_DATA_SET = 2;
     private static final int COLUMN_INDEX_CONTACT_ID = 3;
     private static final int COLUMN_INDEX_LOOKUP_KEY = 4;
+    private static final int COLUMN_INDEX_DISPLAY_NAME = 5;
 
     private boolean mActive;
     private Uri mContactUri;
+    private String mDisplayName;
     private boolean mFinishActivityWhenDone;
     private Context mContext;
     private AlertDialog mDialog;
@@ -248,6 +251,7 @@ public class ContactDeletionInteraction extends Fragment
             final String dataSet = cursor.getString(COLUMN_INDEX_DATA_SET);
             contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
             lookupKey = cursor.getString(COLUMN_INDEX_LOOKUP_KEY);
+            mDisplayName = cursor.getString(COLUMN_INDEX_DISPLAY_NAME);
             AccountType type = accountTypes.getAccountType(accountType, dataSet);
             boolean writable = type == null || type.areContactsWritable();
             if (writable) {
@@ -338,8 +342,14 @@ public class ContactDeletionInteraction extends Fragment
         if (isAdded() && mFinishActivityWhenDone) {
             getActivity().setResult(RESULT_CODE_DELETED);
             getActivity().finish();
-            final String deleteToastMessage = getResources().getQuantityString(R.plurals
-                    .contacts_deleted_toast, /* quantity */ 1);
+            final String deleteToastMessage;
+            if (mDisplayName == null) {
+                deleteToastMessage = getResources().getQuantityString(
+                        R.plurals.contacts_deleted_toast, /* quantity */ 1);
+            } else {
+                deleteToastMessage = getResources().getString(
+                        R.string.contact_deleted_named_toast, mDisplayName);
+            }
             Toast.makeText(mContext, deleteToastMessage, Toast.LENGTH_LONG).show();
         }
     }

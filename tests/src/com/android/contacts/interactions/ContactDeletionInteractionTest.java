@@ -107,33 +107,33 @@ public class ContactDeletionInteractionTest
     }
 
     public void testSingleWritableRawContact() {
-        expectQuery().returnRow(1, WRITABLE_ACCOUNT_TYPE, null, 13, "foo");
+        expectQuery().returnRow(1, WRITABLE_ACCOUNT_TYPE, null, 13, "foo", "baz");
         assertWithMessageId(R.string.deleteConfirmation);
     }
 
     public void testReadOnlyRawContacts() {
-        expectQuery().returnRow(1, READONLY_ACCOUNT_TYPE, null, 13, "foo");
+        expectQuery().returnRow(1, READONLY_ACCOUNT_TYPE, null, 13, "foo", "baz");
         assertWithMessageId(R.string.readOnlyContactWarning);
     }
 
     public void testMixOfWritableAndReadOnlyRawContacts() {
         expectQuery()
-                .returnRow(1, WRITABLE_ACCOUNT_TYPE, null, 13, "foo")
-                .returnRow(2, READONLY_ACCOUNT_TYPE, null, 13, "foo");
+                .returnRow(1, WRITABLE_ACCOUNT_TYPE, null, 13, "foo", "baz")
+                .returnRow(2, READONLY_ACCOUNT_TYPE, null, 13, "foo", "baz");
         assertWithMessageId(R.string.readOnlyContactDeleteConfirmation);
     }
 
     public void testMultipleWritableRawContacts() {
         expectQuery()
-                .returnRow(1, WRITABLE_ACCOUNT_TYPE, null, 13, "foo")
-                .returnRow(2, WRITABLE_ACCOUNT_TYPE, null, 13, "foo");
+                .returnRow(1, WRITABLE_ACCOUNT_TYPE, null, 13, "foo", "baz")
+                .returnRow(2, WRITABLE_ACCOUNT_TYPE, null, 13, "foo", "baz");
         assertWithMessageId(R.string.multipleContactDeleteConfirmation);
     }
 
     private Query expectQuery() {
         return mContactsProvider.expectQuery(ENTITY_URI).withProjection(
                 Entity.RAW_CONTACT_ID, Entity.ACCOUNT_TYPE, Entity.DATA_SET, Entity.CONTACT_ID,
-                Entity.LOOKUP_KEY);
+                Entity.LOOKUP_KEY, Entity.DISPLAY_NAME);
     }
 
     private void assertWithMessageId(int messageId) {

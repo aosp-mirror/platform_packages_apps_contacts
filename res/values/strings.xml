@@ -172,6 +172,9 @@
     <!-- Toast shown after two contacts have been linked by a user action. [CHAR LIMIT=NONE] -->
     <string name="contactsJoinedMessage">Contacts linked</string>
 
+    <!-- Toast shown after contact deleted when no display name is given. [CHAR LIMIT=20]-->
+    <string name="contact_deleted_named_toast"><xliff:g id="name">%s</xliff:g> deleted</string>
+
     <!-- Toast shown after contacts that the user has selected are deleted by a user action. [CHAR LIMIT=30] -->
     <plurals name="contacts_deleted_toast">
         <item quantity="one">Contact deleted</item>
