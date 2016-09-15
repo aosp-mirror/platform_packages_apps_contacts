@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.android.contacts.common.tests.testauth;
+package com.android.contacts.tests.testauth;
 
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;

@@ -497,9 +497,11 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     return true;
                 }
             });
-            menuItem.setIcon(displayableAccount.getIcon());
-            // Get rid of the default menu item overlay and show original account icons.
-            menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
+            if (displayableAccount.getIcon() != null) {
+                menuItem.setIcon(displayableAccount.getIcon());
+                // Get rid of the default menu item overlay and show original account icons.
+                menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
+            }
             // Create a dummy action view to attach extra hidden content description to the menuItem
             // for Talkback. We want Talkback to read out the account type but not have it be part
             // of the menuItem title.

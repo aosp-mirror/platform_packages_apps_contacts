@@ -16,12 +16,10 @@
 package com.android.contacts.tests;
 
 import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.FallbackAccountType;
 import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class FakeDeviceAccountTypeFactory implements DeviceLocalAccountTypeFactory {
 

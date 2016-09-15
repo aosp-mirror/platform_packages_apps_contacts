@@ -69,6 +69,17 @@
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/test_basic_authenticator" />
         </service>
+        <service android:name=".testauth.TestSyncService$Basic" android:exported="true" >
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/test_basic_syncadapter" />
+            <meta-data
+                android:name="android.provider.CONTACTS_STRUCTURE"
+                android:resource="@xml/contacts_fallback" />
+        </service>
 
         <service android:name=".QueryService" />
         <service android:name=".PhoneNumberTestService" />
