@@ -16,13 +16,6 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.R;
-import com.android.contacts.common.model.RawContactDelta;
-import com.android.contacts.common.model.RawContactModifier;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.dataitem.DataKind;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract.CommonDataKinds.Event;
@@ -36,6 +29,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.common.model.RawContactDelta;
+import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.dataitem.DataKind;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -147,7 +147,7 @@ public class CompactKindSectionView extends LinearLayout {
         }
     }
 
-    private KindSectionDataList mKindSectionDataList;
+    private KindSectionData mKindSectionData;
     private ViewIdGenerator mViewIdGenerator;
     private CompactRawContactsEditorView.Listener mListener;
 
@@ -227,7 +227,7 @@ public class CompactKindSectionView extends LinearLayout {
      * and nicknames) are empty.
      */
     public boolean isEmptyName() {
-        if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionDataList.getMimeType())) {
+        if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionData.getMimeType())) {
             return false;
         }
         for (int i = 0; i < mEditors.getChildCount(); i++) {
@@ -247,7 +247,7 @@ public class CompactKindSectionView extends LinearLayout {
      * without informing editor listeners.
      */
     public void setName(String displayName) {
-        if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionDataList.getMimeType())) {
+        if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionData.getMimeType())) {
             return;
         }
         for (int i = 0; i < mEditors.getChildCount(); i++) {
@@ -270,7 +270,7 @@ public class CompactKindSectionView extends LinearLayout {
     }
 
     public StructuredNameEditorView getPrimaryNameEditorView() {
-        if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionDataList.getMimeType())
+        if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionData.getMimeType())
             || mEditors.getChildCount() == 0) {
             return null;
         }
@@ -278,7 +278,7 @@ public class CompactKindSectionView extends LinearLayout {
     }
 
     /**
-     * Binds views for the given {@link KindSectionData} list.
+     * Binds views for the given {@link KindSectionData}.
      *
      * We create a structured name and phonetic name editor for each {@link DataKind} with a
      * {@link StructuredName#CONTENT_ITEM_TYPE} mime type.  The number and order of editors are
@@ -287,15 +287,15 @@ public class CompactKindSectionView extends LinearLayout {
      * Empty name editors are never added and at least one structured name editor is always
      * displayed, even if it is empty.
      */
-    public void setState(KindSectionDataList kindSectionDataList,
+    public void setState(KindSectionData kindSectionData,
             ViewIdGenerator viewIdGenerator, CompactRawContactsEditorView.Listener listener,
             ValuesDelta primaryValuesDelta) {
-        mKindSectionDataList = kindSectionDataList;
+        mKindSectionData = kindSectionData;
         mViewIdGenerator = viewIdGenerator;
         mListener = listener;
 
-        // Set the icon using the first DataKind
-        final DataKind dataKind = mKindSectionDataList.getDataKind();
+        // Set the icon using the DataKind
+        final DataKind dataKind = mKindSectionData.getDataKind();
         if (dataKind != null) {
             mIcon.setImageDrawable(EditorUiUtils.getMimeTypeDrawable(getContext(),
                     dataKind.mimeType));
@@ -313,27 +313,26 @@ public class CompactKindSectionView extends LinearLayout {
     private void rebuildFromState(ValuesDelta primaryValuesDelta) {
         mEditors.removeAllViews();
 
-        final String mimeType = mKindSectionDataList.getMimeType();
-        for (KindSectionData kindSectionData : mKindSectionDataList) {
-            if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                addNameEditorViews(kindSectionData.getAccountType(),
-                        primaryValuesDelta, kindSectionData.getRawContactDelta());
-            } else if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                addGroupEditorView(kindSectionData.getRawContactDelta(),
-                        kindSectionData.getDataKind());
+        final String mimeType = mKindSectionData.getMimeType();
+        if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            addNameEditorViews(mKindSectionData.getAccountType(),
+                    primaryValuesDelta, mKindSectionData.getRawContactDelta());
+        } else if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
+            addGroupEditorView(mKindSectionData.getRawContactDelta(),
+                    mKindSectionData.getDataKind());
+        } else {
+            final Editor.EditorListener editorListener;
+            if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                editorListener = new OtherNameKindEditorListener();
+            } else if (Event.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                editorListener = new EventEditorListener();
             } else {
-                final Editor.EditorListener editorListener;
-                if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    editorListener = new OtherNameKindEditorListener();
-                } else if (Event.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                    editorListener = new EventEditorListener();
-                } else {
-                    editorListener = new NonNameEditorListener();
-                }
-                for (ValuesDelta valuesDelta : kindSectionData.getVisibleValuesDeltas()) {
-                    addNonNameEditorView(kindSectionData.getRawContactDelta(),
-                            kindSectionData.getDataKind(), valuesDelta, editorListener);
-                }
+                editorListener = new NonNameEditorListener();
+            }
+            final List<ValuesDelta> valuesDeltas = mKindSectionData.getVisibleValuesDeltas();
+            for (int i = 0; i < valuesDeltas.size(); i++ ) {
+                addNonNameEditorView(mKindSectionData.getRawContactDelta(),
+                        mKindSectionData.getDataKind(), valuesDeltas.get(i), editorListener);
             }
         }
     }
@@ -442,9 +441,9 @@ public class CompactKindSectionView extends LinearLayout {
      */
     public void updateEmptyEditors(boolean shouldAnimate) {
         final boolean isNameKindSection = StructuredName.CONTENT_ITEM_TYPE.equals(
-                mKindSectionDataList.getMimeType());
+                mKindSectionData.getMimeType());
         final boolean isGroupKindSection = GroupMembership.CONTENT_ITEM_TYPE.equals(
-                mKindSectionDataList.getMimeType());
+                mKindSectionData.getMimeType());
 
         if (isNameKindSection) {
             // The name kind section is always visible
@@ -531,7 +530,8 @@ public class CompactKindSectionView extends LinearLayout {
         if (emptyEditors.size() > 1) {
             // If there is more than 1 empty editor, then remove it from the list of editors.
             int deleted = 0;
-            for (final View view : emptyEditors) {
+            for (int i = 0; i < emptyEditors.size(); i++) {
+                final View view = emptyEditors.get(i);
                 // If no child {@link View}s are being focused on within this {@link View}, then
                 // remove this empty editor. We can assume that at least one empty editor has
                 // focus. One way to get two empty editors is by deleting characters from a
@@ -546,9 +546,8 @@ public class CompactKindSectionView extends LinearLayout {
             return;
         }
         // Determine if we should add a new empty editor
-        final DataKind dataKind = mKindSectionDataList.get(0).getDataKind();
-        final RawContactDelta rawContactDelta =
-                mKindSectionDataList.get(0).getRawContactDelta();
+        final DataKind dataKind = mKindSectionData.getDataKind();
+        final RawContactDelta rawContactDelta = mKindSectionData.getRawContactDelta();
         if (dataKind == null // There is nothing we can do.
                 // We have already reached the maximum number of editors, don't add any more.
                 || !RawContactModifier.canInsert(rawContactDelta, dataKind)
@@ -558,7 +557,7 @@ public class CompactKindSectionView extends LinearLayout {
         }
         // Add a new empty editor
         if (mShowOneEmptyEditor) {
-            final String mimeType = mKindSectionDataList.getMimeType();
+            final String mimeType = mKindSectionData.getMimeType();
             if (Nickname.CONTENT_ITEM_TYPE.equals(mimeType) && mEditors.getChildCount() > 0) {
                 return;
             }
