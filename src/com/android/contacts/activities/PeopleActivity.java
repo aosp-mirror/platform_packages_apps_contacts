@@ -54,7 +54,6 @@ import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.common.interactions.ImportExportDialogFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ProviderStatusWatcher;
 import com.android.contacts.common.list.ProviderStatusWatcher.ProviderStatusListener;
@@ -66,7 +65,6 @@ import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
-import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.group.GroupMembersFragment;
 import com.android.contacts.group.GroupMetaData;
 import com.android.contacts.group.GroupUtil;
@@ -74,7 +72,6 @@ import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
-import com.android.contacts.list.OnContactsUnavailableActionListener;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.SyncUtil;
 import com.android.contactsbind.FeatureHighlightHelper;
@@ -198,26 +195,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
     private boolean areContactsAvailable() {
         return (mProviderStatus != null) && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
-    }
-
-    /**
-     * Initialize fragments that are (or may not be) in the layout.
-     *
-     * For the fragments that are in the layout, we initialize them in
-     * {@link #createViewsAndFragments()} after inflating the layout.
-     *
-     * However, the {@link ContactsUnavailableFragment} is a special fragment which may not
-     * be in the layout, so we have to do the initialization here.
-     *
-     * The ContactsUnavailableFragment is always created at runtime.
-     */
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof ContactsUnavailableFragment) {
-            mContactsUnavailableFragment = (ContactsUnavailableFragment)fragment;
-            mContactsUnavailableFragment.setOnContactsUnavailableActionListener(
-                    new ContactsUnavailableFragmentListener());
-        }
     }
 
     @Override
@@ -554,8 +531,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             }
             if (mContactsUnavailableFragment == null) {
                 mContactsUnavailableFragment = new ContactsUnavailableFragment();
-                mContactsUnavailableFragment.setOnContactsUnavailableActionListener(
-                        new ContactsUnavailableFragmentListener());
                 transaction.add(R.id.contacts_list_container, mContactsUnavailableFragment,
                         TAG_UNAVAILABLE);
             }
@@ -589,38 +564,11 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         return !allAccounts.get(0).isLocalAccount();
     }
 
-    private class ContactsUnavailableFragmentListener
-            implements OnContactsUnavailableActionListener {
-        ContactsUnavailableFragmentListener() {}
-
-        @Override
-        public void onCreateNewContactAction() {
-            ImplicitIntentsUtil.startActivityInApp(PeopleActivity.this,
-                    EditorIntents.createCompactInsertContactIntent(PeopleActivity.this));
-        }
-
-        @Override
-        public void onAddAccountAction() {
-            final Intent intent = ImplicitIntentsUtil.getIntentForAddingGoogleAccount();
-            ImplicitIntentsUtil.startActivityOutsideApp(PeopleActivity.this, intent);
-        }
-
-        @Override
-        public void onImportContactsFromFileAction() {
-            showImportExportDialogFragment();
-        }
-    }
-
     private void invalidateOptionsMenuIfNeeded() {
         if (mAllFragment != null
                 && mAllFragment.getOptionsMenuContactsAvailable() != areContactsAvailable()) {
             invalidateOptionsMenu();
         }
-    }
-
-    private void showImportExportDialogFragment(){
-        ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
-                PeopleActivity.class, ImportExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
     }
 
     @Override
