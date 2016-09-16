@@ -296,6 +296,9 @@
     <!-- The text displayed when there's no contacts in the main contacts list [CHAR LIMIT=70] -->
     <string name="emptyMainList">Your contacts list is empty</string>
 
+    <!-- Toast displayed when a contact is saved [CHAR LIMIT=30] -->
+    <string name="contactSavedNamedToast"><xliff:g id="display_name">%s</xliff:g> saved</string>
+
     <!-- Toast displayed when a contact is saved [CHAR LIMIT=NONE] -->
     <string name="contactSavedToast">Contact saved</string>
 
