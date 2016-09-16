@@ -380,7 +380,9 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     }
 
     protected void rebuildValues() {
-        setValues(mKind, mEntry, mState, mReadOnly, mViewIdGenerator);
+        if (mKind != null) {
+            setValues(mKind, mEntry, mState, mReadOnly, mViewIdGenerator);
+        }
     }
 
     /**
