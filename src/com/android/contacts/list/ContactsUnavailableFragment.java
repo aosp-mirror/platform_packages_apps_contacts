@@ -17,9 +17,11 @@ package com.android.contacts.list;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.provider.ContactsContract.ProviderStatus;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -34,6 +36,8 @@ import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.compat.ProviderStatusCompat;
+import com.android.contacts.common.interactions.ImportExportDialogFragment;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 
 /**
  * Fragment shown when contacts are unavailable. It contains provider status
@@ -48,16 +52,8 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
     private Button mImportContactsButton;
     private ProgressBar mProgress;
     private View mButtonsContainer;
-    private int mNoContactsMsgResId = -1;
-
-    private OnContactsUnavailableActionListener mListener;
 
     private Integer mProviderStatus;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(
@@ -99,11 +95,6 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         return mView;
     }
 
-    public void setOnContactsUnavailableActionListener(
-            OnContactsUnavailableActionListener listener) {
-        mListener = listener;
-    }
-
     public void updateStatus(int providerStatus) {
         mProviderStatus = providerStatus;
         if (mView == null) {
@@ -123,6 +114,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
      * Update views in the fragment when provider status is empty.
      */
     private void updateViewsForEmptyStatus() {
+        updateButtonVisibility(View.VISIBLE);
         mProgress.setVisibility(View.GONE);
     }
 
@@ -135,7 +127,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         mMessageView.setText(resId);
         mMessageView.setVisibility(View.VISIBLE);
         mImageView.setVisibility(View.GONE);
-        updateButtonVisibilty(View.GONE);
+        updateButtonVisibility(View.GONE);
         mProgress.setVisibility(View.VISIBLE);
 
         final ViewGroup.MarginLayoutParams layoutParams =
@@ -148,20 +140,25 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
 
     @Override
     public void onClick(View v) {
-        if (mListener == null) {
-            return;
-        }
         switch (v.getId()) {
             case R.id.add_account_button:
-                mListener.onAddAccountAction();
+                final Intent intent = ImplicitIntentsUtil.getIntentForAddingGoogleAccount();
+                ImplicitIntentsUtil.startActivityOutsideApp(getActivity(), intent);
                 break;
             case R.id.import_contacts_button:
-                mListener.onImportContactsFromFileAction();
+                ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
+                        getActivity().getClass(),
+                        ImportExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
                 break;
         }
     }
 
-    private void updateButtonVisibilty(int visibility) {
+    private boolean areContactsAvailable() {
+        return (mProviderStatus != null) && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
+    }
+
+
+    private void updateButtonVisibility(int visibility) {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             mAddAccountButton.setVisibility(visibility);
             mImportContactsButton.setVisibility(visibility);
