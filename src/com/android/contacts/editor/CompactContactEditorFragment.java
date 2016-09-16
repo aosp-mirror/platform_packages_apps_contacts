@@ -788,7 +788,7 @@ public class CompactContactEditorFragment extends Fragment implements
         // Set visibility of menus
 
         // help menu depending on whether this is inserting or editing
-        if (Intent.ACTION_INSERT.equals(mAction) || mRawContactIdToDisplayAlone != -1) {
+        if (Intent.ACTION_INSERT.equals(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
             splitMenu.setVisible(false);
             joinMenu.setVisible(false);
@@ -816,7 +816,7 @@ public class CompactContactEditorFragment extends Fragment implements
             });
         }
 
-        if (mRawContactIdToDisplayAlone != -1 || mIsUserProfile) {
+        if (mIsUserProfile) {
             sendToVoiceMailMenu.setVisible(false);
             ringToneMenu.setVisible(false);
         } else {
@@ -1164,22 +1164,7 @@ public class CompactContactEditorFragment extends Fragment implements
             return;
         }
 
-        // Prune raw contacts besides the one we want to edit
-        if (mRawContactIdToDisplayAlone > 0) {
-            final ImmutableList.Builder<RawContact> rawContactsBuilder =
-                    new ImmutableList.Builder<>();
-            for (RawContact rawContact : contact.getRawContacts()) {
-                if (rawContact.getId() == mRawContactIdToDisplayAlone) {
-                    rawContactsBuilder.add(rawContact);
-                    break;
-                }
-            }
-            mRawContacts = rawContactsBuilder.build();
-            Log.v(TAG, "Raw contact deltas trimmed from " + contact.getRawContacts().size() +
-                    " to " + mRawContacts.size());
-        } else {
-            mRawContacts = contact.getRawContacts();
-        }
+        mRawContacts = contact.getRawContacts();
 
         // See if this edit operation needs to be redirected to a custom editor
         if (mRawContacts.size() == 1) {
@@ -1866,16 +1851,6 @@ public class CompactContactEditorFragment extends Fragment implements
 
     @Override
     public void onPhotoEditorViewClicked() {
-        if (isEditingMultipleRawContacts()) {
-            final ArrayList<CompactPhotoSelectionFragment.Photo> photos = getContent().getPhotos();
-            if (photos.size() > 1) {
-                updatePrimaryForSelection(photos);
-                // For aggregate contacts, the user may select a new super primary photo from among
-                // the (non-default) raw contact photos, or source a new photo.
-                getEditorActivity().selectPhoto(photos, getPhotoMode());
-                return;
-            }
-        }
         // For contacts composed of a single writable raw contact, or raw contacts have no more
         // than 1 photo, clicking the photo view simply opens the source photo dialog
         getEditorActivity().changePhoto(getPhotoMode());
@@ -1917,13 +1892,10 @@ public class CompactContactEditorFragment extends Fragment implements
     }
 
     @Override
-    public void onRawContactSelected(Uri uri, long rawContactId, boolean isReadOnly) {
-        final Activity activity = getActivity();
-        if (activity != null && !activity.isFinishing()) {
-            final Intent intent = EditorIntents.createEditContactIntentForRawContact(
-                    activity, uri, rawContactId, isReadOnly);
-            activity.startActivity(intent);
-        }
+    public void onRawContactSelected(long rawContactId, boolean isReadOnly) {
+        mRawContactDisplayAloneIsReadOnly = isReadOnly;
+        mRawContactIdToDisplayAlone = rawContactId;
+        bindEditors();
     }
 
     @Override

@@ -799,6 +799,9 @@
     <!-- Label for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=30] -->
     <string name="compact_editor_account_selector_title">Saving to</string>
 
+    <!-- Label for the account selector to indicate which read-only account is being viewed. [CHAR LIMIT=30] -->
+    <string name="compact_editor_account_selector_read_only_title">Viewing</string>
+
     <!-- Content description for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=NONE] -->
     <string name="compact_editor_account_selector_description">Currently saving to <xliff:g id="account_name">%s</xliff:g>. Double-tap to pick a different account.</string>
 
