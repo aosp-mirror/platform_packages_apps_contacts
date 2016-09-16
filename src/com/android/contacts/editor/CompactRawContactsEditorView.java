@@ -18,8 +18,10 @@ package com.android.contacts.editor;
 
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -54,6 +56,8 @@ import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.common.GeoUtil;
+import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
@@ -741,23 +745,150 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private void addReadOnlyRawContactEditorViews() {
-        final LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
+        mKindSectionViews.removeAllViews();
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
                 getContext());
+        final RawContactDelta state = mRawContactDeltas
+                .getByRawContactId(mRawContactIdToDisplayAlone);
+        final AccountType type = state.getAccountType(accountTypes);
 
-        for (int i = 0; i < mRawContactDeltas.size(); i++) {
-            final RawContactDelta rawContactDelta = mRawContactDeltas.get(i);
-            if (!rawContactDelta.isVisible()) continue;
-            final AccountType type = rawContactDelta.getAccountType(accountTypes);
-            if (type.areContactsWritable()) continue;
+        // Bail if invalid state or source
+        if (state == null || type == null) return;
 
-            final BaseRawContactEditorView editor = (BaseRawContactEditorView) inflater.inflate(
-                        R.layout.raw_contact_readonly_editor_view, mKindSectionViews, false);
-            editor.setCollapsed(false);
-            mKindSectionViews.addView(editor);
-            editor.setState(rawContactDelta, type, mViewIdGenerator, mIsUserProfile);
+        // Make sure we have StructuredName
+        RawContactModifier.ensureKindExists(state, type, StructuredName.CONTENT_ITEM_TYPE);
+
+        final AccountDisplayInfo account = mAccountDisplayInfoFactory
+                .getAccountDisplayInfoFor(state);
+
+        final String accountTypeLabel;
+        final String accountNameLabel;
+        if (mIsUserProfile) {
+            accountTypeLabel = EditorUiUtils.getAccountHeaderLabelForMyProfile(
+                    getContext(), account);
+            accountNameLabel = account.getNameLabel().toString();
+        } else {
+            accountTypeLabel = account.getTypeLabel().toString();
+            accountNameLabel = account.getNameLabel().toString();
         }
+
+        if (!account.hasDistinctName()) {
+            // Hide this view so the other view will be centered vertically
+            mAccountHeaderName.setVisibility(View.GONE);
+        } else {
+            mAccountHeaderName.setVisibility(View.VISIBLE);
+            mAccountHeaderName.setText(accountNameLabel);
+        }
+        mAccountHeaderType.setText(accountTypeLabel);
+        updateAccountHeaderContentDescription();
+
+        mAccountHeaderIcon.setImageDrawable(state.getRawContactAccountType(getContext())
+                .getDisplayIcon(getContext()));
+
+        ValuesDelta primary;
+
+        // Name
+        final Context context = getContext();
+        final Resources res = context.getResources();
+        primary = state.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
+        final String name = primary != null ? primary.getAsString(StructuredName.DISPLAY_NAME) :
+            getContext().getString(R.string.missing_name);
+        final Drawable nameDrawable = context.getDrawable(R.drawable.ic_person_24dp);
+        final String nameContentDescription = res.getString(R.string.header_name_entry);
+        bindData(nameDrawable, nameContentDescription, name, /* type */ null,
+                /* isFirstEntry */ true);
+
+        // Phones
+        final ArrayList<ValuesDelta> phones = state.getMimeEntries(Phone.CONTENT_ITEM_TYPE);
+        final Drawable phoneDrawable = context.getDrawable(R.drawable.ic_phone_24dp);
+        final String phoneContentDescription = res.getString(R.string.header_phone_entry);
+        if (phones != null) {
+            boolean isFirstPhoneBound = true;
+            for (ValuesDelta phone : phones) {
+                final String phoneNumber = phone.getPhoneNumber();
+                if (TextUtils.isEmpty(phoneNumber)) {
+                    continue;
+                }
+                final String formattedNumber = PhoneNumberUtilsCompat.formatNumber(
+                        phoneNumber, phone.getPhoneNormalizedNumber(),
+                        GeoUtil.getCurrentCountryIso(getContext()));
+                CharSequence phoneType = null;
+                if (phone.hasPhoneType()) {
+                    phoneType = Phone.getTypeLabel(
+                            res, phone.getPhoneType(), phone.getPhoneLabel());
+                }
+                bindData(phoneDrawable, phoneContentDescription, formattedNumber, phoneType,
+                        isFirstPhoneBound, true);
+                isFirstPhoneBound = false;
+            }
+        }
+
+        // Emails
+        final ArrayList<ValuesDelta> emails = state.getMimeEntries(Email.CONTENT_ITEM_TYPE);
+        final Drawable emailDrawable = context.getDrawable(R.drawable.ic_email_24dp);
+        final String emailContentDescription = res.getString(R.string.header_email_entry);
+        if (emails != null) {
+            boolean isFirstEmailBound = true;
+            for (ValuesDelta email : emails) {
+                final String emailAddress = email.getEmailData();
+                if (TextUtils.isEmpty(emailAddress)) {
+                    continue;
+                }
+                CharSequence emailType = null;
+                if (email.hasEmailType()) {
+                    emailType = Email.getTypeLabel(
+                            res, email.getEmailType(), email.getEmailLabel());
+                }
+                bindData(emailDrawable, emailContentDescription, emailAddress, emailType,
+                        isFirstEmailBound);
+                isFirstEmailBound = false;
+            }
+        }
+
+        mKindSectionViews.setVisibility(mKindSectionViews.getChildCount() > 0 ? VISIBLE : GONE);
+        // Hide the "More fields" link
+        mMoreFields.setVisibility(GONE);
+    }
+
+    protected void updateAccountHeaderContentDescription() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(EditorUiUtils.getAccountInfoContentDescription(
+                mAccountHeaderName.getText(), mAccountHeaderType.getText()));
+        mAccountHeaderContainer.setContentDescription(builder);
+    }
+
+    private void bindData(Drawable icon, String iconContentDescription, CharSequence data,
+            CharSequence type, boolean isFirstEntry) {
+        bindData(icon, iconContentDescription, data, type, isFirstEntry, false);
+    }
+
+    private void bindData(Drawable icon, String iconContentDescription, CharSequence data,
+            CharSequence type, boolean isFirstEntry, boolean forceLTR) {
+        final LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
+        final View field = inflater.inflate(R.layout.item_read_only_field, mKindSectionViews,
+                false);
+        if (isFirstEntry) {
+            final ImageView imageView = (ImageView) field.findViewById(R.id.kind_icon);
+            imageView.setImageDrawable(icon);
+            imageView.setContentDescription(iconContentDescription);
+        } else {
+            final ImageView imageView = (ImageView) field.findViewById(R.id.kind_icon);
+            imageView.setVisibility(View.INVISIBLE);
+            imageView.setContentDescription(null);
+        }
+        final TextView dataView = (TextView) field.findViewById(R.id.data);
+        dataView.setText(data);
+        if (forceLTR) {
+            dataView.setTextDirection(View.TEXT_DIRECTION_LTR);
+        }
+        final TextView typeView = (TextView) field.findViewById(R.id.type);
+        if (!TextUtils.isEmpty(type)) {
+            typeView.setText(type);
+        } else {
+            typeView.setVisibility(View.GONE);
+        }
+        mKindSectionViews.addView(field);
     }
 
     private void addAccountInfo() {

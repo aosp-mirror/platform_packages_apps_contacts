@@ -384,12 +384,6 @@
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
 
-    <!-- String describing the Contact Photo Image
-
-         Used by AccessibilityService to announce the purpose of the view.
-    -->
-    <string name="description_contact_photo">contact photo</string>
-
     <!-- String describing the Contact Editor Plus button
 
          Used by AccessibilityService to announce the purpose of the button.
@@ -516,9 +510,6 @@
 
     <!-- Button used for changing a photo in the Raw Contact Editor [CHAR LIMIT=15] -->
     <string name="change_photo">Change</string>
-
-    <!-- RadioButton that determines whether a raw contact's photo should be used for the entire contact [CHAR LIMIT=25] -->
-    <string name="primary_photo">Primary photo</string>
 
     <!-- String describing the Star/Favorite checkbox
 
@@ -765,8 +756,6 @@
     <string name="header_email_entry">Email</string>
     <!-- Content description for the phone fields header entry [CHAR LIMIT=NONE] -->
     <string name="header_phone_entry">Phone</string>
-    <!-- Content description for the camera icon beside the photo section in the Raw Contact Editor [CHAR LIMIT=NONE] -->
-    <string name="header_photo_entry">Photo</string>
 
     <!-- Content description for the expand button inside the raw contact editor's header. [CHAR LIMIT=NONE] -->
     <string name="content_description_expand_editor">Click to expand contact editor.</string>
