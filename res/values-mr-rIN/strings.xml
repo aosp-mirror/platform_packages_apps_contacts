@@ -326,6 +326,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>कडील फोटो चेक केला"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"अज्ञात खात्यामधील फोटो चेक केला नाही"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"अज्ञात खात्यामधील फोटो चेक केला"</string>
-    <string name="locale_change_in_progress" msgid="1124266507671178413">"भाषेचे बदल प्रतिबिंबित करण्यासाठी संपर्क सूची अद्यतनित केली जात आहे. \n\nकृपया प्रतीक्षा करा..."</string>
+    <string name="locale_change_in_progress" msgid="1124266507671178413">"भाषेचे बदल दर्शवण्यासाठी संपर्क सूची अद्यतनित केली जात आहे. \n\nकृपया प्रतीक्षा करा..."</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"अवरोधित केलेले नंबर"</string>
 </resources>
