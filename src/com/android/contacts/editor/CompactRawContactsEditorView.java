@@ -578,6 +578,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         mKindSectionDataMap.clear();
         mKindSectionViewMap.clear();
+        mSortedMimetypes.clear();
         mKindSectionViews.removeAllViews();
         mMoreFields.setVisibility(View.VISIBLE);
 
