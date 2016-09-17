@@ -539,6 +539,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         mFragmentInitialized = true;
 
         if (mFromOnNewIntent || !mIsRecreatedInstance) {
+            mFromOnNewIntent = false;
             configureFragmentForRequest();
         }
 
