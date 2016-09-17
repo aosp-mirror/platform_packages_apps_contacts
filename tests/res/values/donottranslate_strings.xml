@@ -104,7 +104,5 @@
     <string name="attribution_flicker">Flicker</string>
     <string name="attribution_twitter">Twitter</string>
 
-    <string name="authenticator_basic_label">Test adapter</string>
-
     <string name="test_string">TEST STRING</string>
 </resources>

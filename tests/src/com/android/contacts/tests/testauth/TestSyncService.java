@@ -13,9 +13,28 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+package com.android.contacts.tests.testauth;
 
-package com.android.contacts.common.tests.testauth;
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
 
-class TestauthConstants {
-    public static final String LOG_TAG = "Testauth";
+public abstract class TestSyncService extends Service {
+
+    private static TestSyncAdapter sSyncAdapter;
+
+    @Override
+    public void onCreate() {
+        if (sSyncAdapter == null) {
+            sSyncAdapter = new TestSyncAdapter(getApplicationContext(), true);
+        }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return sSyncAdapter.getSyncAdapterBinder();
+    }
+
+    public static class Basic extends TestSyncService {
+    }
 }

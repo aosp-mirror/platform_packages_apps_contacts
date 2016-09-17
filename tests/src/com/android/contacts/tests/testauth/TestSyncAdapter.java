@@ -13,10 +13,9 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.android.contacts.common.tests.testauth;
+package com.android.contacts.tests.testauth;
 
 import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
@@ -32,14 +31,12 @@ import android.util.Log;
  *
  */
 public class TestSyncAdapter extends AbstractThreadedSyncAdapter {
-    private final AccountManager mAccountManager;
 
     private final Context mContext;
 
     public TestSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
         mContext = context.getApplicationContext();
-        mAccountManager = AccountManager.get(mContext);
     }
 
     /**
