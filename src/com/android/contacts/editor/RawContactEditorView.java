@@ -31,7 +31,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.contacts.common.model.account.AccountDisplayInfo;
@@ -247,9 +246,13 @@ public class RawContactEditorView extends BaseRawContactEditorView {
                 mName.setValues(
                         type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
                         primary, state, false, vig);
-                mPhoneticName.setValues(
-                        type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME),
-                        primary, state, false, vig);
+                final DataKind phoneticNameKind =
+                        type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME);
+                if (phoneticNameKind != null) {
+                    mPhoneticName.setValues(phoneticNameKind, primary, state, false, vig);
+                } else {
+                    mPhoneticName.setVisibility(View.GONE);
+                }
                 // It is useful to use Nickname outside of a KindSectionView so that we can treat it
                 // as a part of StructuredName's fake KindSectionView, even though it uses a
                 // different CP2 mime-type. We do a bit of extra work below to make this possible.
