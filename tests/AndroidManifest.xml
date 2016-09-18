@@ -36,6 +36,8 @@
     <uses-permission android:name="android.permission.READ_SOCIAL_STREAM" />
 
     <application
+        android:icon="@mipmap/ic_contacts_launcher_square"
+        android:roundIcon="@mipmap/ic_contacts_launcher"
         android:label="@string/applicationLabel">
 
         <uses-library android:name="android.test.runner" />
@@ -49,7 +51,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".allintents.ResultActivity"/>
+        <activity android:name=".allintents.ResultActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.contactstest.profile" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".quickcontact.QuickContactTestsActivity"/>
 
@@ -78,7 +86,7 @@
                 android:resource="@xml/test_basic_syncadapter" />
             <meta-data
                 android:name="android.provider.CONTACTS_STRUCTURE"
-                android:resource="@xml/contacts_fallback" />
+                android:resource="@xml/contacts_contactsdatakind" />
         </service>
 
         <service android:name=".QueryService" />
