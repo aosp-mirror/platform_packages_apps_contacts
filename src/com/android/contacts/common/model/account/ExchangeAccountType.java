@@ -52,7 +52,6 @@ public class ExchangeAccountType extends BaseAccountType {
 
         try {
             addDataKindStructuredName(context);
-            addDataKindDisplayName(context);
             addDataKindPhoneticName(context);
             addDataKindNickname(context);
             addDataKindPhone(context);
@@ -102,39 +101,6 @@ public class ExchangeAccountType extends BaseAccountType {
                 R.string.name_phonetic_family, FLAGS_PHONETIC));
         kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
                 R.string.name_phonetic_given, FLAGS_PHONETIC));
-
-        return kind;
-    }
-
-    @Override
-    protected DataKind addDataKindDisplayName(Context context) throws DefinitionException {
-        DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
-                R.string.nameLabelsGroup, Weight.NONE, true));
-
-        boolean displayOrderPrimary =
-                context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
-        kind.typeOverallMax = 1;
-
-        kind.fieldList = Lists.newArrayList();
-        kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                FLAGS_PERSON_NAME).setOptional(true));
-        if (!displayOrderPrimary) {
-            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME,
-                    R.string.name_family, FLAGS_PERSON_NAME));
-            kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME,
-                    R.string.name_middle, FLAGS_PERSON_NAME).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME,
-                    R.string.name_given, FLAGS_PERSON_NAME));
-        } else {
-            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME,
-                    R.string.name_given, FLAGS_PERSON_NAME));
-            kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME,
-                    R.string.name_middle, FLAGS_PERSON_NAME).setOptional(true));
-            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME,
-                    R.string.name_family, FLAGS_PERSON_NAME));
-        }
-        kind.fieldList.add(new EditField(StructuredName.SUFFIX,
-                R.string.name_suffix, FLAGS_PERSON_NAME).setOptional(true));
 
         return kind;
     }

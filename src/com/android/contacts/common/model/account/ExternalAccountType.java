@@ -132,13 +132,11 @@ public class ExternalAccountType extends BaseAccountType {
             needLineNumberInErrorLog = false;
             if (mHasEditSchema) {
                 checkKindExists(StructuredName.CONTENT_ITEM_TYPE);
-                checkKindExists(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME);
                 checkKindExists(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME);
                 checkKindExists(Photo.CONTENT_ITEM_TYPE);
             } else {
                 // Bring in name and photo from fallback source, which are non-optional
                 addDataKindStructuredName(context);
-                addDataKindDisplayName(context);
                 addDataKindPhoneticName(context);
                 addDataKindPhoto(context);
             }

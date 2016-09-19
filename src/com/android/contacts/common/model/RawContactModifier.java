@@ -988,8 +988,7 @@ public class RawContactModifier {
             for (DataKind kind : newAccountType.getSortedDataKinds()) {
                 if (!kind.editable) continue;
                 final String mimeType = kind.mimeType;
-                if (DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME.equals(mimeType)
-                        || DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
+                if (DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
                     // Ignore pseudo data.
                     continue;
                 } else if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
@@ -1040,15 +1039,11 @@ public class RawContactModifier {
             return;
         }
 
-        boolean supportDisplayName = false;
         boolean supportPhoneticFullName = false;
         boolean supportPhoneticFamilyName = false;
         boolean supportPhoneticMiddleName = false;
         boolean supportPhoneticGivenName = false;
         for (EditField editField : newDataKind.fieldList) {
-            if (StructuredName.DISPLAY_NAME.equals(editField.column)) {
-                supportDisplayName = true;
-            }
             if (DataKind.PSEUDO_COLUMN_PHONETIC_NAME.equals(editField.column)) {
                 supportPhoneticFullName = true;
             }
@@ -1063,26 +1058,6 @@ public class RawContactModifier {
             }
         }
 
-        // DISPLAY_NAME <-> PREFIX, GIVEN_NAME, MIDDLE_NAME, FAMILY_NAME, SUFFIX
-        final String displayName = values.getAsString(StructuredName.DISPLAY_NAME);
-        if (!TextUtils.isEmpty(displayName)) {
-            if (!supportDisplayName) {
-                // Old data has a display name, while the new account doesn't allow it.
-                NameConverter.displayNameToStructuredName(context, displayName, values);
-
-                // We don't want to migrate unseen data which may confuse users after the creation.
-                values.remove(StructuredName.DISPLAY_NAME);
-            }
-        } else {
-            if (supportDisplayName) {
-                // Old data does not have display name, while the new account requires it.
-                values.put(StructuredName.DISPLAY_NAME,
-                        NameConverter.structuredNameToDisplayName(context, values));
-                for (String field : NameConverter.STRUCTURED_NAME_FIELDS) {
-                    values.remove(field);
-                }
-            }
-        }
 
         // Phonetic (full) name <-> PHONETIC_FAMILY_NAME, PHONETIC_MIDDLE_NAME, PHONETIC_GIVEN_NAME
         final String phoneticFullName = values.getAsString(DataKind.PSEUDO_COLUMN_PHONETIC_NAME);

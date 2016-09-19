@@ -245,34 +245,7 @@ public class CompactKindSectionView extends LinearLayout {
         return true;
     }
 
-    /**
-     * Sets the given display name as the structured name as if the user input it, but
-     * without informing editor listeners.
-     */
-    public void setName(String displayName) {
-        if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionData.getMimeType())) {
-            return;
-        }
-        for (int i = 0; i < mEditors.getChildCount(); i++) {
-            final View view = mEditors.getChildAt(i);
-            if (view instanceof StructuredNameEditorView) {
-                final StructuredNameEditorView editor = (StructuredNameEditorView) view;
-
-                // Detach listeners since so we don't show suggested aggregations
-                final Editor.EditorListener editorListener = editor.getEditorListener();
-                editor.setEditorListener(null);
-
-                editor.setDisplayName(displayName);
-
-                // Reattach listeners
-                editor.setEditorListener(editorListener);
-
-                return;
-            }
-        }
-    }
-
-    public StructuredNameEditorView getPrimaryNameEditorView() {
+    public StructuredNameEditorView getNameEditorView() {
         if (!StructuredName.CONTENT_ITEM_TYPE.equals(mKindSectionData.getMimeType())
             || mEditors.getChildCount() == 0) {
             return null;
@@ -291,8 +264,7 @@ public class CompactKindSectionView extends LinearLayout {
      * displayed, even if it is empty.
      */
     public void setState(KindSectionData kindSectionData,
-            ViewIdGenerator viewIdGenerator, CompactRawContactsEditorView.Listener listener,
-            ValuesDelta primaryValuesDelta) {
+            ViewIdGenerator viewIdGenerator, CompactRawContactsEditorView.Listener listener) {
         mKindSectionData = kindSectionData;
         mViewIdGenerator = viewIdGenerator;
         mListener = listener;
@@ -308,18 +280,18 @@ public class CompactKindSectionView extends LinearLayout {
             }
         }
 
-        rebuildFromState(primaryValuesDelta);
+        rebuildFromState();
 
         updateEmptyEditors(/* shouldAnimate = */ false);
     }
 
-    private void rebuildFromState(ValuesDelta primaryValuesDelta) {
+    private void rebuildFromState() {
         mEditors.removeAllViews();
 
         final String mimeType = mKindSectionData.getMimeType();
         if (StructuredName.CONTENT_ITEM_TYPE.equals(mimeType)) {
             addNameEditorViews(mKindSectionData.getAccountType(),
-                    primaryValuesDelta, mKindSectionData.getRawContactDelta());
+                    mKindSectionData.getRawContactDelta());
         } else if (GroupMembership.CONTENT_ITEM_TYPE.equals(mimeType)) {
             addGroupEditorView(mKindSectionData.getRawContactDelta(),
                     mKindSectionData.getDataKind());
@@ -340,9 +312,10 @@ public class CompactKindSectionView extends LinearLayout {
         }
     }
 
-    private void addNameEditorViews(AccountType accountType,
-            ValuesDelta valuesDelta, RawContactDelta rawContactDelta) {
+    private void addNameEditorViews(AccountType accountType, RawContactDelta rawContactDelta) {
         final boolean readOnly = !accountType.areContactsWritable();
+        final ValuesDelta nameValuesDelta = rawContactDelta
+                .getSuperPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
 
         if (readOnly) {
             final View nameView = mLayoutInflater.inflate(
@@ -351,7 +324,7 @@ public class CompactKindSectionView extends LinearLayout {
 
             // Display name
             ((TextView) nameView.findViewById(R.id.display_name))
-                    .setText(valuesDelta.getDisplayName());
+                    .setText(nameValuesDelta.getDisplayName());
 
             // Account type info
             final LinearLayout accountTypeLayout = (LinearLayout)
@@ -372,12 +345,12 @@ public class CompactKindSectionView extends LinearLayout {
         if (!mIsUserProfile) {
             // Don't set super primary for the me contact
             nameView.setEditorListener(new StructuredNameEditorListener(
-                    valuesDelta, rawContactDelta.getRawContactId(), mListener));
+                    nameValuesDelta, rawContactDelta.getRawContactId(), mListener));
         }
         nameView.setDeletable(false);
         nameView.setValues(
-                accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME),
-                valuesDelta, rawContactDelta, /* readOnly =*/ false, mViewIdGenerator);
+                accountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE),
+                nameValuesDelta, rawContactDelta, /* readOnly =*/ false, mViewIdGenerator);
 
         // Correct start margin since there is a second icon in the structured name layout
         nameView.findViewById(R.id.kind_icon).setVisibility(View.GONE);
@@ -395,7 +368,7 @@ public class CompactKindSectionView extends LinearLayout {
         phoneticNameView.setDeletable(false);
         phoneticNameView.setValues(
                 accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME),
-                valuesDelta, rawContactDelta, /* readOnly =*/ false, mViewIdGenerator);
+                nameValuesDelta, rawContactDelta, /* readOnly =*/ false, mViewIdGenerator);
 
         // Fix the start margin for phonetic name views
         final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(

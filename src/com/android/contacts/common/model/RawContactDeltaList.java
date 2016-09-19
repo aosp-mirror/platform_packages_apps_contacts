@@ -31,8 +31,6 @@ import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
 import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.model.CPOWrapper;
-import com.android.contacts.common.model.ValuesDelta;
 
 import com.google.common.collect.Lists;
 

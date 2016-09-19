@@ -23,9 +23,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.text.TextUtils;
 
 import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.model.BuilderWrapper;
+
 import com.google.common.collect.Sets;
 
 import java.util.HashSet;
@@ -81,6 +83,10 @@ public class ValuesDelta implements Parcelable {
 
     public ContentValues getAfter() {
         return mAfter;
+    }
+
+    public ContentValues getBefore() {
+        return mBefore;
     }
 
     public boolean containsKey(String key) {

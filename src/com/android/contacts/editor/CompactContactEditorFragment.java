@@ -160,7 +160,8 @@ public class CompactContactEditorFragment extends Fragment implements
     // Join Activity
     private static final String KEY_CONTACT_ID_FOR_JOIN = "contactidforjoin";
 
-    private static final String KEY_READ_ONLY_DISPLAY_NAME = "readOnlyDisplayName";
+    private static final String KEY_READ_ONLY_DISPLAY_NAME_ID = "readOnlyDisplayNameId";
+    private static final String KEY_COPY_READ_ONLY_DISPLAY_NAME = "copyReadOnlyDisplayName";
 
     protected static final int REQUEST_CODE_JOIN = 0;
     protected static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
@@ -387,15 +388,8 @@ public class CompactContactEditorFragment extends Fragment implements
     protected long mContactIdForJoin;
 
     // Used to pre-populate the editor with a display name when a user edits a read-only contact.
-    protected String mReadOnlyDisplayName;
-
-    //
-    // Not saved/restored on rotates
-    //
-
-    // The name editor view for the new raw contact that was created so that the user can
-    // edit a read-only contact (to which the new raw contact was joined)
-    protected StructuredNameEditorView mReadOnlyNameEditorView;
+    protected long mReadOnlyDisplayNameId;
+    protected boolean mCopyReadOnlyName;
 
     /**
      * The contact data loader listener.
@@ -535,7 +529,8 @@ public class CompactContactEditorFragment extends Fragment implements
             // Join Activity
             mContactIdForJoin = savedState.getLong(KEY_CONTACT_ID_FOR_JOIN);
 
-            mReadOnlyDisplayName = savedState.getString(KEY_READ_ONLY_DISPLAY_NAME);
+            mReadOnlyDisplayNameId = savedState.getLong(KEY_READ_ONLY_DISPLAY_NAME_ID);
+            mCopyReadOnlyName = savedState.getBoolean(KEY_COPY_READ_ONLY_DISPLAY_NAME, false);
 
             mPhotoRawContactId = savedState.getLong(KEY_PHOTO_RAW_CONTACT_ID);
             mUpdatedPhotos = savedState.getParcelable(KEY_UPDATED_PHOTOS);
@@ -660,7 +655,8 @@ public class CompactContactEditorFragment extends Fragment implements
         // Join Activity
         outState.putLong(KEY_CONTACT_ID_FOR_JOIN, mContactIdForJoin);
 
-        outState.putString(KEY_READ_ONLY_DISPLAY_NAME, mReadOnlyDisplayName);
+        outState.putLong(KEY_READ_ONLY_DISPLAY_NAME_ID, mReadOnlyDisplayNameId);
+        outState.putBoolean(KEY_COPY_READ_ONLY_DISPLAY_NAME, mCopyReadOnlyName);
 
         outState.putLong(KEY_PHOTO_RAW_CONTACT_ID, mPhotoRawContactId);
         outState.putParcelable(KEY_UPDATED_PHOTOS, mUpdatedPhotos);
@@ -1047,11 +1043,14 @@ public class CompactContactEditorFragment extends Fragment implements
      * See go/editing-read-only-contacts
      */
     private boolean hasPendingChanges() {
-        if (mReadOnlyNameEditorView != null && mReadOnlyDisplayName != null) {
+        if (isEditingReadOnlyRawContactWithNewContact()) {
             // We created a new raw contact delta with a default display name.
             // We must test for pending changes while ignoring the default display name.
-            final String displayName = mReadOnlyNameEditorView.getDisplayName();
-            if (mReadOnlyDisplayName.equals(displayName)) {
+            final ValuesDelta beforeDelta = mState.getByRawContactId(mReadOnlyDisplayNameId)
+                    .getSuperPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
+            final ValuesDelta pendingDelta = mState
+                    .getSuperPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
+            if (structuredNamesAreEqual(beforeDelta, pendingDelta)) {
                 final Set<String> excludedMimeTypes = new HashSet<>();
                 excludedMimeTypes.add(StructuredName.CONTENT_ITEM_TYPE);
                 return hasPendingRawContactChanges(excludedMimeTypes);
@@ -1059,6 +1058,49 @@ public class CompactContactEditorFragment extends Fragment implements
             return true;
         }
         return hasPendingRawContactChanges(/* excludedMimeTypes =*/ null);
+    }
+
+    /**
+     * Compares the two {@link ValuesDelta} to see if the structured name is changed. We made a copy
+     * of a read only delta and now we want to check if the copied delta has changes.
+     *
+     * @param before original {@link ValuesDelta}
+     * @param after copied {@link ValuesDelta}
+     * @return true if the copied {@link ValuesDelta} has all the same values in the structured
+     * name fields as the original.
+     */
+    private boolean structuredNamesAreEqual(ValuesDelta before, ValuesDelta after) {
+        if (before == null && after == null) return true;
+        if (before == null || after == null) return false;
+        final ContentValues original = before.getBefore();
+        final ContentValues pending = after.getAfter();
+        if (original != null && pending != null) {
+            final String beforeDisplayName = original.getAsString(
+                    StructuredName.DISPLAY_NAME);
+            final String afterDisplayName = pending.getAsString(StructuredName.DISPLAY_NAME);
+            if (!TextUtils.equals(beforeDisplayName, afterDisplayName)) return false;
+
+            final String beforePrefix = original.getAsString(StructuredName.PREFIX);
+            final String afterPrefix = pending.getAsString(StructuredName.PREFIX);
+            if (!TextUtils.equals(beforePrefix, afterPrefix)) return false;
+
+            final String beforeFirstName = original.getAsString(StructuredName.GIVEN_NAME);
+            final String afterFirstName = pending.getAsString(StructuredName.GIVEN_NAME);
+            if (!TextUtils.equals(beforeFirstName, afterFirstName)) return false;
+
+            final String beforeMiddleName = original.getAsString(StructuredName.MIDDLE_NAME);
+            final String afterMiddleName = pending.getAsString(StructuredName.MIDDLE_NAME);
+            if (!TextUtils.equals(beforeMiddleName, afterMiddleName)) return false;
+
+            final String beforeLastName = original.getAsString(StructuredName.FAMILY_NAME);
+            final String afterLastName = pending.getAsString(StructuredName.FAMILY_NAME);
+            if (!TextUtils.equals(beforeLastName, afterLastName)) return false;
+
+            final String beforeSuffix = original.getAsString(StructuredName.SUFFIX);
+            final String afterSuffix = pending.getAsString(StructuredName.SUFFIX);
+            return TextUtils.equals(beforeSuffix, afterSuffix);
+        }
+        return false;
     }
 
     /**
@@ -1145,23 +1187,19 @@ public class CompactContactEditorFragment extends Fragment implements
         }
         mRawContacts = contact.getRawContacts();
 
-        String readOnlyDisplayName = null;
         // Check for writable raw contacts.  If there are none, then we need to create one so user
         // can edit.  For the user profile case, there is already an editable contact.
         if (!contact.isUserProfile() && !contact.isWritableContact(mContext)) {
             mHasNewContact = true;
-
+            mReadOnlyDisplayNameId = contact.getNameRawContactId();
+            mCopyReadOnlyName = true;
             // This is potentially an asynchronous call and will add deltas to list.
             selectAccountAndCreateContact();
-
-            readOnlyDisplayName = contact.getDisplayName();
         } else {
             mHasNewContact = false;
         }
 
-        // This also adds deltas to list.  If readOnlyDisplayName is null at this point it is
-        // simply ignored later on by the editor.
-        setStateForExistingContact(readOnlyDisplayName, contact.isUserProfile(), mRawContacts);
+        setStateForExistingContact(contact.isUserProfile(), mRawContacts);
         if (mAutoAddToDefaultGroup
                 && InvisibleContactUtil.isInvisibleAndAddable(contact, getContext())) {
             InvisibleContactUtil.markAddToDefaultGroup(contact, mState, getContext());
@@ -1236,10 +1274,9 @@ public class CompactContactEditorFragment extends Fragment implements
     /**
      * Prepare {@link #mState} for an existing contact.
      */
-    private void setStateForExistingContact(String readOnlyDisplayName, boolean isUserProfile,
+    private void setStateForExistingContact(boolean isUserProfile,
             ImmutableList<RawContact> rawContacts) {
         setEnabled(true);
-        mReadOnlyDisplayName = readOnlyDisplayName;
 
         mState.addAll(rawContacts.iterator());
         setIntentExtras(mIntentExtras);
@@ -1315,6 +1352,23 @@ public class CompactContactEditorFragment extends Fragment implements
         return result;
     }
 
+    private void copyReadOnlyName() {
+        // We should only ever be doing this if we're creating a new writable contact to attach to
+        // a read only contact.
+        if (!isEditingReadOnlyRawContactWithNewContact()) {
+            return;
+        }
+        final int writableIndex = mState.indexOfFirstWritableRawContact(getContext());
+        final RawContactDelta writable = mState.get(writableIndex);
+        final RawContactDelta readOnly = mState.get(writableIndex == 0 ? 1 : 0);
+        final ValuesDelta writeNameDelta = writable
+                .getSuperPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
+        final ValuesDelta readNameDelta = readOnly
+                .getSuperPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
+        writeNameDelta.copyStructuredNameFieldsFrom(readNameDelta);
+        mCopyReadOnlyName = false;
+    }
+
     /**
      * Bind editors using {@link #mState} and other members initialized from the loaded (or new)
      * Contact.
@@ -1327,13 +1381,12 @@ public class CompactContactEditorFragment extends Fragment implements
         // Add input fields for the loaded Contact
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
+        if (mCopyReadOnlyName) {
+            copyReadOnlyName();
+        }
         editorView.setState(mState, getMaterialPalette(), mViewIdGenerator,
                 mHasNewContact, mIsUserProfile, mAccountWithDataSet,
                 mRawContactIdToDisplayAlone, isEditingReadOnlyRawContactWithNewContact());
-        if (mHasNewContact && !TextUtils.isEmpty(mReadOnlyDisplayName)) {
-            mReadOnlyNameEditorView = editorView.getPrimaryNameEditorView();
-            editorView.maybeSetReadOnlyDisplayNameAsPrimary(mReadOnlyDisplayName);
-        }
 
         // Set up the photo widget
         editorView.setPhotoListener(this);
@@ -1407,8 +1460,7 @@ public class CompactContactEditorFragment extends Fragment implements
         setStateForNewContact(newAccount, newAccountType, oldState, oldAccountType,
                 isEditingUserProfile());
         if (mIsEdit) {
-            setStateForExistingContact(mReadOnlyDisplayName, isEditingUserProfile(),
-                    mRawContacts);
+            setStateForExistingContact(isEditingUserProfile(), mRawContacts);
         }
     }
 
@@ -1482,7 +1534,7 @@ public class CompactContactEditorFragment extends Fragment implements
                                 .show();
                         break;
                     default:
-                        final String displayName = getContent().getPrimaryNameEditorView()
+                        final String displayName = getContent().getNameEditorView()
                                 .getDisplayName();
                         final String toastMessage;
                         if (!TextUtils.isEmpty(displayName)) {

@@ -21,35 +21,18 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.ContactsContract.CommonDataKinds.StructuredName;
-import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.common.util.NameConverter;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * A dedicated editor for structured name.  When the user collapses/expands
- * the structured name, it will reparse or recompose the name, but only
- * if the user has made changes.  This distinction will be particularly
- * obvious if the name has a non-standard structure. Consider this structure:
- * first name="John Doe", family name="".  As long as the user does not change
- * the full name, expand and collapse will preserve this.  However, if the user
- * changes "John Doe" to "Jane Doe" and then expands the view, we will reparse
- * and show first name="Jane", family name="Doe".
+ * A dedicated editor for structured name.
  */
 public class StructuredNameEditorView extends TextFieldsEditorView {
 
@@ -92,18 +75,6 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         updateEmptiness();
     }
 
-    /**
-     * Displays the icon and name for the given account under the name name input fields.
-     */
-    public void setAccountType(AccountType accountType) {
-        final LinearLayout layout = (LinearLayout) findViewById(R.id.account_type);
-        layout.setVisibility(View.VISIBLE);
-        final ImageView imageView = (ImageView) layout.findViewById(R.id.account_type_icon);
-        imageView.setImageDrawable(accountType.getDisplayIcon(getContext()));
-        final TextView textView = (TextView) layout.findViewById(R.id.account_type_name);
-        textView.setText(accountType.getDisplayLabel(getContext()));
-    }
-
     @Override
     public void onFieldChanged(String column, String value) {
         if (!isFieldChanged(column, value)) {
@@ -114,148 +85,16 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
         saveValue(column, value);
         mChanged = true;
 
-        // Next make sure the display name and the structured name are synced
-        if (hasShortAndLongForms()) {
-            if (areOptionalFieldsVisible()) {
-                rebuildFullName(getValues());
-            } else {
-                rebuildStructuredName(getValues());
-            }
-        }
-
-        // Then notify the listener, which will rely on the display and structured names to be
-        // synced (in order to provide aggregate suggestions).
+        // Then notify the listener.
         notifyEditorListener();
-    }
-
-    @Override
-    protected void onOptionalFieldVisibilityChange() {
-        if (hasShortAndLongForms()) {
-            if (areOptionalFieldsVisible()) {
-                switchFromFullNameToStructuredName();
-            } else {
-                switchFromStructuredNameToFullName();
-            }
-        }
-
-        super.onOptionalFieldVisibilityChange();
-    }
-
-    private void switchFromFullNameToStructuredName() {
-        ValuesDelta values = getValues();
-
-        if (!mChanged) {
-            for (String field : NameConverter.STRUCTURED_NAME_FIELDS) {
-                values.put(field, mSnapshot.getContentValues().getAsString(field));
-            }
-            return;
-        }
-
-        String displayName = values.getDisplayName();
-        Map<String, String> structuredNameMap = NameConverter.displayNameToStructuredName(
-                getContext(), displayName);
-        if (!structuredNameMap.isEmpty()) {
-            eraseFullName(values);
-            for (String field : structuredNameMap.keySet()) {
-                values.put(field, structuredNameMap.get(field));
-            }
-        }
-
-        mSnapshot.getContentValues().clear();
-        mSnapshot.getContentValues().putAll(values.getCompleteValues());
-        mSnapshot.setDisplayName(displayName);
-    }
-
-    private void switchFromStructuredNameToFullName() {
-        ValuesDelta values = getValues();
-
-        if (!mChanged) {
-            values.setDisplayName(mSnapshot.getDisplayName());
-            return;
-        }
-
-        Map<String, String> structuredNameMap = valuesToStructuredNameMap(values);
-        String displayName = NameConverter.structuredNameToDisplayName(getContext(),
-                structuredNameMap);
-        if (!TextUtils.isEmpty(displayName)) {
-            eraseStructuredName(values);
-            values.put(StructuredName.DISPLAY_NAME, displayName);
-        }
-
-        mSnapshot.getContentValues().clear();
-        mSnapshot.setDisplayName(values.getDisplayName());
-        mSnapshot.setMimeType(StructuredName.CONTENT_ITEM_TYPE);
-        for (String field : structuredNameMap.keySet()) {
-            mSnapshot.getContentValues().put(field, structuredNameMap.get(field));
-        }
-    }
-
-    private Map<String, String> valuesToStructuredNameMap(ValuesDelta values) {
-        Map<String, String> structuredNameMap = new HashMap<String, String>();
-        for (String key : NameConverter.STRUCTURED_NAME_FIELDS) {
-            structuredNameMap.put(key, values.getAsString(key));
-        }
-        return structuredNameMap;
-    }
-
-    private void eraseFullName(ValuesDelta values) {
-        values.setDisplayName(null);
-    }
-
-    private void rebuildFullName(ValuesDelta values) {
-        Map<String, String> structuredNameMap = valuesToStructuredNameMap(values);
-        String displayName = NameConverter.structuredNameToDisplayName(getContext(),
-                structuredNameMap);
-        values.setDisplayName(displayName);
-    }
-
-    private void eraseStructuredName(ValuesDelta values) {
-        for (String field : NameConverter.STRUCTURED_NAME_FIELDS) {
-            values.putNull(field);
-        }
-    }
-
-    private void rebuildStructuredName(ValuesDelta values) {
-        String displayName = values.getDisplayName();
-        Map<String, String> structuredNameMap = NameConverter.displayNameToStructuredName(
-                getContext(), displayName);
-        for (String field : structuredNameMap.keySet()) {
-            values.put(field, structuredNameMap.get(field));
-        }
-    }
-
-    /**
-     * Set the display name onto the text field directly.  This does not affect the underlying
-     * data structure so it is similar to the user typing the value in on the field directly.
-     *
-     * @param name The name to set on the text field.
-     */
-    public void setDisplayName(String name) {
-        // For now, assume the first text field is the name.
-        // TODO: Find a better way to get a hold of the name field,
-        // including given_name and family_name.
-        super.setValue(0, name);
-        getValues().setDisplayName(name);
-        rebuildStructuredName(getValues());
-        super.setValue(1, getValues().getAsString(StructuredName.GIVEN_NAME));
-        super.setValue(3, getValues().getAsString(StructuredName.FAMILY_NAME));
     }
 
     /**
      * Returns the display name currently displayed in the editor.
      */
     public String getDisplayName() {
-        final ValuesDelta valuesDelta = getValues();
-        rebuildFullName(valuesDelta);
-        if (hasShortAndLongForms() && areOptionalFieldsVisible()) {
-            final Map<String, String> structuredNameMap = valuesToStructuredNameMap(valuesDelta);
-            final String displayName = NameConverter.structuredNameToDisplayName(
-                    getContext(), structuredNameMap);
-            if (!TextUtils.isEmpty(displayName)) {
-                return displayName;
-            }
-        }
-        return valuesDelta.getDisplayName();
+        return NameConverter.structuredNameToDisplayName(getContext(),
+                getValues().getCompleteValues());
     }
 
     @Override

@@ -30,7 +30,6 @@
         >
         <DataKind kind="name"
             maxOccurs="1"
-            supportsDisplayName="true"
             supportsPrefix="true"
             supportsMiddleName="true"
             supportsSuffix="true"

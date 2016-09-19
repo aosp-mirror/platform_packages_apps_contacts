@@ -92,7 +92,6 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
 
         // Let's just check if the DataKinds are registered.
         assertNotNull(type.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE));
-        assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME));
         assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME));
         assertNotNull(type.getKindForMimetype(Email.CONTENT_ITEM_TYPE));
         assertNotNull(type.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE));
@@ -130,7 +129,6 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
         checkEditSchema_mustHaveChecks(R.xml.missing_contacts_base, true);
         checkEditSchema_mustHaveChecks(R.xml.missing_contacts_photo, false);
         checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name, false);
-        checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr1, false);
         checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr2, false);
         checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr3, false);
         checkEditSchema_mustHaveChecks(R.xml.missing_contacts_name_attr4, false);
@@ -161,12 +159,11 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
         // Shouldn't have a "null" mimetype.
         assertTrue(type.getKindForMimetype(null) == null);
 
-        // 3 kinds are defined in XML and 4 are added by default.
-        assertEquals(4 + 3, type.getSortedDataKinds().size());
+        // 3 kinds are defined in XML and 3 are added by default.
+        assertEquals(3 + 3, type.getSortedDataKinds().size());
 
         // Check for the default kinds.
         assertNotNull(type.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE));
-        assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME));
         assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME));
         assertNotNull(type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE));
 

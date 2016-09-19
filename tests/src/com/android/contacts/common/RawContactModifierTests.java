@@ -830,7 +830,7 @@ public class RawContactModifierTests extends AndroidTestCase {
         assertEquals("Expected to create organization", 1, count);
     }
 
-    public void testMigrateWithDisplayNameFromGoogleToExchange1() {
+    public void testMigrateNameFromGoogleToExchange() {
         AccountType oldAccountType = new GoogleAccountType(getContext(), "");
         AccountType newAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
         DataKind kind = newAccountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
@@ -864,91 +864,6 @@ public class RawContactModifierTests extends AndroidTestCase {
         // Phonetic middle name isn't supported by Exchange.
         assertEquals("PHONETIC_FAMILY", output.getAsString(StructuredName.PHONETIC_FAMILY_NAME));
         assertEquals("PHONETIC_GIVEN", output.getAsString(StructuredName.PHONETIC_GIVEN_NAME));
-    }
-
-    public void testMigrateWithDisplayNameFromGoogleToExchange2() {
-        AccountType oldAccountType = new GoogleAccountType(getContext(), "");
-        AccountType newAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
-        DataKind kind = newAccountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
-
-        ContactsMockContext context = new ContactsMockContext(getContext());
-        MockContentProvider provider = context.getContactsProvider();
-
-        String inputDisplayName = "prefix given middle family suffix";
-        // The method will ask the provider to split/join StructuredName.
-        Uri uriForBuildDisplayName =
-                ContactsContract.AUTHORITY_URI
-                        .buildUpon()
-                        .appendPath("complete_name")
-                        .appendQueryParameter(StructuredName.DISPLAY_NAME, inputDisplayName)
-                        .build();
-        provider.expectQuery(uriForBuildDisplayName)
-                .returnRow("prefix", "given", "middle", "family", "suffix")
-                .withProjection(StructuredName.PREFIX, StructuredName.GIVEN_NAME,
-                        StructuredName.MIDDLE_NAME, StructuredName.FAMILY_NAME,
-                        StructuredName.SUFFIX);
-
-        RawContactDelta oldState = new RawContactDelta();
-        ContentValues mockNameValues = new ContentValues();
-        mockNameValues.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
-        mockNameValues.put(StructuredName.DISPLAY_NAME, inputDisplayName);
-        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
-
-        RawContactDelta newState = new RawContactDelta();
-        RawContactModifier.migrateStructuredName(context, oldState, newState, kind);
-        List<ValuesDelta> list = newState.getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
-        assertEquals(1, list.size());
-
-        ContentValues outputValues = list.get(0).getAfter();
-        assertEquals("prefix", outputValues.getAsString(StructuredName.PREFIX));
-        assertEquals("given", outputValues.getAsString(StructuredName.GIVEN_NAME));
-        assertEquals("middle", outputValues.getAsString(StructuredName.MIDDLE_NAME));
-        assertEquals("family", outputValues.getAsString(StructuredName.FAMILY_NAME));
-        assertEquals("suffix", outputValues.getAsString(StructuredName.SUFFIX));
-    }
-
-    public void testMigrateWithStructuredNameFromExchangeToGoogle() {
-        AccountType oldAccountType = new ExchangeAccountType(getContext(), "", EXCHANGE_ACCT_TYPE);
-        AccountType newAccountType = new GoogleAccountType(getContext(), "");
-        DataKind kind = newAccountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE);
-
-        ContactsMockContext context = new ContactsMockContext(getContext());
-        MockContentProvider provider = context.getContactsProvider();
-
-        // The method will ask the provider to split/join StructuredName.
-        Uri uriForBuildDisplayName =
-                ContactsContract.AUTHORITY_URI
-                        .buildUpon()
-                        .appendPath("complete_name")
-                        .appendQueryParameter(StructuredName.PREFIX, "prefix")
-                        .appendQueryParameter(StructuredName.GIVEN_NAME, "given")
-                        .appendQueryParameter(StructuredName.MIDDLE_NAME, "middle")
-                        .appendQueryParameter(StructuredName.FAMILY_NAME, "family")
-                        .appendQueryParameter(StructuredName.SUFFIX, "suffix")
-                        .build();
-        provider.expectQuery(uriForBuildDisplayName)
-                .returnRow("prefix given middle family suffix")
-                .withProjection(StructuredName.DISPLAY_NAME);
-
-        RawContactDelta oldState = new RawContactDelta();
-        ContentValues mockNameValues = new ContentValues();
-        mockNameValues.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
-        mockNameValues.put(StructuredName.PREFIX, "prefix");
-        mockNameValues.put(StructuredName.GIVEN_NAME, "given");
-        mockNameValues.put(StructuredName.MIDDLE_NAME, "middle");
-        mockNameValues.put(StructuredName.FAMILY_NAME, "family");
-        mockNameValues.put(StructuredName.SUFFIX, "suffix");
-        oldState.addEntry(ValuesDelta.fromAfter(mockNameValues));
-
-        RawContactDelta newState = new RawContactDelta();
-        RawContactModifier.migrateStructuredName(context, oldState, newState, kind);
-
-        List<ValuesDelta> list = newState.getMimeEntries(StructuredName.CONTENT_ITEM_TYPE);
-        assertNotNull(list);
-        assertEquals(1, list.size());
-        ContentValues outputValues = list.get(0).getAfter();
-        assertEquals("prefix given middle family suffix",
-                outputValues.getAsString(StructuredName.DISPLAY_NAME));
     }
 
     public void testMigratePostalFromGoogleToExchange() {

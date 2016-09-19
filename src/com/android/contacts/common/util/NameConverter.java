@@ -27,9 +27,6 @@ import android.text.TextUtils;
 
 import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
 
-import java.util.Map;
-import java.util.TreeMap;
-
 /**
  * Utility class for converting between a display name and structured name (and vice-versa), via
  * calls to the contact provider.
@@ -46,28 +43,6 @@ public class NameConverter {
             StructuredName.FAMILY_NAME,
             StructuredName.SUFFIX
     };
-
-    /**
-     * Converts the given structured name (provided as a map from {@link StructuredName} fields to
-     * corresponding values) into a display name string.
-     * <p>
-     * Note that this operates via a call back to the ContactProvider, but it does not access the
-     * database, so it should be safe to call from the UI thread.  See
-     * ContactsProvider2.completeName() for the underlying method call.
-     * @param context Activity context.
-     * @param structuredName The structured name map to convert.
-     * @return The display name computed from the structured name map.
-     */
-    public static String structuredNameToDisplayName(Context context,
-            Map<String, String> structuredName) {
-        Builder builder = ContactsContract.AUTHORITY_URI.buildUpon().appendPath("complete_name");
-        for (String key : STRUCTURED_NAME_FIELDS) {
-            if (structuredName.containsKey(key)) {
-                appendQueryParameter(builder, key, structuredName.get(key));
-            }
-        }
-        return fetchDisplayName(context, builder.build());
-    }
 
     /**
      * Converts the given structured name (provided as ContentValues) into a display name string.
@@ -106,69 +81,12 @@ public class NameConverter {
         return displayName;
     }
 
-    /**
-     * Converts the given display name string into a structured name (as a map from
-     * {@link StructuredName} fields to corresponding values).
-     * <p>
-     * Note that this operates via a call back to the ContactProvider, but it does not access the
-     * database, so it should be safe to call from the UI thread.
-     * @param context Activity context.
-     * @param displayName The display name to convert.
-     * @return The structured name map computed from the display name.
-     */
-    public static Map<String, String> displayNameToStructuredName(Context context,
-            String displayName) {
-        Map<String, String> structuredName = new TreeMap<String, String>();
-        Builder builder = ContactsContract.AUTHORITY_URI.buildUpon().appendPath("complete_name");
-
-        appendQueryParameter(builder, StructuredName.DISPLAY_NAME, displayName);
-        Cursor cursor = context.getContentResolver().query(builder.build(), STRUCTURED_NAME_FIELDS,
-                null, null, null);
-
-        if (cursor != null) {
-            try {
-                if (cursor.moveToFirst()) {
-                    for (int i = 0; i < STRUCTURED_NAME_FIELDS.length; i++) {
-                        structuredName.put(STRUCTURED_NAME_FIELDS[i], cursor.getString(i));
-                    }
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-        return structuredName;
-    }
-
-    /**
-     * Converts the given display name string into a structured name (inserting the structured
-     * values into a new or existing ContentValues object).
-     * <p>
-     * Note that this operates via a call back to the ContactProvider, but it does not access the
-     * database, so it should be safe to call from the UI thread.
-     * @param context Activity context.
-     * @param displayName The display name to convert.
-     * @param contentValues The content values object to place the structured name values into.  If
-     *     null, a new one will be created and returned.
-     * @return The ContentValues object containing the structured name fields derived from the
-     *     display name.
-     */
-    public static ContentValues displayNameToStructuredName(Context context, String displayName,
-            ContentValues contentValues) {
-        if (contentValues == null) {
-            contentValues = new ContentValues();
-        }
-        Map<String, String> mapValues = displayNameToStructuredName(context, displayName);
-        for (String key : mapValues.keySet()) {
-            contentValues.put(key, mapValues.get(key));
-        }
-        return contentValues;
-    }
-
     private static void appendQueryParameter(Builder builder, String field, String value) {
         if (!TextUtils.isEmpty(value)) {
             builder.appendQueryParameter(field, value);
         }
     }
+
 
     /**
      * Parses phonetic name and returns parsed data (family, middle, given) as ContentValues.
