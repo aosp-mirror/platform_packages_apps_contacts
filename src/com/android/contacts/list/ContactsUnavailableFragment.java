@@ -36,7 +36,7 @@ import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.compat.ProviderStatusCompat;
-import com.android.contacts.common.interactions.ImportExportDialogFragment;
+import com.android.contacts.common.interactions.ImportDialogFragment;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 
 /**
@@ -146,9 +146,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 ImplicitIntentsUtil.startActivityOutsideApp(getActivity(), intent);
                 break;
             case R.id.import_contacts_button:
-                ImportExportDialogFragment.show(getFragmentManager(), areContactsAvailable(),
-                        getActivity().getClass(),
-                        ImportExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
+                ImportDialogFragment.show(getFragmentManager(), getActivity().getClass());
                 break;
         }
     }

@@ -1595,7 +1595,7 @@
     <string name="share_contacts_failure">Failed to share contacts.</string>
 
     <!-- Dialog title when selecting the bulk operation to perform from a list. [CHAR LIMIT=36] -->
-    <string name="dialog_import_export">Import/export contacts</string>
+    <string name="dialog_export">Export contacts</string>
 
     <!-- Dialog title when importing contacts from an external source. [CHAR LIMIT=36] -->
     <string name="dialog_import">Import contacts</string>
@@ -1644,8 +1644,11 @@
     <!-- The menu item to open the list of accounts. [CHAR LIMIT=60]-->
     <string name="menu_accounts">Manage accounts</string>
 
-    <!-- The menu item to bulk import or bulk export contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
-    <string name="menu_import_export">Import/export</string>
+    <!-- The menu item to bulk import contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
+    <string name="menu_import">Import</string>
+
+    <!-- The menu item to bulk export contacts from SIM card or SD card.  [CHAR LIMIT=30]-->
+    <string name="menu_export">Export</string>
 
     <!-- The menu item to open blocked numbers activity [CHAR LIMIT=60]-->
     <string name="menu_blocked_numbers">Blocked numbers</string>
