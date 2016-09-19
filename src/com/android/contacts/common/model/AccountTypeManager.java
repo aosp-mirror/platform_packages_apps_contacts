@@ -595,9 +595,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
                                     && accountWithDataSet.dataSet == null) {
                                 foundWritableGoogleAccount = true;
                             }
-                        }
-                        if (accountType.isGroupMembershipEditable()) {
-                            groupWritableAccounts.add(accountWithDataSet);
+
+                            if (accountType.isGroupMembershipEditable()) {
+                                groupWritableAccounts.add(accountWithDataSet);
+                            }
                         }
                     }
                 }
@@ -632,9 +633,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
             }
             if (localAccountType.areContactsWritable()) {
                 contactWritableAccounts.add(localAccount);
-            }
-            if (localAccountType.isGroupMembershipEditable()) {
-                groupWritableAccounts.add(localAccount);
+
+                if (localAccountType.isGroupMembershipEditable()) {
+                    groupWritableAccounts.add(localAccount);
+                }
             }
         }
 
