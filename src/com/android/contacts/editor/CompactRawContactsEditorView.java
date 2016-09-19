@@ -547,8 +547,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     public View getAggregationAnchorView() {
-        CompactKindSectionView nameView = mKindSectionViewMap.get(StructuredName.CONTENT_ITEM_TYPE);
-        return nameView != null ? nameView.getChildAt(0).findViewById(R.id.anchor_view) : null;
+        final StructuredNameEditorView nameEditorView = getPrimaryNameEditorView();
+        return nameEditorView != null ? nameEditorView.findViewById(R.id.anchor_view) : null;
     }
 
     public void setGroupMetaData(Cursor groupMetaData) {
