@@ -63,6 +63,8 @@ import com.android.contacts.common.model.account.AccountDisplayInfo;
 import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.DeviceLocalAccountType;
+import com.android.contacts.common.model.account.SimAccountType;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.AccountsListAdapter;
 import com.android.contacts.common.util.MaterialColorMapUtils;
@@ -165,7 +167,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
             final TextView text2 = (TextView) resultView.findViewById(android.R.id.text2);
             final String accountName = rawContactDelta.getAccountName();
-            if (TextUtils.isEmpty(accountName)) {
+            if (TextUtils.isEmpty(accountName) || accountType instanceof DeviceLocalAccountType
+                    || accountType instanceof SimAccountType) {
                 text2.setVisibility(View.GONE);
             } else {
                 // Truncate email addresses in the middle so we don't lose the domain
