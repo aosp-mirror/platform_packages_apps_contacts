@@ -8,7 +8,9 @@ LOCAL_CERTIFICATE := shared
 LOCAL_STATIC_JAVA_LIBRARIES := android-support-test
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
-LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, res)
+
+res_dirs := res ../res-icons
+LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs))
 
 LOCAL_PACKAGE_NAME := ContactsTests
 
