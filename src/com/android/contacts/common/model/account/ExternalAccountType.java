@@ -25,6 +25,7 @@ import android.content.pm.ServiceInfo;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.res.XmlResourceParser;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
@@ -101,6 +102,7 @@ public class ExternalAccountType extends BaseAccountType {
     private String mAccountTypeIconAttribute;
     private boolean mHasContactsMetadata;
     private boolean mHasEditSchema;
+    private boolean mGroupMembershipEditable;
 
     public ExternalAccountType(Context context, String resPackageName, boolean isExtension) {
         this(context, resPackageName, isExtension, null);
@@ -171,6 +173,9 @@ public class ExternalAccountType extends BaseAccountType {
                 syncAdapterPackageName, ATTR_ACCOUNT_LABEL);
         iconRes = resolveExternalResId(context, mAccountTypeIconAttribute,
                 syncAdapterPackageName, ATTR_ACCOUNT_ICON);
+
+        final DataKind dataKind = getKindForMimetype(GroupMembership.CONTENT_ITEM_TYPE);
+        mGroupMembershipEditable = dataKind != null && dataKind.editable;
 
         // If we reach this point, the account type has been successfully initialized.
         mIsInitialized = true;
@@ -291,6 +296,11 @@ public class ExternalAccountType extends BaseAccountType {
     @Override
     public List<String> getExtensionPackageNames() {
         return mExtensionPackageNames;
+    }
+
+    @Override
+    public boolean isGroupMembershipEditable() {
+        return mGroupMembershipEditable;
     }
 
     /**
