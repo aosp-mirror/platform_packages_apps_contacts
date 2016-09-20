@@ -20,6 +20,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 
 import android.content.ContentValues;
+import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -43,6 +44,8 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
     public static class Query {
 
         private final Uri mUri;
+        private UriMatcher mMatcher;
+
         private String[] mProjection;
         private String[] mDefaultProjection;
         private String mSelection;
@@ -55,6 +58,15 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
         private boolean mAnyNumberOfTimes;
 
         private boolean mExecuted;
+
+        private Query() {
+            mUri = null;
+        }
+
+        private Query(UriMatcher matcher) {
+            mUri = null;
+            mMatcher = matcher;
+        }
 
         public Query(Uri uri) {
             mUri = uri;
@@ -123,7 +135,11 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
 
         public boolean equals(Uri uri, String[] projection, String selection,
                 String[] selectionArgs, String sortOrder) {
-            if (!uri.equals(mUri)) {
+            if (mUri == null) {
+                if (mMatcher != null && mMatcher.match(uri) == UriMatcher.NO_MATCH) {
+                    return false;
+                }
+            } else if (!uri.equals(mUri)) {
                 return false;
             }
 
@@ -169,6 +185,23 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
             }
             return cursor;
         }
+
+        public static Query forAnyUri() {
+            return new Query();
+        }
+
+        public static Query forUrisMatching(UriMatcher matcher) {
+            return new Query(matcher);
+        }
+
+        public static Query forUrisMatching(String authority, String... paths) {
+            final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
+            for (int i = 0; i < paths.length; i++) {
+                matcher.addURI(authority, paths[i], i);
+            }
+            return new Query(matcher);
+        }
+
     }
 
     public static class TypeQuery {
@@ -443,10 +476,13 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
         return true;
     }
 
-    public Query expectQuery(Uri contentUri) {
-        Query query = new Query(contentUri);
+    public Query expect(Query query) {
         mExpectedQueries.add(query);
         return query;
+    }
+
+    public Query expectQuery(Uri contentUri) {
+        return expect(new Query(contentUri));
     }
 
     public void expectTypeQuery(Uri uri, String type) {
@@ -598,7 +634,7 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
     private static String queryToString(Uri uri, String[] projection, String selection,
             String[] selectionArgs, String sortOrder) {
         StringBuilder sb = new StringBuilder();
-        sb.append(uri).append(" ");
+        sb.append(uri == null ? "<Any Uri>" : uri).append(" ");
         if (projection != null) {
             sb.append(Arrays.toString(projection));
         } else {
