@@ -241,9 +241,6 @@
 
     <dimen name="contact_browser_list_item_height">56dp</dimen>
 
-    <!-- Ideal item width in photo picker -->
-    <dimen name="photo_picker_item_ideal_width">135dp</dimen>
-
     <!-- Margin between name field and whatever fields are above it. -->
     <dimen name="compact_editor_name_top_margin">8dp</dimen>
 
