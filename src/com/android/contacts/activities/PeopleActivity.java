@@ -197,6 +197,24 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         return (mProviderStatus != null) && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
     }
 
+    /**
+     * Initialize fragments that are (or may not be) in the layout.
+     *
+     * For the fragments that are in the layout, we initialize them in
+     * {@link #createViewsAndFragments()} after inflating the layout.
+     *
+     * However, the {@link ContactsUnavailableFragment} is a special fragment which may not
+     * be in the layout, so we have to do the initialization here.
+     *
+     * The ContactsUnavailableFragment is always created at runtime.
+     */
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        if (fragment instanceof ContactsUnavailableFragment) {
+            mContactsUnavailableFragment = (ContactsUnavailableFragment)fragment;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedState) {
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
