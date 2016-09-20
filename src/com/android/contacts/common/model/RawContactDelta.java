@@ -30,11 +30,9 @@ import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 
 import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.BuilderWrapper;
-import com.android.contacts.common.model.CPOWrapper;
-import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -234,6 +232,10 @@ public class RawContactDelta implements Parcelable {
 
     public AccountType getAccountType(AccountTypeManager manager) {
         return manager.getAccountType(getAccountType(), getDataSet());
+    }
+
+    public AccountWithDataSet getAccountWithDataSet() {
+        return new AccountWithDataSet(getAccountName(), getAccountType(), getDataSet());
     }
 
     public boolean isVisible() {

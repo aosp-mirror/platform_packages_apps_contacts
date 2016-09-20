@@ -114,7 +114,10 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
         if (mReadOnly) {
             mPhotoIcon.setVisibility(View.GONE);
             mPhotoIconOverlay.setVisibility(View.GONE);
+            mPhotoTouchInterceptOverlay.setClickable(false);
         } else {
+            mPhotoIcon.setVisibility(View.VISIBLE);
+            mPhotoIconOverlay.setVisibility(View.VISIBLE);
             mPhotoTouchInterceptOverlay.setOnClickListener(this);
         }
     }
