@@ -344,15 +344,15 @@ public class AttachPhotoActivity extends ContactsActivity {
     private void selectAccountAndCreateContact() {
         // If there is no default account or the accounts have changed such that we need to
         // prompt the user again, then launch the account prompt.
-        final ContactEditorUtils editorUtils = ContactEditorUtils.getInstance(this);
+        final ContactEditorUtils editorUtils = ContactEditorUtils.create(this);
         if (editorUtils.shouldShowAccountChangedNotification()) {
             Intent intent = new Intent(this, ContactEditorAccountsChangedActivity.class);
             startActivityForResult(intent, REQUEST_PICK_DEFAULT_ACCOUNT_FOR_NEW_CONTACT);
         } else {
-            // Otherwise, there should be a default account. Then either create a local contact
+            // Otherwise, there should be a default account. Then either create a null contact
             // (if default account is null) or create a contact with the specified account.
-            AccountWithDataSet defaultAccount = editorUtils.getDefaultAccount();
-            createNewRawContact(defaultAccount);
+            final AccountWithDataSet targetAccount = editorUtils.getOnlyOrDefaultAccount();
+            createNewRawContact(targetAccount);
         }
     }
 

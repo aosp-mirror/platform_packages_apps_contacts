@@ -30,6 +30,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
+
 @SmallTest
 public class ContactsPreferencesTest extends InstrumentationTestCase {
 
@@ -133,9 +135,8 @@ public class ContactsPreferencesTest extends InstrumentationTestCase {
     }
 
     public void testRefreshDefaultAccount() throws InterruptedException {
-        Mockito.when(mResources.getBoolean(Mockito.anyInt())).thenReturn(
-                true // R.bool.config_default_account_user_changeable
-        );
+        mContactsPreferences = new ContactsPreferences(mContext,
+                /* isDefaultAccountUserChangeable */ true);
 
         Mockito.when(mSharedPreferences.getString(Mockito.eq(ACCOUNT_KEY), Mockito.anyString()))
                 .thenReturn(new AccountWithDataSet("name1", "type1", "dataset1").stringify(),
@@ -147,5 +148,47 @@ public class ContactsPreferencesTest extends InstrumentationTestCase {
 
         Assert.assertEquals(new AccountWithDataSet("name2", "type2", "dataset2"),
                 mContactsPreferences.getDefaultAccount());
+    }
+
+    public void testShouldShowAccountChangedNotificationIfAccountNotSaved() {
+        mContactsPreferences = new ContactsPreferences(mContext,
+                /* isDefaultAccountUserChangeable */ true);
+        Mockito.when(mSharedPreferences.getString(Mockito.eq(ACCOUNT_KEY), Mockito.anyString()))
+                .thenReturn(null);
+
+        assertTrue("Should prompt to change default if no default is saved",
+                mContactsPreferences.shouldShowAccountChangedNotification(Arrays.asList(
+                        new AccountWithDataSet("name1", "type1", "dataset1"),
+                        new AccountWithDataSet("name2", "type2", "dataset2"))));
+    }
+
+    public void testShouldShowAccountChangedNotification() {
+        mContactsPreferences = new ContactsPreferences(mContext,
+                /* isDefaultAccountUserChangeable */ true);
+        Mockito.when(mSharedPreferences.getString(Mockito.eq(ACCOUNT_KEY), Mockito.anyString()))
+                .thenReturn(new AccountWithDataSet("name", "type", "dataset").stringify());
+
+        assertFalse("Should not prompt to change default if current default exists",
+                mContactsPreferences.shouldShowAccountChangedNotification(Arrays.asList(
+                        new AccountWithDataSet("name", "type", "dataset"),
+                        new AccountWithDataSet("name1", "type1", "dataset1"))));
+
+        assertTrue("Should prompt to change default if current default does not exist",
+                mContactsPreferences.shouldShowAccountChangedNotification(Arrays.asList(
+                        new AccountWithDataSet("name1", "type1", "dataset1"),
+                        new AccountWithDataSet("name2", "type2", "dataset2"))));
+    }
+
+    public void testShouldShowAccountChangedNotificationWhenThereIsOneAccount() {
+        mContactsPreferences = new ContactsPreferences(mContext,
+                /* isDefaultAccountUserChangeable */ true);
+        Mockito.when(mSharedPreferences.getString(Mockito.eq(ACCOUNT_KEY), Mockito.anyString()))
+                .thenReturn(null);
+
+        // Normally we would prompt because there is no default set but if there is just one
+        // account we should just use it.
+        assertFalse("Should not prompt to change default if there is only one account available",
+                mContactsPreferences.shouldShowAccountChangedNotification(Arrays.asList(
+                        new AccountWithDataSet("name", "type", "dataset"))));
     }
 }

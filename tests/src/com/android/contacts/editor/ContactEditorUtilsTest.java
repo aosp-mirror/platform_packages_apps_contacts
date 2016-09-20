@@ -111,63 +111,18 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
 
     /**
      * Test for
-     * - {@link ContactEditorUtils#saveDefaultAndAllAccounts}
-     * - {@link ContactEditorUtils#getDefaultAccount}
-     * - {@link ContactEditorUtils#getSavedAccounts()}
+     * - {@link ContactEditorUtils#saveDefaultAccount}
+     * - {@link ContactEditorUtils#getOnlyOrDefaultAccount}
      */
-    public void testSaveDefaultAndAllAccounts() {
+    public void testSaveDefaultAccount() {
         // Use these account types here.
         setAccountTypes(TYPE1, TYPE2);
 
-        // If none has been saved, it should return an empty list.
-        assertEquals(0, mTarget.getSavedAccounts().size());
+        mTarget.saveDefaultAccount(null);
+        assertNull(mTarget.getOnlyOrDefaultAccount());
 
-        // Save 0 accounts.
-        mAccountTypes.mAccounts = new AccountWithDataSet[]{};
-        mTarget.saveDefaultAndAllAccounts(null);
-        assertNull(mTarget.getDefaultAccount());
-        MoreAsserts.assertEquals(
-                Sets.newHashSet(mAccountTypes.mAccounts),
-                toSet(mTarget.getSavedAccounts()));
-
-        // 1 account
-        mAccountTypes.mAccounts = new AccountWithDataSet[]{ACCOUNT_1_A};
-        mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_A);
-        assertEquals(ACCOUNT_1_A, mTarget.getDefaultAccount());
-        MoreAsserts.assertEquals(
-                Sets.newHashSet(mAccountTypes.mAccounts),
-                toSet(mTarget.getSavedAccounts()));
-
-        // 2 accounts
-        mAccountTypes.mAccounts = new AccountWithDataSet[]{ACCOUNT_1_A, ACCOUNT_1_B};
-        mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_B);
-        assertEquals(ACCOUNT_1_B, mTarget.getDefaultAccount());
-        MoreAsserts.assertEquals(
-                Sets.newHashSet(mAccountTypes.mAccounts),
-                toSet(mTarget.getSavedAccounts()));
-
-        // 2 accounts, and save null as the default.  Even though there are accounts, the saved
-        // account list should be empty in this case.
-        mTarget.saveDefaultAndAllAccounts(null);
-        assertNull(mTarget.getDefaultAccount());
-        assertEquals(0, mTarget.getSavedAccounts().size());
-    }
-
-    public void testIsAccountValid() {
-        // Use these account types here.
-        setAccountTypes(TYPE1, TYPE2);
-
-        // 0 accounts
-        mAccountTypes.mAccounts = new AccountWithDataSet[]{};
-        assertFalse(mTarget.isValidAccount(ACCOUNT_1_A));
-        assertTrue(mTarget.isValidAccount(null)); // null is always valid
-
-        // 2 accounts
-        mAccountTypes.mAccounts = new AccountWithDataSet[]{ACCOUNT_1_A, ACCOUNT_2_A};
-        assertTrue(mTarget.isValidAccount(ACCOUNT_1_A));
-        assertTrue(mTarget.isValidAccount(ACCOUNT_2_A));
-        assertFalse(mTarget.isValidAccount(ACCOUNT_2EX_A));
-        assertTrue(mTarget.isValidAccount(null)); // null is always valid
+        mTarget.saveDefaultAccount(ACCOUNT_1_A);
+        assertEquals(ACCOUNT_1_A, mTarget.getOnlyOrDefaultAccount());
     }
 
     /**
@@ -186,7 +141,7 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         // Now we open the contact editor with the new account.
 
         // When closing the editor, we save the default account.
-        mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_A);
+        mTarget.saveDefaultAccount(ACCOUNT_1_A);
 
         // Next time the user creates a contact, we don't show the notification.
         assertFalse(mTarget.shouldShowAccountChangedNotification());
@@ -198,7 +153,7 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         assertFalse(mTarget.shouldShowAccountChangedNotification());
 
         // User saved a new contact.  We update the account list and the default account.
-        mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_B);
+        mTarget.saveDefaultAccount(ACCOUNT_1_B);
 
         // User created another contact.  Now we don't show the notification.
         assertFalse(mTarget.shouldShowAccountChangedNotification());
@@ -214,7 +169,7 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         assertFalse(mTarget.shouldShowAccountChangedNotification());
 
         // User saves a new contact, with a different default account.
-        mTarget.saveDefaultAndAllAccounts(ACCOUNT_2_A);
+        mTarget.saveDefaultAccount(ACCOUNT_2_A);
 
         // Next time user creates a contact, no notification.
         assertFalse(mTarget.shouldShowAccountChangedNotification());
@@ -253,7 +208,7 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         assertFalse(mTarget.shouldShowAccountChangedNotification());
 
         // User saves a new contact.
-        mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_A);
+        mTarget.saveDefaultAccount(ACCOUNT_1_A);
 
         // Next time, no notification.
         assertFalse(mTarget.shouldShowAccountChangedNotification());
@@ -272,7 +227,7 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         assertTrue(mTarget.shouldShowAccountChangedNotification());
 
         // We show the notification here, and user clicked "keep local" and saved an contact.
-        mTarget.saveDefaultAndAllAccounts(AccountWithDataSet.getLocalAccount());
+        mTarget.saveDefaultAccount(AccountWithDataSet.getNullAccount());
 
         // Now there are no accounts, and default account is null.
 
@@ -285,7 +240,7 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         setAccountTypes(TYPE1);
         setAccounts(ACCOUNT_1_A);
 
-        mTarget.saveDefaultAndAllAccounts(ACCOUNT_1_A);
+        mTarget.saveDefaultAccount(ACCOUNT_1_A);
 
         // Right after a save, the dialog shouldn't show up.
         assertFalse(mTarget.shouldShowAccountChangedNotification());

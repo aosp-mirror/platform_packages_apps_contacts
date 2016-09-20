@@ -551,7 +551,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         final ContactListFilter currentFilter = mContactListFilterController.getFilter();
         final AccountWithDataSet accountOfCurrentFilter = new AccountWithDataSet(
                 currentFilter.accountName, currentFilter.accountType, currentFilter.dataSet);
-        return accountOfCurrentFilter.isLocalAccount()
+        return accountOfCurrentFilter.isNullAccount()
                 || (mWritableAccounts != null
                 && mWritableAccounts.contains(accountOfCurrentFilter));
     }
@@ -1007,7 +1007,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements
         if (allAccounts.size() > 1) {
             return true;
         }
-        return !allAccounts.get(0).isLocalAccount();
+        return !allAccounts.get(0).isNullAccount();
     }
 
     private final class ContactBrowserActionListener implements OnContactBrowserActionListener {

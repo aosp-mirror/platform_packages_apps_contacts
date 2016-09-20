@@ -79,7 +79,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mEditorUtils = ContactEditorUtils.getInstance(this);
+        mEditorUtils = ContactEditorUtils.create(this);
         final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this).
                 getAccounts(true);
         final int numAccounts = accounts.size();
@@ -106,7 +106,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
                     AccountListFilter.ACCOUNTS_CONTACT_WRITABLE);
             accountListView.setAdapter(mAccountListAdapter);
             accountListView.setOnItemClickListener(mAccountListItemClickListener);
-        } else if (numAccounts == 1 && !accounts.get(0).isLocalAccount()) {
+        } else if (numAccounts == 1 && !accounts.get(0).isNullAccount()) {
             // If the user has 1 writable account we will just show the user a message with 2
             // possible action buttons.
             view = View.inflate(this,
@@ -154,7 +154,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
                 public void onClick(View v) {
                     // Remember that the user wants to create local contacts, so the user is not
                     // prompted again with this activity.
-                    mEditorUtils.saveDefaultAndAllAccounts(null);
+                    mEditorUtils.saveDefaultAccount(AccountWithDataSet.getNullAccount());
                     setResult(RESULT_OK);
                     finish();
                 }
@@ -199,7 +199,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
 
     private void saveAccountAndReturnResult(AccountWithDataSet account) {
         // Save this as the default account
-        mEditorUtils.saveDefaultAndAllAccounts(account);
+        mEditorUtils.saveDefaultAccount(account);
 
         // Pass account info in activity result intent
         Intent intent = new Intent();

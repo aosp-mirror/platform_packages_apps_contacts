@@ -23,6 +23,7 @@ import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountsListAdapter;
@@ -31,6 +32,7 @@ public class DefaultAccountPreference extends DialogPreference {
     private ContactsPreferences mPreferences;
     private AccountsListAdapter mListAdapter;
     private AccountDisplayInfoFactory mAccountDisplayInfoFactory;
+    private AccountTypeManager mAccountTypeManager;
     private int mChosenIndex = -1;
 
     public DefaultAccountPreference(Context context) {
@@ -53,6 +55,7 @@ public class DefaultAccountPreference extends DialogPreference {
         mPreferences = new ContactsPreferences(getContext());
         mListAdapter = new AccountsListAdapter(getContext(),
                 AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE);
+        mAccountTypeManager = AccountTypeManager.getInstance(getContext());
         mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forWritableAccounts(getContext());
     }
 
@@ -64,8 +67,12 @@ public class DefaultAccountPreference extends DialogPreference {
     @Override
     public CharSequence getSummary() {
         final AccountWithDataSet defaultAccount = mPreferences.getDefaultAccount();
-        return defaultAccount == null ? null : mAccountDisplayInfoFactory
-                .getAccountDisplayInfo(defaultAccount).getNameLabel();
+        if (defaultAccount == null ||
+                !mAccountTypeManager.getAccounts(/* writable */ true).contains(defaultAccount)) {
+            return null;
+        } else {
+            return mAccountDisplayInfoFactory.getAccountDisplayInfo(defaultAccount).getNameLabel();
+        }
     }
 
     @Override
@@ -86,17 +93,12 @@ public class DefaultAccountPreference extends DialogPreference {
     protected void onDialogClosed(boolean positiveResult) {
         final AccountWithDataSet currentDefault = mPreferences.getDefaultAccount();
 
-        if (mChosenIndex == -1) {
-            if (currentDefault != null) {
-                mPreferences.setDefaultAccount(null);
-                notifyChanged();
-            }
-        } else {
+        if (mChosenIndex != -1) {
             final AccountWithDataSet chosenAccount = mListAdapter.getItem(mChosenIndex);
             if (!chosenAccount.equals(currentDefault)) {
                 mPreferences.setDefaultAccount(chosenAccount);
                 notifyChanged();
             }
-        }
+        } // else the user dismissed this dialog so leave the preference unchanged.
     }
 }
