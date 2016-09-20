@@ -39,7 +39,8 @@ import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.compat.TelephonyManagerCompat;
-import com.android.contacts.common.interactions.ImportExportDialogFragment;
+import com.android.contacts.common.interactions.ImportDialogFragment;
+import com.android.contacts.common.interactions.ExportDialogFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
@@ -70,7 +71,8 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     private static final String KEY_BLOCKED_NUMBERS = "blockedNumbers";
     private static final String KEY_DISPLAY_ORDER = "displayOrder";
     private static final String KEY_CUSTOM_CONTACTS_FILTER = "customContactsFilter";
-    private static final String KEY_IMPORT_EXPORT = "importExport";
+    private static final String KEY_IMPORT = "import";
+    private static final String KEY_EXPORT = "export";
     private static final String KEY_MY_INFO = "myInfo";
     private static final String KEY_SORT_ORDER = "sortOrder";
 
@@ -175,22 +177,27 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preference_display_options);
 
-        removeUnsupportedPreferences();
-        addExtraPreferences();
-
         final Bundle args = getArguments();
         mNewLocalProfileExtra = args.getString(ARG_NEW_LOCAL_PROFILE);
         mPreviousScreenExtra = args.getString(ARG_PREVIOUS_SCREEN);
         mModeFullyExpanded = args.getInt(ARG_MODE_FULLY_EXPANDED);
         mAreContactsAvailable = args.getBoolean(ARG_CONTACTS_AVAILABLE);
 
+        removeUnsupportedPreferences();
+        addExtraPreferences();
+
         mMyInfoPreference = findPreference(KEY_MY_INFO);
 
         final Preference accountsPreference = findPreference(KEY_ACCOUNTS);
         accountsPreference.setOnPreferenceClickListener(this);
 
-        final Preference importExportPreference = findPreference(KEY_IMPORT_EXPORT);
-        importExportPreference.setOnPreferenceClickListener(this);
+        final Preference importPreference = findPreference(KEY_IMPORT);
+        importPreference.setOnPreferenceClickListener(this);
+
+        final Preference exportPreference = findPreference(KEY_EXPORT);
+        if (exportPreference != null) {
+            exportPreference.setOnPreferenceClickListener(this);
+        }
 
         final Preference blockedNumbersPreference = findPreference(KEY_BLOCKED_NUMBERS);
         if (blockedNumbersPreference != null) {
@@ -248,6 +255,10 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         if (!showBlockedNumbers) {
             getPreferenceScreen().removePreference(findPreference(KEY_BLOCKED_NUMBERS));
         }
+
+        if (!mAreContactsAvailable) {
+            getPreferenceScreen().removePreference(findPreference(KEY_EXPORT));
+        }
     }
 
     private void addExtraPreferences() {
@@ -294,12 +305,14 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         if (KEY_ABOUT.equals(prefKey)) {
             ((ContactsPreferenceActivity) getActivity()).showAboutFragment();
             return true;
-        } else if (KEY_IMPORT_EXPORT.equals(prefKey)) {
-            ImportExportDialogFragment.show(getFragmentManager(), mAreContactsAvailable,
-                    ContactsPreferenceActivity.class,
-                    ImportExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
+        } else if (KEY_IMPORT.equals(prefKey)) {
+            ImportDialogFragment.show(getFragmentManager(), ContactsPreferenceActivity.class);
             return true;
-        } else if (KEY_MY_INFO.equals(prefKey)) {
+        } else if (KEY_EXPORT.equals(prefKey)) {
+            ExportDialogFragment.show(getFragmentManager(), ContactsPreferenceActivity.class,
+                    ExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
+            return true;
+        }else if (KEY_MY_INFO.equals(prefKey)) {
             final Intent intent;
             if (mHasProfile) {
                 final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, mProfileContactId);

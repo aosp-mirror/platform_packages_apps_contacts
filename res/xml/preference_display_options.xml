@@ -51,8 +51,13 @@
 
     <Preference
         android:icon="@null"
-        android:key="importExport"
-        android:title="@string/menu_import_export"/>
+        android:key="import"
+        android:title="@string/menu_import"/>
+
+    <Preference
+        android:icon="@null"
+        android:key="export"
+        android:title="@string/menu_export"/>
 
     <Preference
         android:icon="@null"
