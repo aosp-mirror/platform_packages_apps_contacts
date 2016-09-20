@@ -1777,4 +1777,11 @@
 
     <!-- Formatted call duration displayed in recent card in QuickContact, for duration more than 1 hour -->
     <string name="callDurationHourFormat"><xliff:g id="minutes">%s</xliff:g> hr <xliff:g id="minutes">%s</xliff:g> min <xliff:g id="seconds">%s</xliff:g> sec</string>
+
+    <!-- Toast shown when a dynamic shortcut is tapped after being disabled because the experiment was turned off on the device -->
+    <string name="dynamic_shortcut_disabled_message">This shortcut has been disabled</string>
+
+    <!-- Toast shown when a dynamic shortcut is tapped after being disabled because the contact was removed -->
+    <string name="dynamic_shortcut_contact_removed_message">Contact was removed</string>
+
 </resources>

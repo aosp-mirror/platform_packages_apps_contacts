@@ -17,8 +17,9 @@ LOCAL_INSTRUMENTATION_FOR := Contacts
 LOCAL_SDK_VERSION := current
 LOCAL_MIN_SDK_VERSION := 21
 
-LOCAL_STATIC_JAVA_LIBRARIES := \
-    mockito-target
+LOCAL_STATIC_JAVA_LIBRARIES += \
+    hamcrest-library \
+    mockito-target-minus-junit4
 
 LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \

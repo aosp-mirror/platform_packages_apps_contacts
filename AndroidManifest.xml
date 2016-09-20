@@ -490,6 +490,10 @@
             </intent-filter>
         </service>
 
+        <!-- Service used to run JobScheduler jobs -->
+        <service android:name="com.android.contacts.ContactsJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="@string/contacts_file_provider_authority"
