@@ -20,6 +20,11 @@ package com.android.contacts.common;
  */
 public final class Experiments {
 
+    /**
+     * Experiment to enable dynamic strequent shortcuts.
+     */
+    public static final String DYNAMIC_SHORTCUTS = "Shortcuts__dynamic_shortcuts";
+
     private Experiments() {
     }
 }
