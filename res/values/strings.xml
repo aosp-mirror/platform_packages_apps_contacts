@@ -859,12 +859,6 @@
     <!-- Title of profile photos that are from your various accounts -->
     <string name="from_your_accounts">From your accounts</string>
 
-    <!-- Button used in photo picker to open camera [CHAR LIMIT=30]-->
-    <string name="take_a_photo_button">Take a photo</string>
-
-    <!-- Button used in photo picker to open photo/gallery [CHAR LIMIT=20]-->
-    <string name="all_photos_button">All photos</string>
-
     <!-- Title of photo picker [CHAR LIMIT=30]-->
     <string name="photo_picker_title">Choose photo</string>
 

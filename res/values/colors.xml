@@ -71,12 +71,6 @@
     <!-- Color of disabled text and unfocused hint text inside the contact editor. 25% black. -->
     <color name="editor_disabled_text_color">#40000000</color>
 
-    <!-- Color of button background in compact photo picker. -->
-    <color name="google_grey_600">#757575</color>
-
-    <!-- Color of button text in compact photo picker, 85% white. -->
-    <color name="photo_action_button_color">#D9FFFFFF</color>
-
     <!-- Color of text on disabled link contacts button, 25% black. -->
     <color name="disabled_button_text">#40000000</color>
 

@@ -16,23 +16,6 @@
 
 package com.android.contacts.activities;
 
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsActivity;
-import com.android.contacts.R;
-import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.RawContactDeltaList;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.detail.PhotoSelectionHandler;
-import com.android.contacts.editor.CompactContactEditorFragment;
-import com.android.contacts.editor.CompactPhotoSelectionFragment;
-import com.android.contacts.editor.EditorIntents;
-import com.android.contacts.editor.PhotoSourceDialogFragment;
-import com.android.contacts.interactions.ContactDeletionInteraction;
-import com.android.contacts.util.DialogManager;
-
 import android.app.ActionBar;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
@@ -46,6 +29,22 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.ContactsActivity;
+import com.android.contacts.R;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.RawContactDeltaList;
+import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.detail.PhotoSelectionHandler;
+import com.android.contacts.editor.CompactContactEditorFragment;
+import com.android.contacts.editor.EditorIntents;
+import com.android.contacts.editor.PhotoSourceDialogFragment;
+import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.util.DialogManager;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -53,7 +52,7 @@ import java.util.ArrayList;
  * Contact editor with only the most important fields displayed initially.
  */
 public class CompactContactEditorActivity extends ContactsActivity implements
-        PhotoSourceDialogFragment.Listener, CompactPhotoSelectionFragment.Listener,
+        PhotoSourceDialogFragment.Listener,
         DialogManager.DialogShowingViewActivity {
     private static final String TAG = "ContactEditorActivity";
 
@@ -74,10 +73,8 @@ public class CompactContactEditorActivity extends ContactsActivity implements
             "com.android.contacts.SAVE_TO_DEVICE_FLAG";
 
     private static final String TAG_COMPACT_EDITOR = "compact_editor";
-    private static final String TAG_PHOTO_SELECTION = "photo_selector";
 
     private static final String STATE_PHOTO_MODE = "photo_mode";
-    private static final String STATE_IS_PHOTO_SELECTION = "is_photo_selection";
     private static final String STATE_ACTION_BAR_TITLE = "action_bar_title";
     private static final String STATE_PHOTO_URI = "photo_uri";
 
@@ -211,18 +208,12 @@ public class CompactContactEditorActivity extends ContactsActivity implements
             @Override
             public void onRemovePictureChosen() {
                 getEditorFragment().removePhoto();
-                if (mIsPhotoSelection) {
-                    showEditorFragment();
-                }
             }
 
             @Override
             public void onPhotoSelected(Uri uri) throws FileNotFoundException {
                 mPhotoUri = uri;
                 getEditorFragment().updatePhoto(uri);
-                if (mIsPhotoSelection) {
-                    showEditorFragment();
-                }
 
                 // Re-create the photo handler the next time we need it so that additional photo
                 // selections create a new temp file (and don't hit the one that was just added
@@ -237,16 +228,12 @@ public class CompactContactEditorActivity extends ContactsActivity implements
 
             @Override
             public void onPhotoSelectionDismissed() {
-                if (mIsPhotoSelection) {
-                    showEditorFragment();
-                }
             }
         }
 
         private final CompactPhotoActionListener mPhotoActionListener;
-        private boolean mIsPhotoSelection;
 
-        public CompactPhotoSelectionHandler(int photoMode, boolean isPhotoSelection) {
+        public CompactPhotoSelectionHandler(int photoMode) {
             // We pass a null changeAnchorView since we are overriding onClick so that we
             // can show the photo options in a dialog instead of a ListPopupWindow (which would
             // be anchored at changeAnchorView).
@@ -255,7 +242,6 @@ public class CompactContactEditorActivity extends ContactsActivity implements
             super(CompactContactEditorActivity.this, /* changeAnchorView =*/ null, photoMode,
                     /* isDirectoryContact =*/ false, new RawContactDeltaList());
             mPhotoActionListener = new CompactPhotoActionListener();
-            mIsPhotoSelection = isPhotoSelection;
         }
 
         @Override
@@ -275,11 +261,9 @@ public class CompactContactEditorActivity extends ContactsActivity implements
     private boolean mFinishActivityOnSaveCompleted;
     private DialogManager mDialogManager = new DialogManager(this);
 
-    private CompactPhotoSelectionFragment mPhotoSelectionFragment;
     private CompactPhotoSelectionHandler mPhotoSelectionHandler;
     private Uri mPhotoUri;
     private int mPhotoMode;
-    private boolean mIsPhotoSelection;
 
     private final CompactContactEditorFragment.Listener  mFragmentListener =
             new CompactContactEditorFragment.Listener() {
@@ -428,38 +412,25 @@ public class CompactContactEditorActivity extends ContactsActivity implements
         if (savedState == null) {
             // Create the editor and photo selection fragments
             mFragment = new CompactContactEditorFragment();
-            mPhotoSelectionFragment = new CompactPhotoSelectionFragment();
             getFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, getEditorFragment(), TAG_COMPACT_EDITOR)
-                    .add(R.id.fragment_container, mPhotoSelectionFragment, TAG_PHOTO_SELECTION)
-                    .hide(mPhotoSelectionFragment)
                     .commit();
         } else {
             // Restore state
             mPhotoMode = savedState.getInt(STATE_PHOTO_MODE);
-            mIsPhotoSelection = savedState.getBoolean(STATE_IS_PHOTO_SELECTION);
             mActionBarTitleResId = savedState.getInt(STATE_ACTION_BAR_TITLE);
             mPhotoUri = Uri.parse(savedState.getString(STATE_PHOTO_URI));
 
             // Show/hide the editor and photo selection fragments (w/o animations)
             mFragment = (CompactContactEditorFragment) getFragmentManager()
                     .findFragmentByTag(TAG_COMPACT_EDITOR);
-            mPhotoSelectionFragment = (CompactPhotoSelectionFragment) getFragmentManager()
-                    .findFragmentByTag(TAG_PHOTO_SELECTION);
             final FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            if (mIsPhotoSelection) {
-                fragmentTransaction.hide(getEditorFragment()).show(mPhotoSelectionFragment);
-                getActionBar().setTitle(getResources().getString(R.string.photo_picker_title));
-            } else {
-                fragmentTransaction.show(getEditorFragment()).hide(mPhotoSelectionFragment);
-                getActionBar().setTitle(getResources().getString(mActionBarTitleResId));
-            }
-            fragmentTransaction.commit();
+            fragmentTransaction.show(getEditorFragment()).commit();
+            getActionBar().setTitle(getResources().getString(mActionBarTitleResId));
         }
 
         // Set listeners
         mFragment.setListener(mFragmentListener);
-        mPhotoSelectionFragment.setListener(this);
 
         // Load editor data (even if it's hidden)
         final Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
@@ -517,7 +488,6 @@ public class CompactContactEditorActivity extends ContactsActivity implements
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(STATE_PHOTO_MODE, mPhotoMode);
-        outState.putBoolean(STATE_IS_PHOTO_SELECTION, mIsPhotoSelection);
         outState.putInt(STATE_ACTION_BAR_TITLE, mActionBarTitleResId);
         outState.putString(STATE_PHOTO_URI,
                 mPhotoUri != null ? mPhotoUri.toString() : Uri.EMPTY.toString());
@@ -536,22 +506,9 @@ public class CompactContactEditorActivity extends ContactsActivity implements
 
     @Override
     public void onBackPressed() {
-        if (mIsPhotoSelection) {
-            mIsPhotoSelection = false;
-            showEditorFragment();
-        } else if (mFragment != null) {
+        if (mFragment != null) {
             mFragment.revert();
         }
-    }
-
-    /**
-     * Displays photos from all raw contacts, clicking one set it as the super primary photo.
-     */
-    public void selectPhoto(ArrayList<CompactPhotoSelectionFragment.Photo> photos, int photoMode) {
-        mPhotoMode = photoMode;
-        mIsPhotoSelection = true;
-        mPhotoSelectionFragment.setPhotos(photos, photoMode);
-        showPhotoSelectionFragment();
     }
 
     /**
@@ -560,27 +517,7 @@ public class CompactContactEditorActivity extends ContactsActivity implements
      */
     public void changePhoto(int photoMode) {
         mPhotoMode = photoMode;
-        mIsPhotoSelection = false;
         PhotoSourceDialogFragment.show(this, mPhotoMode);
-    }
-
-    private void showPhotoSelectionFragment() {
-        getFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                .hide(getEditorFragment())
-                .show(mPhotoSelectionFragment)
-                .commit();
-        getActionBar().setTitle(getResources().getString(R.string.photo_picker_title));
-    }
-
-    private void showEditorFragment() {
-        getFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                .hide(mPhotoSelectionFragment)
-                .show((CompactContactEditorFragment) mFragment)
-                .commit();
-        getActionBar().setTitle(getResources().getString(mActionBarTitleResId));
-        mIsPhotoSelection = false;
     }
 
     @Override
@@ -598,16 +535,9 @@ public class CompactContactEditorActivity extends ContactsActivity implements
         getPhotoSelectionHandler().getListener().onPickFromGalleryChosen();
     }
 
-    @Override
-    public void onPhotoSelected(CompactPhotoSelectionFragment.Photo photo) {
-        getEditorFragment().setPrimaryPhoto(photo);
-        showEditorFragment();
-    }
-
     private PhotoSelectionHandler getPhotoSelectionHandler() {
         if (mPhotoSelectionHandler == null) {
-            mPhotoSelectionHandler = new CompactPhotoSelectionHandler(
-                    mPhotoMode, mIsPhotoSelection);
+            mPhotoSelectionHandler = new CompactPhotoSelectionHandler(mPhotoMode);
         }
         return mPhotoSelectionHandler;
     }

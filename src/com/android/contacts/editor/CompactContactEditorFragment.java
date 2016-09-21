@@ -195,6 +195,8 @@ public class CompactContactEditorFragment extends Fragment implements
     /**
      * Intent key to pass the ID of the photo to display on the editor.
      */
+    // TODO: This can be cleaned up if we decide to not pass the photo id through
+    // QuickContactActivity.
     public static final String INTENT_EXTRA_PHOTO_ID = "photo_id";
 
     /**
@@ -346,7 +348,6 @@ public class CompactContactEditorFragment extends Fragment implements
     protected boolean mDisableDeleteMenuOption;
     protected boolean mNewLocalProfile;
     protected MaterialColorMapUtils.MaterialPalette mMaterialPalette;
-    protected long mPhotoId = -1;
 
     //
     // Helpers
@@ -513,7 +514,6 @@ public class CompactContactEditorFragment extends Fragment implements
             mDisableDeleteMenuOption = savedState.getBoolean(KEY_DISABLE_DELETE_MENU_OPTION);
             mNewLocalProfile = savedState.getBoolean(KEY_NEW_LOCAL_PROFILE);
             mMaterialPalette = savedState.getParcelable(KEY_MATERIAL_PALETTE);
-            mPhotoId = savedState.getLong(KEY_PHOTO_ID);
 
             mRawContacts = ImmutableList.copyOf(savedState.<RawContact>getParcelableArrayList(
                     KEY_RAW_CONTACTS));
@@ -638,8 +638,6 @@ public class CompactContactEditorFragment extends Fragment implements
         if (mMaterialPalette != null) {
             outState.putParcelable(KEY_MATERIAL_PALETTE, mMaterialPalette);
         }
-        outState.putLong(KEY_PHOTO_ID, mPhotoId);
-
         outState.putParcelable(KEY_VIEW_ID_GENERATOR, mViewIdGenerator);
 
         outState.putParcelableArrayList(KEY_RAW_CONTACTS, mRawContacts == null ?
@@ -1364,10 +1362,9 @@ public class CompactContactEditorFragment extends Fragment implements
         // Add input fields for the loaded Contact
         final CompactRawContactsEditorView editorView = getContent();
         editorView.setListener(this);
-        editorView.setState(mState, getMaterialPalette(), mViewIdGenerator, mPhotoId,
+        editorView.setState(mState, getMaterialPalette(), mViewIdGenerator,
                 mHasNewContact, mIsUserProfile, mAccountWithDataSet,
-                mRawContactIdToDisplayAlone, mRawContactDisplayAloneIsReadOnly,
-                isEditingReadOnlyRawContactWithNewContact());
+                mRawContactIdToDisplayAlone, isEditingReadOnlyRawContactWithNewContact());
         if (mHasNewContact && !TextUtils.isEmpty(mReadOnlyDisplayName)) {
             mReadOnlyNameEditorView = editorView.getPrimaryNameEditorView();
             editorView.maybeSetReadOnlyDisplayNameAsPrimary(mReadOnlyDisplayName);
@@ -1484,10 +1481,6 @@ public class CompactContactEditorFragment extends Fragment implements
                 mMaterialPalette = new MaterialColorMapUtils.MaterialPalette(
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR),
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR));
-            }
-            // If the user selected a different photo, don't restore the one from the Intent
-            if (mPhotoId < 0) {
-                mPhotoId = mIntentExtras.getLong(INTENT_EXTRA_PHOTO_ID);
             }
             mRawContactIdToDisplayAlone = mIntentExtras.getLong(
                     INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE, -1);
@@ -1664,7 +1657,7 @@ public class CompactContactEditorFragment extends Fragment implements
             return;
         }
 
-        final View anchorView = getAggregationAnchorView(mAggregationSuggestionsRawContactId);
+        final View anchorView = getAggregationAnchorView();
         if (anchorView == null) {
             return; // Raw contact deleted?
         }
@@ -1691,10 +1684,9 @@ public class CompactContactEditorFragment extends Fragment implements
     }
 
     /**
-     * Returns the raw contact editor view for the given rawContactId that should be used as the
-     * anchor for aggregation suggestions.
+     * Returns the editor view that should be used as the anchor for aggregation suggestions.
      */
-    protected View getAggregationAnchorView(long rawContactId) {
+    protected View getAggregationAnchorView() {
         return getContent().getAggregationAnchorView();
     }
 
@@ -1805,11 +1797,8 @@ public class CompactContactEditorFragment extends Fragment implements
         getContent().updatePhoto(uri);
     }
 
-    public void setPrimaryPhoto(CompactPhotoSelectionFragment.Photo photo) {
-        getContent().setPrimaryPhoto(photo);
-
-        // Update the photo ID we will try to match when selecting the photo to display
-        mPhotoId = photo.photoId;
+    public void setPrimaryPhoto() {
+        getContent().setPrimaryPhoto();
     }
 
     @Override
@@ -1856,41 +1845,6 @@ public class CompactContactEditorFragment extends Fragment implements
         getEditorActivity().changePhoto(getPhotoMode());
     }
 
-    // This method override photo's primary flag based on photoId and set the photo currently
-    // shown in the editor to be the new primary no matter how many primary photos there are in
-    // the photo picker. This is because the photos returned by "getPhoto" may contain 0, 1,
-    // or 2+ primary photos and when we link contacts in the editor, the photos returned may change.
-    // We need to put check mark on the photo currently shown in editor, so we override "primary".
-    // This doesn't modify anything in the database,so there would be no pending changes.
-    private void updatePrimaryForSelection(ArrayList<CompactPhotoSelectionFragment.Photo> photos) {
-        for (CompactPhotoSelectionFragment.Photo photo : photos) {
-            if (photo.photoId == mPhotoId) {
-                photo.primary = true;
-            } else {
-                photo.primary = false;
-            }
-            updateContentDescription(photo);
-        }
-    }
-
-    private void updateContentDescription(CompactPhotoSelectionFragment.Photo photo) {
-        if (!TextUtils.isEmpty(photo.accountType)) {
-            photo.contentDescription = getResources().getString(photo.primary ?
-                            R.string.photo_view_description_checked :
-                            R.string.photo_view_description_not_checked,
-                    photo.accountType, photo.accountName);
-            photo.contentDescriptionChecked = getResources().getString(
-                    R.string.photo_view_description_checked,
-                    photo.accountType, photo.accountName);
-        } else {
-            photo.contentDescription = getResources().getString(photo.primary ?
-                    R.string.photo_view_description_checked_no_info :
-                    R.string.photo_view_description_not_checked_no_info);
-            photo.contentDescriptionChecked = getResources().getString(
-                    R.string.photo_view_description_checked_no_info);
-        }
-    }
-
     @Override
     public void onRawContactSelected(long rawContactId, boolean isReadOnly) {
         mRawContactDisplayAloneIsReadOnly = isReadOnly;
@@ -1898,18 +1852,9 @@ public class CompactContactEditorFragment extends Fragment implements
         bindEditors();
     }
 
-    @Override
-    public Bundle getUpdatedPhotos() {
-        return mUpdatedPhotos;
-    }
-
     private int getPhotoMode() {
-        if (getContent().isWritablePhotoSet()) {
-            return isEditingMultipleRawContacts()
-                    ? PhotoActionPopup.Modes.MULTIPLE_WRITE_ABLE_PHOTOS
-                    : PhotoActionPopup.Modes.WRITE_ABLE_PHOTO;
-        }
-        return PhotoActionPopup.Modes.NO_PHOTO;
+        return getContent().isWritablePhotoSet() ? PhotoActionPopup.Modes.WRITE_ABLE_PHOTO
+                : PhotoActionPopup.Modes.NO_PHOTO;
     }
 
     private CompactContactEditorActivity getEditorActivity() {

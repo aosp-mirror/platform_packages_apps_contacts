@@ -206,6 +206,7 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
     }
 
     private void setDefaultPhoto(MaterialPalette materialPalette) {
+        mIsNonDefaultPhotoBound = false;
         EditorUiUtils.setDefaultPhoto(mPhotoImageView, getResources(), materialPalette);
     }
 

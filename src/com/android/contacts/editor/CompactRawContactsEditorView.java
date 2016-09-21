@@ -21,7 +21,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -126,12 +125,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
          * Invoked when a rawcontact from linked contacts is selected in editor.
          */
         void onRawContactSelected(long rawContactId, boolean isReadOnly);
-
-        /**
-         * Returns the map of raw contact IDs to newly taken or selected photos that have not
-         * yet been saved to CP2.
-         */
-        public Bundle getUpdatedPhotos();
     }
 
     /**
@@ -280,14 +273,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private ViewIdGenerator mViewIdGenerator;
     private MaterialColorMapUtils.MaterialPalette mMaterialPalette;
-    private long mAggregatePhotoId = -1;
     private boolean mHasNewContact;
     private boolean mIsUserProfile;
     private AccountWithDataSet mPrimaryAccount;
     private RawContactDeltaList mRawContactDeltas;
     private RawContactDelta mCurrentRawContactDelta;
     private long mRawContactIdToDisplayAlone = -1;
-    private boolean mRawContactDisplayAloneIsReadOnly;
     private boolean mIsEditingReadOnlyRawContactWithNewContact;
     private Map<String, KindSectionData> mKindSectionDataMap = new HashMap<>();
     private Set<String> mSortedMimetypes = new TreeSet<>(new MimeTypeComparator());
@@ -299,10 +290,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private ImageView mAccountHeaderIcon;
     private ImageView mAccountHeaderExpanderIcon;
 
-    // Raw contacts selector
-    private View mRawContactContainer;
-    private TextView mRawContactSummary;
-
     private CompactPhotoEditorView mPhotoView;
     private ViewGroup mKindSectionViews;
     private Map<String, CompactKindSectionView> mKindSectionViewMap = new HashMap<>();
@@ -310,7 +297,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private boolean mIsExpanded;
 
-    private long mPhotoRawContactId;
     private ValuesDelta mPhotoValuesDelta;
 
     public CompactRawContactsEditorView(Context context) {
@@ -343,10 +329,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mAccountHeaderName = (TextView) findViewById(R.id.account_name);
         mAccountHeaderIcon = (ImageView) findViewById(R.id.account_type_icon);
         mAccountHeaderExpanderIcon = (ImageView) findViewById(R.id.account_expander_icon);
-
-        // Raw contacts selector
-        mRawContactContainer = findViewById(R.id.all_rawcontacts_accounts_container);
-        mRawContactSummary = (TextView) findViewById(R.id.rawcontacts_accounts_summary);
 
         mPhotoView = (CompactPhotoEditorView) findViewById(R.id.photo_editor);
         mKindSectionViews = (LinearLayout) findViewById(R.id.kind_section_views);
@@ -467,7 +449,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
      * Get the raw contact ID for the CompactHeaderView photo.
      */
     public long getPhotoRawContactId() {
-        return mPhotoRawContactId;
+        return mCurrentRawContactDelta.getRawContactId();
     }
 
     public StructuredNameEditorView getPrimaryNameEditorView() {
@@ -478,20 +460,20 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
 
     /**
-     * Marks the raw contact photo given as primary for the aggregate contact and updates the
-     * UI.
+     * Marks the raw contact photo given as primary for the aggregate contact.
      */
-    public void setPrimaryPhoto(CompactPhotoSelectionFragment.Photo photo) {
+    public void setPrimaryPhoto() {
 
         // Update values delta
         final ValuesDelta valuesDelta = mCurrentRawContactDelta
                 .getSuperPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
+        if (valuesDelta == null) {
+            Log.wtf(TAG, "setPrimaryPhoto: had no ValuesDelta for the current RawContactDelta");
+            return;
+        }
         valuesDelta.setFromTemplate(false);
         unsetSuperPrimaryFromAllPhotos();
         valuesDelta.setSuperPrimary(true);
-
-        // Update the UI
-        mPhotoView.setPhoto(valuesDelta, mMaterialPalette);
     }
 
     public View getAggregationAnchorView() {
@@ -514,14 +496,11 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     public void setState(RawContactDeltaList rawContactDeltas,
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
-            long photoId, boolean hasNewContact, boolean isUserProfile,
-            AccountWithDataSet primaryAccount, long rawContactIdToDisplayAlone,
-            boolean rawContactDisplayAloneIsReadOnly,
-            boolean isEditingReadOnlyRawContactWithNewContact) {
+            boolean hasNewContact, boolean isUserProfile, AccountWithDataSet primaryAccount,
+            long rawContactIdToDisplayAlone, boolean isEditingReadOnlyRawContactWithNewContact) {
 
         mRawContactDeltas = rawContactDeltas;
         mRawContactIdToDisplayAlone = rawContactIdToDisplayAlone;
-        mRawContactDisplayAloneIsReadOnly = rawContactDisplayAloneIsReadOnly;
         mIsEditingReadOnlyRawContactWithNewContact = isEditingReadOnlyRawContactWithNewContact;
 
         mKindSectionViewMap.clear();
@@ -530,7 +509,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         mMaterialPalette = materialPalette;
         mViewIdGenerator = viewIdGenerator;
-        mAggregatePhotoId = photoId;
 
         mHasNewContact = hasNewContact;
         mIsUserProfile = isUserProfile;
@@ -785,7 +763,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
     private void addAccountInfo() {
         mAccountHeaderContainer.setVisibility(View.GONE);
-        mRawContactContainer.setVisibility(View.GONE);
 
         final AccountDisplayInfo account =
                 mAccountDisplayInfoFactory.getAccountDisplayInfoFor(mCurrentRawContactDelta);
@@ -805,16 +782,16 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             } else {
                 addAccountHeader(accountLabel);
             }
-        } else if (mIsUserProfile || !shouldHideAccountContainer(mRawContactDeltas)) {
-            addAccountHeader(accountLabel);
-        }
-
-        // The raw contact selector should only display linked raw contacts that can be edited in
-        // the full editor (i.e. they are not newly created raw contacts)
-        final RawContactAccountListAdapter adapter =  new RawContactAccountListAdapter(getContext(),
-                getRawContactDeltaListForSelector(mRawContactDeltas));
-        if (adapter.getCount() > 0 && !mIsEditingReadOnlyRawContactWithNewContact) {
-            addRawContactAccountSelector(accountLabel, adapter);
+        } else {
+            // The raw contact selector should only display linked raw contacts that can be edited
+            // in the full editor (i.e. they are not newly created raw contacts)
+            final RawContactAccountListAdapter adapter =  new RawContactAccountListAdapter(
+                    getContext(), getRawContactDeltaListForSelector(mRawContactDeltas));
+            if (adapter.getCount() > 0 && !mIsEditingReadOnlyRawContactWithNewContact) {
+                addRawContactAccountSelector(accountLabel, adapter);
+            } else {
+                addAccountHeader(accountLabel);
+            }
         }
     }
 
@@ -839,23 +816,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             return result;
         }
         return result;
-    }
-
-    // Returns true if there are multiple writable rawcontacts and no read-only ones,
-    // or there are both writable and read-only rawcontacts.
-    private boolean shouldHideAccountContainer(RawContactDeltaList rawContactDeltas) {
-        int writable = 0;
-        int readonly = 0;
-        for (RawContactDelta rawContactDelta : rawContactDeltas) {
-            if (rawContactDelta.isVisible() && rawContactDelta.getRawContactId() > 0) {
-                if (rawContactDelta.getRawContactAccountType(getContext()).areContactsWritable()) {
-                    writable++;
-                } else {
-                    readonly++;
-                }
-            }
-        }
-        return (writable > 1 || (writable > 0 && readonly > 0));
     }
 
     private void addAccountHeader(String accountLabel) {
@@ -965,14 +925,20 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private void addPhotoView() {
         if (!mCurrentRawContactDelta.hasMimeEntries(Photo.CONTENT_ITEM_TYPE)) {
             wlog("No photo mimetype for this raw contact.");
-            mPhotoView.setVisibility(View.GONE);
+            mPhotoView.setVisibility(GONE);
             return;
         } else {
-            mPhotoView.setVisibility(View.VISIBLE);
+            mPhotoView.setVisibility(VISIBLE);
         }
 
         final ValuesDelta superPrimaryDelta = mCurrentRawContactDelta
                 .getSuperPrimaryEntry(Photo.CONTENT_ITEM_TYPE);
+        if (superPrimaryDelta == null) {
+            Log.wtf(TAG, "addPhotoView: no ValueDelta found for current RawContactDelta"
+                    + "that supports a photo.");
+            mPhotoView.setVisibility(GONE);
+            return;
+        }
         // Set the photo view
         mPhotoView.setPhoto(superPrimaryDelta, mMaterialPalette);
 
@@ -981,7 +947,6 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             return;
         }
         mPhotoView.setReadOnly(false);
-        mPhotoRawContactId = mCurrentRawContactDelta.getRawContactId();
         mPhotoValuesDelta = superPrimaryDelta;
     }
 
