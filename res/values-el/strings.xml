@@ -67,6 +67,7 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Προτεινόμενες επαφές"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Όλες οι επαφές"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Οι επαφές συνδέθηκαν"</string>
+    <string name="contact_deleted_named_toast" msgid="6558941164987421174">"<xliff:g id="NAME">%s</xliff:g>: διαγράφηκε"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other"> επαφές διαγράφηκαν</item>
       <item quantity="one"> επαφή διαγράφηκε</item>
@@ -113,11 +114,11 @@
     <string name="emptyMainList" msgid="2772242747899664460">"Η λίστα επαφών σας είναι άδεια"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Η επαφή αποθηκεύτηκε"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Οι επαφές αποσυνδέθηκαν"</string>
-    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στις επαφές."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Δεν ήταν δυνατή η αποσύνδεση επαφής."</string>
-    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Δεν ήταν δυνατή η σύνδεση της επαφής."</string>
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Σφάλμα κατά την αποθήκευση επαφής."</string>
-    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στη φωτογραφία της επαφής."</string>
+    <string name="contactSavedErrorToast" msgid="4827033473908688031">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στην επαφή"</string>
+    <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"Δεν ήταν δυνατή η αποσύνδεση επαφής"</string>
+    <string name="contactJoinErrorToast" msgid="5735129234573327701">"Δεν ήταν δυνατή η σύνδεση της επαφής"</string>
+    <string name="contactGenericErrorToast" msgid="3885457515665783976">"Σφάλμα κατά την αποθήκευση της επαφής"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών που πραγματοποιήθηκαν στη φωτογραφία της επαφής"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Η φόρτωση ετικέτας απέτυχε"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"Η ετικέτα αποθηκεύτηκε."</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Η ετικέτα διαγράφηκε"</string>
@@ -126,7 +127,7 @@
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Η ετικέτα ενημερώθηκε"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Καταργήθηκε από ετικέτα"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Προστέθηκε στην ετικέτα"</string>
-    <string name="groupSavedErrorToast" msgid="8121032018490980184">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών ετικέτας."</string>
+    <string name="groupSavedErrorToast" msgid="2355891714292740162">"Δεν ήταν δυνατή η αποθήκευση των αλλαγών ετικέτας"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Η ετικέτα υπάρχει ήδη"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> επαφές με αριθμό τηλεφώνου</item>
@@ -147,7 +148,6 @@
     <string name="callAgain" msgid="3197312117049874778">"Επανάληψη κλήσης"</string>
     <string name="returnCall" msgid="8171961914203617813">"Επιστροφή κλήσης"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Προσθήκη του \"<xliff:g id="EMAIL">%s</xliff:g>\" στις επαφές?"</string>
-    <string name="description_contact_photo" msgid="3387458082667894062">"φωτογραφία επαφής"</string>
     <string name="description_plus_button" msgid="515164827856229880">"συν"</string>
     <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> από <xliff:g id="TOTAL_NUMBER">%s</xliff:g> επαφές"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Ονόματα των επαφών σας"</string>
@@ -192,7 +192,6 @@
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Ημερομηνία"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Ετικέτα"</string>
     <string name="change_photo" msgid="8530597935483526383">"Αλλαγή"</string>
-    <string name="primary_photo" msgid="8517942231868516999">"Κύρια φωτογραφία"</string>
     <string name="description_star" msgid="2605854427360036550">"αγαπημένο"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Επεξεργασία"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"κλείσιμο"</string>
@@ -269,7 +268,6 @@
     <string name="header_name_entry" msgid="1592791008096288306">"Όνομα"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"Διεύθυνση ηλεκτρονικού ταχυδρομείου"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Τηλέφωνο"</string>
-    <string name="header_photo_entry" msgid="4438023151411853238">"Φωτογραφία"</string>
     <string name="content_description_expand_editor" msgid="1111381475901897470">"Κάντε κλικ για επέκταση της επεξεργασίας επαφών."</string>
     <string name="content_description_collapse_editor" msgid="7598061318022977825">"Κάντε κλικ για σύμπτυξη της επεξεργασίας επαφών."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"οδηγίες προς την τοποθεσία"</string>
@@ -284,6 +282,8 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Αλλαγή φωτογραφίας"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Αποτυχία ανοίγματος προγράμματος επεξεργασίας."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Αποθήκευση σε"</string>
+    <!-- no translation found for compact_editor_account_selector_read_only_title (1869435992721760221) -->
+    <skip />
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Γίνεται αποθήκευση στο λογαριασμό <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Πατήστε δύο φορές για να επιλέξετε διαφορετικό λογαριασμό."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Συνδεδεμένες επαφές (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -454,22 +454,14 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Συζήτηση μέσω Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Συζήτηση"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"διαγραφή"</string>
-    <!-- no translation found for expand_name_fields_description (6883935911480726652) -->
-    <skip />
-    <!-- no translation found for collapse_name_fields_description (4757877385895561556) -->
-    <skip />
-    <!-- no translation found for expand_phonetic_name_fields_description (3865726859582581741) -->
-    <skip />
-    <!-- no translation found for collapse_phonetic_name_fields_description (9102249481855019452) -->
-    <skip />
-    <!-- no translation found for expand_fields_description (8129294181216760037) -->
-    <skip />
-    <!-- no translation found for collapse_fields_description (1884143625854637874) -->
-    <skip />
-    <!-- no translation found for announce_expanded_fields (1075947220478530622) -->
-    <skip />
-    <!-- no translation found for announce_collapsed_fields (6414231530177338704) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6883935911480726652">"Ανάπτυξη πεδίων ονομάτων"</string>
+    <string name="collapse_name_fields_description" msgid="4757877385895561556">"Σύμπτυξη πεδίων ονομάτων"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"Ανάπτυξη πεδίων φωνητικού ονόματος"</string>
+    <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Σύμπτυξη πεδίων φωνητικού ονόματος"</string>
+    <string name="expand_fields_description" msgid="8129294181216760037">"Ανάπτυξη"</string>
+    <string name="collapse_fields_description" msgid="1884143625854637874">"Σύμπτυξη"</string>
+    <string name="announce_expanded_fields" msgid="1075947220478530622">"Αναπτύχθηκε"</string>
+    <string name="announce_collapsed_fields" msgid="6414231530177338704">"Συμπτύχθηκε"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Όλες οι επαφές"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Με αστέρι"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"Προσαρμογή"</string>
@@ -555,7 +547,8 @@
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Κοινοποίηση αγαπημένων επαφών"</string>
     <string name="share_contacts" msgid="8109287987498711664">"Κοινή χρήση όλων των επαφών"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Αποτυχία κοινής χρήσης επαφών."</string>
-    <string name="dialog_import_export" msgid="4360648034889921624">"Εισαγωγή/Εξαγωγή επαφών"</string>
+    <!-- no translation found for dialog_export (1628001095187741417) -->
+    <skip />
     <string name="dialog_import" msgid="2431698729761448759">"Εισαγωγή επαφών"</string>
     <string name="share_error" msgid="948429331673358107">"Δεν είναι δυνατή η κοινή χρήση αυτής της επαφής."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Δεν υπάρχουν επαφές για κοινοποίηση."</string>
@@ -570,7 +563,10 @@
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Διαγραφή ατόμ. με συχνή επικ."</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"Επιλογή κάρτας SIM"</string>
     <string name="menu_accounts" msgid="1424330057450189074">"Διαχείριση λογαριασμών"</string>
-    <string name="menu_import_export" msgid="26217871113229507">"Εισαγωγή/Εξαγωγή"</string>
+    <!-- no translation found for menu_import (6107961135813836467) -->
+    <skip />
+    <!-- no translation found for menu_export (2658783911863503902) -->
+    <skip />
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Αποκλεισμένοι αριθμοί"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"μέσω <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> μέσω <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
@@ -604,4 +600,8 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> δ."</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> λ <xliff:g id="SECONDS">%s</xliff:g> δ."</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ώ. <xliff:g id="MINUTES_1">%s</xliff:g> λ. <xliff:g id="SECONDS">%s</xliff:g> δ."</string>
+    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
+    <skip />
+    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
+    <skip />
 </resources>
