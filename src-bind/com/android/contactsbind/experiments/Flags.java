@@ -30,7 +30,7 @@ public final class Flags {
 
     private static Flags sInstance;
 
-    private Map<String,Boolean> mMap;
+    private Map<String, Object> mMap;
 
     public static Flags getInstance(Context context) {
         if (sInstance == null) {
@@ -44,6 +44,10 @@ public final class Flags {
     }
 
     public boolean getBoolean(String flagName) {
-        return mMap.containsKey(flagName) ? mMap.get(flagName) : false;
+        return mMap.containsKey(flagName) ? (boolean) mMap.get(flagName) : false;
+    }
+
+    public int getInteger(String flagName) {
+        return mMap.containsKey(flagName) ? ((Integer) mMap.get(flagName)).intValue() : 0;
     }
 }

@@ -78,23 +78,6 @@ public class DynamicShortcuts {
     private static final int LONG_LABEL_MAX_LENGTH = 30;
     private static final int MAX_SHORTCUTS = 3;
 
-    /**
-     * How long  to wait after a change to the contacts content uri before updating the shortcuts
-     * This increases the likelihood that multiple updates will be coalesced in the case that
-     * the updates are happening rapidly
-     *
-     * TODO: this should probably be externally configurable to make it easier to manually test the
-     * behavior
-     */
-    private static final int CONTENT_CHANGE_MIN_UPDATE_DELAY_MILLIS = 10000; // 10 seconds
-    /**
-     * The maximum time to wait before updating the shortcuts that may have changed.
-     *
-     * TODO: this should probably be externally configurable to make it easier to manually test the
-     * behavior
-     */
-    private static final int CONTENT_CHANGE_MAX_UPDATE_DELAY_MILLIS = 24*60*60*1000; // 1 day
-
     // The spec specifies that it should be 44dp @ xxxhdpi
     // Note that ShortcutManager.getIconMaxWidth and ShortcutManager.getMaxHeight return different
     // (larger) values.
@@ -110,6 +93,8 @@ public class DynamicShortcuts {
     private final ShortcutManager mShortcutManager;
     private int mShortLabelMaxLength = SHORT_LABEL_MAX_LENGTH;
     private int mLongLabelMaxLength = LONG_LABEL_MAX_LENGTH;
+    private final int mContentChangeMinUpdateDelay;
+    private final int mContentChangeMaxUpdateDelay;
 
     public DynamicShortcuts(Context context) {
         this(context, context.getContentResolver(), (ShortcutManager)
@@ -121,6 +106,10 @@ public class DynamicShortcuts {
         mContext = context;
         mContentResolver = contentResolver;
         mShortcutManager = shortcutManager;
+        mContentChangeMinUpdateDelay = Flags.getInstance(mContext)
+                .getInteger(Experiments.DYNAMIC_MIN_CONTENT_CHANGE_UPDATE_DELAY_MILLIS);
+        mContentChangeMaxUpdateDelay = Flags.getInstance(mContext)
+                .getInteger(Experiments.DYNAMIC_MAX_CONTENT_CHANGE_UPDATE_DELAY_MILLIS);
     }
 
     @VisibleForTesting
@@ -365,8 +354,8 @@ public class DynamicShortcuts {
                 // that complexity.
                 .addTriggerContentUri(new JobInfo.TriggerContentUri(ContactsContract.AUTHORITY_URI,
                         JobInfo.TriggerContentUri.FLAG_NOTIFY_FOR_DESCENDANTS))
-                .setTriggerContentUpdateDelay(CONTENT_CHANGE_MIN_UPDATE_DELAY_MILLIS)
-                .setTriggerContentMaxDelay(CONTENT_CHANGE_MAX_UPDATE_DELAY_MILLIS).build();
+                .setTriggerContentUpdateDelay(mContentChangeMinUpdateDelay)
+                .setTriggerContentMaxDelay(mContentChangeMaxUpdateDelay).build();
         final JobScheduler scheduler = (JobScheduler)
                 mContext.getSystemService(Context.JOB_SCHEDULER_SERVICE);
         scheduler.schedule(job);
