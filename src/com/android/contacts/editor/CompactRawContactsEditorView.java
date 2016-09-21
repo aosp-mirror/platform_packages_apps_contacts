@@ -384,6 +384,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     public void removePhoto() {
         mPhotoValuesDelta.setFromTemplate(true);
         mPhotoValuesDelta.put(Photo.PHOTO, (byte[]) null);
+        mPhotoValuesDelta.put(Photo.PHOTO_FILE_ID, (String) null);
 
         mPhotoView.removePhoto();
     }
@@ -940,7 +941,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             return;
         }
         // Set the photo view
-        mPhotoView.setPhoto(superPrimaryDelta, mMaterialPalette);
+        mPhotoView.setPalette(mMaterialPalette);
+        mPhotoView.setPhoto(superPrimaryDelta);
 
         if (isReadOnlyRawContact()) {
             mPhotoView.setReadOnly(true);

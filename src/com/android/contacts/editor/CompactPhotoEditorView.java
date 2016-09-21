@@ -65,6 +65,7 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
     private View mPhotoIcon;
     private View mPhotoIconOverlay;
     private View mPhotoTouchInterceptOverlay;
+    private MaterialPalette mMaterialPalette;
 
     private boolean mReadOnly;
     private boolean mIsNonDefaultPhotoBound;
@@ -122,12 +123,16 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
         }
     }
 
+    public void setPalette(MaterialPalette palette) {
+        mMaterialPalette = palette;
+    }
+
     /**
      * Tries to bind a full size photo or a bitmap loaded from the given ValuesDelta,
      * and falls back to the default avatar, tinted using the given MaterialPalette (if it's not
      * null);
      */
-    public void setPhoto(ValuesDelta valuesDelta, MaterialPalette materialPalette) {
+    public void setPhoto(ValuesDelta valuesDelta) {
         // Check if we can update to the full size photo immediately
         final Long photoFileId = EditorUiUtils.getPhotoFileId(valuesDelta);
         if (photoFileId != null) {
@@ -146,7 +151,7 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
             return;
         }
 
-        setDefaultPhoto(materialPalette);
+        setDefaultPhoto(mMaterialPalette);
         adjustDimensions();
     }
 
@@ -223,9 +228,7 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
      * Removes the current bound photo bitmap.
      */
     public void removePhoto() {
-        mPhotoImageView.setImageBitmap(/* bitmap =*/ null);
-        mIsNonDefaultPhotoBound = false;
-        setDefaultPhoto(/* materialPalette =*/ null);
+        setDefaultPhoto(mMaterialPalette);
     }
 
     @Override
