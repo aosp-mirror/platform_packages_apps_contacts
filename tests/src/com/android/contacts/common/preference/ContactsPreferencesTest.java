@@ -19,6 +19,7 @@ package com.android.contacts.common.preference;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.support.test.InstrumentationRegistry;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
@@ -59,7 +60,12 @@ public class ContactsPreferencesTest extends InstrumentationTestCase {
         Mockito.when(mSharedPreferences.contains(ContactsPreferences.DISPLAY_ORDER_KEY))
                 .thenReturn(true);
 
-        mContactsPreferences = new ContactsPreferences(mContext);
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                mContactsPreferences = new ContactsPreferences(mContext);
+            }
+        });
     }
 
     public void testGetSortOrderDefault() {
