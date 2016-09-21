@@ -113,11 +113,11 @@
     <string name="emptyMainList" msgid="2772242747899664460">"നിങ്ങളുടെ കോൺടാക്‌റ്റ് ലിസ്‌റ്റ് ശൂന്യമാണ്"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"കോൺടാക്റ്റ് സംരക്ഷിച്ചു"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"കോൺടാക്റ്റുകൾ അൺലിങ്കുചെയ്തു"</string>
-    <string name="contactSavedErrorToast" msgid="3207250533172944892">"കോൺടാക്റ്റ് മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"കോൺടാക്റ്റ് അൺലിങ്കുചെയ്യാനായില്ല."</string>
-    <string name="contactJoinErrorToast" msgid="3977932531264809035">"കോൺടാക്റ്റ് ലിങ്കുചെയ്യാൻ കഴിഞ്ഞില്ല."</string>
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"കോൺടാക്റ്റ് സംരക്ഷിക്കുന്നതില്‍ പിശക്"</string>
-    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"കോൺടാക്റ്റ് ഫോട്ടോ മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
+    <string name="contactSavedErrorToast" msgid="4827033473908688031">"കോൺടാക്റ്റ് മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല"</string>
+    <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"കോൺടാക്റ്റ് അൺലിങ്കുചെയ്യാനായില്ല"</string>
+    <string name="contactJoinErrorToast" msgid="5735129234573327701">"കോൺടാക്റ്റ് ലിങ്കുചെയ്യാനായില്ല"</string>
+    <string name="contactGenericErrorToast" msgid="3885457515665783976">"കോൺടാക്റ്റ് സംരക്ഷിക്കുന്നതില്‍ പിശക്"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"കോൺടാക്റ്റ് ഫോട്ടോയിലെ മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"ലേബൽ ലോഡുചെയ്യുന്നത് പരാജയപ്പെട്ടു"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"ലേബൽ സംരക്ഷിച്ചു"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"ലേബൽ ഇല്ലാതാക്കി"</string>
@@ -126,7 +126,7 @@
     <string name="groupUpdatedToast" msgid="3667977658676267687">"ലേബൽ അപ്ഡേറ്റുചെയ്‌തു"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ലേബലിൽ നിന്ന് നീക്കംചെയ്‌തു"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ലേബലിൽ ചേർത്തു"</string>
-    <string name="groupSavedErrorToast" msgid="8121032018490980184">"ലേബൽ മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല."</string>
+    <string name="groupSavedErrorToast" msgid="2355891714292740162">"ലേബൽ മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ആ ലേബൽ നിലവിലുണ്ട്"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ഫോൺ നമ്പറുള്ള <xliff:g id="COUNT">%d</xliff:g> കോൺടാക്‌റ്റുകൾ</item>
@@ -454,22 +454,14 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber ഉപയോഗിച്ച് ചാറ്റുചെയ്യുക"</string>
     <string name="chat" msgid="9025361898797412245">"ചാറ്റുചെയ്യുക"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"ഇല്ലാതാക്കുക"</string>
-    <!-- no translation found for expand_name_fields_description (6883935911480726652) -->
-    <skip />
-    <!-- no translation found for collapse_name_fields_description (4757877385895561556) -->
-    <skip />
-    <!-- no translation found for expand_phonetic_name_fields_description (3865726859582581741) -->
-    <skip />
-    <!-- no translation found for collapse_phonetic_name_fields_description (9102249481855019452) -->
-    <skip />
-    <!-- no translation found for expand_fields_description (8129294181216760037) -->
-    <skip />
-    <!-- no translation found for collapse_fields_description (1884143625854637874) -->
-    <skip />
-    <!-- no translation found for announce_expanded_fields (1075947220478530622) -->
-    <skip />
-    <!-- no translation found for announce_collapsed_fields (6414231530177338704) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6883935911480726652">"പേരിന്റെ ഫീൽഡുകൾ വികസിപ്പിക്കുക"</string>
+    <string name="collapse_name_fields_description" msgid="4757877385895561556">"പേരിന്റെ ഫീൽഡുകൾ ചുരുക്കുക"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"ഫൊണറ്റിക് പേരിന്റെ ഫീൽഡുകൾ വികസിപ്പിക്കുക"</string>
+    <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"ഫൊണറ്റിക് പേരിന്റെ ഫീൽഡുകൾ ചുരുക്കുക"</string>
+    <string name="expand_fields_description" msgid="8129294181216760037">"വികസിപ്പിക്കുക"</string>
+    <string name="collapse_fields_description" msgid="1884143625854637874">"ചുരുക്കുക"</string>
+    <string name="announce_expanded_fields" msgid="1075947220478530622">"വികസിപ്പിച്ചു"</string>
+    <string name="announce_collapsed_fields" msgid="6414231530177338704">"ചുരുക്കി"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"എല്ലാ കോൺടാക്റ്റുകളും"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"നക്ഷത്രമിട്ടവ"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"ഇഷ്‌ടാനുസൃതമാക്കുക"</string>
@@ -604,4 +596,8 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> സെ."</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> മി <xliff:g id="SECONDS">%s</xliff:g> സെ"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> മണിക്കൂർ <xliff:g id="MINUTES_1">%s</xliff:g> മിനിറ്റ് <xliff:g id="SECONDS">%s</xliff:g> സെക്കൻഡ്"</string>
+    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
+    <skip />
+    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
+    <skip />
 </resources>

@@ -113,11 +113,11 @@
     <string name="emptyMainList" msgid="2772242747899664460">"तपाईंको सम्पर्क ठेगानाहरूको सूची खाली छ"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"सम्पर्क बचत गरियो।"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"सम्पर्क ठेगानाहरू अनलिंक गरियो"</string>
-    <string name="contactSavedErrorToast" msgid="3207250533172944892">"सम्पर्क परिवर्तनहरू सुरक्षित गर्न सकेन।"</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"सम्पर्क अनलिंक गर्न सकेन।"</string>
-    <string name="contactJoinErrorToast" msgid="3977932531264809035">"सम्पर्क ठेगाना लिंक गर्न सकिएन।"</string>
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"सम्पर्क सुरक्षित गर्दा त्रूटि।"</string>
-    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"सम्पर्क तस्बिर परिवर्तनहरू सुरक्षित गर्न सकिएन।"</string>
+    <string name="contactSavedErrorToast" msgid="4827033473908688031">"सम्पर्कमा गरिएका परिवर्तनहरू सुरक्षित गर्न सकिएन"</string>
+    <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"सम्पर्कलाई अनलिंक गर्न सकिएन"</string>
+    <string name="contactJoinErrorToast" msgid="5735129234573327701">"सम्पर्क ठेगानामा लिंक गर्न सकिएन"</string>
+    <string name="contactGenericErrorToast" msgid="3885457515665783976">"सम्पर्क सुरक्षित गर्दा त्रुटि भयो"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"सम्पर्क सम्बन्धी तस्बिरमा गरिएका परिवर्तनहरू सुरक्षित गर्न सकिएन"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"लेबल लोड गर्न सकिएन"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"लेबललाई सुरक्षित गरियो"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"लेबल मेटाइयो"</string>
@@ -126,7 +126,7 @@
     <string name="groupUpdatedToast" msgid="3667977658676267687">"लेबललाई अद्यावधिक गरियो"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"लेबलबाट हटाइयो"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"लेबलमा थपियो"</string>
-    <string name="groupSavedErrorToast" msgid="8121032018490980184">"लेबलमा गरिएका परिवर्तनहरूलाई सुरक्षित गर्न सकिएन।"</string>
+    <string name="groupSavedErrorToast" msgid="2355891714292740162">"लेबलमा गरिएका परिवर्तनहरूलाई सुरक्षित गर्न सकिएन"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"उक्त लेबल पहिले नै अवस्थित छ"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>सम्पर्कहरू फोन नम्बर सहित</item>
@@ -454,22 +454,14 @@
     <string name="chat_jabber" msgid="7561444230307829609">"ज्याबरको  प्रयोग गरेर च्याट गर्नुहोस्"</string>
     <string name="chat" msgid="9025361898797412245">"कुराकानी"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"मेटाउनुहोस्"</string>
-    <!-- no translation found for expand_name_fields_description (6883935911480726652) -->
-    <skip />
-    <!-- no translation found for collapse_name_fields_description (4757877385895561556) -->
-    <skip />
-    <!-- no translation found for expand_phonetic_name_fields_description (3865726859582581741) -->
-    <skip />
-    <!-- no translation found for collapse_phonetic_name_fields_description (9102249481855019452) -->
-    <skip />
-    <!-- no translation found for expand_fields_description (8129294181216760037) -->
-    <skip />
-    <!-- no translation found for collapse_fields_description (1884143625854637874) -->
-    <skip />
-    <!-- no translation found for announce_expanded_fields (1075947220478530622) -->
-    <skip />
-    <!-- no translation found for announce_collapsed_fields (6414231530177338704) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6883935911480726652">"नामका क्षेत्रहरू विस्तृत गर्नुहोस्"</string>
+    <string name="collapse_name_fields_description" msgid="4757877385895561556">"नामका क्षेत्रहरू संक्षिप्त गर्नुहोस्"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"ध्वनितात्त्विक नामका क्षेत्रहरू विस्तृत गर्नुहोस्"</string>
+    <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"ध्वनितात्त्विक नामका क्षेत्रहरू विस्तृत गर्नुहोस्"</string>
+    <string name="expand_fields_description" msgid="8129294181216760037">"विस्तृत गर्नुहोस्"</string>
+    <string name="collapse_fields_description" msgid="1884143625854637874">"संक्षिप्त गर्नुहोस्"</string>
+    <string name="announce_expanded_fields" msgid="1075947220478530622">"विस्तृत गरियो"</string>
+    <string name="announce_collapsed_fields" msgid="6414231530177338704">"संक्षिप्त गरियो"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"सबै सम्पर्कहरू"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"ताराङ्कित"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"व्यक्तिगत् बनाउनुहोस्"</string>
@@ -604,4 +596,8 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> सेकेन्ड"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> मिनेट <xliff:g id="SECONDS">%s</xliff:g> सेकेन्ड"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> घन्टा <xliff:g id="MINUTES_1">%s</xliff:g> मिनेट <xliff:g id="SECONDS">%s</xliff:g> सेेकेन्ड"</string>
+    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
+    <skip />
+    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
+    <skip />
 </resources>

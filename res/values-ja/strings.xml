@@ -113,11 +113,11 @@
     <string name="emptyMainList" msgid="2772242747899664460">"連絡先リストが空です"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"連絡先を保存しました"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"連絡先のリンクを解除しました"</string>
-    <string name="contactSavedErrorToast" msgid="3207250533172944892">"連絡先の変更を保存できませんでした。"</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"連絡先のリンクを解除できませんでした。"</string>
-    <string name="contactJoinErrorToast" msgid="3977932531264809035">"連絡先をリンクできませんでした。"</string>
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"連絡先の保存中にエラーが発生しました。"</string>
-    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"連絡先の写真の変更を保存できませんでした。"</string>
+    <string name="contactSavedErrorToast" msgid="4827033473908688031">"連絡先の変更を保存できませんでした"</string>
+    <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"連絡先のリンクを解除できませんでした"</string>
+    <string name="contactJoinErrorToast" msgid="5735129234573327701">"連絡先をリンクできませんでした"</string>
+    <string name="contactGenericErrorToast" msgid="3885457515665783976">"連絡先の保存中にエラーが発生しました"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"連絡先の写真の変更を保存できませんでした"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"ラベルを読み込めませんでした"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"ラベルを保存しました"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"ラベルを削除しました"</string>
@@ -126,7 +126,7 @@
     <string name="groupUpdatedToast" msgid="3667977658676267687">"ラベルを更新しました"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ラベルから削除されました"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ラベルに追加されました"</string>
-    <string name="groupSavedErrorToast" msgid="8121032018490980184">"ラベルの変更を保存できませんでした。"</string>
+    <string name="groupSavedErrorToast" msgid="2355891714292740162">"ラベルの変更を保存できませんでした"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"このラベルは既に存在しています"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">電話番号のある連絡先<xliff:g id="COUNT">%d</xliff:g>件</item>
@@ -454,22 +454,14 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabberでチャット"</string>
     <string name="chat" msgid="9025361898797412245">"チャット"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"削除"</string>
-    <!-- no translation found for expand_name_fields_description (6883935911480726652) -->
-    <skip />
-    <!-- no translation found for collapse_name_fields_description (4757877385895561556) -->
-    <skip />
-    <!-- no translation found for expand_phonetic_name_fields_description (3865726859582581741) -->
-    <skip />
-    <!-- no translation found for collapse_phonetic_name_fields_description (9102249481855019452) -->
-    <skip />
-    <!-- no translation found for expand_fields_description (8129294181216760037) -->
-    <skip />
-    <!-- no translation found for collapse_fields_description (1884143625854637874) -->
-    <skip />
-    <!-- no translation found for announce_expanded_fields (1075947220478530622) -->
-    <skip />
-    <!-- no translation found for announce_collapsed_fields (6414231530177338704) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6883935911480726652">"名前欄を展開"</string>
+    <string name="collapse_name_fields_description" msgid="4757877385895561556">"名前欄を折りたたむ"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"名前のフリガナ欄を展開"</string>
+    <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"名前のフリガナ欄を折りたたむ"</string>
+    <string name="expand_fields_description" msgid="8129294181216760037">"展開"</string>
+    <string name="collapse_fields_description" msgid="1884143625854637874">"折りたたむ"</string>
+    <string name="announce_expanded_fields" msgid="1075947220478530622">"展開しました"</string>
+    <string name="announce_collapsed_fields" msgid="6414231530177338704">"折りたたみました"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"すべての連絡先"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"スター付き"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"カスタマイズ"</string>
@@ -604,4 +596,8 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> 時間 <xliff:g id="MINUTES_1">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
+    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
+    <skip />
+    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
+    <skip />
 </resources>

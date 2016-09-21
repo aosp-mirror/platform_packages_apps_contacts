@@ -113,11 +113,11 @@
     <string name="emptyMainList" msgid="2772242747899664460">"ನಿಮ್ಮ ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯು ಖಾಲಿಯಾಗಿದೆ"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"ಸಂಪರ್ಕ‌ವನ್ನು ಉಳಿಸಲಾಗಿದೆ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ಸಂಪರ್ಕಗಳನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>
-    <string name="contactSavedErrorToast" msgid="3207250533172944892">"ಸಂಪರ್ಕ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"ಸಂಪರ್ಕದ ಲಿಂಕ್ ರದ್ದು ಮಾಡಲಾಗಲಿಲ್ಲ."</string>
-    <string name="contactJoinErrorToast" msgid="3977932531264809035">"ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ."</string>
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"ಸಂಪರ್ಕವನ್ನು ಉಳಿಸುವಲ್ಲಿ ದೋಷ."</string>
-    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"ಸಂಪರ್ಕ ಫೋಟೋ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ."</string>
+    <string name="contactSavedErrorToast" msgid="4827033473908688031">"ಸಂಪರ್ಕ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ"</string>
+    <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"ಸಂಪರ್ಕದ ಲಿಂಕ್ ರದ್ದು ಮಾಡಲಾಗಲಿಲ್ಲ"</string>
+    <string name="contactJoinErrorToast" msgid="5735129234573327701">"ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ"</string>
+    <string name="contactGenericErrorToast" msgid="3885457515665783976">"ಸಂಪರ್ಕವನ್ನು ಉಳಿಸುವಲ್ಲಿ ದೋಷ"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"ಸಂಪರ್ಕ ಫೋಟೋ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"ಲೇಬಲ್ ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"ಲೇಬಲ್ ಉಳಿಸಲಾಗಿದೆ"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"ಲೇಬಲ್ ಅಳಿಸಲಾಗಿದೆ"</string>
@@ -126,7 +126,7 @@
     <string name="groupUpdatedToast" msgid="3667977658676267687">"ಲೇಬಲ್ ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗಿದೆ"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"ಲೇಬಲ್‌ನಿಂದ ತೆಗೆದುಹಾಕಲಾಗಿದೆ"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ಲೇಬಲ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ"</string>
-    <string name="groupSavedErrorToast" msgid="8121032018490980184">"ಲೇಬಲ್ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ."</string>
+    <string name="groupSavedErrorToast" msgid="2355891714292740162">"ಲೇಬಲ್ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ಆ ಲೇಬಲ್ ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ <xliff:g id="COUNT">%d</xliff:g> ಸಂಪರ್ಕಗಳು</item>
@@ -319,8 +319,8 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> ಅಳಿಸು"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"<xliff:g id="USER_NAME">%s </xliff:g><xliff:g id="ACCOUNT_TYPE">%s </xliff:g> ಅವರಿಂದ ಫೋಟೋ ಗುರುತಿಸಲಾಗಿಲ್ಲ"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="USER_NAME">%s </xliff:g><xliff:g id="ACCOUNT_TYPE">%s </xliff:g> ಅವರಿಂದ ಫೋಟೋ ಗುರುತಿಸಲಾಗಿದೆ"</string>
-    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ಅಜ್ಞಾತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿಲ್ಲ"</string>
-    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ಅಜ್ಞಾತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿದೆ"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ಅಪರಿಚಿತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿಲ್ಲ"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ಅಪರಿಚಿತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿದೆ"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"ಭಾಷೆಯ ಬದಲಾವಣೆಯನ್ನು ಪ್ರತಿಬಿಂಬಿಸಲು ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ.\n\nದಯವಿಟ್ಟು ಕಾಯಿರಿ..."</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ನಕಲಿಗಳು"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ನ್ಯಾವಿಗೇಶನ್ ಡ್ರಾಯರ್ ತೆರೆಯಿರಿ"</string>
@@ -454,22 +454,14 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber ಬಳಸಿಕೊಂಡು ಚಾಟ್‌ ಮಾಡಿ"</string>
     <string name="chat" msgid="9025361898797412245">"ಚಾಟ್"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"ಅಳಿಸು"</string>
-    <!-- no translation found for expand_name_fields_description (6883935911480726652) -->
-    <skip />
-    <!-- no translation found for collapse_name_fields_description (4757877385895561556) -->
-    <skip />
-    <!-- no translation found for expand_phonetic_name_fields_description (3865726859582581741) -->
-    <skip />
-    <!-- no translation found for collapse_phonetic_name_fields_description (9102249481855019452) -->
-    <skip />
-    <!-- no translation found for expand_fields_description (8129294181216760037) -->
-    <skip />
-    <!-- no translation found for collapse_fields_description (1884143625854637874) -->
-    <skip />
-    <!-- no translation found for announce_expanded_fields (1075947220478530622) -->
-    <skip />
-    <!-- no translation found for announce_collapsed_fields (6414231530177338704) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6883935911480726652">"ಹೆಸರಿನ ಕ್ಷೇತ್ರಗಳನ್ನು ವಿಸ್ತರಿಸಿ"</string>
+    <string name="collapse_name_fields_description" msgid="4757877385895561556">"ಹೆಸರಿನ ಕ್ಷೇತ್ರಗಳನ್ನು ಸಂಕುಚಿಸಿ"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"ಫೋನೆಟಿಕ್ ಹೆಸರಿನ ಕ್ಷೇತ್ರಗಳನ್ನು ವಿಸ್ತರಿಸಿ"</string>
+    <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"ಫೋನೆಟಿಕ್ ಹೆಸರಿನ ಕ್ಷೇತ್ರಗಳನ್ನು ಸಂಕುಚಿಸಿ"</string>
+    <string name="expand_fields_description" msgid="8129294181216760037">"ವಿಸ್ತರಿಸು"</string>
+    <string name="collapse_fields_description" msgid="1884143625854637874">"ಸಂಕುಚಿಸು"</string>
+    <string name="announce_expanded_fields" msgid="1075947220478530622">"ವಿಸ್ತರಿಸಲಾಗಿದೆ"</string>
+    <string name="announce_collapsed_fields" msgid="6414231530177338704">"ಸಂಕುಚಿಸಲಾಗಿದೆ"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳು"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"ನಕ್ಷತ್ರ ಹಾಕಿರುವುದು"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"ಕಸ್ಟಮೈಸ್ ಮಾಡು"</string>
@@ -492,7 +484,7 @@
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> ಆಮದು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard ಆಮದು/ರಫ್ತು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ"</string>
-    <string name="fail_reason_unknown" msgid="1714092345030570863">"ಅಜ್ಞಾತ ದೋಷ."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"ಅಪರಿಚಿತ ದೋಷ."</string>
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ಅನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"ರಫ್ತುದಾರರನ್ನು ಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"ಯಾವುದೇ ರಫ್ತುಮಾಡಬಹುದಾದ ಸಂಪರ್ಕವಿಲ್ಲ."</string>
@@ -604,4 +596,8 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> ಸೆ"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> ನಿಮಿ <xliff:g id="SECONDS">%s</xliff:g> ಸೆ"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ಗಂ <xliff:g id="MINUTES_1">%s</xliff:g> ನಿಮಿಷ <xliff:g id="SECONDS">%s</xliff:g> ಸೆ"</string>
+    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
+    <skip />
+    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
+    <skip />
 </resources>

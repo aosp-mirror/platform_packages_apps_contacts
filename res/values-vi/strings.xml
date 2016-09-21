@@ -113,11 +113,11 @@
     <string name="emptyMainList" msgid="2772242747899664460">"Danh sách liên hệ của bạn trống"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Đã lưu địa chỉ liên hệ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Đã hủy liên kết liên hệ"</string>
-    <string name="contactSavedErrorToast" msgid="3207250533172944892">"Không thể lưu thay đổi của địa chỉ liên hệ."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Không thể hủy liên kết liên hệ."</string>
-    <string name="contactJoinErrorToast" msgid="3977932531264809035">"Không thể liên kết liên hệ."</string>
-    <string name="contactGenericErrorToast" msgid="7774911165341591714">"Lỗi khi lưu địa chỉ liên hệ."</string>
-    <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Không thể lưu thay đổi đối với ảnh của liên hệ."</string>
+    <string name="contactSavedErrorToast" msgid="4827033473908688031">"Không thể lưu thay đổi đối với liên hệ"</string>
+    <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"Không thể hủy liên kết liên hệ"</string>
+    <string name="contactJoinErrorToast" msgid="5735129234573327701">"Không thể liên kết liên hệ"</string>
+    <string name="contactGenericErrorToast" msgid="3885457515665783976">"Đã xảy ra lỗi khi lưu liên hệ"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Không thể lưu thay đổi đối với ảnh của liên hệ"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Không tải được nhãn"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"Đã lưu nhãn"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Đã xóa nhãn"</string>
@@ -126,7 +126,7 @@
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Đã cập nhật nhãn"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Đã bị xóa khỏi nhãn"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Đã thêm vào nhãn"</string>
-    <string name="groupSavedErrorToast" msgid="8121032018490980184">"Không thể lưu thay đổi đối với nhãn."</string>
+    <string name="groupSavedErrorToast" msgid="2355891714292740162">"Không thể lưu thay đổi đối với nhãn"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Nhãn đó đã tồn tại"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> liên hệ có số điện thoại</item>
@@ -454,22 +454,14 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Trò chuyện sử dụng Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Trò chuyện"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"xóa"</string>
-    <!-- no translation found for expand_name_fields_description (6883935911480726652) -->
-    <skip />
-    <!-- no translation found for collapse_name_fields_description (4757877385895561556) -->
-    <skip />
-    <!-- no translation found for expand_phonetic_name_fields_description (3865726859582581741) -->
-    <skip />
-    <!-- no translation found for collapse_phonetic_name_fields_description (9102249481855019452) -->
-    <skip />
-    <!-- no translation found for expand_fields_description (8129294181216760037) -->
-    <skip />
-    <!-- no translation found for collapse_fields_description (1884143625854637874) -->
-    <skip />
-    <!-- no translation found for announce_expanded_fields (1075947220478530622) -->
-    <skip />
-    <!-- no translation found for announce_collapsed_fields (6414231530177338704) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6883935911480726652">"Mở rộng trường tên"</string>
+    <string name="collapse_name_fields_description" msgid="4757877385895561556">"Thu gọn trường tên"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"Mở rộng trường tên theo phiên âm"</string>
+    <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Thu gọn trường tên theo phiên âm"</string>
+    <string name="expand_fields_description" msgid="8129294181216760037">"Mở rộng"</string>
+    <string name="collapse_fields_description" msgid="1884143625854637874">"Thu gọn"</string>
+    <string name="announce_expanded_fields" msgid="1075947220478530622">"Đã mở rộng"</string>
+    <string name="announce_collapsed_fields" msgid="6414231530177338704">"Đã thu gọn"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Tất cả địa chỉ liên hệ"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Được gắn dấu sao"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"Tùy chỉnh"</string>
@@ -604,4 +596,8 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> giây"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> phút <xliff:g id="SECONDS">%s</xliff:g> giây"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> giờ <xliff:g id="MINUTES_1">%s</xliff:g> phút <xliff:g id="SECONDS">%s</xliff:g> giây"</string>
+    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
+    <skip />
+    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
+    <skip />
 </resources>
