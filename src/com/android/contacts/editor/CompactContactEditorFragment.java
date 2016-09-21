@@ -21,7 +21,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.ActivityNotFoundException;
-import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -1547,10 +1546,8 @@ public class CompactContactEditorFragment extends Fragment implements
                 if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = ContactEditorUtils.maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
-                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(mContext,
-                            lookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
-                    resultIntent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
-                            ScreenType.EDITOR);
+                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(
+                            mContext, lookupUri, ScreenType.EDITOR);
                     resultIntent.putExtra(QuickContactActivity.EXTRA_CONTACT_EDITED, true);
                 } else {
                     resultIntent = null;

@@ -61,9 +61,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     private static final int REQUEST_CODE_CUSTOM_CONTACTS_FILTER = 0;
 
     private static final String ARG_CONTACTS_AVAILABLE = "are_contacts_available";
-    private static final String ARG_MODE_FULLY_EXPANDED = "mode_fully_expanded";
     private static final String ARG_NEW_LOCAL_PROFILE = "new_local_profile";
-    private static final String ARG_PREVIOUS_SCREEN = "previous_screen";
 
     private static final String KEY_ABOUT = "about";
     private static final String KEY_ACCOUNTS = "accounts";
@@ -115,8 +113,6 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     }
 
     private String mNewLocalProfileExtra;
-    private String mPreviousScreenExtra;
-    private int mModeFullyExpanded;
     private boolean mAreContactsAvailable;
 
     private boolean mHasProfile;
@@ -149,12 +145,10 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     };
 
     public static DisplayOptionsPreferenceFragment newInstance(String newLocalProfileExtra,
-            String previousScreenExtra, int modeFullyExpanded, boolean areContactsAvailable) {
+            boolean areContactsAvailable) {
         final DisplayOptionsPreferenceFragment fragment = new DisplayOptionsPreferenceFragment();
         final Bundle args = new Bundle();
         args.putString(ARG_NEW_LOCAL_PROFILE, newLocalProfileExtra);
-        args.putString(ARG_PREVIOUS_SCREEN, previousScreenExtra);
-        args.putInt(ARG_MODE_FULLY_EXPANDED, modeFullyExpanded);
         args.putBoolean(ARG_CONTACTS_AVAILABLE, areContactsAvailable);
         fragment.setArguments(args);
         return fragment;
@@ -179,8 +173,6 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
 
         final Bundle args = getArguments();
         mNewLocalProfileExtra = args.getString(ARG_NEW_LOCAL_PROFILE);
-        mPreviousScreenExtra = args.getString(ARG_PREVIOUS_SCREEN);
-        mModeFullyExpanded = args.getInt(ARG_MODE_FULLY_EXPANDED);
         mAreContactsAvailable = args.getBoolean(ARG_CONTACTS_AVAILABLE);
 
         removeUnsupportedPreferences();
@@ -312,18 +304,15 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             ExportDialogFragment.show(getFragmentManager(), ContactsPreferenceActivity.class,
                     ExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
             return true;
-        }else if (KEY_MY_INFO.equals(prefKey)) {
-            final Intent intent;
+        } else if (KEY_MY_INFO.equals(prefKey)) {
             if (mHasProfile) {
                 final Uri uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, mProfileContactId);
-                intent = ImplicitIntentsUtil.composeQuickContactIntent(getContext(), uri,
-                        mModeFullyExpanded);
-                intent.putExtra(mPreviousScreenExtra, ScreenType.ME_CONTACT);
+                ImplicitIntentsUtil.startQuickContact(getActivity(), uri, ScreenType.ME_CONTACT);
             } else {
-                intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
+                final Intent intent = new Intent(Intent.ACTION_INSERT, Contacts.CONTENT_URI);
                 intent.putExtra(mNewLocalProfileExtra, true);
+                ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
             }
-            ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
             return true;
         } else if (KEY_ACCOUNTS.equals(prefKey)) {
             ImplicitIntentsUtil.startActivityOutsideApp(getContext(),

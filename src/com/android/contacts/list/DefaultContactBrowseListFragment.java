@@ -54,7 +54,6 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
-import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -773,7 +772,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         @Override
         public void onSelectionChange() {
-
         }
 
         @Override
@@ -784,8 +782,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 ContactsContract.QuickContact.showQuickContact(getContext(), new Rect(),
                         contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED, null);
             } else {
-                final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
-                        getContext(), contactLookupUri, QuickContactActivity.MODE_FULLY_EXPANDED);
                 final int previousScreen;
                 if (isSearchMode()) {
                     previousScreen = ScreenEvent.ScreenType.SEARCH;
@@ -800,12 +796,14 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                         previousScreen = ScreenEvent.ScreenType.LIST_ACCOUNT;
                     }
                 }
+
                 Logger.logListEvent(ListEvent.ActionType.CLICK,
                         /* listType */ getListTypeIncludingSearch(),
                         /* count */ getAdapter().getCount(),
                         /* clickedIndex */ position, /* numSelected */ 0);
-                intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, previousScreen);
-                ImplicitIntentsUtil.startActivityInApp(getContext(), intent);
+
+                ImplicitIntentsUtil.startQuickContact(
+                        getActivity(), contactLookupUri, previousScreen);
             }
         }
 

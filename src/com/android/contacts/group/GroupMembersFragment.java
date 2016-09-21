@@ -58,7 +58,6 @@ import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.list.UiIntentActions;
-import com.android.contacts.quickcontact.QuickContactActivity;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -613,11 +612,8 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         final int count = getAdapter().getCount();
         Logger.logListEvent(ListEvent.ActionType.CLICK, ListEvent.ListType.GROUP, count,
                 /* clickedIndex */ position, /* numSelected */ 0);
-        final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
-                getContext(), uri, QuickContactActivity.MODE_FULLY_EXPANDED);
-        intent.putExtra(
-                QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenEvent.ScreenType.LIST_GROUP);
-        startActivity(intent);
+        ImplicitIntentsUtil.startQuickContact(
+                getActivity(), uri, ScreenEvent.ScreenType.LIST_GROUP);
     }
 
     @Override

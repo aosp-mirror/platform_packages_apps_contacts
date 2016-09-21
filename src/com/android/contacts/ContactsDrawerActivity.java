@@ -571,10 +571,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
         intent.putExtra(ContactsPreferenceActivity.EXTRA_NEW_LOCAL_PROFILE,
                 CompactContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE);
-        intent.putExtra(ContactsPreferenceActivity.EXTRA_MODE_FULLY_EXPANDED,
-                QuickContactActivity.MODE_FULLY_EXPANDED);
-        intent.putExtra(ContactsPreferenceActivity.EXTRA_PREVIOUS_SCREEN_TYPE,
-                QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE);
         return intent;
     }
 

@@ -16,6 +16,7 @@
 
 package com.android.contacts.common.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,6 +28,7 @@ import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
 import android.text.TextUtils;
 
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.quickcontact.QuickContactActivity;
 
@@ -96,16 +98,55 @@ public class ImplicitIntentsUtil {
     }
 
     /**
+     * Starts QuickContact in app with the default mode and specified previous screen type.
+     */
+    public static void startQuickContact(Activity activity, Uri contactLookupUri,
+            int previousScreenType) {
+        startQuickContact(activity, contactLookupUri, previousScreenType, /* requestCode */ -1);
+    }
+
+    /**
+     * Starts QuickContact for result with the default mode and specified previous screen type.
+     */
+    public static void startQuickContactForResult(Activity activity, Uri contactLookupUri,
+            int previousScreenType, int requestCode) {
+        startQuickContact(activity, contactLookupUri, previousScreenType, requestCode);
+    }
+
+    private static void startQuickContact(Activity activity, Uri contactLookupUri,
+            int previousScreenType, int requestCode) {
+        final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
+                activity, contactLookupUri, previousScreenType);
+
+        if (requestCode >= 0) {
+            activity.startActivityForResult(intent, requestCode);
+        } else {
+            startActivityInApp(activity, intent);
+        }
+    }
+
+    /**
+     * Returns an implicit intent for opening QuickContacts with the default mode and specified
+     * previous screen type.
+     */
+    public static Intent composeQuickContactIntent(Context context, Uri contactLookupUri,
+            int previousScreenType) {
+        return composeQuickContactIntent(context, contactLookupUri,
+                QuickContactActivity.MODE_FULLY_EXPANDED, previousScreenType);
+    }
+
+    /**
      * Returns an implicit intent for opening QuickContacts.
      */
     public static Intent composeQuickContactIntent(Context context, Uri contactLookupUri,
-            int extraMode) {
+            int mode, int previousScreenType) {
         final Intent intent = new Intent(context, QuickContactActivity.class);
         intent.setAction(QuickContact.ACTION_QUICK_CONTACT);
         intent.setData(contactLookupUri);
-        intent.putExtra(QuickContact.EXTRA_MODE, extraMode);
+        intent.putExtra(QuickContact.EXTRA_MODE, mode);
         // Make sure not to show QuickContacts on top of another QuickContacts.
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, previousScreenType);
         return intent;
     }
 
@@ -134,7 +175,7 @@ public class ImplicitIntentsUtil {
 
     public static Intent getIntentForQuickContactLauncherShortcut(Context context, Uri contactUri) {
         final Intent intent = composeQuickContactIntent(context, contactUri,
-                QuickContact.MODE_LARGE);
+                QuickContact.MODE_LARGE, ScreenType.UNKNOWN);
         intent.setPackage(context.getPackageName());
 
         // When starting from the launcher, start in a new, cleared task.

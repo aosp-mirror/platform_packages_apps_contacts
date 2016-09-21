@@ -72,7 +72,6 @@ import com.android.contacts.list.ContactsIntentResolver;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsUnavailableFragment;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
-import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.SyncUtil;
 import com.android.contactsbind.FeatureHighlightHelper;
 import com.android.contactsbind.ObjectFactory;
@@ -339,11 +338,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
         switch (mRequest.getActionCode()) {
             case ContactsRequest.ACTION_VIEW_CONTACT: {
-                final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
-                        PeopleActivity.this, mRequest.getContactUri(),
-                        QuickContactActivity.MODE_FULLY_EXPANDED);
-                intent.putExtra(QuickContactActivity.EXTRA_PREVIOUS_SCREEN_TYPE, ScreenType.UNKNOWN);
-                ImplicitIntentsUtil.startActivityInApp(this, intent);
+                ImplicitIntentsUtil.startQuickContact(
+                        this, mRequest.getContactUri(), ScreenType.UNKNOWN);
                 return false;
             }
             case ContactsRequest.ACTION_INSERT_GROUP: {

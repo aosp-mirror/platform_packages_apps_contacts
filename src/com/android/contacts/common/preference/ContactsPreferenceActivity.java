@@ -40,15 +40,11 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
     private static final String TAG_DISPLAY_OPTIONS = "display_options";
 
     private String mNewLocalProfileExtra;
-    private String mPreviousScreenExtra;
-    private int mModeFullyExpanded;
     private boolean mAreContactsAvailable;
 
     private ProviderStatusWatcher mProviderStatusWatcher;
 
     public static final String EXTRA_NEW_LOCAL_PROFILE = "newLocalProfile";
-    public static final String EXTRA_MODE_FULLY_EXPANDED = "modeFullyExpanded";
-    public static final String EXTRA_PREVIOUS_SCREEN_TYPE = "previousScreenType";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,16 +58,12 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
         mProviderStatusWatcher = ProviderStatusWatcher.getInstance(this);
 
         mNewLocalProfileExtra = getIntent().getStringExtra(EXTRA_NEW_LOCAL_PROFILE);
-        mModeFullyExpanded = getIntent().getIntExtra(EXTRA_MODE_FULLY_EXPANDED,
-                QuickContact.MODE_LARGE);
-        mPreviousScreenExtra = getIntent().getStringExtra(EXTRA_PREVIOUS_SCREEN_TYPE);
         final int providerStatus = mProviderStatusWatcher.getProviderStatus();
         mAreContactsAvailable = providerStatus == ProviderStatus.STATUS_NORMAL;
 
         if (savedInstanceState == null) {
             final DisplayOptionsPreferenceFragment fragment = DisplayOptionsPreferenceFragment
-                    .newInstance(mNewLocalProfileExtra, mPreviousScreenExtra, mModeFullyExpanded,
-                            mAreContactsAvailable);
+                    .newInstance(mNewLocalProfileExtra, mAreContactsAvailable);
             getFragmentManager().beginTransaction()
                     .replace(android.R.id.content, fragment, TAG_DISPLAY_OPTIONS)
                     .commit();
