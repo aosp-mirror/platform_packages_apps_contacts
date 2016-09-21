@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.ActivityNotFoundException;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -1524,8 +1525,16 @@ public class CompactContactEditorFragment extends Fragment implements
                                 .show();
                         break;
                     default:
-                        Toast.makeText(mContext, R.string.contactSavedToast, Toast.LENGTH_SHORT)
-                                .show();
+                        final String displayName = getContent().getPrimaryNameEditorView()
+                                .getDisplayName();
+                        final String toastMessage;
+                        if (!TextUtils.isEmpty(displayName)) {
+                            toastMessage = getResources().getString(
+                                    R.string.contactSavedNamedToast, displayName);
+                        } else {
+                            toastMessage = getResources().getString(R.string.contactSavedToast);
+                        }
+                        Toast.makeText(mContext, toastMessage, Toast.LENGTH_SHORT).show();
                 }
 
             } else {
