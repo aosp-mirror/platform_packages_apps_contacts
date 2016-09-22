@@ -35,6 +35,11 @@ public final class Experiments {
      */
     public static final String SEARCH_YENTA = "Search__yenta";
 
+    /**
+     * Whether to open contact sheet (aka smart profile) instead of our own QuickContact.
+     */
+    public static final String CONTACT_SHEET = "QuickContact__contact_sheet";
+
     private Experiments() {
     }
 }
