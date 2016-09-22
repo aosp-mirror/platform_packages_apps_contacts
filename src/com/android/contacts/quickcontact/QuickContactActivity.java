@@ -1660,7 +1660,7 @@ public class QuickContactActivity extends ContactsActivity
                 mScroller);
 
         if (contactCardEntries.size() == 0 && aboutCardEntries.size() == 0) {
-            initializeNoContactDetailCard();
+            initializeNoContactDetailCard(cp2DataCardModel.areAllRawContactsSimAccounts);
         } else {
             mNoContactDetailsCard.setVisibility(View.GONE);
         }
@@ -1681,8 +1681,9 @@ public class QuickContactActivity extends ContactsActivity
 
     /**
      * Create a card that shows "Add email" and "Add phone number" entries in grey.
+     * When contact is a SIM contact, only shows "Add phone number".
      */
-    private void initializeNoContactDetailCard() {
+    private void initializeNoContactDetailCard(boolean areAllRawContactsSimAccounts) {
         final Drawable phoneIcon = getResources().getDrawable(
                 R.drawable.ic_phone_24dp).mutate();
         final Entry phonePromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
@@ -1699,25 +1700,28 @@ public class QuickContactActivity extends ContactsActivity
                 /* thirdExtras = */ null,
                 R.drawable.ic_phone_24dp);
 
-        final Drawable emailIcon = getResources().getDrawable(
-                R.drawable.ic_email_24dp).mutate();
-        final Entry emailPromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
-                emailIcon, getString(R.string.quickcontact_add_email), /* subHeader = */ null,
-                /* subHeaderIcon = */ null,
-                /* text = */ null, /* textIcon = */ null, /* primaryContentDescription = */ null,
-                getEditContactIntent(), /* alternateIcon = */ null,
-                /* alternateIntent = */ null, /* alternateContentDescription = */ null,
-                /* shouldApplyColor = */ true, /* isEditable = */ false,
-                /* EntryContextMenuInfo = */ null, /* thirdIcon = */ null,
-                /* thirdIntent = */ null, /* thirdContentDescription = */ null,
-                /* thirdAction = */ Entry.ACTION_NONE, /* thirdExtras = */ null,
-                R.drawable.ic_email_24dp);
-
         final List<List<Entry>> promptEntries = new ArrayList<>();
         promptEntries.add(new ArrayList<Entry>(1));
-        promptEntries.add(new ArrayList<Entry>(1));
         promptEntries.get(0).add(phonePromptEntry);
-        promptEntries.get(1).add(emailPromptEntry);
+
+        if (!areAllRawContactsSimAccounts) {
+            final Drawable emailIcon = getResources().getDrawable(
+                    R.drawable.ic_email_24dp).mutate();
+            final Entry emailPromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
+                    emailIcon, getString(R.string.quickcontact_add_email), /* subHeader = */ null,
+                    /* subHeaderIcon = */ null,
+                    /* text = */ null, /* textIcon = */ null, /* primaryContentDescription = */ null,
+                    getEditContactIntent(), /* alternateIcon = */ null,
+                    /* alternateIntent = */ null, /* alternateContentDescription = */ null,
+                    /* shouldApplyColor = */ true, /* isEditable = */ false,
+                    /* EntryContextMenuInfo = */ null, /* thirdIcon = */ null,
+                    /* thirdIntent = */ null, /* thirdContentDescription = */ null,
+                    /* thirdAction = */ Entry.ACTION_NONE, /* thirdExtras = */ null,
+                    R.drawable.ic_email_24dp);
+
+            promptEntries.add(new ArrayList<Entry>(1));
+            promptEntries.get(1).add(emailPromptEntry);
+        }
 
         final int subHeaderTextColor = getResources().getColor(
                 R.color.quickcontact_entry_sub_header_text_color);
@@ -1828,6 +1832,7 @@ public class QuickContactActivity extends ContactsActivity
         dataModel.aboutCardEntries = aboutCardEntries;
         dataModel.contactCardEntries = contactCardEntries;
         dataModel.dataItemsMap = dataItemsMap;
+        dataModel.areAllRawContactsSimAccounts = data.areAllRawContactsSimAccounts(this);
         return dataModel;
     }
 
@@ -1844,6 +1849,7 @@ public class QuickContactActivity extends ContactsActivity
         public List<List<Entry>> aboutCardEntries;
         public List<List<Entry>> contactCardEntries;
         public String customAboutCardName;
+        public boolean areAllRawContactsSimAccounts;
     }
 
     private static class MutableString {

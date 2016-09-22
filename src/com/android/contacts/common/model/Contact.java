@@ -25,6 +25,7 @@ import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.SimAccountType;
 import com.android.contacts.common.util.DataStatus;
 import com.android.contacts.group.GroupMetaData;
 
@@ -469,6 +470,19 @@ public class Contact {
 
     public boolean isUserProfile() {
         return mIsUserProfile;
+    }
+
+    /**
+     * @return true if all the raw contacts are from SIM accounts, and false otherwise.
+     */
+    public boolean areAllRawContactsSimAccounts(final Context context) {
+        if (getRawContacts() == null) return false;
+
+        for (RawContact rawContact : getRawContacts()) {
+            final AccountType accountType = rawContact.getAccountType(context);
+            if (!(accountType instanceof SimAccountType)) return false;
+        }
+        return true;
     }
 
     @Override
