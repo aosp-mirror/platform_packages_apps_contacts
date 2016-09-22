@@ -77,13 +77,11 @@ public class AccountWithDataSet implements Parcelable {
         mAccountTypeWithDataSet = AccountTypeWithDataSet.get(type, dataSet);
     }
 
-    // TODO: consider modifying or deleting this method. "local" accounts on some non-nexus devices
-    // have non-null values for name, type, and dataset
-    public boolean isLocalAccount() {
+    public boolean isNullAccount() {
         return name == null && type == null && dataSet == null;
     }
 
-    public static AccountWithDataSet getLocalAccount() {
+    public static AccountWithDataSet getNullAccount() {
         return new AccountWithDataSet(null, null, null);
     }
 
@@ -126,7 +124,7 @@ public class AccountWithDataSet implements Parcelable {
     public boolean hasData(Context context) {
         String selection;
         String[] args = null;
-        if (isLocalAccount()) {
+        if (isNullAccount()) {
             selection = LOCAL_ACCOUNT_SELECTION;
         } else {
             final String BASE_SELECTION =

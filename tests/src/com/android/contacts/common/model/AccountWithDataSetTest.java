@@ -59,11 +59,11 @@ public class AccountWithDataSetTest extends AndroidTestCase {
     }
 
     public void testStringifyAndUnstringifyLocalAccount() {
-        final String stringified = AccountWithDataSet.getLocalAccount().stringify();
+        final String stringified = AccountWithDataSet.getNullAccount().stringify();
 
         final AccountWithDataSet restored = AccountWithDataSet.unstringify(stringified);
 
-        assertEquals(AccountWithDataSet.getLocalAccount(), restored);
+        assertEquals(AccountWithDataSet.getNullAccount(), restored);
     }
 
     public void testStringifyListAndUnstringify() {

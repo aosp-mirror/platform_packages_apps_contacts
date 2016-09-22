@@ -63,9 +63,6 @@
     <!-- Contacts preferences key for contact editor default account -->
     <string name="contact_editor_default_account_key">ContactEditorUtils_default_account</string>
 
-    <!-- Contacts preferences key for contact editor anything saved -->
-    <string name="contact_editor_anything_saved_key">ContactEditorUtils_anything_saved</string>
-
     <!-- The type of VCard for export. If you want to let the app emit vCard which is
     specific to some vendor (like DoCoMo), specify this type (e.g. "docomo") -->
     <string name="config_export_vcard_type" translatable="false">default</string>

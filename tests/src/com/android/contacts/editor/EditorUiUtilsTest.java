@@ -122,7 +122,7 @@ public class EditorUiUtilsTest extends AndroidTestCase {
     }
 
   public void testGetAccountInfo_AccountType_DeviceAccount() {
-      final AccountWithDataSet deviceAccount = AccountWithDataSet.getLocalAccount();
+      final AccountWithDataSet deviceAccount = AccountWithDataSet.getNullAccount();
       final AccountDisplayInfo account = new AccountDisplayInfo(deviceAccount, "Device",
               "Device", /*icon*/ null, /*isDeviceAccount*/ true);
 

@@ -58,7 +58,6 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
-import com.android.contacts.activities.CompactContactEditorActivity;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity;
 import com.android.contacts.activities.ContactEditorBaseActivity.ContactEditor;
@@ -472,7 +471,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mContext = activity;
-        mEditorUtils = ContactEditorUtils.getInstance(mContext);
+        mEditorUtils = ContactEditorUtils.create(mContext);
         mComparator = new RawContactDeltaComparator(mContext);
     }
 
@@ -1117,7 +1116,7 @@ abstract public class ContactEditorBaseFragment extends Fragment implements
         } else {
             // Otherwise, there should be a default account. Then either create a local contact
             // (if default account is null) or create a contact with the specified account.
-            AccountWithDataSet defaultAccount = mEditorUtils.getDefaultAccount();
+            final AccountWithDataSet defaultAccount = mEditorUtils.getOnlyOrDefaultAccount();
             createContact(defaultAccount);
         }
     }

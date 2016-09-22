@@ -25,10 +25,13 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
+import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 
 import com.android.contacts.common.R;
@@ -92,18 +95,24 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
     private ChangeListener mListener = null;
     private Handler mHandler;
     private final SharedPreferences mPreferences;
+    private final boolean mIsDefaultAccountUserChangeable;
     private String mDefaultAccountKey;
-    private String mDefaultAccountSavedKey;
 
     public ContactsPreferences(Context context) {
+        this(context,
+                context.getResources().getBoolean(R.bool.config_default_account_user_changeable));
+    }
+
+    @VisibleForTesting
+    ContactsPreferences(Context context, boolean isDefaultAccountUserChangeable) {
         mContext = context;
-        mHandler = new Handler();
+        mIsDefaultAccountUserChangeable = isDefaultAccountUserChangeable;
+
+        mHandler = new Handler(Looper.getMainLooper());
         mPreferences = mContext.getSharedPreferences(context.getPackageName(),
                 Context.MODE_PRIVATE);
         mDefaultAccountKey = mContext.getResources().getString(
                 R.string.contact_editor_default_account_key);
-        mDefaultAccountSavedKey = mContext.getResources().getString(
-                R.string.contact_editor_anything_saved_key);
         maybeMigrateSystemSettings();
     }
 
@@ -166,7 +175,7 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
     }
 
     public boolean isDefaultAccountUserChangeable() {
-        return mContext.getResources().getBoolean(R.bool.config_default_account_user_changeable);
+        return mIsDefaultAccountUserChangeable;
     }
 
     public AccountWithDataSet getDefaultAccount() {
@@ -183,16 +192,56 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         return mDefaultAccount;
     }
 
-    public void setDefaultAccount(AccountWithDataSet accountWithDataSet) {
-        mDefaultAccount = accountWithDataSet;
-        final Editor editor = mPreferences.edit();
-        if (mDefaultAccount == null) {
-            editor.remove(mDefaultAccountKey);
-        } else {
-            editor.putString(mDefaultAccountKey, accountWithDataSet.stringify());
+    public void clearDefaultAccount() {
+        mDefaultAccount = null;
+        mPreferences.edit().remove(mDefaultAccountKey).commit();
+    }
+
+    public void setDefaultAccount(@NonNull AccountWithDataSet accountWithDataSet) {
+        if (accountWithDataSet == null) {
+            throw new IllegalArgumentException(
+                    "argument should not be null");
         }
-        editor.putBoolean(mDefaultAccountSavedKey, true);
-        editor.commit();
+        mDefaultAccount = accountWithDataSet;
+        mPreferences.edit().putString(mDefaultAccountKey, accountWithDataSet.stringify()).commit();
+    }
+
+    /**
+     * @return false if there is only one writable account or no requirement to return true is met.
+     *         true if the contact editor should show the "accounts changed" notification, that is:
+     *              - If it's the first launch.
+     *              - Or, if the default account has been removed.
+     *              (And some extra sanity check)
+     *
+     * Note if this method returns {@code false}, the caller can safely assume that
+     * {@link #getDefaultAccount} will return a valid account.  (Either an account which still
+     * exists, or {@code null} which should be interpreted as "local only".)
+     */
+    public boolean shouldShowAccountChangedNotification(List<AccountWithDataSet>
+            currentWritableAccounts) {
+        final AccountWithDataSet defaultAccount = getDefaultAccount();
+
+        // This shouldn't occur anymore because a "device" account is added in the case that there
+        // are no other accounts but if there are no writable accounts then the default has been
+        // initialized if it is "device"
+        if (currentWritableAccounts.isEmpty()) {
+            return defaultAccount == null || !defaultAccount.isNullAccount();
+        }
+
+        if (currentWritableAccounts.size() == 1) {
+            return false;
+        }
+
+        if (defaultAccount == null) {
+            return true;
+        }
+
+        if (!currentWritableAccounts.contains(defaultAccount)) {
+            return true;
+        }
+
+        // All good.
+        return false;
     }
 
     public String getContactMetadataSyncAccountName() {
