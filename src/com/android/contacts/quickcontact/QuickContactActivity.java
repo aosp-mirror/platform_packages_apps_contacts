@@ -2179,7 +2179,7 @@ public class QuickContactActivity extends ContactsActivity
             final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI, dataItem.getId());
             intent.setDataAndType(uri, dataItem.getMimeType());
             intent.putExtra(EXTRA_ACTION_TYPE, ActionType.THIRD_PARTY);
-            intent.putExtra(EXTRA_THIRD_PARTY_ACTION, header);
+            intent.putExtra(EXTRA_THIRD_PARTY_ACTION, dataItem.getMimeType());
 
             if (intent != null) {
                 final String mimetype = intent.getType();
@@ -2391,10 +2391,8 @@ public class QuickContactActivity extends ContactsActivity
         final Intent secondIntent = new Intent(Intent.ACTION_VIEW);
         secondIntent.setDataAndType(ContentUris.withAppendedId(Data.CONTENT_URI,
                 dataModel.secondDataItem.getId()), dataModel.secondDataItem.getMimeType());
-        final String secondHeader= dataModel.secondDataItem.buildDataStringForDisplay(
-                dataModel.context, dataModel.secondDataItem.getDataKind());
         secondIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.THIRD_PARTY);
-        secondIntent.putExtra(EXTRA_THIRD_PARTY_ACTION, secondHeader);
+        secondIntent.putExtra(EXTRA_THIRD_PARTY_ACTION, dataModel.secondDataItem.getMimeType());
 
         // There is no guarantee the order the data items come in. Second
         // data item does not necessarily mean it's the alternate.
@@ -2405,9 +2403,9 @@ public class QuickContactActivity extends ContactsActivity
             dataModel.alternateContentDescription = new StringBuilder(dataModel.header);
 
             dataModel.intent = secondIntent;
-            dataModel.header = secondHeader;
+            dataModel.header = dataModel.secondDataItem.buildDataStringForDisplay(
+                    dataModel.context, dataModel.secondDataItem.getDataKind());
             dataModel.text = dataModel.secondDataItem.getDataKind().typeColumn;
-
         } else if (HANGOUTS_DATA_5_MESSAGE.equals(
                 dataModel.dataItem.getContentValues().getAsString(Data.DATA5))) {
             dataModel.alternateIntent = secondIntent;
