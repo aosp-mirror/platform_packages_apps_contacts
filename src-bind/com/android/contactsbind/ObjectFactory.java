@@ -20,6 +20,8 @@ import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
 /**
  * Creates default bindings for overlays.
@@ -45,6 +47,10 @@ public class ObjectFactory {
     }
 
     public static Fragment getDuplicatesUtilFragment() {
+        return null;
+    }
+
+    public static Intent getContactSheetIntent(Context context, Uri contactLookupUri) {
         return null;
     }
 }

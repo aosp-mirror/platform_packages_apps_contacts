@@ -63,6 +63,7 @@ import com.android.contacts.activities.CompactContactEditorActivity;
 import com.android.contacts.activities.CompactContactEditorActivity.ContactEditor;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactSelectionActivity;
+import com.android.contacts.common.Experiments;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
@@ -83,6 +84,8 @@ import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.HelpUtils;
 import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.UiClosables;
+import com.android.contactsbind.ObjectFactory;
+import com.android.contactsbind.experiments.Flags;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -1542,13 +1545,18 @@ public class CompactContactEditorFragment extends Fragment implements
         }
         switch (saveMode) {
             case SaveMode.CLOSE: {
-                final Intent resultIntent;
+                Intent resultIntent = null;
                 if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = ContactEditorUtils.maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
-                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(
-                            mContext, lookupUri, ScreenType.EDITOR);
-                    resultIntent.putExtra(QuickContactActivity.EXTRA_CONTACT_EDITED, true);
+                    if (Flags.getInstance(mContext).getBoolean(Experiments.CONTACT_SHEET)) {
+                        resultIntent = ObjectFactory.getContactSheetIntent(mContext, lookupUri);
+                    }
+                    if (resultIntent == null) {
+                        resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(
+                                mContext, lookupUri, ScreenType.EDITOR);
+                        resultIntent.putExtra(QuickContactActivity.EXTRA_CONTACT_EDITED, true);
+                    }
                 } else {
                     resultIntent = null;
                 }

@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 import android.view.View;
@@ -284,6 +285,14 @@ public class CompactContactEditorActivity extends ContactsActivity implements
                     if (mFinishActivityOnSaveCompleted) {
                         setResult(resultIntent == null ? RESULT_CANCELED : RESULT_OK, resultIntent);
                     } else if (resultIntent != null) {
+                        // If it's a smart profile Intent it must be started "for result"
+                        if (QuickContact.ACTION_QUICK_CONTACT.equals(resultIntent.getAction())) {
+                            ImplicitIntentsUtil.startActivityInApp(
+                                    CompactContactEditorActivity.this, resultIntent);
+                        } else {
+                            startActivityForResult(resultIntent, /* requestCode */ 0);
+                        }
+
                         ImplicitIntentsUtil.startActivityInApp(
                                 CompactContactEditorActivity.this, resultIntent);
                     }

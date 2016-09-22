@@ -21,6 +21,11 @@ package com.android.contacts.common;
 public final class Experiments {
 
     /**
+     * Whether to open contact sheet (aka smart profile) instead of our own QuickContact.
+     */
+    public static final String CONTACT_SHEET = "QuickContact__contact_sheet";
+
+    /**
      * Experiment to enable dynamic strequent shortcuts.
      */
     public static final String DYNAMIC_SHORTCUTS = "Shortcuts__dynamic_shortcuts";
@@ -34,11 +39,6 @@ public final class Experiments {
      * Search study boolean indicating whether to inject yenta search results before CP2 results.
      */
     public static final String SEARCH_YENTA = "Search__yenta";
-
-    /**
-     * Whether to open contact sheet (aka smart profile) instead of our own QuickContact.
-     */
-    public static final String CONTACT_SHEET = "QuickContact__contact_sheet";
 
     /**
      * Flags for minimum content update time

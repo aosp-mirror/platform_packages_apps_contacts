@@ -28,9 +28,12 @@ import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
 import android.text.TextUtils;
 
+import com.android.contacts.common.Experiments;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.quickcontact.QuickContactActivity;
+import com.android.contactsbind.ObjectFactory;
+import com.android.contactsbind.experiments.Flags;
 
 import java.util.List;
 
@@ -115,10 +118,23 @@ public class ImplicitIntentsUtil {
 
     private static void startQuickContact(Activity activity, Uri contactLookupUri,
             int previousScreenType, int requestCode) {
+
+        if (Flags.getInstance(activity).getBoolean(Experiments.CONTACT_SHEET)) {
+            final Intent intent = ObjectFactory.getContactSheetIntent(activity, contactLookupUri);
+            if (intent != null) {
+                // We must start ContactSheet "for result" with a requestCode that is >= 0
+                // so that ContactSheet can validate that the caller is a 1P app.
+                activity.startActivityForResult(intent, requestCode >= 0 ? requestCode : 0);
+                return;
+            }
+        }
+
         final Intent intent = ImplicitIntentsUtil.composeQuickContactIntent(
                 activity, contactLookupUri, previousScreenType);
 
+        // For the non ContactSheet case we only start "for result" if specifically requested.
         if (requestCode >= 0) {
+            intent.setPackage(activity.getPackageName());
             activity.startActivityForResult(intent, requestCode);
         } else {
             startActivityInApp(activity, intent);
