@@ -24,7 +24,6 @@ import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.database.Cursor;
@@ -55,8 +54,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static com.android.contacts.common.list.ShortcutIntentBuilder.INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION;
 
 /**
  * This class creates and updates the dynamic shortcuts displayed on the Nexus launcher for the
@@ -95,17 +92,21 @@ public class DynamicShortcuts {
     private int mLongLabelMaxLength = LONG_LABEL_MAX_LENGTH;
     private final int mContentChangeMinUpdateDelay;
     private final int mContentChangeMaxUpdateDelay;
+    private final JobScheduler mJobScheduler;
 
     public DynamicShortcuts(Context context) {
         this(context, context.getContentResolver(), (ShortcutManager)
-                context.getSystemService(Context.SHORTCUT_SERVICE));
+                context.getSystemService(Context.SHORTCUT_SERVICE),
+                (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE));
     }
 
+    @VisibleForTesting
     public DynamicShortcuts(Context context, ContentResolver contentResolver,
-            ShortcutManager shortcutManager) {
+            ShortcutManager shortcutManager, JobScheduler jobScheduler) {
         mContext = context;
         mContentResolver = contentResolver;
         mShortcutManager = shortcutManager;
+        mJobScheduler = jobScheduler;
         mContentChangeMinUpdateDelay = Flags.getInstance(mContext)
                 .getInteger(Experiments.DYNAMIC_MIN_CONTENT_CHANGE_UPDATE_DELAY_MILLIS);
         mContentChangeMaxUpdateDelay = Flags.getInstance(mContext)
@@ -124,7 +125,11 @@ public class DynamicShortcuts {
 
     @VisibleForTesting
     void refresh() {
-        mShortcutManager.setDynamicShortcuts(getStrequentShortcuts());
+        final List<ShortcutInfo> shortcuts = getStrequentShortcuts();
+        mShortcutManager.setDynamicShortcuts(shortcuts);
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, "set dynamic shortcuts " + shortcuts);
+        }
         updatePinned();
     }
 
@@ -152,6 +157,12 @@ public class DynamicShortcuts {
             } else if (shortcut.isEnabled()) {
                 removedIds.add(shortcut.getId());
             }
+        }
+
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, "updating " + updates);
+            Log.d(TAG, "enabling " + enable);
+            Log.d(TAG, "disabling " + removedIds);
         }
 
         mShortcutManager.updateShortcuts(updates);
@@ -332,7 +343,8 @@ public class DynamicShortcuts {
         return result;
     }
 
-    private void handleFlagDisabled() {
+    @VisibleForTesting
+    void handleFlagDisabled() {
         mShortcutManager.removeAllDynamicShortcuts();
 
         final List<ShortcutInfo> pinned = mShortcutManager.getPinnedShortcuts();
@@ -342,6 +354,11 @@ public class DynamicShortcuts {
         }
         mShortcutManager.disableShortcuts(ids, mContext
                 .getString(R.string.dynamic_shortcut_disabled_message));
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, "DynamicShortcuts have been removed.");
+        }
+
+        mJobScheduler.cancel(ContactsJobService.DYNAMIC_SHORTCUTS_JOB_ID);
     }
 
     @VisibleForTesting
@@ -356,12 +373,23 @@ public class DynamicShortcuts {
                         JobInfo.TriggerContentUri.FLAG_NOTIFY_FOR_DESCENDANTS))
                 .setTriggerContentUpdateDelay(mContentChangeMinUpdateDelay)
                 .setTriggerContentMaxDelay(mContentChangeMaxUpdateDelay).build();
-        final JobScheduler scheduler = (JobScheduler)
-                mContext.getSystemService(Context.JOB_SCHEDULER_SERVICE);
-        scheduler.schedule(job);
+        mJobScheduler.schedule(job);
     }
 
     public synchronized static void initialize(Context context) {
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            final Flags flags = Flags.getInstance(context);
+            Log.d(TAG, "DyanmicShortcuts.initialize\nVERSION >= N_MR1? " +
+                    (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) +
+                    "\n" + Experiments.DYNAMIC_SHORTCUTS + " enabled? " +
+                    flags.getBoolean(Experiments.DYNAMIC_SHORTCUTS) +
+                    "\nisJobScheduled? " + isJobScheduled(context) +
+                    "\nminDelay=" +
+                    flags.getInteger(Experiments.DYNAMIC_MIN_CONTENT_CHANGE_UPDATE_DELAY_MILLIS) +
+                    "\nmaxDelay=" +
+                    flags.getInteger(Experiments.DYNAMIC_MAX_CONTENT_CHANGE_UPDATE_DELAY_MILLIS));
+        }
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) return;
 
         final DynamicShortcuts shortcuts = new DynamicShortcuts(context);
@@ -413,6 +441,9 @@ public class DynamicShortcuts {
 
         @Override
         protected void onPostExecute(Void aVoid) {
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "ShorcutUpdateTask.onPostExecute");
+            }
             // The shortcuts may have changed so update the job so that we are observing the
             // correct Uris
             mDynamicShortcuts.scheduleUpdateJob();
