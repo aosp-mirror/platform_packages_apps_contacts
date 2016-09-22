@@ -15,6 +15,7 @@
 # Needed for tests
 -keep class com.android.contacts.common.compat.CompatUtils { *; }
 -keep class com.android.contacts.common.Collapser { *; }
+-keep class com.android.contacts.common.ContactPhotoManager { *; }
 -keep class com.android.contacts.common.ContactsUtils { *; }
 -keep class com.android.contacts.common.database.NoNullCursorAsyncQueryHandler { *; }
 -keep class com.android.contacts.common.format.FormatUtils { *; }
@@ -64,6 +65,7 @@
 -keep class com.android.contacts.common.model.ValuesDelta { *; }
 -keep class com.android.contacts.common.MoreContactUtils { *; }
 -keep class com.android.contacts.common.preference.ContactsPreferences { *; }
+-keep class com.android.contacts.common.test.mocks.MockContactPhotoManager { *; }
 -keep class com.android.contacts.common.testing.InjectedServices { *; }
 -keep class com.android.contacts.common.util.BitmapUtil { *; }
 -keep class com.android.contacts.common.util.ContactDisplayUtils { *; }
