@@ -506,10 +506,5 @@
 
         <meta-data android:name="android.nfc.disable_beam_default" android:value="true" />
 
-        <receiver android:name="com.android.contacts.editor.AccountsChangedBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.accounts.LOGIN_ACCOUNTS_CHANGED"/>
-            </intent-filter>
-        </receiver>
     </application>
 </manifest>

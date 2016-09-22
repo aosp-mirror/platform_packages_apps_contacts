@@ -41,6 +41,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contactsbind.ObjectFactory;
 import com.google.common.collect.Lists;
 
@@ -160,20 +161,7 @@ public class AccountFilterUtil {
     }
 
     private static AccountWithDataSet getDefaultAccount(Context context) {
-        final SharedPreferences prefs =
-                context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
-        final String defaultAccountKey =
-                context.getResources().getString(R.string.contact_editor_default_account_key);
-        final String defaultAccountString = prefs.getString(defaultAccountKey, null);
-        if (TextUtils.isEmpty(defaultAccountString)) {
-            return null;
-        }
-        try {
-            return AccountWithDataSet.unstringify(defaultAccountString);
-        } catch (IllegalArgumentException exception) {
-            Log.e(TAG, "Error with retrieving default account " + exception.toString(), exception);
-            return null;
-        }
+        return new ContactsPreferences(context).getDefaultAccount();
     }
 
     /**

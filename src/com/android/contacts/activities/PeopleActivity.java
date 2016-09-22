@@ -575,7 +575,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         if (allAccounts.size() > 1) {
             return true;
         }
-        return !allAccounts.get(0).isLocalAccount();
+        return !allAccounts.get(0).isNullAccount();
     }
 
     private void invalidateOptionsMenuIfNeeded() {

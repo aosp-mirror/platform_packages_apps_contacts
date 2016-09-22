@@ -515,7 +515,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mIsUserProfile = isUserProfile;
         mPrimaryAccount = primaryAccount;
         if (mPrimaryAccount == null) {
-            mPrimaryAccount = ContactEditorUtils.getInstance(getContext()).getDefaultAccount();
+            mPrimaryAccount = ContactEditorUtils.create(getContext()).getOnlyOrDefaultAccount();
         }
         vlog("state: primary " + mPrimaryAccount);
 
