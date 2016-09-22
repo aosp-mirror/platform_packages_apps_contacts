@@ -21,9 +21,10 @@ package com.android.contacts.common;
 public final class Experiments {
 
     /**
-     * Experiment to enable dynamic strequent shortcuts.
+     * Flags for maximum content update time
      */
-    public static final String DYNAMIC_SHORTCUTS = "Shortcuts__dynamic_shortcuts";
+    public static final String DYNAMIC_MAX_CONTENT_CHANGE_UPDATE_DELAY_MILLIS =
+            "Shortcuts__dynamic_max_content_change_update_delay_millis";
 
     /**
      * Flags for minimum content update time
@@ -32,11 +33,9 @@ public final class Experiments {
             "Shortcuts__dynamic_min_content_change_update_delay_millis";
 
     /**
-     * Flags for maximum content update time
+     * Experiment to enable dynamic strequent shortcuts.
      */
-    public static final String DYNAMIC_MAX_CONTENT_CHANGE_UPDATE_DELAY_MILLIS =
-            "Shortcuts__dynamic_max_content_change_update_delay_millis";
-
+    public static final String DYNAMIC_SHORTCUTS = "Shortcuts__dynamic_shortcuts";
 
     private Experiments() {
     }
