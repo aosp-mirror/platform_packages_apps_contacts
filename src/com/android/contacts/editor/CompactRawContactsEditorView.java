@@ -459,6 +459,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 ? null : primaryNameKindSectionView.getPrimaryNameEditorView();
     }
 
+    public RawContactDelta getCurrentRawContactDelta() {
+        return mCurrentRawContactDelta;
+    }
 
     /**
      * Marks the raw contact photo given as primary for the aggregate contact.
