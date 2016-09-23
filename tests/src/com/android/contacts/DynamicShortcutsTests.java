@@ -52,14 +52,11 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @TargetApi(Build.VERSION_CODES.N_MR1)
 @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N_MR1)
-// TODO: need to switch to android.support.test.runner.AndroidJUnitRunner for the @SdkSuppress
-// annotation to be respected. So for now we suppress this test to keep it from failing when run
-// by the build system.
-@Suppress
 @SmallTest
 public class DynamicShortcutsTests extends AndroidTestCase {
 
@@ -120,8 +117,7 @@ public class DynamicShortcutsTests extends AndroidTestCase {
         when(mockShortcutManager.getPinnedShortcuts()).thenReturn(
                 Collections.singletonList(shortcutFor(1l, "key1", "name1")));
 
-        final DynamicShortcuts sut = new DynamicShortcuts(getContext(), emptyResolver(),
-                mockShortcutManager);
+        final DynamicShortcuts sut = createDynamicShortcuts(emptyResolver(), mockShortcutManager);
 
         sut.updatePinned();
 
@@ -187,8 +183,20 @@ public class DynamicShortcutsTests extends AndroidTestCase {
         assertThat(arg.get(2), isShortcutForContact(3l, "starred_2", "Starred Two"));
     }
 
+    public void test_handleFlagDisabled_stopsJob() {
+        final ShortcutManager mockShortcutManager = mock(ShortcutManager.class);
+        final JobScheduler mockJobScheduler = mock(JobScheduler.class);
+        final DynamicShortcuts sut = createDynamicShortcuts(emptyResolver(), mockShortcutManager,
+                mockJobScheduler);
+
+        sut.handleFlagDisabled();
+
+        verify(mockJobScheduler).cancel(eq(ContactsJobService.DYNAMIC_SHORTCUTS_JOB_ID));
+    }
+
+
     public void test_scheduleUpdateJob_schedulesJob() {
-        final DynamicShortcuts sut = createDynamicShortcuts();
+        final DynamicShortcuts sut = new DynamicShortcuts(getContext());
         sut.scheduleUpdateJob();
         assertThat(DynamicShortcuts.isJobScheduled(getContext()), Matchers.is(true));
     }
@@ -266,10 +274,16 @@ public class DynamicShortcutsTests extends AndroidTestCase {
         return createDynamicShortcuts(emptyResolver(), mock(ShortcutManager.class));
     }
 
+
     private DynamicShortcuts createDynamicShortcuts(ContentResolver resolver,
             ShortcutManager shortcutManager) {
+        return createDynamicShortcuts(resolver, shortcutManager, mock(JobScheduler.class));
+    }
+
+    private DynamicShortcuts createDynamicShortcuts(ContentResolver resolver,
+            ShortcutManager shortcutManager, JobScheduler jobScheduler) {
         final DynamicShortcuts result = new DynamicShortcuts(getContext(), resolver,
-                shortcutManager);
+                shortcutManager, jobScheduler);
         // Use very long label limits to make checking shortcuts easier to understand
         result.setShortLabelMaxLength(100);
         result.setLongLabelMaxLength(100);
