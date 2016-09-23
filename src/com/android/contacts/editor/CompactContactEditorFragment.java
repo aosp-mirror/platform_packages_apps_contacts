@@ -263,23 +263,6 @@ public class CompactContactEditorFragment extends Fragment implements
                 ArrayList<ContentValues> contentValues);
 
         /**
-         * Contact is being created for an external account that provides its own
-         * new contact activity.
-         */
-        void onCustomCreateContactActivityRequested(AccountWithDataSet account,
-                Bundle intentExtras);
-
-        /**
-         * The edited raw contact belongs to an external account that provides
-         * its own edit activity.
-         *
-         * @param redirect indicates that the current editor should be closed
-         *                 before the custom editor is shown.
-         */
-        void onCustomEditContactActivityRequested(AccountWithDataSet account, Uri rawContactUri,
-                Bundle intentExtras, boolean redirect);
-
-        /**
          * User has requested that contact be deleted.
          */
         void onDeleteRequested(Uri contactUri);
@@ -1145,13 +1128,7 @@ public class CompactContactEditorFragment extends Fragment implements
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         final AccountType accountType = accountTypes.getAccountTypeForAccount(account);
 
-        if (accountType.getCreateContactActivityClassName() != null) {
-            if (mListener != null) {
-                mListener.onCustomCreateContactActivityRequested(account, mIntentExtras);
-            }
-        } else {
-            setStateForNewContact(account, accountType, isEditingUserProfile());
-        }
+        setStateForNewContact(account, accountType, isEditingUserProfile());
     }
 
     //
@@ -1166,26 +1143,6 @@ public class CompactContactEditorFragment extends Fragment implements
         }
 
         mRawContacts = contact.getRawContacts();
-
-        // See if this edit operation needs to be redirected to a custom editor
-        if (mRawContacts.size() == 1) {
-            RawContact rawContact = mRawContacts.get(0);
-            String type = rawContact.getAccountTypeString();
-            String dataSet = rawContact.getDataSet();
-            AccountType accountType = rawContact.getAccountType(mContext);
-            if (accountType.getEditContactActivityClassName() != null &&
-                    !accountType.areContactsWritable()) {
-                if (mListener != null) {
-                    String name = rawContact.getAccountName();
-                    long rawContactId = rawContact.getId();
-                    mListener.onCustomEditContactActivityRequested(
-                            new AccountWithDataSet(name, type, dataSet),
-                            ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
-                            mIntentExtras, true);
-                }
-                return;
-            }
-        }
 
         String readOnlyDisplayName = null;
         // Check for writable raw contacts.  If there are none, then we need to create one so user
@@ -1439,21 +1396,14 @@ public class CompactContactEditorFragment extends Fragment implements
         AccountType oldAccountType = accountTypes.getAccountTypeForAccount(oldAccount);
         AccountType newAccountType = accountTypes.getAccountTypeForAccount(newAccount);
 
-        if (newAccountType.getCreateContactActivityClassName() != null) {
-            Log.w(TAG, "external activity called in rebind situation");
-            if (mListener != null) {
-                mListener.onCustomCreateContactActivityRequested(newAccount, mIntentExtras);
-            }
-        } else {
-            mExistingContactDataReady = false;
-            mNewContactDataReady = false;
-            mState = new RawContactDeltaList();
-            setStateForNewContact(newAccount, newAccountType, oldState, oldAccountType,
-                    isEditingUserProfile());
-            if (mIsEdit) {
-                setStateForExistingContact(mReadOnlyDisplayName, isEditingUserProfile(),
-                        mRawContacts);
-            }
+        mExistingContactDataReady = false;
+        mNewContactDataReady = false;
+        mState = new RawContactDeltaList();
+        setStateForNewContact(newAccount, newAccountType, oldState, oldAccountType,
+                isEditingUserProfile());
+        if (mIsEdit) {
+            setStateForExistingContact(mReadOnlyDisplayName, isEditingUserProfile(),
+                    mRawContacts);
         }
     }
 

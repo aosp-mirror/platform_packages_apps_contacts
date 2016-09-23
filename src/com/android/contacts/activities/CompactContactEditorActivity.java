@@ -23,9 +23,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.QuickContact;
-import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -34,10 +32,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.RawContactDeltaList;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.CompactContactEditorFragment;
@@ -318,58 +313,6 @@ public class CompactContactEditorActivity extends ContactsActivity implements
                     ImplicitIntentsUtil.startActivityInApp(
                             CompactContactEditorActivity.this, intent);
                     finish();
-                }
-
-                @Override
-                public void onCustomCreateContactActivityRequested(AccountWithDataSet account,
-                        Bundle intentExtras) {
-                    final AccountTypeManager accountTypes =
-                            AccountTypeManager.getInstance(CompactContactEditorActivity.this);
-                    final AccountType accountType = accountTypes.getAccountType(
-                            account.type, account.dataSet);
-
-                    Intent intent = new Intent();
-                    intent.setClassName(accountType.syncAdapterPackageName,
-                            accountType.getCreateContactActivityClassName());
-                    intent.setAction(Intent.ACTION_INSERT);
-                    intent.setType(Contacts.CONTENT_ITEM_TYPE);
-                    if (intentExtras != null) {
-                        intent.putExtras(intentExtras);
-                    }
-                    intent.putExtra(RawContacts.ACCOUNT_NAME, account.name);
-                    intent.putExtra(RawContacts.ACCOUNT_TYPE, account.type);
-                    intent.putExtra(RawContacts.DATA_SET, account.dataSet);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
-                            | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-                    startActivity(intent);
-                    finish();
-                }
-
-                @Override
-                public void onCustomEditContactActivityRequested(AccountWithDataSet account,
-                        Uri rawContactUri, Bundle intentExtras, boolean redirect) {
-                    final AccountTypeManager accountTypes =
-                            AccountTypeManager.getInstance(CompactContactEditorActivity.this);
-                    final AccountType accountType = accountTypes.getAccountType(
-                            account.type, account.dataSet);
-
-                    Intent intent = new Intent();
-                    intent.setClassName(accountType.syncAdapterPackageName,
-                            accountType.getEditContactActivityClassName());
-                    intent.setAction(Intent.ACTION_EDIT);
-                    intent.setData(rawContactUri);
-                    if (intentExtras != null) {
-                        intent.putExtras(intentExtras);
-                    }
-
-                    if (redirect) {
-                        intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
-                                | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        startActivity(intent);
-                    }
                 }
             };
 

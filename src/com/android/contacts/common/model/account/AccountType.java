@@ -139,28 +139,6 @@ public abstract class AccountType {
     public abstract boolean areContactsWritable();
 
     /**
-     * Returns an optional custom edit activity.
-     *
-     * Only makes sense for non-embedded account types.
-     * The activity class should reside in the sync adapter package as determined by
-     * {@link #syncAdapterPackageName}.
-     */
-    public String getEditContactActivityClassName() {
-        return null;
-    }
-
-    /**
-     * Returns an optional custom new contact activity.
-     *
-     * Only makes sense for non-embedded account types.
-     * The activity class should reside in the sync adapter package as determined by
-     * {@link #syncAdapterPackageName}.
-     */
-    public String getCreateContactActivityClassName() {
-        return null;
-    }
-
-    /**
      * Returns an optional custom invite contact activity.
      *
      * Only makes sense for non-embedded account types.
