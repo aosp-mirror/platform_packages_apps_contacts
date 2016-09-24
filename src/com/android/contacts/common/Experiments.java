@@ -52,6 +52,10 @@ public final class Experiments {
      */
     public static final String SEARCH_YENTA = "Search__yenta";
 
+    /**
+     * The time to wait for Yenta search results before giving up.
+     */
+    public static final String SEARCH_YENTA_TIMEOUT_MILLIS = "Search__yenta_timeout";
 
     private Experiments() {
     }
