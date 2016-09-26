@@ -107,6 +107,7 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorActivity;
+import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
@@ -131,6 +132,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContact;
+import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.dataitem.CustomDataItem;
@@ -160,11 +162,13 @@ import com.android.contacts.editor.AggregationSuggestionEngine;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
+import com.android.contacts.editor.SplitContactConfirmationDialogFragment;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
 import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.interactions.ContactInteraction;
 import com.android.contacts.interactions.SmsInteractionsLoader;
+import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.Entry;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.EntryContextMenuInfo;
 import com.android.contacts.quickcontact.ExpandingEntryCardView.EntryTag;
@@ -201,8 +205,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * data asynchronously, and then shows a popup with details centered around
  * {@link Intent#getSourceBounds()}.
  */
-public class QuickContactActivity extends ContactsActivity
-        implements AggregationSuggestionEngine.Listener {
+public class QuickContactActivity extends ContactsActivity implements
+        AggregationSuggestionEngine.Listener, SplitContactConfirmationDialogFragment.Listener {
 
     /**
      * QuickContacts immediately takes up the full screen. All possible information is shown.
@@ -234,10 +238,13 @@ public class QuickContactActivity extends ContactsActivity
     private static final int SCRIM_COLOR = Color.argb(0xC8, 0, 0, 0);
     private static final int REQUEST_CODE_CONTACT_SELECTION_ACTIVITY = 2;
     private static final String MIMETYPE_SMS = "vnd.android-dir/mms-sms";
+    private static final int REQUEST_CODE_JOIN = 3;
 
     /** This is the Intent action to install a shortcut in the launcher. */
     private static final String ACTION_INSTALL_SHORTCUT =
             "com.android.launcher.action.INSTALL_SHORTCUT";
+
+    public static final String ACTION_SPLIT_COMPLETED = "splitCompleted";
 
     @SuppressWarnings("deprecation")
     private static final String LEGACY_AUTHORITY = android.provider.Contacts.AUTHORITY;
@@ -943,6 +950,9 @@ public class QuickContactActivity extends ContactsActivity
         }
 
         mIsRecreatedInstance = savedInstanceState != null;
+        if (mIsRecreatedInstance) {
+            mPreviousContactId = savedInstanceState.getLong(KEY_PREVIOUS_CONTACT_ID);
+        }
         mShouldLog = true;
 
         // There're 3 states for each permission:
@@ -1172,6 +1182,14 @@ public class QuickContactActivity extends ContactsActivity
         } else if (requestCode == REQUEST_CODE_CONTACT_SELECTION_ACTIVITY &&
                 resultCode != RESULT_CANCELED) {
             processIntent(data);
+        } else if (requestCode == REQUEST_CODE_JOIN) {
+            // Ignore failed requests
+            if (resultCode != Activity.RESULT_OK) {
+                processIntent(data);
+            }
+            if (data != null) {
+                joinAggregate(ContentUris.parseId(data.getData()));
+            }
         }
     }
 
@@ -1203,6 +1221,12 @@ public class QuickContactActivity extends ContactsActivity
             finish();
             return;
         }
+        if (ACTION_SPLIT_COMPLETED.equals(intent.getAction())) {
+            Toast.makeText(this, R.string.contactUnlinkedToast, Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
         Uri lookupUri = intent.getData();
         if (intent.getBooleanExtra(EXTRA_CONTACT_EDITED, false)) {
             setResult(ContactEditorActivity.RESULT_CODE_EDITED);
@@ -2970,6 +2994,14 @@ public class QuickContactActivity extends ContactsActivity
                 editMenuItem.setVisible(false);
             }
 
+            final MenuItem splitMenuItem = menu.findItem(R.id.menu_split);
+            splitMenuItem.setVisible(isContactEditable() && !mContactData.isUserProfile()
+                    && mContactData.isMultipleRawContacts());
+
+            final MenuItem joinMenuItem = menu.findItem(R.id.menu_join);
+            joinMenuItem.setVisible(!InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)
+                    && isContactEditable() && !mContactData.isUserProfile());
+
             final MenuItem deleteMenuItem = menu.findItem(R.id.menu_delete);
             deleteMenuItem.setVisible(isContactEditable() && !mContactData.isUserProfile());
 
@@ -3072,6 +3104,10 @@ public class QuickContactActivity extends ContactsActivity
                     editContact();
                 }
                 return true;
+            case R.id.menu_split:
+                return doSplitContactAction();
+            case R.id.menu_join:
+                return doJoinContactAction();
             case R.id.menu_delete:
                 Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
                         ActionType.REMOVE, /* thirdPartyAction */ null);
@@ -3103,5 +3139,53 @@ public class QuickContactActivity extends ContactsActivity
                         ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private boolean doJoinContactAction() {
+        if (mContactData == null) return false;
+
+        mPreviousContactId = mContactData.getId();
+        final Intent intent = new Intent(this, ContactSelectionActivity.class);
+        intent.setAction(UiIntentActions.PICK_JOIN_CONTACT_ACTION);
+        intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY, mPreviousContactId);
+        startActivityForResult(intent, REQUEST_CODE_JOIN);
+        return true;
+    }
+
+    /**
+     * Performs aggregation with the contact selected by the user from suggestions or A-Z list.
+     */
+    private void joinAggregate(final long contactId) {
+        final Intent intent = ContactSaveService.createJoinContactsIntent(
+                this, mPreviousContactId, contactId, QuickContactActivity.class,
+                Intent.ACTION_VIEW);
+        this.startService(intent);
+    }
+
+    private boolean doSplitContactAction() {
+        if (mContactData == null) return false;
+
+        final SplitContactConfirmationDialogFragment dialog = new
+                SplitContactConfirmationDialogFragment();
+        dialog.show(getFragmentManager(), "splitContact");
+        return true;
+    }
+
+    @Override
+    public void onSplitContactConfirmed(boolean hasPendingChanges) {
+        final RawContactDeltaList rawContactDeltaList= mContactData.createRawContactDeltaList();
+        rawContactDeltaList.markRawContactsForSplitting();
+        final Intent intent = ContactSaveService.createSaveContactIntent(this,
+                rawContactDeltaList,
+                /* saveModeExtraKey */ "",
+                /* saveMode */ 0,
+                mContactData.isUserProfile(),
+                ((Activity) this).getClass(),
+                ACTION_SPLIT_COMPLETED,
+                /* updatedPhotos */ null,
+                /* joinContactIdExtraKey =*/ null,
+                /* joinContactId =*/ null);
+        ContactSaveService.startService(this, intent,
+                ContactEditorActivity.ContactEditor.SaveMode.SPLIT);
     }
 }

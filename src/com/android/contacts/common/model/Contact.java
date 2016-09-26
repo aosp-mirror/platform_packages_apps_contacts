@@ -472,6 +472,10 @@ public class Contact {
         return mIsUserProfile;
     }
 
+    public boolean isMultipleRawContacts() {
+        return mRawContacts.size() > 1;
+    }
+
     /**
      * @return true if all the raw contacts are from SIM accounts, and false otherwise.
      */

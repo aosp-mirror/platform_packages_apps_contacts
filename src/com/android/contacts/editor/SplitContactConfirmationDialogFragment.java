@@ -65,7 +65,8 @@ public class SplitContactConfirmationDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHasPendingChanges = getArguments().getBoolean(ARG_HAS_PENDING_CHANGES);
+        mHasPendingChanges = getArguments() == null
+                ? false : getArguments().getBoolean(ARG_HAS_PENDING_CHANGES);
     }
 
     @Override
@@ -80,7 +81,9 @@ public class SplitContactConfirmationDialogFragment extends DialogFragment {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final Listener targetListener = (Listener) getTargetFragment();
+                        final Listener targetListener = getTargetFragment() == null
+                                ? (Listener) getActivity()
+                                : (Listener) getTargetFragment();
                         targetListener.onSplitContactConfirmed(mHasPendingChanges);
                     }
                 });
