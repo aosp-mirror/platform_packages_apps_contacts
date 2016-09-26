@@ -1590,6 +1590,8 @@ public class CompactContactEditorFragment extends Fragment implements
         }
 
         mAggregationSuggestionEngine.setContactId(getContactId());
+        mAggregationSuggestionEngine.setAccountFilter(
+                getContent().getCurrentRawContactDelta().getAccountWithDataSet());
 
         mAggregationSuggestionEngine.onNameChange(valuesDelta);
     }

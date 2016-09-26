@@ -39,6 +39,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
 import com.android.contacts.common.model.ValuesDelta;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.compat.AggregationSuggestionsCompat;
 import com.google.common.collect.Lists;
 
@@ -113,6 +114,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
     private Handler mMainHandler;
     private Handler mHandler;
     private long mContactId;
+    private AccountWithDataSet mAccountFilter;
     private Listener mListener;
     private Cursor mDataCursor;
     private ContentObserver mContentObserver;
@@ -148,6 +150,10 @@ public class AggregationSuggestionEngine extends HandlerThread {
             mContactId = contactId;
             reset();
         }
+    }
+
+    public void setAccountFilter(AccountWithDataSet account) {
+        mAccountFilter = account;
     }
 
     public void setSuggestionsLimit(int suggestionsLimit) {
@@ -435,7 +441,10 @@ public class AggregationSuggestionEngine extends HandlerThread {
                     suggestion.name = mDataCursor.getString(DataQuery.DISPLAY_NAME);
                     suggestion.lookupKey = mDataCursor.getString(DataQuery.LOOKUP_KEY);
                     suggestion.rawContacts = Lists.newArrayList();
-                    list.add(suggestion);
+                    // No restriction, add all suggestions.
+                    if (mAccountFilter == null) {
+                        list.add(suggestion);
+                    }
                     currentContactId = contactId;
                 }
 
@@ -446,6 +455,14 @@ public class AggregationSuggestionEngine extends HandlerThread {
                     rawContact.accountName = mDataCursor.getString(DataQuery.ACCOUNT_NAME);
                     rawContact.accountType = mDataCursor.getString(DataQuery.ACCOUNT_TYPE);
                     rawContact.dataSet = mDataCursor.getString(DataQuery.DATA_SET);
+                    final AccountWithDataSet account = new AccountWithDataSet(
+                            rawContact.accountName, rawContact.accountType, rawContact.dataSet);
+                    // If we're restricting to a certain account, only add the suggestion if
+                    // it has a raw contact from that account.
+                    if (mAccountFilter != null && mAccountFilter.equals(account)
+                            && !list.contains(suggestion)) {
+                        list.add(suggestion);
+                    }
                     suggestion.rawContacts.add(rawContact);
                 }
 
