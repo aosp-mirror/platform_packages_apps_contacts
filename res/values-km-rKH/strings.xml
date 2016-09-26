@@ -112,6 +112,7 @@
     <string name="emptyGroup" msgid="5102411903247859575">"មិន​មាន​ទំនាក់ទំនង​ដែល​មាន​ស្លាក​នេះ"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"មិនមានទំនាក់ទំនង​នៅ​ក្នុងគណនីនេះ​ទេ"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"បញ្ជីទំនាក់ទំនងរបស់អ្នកគឺទទេ"</string>
+    <string name="contactSavedNamedToast" msgid="895136068894549611">"បាន​រក្សាទុក <xliff:g id="DISPLAY_NAME">%s</xliff:g>"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"បាន​រក្សាទុក​ទំនាក់ទំនង"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ទំនាក់ទំនងដែលមិនបានតភ្ជាប់"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"មិន​អាច​រក្សាទុក​ការ​ប្ដូរ​ទំនាក់ទំនង​បាន​ទេ"</string>
@@ -282,8 +283,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ប្ដូររូបថត"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"បានបរាជ័យក្នុងការបើកកម្មវិធីកែ"</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"រក្សាទុកក្នុង"</string>
-    <!-- no translation found for compact_editor_account_selector_read_only_title (1869435992721760221) -->
-    <skip />
+    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"កំពុង​មើល"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"បច្ចុប្បន្នកំពុងរក្សាទុកទៅ <xliff:g id="ACCOUNT_NAME">%s</xliff:g>។ សូូមប៉ះពីរដងដើម្បីជ្រើសគណនីផ្សេងទៀត។"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">ទំនាក់ទំនងដែលបានតភ្ជាប់ (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -311,8 +311,6 @@
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"ទំនាក់ទំនងទាំងនេះប្រហែលជាមនុស្សតែមួយ។ អ្នកអាចតភ្ជាប់ពួកគេជាមួយគ្នាឲ្យទៅជាទំនាក់ទំនងទោលបាន។"</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"ទំនាក់ទំនងដែលបានតភ្ជាប់"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"ពីគណនីរបស់អ្នក"</string>
-    <string name="take_a_photo_button" msgid="6268693854069113488">"ថតរូប"</string>
-    <string name="all_photos_button" msgid="1943122929420111351">"រូបថតទាំងអស់"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ជ្រើសរើសរូបថត"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"ពី <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"លុប <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
@@ -547,8 +545,7 @@
     <string name="share_favorite_contacts" msgid="4280926751003081042">"ចែករំលែកទំនាក់ទំនង​ដែល​ចូលចិត្ត"</string>
     <string name="share_contacts" msgid="8109287987498711664">"ចែករំលែកទំនាក់ទំនងទាំងអស់"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"ការចែករំលែកទំនាក់ទំនង​មិន​បាន​សម្រេច។"</string>
-    <!-- no translation found for dialog_export (1628001095187741417) -->
-    <skip />
+    <string name="dialog_export" msgid="1628001095187741417">"នាំចេញ​ទំនាក់ទំនង"</string>
     <string name="dialog_import" msgid="2431698729761448759">"នាំចូល​ទំនាក់ទំនង"</string>
     <string name="share_error" msgid="948429331673358107">"ទំនាក់ទំនង​នេះ​មិន​អាច​ចែករំលែក​បាន​ទេ។"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"មិនមានទំនាក់ទំនងដើម្បីចែករំលែកទេ។"</string>
@@ -563,10 +560,8 @@
     <string name="menu_clear_frequents" msgid="7688250191932838833">"សម្អាត​ញឹកញាប់"</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"ជ្រើស​ស៊ី​ម​កាត"</string>
     <string name="menu_accounts" msgid="1424330057450189074">"គ្រប់គ្រង​គណនី"</string>
-    <!-- no translation found for menu_import (6107961135813836467) -->
-    <skip />
-    <!-- no translation found for menu_export (2658783911863503902) -->
-    <skip />
+    <string name="menu_import" msgid="6107961135813836467">"នាំចូល"</string>
+    <string name="menu_export" msgid="2658783911863503902">"នាំ​ចេញ"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"លេខបានរារាំង"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"តាម​រយៈ <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> តាម​រយៈ <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
@@ -600,8 +595,6 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> វិនាទី"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> នាទី <xliff:g id="SECONDS">%s</xliff:g> វិនាទី"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ម៉ោង <xliff:g id="MINUTES_1">%s</xliff:g> នាទី <xliff:g id="SECONDS">%s</xliff:g> វិនាទី"</string>
-    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
-    <skip />
-    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
-    <skip />
+    <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"ផ្លូវកាត់នេះត្រូវបានបិទ"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"ទំនាក់ទំនងត្រូវបាន​លុប​ចេញ"</string>
 </resources>

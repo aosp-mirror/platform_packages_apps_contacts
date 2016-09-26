@@ -112,6 +112,7 @@
     <string name="emptyGroup" msgid="5102411903247859575">"Осы белгісі бар контактілер жоқ"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"Бұл есептік жазбада контактілер жоқ"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Контактілер тізімі бос"</string>
+    <string name="contactSavedNamedToast" msgid="895136068894549611">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> сақталды"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Контакт сақталды"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Контактілердің байланысы жойылды"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"Контакт өзгерістері сақталмады"</string>
@@ -282,8 +283,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Фотосуретті өзгерту"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Өңдегішті ашу сәтсіз аяқталды."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Келесіге сақтау"</string>
-    <!-- no translation found for compact_editor_account_selector_read_only_title (1869435992721760221) -->
-    <skip />
+    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"Каралуда:"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Қазіргі уақытта <xliff:g id="ACCOUNT_NAME">%s</xliff:g> есептік жазбасына сақталуда. Басқа есептік жазбаны таңдау үшін екі рет түртіңіз."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Байланыстырылған контактілер (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -311,8 +311,6 @@
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Бұл контактілер бір адам болуы мүмкін. Оларды бір контактіге біріктіруге болады."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Байланыстырылған контактілер"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Есептік жазбаларыңыздан"</string>
-    <string name="take_a_photo_button" msgid="6268693854069113488">"Фотосурет түсіру"</string>
-    <string name="all_photos_button" msgid="1943122929420111351">"Барлық фотосуреттер"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Фотосуретті таңдау"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Кімнен: <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> жою"</string>
@@ -547,8 +545,7 @@
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Таңдаулы контактілерді бөлісу"</string>
     <string name="share_contacts" msgid="8109287987498711664">"Барлық контактілерді бөлісу"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Контактілерді бөлісу сәтсіз аяқталды."</string>
-    <!-- no translation found for dialog_export (1628001095187741417) -->
-    <skip />
+    <string name="dialog_export" msgid="1628001095187741417">"Контактілерді экспорттау"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Контактілерді импорттау"</string>
     <string name="share_error" msgid="948429331673358107">"Бұл контактіні бөлісу мүмкін болмады"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Бөлісетін контактілер жоқ."</string>
@@ -563,10 +560,8 @@
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Жиі хабарласатындарды өшіру"</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"SIM картасын таңдау"</string>
     <string name="menu_accounts" msgid="1424330057450189074">"Есептік жазбаларды басқару"</string>
-    <!-- no translation found for menu_import (6107961135813836467) -->
-    <skip />
-    <!-- no translation found for menu_export (2658783911863503902) -->
-    <skip />
+    <string name="menu_import" msgid="6107961135813836467">"Импорттау"</string>
+    <string name="menu_export" msgid="2658783911863503902">"Экспорттау"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Бөгелген нөмірлер"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> арқылы"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> <xliff:g id="SOURCE">%2$s</xliff:g> арқылы"</string>
@@ -600,8 +595,6 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> сек"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> мин <xliff:g id="SECONDS">%s</xliff:g> сек"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> сағ <xliff:g id="MINUTES_1">%s</xliff:g> мин <xliff:g id="SECONDS">%s</xliff:g> сек"</string>
-    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
-    <skip />
-    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
-    <skip />
+    <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Бұл белгіше өшірілген"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Контакт жойылған"</string>
 </resources>

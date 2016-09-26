@@ -112,6 +112,7 @@
     <string name="emptyGroup" msgid="5102411903247859575">"Bunday yorliq bilan birorta kontakt yo‘q"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"Bu hisobda hech qanday kontakt yo‘q"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Kontaktlar ro‘yxati bo‘sh"</string>
+    <string name="contactSavedNamedToast" msgid="895136068894549611">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> saqlandi"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt saqlandi"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktlar ajratildi"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"Kontakt ma’lumotlariga kiritilgan o‘zgarishlar saqlanmadi."</string>
@@ -282,8 +283,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Suratni o‘zgartirish"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Muharrirni ochib bo‘lmadi."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Qayerga saqlansin"</string>
-    <!-- no translation found for compact_editor_account_selector_read_only_title (1869435992721760221) -->
-    <skip />
+    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"Ko‘rilmoqda"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Hozirda <xliff:g id="ACCOUNT_NAME">%s</xliff:g> hisobiga saqlanmoqda. Boshqa hisobni tanlash uchun ikki marta bosing."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Bog‘langan kontaktlar (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -311,8 +311,6 @@
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Ushbu kontaktlar bitta odamniki bo‘lishi mumkin. Ularni bitta kontaktga bog‘lashingiz mumkin."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Bog‘langan kontaktlar"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Hisoblaringizdan olingan"</string>
-    <string name="take_a_photo_button" msgid="6268693854069113488">"Suratga olish"</string>
-    <string name="all_photos_button" msgid="1943122929420111351">"Barcha suratlar"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Surat tanlash"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> tomonidan"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>ni o‘chirish"</string>
@@ -547,8 +545,7 @@
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Sevimli kontaktlarni yuborish"</string>
     <string name="share_contacts" msgid="8109287987498711664">"Barcha kontaktlarni yuborish"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Kontaktlarni yuborib bo‘lmadi."</string>
-    <!-- no translation found for dialog_export (1628001095187741417) -->
-    <skip />
+    <string name="dialog_export" msgid="1628001095187741417">"Kontaktlarni eksport qilish"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Kontaktlarni import qilish"</string>
     <string name="share_error" msgid="948429331673358107">"Bu kontaktni yuborib bo‘lmaydi."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Yuborish uchun hech qanday kontakt yo‘q."</string>
@@ -563,10 +560,8 @@
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Tez-tez aloqa qiling. tozalash"</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"SIM kartani tanlash"</string>
     <string name="menu_accounts" msgid="1424330057450189074">"Hisoblarni boshqarish"</string>
-    <!-- no translation found for menu_import (6107961135813836467) -->
-    <skip />
-    <!-- no translation found for menu_export (2658783911863503902) -->
-    <skip />
+    <string name="menu_import" msgid="6107961135813836467">"Import qilish"</string>
+    <string name="menu_export" msgid="2658783911863503902">"Eksport qilish"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Bloklangan raqamlar"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> orqali"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> – <xliff:g id="SOURCE">%2$s</xliff:g> orqali"</string>
@@ -600,8 +595,6 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> son."</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> daq. <xliff:g id="SECONDS">%s</xliff:g> son."</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> soat <xliff:g id="MINUTES_1">%s</xliff:g> daq. <xliff:g id="SECONDS">%s</xliff:g> son."</string>
-    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
-    <skip />
-    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
-    <skip />
+    <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Bu yorliq o‘chirib tashlandi"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Kontakt olib tashlandi"</string>
 </resources>
