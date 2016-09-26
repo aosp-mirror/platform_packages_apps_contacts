@@ -1,7 +1,9 @@
 package com.android.contacts.quickcontact;
 
 
-import com.google.common.collect.Iterables;
+import android.content.Context;
+import android.content.Intent;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -17,9 +19,7 @@ import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.dataitem.GroupMembershipDataItem;
 import com.android.contacts.group.GroupMetaData;
 
-import android.content.Context;
-import android.content.Intent;
-import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import com.google.common.collect.Iterables;
 
 import java.util.List;
 
@@ -70,14 +70,28 @@ public class InvisibleContactUtil {
     }
 
     public static void addToDefaultGroup(Contact contactData, Context context) {
+        final RawContactDeltaList contactDeltaList = contactData.createRawContactDeltaList();
+        if (markAddToDefaultGroup(contactData, contactDeltaList, context)) {
+            // Fire off the intent. we don't need a callback, as the database listener
+            // should update the ui
+            final Intent intent = ContactSaveService.createSaveContactIntent(
+                    context,
+                    contactDeltaList, "", 0, false, QuickContactActivity.class,
+                    Intent.ACTION_VIEW, null, /* joinContactIdExtraKey =*/ null,
+                /* joinContactId =*/ null);
+            ContactSaveService.startService(context, intent);
+        }
+    }
+
+    public static boolean markAddToDefaultGroup(Contact contactData,
+            RawContactDeltaList rawContactDeltaList, Context context) {
         final long defaultGroupId = getDefaultGroupId(contactData.getGroupMetaData());
         // there should always be a default group (otherwise the button would be invisible),
         // but let's be safe here
-        if (defaultGroupId == -1) return;
+        if (defaultGroupId == -1) return false;
 
         // add the group membership to the current state
-        final RawContactDeltaList contactDeltaList = contactData.createRawContactDeltaList();
-        final RawContactDelta rawContactEntityDelta = contactDeltaList.get(0);
+        final RawContactDelta rawContactEntityDelta = rawContactDeltaList.get(0);
 
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
                 context);
@@ -86,17 +100,9 @@ public class InvisibleContactUtil {
                 GroupMembership.CONTENT_ITEM_TYPE);
         final ValuesDelta entry = RawContactModifier.insertChild(rawContactEntityDelta,
                 groupMembershipKind);
-        if (entry == null) return;
+        if (entry == null) return false;
         entry.setGroupRowId(defaultGroupId);
-
-        // and fire off the intent. we don't need a callback, as the database listener
-        // should update the ui
-        final Intent intent = ContactSaveService.createSaveContactIntent(
-                context,
-                contactDeltaList, "", 0, false, QuickContactActivity.class,
-                Intent.ACTION_VIEW, null, /* joinContactIdExtraKey =*/ null,
-                /* joinContactId =*/ null);
-        ContactSaveService.startService(context, intent);
+        return true;
     }
 
     /** return default group id or -1 if no group or several groups are marked as default */

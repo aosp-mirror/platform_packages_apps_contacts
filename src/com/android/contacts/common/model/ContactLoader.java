@@ -100,6 +100,11 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         this(context, lookupUri, false, false, postViewNotification, false);
     }
 
+    public ContactLoader(Context context, Uri lookupUri, boolean postViewNotification,
+            boolean loadGroupMetaData) {
+        this(context, lookupUri, loadGroupMetaData, false, postViewNotification, false);
+    }
+
     public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData,
             boolean loadInvitableAccountTypes,
             boolean postViewNotification, boolean computeFormattedPhoneNumber) {

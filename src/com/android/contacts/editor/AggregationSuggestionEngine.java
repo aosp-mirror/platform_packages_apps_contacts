@@ -120,7 +120,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
     private ContentObserver mContentObserver;
     private Uri mSuggestionsUri;
     private int mSuggestionsLimit = 3;
-    private boolean mPruneInvisibleContacts = true;
+    private boolean mPruneInvisibleContacts = false;
 
     public AggregationSuggestionEngine(Context context) {
         super("AggregationSuggestions", Process.THREAD_PRIORITY_BACKGROUND);
