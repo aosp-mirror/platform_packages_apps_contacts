@@ -23,7 +23,9 @@ import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 
+import com.android.contacts.common.Experiments;
 import com.android.contactsbind.ObjectFactory;
+import com.android.contactsbind.experiments.Flags;
 import com.android.contactsbind.search.AutocompleteHelper;
 import com.google.common.collect.Lists;
 
@@ -37,8 +39,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class FavoritesAndContactsLoader extends CursorLoader implements AutocompleteHelper.Listener {
 
-    private static final int AUTOCOMPLETE_TIMEOUT_MS = 1000;
-
     private boolean mLoadFavorites;
 
     private String[] mProjection;
@@ -46,9 +46,12 @@ public class FavoritesAndContactsLoader extends CursorLoader implements Autocomp
     private String mAutocompleteQuery;
     private CountDownLatch mAutocompleteLatch = new CountDownLatch(1);
     private Cursor mAutocompleteCursor;
+    private int mAutocompleteTimeout;
 
     public FavoritesAndContactsLoader(Context context) {
         super(context);
+        mAutocompleteTimeout = Flags.getInstance(context).getInteger(
+                Experiments.SEARCH_YENTA_TIMEOUT_MILLIS);
     }
 
     /** Whether to load favorites and merge results in before any other results. */
@@ -80,7 +83,7 @@ public class FavoritesAndContactsLoader extends CursorLoader implements Autocomp
                 autocompleteHelper.setProjection(mProjection);
                 autocompleteHelper.setQuery(mAutocompleteQuery);
                 try {
-                    if (!mAutocompleteLatch.await(AUTOCOMPLETE_TIMEOUT_MS, TimeUnit.MILLISECONDS)) {
+                    if (!mAutocompleteLatch.await(mAutocompleteTimeout, TimeUnit.MILLISECONDS)) {
                         logw("Timeout expired before receiving autocompletions");
                     }
                 } catch (InterruptedException e) {
@@ -129,9 +132,7 @@ public class FavoritesAndContactsLoader extends CursorLoader implements Autocomp
 
     @Override
     public void onAutocompletesAvailable(Cursor cursor) {
-        if (cursor == null || cursor.getCount() == 0) {
-            logw("Ignoring null or empty autocompletions");
-        } else {
+        if (cursor != null && cursor.getCount() > 0) {
             mAutocompleteCursor = cursor;
             mAutocompleteLatch.countDown();
         }
