@@ -26,6 +26,18 @@ public final class Experiments {
     public static final String CONTACT_SHEET = "QuickContact__contact_sheet";
 
     /**
+     * Flags for maximum content update time
+     */
+    public static final String DYNAMIC_MAX_CONTENT_CHANGE_UPDATE_DELAY_MILLIS =
+            "Shortcuts__dynamic_max_content_change_update_delay_millis";
+
+    /**
+     * Flags for minimum content update time
+     */
+    public static final String DYNAMIC_MIN_CONTENT_CHANGE_UPDATE_DELAY_MILLIS =
+            "Shortcuts__dynamic_min_content_change_update_delay_millis";
+
+    /**
      * Experiment to enable dynamic strequent shortcuts.
      */
     public static final String DYNAMIC_SHORTCUTS = "Shortcuts__dynamic_shortcuts";
@@ -40,17 +52,6 @@ public final class Experiments {
      */
     public static final String SEARCH_YENTA = "Search__yenta";
 
-    /**
-     * Flags for minimum content update time
-     */
-    public static final String DYNAMIC_MIN_CONTENT_CHANGE_UPDATE_DELAY_MILLIS =
-            "Shortcuts__dynamic_min_content_change_update_delay_millis";
-
-    /**
-     * Flags for maximum content update time
-     */
-    public static final String DYNAMIC_MAX_CONTENT_CHANGE_UPDATE_DELAY_MILLIS =
-            "Shortcuts__dynamic_max_content_change_update_delay_millis";
 
     private Experiments() {
     }
