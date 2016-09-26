@@ -42,7 +42,7 @@
     <string name="menu_change_photo" msgid="7769177631511496210">"變更相片"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主畫面"</string>
     <string name="menu_call" msgid="3992595586042260618">"致電聯絡人"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"傳送短訊至聯絡人"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"解除連結"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"移除聯絡人"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"重新命名標籤"</string>
@@ -357,26 +357,26 @@
     <string name="call_mms" msgid="6274041545876221437">"致電 MMS"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (通話)"</string>
     <string name="sms_custom" msgid="415060214233647603">"傳送短訊給<xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
-    <string name="sms_home" msgid="7524332261493162995">"傳送簡訊至住宅電話"</string>
-    <string name="sms_mobile" msgid="5200107250451030769">"傳送簡訊至手機"</string>
-    <string name="sms_work" msgid="2269624156655267740">"傳送簡訊至公司電話"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"傳送簡訊至公司傳真"</string>
+    <string name="sms_home" msgid="7524332261493162995">"傳送短訊至住宅電話"</string>
+    <string name="sms_mobile" msgid="5200107250451030769">"傳送短訊至手機"</string>
+    <string name="sms_work" msgid="2269624156655267740">"傳送短訊至公司電話"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"傳送短訊至公司傳真"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"傳送短訊至住宅傳真"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"傳送簡訊至傳呼機"</string>
-    <string name="sms_other" msgid="806127844607642331">"傳送簡訊至"</string>
-    <string name="sms_callback" msgid="5004824430094288752">"傳送簡訊至回撥電話"</string>
-    <string name="sms_car" msgid="7444227058437359641">"傳送簡訊至車用電話"</string>
-    <string name="sms_company_main" msgid="118970873419678087">"傳送簡訊至公司代表號"</string>
-    <string name="sms_isdn" msgid="8153785037515047845">"傳送簡訊至 ISDN 電話"</string>
+    <string name="sms_pager" msgid="7730404569637015192">"傳送短訊至傳呼機"</string>
+    <string name="sms_other" msgid="806127844607642331">"傳送短訊"</string>
+    <string name="sms_callback" msgid="5004824430094288752">"傳送短訊至回撥電話"</string>
+    <string name="sms_car" msgid="7444227058437359641">"傳送短訊至車用電話"</string>
+    <string name="sms_company_main" msgid="118970873419678087">"傳送短訊至公司代表號"</string>
+    <string name="sms_isdn" msgid="8153785037515047845">"傳送短訊至 ISDN 電話"</string>
     <string name="sms_main" msgid="8621625784504541679">"傳送短訊至主要電話"</string>
-    <string name="sms_other_fax" msgid="3888842199855843152">"傳送簡訊至傳真"</string>
-    <string name="sms_radio" msgid="3329166673433967820">"傳送簡訊至電台"</string>
+    <string name="sms_other_fax" msgid="3888842199855843152">"傳送短訊至傳真"</string>
+    <string name="sms_radio" msgid="3329166673433967820">"傳送短訊至電台"</string>
     <string name="sms_telex" msgid="9034802430065267848">"傳送短訊至電報電話"</string>
-    <string name="sms_tty_tdd" msgid="6782284969132531532">"傳送簡訊至 TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"傳送簡訊至公司手機"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"傳送簡訊至公司傳呼機"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"傳送簡訊至 <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="4069352461380762677">"傳送簡訊至 MMS 電話"</string>
+    <string name="sms_tty_tdd" msgid="6782284969132531532">"傳送短訊至 TTY/TDD"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"傳送短訊至公司手機"</string>
+    <string name="sms_work_pager" msgid="5566924423316960597">"傳送短訊至公司傳呼機"</string>
+    <string name="sms_assistant" msgid="2773424339923116234">"傳送短訊至 <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="4069352461380762677">"傳送短訊至 MMS 電話"</string>
     <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (訊息)"</string>
     <string name="description_video_call" msgid="7120921378651700947">"進行視像通話"</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"清除常用聯絡人？"</string>
@@ -596,8 +596,6 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> 分鐘 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> 小時 <xliff:g id="MINUTES_1">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
-    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
-    <skip />
-    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
-    <skip />
+    <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"已停用此捷徑"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"聯絡人已移除"</string>
 </resources>

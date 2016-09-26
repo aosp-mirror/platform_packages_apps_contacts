@@ -596,8 +596,6 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> δ."</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> λ <xliff:g id="SECONDS">%s</xliff:g> δ."</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ώ. <xliff:g id="MINUTES_1">%s</xliff:g> λ. <xliff:g id="SECONDS">%s</xliff:g> δ."</string>
-    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
-    <skip />
-    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
-    <skip />
+    <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Η συντόμευση έχει απενεργοποιηθεί"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Η επαφή καταργήθηκε"</string>
 </resources>

@@ -596,8 +596,6 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"තත් <xliff:g id="SECONDS">%s</xliff:g>"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"මිනි <xliff:g id="MINUTES">%s</xliff:g> තත් <xliff:g id="SECONDS">%s</xliff:g>"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"පැය <xliff:g id="MINUTES_0">%s</xliff:g> මිනි <xliff:g id="MINUTES_1">%s</xliff:g> තත් <xliff:g id="SECONDS">%s</xliff:g>"</string>
-    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
-    <skip />
-    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
-    <skip />
+    <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"මෙම කෙටිමග අබල කර ඇත"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"සම්බන්ධතාව ඉවත් කරන ලදී"</string>
 </resources>
