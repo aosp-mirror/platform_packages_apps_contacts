@@ -79,6 +79,7 @@ import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.list.UiIntentActions;
+import com.android.contacts.quickcontact.InvisibleContactUtil;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.HelpUtils;
@@ -127,7 +128,6 @@ public class CompactContactEditorFragment extends Fragment implements
     private static final String KEY_DISABLE_DELETE_MENU_OPTION = "disableDeleteMenuOption";
     private static final String KEY_NEW_LOCAL_PROFILE = "newLocalProfile";
     private static final String KEY_MATERIAL_PALETTE = "materialPalette";
-    private static final String KEY_PHOTO_ID = "photoId";
 
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
 
@@ -408,7 +408,9 @@ public class CompactContactEditorFragment extends Fragment implements
                 @Override
                 public Loader<Contact> onCreateLoader(int id, Bundle args) {
                     mLoaderStartTime = SystemClock.elapsedRealtime();
-                    return new ContactLoader(mContext, mLookupUri, true);
+                    return new ContactLoader(mContext, mLookupUri,
+                            /* postViewNotification */ true,
+                            /* loadGroupMetaData */ true);
                 }
 
                 @Override
@@ -1141,7 +1143,6 @@ public class CompactContactEditorFragment extends Fragment implements
             Log.v(TAG, "Ignoring background change. This will have to be rebased later");
             return;
         }
-
         mRawContacts = contact.getRawContacts();
 
         String readOnlyDisplayName = null;
@@ -1161,6 +1162,10 @@ public class CompactContactEditorFragment extends Fragment implements
         // This also adds deltas to list.  If readOnlyDisplayName is null at this point it is
         // simply ignored later on by the editor.
         setStateForExistingContact(readOnlyDisplayName, contact.isUserProfile(), mRawContacts);
+        if (mAutoAddToDefaultGroup
+                && InvisibleContactUtil.isInvisibleAndAddable(contact, getContext())) {
+            InvisibleContactUtil.markAddToDefaultGroup(contact, mState, getContext());
+        }
     }
 
     /**
