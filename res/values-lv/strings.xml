@@ -115,6 +115,7 @@
     <string name="emptyGroup" msgid="5102411903247859575">"Nav nevienas kontaktpersonas ar šo iezīmi."</string>
     <string name="emptyAccount" msgid="6873962901497975964">"Šajā kontā nav nevienas kontaktpersonas."</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Jūsu kontaktpersonu saraksts ir tukšs."</string>
+    <string name="contactSavedNamedToast" msgid="895136068894549611">"Kontaktpersona <xliff:g id="DISPLAY_NAME">%s</xliff:g> saglabāta"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontaktpersona ir saglabāta."</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontaktpersonas ir atsaistītas"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"Nevarēja saglabāt kontaktpersonas datu izmaiņas."</string>
@@ -289,8 +290,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Mainīt fotoattēlu"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Neizdevās atvērt redaktoru."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Tiks saglabāts šajā kontā:"</string>
-    <!-- no translation found for compact_editor_account_selector_read_only_title (1869435992721760221) -->
-    <skip />
+    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"Tiek skatīts"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Pašlaik notiek saglabāšana kontā <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Veiciet dubultskārienu, lai izvēlētos citu kontu."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="zero">Saistītas kontaktpersonas (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -322,8 +322,6 @@
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Iespējams, šīs kontaktpersonas ir viena un tā pati persona. Varat tās apvienot vienā kontaktpersonā."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Saistītās kontaktpersonas"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"No jūsu kontiem"</string>
-    <string name="take_a_photo_button" msgid="6268693854069113488">"Uzņemt fotoattēlu"</string>
-    <string name="all_photos_button" msgid="1943122929420111351">"Visi fotoattēli"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Fotoattēla izvēle"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"No: <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"Dzēst: <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
@@ -558,8 +556,7 @@
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Kopīgot izlases kontaktpersonas"</string>
     <string name="share_contacts" msgid="8109287987498711664">"Kopīgot visas kontaktpersonas"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Neizdevās kopīgot kontaktpersonas."</string>
-    <!-- no translation found for dialog_export (1628001095187741417) -->
-    <skip />
+    <string name="dialog_export" msgid="1628001095187741417">"Kontaktpersonu eksportēšana"</string>
     <string name="dialog_import" msgid="2431698729761448759">"Kontaktpersonu importēšana"</string>
     <string name="share_error" msgid="948429331673358107">"Šo kontaktpersonu nevar kopīgot."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Nav nevienas kopīgojamas kontaktpersonas."</string>
@@ -574,10 +571,8 @@
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Dzēst bieži lietotos kontaktus"</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"Atlasiet SIM karti"</string>
     <string name="menu_accounts" msgid="1424330057450189074">"Pārvaldīt kontus"</string>
-    <!-- no translation found for menu_import (6107961135813836467) -->
-    <skip />
-    <!-- no translation found for menu_export (2658783911863503902) -->
-    <skip />
+    <string name="menu_import" msgid="6107961135813836467">"Importēt"</string>
+    <string name="menu_export" msgid="2658783911863503902">"Eksportēt"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Bloķētie numuri"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"izmantojot <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g>, izmantojot <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
@@ -612,8 +607,6 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> h <xliff:g id="MINUTES_1">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> s"</string>
-    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
-    <skip />
-    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
-    <skip />
+    <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Šī saīsne ir atspējota."</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Kontaktpersona tika noņemta."</string>
 </resources>

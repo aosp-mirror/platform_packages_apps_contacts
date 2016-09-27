@@ -112,6 +112,7 @@
     <string name="emptyGroup" msgid="5102411903247859575">"इस लेबल वाला कोई संपर्क नहीं"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"इस खाते में कोई संपर्क नहीं"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"आपकी संपर्क सूची खाली है"</string>
+    <string name="contactSavedNamedToast" msgid="895136068894549611">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> सहेजा गया"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"संपर्क सहेजा गया"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"संपर्क अनलिंक किए गए"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"संपर्क परिवर्तन सहेजे नहीं जा सके"</string>
@@ -282,8 +283,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"फ़ोटो बदलें"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"संपादक को खोलने में विफल रहा."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"इसमें सहेजें"</string>
-    <!-- no translation found for compact_editor_account_selector_read_only_title (1869435992721760221) -->
-    <skip />
+    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"देखना"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"वर्तमान में <xliff:g id="ACCOUNT_NAME">%s</xliff:g> में सहेजा जा रहा है. भिन्न खाता चुनने के लिए डबल-टैप करें."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">लिंक किए गए संपर्क (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -311,8 +311,6 @@
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"हो सकता है कि ये संपर्क एक ही व्‍यक्‍ति हो. आप उन्हें एकल संपर्क के रूप में एक साथ लिंक कर सकते हैं."</string>
     <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"लिंक किए गए संपर्क"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"आपके खातों से"</string>
-    <string name="take_a_photo_button" msgid="6268693854069113488">"फ़ोटो लें"</string>
-    <string name="all_photos_button" msgid="1943122929420111351">"सभी फ़ोटो"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"फ़ोटो चुनें"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> की ओर से"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> हटाएं"</string>
@@ -547,8 +545,7 @@
     <string name="share_favorite_contacts" msgid="4280926751003081042">"पसंदीदा संपर्कों को साझा करें"</string>
     <string name="share_contacts" msgid="8109287987498711664">"सभी संपर्कों को साझा करें"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"संपर्कों को साझा करना विफल रहा."</string>
-    <!-- no translation found for dialog_export (1628001095187741417) -->
-    <skip />
+    <string name="dialog_export" msgid="1628001095187741417">"संपर्क निर्यात करें"</string>
     <string name="dialog_import" msgid="2431698729761448759">"संपर्क आयात करें"</string>
     <string name="share_error" msgid="948429331673358107">"यह संपर्क साझा नहीं किया जा सकता."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"साझा करने के लिए कोई भी संपर्क नहीं है."</string>
@@ -563,10 +560,8 @@
     <string name="menu_clear_frequents" msgid="7688250191932838833">"अक्सर किए जाने वाले साफ़ करें"</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"सिम कार्ड चुनें"</string>
     <string name="menu_accounts" msgid="1424330057450189074">"खाते प्रबंधित करें"</string>
-    <!-- no translation found for menu_import (6107961135813836467) -->
-    <skip />
-    <!-- no translation found for menu_export (2658783911863503902) -->
-    <skip />
+    <string name="menu_import" msgid="6107961135813836467">"आयात करें"</string>
+    <string name="menu_export" msgid="2658783911863503902">"निर्यात करें"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"अवरोधित नंबर"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> द्वारा"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="SOURCE">%2$s</xliff:g> द्वारा <xliff:g id="DATE">%1$s</xliff:g>"</string>
@@ -600,8 +595,6 @@
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> सेकंड"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> मि. <xliff:g id="SECONDS">%s</xliff:g> से."</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> घंटे <xliff:g id="MINUTES_1">%s</xliff:g> मिनट <xliff:g id="SECONDS">%s</xliff:g> सेकंड"</string>
-    <!-- no translation found for dynamic_shortcut_disabled_message (249939425761315252) -->
-    <skip />
-    <!-- no translation found for dynamic_shortcut_contact_removed_message (6845645831837615899) -->
-    <skip />
+    <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"इस शॉर्टकट को अक्षम कर दिया गया है"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"संपर्क निकाल दिया गया था"</string>
 </resources>
