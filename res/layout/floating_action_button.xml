@@ -17,6 +17,7 @@
 <!-- This expects to be included inside a RelativeLayout or a CoordinatorLayout -->
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/floating_action_button_container"
     android:layout_width="@dimen/floating_action_button_width"
     android:layout_height="@dimen/floating_action_button_height"
@@ -26,7 +27,8 @@
     android:layout_marginBottom="@dimen/floating_action_button_margin_bottom"
     android:layout_marginEnd="@dimen/floating_action_button_margin_right"
     android:background="@drawable/fab_blue"
-    android:elevation="@dimen/design_fab_elevation">
+    android:elevation="@dimen/design_fab_elevation"
+    app:layout_dodgeInsetEdges="bottom" >
 
     <ImageButton
         android:id="@+id/floating_action_button"

@@ -38,14 +38,12 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -76,7 +74,6 @@ import com.android.contacts.util.SyncUtil;
 import com.android.contactsbind.FeatureHighlightHelper;
 import com.android.contactsbind.ObjectFactory;
 import com.android.contactsbind.experiments.Flags;
-import com.android.contacts.widget.FloatingActionButtonBehavior;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -384,15 +381,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         invalidateOptionsMenuIfNeeded();
 
         mLayoutRoot = (CoordinatorLayout) findViewById(R.id.root);
-
-        // Setup the FAB to animate upwards when a snackbar is shown in this activity.
-        // Normally the layout_behavior attribute could be used for this but for some reason it
-        // throws a ClassNotFoundException so  the layout parameters are set programmatically.
-        final CoordinatorLayout.LayoutParams fabParams = new CoordinatorLayout.LayoutParams(
-                (ViewGroup.MarginLayoutParams) mFloatingActionButtonContainer.getLayoutParams());
-        fabParams.setBehavior(new FloatingActionButtonBehavior());
-        fabParams.gravity = Gravity.BOTTOM | Gravity.END;
-        mFloatingActionButtonContainer.setLayoutParams(fabParams);
 
         if (mShouldSwitchToGroupView && !mIsRecreatedInstance) {
             mGroupUri = mRequest.getContactUri();
