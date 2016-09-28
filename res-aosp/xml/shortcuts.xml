@@ -24,6 +24,6 @@
             android:action="android.intent.action.INSERT"
             android:data="content://com.android.contacts/contacts"
             android:targetPackage="com.android.contacts"
-            android:targetClass="com.android.contacts.activities.CompactContactEditorActivity"/>
+            android:targetClass="com.android.contacts.activities.ContactEditorActivity"/>
     </shortcut>
 </shortcuts>

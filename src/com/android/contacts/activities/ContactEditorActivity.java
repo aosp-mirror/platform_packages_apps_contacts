@@ -35,7 +35,7 @@ import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.detail.PhotoSelectionHandler;
-import com.android.contacts.editor.CompactContactEditorFragment;
+import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.editor.PhotoSourceDialogFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -47,7 +47,7 @@ import java.util.ArrayList;
 /**
  * Contact editor with only the most important fields displayed initially.
  */
-public class CompactContactEditorActivity extends ContactsActivity implements
+public class ContactEditorActivity extends ContactsActivity implements
         PhotoSourceDialogFragment.Listener,
         DialogManager.DialogShowingViewActivity {
     private static final String TAG = "ContactEditorActivity";
@@ -68,7 +68,7 @@ public class CompactContactEditorActivity extends ContactsActivity implements
     public static final String EXTRA_SAVE_TO_DEVICE_FLAG =
             "com.android.contacts.SAVE_TO_DEVICE_FLAG";
 
-    private static final String TAG_COMPACT_EDITOR = "compact_editor";
+    private static final String TAG_EDITOR_FRAGMENT = "editor_fragment";
 
     private static final String STATE_PHOTO_MODE = "photo_mode";
     private static final String STATE_ACTION_BAR_TITLE = "action_bar_title";
@@ -112,9 +112,9 @@ public class CompactContactEditorActivity extends ContactsActivity implements
             int JOIN = 3;
 
             /**
-             * Navigate to the compact editor view after saving.
+             * Navigate to the editor view after saving.
              */
-            int COMPACT = 4;
+            int EDITOR = 4;
         }
 
         /**
@@ -142,7 +142,7 @@ public class CompactContactEditorActivity extends ContactsActivity implements
              * - After Save/Close
              * - After Revert
              * - After the user has accepted an edit suggestion
-             * - After the user chooses to expand the compact editor
+             * - After the user chooses to expand the editor
              */
             int CLOSING = 3;
 
@@ -155,7 +155,7 @@ public class CompactContactEditorActivity extends ContactsActivity implements
         /**
          * Sets the hosting Activity that will receive callbacks from the contact editor.
          */
-        void setListener(CompactContactEditorFragment.Listener listener);
+        void setListener(ContactEditorFragment.Listener listener);
 
         /**
          * Initialize the contact editor.
@@ -194,12 +194,12 @@ public class CompactContactEditorActivity extends ContactsActivity implements
     /**
      * Displays a PopupWindow with photo edit options.
      */
-    private final class CompactPhotoSelectionHandler extends PhotoSelectionHandler {
+    private final class EditorPhotoSelectionHandler extends PhotoSelectionHandler {
 
         /**
          * Receiver of photo edit option callbacks.
          */
-        private final class CompactPhotoActionListener extends PhotoActionListener {
+        private final class EditorPhotoActionListener extends PhotoActionListener {
 
             @Override
             public void onRemovePictureChosen() {
@@ -227,17 +227,17 @@ public class CompactContactEditorActivity extends ContactsActivity implements
             }
         }
 
-        private final CompactPhotoActionListener mPhotoActionListener;
+        private final EditorPhotoActionListener mPhotoActionListener;
 
-        public CompactPhotoSelectionHandler(int photoMode) {
+        public EditorPhotoSelectionHandler(int photoMode) {
             // We pass a null changeAnchorView since we are overriding onClick so that we
             // can show the photo options in a dialog instead of a ListPopupWindow (which would
             // be anchored at changeAnchorView).
 
             // TODO: empty raw contact delta list
-            super(CompactContactEditorActivity.this, /* changeAnchorView =*/ null, photoMode,
+            super(ContactEditorActivity.this, /* changeAnchorView =*/ null, photoMode,
                     /* isDirectoryContact =*/ false, new RawContactDeltaList());
-            mPhotoActionListener = new CompactPhotoActionListener();
+            mPhotoActionListener = new EditorPhotoActionListener();
         }
 
         @Override
@@ -257,17 +257,17 @@ public class CompactContactEditorActivity extends ContactsActivity implements
     private boolean mFinishActivityOnSaveCompleted;
     private DialogManager mDialogManager = new DialogManager(this);
 
-    private CompactPhotoSelectionHandler mPhotoSelectionHandler;
+    private EditorPhotoSelectionHandler mPhotoSelectionHandler;
     private Uri mPhotoUri;
     private int mPhotoMode;
 
-    private final CompactContactEditorFragment.Listener  mFragmentListener =
-            new CompactContactEditorFragment.Listener() {
+    private final ContactEditorFragment.Listener  mFragmentListener =
+            new ContactEditorFragment.Listener() {
 
                 @Override
                 public void onDeleteRequested(Uri contactUri) {
                     ContactDeletionInteraction.start(
-                            CompactContactEditorActivity.this, contactUri, true);
+                            ContactEditorActivity.this, contactUri, true);
                 }
 
                 @Override
@@ -283,13 +283,13 @@ public class CompactContactEditorActivity extends ContactsActivity implements
                         // If it's a smart profile Intent it must be started "for result"
                         if (QuickContact.ACTION_QUICK_CONTACT.equals(resultIntent.getAction())) {
                             ImplicitIntentsUtil.startActivityInApp(
-                                    CompactContactEditorActivity.this, resultIntent);
+                                    ContactEditorActivity.this, resultIntent);
                         } else {
                             startActivityForResult(resultIntent, /* requestCode */ 0);
                         }
 
                         ImplicitIntentsUtil.startActivityInApp(
-                                CompactContactEditorActivity.this, resultIntent);
+                                ContactEditorActivity.this, resultIntent);
                     }
                     finish();
                 }
@@ -309,9 +309,9 @@ public class CompactContactEditorActivity extends ContactsActivity implements
                 public void onEditOtherContactRequested(
                         Uri contactLookupUri, ArrayList<ContentValues> values) {
                     final Intent intent = EditorIntents.createEditOtherContactIntent(
-                            CompactContactEditorActivity.this, contactLookupUri, values);
+                            ContactEditorActivity.this, contactLookupUri, values);
                     ImplicitIntentsUtil.startActivityInApp(
-                            CompactContactEditorActivity.this, intent);
+                            ContactEditorActivity.this, intent);
                     finish();
                 }
             };
@@ -359,13 +359,13 @@ public class CompactContactEditorActivity extends ContactsActivity implements
             actionBar.setHomeAsUpIndicator(R.drawable.ic_close_dk);
         }
 
-        setContentView(R.layout.compact_contact_editor_activity);
+        setContentView(R.layout.contact_editor_activity);
 
         if (savedState == null) {
             // Create the editor and photo selection fragments
-            mFragment = new CompactContactEditorFragment();
+            mFragment = new ContactEditorFragment();
             getFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, getEditorFragment(), TAG_COMPACT_EDITOR)
+                    .add(R.id.fragment_container, getEditorFragment(), TAG_EDITOR_FRAGMENT)
                     .commit();
         } else {
             // Restore state
@@ -374,8 +374,8 @@ public class CompactContactEditorActivity extends ContactsActivity implements
             mPhotoUri = Uri.parse(savedState.getString(STATE_PHOTO_URI));
 
             // Show/hide the editor and photo selection fragments (w/o animations)
-            mFragment = (CompactContactEditorFragment) getFragmentManager()
-                    .findFragmentByTag(TAG_COMPACT_EDITOR);
+            mFragment = (ContactEditorFragment) getFragmentManager()
+                    .findFragmentByTag(TAG_EDITOR_FRAGMENT);
             final FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.show(getEditorFragment()).commit();
             getActionBar().setTitle(getResources().getString(mActionBarTitleResId));
@@ -412,11 +412,11 @@ public class CompactContactEditorActivity extends ContactsActivity implements
             mFragment.setIntentExtras(intent.getExtras());
         } else if (ACTION_SAVE_COMPLETED.equals(action)) {
             mFragment.onSaveCompleted(true,
-                    intent.getIntExtra(CompactContactEditorFragment.SAVE_MODE_EXTRA_KEY,
+                    intent.getIntExtra(ContactEditorFragment.SAVE_MODE_EXTRA_KEY,
                             ContactEditor.SaveMode.CLOSE),
                     intent.getBooleanExtra(ContactSaveService.EXTRA_SAVE_SUCCEEDED, false),
                     intent.getData(),
-                    intent.getLongExtra(CompactContactEditorFragment.JOIN_CONTACT_ID_EXTRA_KEY, -1));
+                    intent.getLongExtra(ContactEditorFragment.JOIN_CONTACT_ID_EXTRA_KEY, -1));
         } else if (ACTION_JOIN_COMPLETED.equals(action)) {
             mFragment.onJoinCompleted(intent.getData());
         }
@@ -448,7 +448,7 @@ public class CompactContactEditorActivity extends ContactsActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (mPhotoSelectionHandler == null) {
-            mPhotoSelectionHandler = (CompactPhotoSelectionHandler) getPhotoSelectionHandler();
+            mPhotoSelectionHandler = (EditorPhotoSelectionHandler) getPhotoSelectionHandler();
         }
         if (mPhotoSelectionHandler.handlePhotoActivityResult(requestCode, resultCode, data)) {
             return;
@@ -489,12 +489,12 @@ public class CompactContactEditorActivity extends ContactsActivity implements
 
     private PhotoSelectionHandler getPhotoSelectionHandler() {
         if (mPhotoSelectionHandler == null) {
-            mPhotoSelectionHandler = new CompactPhotoSelectionHandler(mPhotoMode);
+            mPhotoSelectionHandler = new EditorPhotoSelectionHandler(mPhotoMode);
         }
         return mPhotoSelectionHandler;
     }
 
-    private CompactContactEditorFragment getEditorFragment() {
-        return (CompactContactEditorFragment) mFragment;
+    private ContactEditorFragment getEditorFragment() {
+        return (ContactEditorFragment) mFragment;
     }
 }

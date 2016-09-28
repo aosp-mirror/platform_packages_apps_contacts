@@ -29,7 +29,7 @@ public class SuggestionEditConfirmationDialogFragment extends DialogFragment {
 
     private static final String ARG_CONTACT_URI = "contactUri";
 
-    public static void show(CompactContactEditorFragment fragment, Uri contactUri) {
+    public static void show(ContactEditorFragment fragment, Uri contactUri) {
         final Bundle args = new Bundle();
         args.putParcelable(ARG_CONTACT_URI, contactUri);
 
@@ -49,8 +49,8 @@ public class SuggestionEditConfirmationDialogFragment extends DialogFragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                final CompactContactEditorFragment targetFragment =
-                                        (CompactContactEditorFragment) getTargetFragment();
+                                final ContactEditorFragment targetFragment =
+                                        (ContactEditorFragment) getTargetFragment();
                                 final Uri contactUri =
                                         getArguments().getParcelable(ARG_CONTACT_URI);
                                 targetFragment.doEditSuggestedContact(contactUri);

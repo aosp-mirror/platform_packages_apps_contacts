@@ -35,7 +35,7 @@ public class CancelEditDialogFragment extends DialogFragment {
      * Shows a {@link CancelEditDialogFragment} after setting the given Fragment as the
      * target of the dialog.
      */
-    public static void show(CompactContactEditorFragment fragment) {
+    public static void show(ContactEditorFragment fragment) {
         final CancelEditDialogFragment dialog = new CancelEditDialogFragment();
         dialog.setTargetFragment(fragment, 0);
         dialog.show(fragment.getFragmentManager(), TAG);

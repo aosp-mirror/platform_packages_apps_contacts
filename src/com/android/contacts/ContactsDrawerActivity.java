@@ -55,7 +55,7 @@ import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.ViewUtil;
-import com.android.contacts.editor.CompactContactEditorFragment;
+import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupMembersFragment;
@@ -68,7 +68,6 @@ import com.android.contacts.interactions.AccountFiltersFragment;
 import com.android.contacts.interactions.AccountFiltersFragment.AccountFiltersListener;
 import com.android.contacts.list.DefaultContactBrowseListFragment;
 import com.android.contacts.list.MultiSelectContactsListFragment;
-import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.common.model.account.AccountDisplayInfo;
 import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.util.SharedPreferenceUtil;
@@ -570,7 +569,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     private Intent createPreferenceIntent() {
         final Intent intent = new Intent(this, ContactsPreferenceActivity.class);
         intent.putExtra(ContactsPreferenceActivity.EXTRA_NEW_LOCAL_PROFILE,
-                CompactContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE);
+                ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE);
         return intent;
     }
 

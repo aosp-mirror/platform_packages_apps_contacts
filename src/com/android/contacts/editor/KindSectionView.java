@@ -45,7 +45,7 @@ import java.util.List;
  * {@link DataKind} around a {@link Data#MIMETYPE}. This view shows a
  * section header and a trigger for adding new {@link Data} rows.
  */
-public class CompactKindSectionView extends LinearLayout {
+public class KindSectionView extends LinearLayout {
 
     /**
      * Marks a name as super primary when it is changed.
@@ -57,10 +57,10 @@ public class CompactKindSectionView extends LinearLayout {
 
         private final ValuesDelta mValuesDelta;
         private final long mRawContactId;
-        private final CompactRawContactsEditorView.Listener mListener;
+        private final RawContactEditorView.Listener mListener;
 
         public StructuredNameEditorListener(ValuesDelta valuesDelta, long rawContactId,
-                CompactRawContactsEditorView.Listener listener) {
+                RawContactEditorView.Listener listener) {
             mValuesDelta = valuesDelta;
             mRawContactId = rawContactId;
             mListener = listener;
@@ -151,7 +151,7 @@ public class CompactKindSectionView extends LinearLayout {
 
     private KindSectionData mKindSectionData;
     private ViewIdGenerator mViewIdGenerator;
-    private CompactRawContactsEditorView.Listener mListener;
+    private RawContactEditorView.Listener mListener;
 
     private boolean mIsUserProfile;
     private boolean mShowOneEmptyEditor = false;
@@ -161,11 +161,11 @@ public class CompactKindSectionView extends LinearLayout {
     private ViewGroup mEditors;
     private ImageView mIcon;
 
-    public CompactKindSectionView(Context context) {
+    public KindSectionView(Context context) {
         this(context, /* attrs =*/ null);
     }
 
-    public CompactKindSectionView(Context context, AttributeSet attrs) {
+    public KindSectionView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -264,7 +264,7 @@ public class CompactKindSectionView extends LinearLayout {
      * displayed, even if it is empty.
      */
     public void setState(KindSectionData kindSectionData,
-            ViewIdGenerator viewIdGenerator, CompactRawContactsEditorView.Listener listener) {
+            ViewIdGenerator viewIdGenerator, RawContactEditorView.Listener listener) {
         mKindSectionData = kindSectionData;
         mViewIdGenerator = viewIdGenerator;
         mListener = listener;

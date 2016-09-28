@@ -59,8 +59,8 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
-import com.android.contacts.activities.CompactContactEditorActivity;
-import com.android.contacts.activities.CompactContactEditorActivity.ContactEditor;
+import com.android.contacts.activities.ContactEditorActivity;
+import com.android.contacts.activities.ContactEditorActivity.ContactEditor;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.Experiments;
@@ -101,12 +101,12 @@ import java.util.Set;
 /**
  * Contact editor with only the most important fields displayed initially.
  */
-public class CompactContactEditorFragment extends Fragment implements
+public class ContactEditorFragment extends Fragment implements
         ContactEditor, SplitContactConfirmationDialogFragment.Listener,
         JoinContactConfirmationDialogFragment.Listener,
         AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
         CancelEditDialogFragment.Listener,
-        CompactRawContactsEditorView.Listener, CompactPhotoEditorView.Listener {
+        RawContactEditorView.Listener, PhotoEditorView.Listener {
 
     static final String TAG = "ContactEditor";
 
@@ -119,7 +119,7 @@ public class CompactContactEditorFragment extends Fragment implements
     private static final List<String> VALID_INTENT_ACTIONS = new ArrayList<String>() {{
         add(Intent.ACTION_EDIT);
         add(Intent.ACTION_INSERT);
-        add(CompactContactEditorActivity.ACTION_SAVE_COMPLETED);
+        add(ContactEditorActivity.ACTION_SAVE_COMPLETED);
     }};
 
     private static final String KEY_ACTION = "action";
@@ -182,16 +182,14 @@ public class CompactContactEditorFragment extends Fragment implements
 
     /**
      * Intent key to pass the photo palette primary color calculated by
-     * {@link com.android.contacts.quickcontact.QuickContactActivity} to the editor and between
-     * the compact and fully expanded editors.
+     * {@link com.android.contacts.quickcontact.QuickContactActivity} to the editor.
      */
     public static final String INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR =
             "material_palette_primary_color";
 
     /**
      * Intent key to pass the photo palette secondary color calculated by
-     * {@link com.android.contacts.quickcontact.QuickContactActivity} to the editor and between
-     * the compact and fully expanded editors.
+     * {@link com.android.contacts.quickcontact.QuickContactActivity} to the editor.
      */
     public static final String INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR =
             "material_palette_secondary_color";
@@ -202,20 +200,6 @@ public class CompactContactEditorFragment extends Fragment implements
     // TODO: This can be cleaned up if we decide to not pass the photo id through
     // QuickContactActivity.
     public static final String INTENT_EXTRA_PHOTO_ID = "photo_id";
-
-    /**
-     * Intent key to pass the ID of the raw contact id that should be displayed in the full editor
-     * by itself.
-     */
-    public static final String INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE =
-            "raw_contact_id_to_display_alone";
-
-    /**
-     * Intent key to pass the boolean value of if the raw contact id that should be displayed
-     * in the full editor by itself is read-only.
-     */
-    public static final String INTENT_EXTRA_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY =
-            "raw_contact_display_alone_is_read_only";
 
     /**
      * Intent extra to specify a {@link ContactEditor.SaveMode}.
@@ -542,7 +526,7 @@ public class CompactContactEditorFragment extends Fragment implements
         setHasOptionsMenu(true);
 
         final View view = inflater.inflate(
-                R.layout.compact_contact_editor_fragment, container, false);
+                R.layout.contact_editor_fragment, container, false);
         mContent = (LinearLayout) view.findViewById(R.id.raw_contacts_editor_view);
         return view;
     }
@@ -586,7 +570,7 @@ public class CompactContactEditorFragment extends Fragment implements
                 if (mAccountWithDataSet != null) {
                     createContact(mAccountWithDataSet);
                 } else if (mIntentExtras != null && mIntentExtras.getBoolean(
-                        CompactContactEditorActivity.EXTRA_SAVE_TO_DEVICE_FLAG, false)) {
+                        ContactEditorActivity.EXTRA_SAVE_TO_DEVICE_FLAG, false)) {
                     createContact(null);
                 } else {
                     // No Account specified. Let the user choose
@@ -959,7 +943,7 @@ public class CompactContactEditorFragment extends Fragment implements
         }
 
         // If we are about to close the editor - there is no need to refresh the data
-        if (saveMode == SaveMode.CLOSE || saveMode == SaveMode.COMPACT
+        if (saveMode == SaveMode.CLOSE || saveMode == SaveMode.EDITOR
                 || saveMode == SaveMode.SPLIT) {
             getLoaderManager().destroyLoader(LOADER_CONTACT);
         }
@@ -1379,7 +1363,7 @@ public class CompactContactEditorFragment extends Fragment implements
         }
 
         // Add input fields for the loaded Contact
-        final CompactRawContactsEditorView editorView = getContent();
+        final RawContactEditorView editorView = getContent();
         editorView.setListener(this);
         if (mCopyReadOnlyName) {
             copyReadOnlyName();
@@ -1492,10 +1476,6 @@ public class CompactContactEditorFragment extends Fragment implements
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR),
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR));
             }
-            mRawContactIdToDisplayAlone = mIntentExtras.getLong(
-                    INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE, -1);
-            mRawContactDisplayAloneIsReadOnly = mIntentExtras.getBoolean(
-                    INTENT_EXTRA_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY);
         }
     }
 
@@ -1572,7 +1552,7 @@ public class CompactContactEditorFragment extends Fragment implements
                 if (mListener != null) mListener.onSaveFinished(resultIntent);
                 break;
             }
-            case SaveMode.COMPACT: {
+            case SaveMode.EDITOR: {
                 // It is already saved, so prevent it from being saved again
                 mStatus = Status.CLOSING;
                 if (mListener != null) mListener.onSaveFinished(/* resultIntent= */ null);
@@ -1776,7 +1756,7 @@ public class CompactContactEditorFragment extends Fragment implements
         final Intent intent = ContactSaveService.createSaveContactIntent(mContext, mState,
                 SAVE_MODE_EXTRA_KEY, saveMode, isEditingUserProfile(),
                 ((Activity) mContext).getClass(),
-                CompactContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos,
+                ContactEditorActivity.ACTION_SAVE_COMPLETED, mUpdatedPhotos,
                 JOIN_CONTACT_ID_EXTRA_KEY, joinContactId);
         return startSaveService(mContext, intent, saveMode);
     }
@@ -1799,8 +1779,8 @@ public class CompactContactEditorFragment extends Fragment implements
      */
     protected void joinAggregate(final long contactId) {
         final Intent intent = ContactSaveService.createJoinContactsIntent(
-                mContext, mContactIdForJoin, contactId, CompactContactEditorActivity.class,
-                CompactContactEditorActivity.ACTION_JOIN_COMPLETED);
+                mContext, mContactIdForJoin, contactId, ContactEditorActivity.class,
+                ContactEditorActivity.ACTION_JOIN_COMPLETED);
         mContext.startService(intent);
     }
 
@@ -1845,7 +1825,7 @@ public class CompactContactEditorFragment extends Fragment implements
     public void onBindEditorsFailed() {
         final Activity activity = getActivity();
         if (activity != null && !activity.isFinishing()) {
-            Toast.makeText(activity, R.string.compact_editor_failed_to_load,
+            Toast.makeText(activity, R.string.editor_failed_to_load,
                     Toast.LENGTH_SHORT).show();
             activity.setResult(Activity.RESULT_CANCELED);
             activity.finish();
@@ -1880,11 +1860,11 @@ public class CompactContactEditorFragment extends Fragment implements
                 : PhotoActionPopup.Modes.NO_PHOTO;
     }
 
-    private CompactContactEditorActivity getEditorActivity() {
-        return (CompactContactEditorActivity) getActivity();
+    private ContactEditorActivity getEditorActivity() {
+        return (ContactEditorActivity) getActivity();
     }
 
-    private CompactRawContactsEditorView getContent() {
-        return (CompactRawContactsEditorView) mContent;
+    private RawContactEditorView getContent() {
+        return (RawContactEditorView) mContent;
     }
 }

@@ -84,12 +84,12 @@ import java.util.TreeSet;
 /**
  * View to display information from multiple {@link RawContactDelta}s grouped together.
  */
-public class CompactRawContactsEditorView extends LinearLayout implements View.OnClickListener {
+public class RawContactEditorView extends LinearLayout implements View.OnClickListener {
 
-    static final String TAG = "CompactEditorView";
+    static final String TAG = "RawContactEditorView";
 
     /**
-     * Callbacks for hosts of {@link CompactRawContactsEditorView}s.
+     * Callbacks for hosts of {@link RawContactEditorView}s.
      */
     public interface Listener {
 
@@ -102,7 +102,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         public void onNameFieldChanged(long rawContactId, ValuesDelta valuesDelta);
 
         /**
-         * Invoked when the compact editor should rebind editors for a new account.
+         * Invoked when the editor should rebind editors for a new account.
          *
          * @param oldState Old data being edited.
          * @param oldAccount Old account associated with oldState.
@@ -265,7 +265,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
     }
 
-    private CompactRawContactsEditorView.Listener mListener;
+    private RawContactEditorView.Listener mListener;
 
     private AccountTypeManager mAccountTypeManager;
     private AccountDisplayInfoFactory mAccountDisplayInfoFactory;
@@ -290,25 +290,25 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private ImageView mAccountHeaderIcon;
     private ImageView mAccountHeaderExpanderIcon;
 
-    private CompactPhotoEditorView mPhotoView;
+    private PhotoEditorView mPhotoView;
     private ViewGroup mKindSectionViews;
-    private Map<String, CompactKindSectionView> mKindSectionViewMap = new HashMap<>();
+    private Map<String, KindSectionView> mKindSectionViewMap = new HashMap<>();
     private View mMoreFields;
 
     private boolean mIsExpanded;
 
     private ValuesDelta mPhotoValuesDelta;
 
-    public CompactRawContactsEditorView(Context context) {
+    public RawContactEditorView(Context context) {
         super(context);
     }
 
-    public CompactRawContactsEditorView(Context context, AttributeSet attrs) {
+    public RawContactEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     /**
-     * Sets the receiver for {@link CompactRawContactsEditorView} callbacks.
+     * Sets the receiver for {@link RawContactEditorView} callbacks.
      */
     public void setListener(Listener listener) {
         mListener = listener;
@@ -330,7 +330,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         mAccountHeaderIcon = (ImageView) findViewById(R.id.account_type_icon);
         mAccountHeaderExpanderIcon = (ImageView) findViewById(R.id.account_expander_icon);
 
-        mPhotoView = (CompactPhotoEditorView) findViewById(R.id.photo_editor);
+        mPhotoView = (PhotoEditorView) findViewById(R.id.photo_editor);
         mKindSectionViews = (LinearLayout) findViewById(R.id.kind_section_views);
         mMoreFields = findViewById(R.id.more_fields);
         mMoreFields.setOnClickListener(this);
@@ -375,9 +375,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     /**
-     * Pass through to {@link CompactPhotoEditorView#setListener}.
+     * Pass through to {@link PhotoEditorView#setListener}.
      */
-    public void setPhotoListener(CompactPhotoEditorView.Listener listener) {
+    public void setPhotoListener(PhotoEditorView.Listener listener) {
         mPhotoView.setListener(listener);
     }
 
@@ -390,7 +390,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     /**
-     * Pass through to {@link CompactPhotoEditorView#setFullSizedPhoto(Uri)}.
+     * Pass through to {@link PhotoEditorView#setFullSizedPhoto(Uri)}.
      */
     public void setFullSizePhoto(Uri photoUri) {
         mPhotoView.setFullSizedPhoto(photoUri);
@@ -440,21 +440,21 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     /**
-     * Pass through to {@link CompactPhotoEditorView#isWritablePhotoSet}.
+     * Pass through to {@link PhotoEditorView#isWritablePhotoSet}.
      */
     public boolean isWritablePhotoSet() {
         return mPhotoView.isWritablePhotoSet();
     }
 
     /**
-     * Get the raw contact ID for the CompactHeaderView photo.
+     * Get the raw contact ID for the current photo.
      */
     public long getPhotoRawContactId() {
         return mCurrentRawContactDelta.getRawContactId();
     }
 
     public StructuredNameEditorView getNameEditorView() {
-        final CompactKindSectionView nameKindSectionView = mKindSectionViewMap
+        final KindSectionView nameKindSectionView = mKindSectionViewMap
                 .get(StructuredName.CONTENT_ITEM_TYPE);
         return nameKindSectionView == null
                 ? null : nameKindSectionView.getNameEditorView();
@@ -487,7 +487,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     public void setGroupMetaData(Cursor groupMetaData) {
-        final CompactKindSectionView groupKindSectionView =
+        final KindSectionView groupKindSectionView =
                 mKindSectionViewMap.get(GroupMembership.CONTENT_ITEM_TYPE);
         if (groupKindSectionView == null) {
             return;
@@ -559,12 +559,12 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             // We're want to display the inputs fields for a single read only raw contact
             addReadOnlyRawContactEditorViews();
         } else {
-            setupCompactEditorNormally();
+            setupEditorNormally();
         }
         if (mListener != null) mListener.onEditorsBound();
     }
 
-    private void setupCompactEditorNormally() {
+    private void setupEditorNormally() {
         addAccountInfo();
         addKindSectionViews();
 
@@ -813,8 +813,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 result.add(rawContactDelta);
             }
         }
-        // Don't return a list of size 1 that would just open the raw contact being edited
-        // in the compact editor in the full editor
+        // Don't return a list of size 1 that would just open the current raw contact being edited.
         if (result.size() == 1 && result.get(0).getRawContactAccountType(
                 getContext()).areContactsWritable()) {
             result.clear();
@@ -832,8 +831,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
 
         // Set the account type
         final String selectorTitle = getResources().getString(isReadOnlyRawContact() ?
-                R.string.compact_editor_account_selector_read_only_title :
-                R.string.compact_editor_account_selector_title);
+                R.string.editor_account_selector_read_only_title :
+                R.string.editor_account_selector_title);
         mAccountHeaderType.setText(selectorTitle);
 
         // Set the icon
@@ -966,7 +965,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
                 vlog("kind: " + i + " " + mimeType + " dropped");
                 continue;
             }
-            final CompactKindSectionView kindSectionView;
+            final KindSectionView kindSectionView;
             final KindSectionData kindSectionData = mKindSectionDataMap.get(mimeType);
             kindSectionView = inflateKindSectionView(mKindSectionViews, kindSectionData, mimeType);
             mKindSectionViews.addView(kindSectionView);
@@ -976,10 +975,10 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         }
     }
 
-    private CompactKindSectionView inflateKindSectionView(ViewGroup viewGroup,
+    private KindSectionView inflateKindSectionView(ViewGroup viewGroup,
             KindSectionData kindSectionData, String mimeType) {
-        final CompactKindSectionView kindSectionView = (CompactKindSectionView)
-                mLayoutInflater.inflate(R.layout.compact_item_kind_section, viewGroup,
+        final KindSectionView kindSectionView = (KindSectionView)
+                mLayoutInflater.inflate(R.layout.item_kind_section, viewGroup,
                         /* attachToRoot =*/ false);
         kindSectionView.setIsUserProfile(mIsUserProfile);
 
@@ -1002,8 +1001,8 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     private void showAllFields() {
         // Stop hiding empty editors and allow the user to enter values for all kinds now
         for (int i = 0; i < mKindSectionViews.getChildCount(); i++) {
-            final CompactKindSectionView kindSectionView =
-                    (CompactKindSectionView) mKindSectionViews.getChildAt(i);
+            final KindSectionView kindSectionView =
+                    (KindSectionView) mKindSectionViews.getChildAt(i);
             kindSectionView.setHideWhenEmpty(false);
             kindSectionView.updateEmptyEditors(/* shouldAnimate =*/ true);
         }
@@ -1014,7 +1013,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private boolean hasMoreFields() {
-        for (CompactKindSectionView section : mKindSectionViewMap.values()) {
+        for (KindSectionView section : mKindSectionViewMap.values()) {
             if (section.getVisibility() != View.VISIBLE) {
                 return true;
             }
