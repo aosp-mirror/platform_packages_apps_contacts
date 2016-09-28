@@ -31,7 +31,7 @@
     <string name="viewContactTitle" msgid="7989394521836644384">"Détails du contact"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"À propos"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Mises à jour"</string>
-    <string name="searchHint" msgid="8482945356247760701">"Rechercher des contacts"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Rech. des contacts"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Afficher le contact"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Ajouter aux favoris"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Supprimer des favoris"</string>
