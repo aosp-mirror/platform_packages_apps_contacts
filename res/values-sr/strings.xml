@@ -115,7 +115,7 @@
     <string name="emptyGroup" msgid="5102411903247859575">"Нема контаката са овом ознаком"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"Нема контаката на овом налогу"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Листа контаката је празна"</string>
-    <string name="contactSavedNamedToast" msgid="895136068894549611">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> је сачуван/а"</string>
+    <string name="contactSavedNamedToast" msgid="895136068894549611">"Контакт <xliff:g id="DISPLAY_NAME">%s</xliff:g> је сачуван"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Контакт је сачуван"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Контакти су раздвојени"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"Чување промена контакта није успело"</string>

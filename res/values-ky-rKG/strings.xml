@@ -283,7 +283,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Сүрөттү өзгөртүү"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Түзөткүч ачылбай калды."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Төмөнкүгө сакталууда"</string>
-    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"Көрүүдө"</string>
+    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"Көрүлүүдө"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Учурда <xliff:g id="ACCOUNT_NAME">%s</xliff:g> ичине сакталууда. Башка каттоо эсебин тандоо үчүн эки жолу таптаңыз."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Шилтемеленген байланыштар (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -705,5 +705,5 @@
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> мүн. <xliff:g id="SECONDS">%s</xliff:g> сек"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> с <xliff:g id="MINUTES_1">%s</xliff:g> мүн <xliff:g id="SECONDS">%s</xliff:g> сек"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Кыска жол өчүрүлдү"</string>
-    <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Байланыш алып салынган"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Байланыш алынып салынган"</string>
 </resources>

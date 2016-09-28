@@ -283,7 +283,7 @@
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Verander foto"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Kon nie redigeer oopmaak nie."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Stoor na"</string>
-    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"Kyk"</string>
+    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"Bekyk tans"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Stoor tans na <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Dubbeltik om \'n ander rekening te kies."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Geskakelde kontakte (<xliff:g id="COUNT">%d</xliff:g>)</item>
