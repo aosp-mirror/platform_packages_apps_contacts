@@ -20,15 +20,13 @@ import android.accounts.Account;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.ContentResolver;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SyncStatusObserver;
 import android.content.IntentFilter;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.SyncStatusObserver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,7 +38,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
@@ -65,8 +62,6 @@ import com.android.contacts.common.list.ProviderStatusWatcher.ProviderStatusList
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountDisplayInfo;
-import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.Constants;
@@ -469,7 +464,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
         mSaveServiceListener = new SaveServiceListener();
         LocalBroadcastManager.getInstance(this).registerReceiver(mSaveServiceListener,
-                new IntentFilter(ContactSaveService.BROADCAST_ACTION_GROUP_DELETED));
+                new IntentFilter(ContactSaveService.BROADCAST_GROUP_DELETED));
     }
 
     @Override
@@ -731,7 +726,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
-                case ContactSaveService.BROADCAST_ACTION_GROUP_DELETED:
+                case ContactSaveService.BROADCAST_GROUP_DELETED:
                     onGroupDeleted(intent);
                     break;
             }

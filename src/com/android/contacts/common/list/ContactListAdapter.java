@@ -41,7 +41,7 @@ import java.util.Set;
 public abstract class ContactListAdapter extends MultiSelectEntryContactListAdapter {
 
     public static class ContactQuery {
-        private static final String[] CONTACT_PROJECTION_PRIMARY = new String[] {
+        public static final String[] CONTACT_PROJECTION_PRIMARY = new String[] {
             Contacts._ID,                           // 0
             Contacts.DISPLAY_NAME_PRIMARY,          // 1
             Contacts.CONTACT_PRESENCE,              // 2

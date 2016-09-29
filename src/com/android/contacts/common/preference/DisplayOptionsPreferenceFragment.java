@@ -18,10 +18,12 @@ package com.android.contacts.common.preference;
 
 import android.app.Activity;
 import android.app.LoaderManager;
+import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.Loader;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -32,15 +34,22 @@ import android.preference.PreferenceFragment;
 import android.provider.BlockedNumberContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Profile;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.telecom.TelecomManager;
 import android.telephony.TelephonyManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.R;
 import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.R;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.compat.TelephonyManagerCompat;
-import com.android.contacts.common.interactions.ImportDialogFragment;
 import com.android.contacts.common.interactions.ExportDialogFragment;
+import com.android.contacts.common.interactions.ImportDialogFragment;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
@@ -122,6 +131,9 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
 
     private ProfileListener mListener;
 
+    private ViewGroup mRootView;
+    private SaveServiceResultListener mSaveServiceListener;
+
     private final LoaderManager.LoaderCallbacks<Cursor> mProfileLoaderListener =
             new LoaderManager.LoaderCallbacks<Cursor>() {
 
@@ -162,6 +174,25 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement ProfileListener");
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Wrap the preference view in a FrameLayout so we can show a snackbar
+        mRootView = new FrameLayout(getActivity());
+        final View list = super.onCreateView(inflater, mRootView, savedInstanceState);
+        mRootView.addView(list);
+        return mRootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mSaveServiceListener = new SaveServiceResultListener();
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
+                mSaveServiceListener,
+                new IntentFilter(ContactSaveService.BROADCAST_SIM_IMPORT_COMPLETE));
     }
 
     @Override
@@ -210,6 +241,13 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getLoaderManager().restartLoader(LOADER_PROFILE, null, mProfileLoaderListener);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mSaveServiceListener);
+        mRootView = null;
     }
 
     public void updateMyInfoPreference(boolean hasProfile, String displayName, long contactId) {
@@ -358,6 +396,31 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
                 } else {
                     customFilterPreference.setSummary(null);
                 }
+            }
+        }
+    }
+
+    private class SaveServiceResultListener extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final long now = System.currentTimeMillis();
+            final long opStart = intent.getLongExtra(
+                    ContactSaveService.EXTRA_OPERATION_REQUESTED_AT_TIME, now);
+
+            // If it's been over 30 seconds the user is likely in a different context so suppress
+            // the toast message.
+            if (now - opStart > 30*1000) return;
+
+            final int code = intent.getIntExtra(ContactSaveService.EXTRA_RESULT_CODE,
+                    ContactSaveService.RESULT_UNKNOWN);
+            final int count = intent.getIntExtra(ContactSaveService.EXTRA_RESULT_COUNT, -1);
+            if (code == ContactSaveService.RESULT_SUCCESS && count > 0) {
+                Snackbar.make(mRootView, getResources().getQuantityString(
+                        R.plurals.sim_import_success_toast_fmt, count, count),
+                        Snackbar.LENGTH_LONG).show();
+            } else if (code == ContactSaveService.RESULT_FAILURE) {
+                Snackbar.make(mRootView, R.string.sim_import_failed_toast,
+                        Snackbar.LENGTH_LONG).show();
             }
         }
     }
