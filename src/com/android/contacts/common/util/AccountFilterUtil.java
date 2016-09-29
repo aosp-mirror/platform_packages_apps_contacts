@@ -23,12 +23,9 @@ import android.content.ActivityNotFoundException;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -38,11 +35,11 @@ import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contactsbind.ObjectFactory;
+
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -133,9 +130,8 @@ public class AccountFilterUtil {
             DeviceLocalAccountTypeFactory deviceAccountTypeFactory) {
         final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
-        accountTypeManager.sortAccounts(/* defaultAccount */ getDefaultAccount(context));
-        final List<AccountWithDataSet> accounts =
-                accountTypeManager.getAccounts(/* contactWritableOnly */ true);
+        final List<AccountWithDataSet> accounts = accountTypeManager.getSortedAccounts(
+                /* defaultAccount */ getDefaultAccount(context), /* contactWritableOnly */ true);
 
         for (AccountWithDataSet account : accounts) {
             final AccountType accountType =
