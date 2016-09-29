@@ -16,8 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.contacts"
-    android:versionCode="10603"
-    android:versionName="1.6.3">
+    android:versionCode="10604"
+    android:versionName="1.6.4">
 
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="25" />
 
