@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:minHeight="@dimen/editor_min_line_item_height"
         android:orientation="horizontal"
-        android:paddingBottom="@dimen/compact_editor_name_top_margin"
+        android:paddingBottom="@dimen/editor_name_top_margin"
         >
 
 
@@ -34,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="@dimen/compact_editor_account_header_top_margin"
-            android:layout_marginStart="@dimen/compact_editor_account_left_margin"
+            android:layout_marginTop="@dimen/editor_account_header_top_margin"
+            android:layout_marginStart="@dimen/editor_account_left_margin"
             android:layout_gravity="center_vertical"
             android:orientation="vertical"
             >

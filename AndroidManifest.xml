@@ -352,7 +352,7 @@
 
         <!-- Edit or create a contact with only the most important fields displayed initially. -->
         <activity
-            android:name=".activities.CompactContactEditorActivity"
+            android:name=".activities.ContactEditorActivity"
             android:theme="@style/EditorActivityTheme"
             android:windowSoftInputMode="stateHidden|adjustResize">
 

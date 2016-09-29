@@ -39,7 +39,7 @@ import com.android.contacts.widget.QuickContactImageView;
 /**
  * Displays a photo and calls the host back when the user clicks it.
  */
-public class CompactPhotoEditorView extends RelativeLayout implements View.OnClickListener {
+public class PhotoEditorView extends RelativeLayout implements View.OnClickListener {
 
     /**
      * Callbacks for the host of this view.
@@ -70,11 +70,11 @@ public class CompactPhotoEditorView extends RelativeLayout implements View.OnCli
     private boolean mReadOnly;
     private boolean mIsNonDefaultPhotoBound;
 
-    public CompactPhotoEditorView(Context context) {
+    public PhotoEditorView(Context context) {
         this(context, null);
     }
 
-    public CompactPhotoEditorView(Context context, AttributeSet attrs) {
+    public PhotoEditorView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mLandscapePhotoRatio = getTypedFloat(R.dimen.quickcontact_landscape_photo_ratio);

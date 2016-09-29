@@ -790,26 +790,26 @@
     <!-- When a user tries to create an IM Hangouts field, an alert dialog pops up displaying this message. We don't want users entering email addresses of phone numbers into the IM field. [CHAR LIMIT=200] -->
     <string name="contact_editor_hangouts_im_alert">Hangouts works better when you enter the person\'s Hangouts identifier into the email field or phone field.</string>
 
-    <!-- Button to expand the compact contact editor to show all available input fields. [CHAR LIMIT=60] -->
-    <string name="compact_editor_more_fields">More fields</string>
+    <!-- Button to expand the contact editor to show all available input fields. [CHAR LIMIT=60] -->
+    <string name="editor_more_fields">More fields</string>
 
-    <!-- Content description for the compact contact editor photo overlay which, when clicked, shows a dialog with the options for changing the contact photo. [CHAR LIMIT=30] -->
-    <string name="compact_editor_change_photo_content_description">Change photo</string>
+    <!-- Content description for the contact editor photo overlay which, when clicked, shows a dialog with the options for changing the contact photo. [CHAR LIMIT=30] -->
+    <string name="editor_change_photo_content_description">Change photo</string>
 
     <!-- Toast message displayed when the editor fails to load for a contacts. [CHAR LIMIT=NONE] -->
-    <string name="compact_editor_failed_to_load">Failed to open editor.</string>
+    <string name="editor_failed_to_load">Failed to open editor.</string>
 
     <!-- Label for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=30] -->
-    <string name="compact_editor_account_selector_title">Saving to</string>
+    <string name="editor_account_selector_title">Saving to</string>
 
     <!-- Label for the account selector to indicate which read-only account is being viewed. [CHAR LIMIT=30] -->
-    <string name="compact_editor_account_selector_read_only_title">Viewing</string>
+    <string name="editor_account_selector_read_only_title">Viewing</string>
 
     <!-- Content description for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=NONE] -->
-    <string name="compact_editor_account_selector_description">Currently saving to <xliff:g id="account_name">%s</xliff:g>. Double-tap to pick a different account.</string>
+    <string name="editor_account_selector_description">Currently saving to <xliff:g id="account_name">%s</xliff:g>. Double-tap to pick a different account.</string>
 
     <!-- Label for the linked contacts selector which indicates the number of raw contacts which have been linked together into the aggregate being viewed. [CHAR LIMIT=40] -->
-    <plurals name="compact_editor_linked_contacts_selector_title">
+    <plurals name="editor_linked_contacts_selector_title">
         <item quantity="one">Linked contact</item>
         <item quantity="other">Linked contacts (<xliff:g id="count">%d</xliff:g>)</item>
     </plurals>
@@ -857,7 +857,7 @@
     <string name="suggestion_card_help_message">These contacts might be the same person. You can link them together as a single contact.</string>
 
     <!-- Linked contacts title showing in contact editor UI. [CHAR LIMIT=30]-->
-    <string name="compact_editor_linked_contacts_title">Linked contacts</string>
+    <string name="editor_linked_contacts_title">Linked contacts</string>
 
     <!-- Title of profile photos that are from your various accounts -->
     <string name="from_your_accounts">From your accounts</string>

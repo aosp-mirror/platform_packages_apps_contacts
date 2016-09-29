@@ -17,7 +17,7 @@
 
 <!-- The body surrounding all editors for a specific kind -->
 
-<com.android.contacts.editor.CompactKindSectionView
+<com.android.contacts.editor.KindSectionView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,4 +33,4 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
 
-</com.android.contacts.editor.CompactKindSectionView>
+</com.android.contacts.editor.KindSectionView>

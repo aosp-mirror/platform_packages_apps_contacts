@@ -23,22 +23,18 @@ import android.content.ActivityNotFoundException;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.android.contacts.R;
-import com.android.contacts.activities.CompactContactEditorActivity;
+import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
@@ -196,7 +192,7 @@ public class AccountFilterUtil {
         } else if (isDeviceContactsFilter(filter)) {
             // It's OK to add this even though it's an implicit intent. If a different app
             // receives the intent it should just ignore the flag.
-            intent.putExtra(CompactContactEditorActivity.EXTRA_SAVE_TO_DEVICE_FLAG, true);
+            intent.putExtra(ContactEditorActivity.EXTRA_SAVE_TO_DEVICE_FLAG, true);
         }
 
         try {

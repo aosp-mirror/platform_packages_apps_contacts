@@ -51,7 +51,7 @@ import android.support.v4.os.ResultReceiver;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.contacts.activities.CompactContactEditorActivity;
+import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.database.ContactUpdateUtils;
 import com.android.contacts.common.model.AccountTypeManager;
@@ -215,13 +215,13 @@ public class ContactSaveService extends IntentService {
         } catch (Exception exception) {
             final int resId;
             switch (saveMode) {
-                case CompactContactEditorActivity.ContactEditor.SaveMode.SPLIT:
+                case ContactEditorActivity.ContactEditor.SaveMode.SPLIT:
                     resId = R.string.contactUnlinkErrorToast;
                     break;
-                case CompactContactEditorActivity.ContactEditor.SaveMode.RELOAD:
+                case ContactEditorActivity.ContactEditor.SaveMode.RELOAD:
                     resId = R.string.contactJoinErrorToast;
                     break;
-                case CompactContactEditorActivity.ContactEditor.SaveMode.CLOSE:
+                case ContactEditorActivity.ContactEditor.SaveMode.CLOSE:
                     resId = R.string.contactSavedErrorToast;
                     break;
                 default:
@@ -744,7 +744,7 @@ public class ContactSaveService extends IntentService {
         ContentValues values = new ContentValues();
         // TODO: Move this into the contact editor where it belongs. This needs to be integrated
         // with the way other intent extras that are passed to the
-        // {@link CompactContactEditorActivity}.
+        // {@link ContactEditorActivity}.
         values.clear();
         values.put(Data.MIMETYPE, GroupMembership.CONTENT_ITEM_TYPE);
         values.put(GroupMembership.GROUP_ROW_ID, ContentUris.parseId(groupUri));

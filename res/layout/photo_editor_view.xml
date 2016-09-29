@@ -15,7 +15,7 @@
      limitations under the License.
 -->
 
-<com.android.contacts.editor.CompactPhotoEditorView
+<com.android.contacts.editor.PhotoEditorView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/photo_editor"
         android:layout_width="match_parent"
@@ -51,6 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/item_background_material_dark"
-            android:contentDescription="@string/compact_editor_change_photo_content_description" />
+            android:contentDescription="@string/editor_change_photo_content_description" />
 
-</com.android.contacts.editor.CompactPhotoEditorView>
+</com.android.contacts.editor.PhotoEditorView>

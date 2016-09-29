@@ -28,7 +28,7 @@ public class JoinSuggestedContactDialogFragment extends DialogFragment {
 
     private static final String ARG_RAW_CONTACT_IDS = "rawContactIds";
 
-    public static void show(CompactContactEditorFragment fragment, long[] rawContactIds) {
+    public static void show(ContactEditorFragment fragment, long[] rawContactIds) {
         final Bundle args = new Bundle();
         args.putLongArray(ARG_RAW_CONTACT_IDS, rawContactIds);
 
@@ -47,8 +47,8 @@ public class JoinSuggestedContactDialogFragment extends DialogFragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                CompactContactEditorFragment targetFragment =
-                                        (CompactContactEditorFragment) getTargetFragment();
+                                ContactEditorFragment targetFragment =
+                                        (ContactEditorFragment) getTargetFragment();
                                 long rawContactIds[] =
                                         getArguments().getLongArray(ARG_RAW_CONTACT_IDS);
                                 targetFragment.doJoinSuggestedContact(rawContactIds);

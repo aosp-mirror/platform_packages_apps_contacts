@@ -106,7 +106,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
-import com.android.contacts.activities.CompactContactEditorActivity;
+import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
@@ -158,7 +158,7 @@ import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.editor.AggregationSuggestionEngine;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
-import com.android.contacts.editor.CompactContactEditorFragment;
+import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
@@ -1165,7 +1165,7 @@ public class QuickContactActivity extends ContactsActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         final boolean deletedOrSplit = requestCode == REQUEST_CODE_CONTACT_EDITOR_ACTIVITY &&
                 (resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED ||
-                resultCode == CompactContactEditorActivity.RESULT_CODE_SPLIT);
+                resultCode == ContactEditorActivity.RESULT_CODE_SPLIT);
         setResult(resultCode, data);
         if (deletedOrSplit) {
             finish();
@@ -1205,7 +1205,7 @@ public class QuickContactActivity extends ContactsActivity
         }
         Uri lookupUri = intent.getData();
         if (intent.getBooleanExtra(EXTRA_CONTACT_EDITED, false)) {
-            setResult(CompactContactEditorActivity.RESULT_CODE_EDITED);
+            setResult(ContactEditorActivity.RESULT_CODE_EDITED);
         }
 
         // Check to see whether it comes from the old version.
@@ -2844,7 +2844,7 @@ public class QuickContactActivity extends ContactsActivity
     }
 
     private Intent getEditContactIntent() {
-        return EditorIntents.createCompactEditContactIntent(QuickContactActivity.this,
+        return EditorIntents.createEditContactIntent(QuickContactActivity.this,
                 mContactData.getLookupUri(),
                 mHasComputedThemeColor
                         ? new MaterialPalette(mColorFilterColor, mStatusBarColor) : null,
@@ -3043,7 +3043,7 @@ public class QuickContactActivity extends ContactsActivity
                     intent.putExtra(Intents.Insert.DATA, values);
 
                     // If the contact can only export to the same account, add it to the intent.
-                    // Otherwise the CompactContactEditorFragment will show a dialog for selecting
+                    // Otherwise the ContactEditorFragment will show a dialog for selecting
                     // an account.
                     if (mContactData.getDirectoryExportSupport() ==
                             Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY) {
@@ -3057,7 +3057,7 @@ public class QuickContactActivity extends ContactsActivity
                     // Add this flag to disable the delete menu option on directory contact joins
                     // with local contacts. The delete option is ambiguous when joining contacts.
                     intent.putExtra(
-                            CompactContactEditorFragment.INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION,
+                            ContactEditorFragment.INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION,
                             true);
 
                     intent.setPackage(getPackageName());

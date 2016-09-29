@@ -16,9 +16,6 @@
 <resources>
     <dimen name="account_selector_popup_width">400dip</dimen>
 
-    <!-- Account info left margin in Compact editor. -->
-    <dimen name="compact_editor_account_left_margin">4dp</dimen>
-
     <!-- Initial height of transparent space above QuickContacts -->
     <dimen name="quickcontact_starting_empty_height">150dp</dimen>
     <!-- Initial size of QuickContact's title size -->
@@ -40,7 +37,16 @@
         snaps to the top of the window. -->
     <dimen name="quickcontact_snap_to_top_slop_height">33dp</dimen>
 
-    <!-- The ratio of width:height (360:184) for the compact editor contact photo in portrait -->
+    <!-- Account info left margin in editor. -->
+    <dimen name="editor_account_left_margin">4dp</dimen>
+
+    <!-- Margin between name field and whatever fields are above it. -->
+    <dimen name="editor_name_top_margin">8dp</dimen>
+
+    <!-- Top margin for "Saving to" account header text field. -->
+    <dimen name="editor_account_header_top_margin">3dp</dimen>
+
+    <!-- The ratio of width:height (360:184) for the editor contact photo in portrait -->
     <item name="editor_portrait_photo_ratio" type="dimen" format="float">1.96</item>
 
     <!-- Padding of the rounded plus/minus/expand/collapse buttons in the editor  -->
@@ -95,9 +101,6 @@
 
     <!-- Left padding of the label in the add field button for the contact editor -->
     <dimen name="editor_add_field_label_left_padding">16dip</dimen>
-
-    <!-- Top margin for the first field of the compact contact editor -->
-    <dimen name="editor_compact_first_field_padding">10dp</dimen>
 
     <!-- Top and bottom padding for the two text views in editor account header expandable -->
     <dimen name="editor_account_header_expandable_top_bottom_padding">24dp</dimen>
@@ -240,12 +243,6 @@
     <dimen name="contact_browser_list_item_padding_top_or_bottom">7dp</dimen>
 
     <dimen name="contact_browser_list_item_height">56dp</dimen>
-
-    <!-- Margin between name field and whatever fields are above it. -->
-    <dimen name="compact_editor_name_top_margin">8dp</dimen>
-
-    <!-- Top margin for "Saving to" account header text field. -->
-    <dimen name="compact_editor_account_header_top_margin">3dp</dimen>
 
     <!-- Navigation drawer header height, the same as the status bar in landscape and portrait modes -->
     <dimen name="nav_header_height">24dp</dimen>

@@ -34,7 +34,7 @@
             android:id="@+id/rawcontacts_accounts_summary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/compact_editor_account_left_margin"
+            android:layout_marginStart="@dimen/editor_account_left_margin"
             android:textSize="16sp"
             android:singleLine="true"
             android:layout_weight="1"
