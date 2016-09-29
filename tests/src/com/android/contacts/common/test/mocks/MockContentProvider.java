@@ -165,7 +165,7 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
         public Cursor getResult(String[] projection) {
             String[] columnNames;
             if (mAnyProjection) {
-                columnNames = projection;
+                columnNames = projection != null ? projection : mDefaultProjection;
             } else {
                 columnNames = mProjection != null ? mProjection : mDefaultProjection;
             }
@@ -176,9 +176,9 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
                     cursor.addRow((Object[]) row);
                 } else {
                     ContentValues values = (ContentValues) row;
-                    Object[] columns = new Object[projection.length];
-                    for (int i = 0; i < projection.length; i++) {
-                        columns[i] = values.get(projection[i]);
+                    Object[] columns = new Object[columnNames.length];
+                    for (int i = 0; i < columnNames.length; i++) {
+                        columns[i] = values.get(columnNames[i]);
                     }
                     cursor.addRow(columns);
                 }
@@ -483,6 +483,10 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
 
     public Query expectQuery(Uri contentUri) {
         return expect(new Query(contentUri));
+    }
+
+    public Query expectQuery(String contentUri) {
+        return expectQuery(Uri.parse(contentUri));
     }
 
     public void expectTypeQuery(Uri uri, String type) {

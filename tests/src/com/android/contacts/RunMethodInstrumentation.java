@@ -60,6 +60,7 @@ public class RunMethodInstrumentation extends Instrumentation {
         start();
     }
 
+    @Override
     public void onStart() {
         Log.d(TAG, "onStart");
         super.onStart();
