@@ -112,7 +112,7 @@ public class TextFieldsEditorView extends LabeledEditorView {
                     mPreviousViewHeight = mFields.getHeight();
 
                     // Save focus
-                    final View focusedChild = getFocusedChild();
+                    final View focusedChild = findFocus();
                     final int focusedViewId = focusedChild == null ? -1 : focusedChild.getId();
 
                     // Reconfigure GUI

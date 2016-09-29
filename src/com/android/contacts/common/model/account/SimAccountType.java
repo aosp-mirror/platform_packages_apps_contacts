@@ -17,9 +17,13 @@ package com.android.contacts.common.model.account;
 
 import android.accounts.AuthenticatorDescription;
 import android.content.Context;
+import android.provider.ContactsContract.CommonDataKinds.Nickname;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 
-import com.android.contacts.R;
+import com.android.contacts.common.R;
 import com.android.contacts.common.model.dataitem.DataKind;
+
+import com.google.common.collect.Lists;
 
 import java.util.Collections;
 
@@ -33,12 +37,7 @@ public class SimAccountType extends BaseAccountType {
         this.iconRes = R.drawable.ic_sim_card_tinted_24dp;
 
         try {
-            addDataKindDisplayName(context);
-            // SIM cards probably don't natively support full structured name data (separate
-            // first and last names) but restricting to just a single field in
-            // StructuredNameEditorView will require more significant changes.
             addDataKindStructuredName(context);
-
             final DataKind phoneKind = addDataKindPhone(context);
             phoneKind.typeOverallMax = 1;
             // SIM card contacts don't necessarily support separate types (based on data exposed
@@ -66,5 +65,32 @@ public class SimAccountType extends BaseAccountType {
     @Override
     public void initializeFieldsFromAuthenticator(AuthenticatorDescription authenticator) {
         // Do nothing. We want to use our local icon and title
+    }
+
+    @Override
+    protected DataKind addDataKindStructuredName(Context context) throws DefinitionException {
+        final DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
+                R.string.nameLabelsGroup, Weight.NONE, true));
+        kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
+        kind.actionBody = new SimpleInflater(Nickname.NAME);
+        kind.typeOverallMax = 1;
+
+        final boolean displayOrderPrimary =
+                context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
+
+        kind.fieldList = Lists.newArrayList();
+        if (!displayOrderPrimary) {
+            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                    FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                    FLAGS_PERSON_NAME));
+        } else {
+            kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                    FLAGS_PERSON_NAME));
+            kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                    FLAGS_PERSON_NAME));
+        }
+
+        return kind;
     }
 }

@@ -54,7 +54,6 @@ public class SamsungAccountType extends BaseAccountType {
 
         try {
             addDataKindStructuredName(context);
-            addDataKindDisplayName(context);
             addDataKindPhoneticName(context);
             addDataKindNickname(context);
             addDataKindPhone(context);

@@ -25,7 +25,6 @@
     <EditSchema>
         <DataKind kind="name"
             maxOccurs="1"
-            supportsDisplayName="true"
             supportsMiddleName="true"
             supportsSuffix="true"
             supportsPhoneticFamilyName="true"

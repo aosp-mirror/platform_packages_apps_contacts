@@ -56,7 +56,6 @@
         <!-- Fallback/Google definition.  Supports all. -->
         <DataKind kind="name"
             maxOccurs="1"
-            supportsDisplayName="true"
             supportsPrefix="true"
             supportsMiddleName="true"
             supportsSuffix="true"
@@ -68,7 +67,6 @@
 
         <!-- Exchange definition.  No display-name, no phonetic-middle.
         <DataKind kind="name"
-            supportsDisplayName="false"
             supportsPrefix="true"
             supportsMiddleName="true"
             supportsSuffix="true"

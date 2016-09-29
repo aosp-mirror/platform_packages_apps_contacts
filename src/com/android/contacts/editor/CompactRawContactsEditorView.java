@@ -453,10 +453,11 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         return mCurrentRawContactDelta.getRawContactId();
     }
 
-    public StructuredNameEditorView getPrimaryNameEditorView() {
-        final CompactKindSectionView primaryNameKindSectionView = getPrimaryNameKindSectionView();
-        return primaryNameKindSectionView == null
-                ? null : primaryNameKindSectionView.getPrimaryNameEditorView();
+    public StructuredNameEditorView getNameEditorView() {
+        final CompactKindSectionView nameKindSectionView = mKindSectionViewMap
+                .get(StructuredName.CONTENT_ITEM_TYPE);
+        return nameKindSectionView == null
+                ? null : nameKindSectionView.getNameEditorView();
     }
 
     public RawContactDelta getCurrentRawContactDelta() {
@@ -481,7 +482,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     public View getAggregationAnchorView() {
-        final StructuredNameEditorView nameEditorView = getPrimaryNameEditorView();
+        final StructuredNameEditorView nameEditorView = getNameEditorView();
         return nameEditorView != null ? nameEditorView.findViewById(R.id.anchor_view) : null;
     }
 
@@ -967,9 +968,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
             }
             final CompactKindSectionView kindSectionView;
             final KindSectionData kindSectionData = mKindSectionDataMap.get(mimeType);
-            final ValuesDelta primaryDelta = mCurrentRawContactDelta.getPrimaryEntry(mimeType);
-            kindSectionView = inflateKindSectionView(mKindSectionViews, kindSectionData, mimeType,
-                    primaryDelta);
+            kindSectionView = inflateKindSectionView(mKindSectionViews, kindSectionData, mimeType);
             mKindSectionViews.addView(kindSectionView);
 
             // Keep a pointer to the KindSectionView for each mimeType
@@ -978,8 +977,7 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
     }
 
     private CompactKindSectionView inflateKindSectionView(ViewGroup viewGroup,
-            KindSectionData kindSectionData, String mimeType,
-            ValuesDelta primaryValuesDelta) {
+            KindSectionData kindSectionData, String mimeType) {
         final CompactKindSectionView kindSectionView = (CompactKindSectionView)
                 mLayoutInflater.inflate(R.layout.compact_item_kind_section, viewGroup,
                         /* attachToRoot =*/ false);
@@ -996,23 +994,9 @@ public class CompactRawContactsEditorView extends LinearLayout implements View.O
         // they will be the only types you add new values to initially for new contacts
         kindSectionView.setShowOneEmptyEditor(true);
 
-        kindSectionView.setState(kindSectionData, mViewIdGenerator, mListener,
-                primaryValuesDelta);
+        kindSectionView.setState(kindSectionData, mViewIdGenerator, mListener);
 
         return kindSectionView;
-    }
-
-    void maybeSetReadOnlyDisplayNameAsPrimary(String readOnlyDisplayName) {
-        if (TextUtils.isEmpty(readOnlyDisplayName)) return;
-        final CompactKindSectionView primaryNameKindSectionView = getPrimaryNameKindSectionView();
-        if (primaryNameKindSectionView != null && primaryNameKindSectionView.isEmptyName()) {
-            vlog("name: using read only display name as primary name");
-            primaryNameKindSectionView.setName(readOnlyDisplayName);
-        }
-    }
-
-    private CompactKindSectionView getPrimaryNameKindSectionView() {
-        return mKindSectionViewMap.get(StructuredName.CONTENT_ITEM_TYPE);
     }
 
     private void showAllFields() {

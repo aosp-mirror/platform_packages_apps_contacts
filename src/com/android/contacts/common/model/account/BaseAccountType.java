@@ -148,72 +148,36 @@ public abstract class BaseAccountType extends AccountType {
     }
 
     protected DataKind addDataKindStructuredName(Context context) throws DefinitionException {
-        DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
+        final DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
                 R.string.nameLabelsGroup, Weight.NONE, true));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);
         kind.typeOverallMax = 1;
 
         kind.fieldList = Lists.newArrayList();
-        kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
-                R.string.full_name, FLAGS_PERSON_NAME));
-        kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                FLAGS_PERSON_NAME).setLongForm(true));
-        kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                FLAGS_PERSON_NAME).setLongForm(true));
-        kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                FLAGS_PERSON_NAME).setLongForm(true));
-        kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                FLAGS_PERSON_NAME).setLongForm(true));
-        kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                FLAGS_PERSON_NAME).setLongForm(true));
-        kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                R.string.name_phonetic_family, FLAGS_PHONETIC));
-        kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                R.string.name_phonetic_middle, FLAGS_PHONETIC));
-        kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                R.string.name_phonetic_given, FLAGS_PHONETIC));
-
-        return kind;
-    }
-
-    protected DataKind addDataKindDisplayName(Context context) throws DefinitionException {
-        DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME,
-                R.string.nameLabelsGroup, Weight.NONE, true));
-        kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
-        kind.actionBody = new SimpleInflater(Nickname.NAME);
-        kind.typeOverallMax = 1;
-
-        kind.fieldList = Lists.newArrayList();
-        kind.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
-                R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true));
-
-        boolean displayOrderPrimary =
+        final boolean displayOrderPrimary =
                 context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
 
+        kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
+                FLAGS_PERSON_NAME).setLongForm(true));
         if (!displayOrderPrimary) {
-            kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                    FLAGS_PERSON_NAME).setLongForm(true));
             kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                    FLAGS_PERSON_NAME).setLongForm(true));
+                    FLAGS_PERSON_NAME));
             kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
                     FLAGS_PERSON_NAME).setLongForm(true));
             kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                    FLAGS_PERSON_NAME).setLongForm(true));
-            kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                    FLAGS_PERSON_NAME).setLongForm(true));
+                    FLAGS_PERSON_NAME));
         } else {
-            kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                    FLAGS_PERSON_NAME).setLongForm(true));
             kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                    FLAGS_PERSON_NAME).setLongForm(true));
+                    FLAGS_PERSON_NAME));
             kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
                     FLAGS_PERSON_NAME).setLongForm(true));
             kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                    FLAGS_PERSON_NAME).setLongForm(true));
-            kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                    FLAGS_PERSON_NAME).setLongForm(true));
+                    FLAGS_PERSON_NAME));
         }
+        kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
+                FLAGS_PERSON_NAME).setLongForm(true));
+
 
         return kind;
     }
@@ -891,15 +855,13 @@ public abstract class BaseAccountType extends AccountType {
                 AttributeSet attrs) throws DefinitionException, XmlPullParserException,
                 IOException {
 
-            // Build 3 data kinds:
+            // Build 2 data kinds:
             // - StructuredName.CONTENT_ITEM_TYPE
-            // - DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME
             // - DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME
 
             final boolean displayOrderPrimary =
                     context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
 
-            final boolean supportsDisplayName = getAttr(attrs, "supportsDisplayName", false);
             final boolean supportsPrefix = getAttr(attrs, "supportsPrefix", false);
             final boolean supportsMiddleName = getAttr(attrs, "supportsMiddleName", false);
             final boolean supportsSuffix = getAttr(attrs, "supportsSuffix", false);
@@ -911,7 +873,6 @@ public abstract class BaseAccountType extends AccountType {
                     getAttr(attrs, "supportsPhoneticGivenName", false);
 
             // For now, every things must be supported.
-            checkAttributeTrue(supportsDisplayName, "supportsDisplayName");
             checkAttributeTrue(supportsPrefix, "supportsPrefix");
             checkAttributeTrue(supportsMiddleName, "supportsMiddleName");
             checkAttributeTrue(supportsSuffix, "supportsSuffix");
@@ -927,68 +888,28 @@ public abstract class BaseAccountType extends AccountType {
                     new SimpleInflater(R.string.nameLabelsGroup),
                     new SimpleInflater(Nickname.NAME));
 
-            throwIfList(ks);
-            kinds.add(ks);
-
-            // Note about setLongForm/setShortForm below.
-            // We need to set this only when the type supports display name. (=supportsDisplayName)
-            // Otherwise (i.e. Exchange) we don't set these flags, but instead make some fields
-            // "optional".
-
-            ks.fieldList.add(new EditField(StructuredName.DISPLAY_NAME, R.string.full_name,
-                    FLAGS_PERSON_NAME));
             ks.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
                     FLAGS_PERSON_NAME).setLongForm(true));
-            ks.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                    FLAGS_PERSON_NAME).setLongForm(true));
-            ks.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                    FLAGS_PERSON_NAME).setLongForm(true));
-            ks.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                    FLAGS_PERSON_NAME).setLongForm(true));
+            if (!displayOrderPrimary) {
+                ks.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                        FLAGS_PERSON_NAME));
+                ks.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+                ks.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                        FLAGS_PERSON_NAME));
+            } else {
+                ks.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                        FLAGS_PERSON_NAME));
+                ks.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
+                        FLAGS_PERSON_NAME).setLongForm(true));
+                ks.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                        FLAGS_PERSON_NAME));
+            }
             ks.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
                     FLAGS_PERSON_NAME).setLongForm(true));
-            ks.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                    R.string.name_phonetic_family, FLAGS_PHONETIC));
-            ks.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                    R.string.name_phonetic_middle, FLAGS_PHONETIC));
-            ks.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                    R.string.name_phonetic_given, FLAGS_PHONETIC));
 
-            // Display name
-            final DataKind kd = newDataKind(context, parser, attrs, true,
-                    DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME, null,
-                    R.string.nameLabelsGroup, Weight.NONE,
-                    new SimpleInflater(R.string.nameLabelsGroup),
-                    new SimpleInflater(Nickname.NAME));
-            kd.typeOverallMax = 1;
-            kinds.add(kd);
-
-            kd.fieldList.add(new EditField(StructuredName.DISPLAY_NAME,
-                    R.string.full_name, FLAGS_PERSON_NAME).setShortForm(true));
-
-            if (!displayOrderPrimary) {
-                kd.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kd.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kd.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kd.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kd.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-            } else {
-                kd.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kd.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kd.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kd.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-                kd.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                        FLAGS_PERSON_NAME).setLongForm(true));
-            }
+            throwIfList(ks);
+            kinds.add(ks);
 
             // Phonetic name
             final DataKind kp = newDataKind(context, parser, attrs, true,
