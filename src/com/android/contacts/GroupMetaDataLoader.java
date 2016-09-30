@@ -51,7 +51,12 @@ public final class GroupMetaDataLoader extends CursorLoader {
     public final static int DELETED = 8;
 
     public GroupMetaDataLoader(Context context, Uri groupUri) {
-        super(context, ensureIsGroupUri(groupUri), COLUMNS, GroupListLoader.DEFAULT_SELECTION, null,
+        super(context, ensureIsGroupUri(groupUri), COLUMNS, GroupUtil.DEFAULT_SELECTION, null,
+                GroupUtil.getGroupsSortOrder());
+    }
+
+    public GroupMetaDataLoader(Context context, Uri groupUri, String selection) {
+        super(context, ensureIsGroupUri(groupUri), COLUMNS, selection, null,
                 GroupUtil.getGroupsSortOrder());
     }
 

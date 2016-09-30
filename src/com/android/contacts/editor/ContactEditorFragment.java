@@ -78,6 +78,7 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
+import com.android.contacts.group.GroupUtil;
 import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.quickcontact.InvisibleContactUtil;
 import com.android.contacts.quickcontact.QuickContactActivity;
@@ -426,7 +427,8 @@ public class ContactEditorFragment extends Fragment implements
 
                 @Override
                 public CursorLoader onCreateLoader(int id, Bundle args) {
-                    return new GroupMetaDataLoader(mContext, ContactsContract.Groups.CONTENT_URI);
+                    return new GroupMetaDataLoader(mContext, ContactsContract.Groups.CONTENT_URI,
+                            GroupUtil.ALL_GROUPS_SELECTION);
                 }
 
                 @Override
