@@ -293,18 +293,19 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"апошні выклік. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. націсніце для зваротнага выкліку"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Вы: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts працуе лепш, калі вы ўводзіце ідэнтыфікатар асобы Hangouts у поле для адраса электроннай пошты ці тэлефона."</string>
-    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Дадатковыя палі"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Змяніць фота"</string>
-    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Збой адкрыцця рэдактара."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Куды захоўваць:"</string>
-    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"Прагляд"</string>
-    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Зараз ідзе захаванне ва ўліковы запіс <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Двойчы дакраніцеся, каб выбраць іншы ўліковы запіс."</string>
-    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
-      <item quantity="one">Звязаны кантакт (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="few">Звязаныя кантакты (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="many">Звязаныя кантакты (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="other">Звязаныя кантакты (<xliff:g id="COUNT">%d</xliff:g>)</item>
-    </plurals>
+    <!-- no translation found for editor_more_fields (3630987771304393421) -->
+    <skip />
+    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
+    <skip />
+    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
+    <skip />
+    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"Звязаных кантактаў: <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ЗВЯЗАЦЬ КАНТАКТЫ"</string>
@@ -331,7 +332,8 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Гэты кантакт"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Магчымыя дублікаты"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Гэтыя кантакты могуць датычыць адной асобы. Іх можна звязаць, каб стварыць адзіны кантакт."</string>
-    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Падлучаныя кантакты"</string>
+    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
+    <skip />
     <string name="from_your_accounts" msgid="1746293107836889912">"З вашых уліковых запісаў"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Выбраць фота"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"З уліковага запісу <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>

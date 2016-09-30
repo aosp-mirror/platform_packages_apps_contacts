@@ -279,16 +279,19 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"Скорошно обаждане (<xliff:g id="CALL_TYPE">%s</xliff:g>) от <xliff:g id="PHONE_NUMBER">%s</xliff:g> на <xliff:g id="DATE">%s</xliff:g>. Кликнете за обратно обаждане"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Вие: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts работи по-добре, когато въведете съответния идентификатор на човека в полето за имейл или телефон."</string>
-    <string name="compact_editor_more_fields" msgid="5987638193568699600">"Още полета"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Промяна на снимката"</string>
-    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Отварянето на редактора не бе успешно."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Запазване във:"</string>
-    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"Преглеждане"</string>
-    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Понастоящем се запазва в профила <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Докоснете двукратно, за да изберете друг."</string>
-    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
-      <item quantity="other">Свързани контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one">Свързан контакт</item>
-    </plurals>
+    <!-- no translation found for editor_more_fields (3630987771304393421) -->
+    <skip />
+    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
+    <skip />
+    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
+    <skip />
+    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> свързани контакта"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"СВЪРЗВАНЕ НА КОНТАКТИТЕ"</string>
@@ -309,7 +312,8 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Този контакт"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Възможни дубликати"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Тези контакти може да са един и същи човек. Можете да ги свържете в един."</string>
-    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Свързани контакти"</string>
+    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
+    <skip />
     <string name="from_your_accounts" msgid="1746293107836889912">"От профилите ви"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Избиране на снимка"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"От <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
