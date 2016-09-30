@@ -64,9 +64,9 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
-import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
@@ -105,6 +105,7 @@ import android.widget.Toolbar;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
+import com.android.contacts.DynamicShortcuts;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorBaseActivity;
@@ -125,16 +126,18 @@ import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.list.ShortcutIntentBuilder;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 import com.android.contacts.common.logging.Logger;
-import com.android.contacts.common.logging.ScreenEvent.ScreenType;
-import com.android.contacts.common.logging.QuickContactEvent.ContactType;
-import com.android.contacts.common.logging.QuickContactEvent.CardType;
 import com.android.contacts.common.logging.QuickContactEvent.ActionType;
+import com.android.contacts.common.logging.QuickContactEvent.CardType;
+import com.android.contacts.common.logging.QuickContactEvent.ContactType;
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContact;
+import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.dataitem.CustomDataItem;
 import com.android.contacts.common.model.dataitem.DataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.model.dataitem.EmailDataItem;
@@ -149,10 +152,8 @@ import com.android.contacts.common.model.dataitem.SipAddressDataItem;
 import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
 import com.android.contacts.common.model.dataitem.StructuredPostalDataItem;
 import com.android.contacts.common.model.dataitem.WebsiteDataItem;
-import com.android.contacts.common.model.dataitem.CustomDataItem;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.DateUtils;
+import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.common.util.PermissionsUtil;
@@ -182,10 +183,8 @@ import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 import com.android.contacts.widget.QuickContactImageView;
 import com.android.contactsbind.HelpUtils;
-
 import com.google.common.collect.Lists;
 
-import java.lang.SecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -258,6 +257,7 @@ public class QuickContactActivity extends ContactsActivity
 
     // Set true in {@link #onCreate} after orientation change for later use in processIntent().
     private boolean mIsRecreatedInstance;
+    private boolean mShortcutUsageReported = false;
 
     private boolean mShouldLog;
 
@@ -1266,6 +1266,7 @@ public class QuickContactActivity extends ContactsActivity
         mExtraPrioritizedMimeType =
                 getIntent().getStringExtra(QuickContact.EXTRA_PRIORITIZED_MIMETYPE);
         final Uri oldLookupUri = mLookupUri;
+
 
         if (lookupUri == null) {
             finish();
@@ -2613,6 +2614,11 @@ public class QuickContactActivity extends ContactsActivity
                     return;
                 }
 
+                if (!mIsRecreatedInstance && !mShortcutUsageReported) {
+                    mShortcutUsageReported = true;
+                    DynamicShortcuts.reportShortcutUsed(QuickContactActivity.this,
+                            data.getLookupKey());
+                }
                 bindContactData(data);
 
             } finally {

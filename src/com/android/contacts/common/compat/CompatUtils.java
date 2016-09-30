@@ -173,6 +173,16 @@ public final class CompatUtils {
         return VERSION.SDK_INT >= 24;
     }
 
+
+    public static boolean isNougatMr1Compatible() {
+        return SdkVersionOverride.getSdkVersion(Build.VERSION_CODES.N_MR1)
+                >= Build.VERSION_CODES.N_MR1;
+    }
+
+    public static boolean isLauncherShortcutCompatible() {
+        return isNougatMr1Compatible();
+    }
+
     /**
      * Determines if the given class is available. Can be used to check if system apis exist at
      * runtime.
