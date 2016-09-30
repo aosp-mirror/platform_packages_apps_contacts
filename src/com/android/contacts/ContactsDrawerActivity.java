@@ -583,7 +583,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         setTitle(getString(R.string.contactsList));
     }
 
-    protected void resetFilter() {
+    private void resetFilter() {
         final Intent intent = new Intent();
         final ContactListFilter filter = AccountFilterUtil.createContactsFilter(this);
         intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);

@@ -55,12 +55,10 @@ import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
 import com.android.contacts.common.Experiments;
-import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
-import com.android.contacts.common.list.ContactListFilterController.ContactListFilterListener;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.DefaultContactListAdapter;
 import com.android.contacts.common.list.DirectoryListLoader;
@@ -69,8 +67,6 @@ import com.android.contacts.common.logging.ListEvent;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountDisplayInfo;
-import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
@@ -137,18 +133,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private ContactsDrawerActivity mActivity;
     private ContactsRequest mContactsRequest;
     private ContactListFilterController mContactListFilterController;
-
-    private final ContactListFilterListener mFilterListener = new ContactListFilterListener() {
-        @Override
-        public void onContactListFilterChanged() {
-            setFilterAndUpdateTitle(getFilter());
-
-            // Scroll to top after filter is changed.
-            getListView().setSelection(0);
-
-            mActivity.invalidateOptionsMenu();
-        }
-    };
 
     private final ActionBarAdapter.Listener mActionBarListener = new ActionBarAdapter.Listener() {
         @Override
@@ -335,6 +319,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                 view == mAccountFilterContainer ? View.VISIBLE : View.GONE);
     }
 
+    public void scrollToTop() {
+        if (getListView() != null) {
+            getListView().setSelection(0);
+        }
+    }
+
     @Override
     protected void onItemClick(int position, long id) {
         final Uri uri = getAdapter().getContactUri(position);
@@ -425,7 +415,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         mIsRecreatedInstance = (savedState != null);
         mContactListFilterController = ContactListFilterController.getInstance(getContext());
         mContactListFilterController.checkFilterValidity(false);
-        mContactListFilterController.addListener(mFilterListener);
         // Use FILTER_TYPE_ALL_ACCOUNTS filter if the instance is not a re-created one.
         // This is useful when user upgrades app while an account filter was
         // stored in sharedPreference in a previous version of Contacts app.
@@ -689,7 +678,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         }
     }
 
-    private void setFilterAndUpdateTitle(ContactListFilter filter) {
+    public void setFilterAndUpdateTitle(ContactListFilter filter) {
         setFilterAndUpdateTitle(filter, true);
     }
 
@@ -697,37 +686,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setContactListFilter(filter);
         updateListFilter(filter, restoreSelectedUri);
 
-        final String actionBarTitle;
-        if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
-            actionBarTitle = getString(R.string.account_phone);
-        } else if (!TextUtils.isEmpty(filter.accountName)) {
-            actionBarTitle = getActionBarTitleForAccount(filter);
-        } else {
-            actionBarTitle = getString(R.string.contactsList);
-        }
-        mActivity.setTitle(actionBarTitle);
-        mActivity.updateFilterMenu(filter);
-
-        if (CompatUtils.isNCompatible()) {
-            mActivity.getWindow().getDecorView()
-                    .sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
-        }
-
         // Determine whether the account has pullToRefresh feature
         if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
             setSwipeRefreshLayoutEnabledOrNot(filter);
         }
-    }
-
-    private String getActionBarTitleForAccount(ContactListFilter filter) {
-        final AccountDisplayInfoFactory factory = AccountDisplayInfoFactory
-                .forAllAccounts(getContext());
-        final AccountDisplayInfo account = factory.getAccountDisplayInfoFor(filter);
-        if (account.hasGoogleAccountType()) {
-            return getString(R.string.title_from_google);
-        }
-        return account.withFormattedName(getContext(), R.string.title_from_other_accounts)
-                .getNameLabel().toString();
     }
 
     private void setSwipeRefreshLayoutEnabledOrNot(ContactListFilter filter) {
@@ -1080,9 +1042,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     public void onDestroy() {
         if (mActionBarAdapter != null) {
             mActionBarAdapter.setListener(null);
-        }
-        if (mContactListFilterController != null) {
-            mContactListFilterController.removeListener(mFilterListener);
         }
         super.onDestroy();
     }

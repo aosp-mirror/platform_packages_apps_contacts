@@ -37,6 +37,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
@@ -44,6 +45,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -52,12 +54,16 @@ import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.list.ContactListFilter;
+import com.android.contacts.common.list.ContactListFilterController.ContactListFilterListener;
 import com.android.contacts.common.list.ProviderStatusWatcher;
 import com.android.contacts.common.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.Constants;
@@ -81,7 +87,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Displays a list to browse contacts.
  */
-public class PeopleActivity extends ContactsDrawerActivity implements ProviderStatusListener {
+public class PeopleActivity extends ContactsDrawerActivity {
 
     private static final String TAG = "PeopleActivity";
     private static final String TAG_ALL = "contacts-all";
@@ -121,9 +127,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
     /**
      * True if this activity instance is a re-created one.  i.e. set true after orientation change.
-     * This is set in {@link #onCreate} for later use in {@link #onStart}.
      */
     private boolean mIsRecreatedInstance;
+
+    private boolean mShouldSwitchToAllContacts;
 
     /** Sequential ID assigned to each instance; used for logging */
     private final int mInstanceId;
@@ -149,7 +156,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             return;
         }
 
-        final ContactListFilter filter = mAllFragment.getFilter();
+        final ContactListFilter filter = mContactListFilterController.getFilter();
         if (filter != null) {
             final SwipeRefreshLayout swipeRefreshLayout = mAllFragment.getSwipeRefreshLayout();
             if (swipeRefreshLayout == null) {
@@ -176,6 +183,23 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             swipeRefreshLayout.setRefreshing(false);
         }
     }
+
+    private final ContactListFilterListener mFilterListener = new ContactListFilterListener() {
+        @Override
+        public void onContactListFilterChanged() {
+            final ContactListFilter filter = mContactListFilterController.getFilter();
+            handleFilterChangeForFragment(filter);
+            handleFilterChangeForActivity(filter);
+        }
+    };
+
+    private final ProviderStatusListener mProviderStatusListener = new ProviderStatusListener() {
+        @Override
+        public void onProviderStatusChange() {
+            reloadGroupsAndFiltersIfNeeded();
+            updateViewConfiguration(false);
+        }
+    };
 
     public PeopleActivity() {
         mInstanceId = sNextInstanceId.getAndIncrement();
@@ -227,7 +251,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             return;
         }
 
-        mProviderStatusWatcher.addListener(this);
+        mContactListFilterController.addListener(mFilterListener);
+        mProviderStatusWatcher.addListener(mProviderStatusListener);
 
         mIsRecreatedInstance = (savedState != null);
 
@@ -425,6 +450,10 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
     protected void onResume() {
         super.onResume();
 
+        if (mShouldSwitchToAllContacts) {
+            switchToAllContacts();
+        }
+
         mProviderStatusWatcher.start();
         updateViewConfiguration(true);
 
@@ -445,7 +474,8 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
 
     @Override
     protected void onDestroy() {
-        mProviderStatusWatcher.removeListener(this);
+        mProviderStatusWatcher.removeListener(mProviderStatusListener);
+        mContactListFilterController.removeListener(mFilterListener);
         super.onDestroy();
     }
 
@@ -481,12 +511,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             }
             wasLastFabAnimationScaleIn = false;
         }
-    }
-
-    @Override
-    public void onProviderStatusChange() {
-        reloadGroupsAndFiltersIfNeeded();
-        updateViewConfiguration(false);
     }
 
     private void reloadGroupsAndFiltersIfNeeded() {
@@ -656,7 +680,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
             return true;
         }
 
-        if (!AccountFilterUtil.isAllContactsFilter(mAllFragment.getFilter())
+        if (!AccountFilterUtil.isAllContactsFilter(mContactListFilterController.getFilter())
                 && !mAllFragment.isHidden()) {
             // If mAllFragment is hidden, then mContactsUnavailableFragment is visible so we
             // don't need to switch to all contacts.
@@ -773,7 +797,6 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         transaction.commit();
         fragmentManager.executePendingTransactions();
 
-        resetFilter();
         showFabWithAnimation(/* showFab */ false);
     }
 
@@ -782,6 +805,7 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
         if (isInSecondLevel()) {
             popSecondLevel();
         }
+        mShouldSwitchToAllContacts = false;
         mCurrentView = ContactsView.ALL_CONTACTS;
         showFabWithAnimation(/* showFab */ true);
 
@@ -807,5 +831,47 @@ public class PeopleActivity extends ContactsDrawerActivity implements ProviderSt
     @Override
     protected GroupMetaData getGroupMetaData() {
         return mMembersFragment == null ? null : mMembersFragment.getGroupMetaData();
+    }
+
+    private void handleFilterChangeForFragment(ContactListFilter filter) {
+        mAllFragment.setFilterAndUpdateTitle(filter);
+        // Scroll to top after filter is changed.
+        mAllFragment.scrollToTop();
+    }
+
+    private void handleFilterChangeForActivity(ContactListFilter filter) {
+        // Set mShouldSwitchToAllContacts to true, so that we can switch to all contacts later.
+        if (filter.isContactsFilterType()) {
+            mShouldSwitchToAllContacts = true;
+        }
+
+        // Set title and check menu in navigation drawer.
+        final String actionBarTitle;
+        if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
+            actionBarTitle = getString(R.string.account_phone);
+        } else if (!TextUtils.isEmpty(filter.accountName)) {
+            actionBarTitle = getActionBarTitleForAccount(filter);
+        } else {
+            actionBarTitle = getString(R.string.contactsList);
+        }
+        setTitle(actionBarTitle);
+        updateFilterMenu(filter);
+
+        if (CompatUtils.isNCompatible()) {
+            getWindow().getDecorView()
+                    .sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+        }
+        invalidateOptionsMenu();
+    }
+
+    private String getActionBarTitleForAccount(ContactListFilter filter) {
+        final AccountDisplayInfoFactory factory = AccountDisplayInfoFactory
+                .forAllAccounts(this);
+        final AccountDisplayInfo account = factory.getAccountDisplayInfoFor(filter);
+        if (account.hasGoogleAccountType()) {
+            return getString(R.string.title_from_google);
+        }
+        return account.withFormattedName(this, R.string.title_from_other_accounts)
+                .getNameLabel().toString();
     }
 }
