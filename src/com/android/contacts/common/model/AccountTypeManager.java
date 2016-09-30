@@ -25,6 +25,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.SyncAdapterType;
 import android.content.SyncStatusObserver;
 import android.content.pm.PackageManager;
@@ -43,6 +44,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.TimingLogger;
 
+import com.android.contacts.R;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.account.AccountType;
@@ -131,6 +133,11 @@ public abstract class AccountTypeManager {
         }
 
         @Override
+        public Account getDefaultGoogleAccount() {
+            return null;
+        }
+
+        @Override
         public List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
                 boolean contactWritableOnly) {
             return Collections.emptyList();
@@ -166,6 +173,39 @@ public abstract class AccountTypeManager {
      * Returns the list of accounts that are group writable.
      */
     public abstract List<AccountWithDataSet> getGroupWritableAccounts();
+
+    /**
+     * Returns the default google account.
+     */
+    public abstract Account getDefaultGoogleAccount();
+
+    static Account getDefaultGoogleAccount(AccountManager accountManager,
+            SharedPreferences prefs, String defaultAccountKey) {
+        // Get all the google accounts on the device
+        final Account[] accounts = accountManager.getAccountsByType(
+                GoogleAccountType.ACCOUNT_TYPE);
+        if (accounts == null || accounts.length == 0) {
+            return null;
+        }
+
+        // Get the default account from preferences
+        final String defaultAccount = prefs.getString(defaultAccountKey, null);
+        final AccountWithDataSet accountWithDataSet = defaultAccount == null ? null :
+                AccountWithDataSet.unstringify(defaultAccount);
+
+        // Look for an account matching the one from preferences
+        if (accountWithDataSet != null) {
+            for (int i = 0; i < accounts.length; i++) {
+                if (TextUtils.equals(accountWithDataSet.name, accounts[i].name)
+                        && TextUtils.equals(accountWithDataSet.type, accounts[i].type)) {
+                    return accounts[i];
+                }
+            }
+        }
+
+        // Just return the first one
+        return accounts[0];
+    }
 
     public abstract AccountType getAccountType(AccountTypeWithDataSet accountTypeWithDataSet);
 
@@ -736,6 +776,20 @@ class AccountTypeManagerImpl extends AccountTypeManager
     public List<AccountWithDataSet> getGroupWritableAccounts() {
         ensureAccountsLoaded();
         return Lists.newArrayList(mGroupWritableAccounts);
+    }
+
+    /**
+     * Returns the default google account specified in preferences, the first google account
+     * if it is not specified in preferences or is no longer on the device, and null otherwise.
+     */
+    @Override
+    public Account getDefaultGoogleAccount() {
+        final AccountManager accountManager = AccountManager.get(mContext);
+        final SharedPreferences sharedPreferences =
+                mContext.getSharedPreferences(mContext.getPackageName(), Context.MODE_PRIVATE);
+        final String defaultAccountKey =
+                mContext.getResources().getString(R.string.contact_editor_default_account_key);
+        return getDefaultGoogleAccount(accountManager, sharedPreferences, defaultAccountKey);
     }
 
     /**
