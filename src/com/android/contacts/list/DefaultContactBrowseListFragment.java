@@ -522,6 +522,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         if (savedInstanceState != null && savedInstanceState.getBoolean(KEY_DELETION_IN_PROGRESS)) {
             deleteSelectedContacts();
         }
+
+        setDirectorySearchMode();
     }
 
     public void initializeActionBarAdapter(Bundle savedInstanceState) {
@@ -587,7 +589,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         setQueryString(mActionBarAdapter.getQueryString(), true);
         setVisibleScrollbarEnabled(!isSearchMode());
+    }
 
+    private void setDirectorySearchMode() {
         if (mContactsRequest.isDirectorySearchEnabled()) {
             setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
         } else {
