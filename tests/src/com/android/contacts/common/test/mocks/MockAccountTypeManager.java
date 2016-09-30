@@ -15,6 +15,8 @@
  */
 package com.android.contacts.common.test.mocks;
 
+import android.accounts.Account;
+
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountTypeWithDataSet;
@@ -74,6 +76,11 @@ public class MockAccountTypeManager extends AccountTypeManager {
     @Override
     public List<AccountWithDataSet> getGroupWritableAccounts() {
         return Arrays.asList(mAccounts);
+    }
+
+    @Override
+    public Account getDefaultGoogleAccount() {
+        return null;
     }
 
     @Override
