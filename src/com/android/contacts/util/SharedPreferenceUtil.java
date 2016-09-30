@@ -30,6 +30,12 @@ public class SharedPreferenceUtil {
     private static final String PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED_BEFORE =
             "hamburgerPromoTriggerActionHappenedBefore";
 
+    public static final String PREFERENCE_KEY_GLOBAL_SYNC_OFF_DISMISSES =
+            "num-of-dismisses-auto-sync-off";
+
+    public static final String PREFERENCE_KEY_ACCOUNT_SYNC_OFF_DISMISSES
+            = "num-of-dismisses-account-sync-off";
+
     public static boolean getHamburgerPromoDisplayedBefore(Context context) {
         return getSharedPreferences(context)
                 .getBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED_BEFORE, false);
@@ -80,5 +86,49 @@ public class SharedPreferenceUtil {
 
     private static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+    }
+
+    public static int getNumOfDismissesForAutoSyncOff(Context context) {
+        return getSharedPreferences(context).getInt(PREFERENCE_KEY_GLOBAL_SYNC_OFF_DISMISSES, 0);
+    }
+
+    public static void resetNumOfDismissesForAutoSyncOff(Context context) {
+        final int value = getSharedPreferences(context).getInt(
+                PREFERENCE_KEY_GLOBAL_SYNC_OFF_DISMISSES, 0);
+        if (value != 0) {
+            getSharedPreferences(context).edit()
+                    .putInt(PREFERENCE_KEY_GLOBAL_SYNC_OFF_DISMISSES, 0).apply();
+        }
+    }
+
+    public static void incNumOfDismissesForAutoSyncOff(Context context) {
+        final int value = getSharedPreferences(context).getInt(
+                PREFERENCE_KEY_GLOBAL_SYNC_OFF_DISMISSES, 0);
+        getSharedPreferences(context).edit()
+                .putInt(PREFERENCE_KEY_GLOBAL_SYNC_OFF_DISMISSES, value + 1).apply();
+    }
+
+    private static String buildSharedPrefsName(String accountName) {
+        return accountName + "-" + PREFERENCE_KEY_ACCOUNT_SYNC_OFF_DISMISSES;
+    }
+
+    public static int getNumOfDismissesforAccountSyncOff(Context context, String accountName) {
+        return getSharedPreferences(context).getInt(buildSharedPrefsName(accountName), 0);
+    }
+
+    public static void resetNumOfDismissesForAccountSyncOff(Context context, String accountName) {
+        final int value = getSharedPreferences(context).getInt(
+                buildSharedPrefsName(accountName), 0);
+        if (value != 0) {
+            getSharedPreferences(context).edit()
+                    .putInt(buildSharedPrefsName(accountName), 0).apply();
+        }
+    }
+
+    public static void incNumOfDismissesForAccountSyncOff(Context context, String accountName) {
+        final int value = getSharedPreferences(context).getInt(
+                buildSharedPrefsName(accountName), 0);
+        getSharedPreferences(context).edit()
+                .putInt(buildSharedPrefsName(accountName), value + 1).apply();
     }
 }

@@ -260,4 +260,7 @@
 
     <!-- tint color for device account icons -->
     <color name="device_account_tint_color">#7f7f7f</color>
+
+    <!-- Background color for sync-off alert. -->
+    <color name="alert_background">#e0e0e0</color>
 </resources>

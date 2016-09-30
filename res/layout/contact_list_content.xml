@@ -28,6 +28,37 @@
     android:visibility="gone"
     android:background="?attr/contact_browser_background" >
 
+    <LinearLayout
+        android:id="@+id/alert_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/alert_background"
+        android:paddingStart="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/alert_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/alert_dismiss_icon"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/dismiss_sync_alert"
+            android:background="?android:attr/selectableItemBackground"
+            android:scaleType="center"
+            android:src="@drawable/ic_cancel_black_24dp" />
+    </LinearLayout>
+
     <!-- Shown only when an Account filter is set.
          - paddingTop should be here to show "shade" effect correctly. -->
     <include layout="@layout/account_filter_header" />

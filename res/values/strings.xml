@@ -1819,4 +1819,24 @@
     <!-- Content description of the cancel navigation icon shown in SIM import dialog toolbar -->
     <string name="sim_import_cancel_content_description">Cancel import</string>
 
+    <!-- Alert for letting user know that their device auto-sync setting is turned off,
+         in case they are wondering why they are not seeing any contact. [CHAR LIMIT=150] -->
+    <string name="auto_sync_off">Auto-sync is off. Tap to turn on.</string>
+
+    <!-- Content description for the "X" image icon for dismissing an alert.[CHAR LIMIT=50] -->
+    <string name="dismiss_sync_alert">Dismiss</string>
+
+    <!-- Alert for letting user know that their account level sync setting is turned off,
+         in case they are wondering why they are not seeing any contact. [CHAR LIMIT=150] -->
+    <string name="account_sync_off">Account sync is off. Tap to turn on.</string>
+
+    <!-- Title of dialog to turn auto-sync on [CHAR LIMIT=100] -->
+    <string name="turn_auto_sync_on_dialog_title">Turn auto-sync on?</string>
+
+    <!-- Text of dialog to turn auto-sync on [CHAR LIMIT=500] -->
+    <string name="turn_auto_sync_on_dialog_body">Changes you make to all apps and accounts,
+        not just Contacts, will be synchronized between the web and your devices.</string>
+
+    <!-- Confirm button text for dialog to turn auto-sync on [CHAR LIMIT=30] -->
+    <string name="turn_auto_sync_on_dialog_confirm_btn">Turn on</string>
 </resources>
