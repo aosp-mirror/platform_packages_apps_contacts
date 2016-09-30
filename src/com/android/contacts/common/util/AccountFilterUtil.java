@@ -39,6 +39,7 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contactsbind.ObjectFactory;
+
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -129,9 +130,8 @@ public class AccountFilterUtil {
             DeviceLocalAccountTypeFactory deviceAccountTypeFactory) {
         final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
-        accountTypeManager.sortAccounts(/* defaultAccount */ getDefaultAccount(context));
-        final List<AccountWithDataSet> accounts =
-                accountTypeManager.getAccounts(/* contactWritableOnly */ true);
+        final List<AccountWithDataSet> accounts = accountTypeManager.getSortedAccounts(
+                /* defaultAccount */ getDefaultAccount(context), /* contactWritableOnly */ true);
 
         for (AccountWithDataSet account : accounts) {
             final AccountType accountType =

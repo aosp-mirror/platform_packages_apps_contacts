@@ -63,6 +63,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -125,11 +126,13 @@ public abstract class AccountTypeManager {
         }
 
         @Override
-        public void sortAccounts(AccountWithDataSet defaultAccount) {
+        public List<AccountWithDataSet> getGroupWritableAccounts() {
+            return Collections.emptyList();
         }
 
         @Override
-        public List<AccountWithDataSet> getGroupWritableAccounts() {
+        public List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
+                boolean contactWritableOnly) {
             return Collections.emptyList();
         }
 
@@ -156,10 +159,8 @@ public abstract class AccountTypeManager {
     // TODO: Consider splitting this into getContactWritableAccounts() and getAllAccounts()
     public abstract List<AccountWithDataSet> getAccounts(boolean contactWritableOnly);
 
-    /**
-     * Sort accounts based on default account.
-     */
-    public abstract void sortAccounts(AccountWithDataSet defaultAccount);
+    public abstract List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
+            boolean contactWritableOnly);
 
     /**
      * Returns the list of accounts that are group writable.
@@ -705,22 +706,28 @@ class AccountTypeManagerImpl extends AccountTypeManager
     }
 
     /**
-     * Return list of all known, contact writable {@link AccountWithDataSet}'s.
+     * Return list of all known or contact writable {@link AccountWithDataSet}'s.
+     * {@param contactWritableOnly} whether to restrict to contact writable accounts only
      */
     @Override
     public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
         ensureAccountsLoaded();
-        return contactWritableOnly ? mContactWritableAccounts : mAccounts;
+        return Lists.newArrayList(contactWritableOnly ? mContactWritableAccounts : mAccounts);
     }
 
     /**
-     * Sort accounts based on default account.
+     * Return list of all known or contact writable {@link AccountWithDataSet}'s sorted by
+     * {@code defaultAccount}.
+     * {@param defaultAccount} account to sort by
+     * {@param contactWritableOnly} whether to restrict to contact writable accounts only
      */
     @Override
-    public void sortAccounts(AccountWithDataSet defaultAccount) {
-        Collections.sort(mAccounts, new AccountComparator(defaultAccount));
-        Collections.sort(mContactWritableAccounts, new AccountComparator(defaultAccount));
-        Collections.sort(mGroupWritableAccounts, new AccountComparator(defaultAccount));
+    public List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
+            boolean contactWritableOnly) {
+        final AccountComparator comparator = new AccountComparator(defaultAccount);
+        final List<AccountWithDataSet> accounts = getAccounts(contactWritableOnly);
+        Collections.sort(accounts, comparator);
+        return accounts;
     }
 
     /**
@@ -728,7 +735,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
      */
     public List<AccountWithDataSet> getGroupWritableAccounts() {
         ensureAccountsLoaded();
-        return mGroupWritableAccounts;
+        return Lists.newArrayList(mGroupWritableAccounts);
     }
 
     /**

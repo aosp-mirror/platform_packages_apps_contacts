@@ -66,7 +66,10 @@ public class MockAccountTypeManager extends AccountTypeManager {
     }
 
     @Override
-    public void sortAccounts(AccountWithDataSet account) {}
+    public List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet account,
+            boolean writableOnly) {
+        return Arrays.asList(mAccounts);
+    }
 
     @Override
     public List<AccountWithDataSet> getGroupWritableAccounts() {
