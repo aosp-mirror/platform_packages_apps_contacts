@@ -279,16 +279,19 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"તાજેતરનો કૉલ. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. કૉલ બેક કરવા ક્લિક કરો"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"તમે: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"જ્યારે તમે વ્યક્તિના Hangouts ઓળખકર્તાને ઇમેઇલ ફીલ્ડ અથવા ફોન ફીલ્ડમાં દાખલ કરો છો ત્યારે Hangouts વધુ સારું કામ કરે છે."</string>
-    <string name="compact_editor_more_fields" msgid="5987638193568699600">"વધુ ફીલ્ડ્સ"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ફોટો બદલો"</string>
-    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"સંપાદક ખોલવામાં નિષ્ફળ થયાં."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"આમાં સાચવી રહ્યાં છે"</string>
-    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"જોવાઈ રહ્યું છે"</string>
-    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"વર્તમાનમાં <xliff:g id="ACCOUNT_NAME">%s</xliff:g> પર સાચવી રહ્યાં છે. ભિન્ન એકાઉન્ટ ચૂંટવા માટે બે વાર ટેપ કરો."</string>
-    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
-      <item quantity="one">લિંક કરેલ સંપર્કો (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="other">લિંક કરેલ સંપર્કો (<xliff:g id="COUNT">%d</xliff:g>)</item>
-    </plurals>
+    <!-- no translation found for editor_more_fields (3630987771304393421) -->
+    <skip />
+    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
+    <skip />
+    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
+    <skip />
+    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> લિંક કરેલ સંપર્ક"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"સંપર્કો લિંક કરો"</string>
@@ -309,7 +312,8 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"આ સંપર્ક"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"સંભવિત ડુપ્લિકેટ્સ"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"આ સંપર્કો એક જ વ્યક્તિ હોઈ શકે છે. તમે તેઓને એકલ સંપર્ક તરીકે એકસાથે લિંક કરી શકો છો."</string>
-    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"લિંક કરેલ સંપર્કો"</string>
+    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
+    <skip />
     <string name="from_your_accounts" msgid="1746293107836889912">"તમારા એકાઉન્ટ્સમાંથી"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ફોટો પસંદ કરો"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> માંથી"</string>

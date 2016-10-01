@@ -279,16 +279,19 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"မကြာမီက ခေါ်ဆိုမှု။ <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. ပြန်ခေါ်ရန် ကလစ်ပါ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"သင်: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"အီးမေးအကွက် သို့မဟုတ် ဖုန်းနံပါတ် အကွက်တွင် တစ်ခြားသူ၏ Hangouts  အမှတ်သညာအား သင်ရိုက်ထည့်သည့်အခါ Hangouts ပိုမိုလွယ်ကူကောင်းမွန်စွာ အလုပ်လုပ်သည်။"</string>
-    <string name="compact_editor_more_fields" msgid="5987638193568699600">"နောက်ထပ် အကွက်များ"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ဓာတ်ပုံပြောင်းရန်"</string>
-    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"တည်းဖြတ်သူကို ဖွင့်ခြင်းမအောင်မြင်ပါ။"</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"သိမ်းဆည်းရန်နေရာ"</string>
-    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"ကြည့်ရှုနေသည်"</string>
-    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"လောလောဆယ်မှာ <xliff:g id="ACCOUNT_NAME">%s</xliff:g>သို့ သိမ်းဆည်းနေသည်။ အခြားအကောင့်ကို ရွေးရန် နှစ်ကြိမ် တို့ပါ။"</string>
-    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
-      <item quantity="other">ကွင်းဆက်ချိတ်ထားသည့်အကောင့် (<xliff:g id="COUNT">%d</xliff:g>) ခု</item>
-      <item quantity="one"> ကွင်းဆက်ချိတ်ထားသည့် အဆက်အသွယ်</item>
-    </plurals>
+    <!-- no translation found for editor_more_fields (3630987771304393421) -->
+    <skip />
+    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
+    <skip />
+    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
+    <skip />
+    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"ကွင်းဆက်ချိတ်ထားသည့် အကောင့် <xliff:g id="COUNT">%d</xliff:g> ခု"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"အဆက်အသွယ်များ ချိတ်ဆက်ပါ"</string>
@@ -309,7 +312,8 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ဤအဆက်အသွယ်"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"ဖြစ်နိုင်သည့် မိတ္တုပွားများ"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"ယင်းအဆက်အသွယ်များ လူတစ်ဦးတည်း ဖြစ်နိုင်ပါသည်။ ၎င်းတို့ကို တစ်ခုတည်းသော အဆက်အသွယ် အဖြစ် ချိတ်ဆက်ပေးနိုင်ပါသည်။"</string>
-    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"ကွင်းဆက် အဆက်အသွယ်များ"</string>
+    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
+    <skip />
     <string name="from_your_accounts" msgid="1746293107836889912">"သင့်အကောင့်များမှ"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ဓာတ်ပုံ ရွေးပါ"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> မှ"</string>

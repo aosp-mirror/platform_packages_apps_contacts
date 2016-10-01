@@ -293,18 +293,19 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"שיחה אחרונה. <xliff:g id="CALL_TYPE">%s</xliff:g>‏. <xliff:g id="PHONE_NUMBER">%s</xliff:g>‏. <xliff:g id="DATE">%s</xliff:g>‏. לחץ כדי להתקשר חזרה"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"אתה: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏Hangouts פועל טוב יותר כשאתה מזין את מזהה ה-Hangouts של המשתמש בשדה האימייל או בשדה הטלפון."</string>
-    <string name="compact_editor_more_fields" msgid="5987638193568699600">"עוד שדות"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"החלפת תמונה"</string>
-    <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"פתיחת העורך נכשלה."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"שומר ב-"</string>
-    <string name="compact_editor_account_selector_read_only_title" msgid="1869435992721760221">"מוצג"</string>
-    <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"נשמר כרגע ב-<xliff:g id="ACCOUNT_NAME">%s</xliff:g>. הקש פעמיים כדי לבחור חשבון אחר."</string>
-    <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
-      <item quantity="two">שני אנשי קשר מקושרים (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="many">אנשי קשר מקושרים (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="other">אנשי קשר מקושרים (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one">איש קשר מקושר אחד</item>
-    </plurals>
+    <!-- no translation found for editor_more_fields (3630987771304393421) -->
+    <skip />
+    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
+    <skip />
+    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
+    <skip />
+    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
+    <skip />
+    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> אנשי קשר מקושרים"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g>‏ (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"קשר אנשי קשר"</string>
@@ -331,7 +332,8 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"איש קשר זה"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"כפילויות אפשריות"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"ייתכן שאנשי הקשר האלו הם אותו אדם. תוכל לקשר אותם ביחד כאיש קשר יחיד."</string>
-    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"אנשי קשר שקושרו"</string>
+    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
+    <skip />
     <string name="from_your_accounts" msgid="1746293107836889912">"מהחשבונות שלך"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"בחירת תמונה"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"מאת <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
