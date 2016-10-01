@@ -16,15 +16,25 @@
 
 package com.android.contacts.common.model;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountTypeWithDataSet;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.GoogleAccountType;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
+import static org.mockito.Mockito.when;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -39,6 +49,23 @@ import java.util.Map;
  */
 @SmallTest
 public class AccountTypeManagerTest extends AndroidTestCase {
+
+    private static final Account[] ACCOUNTS = new Account[2];
+    static {
+        ACCOUNTS[0] = new Account("name1", GoogleAccountType.ACCOUNT_TYPE);
+        ACCOUNTS[1] = new Account("name2", GoogleAccountType.ACCOUNT_TYPE);
+    }
+
+    @Mock private AccountManager mAccountManager;
+    @Mock private SharedPreferences mPrefs;
+
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
+        System.setProperty("dexmaker.dexcache", getContext().getCacheDir().getPath());
+        MockitoAnnotations.initMocks(this);
+    }
+
     public void testFindAllInvitableAccountTypes() {
         final Context c = getContext();
 
@@ -194,5 +221,53 @@ public class AccountTypeManagerTest extends AndroidTestCase {
         public boolean areContactsWritable() {
             return false;
         }
+    }
+
+
+    public void testGetDefaultAccount_NoAccounts() {
+        assertNull(getDefaultGoogleAccountName());
+    }
+
+    public void testGetDefaultAccount_NoAccounts_DefaultPreferenceSet() {
+        when(mPrefs.getString(Mockito.anyString(), Mockito.anyString())).thenReturn(
+                getDefaultAccountPreference("name1", GoogleAccountType.ACCOUNT_TYPE));
+        assertNull(getDefaultGoogleAccountName());
+    }
+
+    public void testGetDefaultAccount_NoDefaultAccountPreferenceSet() {
+        when(mAccountManager.getAccountsByType(Mockito.anyString())).thenReturn(ACCOUNTS);
+        assertEquals("name1", getDefaultGoogleAccountName());
+    }
+
+    public void testGetDefaultAccount_DefaultAccountPreferenceSet() {
+        when(mAccountManager.getAccountsByType(Mockito.anyString())).thenReturn(ACCOUNTS);
+        when(mPrefs.getString(Mockito.anyString(), Mockito.anyString())).thenReturn(
+                getDefaultAccountPreference("name2", GoogleAccountType.ACCOUNT_TYPE));
+        assertEquals("name2", getDefaultGoogleAccountName());
+    }
+
+    public void testGetDefaultAccount_DefaultAccountPreferenceSet_NonGoogleAccountType() {
+        when(mAccountManager.getAccountsByType(Mockito.anyString())).thenReturn(ACCOUNTS);
+        when(mPrefs.getString(Mockito.anyString(), Mockito.anyString())).thenReturn(
+                getDefaultAccountPreference("name3", "type3"));
+        assertEquals("name1", getDefaultGoogleAccountName());
+    }
+
+    public void testGetDefaultAccount_DefaultAccountPreferenceSet_UnknownName() {
+        when(mAccountManager.getAccountsByType(Mockito.anyString())).thenReturn(ACCOUNTS);
+        when(mPrefs.getString(Mockito.anyString(), Mockito.anyString())).thenReturn(
+                getDefaultAccountPreference("name4",GoogleAccountType.ACCOUNT_TYPE));
+        assertEquals("name1", getDefaultGoogleAccountName());
+    }
+
+    private final String getDefaultGoogleAccountName() {
+        // We don't need the real preference key value since it's mocked
+        final Account account = AccountTypeManager.getDefaultGoogleAccount(
+                mAccountManager, mPrefs, "contact_editor_default_account_key");
+        return account == null ? null : account.name;
+    }
+
+    private static final String getDefaultAccountPreference(String name, String type) {
+        return new AccountWithDataSet(name, type, /* dataSet */ null).stringify();
     }
 }
