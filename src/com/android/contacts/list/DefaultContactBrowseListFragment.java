@@ -234,7 +234,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (loader.getId() == Directory.DEFAULT) {
-            bindListHeader(data.getCount());
+            bindListHeader(data == null ? 0 : data.getCount());
         }
         super.onLoadFinished(loader, data);
         if (!isSearchMode()) {
