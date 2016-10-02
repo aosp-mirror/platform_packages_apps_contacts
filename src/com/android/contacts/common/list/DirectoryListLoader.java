@@ -199,11 +199,13 @@ public class DirectoryListLoader extends AsyncTaskLoader<Cursor> {
             mDefaultDirectoryList.addRow(new Object[] {
                     Directory.DEFAULT,
                     getContext().getString(R.string.contactsList),
+                    null,
                     null
             });
             mDefaultDirectoryList.addRow(new Object[] {
                     Directory.LOCAL_INVISIBLE,
                     getContext().getString(R.string.local_invisible_directory),
+                    null,
                     null
             });
         }
