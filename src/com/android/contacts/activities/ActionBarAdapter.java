@@ -43,9 +43,11 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
 import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.list.ContactsRequest;
 
 import java.util.ArrayList;
@@ -365,6 +367,8 @@ public class ActionBarAdapter implements OnCloseListener {
                 = (mSearchContainer.getParent() == null) == mSearchMode;
         final boolean isTabHeightChanging = isSearchModeChanging || isSelectionModeChanging;
 
+        // Update toolbar and status bar color.
+        mToolBarFrame.setBackgroundColor(MaterialColorMapUtils.getToolBarColor(mActivity));
         updateStatusBarColor(isSelectionModeChanging && !isSearchModeChanging);
 
         // When skipAnimation=true, it is possible that we will switch from search mode
@@ -494,12 +498,11 @@ public class ActionBarAdapter implements OnCloseListener {
                     mActivity, R.color.contextual_selection_bar_status_bar_color);
             runStatusBarAnimation(/* colorTo */ cabStatusBarColor);
         } else {
-            final int normalStatusBarColor = ContextCompat.getColor(
-                    mActivity, R.color.primary_color_dark);
             if (shouldAnimate) {
-                runStatusBarAnimation(/* colorTo */ normalStatusBarColor);
-            } else {
-                mActivity.getWindow().setStatusBarColor(normalStatusBarColor);
+                runStatusBarAnimation(/* colorTo */
+                        MaterialColorMapUtils.getStatusBarColor(mActivity));
+            } else if (mActivity instanceof ContactsDrawerActivity) {
+                ((ContactsDrawerActivity) mActivity).updateStatusBarBackground();
             }
         }
     }
