@@ -44,7 +44,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
@@ -62,8 +61,6 @@ import com.android.contacts.common.model.account.AccountDisplayInfo;
 import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.account.DeviceLocalAccountType;
-import com.android.contacts.common.model.account.SimAccountType;
 import com.android.contacts.common.model.dataitem.CustomDataItem;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.AccountsListAdapter;
@@ -73,7 +70,6 @@ import com.android.contacts.util.UiClosables;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -120,76 +116,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
          * Invoked after editors have been bound for the contact.
          */
         public void onEditorsBound();
-
-        /**
-         * Invoked when a rawcontact from linked contacts is selected in editor.
-         */
-        void onRawContactSelected(long rawContactId, boolean isReadOnly);
     }
-
-    /**
-     * Used to list the account info for the given raw contacts list.
-     */
-    private static final class RawContactAccountListAdapter extends BaseAdapter {
-        private final LayoutInflater mInflater;
-        private final Context mContext;
-        private final RawContactDeltaList mRawContactDeltas;
-
-        public RawContactAccountListAdapter(Context context, RawContactDeltaList rawContactDeltas) {
-            mContext = context;
-            mRawContactDeltas = new RawContactDeltaList();
-            for (RawContactDelta rawContactDelta : rawContactDeltas) {
-                if (rawContactDelta.isVisible() && rawContactDelta.getRawContactId() > 0) {
-                    mRawContactDeltas.add(rawContactDelta);
-                }
-            }
-            mInflater = LayoutInflater.from(context);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            final View resultView = convertView != null ? convertView
-                    : mInflater.inflate(R.layout.account_selector_list_item, parent, false);
-
-            final RawContactDelta rawContactDelta = mRawContactDeltas.get(position);
-
-            final TextView text1 = (TextView) resultView.findViewById(android.R.id.text1);
-            final AccountType accountType = rawContactDelta.getRawContactAccountType(mContext);
-            text1.setText(accountType.getDisplayLabel(mContext));
-
-            final TextView text2 = (TextView) resultView.findViewById(android.R.id.text2);
-            final String accountName = rawContactDelta.getAccountName();
-            if (TextUtils.isEmpty(accountName) || accountType instanceof DeviceLocalAccountType
-                    || accountType instanceof SimAccountType) {
-                text2.setVisibility(View.GONE);
-            } else {
-                // Truncate email addresses in the middle so we don't lose the domain
-                text2.setText(accountName);
-                text2.setEllipsize(TextUtils.TruncateAt.MIDDLE);
-            }
-
-            final ImageView icon = (ImageView) resultView.findViewById(android.R.id.icon);
-            icon.setImageDrawable(accountType.getDisplayIcon(mContext));
-
-            return resultView;
-        }
-
-        @Override
-        public int getCount() {
-            return mRawContactDeltas.size();
-        }
-
-        @Override
-        public RawContactDelta getItem(int position) {
-            return mRawContactDeltas.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return getItem(position).getRawContactId();
-        }
-    }
-
     /**
      * Sorts kinds roughly the same as quick contacts; we diverge in the following ways:
      * <ol>
@@ -578,7 +505,6 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
     }
 
     private void pickRawContactDelta() {
-        // Build the kind section data list map
         vlog("parse: " + mRawContactDeltas.size() + " rawContactDelta(s)");
         for (int j = 0; j < mRawContactDeltas.size(); j++) {
             final RawContactDelta rawContactDelta = mRawContactDeltas.get(j);
@@ -618,15 +544,17 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
         for (int i = 0; i < dataKindSize; i++) {
             final DataKind dataKind = dataKinds.get(i);
-            if (dataKind == null) {
-                vlog("parse: " + i + " " + dataKind.mimeType + " dropped null data kind");
+            // Skip null and un-editable fields.
+            if (dataKind == null || !dataKind.editable) {
+                vlog("parse: " + i +
+                        (dataKind == null ? " dropped null data kind"
+                        : " dropped uneditable mimetype: " + dataKind.mimeType));
                 continue;
             }
             final String mimeType = dataKind.mimeType;
 
             // Skip psuedo mime types
-            if (DataKind.PSEUDO_MIME_TYPE_DISPLAY_NAME.equals(mimeType)
-                    || DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
+            if (DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
                 vlog("parse: " + i + " " + dataKind.mimeType + " dropped pseudo type");
                 continue;
             }
@@ -777,49 +705,14 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
                 ? EditorUiUtils.getAccountHeaderLabelForMyProfile(getContext(), account)
                 : account.getNameLabel().toString();
 
-        // Either the account header or selector should be shown, not both.
+        addAccountHeader(accountLabel);
+
+        // If we're saving a new contact and there are multiple accounts, add the account selector.
         final List<AccountWithDataSet> accounts =
                 AccountTypeManager.getInstance(getContext()).getAccounts(true);
-
-        if (mHasNewContact && !mIsUserProfile) {
-            if (accounts.size() > 1) {
-                addAccountSelector(mCurrentRawContactDelta, accountLabel);
-            } else {
-                addAccountHeader(accountLabel);
-            }
-        } else {
-            // The raw contact selector should only display linked raw contacts that can be edited
-            // in the full editor (i.e. they are not newly created raw contacts)
-            final RawContactAccountListAdapter adapter =  new RawContactAccountListAdapter(
-                    getContext(), getRawContactDeltaListForSelector(mRawContactDeltas));
-            if (adapter.getCount() > 0 && !mIsEditingReadOnlyRawContactWithNewContact) {
-                addRawContactAccountSelector(accountLabel, adapter);
-            } else {
-                addAccountHeader(accountLabel);
-            }
+        if (mHasNewContact && !mIsUserProfile && accounts.size() > 1) {
+            addAccountSelector(mCurrentRawContactDelta);
         }
-    }
-
-    private RawContactDeltaList getRawContactDeltaListForSelector(
-            RawContactDeltaList rawContactDeltas) {
-        // Sort raw contacts so google accounts come first
-        Collections.sort(rawContactDeltas, new RawContactDeltaComparator(getContext()));
-
-        final RawContactDeltaList result = new RawContactDeltaList();
-        for (int i = 0; i < rawContactDeltas.size(); i++) {
-            final RawContactDelta rawContactDelta = rawContactDeltas.get(i);
-            if (rawContactDelta.isVisible() && rawContactDelta.getRawContactId() > 0) {
-                // Only add raw contacts that can be opened in the editor
-                result.add(rawContactDelta);
-            }
-        }
-        // Don't return a list of size 1 that would just open the current raw contact being edited.
-        if (result.size() == 1 && result.get(0).getRawContactAccountType(
-                getContext()).areContactsWritable()) {
-            result.clear();
-            return result;
-        }
-        return result;
     }
 
     private void addAccountHeader(String accountLabel) {
@@ -846,8 +739,10 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
                         selectorTitle));
     }
 
-    private void addAccountSelector(final RawContactDelta rawContactDelta, CharSequence nameLabel) {
-        final View.OnClickListener onClickListener = new View.OnClickListener() {
+    private void addAccountSelector(final RawContactDelta rawContactDelta) {
+        // Add handlers for choosing another account to save to.
+        mAccountHeaderExpanderIcon.setVisibility(View.VISIBLE);
+        mAccountHeaderContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final ListPopupWindow popup = new ListPopupWindow(getContext(), null);
@@ -877,53 +772,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
                 });
                 popup.show();
             }
-        };
-        setUpAccountSelector(nameLabel.toString(), onClickListener);
-    }
-
-    private void addRawContactAccountSelector(String nameLabel,
-            final RawContactAccountListAdapter adapter) {
-        final View.OnClickListener onClickListener = new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final ListPopupWindow popup = new ListPopupWindow(getContext(), null);
-                popup.setWidth(mAccountHeaderContainer.getWidth());
-                popup.setAnchorView(mAccountHeaderContainer);
-                popup.setAdapter(adapter);
-                popup.setModal(true);
-                popup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
-                popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position,
-                                            long id) {
-                        UiClosables.closeQuietly(popup);
-                        final long rawContactId = adapter.getItemId(position);
-                        // Only switch if it's actually a different raw contact.
-                        if (rawContactId != mCurrentRawContactDelta.getRawContactId()
-                                && mListener != null) {
-                            final RawContactDelta rawContactDelta = adapter.getItem(position);
-                            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
-                                    getContext());
-                            final AccountType accountType = rawContactDelta.getAccountType(
-                                    accountTypes);
-                            final boolean isReadOnly = !accountType.areContactsWritable();
-                            // Reset state.
-                            mIsExpanded = false;
-                            mListener.onRawContactSelected(rawContactId, isReadOnly);
-                        }
-                    }
-                });
-                popup.show();
-            }
-        };
-        setUpAccountSelector(nameLabel, onClickListener);
-    }
-
-    private void setUpAccountSelector(String nameLabel, OnClickListener listener) {
-        addAccountHeader(nameLabel);
-        // Add handlers for choosing another account to save to.
-        mAccountHeaderExpanderIcon.setVisibility(View.VISIBLE);
-        mAccountHeaderContainer.setOnClickListener(listener);
+        });
     }
 
     private void addPhotoView() {
