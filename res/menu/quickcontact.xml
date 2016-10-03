@@ -26,6 +26,14 @@
         android:showAsAction="always" />
 
     <item
+        android:id="@+id/menu_split"
+        android:title="@string/menu_splitAggregate" />
+
+    <item
+        android:id="@+id/menu_join"
+        android:title="@string/menu_joinAggregate" />
+
+    <item
         android:id="@+id/menu_delete"
         android:title="@string/menu_deleteContact" />
 
