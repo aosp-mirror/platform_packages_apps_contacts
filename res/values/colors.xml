@@ -42,6 +42,9 @@
     <color name="primary_color_dark">#0277bd</color>
     <color name="primary_color">#0288d1</color>
 
+    <color name="group_primary_color_dark">#546E7A</color>
+    <color name="group_primary_color">#607D8B</color>
+
     <!-- Color of the selected tab underline -->
     <color name="contacts_accent_color">#FFFFFF</color>
 

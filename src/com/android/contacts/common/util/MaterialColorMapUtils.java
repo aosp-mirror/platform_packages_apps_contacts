@@ -16,13 +16,16 @@
 
 package com.android.contacts.common.util;
 
-import com.android.contacts.common.R;
+import com.android.contacts.ContactsDrawerActivity;
+import com.android.contacts.R;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Trace;
+import android.support.v4.content.ContextCompat;
 
 public class MaterialColorMapUtils {
     private final TypedArray sPrimaryColors;
@@ -176,5 +179,27 @@ public class MaterialColorMapUtils {
         }
 
         return H;
+    }
+
+    /**
+     * Returns status bar color for group view and non-group views.
+     */
+    public static int getStatusBarColor(Activity activity) {
+        final boolean isGroupView = activity instanceof ContactsDrawerActivity
+                && ((ContactsDrawerActivity) activity).isGroupView();
+        return isGroupView
+                ? ContextCompat.getColor(activity, R.color.group_primary_color_dark)
+                : ContextCompat.getColor(activity, R.color.primary_color_dark);
+    }
+
+    /**
+     * Returns toolbar color for group view and non-group views.
+     */
+    public static int getToolBarColor(Activity activity) {
+        final boolean isGroupView = activity instanceof ContactsDrawerActivity
+                && ((ContactsDrawerActivity) activity).isGroupView();
+        return isGroupView
+                ? ContextCompat.getColor(activity, R.color.group_primary_color)
+                : ContextCompat.getColor(activity, R.color.primary_color);
     }
 }

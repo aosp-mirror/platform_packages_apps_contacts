@@ -54,6 +54,7 @@ import com.android.contacts.common.preference.ContactsPreferenceActivity;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.SelectAccountDialogFragment;
@@ -134,6 +135,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             // another fragment in navigation drawer, the current search/selection mode will be
             // overlaid by the action bar of the newly-created fragment.
             stopSearchAndSelection();
+            updateStatusBarBackground();
         }
 
         private void stopSearchAndSelection() {
@@ -170,7 +172,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             super.onDrawerStateChanged(newState);
             // Set transparent status bar when drawer starts to move.
             if (newState != DrawerLayout.STATE_IDLE) {
-                makeStatusBarTransparent();
+                updateStatusBarBackground();
             }
             if (mRunnable != null && newState == DrawerLayout.STATE_IDLE) {
                 mRunnable.run();
@@ -285,17 +287,23 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     protected void onResume() {
         super.onResume();
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-            makeStatusBarTransparent();
+            updateStatusBarBackground();
         }
     }
 
-    private void makeStatusBarTransparent() {
-        // Avoid making status bar transparent when action bar's selection mode is on.
-        if (getWindow().getStatusBarColor() !=
-                ContextCompat.getColor(this, R.color.contextual_selection_bar_status_bar_color)
-                        && CompatUtils.isLollipopCompatible()) {
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
+    public void updateStatusBarBackground() {
+        updateStatusBarBackground(/* color */ -1);
+    }
+
+    public void updateStatusBarBackground(int color) {
+        if (!CompatUtils.isLollipopCompatible()) return;
+        if (color == -1) {
+            mDrawer.setStatusBarBackgroundColor(MaterialColorMapUtils.getStatusBarColor(this));
+        } else {
+            mDrawer.setStatusBarBackgroundColor(color);
         }
+        mDrawer.invalidate();
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
 
     // Set up fragment manager to load groups and filters.
@@ -417,7 +425,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         return null;
     }
 
-    protected boolean isGroupView() {
+    public boolean isGroupView() {
         return mCurrentView == ContactsView.GROUP_VIEW;
     }
 

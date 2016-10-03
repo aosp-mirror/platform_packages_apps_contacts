@@ -27,6 +27,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SyncStatusObserver;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +36,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.ProviderStatus;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -692,11 +695,13 @@ public class PeopleActivity extends ContactsDrawerActivity {
     }
 
     private boolean isAllFragmentInSelectionMode() {
-        return mAllFragment.getActionBarAdapter().isSelectionMode();
+        return mAllFragment.getActionBarAdapter() != null
+                && mAllFragment.getActionBarAdapter().isSelectionMode();
     }
 
     private boolean isAllFragmentInSearchMode() {
-        return mAllFragment.getActionBarAdapter().isSearchMode();
+        return mAllFragment.getActionBarAdapter() != null
+                && mAllFragment.getActionBarAdapter().isSearchMode();
     }
 
     @Override
@@ -789,6 +794,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
                 transaction.replace(
                         R.id.contacts_list_container, duplicatesFragment, TAG_DUPLICATES);
                 transaction.add(duplicatesUtilFragment, TAG_DUPLICATES_UTIL);
+                resetToolBarStatusBarColor();
             }
         }
         transaction.addToBackStack(TAG_SECOND_LEVEL);
@@ -814,6 +820,14 @@ public class PeopleActivity extends ContactsDrawerActivity {
         getFragmentManager().popBackStackImmediate(
                 TAG_SECOND_LEVEL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         mMembersFragment = null;
+        resetToolBarStatusBarColor();
+    }
+
+    // Reset toolbar and status bar color to Contacts theme color.
+    private void resetToolBarStatusBarColor() {
+        findViewById(R.id.toolbar_frame).setBackgroundColor(
+                ContextCompat.getColor(this, R.color.primary_color));
+        updateStatusBarBackground(ContextCompat.getColor(this, R.color.primary_color_dark));
     }
 
     @Override
