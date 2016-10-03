@@ -45,6 +45,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.contacts.GroupListLoader;
+import com.android.contacts.group.GroupUtil;
 import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.tests.R;
 import com.android.contacts.tests.quickcontact.QuickContactTestsActivity;
@@ -585,7 +586,7 @@ public class AllIntentsActivity extends ListActivity
     private long findArbitraryGroup() {
         final Cursor cursor = getContentResolver().query(Groups.CONTENT_URI,
                 new String[] { Groups._ID },
-                GroupListLoader.DEFAULT_SELECTION,
+                GroupUtil.DEFAULT_SELECTION,
                 null,
                 "RANDOM() LIMIT 1");
         try {
