@@ -279,19 +279,16 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"simu ya hivi karibuni. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. bofya ili upige simu"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Wewe: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangout hufanya kazi vizuri zaidi unapoweka nambari ya mtu ya utambulisho wa Hangout katika sehemu ya anwani ya barua pepe au sehemu ya nambari ya simu."</string>
-    <!-- no translation found for editor_more_fields (3630987771304393421) -->
-    <skip />
-    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
-    <skip />
-    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
-    <skip />
-    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
+    <string name="editor_more_fields" msgid="3630987771304393421">"Sehemu zingine"</string>
+    <string name="editor_change_photo_content_description" msgid="754100561085306263">"Badilisha picha"</string>
+    <string name="editor_failed_to_load" msgid="1623639078580475818">"Imeshindwa kufungua kihariri."</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Inahifadhi kwenye"</string>
+    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Unaiangalia"</string>
+    <string name="editor_account_selector_description" msgid="3324358600570627740">"Kwa sasa inahifadhi katika <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Gonga mara mbili ili uchague akaunti tofauti."</string>
+    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
+      <item quantity="other">Anwani (<xliff:g id="COUNT">%d</xliff:g>) zilizounganishwa</item>
+      <item quantity="one">Anwani iliyounganishwa</item>
+    </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"Anwani <xliff:g id="COUNT">%d</xliff:g> zilizounganishwa"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g>(<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"UNGANISHA ANWANI"</string>
@@ -312,8 +309,7 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Anwani hii"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Anwani zinazoweza kurudufishwa"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Anwani hizi zinaweza kuwa za mtu mmoja. Unaweza kuziunganisha zote kuwa anwani moja."</string>
-    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
-    <skip />
+    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"Anwani zilizounganishwa"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Kutoka akaunti zako"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Chagua picha"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Kutoka kwa <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>

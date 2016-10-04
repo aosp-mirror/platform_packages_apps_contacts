@@ -279,19 +279,16 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"हाल ही का कॉल. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. पुनः कॉल करने के लिए क्लिक करें"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"आप: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts तब बेहतर कार्य करता है जब आप व्‍यक्‍ति के Hangouts पहचानकर्ता को ईमेल फ़ील्‍ड या फ़ोन फ़ील्‍ड में डालते हैं."</string>
-    <!-- no translation found for editor_more_fields (3630987771304393421) -->
-    <skip />
-    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
-    <skip />
-    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
-    <skip />
-    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
+    <string name="editor_more_fields" msgid="3630987771304393421">"अधिक फ़ील्‍ड"</string>
+    <string name="editor_change_photo_content_description" msgid="754100561085306263">"फ़ोटो बदलें"</string>
+    <string name="editor_failed_to_load" msgid="1623639078580475818">"संपादक को खोलने में विफल रहा."</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"इसमें सहेजा जा रहा है"</string>
+    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"देखना"</string>
+    <string name="editor_account_selector_description" msgid="3324358600570627740">"वर्तमान में <xliff:g id="ACCOUNT_NAME">%s</xliff:g> में सहेजा जा रहा है. भिन्न खाता चुनने के लिए डबल-टैप करें."</string>
+    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
+      <item quantity="one">लिंक किए गए संपर्क (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">लिंक किए गए संपर्क (<xliff:g id="COUNT">%d</xliff:g>)</item>
+    </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> लिंक किए गए संपर्क"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"संपर्क लिंक करें"</string>
@@ -312,8 +309,7 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"यह संपर्क"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"संभावित प्रतिलिपि"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"हो सकता है कि ये संपर्क एक ही व्‍यक्‍ति हो. आप उन्हें एकल संपर्क के रूप में एक साथ लिंक कर सकते हैं."</string>
-    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
-    <skip />
+    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"लिंक किए गए संपर्क"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"आपके खातों से"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"फ़ोटो चुनें"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> की ओर से"</string>
