@@ -689,6 +689,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private void setFilterAndUpdateTitle(ContactListFilter filter, boolean restoreSelectedUri) {
         setContactListFilter(filter);
         updateListFilter(filter, restoreSelectedUri);
+        mActivity.setTitle(AccountFilterUtil.getActionBarTitleForFilter(mActivity, filter));
 
         // Determine whether the account has pullToRefresh feature
         if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
