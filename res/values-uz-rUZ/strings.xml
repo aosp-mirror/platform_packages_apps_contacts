@@ -184,7 +184,7 @@
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontakt ro‘yxati yangilanmoqda."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Qidirilmoqda…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Tanlanganni ko‘rsatish"</string>
-    <string name="menu_display_all" msgid="8887488642609786198">"Barchasini ko‘rsatish"</string>
+    <string name="menu_display_all" msgid="8887488642609786198">"Hammasini ko‘rsatish"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Hammasini belgilash"</string>
     <string name="menu_select_none" msgid="7093222469852132345">"Barcha tanlashlarni bekor qilish"</string>
     <string name="add_new_entry_for_section" msgid="5223080690667565044">"Yangisini qo‘shish"</string>
