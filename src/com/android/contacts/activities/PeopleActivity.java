@@ -843,16 +843,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
             mShouldSwitchToAllContacts = true;
         }
 
-        // Set title and check menu in navigation drawer.
-        final String actionBarTitle;
-        if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
-            actionBarTitle = getString(R.string.account_phone);
-        } else if (!TextUtils.isEmpty(filter.accountName)) {
-            actionBarTitle = getActionBarTitleForAccount(filter);
-        } else {
-            actionBarTitle = getString(R.string.contactsList);
-        }
-        setTitle(actionBarTitle);
+        // Check menu in navigation drawer.
         updateFilterMenu(filter);
 
         if (CompatUtils.isNCompatible()) {
@@ -860,16 +851,5 @@ public class PeopleActivity extends ContactsDrawerActivity {
                     .sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
         }
         invalidateOptionsMenu();
-    }
-
-    private String getActionBarTitleForAccount(ContactListFilter filter) {
-        final AccountDisplayInfoFactory factory = AccountDisplayInfoFactory
-                .forAllAccounts(this);
-        final AccountDisplayInfo account = factory.getAccountDisplayInfoFor(filter);
-        if (account.hasGoogleAccountType()) {
-            return getString(R.string.title_from_google);
-        }
-        return account.withFormattedName(this, R.string.title_from_other_accounts)
-                .getNameLabel().toString();
     }
 }

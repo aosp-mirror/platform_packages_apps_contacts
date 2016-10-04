@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
@@ -208,5 +211,28 @@ public class AccountFilterUtil {
 
     public static boolean isDeviceContactsFilter(ContactListFilter filter) {
         return filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS;
+    }
+
+    /**
+     * Returns action bar title for filter and returns default title "Contacts" if filter is empty.
+     */
+    public static String getActionBarTitleForFilter(Context context, ContactListFilter filter) {
+        if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
+            return context.getString(R.string.account_phone);
+        } else if (!TextUtils.isEmpty(filter.accountName)) {
+            return getActionBarTitleForAccount(context, filter);
+        }
+        return context.getString(R.string.contactsList);
+    }
+
+    private static String getActionBarTitleForAccount(Context context, ContactListFilter filter) {
+        final AccountDisplayInfoFactory factory =
+                AccountDisplayInfoFactory.forAllAccounts(context);
+        final AccountDisplayInfo account = factory.getAccountDisplayInfoFor(filter);
+        if (account.hasGoogleAccountType()) {
+            return context.getString(R.string.title_from_google);
+        }
+        return account.withFormattedName(context, R.string.title_from_other_accounts)
+                .getNameLabel().toString();
     }
 }
