@@ -194,6 +194,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 Log.e(TAG, "Failed to load group metadata for " + mGroupUri);
                 Toast.makeText(getContext(), R.string.groupLoadErrorToast, Toast.LENGTH_SHORT)
                         .show();
+                // TODO: we probably shouldn't finish mActivity.
                 mActivity.setResult(AppCompatActivity.RESULT_CANCELED);
                 mActivity.finish();
                 return;
@@ -427,7 +428,8 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         super.onActivityCreated(savedInstanceState);
         mActivity = (ContactsDrawerActivity) getActivity();
         mActionBarAdapter = new ActionBarAdapter(mActivity, mActionBarListener,
-                mActivity.getSupportActionBar(), mActivity.getToolbar(), R.string.enter_contact_name);
+                mActivity.getSupportActionBar(), mActivity.getToolbar(),
+                        R.string.enter_contact_name);
         mActionBarAdapter.setShowHomeIcon(true);
         final ContactsRequest contactsRequest = new ContactsRequest();
         contactsRequest.setActionCode(ContactsRequest.ACTION_GROUP);
@@ -652,7 +654,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         super.onDestroy();
     }
 
-    public void updateDisplayedGroup(Uri newGroupUri, String action) {
+    public void updateExistingGroupFragment(Uri newGroupUri, String action) {
         if (!GroupUtil.ACTION_SWITCH_GROUP.equals(action)) {
             toast(getToastMessageForSaveAction(action));
         }

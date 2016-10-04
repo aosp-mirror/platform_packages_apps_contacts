@@ -758,11 +758,10 @@ public class PeopleActivity extends ContactsDrawerActivity {
     }
 
     private void switchToOrUpdateGroupView(String action) {
-        if (mMembersFragment != null) {
-            mCurrentView = ContactsView.GROUP_VIEW;
-            mMembersFragment.updateDisplayedGroup(mGroupUri, action);
-        } else {
-            switchView(ContactsView.GROUP_VIEW);
+        final boolean shouldUpdate = mMembersFragment != null;
+        switchView(ContactsView.GROUP_VIEW);
+        if (shouldUpdate) {
+            mMembersFragment.updateExistingGroupFragment(mGroupUri, action);
         }
     }
 
@@ -773,14 +772,13 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
     private void switchView(ContactsView contactsView) {
         mCurrentView = contactsView;
-        setUpNewFragment();
-    }
 
-    private void setUpNewFragment() {
         final FragmentManager fragmentManager =  getFragmentManager();
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (isGroupView()) {
-            mMembersFragment = GroupMembersFragment.newInstance(mGroupUri);
+            if (mMembersFragment == null) {
+                mMembersFragment = GroupMembersFragment.newInstance(mGroupUri);
+            }
             transaction.replace(
                     R.id.contacts_list_container, mMembersFragment, TAG_GROUP_VIEW);
         } else if (isDuplicatesView()) {
