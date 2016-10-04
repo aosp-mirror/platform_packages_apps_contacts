@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import com.android.contacts.DynamicShortcuts;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.model.RawContactDeltaList;
@@ -174,6 +175,10 @@ public class CompactContactEditorActivity extends ContactEditorBaseActivity impl
         final String action = getIntent().getAction();
         final Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
         mFragment.load(action, uri, getIntent().getExtras());
+
+        if (Intent.ACTION_INSERT.equals(action)) {
+            DynamicShortcuts.reportShortcutUsed(this, DynamicShortcuts.SHORTCUT_ADD_CONTACT);
+        }
     }
 
     protected void onSaveInstanceState(Bundle outState) {

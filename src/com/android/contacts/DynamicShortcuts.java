@@ -45,6 +45,7 @@ import android.util.Log;
 
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.Experiments;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.util.BitmapUtil;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contactsbind.experiments.Flags;
@@ -67,6 +68,11 @@ import java.util.List;
 @TargetApi(Build.VERSION_CODES.N_MR1)
 public class DynamicShortcuts {
     private static final String TAG = "DynamicShortcuts";
+
+    // Must be the same as shortcutId in res/xml/shortcuts.xml
+    // Note: This doesn't fit very well because this is a "static" shortcut but it's still the most
+    // sensible place to put it right now.
+    public static final String SHORTCUT_ADD_CONTACT = "shortcut-add-contact";
 
     // Note the Nexus launcher automatically truncates shortcut labels if they exceed these limits
     // however, we implement our own truncation in case the shortcut is shown on a launcher that
@@ -372,7 +378,10 @@ public class DynamicShortcuts {
                 .addTriggerContentUri(new JobInfo.TriggerContentUri(ContactsContract.AUTHORITY_URI,
                         JobInfo.TriggerContentUri.FLAG_NOTIFY_FOR_DESCENDANTS))
                 .setTriggerContentUpdateDelay(mContentChangeMinUpdateDelay)
-                .setTriggerContentMaxDelay(mContentChangeMaxUpdateDelay).build();
+                .setTriggerContentMaxDelay(mContentChangeMaxUpdateDelay)
+                // Minimize impact on UX by waiting for idle before updating.
+                .setRequiresDeviceIdle(true)
+                .build();
         mJobScheduler.schedule(job);
     }
 
@@ -390,7 +399,7 @@ public class DynamicShortcuts {
                     flags.getInteger(Experiments.DYNAMIC_MAX_CONTENT_CHANGE_UPDATE_DELAY_MILLIS));
         }
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) return;
+        if (!CompatUtils.isLauncherShortcutCompatible()) return;
 
         final DynamicShortcuts shortcuts = new DynamicShortcuts(context);
         if (!Flags.getInstance(context).getBoolean(Experiments.DYNAMIC_SHORTCUTS)) {
@@ -424,6 +433,13 @@ public class DynamicShortcuts {
         final JobScheduler scheduler = (JobScheduler) context
                 .getSystemService(Context.JOB_SCHEDULER_SERVICE);
         return scheduler.getPendingJob(ContactsJobService.DYNAMIC_SHORTCUTS_JOB_ID) != null;
+    }
+
+    public static void reportShortcutUsed(Context context, String lookupKey) {
+        if (!CompatUtils.isLauncherShortcutCompatible()) return;
+        final ShortcutManager shortcutManager = (ShortcutManager) context
+                .getSystemService(Context.SHORTCUT_SERVICE);
+        shortcutManager.reportShortcutUsed(lookupKey);
     }
 
     private static class ShortcutUpdateTask extends AsyncTask<Void, Void, Void> {
