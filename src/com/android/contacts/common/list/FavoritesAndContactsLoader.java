@@ -125,8 +125,15 @@ public class FavoritesAndContactsLoader extends CursorLoader implements Autocomp
     }
 
     private Cursor loadFavoritesContacts() {
+        final StringBuilder selection = new StringBuilder();
+        selection.append(Contacts.STARRED + "=?");
+        final ContactListFilter filter =
+                ContactListFilterController.getInstance(getContext()).getFilter();
+        if (filter != null && filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
+            selection.append(" AND ").append(Contacts.IN_VISIBLE_GROUP + "=1");
+        }
         return getContext().getContentResolver().query(
-                Contacts.CONTENT_URI, mProjection, Contacts.STARRED + "=?", new String[]{"1"},
+                Contacts.CONTENT_URI, mProjection, selection.toString(), new String[]{"1"},
                 getSortOrder());
     }
 
