@@ -21,7 +21,9 @@ LOCAL_MIN_SDK_VERSION := 21
 
 LOCAL_STATIC_JAVA_LIBRARIES += \
     hamcrest-library \
-    mockito-target-minus-junit4
+    mockito-target-minus-junit4 \
+    ub-uiautomator
+
 
 LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
