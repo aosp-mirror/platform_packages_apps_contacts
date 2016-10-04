@@ -30,6 +30,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
+import com.android.contacts.DynamicShortcuts;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.model.RawContactDeltaList;
@@ -387,6 +388,10 @@ public class ContactEditorActivity extends ContactsActivity implements
         // Load editor data (even if it's hidden)
         final Uri uri = Intent.ACTION_EDIT.equals(action) ? getIntent().getData() : null;
         mFragment.load(action, uri, getIntent().getExtras());
+
+        if (Intent.ACTION_INSERT.equals(action)) {
+            DynamicShortcuts.reportShortcutUsed(this, DynamicShortcuts.SHORTCUT_ADD_CONTACT);
+        }
     }
 
     @Override

@@ -104,6 +104,7 @@ import android.widget.Toolbar;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
+import com.android.contacts.DynamicShortcuts;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorActivity;
@@ -124,10 +125,10 @@ import com.android.contacts.common.lettertiles.LetterTileDrawable;
 import com.android.contacts.common.list.ShortcutIntentBuilder;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 import com.android.contacts.common.logging.Logger;
-import com.android.contacts.common.logging.ScreenEvent.ScreenType;
-import com.android.contacts.common.logging.QuickContactEvent.ContactType;
-import com.android.contacts.common.logging.QuickContactEvent.CardType;
 import com.android.contacts.common.logging.QuickContactEvent.ActionType;
+import com.android.contacts.common.logging.QuickContactEvent.CardType;
+import com.android.contacts.common.logging.QuickContactEvent.ContactType;
+import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
@@ -183,7 +184,6 @@ import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 import com.android.contacts.widget.QuickContactImageView;
 import com.android.contactsbind.HelpUtils;
-
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -261,6 +261,7 @@ public class QuickContactActivity extends ContactsActivity implements
 
     // Set true in {@link #onCreate} after orientation change for later use in processIntent().
     private boolean mIsRecreatedInstance;
+    private boolean mShortcutUsageReported = false;
 
     private boolean mShouldLog;
 
@@ -1245,6 +1246,7 @@ public class QuickContactActivity extends ContactsActivity implements
         mExtraPrioritizedMimeType =
                 getIntent().getStringExtra(QuickContact.EXTRA_PRIORITIZED_MIMETYPE);
         final Uri oldLookupUri = mLookupUri;
+
 
         if (lookupUri == null) {
             finish();
@@ -2592,6 +2594,11 @@ public class QuickContactActivity extends ContactsActivity implements
                     return;
                 }
 
+                if (!mIsRecreatedInstance && !mShortcutUsageReported) {
+                    mShortcutUsageReported = true;
+                    DynamicShortcuts.reportShortcutUsed(QuickContactActivity.this,
+                            data.getLookupKey());
+                }
                 bindContactData(data);
 
             } finally {
