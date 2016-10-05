@@ -20,10 +20,13 @@ import android.app.job.JobInfo;
 import android.app.job.JobParameters;
 import android.app.job.JobScheduler;
 import android.app.job.JobService;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.database.Cursor;
@@ -41,13 +44,16 @@ import android.os.PersistableBundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.support.annotation.VisibleForTesting;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.Experiments;
+import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.util.BitmapUtil;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contactsbind.experiments.Flags;
 
 import java.io.IOException;
@@ -131,6 +137,10 @@ public class DynamicShortcuts {
 
     @VisibleForTesting
     void refresh() {
+        // Guard here in addition to initialize because this could be run by the JobScheduler
+        // after permissions are revoked (maybe)
+        if (!hasRequiredPermissions()) return;
+
         final List<ShortcutInfo> shortcuts = getStrequentShortcuts();
         mShortcutManager.setDynamicShortcuts(shortcuts);
         if (Log.isLoggable(TAG, Log.DEBUG)) {
@@ -351,6 +361,11 @@ public class DynamicShortcuts {
 
     @VisibleForTesting
     void handleFlagDisabled() {
+        removeAllShortcuts();
+        mJobScheduler.cancel(ContactsJobService.DYNAMIC_SHORTCUTS_JOB_ID);
+    }
+
+    private void removeAllShortcuts() {
         mShortcutManager.removeAllDynamicShortcuts();
 
         final List<ShortcutInfo> pinned = mShortcutManager.getPinnedShortcuts();
@@ -363,8 +378,6 @@ public class DynamicShortcuts {
         if (Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, "DynamicShortcuts have been removed.");
         }
-
-        mJobScheduler.cancel(ContactsJobService.DYNAMIC_SHORTCUTS_JOB_ID);
     }
 
     @VisibleForTesting
@@ -385,6 +398,10 @@ public class DynamicShortcuts {
         mJobScheduler.schedule(job);
     }
 
+    void updateInBackground() {
+        new ShortcutUpdateTask(this).execute();
+    }
+
     public synchronized static void initialize(Context context) {
         if (Log.isLoggable(TAG, Log.DEBUG)) {
             final Flags flags = Flags.getInstance(context);
@@ -402,10 +419,16 @@ public class DynamicShortcuts {
         if (!CompatUtils.isLauncherShortcutCompatible()) return;
 
         final DynamicShortcuts shortcuts = new DynamicShortcuts(context);
+
         if (!Flags.getInstance(context).getBoolean(Experiments.DYNAMIC_SHORTCUTS)) {
             // Clear dynamic shortcuts if the flag is not enabled. This prevents shortcuts from
             // staying around if it is enabled then later disabled (due to bugs for instance).
             shortcuts.handleFlagDisabled();
+        } else if (!shortcuts.hasRequiredPermissions()) {
+            final IntentFilter filter = new IntentFilter();
+            filter.addAction(RequestPermissionsActivity.BROADCAST_PERMISSIONS_GRANTED);
+            LocalBroadcastManager.getInstance(shortcuts.mContext).registerReceiver(
+                    new PermissionsGrantedReceiver(), filter);
         } else if (!isJobScheduled(context)) {
             // Update the shortcuts. If the job is already scheduled then either the app is being
             // launched to run the job in which case the shortcuts will get updated when it runs or
@@ -415,6 +438,23 @@ public class DynamicShortcuts {
             // Note: the task schedules the job after completing.
             new ShortcutUpdateTask(shortcuts).execute();
         }
+    }
+
+    @VisibleForTesting
+    public static void reset(Context context) {
+        final JobScheduler jobScheduler =
+                (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.cancel(ContactsJobService.DYNAMIC_SHORTCUTS_JOB_ID);
+
+        if (!CompatUtils.isLauncherShortcutCompatible()) {
+            return;
+        }
+        new DynamicShortcuts(context).removeAllShortcuts();
+    }
+
+    @VisibleForTesting
+    boolean hasRequiredPermissions() {
+        return PermissionsUtil.hasContactsPermissions(mContext);
     }
 
     public static void updateFromJob(final JobService service, final JobParameters jobParams) {
@@ -463,6 +503,15 @@ public class DynamicShortcuts {
             // The shortcuts may have changed so update the job so that we are observing the
             // correct Uris
             mDynamicShortcuts.scheduleUpdateJob();
+        }
+    }
+
+    private static class PermissionsGrantedReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Clear the receiver.
+            LocalBroadcastManager.getInstance(context).unregisterReceiver(this);
+            DynamicShortcuts.initialize(context);
         }
     }
 }
