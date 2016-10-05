@@ -24,8 +24,9 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.ContactsContract.Contacts;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -78,7 +79,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     private static final String ARG_GROUP_URI = "groupUri";
 
     private static final int LOADER_GROUP_METADATA = 0;
-
+    private static final int MSG_FAIL_TO_LOAD = 1;
     private static final int RESULT_GROUP_ADD_MEMBER = 100;
 
     /** Filters out duplicate contacts. */
@@ -194,9 +195,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 Log.e(TAG, "Failed to load group metadata for " + mGroupUri);
                 Toast.makeText(getContext(), R.string.groupLoadErrorToast, Toast.LENGTH_SHORT)
                         .show();
-                // TODO: we probably shouldn't finish mActivity.
-                mActivity.setResult(AppCompatActivity.RESULT_CANCELED);
-                mActivity.finish();
+                mHandler.sendEmptyMessage(MSG_FAIL_TO_LOAD);
                 return;
             }
             mGroupMetaData = new GroupMetaData(getActivity(), cursor);
@@ -218,6 +217,15 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     private GroupMetaData mGroupMetaData;
 
     private Set<String> mGroupMemberContactIds = new HashSet();
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if(msg.what == MSG_FAIL_TO_LOAD) {
+                mActivity.onBackPressed();
+            }
+        }
+    };
 
     public static GroupMembersFragment newInstance(Uri groupUri) {
         final Bundle args = new Bundle();
@@ -644,6 +652,13 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
 
     public boolean isCurrentGroup(long groupId) {
         return mGroupMetaData != null && mGroupMetaData.groupId == groupId;
+    }
+
+    /**
+     * Return true if the fragment is not yet added, being removed, or detached.
+     */
+    public boolean isInactive() {
+        return !isAdded() || isRemoving() || isDetached();
     }
 
     @Override

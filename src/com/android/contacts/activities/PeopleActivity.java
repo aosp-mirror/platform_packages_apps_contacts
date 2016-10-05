@@ -387,10 +387,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
         setUpAllFragment(fragmentManager);
 
-        if (isGroupView()) {
-            mMembersFragment = (GroupMembersFragment)
-                    fragmentManager.findFragmentByTag(TAG_GROUP_VIEW);
-        }
+        mMembersFragment = (GroupMembersFragment) fragmentManager.findFragmentByTag(TAG_GROUP_VIEW);
 
         // Configure floating action button
         mFloatingActionButtonContainer = findViewById(R.id.floating_action_button_container);
@@ -763,10 +760,11 @@ public class PeopleActivity extends ContactsDrawerActivity {
     }
 
     private void switchToOrUpdateGroupView(String action) {
-        final boolean shouldUpdate = mMembersFragment != null;
-        switchView(ContactsView.GROUP_VIEW);
-        if (shouldUpdate) {
+        // If group fragment is active and visible, we simply update it.
+        if (mMembersFragment != null && !mMembersFragment.isInactive()) {
             mMembersFragment.updateExistingGroupFragment(mGroupUri, action);
+        } else {
+            switchView(ContactsView.GROUP_VIEW);
         }
     }
 
@@ -787,15 +785,21 @@ public class PeopleActivity extends ContactsDrawerActivity {
             transaction.replace(
                     R.id.contacts_list_container, mMembersFragment, TAG_GROUP_VIEW);
         } else if (isDuplicatesView()) {
-            final Fragment duplicatesFragment = ObjectFactory.getDuplicatesFragment();
-            final Fragment duplicatesUtilFragment = ObjectFactory.getDuplicatesUtilFragment();
-            if (duplicatesFragment != null && duplicatesUtilFragment != null) {
+            Fragment duplicatesFragment = fragmentManager.findFragmentByTag(TAG_DUPLICATES);
+            Fragment duplicatesUtilFragment =
+                    fragmentManager.findFragmentByTag(TAG_DUPLICATES_UTIL);
+            if (duplicatesFragment == null || duplicatesUtilFragment == null) {
+                duplicatesFragment = ObjectFactory.getDuplicatesFragment();
+                duplicatesUtilFragment = ObjectFactory.getDuplicatesUtilFragment();
                 duplicatesUtilFragment.setTargetFragment(duplicatesFragment, /* requestCode */ 0);
-                transaction.replace(
-                        R.id.contacts_list_container, duplicatesFragment, TAG_DUPLICATES);
+            }
+            transaction.replace(
+                    R.id.contacts_list_container, duplicatesFragment, TAG_DUPLICATES);
+            if (!duplicatesUtilFragment.isAdded()) {
                 transaction.add(duplicatesUtilFragment, TAG_DUPLICATES_UTIL);
                 resetToolBarStatusBarColor();
             }
+            resetToolBarStatusBarColor();
         }
         transaction.addToBackStack(TAG_SECOND_LEVEL);
         transaction.commit();
@@ -812,6 +816,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
         mShouldSwitchToAllContacts = false;
         mCurrentView = ContactsView.ALL_CONTACTS;
         showFabWithAnimation(/* showFab */ true);
+        mAllFragment.scrollToTop();
 
         super.switchToAllContacts();
     }
