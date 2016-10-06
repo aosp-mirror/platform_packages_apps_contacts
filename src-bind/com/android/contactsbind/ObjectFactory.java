@@ -42,11 +42,7 @@ public class ObjectFactory {
         return new DeviceLocalAccountTypeFactory.Default(context);
     }
 
-    public static Fragment getDuplicatesFragment() {
-        return null;
-    }
-
-    public static Fragment getDuplicatesUtilFragment() {
+    public static Fragment getAssistantFragment() {
         return null;
     }
 

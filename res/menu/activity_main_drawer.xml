@@ -24,9 +24,9 @@
             android:icon="@drawable/ic_menu_filter"
             android:title="@string/contactsList" />
         <item
-            android:id="@+id/nav_find_duplicates"
-            android:icon="@drawable/ic_menu_duplicates"
-            android:title="@string/menu_duplicates"/>
+            android:id="@+id/nav_assistant"
+            android:icon="@drawable/ic_assistant"
+            android:title="@string/menu_assistant"/>
     </group>
 
     <group android:id="@+id/groups">

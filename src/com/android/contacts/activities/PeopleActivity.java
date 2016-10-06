@@ -20,15 +20,13 @@ import android.accounts.Account;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.ContentResolver;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SyncStatusObserver;
 import android.content.IntentFilter;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.SyncStatusObserver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,7 +38,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
@@ -65,8 +62,6 @@ import com.android.contacts.common.list.ProviderStatusWatcher.ProviderStatusList
 import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountDisplayInfo;
-import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.Constants;
@@ -96,9 +91,11 @@ public class PeopleActivity extends ContactsDrawerActivity {
     private static final String TAG_ALL = "contacts-all";
     private static final String TAG_UNAVAILABLE = "contacts-unavailable";
     private static final String TAG_GROUP_VIEW = "contacts-groups";
-    private static final String TAG_DUPLICATES = "contacts-duplicates";
-    private static final String TAG_SECOND_LEVEL = "second-level";
-    // Tag for DuplicatesUtilFragment.java
+    public static final String TAG_ASSISTANT = "contacts-assistant";
+    public static final String TAG_SECOND_LEVEL = "second-level";
+    public static final String TAG_THIRD_LEVEL = "third-level";
+
+    public static final String TAG_DUPLICATES = "DuplicatesFragment";
     public static final String TAG_DUPLICATES_UTIL = "DuplicatesUtilFragment";
 
     private static final String KEY_GROUP_URI = "groupUri";
@@ -631,8 +628,8 @@ public class PeopleActivity extends ContactsDrawerActivity {
             return;
         }
 
-        if (isDuplicatesView()) {
-            switchToAllContacts();
+        if (isAssistantView()) {
+            onBackPressedAssistantView();
             return;
         }
 
@@ -659,6 +656,14 @@ public class PeopleActivity extends ContactsDrawerActivity {
             mMembersFragment.getActionBarAdapter().setSearchMode(false);
         } else {
             switchToAllContacts();
+        }
+    }
+
+    private void onBackPressedAssistantView() {
+        if (!popThirdLevel()) {
+            switchToAllContacts();
+        } else {
+            setDrawerLockMode(/* enabled */ true);
         }
     }
 
@@ -769,8 +774,8 @@ public class PeopleActivity extends ContactsDrawerActivity {
     }
 
     @Override
-    protected void launchFindDuplicates() {
-        switchView(ContactsView.DUPLICATES);
+    protected void launchAssistant() {
+        switchView(ContactsView.ASSISTANT);
     }
 
     private void switchView(ContactsView contactsView) {
@@ -784,20 +789,14 @@ public class PeopleActivity extends ContactsDrawerActivity {
             }
             transaction.replace(
                     R.id.contacts_list_container, mMembersFragment, TAG_GROUP_VIEW);
-        } else if (isDuplicatesView()) {
-            Fragment duplicatesFragment = fragmentManager.findFragmentByTag(TAG_DUPLICATES);
-            Fragment duplicatesUtilFragment =
-                    fragmentManager.findFragmentByTag(TAG_DUPLICATES_UTIL);
-            if (duplicatesFragment == null || duplicatesUtilFragment == null) {
-                duplicatesFragment = ObjectFactory.getDuplicatesFragment();
-                duplicatesUtilFragment = ObjectFactory.getDuplicatesUtilFragment();
-                duplicatesUtilFragment.setTargetFragment(duplicatesFragment, /* requestCode */ 0);
+        } else if(isAssistantView()) {
+            Fragment assistantFragment = fragmentManager.findFragmentByTag(TAG_ASSISTANT);
+            if (assistantFragment == null) {
+                assistantFragment = ObjectFactory.getAssistantFragment();
             }
-            transaction.replace(
-                    R.id.contacts_list_container, duplicatesFragment, TAG_DUPLICATES);
-            if (!duplicatesUtilFragment.isAdded()) {
-                transaction.add(duplicatesUtilFragment, TAG_DUPLICATES_UTIL);
-                resetToolBarStatusBarColor();
+            if (assistantFragment != null) {
+                transaction.replace(
+                        R.id.contacts_list_container, assistantFragment, TAG_ASSISTANT);
             }
             resetToolBarStatusBarColor();
         }
@@ -819,6 +818,11 @@ public class PeopleActivity extends ContactsDrawerActivity {
         mAllFragment.scrollToTop();
 
         super.switchToAllContacts();
+    }
+
+    private boolean popThirdLevel() {
+        return getFragmentManager().popBackStackImmediate(
+                TAG_THIRD_LEVEL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     private void popSecondLevel() {
