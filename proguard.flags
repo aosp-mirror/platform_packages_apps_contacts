@@ -73,6 +73,7 @@
 -keep class com.android.contacts.common.util.DeviceLocalAccountTypeFactory { *; }
 -keep class com.android.contacts.common.util.DeviceLocalAccountTypeFactory$* { *; }
 -keep class com.android.contacts.common.util.NameConverter { *; }
+-keep class com.android.contacts.common.util.PermissionsUtil { *; }
 -keep class com.android.contacts.common.util.SearchUtil { *; }
 -keep class com.android.contacts.common.util.SearchUtil$* { *; }
 -keep class com.android.contacts.ContactsApplication { *; }
