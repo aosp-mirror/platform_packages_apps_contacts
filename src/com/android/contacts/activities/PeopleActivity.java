@@ -287,7 +287,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
         if (isGroupDeleteAction(intent.getAction())) {
             toast(R.string.groupDeletedToast);
             popSecondLevel();
-            mCurrentView = ContactsView.ALL_CONTACTS;
+            resetContactsView();
             showFabWithAnimation(/* showFab */ true);
             return;
         }
@@ -517,6 +517,9 @@ public class PeopleActivity extends ContactsDrawerActivity {
         final int providerStatus = mProviderStatusWatcher.getProviderStatus();
         final Menu menu = mNavigationView.getMenu();
         final MenuItem groupsMenuItem = menu.findItem(R.id.nav_groups);
+        if (groupsMenuItem == null) {
+            return;
+        }
         final SubMenu subMenu = groupsMenuItem.getSubMenu();
 
         // Reload groups and filters if provider status changes to "normal" and there's no groups
@@ -620,8 +623,8 @@ public class PeopleActivity extends ContactsDrawerActivity {
         }
 
         // Handle the back event in drawer first.
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-            mDrawer.closeDrawer(GravityCompat.START);
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
             return;
         }
 
@@ -680,7 +683,8 @@ public class PeopleActivity extends ContactsDrawerActivity {
             return true;
         }
 
-        if (!AccountFilterUtil.isAllContactsFilter(mContactListFilterController.getFilter())
+        if (!mShouldShowAccountSwitcher
+                && !AccountFilterUtil.isAllContactsFilter(mContactListFilterController.getFilter())
                 && !mAllFragment.isHidden()) {
             // If mAllFragment is hidden, then mContactsUnavailableFragment is visible so we
             // don't need to switch to all contacts.
@@ -759,6 +763,17 @@ public class PeopleActivity extends ContactsDrawerActivity {
         super.onFilterMenuItemClicked(intent);
     }
 
+    @Override
+    public void changeFilter(AccountWithDataSet account) {
+        super.changeFilter(account);
+        // We must pop second level first to "restart" mAllFragment, before changing filter.
+        if (isInSecondLevel()) {
+            popSecondLevel();
+            showFabWithAnimation(/* showFab */ true);
+        }
+        mCurrentView = ContactsView.ACCOUNT_VIEW;
+    }
+
     private void switchToOrUpdateGroupView(String action) {
         // If group fragment is active and visible, we simply update it.
         if (mMembersFragment != null && !mMembersFragment.isInactive()) {
@@ -813,7 +828,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
             popSecondLevel();
         }
         mShouldSwitchToAllContacts = false;
-        mCurrentView = ContactsView.ALL_CONTACTS;
+        resetContactsView();
         showFabWithAnimation(/* showFab */ true);
         mAllFragment.scrollToTop();
 

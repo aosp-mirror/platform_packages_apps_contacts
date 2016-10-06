@@ -290,13 +290,13 @@ class AccountComparator implements Comparator<AccountWithDataSet> {
             return -1;
         } else if (a.name == null || a.type == null) {
             return 1;
-        } else if (isWritableGoogleAccount(a) && a.equals(mDefaultAccount)) {
+        } else if (a.isWritableGoogleAccount() && a.equals(mDefaultAccount)) {
             return -1;
-        } else if (isWritableGoogleAccount(b) && b.equals(mDefaultAccount)) {
+        } else if (b.isWritableGoogleAccount() && b.equals(mDefaultAccount)) {
             return 1;
-        } else if (isWritableGoogleAccount(a) && !isWritableGoogleAccount(b)) {
+        } else if (a.isWritableGoogleAccount() && !b.isWritableGoogleAccount()) {
             return -1;
-        } else if (isWritableGoogleAccount(b) && !isWritableGoogleAccount(a)) {
+        } else if (b.isWritableGoogleAccount() && !a.isWritableGoogleAccount()) {
             return 1;
         } else {
             int diff = a.name.compareToIgnoreCase(b.name);
@@ -315,10 +315,6 @@ class AccountComparator implements Comparator<AccountWithDataSet> {
                 return -1;
             }
         }
-    }
-
-    private static boolean isWritableGoogleAccount(AccountWithDataSet account) {
-        return GoogleAccountType.ACCOUNT_TYPE.equals(account.type) && account.dataSet == null;
     }
 }
 

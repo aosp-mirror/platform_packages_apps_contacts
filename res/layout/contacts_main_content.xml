@@ -14,20 +14,20 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
-<android.support.v4.widget.DrawerLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/fragment_container"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    android:layout_height="match_parent">
 
-    <!-- To prevent hamburger menu from getting the initial focus. -->
-    <include layout="@layout/dummy_view_for_initial_focus"/>
+    <include
+        layout="@layout/people_activity_toolbar"
+        android:id="@+id/toolbar_parent" />
 
-    <include layout="@layout/contacts_main_content"/>
-
-    <include layout="@layout/navigation_view"/>
-</android.support.v4.widget.DrawerLayout>
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/windowBackground" />
+</LinearLayout>
