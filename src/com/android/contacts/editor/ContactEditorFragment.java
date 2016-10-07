@@ -203,6 +203,13 @@ public class ContactEditorFragment extends Fragment implements
     public static final String INTENT_EXTRA_PHOTO_ID = "photo_id";
 
     /**
+     * Intent key to pass the ID of the raw contact id that should be displayed in the full editor
+     * by itself.
+     */
+    public static final String INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE =
+            "raw_contact_id_to_display_alone";
+
+    /**
      * Intent extra to specify a {@link ContactEditor.SaveMode}.
      */
     public static final String SAVE_MODE_EXTRA_KEY = "saveMode";
@@ -1478,6 +1485,8 @@ public class ContactEditorFragment extends Fragment implements
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_PRIMARY_COLOR),
                         mIntentExtras.getInt(INTENT_EXTRA_MATERIAL_PALETTE_SECONDARY_COLOR));
             }
+            mRawContactIdToDisplayAlone = mIntentExtras
+                    .getLong(INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE);
         }
     }
 

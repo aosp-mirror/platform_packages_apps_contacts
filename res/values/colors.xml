@@ -14,6 +14,9 @@
      limitations under the License.
 -->
 <resources>
+    <!-- 87% black -->
+    <color name="quantum_black_text">#dd000000</color>
+
     <!-- 54% black -->
     <color name="quantum_black_secondary_text">#89000000</color>
 
