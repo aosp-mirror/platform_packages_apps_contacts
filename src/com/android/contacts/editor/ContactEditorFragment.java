@@ -1249,6 +1249,7 @@ public class ContactEditorFragment extends Fragment implements
 
         // Ensure we have some default fields (if the account type does not support a field,
         // ensureKind will not add it, so it is safe to add e.g. Event)
+        RawContactModifier.ensureKindExists(result, accountType, StructuredName.CONTENT_ITEM_TYPE);
         RawContactModifier.ensureKindExists(result, accountType, Phone.CONTENT_ITEM_TYPE);
         RawContactModifier.ensureKindExists(result, accountType, Email.CONTENT_ITEM_TYPE);
         RawContactModifier.ensureKindExists(result, accountType, Organization.CONTENT_ITEM_TYPE);
