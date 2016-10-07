@@ -43,6 +43,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -55,6 +56,7 @@ import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
 import com.android.contacts.common.Experiments;
+import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.list.ContactEntryListFragment;
 import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListFilter;
@@ -245,11 +247,20 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private void maybeShowHamburgerFeatureHighlight() {
         if (mActionBarAdapter!= null && !mActionBarAdapter.isSearchMode()
                 && !mActionBarAdapter.isSelectionMode()
+                && !isTalkbackOnAndOnPreLollipopMr1()
                 && SharedPreferenceUtil.getShouldShowHamburgerPromo(getContext())) {
             if (FeatureHighlightHelper.showHamburgerFeatureHighlight(mActivity)) {
                 SharedPreferenceUtil.setHamburgerPromoDisplayedBefore(getContext());
             }
         }
+    }
+
+    // There's a crash if we show feature highlight when Talkback is on, on API 21 and below.
+    // See b/31180524.
+    private boolean isTalkbackOnAndOnPreLollipopMr1(){
+        return ((AccessibilityManager) getContext().getSystemService(Context.ACCESSIBILITY_SERVICE))
+                .isTouchExplorationEnabled()
+                    && !CompatUtils.isLollipopMr1Compatible();
     }
 
     private void bindListHeader(int numberOfContacts) {
