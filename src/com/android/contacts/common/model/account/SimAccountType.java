@@ -38,6 +38,7 @@ public class SimAccountType extends BaseAccountType {
 
         try {
             addDataKindStructuredName(context);
+            addDataKindName(context);
             final DataKind phoneKind = addDataKindPhone(context);
             phoneKind.typeOverallMax = 1;
             // SIM card contacts don't necessarily support separate types (based on data exposed
@@ -70,6 +71,24 @@ public class SimAccountType extends BaseAccountType {
     @Override
     protected DataKind addDataKindStructuredName(Context context) throws DefinitionException {
         final DataKind kind = addKind(new DataKind(StructuredName.CONTENT_ITEM_TYPE,
+                R.string.nameLabelsGroup, Weight.NONE, true));
+        kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
+        kind.actionBody = new SimpleInflater(Nickname.NAME);
+        kind.typeOverallMax = 1;
+
+
+        kind.fieldList = Lists.newArrayList();
+        kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
+                FLAGS_PERSON_NAME));
+        kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
+                FLAGS_PERSON_NAME));
+
+        return kind;
+    }
+
+    @Override
+    protected DataKind addDataKindName(Context context) throws DefinitionException {
+        final DataKind kind = addKind(new DataKind(DataKind.PSEUDO_MIME_TYPE_NAME,
                 R.string.nameLabelsGroup, Weight.NONE, true));
         kind.actionHeader = new SimpleInflater(R.string.nameLabelsGroup);
         kind.actionBody = new SimpleInflater(Nickname.NAME);

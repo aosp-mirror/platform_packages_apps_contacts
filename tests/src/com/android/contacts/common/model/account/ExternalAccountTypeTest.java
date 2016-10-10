@@ -31,12 +31,14 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.test.suitebuilder.annotation.Suppress;
-import android.util.Log;
 
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.tests.R;
+
 import com.google.common.base.Objects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -47,6 +49,12 @@ import java.util.List;
  */
 @SmallTest
 public class ExternalAccountTypeTest extends InstrumentationTestCase {
+    private static ArrayList<String> mDefaultMimetypes = new ArrayList<>(Arrays.asList(
+            StructuredName.CONTENT_ITEM_TYPE,
+            DataKind.PSEUDO_MIME_TYPE_NAME,
+            DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
+            Photo.CONTENT_ITEM_TYPE
+    ));
 
     @Suppress
     public void testResolveExternalResId() {
@@ -92,6 +100,7 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
 
         // Let's just check if the DataKinds are registered.
         assertNotNull(type.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE));
+        assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_NAME));
         assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME));
         assertNotNull(type.getKindForMimetype(Email.CONTENT_ITEM_TYPE));
         assertNotNull(type.getKindForMimetype(StructuredPostal.CONTENT_ITEM_TYPE));
@@ -159,13 +168,13 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
         // Shouldn't have a "null" mimetype.
         assertTrue(type.getKindForMimetype(null) == null);
 
-        // 3 kinds are defined in XML and 3 are added by default.
-        assertEquals(3 + 3, type.getSortedDataKinds().size());
+        // 3 kinds are defined in XML and the rest are added by default.
+        assertEquals(3 + mDefaultMimetypes.size(), type.getSortedDataKinds().size());
 
         // Check for the default kinds.
-        assertNotNull(type.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE));
-        assertNotNull(type.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME));
-        assertNotNull(type.getKindForMimetype(Photo.CONTENT_ITEM_TYPE));
+        for (String mimetype : mDefaultMimetypes) {
+            assertNotNull(type.getKindForMimetype(mimetype));
+        }
 
         // Check for type specific kinds.
         DataKind kind = type.getKindForMimetype("vnd.android.cursor.item/a.b.c");
