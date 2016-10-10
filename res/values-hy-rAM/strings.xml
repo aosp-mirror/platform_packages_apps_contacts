@@ -241,6 +241,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Ընտրեք կանխադրված հաշիվ նոր կոնտակտների համար՝"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ավելացնել կոնտակտ"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Փոփոխել կոնտակտը"</string>
+    <!-- no translation found for contact_editor_pick_raw_contact_dialog_title (9020902336507940034) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_read_only (5505352743052484053) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"Ավելացնել հաշիվ"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ավելացնել նոր հաշիվ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Արտահանել տվյալների շտեմարանի ֆայլերը"</string>
@@ -279,19 +283,16 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"վերջին զանգը՝ <xliff:g id="CALL_TYPE">%s</xliff:g>, <xliff:g id="PHONE_NUMBER">%s</xliff:g>, <xliff:g id="DATE">%s</xliff:g>, սեղմեք՝ հետ զանգելու համար"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Դուք՝ <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts-ն ավելի լավ կաշխատի, եթե էլփոստի կամ հեռախոսի դաշտում մուտքագրեք Hangouts-ի օգտվողի նույնացուցիչը:"</string>
-    <!-- no translation found for editor_more_fields (3630987771304393421) -->
-    <skip />
-    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
-    <skip />
-    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
-    <skip />
-    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
+    <string name="editor_more_fields" msgid="3630987771304393421">"Լրացուցիչ դաշտեր"</string>
+    <string name="editor_change_photo_content_description" msgid="754100561085306263">"Փոխել լուսանկարը"</string>
+    <string name="editor_failed_to_load" msgid="1623639078580475818">"Չհաջողվեց բացել խմբագրիչը:"</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Պահվում է հետևյալ հաշվում՝"</string>
+    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Դիտում"</string>
+    <string name="editor_account_selector_description" msgid="3324358600570627740">"Ներկայումս պահվում է <xliff:g id="ACCOUNT_NAME">%s</xliff:g> հաշվում: Կրկնակի հպեք՝ մեկ այլ հաշիվ ընտրելու համար:"</string>
+    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
+      <item quantity="one">Linked contacts (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">Կցած կոնտակտներ (<xliff:g id="COUNT">%d</xliff:g>)</item>
+    </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> կապված կոնտակտ"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ՄԻԱԿՑԵԼ ԿՈՆՏԱԿՏՆԵՐԸ"</string>
@@ -312,8 +313,7 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Այս կոնտակտը"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Հնարավոր կրկնօրինակներ"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Այս կոնտակտները հնարավոր է միևնույն մարդու կոնտակտներ են։ Կարող եք դրանք միակցել և ստեղծել մեկ կոնտակտ։"</string>
-    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
-    <skip />
+    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"Կցած կոնտակտներ"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Ձեր հաշիվներից"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Ընտրել լուսանկար"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> հաշվից"</string>

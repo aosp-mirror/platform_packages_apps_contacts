@@ -255,6 +255,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Izberite privzeti račun za nove stike:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dodaj nov stik"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Urejanje stika"</string>
+    <!-- no translation found for contact_editor_pick_raw_contact_dialog_title (9020902336507940034) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_read_only (5505352743052484053) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"Dodaj račun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj nov račun"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Izvoz datotek zbirke"</string>
@@ -296,7 +300,7 @@
     <string name="editor_more_fields" msgid="3630987771304393421">"Več polj"</string>
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Sprememba fotografije"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Odpiranje urejevalnika ni uspelo."</string>
-    <string name="editor_account_selector_title" msgid="4426337993307015833">"Shranjevanje v:"</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Shranjevanje v"</string>
     <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Ogled v teku"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Trenutno se shranjuje v račun <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Če želite izbrati drug račun, se dvakrat dotaknite."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">

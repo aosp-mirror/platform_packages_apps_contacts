@@ -241,6 +241,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"নতুন পরিচিতিগুলির জন্য একটি ডিফল্ট অ্যাকাউন্ট বেছে নিন:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"নতুন পরিচিতি জুড়ুন"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"পরিচিতি সম্পাদনা করুন"</string>
+    <!-- no translation found for contact_editor_pick_raw_contact_dialog_title (9020902336507940034) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_read_only (5505352743052484053) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"অ্যাকাউন্ট জুড়ুন"</string>
     <string name="add_new_account" msgid="5748627740680940264">"নতুন অ্যাকাউন্ট যোগ করুন"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ডেটাবেস ফাইলগুলি রপ্তানি করুন"</string>
@@ -281,10 +285,10 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"আপনি যখন ইমেল বা ফোন নম্বর লেখার ক্ষেত্রটিতে ব্যক্তির Hangouts সনাক্তকারী লেখেন তখন Hangouts আরো ভালো কাজ করে৷"</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"আরো ফিল্ড"</string>
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"ফটো পরিবর্তন করুন"</string>
-    <string name="editor_failed_to_load" msgid="1623639078580475818">"সম্পাদক খুলতে ব্যর্থ হচ্ছে৷"</string>
+    <string name="editor_failed_to_load" msgid="1623639078580475818">"সম্পাদক খোলা গেল না৷"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"এতে সংরক্ষণ করা হচ্ছে"</string>
     <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"দেখা হচ্ছে"</string>
-    <string name="editor_account_selector_description" msgid="3324358600570627740">"বর্তমানে <xliff:g id="ACCOUNT_NAME">%s</xliff:g> এ সংরক্ষণ করা হচ্ছে৷ কোনো আলাদা অ্যাকাউন্ট চয়ন করার জন্য দুবার আলতো চপুন৷"</string>
+    <string name="editor_account_selector_description" msgid="3324358600570627740">"বর্তমানে <xliff:g id="ACCOUNT_NAME">%s</xliff:g> এ সংরক্ষণ করা হচ্ছে৷ কোনো আলাদা অ্যাকাউন্ট চয়ন করার জন্য দুবার আলতো চাপুন৷"</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="one">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>
       <item quantity="other">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>
