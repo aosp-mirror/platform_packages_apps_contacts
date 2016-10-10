@@ -899,8 +899,8 @@
     <!-- Text shown in the contacts app while the background process updates contacts after a locale change [CHAR LIMIT=150]-->
     <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.\n\nPlease wait&#8230;</string>
 
-    <!-- The menu item to open the link/merge duplicates activity. [CHAR LIMIT=20]-->
-    <string name="menu_duplicates">Duplicates</string>
+    <!-- The menu item to open the Google contacts assistant. [CHAR LIMIT=20]-->
+    <string name="menu_assistant">Assistant</string>
 
     <!-- Open drawer content descriptions [CHAR LIMIT=40] -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
