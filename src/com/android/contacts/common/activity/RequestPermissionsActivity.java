@@ -22,6 +22,7 @@ import android.Manifest.permission;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ import java.util.List;
  * Activity that requests permissions needed for activities exported from Contacts.
  */
 public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
+
+    public static final String BROADCAST_PERMISSIONS_GRANTED = "broadcastPermissionsGranted";
 
     private static String[] sRequiredPermissions;
 
@@ -76,6 +79,9 @@ public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
             startActivity(mPreviousActivityIntent);
             finish();
             overridePendingTransition(0, 0);
+
+            LocalBroadcastManager.getInstance(this).sendBroadcast(
+                    new Intent(BROADCAST_PERMISSIONS_GRANTED));
         } else {
             Toast.makeText(this, R.string.missing_required_permission, Toast.LENGTH_SHORT).show();
             finish();
