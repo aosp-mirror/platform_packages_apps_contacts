@@ -3,6 +3,7 @@ package com.android.contacts;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.MediumTest;
 import android.support.test.runner.AndroidJUnit4;
@@ -74,6 +75,12 @@ public class NoPermissionsLaunchSmokeTest {
         grantContactsPermissionButton.click();
 
         device.wait(Until.hasObject(By.textEndsWith("make and manage phone calls?")), TIMEOUT);
+
+        final PackageManager packageManager = mTargetContext.getPackageManager();
+        if (!packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+            device.waitForIdle();
+            return;
+        }
 
         final UiObject2 grantPhonePermissionButton = device.findObject(By.text("ALLOW"));
 
