@@ -20,6 +20,7 @@ import android.accounts.Account;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -27,7 +28,6 @@ import android.provider.ContactsContract.Intents;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -100,7 +100,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     public enum ContactsView {
         NONE,
         ALL_CONTACTS,
-        DUPLICATES,
+        ASSISTANT,
         GROUP_VIEW,
         ACCOUNT_VIEW,
     }
@@ -240,8 +240,15 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ContactsActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
         mDrawerLayout.setDrawerListener(mToggle);
-        mToggle.syncState();
+        // Set fallback handler for when drawer is disabled.
+        mToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         // Set up navigation mode.
         if (savedState != null) {
@@ -269,16 +276,32 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 ? ContactsView.ACCOUNT_VIEW : ContactsView.ALL_CONTACTS;
     }
 
+    public void setDrawerLockMode(boolean enabled) {
+        // Prevent drawer from being opened by sliding from the start of screen.
+        mDrawerLayout.setDrawerLockMode(enabled ? DrawerLayout.LOCK_MODE_UNLOCKED
+                : DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+        // Order of these statements matter.
+        // Display back button and disable drawer indicator.
+        if (enabled) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            mToggle.setDrawerIndicatorEnabled(true);
+        } else {
+            mToggle.setDrawerIndicatorEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     private void setUpMenu() {
         final Menu menu = mNavigationView.getMenu();
 
-        if (ObjectFactory.getDuplicatesFragment() == null) {
-            menu.removeItem(R.id.nav_find_duplicates);
+        if (ObjectFactory.getAssistantFragment() == null) {
+            menu.removeItem(R.id.nav_assistant);
         } else {
-            final MenuItem findDupMenu = menu.findItem(R.id.nav_find_duplicates);
-            mIdMenuMap.put(R.id.nav_find_duplicates, findDupMenu);
-            if (isDuplicatesView()) {
-                updateMenuSelection(findDupMenu);
+            final MenuItem assistantMenu = menu.findItem(R.id.nav_assistant);
+            mIdMenuMap.put(R.id.nav_assistant, assistantMenu);
+            if (isAssistantView()) {
+                updateMenuSelection(assistantMenu);
             }
         }
 
@@ -352,6 +375,18 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     protected void onStop() {
         mNavigationDrawer.onStop();
         super.onStop();
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mToggle.onConfigurationChanged(newConfig);
     }
 
     // Set up fragment manager to load groups and filters.
@@ -517,8 +552,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         return mCurrentView == ContactsView.GROUP_VIEW;
     }
 
-    protected boolean isDuplicatesView() {
-        return mCurrentView == ContactsView.DUPLICATES;
+    protected boolean isAssistantView() {
+        return mCurrentView == ContactsView.ASSISTANT;
     }
 
     protected boolean isAllContactsView() {
@@ -530,7 +565,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     }
 
     public boolean isInSecondLevel() {
-        return isGroupView() || isDuplicatesView();
+        return isGroupView() || isAssistantView();
     }
 
     protected abstract void onGroupMenuItemClicked(long groupId, String title);
@@ -666,9 +701,9 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     HelpUtils.launchHelpAndFeedbackForMainScreen(ContactsDrawerActivity.this);
                 } else if (id == R.id.nav_all_contacts) {
                     switchToAllContacts();
-                } else if (id == R.id.nav_find_duplicates) {
-                    if (!isDuplicatesView()) {
-                        launchFindDuplicates();
+                } else if (id == R.id.nav_assistant) {
+                    if (!isAssistantView()) {
+                        launchAssistant();
                         updateMenuSelection(item);
                     }
                 } else if (item.getIntent() != null) {
@@ -716,7 +751,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
     }
 
-    protected abstract void launchFindDuplicates();
+    protected abstract void launchAssistant();
 
     protected abstract DefaultContactBrowseListFragment getAllFragment();
 
