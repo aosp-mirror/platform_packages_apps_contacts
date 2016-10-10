@@ -288,9 +288,6 @@ public class ContactEditorActivity extends ContactsActivity implements
                         } else {
                             startActivityForResult(resultIntent, /* requestCode */ 0);
                         }
-
-                        ImplicitIntentsUtil.startActivityInApp(
-                                ContactEditorActivity.this, resultIntent);
                     }
                     finish();
                 }
