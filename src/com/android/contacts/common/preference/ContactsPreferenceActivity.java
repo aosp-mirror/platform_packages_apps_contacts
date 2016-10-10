@@ -16,14 +16,22 @@
 
 package com.android.contacts.common.preference;
 
-import android.app.ActionBar;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.provider.ContactsContract.ProviderStatus;
-import android.provider.ContactsContract.QuickContact;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.list.ProviderStatusWatcher;
@@ -44,13 +52,19 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
 
     private ProviderStatusWatcher mProviderStatusWatcher;
 
+    private AppCompatDelegate mCompatDelegate;
+
     public static final String EXTRA_NEW_LOCAL_PROFILE = "newLocalProfile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        mCompatDelegate = AppCompatDelegate.create(this, null);
 
-        final ActionBar actionBar = getActionBar();
+        super.onCreate(savedInstanceState);
+        mCompatDelegate.onCreate(savedInstanceState);
+
+
+        final ActionBar actionBar = mCompatDelegate.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
         }
@@ -80,6 +94,71 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
         }
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mCompatDelegate.onPostCreate(savedInstanceState);
+    }
+
+    public void setSupportActionBar(Toolbar toolbar) {
+        mCompatDelegate.setSupportActionBar(toolbar);
+    }
+
+    @NonNull
+    @Override
+    public MenuInflater getMenuInflater() {
+        return mCompatDelegate.getMenuInflater();
+    }
+
+    @Override
+    public void setContentView(@LayoutRes int layoutRes) {
+        mCompatDelegate.setContentView(layoutRes);
+    }
+
+    @Override
+    public void setContentView(View view) {
+        mCompatDelegate.setContentView(view);
+    }
+
+    @Override
+    public void setContentView(View view, ViewGroup.LayoutParams params) {
+        mCompatDelegate.setContentView(view, params);
+    }
+
+    @Override
+    public void addContentView(View view, ViewGroup.LayoutParams params) {
+        mCompatDelegate.addContentView(view, params);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        mCompatDelegate.onPostResume();
+    }
+
+    @Override
+    protected void onTitleChanged(CharSequence title, int color) {
+        super.onTitleChanged(title, color);
+        mCompatDelegate.setTitle(title);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mCompatDelegate.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mCompatDelegate.onDestroy();
+    }
+
+    @Override
+    public void invalidateOptionsMenu() {
+        mCompatDelegate.invalidateOptionsMenu();
+    }
+
     protected void showAboutFragment() {
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, AboutPreferenceFragment.newInstance(), TAG_ABOUT)
@@ -107,8 +186,8 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
         }
     }
 
-    private void setActivityTitle(int res) {
-        final ActionBar actionBar = getActionBar();
+    private void setActivityTitle(@StringRes int res) {
+        final ActionBar actionBar = mCompatDelegate.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle(res);
         }
