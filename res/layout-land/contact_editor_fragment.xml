@@ -44,8 +44,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-            <include layout="@layout/editor_all_rawcontacts_accounts_selector" />
-
             <include layout="@layout/editor_account_header" />
 
             <include layout="@layout/contact_editor_fields" />
