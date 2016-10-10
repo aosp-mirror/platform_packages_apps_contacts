@@ -599,4 +599,6 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> jam <xliff:g id="MINUTES_1">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> saat"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Pintasan ini telah dilumpuhkan"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Kenalan telah dialih keluar"</string>
+    <!-- no translation found for connection_failed (7558253972301525402) -->
+    <skip />
 </resources>

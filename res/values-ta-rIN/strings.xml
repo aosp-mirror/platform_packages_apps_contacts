@@ -597,4 +597,6 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ம <xliff:g id="MINUTES_1">%s</xliff:g> நி <xliff:g id="SECONDS">%s</xliff:g> வி"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"இந்தக் குறுக்குவழி முடக்கப்பட்டது"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"தொடர்பு அகற்றப்பட்டது"</string>
+    <!-- no translation found for connection_failed (7558253972301525402) -->
+    <skip />
 </resources>

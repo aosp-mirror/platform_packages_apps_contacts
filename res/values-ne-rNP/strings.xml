@@ -597,4 +597,6 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> घन्टा <xliff:g id="MINUTES_1">%s</xliff:g> मिनेट <xliff:g id="SECONDS">%s</xliff:g> सेेकेन्ड"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"यो सर्टकटलाई असक्षम पारिएको छ"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"सम्पर्क हटाइएको थियो"</string>
+    <!-- no translation found for connection_failed (7558253972301525402) -->
+    <skip />
 </resources>

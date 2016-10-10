@@ -279,19 +279,16 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"近期通話。<xliff:g id="CALL_TYPE">%s</xliff:g>。<xliff:g id="PHONE_NUMBER">%s</xliff:g>。<xliff:g id="DATE">%s</xliff:g>。按一下即可回電"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"如果您在電子郵件欄位或電話欄位中輸入聯絡人的 Hangouts 識別碼，可讓 Hangouts 的運作效能更佳。"</string>
-    <!-- no translation found for editor_more_fields (3630987771304393421) -->
-    <skip />
-    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
-    <skip />
-    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
-    <skip />
-    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
+    <string name="editor_more_fields" msgid="3630987771304393421">"更多欄位"</string>
+    <string name="editor_change_photo_content_description" msgid="754100561085306263">"變更相片"</string>
+    <string name="editor_failed_to_load" msgid="1623639078580475818">"無法開啟編輯器。"</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"儲存到"</string>
+    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"查看中"</string>
+    <string name="editor_account_selector_description" msgid="3324358600570627740">"目前設為儲存到 <xliff:g id="ACCOUNT_NAME">%s</xliff:g>。輕觸兩下即可選擇其他帳戶。"</string>
+    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
+      <item quantity="other">已連結的聯絡人 (<xliff:g id="COUNT">%d</xliff:g> 位)</item>
+      <item quantity="one">已連結的聯絡人</item>
+    </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> 位已連結的聯絡人"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"連結聯絡人"</string>
@@ -312,8 +309,7 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"這位聯絡人"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"可能重複的聯絡人"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"這些聯絡人可能是同一人。您可以將這些聯絡人連結合併成單筆聯絡人資料。"</string>
-    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
-    <skip />
+    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"已連結的聯絡人"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"來自您的帳戶"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"選擇相片"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"來自<xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
@@ -601,4 +597,6 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> 小時 <xliff:g id="MINUTES_1">%s</xliff:g> 分鐘 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"這個捷徑已停用"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"這位聯絡人已移除"</string>
+    <!-- no translation found for connection_failed (7558253972301525402) -->
+    <skip />
 </resources>
