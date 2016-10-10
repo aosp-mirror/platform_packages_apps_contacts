@@ -24,6 +24,7 @@ import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 
 import com.android.contacts.activities.ContactEditorActivity;
+import com.android.contacts.activities.ContactEditorSpringBoardActivity;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 
@@ -38,15 +39,28 @@ public class EditorIntents {
     }
 
     /**
-     * Returns an Intent to start the {@link ContactEditorActivity} for an
+     * Returns an Intent to start the {@link ContactEditorSpringBoardActivity} for an
      * existing contact.
      */
-    public static Intent createEditContactIntent(Context context, Uri contactLookupUri,
+    public static Intent createEditContactIntent(Context context, Uri uri,
             MaterialPalette materialPalette, long photoId) {
-        final Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri, context,
-                ContactEditorActivity.class);
+        final Intent intent = new Intent(Intent.ACTION_EDIT, uri, context,
+                ContactEditorSpringBoardActivity.class);
         putMaterialPalette(intent, materialPalette);
         putPhotoId(intent, photoId);
+        return intent;
+    }
+
+    /**
+     * Returns an Intent to start the {@link ContactEditorActivity} for the given raw contact.
+     */
+    public static Intent createEditContactIntentForRawContact(Context context,
+            Uri uri, long rawContactId, MaterialPalette materialPalette) {
+        final Intent intent = new Intent(Intent.ACTION_EDIT, uri, context,
+                ContactEditorActivity.class);
+        intent.putExtra(ContactEditorFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE,
+                rawContactId);
+        putMaterialPalette(intent, materialPalette);
         return intent;
     }
 
@@ -71,9 +85,9 @@ public class EditorIntents {
      * Returns an Intent to edit a different contact in the editor with whatever
      * values were already entered on the current editor.
      */
-    public static Intent createEditOtherContactIntent(Context context, Uri contactLookupUri,
+    public static Intent createEditOtherContactIntent(Context context, Uri uri,
             ArrayList<ContentValues> contentValues) {
-        final Intent intent = new Intent(Intent.ACTION_EDIT, contactLookupUri, context,
+        final Intent intent = new Intent(Intent.ACTION_EDIT, uri, context,
                 ContactEditorActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
                 | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
