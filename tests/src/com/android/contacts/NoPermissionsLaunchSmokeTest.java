@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.MediumTest;
+import android.support.test.filters.Suppress;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
@@ -36,6 +37,8 @@ import static org.junit.Assume.assumeTrue;
  *     -e class com.android.contacts.NoPermissionsLaunchSmokeTest
  */
 @MediumTest
+// suppressed because failed assumptions are reported as test failures by the build server
+@Suppress
 @RunWith(AndroidJUnit4.class)
 public class NoPermissionsLaunchSmokeTest {
     private static final long TIMEOUT = 5000;

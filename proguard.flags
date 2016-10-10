@@ -18,6 +18,8 @@
 -keep class com.android.contacts.common.ContactPhotoManager { *; }
 -keep class com.android.contacts.common.ContactsUtils { *; }
 -keep class com.android.contacts.common.database.NoNullCursorAsyncQueryHandler { *; }
+-keep class com.android.contacts.common.database.SimContactDao { *; }
+-keep class com.android.contacts.common.database.SimContactDao$* { *; }
 -keep class com.android.contacts.common.format.FormatUtils { *; }
 -keep class com.android.contacts.common.format.TextHighlighter { *; }
 -keep class com.android.contacts.common.list.ContactListItemView { *; }
