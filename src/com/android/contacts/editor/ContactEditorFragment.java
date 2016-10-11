@@ -143,8 +143,6 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_IS_EDIT = "isEdit";
     private static final String KEY_EXISTING_CONTACT_READY = "existingContactDataReady";
 
-    private static final String KEY_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY = "isReadOnly";
-
     // Phone option menus
     private static final String KEY_SEND_TO_VOICE_MAIL_STATE = "sendToVoicemailState";
     private static final String KEY_ARE_PHONE_OPTIONS_CHANGEABLE = "arePhoneOptionsChangable";
@@ -350,7 +348,6 @@ public class ContactEditorFragment extends Fragment implements
     protected RawContactDeltaList mState;
     protected int mStatus;
     protected long mRawContactIdToDisplayAlone = -1;
-    protected boolean mRawContactDisplayAloneIsReadOnly = false;
 
     // Whether to show the new contact blank form and if it's corresponding delta is ready.
     protected boolean mHasNewContact;
@@ -497,8 +494,6 @@ public class ContactEditorFragment extends Fragment implements
             // Read state from savedState. No loading involved here
             mState = savedState.<RawContactDeltaList> getParcelable(KEY_EDIT_STATE);
             mStatus = savedState.getInt(KEY_STATUS);
-            mRawContactDisplayAloneIsReadOnly = savedState.getBoolean(
-                    KEY_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY);
 
             mHasNewContact = savedState.getBoolean(KEY_HAS_NEW_CONTACT);
             mNewContactDataReady = savedState.getBoolean(KEY_NEW_CONTACT_READY);
@@ -629,8 +624,6 @@ public class ContactEditorFragment extends Fragment implements
         outState.putBoolean(KEY_NEW_CONTACT_READY, mNewContactDataReady);
         outState.putBoolean(KEY_IS_EDIT, mIsEdit);
         outState.putBoolean(KEY_EXISTING_CONTACT_READY, mExistingContactDataReady);
-        outState.putBoolean(KEY_RAW_CONTACT_DISPLAY_ALONE_IS_READ_ONLY,
-                mRawContactDisplayAloneIsReadOnly);
 
         outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
 
@@ -780,7 +773,7 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         // Save menu is invisible when there's only one read only contact in the editor.
-        saveMenu.setVisible(!mRawContactDisplayAloneIsReadOnly);
+        saveMenu.setVisible(!isEditingReadOnlyRawContact());
         if (saveMenu.isVisible()) {
             // Since we're using a custom action layout we have to manually hook up the handler.
             saveMenu.getActionView().setOnClickListener(new View.OnClickListener() {
@@ -1006,6 +999,16 @@ public class ContactEditorFragment extends Fragment implements
      */
     private boolean isEditingReadOnlyRawContactWithNewContact() {
         return mHasNewContact && mState.size() == 2;
+    }
+
+    /**
+     * @return true if the single raw contact we're looking at is read-only.
+     */
+    private boolean isEditingReadOnlyRawContact() {
+        return hasValidState() && mRawContactIdToDisplayAlone > 0
+                && !mState.getByRawContactId(mRawContactIdToDisplayAlone)
+                        .getAccountType(AccountTypeManager.getInstance(mContext))
+                                .areContactsWritable();
     }
 
     /**
@@ -1858,13 +1861,6 @@ public class ContactEditorFragment extends Fragment implements
         // For contacts composed of a single writable raw contact, or raw contacts have no more
         // than 1 photo, clicking the photo view simply opens the source photo dialog
         getEditorActivity().changePhoto(getPhotoMode());
-    }
-
-    @Override
-    public void onRawContactSelected(long rawContactId, boolean isReadOnly) {
-        mRawContactDisplayAloneIsReadOnly = isReadOnly;
-        mRawContactIdToDisplayAlone = rawContactId;
-        bindEditors();
     }
 
     private int getPhotoMode() {
