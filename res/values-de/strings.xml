@@ -241,6 +241,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Wähle ein Standardkonto für neue Kontakte:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Kontakt hinzufügen"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Kontakt bearbeiten"</string>
+    <!-- no translation found for contact_editor_pick_raw_contact_dialog_title (9020902336507940034) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_read_only (5505352743052484053) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"Konto hinzufügen"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Neues Konto hinzufügen"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Datenbankdateien exportieren"</string>
@@ -283,7 +287,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Foto ändern"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Fehler beim Öffnen des Editors."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Speichern in"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Wiedergabe"</string>
+    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Anzeige von"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Wird derzeit in <xliff:g id="ACCOUNT_NAME">%s</xliff:g> gespeichert. Doppeltippe, um ein anderes Konto auszuwählen."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">Verknüpfte Kontakte (<xliff:g id="COUNT">%d</xliff:g>)</item>

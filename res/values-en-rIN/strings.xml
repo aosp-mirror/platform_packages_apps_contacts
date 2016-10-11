@@ -241,6 +241,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Choose a default account for new contacts:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Add new contact"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edit contact"</string>
+    <!-- no translation found for contact_editor_pick_raw_contact_dialog_title (9020902336507940034) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_read_only (5505352743052484053) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"Add account"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Add new account"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Export database files"</string>
