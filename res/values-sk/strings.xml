@@ -434,7 +434,7 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefón"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Poslať e-mail"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Adresa"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"Okamžité správy"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"Čet"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizácia"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Vzťah"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"Špeciálny dátum"</string>
@@ -621,4 +621,6 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> h <xliff:g id="MINUTES_1">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Tento odkaz bol deaktivovaný"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Kontakt bol odstránený"</string>
+    <!-- no translation found for connection_failed (7558253972301525402) -->
+    <skip />
 </resources>

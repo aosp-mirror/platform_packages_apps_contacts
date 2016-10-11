@@ -281,10 +281,10 @@
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"আপনি যখন ইমেল বা ফোন নম্বর লেখার ক্ষেত্রটিতে ব্যক্তির Hangouts সনাক্তকারী লেখেন তখন Hangouts আরো ভালো কাজ করে৷"</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"আরো ফিল্ড"</string>
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"ফটো পরিবর্তন করুন"</string>
-    <string name="editor_failed_to_load" msgid="1623639078580475818">"সম্পাদক খুলতে ব্যর্থ হচ্ছে৷"</string>
+    <string name="editor_failed_to_load" msgid="1623639078580475818">"সম্পাদক খোলা গেল না৷"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"এতে সংরক্ষণ করা হচ্ছে"</string>
     <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"দেখা হচ্ছে"</string>
-    <string name="editor_account_selector_description" msgid="3324358600570627740">"বর্তমানে <xliff:g id="ACCOUNT_NAME">%s</xliff:g> এ সংরক্ষণ করা হচ্ছে৷ কোনো আলাদা অ্যাকাউন্ট চয়ন করার জন্য দুবার আলতো চপুন৷"</string>
+    <string name="editor_account_selector_description" msgid="3324358600570627740">"বর্তমানে <xliff:g id="ACCOUNT_NAME">%s</xliff:g> এ সংরক্ষণ করা হচ্ছে৷ কোনো আলাদা অ্যাকাউন্ট চয়ন করার জন্য দুবার আলতো চাপুন৷"</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="one">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>
       <item quantity="other">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>
@@ -597,4 +597,6 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ঘণ্টা <xliff:g id="MINUTES_1">%s</xliff:g> মিনিট <xliff:g id="SECONDS">%s</xliff:g> সেকেন্ড"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"এই শর্টকাটটি অক্ষম করা হয়েছে"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"পরিচিতিটি সরানো হয়েছে"</string>
+    <!-- no translation found for connection_failed (7558253972301525402) -->
+    <skip />
 </resources>

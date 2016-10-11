@@ -597,4 +597,6 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ಗಂ <xliff:g id="MINUTES_1">%s</xliff:g> ನಿಮಿಷ <xliff:g id="SECONDS">%s</xliff:g> ಸೆ"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"ಈ ಶಾರ್ಟ್‌ಕಟ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"ಸಂಪರ್ಕವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ"</string>
+    <!-- no translation found for connection_failed (7558253972301525402) -->
+    <skip />
 </resources>

@@ -279,19 +279,16 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"kamakailang tawag. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. mag-click upang tumawag"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ikaw: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Gagana nang mas maayos ang Hangouts kapag inilagay mo ang identifier sa Hangouts ng isang tao sa field ng email o sa field ng telepono."</string>
-    <!-- no translation found for editor_more_fields (3630987771304393421) -->
-    <skip />
-    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
-    <skip />
-    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
-    <skip />
-    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
+    <string name="editor_more_fields" msgid="3630987771304393421">"Higit pang mga field"</string>
+    <string name="editor_change_photo_content_description" msgid="754100561085306263">"Baguhin ang larawan"</string>
+    <string name="editor_failed_to_load" msgid="1623639078580475818">"Nabigong buksan ang editor."</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Sine-save sa"</string>
+    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Tinitingnan"</string>
+    <string name="editor_account_selector_description" msgid="3324358600570627740">"Kasalukuyang sine-save sa <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. I-double tap upang pumili ng ibang account."</string>
+    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
+      <item quantity="one">Mga naka-link na contact (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">Mga naka-link na contact (<xliff:g id="COUNT">%d</xliff:g>)</item>
+    </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> (na) naka-link na contact"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"I-LINK ANG MGA CONTACT"</string>
@@ -312,8 +309,7 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Ang contact na ito"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Mga posibleng duplicate"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Maaaring iisang tao ang mga contact na ito. Maaari mong i-link ang mga ito sa isa\'t isa bilang iisang contact."</string>
-    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
-    <skip />
+    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"Mga naka-link na contact"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Mula sa iyong mga account"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Pumili ng larawan"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Mula kay <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
@@ -601,4 +597,6 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> (na) oras <xliff:g id="MINUTES_1">%s</xliff:g> (na) min <xliff:g id="SECONDS">%s</xliff:g> (na) seg"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Na-disable ang shortcut na ito"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Inalis ang contact"</string>
+    <!-- no translation found for connection_failed (7558253972301525402) -->
+    <skip />
 </resources>
