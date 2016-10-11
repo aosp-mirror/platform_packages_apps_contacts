@@ -349,7 +349,7 @@ public class KindSectionView extends LinearLayout {
         }
         nameView.setDeletable(false);
         nameView.setValues(
-                accountType.getKindForMimetype(StructuredName.CONTENT_ITEM_TYPE),
+                accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_NAME),
                 nameValuesDelta, rawContactDelta, /* readOnly =*/ false, mViewIdGenerator);
 
         // Correct start margin since there is a second icon in the structured name layout
