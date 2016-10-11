@@ -53,6 +53,7 @@ public class GoogleAccountType extends BaseAccountType {
 
         try {
             addDataKindStructuredName(context);
+            addDataKindName(context);
             addDataKindPhoneticName(context);
             addDataKindNickname(context);
             addDataKindPhone(context);
