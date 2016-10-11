@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import com.android.contacts.activities.ActionBarAdapter;
 import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
@@ -74,6 +75,7 @@ import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contactsbind.HelpUtils;
 import com.android.contactsbind.ObjectFactory;
+import com.android.contactsbind.experiments.Flags;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -272,11 +274,21 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     private void setUpMenu() {
         final Menu menu = mNavigationView.getMenu();
 
-        if (ObjectFactory.getAssistantFragment() == null) {
+        if (ObjectFactory.getDuplicatesUtilFragment() == null) {
             menu.removeItem(R.id.nav_assistant);
+            menu.removeItem(R.id.nav_find_duplicates);
         } else {
-            final MenuItem assistantMenu = menu.findItem(R.id.nav_assistant);
-            mIdMenuMap.put(R.id.nav_assistant, assistantMenu);
+            int id;
+            if (Flags.getInstance(this).getBoolean(Experiments.ASSISTANT)) {
+                id = R.id.nav_assistant;
+                menu.removeItem(R.id.nav_find_duplicates);
+            } else {
+                id = R.id.nav_find_duplicates;
+                menu.removeItem(R.id.nav_assistant);
+            }
+
+            final MenuItem assistantMenu = menu.findItem(id);
+            mIdMenuMap.put(id, assistantMenu);
             if (isAssistantView()) {
                 updateMenuSelection(assistantMenu);
             }
@@ -591,7 +603,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     HelpUtils.launchHelpAndFeedbackForMainScreen(ContactsDrawerActivity.this);
                 } else if (id == R.id.nav_all_contacts) {
                     switchToAllContacts();
-                } else if (id == R.id.nav_assistant) {
+                } else if (id == R.id.nav_assistant || id == R.id.nav_find_duplicates) {
                     if (!isAssistantView()) {
                         launchAssistant();
                         updateMenuSelection(item);
