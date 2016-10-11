@@ -16,7 +16,6 @@
 
 package com.android.contacts;
 
-import static android.Manifest.permission.WRITE_CONTACTS;
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
@@ -54,16 +53,17 @@ import android.widget.Toast;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.database.ContactUpdateUtils;
+import com.android.contacts.common.database.SimContactDao;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.CPOWrapper;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
 import com.android.contacts.util.ContactPhotoUtils;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -71,6 +71,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import static android.Manifest.permission.WRITE_CONTACTS;
 
 /**
  * A service responsible for saving changes to the content provider.
@@ -86,6 +88,7 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_ACCOUNT_NAME = "accountName";
     public static final String EXTRA_ACCOUNT_TYPE = "accountType";
     public static final String EXTRA_DATA_SET = "dataSet";
+    public static final String EXTRA_ACCOUNT = "account";
     public static final String EXTRA_CONTENT_VALUES = "contentValues";
     public static final String EXTRA_CALLBACK_INTENT = "callbackIntent";
     public static final String EXTRA_RESULT_RECEIVER = "resultReceiver";
@@ -136,12 +139,23 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_UNDO_ACTION = "undoAction";
     public static final String EXTRA_UNDO_DATA = "undoData";
 
-    public static final String BROADCAST_ACTION_GROUP_DELETED = "groupDeleted";
+    public static final String ACTION_IMPORT_FROM_SIM = "importFromSim";
+    public static final String EXTRA_SIM_CONTACTS = "simContacts";
+
+    public static final String BROADCAST_GROUP_DELETED = "groupDeleted";
+    public static final String BROADCAST_SIM_IMPORT_COMPLETE = "simImportComplete";
+
+    public static final String EXTRA_RESULT_CODE = "resultCode";
+    public static final String EXTRA_RESULT_COUNT = "count";
+    public static final String EXTRA_OPERATION_REQUESTED_AT_TIME = "requestedTime";
 
     public static final int CP2_ERROR = 0;
     public static final int CONTACTS_LINKED = 1;
     public static final int CONTACTS_SPLIT = 2;
     public static final int BAD_ARGUMENTS = 3;
+    public static final int RESULT_UNKNOWN = 0;
+    public static final int RESULT_SUCCESS = 1;
+    public static final int RESULT_FAILURE = 2;
 
     private static final HashSet<String> ALLOWED_DATA_COLUMNS = Sets.newHashSet(
         Data.MIMETYPE,
@@ -176,6 +190,7 @@ public class ContactSaveService extends IntentService {
 
     private Handler mMainHandler;
     private GroupsDao mGroupsDao;
+    private SimContactDao mSimContactDao;
 
     public ContactSaveService() {
         super(TAG);
@@ -187,6 +202,7 @@ public class ContactSaveService extends IntentService {
     public void onCreate() {
         super.onCreate();
         mGroupsDao = new GroupsDaoImpl(this);
+        mSimContactDao = new SimContactDao(this);
     }
 
     public static void registerListener(Listener listener) {
@@ -305,6 +321,8 @@ public class ContactSaveService extends IntentService {
             setRingtone(intent);
         } else if (ACTION_UNDO.equals(action)) {
             undo(intent);
+        } else if (ACTION_IMPORT_FROM_SIM.equals(action)) {
+            importFromSim(intent);
         }
     }
 
@@ -812,7 +830,7 @@ public class ContactSaveService extends IntentService {
         }
         final Uri groupUri = ContentUris.withAppendedId(Groups.CONTENT_URI, groupId);
 
-        final Intent callbackIntent = new Intent(BROADCAST_ACTION_GROUP_DELETED);
+        final Intent callbackIntent = new Intent(BROADCAST_GROUP_DELETED);
         final Bundle undoData = mGroupsDao.captureDeletionUndoData(groupUri);
         callbackIntent.putExtra(EXTRA_UNDO_ACTION, ACTION_DELETE_GROUP);
         callbackIntent.putExtra(EXTRA_UNDO_DATA, undoData);
@@ -1626,6 +1644,36 @@ public class ContactSaveService extends IntentService {
         builder.withValue(AggregationExceptions.RAW_CONTACT_ID1, rawContactId1);
         builder.withValue(AggregationExceptions.RAW_CONTACT_ID2, rawContactId2);
         operations.add(builder.build());
+    }
+
+    public static Intent createImportFromSimIntent(Context context,
+            ArrayList<SimContact> contacts, AccountWithDataSet targetAccount) {
+        return new Intent(context, ContactSaveService.class)
+                .setAction(ACTION_IMPORT_FROM_SIM)
+                .putExtra(EXTRA_SIM_CONTACTS, contacts)
+                .putExtra(EXTRA_ACCOUNT, targetAccount);
+    }
+
+    private void importFromSim(Intent intent) {
+        final Intent result = new Intent(BROADCAST_SIM_IMPORT_COMPLETE)
+                .putExtra(EXTRA_OPERATION_REQUESTED_AT_TIME, System.currentTimeMillis());
+        try {
+            final AccountWithDataSet targetAccount = intent.getParcelableExtra(EXTRA_ACCOUNT);
+            final ArrayList<SimContact> contacts =
+                    intent.getParcelableArrayListExtra(EXTRA_SIM_CONTACTS);
+            mSimContactDao.importContacts(contacts, targetAccount);
+            // notify success
+            LocalBroadcastManager.getInstance(this).sendBroadcast(result
+                    .putExtra(EXTRA_RESULT_COUNT, contacts.size())
+                    .putExtra(EXTRA_RESULT_CODE, RESULT_SUCCESS));
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "importFromSim completed successfully");
+            }
+        } catch (RemoteException|OperationApplicationException e) {
+            Log.e(TAG, "Failed to import contacts from SIM card", e);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(result
+                    .putExtra(EXTRA_RESULT_CODE, RESULT_FAILURE));
+        }
     }
 
     /**

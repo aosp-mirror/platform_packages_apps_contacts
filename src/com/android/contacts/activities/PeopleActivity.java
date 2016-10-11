@@ -466,7 +466,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
         mSaveServiceListener = new SaveServiceListener();
         LocalBroadcastManager.getInstance(this).registerReceiver(mSaveServiceListener,
-                new IntentFilter(ContactSaveService.BROADCAST_ACTION_GROUP_DELETED));
+                new IntentFilter(ContactSaveService.BROADCAST_GROUP_DELETED));
     }
 
     @Override
@@ -740,7 +740,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             switch (intent.getAction()) {
-                case ContactSaveService.BROADCAST_ACTION_GROUP_DELETED:
+                case ContactSaveService.BROADCAST_GROUP_DELETED:
                     onGroupDeleted(intent);
                     break;
             }

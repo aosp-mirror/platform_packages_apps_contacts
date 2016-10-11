@@ -1789,4 +1789,26 @@
 
     <!-- Error message displayed to user when they started the app, but could not sign in to Google's servers. [CHAR LIMIT=50]-->
     <string name="connection_failed">Failed to sign in</string>
+
+    <!-- Text for button shown in toolbar to start import of SIM contacts -->
+    <string name="sim_import_button_text">Import</string>
+
+    <!-- Toolbar title shown when importing SIM contacts and none are selected -->
+    <string name="sim_import_title_none_selected">Select contacts</string>
+
+    <!-- Toolbar title shown when importing SIM contacts and some are selected -->
+    <string name="sim_import_title_some_selected_fmt"><xliff:g id="count">%d</xliff:g> Selected</string>
+
+    <!-- Message shown when the SIM import screen is displayed but there are no contacts on the
+         SIM card  -->
+    <string name="sim_import_empty_message">No contacts on your SIM card</string>
+
+    <!-- Toast shown on settings screen when importing from SIM completes successfully -->
+    <plurals name="sim_import_success_toast_fmt">
+        <item quantity="one">1 SIM contact imported</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> SIM contacts imported</item>
+    </plurals>
+
+    <!-- Toast shown on settings screen when importing from SIM completes with an error -->
+    <string name="sim_import_failed_toast">Failed to import SIM contacts</string>
 </resources>

@@ -208,6 +208,10 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         mPreferences.edit().putString(mDefaultAccountKey, accountWithDataSet.stringify()).commit();
     }
 
+    public boolean isDefaultAccountSet() {
+        return mDefaultAccount != null || mPreferences.contains(mDefaultAccountKey);
+    }
+
     /**
      * @return false if there is only one writable account or no requirement to return true is met.
      *         true if the contact editor should show the "accounts changed" notification, that is:

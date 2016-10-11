@@ -20,13 +20,15 @@ import android.accounts.Account;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Parcelable;
 import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.preference.ContactsPreferences;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 
@@ -240,5 +242,26 @@ public class AccountWithDataSet implements Parcelable {
         }
 
         return ret;
+    }
+
+    public static AccountWithDataSet getDefaultOrBestFallback(ContactsPreferences preferences,
+            AccountTypeManager accountTypeManager) {
+        if (preferences.isDefaultAccountSet()) {
+            return preferences.getDefaultAccount();
+        }
+        List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(/* writableOnly */ true);
+
+        if (accounts.isEmpty()) {
+            return AccountWithDataSet.getNullAccount();
+        }
+
+        // Return the first google account
+        for (AccountWithDataSet account : accounts) {
+            if (GoogleAccountType.ACCOUNT_TYPE.equals(account) && account.dataSet == null) {
+                return account;
+            }
+        }
+        // Arbitrarily return the first writable account
+        return accounts.get(0);
     }
 }

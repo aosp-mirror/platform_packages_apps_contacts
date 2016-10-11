@@ -37,6 +37,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.android.contacts.SimImportFragment;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
@@ -151,7 +152,9 @@ public class ImportDialogFragment extends DialogFragment
             public void onClick(DialogInterface dialog, int which) {
                 boolean dismissDialog;
                 final int resId = adapter.getItem(which).mChoiceResourceId;
-                if (resId == R.string.import_from_sim || resId == R.string.import_from_vcf_file) {
+                if (resId == R.string.import_from_sim) {
+                    dismissDialog = handleSimImportRequest(adapter.getItem(which).mSubscriptionId);
+                } else if (resId == R.string.import_from_vcf_file) {
                         dismissDialog = handleImportRequest(resId,
                                 adapter.getItem(which).mSubscriptionId);
                 } else {
@@ -172,8 +175,13 @@ public class ImportDialogFragment extends DialogFragment
                 .create();
     }
 
+    private boolean handleSimImportRequest(int subscriptionId) {
+        SimImportFragment.newInstance(subscriptionId).show(getFragmentManager(), "SimImport");
+        return true;
+    }
+
     /**
-     * Handle "import from SIM" and "import from SD".
+     * Handle "import from SD".
      *
      * @return {@code true} if the dialog show be closed.  {@code false} otherwise.
      */
