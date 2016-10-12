@@ -554,7 +554,8 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             final String mimeType = dataKind.mimeType;
 
             // Skip psuedo mime types
-            if (DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
+            if (DataKind.PSEUDO_MIME_TYPE_NAME.equals(mimeType) ||
+                    DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
                 vlog("parse: " + i + " " + dataKind.mimeType + " dropped pseudo type");
                 continue;
             }
