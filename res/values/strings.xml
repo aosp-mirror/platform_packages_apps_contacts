@@ -902,6 +902,9 @@
     <!-- The menu item to open the Google contacts assistant. [CHAR LIMIT=20]-->
     <string name="menu_assistant">Assistant</string>
 
+    <!-- The menu item to open the link/merge duplicates activity. [CHAR LIMIT=20]-->
+    <string name="menu_duplicates">Duplicates</string>
+
     <!-- Open drawer content descriptions [CHAR LIMIT=40] -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
 
