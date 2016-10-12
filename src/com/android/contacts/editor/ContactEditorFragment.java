@@ -758,20 +758,17 @@ public class ContactEditorFragment extends Fragment implements
         // help menu depending on whether this is inserting or editing
         if (Intent.ACTION_INSERT.equals(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
-            splitMenu.setVisible(false);
-            joinMenu.setVisible(false);
-            deleteMenu.setVisible(false);
         } else if (Intent.ACTION_EDIT.equals(mAction)) {
             HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
-            splitMenu.setVisible(canUnlinkRawContacts());
-            // Cannot join a user profile
-            joinMenu.setVisible(!isEditingUserProfile());
-            deleteMenu.setVisible(!mDisableDeleteMenuOption && !isEditingUserProfile());
         } else {
             // something else, so don't show the help menu
             helpMenu.setVisible(false);
         }
-
+        // TODO: b/30771904, b/31827701, temporarily disable these items until we get them to work
+        // on a raw contact level.
+        joinMenu.setVisible(false);
+        splitMenu.setVisible(false);
+        deleteMenu.setVisible(false);
         // Save menu is invisible when there's only one read only contact in the editor.
         saveMenu.setVisible(!isEditingReadOnlyRawContact());
         if (saveMenu.isVisible()) {
