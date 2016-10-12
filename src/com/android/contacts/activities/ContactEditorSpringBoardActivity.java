@@ -118,6 +118,12 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
         final FragmentManager fm = getFragmentManager();
         final PickRawContactDialogFragment oldFragment = (PickRawContactDialogFragment)
                 fm.findFragmentByTag(TAG_RAW_CONTACTS_DIALOG);
+        if (oldFragment != null && oldFragment.getDialog() != null
+                && oldFragment.getDialog().isShowing()) {
+            // Just update the cursor without reshowing the dialog.
+            oldFragment.setCursor(mCursor);
+            return;
+        }
         final FragmentTransaction ft = fm.beginTransaction();
         if (oldFragment != null) {
             ft.remove(oldFragment);
