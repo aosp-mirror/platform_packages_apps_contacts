@@ -20,6 +20,7 @@ import android.content.ContentResolver;
 import android.net.Uri;
 import android.util.Log;
 
+import com.android.contactsbind.FeedbackHelper;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryCommitter;
 import com.android.vcard.VCardEntryConstructor;
@@ -29,7 +30,6 @@ import com.android.vcard.VCardParser;
 import com.android.vcard.VCardParser_V21;
 import com.android.vcard.VCardParser_V30;
 import com.android.vcard.exception.VCardException;
-import com.android.vcard.exception.VCardNestedException;
 import com.android.vcard.exception.VCardNotSupportedException;
 import com.android.vcard.exception.VCardVersionException;
 
@@ -106,12 +106,8 @@ public class ImportProcessor extends ProcessorBase implements VCardEntryHandler 
             if (isCancelled() && mListener != null) {
                 mListener.onImportCanceled(mImportRequest, mJobId);
             }
-        } catch (OutOfMemoryError e) {
-            Log.e(LOG_TAG, "OutOfMemoryError thrown during import", e);
-            throw e;
-        } catch (RuntimeException e) {
-            Log.e(LOG_TAG, "RuntimeException thrown during import", e);
-            throw e;
+        } catch (OutOfMemoryError|RuntimeException e) {
+            FeedbackHelper.sendFeedback(mService, LOG_TAG, "Vcard import failed", e);
         } finally {
             synchronized (this) {
                 mDone = true;
@@ -243,19 +239,16 @@ public class ImportProcessor extends ProcessorBase implements VCardEntryHandler 
 
                 successful = true;
                 break;
-            } catch (IOException e) {
-                Log.e(LOG_TAG, "IOException was emitted: " + e.getMessage());
-            } catch (VCardNestedException e) {
-                // This exception should not be thrown here. We should instead handle it
+            } catch (IOException|VCardNotSupportedException e) {
+                // VCardNestedException (a subclass of VCardNotSupportedException) should
+                // not be thrown here. We should instead handle it
                 // in the preprocessing session in ImportVCardActivity, as we don't try
                 // to detect the type of given vCard here.
                 //
                 // TODO: Handle this case appropriately, which should mean we have to have
                 // code trying to auto-detect the type of given vCard twice (both in
                 // ImportVCardActivity and ImportVCardService).
-                Log.e(LOG_TAG, "Nested Exception is found.");
-            } catch (VCardNotSupportedException e) {
-                Log.e(LOG_TAG, e.toString());
+                FeedbackHelper.sendFeedback(mService, LOG_TAG, "Failed to read vcard", e);
             } catch (VCardVersionException e) {
                 if (i == length - 1) {
                     Log.e(LOG_TAG, "Appropriate version for this vCard is not found.");
