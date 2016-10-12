@@ -105,6 +105,7 @@ public class PickRawContactDialogFragment extends DialogFragment {
     private Cursor mCursor;
     // Uri for the whole Contact.
     private Uri mUri;
+    private CursorAdapter mAdapter;
     private MaterialPalette mMaterialPalette;
 
     public static PickRawContactDialogFragment getInstance(Uri uri, Cursor cursor,
@@ -119,12 +120,12 @@ public class PickRawContactDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        final CursorAdapter adapter = new RawContactAccountListAdapter(getContext(), mCursor);
+        mAdapter = new RawContactAccountListAdapter(getContext(), mCursor);
         builder.setTitle(R.string.contact_editor_pick_raw_contact_dialog_title);
-        builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+        builder.setAdapter(mAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final long rawContactId = adapter.getItemId(which);
+                final long rawContactId = mAdapter.getItemId(which);
                 final Intent intent = EditorIntents.createEditContactIntentForRawContact(
                         getActivity(), mUri, rawContactId, mMaterialPalette);
                 intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
@@ -146,7 +147,10 @@ public class PickRawContactDialogFragment extends DialogFragment {
         mUri = uri;
     }
 
-    private void setCursor(Cursor cursor) {
+    public void setCursor(Cursor cursor) {
+        if (mAdapter != null) {
+            mAdapter.swapCursor(cursor);
+        }
         mCursor = cursor;
     }
 
