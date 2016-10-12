@@ -850,7 +850,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                         isCircular, defaultProvider);
             } else {
                 loadPhotoByIdOrUri(view, Request.createFromUri(photoUri, requestedExtent,
-                        darkTheme, isCircular, defaultProvider));
+                        darkTheme, isCircular, defaultProvider, defaultImageRequest));
             }
         }
     }
@@ -937,7 +937,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
             return false;
         }
 
-        if (holder.bytes == null) {
+        if (holder.bytes == null || holder.bytes.length == 0) {
             request.applyDefaultImage(view, request.mIsCircular);
             return holder.fresh;
         }
@@ -1622,30 +1622,41 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         private final boolean mDarkTheme;
         private final int mRequestedExtent;
         private final DefaultImageProvider mDefaultProvider;
+        private final DefaultImageRequest mDefaultRequest;
         /**
          * Whether or not the contact photo is to be displayed as a circle
          */
         private final boolean mIsCircular;
 
         private Request(long id, Uri uri, int requestedExtent, boolean darkTheme,
-                boolean isCircular, DefaultImageProvider defaultProvider) {
+                boolean isCircular, DefaultImageProvider defaultProvider,
+                DefaultImageRequest defaultRequest) {
             mId = id;
             mUri = uri;
             mDarkTheme = darkTheme;
             mIsCircular = isCircular;
             mRequestedExtent = requestedExtent;
             mDefaultProvider = defaultProvider;
+            mDefaultRequest = defaultRequest;
         }
 
         public static Request createFromThumbnailId(long id, boolean darkTheme, boolean isCircular,
                 DefaultImageProvider defaultProvider) {
-            return new Request(id, null /* no URI */, -1, darkTheme, isCircular, defaultProvider);
+            return new Request(id, null /* no URI */, -1, darkTheme, isCircular, defaultProvider,
+                    /* defaultRequest */ null);
         }
 
         public static Request createFromUri(Uri uri, int requestedExtent, boolean darkTheme,
                 boolean isCircular, DefaultImageProvider defaultProvider) {
+            return createFromUri(uri, requestedExtent, darkTheme, isCircular, defaultProvider,
+                    /* defaultRequest */ null);
+        }
+
+        public static Request createFromUri(Uri uri, int requestedExtent, boolean darkTheme,
+                boolean isCircular, DefaultImageProvider defaultProvider,
+                DefaultImageRequest defaultRequest) {
             return new Request(0 /* no ID */, uri, requestedExtent, darkTheme, isCircular,
-                    defaultProvider);
+                    defaultProvider, defaultRequest);
         }
 
         public boolean isUriRequest() {
@@ -1705,14 +1716,18 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         public void applyDefaultImage(ImageView view, boolean isCircular) {
             final DefaultImageRequest request;
 
-            if (isCircular) {
-                request = ContactPhotoManager.isBusinessContactUri(mUri)
-                        ? DefaultImageRequest.EMPTY_CIRCULAR_BUSINESS_IMAGE_REQUEST
-                        : DefaultImageRequest.EMPTY_CIRCULAR_DEFAULT_IMAGE_REQUEST;
+            if (mDefaultRequest == null) {
+                if (isCircular) {
+                    request = ContactPhotoManager.isBusinessContactUri(mUri)
+                            ? DefaultImageRequest.EMPTY_CIRCULAR_BUSINESS_IMAGE_REQUEST
+                            : DefaultImageRequest.EMPTY_CIRCULAR_DEFAULT_IMAGE_REQUEST;
+                } else {
+                    request = ContactPhotoManager.isBusinessContactUri(mUri)
+                            ? DefaultImageRequest.EMPTY_DEFAULT_BUSINESS_IMAGE_REQUEST
+                            : DefaultImageRequest.EMPTY_DEFAULT_IMAGE_REQUEST;
+                }
             } else {
-                request = ContactPhotoManager.isBusinessContactUri(mUri)
-                        ? DefaultImageRequest.EMPTY_DEFAULT_BUSINESS_IMAGE_REQUEST
-                        : DefaultImageRequest.EMPTY_DEFAULT_IMAGE_REQUEST;
+                request = mDefaultRequest;
             }
             mDefaultProvider.applyDefaultImage(view, mRequestedExtent, mDarkTheme, request);
         }
