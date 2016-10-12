@@ -3,12 +3,14 @@ package com.android.contacts.editor;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.RawContacts;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,8 +84,11 @@ public class PickRawContactDialogFragment extends DialogFragment {
                     displayName, String.valueOf(rawContactId), /* isCircular = */ true);
             final ImageView photoView = (ImageView) view.findViewById(
                     R.id.photo);
+            final Uri photoUri = Uri.withAppendedPath(
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
+                    RawContacts.DisplayPhoto.CONTENT_DIRECTORY);
             ContactPhotoManager.getInstance(mContext).loadDirectoryPhoto(photoView,
-                    ContactPhotoManager.getDefaultAvatarUriForContact(request),
+                    photoUri,
                     /* darkTheme = */ false,
                     /* isCircular = */ true,
                     request);
