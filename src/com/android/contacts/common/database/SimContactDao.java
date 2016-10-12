@@ -52,7 +52,8 @@ public class SimContactDao {
         this(context.getContentResolver());
     }
 
-    private SimContactDao(ContentResolver resolver) {
+    @VisibleForTesting
+    public SimContactDao(ContentResolver resolver) {
         mResolver = resolver;
     }
 

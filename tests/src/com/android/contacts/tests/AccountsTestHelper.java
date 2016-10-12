@@ -20,10 +20,12 @@ import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.test.InstrumentationRegistry;
+import android.util.Log;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
 
@@ -32,7 +34,11 @@ import static junit.framework.Assert.assertTrue;
 
 @SuppressWarnings("MissingPermission")
 public class AccountsTestHelper {
+    private static final String TAG = "AccountsTestHelper";
+
     public static final String TEST_ACCOUNT_TYPE = "com.android.contacts.tests.testauth.basic";
+
+    public static final String EXTRA_ACCOUNT_NAME = "accountName";
 
     private final Context mContext;
     private final AccountManager mAccountManager;
@@ -102,5 +108,33 @@ public class AccountsTestHelper {
 
     private AccountWithDataSet convertTestAccount() {
         return new AccountWithDataSet(mTestAccount.name, mTestAccount.type, null);
+    }
+
+    /**
+     * Invoke from adb using the RunMethodInstrumentation:
+     * $ adb shell am instrument -e class com.android.contacts.tests.AccountTestHelper\
+     *   -e method addTestAccount -e accountName fooAccount\
+     *   -w com.google.android.contacts.tests/com.android.contacts.RunMethodInstrumentation
+     */
+    public static void addTestAccount(Context context, Bundle args) {
+        final String accountName = args.getString(EXTRA_ACCOUNT_NAME);
+        if (accountName == null) {
+            Log.e(TAG, "args must contain extra " + EXTRA_ACCOUNT_NAME);
+            return;
+        }
+
+        new AccountsTestHelper(context).addTestAccount(accountName);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    public static void removeTestAccount(Context context, Bundle args) {
+        final String accountName = args.getString(EXTRA_ACCOUNT_NAME);
+        if (accountName == null) {
+            Log.e(TAG, "args must contain extra " + EXTRA_ACCOUNT_NAME);
+            return;
+        }
+
+        AccountWithDataSet account = new AccountWithDataSet(accountName, TEST_ACCOUNT_TYPE, null);
+        new AccountsTestHelper(context).removeTestAccount(account);
     }
 }
