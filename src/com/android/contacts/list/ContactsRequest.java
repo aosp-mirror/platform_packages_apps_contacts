@@ -78,6 +78,12 @@ public class ContactsRequest {
     /** Show all postal addresses and pick them when clicking */
     public static final int ACTION_PICK_EMAIL = 105;
 
+    /** Show a list of emails for selected contacts and select them when clicking */
+    public static final int ACTION_PICK_EMAILS = 106;
+
+    /** Show a list of phones for selected contacts and select them when clicking */
+    public static final int ACTION_PICK_PHONES = 107;
+
     /** Show all contacts and create a shortcut for the picked contact */
     public static final int ACTION_CREATE_SHORTCUT_CONTACT = 110;
 

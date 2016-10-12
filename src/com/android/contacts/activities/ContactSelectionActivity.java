@@ -52,6 +52,8 @@ import com.android.contacts.list.EmailAddressPickerFragment;
 import com.android.contacts.list.GroupMemberPickerFragment;
 import com.android.contacts.list.JoinContactListFragment;
 import com.android.contacts.list.LegacyPhoneNumberPickerFragment;
+import com.android.contacts.list.MultiSelectEmailAddressesListFragment;
+import com.android.contacts.list.MultiSelectPhoneNumbersListFragment;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.list.MultiSelectContactsListFragment.OnCheckBoxListActionListener;
 import com.android.contacts.list.OnContactPickerActionListener;
@@ -154,12 +156,10 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
 
         // Postal address pickers (and legacy pickers) don't support search, so just show
         // "HomeAsUp" button and title.
-        if (mRequest.getActionCode() == ContactsRequest.ACTION_PICK_POSTAL ||
-                mRequest.isLegacyCompatibilityMode()) {
-            mIsSearchSupported = false;
-        } else {
-            mIsSearchSupported = true;
-        }
+        mIsSearchSupported = mRequest.getActionCode() != ContactsRequest.ACTION_PICK_POSTAL
+                && mRequest.getActionCode() != ContactsRequest.ACTION_PICK_EMAILS
+                && mRequest.getActionCode() != ContactsRequest.ACTION_PICK_PHONES
+                && !mRequest.isLegacyCompatibilityMode();
         configureSearchMode();
     }
 
@@ -224,6 +224,14 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
             }
             case ContactsRequest.ACTION_PICK_EMAIL: {
                 titleResId = R.string.contactPickerActivityTitle;
+                break;
+            }
+            case ContactsRequest.ACTION_PICK_PHONES: {
+                titleResId = R.string.pickerSelectContactsActivityTitle;
+                break;
+            }
+            case ContactsRequest.ACTION_PICK_EMAILS: {
+                titleResId = R.string.pickerSelectContactsActivityTitle;
                 break;
             }
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
@@ -305,6 +313,17 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
                 break;
             }
 
+            case ContactsRequest.ACTION_PICK_PHONES: {
+                mListFragment = new MultiSelectPhoneNumbersListFragment();
+                mListFragment.setArguments(getIntent().getExtras());
+                break;
+            }
+
+            case ContactsRequest.ACTION_PICK_EMAILS: {
+                mListFragment = new MultiSelectEmailAddressesListFragment();
+                mListFragment.setArguments(getIntent().getExtras());
+                break;
+            }
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
                 PhoneNumberPickerFragment fragment = getPhoneNumberPickerFragment(mRequest);
                 fragment.setShortcutAction(Intent.ACTION_CALL);
@@ -387,6 +406,10 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
         } else if (mListFragment instanceof EmailAddressPickerFragment) {
             ((EmailAddressPickerFragment) mListFragment).setOnEmailAddressPickerActionListener(
                     new EmailAddressPickerActionListener());
+        } else if (mListFragment instanceof MultiSelectEmailAddressesListFragment) {
+            ((MultiSelectEmailAddressesListFragment) mListFragment).setCheckBoxListListener(this);
+        } else if (mListFragment instanceof MultiSelectPhoneNumbersListFragment) {
+            ((MultiSelectPhoneNumbersListFragment) mListFragment).setCheckBoxListListener(this);
         } else if (mListFragment instanceof JoinContactListFragment) {
             ((JoinContactListFragment) mListFragment).setOnContactPickerActionListener(
                     new JoinContactActionListener());
