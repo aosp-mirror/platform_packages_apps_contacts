@@ -1812,4 +1812,11 @@
     <!-- Toast shown on settings screen when importing from SIM completes with an error -->
     <string name="sim_import_failed_toast">Failed to import SIM contacts</string>
 
+    <!-- Title of SIM import dialog for accessibility; this isn't displayed but is announced
+     by talkback when the window is shown -->
+    <string name="sim_import_dialog_title">Select contacts to import</string>
+
+    <!-- Content description of the cancel navigation icon shown in SIM import dialog toolbar -->
+    <string name="sim_import_cancel_content_description">Cancel import</string>
+
 </resources>
