@@ -34,6 +34,8 @@ import android.util.Log;
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.CommonDateUtils;
+import com.android.contactsbind.FeedbackHelper;
+
 import com.google.common.collect.Lists;
 
 import java.util.Locale;
@@ -68,7 +70,8 @@ public class ExchangeAccountType extends BaseAccountType {
 
             mIsInitialized = true;
         } catch (DefinitionException e) {
-            Log.e(TAG, "Problem building account type", e);
+            // TODO: Change this to fail fast if there are no feedback reports
+            FeedbackHelper.sendFeedback(context, TAG, "Failed to build exchange account type", e);
         }
     }
 

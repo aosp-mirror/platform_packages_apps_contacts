@@ -31,6 +31,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.contacts.common.R;
+import com.android.contactsbind.FeedbackHelper;
 import com.android.vcard.VCardComposer;
 import com.android.vcard.VCardConfig;
 
@@ -96,11 +97,8 @@ public class ExportProcessor extends ProcessorBase {
             if (isCancelled()) {
                 doCancelNotification();
             }
-        } catch (OutOfMemoryError e) {
-            Log.e(LOG_TAG, "OutOfMemoryError thrown during import", e);
-            throw e;
-        } catch (RuntimeException e) {
-            Log.e(LOG_TAG, "RuntimeException thrown during export", e);
+        } catch (OutOfMemoryError|RuntimeException e) {
+            FeedbackHelper.sendFeedback(mService, LOG_TAG, "Failed to process vcard export", e);
             throw e;
         } finally {
             synchronized (this) {
