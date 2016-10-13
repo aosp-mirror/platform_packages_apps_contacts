@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.RawContacts;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,11 @@ import android.widget.TextView;
 import com.android.contacts.R;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
@@ -34,14 +39,20 @@ public class PickRawContactDialogFragment extends DialogFragment {
     /**
      * Used to list the account info for the given raw contacts list.
      */
-    private static final class RawContactAccountListAdapter extends CursorAdapter {
+    private final class RawContactAccountListAdapter extends CursorAdapter {
         private final LayoutInflater mInflater;
         private final Context mContext;
+        private final AccountDisplayInfoFactory mAccountDisplayInfoFactory;
+        private final AccountTypeManager mAccountTypeManager;
+        private final ContactsPreferences mPreferences;
 
         public RawContactAccountListAdapter(Context context, Cursor cursor) {
             super(context, cursor, 0);
             mContext = context;
             mInflater = LayoutInflater.from(context);
+            mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forWritableAccounts(context);
+            mAccountTypeManager = AccountTypeManager.getInstance(context);
+            mPreferences = new ContactsPreferences(context);
         }
 
         @Override
@@ -50,22 +61,18 @@ public class PickRawContactDialogFragment extends DialogFragment {
             final String accountName = cursor.getString(PickRawContactLoader.ACCOUNT_NAME);
             final String accountType = cursor.getString(PickRawContactLoader.ACCOUNT_TYPE);
             final String dataSet = cursor.getString(PickRawContactLoader.DATA_SET);
-            final AccountType account = AccountTypeManager.getInstance(mContext)
-                    .getAccountType(accountType, dataSet);
+            final AccountType account = mAccountTypeManager.getAccountType(accountType, dataSet);
 
-            final ContactsPreferences prefs = new ContactsPreferences(mContext);
             final int displayNameColumn =
-                    prefs.getDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
+                    mPreferences.getDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
                             ? PickRawContactLoader.DISPLAY_NAME_PRIMARY
                             : PickRawContactLoader.DISPLAY_NAME_ALTERNATIVE;
+
             String displayName = cursor.getString(displayNameColumn);
 
-            final TextView nameView = (TextView) view.findViewById(
-                    R.id.display_name);
-            final TextView accountTextView = (TextView) view.findViewById(
-                    R.id.account_name);
-            final ImageView accountIconView = (ImageView) view.findViewById(
-                    R.id.account_icon);
+            if (TextUtils.isEmpty(displayName)) {
+                displayName = mContext.getString(R.string.missing_name);
+            }
 
             if (!account.areContactsWritable()) {
                 displayName = mContext
@@ -74,19 +81,42 @@ public class PickRawContactDialogFragment extends DialogFragment {
             } else {
                 view.setAlpha(1f);
             }
-
+            final TextView nameView = (TextView) view.findViewById(
+                    R.id.display_name);
             nameView.setText(displayName);
-            accountTextView.setText(accountName);
+
+            final String accountDisplayLabel;
+
+            // Use the same string as editor if it's an editable user profile raw contact.
+            if (mIsUserProfile && account.areContactsWritable()) {
+                final AccountDisplayInfo displayInfo =
+                        mAccountDisplayInfoFactory.getAccountDisplayInfo(
+                                new AccountWithDataSet(accountName, accountType, dataSet));
+                accountDisplayLabel = EditorUiUtils.getAccountHeaderLabelForMyProfile(mContext,
+                        displayInfo);
+            }
+            else if (GoogleAccountType.ACCOUNT_TYPE.equals(accountType)
+                    && account.dataSet == null) {
+                // Focus Google accounts have the account name shown
+                accountDisplayLabel = accountName;
+            } else {
+                accountDisplayLabel = account.getDisplayLabel(mContext).toString();
+            }
+            final TextView accountTextView = (TextView) view.findViewById(
+                    R.id.account_name);
+            final ImageView accountIconView = (ImageView) view.findViewById(
+                    R.id.account_icon);
+            accountTextView.setText(accountDisplayLabel);
             accountIconView.setImageDrawable(account.getDisplayIcon(mContext));
 
             final ContactPhotoManager.DefaultImageRequest
                     request = new ContactPhotoManager.DefaultImageRequest(
                     displayName, String.valueOf(rawContactId), /* isCircular = */ true);
-            final ImageView photoView = (ImageView) view.findViewById(
-                    R.id.photo);
             final Uri photoUri = Uri.withAppendedPath(
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
                     RawContacts.DisplayPhoto.CONTENT_DIRECTORY);
+            final ImageView photoView = (ImageView) view.findViewById(
+                    R.id.photo);
             ContactPhotoManager.getInstance(mContext).loadDirectoryPhoto(photoView,
                     photoUri,
                     /* darkTheme = */ false,
@@ -112,13 +142,15 @@ public class PickRawContactDialogFragment extends DialogFragment {
     private Uri mUri;
     private CursorAdapter mAdapter;
     private MaterialPalette mMaterialPalette;
+    private boolean mIsUserProfile;
 
     public static PickRawContactDialogFragment getInstance(Uri uri, Cursor cursor,
-            MaterialPalette materialPalette) {
+            MaterialPalette materialPalette, boolean isUserProfile) {
         final PickRawContactDialogFragment fragment = new PickRawContactDialogFragment();
         fragment.setUri(uri);
         fragment.setCursor(cursor);
         fragment.setMaterialPalette(materialPalette);
+        fragment.setIsUserProfile(isUserProfile);
         return fragment;
     }
 
@@ -161,6 +193,10 @@ public class PickRawContactDialogFragment extends DialogFragment {
 
     private void setMaterialPalette(MaterialPalette materialPalette) {
         mMaterialPalette = materialPalette;
+    }
+
+    private void setIsUserProfile(boolean isUserProfile) {
+        mIsUserProfile = isUserProfile;
     }
 
     private void finishActivity() {

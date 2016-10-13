@@ -38,6 +38,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     private Uri mUri;
     private Cursor mCursor;
     private MaterialPalette mMaterialPalette;
+    private boolean mIsUserProfile;
 
     /**
      * The contact data loader listener.
@@ -59,6 +60,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
                         return;
                     }
                     mCursor = cursor;
+                    mIsUserProfile = ((PickRawContactLoader) loader).isUserProfile();
                     if (mCursor.getCount() == 1) {
                         loadEditor();
                     } else {
@@ -128,8 +130,8 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
         if (oldFragment != null) {
             ft.remove(oldFragment);
         }
-        final PickRawContactDialogFragment newFragment =
-                PickRawContactDialogFragment.getInstance(mUri, mCursor, mMaterialPalette);
+        final PickRawContactDialogFragment newFragment = PickRawContactDialogFragment.getInstance(
+                mUri, mCursor, mMaterialPalette, mIsUserProfile);
         ft.add(newFragment, TAG_RAW_CONTACTS_DIALOG);
         // commitAllowingStateLoss is safe in this activity because the fragment entirely depends
         // on the result of the loader. Even if we lose the fragment because the activity was
