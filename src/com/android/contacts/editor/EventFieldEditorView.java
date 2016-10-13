@@ -173,7 +173,8 @@ public class EventFieldEditorView extends LabeledEditorView {
 
         if (!isYearOptional && !TextUtils.isEmpty(oldValue)) {
             final ParsePosition position = new ParsePosition(0);
-            final Date date2 = kind.dateFormatWithoutYear.parse(oldValue, position);
+            final Date date2 = kind.dateFormatWithoutYear == null
+                    ? null : kind.dateFormatWithoutYear.parse(oldValue, position);
 
             // Don't understand the date, lets not change it
             if (date2 == null) return;
@@ -183,7 +184,11 @@ public class EventFieldEditorView extends LabeledEditorView {
             calendar.set(defaultYear, calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.DAY_OF_MONTH), CommonDateUtils.DEFAULT_HOUR, 0, 0);
 
-            onFieldChanged(column, kind.dateFormatWithYear.format(calendar.getTime()));
+            final String formattedDate = kind.dateFormatWithYear == null
+                    ? null : kind.dateFormatWithYear.format(calendar.getTime());
+            if (formattedDate == null) return;
+
+            onFieldChanged(column, formattedDate);
             rebuildDateView();
         }
     }
@@ -241,10 +246,14 @@ public class EventFieldEditorView extends LabeledEditorView {
 
                 final String resultString;
                 if (year == 0) {
-                    resultString = kind.dateFormatWithoutYear.format(outCalendar.getTime());
+                    resultString = kind.dateFormatWithoutYear == null
+                            ? null : kind.dateFormatWithoutYear.format(outCalendar.getTime());
                 } else {
-                    resultString = kind.dateFormatWithYear.format(outCalendar.getTime());
+                    resultString = kind.dateFormatWithYear == null
+                            ? null : kind.dateFormatWithYear.format(outCalendar.getTime());
                 }
+                if (resultString == null) return;
+
                 onFieldChanged(column, resultString);
                 rebuildDateView();
             }
