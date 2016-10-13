@@ -44,6 +44,7 @@ import com.android.contacts.common.R;
 import com.android.contacts.common.activity.RequestImportVCardPermissionsActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contactsbind.FeedbackHelper;
 import com.android.vcard.VCardEntryCounter;
 import com.android.vcard.VCardParser;
 import com.android.vcard.VCardParser_V21;
@@ -234,7 +235,8 @@ public class ImportVCardActivity extends Activity {
                     try {
                         requests.add(constructImportRequest(mSource, null, mDisplayName));
                     } catch (VCardException e) {
-                        Log.e(LOG_TAG, "Maybe the file is in wrong format", e);
+                        FeedbackHelper.sendFeedback(ImportVCardActivity.this, LOG_TAG,
+                                "Failed to cache vcard", e);
                         showFailureNotification(R.string.fail_reason_not_supported);
                         return;
                     }
@@ -252,11 +254,13 @@ public class ImportVCardActivity extends Activity {
                         try {
                             request = constructImportRequest(null, sourceUri, sourceDisplayName);
                         } catch (VCardException e) {
-                            Log.e(LOG_TAG, "Maybe the file is in wrong format", e);
+                            FeedbackHelper.sendFeedback(ImportVCardActivity.this, LOG_TAG,
+                                    "Failed to cache vcard", e);
                             showFailureNotification(R.string.fail_reason_not_supported);
                             return;
                         } catch (IOException e) {
-                            Log.e(LOG_TAG, "Unexpected IOException", e);
+                            FeedbackHelper.sendFeedback(ImportVCardActivity.this, LOG_TAG,
+                                    "Failed to cache vcard", e);
                             showFailureNotification(R.string.fail_reason_io_error);
                             return;
                         }
@@ -273,12 +277,14 @@ public class ImportVCardActivity extends Activity {
                     Log.w(LOG_TAG, "Empty import requests. Ignore it.");
                 }
             } catch (OutOfMemoryError e) {
-                Log.e(LOG_TAG, "OutOfMemoryError occured during caching vCard");
+                FeedbackHelper.sendFeedback(ImportVCardActivity.this, LOG_TAG,
+                        "OutOfMemoryError occured during caching vCard", e);
                 System.gc();
                 runOnUiThread(new DialogDisplayer(
                         getString(R.string.fail_reason_low_memory_during_import)));
             } catch (IOException e) {
-                Log.e(LOG_TAG, "IOException during caching vCard", e);
+                FeedbackHelper.sendFeedback(ImportVCardActivity.this, LOG_TAG,
+                        "IOException during caching vCard", e);
                 runOnUiThread(new DialogDisplayer(
                         getString(R.string.fail_reason_io_error)));
             } finally {
@@ -503,12 +509,8 @@ public class ImportVCardActivity extends Activity {
         }
         try {
             copyTo(sourceUri, localFilename);
-        } catch (SecurityException e) {
-            Log.e(LOG_TAG, "SecurityException", e);
-            showFailureNotification(R.string.fail_reason_io_error);
-            return null;
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "IOException during caching vCard", e);
+        } catch (IOException|SecurityException e) {
+            FeedbackHelper.sendFeedback(this, LOG_TAG, "Failed to copy vcard to local file", e);
             showFailureNotification(R.string.fail_reason_io_error);
             return null;
         }
