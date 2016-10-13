@@ -435,4 +435,5 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
             }
         }
     }
+
 }

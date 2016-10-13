@@ -1814,4 +1814,11 @@
 
     <!-- Error message displayed to user when they started the app, but could not sign in to Google's servers. [CHAR LIMIT=50]-->
     <string name="connection_failed">Failed to sign in</string>
+    <!-- Title of SIM import dialog for accessibility; this isn't displayed but is announced
+     by talkback when the window is shown -->
+    <string name="sim_import_dialog_title">Select contacts to import</string>
+
+    <!-- Content description of the cancel navigation icon shown in SIM import dialog toolbar -->
+    <string name="sim_import_cancel_content_description">Cancel import</string>
+
 </resources>

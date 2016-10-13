@@ -15,6 +15,7 @@
  */
 package com.android.contacts;
 
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
@@ -74,7 +75,7 @@ public class SimImportFragment extends DialogFragment
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_TITLE, R.style.PeopleThemeAppCompat_FullScreenDialog);
+        setStyle(STYLE_NORMAL, R.style.PeopleThemeAppCompat_FullScreenDialog);
         mPreferences = new ContactsPreferences(getContext());
         mAccountTypeManager = AccountTypeManager.getInstance(getActivity());
         mAdapter = new SimContactAdapter(getActivity());
@@ -86,6 +87,15 @@ public class SimImportFragment extends DialogFragment
         final Bundle args = getArguments();
         mSubscriptionId = args == null ? NO_SUBSCRIPTION_ID : args.getInt(ARG_SUBSCRIPTION_ID,
                 NO_SUBSCRIPTION_ID);
+    }
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        // Set the title for accessibility. It isn't displayed but will get announced when the
+        // window is shown
+        dialog.setTitle(R.string.sim_import_dialog_title);
+        return dialog;
     }
 
     @Override
@@ -248,6 +258,11 @@ public class SimImportFragment extends DialogFragment
             ContactListItemView contactView = (ContactListItemView) itemView;
             bindNameAndViewId(contactView, cursor);
             bindPhoto(contactView, partition, cursor);
+
+            // For accessibility. Tapping the item checks this so we don't need it to be separately
+            // clickable
+            contactView.getCheckBox().setFocusable(false);
+            contactView.getCheckBox().setClickable(false);
         }
 
         public void setContacts(ArrayList<SimContact> contacts) {

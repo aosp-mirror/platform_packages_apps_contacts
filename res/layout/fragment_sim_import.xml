@@ -26,6 +26,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:navigationContentDescription="@string/sim_import_cancel_content_description"
         app:navigationIcon="@drawable/ic_close_dk"
         app:title="@string/sim_import_title_none_selected">
 
