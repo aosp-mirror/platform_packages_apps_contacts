@@ -22,6 +22,7 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 import com.android.contacts.common.R;
+import com.android.contactsbind.FeedbackHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class ShareVCardActivity extends ExportVCardActivity {
         try {
             file.createNewFile();
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Failed to create .vcf file, because: " + e);
+            FeedbackHelper.sendFeedback(this, LOG_TAG, "Failed to create .vcf file", e);
             finish();
             return;
         }

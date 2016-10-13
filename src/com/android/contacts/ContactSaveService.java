@@ -64,6 +64,8 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
 import com.android.contacts.util.ContactPhotoUtils;
+import com.android.contactsbind.FeedbackHelper;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -554,12 +556,12 @@ public class ContactSaveService extends IntentService {
 
             } catch (RemoteException e) {
                 // Something went wrong, bail without success
-                Log.e(TAG, "Problem persisting user edits", e);
+                FeedbackHelper.sendFeedback(this, TAG, "Problem persisting user edits", e);
                 break;
 
             } catch (IllegalArgumentException e) {
                 // This is thrown by applyBatch on malformed requests
-                Log.e(TAG, "Problem persisting user edits", e);
+                FeedbackHelper.sendFeedback(this, TAG, "Problem persisting user edits", e);
                 showToast(R.string.contactSavedErrorToast);
                 break;
 
@@ -919,7 +921,7 @@ public class ContactSaveService extends IntentService {
         deliverCallback(callbackIntent);
     }
 
-    private static void addMembersToGroup(ContentResolver resolver, long[] rawContactsToAdd,
+    private void addMembersToGroup(ContentResolver resolver, long[] rawContactsToAdd,
             long groupId) {
         if (rawContactsToAdd == null) {
             return;
@@ -959,14 +961,16 @@ public class ContactSaveService extends IntentService {
                 }
             } catch (RemoteException e) {
                 // Something went wrong, bail without success
-                Log.e(TAG, "Problem persisting user edits for raw contact ID " +
-                        String.valueOf(rawContactId), e);
+                FeedbackHelper.sendFeedback(this, TAG,
+                        "Problem persisting user edits for raw contact ID " +
+                                String.valueOf(rawContactId), e);
             } catch (OperationApplicationException e) {
                 // The assert could have failed because the contact is already in the group,
                 // just continue to the next contact
-                Log.w(TAG, "Assert failed in adding raw contact ID " +
-                        String.valueOf(rawContactId) + ". Already exists in group " +
-                        String.valueOf(groupId), e);
+                FeedbackHelper.sendFeedback(this, TAG,
+                        "Assert failed in adding raw contact ID " +
+                                String.valueOf(rawContactId) + ". Already exists in group " +
+                                String.valueOf(groupId), e);
             }
         }
     }
@@ -1444,7 +1448,8 @@ public class ContactSaveService extends IntentService {
             }
             return true;
         } catch (RemoteException | OperationApplicationException e) {
-            Log.e(TAG, "Failed to apply aggregation exception batch", e);
+            FeedbackHelper.sendFeedback(this, TAG,
+                    "Failed to apply aggregation exception batch", e);
             showToast(R.string.contactSavedErrorToast);
             return false;
         }
@@ -1670,7 +1675,7 @@ public class ContactSaveService extends IntentService {
                 Log.d(TAG, "importFromSim completed successfully");
             }
         } catch (RemoteException|OperationApplicationException e) {
-            Log.e(TAG, "Failed to import contacts from SIM card", e);
+            FeedbackHelper.sendFeedback(this, TAG, "Failed to import contacts from SIM card", e);
             LocalBroadcastManager.getInstance(this).sendBroadcast(result
                     .putExtra(EXTRA_RESULT_CODE, RESULT_FAILURE));
         }

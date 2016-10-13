@@ -35,6 +35,8 @@ import android.util.Xml;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.dataitem.DataKind;
+import com.android.contactsbind.FeedbackHelper;
+
 import com.google.common.annotations.VisibleForTesting;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -151,8 +153,7 @@ public class ExternalAccountType extends BaseAccountType {
             }
             error.append(" for external package ");
             error.append(packageName);
-
-            Log.e(TAG, error.toString(), e);
+            FeedbackHelper.sendFeedback(context, TAG, "Failed to build external account type", e);
             return;
         } finally {
             if (parser != null) {
@@ -343,8 +344,8 @@ public class ExternalAccountType extends BaseAccountType {
                     mAccountTypeLabelAttribute = value;
                 } else if (ATTR_ACCOUNT_ICON.equals(attr)) {
                     mAccountTypeIconAttribute = value;
-                } else {
-                    Log.e(TAG, "Unsupported attribute " + attr);
+                } else if (Log.isLoggable(TAG, Log.WARN)) {
+                    Log.w(TAG, "Unsupported attribute " + attr);
                 }
             }
 
@@ -412,7 +413,9 @@ public class ExternalAccountType extends BaseAccountType {
             return -1; // Empty text is okay.
         }
         if (resourceName.charAt(0) != '@') {
-            Log.e(TAG, xmlAttributeName + " must be a resource name beginnig with '@'");
+            if (Log.isLoggable(TAG, Log.WARN)) {
+                Log.w(TAG, xmlAttributeName + " must be a resource name beginnig with '@'");
+            }
             return -1;
         }
         final String name = resourceName.substring(1);
@@ -420,12 +423,16 @@ public class ExternalAccountType extends BaseAccountType {
         try {
              res = context.getPackageManager().getResourcesForApplication(packageName);
         } catch (NameNotFoundException e) {
-            Log.e(TAG, "Unable to load package " + packageName);
+            if (Log.isLoggable(TAG, Log.WARN)) {
+                Log.w(TAG, "Unable to load package " + packageName);
+            }
             return -1;
         }
         final int resId = res.getIdentifier(name, null, packageName);
         if (resId == 0) {
-            Log.e(TAG, "Unable to load " + resourceName + " from package " + packageName);
+            if (Log.isLoggable(TAG, Log.WARN)) {
+                Log.w(TAG, "Unable to load " + resourceName + " from package " + packageName);
+            }
             return -1;
         }
         return resId;

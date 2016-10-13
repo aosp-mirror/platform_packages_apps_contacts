@@ -14,10 +14,12 @@
 package com.android.contactsbind;
 
 import android.content.Context;
+import android.util.Log;
 
 public final class FeedbackHelper {
 
-    public static void sendFeedback(Context context, Throwable t, String description) {
+    public static void sendFeedback(Context context, String tag, String description, Throwable t) {
+        Log.e(tag, description == null ? t.getMessage() : description, t);
     }
 
     private FeedbackHelper() {

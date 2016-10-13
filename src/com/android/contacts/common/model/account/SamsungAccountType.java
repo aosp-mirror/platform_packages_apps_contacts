@@ -21,6 +21,7 @@ import com.google.common.collect.Lists;
 import com.android.contacts.common.R;
 import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.CommonDateUtils;
+import com.android.contactsbind.FeedbackHelper;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -71,7 +72,7 @@ public class SamsungAccountType extends BaseAccountType {
 
             mIsInitialized = true;
         } catch (DefinitionException e) {
-            Log.e(TAG, "Problem building account type", e);
+            FeedbackHelper.sendFeedback(context, TAG, "Failed to build samsung account type", e);
         }
     }
 

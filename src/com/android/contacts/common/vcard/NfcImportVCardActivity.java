@@ -40,6 +40,7 @@ import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contactsbind.FeedbackHelper;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryCounter;
 import com.android.vcard.VCardParser;
@@ -125,7 +126,7 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
                     parser.addInterpreter(detector);
                     parser.parse(is);
                 } catch (VCardVersionException e2) {
-                    Log.e(TAG, "vCard with unsupported version.");
+                    FeedbackHelper.sendFeedback(this, TAG, "vcard with unsupported version", e2);
                     showFailureNotification(R.string.fail_reason_not_supported);
                     return null;
                 }
@@ -136,7 +137,7 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
                 }
             }
         } catch (IOException e) {
-            Log.e(TAG, "Failed reading vCard data", e);
+            FeedbackHelper.sendFeedback(this, TAG, "Failed to read vcard data", e);
             showFailureNotification(R.string.fail_reason_io_error);
             return null;
         } catch (VCardNestedException e) {
@@ -144,7 +145,7 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
             // Go through without throwing the Exception, as we may be able to detect the
             // version before it
         } catch (VCardException e) {
-            Log.e(TAG, "Error parsing vCard", e);
+            FeedbackHelper.sendFeedback(this, TAG, "Failed to parse vcard", e);
             showFailureNotification(R.string.fail_reason_not_supported);
             return null;
         }
