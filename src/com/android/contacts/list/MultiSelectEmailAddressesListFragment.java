@@ -15,10 +15,16 @@
  */
 package com.android.contacts.list;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.contacts.R;
 import com.android.contacts.common.logging.ListEvent;
 
 /** Displays a list of emails with check boxes. */
@@ -29,7 +35,7 @@ public class MultiSelectEmailAddressesListFragment
         setPhotoLoaderEnabled(true);
         setSectionHeaderDisplayEnabled(true);
         setSearchMode(false);
-        setHasOptionsMenu(false);
+        setHasOptionsMenu(true);
         setListType(ListEvent.ListType.PICK_EMAIL);
     }
 
@@ -39,6 +45,50 @@ public class MultiSelectEmailAddressesListFragment
                 new MultiSelectEmailAddressesListAdapter(getActivity());
         adapter.setArguments(getArguments());
         return adapter;
+    }
+
+    @Override
+    public void onSelectedContactsChangedViaCheckBox() {
+        onSelectedContactsChanged();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.items_multi_select, menu);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        final MenuItem item = menu.findItem(R.id.menu_send);
+        item.setVisible(getAdapter().hasSelectedItems());
+        item.getActionView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(item);
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.menu_send: {
+                final String scheme = getActivity().getIntent().getStringExtra(
+                        UiIntentActions.SELECTION_SEND_SCHEME);
+                final String title= getActivity().getIntent().getStringExtra(
+                        UiIntentActions.SELECTION_SEND_TITLE);
+                final Intent intent = new Intent();
+                intent.putExtra(UiIntentActions.TARGET_CONTACT_IDS_EXTRA_KEY,
+                        getAdapter().getSelectedContactIdsArray());
+                intent.putExtra(UiIntentActions.SELECTION_SEND_SCHEME, scheme);
+                intent.putExtra(UiIntentActions.SELECTION_SEND_TITLE, title);
+                getActivity().setResult(Activity.RESULT_OK, intent);
+                getActivity().finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
