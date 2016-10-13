@@ -28,6 +28,7 @@ import android.support.test.InstrumentationRegistry;
 import android.util.Log;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.preference.ContactsPreferences;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
@@ -37,8 +38,6 @@ public class AccountsTestHelper {
     private static final String TAG = "AccountsTestHelper";
 
     public static final String TEST_ACCOUNT_TYPE = "com.android.contacts.tests.testauth.basic";
-
-    public static final String EXTRA_ACCOUNT_NAME = "accountName";
 
     private final Context mContext;
     private final AccountManager mAccountManager;
@@ -117,9 +116,9 @@ public class AccountsTestHelper {
      *   -w com.google.android.contacts.tests/com.android.contacts.RunMethodInstrumentation
      */
     public static void addTestAccount(Context context, Bundle args) {
-        final String accountName = args.getString(EXTRA_ACCOUNT_NAME);
+        final String accountName = args.getString("name");
         if (accountName == null) {
-            Log.e(TAG, "args must contain extra " + EXTRA_ACCOUNT_NAME);
+            Log.e(TAG, "args must contain extra \"name\"");
             return;
         }
 
@@ -128,13 +127,31 @@ public class AccountsTestHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public static void removeTestAccount(Context context, Bundle args) {
-        final String accountName = args.getString(EXTRA_ACCOUNT_NAME);
+        final String accountName = args.getString("name");
         if (accountName == null) {
-            Log.e(TAG, "args must contain extra " + EXTRA_ACCOUNT_NAME);
+            Log.e(TAG, "args must contain extra \"name\"");
             return;
         }
 
-        AccountWithDataSet account = new AccountWithDataSet(accountName, TEST_ACCOUNT_TYPE, null);
+        final AccountWithDataSet account = new AccountWithDataSet(accountName, TEST_ACCOUNT_TYPE,
+                null);
         new AccountsTestHelper(context).removeTestAccount(account);
+    }
+
+    public static void setDefaultAccount(Context context, Bundle args) {
+        final String name = args.getString("name");
+        final String type = args.getString("type");
+
+        if (name == null || type == null) {
+            Log.e(TAG, "args must contain extras \"name\" and \"type\"");
+            return;
+        }
+
+        new ContactsPreferences(context).setDefaultAccount(
+                new AccountWithDataSet(name, type, null));
+    }
+
+    public static void clearDefaultAccount(Context context) {
+        new ContactsPreferences(context).clearDefaultAccount();
     }
 }

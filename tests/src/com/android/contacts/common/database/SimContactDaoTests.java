@@ -26,6 +26,7 @@ import android.support.annotation.RequiresApi;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.filters.SdkSuppress;
+import android.support.test.filters.Suppress;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.android.contacts.common.model.SimContact;
@@ -48,8 +49,6 @@ import java.util.Arrays;
 import static android.os.Build.VERSION_CODES;
 import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.assertThat;
-
-import android.support.test.filters.Suppress;
 
 @RunWith(Enclosed.class)
 public class SimContactDaoTests {
