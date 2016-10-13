@@ -155,6 +155,9 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
             intent = EditorIntents.createEditContactIntent(this, mUri, mMaterialPalette, -1);
             intent.setClass(this, ContactEditorActivity.class);
         }
+        // Destroy the loader to prevent multiple onLoadFinished calls in case CP2 is updating in
+        // the background.
+        getLoaderManager().destroyLoader(LOADER_RAW_CONTACTS);
         ImplicitIntentsUtil.startActivityInApp(this, intent);
     }
 
