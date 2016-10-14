@@ -394,11 +394,11 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
 
     /**
      * Returns true if this ContactListFilter contains at least one Google account.
-     * (see {@link #isWritableGoogleTypeFilter )
+     * (see {@link #isGoogleAccountType )
      */
     public boolean isSyncable(List<AccountWithDataSet> accounts) {
         // TODO(samchen): Check FILTER_TYPE_CUSTOM
-        if (isWritableGoogleTypeFilter() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+        if (isGoogleAccountType() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
             return true;
         }
         if (filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
@@ -417,12 +417,12 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     }
 
     /**
-     * Returns the Google accounts (see {@link #isWritableGoogleTypeFilter ) for this ContactListFilter.
+     * Returns the Google accounts (see {@link #isGoogleAccountType ) for this ContactListFilter.
      */
     public List<Account> getSyncableAccounts(List<AccountWithDataSet> accounts) {
         final List<Account> syncableAccounts = new ArrayList<>();
         // TODO(samchen): Check FILTER_TYPE_CUSTOM
-        if (isWritableGoogleTypeFilter() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+        if (isGoogleAccountType() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
             syncableAccounts.add(new Account(accountName, accountType));
         } else if (filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
                 || filterType == ContactListFilter.FILTER_TYPE_DEFAULT) {
@@ -441,7 +441,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
      * Returns true if this ContactListFilter is Google account type. (i.e. where
      * accountType = "com.google" and dataSet = null)
      */
-    public boolean isWritableGoogleTypeFilter() {
+    public boolean isGoogleAccountType() {
         return GoogleAccountType.ACCOUNT_TYPE.equals(accountType) && dataSet == null;
     }
 }
