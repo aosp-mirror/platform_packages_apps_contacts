@@ -17,6 +17,7 @@ package com.android.contacts.list;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,6 +27,8 @@ import android.view.ViewGroup;
 
 import com.android.contacts.R;
 import com.android.contacts.common.logging.ListEvent;
+
+import java.util.TreeSet;
 
 /** Displays a list of emails with check boxes. */
 public class MultiSelectEmailAddressesListFragment
@@ -92,9 +95,40 @@ public class MultiSelectEmailAddressesListFragment
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        final long[] selectedIds = getActivity().getIntent().getLongArrayExtra(
+                UiIntentActions.SELECTION_DEFAULT_SELECTION);
+        if (selectedIds != null && selectedIds.length != 0) {
+            final TreeSet<Long> selectedIdsTree = new TreeSet<>();
+            for (int i = 0; i < selectedIds.length; i++) {
+                selectedIdsTree.add(selectedIds[i]);
+            }
+            getAdapter().setSelectedContactIds(selectedIdsTree);
+            onSelectedContactsChanged();
+        }
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         displayCheckBoxes(true);
+
+        final long[] itemIds = getActivity().getIntent().getLongArrayExtra(
+                UiIntentActions.SELECTION_ITEM_LIST);
+        final boolean[] selectedFlags = getActivity().getIntent().getBooleanArrayExtra(
+                UiIntentActions.SELECTION_DEFAULT_SELECTION);
+        if (itemIds != null && selectedFlags != null && itemIds.length == selectedFlags.length) {
+            TreeSet<Long> selectedIds = new TreeSet<>();
+            for (int i = 0; i < itemIds.length; i++) {
+                if (selectedFlags[i]) {
+                    selectedIds.add(itemIds[i]);
+                }
+            }
+            getAdapter().setSelectedContactIds(selectedIds);
+            onSelectedContactsChanged();
+        }
     }
 
     @Override

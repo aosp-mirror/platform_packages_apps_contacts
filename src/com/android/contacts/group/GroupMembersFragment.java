@@ -65,10 +65,13 @@ import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.list.UiIntentActions;
 import com.android.contactsbind.experiments.Flags;
+import com.google.common.primitives.Longs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /** Displays the members of a group. */
@@ -303,15 +306,24 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 ContactsContract.Data.MIMETYPE + "='"
                         + ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE + "'";
 
-        public static final String[] PROJECTION = {
+        public static final String[] EMAIL_PROJECTION = {
                 ContactsContract.Data.CONTACT_ID,
-                ContactsContract.Data.IS_PRIMARY,
+                ContactsContract.CommonDataKinds.Email._ID,
+                ContactsContract.Data.IS_SUPER_PRIMARY,
                 ContactsContract.Data.DATA1
         };
 
-        public static final int ID = 0;
-        public static final int IS_PRIMARY = 1;
-        public static final int DATA1 = 2;
+        public static final String[] PHONE_PROJECTION = {
+                ContactsContract.Data.CONTACT_ID,
+                ContactsContract.CommonDataKinds.Phone._ID,
+                ContactsContract.Data.IS_SUPER_PRIMARY,
+                ContactsContract.Data.DATA1
+        };
+
+        public static final int CONTACT_ID = 0;
+        public static final int ITEM_ID = 1;
+        public static final int PRIMARY = 2;
+        public static final int DATA1 = 3;
     }
 
     private List<String> getSendToDataForIds(long[] ids, String scheme) {
@@ -324,7 +336,10 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 + " AND " + ContactsContract.CommonDataKinds.Phone._ID + " IN (" + sIds + ")");
         final ContentResolver contentResolver = getContext().getContentResolver();
         final Cursor cursor = contentResolver.query(ContactsContract.Data.CONTENT_URI,
-                Query.PROJECTION, select, null, null);
+                ContactsUtils.SCHEME_MAILTO.equals(scheme)
+                    ? Query.EMAIL_PROJECTION
+                    : Query.PHONE_PROJECTION,
+                select, null, null);
 
         if (cursor == null) {
             return items;
@@ -350,8 +365,12 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         if(ids == null || ids.length == 0) return;
 
         // Get emails or phone numbers
-        final List<String> itemsData = new ArrayList<>();
-        final Set<String> usedContactIds = new HashSet<>();
+        // encounteredIds <contact_id, <item_id, is_super_primary>>
+        final Map<String, Map<String, Boolean>> encounteredIds = new HashMap<>();
+        // primaryItems <contact_id, has_super_primary>
+        final Map<String, Boolean> primaryItems = new HashMap<>();
+        // itemList <item_data>
+        final List<String> itemList = new ArrayList<>();
         final String sIds = GroupUtil.convertArrayToString(ids);
         final String select = (ContactsUtils.SCHEME_MAILTO.equals(sendScheme)
                 ? Query.EMAIL_SELECTION
@@ -359,7 +378,10 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 + " AND " + ContactsContract.Data.CONTACT_ID + " IN (" + sIds + ")";
         final ContentResolver contentResolver = getContext().getContentResolver();
         final Cursor cursor = contentResolver.query(ContactsContract.Data.CONTENT_URI,
-                Query.PROJECTION, select, null, null);
+                ContactsUtils.SCHEME_MAILTO.equals(sendScheme)
+                        ? Query.EMAIL_PROJECTION
+                        : Query.PHONE_PROJECTION,
+                select, null, null);
 
         if (cursor == null) {
             return;
@@ -368,35 +390,62 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         try {
             cursor.moveToPosition(-1);
             while (cursor.moveToNext()) {
-                final String contactId = cursor.getString(Query.ID);
+                final String contactId = cursor.getString(Query.CONTACT_ID);
+                final String itemId = cursor.getString(Query.ITEM_ID);
+                final boolean isPrimary = cursor.getInt(Query.PRIMARY) != 0;
                 final String data = cursor.getString(Query.DATA1);
 
-                if (!usedContactIds.contains(contactId)) {
-                    usedContactIds.add(contactId);
-                } else {
-                    // If we found a contact with multiple items (email, phone), start the picker
-                    startSendToSelectionPickerActivity(ids, sendScheme, title);
-                    return;
-                } if (!TextUtils.isEmpty(data)) {
-                    itemsData.add(data);
+                if (!encounteredIds.containsKey(contactId)) {
+                    encounteredIds.put(contactId, new HashMap<String, Boolean>());
+                }
+                final Boolean prevHasSuperPrimary = primaryItems.get(contactId);
+                final boolean hasPrimary = prevHasSuperPrimary == null
+                        ? isPrimary
+                        : prevHasSuperPrimary || isPrimary;
+                primaryItems.put(contactId, hasPrimary);
+
+                if (!TextUtils.isEmpty(data)) {
+                    final Map<String, Boolean> itemMap = encounteredIds.get(contactId);
+                    itemMap.put(itemId, isPrimary);
+                    itemList.add(data);
                 }
             }
         } finally {
             cursor.close();
         }
 
-        if (itemsData.size() == 0 || usedContactIds.size() < ids.length) {
+        // Start picker if a contact has multiple items with no superPrimary
+        for (Map.Entry<String, Map<String, Boolean>> i : encounteredIds.entrySet()) {
+            boolean hasSuperPrimary = primaryItems.get(i.getKey());
+            if (i.getValue().size() > 1 && !hasSuperPrimary) {
+                // Build list of default selected item ids
+                final List<Long> defaultSelection = new ArrayList<>();
+                for (Map.Entry<String, Map<String, Boolean>> j : encounteredIds.entrySet()) {
+                    for (Map.Entry<String, Boolean> k : j.getValue().entrySet()) {
+                        final String itemId = k.getKey();
+                        if (j.getValue().size() == 1 || k.getValue()) {
+                            defaultSelection.add(Long.parseLong(itemId));
+                        }
+                    }
+                }
+                final long[] defaultSelectionArray = Longs.toArray(defaultSelection);
+                startSendToSelectionPickerActivity(ids, defaultSelectionArray, sendScheme, title);
+                return;
+            }
+        }
+
+        if (itemList.size() == 0 || encounteredIds.size() < ids.length) {
             Toast.makeText(getContext(), ContactsUtils.SCHEME_MAILTO.equals(sendScheme)
                             ? getString(R.string.groupSomeContactsNoEmailsToast)
                             : getString(R.string.groupSomeContactsNoPhonesToast),
                     Toast.LENGTH_LONG).show();
         }
 
-        if (itemsData.size() == 0) {
+        if (itemList.size() == 0) {
             return;
         }
 
-        final String itemsString = GroupUtil.convertListToString(itemsData);
+        final String itemsString = TextUtils.join(",", itemList);
         startSendToSelectionActivity(itemsString, sendScheme, title);
     }
 
@@ -404,9 +453,10 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         startActivity(GroupUtil.createSendToSelectionIntent(listItems, sendScheme, title));
     }
 
-    private void startSendToSelectionPickerActivity(long[] ids, String sendScheme, String title) {
+    private void startSendToSelectionPickerActivity(long[] ids, long[] defaultSelection,
+            String sendScheme, String title) {
         startActivityForResult(GroupUtil.createSendToSelectionPickerIntent(getContext(), ids,
-                sendScheme, title), RESULT_SEND_TO_SELECTION);
+                defaultSelection, sendScheme, title), RESULT_SEND_TO_SELECTION);
     }
 
     private void startGroupAddMemberActivity() {
@@ -507,7 +557,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 final String sendScheme = data.getStringExtra(UiIntentActions.SELECTION_SEND_SCHEME);
                 final String sendTitle = data.getStringExtra(UiIntentActions.SELECTION_SEND_TITLE);
                 final List<String> items = getSendToDataForIds(ids, sendScheme);
-                final String list = GroupUtil.convertListToString(items);
+                final String list = TextUtils.join(",", items);
                 startSendToSelectionActivity(list, sendScheme, sendTitle);
                 break;
             }
