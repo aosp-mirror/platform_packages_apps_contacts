@@ -241,10 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ជ្រើសគណនីលំនាំដើមសម្រាប់ទំនាក់ទំនងថ្មី៖"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"បញ្ចូល​ទំនាក់ទំនងថ្មី"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"កែ​ទំនាក់ទំនង"</string>
-    <!-- no translation found for contact_editor_pick_raw_contact_dialog_title (9020902336507940034) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_read_only (5505352743052484053) -->
-    <skip />
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"ជ្រើសយក​ទំនាក់ទំនង​ដែល​បាន​តភ្ជាប់"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (បាន​តែ​អាន​ប៉ុណ្ណោះ)"</string>
     <string name="add_account" msgid="8201790677994503186">"បញ្ចូល​​គណនី"</string>
     <string name="add_new_account" msgid="5748627740680940264">"បន្ថែម​គណនី​ថ្មី"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"នាំចេញ​ឯកសារ​មូលដ្ឋាន​ទិន្នន័យ"</string>
@@ -324,6 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"មិនបានជ្រើសរូបថតពីគណនីមិនស្គាល់ទេ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"បានជ្រើសរូបថតពីគណនីមិនស្គាល់"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"កំពុង​ធ្វើ​បច្ចុប្បន្នភាព​បញ្ជី​​ទំនាក់ទំនង​ដើម្បី​​បង្ហាញ​ឲ្យ​ឃើញ​ការ​​ផ្លាស់ប្ដូរ​​ភាសា។\n\nសូម​រង់ចាំ..."</string>
+    <string name="menu_assistant" msgid="919866272301744261">"អ្នកជំនួយការ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ស្ទួន"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"បើក​ផ្ទាំង​រុករក"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"បិទ​ផ្ទាំង​រុករក"</string>
@@ -601,4 +600,17 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ម៉ោង <xliff:g id="MINUTES_1">%s</xliff:g> នាទី <xliff:g id="SECONDS">%s</xliff:g> វិនាទី"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"ផ្លូវកាត់នេះត្រូវបានបិទ"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"ទំនាក់ទំនងត្រូវបាន​លុប​ចេញ"</string>
+    <string name="sim_import_button_text" msgid="4270841592496619317">"នាំចូល"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"ជ្រើស​រើសទំនាក់ទំនង"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"បាន​ជ្រើសរើស <xliff:g id="COUNT">%d</xliff:g>"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"គ្មាន​ទំនាក់ទំនង​នៅ​ក្នុង​​ស៊ីមកាត​របស់​អ្នក​ទេ"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="other">បាន​នាំចូល​ទំនាក់ទំនង SIM <xliff:g id="COUNT">%d</xliff:g></item>
+      <item quantity="one">បាន​នាំចូល​ទំនាក់ទំនង SIM 1</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"មិន​អាច​នាំចូល​ទំនាក់ទំនង​ពី SIM បាន​ទេ"</string>
+    <!-- no translation found for sim_import_dialog_title (6699935401502172530) -->
+    <skip />
+    <!-- no translation found for sim_import_cancel_content_description (2388362519166414488) -->
+    <skip />
 </resources>
