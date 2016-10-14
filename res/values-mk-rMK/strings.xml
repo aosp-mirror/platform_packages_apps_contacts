@@ -241,10 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Изберете стандардна сметка за новите контакти:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додај нов контакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Уреди контакт"</string>
-    <!-- no translation found for contact_editor_pick_raw_contact_dialog_title (9020902336507940034) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_read_only (5505352743052484053) -->
-    <skip />
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Изберете поврзан контакт"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (само за читање)"</string>
     <string name="add_account" msgid="8201790677994503186">"Додај сметка"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Додај нова сметка"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Извези датотеки од база на податоци"</string>
@@ -324,6 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Не е избрана фотографија од непозната сметка"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Избрана е фотографија од непозната сметка"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Списокот со контакти се ажурира за да ја одрази промената на јазикот.\n\nПочекајте…"</string>
+    <string name="menu_assistant" msgid="919866272301744261">"Помошник"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Дупликати"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Отворете фиока за навигација"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Затворете фиока за навигација"</string>
@@ -601,4 +600,17 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> час <xliff:g id="MINUTES_1">%s</xliff:g> мин. <xliff:g id="SECONDS">%s</xliff:g> сек."</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Кратенкава е оневозможена"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Контактот е отстранет"</string>
+    <string name="sim_import_button_text" msgid="4270841592496619317">"Увези"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Изберете контакти"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"Избрани се <xliff:g id="COUNT">%d</xliff:g>"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"Нема контакти на вашата SIM-картичка"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="one">Увезен е <xliff:g id="COUNT">%d</xliff:g> контакт од SIM</item>
+      <item quantity="other">Увезени се <xliff:g id="COUNT">%d</xliff:g> контакти од SIM</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"Не успеа увезувањето контакти од SIM"</string>
+    <!-- no translation found for sim_import_dialog_title (6699935401502172530) -->
+    <skip />
+    <!-- no translation found for sim_import_cancel_content_description (2388362519166414488) -->
+    <skip />
 </resources>
