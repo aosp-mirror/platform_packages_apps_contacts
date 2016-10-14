@@ -14,7 +14,6 @@
 package com.android.contactsbind;
 
 import com.android.contacts.common.logging.Logger;
-import com.android.contacts.common.preference.PreferenceManager;
 import com.android.contactsbind.search.AutocompleteHelper;
 import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 
@@ -31,8 +30,6 @@ public class ObjectFactory {
     public static Logger getLogger() {
         return null;
     }
-
-    public static PreferenceManager getPreferenceManager(Context context) { return null; }
 
     public static AutocompleteHelper getAutocompleteHelper(Context context) {
         return null;
