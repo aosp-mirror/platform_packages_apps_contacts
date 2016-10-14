@@ -61,6 +61,8 @@ import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 import com.android.contactsbind.ObjectFactory;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -75,6 +77,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.annotation.Nullable;
 
 import static com.android.contacts.common.util.DeviceLocalAccountTypeFactory.Util.isLocalAccountType;
 
@@ -128,6 +132,11 @@ public abstract class AccountTypeManager {
         }
 
         @Override
+        public List<AccountWithDataSet> getAccounts(Predicate<AccountWithDataSet> filter) {
+            return Collections.emptyList();
+        }
+
+        @Override
         public List<AccountWithDataSet> getGroupWritableAccounts() {
             return Collections.emptyList();
         }
@@ -165,6 +174,8 @@ public abstract class AccountTypeManager {
      */
     // TODO: Consider splitting this into getContactWritableAccounts() and getAllAccounts()
     public abstract List<AccountWithDataSet> getAccounts(boolean contactWritableOnly);
+
+    public abstract List<AccountWithDataSet> getAccounts(Predicate<AccountWithDataSet> filter);
 
     public abstract List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
             boolean contactWritableOnly);
@@ -272,6 +283,14 @@ public abstract class AccountTypeManager {
         return canGetAccounts && canReadContacts;
     }
 
+    public static Predicate<AccountWithDataSet> nonNullAccountFilter() {
+        return new Predicate<AccountWithDataSet>() {
+            @Override
+            public boolean apply(@Nullable AccountWithDataSet account) {
+                return account != null && account.name != null && account.type != null;
+            }
+        };
+    }
 }
 
 class AccountComparator implements Comparator<AccountWithDataSet> {
@@ -753,6 +772,11 @@ class AccountTypeManagerImpl extends AccountTypeManager
     public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
         ensureAccountsLoaded();
         return Lists.newArrayList(contactWritableOnly ? mContactWritableAccounts : mAccounts);
+    }
+
+    @Override
+    public List<AccountWithDataSet> getAccounts(Predicate<AccountWithDataSet> filter) {
+        return new ArrayList<>(Collections2.filter(mAccounts, filter));
     }
 
     /**
