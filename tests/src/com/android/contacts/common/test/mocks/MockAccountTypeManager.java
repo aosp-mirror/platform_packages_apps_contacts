@@ -23,6 +23,8 @@ import com.android.contacts.common.model.account.AccountTypeWithDataSet;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.BaseAccountType;
 import com.google.common.base.Objects;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -65,6 +67,11 @@ public class MockAccountTypeManager extends AccountTypeManager {
     @Override
     public List<AccountWithDataSet> getAccounts(boolean writableOnly) {
         return Arrays.asList(mAccounts);
+    }
+
+    @Override
+    public List<AccountWithDataSet> getAccounts(Predicate<AccountWithDataSet> filter) {
+        return Lists.newArrayList(Collections2.filter(Arrays.asList(mAccounts), filter));
     }
 
     @Override

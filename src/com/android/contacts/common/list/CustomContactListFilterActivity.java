@@ -143,7 +143,10 @@ public class CustomContactListFilterActivity extends Activity implements
 
             final AccountSet accounts = new AccountSet();
 
-            final List<AccountWithDataSet> sourceAccounts = accountTypes.getAccounts(false);
+            // Don't include the null account because it doesn't support writing to
+            // ContactsContract.Settings
+            final List<AccountWithDataSet> sourceAccounts = accountTypes.getAccounts(
+                    AccountTypeManager.nonNullAccountFilter());
             final AccountDisplayInfoFactory displayableAccountFactory =
                     new AccountDisplayInfoFactory(context, sourceAccounts);
             for (AccountWithDataSet account : sourceAccounts) {
