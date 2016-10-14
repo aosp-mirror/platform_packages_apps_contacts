@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
 
@@ -13,6 +14,7 @@ import android.provider.ContactsContract.RawContacts;
  */
 public class PickRawContactLoader extends CursorLoader {
     private Uri mContactUri;
+    private boolean mIsUserProfile;
 
     public static final String[] COLUMNS = new String[] {
             RawContacts.ACCOUNT_NAME,
@@ -41,7 +43,7 @@ public class PickRawContactLoader extends CursorLoader {
     public Cursor loadInBackground() {
         // Get the id of the contact we're looking at.
         final Cursor cursor = getContext().getContentResolver()
-                .query(mContactUri, new String[] { Contacts._ID }, null,
+                .query(mContactUri, new String[] { Contacts._ID, Contacts.IS_USER_PROFILE }, null,
                 null, null);
 
         if (cursor == null) {
@@ -54,12 +56,22 @@ public class PickRawContactLoader extends CursorLoader {
         }
 
         cursor.moveToFirst();
-        final long contactId = cursor.getLong(0);
+        final long contactId = cursor.getLong(/* Contacts._ID */ 0);
+        mIsUserProfile = cursor.getInt(/* Contacts.IS_USER_PROFILE */ 1) == 1;
+
         cursor.close();
         // Update selection arguments and uri.
         setSelectionArgs(new String[]{ Long.toString(contactId) });
-        setUri(RawContacts.CONTENT_URI);
+        if (mIsUserProfile) {
+            setUri(ContactsContract.Profile.CONTENT_RAW_CONTACTS_URI);
+        } else {
+            setUri(RawContacts.CONTENT_URI);
+        }
         return super.loadInBackground();
+    }
+
+    public boolean isUserProfile() {
+        return mIsUserProfile;
     }
 
     /**
