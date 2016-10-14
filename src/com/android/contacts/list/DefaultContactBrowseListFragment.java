@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -95,7 +96,8 @@ import java.util.Locale;
  * Fragment containing a contact list used for browsing (as compared to
  * picking a contact with one of the PICK intents).
  */
-public class DefaultContactBrowseListFragment extends ContactBrowseListFragment {
+public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
+        implements EnableGlobalSyncDialogFragment.Listener {
 
     private static final String TAG = "DefaultListFragment";
     private static final String ENABLE_DEBUG_OPTIONS_HIDDEN_CODE = "debug debug!";
@@ -110,6 +112,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
     private View mAccountFilterContainer;
     private TextView mSearchProgressText;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+
+    private View mAlertContainer;
+    private TextView mAlertText;
+    private ImageView mAlertDismissIcon;
+    private int mReasonSyncOff = SyncUtil.SYNC_SETTING_SYNC_ON;
 
     private boolean mContactsAvailable;
     private boolean mEnableDebugMenuOptions;
@@ -172,6 +179,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                     maybeHideCheckBoxes();
                     mActivity.invalidateOptionsMenu();
                     mActivity.showFabWithAnimation(/* showFab */ true);
+
+                    // Alert user if sync is off and not dismissed before
+                    setSyncOffAlert();
+
                     // Determine whether the account has pullToRefresh feature
                     if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
                         setSwipeRefreshLayoutEnabledOrNot(getFilter());
@@ -461,6 +472,66 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
 
         mSearchProgress = getView().findViewById(R.id.search_progress);
         mSearchProgressText = (TextView) mSearchHeaderView.findViewById(R.id.totalContactsText);
+
+        mAlertContainer = getView().findViewById(R.id.alert_container);
+        mAlertText = (TextView) mAlertContainer.findViewById(R.id.alert_text);
+        mAlertDismissIcon = (ImageView) mAlertContainer.findViewById(R.id.alert_dismiss_icon);
+        mAlertText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                turnSyncOn();
+            }
+        });
+        mAlertDismissIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
+        mAlertContainer.setVisibility(View.GONE);
+    }
+
+    private void turnSyncOn() {
+        final ContactListFilter filter = getFilter();
+        if (filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT
+                && mReasonSyncOff == SyncUtil.SYNC_SETTING_ACCOUNT_SYNC_OFF) {
+            ContentResolver.setSyncAutomatically(
+                    new Account(filter.accountName, filter.accountType),
+                    ContactsContract.AUTHORITY, true);
+            mAlertContainer.setVisibility(View.GONE);
+        } else {
+            final EnableGlobalSyncDialogFragment dialog = new
+                    EnableGlobalSyncDialogFragment();
+            dialog.show(this, filter);
+        }
+    }
+
+    @Override
+    public void onEnableAutoSync(ContactListFilter filter) {
+        // Turn on auto-sync
+        ContentResolver.setMasterSyncAutomatically(true);
+        // Also enable Contacts sync
+        final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(
+                getContext()).getAccounts(/* contactsWritableOnly */ true);
+        final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
+        if (syncableAccounts != null && syncableAccounts.size() > 0) {
+            for (Account account : syncableAccounts) {
+                ContentResolver.setSyncAutomatically(new Account(account.name, account.type),
+                        ContactsContract.AUTHORITY, true);
+            }
+        }
+        mAlertContainer.setVisibility(View.GONE);
+    }
+
+    private void dismiss() {
+        if (mReasonSyncOff == SyncUtil.SYNC_SETTING_GLOBAL_SYNC_OFF) {
+            SharedPreferenceUtil.incNumOfDismissesForAutoSyncOff(getContext());
+        } else if (mReasonSyncOff == SyncUtil.SYNC_SETTING_ACCOUNT_SYNC_OFF) {
+            SharedPreferenceUtil.incNumOfDismissesForAccountSyncOff(
+                    getContext(), getFilter().accountName);
+        }
+        mAlertContainer.setVisibility(View.GONE);
     }
 
     private void initSwipeRefreshLayout() {
@@ -509,6 +580,36 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
                     ContentResolver.requestSync(account, ContactsContract.AUTHORITY, bundle);
                 }
             }
+        }
+    }
+
+    private void setSyncOffAlert() {
+        final ContactListFilter filter = getFilter();
+        final Account account =  filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT
+                && filter.isGoogleAccountType()
+                ? new Account(filter.accountName, filter.accountType) : null;
+
+        if (account == null && !filter.isContactsFilterType()) {
+            mAlertContainer.setVisibility(View.GONE);
+        } else {
+            mReasonSyncOff = SyncUtil.calculateReasonSyncOff(getContext(), account);
+            final boolean isAlertVisible =
+                    SyncUtil.isAlertVisible(getContext(), account, mReasonSyncOff);
+            setSyncOffMsg(mReasonSyncOff);
+            mAlertContainer.setVisibility(isAlertVisible ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    private void setSyncOffMsg(int reason) {
+        final Resources resources = getResources();
+        switch (reason) {
+            case SyncUtil.SYNC_SETTING_GLOBAL_SYNC_OFF:
+                mAlertText.setText(resources.getString(R.string.auto_sync_off));
+                break;
+            case SyncUtil.SYNC_SETTING_ACCOUNT_SYNC_OFF:
+                mAlertText.setText(resources.getString(R.string.account_sync_off));
+                break;
+            default:
         }
     }
 
@@ -710,6 +811,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment 
         setContactListFilter(filter);
         updateListFilter(filter, restoreSelectedUri);
         mActivity.setTitle(AccountFilterUtil.getActionBarTitleForFilter(mActivity, filter));
+
+        // Alert user if sync is off and not dismissed before
+        setSyncOffAlert();
 
         // Determine whether the account has pullToRefresh feature
         if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
