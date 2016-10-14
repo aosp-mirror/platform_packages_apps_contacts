@@ -241,6 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Veldu sjálfgefinn reikning fyrir nýja tengiliði:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Bæta tengilið við"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Breyta tengilið"</string>
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Veldu tengdan tengilið"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (skrifvarið)"</string>
     <string name="add_account" msgid="8201790677994503186">"Bæta reikningi við"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Bæta nýjum reikningi við"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Flytja út gagnagrunnsskrár"</string>
@@ -320,6 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Mynd af óþekktum reikningi ekki valin"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Mynd af óþekktum reikningi valin"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Verið er að uppfæra tengiliðalistann í samræmi við nýja tungumálið.\n\nAugnablik…"</string>
+    <string name="menu_assistant" msgid="919866272301744261">"Aðstoðarmaður"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Tvítekningar"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Opna yfirlitsskúffu"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Loka yfirlitsskúffu"</string>
@@ -597,4 +600,14 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> klst. <xliff:g id="MINUTES_1">%s</xliff:g> mín. <xliff:g id="SECONDS">%s</xliff:g> sek."</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Þessi flýtileið hefur verið gerð óvirk"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Tengiliður var fjarlægður"</string>
+    <string name="sim_import_button_text" msgid="4270841592496619317">"Flytja inn"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Velja tengiliði"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> valdir"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"Engir tengiliðir á SIM-kortinu"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> SIM-tengiliður fluttur inn</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM-tengiliðir fluttir inn</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"Ekki tókst að flytja inn SIM-tengiliðina"</string>
+    <string name="connection_failed" msgid="7558253972301525402">"Innskráning tókst ekki"</string>
 </resources>

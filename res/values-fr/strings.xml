@@ -241,6 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Sélectionnez un compte par défaut pour les nouveaux contacts :"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ajouter un contact"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier contact"</string>
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Choisir un contact associé"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (lecture seule)"</string>
     <string name="add_account" msgid="8201790677994503186">"Ajouter un compte"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ajouter un compte"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exporter les fichiers de la base de données"</string>
@@ -279,19 +281,16 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"Appel récent : <xliff:g id="CALL_TYPE">%s</xliff:g>, <xliff:g id="PHONE_NUMBER">%s</xliff:g>, <xliff:g id="DATE">%s</xliff:g>. Appuyez sur l\'écran pour rappeler ce numéro."</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vous : <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Les Hangouts fonctionnent mieux si vous saisissez l\'identifiant Hangouts de la personne concernée dans le champ de l\'adresse e-mail ou du numéro de téléphone."</string>
-    <!-- no translation found for editor_more_fields (3630987771304393421) -->
-    <skip />
-    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
-    <skip />
-    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
-    <skip />
-    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
+    <string name="editor_more_fields" msgid="3630987771304393421">"Autres champs"</string>
+    <string name="editor_change_photo_content_description" msgid="754100561085306263">"Changer de photo"</string>
+    <string name="editor_failed_to_load" msgid="1623639078580475818">"Échec de l\'ouverture de l\'éditeur."</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Enregistrement sur le compte"</string>
+    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"En cours de consultation"</string>
+    <string name="editor_account_selector_description" msgid="3324358600570627740">"Enregistrement en cours sur le compte <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Appuyez deux fois pour choisir un autre compte."</string>
+    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
+      <item quantity="one">Contact associé (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="other">Contacts associés (<xliff:g id="COUNT">%d</xliff:g>)</item>
+    </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> contacts associés"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ASSOCIER LES CONTACTS"</string>
@@ -312,8 +311,7 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Ce contact"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Doublons potentiels"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Ces contacts correspondent peut-être à la même personne. Vous pouvez les regrouper dans un seul contact."</string>
-    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
-    <skip />
+    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"Contacts associés"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"De vos comptes"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Sélectionner une photo"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Du compte <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
@@ -324,6 +322,8 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Photo d\'un compte inconnu non sélectionnée"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Photo d\'un compte inconnu sélectionnée"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Mise à jour de la liste des contacts suite au changement de langue.\n\nVeuillez patienter…"</string>
+    <!-- no translation found for menu_assistant (919866272301744261) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"Doublons"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Ouvrir le panneau de navigation"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Fermer le panneau de navigation"</string>
@@ -601,4 +601,16 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> h <xliff:g id="MINUTES_1">%s</xliff:g> min et <xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Ce raccourci a été désactivé."</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Le contact a été supprimé."</string>
+    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <skip />
+    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <skip />
+    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <skip />
+    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <skip />
+    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
+    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
+    <skip />
+    <string name="connection_failed" msgid="7558253972301525402">"Connexion impossible"</string>
 </resources>
