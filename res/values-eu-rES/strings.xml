@@ -241,6 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Aukeratu kontaktu berriak gordetzeko erabili nahi duzun kontua:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Gehitu kontaktu berria"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editatu kontaktua"</string>
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Aukeratu lotutako kontaktua"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (irakurtzeko soilik)"</string>
     <string name="add_account" msgid="8201790677994503186">"Gehitu kontua"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Gehitu beste kontu bat"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Esportatu datu-baseko fitxategiak"</string>
@@ -320,6 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Kontu ezezaguneko argazkia hautatu gabe dago"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Kontu ezezaguneko argazkia hautatu da"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Eguneratzen ari da kontaktuen zerrenda hizkuntza-aldaketa aplikatzeko.\n\nItxaron…"</string>
+    <string name="menu_assistant" msgid="919866272301744261">"Laguntzailea"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Bikoiztuak"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Ireki nabigazio-panel lerrakorra"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Itxi nabigazio-panel lerrakorra"</string>
@@ -597,6 +600,14 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> h <xliff:g id="MINUTES_1">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Lasterbidea desgaitu egin da"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Kendu da kontaktua"</string>
-    <!-- no translation found for connection_failed (7558253972301525402) -->
-    <skip />
+    <string name="connection_failed" msgid="7558253972301525402">"Ezin izan da hasi saioa"</string>
+    <string name="sim_import_button_text" msgid="4270841592496619317">"Inportatu"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Hautatu kontaktuak"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> hautatuta"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"Ez duzu kontakturik SIM txartelean"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="other">SIM txarteleko <xliff:g id="COUNT">%d</xliff:g> kontaktu inportatu dira</item>
+      <item quantity="one">SIM txarteleko 1 kontaktu inportatu da</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"Ezin izan dira inportatu SIM txarteleko kontaktuak"</string>
 </resources>

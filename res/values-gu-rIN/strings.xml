@@ -241,6 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"નવા સંપર્કો માટે એક ડીફોલ્ટ એકાઉન્ટ પસંદ કરો:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"નવો સંપર્ક ઉમેરો"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"સંપર્ક સંપાદિત કરો"</string>
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"લિંક કરેલ સંપર્ક પસંદ કરો"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (ફક્ત વાંચવા માટે)"</string>
     <string name="add_account" msgid="8201790677994503186">"એકાઉન્ટ ઉમેરો"</string>
     <string name="add_new_account" msgid="5748627740680940264">"નવું એકાઉન્ટ ઉમેરો"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ડેટાબેસ ફાઇલોનો નિકાસ કરો"</string>
@@ -320,6 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"અજાણ્યાં એકાઉન્ટનો ફોટો ચેક ન કર્યો"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"અજાણ્યાં એકાઉન્ટનો ફોટો ચેક કર્યો"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"ભાષામાં ફેરફાર પ્રતિબિંબિત કરવા માટે સંપર્ક સૂચિને અપડેટ કરવામાં આવી રહી છે.\n\nકૃપા કરીને રાહ જુઓ…"</string>
+    <string name="menu_assistant" msgid="919866272301744261">"સહાયક"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ડુપ્લિકેટ્સ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"નેવિગેશન ડ્રોઅર ખોલો"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"નેવિગેશન ડ્રોઅર બંધ કરો"</string>
@@ -597,6 +600,14 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> કલાક <xliff:g id="MINUTES_1">%s</xliff:g> મિનિટ <xliff:g id="SECONDS">%s</xliff:g> સેકંડ"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"આ શૉર્ટકટ અક્ષમ કરવામાંં આવેલ છે"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"સંપર્ક દૂર કર્યો હતો"</string>
-    <!-- no translation found for connection_failed (7558253972301525402) -->
-    <skip />
+    <string name="connection_failed" msgid="7558253972301525402">"સાઇન ઇન કરવામાં નિષ્ફળ થયાં"</string>
+    <string name="sim_import_button_text" msgid="4270841592496619317">"આયાત કરો"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"સંપર્કો પસંદ કરો"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> પસંદ કર્યાં"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"તમારા SIM કાર્ડ પર કોઈ સંપર્કો નથી"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> SIM સંપર્કો આયાત કર્યાં</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM સંપર્કો આયાત કર્યાં</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM સંપર્કો આયાત કરવામાં નિષ્ફળ થયાં"</string>
 </resources>

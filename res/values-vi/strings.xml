@@ -241,6 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Chọn tài khoản mặc định cho các liên hệ mới:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Thêm liên hệ mới"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Chỉnh sửa liên hệ"</string>
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Chọn liên hệ được liên kết"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (chỉ đọc)"</string>
     <string name="add_account" msgid="8201790677994503186">"Thêm tài khoản"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Thêm tài khoản mới"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Xuất các tệp cơ sở dữ liệu"</string>
@@ -320,6 +322,8 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Chưa chọn ảnh từ tài khoản không xác định"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Đã chọn ảnh từ tài khoản không xác định"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Danh bạ đang được cập nhật để phản ánh thay đổi ngôn ngữ.\n\nVui lòng đợi…"</string>
+    <!-- no translation found for menu_assistant (919866272301744261) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"Liên hệ trùng lặp"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Mở ngăn điều hướng"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Đóng ngăn điều hướng"</string>
@@ -597,6 +601,16 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> giờ <xliff:g id="MINUTES_1">%s</xliff:g> phút <xliff:g id="SECONDS">%s</xliff:g> giây"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Phím tắt này đã bị vô hiệu hóa"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Liên hệ đã bị xóa"</string>
-    <!-- no translation found for connection_failed (7558253972301525402) -->
+    <string name="connection_failed" msgid="7558253972301525402">"Không đăng nhập được"</string>
+    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <skip />
+    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <skip />
+    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <skip />
+    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <skip />
+    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
+    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
     <skip />
 </resources>

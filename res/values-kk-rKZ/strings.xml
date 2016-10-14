@@ -241,6 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Жаңа контактілерге арналған әдепкі есептік жазбаны таңдаңыз:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Жаңа контакт қосу"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Контактіні өңдеу"</string>
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Байланысты контактіні таңдаңыз"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (оқу үшін ғана)"</string>
     <string name="add_account" msgid="8201790677994503186">"Ес. жазба қосу"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Жаңа есептік жазба қосу"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Дерекқор файлдарын экспорттау"</string>
@@ -320,6 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Белгісіз есептік жазбадан алынған фотосуретке құсбелгі қойылмады"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Белгісіз есептік жазбадан алынған фотосуретке құсбелгі қойылды"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Контактілер тізімі тілдің өзгеруін көрсету үшін жаңартылуда.\n\nКүте тұрыңыз…"</string>
+    <string name="menu_assistant" msgid="919866272301744261">"Көмек"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Көшірмелер"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Жылжу тақтасын ашу"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Жылжу тақтасын жабу"</string>
@@ -597,6 +600,14 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> сағ <xliff:g id="MINUTES_1">%s</xliff:g> мин <xliff:g id="SECONDS">%s</xliff:g> сек"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Бұл белгіше өшірілген"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Контакт жойылған"</string>
-    <!-- no translation found for connection_failed (7558253972301525402) -->
-    <skip />
+    <string name="connection_failed" msgid="7558253972301525402">"Жүйеге кіру мүмкін болмады"</string>
+    <string name="sim_import_button_text" msgid="4270841592496619317">"Импорттау"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Контактілерді таңдау"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> таңдалды"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"SIM картаңызда контактілер жоқ"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM контактісі импортталды</item>
+      <item quantity="one">1 SIM контактісі импортталды</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM контактілері импортталмады"</string>
 </resources>
