@@ -105,6 +105,15 @@ public class SimContactDao {
         return mResolver.applyBatch(ContactsContract.AUTHORITY, ops);
     }
 
+    public void warmup() {
+        // We don't actually have to do any caching ourselves. Some other layer must do caching
+        // of the data (OS or framework) because subsequent queries are very fast.
+        final Cursor cursor = mResolver.query(ICC_CONTENT_URI, null, null, null, null);
+        if (cursor != null) {
+            cursor.close();
+        }
+    }
+
     private ArrayList<ContentProviderOperation> createImportOperations(List<SimContact> contacts,
             AccountWithDataSet targetAccount) {
         final ArrayList<ContentProviderOperation> ops = new ArrayList<>();

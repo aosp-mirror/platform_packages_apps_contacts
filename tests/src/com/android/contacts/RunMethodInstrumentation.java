@@ -71,6 +71,14 @@ public class RunMethodInstrumentation extends Instrumentation {
             return;
         }
 
+        // Wait for the Application to finish creating.
+        runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "acquired main thread from instrumentation");
+            }
+        });
+
         try {
             invokeMethod(args, className, methodName);
         } catch (Exception e) {
