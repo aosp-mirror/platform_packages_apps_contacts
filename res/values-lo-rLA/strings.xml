@@ -241,6 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ເລືອກ​ບັນ​ຊີ​ເລີ່ມຕົ້ນ​ສຳ​ລັບ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໃໝ່:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ແກ້ໄຂລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"ເລືອກລາຍຊື່ຜູ້ຕິດຕໍ່ທີ່ເຊື່ອມໂຍງແລ້ວ"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (ອ່ານເທົ່ານັ້ນ)"</string>
     <string name="add_account" msgid="8201790677994503186">"ເພີ່ມບັນຊີ"</string>
     <string name="add_new_account" msgid="5748627740680940264">"ເພີ່ມບັນຊີໃໝ່"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ສົ່ງອອກໄຟລ໌ຖານຂໍ້ມູນ"</string>
@@ -279,19 +281,16 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"ການ​ໂທຫຼ້າ​ສຸດ. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. ຄລິກ​ເພື່ອ​ໂທ​ກັບ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"​ທ່ານ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts ເຮັດ​ວຽກ​ໄດ້​ດີ​ຂຶ້ນ ເມື່ອ​ທ່ານ​ປ້ອນ​ຕົວ​ລະ​ບຸ​ Hangouts ຂອງ​ບຸກ​ຄົນ​ໃສ່​ບ່ອນ​ໃສ່ອີເມວ ຫຼື​ບ່ອນ​ໃສ່​ໂທ​ລະ​ສັບ​ຂອງ​ທ່ານ."</string>
-    <!-- no translation found for editor_more_fields (3630987771304393421) -->
-    <skip />
-    <!-- no translation found for editor_change_photo_content_description (754100561085306263) -->
-    <skip />
-    <!-- no translation found for editor_failed_to_load (1623639078580475818) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_title (4426337993307015833) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_read_only_title (8315171723911587719) -->
-    <skip />
-    <!-- no translation found for editor_account_selector_description (3324358600570627740) -->
-    <skip />
-    <!-- no translation found for editor_linked_contacts_selector_title (249075501821303190) -->
+    <string name="editor_more_fields" msgid="3630987771304393421">"ຊ່ອງຂໍ້ມູນເພີ່ມເຕີມ"</string>
+    <string name="editor_change_photo_content_description" msgid="754100561085306263">"ປ່ຽນຮູບ"</string>
+    <string name="editor_failed_to_load" msgid="1623639078580475818">"ເປີດຕົວຕັດຕໍ່ບໍ່ສຳເລັດ."</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"ກຳລັງບັນທຶກໃສ່"</string>
+    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"ກຳລັງເບິ່ງ"</string>
+    <string name="editor_account_selector_description" msgid="3324358600570627740">"ຕອນນີ້ກຳລັງບັນທຶກໃສ່ <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. ແຕະສອງເທື່ອເພື່ອເລືອກບັນຊີອື່ນ."</string>
+    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
+      <item quantity="other">ລາຍຊື່ຕິດຕໍ່ທີ່ລິ້ງແລ້ວ (<xliff:g id="COUNT">%d</xliff:g>)</item>
+      <item quantity="one">ລາຍຊື່ຕິດຕໍ່ທີ່ລິ້ງແລ້ວ</item>
+    </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> ລາ​ຍ​ຊື່​ຕິດ​ຕໍ່​ລິ້ງ​ແລ້ວ"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ລິ້ງ​ລາຍ​ຊື່​ຕິດ​ຕໍ່"</string>
@@ -312,8 +311,7 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ນີ້"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"ເປັນ​ໄປ​ໄດ້​ວ່າມີ​ການ​ຊ້ຳ​ກັນ"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ເຫຼົ່າ​ນີ້​ອາດ​ຈະ​ເປັນ​ຄົນ​ດຽວ​ກັນ. ທ່ານ​ສາ​ມາດ​ລິ້ງ​ພວກ​ມັນ​ເຂົ້າ​ກັນ​ເປັນ​ບັນ​ຊີ​ດຽວ​ໄດ້."</string>
-    <!-- no translation found for editor_linked_contacts_title (3077479751631492125) -->
-    <skip />
+    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"ລາຍຊື່ຕິດຕໍ່ທີ່ລິ້ງແລ້ວ"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"ຈາກ​ບັນ​ຊີ​ຂອງ​ທ່ານ"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ເລືອກ​ຮູບ"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"ຈາກ <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
@@ -324,6 +322,8 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ບໍ່ໄດ້ໝາຍເອົາຮູບຖ່າຍຈາກບັນຊີທີ່ບໍ່ຮູ້ຈັກແລ້ວ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ໝາຍເອົາຮູບຖ່າຍຈາກບັນຊີທີ່ບໍ່ຮູ້ຈັກແລ້ວ"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"ລາຍຊື່ຜູ້ຕິດຕໍ່ກຳລັງຖືກອັບເດດຕາມການປ່ຽນແປງຂອງພາສາ.\n\nກະລຸນາລໍຖ້າ..."</string>
+    <!-- no translation found for menu_assistant (919866272301744261) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"ລາຍການຊໍ້າກັນ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ເປີດແຖບການນຳທາງ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ປິດແຖບການນຳທາງ"</string>
@@ -601,4 +601,16 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ຊມ <xliff:g id="MINUTES_1">%s</xliff:g> ນທ <xliff:g id="SECONDS">%s</xliff:g> ວິ"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"ທາງລັດນີ້ຖືກປິດການນຳໃຊ້ແລ້ວ"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"ລຶບລາຍຊື່ຜູ້ຕິດຕໍ່ອອກແລ້ວ"</string>
+    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <skip />
+    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <skip />
+    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <skip />
+    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <skip />
+    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
+    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
+    <skip />
+    <string name="connection_failed" msgid="7558253972301525402">"ເຂົ້າສູ່ລະບົບບໍ່ສຳເລັດ"</string>
 </resources>

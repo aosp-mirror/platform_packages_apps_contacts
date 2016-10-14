@@ -241,6 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"새 연락처에 대한 기본 계정 선택:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"새 연락처 추가"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"연락처 수정"</string>
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"연결된 연락처 선택"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g>(읽기 전용)"</string>
     <string name="add_account" msgid="8201790677994503186">"계정 추가"</string>
     <string name="add_new_account" msgid="5748627740680940264">"새 계정 추가"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"데이터베이스 파일 내보내기"</string>
@@ -320,6 +322,8 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"알 수 없는 계정의 사진이 선택되지 않음"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"알 수 없는 계정의 사진이 선택됨"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"변경된 언어를 반영하도록 연락처 목록을 업데이트하는 중입니다.\n\n잠시 기다려 주세요."</string>
+    <!-- no translation found for menu_assistant (919866272301744261) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"중복된 활동"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"탐색 창 열기"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"탐색 창 닫기"</string>
@@ -597,4 +601,16 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g>시간 <xliff:g id="MINUTES_1">%s</xliff:g>분 <xliff:g id="SECONDS">%s</xliff:g>초"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"이 바로가기는 사용 중지되었습니다."</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"연락처가 삭제되었습니다."</string>
+    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <skip />
+    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <skip />
+    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <skip />
+    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <skip />
+    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
+    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
+    <skip />
+    <string name="connection_failed" msgid="7558253972301525402">"로그인하지 못했습니다."</string>
 </resources>

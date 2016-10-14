@@ -241,6 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"انتخاب حساب پیش‌فرض برای مخاطبین جدید:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"افزودن مخاطب جدید"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ویرایش مخاطب"</string>
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"مخاطب پیوندداده‌شده را انتخاب کنید"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (فقط خواندنی)"</string>
     <string name="add_account" msgid="8201790677994503186">"افزودن حساب"</string>
     <string name="add_new_account" msgid="5748627740680940264">"افزودن حساب جدید"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"صدور فایل‌های پایگاه داده"</string>
@@ -320,6 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"عکس از حساب نامشخص انتخاب نشده است"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"عکس از حساب نامشخص انتخاب شده است"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"فهرست مخاطبین برای اعمال تغییر زبان در حال به‌روزرسانی است.\n\nلطفاً صبر کنید..."</string>
+    <string name="menu_assistant" msgid="919866272301744261">"دستیار"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"مخاطبین تکراری"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"بازکردن کشوی پیمایش"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"بستن کشوی پیمایش"</string>
@@ -597,4 +600,14 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ساعت <xliff:g id="MINUTES_1">%s</xliff:g> دقیقه <xliff:g id="SECONDS">%s</xliff:g> ثانیه"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"میان‌بر غیرفعال شده است"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"محاطب حذف شد"</string>
+    <string name="sim_import_button_text" msgid="4270841592496619317">"وارد کردن"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"انتخاب مخاطبین"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> انتخاب شد"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"مخاطبی در سیم کارت نیست"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب سیم کارت وارد شد</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مخاطب سیم کارت وارد شد</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"مخاطبین سیم کارت وارد نشدند"</string>
+    <string name="connection_failed" msgid="7558253972301525402">"وارد سیستم نشدید"</string>
 </resources>

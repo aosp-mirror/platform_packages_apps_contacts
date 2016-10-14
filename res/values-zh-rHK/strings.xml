@@ -241,6 +241,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"為新聯絡人選擇預設帳戶："</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新增聯絡人"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"編輯聯絡人"</string>
+    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"選擇已連結的聯絡人"</string>
+    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (唯讀)"</string>
     <string name="add_account" msgid="8201790677994503186">"新增帳戶"</string>
     <string name="add_new_account" msgid="5748627740680940264">"新增帳戶"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"匯出資料庫檔案"</string>
@@ -320,6 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"未勾選不明帳戶中的相片"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"已勾選不明帳戶中的相片"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"正在更新聯絡人名單以反映語言變更。\n\n請稍候…"</string>
+    <string name="menu_assistant" msgid="919866272301744261">"助理"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"重複"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"開啟導覽匣"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"關閉導覽匣"</string>
@@ -597,4 +600,14 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> 小時 <xliff:g id="MINUTES_1">%s</xliff:g> 分 <xliff:g id="SECONDS">%s</xliff:g> 秒"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"已停用此捷徑"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"聯絡人已移除"</string>
+    <string name="sim_import_button_text" msgid="4270841592496619317">"匯入"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"選取聯絡人"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"已選取 <xliff:g id="COUNT">%d</xliff:g> 位"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"SIM 卡中沒有聯絡人"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="other">已匯入 <xliff:g id="COUNT">%d</xliff:g> 位 SIM 聯絡人</item>
+      <item quantity="one">已匯入 1 位 SIM 聯絡人</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"無法匯入 SIM 聯絡人"</string>
+    <string name="connection_failed" msgid="7558253972301525402">"無法登入"</string>
 </resources>
