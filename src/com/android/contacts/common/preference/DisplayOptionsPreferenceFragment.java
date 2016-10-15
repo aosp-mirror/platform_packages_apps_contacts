@@ -57,7 +57,6 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contactsbind.ObjectFactory;
 
 import java.util.List;
 
@@ -207,7 +206,6 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         mAreContactsAvailable = args.getBoolean(ARG_CONTACTS_AVAILABLE);
 
         removeUnsupportedPreferences();
-        addExtraPreferences();
 
         mMyInfoPreference = findPreference(KEY_MY_INFO);
 
@@ -288,16 +286,6 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
 
         if (!mAreContactsAvailable) {
             getPreferenceScreen().removePreference(findPreference(KEY_EXPORT));
-        }
-    }
-
-    private void addExtraPreferences() {
-        final PreferenceManager preferenceManager = ObjectFactory.getPreferenceManager(
-                getContext());
-        if (preferenceManager != null) {
-            for (Preference preference : preferenceManager.getPreferences()) {
-                getPreferenceScreen().addPreference(preference);
-            }
         }
     }
 
