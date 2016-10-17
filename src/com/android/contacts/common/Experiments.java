@@ -31,6 +31,11 @@ public final class Experiments {
     public static final String ASSISTANT = "Assistant__enable_assistant";
 
     /**
+     * Experiment to show the restore assistant on the assistants view.
+     */
+    public static final String ASSISTANT_RESTORE = "Assistant__restore";
+
+    /**
      * Whether to open contact sheet (aka smart profile) instead of our own QuickContact.
      */
     public static final String CONTACT_SHEET = "QuickContact__contact_sheet";
