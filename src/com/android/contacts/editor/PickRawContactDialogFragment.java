@@ -36,6 +36,10 @@ import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
  * for the chosen raw contact.
  */
 public class PickRawContactDialogFragment extends DialogFragment {
+    private static final String ARGS_URI = "uri";
+    private static final String ARGS_MATERIAL_PALETTE = "materialPalette";
+    private static final String ARGS_IS_USER_PROFILE = "isUserProfile";
+
     /**
      * Used to list the account info for the given raw contacts list.
      */
@@ -147,10 +151,12 @@ public class PickRawContactDialogFragment extends DialogFragment {
     public static PickRawContactDialogFragment getInstance(Uri uri, Cursor cursor,
             MaterialPalette materialPalette, boolean isUserProfile) {
         final PickRawContactDialogFragment fragment = new PickRawContactDialogFragment();
-        fragment.setUri(uri);
+        final Bundle args = new Bundle();
+        args.putParcelable(ARGS_URI, uri);
+        args.putParcelable(ARGS_MATERIAL_PALETTE, materialPalette);
+        args.putBoolean(ARGS_IS_USER_PROFILE, isUserProfile);
+        fragment.setArguments(args);
         fragment.setCursor(cursor);
-        fragment.setMaterialPalette(materialPalette);
-        fragment.setIsUserProfile(isUserProfile);
         return fragment;
     }
 
@@ -180,8 +186,16 @@ public class PickRawContactDialogFragment extends DialogFragment {
         finishActivity();
     }
 
-    private void setUri(Uri uri) {
-        mUri = uri;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        final Bundle args = getArguments();
+        if (args != null) {
+            mUri = args.getParcelable(ARGS_URI);
+            mMaterialPalette = args.getParcelable(ARGS_MATERIAL_PALETTE);
+            mIsUserProfile = args.getBoolean(ARGS_IS_USER_PROFILE);
+        }
     }
 
     public void setCursor(Cursor cursor) {
@@ -189,14 +203,6 @@ public class PickRawContactDialogFragment extends DialogFragment {
             mAdapter.swapCursor(cursor);
         }
         mCursor = cursor;
-    }
-
-    private void setMaterialPalette(MaterialPalette materialPalette) {
-        mMaterialPalette = materialPalette;
-    }
-
-    private void setIsUserProfile(boolean isUserProfile) {
-        mIsUserProfile = isUserProfile;
     }
 
     private void finishActivity() {
