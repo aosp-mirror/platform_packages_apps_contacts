@@ -114,6 +114,8 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
      * Update views in the fragment when provider status is empty.
      */
     private void updateViewsForEmptyStatus() {
+        mMessageView.setText(R.string.noContacts);
+        mMessageView.setVisibility(View.VISIBLE);
         updateButtonVisibility(View.VISIBLE);
         mProgress.setVisibility(View.GONE);
     }
