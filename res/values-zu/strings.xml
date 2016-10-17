@@ -538,8 +538,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Isibongo kuqala"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Ama-akhawunti"</string>
     <string name="default_editor_account" msgid="699591683362420991">"I-akhawunti ezenzakalelayo yoxhumana nabo abasha"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"Vumelanisa imethadatha yoxhumana naye [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"Vumelanisa imethadatha"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"Ulwazi lwami"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Setha iphrofayela yakho"</string>
     <string name="setting_about" msgid="7014388749752042863">"Mayelana noxhumana nabo"</string>
@@ -609,8 +607,18 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> oxhumana nabo be-SIM bangenisiwe</item>
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"Yehlulekile ukungenisa oxhumana nabo be-SIM"</string>
-    <!-- no translation found for sim_import_dialog_title (6699935401502172530) -->
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"Khetha othintana nabo ozobangenisa"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"Khansela ukungenisa"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
     <skip />
-    <!-- no translation found for sim_import_cancel_content_description (2388362519166414488) -->
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
+    <skip />
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
     <skip />
 </resources>
