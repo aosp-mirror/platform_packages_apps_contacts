@@ -322,8 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Noma’lum hisobdan rasm tanlash bekor qilindi"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Noma’lum hisobdan rasm tanlandi"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"O‘zgartirilgan til kuchga kirishi uchun kontaktlar ro‘yxati yangilanmoqda.\n\nIltimos, kuting…"</string>
-    <!-- no translation found for menu_assistant (919866272301744261) -->
-    <skip />
+    <string name="menu_assistant" msgid="919866272301744261">"Yordamchi"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Takroriy kontaktlar"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Navigatsiya panelini ochish"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Navigatsiya panelini yopish"</string>
@@ -602,15 +601,27 @@
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Bu yorliq o‘chirib tashlandi"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Kontakt olib tashlandi"</string>
     <string name="connection_failed" msgid="7558253972301525402">"Tizimga kirib bo‘lmadi"</string>
-    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <string name="sim_import_button_text" msgid="4270841592496619317">"Import qilish"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Kontaktlarni tanlash"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> ta kontakt tanlandi"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"SIM kartada hech qanday kontakt yo‘q."</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ta kontakt SIM kartadan import qilindi</item>
+      <item quantity="one">1 ta kontakt SIM kartadan import qilindi</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"Kontaktlarni SIM kartadan import qilib bo‘lmadi"</string>
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"Import qilish uchun kontaktlarni tanlang"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"Import qilishni bekor qilish"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
     <skip />
-    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
     <skip />
-    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
     <skip />
-    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
     <skip />
-    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
-    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
     <skip />
 </resources>

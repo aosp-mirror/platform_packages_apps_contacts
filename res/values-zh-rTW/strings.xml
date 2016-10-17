@@ -322,8 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"未勾選不明帳戶中的相片"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"已勾選不明帳戶中的相片"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"正在更新聯絡人清單以反映語言變更。\n\n請稍候…"</string>
-    <!-- no translation found for menu_assistant (919866272301744261) -->
-    <skip />
+    <string name="menu_assistant" msgid="919866272301744261">"小幫手"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"重複的聯絡人"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"開啟導覽匣"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"關閉導覽匣"</string>
@@ -602,15 +601,27 @@
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"這個捷徑已停用"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"這位聯絡人已移除"</string>
     <string name="connection_failed" msgid="7558253972301525402">"無法登入"</string>
-    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <string name="sim_import_button_text" msgid="4270841592496619317">"匯入"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"選取聯絡人"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"已選取 <xliff:g id="COUNT">%d</xliff:g> 位聯絡人"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"你的 SIM 卡上沒有聯絡人資料"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="other">已匯入 <xliff:g id="COUNT">%d</xliff:g> 位 SIM 卡聯絡人</item>
+      <item quantity="one">已匯入 1 位 SIM 卡聯絡人</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"無法匯入 SIM 卡聯絡人"</string>
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"選取要匯入的聯絡人"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"取消匯入"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
     <skip />
-    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
     <skip />
-    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
     <skip />
-    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
     <skip />
-    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
-    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
     <skip />
 </resources>

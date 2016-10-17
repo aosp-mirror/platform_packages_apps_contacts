@@ -322,8 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto aus unbekanntem Konto nicht ausgewählt"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto aus unbekanntem Konto ausgewählt"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"Die Kontaktliste wird an die geänderte Sprache angepasst.\n\nBitte warten…"</string>
-    <!-- no translation found for menu_assistant (919866272301744261) -->
-    <skip />
+    <string name="menu_assistant" msgid="919866272301744261">"Assistent"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Duplikate"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Navigationsleiste öffnen"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Navigationsleiste schließen"</string>
@@ -602,15 +601,27 @@
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Diese Verknüpfung wurde deaktiviert"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Kontakt wurde entfernt"</string>
     <string name="connection_failed" msgid="7558253972301525402">"Fehler bei der Anmeldung"</string>
-    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <string name="sim_import_button_text" msgid="4270841592496619317">"Importieren"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Kontakte auswählen"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> ausgewählt"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"Keine Kontakte auf der SIM-Karte"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM-Kontakte importiert</item>
+      <item quantity="one">1 SIM-Kontakt importiert</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"Fehler beim Importieren von SIM-Kontakten"</string>
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"Kontakte für Import auswählen"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"Import abbrechen"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
     <skip />
-    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
     <skip />
-    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
     <skip />
-    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
     <skip />
-    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
-    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
     <skip />
 </resources>

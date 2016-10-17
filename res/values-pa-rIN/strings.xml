@@ -322,8 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ਅਗਿਆਤ ਖਾਤੇ ਦੀ ਫੋਟੋ ਨਹੀਂ ਜਾਂਚੀ ਗਈ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ਅਗਿਆਤ ਖਾਤੇ ਦੀ ਫੋਟੋ ਜਾਂਚੀ ਗਈ"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"ਭਾਸ਼ਾ ਵਿੱਚ ਕੀਤੇ ਬਦਲਾਅ ਨੂੰ ਦਰਸ਼ਾਉਣ ਲਈ ਸੰਪਰਕ ਸੂਚੀ ਅੱਪਡੇਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ\n\nਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ…"</string>
-    <!-- no translation found for menu_assistant (919866272301744261) -->
-    <skip />
+    <string name="menu_assistant" msgid="919866272301744261">"ਸਹਾਇਕ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ਡੁਪਲੀਕੇਟ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ਆਵਾਗੌਣ ਦਰਾਜ਼ ਖੋਲ੍ਹੋ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ਆਵਾਗੌਣ ਦਰਾਜ਼ ਬੰਦ ਕਰੋ"</string>
@@ -602,15 +601,27 @@
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"ਇਹ ਸ਼ਾਰਟਕੱਟ ਅਯੋਗ ਬਣਾਇਆ ਗਿਆ ਹੈ"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"ਸੰਪਰਕ ਹਟਾਇਆ ਗਿਆ ਸੀ"</string>
     <string name="connection_failed" msgid="7558253972301525402">"ਸਾਈਨ ਇਨ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ"</string>
-    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <string name="sim_import_button_text" msgid="4270841592496619317">"ਆਯਾਤ ਕਰੋ"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"ਸੰਪਰਕ ਚੁਣੋ"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> ਨੂੰ ਚੁਣਿਆ"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"ਤੁਹਾਡੇ SIM ਕਾਰਡ \'ਤੇ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> SIM ਸੰਪਰਕ ਆਯਾਤ ਕੀਤੇ ਗਏ</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM ਸੰਪਰਕ ਆਯਾਤ ਕੀਤੇ ਗਏ</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM ਸੰਪਰਕਾਂ ਨੂੰ ਆਯਾਤ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ"</string>
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"ਆਯਾਤ ਕਰਨ ਲਈ ਸੰਪਰਕ ਚੁਣੋ"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"ਆਯਾਤ ਰੱਦ ਕਰੋ"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
     <skip />
-    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
     <skip />
-    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
     <skip />
-    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
     <skip />
-    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
-    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
     <skip />
 </resources>
