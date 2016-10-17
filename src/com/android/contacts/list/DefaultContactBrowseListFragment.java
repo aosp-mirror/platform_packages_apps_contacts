@@ -32,6 +32,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -111,7 +112,17 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private View mEmptyHomeView;
     private View mAccountFilterContainer;
     private TextView mSearchProgressText;
+
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private final Handler mHandler = new Handler();
+    private final Runnable mCancelRefresh = new Runnable() {
+        @Override
+        public void run() {
+            if (mSwipeRefreshLayout.isRefreshing()) {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }
+    };
 
     private View mAlertContainer;
     private TextView mAlertText;
@@ -545,7 +556,10 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                syncContacts(mFilter);
+                mHandler.removeCallbacks(mCancelRefresh);
+                syncContacts(getFilter());
+                mHandler.postDelayed(mCancelRefresh, Flags.getInstance(getContext())
+                        .getInteger(Experiments.PULL_TO_REFRESH_CANCEL_REFRESH_MILLIS));
             }
         });
         mSwipeRefreshLayout.setColorSchemeResources(

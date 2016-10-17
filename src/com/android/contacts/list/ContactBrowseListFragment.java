@@ -92,7 +92,7 @@ public abstract class ContactBrowseListFragment extends
     private boolean mSelectionVerified;
     private int mLastSelectedPosition = -1;
     private boolean mRefreshingContactUri;
-    protected ContactListFilter mFilter;
+    private ContactListFilter mFilter;
     private String mPersistentSelectionPrefix = PERSISTENT_SELECTION_PREFIX;
 
     protected OnContactBrowserActionListener mListener;

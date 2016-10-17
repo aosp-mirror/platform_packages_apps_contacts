@@ -58,6 +58,12 @@ public final class Experiments {
     public static final String PULL_TO_REFRESH = "PullToRefresh__pull_to_refresh";
 
     /**
+     * Flags for maximum time to show spinner for a contacts sync.
+     */
+    public static final String PULL_TO_REFRESH_CANCEL_REFRESH_MILLIS =
+            "PullToRefresh__cancel_refresh_millis";
+
+    /**
      * Search study boolean indicating whether to inject yenta search results before CP2 results.
      */
     public static final String SEARCH_YENTA = "Search__yenta";
