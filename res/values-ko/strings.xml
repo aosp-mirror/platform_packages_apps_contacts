@@ -322,8 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"알 수 없는 계정의 사진이 선택되지 않음"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"알 수 없는 계정의 사진이 선택됨"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"변경된 언어를 반영하도록 연락처 목록을 업데이트하는 중입니다.\n\n잠시 기다려 주세요."</string>
-    <!-- no translation found for menu_assistant (919866272301744261) -->
-    <skip />
+    <string name="menu_assistant" msgid="919866272301744261">"어시스턴트"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"중복된 활동"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"탐색 창 열기"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"탐색 창 닫기"</string>
@@ -601,16 +600,28 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g>시간 <xliff:g id="MINUTES_1">%s</xliff:g>분 <xliff:g id="SECONDS">%s</xliff:g>초"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"이 바로가기는 사용 중지되었습니다."</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"연락처가 삭제되었습니다."</string>
-    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
-    <skip />
-    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
-    <skip />
-    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
-    <skip />
-    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
-    <skip />
-    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
-    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
-    <skip />
+    <string name="sim_import_button_text" msgid="4270841592496619317">"가져오기"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"연락처 선택"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g>개 선택됨"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"SIM 카드에 연락처가 없습니다."</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="other">SIM 연락처 <xliff:g id="COUNT">%d</xliff:g>개를 가져옴</item>
+      <item quantity="one">SIM 연락처 1개를 가져옴</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM 연락처를 가져오지 못했습니다."</string>
     <string name="connection_failed" msgid="7558253972301525402">"로그인하지 못했습니다."</string>
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"가져올 주소록 선택"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"가져오기 취소"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
+    <skip />
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
+    <skip />
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <skip />
 </resources>

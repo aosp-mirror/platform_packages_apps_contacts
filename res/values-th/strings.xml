@@ -610,4 +610,18 @@
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"นำเข้าผู้ติดต่อจากซิมไม่สำเร็จ"</string>
     <string name="connection_failed" msgid="7558253972301525402">"ไม่สามารถลงชื่อเข้าใช้ได้"</string>
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"เลือกผู้ติดต่อที่จะนำเข้า"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"ยกเลิกการนำเข้า"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
+    <skip />
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
+    <skip />
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <skip />
 </resources>
