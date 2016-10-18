@@ -350,6 +350,24 @@
     <!-- Message displayed when creating a group with the same name as an existing group -->
     <string name="groupExistsErrorMessage">That label already exists</string>
 
+    <!-- Toast displayed when some group contacts do not have any emails (for group send) [CHAR LIMIT=50] -->
+    <string name="groupSomeContactsNoEmailsToast">Some contacts do not have emails.</string>
+
+    <!-- Toast displayed when some group contacts do not have any phone numbers (for group send) [CHAR LIMIT=50] -->
+    <string name="groupSomeContactsNoPhonesToast">Some contacts do not have phone numbers.</string>
+
+    <!-- Option name to send email to all members of a group/selection [CHAR LIMIT=30] -->
+    <string name="menu_sendEmailOption">Send email</string>
+
+    <!-- Option name to send message to all members of a group/selection [CHAR LIMIT=30] -->
+    <string name="menu_sendMessageOption">Send message</string>
+
+    <!-- Activity title when the user is selecting items [CHAR LIMIT=128] -->
+    <string name="pickerSelectContactsActivityTitle">Select Contacts</string>
+
+    <!-- The menu item to send the currently selected contacts to selected items [CHAR LIMIT=10] -->
+    <string name="send_to_selection">Send</string>
+
     <!-- Displayed at the top of the contacts showing the total number of contacts visible when "Only contacts with phones" is selected -->
     <plurals name="listTotalPhoneContacts">
         <item quantity="one">1 contact with phone number</item>

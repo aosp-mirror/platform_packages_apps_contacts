@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 
+import com.android.contacts.group.GroupUtil;
+
 import java.util.TreeSet;
 
 /**
@@ -88,13 +90,7 @@ public abstract class MultiSelectEntryContactListAdapter extends ContactEntryLis
      * Returns the selected contacts as an array.
      */
     public long[] getSelectedContactIdsArray() {
-        final Long[] contactIds = mSelectedContactIds.toArray(
-                new Long[mSelectedContactIds.size()]);
-        final long[] result = new long[contactIds.length];
-        for (int i = 0; i < contactIds.length; i++) {
-            result[i] = contactIds[i];
-        }
-        return result;
+        return GroupUtil.convertLongSetToLongArray(mSelectedContactIds);
     }
 
     /**
