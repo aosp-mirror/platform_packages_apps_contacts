@@ -17,6 +17,7 @@ package com.android.contacts.list;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,6 +27,8 @@ import android.view.ViewGroup;
 
 import com.android.contacts.R;
 import com.android.contacts.common.logging.ListEvent;
+
+import java.util.TreeSet;
 
 /** Displays a list of phone numbers with check boxes. */
 public class MultiSelectPhoneNumbersListFragment
@@ -89,6 +92,22 @@ public class MultiSelectPhoneNumbersListFragment
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        final long[] selectedIds = getActivity().getIntent().getLongArrayExtra(
+                UiIntentActions.SELECTION_DEFAULT_SELECTION);
+        if (selectedIds != null && selectedIds.length != 0) {
+            final TreeSet<Long> selectedIdsTree = new TreeSet<>();
+            for (int i = 0; i < selectedIds.length; i++) {
+                selectedIdsTree.add(selectedIds[i]);
+            }
+            getAdapter().setSelectedContactIds(selectedIdsTree);
+            onSelectedContactsChanged();
+        }
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override

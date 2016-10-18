@@ -83,7 +83,7 @@ public class MultiSelectPhoneNumbersListAdapter extends MultiSelectEntryContactL
     }
 
     public void setArguments(Bundle bundle) {
-        mContactIdsFilter = bundle.getLongArray(UiIntentActions.LIST_CONTACTS);
+        mContactIdsFilter = bundle.getLongArray(UiIntentActions.SELECTION_ITEM_LIST);
     }
 
     @Override

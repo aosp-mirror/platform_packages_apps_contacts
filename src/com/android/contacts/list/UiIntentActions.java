@@ -59,6 +59,18 @@ public class UiIntentActions {
             "com.android.contacts.extra.SELECTION_SEND_TITLE";
 
     /**
+     * The item ids for multi select picker fragment/adapter
+     */
+    public static final String SELECTION_ITEM_LIST =
+            "com.android.contacts.extra.SELECTION_ITEM_LIST";
+
+    /**
+     * The default selection flags for the multi select picker fragment/adapter
+     */
+    public static final String SELECTION_DEFAULT_SELECTION =
+            "com.android.contacts.extra.SELECTION_DEFAULT_SELECTION";
+
+    /**
      * When in LIST_GROUP_ACTION mode, this is the group to display.
      */
     public static final String GROUP_NAME_EXTRA_KEY = "com.android.contacts.extra.GROUP";
