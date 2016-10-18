@@ -1851,4 +1851,7 @@
 
     <!-- Confirm button text for dialog to turn auto-sync on [CHAR LIMIT=30] -->
     <string name="turn_auto_sync_on_dialog_confirm_btn">Turn on</string>
+
+    <!-- No network connection error message [CHAR LIMIT=50] -->
+    <string name="connection_error_message">No connection</string>
 </resources>

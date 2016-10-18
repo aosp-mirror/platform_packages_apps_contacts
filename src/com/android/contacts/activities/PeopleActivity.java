@@ -182,6 +182,10 @@ public class PeopleActivity extends ContactsDrawerActivity {
         }
     }
 
+    public void showConnectionErrorMsg() {
+        Snackbar.make(mLayoutRoot, R.string.connection_error_message, Snackbar.LENGTH_LONG).show();
+    }
+
     private final ContactListFilterListener mFilterListener = new ContactListFilterListener() {
         @Override
         public void onContactListFilterChanged() {
@@ -728,7 +732,6 @@ public class PeopleActivity extends ContactsDrawerActivity {
                     }
                 }).show();
     }
-
 
     private class SaveServiceListener extends BroadcastReceiver {
         @Override
