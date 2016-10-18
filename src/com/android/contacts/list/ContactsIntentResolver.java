@@ -74,6 +74,13 @@ public class ContactsIntentResolver {
         } else if (UiIntentActions.LIST_GROUP_ACTION.equals(action)) {
             request.setActionCode(ContactsRequest.ACTION_GROUP);
             // We no longer support UiIntentActions.GROUP_NAME_EXTRA_KEY
+        } else if (UiIntentActions.ACTION_SELECT_ITEMS.equals(action)) {
+            final String resolvedType = intent.resolveType(mContext);
+            if (Phone.CONTENT_TYPE.equals(resolvedType)) {
+                request.setActionCode(ContactsRequest.ACTION_PICK_PHONES);
+            } else if (Email.CONTENT_TYPE.equals(resolvedType)) {
+                request.setActionCode(ContactsRequest.ACTION_PICK_EMAILS);
+            }
         } else if (Intent.ACTION_PICK.equals(action)) {
             final String resolvedType = intent.resolveType(mContext);
             if (Contacts.CONTENT_TYPE.equals(resolvedType)) {

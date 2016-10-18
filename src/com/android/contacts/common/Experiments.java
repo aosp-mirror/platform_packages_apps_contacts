@@ -73,6 +73,11 @@ public final class Experiments {
      */
     public static final String SEARCH_YENTA_TIMEOUT_MILLIS = "Search__yenta_timeout";
 
+    /**
+     * The options for sending email/messages to groups and selections
+     */
+    public static final String SEND_TO_GROUP = "Groups__send_to_group";
+
     private Experiments() {
     }
 }

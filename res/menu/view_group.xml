@@ -29,6 +29,14 @@
         android:title="@string/menu_editGroup" />
 
     <item
+        android:id="@+id/menu_multi_send_email"
+        android:title="@string/menu_sendEmailOption" />
+
+    <item
+        android:id="@+id/menu_multi_send_message"
+        android:title="@string/menu_sendMessageOption" />
+
+    <item
         android:id="@+id/menu_rename_group"
         android:title="@string/menu_renameGroup"/>
 
