@@ -93,7 +93,7 @@ public class SharedPreferenceUtil {
                 && !getHamburgerPromoDisplayedBefore(context);
     }
 
-    private static SharedPreferences getSharedPreferences(Context context) {
+    protected static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
     }
 
