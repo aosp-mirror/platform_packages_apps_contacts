@@ -57,6 +57,7 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
+import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.list.ContactEntryListFragment;
@@ -548,6 +549,14 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
             @Override
             public void onRefresh() {
                 mHandler.removeCallbacks(mCancelRefresh);
+
+                final boolean isNetworkConnected = SyncUtil.isNetworkConnected(getContext());
+                if (!isNetworkConnected) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    ((PeopleActivity)getActivity()).showConnectionErrorMsg();
+                    return;
+                }
+
                 syncContacts(getFilter());
                 mHandler.postDelayed(mCancelRefresh, Flags.getInstance(getContext())
                         .getInteger(Experiments.PULL_TO_REFRESH_CANCEL_REFRESH_MILLIS));
@@ -570,6 +579,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         if (filter == null) {
             return;
         }
+
         final Bundle bundle = new Bundle();
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
