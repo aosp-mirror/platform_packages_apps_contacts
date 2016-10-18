@@ -231,9 +231,6 @@
     <dimen name="quickcontact_expanding_button_section_height">48dp</dimen>
     <dimen name="quickcontact_expanding_button_section_padding">8dp</dimen>
 
-    <!-- Top margin of the text message when provider status is busy -->
-    <dimen name="update_contact_list_top_margin">188dp</dimen>
-
     <dimen name="expanding_entry_card_item_icon_height">24dp</dimen>
     <dimen name="expanding_entry_card_item_icon_width">24dp</dimen>
 

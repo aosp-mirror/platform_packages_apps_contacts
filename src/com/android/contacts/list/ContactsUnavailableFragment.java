@@ -103,10 +103,9 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
         }
         if (providerStatus == ProviderStatusCompat.STATUS_EMPTY) {
             updateViewsForEmptyStatus();
-        } else if (providerStatus == ProviderStatusCompat.STATUS_BUSY) {
-            updateViewsForBusyStatus(R.string.upgrade_in_progress);
-        } else if (providerStatus == ProviderStatusCompat.STATUS_CHANGING_LOCALE) {
-            updateViewsForBusyStatus(R.string.locale_change_in_progress);
+        } else if (providerStatus == ProviderStatusCompat.STATUS_BUSY
+                || providerStatus == ProviderStatusCompat.STATUS_CHANGING_LOCALE) {
+            updateViewsForBusyStatus();
         }
     }
 
@@ -122,22 +121,12 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
 
     /**
      * Update views in the fragment when provider status is busy.
-     *
-     * @param resId resource ID of the string to show in mMessageView.
      */
-    private void updateViewsForBusyStatus(int resId) {
-        mMessageView.setText(resId);
-        mMessageView.setVisibility(View.VISIBLE);
+    private void updateViewsForBusyStatus() {
+        mMessageView.setVisibility(View.GONE);
         mImageView.setVisibility(View.GONE);
         updateButtonVisibility(View.GONE);
         mProgress.setVisibility(View.VISIBLE);
-
-        final ViewGroup.MarginLayoutParams layoutParams =
-                (ViewGroup.MarginLayoutParams) mMessageView.getLayoutParams();
-        final int marginTop =
-                (int) getResources().getDimension(R.dimen.update_contact_list_top_margin);
-        layoutParams.setMargins(0, marginTop, 0, 0);
-        mMessageView.setGravity(Gravity.CENTER_HORIZONTAL);
     }
 
     @Override
@@ -152,11 +141,6 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 break;
         }
     }
-
-    private boolean areContactsAvailable() {
-        return (mProviderStatus != null) && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
-    }
-
 
     private void updateButtonVisibility(int visibility) {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
