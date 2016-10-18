@@ -324,7 +324,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             ((ContactsPreferenceActivity) getActivity()).showAboutFragment();
             return true;
         } else if (KEY_IMPORT.equals(prefKey)) {
-            ImportDialogFragment.show(getFragmentManager(), ContactsPreferenceActivity.class);
+            ImportDialogFragment.show(getFragmentManager());
             return true;
         } else if (KEY_EXPORT.equals(prefKey)) {
             ExportDialogFragment.show(getFragmentManager(), ContactsPreferenceActivity.class,

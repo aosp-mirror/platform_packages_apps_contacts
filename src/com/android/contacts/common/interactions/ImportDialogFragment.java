@@ -24,8 +24,11 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
+import android.support.annotation.RequiresApi;
+import android.support.v4.util.ArraySet;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -45,10 +48,11 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountSelectionUtil;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.common.vcard.VCardCommonArguments;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 /**
  * An dialog invoked to import/export contacts.
@@ -60,6 +64,9 @@ public class ImportDialogFragment extends DialogFragment
     private static final String KEY_RES_ID = "resourceId";
     private static final String KEY_SUBSCRIPTION_ID = "subscriptionId";
 
+    public static final String EXTRA_SIM_ONLY = "extraSimOnly";
+
+    private boolean mSimOnly = false;
 
     private final String[] LOOKUP_PROJECTION = new String[] {
             Contacts.LOOKUP_KEY
@@ -68,12 +75,28 @@ public class ImportDialogFragment extends DialogFragment
     private SubscriptionManager mSubscriptionManager;
 
     /** Preferred way to show this dialog */
-    public static void show(FragmentManager fragmentManager, Class callingActivity) {
+    public static void show(FragmentManager fragmentManager) {
+        final ImportDialogFragment fragment = new ImportDialogFragment();
+        fragment.show(fragmentManager, TAG);
+    }
+
+    /**
+     * Create an instance that will only have items for the SIM cards (VCF will not be included).
+     */
+    public static void showForSimOnly(FragmentManager fragmentManager) {
         final ImportDialogFragment fragment = new ImportDialogFragment();
         Bundle args = new Bundle();
-        args.putString(VCardCommonArguments.ARG_CALLING_ACTIVITY, callingActivity.getName());
+        args.putBoolean(EXTRA_SIM_ONLY, true);
         fragment.setArguments(args);
         fragment.show(fragmentManager, TAG);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        final Bundle args = getArguments();
+        mSimOnly = args != null && args.getBoolean(EXTRA_SIM_ONLY, false);
     }
 
     @Override
@@ -92,8 +115,6 @@ public class ImportDialogFragment extends DialogFragment
         final Resources res = getActivity().getResources();
         final LayoutInflater dialogInflater = (LayoutInflater)getActivity()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final String callingActivity = getArguments().getString(
-                VCardCommonArguments.ARG_CALLING_ACTIVITY);
 
         // Adapter that shows a list of string resources
         final ArrayAdapter<AdapterEntry> adapter = new ArrayAdapter<AdapterEntry>(getActivity(),
@@ -110,7 +131,7 @@ public class ImportDialogFragment extends DialogFragment
 
         final TelephonyManager manager =
                 (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-        if (res.getBoolean(R.bool.config_allow_import_from_vcf_file)) {
+        if (res.getBoolean(R.bool.config_allow_import_from_vcf_file) && !mSimOnly) {
             adapter.add(new AdapterEntry(getString(R.string.import_from_vcf_file),
                     R.string.import_from_vcf_file));
         }
@@ -129,6 +150,11 @@ public class ImportDialogFragment extends DialogFragment
                     if (subInfoRecords.size() == 1) {
                         adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
                                 R.string.import_from_sim, subInfoRecords.get(0).getSubscriptionId()));
+                    } else if (hasUniqueNonNullCarrierNames(subInfoRecords)) {
+                        for (SubscriptionInfo record : subInfoRecords) {
+                            adapter.add(new AdapterEntry(getSubDescriptionForCarrier(record),
+                                    R.string.import_from_sim, record.getSubscriptionId()));
+                        }
                     } else {
                         for (SubscriptionInfo record : subInfoRecords) {
                             adapter.add(new AdapterEntry(getSubDescription(record),
@@ -234,17 +260,61 @@ public class ImportDialogFragment extends DialogFragment
         dismiss();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private boolean hasUniqueNonNullCarrierNames(List<SubscriptionInfo> subscriptions) {
+        final Set<CharSequence> names = new ArraySet<>();
+        for (SubscriptionInfo subscription : subscriptions) {
+            final CharSequence name = subscription.getCarrierName();
+            if (name == null) {
+                return false;
+            }
+            if (!names.add(name)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private CharSequence getSubDescription(SubscriptionInfo record) {
-        CharSequence name = record.getDisplayName();
-        if (TextUtils.isEmpty(record.getNumber())) {
-            // Don't include the phone number in the description, since we don't know the number.
+        final CharSequence name = record.getDisplayName();
+        final CharSequence number = getFormattedNumber(record);
+
+        if (TextUtils.isEmpty(number)) {
             return getString(R.string.import_from_sim_summary_no_number, name);
         }
-        return TextUtils.expandTemplate(
-                getString(R.string.import_from_sim_summary),
-                name,
-                PhoneNumberUtilsCompat.createTtsSpannable(record.getNumber()));
+
+        return TextUtils.expandTemplate(getString(R.string.import_from_sim_summary), name, number);
     }
+
+    private CharSequence getSubDescriptionForCarrier(SubscriptionInfo record) {
+        final CharSequence carrierName = record.getCarrierName();
+        final CharSequence number = getFormattedNumber(record);
+
+        if (TextUtils.isEmpty(number)) {
+            return getString(R.string.import_from_sim_summary_by_carrier_no_number, carrierName);
+        }
+
+        return TextUtils.expandTemplate(
+                getString(R.string.import_from_sim_summary_by_carrier), carrierName, number);
+    }
+
+    private CharSequence getFormattedNumber(SubscriptionInfo subscription) {
+        final String rawNumber = subscription.getNumber();
+        if (rawNumber == null) {
+            return null;
+        }
+        final String country = subscription.getCountryIso();
+        final String number;
+        if (country != null) {
+            number = PhoneNumberUtilsCompat.formatNumber(rawNumber, null,
+                    country.toUpperCase(Locale.US));
+        } else {
+            number = rawNumber;
+        }
+        return PhoneNumberUtilsCompat.createTtsSpannable(number);
+    }
+
+
 
     private static class AdapterEntry {
         public final CharSequence mLabel;
