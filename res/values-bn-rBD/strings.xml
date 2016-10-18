@@ -322,8 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়নি"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়েছে"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"ভাষা পরিবর্তন দেখানোর জন্য পরিচিতির তালিকা আপডেট করা হচ্ছে৷\n\n অনুগ্রহ করে অপেক্ষা করুন…"</string>
-    <!-- no translation found for menu_assistant (919866272301744261) -->
-    <skip />
+    <string name="menu_assistant" msgid="919866272301744261">"সহায়ক"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"সদৃশগুলি"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"নেভিগেশান ড্রয়ার খুলুন"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"নেভিগেশান ড্রয়ার বন্ধ করুন"</string>
@@ -539,8 +538,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"প্রথমে উপাধি"</string>
     <string name="settings_accounts" msgid="350219740670774576">"অ্যাকাউন্টগুলি"</string>
     <string name="default_editor_account" msgid="699591683362420991">"নতুন পরিচিতিগুলির জন্য ডিফল্ট অ্যাকাউন্ট"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"পরিচিতির মেটাডাটা সিঙ্ক করুন [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"পরিচিতির মেটাডাটা সিঙ্ক করুন"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"আমার তথ্য"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"আপনার প্রোফাইল সেট আপ করুন"</string>
     <string name="setting_about" msgid="7014388749752042863">"পরিচিতি সম্পর্কিত"</string>
@@ -601,19 +598,27 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ঘণ্টা <xliff:g id="MINUTES_1">%s</xliff:g> মিনিট <xliff:g id="SECONDS">%s</xliff:g> সেকেন্ড"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"এই শর্টকাটটি অক্ষম করা হয়েছে"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"পরিচিতিটি সরানো হয়েছে"</string>
-    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <string name="sim_import_button_text" msgid="4270841592496619317">"আমদানি করুন"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"পরিচিতিগুলি নির্বাচন করুন"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g>টি নির্বাচন করা হয়েছে"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"আপনার SIM কার্ডে কোনো পরিচিতি নেই"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="one">SIM কার্ডে থাকা <xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি আমদানি করা হয়েছে</item>
+      <item quantity="other">SIM কার্ডে থাকা <xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি আমদানি করা হয়েছে</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM কার্ডে থাকা পরিচিতিগুলি আমদানি করা গেল না"</string>
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"আমদানি করতে পরিচিতিগুলি নির্বাচন করুন"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"আমদানি বাতিল করুন"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
     <skip />
-    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
     <skip />
-    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
     <skip />
-    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
     <skip />
-    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
-    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
     <skip />
-    <!-- no translation found for sim_import_dialog_title (6699935401502172530) -->
-    <skip />
-    <!-- no translation found for sim_import_cancel_content_description (2388362519166414488) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
     <skip />
 </resources>

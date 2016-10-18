@@ -322,8 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"အမည်မသိအကောင့်မှ ဓာတ်ပုံဓာတ်ပုံ မစစ်ဆေးရသေးပါ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"အမည်မသိအကောင့်မှ ဓာတ်ပုံ စစ်ဆေးပြီးပါပြီ"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"ဘာသာစကားအပြောင်းအလဲကို ထင်ဟပ်ပေးရန် အဆက်အသွယ်စာရင်းကို မွမ်းမံနေပါသည်။\n\nခဏစောင့်ပေးပါ…"</string>
-    <!-- no translation found for menu_assistant (919866272301744261) -->
-    <skip />
+    <string name="menu_assistant" msgid="919866272301744261">"အထောက်အကူ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"မိတ္တူပွားများ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"လမ်းညွှန်ချက်အကွက်ကို ဖွင့်ပါ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"လမ်းညွှန်ချက်အကွက်ကို ပိတ်ပါ"</string>
@@ -539,8 +538,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"နောက်အမည်ဖြင့်စ၍"</string>
     <string name="settings_accounts" msgid="350219740670774576">"အကောင့်များ"</string>
     <string name="default_editor_account" msgid="699591683362420991">"အဆက်အသွယ်အသစ်များအတွက် မူရင်းအကောင့်"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"အဆက်အသွယ်မက်တာဒေတာကို ပြိုင်တူညှိရန် [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"အဆက်အသွယ်မက်တာဒေတာကို ပြိုင်တူညှိရန်"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"ကျွန်ုပ်၏အချက်အလက်"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"သင့်ပရိုဖိုင်ပြင်ဆင်ရန်"</string>
     <string name="setting_about" msgid="7014388749752042863">"အဆက်အသွယ်များအကြောင်း"</string>
@@ -601,19 +598,27 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> နာရီ <xliff:g id="MINUTES_1">%s</xliff:g> မိနစ် <xliff:g id="SECONDS">%s</xliff:g> စက္ကန့်"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"ဤဖြတ်လမ်းလင့်ခ်ကို ပိတ်ထားပါသည်"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"အဆက်အသွယ်ကို ဖယ်ရှားခဲ့ပါသည်"</string>
-    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <string name="sim_import_button_text" msgid="4270841592496619317">"တင်သွင်းရန်"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"အဆက်အသွယ်များကို ရွေးပါ"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> ခုကို ရွေးလိုက်ပါပြီ"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"ဆင်းမ်ကဒ်ထဲတွင် လိပ်စာ မရှိပါ"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="other">ဆင်းမ်အဆက်အသွယ် <xliff:g id="COUNT">%d</xliff:g> ခုကို တင်သွင်းပြီးပါပြီ</item>
+      <item quantity="one">ဆင်းမ်အဆက်အသွယ် ၁ ခုကို တင်သွင်းပြီးပါပြီ</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"ဆင်းမ်အဆက်အသွယ်များကို တင်သွင်း၍မရပါ"</string>
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"တင်သွင်းရန် လိပ်စာများကို ရွေးပါ"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"တင်သွင်းမှု ပယ်ဖျက်ရန်"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
     <skip />
-    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
     <skip />
-    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
     <skip />
-    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
     <skip />
-    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
-    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
     <skip />
-    <!-- no translation found for sim_import_dialog_title (6699935401502172530) -->
-    <skip />
-    <!-- no translation found for sim_import_cancel_content_description (2388362519166414488) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
     <skip />
 </resources>
