@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.ActivityNotFoundException;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -75,6 +76,8 @@ import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.common.util.ContactDisplayUtils;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.MaterialColorMapUtils;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
@@ -1510,6 +1513,28 @@ public class ContactEditorFragment extends Fragment implements
         onSaveCompleted(false, SaveMode.RELOAD, uri != null, uri, /* joinContactId */ null);
     }
 
+
+    private String getNameToDisplay(Uri contactUri) {
+        final ContentResolver resolver = mContext.getContentResolver();
+        final Cursor cursor = resolver.query(contactUri, new String[]{
+                ContactsContract.Contacts.DISPLAY_NAME,
+                ContactsContract.Contacts.DISPLAY_NAME_ALTERNATIVE}, null, null, null);
+        try {
+            if (cursor.moveToFirst()) {
+                final String displayName = cursor.getString(0);
+                final String displayNameAlt = cursor.getString(1);
+                cursor.close();
+                return ContactDisplayUtils.getPreferredDisplayName(displayName, displayNameAlt,
+                        new ContactsPreferences(mContext));
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return null;
+    }
+
+
     @Override
     public void onSaveCompleted(boolean hadChanges, int saveMode, boolean saveSucceeded,
             Uri contactLookupUri, Long joinContactId) {
@@ -1523,8 +1548,7 @@ public class ContactEditorFragment extends Fragment implements
                                 .show();
                         break;
                     default:
-                        final String displayName = getContent().getNameEditorView()
-                                .getDisplayName();
+                        final String displayName = getNameToDisplay(contactLookupUri);
                         final String toastMessage;
                         if (!TextUtils.isEmpty(displayName)) {
                             toastMessage = getResources().getString(

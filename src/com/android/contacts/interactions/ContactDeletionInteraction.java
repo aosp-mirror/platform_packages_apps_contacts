@@ -40,6 +40,8 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.common.util.ContactDisplayUtils;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
 
@@ -67,6 +69,7 @@ public class ContactDeletionInteraction extends Fragment
         Entity.CONTACT_ID, // 3
         Entity.LOOKUP_KEY, // 4
         Entity.DISPLAY_NAME, // 5
+        Entity.DISPLAY_NAME_ALTERNATIVE, // 6
     };
 
     private static final int COLUMN_INDEX_RAW_CONTACT_ID = 0;
@@ -75,10 +78,12 @@ public class ContactDeletionInteraction extends Fragment
     private static final int COLUMN_INDEX_CONTACT_ID = 3;
     private static final int COLUMN_INDEX_LOOKUP_KEY = 4;
     private static final int COLUMN_INDEX_DISPLAY_NAME = 5;
+    private static final int COLUMN_INDEX_DISPLAY_NAME_ALT = 6;
 
     private boolean mActive;
     private Uri mContactUri;
     private String mDisplayName;
+    private String mDisplayNameAlt;
     private boolean mFinishActivityWhenDone;
     private Context mContext;
     private AlertDialog mDialog;
@@ -252,6 +257,7 @@ public class ContactDeletionInteraction extends Fragment
             contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
             lookupKey = cursor.getString(COLUMN_INDEX_LOOKUP_KEY);
             mDisplayName = cursor.getString(COLUMN_INDEX_DISPLAY_NAME);
+            mDisplayNameAlt = cursor.getString(COLUMN_INDEX_DISPLAY_NAME_ALT);
             AccountType type = accountTypes.getAccountType(accountType, dataSet);
             boolean writable = type == null || type.areContactsWritable();
             if (writable) {
@@ -343,12 +349,14 @@ public class ContactDeletionInteraction extends Fragment
             getActivity().setResult(RESULT_CODE_DELETED);
             getActivity().finish();
             final String deleteToastMessage;
-            if (mDisplayName == null) {
+            final String name = ContactDisplayUtils.getPreferredDisplayName(mDisplayName,
+                    mDisplayNameAlt, new ContactsPreferences(mContext));
+            if (TextUtils.isEmpty(name)) {
                 deleteToastMessage = getResources().getQuantityString(
                         R.plurals.contacts_deleted_toast, /* quantity */ 1);
             } else {
                 deleteToastMessage = getResources().getString(
-                        R.string.contact_deleted_named_toast, mDisplayName);
+                        R.string.contacts_deleted_one_named_toast, name);
             }
             Toast.makeText(mContext, deleteToastMessage, Toast.LENGTH_LONG).show();
         }
