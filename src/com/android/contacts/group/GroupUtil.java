@@ -110,13 +110,16 @@ public final class GroupUtil {
 
     /** Returns an Intent to pick emails/phones to send to selection (or group) */
     public static Intent createSendToSelectionPickerIntent(
-            Context context, long[] ids, String sendScheme) {
+            Context context, long[] ids, String sendScheme, String title) {
         final Intent intent = new Intent(context, ContactSelectionActivity.class);
         intent.setAction(UiIntentActions.ACTION_SELECT_ITEMS);
         intent.setType(ContactsUtils.SCHEME_MAILTO.equals(sendScheme)
                 ? ContactsContract.CommonDataKinds.Email.CONTENT_TYPE
                 : ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
         intent.putExtra(UiIntentActions.LIST_CONTACTS, ids);
+        intent.putExtra(UiIntentActions.SELECTION_SEND_SCHEME, sendScheme);
+        intent.putExtra(UiIntentActions.SELECTION_SEND_TITLE, title);
+
         return intent;
     }
 

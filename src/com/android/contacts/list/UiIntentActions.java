@@ -47,6 +47,18 @@ public class UiIntentActions {
             "com.android.contacts.action.LIST_GROUP";
 
     /**
+     * The send scheme for multi email/phone picker fragment
+     */
+    public static final String SELECTION_SEND_SCHEME =
+            "com.android.contacts.extra.SELECTION_SEND_SCHEME";
+
+    /**
+     * The send title for multi email/phone picker fragment
+     */
+    public static final String SELECTION_SEND_TITLE =
+            "com.android.contacts.extra.SELECTION_SEND_TITLE";
+
+    /**
      * When in LIST_GROUP_ACTION mode, this is the group to display.
      */
     public static final String GROUP_NAME_EXTRA_KEY = "com.android.contacts.extra.GROUP";

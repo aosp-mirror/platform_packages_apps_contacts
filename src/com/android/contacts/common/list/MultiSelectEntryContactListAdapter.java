@@ -86,6 +86,10 @@ public abstract class MultiSelectEntryContactListAdapter extends ContactEntryLis
         return mSelectedContactIds;
     }
 
+    public boolean hasSelectedItems() {
+        return mSelectedContactIds.size() > 0;
+    }
+
     /**
      * Returns the selected contacts as an array.
      */
