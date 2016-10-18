@@ -615,10 +615,7 @@ public class ContactEditorFragment extends Fragment implements
                 Lists.<RawContact>newArrayList() : Lists.newArrayList(mRawContacts));
         // NOTE: mGroupMetaData is not saved
 
-        if (hasValidState()) {
-            // Store entities with modifications
-            outState.putParcelable(KEY_EDIT_STATE, mState);
-        }
+        outState.putParcelable(KEY_EDIT_STATE, mState);
         outState.putInt(KEY_STATUS, mStatus);
         outState.putBoolean(KEY_HAS_NEW_CONTACT, mHasNewContact);
         outState.putBoolean(KEY_NEW_CONTACT_READY, mNewContactDataReady);
