@@ -35,6 +35,12 @@ public class UiIntentActions {
             "com.android.contacts.action.LIST_CONTACTS";
 
     /**
+     * The action for selecting multiple items (email, phone) from a list.
+     */
+    public static final String ACTION_SELECT_ITEMS =
+            "com.android.contacts.action.ACTION_SELECT_ITEMS";
+
+    /**
      * The action for the contacts list tab.
      */
     public static final String LIST_GROUP_ACTION =

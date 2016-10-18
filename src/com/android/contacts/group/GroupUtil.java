@@ -21,12 +21,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 import android.text.TextUtils;
 
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.activities.ContactSelectionActivity;
+import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.list.ContactsSectionIndexer;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.list.UiIntentActions;
@@ -98,6 +100,26 @@ public final class GroupUtil {
                 isFirstGroupInAccount, memberCount, isReadOnly, systemId);
     }
 
+    /** Returns an Intent to send emails/phones to some activity/app */
+    public static Intent createSendToSelectionIntent(
+            String itemsList, String sendScheme, String title) {
+        final Intent intent = new Intent(Intent.ACTION_SENDTO,
+                Uri.fromParts(sendScheme, itemsList, null));
+        return Intent.createChooser(intent, title);
+    }
+
+    /** Returns an Intent to pick emails/phones to send to selection (or group) */
+    public static Intent createSendToSelectionPickerIntent(
+            Context context, long[] ids, String sendScheme) {
+        final Intent intent = new Intent(context, ContactSelectionActivity.class);
+        intent.setAction(UiIntentActions.ACTION_SELECT_ITEMS);
+        intent.setType(ContactsUtils.SCHEME_MAILTO.equals(sendScheme)
+                ? ContactsContract.CommonDataKinds.Email.CONTENT_TYPE
+                : ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+        intent.putExtra(UiIntentActions.LIST_CONTACTS, ids);
+        return intent;
+    }
+
     /** Returns an Intent to pick contacts to add to a group. */
     public static Intent createPickMemberIntent(Context context,
             GroupMetaData groupMetaData, ArrayList<String> memberContactIds) {
@@ -109,6 +131,38 @@ public final class GroupUtil {
         intent.putExtra(UiIntentActions.GROUP_ACCOUNT_DATA_SET, groupMetaData.dataSet);
         intent.putExtra(UiIntentActions.GROUP_CONTACT_IDS, memberContactIds);
         return intent;
+    }
+
+    public static String convertArrayToString(long[] list) {
+        if (list == null || list.length == 0) return "";
+        return Arrays.toString(list).replace("[", "").replace("]", "");
+    }
+
+    public static String convertListToString(List<String> list) {
+        if (list == null || list.size() == 0) return "";
+        return list.toString().replace("[", "").replace("]", "");
+    }
+
+    public static long[] convertLongSetToLongArray(Set<Long> set) {
+        final Long[] contactIds = set.toArray(new Long[set.size()]);
+        final long[] result = new long[contactIds.length];
+        for (int i = 0; i < contactIds.length; i++) {
+            result[i] = contactIds[i];
+        }
+        return result;
+    }
+
+    public static long[] convertStringSetToLongArray(Set<String> set) {
+        final String[] contactIds = set.toArray(new String[set.size()]);
+        final long[] result = new long[contactIds.length];
+        for (int i = 0; i < contactIds.length; i++) {
+            try {
+                result[i] = Long.parseLong(contactIds[i]);
+            } catch (NumberFormatException e) {
+                result[i] = -1;
+            }
+        }
+        return result;
     }
 
     /**
