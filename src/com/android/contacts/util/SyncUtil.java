@@ -18,6 +18,8 @@ package com.android.contacts.util;
 import android.accounts.Account;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.provider.ContactsContract;
 
 import com.android.contacts.common.model.account.GoogleAccountType;
@@ -89,5 +91,12 @@ public final class SyncUtil {
                     context, account.name);
         }
         return SYNC_SETTING_SYNC_ON;
+    }
+
+    public static boolean isNetworkConnected(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 }
