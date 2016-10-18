@@ -610,4 +610,18 @@
       <item quantity="other">SIM සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g>ක් ආයාත කරන ලදී</item>
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM සම්බන්ධතා ආයාත කිරීමට අසමත් විය"</string>
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"ආයාත කිරීමට සම්බන්ධතා තෝරන්න"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"ආයාත කිරීම අවලංගු කරන්න"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
+    <skip />
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
+    <skip />
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <skip />
 </resources>

@@ -322,8 +322,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"अज्ञात खाताको तस्बिर जाँच गरिएन"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"अज्ञात खाताको तस्बिर जाँच गरियो"</string>
     <string name="locale_change_in_progress" msgid="6975676844194755501">"भाषाको परिवर्तनलाई प्रतिबिम्बित गर्न सम्पर्क सूची अद्यावधिक भइरहेको छ।\n\nकृपया कुर्नुहोस्..."</string>
-    <!-- no translation found for menu_assistant (919866272301744261) -->
-    <skip />
+    <string name="menu_assistant" msgid="919866272301744261">"सहायक"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"प्रतिलिपिहरू"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"नेभिगेसन ड्रअर खोल्नुहोस्"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"नेभिगेसन ड्रअर बन्द गर्नुहोस्"</string>
@@ -602,15 +601,27 @@
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"यो सर्टकटलाई असक्षम पारिएको छ"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"सम्पर्क हटाइएको थियो"</string>
     <string name="connection_failed" msgid="7558253972301525402">"साइन इन गर्न सकिएन"</string>
-    <!-- no translation found for sim_import_button_text (4270841592496619317) -->
+    <string name="sim_import_button_text" msgid="4270841592496619317">"आयात गर्नुहोस्"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"सम्पर्कहरू चयन गर्नुहोस्"</string>
+    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> चयन गरियो"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"तपाईँको SIM कार्डमा कुनै पनि सम्पर्कहरू छैनन्।"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
+      <item quantity="other">SIM को <xliff:g id="COUNT">%d</xliff:g> सम्पर्कहरू आयात गरिए</item>
+      <item quantity="one">SIM को १ सम्पर्क आयात गरियो</item>
+    </plurals>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM को सम्पर्कहरू आयात गर्न सकिएन"</string>
+    <string name="sim_import_dialog_title" msgid="6699935401502172530">"आयात गर्न सम्पर्कहरू चयन गर्नुहोस्"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"आयात रद्द गर्नुहोस्"</string>
+    <!-- no translation found for auto_sync_off (2180147284456026587) -->
     <skip />
-    <!-- no translation found for sim_import_title_none_selected (6910517331401970693) -->
+    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
     <skip />
-    <!-- no translation found for sim_import_title_some_selected_fmt (2978159841027256106) -->
+    <!-- no translation found for account_sync_off (7646143254066243924) -->
     <skip />
-    <!-- no translation found for sim_import_empty_message (7743815244380189651) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
     <skip />
-    <!-- no translation found for sim_import_success_toast_fmt (8572156521110906443) -->
-    <!-- no translation found for sim_import_failed_toast (5559267299793622705) -->
+    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
     <skip />
 </resources>
