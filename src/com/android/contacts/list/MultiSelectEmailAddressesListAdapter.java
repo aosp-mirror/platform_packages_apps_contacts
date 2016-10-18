@@ -83,7 +83,7 @@ public class MultiSelectEmailAddressesListAdapter extends MultiSelectEntryContac
     }
 
     public void setArguments(Bundle bundle) {
-        mContactIdsFilter = bundle.getLongArray(UiIntentActions.LIST_CONTACTS);
+        mContactIdsFilter = bundle.getLongArray(UiIntentActions.SELECTION_ITEM_LIST);
     }
 
     @Override
