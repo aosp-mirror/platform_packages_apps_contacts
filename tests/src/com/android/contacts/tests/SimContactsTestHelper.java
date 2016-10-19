@@ -1,198 +1,198 @@
-/*
- * Copyright (C) 2016 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.android.contacts.tests;
-
-import android.content.ContentProvider;
-import android.content.ContentProviderOperation;
-import android.content.ContentProviderResult;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.OperationApplicationException;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.RemoteException;
-import android.support.annotation.NonNull;
-import android.support.test.InstrumentationRegistry;
-import android.telephony.TelephonyManager;
-
-import com.android.contacts.common.model.SimContact;
-import com.android.contacts.common.database.SimContactDao;
-import com.android.contacts.common.test.mocks.MockContentProvider;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assume.assumeThat;
-import static org.junit.Assume.assumeTrue;
-
-public class SimContactsTestHelper {
-
-    private final Context mContext;
-    private final TelephonyManager mTelephonyManager;
-    private final ContentResolver mResolver;
-    private final SimContactDao mSimDao;
-
-    public SimContactsTestHelper() {
-        this(InstrumentationRegistry.getTargetContext());
-    }
-
-    public SimContactsTestHelper(Context context) {
-        mContext = context;
-        mResolver = context.getContentResolver();
-        mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        mSimDao = new SimContactDao(context);
-    }
-
-    public int getSimContactCount() {
-        Cursor cursor = mContext.getContentResolver().query(SimContactDao.ICC_CONTENT_URI,
-                null, null, null, null);
-        try {
-            return cursor.getCount();
-        } finally {
-            cursor.close();
-        }
-    }
-
-    public ContentValues iccRow(long id, String name, String number, String emails) {
-        ContentValues values = new ContentValues();
-        values.put(SimContactDao._ID, id);
-        values.put(SimContactDao.NAME, name);
-        values.put(SimContactDao.NUMBER, number);
-        values.put(SimContactDao.EMAILS, emails);
-        return values;
-    }
-
-    public ContentProvider iccProviderExpectingNoQueries() {
-        return new MockContentProvider();
-    }
-
-    public ContentProvider emptyIccProvider() {
-        final MockContentProvider provider = new MockContentProvider();
-        provider.expectQuery(SimContactDao.ICC_CONTENT_URI)
-                .withDefaultProjection(
-                        SimContactDao._ID, SimContactDao.NAME,
-                        SimContactDao.NUMBER, SimContactDao.EMAILS)
-                .withAnyProjection()
-                .withAnySelection()
-                .withAnySortOrder()
-                .returnEmptyCursor();
-        return provider;
-    }
-
-    public Uri addSimContact(String name, String number) {
-        ContentValues values = new ContentValues();
-        // Oddly even though it's called name when querying we have to use "tag" for it to work
-        // when inserting.
-        if (name != null) {
-            values.put("tag", name);
-        }
-        if (number != null) {
-            values.put(SimContactDao.NUMBER, number);
-        }
-        return mResolver.insert(SimContactDao.ICC_CONTENT_URI, values);
-    }
-
-    public ContentProviderResult[] deleteAllSimContacts()
-            throws RemoteException, OperationApplicationException {
-        SimContactDao dao = new SimContactDao(mContext);
-        List<SimContact> contacts = dao.loadSimContacts();
-        ArrayList<ContentProviderOperation> ops = new ArrayList<>();
-        for (SimContact contact : contacts) {
-            ops.add(ContentProviderOperation
-                    .newDelete(SimContactDao.ICC_CONTENT_URI)
-                    .withSelection(getWriteSelection(contact), null)
-                    .build());
-        }
-        return mResolver.applyBatch(SimContactDao.ICC_CONTENT_URI.getAuthority(), ops);
-    }
-
-    public ContentProviderResult[] restore(ArrayList<ContentProviderOperation> restoreOps)
-            throws RemoteException, OperationApplicationException {
-        if (restoreOps == null) return null;
-
-        // Remove SIM contacts because we assume that caller wants the data to be in the exact
-        // state as when the restore ops were captured.
-        deleteAllSimContacts();
-        return mResolver.applyBatch(SimContactDao.ICC_CONTENT_URI.getAuthority(), restoreOps);
-    }
-
-    public ArrayList<ContentProviderOperation> captureRestoreSnapshot() {
-        ArrayList<SimContact> contacts = mSimDao.loadSimContacts();
-
-        ArrayList<ContentProviderOperation> ops = new ArrayList<>();
-        for (SimContact contact : contacts) {
-            final String[] emails = contact.getEmails();
-            if (emails != null && emails.length > 0) {
-                throw new IllegalStateException("Cannot restore emails." +
-                        " Please manually remove SIM contacts with emails.");
-            }
-            ops.add(ContentProviderOperation
-                    .newInsert(SimContactDao.ICC_CONTENT_URI)
-                    .withValue("tag", contact.getName())
-                    .withValue("number", contact.getPhone())
-                    .build());
-        }
-        return ops;
-    }
-
-    public String getWriteSelection(SimContact simContact) {
-        return "tag='" + simContact.getName() + "' AND " + SimContactDao.NUMBER + "='" +
-                simContact.getPhone() + "'";
-    }
-
-    public int deleteSimContact(@NonNull  String name, @NonNull  String number) {
-        // IccProvider doesn't use the selection args.
-        final String selection = "tag='" + name + "' AND " +
-                SimContactDao.NUMBER + "='" + number + "'";
-        return mResolver.delete(SimContactDao.ICC_CONTENT_URI, selection, null);
-    }
-
-    public boolean isSimReady() {
-        return mTelephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
-    }
-
-    public boolean doesSimHaveContacts() {
-        return isSimReady() && getSimContactCount() > 0;
-    }
-
-    public boolean isSimWritable() {
-        if (!isSimReady()) return false;
-        final String name = "writabeProbe" + System.nanoTime();
-        final Uri uri = addSimContact(name, "15095550101");
-        return uri != null && deleteSimContact(name, "15095550101") == 1;
-    }
-
-    public void assumeSimReady() {
-        assumeTrue(isSimReady());
-    }
-
-    public void assumeHasSimContacts() {
-        assumeTrue(doesSimHaveContacts());
-    }
-
-    public void assumeSimCardAbsent() {
-        assumeThat(mTelephonyManager.getSimState(), equalTo(TelephonyManager.SIM_STATE_ABSENT));
-    }
-
-    // The emulator reports SIM_STATE_READY but writes are ignored. This verifies that the
-    // device will actually persist writes to the SIM card.
-    public void assumeSimWritable() {
-        assumeSimReady();
-        assumeTrue(isSimWritable());
-    }
-}
+///*
+// * Copyright (C) 2016 The Android Open Source Project
+// *
+// * Licensed under the Apache License, Version 2.0 (the "License");
+// * you may not use this file except in compliance with the License.
+// * You may obtain a copy of the License at
+// *
+// *      http://www.apache.org/licenses/LICENSE-2.0
+// *
+// * Unless required by applicable law or agreed to in writing, software
+// * distributed under the License is distributed on an "AS IS" BASIS,
+// * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// * See the License for the specific language governing permissions and
+// * limitations under the License.
+// */
+//package com.android.contacts.tests;
+//
+//import android.content.ContentProvider;
+//import android.content.ContentProviderOperation;
+//import android.content.ContentProviderResult;
+//import android.content.ContentResolver;
+//import android.content.ContentValues;
+//import android.content.Context;
+//import android.content.OperationApplicationException;
+//import android.database.Cursor;
+//import android.net.Uri;
+//import android.os.RemoteException;
+//import android.support.annotation.NonNull;
+//import android.support.test.InstrumentationRegistry;
+//import android.telephony.TelephonyManager;
+//
+//import com.android.contacts.common.model.SimContact;
+//import com.android.contacts.common.database.SimContactDao;
+//import com.android.contacts.common.test.mocks.MockContentProvider;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import static org.hamcrest.Matchers.equalTo;
+//import static org.junit.Assume.assumeThat;
+//import static org.junit.Assume.assumeTrue;
+//
+//public class SimContactsTestHelper {
+//
+//    private final Context mContext;
+//    private final TelephonyManager mTelephonyManager;
+//    private final ContentResolver mResolver;
+//    private final SimContactDao mSimDao;
+//
+//    public SimContactsTestHelper() {
+//        this(InstrumentationRegistry.getTargetContext());
+//    }
+//
+//    public SimContactsTestHelper(Context context) {
+//        mContext = context;
+//        mResolver = context.getContentResolver();
+//        mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+//        mSimDao = new SimContactDao(context);
+//    }
+//
+//    public int getSimContactCount() {
+//        Cursor cursor = mContext.getContentResolver().query(SimContactDao.ICC_CONTENT_URI,
+//                null, null, null, null);
+//        try {
+//            return cursor.getCount();
+//        } finally {
+//            cursor.close();
+//        }
+//    }
+//
+//    public ContentValues iccRow(long id, String name, String number, String emails) {
+//        ContentValues values = new ContentValues();
+//        values.put(SimContactDao._ID, id);
+//        values.put(SimContactDao.NAME, name);
+//        values.put(SimContactDao.NUMBER, number);
+//        values.put(SimContactDao.EMAILS, emails);
+//        return values;
+//    }
+//
+//    public ContentProvider iccProviderExpectingNoQueries() {
+//        return new MockContentProvider();
+//    }
+//
+//    public ContentProvider emptyIccProvider() {
+//        final MockContentProvider provider = new MockContentProvider();
+//        provider.expectQuery(SimContactDao.ICC_CONTENT_URI)
+//                .withDefaultProjection(
+//                        SimContactDao._ID, SimContactDao.NAME,
+//                        SimContactDao.NUMBER, SimContactDao.EMAILS)
+//                .withAnyProjection()
+//                .withAnySelection()
+//                .withAnySortOrder()
+//                .returnEmptyCursor();
+//        return provider;
+//    }
+//
+//    public Uri addSimContact(String name, String number) {
+//        ContentValues values = new ContentValues();
+//        // Oddly even though it's called name when querying we have to use "tag" for it to work
+//        // when inserting.
+//        if (name != null) {
+//            values.put("tag", name);
+//        }
+//        if (number != null) {
+//            values.put(SimContactDao.NUMBER, number);
+//        }
+//        return mResolver.insert(SimContactDao.ICC_CONTENT_URI, values);
+//    }
+//
+//    public ContentProviderResult[] deleteAllSimContacts()
+//            throws RemoteException, OperationApplicationException {
+//        SimContactDao dao = new SimContactDao(mContext);
+//        List<SimContact> contacts = dao.loadSimContacts();
+//        ArrayList<ContentProviderOperation> ops = new ArrayList<>();
+//        for (SimContact contact : contacts) {
+//            ops.add(ContentProviderOperation
+//                    .newDelete(SimContactDao.ICC_CONTENT_URI)
+//                    .withSelection(getWriteSelection(contact), null)
+//                    .build());
+//        }
+//        return mResolver.applyBatch(SimContactDao.ICC_CONTENT_URI.getAuthority(), ops);
+//    }
+//
+//    public ContentProviderResult[] restore(ArrayList<ContentProviderOperation> restoreOps)
+//            throws RemoteException, OperationApplicationException {
+//        if (restoreOps == null) return null;
+//
+//        // Remove SIM contacts because we assume that caller wants the data to be in the exact
+//        // state as when the restore ops were captured.
+//        deleteAllSimContacts();
+//        return mResolver.applyBatch(SimContactDao.ICC_CONTENT_URI.getAuthority(), restoreOps);
+//    }
+//
+//    public ArrayList<ContentProviderOperation> captureRestoreSnapshot() {
+//        ArrayList<SimContact> contacts = mSimDao.loadSimContacts();
+//
+//        ArrayList<ContentProviderOperation> ops = new ArrayList<>();
+//        for (SimContact contact : contacts) {
+//            final String[] emails = contact.getEmails();
+//            if (emails != null && emails.length > 0) {
+//                throw new IllegalStateException("Cannot restore emails." +
+//                        " Please manually remove SIM contacts with emails.");
+//            }
+//            ops.add(ContentProviderOperation
+//                    .newInsert(SimContactDao.ICC_CONTENT_URI)
+//                    .withValue("tag", contact.getName())
+//                    .withValue("number", contact.getPhone())
+//                    .build());
+//        }
+//        return ops;
+//    }
+//
+//    public String getWriteSelection(SimContact simContact) {
+//        return "tag='" + simContact.getName() + "' AND " + SimContactDao.NUMBER + "='" +
+//                simContact.getPhone() + "'";
+//    }
+//
+//    public int deleteSimContact(@NonNull  String name, @NonNull  String number) {
+//        // IccProvider doesn't use the selection args.
+//        final String selection = "tag='" + name + "' AND " +
+//                SimContactDao.NUMBER + "='" + number + "'";
+//        return mResolver.delete(SimContactDao.ICC_CONTENT_URI, selection, null);
+//    }
+//
+//    public boolean isSimReady() {
+//        return mTelephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
+//    }
+//
+//    public boolean doesSimHaveContacts() {
+//        return isSimReady() && getSimContactCount() > 0;
+//    }
+//
+//    public boolean isSimWritable() {
+//        if (!isSimReady()) return false;
+//        final String name = "writabeProbe" + System.nanoTime();
+//        final Uri uri = addSimContact(name, "15095550101");
+//        return uri != null && deleteSimContact(name, "15095550101") == 1;
+//    }
+//
+//    public void assumeSimReady() {
+//        assumeTrue(isSimReady());
+//    }
+//
+//    public void assumeHasSimContacts() {
+//        assumeTrue(doesSimHaveContacts());
+//    }
+//
+//    public void assumeSimCardAbsent() {
+//        assumeThat(mTelephonyManager.getSimState(), equalTo(TelephonyManager.SIM_STATE_ABSENT));
+//    }
+//
+//    // The emulator reports SIM_STATE_READY but writes are ignored. This verifies that the
+//    // device will actually persist writes to the SIM card.
+//    public void assumeSimWritable() {
+//        assumeSimReady();
+//        assumeTrue(isSimWritable());
+//    }
+//}
