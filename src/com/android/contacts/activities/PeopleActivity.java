@@ -439,7 +439,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
         super.onPause();
 
-        if (Flags.getInstance(this).getBoolean(Experiments.PULL_TO_REFRESH)) {
+        if (Flags.getInstance().getBoolean(Experiments.PULL_TO_REFRESH)) {
             ContentResolver.removeStatusChangeListener(mStatusChangeListenerHandle);
             onSyncStateUpdated();
         }
@@ -456,7 +456,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
         mProviderStatusWatcher.start();
         updateViewConfiguration(true);
 
-        if (Flags.getInstance(this).getBoolean(Experiments.PULL_TO_REFRESH)) {
+        if (Flags.getInstance().getBoolean(Experiments.PULL_TO_REFRESH)) {
             mStatusChangeListenerHandle = ContentResolver.addStatusChangeListener(
                     ContentResolver.SYNC_OBSERVER_TYPE_ACTIVE
                             | ContentResolver.SYNC_OBSERVER_TYPE_PENDING
@@ -792,7 +792,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
                     R.id.contacts_list_container, mMembersFragment, TAG_GROUP_VIEW);
         } else if(isAssistantView()) {
             String fragmentTag;
-            if (Flags.getInstance(this).getBoolean(Experiments.ASSISTANT)) {
+            if (Flags.getInstance().getBoolean(Experiments.ASSISTANT)) {
                 fragmentTag = TAG_ASSISTANT;
             } else {
                 fragmentTag = TAG_DUPLICATES;

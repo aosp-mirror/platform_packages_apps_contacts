@@ -1545,7 +1545,7 @@ public class ContactEditorFragment extends Fragment implements
                 if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = ContactEditorUtils.maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
-                    if (Flags.getInstance(mContext).getBoolean(Experiments.CONTACT_SHEET)) {
+                    if (Flags.getInstance().getBoolean(Experiments.CONTACT_SHEET)) {
                         resultIntent = ObjectFactory.getContactSheetIntent(mContext, lookupUri);
                     }
                     if (resultIntent == null) {

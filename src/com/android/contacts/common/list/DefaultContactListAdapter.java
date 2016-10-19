@@ -116,7 +116,7 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
                 sortOrder = STREQUENT_SORT;
-                if (Flags.getInstance(getContext()).getBoolean(Experiments.SEARCH_YENTA)
+                if (Flags.getInstance().getBoolean(Experiments.SEARCH_YENTA)
                         && loader instanceof FavoritesAndContactsLoader
                         && directoryId == Directory.DEFAULT) {
                     final FavoritesAndContactsLoader favoritesAndContactsLoader =

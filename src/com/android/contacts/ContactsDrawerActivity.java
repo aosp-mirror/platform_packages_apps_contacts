@@ -279,7 +279,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             menu.removeItem(R.id.nav_find_duplicates);
         } else {
             int id;
-            if (Flags.getInstance(this).getBoolean(Experiments.ASSISTANT)) {
+            if (Flags.getInstance().getBoolean(Experiments.ASSISTANT)) {
                 id = R.id.nav_assistant;
                 menu.removeItem(R.id.nav_find_duplicates);
             } else {

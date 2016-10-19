@@ -119,9 +119,9 @@ public class DynamicShortcuts {
         mContentResolver = contentResolver;
         mShortcutManager = shortcutManager;
         mJobScheduler = jobScheduler;
-        mContentChangeMinUpdateDelay = Flags.getInstance(mContext)
+        mContentChangeMinUpdateDelay = Flags.getInstance()
                 .getInteger(Experiments.DYNAMIC_MIN_CONTENT_CHANGE_UPDATE_DELAY_MILLIS);
-        mContentChangeMaxUpdateDelay = Flags.getInstance(mContext)
+        mContentChangeMaxUpdateDelay = Flags.getInstance()
                 .getInteger(Experiments.DYNAMIC_MAX_CONTENT_CHANGE_UPDATE_DELAY_MILLIS);
     }
 
@@ -404,7 +404,7 @@ public class DynamicShortcuts {
 
     public synchronized static void initialize(Context context) {
         if (Log.isLoggable(TAG, Log.DEBUG)) {
-            final Flags flags = Flags.getInstance(context);
+            final Flags flags = Flags.getInstance();
             Log.d(TAG, "DyanmicShortcuts.initialize\nVERSION >= N_MR1? " +
                     (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) +
                     "\n" + Experiments.DYNAMIC_SHORTCUTS + " enabled? " +
@@ -420,7 +420,7 @@ public class DynamicShortcuts {
 
         final DynamicShortcuts shortcuts = new DynamicShortcuts(context);
 
-        if (!Flags.getInstance(context).getBoolean(Experiments.DYNAMIC_SHORTCUTS)) {
+        if (!Flags.getInstance().getBoolean(Experiments.DYNAMIC_SHORTCUTS)) {
             // Clear dynamic shortcuts if the flag is not enabled. This prevents shortcuts from
             // staying around if it is enabled then later disabled (due to bugs for instance).
             shortcuts.handleFlagDisabled();
