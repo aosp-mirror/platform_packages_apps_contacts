@@ -458,7 +458,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         mContactListFilterController = ContactListFilterController.getInstance(getContext());
         mContactListFilterController.checkFilterValidity(false);
         mDeviceLocalFactory = ObjectFactory.getDeviceLocalAccountTypeFactory(getContext());
-        if (!Flags.getInstance(getContext()).getBoolean(Experiments.ACCOUNT_SWITCHER)
+        if (!Flags.getInstance().getBoolean(Experiments.ACCOUNT_SWITCHER)
                 && !mIsRecreatedInstance) {
             // Use FILTER_TYPE_ALL_ACCOUNTS filter if the instance is not a re-created one.
             // This is useful when user upgrades app while an account filter was
@@ -962,7 +962,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
      */
     private void setContactListFilter(ContactListFilter filter) {
         mContactListFilterController.setContactListFilter(filter,
-                AccountFilterUtil.shouldPersistFilter(getContext(), filter));
+                AccountFilterUtil.shouldPersistFilter(filter));
     }
 
     @Override
