@@ -196,7 +196,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
                     setSyncOffAlert();
 
                     // Determine whether the account has pullToRefresh feature
-                    if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
+                    if (Flags.getInstance().getBoolean(Experiments.PULL_TO_REFRESH)) {
                         setSwipeRefreshLayoutEnabledOrNot(getFilter());
                     }
                     break;
@@ -471,7 +471,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
 
-        if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
+        if (Flags.getInstance().getBoolean(Experiments.PULL_TO_REFRESH)) {
             initSwipeRefreshLayout();
         }
         // Putting the header view inside a container will allow us to make
@@ -567,7 +567,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
                 }
 
                 syncContacts(getFilter());
-                mHandler.postDelayed(mCancelRefresh, Flags.getInstance(getContext())
+                mHandler.postDelayed(mCancelRefresh, Flags.getInstance()
                         .getInteger(Experiments.PULL_TO_REFRESH_CANCEL_REFRESH_MILLIS));
             }
         });
@@ -840,7 +840,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         setSyncOffAlert();
 
         // Determine whether the account has pullToRefresh feature
-        if (Flags.getInstance(getContext()).getBoolean(Experiments.PULL_TO_REFRESH)) {
+        if (Flags.getInstance().getBoolean(Experiments.PULL_TO_REFRESH)) {
             setSwipeRefreshLayoutEnabledOrNot(filter);
         }
     }

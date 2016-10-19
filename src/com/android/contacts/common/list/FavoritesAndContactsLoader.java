@@ -50,7 +50,7 @@ public class FavoritesAndContactsLoader extends CursorLoader implements Autocomp
 
     public FavoritesAndContactsLoader(Context context) {
         super(context);
-        mAutocompleteTimeout = Flags.getInstance(context).getInteger(
+        mAutocompleteTimeout = Flags.getInstance().getInteger(
                 Experiments.SEARCH_YENTA_TIMEOUT_MILLIS);
     }
 

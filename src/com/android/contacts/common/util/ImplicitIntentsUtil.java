@@ -119,7 +119,7 @@ public class ImplicitIntentsUtil {
     private static void startQuickContact(Activity activity, Uri contactLookupUri,
             int previousScreenType, int requestCode) {
 
-        if (Flags.getInstance(activity).getBoolean(Experiments.CONTACT_SHEET)) {
+        if (Flags.getInstance().getBoolean(Experiments.CONTACT_SHEET)) {
             final Intent intent = ObjectFactory.getContactSheetIntent(activity, contactLookupUri);
             if (intent != null) {
                 // We must start ContactSheet "for result" with a requestCode that is >= 0
