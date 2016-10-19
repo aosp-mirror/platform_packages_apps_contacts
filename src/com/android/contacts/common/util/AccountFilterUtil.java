@@ -91,8 +91,7 @@ public class AccountFilterUtil {
             if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
                 filterController.selectCustomFilter();
             } else {
-                filterController.setContactListFilter(filter,
-                        shouldPersistFilter(filterController.getContext(), filter));
+                filterController.setContactListFilter(filter, shouldPersistFilter(filter));
             }
         }
     }
@@ -239,8 +238,8 @@ public class AccountFilterUtil {
                 .getNameLabel().toString();
     }
 
-    public static boolean shouldPersistFilter(Context context, ContactListFilter filter) {
-        if (Flags.getInstance(context).getBoolean(Experiments.ACCOUNT_SWITCHER)) {
+    public static boolean shouldPersistFilter(ContactListFilter filter) {
+        if (Flags.getInstance().getBoolean(Experiments.ACCOUNT_SWITCHER)) {
             return true;
         }
         return filter != null && filter.isContactsFilterType();

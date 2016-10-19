@@ -221,8 +221,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        mShouldShowAccountSwitcher =
-                Flags.getInstance(this).getBoolean(Experiments.ACCOUNT_SWITCHER);
+        mShouldShowAccountSwitcher = Flags.getInstance().getBoolean(Experiments.ACCOUNT_SWITCHER);
 
         mContactListFilterController = ContactListFilterController.getInstance(this);
         mContactListFilterController.checkFilterValidity(false);
