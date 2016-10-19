@@ -56,6 +56,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
 
     private AccountsListAdapter mAccountListAdapter;
     private ContactEditorUtils mEditorUtils;
+    private AlertDialog mDialog;
 
     private final OnItemClickListener mAccountListItemClickListener = new OnItemClickListener() {
         @Override
@@ -74,6 +75,22 @@ public class ContactEditorAccountsChangedActivity extends Activity {
             startActivityForResult(intent, SUBACTIVITY_ADD_NEW_ACCOUNT);
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mDialog != null && !mDialog.isShowing()) {
+            mDialog.show();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mDialog != null) {
+            mDialog.dismiss();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,7 +183,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
             rightButton.setOnClickListener(mAddAccountClickListener);
         }
 
-        new AlertDialog.Builder(this)
+        mDialog = new AlertDialog.Builder(this)
                 .setView(view)
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
@@ -174,8 +191,8 @@ public class ContactEditorAccountsChangedActivity extends Activity {
                         finish();
                     }
                 })
-                .create()
-                .show();
+                .create();
+        mDialog.show();
     }
 
     @Override
