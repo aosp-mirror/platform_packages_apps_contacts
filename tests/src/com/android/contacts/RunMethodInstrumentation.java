@@ -28,7 +28,9 @@ import java.lang.reflect.Method;
 /**
  * Runs a single static method specified via the arguments.
  *
- * Useful for manipulating the app state during manual testing.
+ * Useful for manipulating the app state during manual testing. If the class argument is omitted
+ * this class will attempt to invoke a method in
+ * {@link com.android.contacts.tests.AdbHelpers}
  *
  * Valid signatures: void f(Context, Bundle), void f(Context), void f()
  *
@@ -40,6 +42,8 @@ public class RunMethodInstrumentation extends Instrumentation {
 
     private static final String TAG = "RunMethod";
 
+    private static final String DEFAULT_CLASS = "AdbHelpers";
+
     private String className;
     private String methodName;
     private Bundle args;
@@ -50,7 +54,8 @@ public class RunMethodInstrumentation extends Instrumentation {
 
         InstrumentationRegistry.registerInstance(this, arguments);
 
-        className = arguments.getString("class");
+        className = arguments.getString("class", getContext().getPackageName() + "." +
+                DEFAULT_CLASS);
         methodName = arguments.getString("method");
         args = arguments;
 
