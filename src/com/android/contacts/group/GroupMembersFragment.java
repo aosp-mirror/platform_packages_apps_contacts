@@ -268,7 +268,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         final boolean isGroupEditable = mGroupMetaData != null && mGroupMetaData.editable;
         final boolean isGroupReadOnly = mGroupMetaData != null && mGroupMetaData.readOnly;
         final boolean experimentFlagSet =
-                Flags.getInstance(getContext()).getBoolean(Experiments.SEND_TO_GROUP);
+                Flags.getInstance().getBoolean(Experiments.SEND_TO_GROUP);
 
         setVisible(menu, R.id.menu_multi_send_email, !mIsEditMode && !isGroupEmpty()
                 && experimentFlagSet);

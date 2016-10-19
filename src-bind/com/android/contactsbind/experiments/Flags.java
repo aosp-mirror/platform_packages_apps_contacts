@@ -15,8 +15,6 @@
  */
 package com.android.contactsbind.experiments;
 
-import android.content.Context;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +28,7 @@ public final class Flags {
 
     private Map<String, Object> mMap;
 
-    public static Flags getInstance(Context context) {
+    public static Flags getInstance() {
         if (sInstance == null) {
             sInstance = new Flags();
         }
