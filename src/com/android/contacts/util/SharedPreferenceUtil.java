@@ -18,8 +18,20 @@ package com.android.contacts.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.telephony.SubscriptionInfo;
+import android.telephony.TelephonyManager;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SharedPreferenceUtil {
+
+    public static final String PREFERENCE_KEY_ACCOUNT_SYNC_OFF_DISMISSES =
+            "num-of-dismisses-account-sync-off";
+
+    public static final String PREFERENCE_KEY_GLOBAL_SYNC_OFF_DISMISSES =
+            "num-of-dismisses-auto-sync-off";
 
     private static final String PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED_BEFORE =
             "hamburgerPromoDisplayedBefore";
@@ -30,11 +42,8 @@ public class SharedPreferenceUtil {
     private static final String PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED_BEFORE =
             "hamburgerPromoTriggerActionHappenedBefore";
 
-    public static final String PREFERENCE_KEY_GLOBAL_SYNC_OFF_DISMISSES =
-            "num-of-dismisses-auto-sync-off";
-
-    public static final String PREFERENCE_KEY_ACCOUNT_SYNC_OFF_DISMISSES
-            = "num-of-dismisses-account-sync-off";
+    private static final String PREFERENCE_KEY_IMPORTED_SIM_CARDS =
+            "importedSimCards";
 
     public static boolean getHamburgerPromoDisplayedBefore(Context context) {
         return getSharedPreferences(context)
@@ -130,5 +139,24 @@ public class SharedPreferenceUtil {
                 buildSharedPrefsName(accountName), 0);
         getSharedPreferences(context).edit()
                 .putInt(buildSharedPrefsName(accountName), value + 1).apply();
+    }
+
+    /**
+     * Persist an identifier for a SIM card which has been successfully imported.
+     *
+     * @param simId an identifier for the SIM card this should be one of
+     * {@link TelephonyManager#getSimSerialNumber()} or {@link SubscriptionInfo#getIccId()}
+     * depending on API level. The source of the value should be consistent on a particular device
+     */
+    public static void addImportedSim(Context context, String simId) {
+        final Set<String> current = new HashSet<>(getImportedSims(context));
+        current.add(simId);
+        getSharedPreferences(context).edit()
+                .putStringSet(PREFERENCE_KEY_IMPORTED_SIM_CARDS, current).apply();
+    }
+
+    public static Set<String> getImportedSims(Context context) {
+        return getSharedPreferences(context)
+                .getStringSet(PREFERENCE_KEY_IMPORTED_SIM_CARDS, Collections.<String>emptySet());
     }
 }

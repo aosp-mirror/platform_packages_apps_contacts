@@ -824,13 +824,15 @@ public class PeopleActivity extends ContactsDrawerActivity {
             }
             transaction.replace(R.id.contacts_list_container, uiFragment, fragmentTag);
 
-            Fragment duplicatesUtilFragment =
-                    fragmentManager.findFragmentByTag(TAG_DUPLICATES_UTIL);
-            if (duplicatesUtilFragment == null) {
-                duplicatesUtilFragment = ObjectFactory.getDuplicatesUtilFragment();
-            }
-            if (!duplicatesUtilFragment.isAdded()) {
-                transaction.add(duplicatesUtilFragment, TAG_DUPLICATES_UTIL);
+            if (!Flags.getInstance().getBoolean(Experiments.ASSISTANT)) {
+                Fragment duplicatesUtilFragment =
+                        fragmentManager.findFragmentByTag(TAG_DUPLICATES_UTIL);
+                if (duplicatesUtilFragment == null) {
+                    duplicatesUtilFragment = ObjectFactory.getDuplicatesUtilFragment();
+                }
+                if (!duplicatesUtilFragment.isAdded()) {
+                    transaction.add(duplicatesUtilFragment, TAG_DUPLICATES_UTIL);
+                }
             }
             resetToolBarStatusBarColor();
         }
