@@ -221,7 +221,8 @@ public class AccountFilterUtil {
     public static String getActionBarTitleForFilter(Context context, ContactListFilter filter) {
         if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
             return context.getString(R.string.account_phone);
-        } else if (!TextUtils.isEmpty(filter.accountName)) {
+        } else if (filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT &&
+                !TextUtils.isEmpty(filter.accountName)) {
             return getActionBarTitleForAccount(context, filter);
         }
         return context.getString(R.string.contactsList);
