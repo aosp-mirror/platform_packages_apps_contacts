@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"เพิ่มรายชื่อติดต่อไปยังป้ายกำกับแล้ว"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"ไม่สามารถบันทึกการเปลี่ยนแปลงป้ายกำกับได้"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ป้ายกำกับนี้มีอยู่แล้ว"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> รายชื่อติดต่อมีหมายเลขโทรศัพท์</item>
       <item quantity="one">1 รายชื่อติดต่อมีหมายเลขโทรศัพท์</item>
@@ -538,8 +550,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"นามสกุลขึ้นก่อน"</string>
     <string name="settings_accounts" msgid="350219740670774576">"บัญชี"</string>
     <string name="default_editor_account" msgid="699591683362420991">"บัญชีเริ่มต้นสำหรับรายชื่อติดต่อใหม่"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"ซิงค์ข้อมูลเมตาของรายชื่อติดต่อ [การลองใช้]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"ซิงค์ข้อมูลเมตาของรายชื่อติดต่อ"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"ข้อมูลของฉัน"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"ตั้งค่าโปรไฟล์ของคุณ"</string>
     <string name="setting_about" msgid="7014388749752042863">"เกี่ยวกับ \"รายชื่อติดต่อ\""</string>
@@ -612,16 +622,12 @@
     <string name="connection_failed" msgid="7558253972301525402">"ไม่สามารถลงชื่อเข้าใช้ได้"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"เลือกผู้ติดต่อที่จะนำเข้า"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"ยกเลิกการนำเข้า"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"ซิงค์อัตโนมัติปิดอยู่ แตะเพื่อเปิด"</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"ปิด"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"ซิงค์บัญชีปิดอยู่ แตะเพื่อเปิด"</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"เปิดซิงค์อัตโนมัติไหม"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"ระบบจะซิงค์ข้อมูลการเปลี่ยนแปลงต่างๆ ทั้งรายชื่อติดต่อรวมถึงแอปและบัญชีทั้งหมดระหว่างเว็บและอุปกรณ์ของคุณ"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"เปิด"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>

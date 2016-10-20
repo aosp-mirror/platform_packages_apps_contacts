@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Đã thêm vào nhãn"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Không thể lưu thay đổi đối với nhãn"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Nhãn đó đã tồn tại"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> liên hệ có số điện thoại</item>
       <item quantity="one">1 liên hệ có số điện thoại</item>
@@ -538,8 +550,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Họ trước"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Tài khoản"</string>
     <string name="default_editor_account" msgid="699591683362420991">"Tài khoản mặc định cho các liên hệ mới"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"Đồng bộ hóa siêu dữ liệu liên hệ [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"Đồng bộ hóa siêu dữ liệu liên hệ"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"Thông tin của tôi"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Thiết lập hồ sơ của bạn"</string>
     <string name="setting_about" msgid="7014388749752042863">"Giới thiệu về Danh bạ"</string>
@@ -612,16 +622,12 @@
     <string name="connection_failed" msgid="7558253972301525402">"Không đăng nhập được"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"Chọn danh bạ để nhập"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"Hủy nhập"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"Tự động đồng bộ hóa đang tắt. Hãy nhấn để bật."</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Loại bỏ"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"Đồng bộ hóa tài khoản đang tắt. Hãy nhấn để bật."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Bật tự động đồng bộ hóa?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Các thay đổi bạn thực hiện đối với tất cả các ứng dụng và tài khoản, không chỉ với Danh bạ, sẽ được đồng bộ hóa giữa web và thiết bị của bạn."</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Bật"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>

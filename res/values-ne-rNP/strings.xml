@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"लेबलमा थपियो"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"लेबलमा गरिएका परिवर्तनहरूलाई सुरक्षित गर्न सकिएन"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"उक्त लेबल पहिले नै अवस्थित छ"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>सम्पर्कहरू फोन नम्बर सहित</item>
       <item quantity="one">फोन नम्बर सहित 1 सम्पर्क</item>
@@ -538,8 +550,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"थर पहिले"</string>
     <string name="settings_accounts" msgid="350219740670774576">"खाताहरू"</string>
     <string name="default_editor_account" msgid="699591683362420991">"नयाँ सम्पर्कहरूका लागि पूर्वनिर्धारित खाता"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"सम्पर्कसम्बन्धी मेटाडाटा [DOGFOOD] लाई सिंक गर्नुहोस्"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"सम्पर्क सम्बन्धी मेटाडाटालाई सिंक गर्नुहोस्"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"मेरा बारेमा जानकारी"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"आफ्नो प्रोफाइल सेट अप गर्नुहोस्"</string>
     <string name="setting_about" msgid="7014388749752042863">"सम्पर्कहरूका बारेमा"</string>
@@ -612,16 +622,12 @@
     <string name="connection_failed" msgid="7558253972301525402">"साइन इन गर्न सकिएन"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"आयात गर्न सम्पर्कहरू चयन गर्नुहोस्"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"आयात रद्द गर्नुहोस्"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"स्वत:सिङ्क गर्ने सेवा निष्क्रिय छ। सक्रिय गर्न ट्याप गर्नुहोस्।"</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"खारेज गर्नुहोस्"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"खाता सिङ्क गर्ने सेवा निष्क्रिय छ। सक्रिय पार्न ट्याप गर्नुहोस्।"</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"स्वत: सिङ्क सेवालाई सक्रिय पार्ने हो?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"तपाईंले सम्पर्क ठेगानाहरूमा मात्र नभई, सबै अनुप्रयोग र खाताहरूमा गरेका परिवर्तनहरू वेब र तपाईंका अन्य यन्त्रहरूका बीचमा सिंक्रोनाइज हुने छन्।"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"खोल्नुहोस्"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>

@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"အညွှန်းသို့ ထည့်ထားပါသည်"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"အညွှန်းပြောင်းလဲမှုများကို သိမ်းဆည်း၍မရပါ"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ထိုအညွှန်းမှာ ရှိပြီးသားဖြစ်ပါသည်"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ဖုန်းနံပါတ်များပါသောအဆက်အသွယ်<xliff:g id="COUNT">%d</xliff:g>ခု</item>
       <item quantity="one">ဖုန်းနံပါတ်ပါသောအဆက်အသွယ်1ခု</item>
@@ -538,8 +550,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"နောက်အမည်ဖြင့်စ၍"</string>
     <string name="settings_accounts" msgid="350219740670774576">"အကောင့်များ"</string>
     <string name="default_editor_account" msgid="699591683362420991">"အဆက်အသွယ်အသစ်များအတွက် မူရင်းအကောင့်"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"အဆက်အသွယ်မက်တာဒေတာကို ပြိုင်တူညှိရန် [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"အဆက်အသွယ်မက်တာဒေတာကို ပြိုင်တူညှိရန်"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"ကျွန်ုပ်၏အချက်အလက်"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"သင့်ပရိုဖိုင်ပြင်ဆင်ရန်"</string>
     <string name="setting_about" msgid="7014388749752042863">"အဆက်အသွယ်များအကြောင်း"</string>
@@ -612,16 +622,12 @@
     <string name="connection_failed" msgid="7558253972301525402">"အကောင့် ဝင်၍မရပါ"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"တင်သွင်းရန် လိပ်စာများကို ရွေးပါ"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"တင်သွင်းမှု ပယ်ဖျက်ရန်"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"အလိုအလျောက်စင့်ခ်လုပ်ခြင်းကို ပိတ်ထားသည်။ ဖွင့်ရန်အတွက် တို့ပါ။"</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"ပယ်ရန်"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"အကောင့်စင့်ခ်လုပ်ခြင်းကို ပိတ်ထားသည်။ ဖွင့်ရန်အတွက် တို့ပါ။"</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"အလိုအလျောက်စင့်ခ်လုပ်ခြင်းကို ဖွင့်မလား။"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"အဆက်အသွယ်များသာမက အက်ပ်များနှင့် အကောင့်များအားလုံးတွင် သင်လုပ်သည့်ပြောင်းလဲမှုများကို ဝဘ်နှင့် သင့်စက်ကိရိယာများအကြား စင့်ခ်လုပ်ပေးသွားပါမည်။"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ဖွင့်ရန်"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>

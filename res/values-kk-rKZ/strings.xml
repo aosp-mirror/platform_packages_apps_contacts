@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Белгіге қосылды"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Белгі өзгертулері сақталмады"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Бұл белгіше бұрыннан бар"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">Телефон нөмірі бар <xliff:g id="COUNT">%d</xliff:g> контакт</item>
       <item quantity="one">Телефон нөмірі бар 1 контакт</item>
@@ -538,8 +550,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Алдымен тегі"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Есептік жазбалар"</string>
     <string name="default_editor_account" msgid="699591683362420991">"Жаңа контактілерге арналған әдепкі есептік жазба"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"Контакт метадеректерін синхрондау [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"Контакт метадеректерін синхрондау"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"Ақпаратым"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Профильді орнату"</string>
     <string name="setting_about" msgid="7014388749752042863">"Контактілер туралы"</string>
@@ -612,16 +622,12 @@
     <string name="connection_failed" msgid="7558253972301525402">"Жүйеге кіру мүмкін болмады"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"Импортталатын контактілерді таңдау"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"Импорттауды тоқтату"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"Автоматты синхрондау өшірулі. Қосу үшін түртіңіз."</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Жабу"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"Автоматты синхрондау өшірулі. Қосу үшін түртіңіз."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Автоматты синхрондауды қосу қажет пе?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Контактілерге ғана емес, барлық қолданбалар мен есептік жазбаларға енгізілген өзгерістер желі және құрылғыларыңыздың арасында синхрондалады."</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Қосу"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>
