@@ -16,6 +16,8 @@
 
 package com.android.contacts.interactions;
 
+import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.common.util.ContactDisplayUtils;
 import com.google.common.collect.Sets;
 
 import com.android.contacts.ContactSaveService;
@@ -64,12 +66,16 @@ public class ContactMultiDeletionInteraction extends Fragment
             RawContacts.ACCOUNT_TYPE,
             RawContacts.DATA_SET,
             RawContacts.CONTACT_ID,
+            RawContacts.DISPLAY_NAME_PRIMARY,
+            RawContacts.DISPLAY_NAME_ALTERNATIVE
     };
 
     private static final int COLUMN_INDEX_RAW_CONTACT_ID = 0;
     private static final int COLUMN_INDEX_ACCOUNT_TYPE = 1;
     private static final int COLUMN_INDEX_DATA_SET = 2;
     private static final int COLUMN_INDEX_CONTACT_ID = 3;
+    private static final int COLUMN_INDEX_DISPLAY_NAME = 4;
+    private static final int COLUMN_INDEX_DISPLAY_NAME_ALT = 5;
 
     private boolean mIsLoaderActive;
     private TreeSet<Long> mContactIds;
@@ -193,6 +199,9 @@ public class ContactMultiDeletionInteraction extends Fragment
         final HashSet<Long> readOnlyRawContacts = Sets.newHashSet();
         final HashSet<Long> writableRawContacts = Sets.newHashSet();
         final HashSet<Long> contactIds = Sets.newHashSet();
+        final HashSet<String> names = Sets.newHashSet();
+
+        final ContactsPreferences contactsPreferences = new ContactsPreferences(mContext);
 
         AccountTypeManager accountTypes = AccountTypeManager.getInstance(getActivity());
         cursor.moveToPosition(-1);
@@ -201,6 +210,12 @@ public class ContactMultiDeletionInteraction extends Fragment
             final String accountType = cursor.getString(COLUMN_INDEX_ACCOUNT_TYPE);
             final String dataSet = cursor.getString(COLUMN_INDEX_DATA_SET);
             final long contactId = cursor.getLong(COLUMN_INDEX_CONTACT_ID);
+            final String displayName = cursor.getString(COLUMN_INDEX_DISPLAY_NAME);
+            final String displayNameAlt = cursor.getString(COLUMN_INDEX_DISPLAY_NAME_ALT);
+
+            names.add(ContactDisplayUtils.getPreferredDisplayName(displayName, displayNameAlt,
+                    contactsPreferences));
+
             contactIds.add(contactId);
             final AccountType type = accountTypes.getAccountType(accountType, dataSet);
             boolean writable = type == null || type.areContactsWritable();
@@ -237,7 +252,8 @@ public class ContactMultiDeletionInteraction extends Fragment
             contactIdArray[i] = contactIdObjectArray[i];
         }
 
-        showDialog(messageId, positiveButtonId, contactIdArray);
+        final String[] namesArray = names.toArray(new String[names.size()]);
+        showDialog(messageId, positiveButtonId, contactIdArray, namesArray);
 
         // We don't want onLoadFinished() calls any more, which may come when the database is
         // updating.
@@ -248,7 +264,8 @@ public class ContactMultiDeletionInteraction extends Fragment
     public void onLoaderReset(Loader<Cursor> loader) {
     }
 
-    private void showDialog(int messageId, int positiveButtonId, final long[] contactIds) {
+    private void showDialog(int messageId, int positiveButtonId, final long[] contactIds,
+            final String[] namesArray) {
         mDialog = new AlertDialog.Builder(getActivity())
                 .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setMessage(messageId)
@@ -257,7 +274,7 @@ public class ContactMultiDeletionInteraction extends Fragment
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            doDeleteContact(contactIds);
+                            doDeleteContact(contactIds, namesArray);
                         }
                     }
                 )
@@ -289,9 +306,9 @@ public class ContactMultiDeletionInteraction extends Fragment
         }
     }
 
-    protected void doDeleteContact(long[] contactIds) {
+    protected void doDeleteContact(long[] contactIds, final String[] names) {
         mContext.startService(ContactSaveService.createDeleteMultipleContactsIntent(mContext,
-                contactIds));
+                contactIds, names));
         mListener.onDeletionFinished();
     }
 
