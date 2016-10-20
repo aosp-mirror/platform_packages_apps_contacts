@@ -128,6 +128,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private boolean mIsRecreatedInstance;
     private boolean mOptionsMenuContactsAvailable;
 
+    private boolean mCanSetActionBar = false;
+
     /**
      * If {@link #configureFragment()} is already called. Used to avoid calling it twice
      * in {@link #onResume()}.
@@ -649,6 +651,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         }
 
         setDirectorySearchMode();
+        mCanSetActionBar = true;
     }
 
     public void initializeActionBarAdapter(Bundle savedInstanceState) {
@@ -1204,5 +1207,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         }
 
         return false;
+    }
+
+    public boolean canSetActionBar() {
+        return mCanSetActionBar;
     }
 }
