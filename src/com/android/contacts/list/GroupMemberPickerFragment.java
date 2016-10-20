@@ -278,12 +278,13 @@ public class GroupMemberPickerFragment extends
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         final ContactSelectionActivity activity = getContactSelectionActivity();
+        final boolean hasContacts = mContactIds == null ? false : mContactIds.size() > 0;
         final boolean isSearchMode = activity == null ? false : activity.isSearchMode();
         final boolean isSelectionMode = activity == null ? false : activity.isSelectionMode();
 
         // Added in ContactSelectionActivity but we must account for selection mode
         setVisible(menu, R.id.menu_search, !isSearchMode && !isSelectionMode);
-        setVisible(menu, R.id.menu_select, !isSearchMode && !isSelectionMode);
+        setVisible(menu, R.id.menu_select, hasContacts && !isSearchMode && !isSelectionMode);
     }
 
     private ContactSelectionActivity getContactSelectionActivity() {
