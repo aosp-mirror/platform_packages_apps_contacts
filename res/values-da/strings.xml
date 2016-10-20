@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Føjet til etiket"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Ændringerne af etiketten kan ikke gemmes"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Etiketten findes allerede"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontaktpersoner med telefonnumre</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontaktpersoner med telefonnumre</item>
@@ -609,16 +621,12 @@
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"Kontaktpersonerne på SIM-kortet kan ikke importeres"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"Vælg kontakter, der skal importeres"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"Annuller import"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"Automatisk synkronisering er slået fra. Tryk for at slå funktionen til."</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Luk"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"Kontosynkronisering er slået fra. Tryk for at slå funktionen til."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Vil du slå automatisk synkronisering til?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"De ændringer, du foretager i alle apps og konti, ikke kun Kontaktpersoner, synkroniseres mellem nettet og dine enheder."</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Slå til"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>

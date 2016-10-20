@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"లేబుల్‌కు జోడించబడింది/జోడించబడ్డాయి"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"లేబుల్ మార్పులను సేవ్ చేయలేకపోయింది"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ఈ లేబుల్ ఇప్పటికే ఉంది"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ఫోన్ నంబర్‌లు ఉన్న <xliff:g id="COUNT">%d</xliff:g> పరిచయాలు</item>
       <item quantity="one">ఫోన్ నంబర్ ఉన్న 1 పరిచయం</item>
@@ -609,16 +621,12 @@
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM పరిచయాలను దిగుమతి చేయడంలో విఫలమైంది"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"దిగుమతి చేయాల్సిన పరిచయాలను ఎంచుకోండి"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"దిగుమతిని రద్దు చేస్తుంది"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"స్వీయ-సమకాలీకరణ ఆఫ్‌లో ఉంది. ఆన్ చేయడానికి నొక్కండి."</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"తీసివేస్తుంది"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"ఖాతా సమకాలీకరణ ఆఫ్‌లో ఉంది. ఆన్ చేయడానికి నొక్కండి."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"స్వీయ-సమకాలీకరణను ఆన్ చేయాలా?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"మీరు కేవలం పరిచయాలకు చేసే మార్పులే కాకుండా అన్ని అనువర్తనాలు మరియు ఖాతాలకు చేసే మార్పులు వెబ్ మరియు మీ పరికరాల మధ్య సమకాలీకరించబడతాయి."</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ఆన్ చేయండి"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>

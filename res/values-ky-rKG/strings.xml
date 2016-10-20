@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Энге кошулду"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Энбелгинин өзгөрүүлөрүн сактай алган жок."</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Ал энбелги мурунтан эле бар"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">телефон номерлери менен <xliff:g id="COUNT">%d</xliff:g> байланыш</item>
       <item quantity="one">телефон номери менен 1 байланыш</item>
@@ -712,22 +724,18 @@
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> тандалды"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"SIM-картаңызда байланыштар жок."</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM байланыш өткөрүлүп алынды</item>
-      <item quantity="one">1 SIM байланыш өткөрүлүп алынды</item>
+      <item quantity="other">SIM-картадан <xliff:g id="COUNT">%d</xliff:g> байланыш өткөрүлүп алынды</item>
+      <item quantity="one">SIM-картадан 1 байланыш өткөрүлүп алынды</item>
     </plurals>
-    <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM байланыштары өткөрүлүп алынган жок"</string>
+    <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM-картадагы байланыштар өткөрүлүп алынган жок"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"Импорттоло турган байланыштарды тандаңыз"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"Импорттоону жокко чыгаруу"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"Түзмөктүн авто шайкештештирүү функциясы өчүрүлгөн. Күйгүзүү үчүн тийип коюңуз."</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Этибарга албоо"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"Каттоо эсебинин шайкештештирүү функциясы өчүрүлгөн. Күйгүзүү үчүн тийип коюңуз."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Авто-шайкештештирүү күйгүзүлсүнбү?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Байланыштарыңызда гана эмес бардык колдонмолордо жана каттоо эсептеринде жасалган өзгөртүүлөр желе интерфейси менен башка түзмөктөрүңүздүн ортолорунда шайкештештирилет."</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Күйгүзүү"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>

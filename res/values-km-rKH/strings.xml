@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"បាន​បន្ថែម​ទៅ​ស្លាក"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"មិនអាចរក្សាទុកការផ្លាស់ប្តូរស្លាក​បាន​ទេ"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ស្លាក​នោះ​មាន​រួច​ហើយ"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ទំនាក់ទំនង <xliff:g id="COUNT">%d</xliff:g> ដែលមានលេខទូរស័ព្ទ</item>
       <item quantity="one">ទំនាក់ទំនង 1 ដែលមានលេខទូរស័ព្ទ</item>
@@ -609,16 +621,12 @@
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"មិន​អាច​នាំចូល​ទំនាក់ទំនង​ពី SIM បាន​ទេ"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"ជ្រើស​ទំនាក់​ទំនង ដើម្បី​នាំចូល"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"បោះបង់ការ​នាំចូល"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"ការធ្វើសមកាលស្វ័យប្រវត្តិ​ត្រូវ​បានបិទ។ ចុច ដើម្បីបើក។"</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"បោះបង់"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"ការ​ធ្វើ​សមកាលកម្ម​គណនី​ត្រូវ​បាន​បិទ។ ចុច ដើម្បី​បើក។"</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"បើក​សម​កាល​កម្ម​​ស្វ័យ​ប្រវត្តិ​ដែរ​ឬ​ទេ?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"មិន​ត្រឹមតែ​ទំនាក់ទំនង​ទេ រាល់​ការ​ផ្លាស់ប្ដូរ​ដែល​អ្នក​ធ្វើ​ចំពោះ​កម្មវិធី និង​គណនី​ទាំងអស់ នឹង​ត្រូវ​បាន​ធ្វើ​សមកាលកម្ម​រវាង​បណ្ដាញ និង​ឧបករណ៍​របស់​អ្នក។"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"បើក"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>
