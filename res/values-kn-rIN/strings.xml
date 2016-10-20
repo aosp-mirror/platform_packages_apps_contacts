@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ಲೇಬಲ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"ಲೇಬಲ್ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ಆ ಲೇಬಲ್ ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ <xliff:g id="COUNT">%d</xliff:g> ಸಂಪರ್ಕಗಳು</item>
       <item quantity="other">ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ <xliff:g id="COUNT">%d</xliff:g> ಸಂಪರ್ಕಗಳು</item>
@@ -538,8 +550,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"ಕೊನೆಯ ಹೆಸರು ಮೊದಲು"</string>
     <string name="settings_accounts" msgid="350219740670774576">"ಖಾತೆಗಳು"</string>
     <string name="default_editor_account" msgid="699591683362420991">"ಹೊಸ ಸಂಪರ್ಕಗಳಿಗೆ ಡಿಫಾಲ್ಟ್‌ ಖಾತೆ"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"ಸಂಪರ್ಕ ಮೆಟಾಡೇಟಾವನ್ನು ಸಿಂಕ್ ಮಾಡಿ [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"ಸಂಪರ್ಕ ಮೆಟಾಡೇಟಾವನ್ನು ಸಿಂಕ್ ಮಾಡಿ"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"ನನ್ನ ಮಾಹಿತಿ"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೊಂದಿಸಿ"</string>
     <string name="setting_about" msgid="7014388749752042863">"ಸಂಪರ್ಕಗಳ ಕುರಿತು"</string>
@@ -612,16 +622,12 @@
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"ಸಿಮ್ ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಲು ವಿಫಲವಾಗಿದೆ"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"ಆಮದು ಮಾಡಲು ಸಂಪರ್ಕಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"ಆಮದು ರದ್ದುಮಾಡು"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"ಸ್ವಯಂಚಾಲಿತ ಸಿಂಕ್ ಆಫ್‌ ಆಗಿದೆ. ಆನ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ."</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"ವಜಾಗೊಳಿಸಿ"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"ಖಾತೆಯ ಸಿಂಕ್ ಆಫ್‌ ಆಗಿದೆ. ಆನ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"ಸ್ವಯಂ-ಸಿಂಕ್‌ ಆನ್‌‌ ಮಾಡುವುದೇ?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"ಎಲ್ಲ ಅಪ್ಲಿಕೇಶನ್‌ಗಳು ಮತ್ತು ಖಾತೆಗಳಿಗೆ ನೀವು ಮಾಡುವ ಬದಲಾವಣೆಗಳು ಸಂಪರ್ಕಗಳಿಗೆ ಮಾತ್ರವಲ್ಲದೆ, ವೆಬ್ ಮತ್ತು ನಿಮ್ಮ ಸಾಧನಗಳ ನಡುವೆ ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಲಾಗುತ್ತದೆ."</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ಆನ್ ಮಾಡಿ"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>

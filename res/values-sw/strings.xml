@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Imeongezwa kwenye lebo"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Imeshindwa kuhifadhi mabadiliko ya lebo"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Lebo hiyo tayari ipo"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> unaowasiliana nao wenye nambari za simu</item>
       <item quantity="one">1 unayewasiliana naye mwenye nambari ya simu</item>
@@ -540,8 +552,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Anza na jina la mwisho"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Akaunti"</string>
     <string name="default_editor_account" msgid="699591683362420991">"Akaunti chaguo-msingi ya kuhifadhi anwani mpya"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"Sawazisha metadata ya anwani [JARIBIO LA KINDANI]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"Sawazisha metadata ya anwani"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"Maelezo yangu"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Weka wasifu wako"</string>
     <string name="setting_about" msgid="7014388749752042863">"Kuhusu Anwani"</string>
@@ -614,16 +624,12 @@
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"Imeshindwa kuleta anwani zilizo kwenye SIM kadi"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"Chagua anwani za kuleta"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"Ghairi uletaji"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"Usawazishaji wa kiotomatiki umezimwa. Gonga ili uuwashe."</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Ondoa"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"Usawazishaji wa akaunti umezimwa. Gonga ili uuwashe."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Je, unataka kuwasha usawazishaji wa kiotomatiki?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Mabadiliko utakayofanya katika programu na akaunti zote, wala si katika Anwani tu, yatasawazishwa kwenye wavuti na kwenye vifaa vyako."</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Washa"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>

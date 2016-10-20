@@ -130,6 +130,18 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ලේබලයට එක් කෙරිණි"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"ලේබලයේ වෙනස් කිරීම් සුරැකීමට නොහැකි විය"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"එම ලේබලය දැනටමත් පවතී"</string>
+    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
+    <skip />
+    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
+    <skip />
+    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
+    <skip />
+    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
+    <skip />
+    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
+    <skip />
+    <!-- no translation found for send_to_selection (2251339182881603540) -->
+    <skip />
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">දුරකථන අංක සමඟ සම්බන්ධතාවන් <xliff:g id="COUNT">%d</xliff:g></item>
       <item quantity="other">දුරකථන අංක සමඟ සම්බන්ධතාවන් <xliff:g id="COUNT">%d</xliff:g></item>
@@ -538,8 +550,6 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"අවසාන නම මුලින්ම"</string>
     <string name="settings_accounts" msgid="350219740670774576">"ගිණුම්"</string>
     <string name="default_editor_account" msgid="699591683362420991">"නව සම්බන්ධතා සඳහා පෙරනිමි ගිණුම"</string>
-    <string name="sync_contact_metadata_title" msgid="6957956139306960211">"සම්බන්ධතා පාරදත්ත සමමුහුර්ත කරන්න [DOGFOOD]"</string>
-    <string name="sync_contact_metadata_dialog_title" msgid="6192335951588820553">"සම්බන්ධතා පාරදත්ත සමමුහුර්ත කරන්න"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"මගේ තොරතුරු"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"ඔබේ පැතිකඩ පිහිටුවන්න"</string>
     <string name="setting_about" msgid="7014388749752042863">"සම්බන්ධතා පිළිබඳ"</string>
@@ -612,16 +622,12 @@
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM සම්බන්ධතා ආයාත කිරීමට අසමත් විය"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"ආයාත කිරීමට සම්බන්ධතා තෝරන්න"</string>
     <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"ආයාත කිරීම අවලංගු කරන්න"</string>
-    <!-- no translation found for auto_sync_off (2180147284456026587) -->
-    <skip />
-    <!-- no translation found for dismiss_sync_alert (8941131776605093596) -->
-    <skip />
-    <!-- no translation found for account_sync_off (7646143254066243924) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_title (8903372459240477752) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (1877453194578173890) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_confirm_btn (1070332014838295599) -->
+    <string name="auto_sync_off" msgid="2180147284456026587">"ස්වයංක්‍රිය සමමුහුර්ත කිරීම ක්‍රියාවිරහිතයි. ක්‍රියාත්මක කිරීමට තට්ටු කරන්න."</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"ඉවතලන්න"</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"ගිණුම් සමමුහුර්ත කිරීම ක්‍රියාවිරහිතයි. ක්‍රියාත්මක කිරීමට තට්ටු කරන්න."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"ස්වයංක්‍රිය-සමමුහුර්ත කිරීම ක්‍රියාත්මක කරන්නද?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"සම්බන්ධතාවලට පමණක් නොව, සියලු යෙදුම් සහ ගිණුම්වලට ඔබ කරන වෙනස් කිරීම්, වෙබය සහ ඔබගේ උපාංග අතර සමමුහුර්ත කරනු ඇත."</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ක්‍රියාත්මක කරන්න"</string>
+    <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
 </resources>
