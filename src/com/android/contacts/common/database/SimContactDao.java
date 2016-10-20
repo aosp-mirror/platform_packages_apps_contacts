@@ -22,16 +22,28 @@ import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.support.annotation.VisibleForTesting;
+import android.telephony.SubscriptionInfo;
+import android.telephony.SubscriptionManager;
+import android.telephony.TelephonyManager;
+import android.util.ArraySet;
 
+import com.android.contacts.common.Experiments;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.util.SharedPreferenceUtil;
+import com.android.contactsbind.experiments.Flags;
+import com.google.common.collect.Sets;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Provides data access methods for loading contacts from a SIM card and and migrating these
@@ -46,15 +58,66 @@ public class SimContactDao {
     public static String NUMBER = "number";
     public static String EMAILS = "emails";
 
-    private ContentResolver mResolver;
+    private final Context mContext;
+    private final ContentResolver mResolver;
+    private final TelephonyManager mTelephonyManager;
 
     public SimContactDao(Context context) {
-        this(context.getContentResolver());
+        mContext = context;
+        mResolver = context.getContentResolver();
+        mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
     }
 
-    @VisibleForTesting
-    public SimContactDao(ContentResolver resolver) {
-        mResolver = resolver;
+    public void warmupSimQueryIfNeeded() {
+        // Not needed if we don't have an Assistant section
+        if (!Flags.getInstance().getBoolean(Experiments.ASSISTANT) ||
+                !shouldLoad()) return;
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                // We don't actually have to do any caching ourselves. Some other layer must do
+                // caching of the data (OS or framework) because subsequent queries are very fast.
+                final Cursor cursor = mResolver.query(ICC_CONTENT_URI, null, null, null, null);
+                if (cursor != null) {
+                    cursor.close();
+                }
+                return null;
+            }
+        }.execute();
+    }
+
+    public boolean shouldLoad() {
+        final Set<String> simIds = getSimCardIds();
+        return !Sets.difference(simIds, SharedPreferenceUtil.getImportedSims(mContext)).isEmpty()
+                && getSimState() != TelephonyManager.SIM_STATE_ABSENT;
+    }
+
+    public Set<String> getSimCardIds() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            final SubscriptionManager subscriptionManager = SubscriptionManager.from(mContext);
+            final List<SubscriptionInfo> subscriptions = subscriptionManager
+                    .getActiveSubscriptionInfoList();
+            if (subscriptions == null) {
+                return Collections.emptySet();
+            }
+            final ArraySet<String> result = new ArraySet<>(
+                    subscriptionManager.getActiveSubscriptionInfoCount());
+
+            for (SubscriptionInfo info : subscriptions) {
+                result.add(info.getIccId());
+            }
+            return result;
+        }
+        return Collections.singleton(getSimSerialNumber());
+    }
+
+    public int getSimState() {
+        return mTelephonyManager.getSimState();
+    }
+
+    public String getSimSerialNumber() {
+        return mTelephonyManager.getSimSerialNumber();
     }
 
     public ArrayList<SimContact> loadSimContacts(int subscriptionId) {
@@ -101,17 +164,9 @@ public class SimContactDao {
     public ContentProviderResult[] importContacts(List<SimContact> contacts,
             AccountWithDataSet targetAccount)
             throws RemoteException, OperationApplicationException {
-        final ArrayList<ContentProviderOperation> ops = createImportOperations(contacts, targetAccount);
+        final ArrayList<ContentProviderOperation> ops =
+                createImportOperations(contacts, targetAccount);
         return mResolver.applyBatch(ContactsContract.AUTHORITY, ops);
-    }
-
-    public void warmup() {
-        // We don't actually have to do any caching ourselves. Some other layer must do caching
-        // of the data (OS or framework) because subsequent queries are very fast.
-        final Cursor cursor = mResolver.query(ICC_CONTENT_URI, null, null, null, null);
-        if (cursor != null) {
-            cursor.close();
-        }
     }
 
     private ArrayList<ContentProviderOperation> createImportOperations(List<SimContact> contacts,
@@ -125,5 +180,14 @@ public class SimContactDao {
 
     private String[] parseEmails(String emails) {
         return emails != null ? emails.split(",") : null;
+    }
+
+    public void persistImportSuccess() {
+        // TODO: either need to have an assistant card per SIM card or show contacts from all
+        // SIMs in the import view.
+        final Set<String> simIds = getSimCardIds();
+        for (String id : simIds) {
+            SharedPreferenceUtil.addImportedSim(mContext, id);
+        }
     }
 }
