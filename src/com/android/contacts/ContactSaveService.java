@@ -119,6 +119,7 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_CONTACT_IDS = "contactIds";
     public static final String EXTRA_STARRED_FLAG = "starred";
     public static final String EXTRA_DISPLAY_NAME = "extraDisplayName";
+    public static final String EXTRA_DISPLAY_NAME_ARRAY = "extraDisplayNameArray";
 
     public static final String ACTION_SET_SUPER_PRIMARY = "setSuperPrimary";
     public static final String ACTION_CLEAR_PRIMARY = "clearPrimary";
@@ -1148,10 +1149,11 @@ public class ContactSaveService extends IntentService {
      * Creates an intent that can be sent to this service to delete multiple contacts.
      */
     public static Intent createDeleteMultipleContactsIntent(Context context,
-            long[] contactIds) {
+            long[] contactIds, final String[] names) {
         Intent serviceIntent = new Intent(context, ContactSaveService.class);
         serviceIntent.setAction(ContactSaveService.ACTION_DELETE_MULTIPLE_CONTACTS);
         serviceIntent.putExtra(ContactSaveService.EXTRA_CONTACT_IDS, contactIds);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_DISPLAY_NAME_ARRAY, names);
         return serviceIntent;
     }
 
@@ -1175,8 +1177,22 @@ public class ContactSaveService extends IntentService {
             final Uri contactUri = ContentUris.withAppendedId(Contacts.CONTENT_URI, contactId);
             getContentResolver().delete(contactUri, null, null);
         }
-        final String deleteToastMessage = getResources().getQuantityString(R.plurals
-                .contacts_deleted_toast, contactIds.length);
+        final String[] names = intent.getStringArrayExtra(
+                ContactSaveService.EXTRA_DISPLAY_NAME_ARRAY);
+        final String deleteToastMessage;
+        if (names.length == 0) {
+            deleteToastMessage = getResources().getQuantityString(
+                    R.plurals.contacts_deleted_toast, contactIds.length);
+        } else if (names.length == 1) {
+            deleteToastMessage = getResources().getString(
+                    R.string.contacts_deleted_one_named_toast, names);
+        } else if (names.length == 2) {
+            deleteToastMessage = getResources().getString(
+                    R.string.contacts_deleted_two_named_toast, names);
+        } else {
+            deleteToastMessage = getResources().getString(
+                    R.string.contacts_deleted_many_named_toast, names);
+        }
         mMainHandler.post(new Runnable() {
             @Override
             public void run() {
