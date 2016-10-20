@@ -22,7 +22,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -30,7 +29,6 @@ import android.content.SyncStatusObserver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.ProviderStatus;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -67,6 +65,7 @@ import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.widget.FloatingActionButtonController;
+import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupMembersFragment;
 import com.android.contacts.group.GroupMetaData;
 import com.android.contacts.group.GroupUtil;
@@ -745,12 +744,18 @@ public class PeopleActivity extends ContactsDrawerActivity {
     }
 
     @Override
-    protected void onGroupMenuItemClicked(long groupId, String title) {
+    protected void onGroupMenuItemClicked(GroupListItem group) {
         if (isGroupView() && mMembersFragment != null
-                && mMembersFragment.isCurrentGroup(groupId)) {
+                && mMembersFragment.isCurrentGroup(group.getGroupId())) {
             return;
         }
-        mGroupUri = ContentUris.withAppendedId(ContactsContract.Groups.CONTENT_URI, groupId);
+        mGroupUri = group.getUri();
+        // Set the filter. This isn't used by the GroupMembersFragment but makes sure that the
+        // filter will change when switching to a different view from the GroupMembersFragment.
+        mContactListFilterController.setContactListFilter(
+                ContactListFilter.createGroupMembersFilter(group.getAccountName(),
+                        group.getAccountType(), group.getDataSet()), /* persistent */ false,
+                /* notifyListeners */ false);
         switchToOrUpdateGroupView(GroupUtil.ACTION_SWITCH_GROUP);
     }
 
