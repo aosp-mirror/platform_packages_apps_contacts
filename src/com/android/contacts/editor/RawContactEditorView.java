@@ -206,7 +206,6 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
     private RawContactDeltaList mRawContactDeltas;
     private RawContactDelta mCurrentRawContactDelta;
     private long mRawContactIdToDisplayAlone = -1;
-    private boolean mIsEditingReadOnlyRawContactWithNewContact;
     private Map<String, KindSectionData> mKindSectionDataMap = new HashMap<>();
     private Set<String> mSortedMimetypes = new TreeSet<>(new MimeTypeComparator());
 
@@ -429,11 +428,10 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
     public void setState(RawContactDeltaList rawContactDeltas,
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
             boolean hasNewContact, boolean isUserProfile, AccountWithDataSet primaryAccount,
-            long rawContactIdToDisplayAlone, boolean isEditingReadOnlyRawContactWithNewContact) {
+            long rawContactIdToDisplayAlone) {
 
         mRawContactDeltas = rawContactDeltas;
         mRawContactIdToDisplayAlone = rawContactIdToDisplayAlone;
-        mIsEditingReadOnlyRawContactWithNewContact = isEditingReadOnlyRawContactWithNewContact;
 
         mKindSectionViewMap.clear();
         mKindSectionViews.removeAllViews();

@@ -983,19 +983,11 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     /**
-     * Whether the contact being edited spans multiple raw contacts.
-     * The may also span multiple accounts.
-     */
-    private boolean isEditingMultipleRawContacts() {
-        return mState.size() > 1;
-    }
-
-    /**
-     * Whether the contact being edited is composed of a single read-only raw contact
+     * Whether the contact being edited is composed of read-only raw contacts
      * aggregated with a newly created writable raw contact.
      */
     private boolean isEditingReadOnlyRawContactWithNewContact() {
-        return mHasNewContact && mState.size() == 2;
+        return mHasNewContact && mState.size() > 1;
     }
 
     /**
@@ -1015,19 +1007,6 @@ public class ContactEditorFragment extends Fragment implements
     private boolean hasPendingRawContactChanges(Set<String> excludedMimeTypes) {
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
         return RawContactModifier.hasChanges(mState, accountTypes, excludedMimeTypes);
-    }
-
-    /**
-     * We allow unlinking only if there is more than one raw contact, it is not a user-profile,
-     * and unlinking won't result in an empty contact.  For the empty contact case, we only guard
-     * against this when there is a single read-only contact in the aggregate.  If the user
-     * has joined >1 read-only contacts together, we allow them to unlink it, even if they have
-     * never added their own information and unlinking will create a name only contact.
-     */
-    private boolean canUnlinkRawContacts() {
-        return isEditingMultipleRawContacts()
-                && !isEditingUserProfile()
-                && !isEditingReadOnlyRawContactWithNewContact();
     }
 
     /**
@@ -1063,7 +1042,7 @@ public class ContactEditorFragment extends Fragment implements
      * name fields as the original.
      */
     private boolean structuredNamesAreEqual(ValuesDelta before, ValuesDelta after) {
-        if (before == null && after == null) return true;
+        if (before == after) return true;
         if (before == null || after == null) return false;
         final ContentValues original = before.getBefore();
         final ContentValues pending = after.getAfter();
@@ -1380,7 +1359,7 @@ public class ContactEditorFragment extends Fragment implements
         }
         editorView.setState(mState, getMaterialPalette(), mViewIdGenerator,
                 mHasNewContact, mIsUserProfile, mAccountWithDataSet,
-                mRawContactIdToDisplayAlone, isEditingReadOnlyRawContactWithNewContact());
+                mRawContactIdToDisplayAlone);
 
         // Set up the photo widget
         editorView.setPhotoListener(this);
