@@ -15,6 +15,10 @@
  */
 package com.android.contacts.group;
 
+import android.content.ContentUris;
+import android.net.Uri;
+import android.provider.ContactsContract;
+
 /**
  * Meta-data for a contact group.  We load all groups associated with the contact's
  * constituent accounts.
@@ -82,5 +86,9 @@ public final class GroupListItem {
 
     public String getSystemId() {
         return mSystemId;
+    }
+
+    public Uri getUri() {
+        return ContentUris.withAppendedId(ContactsContract.Groups.CONTENT_URI, mGroupId);
     }
 }
