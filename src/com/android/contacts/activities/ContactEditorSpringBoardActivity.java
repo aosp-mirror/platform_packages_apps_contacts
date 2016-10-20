@@ -39,6 +39,8 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     private Cursor mCursor;
     private MaterialPalette mMaterialPalette;
     private boolean mIsUserProfile;
+    private boolean mHasWritableAccount;
+    private int mWritableAccountPosition;
 
     /**
      * The contact data loader listener.
@@ -61,10 +63,11 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
                     }
                     mCursor = cursor;
                     mIsUserProfile = ((PickRawContactLoader) loader).isUserProfile();
-                    if (mCursor.getCount() == 1) {
-                        loadEditor();
-                    } else {
+                    setHasWritableAccount();
+                    if (mCursor.getCount() > 1 && mHasWritableAccount) {
                         showDialog();
+                    } else {
+                        loadEditor();
                     }
                 }
 
@@ -142,17 +145,17 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     }
 
     /**
-     * Starts the editor for the first (only) raw contact in the cursor.
+     * Starts the editor for the only writable raw contact in the cursor if one exists. Otherwise,
+     * the editor is started normally and handles creation of a new writable raw contact.
      */
     private void loadEditor() {
         final Intent intent;
-        if (isSingleWritableAccount()) {
-            mCursor.moveToFirst();
+        if (mHasWritableAccount) {
+            mCursor.moveToPosition(mWritableAccountPosition);
             final long rawContactId = mCursor.getLong(PickRawContactLoader.RAW_CONTACT_ID);
             intent = getIntentForRawContact(rawContactId);
-
         } else {
-            // If it's a single read-only raw contact, we'll want to let the editor create
+            // If the contact has only read-only raw contacts, we'll want to let the editor create
             // the writable raw contact for it.
             intent = EditorIntents.createEditContactIntent(this, mUri, mMaterialPalette, -1);
             intent.setClass(this, ContactEditorActivity.class);
@@ -164,19 +167,21 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     }
 
     /**
-     * @return true if there is only one raw contact in the contact and it is from a writable
-     * account.
+     * Determines if this contact has a writable account.
      */
-    private boolean isSingleWritableAccount() {
-        if (mCursor.getCount() != 1) {
-            return false;
+    private void setHasWritableAccount() {
+        mCursor.moveToPosition(-1);
+        while (mCursor.moveToNext()) {
+            final String accountType = mCursor.getString(PickRawContactLoader.ACCOUNT_TYPE);
+            final String dataSet = mCursor.getString(PickRawContactLoader.DATA_SET);
+            final AccountType account = AccountTypeManager.getInstance(this)
+                    .getAccountType(accountType, dataSet);
+            if (account.areContactsWritable()) {
+                mHasWritableAccount = true;
+                mWritableAccountPosition = mCursor.getPosition();
+                return;
+            }
         }
-        mCursor.moveToFirst();
-        final String accountType = mCursor.getString(PickRawContactLoader.ACCOUNT_TYPE);
-        final String dataSet = mCursor.getString(PickRawContactLoader.DATA_SET);
-        final AccountType account = AccountTypeManager.getInstance(this)
-                .getAccountType(accountType, dataSet);
-        return account.areContactsWritable();
     }
 
     /**
