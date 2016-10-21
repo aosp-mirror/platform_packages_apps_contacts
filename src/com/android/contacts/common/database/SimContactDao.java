@@ -20,6 +20,7 @@ import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.OperationApplicationException;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -32,10 +33,12 @@ import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.util.ArraySet;
+import android.util.Log;
 
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contactsbind.experiments.Flags;
 import com.google.common.collect.Sets;
@@ -50,6 +53,8 @@ import java.util.Set;
  * SIM contacts to a CP2 account.
  */
 public class SimContactDao {
+    private static final String TAG = "SimContactDao";
+
     @VisibleForTesting
     public static final Uri ICC_CONTENT_URI = Uri.parse("content://icc/adn");
 
@@ -88,9 +93,20 @@ public class SimContactDao {
     }
 
     public boolean shouldLoad() {
-        final Set<String> simIds = getSimCardIds();
-        return !Sets.difference(simIds, SharedPreferenceUtil.getImportedSims(mContext)).isEmpty()
-                && getSimState() != TelephonyManager.SIM_STATE_ABSENT;
+        final Set<String> simIds = hasTelephony() && hasPermissions() ? getSimCardIds() :
+                Collections.<String>emptySet();
+
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, "shouldLoad: hasTelephony? " + hasTelephony() +
+                    " hasPermissions? " + hasPermissions() +
+                    " SIM absent? " + (getSimState() != TelephonyManager.SIM_STATE_ABSENT) +
+                    " SIM ids=" + simIds +
+                    " imported=" + SharedPreferenceUtil.getImportedSims(mContext));
+        }
+        return hasTelephony() && hasPermissions() &&
+                getSimState() != TelephonyManager.SIM_STATE_ABSENT &&
+                !Sets.difference(simIds, SharedPreferenceUtil.getImportedSims(mContext))
+                        .isEmpty();
     }
 
     public Set<String> getSimCardIds() {
@@ -189,5 +205,14 @@ public class SimContactDao {
         for (String id : simIds) {
             SharedPreferenceUtil.addImportedSim(mContext, id);
         }
+    }
+
+    private boolean hasTelephony() {
+        return mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+    }
+
+    private boolean hasPermissions() {
+        return PermissionsUtil.hasContactsPermissions(mContext) &&
+                PermissionsUtil.hasPhonePermissions(mContext);
     }
 }
