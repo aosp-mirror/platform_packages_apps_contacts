@@ -275,6 +275,10 @@ public abstract class AccountTypeManager {
         return false;
     }
 
+    public boolean hasGoogleAccount() {
+        return getDefaultGoogleAccount() != null;
+    }
+
     private static boolean hasRequiredPermissions(Context context) {
         final boolean canGetAccounts = ContextCompat.checkSelfPermission(context,
                 android.Manifest.permission.GET_ACCOUNTS) == PackageManager.PERMISSION_GRANTED;
