@@ -805,9 +805,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
         final FragmentManager fragmentManager =  getFragmentManager();
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
         if (isGroupView()) {
-            if (mMembersFragment == null) {
-                mMembersFragment = GroupMembersFragment.newInstance(mGroupUri);
-            }
+            mMembersFragment = GroupMembersFragment.newInstance(mGroupUri);
             transaction.replace(
                     R.id.contacts_list_container, mMembersFragment, TAG_GROUP_VIEW);
         } else if(isAssistantView()) {
