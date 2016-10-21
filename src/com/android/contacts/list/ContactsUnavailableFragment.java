@@ -148,7 +148,7 @@ public class ContactsUnavailableFragment extends Fragment implements OnClickList
                 ImplicitIntentsUtil.startActivityOutsideApp(getActivity(), intent);
                 break;
             case R.id.import_contacts_button:
-                ImportDialogFragment.show(getFragmentManager(), getActivity().getClass());
+                ImportDialogFragment.show(getFragmentManager());
                 break;
         }
     }
