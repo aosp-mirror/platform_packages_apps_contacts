@@ -445,6 +445,11 @@ public class PeopleActivity extends ContactsDrawerActivity {
     }
 
     @Override
+    public void onMultiWindowModeChanged(boolean entering) {
+        initializeHomeVisibility();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
@@ -464,6 +469,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
             onSyncStateUpdated();
         }
         initializeFabVisibility();
+        initializeHomeVisibility();
 
         mSaveServiceListener = new SaveServiceListener();
         LocalBroadcastManager.getInstance(this).registerReceiver(mSaveServiceListener,
@@ -481,6 +487,15 @@ public class PeopleActivity extends ContactsDrawerActivity {
         mFloatingActionButtonContainer.setVisibility(shouldHideFab() ? View.GONE : View.VISIBLE);
         mFloatingActionButtonController.resetIn();
         wasLastFabAnimationScaleIn = !shouldHideFab();
+    }
+
+    private void initializeHomeVisibility() {
+        // Remove the navigation icon if we return to the fragment in a search or select state
+        if (getToolbar() != null && (isAllFragmentInSelectionMode()
+                || isAllFragmentInSearchMode() || isGroupsFragmentInSelectionMode()
+                || isGroupsFragmentInSearchMode())) {
+            getToolbar().setNavigationIcon(null);
+        }
     }
 
     private boolean shouldHideFab() {
@@ -702,13 +717,23 @@ public class PeopleActivity extends ContactsDrawerActivity {
     }
 
     private boolean isAllFragmentInSelectionMode() {
-        return mAllFragment.getActionBarAdapter() != null
+        return mAllFragment != null && mAllFragment.getActionBarAdapter() != null
                 && mAllFragment.getActionBarAdapter().isSelectionMode();
     }
 
     private boolean isAllFragmentInSearchMode() {
-        return mAllFragment.getActionBarAdapter() != null
+        return mAllFragment != null && mAllFragment.getActionBarAdapter() != null
                 && mAllFragment.getActionBarAdapter().isSearchMode();
+    }
+
+    private boolean isGroupsFragmentInSelectionMode() {
+        return mMembersFragment != null && mMembersFragment.getActionBarAdapter() != null
+                && mMembersFragment.getActionBarAdapter().isSelectionMode();
+    }
+
+    private boolean isGroupsFragmentInSearchMode() {
+        return mMembersFragment != null && mMembersFragment.getActionBarAdapter() != null
+                && mMembersFragment.getActionBarAdapter().isSearchMode();
     }
 
     @Override
