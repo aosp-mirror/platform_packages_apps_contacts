@@ -169,7 +169,10 @@
     <!-- List separator for the Join Contact list: A-Z -->
     <string name="separatorJoinAggregateAll">All contacts</string>
 
-    <!-- Toast shown after two contacts have been linked by a user action. [CHAR LIMIT=NONE] -->
+    <!-- Toast shown after two contacts have been linked by a user action with a name. [CHAR LIMIT=NONE] -->
+    <string name="contactsJoinedNamedMessage"><xliff:g id="name">%s</xliff:g> linked</string>
+
+    <!-- Toast shown after two contacts have been linked by a user action without a name. [CHAR LIMIT=NONE] -->
     <string name="contactsJoinedMessage">Contacts linked</string>
 
     <!-- Toast shown with names after user selected contacts are deleted by user action. [CHAR LIMIT=30] -->

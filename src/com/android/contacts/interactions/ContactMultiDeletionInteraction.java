@@ -38,6 +38,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.RawContacts;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.HashSet;
@@ -213,8 +214,11 @@ public class ContactMultiDeletionInteraction extends Fragment
             final String displayName = cursor.getString(COLUMN_INDEX_DISPLAY_NAME);
             final String displayNameAlt = cursor.getString(COLUMN_INDEX_DISPLAY_NAME_ALT);
 
-            names.add(ContactDisplayUtils.getPreferredDisplayName(displayName, displayNameAlt,
-                    contactsPreferences));
+            final String name = ContactDisplayUtils.getPreferredDisplayName(displayName,
+                    displayNameAlt, contactsPreferences);
+            if (!TextUtils.isEmpty(name)) {
+                names.add(name);
+            }
 
             contactIds.add(contactId);
             final AccountType type = accountTypes.getAccountType(accountType, dataSet);
