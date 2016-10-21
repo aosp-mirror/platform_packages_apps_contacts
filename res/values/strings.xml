@@ -1376,10 +1376,16 @@
     <string name="import_from_sim">Import from SIM card</string>
 
     <!-- Action string for selecting a SIM subscription for importing contacts -->
-    <string name="import_from_sim_summary">Import from SIM <xliff:g id="sim_name">^1</xliff:g> - <xliff:g id="sim_number">^2</xliff:g></string>
+    <string name="import_from_sim_summary">Import from SIM <xliff:g id="sim_name">^1</xliff:g>\n<xliff:g id="sim_number">^2</xliff:g></string>
 
     <!-- Action string for selecting a SIM subscription for importing contacts, without a phone number -->
     <string name="import_from_sim_summary_no_number">Import from SIM <xliff:g id="sim_name">%1$s</xliff:g></string>
+
+    <!-- Action string for selecting a SIM subscription for importing contacts -->
+    <string name="import_from_sim_summary_by_carrier">Import from <xliff:g id="carrier_name">^1</xliff:g> SIM\n<xliff:g id="sim_number">^2</xliff:g></string>
+
+    <!-- Action string for selecting a SIM subscription for importing contacts -->
+    <string name="import_from_sim_summary_by_carrier_no_number">Import from <xliff:g id="carrier_name">%1$s</xliff:g> SIM</string>
 
     <!-- Action string for selecting a .vcf file to import contacts from [CHAR LIMIT=30] -->
     <string name="import_from_vcf_file" product="default">Import from .vcf file</string>
