@@ -67,7 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contacts suggérés"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tous les contacts"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Contacts associés"</string>
-    <string name="contact_deleted_named_toast" msgid="6558941164987421174">"<xliff:g id="NAME">%s</xliff:g> supprimé"</string>
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> supprimé"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> et <xliff:g id="NAME_1">%2$s</xliff:g> supprimés"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… supprimés"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">Contact supprimé</item>
       <item quantity="other">Contacts supprimés</item>
@@ -130,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Ajouté à l\'étiquette"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Impossible d\'enregistrer l\'étiquette modifiée"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Cette étiquette existe déjà"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Certains contacts n\'ont pas d\'adresse de courriel."</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Certains contacts n\'ont pas de numéro de téléphone."</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Envoyer un courriel"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"Envoyer un message"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Sélectionner des contacts"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"Envoyer"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact avec un numéro de téléphone</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts avec un numéro de téléphone</item>
@@ -491,8 +487,13 @@
     <string name="listCustomView" msgid="1840624396582117590">"Affichage personnalisé"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Enregistrer les contacts importés dans le compte :"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importer depuis la carte SIM"</string>
-    <string name="import_from_sim_summary" msgid="5815105584445743740">"Importer de la carte SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
+    <skip />
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Importer de la carte SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
+    <skip />
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Importer d\'un fichier .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Annuler l\'importation du fichier <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Annuler l\'exportation du fichier <xliff:g id="FILENAME">%s</xliff:g>?"</string>
@@ -627,6 +628,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Activer la synchronisation automatique?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Les modifications que vous apportez dans l\'ensemble des applications et des comptes, non seulement dans les contacts, sont synchronisées avec le Web et avec vos appareils."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Activer"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"Aucune connexion"</string>
 </resources>

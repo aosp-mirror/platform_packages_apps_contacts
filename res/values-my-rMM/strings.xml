@@ -67,7 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"အကြုံပြုလိုသော အဆက်အသွယ်များ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"လိပ်စာများအားလုံး"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ကွင်းဆက်ထားသည့် အဆက်အသွယ်များ"</string>
-    <string name="contact_deleted_named_toast" msgid="6558941164987421174">"<xliff:g id="NAME">%s</xliff:g> ကို ဖျက်လိုက်ပါသည်"</string>
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> ကို ဖျက်ပြီး"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> နှင့် <xliff:g id="NAME_1">%2$s</xliff:g> တို့ကို ဖျက်ပြီး"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>၊ <xliff:g id="NAME_1">%2$s</xliff:g>၊ <xliff:g id="NAME_2">%3$s</xliff:g>... တို့ကို ဖျက်ပြီး"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other"> အဆက်အသွယ် ဖျက်ခဲ့သည်</item>
       <item quantity="one"> အဆက်အသွယ် ဖျက်ခဲ့သည်</item>
@@ -130,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"အညွှန်းသို့ ထည့်ထားပါသည်"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"အညွှန်းပြောင်းလဲမှုများကို သိမ်းဆည်း၍မရပါ"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ထိုအညွှန်းမှာ ရှိပြီးသားဖြစ်ပါသည်"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"အချို့အဆက်အသွယ်များတွင် အီးမေးလ်မရှိကြပါ။"</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"အချို့အဆက်အသွယ်များတွင် ဖုန်းနံပါတ်မရှိကြပါ။"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"အီးမေးလ် ပို့ရန်"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"မက်ဆေ့ဂျ် ပို့ရန်"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"အဆက်အသွယ်များ ရွေးရန်"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"ပို့ရန်"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ဖုန်းနံပါတ်များပါသောအဆက်အသွယ်<xliff:g id="COUNT">%d</xliff:g>ခု</item>
       <item quantity="one">ဖုန်းနံပါတ်ပါသောအဆက်အသွယ်1ခု</item>
@@ -491,8 +487,13 @@
     <string name="listCustomView" msgid="1840624396582117590">"စိတ်ကြိုက်ကြည့်ရှုမှု"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"တင်သွင်းထားသောအဆက်အသွယ်များကို သိမ်းရမည့်အကောင့် -"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"ဆင်းမ်ကဒ်မှ တင်သွင်းရန်"</string>
-    <string name="import_from_sim_summary" msgid="5815105584445743740">"ဆင်းမ်ကဒ်မှ တင်သွင်းရန် <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
+    <skip />
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"ဆင်းမ်ကဒ်မှ တင်သွင်းရန် <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
+    <skip />
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf ဖိုင်မှ တင်သွင်းရန်"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> တင်သွင်းခြင်းကို မလုပ်တော့ဘူးလား။"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> တင်ပို့ခြင်းကို မလုပ်တော့ဘူးလား။"</string>
@@ -627,6 +628,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"အလိုအလျောက်စင့်ခ်လုပ်ခြင်းကို ဖွင့်မလား။"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"အဆက်အသွယ်များသာမက အက်ပ်များနှင့် အကောင့်များအားလုံးတွင် သင်လုပ်သည့်ပြောင်းလဲမှုများကို ဝဘ်နှင့် သင့်စက်ကိရိယာများအကြား စင့်ခ်လုပ်ပေးသွားပါမည်။"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ဖွင့်ရန်"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"ချိတ်ဆက်မှုမရှိပါ"</string>
 </resources>
