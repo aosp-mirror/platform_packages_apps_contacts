@@ -67,7 +67,12 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Önerilen kişiler"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tüm kişiler"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kişiler arasında bağlantı oluşturuldu"</string>
-    <string name="contact_deleted_named_toast" msgid="6558941164987421174">"<xliff:g id="NAME">%s</xliff:g> silindi"</string>
+    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">Kişiler silindi</item>
       <item quantity="one">Kişi silindi</item>
@@ -491,8 +496,13 @@
     <string name="listCustomView" msgid="1840624396582117590">"Özelleştirilmiş görünüm"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"İçe aktarılan kişilerin kaydedileceği yer:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"SIM karttan içe aktar"</string>
-    <string name="import_from_sim_summary" msgid="5815105584445743740">"SIM\'den (<xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>) içe aktar"</string>
+    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
+    <skip />
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"SIM\'den (<xliff:g id="SIM_NAME">%1$s</xliff:g>) içe aktar"</string>
+    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
+    <skip />
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf dosyasından aktar"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> dosyasının içe aktarılması iptal edilsin mi?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> dosyasının dışa aktarılması iptal edilsin mi?"</string>
