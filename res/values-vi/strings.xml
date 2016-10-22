@@ -67,7 +67,12 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Liên hệ được đề xuất"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tất cả liên hệ"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Đã liên kết liên hệ"</string>
-    <string name="contact_deleted_named_toast" msgid="6558941164987421174">"Đã xóa <xliff:g id="NAME">%s</xliff:g>"</string>
+    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
+    <skip />
+    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">Liên hệ đã bị xóa</item>
       <item quantity="one">Liên hệ đã bị xóa</item>
@@ -491,8 +496,13 @@
     <string name="listCustomView" msgid="1840624396582117590">"Chế độ xem tùy chỉnh"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Lưu danh bạ đã nhập vào:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Nhập từ thẻ SIM"</string>
-    <string name="import_from_sim_summary" msgid="5815105584445743740">"Nhập từ SIM <xliff:g id="SIM_NAME">^1</xliff:g> - <xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
+    <skip />
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Nhập từ SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
+    <skip />
+    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
+    <skip />
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Nhập từ tệp .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Hủy yêu cầu nhập <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Hủy yêu cầu xuất <xliff:g id="FILENAME">%s</xliff:g>?"</string>
@@ -626,7 +636,7 @@
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Loại bỏ"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Đồng bộ hóa tài khoản đang tắt. Hãy nhấn để bật."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Bật tự động đồng bộ hóa?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Các thay đổi bạn thực hiện đối với tất cả các ứng dụng và tài khoản, không chỉ với Danh bạ, sẽ được đồng bộ hóa giữa web và thiết bị của bạn."</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Các thay đổi bạn thực hiện đối với tất cả các ứng dụng và tài khoản,mà không phải với Danh bạ, sẽ được đồng bộ hóa giữa web và thiết bị của bạn."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Bật"</string>
     <!-- no translation found for connection_error_message (7046408921529247089) -->
     <skip />
