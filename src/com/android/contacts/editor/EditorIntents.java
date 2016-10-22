@@ -25,6 +25,7 @@ import android.text.TextUtils;
 
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorSpringBoardActivity;
+import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 
@@ -75,9 +76,7 @@ public class EditorIntents {
                 context, ContactEditorActivity.class);
         intent.putExtra(
                 ContactEditorFragment.INTENT_EXTRA_NEW_LOCAL_PROFILE, isNewLocalProfile);
-        if (rawContactDeltaList != null || displayName != null || phoneticName != null) {
-            putRawContactDeltaValues(intent, rawContactDeltaList, displayName, phoneticName);
-        }
+        putRawContactDeltaValues(intent, rawContactDeltaList, displayName, phoneticName);
         return intent;
     }
 
@@ -97,6 +96,18 @@ public class EditorIntents {
         if (contentValues != null && contentValues.size() != 0) {
             intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA, contentValues);
         }
+        return intent;
+    }
+
+    /**
+     * Returns an Intent to start the {@link ContactSelectionActivity} for a
+     * new or existing contact.
+     */
+    public static Intent createInsertOrEditContactIntent(Context context,
+            RawContactDeltaList rawContactDeltaList, String displayName, String phoneticName) {
+        final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT, Contacts.CONTENT_URI,
+                context, ContactSelectionActivity.class);
+        putRawContactDeltaValues(intent, rawContactDeltaList, displayName, phoneticName);
         return intent;
     }
 
