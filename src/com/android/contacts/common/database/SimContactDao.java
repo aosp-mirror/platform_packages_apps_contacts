@@ -15,6 +15,7 @@
  */
 package com.android.contacts.common.database;
 
+import android.annotation.TargetApi;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
@@ -28,25 +29,25 @@ import android.os.Build;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
-import android.util.ArraySet;
-import android.util.Log;
+import android.util.SparseArray;
 
 import com.android.contacts.common.Experiments;
+import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.common.model.SimCard;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contactsbind.experiments.Flags;
-import com.google.common.collect.Sets;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Provides data access methods for loading contacts from a SIM card and and migrating these
@@ -54,6 +55,10 @@ import java.util.Set;
  */
 public class SimContactDao {
     private static final String TAG = "SimContactDao";
+
+    // Set to true for manual testing on an emulator or phone without a SIM card
+    // DO NOT SUBMIT if set to true
+    private static final boolean USE_FAKE_INSTANCE = false;
 
     @VisibleForTesting
     public static final Uri ICC_CONTENT_URI = Uri.parse("content://icc/adn");
@@ -76,64 +81,49 @@ public class SimContactDao {
     public void warmupSimQueryIfNeeded() {
         // Not needed if we don't have an Assistant section
         if (!Flags.getInstance().getBoolean(Experiments.ASSISTANT) ||
-                !shouldLoad()) return;
+                !canReadSimContacts()) return;
 
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                // We don't actually have to do any caching ourselves. Some other layer must do
-                // caching of the data (OS or framework) because subsequent queries are very fast.
-                final Cursor cursor = mResolver.query(ICC_CONTENT_URI, null, null, null, null);
-                if (cursor != null) {
-                    cursor.close();
+                for (SimCard card : getSimCards()) {
+                    // We don't actually have to do any caching ourselves. Some other layer must do
+                    // caching of the data (OS or framework) because subsequent queries are very
+                    // fast.
+                    card.loadContacts(SimContactDao.this);
                 }
                 return null;
             }
         }.execute();
     }
 
-    public boolean shouldLoad() {
-        final Set<String> simIds = hasTelephony() && hasPermissions() ? getSimCardIds() :
-                Collections.<String>emptySet();
-
-        if (Log.isLoggable(TAG, Log.DEBUG)) {
-            Log.d(TAG, "shouldLoad: hasTelephony? " + hasTelephony() +
-                    " hasPermissions? " + hasPermissions() +
-                    " SIM absent? " + (getSimState() != TelephonyManager.SIM_STATE_ABSENT) +
-                    " SIM ids=" + simIds +
-                    " imported=" + SharedPreferenceUtil.getImportedSims(mContext));
-        }
+    public boolean canReadSimContacts() {
         return hasTelephony() && hasPermissions() &&
-                getSimState() != TelephonyManager.SIM_STATE_ABSENT &&
-                !Sets.difference(simIds, SharedPreferenceUtil.getImportedSims(mContext))
-                        .isEmpty();
+                mTelephonyManager.getSimState() != TelephonyManager.SIM_STATE_ABSENT;
     }
 
-    public Set<String> getSimCardIds() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            final SubscriptionManager subscriptionManager = SubscriptionManager.from(mContext);
-            final List<SubscriptionInfo> subscriptions = subscriptionManager
-                    .getActiveSubscriptionInfoList();
-            if (subscriptions == null) {
-                return Collections.emptySet();
-            }
-            final ArraySet<String> result = new ArraySet<>(
-                    subscriptionManager.getActiveSubscriptionInfoCount());
-
-            for (SubscriptionInfo info : subscriptions) {
-                result.add(info.getIccId());
-            }
-            return result;
+    public List<SimCard> getSimCards() {
+        if (!canReadSimContacts()) {
+            return Collections.emptyList();
         }
-        return Collections.singleton(getSimSerialNumber());
+        final List<SimCard> sims = CompatUtils.isMSIMCompatible() ?
+                getSimCardsFromSubscriptions() :
+                Collections.singletonList(SimCard.create(mTelephonyManager));
+        return SharedPreferenceUtil.restoreSimStates(mContext, sims);
     }
 
-    public int getSimState() {
-        return mTelephonyManager.getSimState();
-    }
-
-    public String getSimSerialNumber() {
-        return mTelephonyManager.getSimSerialNumber();
+    @NonNull
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP_MR1)
+    private List<SimCard> getSimCardsFromSubscriptions() {
+        final SubscriptionManager subscriptionManager = (SubscriptionManager)
+                mContext.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+        final List<SubscriptionInfo> subscriptions = subscriptionManager
+                .getActiveSubscriptionInfoList();
+        final ArrayList<SimCard> result = new ArrayList<>();
+        for (SubscriptionInfo subscriptionInfo : subscriptions) {
+            result.add(SimCard.create(subscriptionInfo));
+        }
+        return result;
     }
 
     public ArrayList<SimContact> loadSimContacts(int subscriptionId) {
@@ -145,6 +135,10 @@ public class SimContactDao {
 
     public ArrayList<SimContact> loadSimContacts() {
         return loadFrom(ICC_CONTENT_URI);
+    }
+
+    public Context getContext() {
+        return mContext;
     }
 
     private ArrayList<SimContact> loadFrom(Uri uri) {
@@ -185,6 +179,31 @@ public class SimContactDao {
         return mResolver.applyBatch(ContactsContract.AUTHORITY, ops);
     }
 
+    public void persistSimState(SimCard sim) {
+        SharedPreferenceUtil.persistSimStates(mContext, Collections.singletonList(sim));
+    }
+
+    public void persistSimStates(List<SimCard> simCards) {
+        SharedPreferenceUtil.persistSimStates(mContext, simCards);
+    }
+
+    public SimCard getFirstSimCard() {
+        return getSimBySubscriptionId(SimCard.NO_SUBSCRIPTION_ID);
+    }
+
+    public SimCard getSimBySubscriptionId(int subscriptionId) {
+        final List<SimCard> sims = getSimCards();
+        if (subscriptionId == SimCard.NO_SUBSCRIPTION_ID && !sims.isEmpty()) {
+            return sims.get(0);
+        }
+        for (SimCard sim : getSimCards()) {
+            if (sim.getSubscriptionId() == subscriptionId) {
+                return sim;
+            }
+        }
+        return null;
+    }
+
     private ArrayList<ContentProviderOperation> createImportOperations(List<SimContact> contacts,
             AccountWithDataSet targetAccount) {
         final ArrayList<ContentProviderOperation> ops = new ArrayList<>();
@@ -198,15 +217,6 @@ public class SimContactDao {
         return emails != null ? emails.split(",") : null;
     }
 
-    public void persistImportSuccess() {
-        // TODO: either need to have an assistant card per SIM card or show contacts from all
-        // SIMs in the import view.
-        final Set<String> simIds = getSimCardIds();
-        for (String id : simIds) {
-            SharedPreferenceUtil.addImportedSim(mContext, id);
-        }
-    }
-
     private boolean hasTelephony() {
         return mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
     }
@@ -214,5 +224,69 @@ public class SimContactDao {
     private boolean hasPermissions() {
         return PermissionsUtil.hasContactsPermissions(mContext) &&
                 PermissionsUtil.hasPhonePermissions(mContext);
+    }
+
+    public static SimContactDao create(Context context) {
+        if (USE_FAKE_INSTANCE) {
+            return new DebugImpl(context)
+                    .addSimCard(new SimCard("fake-sim-id1", 1, "Fake Carrier", "Card 1",
+                            "15095550101", "us").withContacts(
+                            new SimContact(1, "Sim One", "15095550111", null),
+                            new SimContact(2, "Sim Two", "15095550112", null),
+                            new SimContact(3, "Sim Three", "15095550113", null),
+                            new SimContact(4, "Sim Four", "15095550114", null)
+                    ))
+                    .addSimCard(new SimCard("fake-sim-id2", 1, "Carrier Two", "Card 2",
+                            "15095550102", "us").withContacts(
+                            new SimContact(1, "John Sim", "15095550121", null),
+                            new SimContact(2, "Bob Sim", "15095550122", null),
+                            new SimContact(3, "Mary Sim", "15095550123", null),
+                            new SimContact(4, "Alice Sim", "15095550124", null)
+                    ));
+        }
+
+        return new SimContactDao(context);
+    }
+
+    // TODO remove this class and the USE_FAKE_INSTANCE flag once this code is not under
+    // active development or anytime after 3/1/2017
+    private static class DebugImpl extends SimContactDao {
+
+        private List<SimCard> mSimCards = new ArrayList<>();
+        private SparseArray<SimCard> mCardsBySubscription = new SparseArray<>();
+
+        public DebugImpl(Context context) {
+            super(context);
+        }
+
+        public DebugImpl addSimCard(SimCard sim) {
+            mSimCards.add(sim);
+            mCardsBySubscription.put(sim.getSubscriptionId(), sim);
+            return this;
+        }
+
+        @Override
+        public void warmupSimQueryIfNeeded() {
+        }
+
+        @Override
+        public List<SimCard> getSimCards() {
+            return SharedPreferenceUtil.restoreSimStates(getContext(), mSimCards);
+        }
+
+        @Override
+        public ArrayList<SimContact> loadSimContacts() {
+            return new ArrayList<>(mSimCards.get(0).getContacts());
+        }
+
+        @Override
+        public ArrayList<SimContact> loadSimContacts(int subscriptionId) {
+            return new ArrayList<>(mCardsBySubscription.get(subscriptionId).getContacts());
+        }
+
+        @Override
+        public boolean canReadSimContacts() {
+            return true;
+        }
     }
 }

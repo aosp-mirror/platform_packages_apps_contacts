@@ -21,8 +21,13 @@ import android.content.SharedPreferences;
 import android.telephony.SubscriptionInfo;
 import android.telephony.TelephonyManager;
 
+import com.android.contacts.common.model.SimCard;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SharedPreferenceUtil {
@@ -44,6 +49,9 @@ public class SharedPreferenceUtil {
 
     private static final String PREFERENCE_KEY_IMPORTED_SIM_CARDS =
             "importedSimCards";
+
+    private static final String PREFERENCE_KEY_DISMISSED_SIM_CARDS =
+            "dismissedSimCards";
 
     public static boolean getHamburgerPromoDisplayedBefore(Context context) {
         return getSharedPreferences(context)
@@ -141,22 +149,49 @@ public class SharedPreferenceUtil {
                 .putInt(buildSharedPrefsName(accountName), value + 1).apply();
     }
 
-    /**
-     * Persist an identifier for a SIM card which has been successfully imported.
-     *
-     * @param simId an identifier for the SIM card this should be one of
-     * {@link TelephonyManager#getSimSerialNumber()} or {@link SubscriptionInfo#getIccId()}
-     * depending on API level. The source of the value should be consistent on a particular device
-     */
-    public static void addImportedSim(Context context, String simId) {
-        final Set<String> current = new HashSet<>(getImportedSims(context));
-        current.add(simId);
+    public static void persistSimStates(Context context, Collection<SimCard> sims) {
+        final Set<String> imported = new HashSet<>(getImportedSims(context));
+        final Set<String> dismissed = new HashSet<>(getDismissedSims(context));
+        for (SimCard sim : sims) {
+            if (sim.isImported()) {
+                imported.add(sim.getSimId());
+            } else {
+                imported.remove(sim.getSimId());
+            }
+            if (sim.isDismissed()) {
+                dismissed.add(sim.getSimId());
+            } else {
+                dismissed.remove(sim.getSimId());
+            }
+        }
         getSharedPreferences(context).edit()
-                .putStringSet(PREFERENCE_KEY_IMPORTED_SIM_CARDS, current).apply();
+                .putStringSet(PREFERENCE_KEY_IMPORTED_SIM_CARDS, imported)
+                .putStringSet(PREFERENCE_KEY_DISMISSED_SIM_CARDS, dismissed)
+                .apply();
     }
 
-    public static Set<String> getImportedSims(Context context) {
+    public static List<SimCard> restoreSimStates(Context context, List<SimCard> sims) {
+        final Set<String> imported = getImportedSims(context);
+        final Set<String> dismissed = getDismissedSims(context);
+        List<SimCard> result = new ArrayList<>();
+        for (SimCard sim : sims) {
+            result.add(sim.withImportAndDismissStates(imported.contains(sim.getSimId()),
+                    dismissed.contains(sim.getSimId())));
+        }
+        return result;
+    }
+
+    private static Set<String> getImportedSims(Context context) {
         return getSharedPreferences(context)
                 .getStringSet(PREFERENCE_KEY_IMPORTED_SIM_CARDS, Collections.<String>emptySet());
+    }
+
+    private static Set<String> getDismissedSims(Context context) {
+        return getSharedPreferences(context)
+                .getStringSet(PREFERENCE_KEY_DISMISSED_SIM_CARDS, Collections.<String>emptySet());
+    }
+
+    public static void clear(Context context) {
+        getSharedPreferences(context).edit().clear().commit();
     }
 }
