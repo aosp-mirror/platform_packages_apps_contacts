@@ -57,7 +57,7 @@ public class SimImportFragment extends DialogFragment
         implements LoaderManager.LoaderCallbacks<ArrayList<SimContact>>,
         MultiSelectEntryContactListAdapter.SelectedContactsListener {
 
-    private static final String KEY_ACCOUNT = "account";
+    private static final String KEY_SELECTED_IDS = "selectedIds";
     private static final String ARG_SUBSCRIPTION_ID = "subscriptionId";
     public static final int NO_SUBSCRIPTION_ID = -1;
 
@@ -70,11 +70,14 @@ public class SimImportFragment extends DialogFragment
     private ListView mListView;
     private View mImportButton;
 
+    private long[] mSelectedContacts;
+
     private int mSubscriptionId;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setStyle(STYLE_NORMAL, R.style.PeopleThemeAppCompat_FullScreenDialog);
         mPreferences = new ContactsPreferences(getContext());
         mAccountTypeManager = AccountTypeManager.getInstance(getActivity());
@@ -87,6 +90,9 @@ public class SimImportFragment extends DialogFragment
         final Bundle args = getArguments();
         mSubscriptionId = args == null ? NO_SUBSCRIPTION_ID : args.getInt(ARG_SUBSCRIPTION_ID,
                 NO_SUBSCRIPTION_ID);
+
+        if (savedInstanceState == null) return;
+        mSelectedContacts = savedInstanceState.getLongArray(KEY_SELECTED_IDS);
     }
 
     @Override
@@ -112,8 +118,7 @@ public class SimImportFragment extends DialogFragment
         mAccountHeaderPresenter = new AccountHeaderPresenter(
                 view.findViewById(R.id.account_header_container));
         if (savedInstanceState != null) {
-            AccountWithDataSet account = savedInstanceState.getParcelable(KEY_ACCOUNT);
-            mAccountHeaderPresenter.setCurrentAccount(account);
+            mAccountHeaderPresenter.onRestoreInstanceState(savedInstanceState);
         } else {
             final AccountWithDataSet currentDefaultAccount = AccountWithDataSet
                     .getDefaultOrBestFallback(mPreferences, mAccountTypeManager);
@@ -164,7 +169,10 @@ public class SimImportFragment extends DialogFragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(KEY_ACCOUNT, mAccountHeaderPresenter.getCurrentAccount());
+        mAccountHeaderPresenter.onSaveInstanceState(outState);
+        if (mAdapter != null) {
+            outState.putLongArray(KEY_SELECTED_IDS, mAdapter.getSelectedContactIdsArray());
+        }
     }
 
     @Override
@@ -177,8 +185,11 @@ public class SimImportFragment extends DialogFragment
             ArrayList<SimContact> data) {
         mListView.setEmptyView(getView().findViewById(R.id.empty_message));
         mAdapter.setContacts(data);
-        // we default to selecting all contacts.
-        mAdapter.selectAll();
+        if (mSelectedContacts != null) {
+            mAdapter.select(mSelectedContacts);
+        } else {
+            mAdapter.selectAll();
+        }
         mLoadingIndicator.hide();
     }
 
@@ -290,6 +301,14 @@ public class SimImportFragment extends DialogFragment
             final TreeSet<Long> selected = new TreeSet<>();
             for (SimContact contact : mContacts) {
                 selected.add(contact.getId());
+            }
+            setSelectedContactIds(selected);
+        }
+
+        public void select(long[] contacts) {
+            final TreeSet<Long> selected = new TreeSet<>();
+            for (long contact : contacts) {
+                selected.add(contact);
             }
             setSelectedContactIds(selected);
         }
