@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contatti suggeriti"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tutti i contatti"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Contatti collegati"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> eliminato"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> e <xliff:g id="NAME_1">%2$s</xliff:g> eliminati"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... eliminati"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">Contatti eliminati</item>
       <item quantity="one">Contatto eliminato</item>
@@ -135,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Aggiunti all\'etichetta"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Impossibile salvare le modifiche all\'etichetta"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"L\'etichetta esiste già"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Alcuni contatti non hanno email."</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Alcuni contatti non hanno numeri di telefono."</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Invia email"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"Invia messaggio"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Seleziona contatti"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"Invia"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contatti con numero di telefono</item>
       <item quantity="one">1 contatto con numero di telefono</item>
@@ -638,6 +629,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Attivare la sincronizzazione automatica?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Le modifiche apportate a tutte le app e a tutti gli account, non solo a Contatti, verranno sincronizzate tra il Web e i tuoi dispositivi."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Attiva"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"Nessuna connessione"</string>
 </resources>

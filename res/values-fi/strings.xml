@@ -487,13 +487,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"Muokattu näkymä"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Tallenna tuodut yhteystiedot kohteeseen"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Tuo SIM-kortilta"</string>
-    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"Tuo SIM-kortilta: <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Tuo SIM-kortilta <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
-    <skip />
+    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"Tuo SIM-kortilta: <xliff:g id="CARRIER_NAME">^1</xliff:g>, \n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"Tuo SIM-kortilta: <xliff:g id="CARRIER_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Tuo .vcf-tiedostosta"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Peruuta kohteen <xliff:g id="FILENAME">%s</xliff:g> tuonti?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Peruuta kohteen <xliff:g id="FILENAME">%s</xliff:g> vienti?"</string>

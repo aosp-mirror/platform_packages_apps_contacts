@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Առաջարկվող կոնտակները"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Բոլոր կոնտակտները"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Կոնտակտները միավորված են"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> կոնտակտը ջնջվեց"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> և <xliff:g id="NAME_1">%2$s</xliff:g> կոնտակտները ջնջվեցին"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... ջնջվեցին"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">Կոնտակտները ջնջվեցին</item>
       <item quantity="other">Կոնտակտները ջնջվեցին</item>
@@ -135,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Ավելացվեց պիտակին"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Չհաջողվեց պահել պիտակի փոփոխությունները"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Այս անունով խումբ արդեն գոյություն ունի"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Որոշ կոնտակտներ էլփոստի հասցե չունեն:"</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Որոշ կոնտակտներ հեռախոսահամար չունեն:"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Ուղարկել նամակ"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"Ուղարկել հաղորդագրություն"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Ընտրեք կոնտակտներ"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"Ուղարկել"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> հեռախոսահամարով կոնտակտ</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> հեռախոսահամարով կոնտակտ</item>
@@ -638,6 +629,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Միացնե՞լ ինքնահամաժամեցումը:"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Ինչպես Կոնտակտներում, այնպես էլ մյուս բոլոր հավելվածներում և հաշիվներում կատարած փոփոխությունները կհամաժամեցվեն վեբ միջերեսի և ձեր սարքերի միջև:"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Միացնել"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"Կապ չկա"</string>
 </resources>
