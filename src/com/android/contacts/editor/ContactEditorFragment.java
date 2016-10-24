@@ -1366,19 +1366,7 @@ public class ContactEditorFragment extends Fragment implements
 
     @Override
     public void setIntentExtras(Bundle extras) {
-        if (extras == null || extras.size() == 0) {
-            return;
-        }
-
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(mContext);
-        for (RawContactDelta state : mState) {
-            final AccountType type = state.getAccountType(accountTypes);
-            if (type.areContactsWritable()) {
-                // Apply extras to the first writable raw contact only
-                RawContactModifier.parseExtras(mContext, type, state, extras);
-                break;
-            }
-        }
+        getContent().setIntentExtras(extras);
     }
 
     @Override

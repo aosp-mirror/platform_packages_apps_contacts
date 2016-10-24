@@ -6,7 +6,6 @@ import android.app.DialogFragment;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,17 +27,18 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.preference.ContactsPreferences;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 
 /**
+ * Should only be started from an activity that implements {@link PickRawContactListener}.
  * Dialog containing the raw contacts that make up a contact. On selection the editor is loaded
  * for the chosen raw contact.
  */
 public class PickRawContactDialogFragment extends DialogFragment {
-    private static final String ARGS_URI = "uri";
-    private static final String ARGS_MATERIAL_PALETTE = "materialPalette";
     private static final String ARGS_IS_USER_PROFILE = "isUserProfile";
+
+    public interface PickRawContactListener {
+        void onPickRawContact(long rawContactId);
+    }
 
     /**
      * Used to list the account info for the given raw contacts list.
@@ -142,18 +142,12 @@ public class PickRawContactDialogFragment extends DialogFragment {
 
     // Cursor holding all raw contact rows for the given Contact.
     private Cursor mCursor;
-    // Uri for the whole Contact.
-    private Uri mUri;
     private CursorAdapter mAdapter;
-    private MaterialPalette mMaterialPalette;
     private boolean mIsUserProfile;
 
-    public static PickRawContactDialogFragment getInstance(Uri uri, Cursor cursor,
-            MaterialPalette materialPalette, boolean isUserProfile) {
+    public static PickRawContactDialogFragment getInstance(Cursor cursor, boolean isUserProfile) {
         final PickRawContactDialogFragment fragment = new PickRawContactDialogFragment();
         final Bundle args = new Bundle();
-        args.putParcelable(ARGS_URI, uri);
-        args.putParcelable(ARGS_MATERIAL_PALETTE, materialPalette);
         args.putBoolean(ARGS_IS_USER_PROFILE, isUserProfile);
         fragment.setArguments(args);
         fragment.setCursor(cursor);
@@ -162,6 +156,10 @@ public class PickRawContactDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        if (!(getActivity() instanceof PickRawContactListener)) {
+            throw new IllegalArgumentException(
+                    "Host activity doesn't implement PickRawContactListener");
+        }
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         mAdapter = new RawContactAccountListAdapter(getContext(), mCursor);
         builder.setTitle(R.string.contact_editor_pick_raw_contact_dialog_title);
@@ -169,10 +167,7 @@ public class PickRawContactDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 final long rawContactId = mAdapter.getItemId(which);
-                final Intent intent = EditorIntents.createEditContactIntentForRawContact(
-                        getActivity(), mUri, rawContactId, mMaterialPalette);
-                intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-                ImplicitIntentsUtil.startActivityInApp(getActivity(), intent);
+                ((PickRawContactListener) getActivity()).onPickRawContact(rawContactId);
             }
         });
         builder.setCancelable(true);
@@ -192,8 +187,6 @@ public class PickRawContactDialogFragment extends DialogFragment {
 
         final Bundle args = getArguments();
         if (args != null) {
-            mUri = args.getParcelable(ARGS_URI);
-            mMaterialPalette = args.getParcelable(ARGS_MATERIAL_PALETTE);
             mIsUserProfile = args.getBoolean(ARGS_IS_USER_PROFILE);
         }
     }
