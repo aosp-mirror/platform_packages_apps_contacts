@@ -91,7 +91,7 @@
     <string name="menu_change_photo">Change photo</string>
 
     <!-- Menu item used to create a contact shortcut when viewing contact details. [CHAR LIMIT=30] -->
-    <string name="menu_create_contact_shortcut">Place on Home screen</string>
+    <string name="menu_create_contact_shortcut">Create shortcut</string>
 
     <!-- Menu item used to call a specific contact when viewing the details of that contact. -->
     <string name="menu_call">Call contact</string>
@@ -205,11 +205,14 @@
     <!-- Activity title indicating contacts are from a specific account [CHAR LIMIT=15] -->
     <string name="title_from_other_accounts">From <xliff:g id="account">%s</xliff:g></string>
 
-    <!-- Menu item that opens the Options activity for a given contact [CHAR LIMIT=15] -->
+    <!-- Menu item to set ring tone for a given contact [CHAR LIMIT=15] -->
     <string name="menu_set_ring_tone">Set ringtone</string>
 
-    <!-- Menu item that opens the Options activity for a given contact [CHAR LIMIT=30] -->
-    <string name="menu_redirect_calls_to_vm">All calls to voicemail</string>
+    <!-- Menu item to route all calls from a given contact to voice mail [CHAR LIMIT=30] -->
+    <string name="menu_redirect_calls_to_vm">Route to voicemail</string>
+
+    <!-- Menu item to unroute all calls from a given contact to voice mail [CHAR LIMIT=30] -->
+    <string name="menu_unredirect_calls_to_vm">Unroute to voicemail</string>
 
     <!-- Warning dialog contents after users select to delete a ReadOnly contact. [CHAR LIMIT=NONE] -->
     <string name="readOnlyContactWarning">Contacts from your read-only accounts cannot be deleted, but they can be hidden.</string>

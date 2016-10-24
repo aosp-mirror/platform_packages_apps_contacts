@@ -42,6 +42,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -163,6 +164,7 @@ import com.android.contacts.editor.AggregationSuggestionEngine;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
+import com.android.contacts.editor.EditorUiUtils;
 import com.android.contacts.editor.SplitContactConfirmationDialogFragment;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
@@ -233,18 +235,30 @@ public class QuickContactActivity extends ContactsActivity implements
     private static final String KEY_PREVIOUS_CONTACT_ID = "previous_contact_id";
     private static final String KEY_SUGGESTIONS_AUTO_SELECTED = "suggestions_auto_seleted";
 
+    private static final String KEY_SEND_TO_VOICE_MAIL_STATE = "sendToVoicemailState";
+    private static final String KEY_ARE_PHONE_OPTIONS_CHANGEABLE = "arePhoneOptionsChangable";
+    private static final String KEY_CUSTOM_RINGTONE = "customRingtone";
+
     private static final int ANIMATION_STATUS_BAR_COLOR_CHANGE_DURATION = 150;
     private static final int REQUEST_CODE_CONTACT_EDITOR_ACTIVITY = 1;
     private static final int SCRIM_COLOR = Color.argb(0xC8, 0, 0, 0);
     private static final int REQUEST_CODE_CONTACT_SELECTION_ACTIVITY = 2;
     private static final String MIMETYPE_SMS = "vnd.android-dir/mms-sms";
     private static final int REQUEST_CODE_JOIN = 3;
+    private static final int REQUEST_CODE_PICK_RINGTONE = 4;
+
+    private static final int CURRENT_API_VERSION = android.os.Build.VERSION.SDK_INT;
 
     /** This is the Intent action to install a shortcut in the launcher. */
     private static final String ACTION_INSTALL_SHORTCUT =
             "com.android.launcher.action.INSTALL_SHORTCUT";
 
     public static final String ACTION_SPLIT_COMPLETED = "splitCompleted";
+
+    // Phone specific option menu items
+    private boolean mSendToVoicemailState;
+    private boolean mArePhoneOptionsChangable;
+    private String mCustomRingtone;
 
     @SuppressWarnings("deprecation")
     private static final String LEGACY_AUTHORITY = android.provider.Contacts.AUTHORITY;
@@ -953,6 +967,12 @@ public class QuickContactActivity extends ContactsActivity implements
         mIsRecreatedInstance = savedInstanceState != null;
         if (mIsRecreatedInstance) {
             mPreviousContactId = savedInstanceState.getLong(KEY_PREVIOUS_CONTACT_ID);
+
+            // Phone specific options menus
+            mSendToVoicemailState = savedInstanceState.getBoolean(KEY_SEND_TO_VOICE_MAIL_STATE);
+            mArePhoneOptionsChangable =
+                    savedInstanceState.getBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE);
+            mCustomRingtone = savedInstanceState.getString(KEY_CUSTOM_RINGTONE);
         }
         mShouldLog = true;
 
@@ -1191,7 +1211,18 @@ public class QuickContactActivity extends ContactsActivity implements
             if (data != null) {
                 joinAggregate(ContentUris.parseId(data.getData()));
             }
+        } else if (requestCode == REQUEST_CODE_PICK_RINGTONE && data != null) {
+            final Uri pickedUri = data.getParcelableExtra(
+                        RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+            onRingtonePicked(pickedUri);
         }
+    }
+
+    private void onRingtonePicked(Uri pickedUri) {
+        mCustomRingtone = EditorUiUtils.getRingtoneStringFromUri(pickedUri, CURRENT_API_VERSION);
+        Intent intent = ContactSaveService.createSetRingtone(
+                this, mLookupUri, mCustomRingtone);
+        this.startService(intent);
     }
 
     @Override
@@ -1215,6 +1246,11 @@ public class QuickContactActivity extends ContactsActivity implements
                 KEY_SUGGESTIONS_AUTO_SELECTED, mSuggestionsShouldAutoSelected);
         savedInstanceState.putSerializable(
                 KEY_SELECTED_SUGGESTION_CONTACTS, mSelectedAggregationIds);
+
+        // Phone specific options
+        savedInstanceState.putBoolean(KEY_SEND_TO_VOICE_MAIL_STATE, mSendToVoicemailState);
+        savedInstanceState.putBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE, mArePhoneOptionsChangable);
+        savedInstanceState.putString(KEY_CUSTOM_RINGTONE, mCustomRingtone);
     }
 
     private void processIntent(Intent intent) {
@@ -1350,6 +1386,7 @@ public class QuickContactActivity extends ContactsActivity implements
         }
         mContactType = newContactType;
 
+        setStateForPhoneMenuItems(mContactData);
         invalidateOptionsMenu();
 
         Trace.endSection();
@@ -2972,6 +3009,15 @@ public class QuickContactActivity extends ContactsActivity implements
         return receivers != null && receivers.size() > 0;
     }
 
+    private void setStateForPhoneMenuItems(Contact contact) {
+        if (contact != null) {
+            mSendToVoicemailState = contact.isSendToVoicemail();
+            mCustomRingtone = contact.getCustomRingtone();
+            mArePhoneOptionsChangable = isContactEditable()
+                    && PhoneCapabilityTester.isPhone(this);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         final MenuInflater inflater = getMenuInflater();
@@ -3017,6 +3063,17 @@ public class QuickContactActivity extends ContactsActivity implements
 
             final MenuItem shortcutMenuItem = menu.findItem(R.id.menu_create_contact_shortcut);
             shortcutMenuItem.setVisible(isShortcutCreatable());
+
+            // Hide telephony-related settings (ringtone, send to voicemail)
+            // if we don't have a telephone
+            final MenuItem ringToneMenuItem = menu.findItem(R.id.menu_set_ringtone);
+            ringToneMenuItem.setVisible(!mContactData.isUserProfile() && mArePhoneOptionsChangable);
+
+            final MenuItem sendToVoiceMailMenuItem = menu.findItem(R.id.menu_send_to_voicemail);
+            sendToVoiceMailMenuItem.setVisible(!mContactData.isUserProfile()
+                    && mArePhoneOptionsChangable);
+            sendToVoiceMailMenuItem.setTitle(mSendToVoicemailState
+                    ? R.string.menu_unredirect_calls_to_vm : R.string.menu_redirect_calls_to_vm);
 
             final MenuItem helpMenu = menu.findItem(R.id.menu_help);
             helpMenu.setVisible(HelpUtils.isHelpAndFeedbackAvailable());
@@ -3136,6 +3193,19 @@ public class QuickContactActivity extends ContactsActivity implements
                     createLauncherShortcutWithContact();
                 }
                 return true;
+            case R.id.menu_set_ringtone:
+                doPickRingtone();
+                return true;
+            case R.id.menu_send_to_voicemail:
+                // Update state and save
+                mSendToVoicemailState = !mSendToVoicemailState;
+                item.setTitle(mSendToVoicemailState
+                        ? R.string.menu_unredirect_calls_to_vm
+                        : R.string.menu_redirect_calls_to_vm);
+                final Intent intent = ContactSaveService.createSetSendToVoicemail(
+                        this, mLookupUri, mSendToVoicemailState);
+                this.startService(intent);
+                return true;
             case R.id.menu_help:
                 Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
                         ActionType.HELP, /* thirdPartyAction */ null);
@@ -3194,5 +3264,28 @@ public class QuickContactActivity extends ContactsActivity implements
                 /* joinContactId =*/ null);
         ContactSaveService.startService(this, intent,
                 ContactEditorActivity.ContactEditor.SaveMode.SPLIT);
+    }
+
+    private void doPickRingtone() {
+        final Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
+        // Allow user to pick 'Default'
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
+        // Show only ringtones
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
+        // Allow the user to pick a silent ringtone
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
+
+        final Uri ringtoneUri = EditorUiUtils.getRingtoneUriFromString(mCustomRingtone,
+                CURRENT_API_VERSION);
+
+        // Put checkmark next to the current ringtone for this contact
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, ringtoneUri);
+
+        // Launch!
+        try {
+            startActivityForResult(intent, REQUEST_CODE_PICK_RINGTONE);
+        } catch (ActivityNotFoundException ex) {
+            Toast.makeText(this, R.string.missing_app, Toast.LENGTH_SHORT).show();
+        }
     }
 }
