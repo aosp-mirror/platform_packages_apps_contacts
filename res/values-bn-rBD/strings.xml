@@ -487,13 +487,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"কাস্টমাইজ করা দৃশ্য"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"আমদানি করা পরিচিতিগুলি এতে সংরক্ষণ করুন:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"সিম কার্ড থেকে আমদানি করুন"</string>
-    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"SIM <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g> থেকে আমদানি করুন"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM থেকে আমদানি করুন"</string>
-    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
-    <skip />
+    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"<xliff:g id="CARRIER_NAME">^1</xliff:g> এর SIM\n<xliff:g id="SIM_NUMBER">^2</xliff:g> থেকে আমদানি করুন"</string>
+    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"<xliff:g id="CARRIER_NAME">%1$s</xliff:g> এর SIM থেকে আমদানি করুন"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf ফাইল থেকে আমদানি করুন"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> এর আমদানি বাতিল করবেন?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> এর রপ্তানি বাতিল করবেন?"</string>
