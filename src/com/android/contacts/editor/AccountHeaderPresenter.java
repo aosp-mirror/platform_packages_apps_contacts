@@ -16,6 +16,7 @@
 package com.android.contacts.editor;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.view.View;
@@ -41,6 +42,8 @@ import java.util.List;
  * should probably be modified to use this instead of leaving it duplicated.
  */
 public class AccountHeaderPresenter {
+
+    private static final String KEY_SELECTED_ACCOUNT = "accountHeaderSelectedAccount";
 
     public interface Observer {
         void onChange(AccountHeaderPresenter sender);
@@ -100,6 +103,18 @@ public class AccountHeaderPresenter {
         return mCurrentAccount;
     }
 
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(KEY_SELECTED_ACCOUNT, mCurrentAccount);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState == null) return;
+        if (mCurrentAccount == null) {
+            mCurrentAccount = savedInstanceState.getParcelable(KEY_SELECTED_ACCOUNT);
+        }
+        updateDisplayedAccount();
+    }
+
     private void updateDisplayedAccount() {
         mAccountHeaderContainer.setVisibility(View.GONE);
         if (mCurrentAccount == null) return;
@@ -146,29 +161,38 @@ public class AccountHeaderPresenter {
         final View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListPopupWindow popup = new ListPopupWindow(mContext, null);
-                final AccountsListAdapter adapter =
-                        new AccountsListAdapter(mContext,
-                                AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE,
-                                mCurrentAccount);
-                popup.setWidth(mAccountHeaderContainer.getWidth());
-                popup.setAnchorView(mAccountHeaderContainer);
-                popup.setAdapter(adapter);
-                popup.setModal(true);
-                popup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
-                popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position,
-                            long id) {
-                        UiClosables.closeQuietly(popup);
-                        final AccountWithDataSet newAccount = adapter.getItem(position);
-                        setCurrentAccount(newAccount);
-                    }
-                });
-                popup.show();
+                showPopup();
             }
         };
         setUpAccountSelector(nameLabel.toString(), onClickListener);
+    }
+
+    private void showPopup() {
+        final ListPopupWindow popup = new ListPopupWindow(mContext);
+        final AccountsListAdapter adapter =
+                new AccountsListAdapter(mContext,
+                        AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE,
+                        mCurrentAccount);
+        popup.setWidth(mAccountHeaderContainer.getWidth());
+        popup.setAnchorView(mAccountHeaderContainer);
+        popup.setAdapter(adapter);
+        popup.setModal(true);
+        popup.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
+        popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                    long id) {
+                UiClosables.closeQuietly(popup);
+                final AccountWithDataSet newAccount = adapter.getItem(position);
+                setCurrentAccount(newAccount);
+            }
+        });
+        mAccountHeaderContainer.post(new Runnable() {
+            @Override
+            public void run() {
+                popup.show();
+            }
+        });
     }
 
     private void setUpAccountSelector(String nameLabel, View.OnClickListener listener) {
