@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建議聯絡人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有聯絡人"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"聯絡人連結完成"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"已刪除<xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"已刪除<xliff:g id="NAME_0">%1$s</xliff:g>和<xliff:g id="NAME_1">%2$s</xliff:g>"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"已刪除<xliff:g id="NAME_0">%1$s</xliff:g>、<xliff:g id="NAME_1">%2$s</xliff:g>、<xliff:g id="NAME_2">%3$s</xliff:g>…"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">已刪除聯絡人</item>
       <item quantity="one">已刪除聯絡人</item>
@@ -135,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"已新增到標籤中"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"無法儲存變更後的標籤"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"該標籤已存在"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"部分聯絡人沒有電子郵件。"</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"部分聯絡人沒有電話號碼。"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"傳送電子郵件"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"傳送訊息"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"選取聯絡人"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"傳送"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 位有電話號碼的聯絡人</item>
       <item quantity="one">1 位有電話號碼的聯絡人</item>
@@ -637,6 +628,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"要開啟自動同步功能嗎？"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"你對所有應用程式和帳戶 (不限於聯絡人) 所做的變更一律會在網路和你的裝置之間保持同步。"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"開啟"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"沒有網路連線"</string>
 </resources>

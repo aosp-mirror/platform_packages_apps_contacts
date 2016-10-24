@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"مخاطبین پیشنهادی"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"همه مخاطبین"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"مخاطبین پیوند داده شدند"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> حذف شد"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> و <xliff:g id="NAME_1">%2$s</xliff:g> حذف شدند"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>، <xliff:g id="NAME_1">%2$s</xliff:g>، <xliff:g id="NAME_2">%3$s</xliff:g>... حذف شد"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">مخاطب حذف شد</item>
       <item quantity="other">مخاطب حذف شد</item>
@@ -135,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"به برچسب اضافه شد"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"تغییرات برچسب ذخیره نشد"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"این برچسب از قبل موجود است"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"بعضی از مخاطبین رایانامه ندارند."</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"بعضی از مخاطبین شماره تلفن ندارند."</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"ارسال رایانامه"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"ارسال پیام"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"انتخاب مخاطبین"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"ارسال"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب با شماره تلفن</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مخاطب با شماره تلفن</item>
@@ -637,6 +628,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"همگام‌سازی خودکار فعال شود؟"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"تغییراتی که در همه برنامه‌ها و حساب‌ها ایجاد می‌کنید، نه فقط در مخاطبین، بین وب و دستگاه‌هایتان همگام‌سازی خواهند شد."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"فعال کردن"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"اتصال برقرار نیست"</string>
 </resources>
