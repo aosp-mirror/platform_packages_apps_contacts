@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -222,6 +223,8 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
     private View mMoreFields;
 
     private boolean mIsExpanded;
+
+    private Bundle mIntentExtras;
 
     private ValuesDelta mPhotoValuesDelta;
 
@@ -425,6 +428,10 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         }
     }
 
+    public void setIntentExtras(Bundle extras) {
+        mIntentExtras = extras;
+    }
+
     public void setState(RawContactDeltaList rawContactDeltas,
             MaterialColorMapUtils.MaterialPalette materialPalette, ViewIdGenerator viewIdGenerator,
             boolean hasNewContact, boolean isUserProfile, AccountWithDataSet primaryAccount,
@@ -455,6 +462,8 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             return;
         }
         pickRawContactDelta();
+        // Apply any intent extras now that we have selected a raw contact delta.
+        applyIntentExtras();
         parseRawContactDelta();
         if (mKindSectionDataMap.isEmpty()) {
             elog("No kind section data parsed from RawContactDelta(s)");
@@ -529,6 +538,17 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             }
         }
 
+    }
+
+    private void applyIntentExtras() {
+        if (mIntentExtras == null || mIntentExtras.size() == 0) {
+            return;
+        }
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(getContext());
+        final AccountType type = mCurrentRawContactDelta.getAccountType(accountTypes);
+
+        RawContactModifier.parseExtras(getContext(), type, mCurrentRawContactDelta, mIntentExtras);
+        mIntentExtras = null;
     }
 
     private void parseRawContactDelta() {
