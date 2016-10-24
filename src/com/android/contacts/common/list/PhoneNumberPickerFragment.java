@@ -29,10 +29,6 @@ import android.view.ViewGroup;
 
 import com.android.contacts.common.R;
 import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
-import com.android.contactsbind.analytics.AnalyticsUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Fragment containing a phone number list for picking.
@@ -169,12 +165,6 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
                         + " adapter is ready. Ignoring");
             }
         }
-
-        // Get the lookup key and track any analytics
-        final String lookupKey = getLookupKey(position);
-        if (!TextUtils.isEmpty(lookupKey)) {
-            maybeTrackAnalytics(lookupKey);
-        }
     }
 
     protected void cacheContactInfo(int position) {
@@ -303,43 +293,5 @@ public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactE
      */
     protected int getCallInitiationType(boolean isRemoteDirectory) {
         return OnPhoneNumberPickerActionListener.CALL_INITIATION_UNKNOWN;
-    }
-
-    /**
-     * Where a lookup key contains analytic event information, logs the associated analytics event.
-     *
-     * @param lookupKey The lookup key JSON object.
-     */
-    private void maybeTrackAnalytics(String lookupKey) {
-        try {
-            JSONObject json = new JSONObject(lookupKey);
-
-            String analyticsCategory = json.getString(
-                    PhoneNumberListAdapter.PhoneQuery.ANALYTICS_CATEGORY);
-            String analyticsAction = json.getString(
-                    PhoneNumberListAdapter.PhoneQuery.ANALYTICS_ACTION);
-            String analyticsValue = json.getString(
-                    PhoneNumberListAdapter.PhoneQuery.ANALYTICS_VALUE);
-
-            if (TextUtils.isEmpty(analyticsCategory) || TextUtils.isEmpty(analyticsAction) ||
-                    TextUtils.isEmpty(analyticsValue)) {
-                return;
-            }
-
-            // Assume that the analytic value being tracked could be a float value, but just cast
-            // to a long so that the analytic server can handle it.
-            long value;
-            try {
-                float floatValue = Float.parseFloat(analyticsValue);
-                value = (long) floatValue;
-            } catch (NumberFormatException nfe) {
-                return;
-            }
-
-            AnalyticsUtil.sendEvent(getActivity().getApplication(), analyticsCategory,
-                    analyticsAction, "" /* label */, value);
-        } catch (JSONException e) {
-            // Not an error; just a lookup key that doesn't have the right information.
-        }
     }
 }
