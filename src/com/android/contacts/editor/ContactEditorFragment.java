@@ -20,7 +20,6 @@ import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
-import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -30,7 +29,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -60,9 +58,9 @@ import android.widget.Toast;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorActivity.ContactEditor;
-import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.logging.ScreenEvent.ScreenType;
@@ -86,9 +84,8 @@ import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.quickcontact.InvisibleContactUtil;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.ContactPhotoUtils;
-import com.android.contacts.util.HelpUtils;
-import com.android.contacts.util.PhoneCapabilityTester;
 import com.android.contacts.util.UiClosables;
+import com.android.contactsbind.HelpUtils;
 import com.android.contactsbind.ObjectFactory;
 import com.android.contactsbind.experiments.Flags;
 
@@ -146,11 +143,6 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_IS_EDIT = "isEdit";
     private static final String KEY_EXISTING_CONTACT_READY = "existingContactDataReady";
 
-    // Phone option menus
-    private static final String KEY_SEND_TO_VOICE_MAIL_STATE = "sendToVoicemailState";
-    private static final String KEY_ARE_PHONE_OPTIONS_CHANGEABLE = "arePhoneOptionsChangable";
-    private static final String KEY_CUSTOM_RINGTONE = "customRingtone";
-
     private static final String KEY_IS_USER_PROFILE = "isUserProfile";
 
     private static final String KEY_ENABLED = "enabled";
@@ -167,7 +159,6 @@ public class ContactEditorFragment extends Fragment implements
 
     protected static final int REQUEST_CODE_JOIN = 0;
     protected static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
-    protected static final int REQUEST_CODE_PICK_RINGTONE = 2;
 
     private static final int CURRENT_API_VERSION = android.os.Build.VERSION.SDK_INT;
 
@@ -365,11 +356,6 @@ public class ContactEditorFragment extends Fragment implements
     // Whether we are editing the "me" profile
     protected boolean mIsUserProfile;
 
-    // Phone specific option menu items
-    private boolean mSendToVoicemailState;
-    private boolean mArePhoneOptionsChangable;
-    private String mCustomRingtone;
-
     // Whether editor views and options menu items should be enabled
     private boolean mEnabled = true;
 
@@ -415,7 +401,6 @@ public class ContactEditorFragment extends Fragment implements
                     mLookupUri = contact.getLookupUri();
                     final long setDataStartTime = SystemClock.elapsedRealtime();
                     setState(contact);
-                    setStateForPhoneMenuItems(contact);
                     final long setDataEndTime = SystemClock.elapsedRealtime();
 
                     Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime - setDataStartTime));
@@ -505,11 +490,6 @@ public class ContactEditorFragment extends Fragment implements
             mExistingContactDataReady = savedState.getBoolean(KEY_EXISTING_CONTACT_READY);
 
             mIsUserProfile = savedState.getBoolean(KEY_IS_USER_PROFILE);
-
-            // Phone specific options menus
-            mSendToVoicemailState = savedState.getBoolean(KEY_SEND_TO_VOICE_MAIL_STATE);
-            mArePhoneOptionsChangable = savedState.getBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE);
-            mCustomRingtone = savedState.getString(KEY_CUSTOM_RINGTONE);
 
             mEnabled = savedState.getBoolean(KEY_ENABLED);
 
@@ -627,11 +607,6 @@ public class ContactEditorFragment extends Fragment implements
 
         outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
 
-        // Phone specific options
-        outState.putBoolean(KEY_SEND_TO_VOICE_MAIL_STATE, mSendToVoicemailState);
-        outState.putBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE, mArePhoneOptionsChangable);
-        outState.putString(KEY_CUSTOM_RINGTONE, mCustomRingtone);
-
         outState.putBoolean(KEY_ENABLED, mEnabled);
 
         // Aggregation PopupWindow
@@ -704,36 +679,12 @@ public class ContactEditorFragment extends Fragment implements
                 createContact();
                 break;
             }
-            case REQUEST_CODE_PICK_RINGTONE: {
-                if (data != null) {
-                    final Uri pickedUri = data.getParcelableExtra(
-                            RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-                    onRingtonePicked(pickedUri);
-                }
-                break;
-            }
         }
-    }
-
-    private void onRingtonePicked(Uri pickedUri) {
-        mCustomRingtone = EditorUiUtils.getRingtoneStringFromUri(pickedUri, CURRENT_API_VERSION);
-        Intent intent = ContactSaveService.createSetRingtone(
-                mContext, mLookupUri, mCustomRingtone);
-        mContext.startService(intent);
     }
 
     //
     // Options menu
     //
-
-    private void setStateForPhoneMenuItems(Contact contact) {
-        if (contact != null) {
-            mSendToVoicemailState = contact.isSendToVoicemail();
-            mCustomRingtone = contact.getCustomRingtone();
-            mArePhoneOptionsChangable = !contact.isDirectoryEntry()
-                    && PhoneCapabilityTester.isPhone(mContext);
-        }
-    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
@@ -748,22 +699,8 @@ public class ContactEditorFragment extends Fragment implements
         final MenuItem saveMenu = menu.findItem(R.id.menu_save);
         final MenuItem splitMenu = menu.findItem(R.id.menu_split);
         final MenuItem joinMenu = menu.findItem(R.id.menu_join);
-        final MenuItem helpMenu = menu.findItem(R.id.menu_help);
-        final MenuItem sendToVoiceMailMenu = menu.findItem(R.id.menu_send_to_voicemail);
-        final MenuItem ringToneMenu = menu.findItem(R.id.menu_set_ringtone);
         final MenuItem deleteMenu = menu.findItem(R.id.menu_delete);
 
-        // Set visibility of menus
-
-        // help menu depending on whether this is inserting or editing
-        if (Intent.ACTION_INSERT.equals(mAction)) {
-            HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_add);
-        } else if (Intent.ACTION_EDIT.equals(mAction)) {
-            HelpUtils.prepareHelpMenuItem(mContext, helpMenu, R.string.help_url_people_edit);
-        } else {
-            // something else, so don't show the help menu
-            helpMenu.setVisible(false);
-        }
         // TODO: b/30771904, b/31827701, temporarily disable these items until we get them to work
         // on a raw contact level.
         joinMenu.setVisible(false);
@@ -779,17 +716,6 @@ public class ContactEditorFragment extends Fragment implements
                     onOptionsItemSelected(saveMenu);
                 }
             });
-        }
-
-        if (mIsUserProfile) {
-            sendToVoiceMailMenu.setVisible(false);
-            ringToneMenu.setVisible(false);
-        } else {
-            // Hide telephony-related settings (ringtone, send to voicemail)
-            // if we don't have a telephone or are editing a new contact.
-            sendToVoiceMailMenu.setChecked(mSendToVoicemailState);
-            sendToVoiceMailMenu.setVisible(mArePhoneOptionsChangable);
-            ringToneMenu.setVisible(mArePhoneOptionsChangable);
         }
 
         int size = menu.size();
@@ -821,16 +747,8 @@ public class ContactEditorFragment extends Fragment implements
                 return doSplitContactAction();
             case R.id.menu_join:
                 return doJoinContactAction();
-            case R.id.menu_set_ringtone:
-                doPickRingtone();
-                return true;
-            case R.id.menu_send_to_voicemail:
-                // Update state and save
-                mSendToVoicemailState = !mSendToVoicemailState;
-                item.setChecked(mSendToVoicemailState);
-                final Intent intent = ContactSaveService.createSetSendToVoicemail(
-                        mContext, mLookupUri, mSendToVoicemailState);
-                mContext.startService(intent);
+            case R.id.menu_help:
+                HelpUtils.launchHelpAndFeedbackForContactScreen(getActivity());
                 return true;
         }
 
@@ -910,29 +828,6 @@ public class ContactEditorFragment extends Fragment implements
     @Override
     public void onJoinContactConfirmed(long joinContactId) {
         doSaveAction(SaveMode.JOIN, joinContactId);
-    }
-
-    private void doPickRingtone() {
-        final Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
-        // Allow user to pick 'Default'
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
-        // Show only ringtones
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
-        // Allow the user to pick a silent ringtone
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
-
-        final Uri ringtoneUri = EditorUiUtils.getRingtoneUriFromString(mCustomRingtone,
-                CURRENT_API_VERSION);
-
-        // Put checkmark next to the current ringtone for this contact
-        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, ringtoneUri);
-
-        // Launch!
-        try {
-            startActivityForResult(intent, REQUEST_CODE_PICK_RINGTONE);
-        } catch (ActivityNotFoundException ex) {
-            Toast.makeText(mContext, R.string.missing_app, Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
@@ -1047,8 +942,7 @@ public class ContactEditorFragment extends Fragment implements
         final ContentValues original = before.getBefore();
         final ContentValues pending = after.getAfter();
         if (original != null && pending != null) {
-            final String beforeDisplayName = original.getAsString(
-                    StructuredName.DISPLAY_NAME);
+            final String beforeDisplayName = original.getAsString(StructuredName.DISPLAY_NAME);
             final String afterDisplayName = pending.getAsString(StructuredName.DISPLAY_NAME);
             if (!TextUtils.equals(beforeDisplayName, afterDisplayName)) return false;
 
@@ -1498,18 +1392,20 @@ public class ContactEditorFragment extends Fragment implements
         final Cursor cursor = resolver.query(contactUri, new String[]{
                 ContactsContract.Contacts.DISPLAY_NAME,
                 ContactsContract.Contacts.DISPLAY_NAME_ALTERNATIVE}, null, null, null);
-        try {
-            if (cursor.moveToFirst()) {
-                final String displayName = cursor.getString(0);
-                final String displayNameAlt = cursor.getString(1);
-                cursor.close();
-                return ContactDisplayUtils.getPreferredDisplayName(displayName, displayNameAlt,
-                        new ContactsPreferences(mContext));
-            }
-        } finally {
-            cursor.close();
-        }
 
+        if (cursor != null) {
+            try {
+                if (cursor.moveToFirst()) {
+                    final String displayName = cursor.getString(0);
+                    final String displayNameAlt = cursor.getString(1);
+                    cursor.close();
+                    return ContactDisplayUtils.getPreferredDisplayName(displayName, displayNameAlt,
+                            new ContactsPreferences(mContext));
+                }
+            } finally {
+                cursor.close();
+            }
+        }
         return null;
     }
 
