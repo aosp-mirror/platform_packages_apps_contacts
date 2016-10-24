@@ -30,7 +30,8 @@ import com.android.contacts.editor.PickRawContactLoader;
  * This activity has noHistory set to true, and all intents coming out from it have
  * {@code FLAG_ACTIVITY_FORWARD_RESULT} set.
  */
-public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity  {
+public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity implements
+        PickRawContactDialogFragment.PickRawContactListener {
     private static final String TAG = "EditorSpringBoard";
     private static final String TAG_RAW_CONTACTS_DIALOG = "rawContactsDialog";
     private static final int LOADER_RAW_CONTACTS = 1;
@@ -109,11 +110,15 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
         if (ContactsContract.AUTHORITY.equals(authority) &&
                 RawContacts.CONTENT_ITEM_TYPE.equals(type)) {
             final long rawContactId = ContentUris.parseId(mUri);
-            final Intent editorIntent = getIntentForRawContact(rawContactId);
-            ImplicitIntentsUtil.startActivityInApp(this, editorIntent);
+            startEditorAndForwardExtras(getIntentForRawContact(rawContactId));
         } else {
             getLoaderManager().initLoader(LOADER_RAW_CONTACTS, null, mRawContactLoaderListener);
         }
+    }
+
+    @Override
+    public void onPickRawContact(long rawContactId) {
+        startEditorAndForwardExtras(getIntentForRawContact(rawContactId));
     }
 
     /**
@@ -134,7 +139,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
             ft.remove(oldFragment);
         }
         final PickRawContactDialogFragment newFragment = PickRawContactDialogFragment.getInstance(
-                mUri, mCursor, mMaterialPalette, mIsUserProfile);
+                 mCursor, mIsUserProfile);
         ft.add(newFragment, TAG_RAW_CONTACTS_DIALOG);
         // commitAllowingStateLoss is safe in this activity because the fragment entirely depends
         // on the result of the loader. Even if we lose the fragment because the activity was
@@ -163,7 +168,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
         // Destroy the loader to prevent multiple onLoadFinished calls in case CP2 is updating in
         // the background.
         getLoaderManager().destroyLoader(LOADER_RAW_CONTACTS);
-        ImplicitIntentsUtil.startActivityInApp(this, intent);
+        startEditorAndForwardExtras(intent);
     }
 
     /**
@@ -194,5 +199,16 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
                 this, mUri, rawContactId, mMaterialPalette);
         intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
         return intent;
+    }
+
+    /**
+     * Starts the given intent within the app, attaching any extras to it that were passed to us.
+     */
+    private void startEditorAndForwardExtras(Intent intent) {
+        final Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            intent.putExtras(extras);
+        }
+        ImplicitIntentsUtil.startActivityInApp(this, intent);
     }
 }

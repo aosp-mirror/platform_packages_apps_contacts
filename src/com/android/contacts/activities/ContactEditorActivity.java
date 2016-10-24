@@ -164,7 +164,7 @@ public class ContactEditorActivity extends ContactsActivity implements
         void load(String action, Uri lookupUri, Bundle intentExtras);
 
         /**
-         * Applies extras from the hosting Activity to the first writable raw contact.
+         * Applies extras from the hosting Activity to the writable raw contact.
          */
         void setIntentExtras(Bundle extras);
 
