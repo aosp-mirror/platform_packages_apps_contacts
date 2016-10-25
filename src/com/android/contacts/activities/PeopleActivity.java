@@ -278,7 +278,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
                 return;
             }
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + mGroupUri);
-            switchToOrUpdateGroupView(intent.getAction());
+            switchView(ContactsView.GROUP_VIEW);
             return;
         }
 
@@ -298,7 +298,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
                 return;
             }
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + mGroupUri);
-            switchToOrUpdateGroupView(intent.getAction());
+            switchView(ContactsView.GROUP_VIEW);
         }
 
         setIntent(intent);
