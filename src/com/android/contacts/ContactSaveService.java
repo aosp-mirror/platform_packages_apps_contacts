@@ -47,6 +47,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.os.ResultReceiver;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -61,6 +62,8 @@ import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.common.util.ContactDisplayUtils;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
 import com.android.contacts.util.ContactPhotoUtils;
@@ -1407,7 +1410,11 @@ public class ContactSaveService extends IntentService {
                 result.putString(EXTRA_DISPLAY_NAME, name);
                 receiver.send(CONTACTS_LINKED, result);
             } else {
-                showToast(R.string.contactsJoinedMessage);
+                if (TextUtils.isEmpty(name)) {
+                    showToast(R.string.contactsJoinedMessage);
+                } else {
+                    showToast(R.string.contactsJoinedNamedMessage, name);
+                }
             }
         } else {
             if (receiver != null) {
@@ -1427,22 +1434,28 @@ public class ContactSaveService extends IntentService {
         }
         whereBuilder.deleteCharAt(whereBuilder.length() - 1).append(')');
         final Cursor cursor = getContentResolver().query(Contacts.CONTENT_URI,
-                new String[]{Contacts._ID, Contacts.DISPLAY_NAME},
+                new String[]{Contacts._ID, Contacts.DISPLAY_NAME,
+                        Contacts.DISPLAY_NAME_ALTERNATIVE},
                 whereBuilder.toString(), whereArgs, null);
 
         String name = null;
+        String nameAlt = null;
         long contactId = 0;
         try {
             if (cursor.moveToFirst()) {
                 contactId = cursor.getLong(0);
                 name = cursor.getString(1);
+                nameAlt = cursor.getString(2);
             }
             while(cursor.moveToNext()) {
                 if (cursor.getLong(0) != contactId) {
                     return null;
                 }
             }
-            return name == null ? "" : name;
+
+            final String formattedName = ContactDisplayUtils.getPreferredDisplayName(name, nameAlt,
+                    new ContactsPreferences(getApplicationContext()));
+            return formattedName == null ? "" : formattedName;
         } finally {
             if (cursor != null) {
                 cursor.close();
@@ -1533,6 +1546,11 @@ public class ContactSaveService extends IntentService {
         final String name = queryNameOfLinkedContacts(new long[] {contactId1, contactId2});
         Intent callbackIntent = intent.getParcelableExtra(EXTRA_CALLBACK_INTENT);
         if (success && name != null) {
+            if (TextUtils.isEmpty(name)) {
+                showToast(R.string.contactsJoinedMessage);
+            } else {
+                showToast(R.string.contactsJoinedNamedMessage, name);
+            }
             Uri uri = RawContacts.getContactLookupUri(resolver,
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactIds[0]));
             callbackIntent.setData(uri);
@@ -1696,6 +1714,22 @@ public class ContactSaveService extends IntentService {
                     .putExtra(EXTRA_RESULT_CODE, RESULT_FAILURE));
         }
     }
+
+    /**
+     * Shows a toast on the UI thread by formatting messageId using args.
+     * @param messageId id of message string
+     * @param args args to format string
+     */
+    private void showToast(final int messageId, final Object... args) {
+        final String message = getResources().getString(messageId, args);
+        mMainHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(ContactSaveService.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
     /**
      * Shows a toast on the UI thread.
