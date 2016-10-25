@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Predloženi kontakti"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Svi kontakti"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontakti su povezani"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Kontakt <xliff:g id="NAME">%1$s</xliff:g> je izbrisan"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Kontakti <xliff:g id="NAME_0">%1$s</xliff:g> i <xliff:g id="NAME_1">%2$s</xliff:g> su izbrisani"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"Kontakti <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... su izbrisani"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">Kontakti su izbrisani</item>
       <item quantity="few">Kontakti su izbrisani</item>
@@ -138,18 +135,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Dodano oznaci"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Nije moguće sačuvati promjene oznake"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Ta oznaka već postoji"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Neki kontakti nemaju adrese e-pošte."</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Neki kontakti nemaju brojeve telefona."</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Pošalji poruku e-pošte"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"Pošalji poruku"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Odaberite kontakte"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"Pošalji"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontakt s brojem telefona</item>
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> kontakta s brojevima telefona</item>
@@ -651,6 +642,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Uključiti automatsku sinhronizaciju?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Promjene koje načinite u svim aplikacijama i računima, kao i u Kontaktima, će se sinhronizirati na internetu i vašim uređajima."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Uključi"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"Niste povezani na mrežu"</string>
 </resources>

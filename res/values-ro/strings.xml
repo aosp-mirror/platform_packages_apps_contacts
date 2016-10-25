@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Persoane din agendă sugerate"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Toată agenda"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Persoanele de contact au fost asociate"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"S-a șters <xliff:g id="NAME">%1$s</xliff:g>."</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"S-au șters <xliff:g id="NAME_0">%1$s</xliff:g> și <xliff:g id="NAME_1">%2$s</xliff:g>."</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... au fost șterse"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="few">Persoane de contact șterse</item>
       <item quantity="other">Persoane de contact șterse</item>
@@ -138,18 +135,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Adăugat(e) în etichetă"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Modificările etichetei nu s-au salvat"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Eticheta există deja"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Unele persoane de contact nu au adresă de e-mail."</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Unele persoane de contact nu au numere de telefon."</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Trimiteți un e-mail"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"Trimiteți un mesaj"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Selectați persoane din Agendă"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"Trimiteți"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> persoane de contact cu numere de telefon</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> de persoane de contact cu numere de telefon</item>
@@ -651,6 +642,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Activați sincronizarea automată?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Modificările făcute în toate aplicațiile și conturile, nu doar în Agendă, vor fi sincronizate între web și dispozitive."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Activați"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"Nicio conexiune"</string>
 </resources>
