@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Voorgestelde kontakte"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakte"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontakte is saamgevoeg"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> uitgevee"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> en <xliff:g id="NAME_1">%2$s</xliff:g> uitgevee"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g> … uitgevee"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">Kontakte is uitgevee</item>
       <item quantity="one">Kontak is uitgevee</item>
@@ -135,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"By etiket gevoeg"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Kon nie etiketveranderinge stoor nie"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Daardie etiket bestaan reeds."</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Sommige kontakte het nie e-pos nie."</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Sommige kontakte het nie foonnommers nie."</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Stuur e-pos"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"Stuur boodskap"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Kies kontakte"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"Stuur"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontakte met foonnommers</item>
       <item quantity="one">1 kontak met foonnommer</item>
@@ -638,6 +629,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Skakel outo-sinkroniseer aan?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Veranderinge wat jy aan alle programme en rekeninge maak, nie net Kontakte nie, sal tussen die web en jou toestelle gesinkroniseer word."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Skakel aan"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"Geen verbinding nie"</string>
 </resources>

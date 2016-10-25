@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Kontak yang disarankan"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Semua kontak"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontak ditautkan"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> dihapus"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> dan <xliff:g id="NAME_1">%2$s</xliff:g> dihapus"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... dihapus"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">Kontak dihapus</item>
       <item quantity="one">Kontak dihapus</item>
@@ -135,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Ditambahkan ke label"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Tidak dapat menyimpan perubahan label"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Label tersebut sudah ada"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Beberapa kontak tidak memiliki email."</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Beberapa kontak tidak memiliki nomor telepon."</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Kirim email"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"Kirim pesan"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Pilih Kontak"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"Kirim"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontak dengan nomor telepon</item>
       <item quantity="one">1 kontak dengan nomor telepon</item>
@@ -496,13 +487,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"Tampilan khusus"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Simpan kontak yang diimpor ke:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Impor dari kartu SIM"</string>
-    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"Impor dari SIM <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Impor dari SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
-    <skip />
+    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"Impor dari <xliff:g id="CARRIER_NAME">^1</xliff:g> SIM\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"Impor dari <xliff:g id="CARRIER_NAME">%1$s</xliff:g> SIM"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Impor dari file .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Batalkan impor <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Batalkan ekspor <xliff:g id="FILENAME">%s</xliff:g>?"</string>
@@ -638,6 +626,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Aktifkan sinkronisasi otomatis?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Perubahan yang Anda lakukan pada semua aplikasi dan akun, bukan hanya Kontak, akan disinkronkan antara web dan perangkat."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Aktifkan"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"Tidak ada sambungan"</string>
 </resources>

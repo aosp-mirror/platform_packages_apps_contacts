@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ទំនាក់ទំនង​ដែល​បាន​ស្នើ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ទំនាក់ទំនង​ទាំងអស់"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"បានតភ្ជាប់ទំនាក់ទំនង"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"បាន​លុប <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"បាន​លុប <xliff:g id="NAME_0">%1$s</xliff:g> និង <xliff:g id="NAME_1">%2$s</xliff:g>"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"បានលុប <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>..."</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">បានលុបទំនាក់ទំនង</item>
       <item quantity="one">បានលុបទំនាក់ទំនង</item>
@@ -135,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"បាន​បន្ថែម​ទៅ​ស្លាក"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"មិនអាចរក្សាទុកការផ្លាស់ប្តូរស្លាក​បាន​ទេ"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ស្លាក​នោះ​មាន​រួច​ហើយ"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"ទំនាក់ទំនង​ខ្លះ​មិន​មាន​អ៊ីមែល​ទេ។"</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"ទំនាក់ទំនង​ខ្លះ​មិន​មាន​លេខ​ទូរសព្ទ​ទេ។"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"ផ្ញើ​អ៊ីមែល"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"ផ្ញើ​សារ"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"ជ្រើស​ទំនាក់ទំនង"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"ផ្ញើ"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ទំនាក់ទំនង <xliff:g id="COUNT">%d</xliff:g> ដែលមានលេខទូរស័ព្ទ</item>
       <item quantity="one">ទំនាក់ទំនង 1 ដែលមានលេខទូរស័ព្ទ</item>
@@ -496,13 +487,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"ទិដ្ឋភាព​​ផ្ទាល់ខ្លួន"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"រក្សាទំនាក់ទំនងដែលបាននាំចូលទៅ៖"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"នាំចូល​ពី​ស៊ីម​កាត"</string>
-    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"នាំចូល​ពី SIM <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"នាំចូល​ពី SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
-    <skip />
+    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"នាំចូល​ពី SIM <xliff:g id="CARRIER_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"នាំចូល​ពី SIM <xliff:g id="CARRIER_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"នាំចូូលពីឯកសារ .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"បោះបង់​ការ​នាំចូល <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"បោះបង់​ការ​នាំចេញ <xliff:g id="FILENAME">%s</xliff:g>?"</string>
@@ -638,6 +626,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"បើក​សម​កាល​កម្ម​​ស្វ័យ​ប្រវត្តិ​ដែរ​ឬ​ទេ?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"មិន​ត្រឹមតែ​ទំនាក់ទំនង​ទេ រាល់​ការ​ផ្លាស់ប្ដូរ​ដែល​អ្នក​ធ្វើ​ចំពោះ​កម្មវិធី និង​គណនី​ទាំងអស់ នឹង​ត្រូវ​បាន​ធ្វើ​សមកាលកម្ម​រវាង​បណ្ដាញ និង​ឧបករណ៍​របស់​អ្នក។"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"បើក"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"គ្មាន​ការ​តភ្ជាប់"</string>
 </resources>
