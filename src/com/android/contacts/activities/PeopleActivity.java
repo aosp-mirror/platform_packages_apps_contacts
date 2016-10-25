@@ -914,9 +914,11 @@ public class PeopleActivity extends ContactsDrawerActivity {
     }
 
     private void handleFilterChangeForFragment(ContactListFilter filter) {
-        mAllFragment.setFilterAndUpdateTitle(filter);
-        // Scroll to top after filter is changed.
-        mAllFragment.scrollToTop();
+        if (mAllFragment.canSetActionBar()) {
+            mAllFragment.setFilterAndUpdateTitle(filter);
+            // Scroll to top after filter is changed.
+            mAllFragment.scrollToTop();
+        }
     }
 
     private void handleFilterChangeForActivity(ContactListFilter filter) {
