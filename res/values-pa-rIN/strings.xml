@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ਸੁਝਾਏ ਗਏ ਸੰਪਰਕ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ਸਾਰੇ ਸੰਪਰਕ"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ਸੰਪਰਕ ਲਿੰਕ ਕੀਤੇ ਗਏ"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> ਅਤੇ <xliff:g id="NAME_1">%2$s</xliff:g> ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one"> ਸੰਪਰਕ ਹਟਾਏ</item>
       <item quantity="other"> ਸੰਪਰਕ ਹਟਾਏ</item>
@@ -135,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"ਲੇਬਲ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"ਲੇਬਲ ਤਬਦੀਲੀਆਂ ਨੂੰ ਰੱਖਿਅਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ਇਹ ਲੇਬਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"ਕੁਝ ਸੰਪਰਕਾਂ ਨਾਲ ਈਮੇਲਾਂ ਨਹੀਂ ਹਨ।"</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"ਕੁਝ ਸੰਪਰਕਾਂ ਨਾਲ ਫ਼ੋਨ ਨੰਬਰ ਨਹੀਂ ਹਨ।"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"ਈਮੇਲ ਭੇਜੋ"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"ਸੁਨੇਹਾ ਭੇਜੋ"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"ਸੰਪਰਕ ਚੁਣੋ"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"ਭੇਜੋ"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ਫੋਨ ਨੰਬਰਾਂ ਵਾਲੇ ਸੰਪਰਕ</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ਫੋਨ ਨੰਬਰਾਂ ਵਾਲੇ ਸੰਪਰਕ</item>
@@ -496,13 +487,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"ਵਿਸ਼ੇਸ਼-ਵਿਉਂਤਬੱਧ ਕੀਤਾ ਦ੍ਰਿਸ਼"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"ਆਯਾਤ ਕੀਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਇਸ ਵਿੱਚ ਰੱਖਿਅਤ ਕਰੋ:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"SIM ਕਾਰਡ ਤੋਂ ਆਯਾਤ ਕਰੋ"</string>
-    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"SIM <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g> ਤੋਂ ਆਯਾਤ ਕਰੋ"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g> ਤੋਂ ਆਯਾਤ ਕਰੋ"</string>
-    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
-    <skip />
+    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"SIM\n<xliff:g id="SIM_NUMBER">^2</xliff:g> <xliff:g id="CARRIER_NAME">^1</xliff:g> ਤੋਂ ਆਯਾਤ ਕਰੋ"</string>
+    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"<xliff:g id="CARRIER_NAME">%1$s</xliff:g> SIM ਤੋਂ ਆਯਾਤ ਕਰੋ"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf ਫ਼ਾਈਲ ਤੋਂ ਆਯਾਤ ਕਰੋ"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"ਕੀ <xliff:g id="FILENAME">%s</xliff:g> ਦਾ ਆਯਾਤ ਰੱਦ ਕਰਨਾ ਹੈ?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"ਕੀ <xliff:g id="FILENAME">%s</xliff:g> ਦਾ ਨਿਰਯਾਤ ਰੱਦ ਕਰਨਾ ਹੈ?"</string>
@@ -637,6 +625,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"ਕੀ ਸਵੈ-ਸਮਕਾਲੀਕਰਨ ਚਾਲੂ ਕਰਨਾ ਹੈ?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"ਨਾ ਸਿਰਫ਼ ਸੰਪਰਕਾਂ ਲਈ, ਬਲਕਿ ਸਾਰੀਆਂ ਐਪਾਂ ਅਤੇ ਖਾਤਿਆਂ ਲਈ ਕੀਤੀਆਂ ਗਈਆਂ ਤੁਹਾਡੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਵੈੱਬ ਅਤੇ ਤੁਹਾਡੀਆਂ ਡੀਵਾਈਸਾਂ ਵਿਚਕਾਰ ਸਮਕਾਲੀਕਿਰਤ ਕੀਤਾ ਜਾਵੇਗਾ।"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ਚਾਲੂ ਕਰੋ"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"ਕੋਈ ਕਨੈਕਸ਼ਨ ਨਹੀਂ"</string>
 </resources>

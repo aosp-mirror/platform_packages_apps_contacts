@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"مجوزہ رابطے"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"سبھی رابطے"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"رابطے لنک ہو گئے"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> حذف ہو گیا"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> اور <xliff:g id="NAME_1">%2$s</xliff:g> حذف ہو گئے"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>، <xliff:g id="NAME_1">%2$s</xliff:g>، <xliff:g id="NAME_2">%3$s</xliff:g>… حذف ہو گئے"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">رابطے حذف ہو گئے</item>
       <item quantity="one">رابطہ حذف ہو گیا</item>
@@ -135,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"لیبل میں شامل ہو گیا"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"لیبل کی تبدیلیاں محفوظ نہیں ہو سکیں"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"یہ لیبل پہلے سے موجود ہے"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"کچھ رابطوں کے پاس ای میلز نہیں ہیں۔"</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"کچھ رابطوں کے پاس فون نمبرز نہیں ہیں۔"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"ای میل بھیجیں"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"پیغام بھیجیں"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"رابطے منتخب کریں"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"بھیجیں"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">فون نمبرز کے ساتھ <xliff:g id="COUNT">%d</xliff:g> رابطے</item>
       <item quantity="one">فون نمبر کے ساتھ 1 رابطہ</item>
@@ -637,6 +628,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"خودکار مطابقت پذیری آن کریں؟"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"صرف رابطوں ہی نہیں، آپ کی تمام ایپس اور اکاؤنٹس پر کی گئی تبدیلیاں بھی ویب اور آپ کے آلات کے درمیان مطابقت پذیر کی جائیں گی۔"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"آن کریں"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"کوئی کنکشن نہیں ہے"</string>
 </resources>

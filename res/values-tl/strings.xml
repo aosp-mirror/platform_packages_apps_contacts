@@ -67,12 +67,9 @@
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Mga iminumungkahing contact"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Lahat ng mga contact"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Na-link na ang mga contact"</string>
-    <!-- no translation found for contacts_deleted_one_named_toast (2252551736301363193) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_two_named_toast (3642082931473111791) -->
-    <skip />
-    <!-- no translation found for contacts_deleted_many_named_toast (2501253934529429326) -->
-    <skip />
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Na-delete si <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Na-delete sina <xliff:g id="NAME_0">%1$s</xliff:g> at <xliff:g id="NAME_1">%2$s</xliff:g>"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"Na-delete sina <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>..."</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">Na-delete na ang mga contact</item>
       <item quantity="other">Na-delete na ang mga contact</item>
@@ -135,18 +132,12 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Idinagdag sa label"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Hindi ma-save ang mga pagbabago sa label"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Mayroon nang ganyang label"</string>
-    <!-- no translation found for groupSomeContactsNoEmailsToast (8211161470235548732) -->
-    <skip />
-    <!-- no translation found for groupSomeContactsNoPhonesToast (5530760834827530509) -->
-    <skip />
-    <!-- no translation found for menu_sendEmailOption (5978319931321657780) -->
-    <skip />
-    <!-- no translation found for menu_sendMessageOption (8850168125274916426) -->
-    <skip />
-    <!-- no translation found for pickerSelectContactsActivityTitle (2252684022188382496) -->
-    <skip />
-    <!-- no translation found for send_to_selection (2251339182881603540) -->
-    <skip />
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Walang mga email ang ilang contact."</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Walang mga numero ng telepono ang ilang contact."</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Magpadala ng email"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"Magpadala ng mensahe"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Pumili ng Mga Contact"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"Ipadala"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact na may mga numero ng telepono</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> na contact na may mga numero ng telepono</item>
@@ -637,6 +628,5 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"I-on ang auto-sync?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Ang mga pagbabagong gagawin mo sa lahat ng app at account, hindi lang sa Mga Contact, ay isi-synchronize sa pagitan ng web at ng iyong mga device."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"I-on"</string>
-    <!-- no translation found for connection_error_message (7046408921529247089) -->
-    <skip />
+    <string name="connection_error_message" msgid="7046408921529247089">"Walang koneksyon"</string>
 </resources>
