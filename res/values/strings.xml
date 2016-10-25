@@ -508,9 +508,6 @@
     <!-- An option in the 'Contact photo' dialog, if there is already a photo [CHAR LIMIT=50] -->
     <string name="pick_new_photo">Select new photo</string>
 
-    <!-- Text shown in the contacts app while the background process updates contacts after a system upgrade [CHAR LIMIT=300] -->
-    <string name="upgrade_in_progress">Contact list is being updated.</string>
-
     <!-- Title shown in the search result activity of contacts app while searching.  [CHAR LIMIT=20] -->
     <string name="search_results_searching">Searching\u2026</string>
 
@@ -919,9 +916,6 @@
 
     <!-- Content description of photo in photo picker indicating a photo from unknown account is selected. -->
     <string name="photo_view_description_checked_no_info">Photo from unknown account checked</string>
-
-    <!-- Text shown in the contacts app while the background process updates contacts after a locale change [CHAR LIMIT=150]-->
-    <string name="locale_change_in_progress">Contact list is being updated to reflect the change of language.\n\nPlease wait&#8230;</string>
 
     <!-- Left drawer menu item to open contacts assistant cards. [CHAR LIMIT=20]-->
     <string name="menu_assistant">Assistant</string>
