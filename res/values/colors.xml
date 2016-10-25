@@ -83,6 +83,9 @@
     <!-- Color of background of disabled link contacts button, 15% black. -->
     <color name="disabled_button_background">#26000000</color>
 
+    <!-- Color of text of people names in contact list when item is disabled. 30% black -->
+    <color name="disabled_contact_list_name_text">#4D000000</color>
+
     <!-- Color of background of all empty states. -->
     <color name="empty_state_background">#efefef</color>
 

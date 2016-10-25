@@ -16,10 +16,8 @@
 package com.android.contacts.tests;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.test.InstrumentationRegistry;
 import android.util.Log;

@@ -157,15 +157,19 @@ public class SharedPreferenceUtil {
         final Set<String> imported = new HashSet<>(getImportedSims(context));
         final Set<String> dismissed = new HashSet<>(getDismissedSims(context));
         for (SimCard sim : sims) {
+            final String id = sim.getSimId();
+            if (id == null) {
+                continue;
+            }
             if (sim.isImported()) {
-                imported.add(sim.getSimId());
+                imported.add(id);
             } else {
-                imported.remove(sim.getSimId());
+                imported.remove(id);
             }
             if (sim.isDismissed()) {
-                dismissed.add(sim.getSimId());
+                dismissed.add(id);
             } else {
-                dismissed.remove(sim.getSimId());
+                dismissed.remove(id);
             }
         }
         getSharedPreferences(context).edit()
