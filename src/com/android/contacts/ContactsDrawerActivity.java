@@ -489,7 +489,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                         mToggle.runWhenIdle(new Runnable() {
                             @Override
                             public void run() {
-                                onGroupMenuItemClicked(groupListItem);
+                                onGroupMenuItemClicked(groupListItem.getGroupId(),
+                                        groupListItem.getTitle());
                                 updateMenuSelection(menuItem);
                             }
                         });
@@ -576,7 +577,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         return isGroupView() || isAssistantView();
     }
 
-    protected abstract void onGroupMenuItemClicked(GroupListItem group);
+    protected abstract void onGroupMenuItemClicked(long groupId, String title);
 
     protected void onCreateGroupMenuItemClicked() {
         // Select the account to create the group
@@ -680,7 +681,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     }
 
     protected void onFilterMenuItemClicked(Intent intent) {
-        resetFilter();
         AccountFilterUtil.handleAccountFilterResult(mContactListFilterController,
                 AppCompatActivity.RESULT_OK, intent);
     }
