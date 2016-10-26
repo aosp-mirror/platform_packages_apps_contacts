@@ -789,6 +789,12 @@ public class PeopleActivity extends ContactsDrawerActivity {
         if (isInSecondLevel()) {
             popSecondLevel();
             showFabWithAnimation(/* showFab */ true);
+            // HACK: swap the current filter to force listeners to update because the group
+            // member view no longer changes the filter. Fix for b/32223767
+            final ContactListFilter current = mContactListFilterController.getFilter();
+            mContactListFilterController.setContactListFilter(
+                    AccountFilterUtil.createContactsFilter(this), false);
+            mContactListFilterController.setContactListFilter(current, false);
         }
         mCurrentView = ContactsView.ACCOUNT_VIEW;
         super.onFilterMenuItemClicked(intent);
