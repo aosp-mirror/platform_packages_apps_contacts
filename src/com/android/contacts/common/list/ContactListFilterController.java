@@ -71,9 +71,6 @@ public abstract class ContactListFilterController {
      */
     public abstract void setContactListFilter(ContactListFilter filter, boolean persistent);
 
-    public abstract void setContactListFilter(ContactListFilter filter, boolean persistent,
-            boolean notifyListeners);
-
     public abstract void selectCustomFilter();
 
     /**
@@ -144,8 +141,7 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
         setContactListFilter(filter, persistent, /* notifyListeners */ true);
     }
 
-    @Override
-    public void setContactListFilter(ContactListFilter filter, boolean persistent,
+    private void setContactListFilter(ContactListFilter filter, boolean persistent,
             boolean notifyListeners) {
         if (!filter.equals(mFilter)) {
             mFilter = filter;
