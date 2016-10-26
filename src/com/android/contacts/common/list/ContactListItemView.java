@@ -450,13 +450,13 @@ public class ContactListItemView extends ViewGroup
         // All the other Views will honor the photo, so available width for them may be shrunk.
         if (mPhotoViewWidth > 0 || mKeepHorizontalPaddingForPhotoView) {
             effectiveWidth = specWidth - getPaddingLeft() - getPaddingRight()
-                    - (mPhotoViewWidth + mGapBetweenImageAndText);
+                    - (mPhotoViewWidth + mGapBetweenImageAndText + mGapBetweenIndexerAndImage);
         } else {
             effectiveWidth = specWidth - getPaddingLeft() - getPaddingRight();
         }
 
         if (mIsSectionHeaderEnabled) {
-            effectiveWidth -= mHeaderWidth + mGapBetweenIndexerAndImage;
+            effectiveWidth -= mHeaderWidth;
         }
 
         if (mSupportVideoCallIcon) {
