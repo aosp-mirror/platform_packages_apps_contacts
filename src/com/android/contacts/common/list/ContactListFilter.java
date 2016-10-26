@@ -397,11 +397,14 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
      * (see {@link #isGoogleAccountType)
      */
     public boolean isSyncable(List<AccountWithDataSet> accounts) {
-        // TODO(samchen): Check FILTER_TYPE_CUSTOM
         if (isGoogleAccountType() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
             return true;
         }
+        // Since we don't know which group is selected until the actual contacts loading, we
+        // consider a custom filter syncable as long as there is a Google account on the device,
+        // and don't check if there is any group that belongs to a Google account is selected.
         if (filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
+                || filterType == ContactListFilter.FILTER_TYPE_CUSTOM
                 || filterType == ContactListFilter.FILTER_TYPE_DEFAULT) {
             if (accounts != null && accounts.size() > 0) {
                 // If we're showing all contacts and there is any Google account on the device then
@@ -422,10 +425,11 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
      */
     public List<Account> getSyncableAccounts(List<AccountWithDataSet> accounts) {
         final List<Account> syncableAccounts = new ArrayList<>();
-        // TODO(samchen): Check FILTER_TYPE_CUSTOM
+
         if (isGoogleAccountType() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
             syncableAccounts.add(new Account(accountName, accountType));
         } else if (filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
+                || filterType == ContactListFilter.FILTER_TYPE_CUSTOM
                 || filterType == ContactListFilter.FILTER_TYPE_DEFAULT) {
             if (accounts != null && accounts.size() > 0) {
                 for (AccountWithDataSet account : accounts) {
