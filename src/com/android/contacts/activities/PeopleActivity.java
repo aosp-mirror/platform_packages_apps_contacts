@@ -923,8 +923,11 @@ public class PeopleActivity extends ContactsDrawerActivity {
     }
 
     private void handleFilterChangeForActivity(ContactListFilter filter) {
-        // Set mShouldSwitchToAllContacts to true, so that we can switch to all contacts later.
-        if (filter.isContactsFilterType()) {
+        // The filter was changed while this activity was in the background. If we're in the
+        // assistant view Switch to the main contacts list when we resume to prevent
+        // b/31838582 and b/31829161
+        // TODO: this is a hack; we need to do some cleanup of the contact list filter stuff
+        if (isAssistantView() && filter.isContactsFilterType()) {
             mShouldSwitchToAllContacts = true;
         }
 
