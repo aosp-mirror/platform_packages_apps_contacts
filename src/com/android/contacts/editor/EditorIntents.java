@@ -81,17 +81,18 @@ public class EditorIntents {
     }
 
     /**
-     * Returns an Intent to edit a different contact in the editor with whatever
+     * Returns an Intent to edit a different raw contact in the editor with whatever
      * values were already entered on the current editor.
      */
-    public static Intent createEditOtherContactIntent(Context context, Uri uri,
-            ArrayList<ContentValues> contentValues) {
+    public static Intent createEditOtherRawContactIntent(Context context, Uri uri,
+            long rawContactId, ArrayList<ContentValues> contentValues) {
         final Intent intent = new Intent(Intent.ACTION_EDIT, uri, context,
                 ContactEditorActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
                 | Intent.FLAG_ACTIVITY_FORWARD_RESULT);
         intent.putExtra(ContactEditorFragment.INTENT_EXTRA_ADD_TO_DEFAULT_DIRECTORY, "");
-
+        intent.putExtra(ContactEditorFragment.INTENT_EXTRA_RAW_CONTACT_ID_TO_DISPLAY_ALONE,
+                rawContactId);
         // Pass on all the data that has been entered so far
         if (contentValues != null && contentValues.size() != 0) {
             intent.putParcelableArrayListExtra(ContactsContract.Intents.Insert.DATA, contentValues);
