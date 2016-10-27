@@ -759,7 +759,8 @@ public class PeopleActivity extends ContactsDrawerActivity {
                         ContactSaveService.startService(PeopleActivity.this,
                                 ContactSaveService.createUndoIntent(PeopleActivity.this, intent));
                     }
-                }).show();
+                }).setActionTextColor(ContextCompat.getColor(this, R.color.snackbar_action_text))
+                .show();
     }
 
     private class SaveServiceListener extends BroadcastReceiver {
