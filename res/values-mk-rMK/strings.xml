@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Уреди"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Избриши"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Промени фотографија"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Постави на почетниот екран"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"Повикај контакт"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Испрати текстуална порака на контакт"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Раздели"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Прикажи ги сите контакти"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Препорачани контакти"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Сите контакти"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Контактите се поврзани"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> е избришан"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> и <xliff:g id="NAME_1">%2$s</xliff:g> се избришани"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Од Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Од <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Постави мелодија"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Сите повици кон говорна пошта"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Контактите од сметките само за читање не може да се избришат, но може да се скријат."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Сокриј"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Контактот што ќе се избрише содржи детали од повеќе сметки. Деталите од сметките само за читање ќе се скријат, но нема да се избришат."</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Направи нова фотографија"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Избери фотографија"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Избери нова фотографија"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"Списокот со контакти се ажурира."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Се пребарува..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Прикажи ги избраните"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Прикажи ги сите"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Фотографијата од <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>е избрана"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Не е избрана фотографија од непозната сметка"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Избрана е фотографија од непозната сметка"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"Списокот со контакти се ажурира за да ја одрази промената на јазикот.\n\nПочекајте…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Помошник"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Дупликати"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Отворете фиока за навигација"</string>
@@ -487,13 +491,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"Приспособен приказ"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Зачувајте ги увезените контакти на:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Извршете увоз од SIM-картичка"</string>
-    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"Увезете од SIM <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Извршете увоз од SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
-    <skip />
+    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"Увезете од <xliff:g id="CARRIER_NAME">^1</xliff:g> SIM\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"Увезете од <xliff:g id="CARRIER_NAME">%1$s</xliff:g> SIM"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Извршете увоз од датотека .vcf"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Да се откаже увозот на <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Да се откаже извозот на <xliff:g id="FILENAME">%s</xliff:g>?"</string>

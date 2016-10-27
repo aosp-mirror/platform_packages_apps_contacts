@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"កែសម្រួល​"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"លុប"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"ប្ដូររូបថត"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ដាក់​លើ​អេក្រង់​ដើម"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"ហៅ​ទំនាក់ទំនង"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"អត្ថបទ​ទំនាក់ទំនង"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"ផ្តាច់ការតភ្ជាប់"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"បង្ហាញ​ទំនាក់​ទំនង​ទាំងអស់"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ទំនាក់ទំនង​ដែល​បាន​ស្នើ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ទំនាក់ទំនង​ទាំងអស់"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"បានតភ្ជាប់ទំនាក់ទំនង"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"បាន​លុប <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"បាន​លុប <xliff:g id="NAME_0">%1$s</xliff:g> និង <xliff:g id="NAME_1">%2$s</xliff:g>"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"ពី Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"ពី <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"កំណត់​សំឡេង​រោទ៍"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ការ​ហៅ​ទាំងអស់​ទៅ​សារ​ជា​សំឡេង"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ព័ត៌មានលម្អិតពីគណនីសម្រាប់តែអានប៉ុណ្ណោះមិនអាចលុបបានទេ ប៉ុន្តែអាចលាក់បាន។"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"លាក់"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"ទំនាក់ទំនងដែលនឹងត្រូវលុបមានព័ត៌មានលម្អិតពីគណនីច្រើន។ ព័ត៌មានលម្អិតពីគណនីសម្រាប់តែអានប៉ុណ្ណោះនឹងត្រូវបានលាក់ ប៉ុន្តែវានឹងមិនត្រូវបានលុបនោះទេ។"</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"ថតរូប​ថ្មី"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ជ្រើសរើស​រូបថត"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"ជ្រើស​រូបថត​ថ្មី"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"កំពុង​ធ្វើ​បច្ចុប្បន្នភាព​បញ្ជី​ទំនាក់ទំនង។"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"កំពុង​រក..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"បង្ហាញ​អ្វី​ដែល​បាន​ជ្រើស"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"បង្ហាញ​ទាំងអស់"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"បានជ្រើសរូបថតពី <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"មិនបានជ្រើសរូបថតពីគណនីមិនស្គាល់ទេ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"បានជ្រើសរូបថតពីគណនីមិនស្គាល់"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"កំពុង​ធ្វើ​បច្ចុប្បន្នភាព​បញ្ជី​​ទំនាក់ទំនង​ដើម្បី​​បង្ហាញ​ឲ្យ​ឃើញ​ការ​​ផ្លាស់ប្ដូរ​​ភាសា។\n\nសូម​រង់ចាំ..."</string>
     <string name="menu_assistant" msgid="919866272301744261">"អ្នកជំនួយការ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ស្ទួន"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"បើក​ផ្ទាំង​រុករក"</string>
