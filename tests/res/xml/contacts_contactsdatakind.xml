@@ -24,7 +24,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     accountType="com.android.contacts.tests.testauth.basic"
     accountTypeLabel="@string/applicationLabel"
-    accountTypeIcon="@mipmap/ic_contacts_launcher_square"
+    accountTypeIcon="@mipmap/ic_contacts_launcher"
     >
     <EditSchema
         >
@@ -96,7 +96,7 @@
 
     <ContactsDataKind
         android:mimeType="vnd.android.cursor.item/vnd.contactstest.profile"
-        android:icon="@mipmap/ic_contacts_launcher_square"
+        android:icon="@mipmap/ic_contacts_launcher"
         android:summaryColumn="data2"
         android:detailColumn="data3" />
 

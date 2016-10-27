@@ -27,7 +27,7 @@
     <color name="quickcontact_entry_sub_header_text_color">#737373</color>
     <color name="quickcontact_entry_header_text_color">#202020</color>
 
-    <color name="action_bar_background">#0288d1</color>
+    <color name="action_bar_background">#2a56c6</color>
 
     <color name="nav_item_selected_background">#0f000000</color>
 
@@ -42,8 +42,8 @@
     <!-- Color of the status bar above the contextual selection bar. -->
     <color name="contextual_selection_bar_status_bar_color">#bababa</color>
 
-    <color name="primary_color_dark">#0277bd</color>
-    <color name="primary_color">#0288d1</color>
+    <color name="primary_color_dark">#2a56c6</color>
+    <color name="primary_color">#2a56c6</color>
 
     <color name="group_primary_color_dark">#546E7A</color>
     <color name="group_primary_color">#607D8B</color>
@@ -121,7 +121,7 @@
     <color name="people_app_theme_color">#363636</color>
 
     <!-- Color of the theme of the Dialer app -->
-    <color name="dialtacts_theme_color">#0288d1</color>
+    <color name="dialtacts_theme_color">#2a56c6</color>
 
     <!-- Color of image view placeholder. -->
     <color name="image_placeholder">#DDDDDD</color>
@@ -245,7 +245,7 @@
     <color name="search_video_call_icon_tint">@color/searchbox_hint_text_color</color>
 
     <!-- Text color for an action in a snackbar. -->
-    <color name="snackbar_action_text">#40c4ff</color>
+    <color name="snackbar_action_text">#ffffff</color>
     <!-- Background color for a snackbar. -->
     <color name="snackbar_background">#333333</color>
 

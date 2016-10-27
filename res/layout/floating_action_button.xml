@@ -26,7 +26,7 @@
     android:layout_gravity="bottom|end"
     android:layout_marginBottom="@dimen/floating_action_button_margin_bottom"
     android:layout_marginEnd="@dimen/floating_action_button_margin_right"
-    android:background="@drawable/fab_blue"
+    android:background="@drawable/fab_pink"
     android:elevation="@dimen/design_fab_elevation"
     app:layout_dodgeInsetEdges="bottom" >
 
