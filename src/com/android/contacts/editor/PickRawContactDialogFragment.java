@@ -77,17 +77,8 @@ public class PickRawContactDialogFragment extends DialogFragment {
             if (TextUtils.isEmpty(displayName)) {
                 displayName = mContext.getString(R.string.missing_name);
             }
-
-            if (!account.areContactsWritable()) {
-                displayName = mContext
-                        .getString(R.string.contact_editor_pick_raw_contact_read_only, displayName);
-                view.setAlpha(.38f);
-            } else {
-                view.setAlpha(1f);
-            }
-            final TextView nameView = (TextView) view.findViewById(
-                    R.id.display_name);
-            nameView.setText(displayName);
+            final RawContactViewHolder holder = (RawContactViewHolder) view.getTag();
+            holder.displayName.setText(displayName);
 
             final String accountDisplayLabel;
 
@@ -106,12 +97,9 @@ public class PickRawContactDialogFragment extends DialogFragment {
             } else {
                 accountDisplayLabel = account.getDisplayLabel(mContext).toString();
             }
-            final TextView accountTextView = (TextView) view.findViewById(
-                    R.id.account_name);
-            final ImageView accountIconView = (ImageView) view.findViewById(
-                    R.id.account_icon);
-            accountTextView.setText(accountDisplayLabel);
-            accountIconView.setImageDrawable(account.getDisplayIcon(mContext));
+
+            holder.accountName.setText(accountDisplayLabel);
+            holder.accountIcon.setImageDrawable(account.getDisplayIcon(mContext));
 
             final ContactPhotoManager.DefaultImageRequest
                     request = new ContactPhotoManager.DefaultImageRequest(
@@ -119,9 +107,8 @@ public class PickRawContactDialogFragment extends DialogFragment {
             final Uri photoUri = Uri.withAppendedPath(
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
                     RawContacts.DisplayPhoto.CONTENT_DIRECTORY);
-            final ImageView photoView = (ImageView) view.findViewById(
-                    R.id.photo);
-            ContactPhotoManager.getInstance(mContext).loadDirectoryPhoto(photoView,
+
+            ContactPhotoManager.getInstance(mContext).loadDirectoryPhoto(holder.photo,
                     photoUri,
                     /* darkTheme = */ false,
                     /* isCircular = */ true,
@@ -130,13 +117,27 @@ public class PickRawContactDialogFragment extends DialogFragment {
 
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            return mInflater.inflate(R.layout.raw_contact_list_item, parent, false);
+            final View view = mInflater.inflate(R.layout.raw_contact_list_item, parent, false);
+            final RawContactViewHolder holder = new RawContactViewHolder();
+            holder.displayName = (TextView) view.findViewById(R.id.display_name);
+            holder.accountName = (TextView) view.findViewById(R.id.account_name);
+            holder.accountIcon = (ImageView) view.findViewById(R.id.account_icon);
+            holder.photo = (ImageView) view.findViewById(R.id.photo);
+            view.setTag(holder);
+            return view;
         }
 
         @Override
         public long getItemId(int position) {
             getCursor().moveToPosition(position);
             return getCursor().getLong(PickRawContactLoader.RAW_CONTACT_ID);
+        }
+
+        class RawContactViewHolder {
+            TextView displayName;
+            TextView accountName;
+            ImageView accountIcon;
+            ImageView photo;
         }
     }
 
