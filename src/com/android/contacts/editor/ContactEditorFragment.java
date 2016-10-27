@@ -241,10 +241,10 @@ public class ContactEditorFragment extends Fragment implements
         void onSaveFinished(Intent resultIntent);
 
         /**
-         * User switched to editing a different contact (a suggestion from the
+         * User switched to editing a different raw contact (a suggestion from the
          * aggregation engine).
          */
-        void onEditOtherContactRequested(Uri contactLookupUri,
+        void onEditOtherRawContactRequested(Uri contactLookupUri, long rawContactId,
                 ArrayList<ContentValues> contentValues);
 
         /**
@@ -259,14 +259,12 @@ public class ContactEditorFragment extends Fragment implements
      */
     private static final class AggregationSuggestionAdapter extends BaseAdapter {
         private final LayoutInflater mLayoutInflater;
-        private final boolean mSetNewContact;
         private final AggregationSuggestionView.Listener mListener;
         private final List<AggregationSuggestionEngine.Suggestion> mSuggestions;
 
-        public AggregationSuggestionAdapter(Activity activity, boolean setNewContact,
+        public AggregationSuggestionAdapter(Activity activity,
                 AggregationSuggestionView.Listener listener, List<Suggestion> suggestions) {
             mLayoutInflater = activity.getLayoutInflater();
-            mSetNewContact = setNewContact;
             mListener = listener;
             mSuggestions = suggestions;
         }
@@ -277,7 +275,6 @@ public class ContactEditorFragment extends Fragment implements
             final AggregationSuggestionView suggestionView =
                     (AggregationSuggestionView) mLayoutInflater.inflate(
                             R.layout.aggregation_suggestions_item, null);
-            suggestionView.setNewContact(mSetNewContact);
             suggestionView.setListener(mListener);
             suggestionView.bindSuggestion(suggestion);
             return suggestionView;
@@ -969,20 +966,6 @@ public class ContactEditorFragment extends Fragment implements
         return false;
     }
 
-    /**
-     * Whether editor inputs and the options menu should be enabled.
-     */
-    private boolean isEnabled() {
-        return mEnabled;
-    }
-
-    /**
-     * Returns the palette extra that was passed in.
-     */
-    private MaterialColorMapUtils.MaterialPalette getMaterialPalette() {
-        return mMaterialPalette;
-    }
-
     //
     // Account creation
     //
@@ -1251,7 +1234,7 @@ public class ContactEditorFragment extends Fragment implements
         if (mCopyReadOnlyName) {
             copyReadOnlyName();
         }
-        editorView.setState(mState, getMaterialPalette(), mViewIdGenerator,
+        editorView.setState(mState, mMaterialPalette, mViewIdGenerator,
                 mHasNewContact, mIsUserProfile, mAccountWithDataSet,
                 mRawContactIdToDisplayAlone);
 
@@ -1266,7 +1249,7 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         // The editor is ready now so make it visible
-        editorView.setEnabled(isEnabled());
+        editorView.setEnabled(mEnabled);
         editorView.setVisibility(View.VISIBLE);
 
         // Refresh the ActionBar as the visibility of the join command
@@ -1567,7 +1550,6 @@ public class ContactEditorFragment extends Fragment implements
         mAggregationSuggestionPopup.setAdapter(
                 new AggregationSuggestionAdapter(
                         getActivity(),
-                        mState.size() == 1 && mState.get(0).isContactInsert(),
                         /* listener =*/ this,
                         mAggregationSuggestionEngine.getSuggestions()));
         mAggregationSuggestionPopup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -1589,19 +1571,6 @@ public class ContactEditorFragment extends Fragment implements
         return getContent().getAggregationAnchorView();
     }
 
-    @Override
-    public void onJoinAction(long contactId, List<Long> rawContactIdList) {
-        final long rawContactIds[] = new long[rawContactIdList.size()];
-        for (int i = 0; i < rawContactIds.length; i++) {
-            rawContactIds[i] = rawContactIdList.get(i);
-        }
-        try {
-            JoinSuggestedContactDialogFragment.show(this, rawContactIds);
-        } catch (Exception ignored) {
-            // No problem - the activity is no longer available to display the dialog
-        }
-    }
-
     /**
      * Joins the suggested contact (specified by the id's of constituent raw
      * contacts), save all changes, and stay in the editor.
@@ -1616,20 +1585,20 @@ public class ContactEditorFragment extends Fragment implements
     }
 
     @Override
-    public void onEditAction(Uri contactLookupUri) {
-        SuggestionEditConfirmationDialogFragment.show(this, contactLookupUri);
+    public void onEditAction(Uri contactLookupUri, long rawContactId) {
+        SuggestionEditConfirmationDialogFragment.show(this, contactLookupUri, rawContactId);
     }
 
     /**
-     * Abandons the currently edited contact and switches to editing the suggested
-     * one, transferring all the data there
+     * Abandons the currently edited contact and switches to editing the selected raw contact,
+     * transferring all the data there
      */
-    public void doEditSuggestedContact(Uri contactUri) {
+    public void doEditSuggestedContact(Uri contactUri, long rawContactId) {
         if (mListener != null) {
             // make sure we don't save this contact when closing down
             mStatus = Status.CLOSING;
-            mListener.onEditOtherContactRequested(
-                    contactUri, mState.get(0).getContentValues());
+            mListener.onEditOtherRawContactRequested(contactUri, rawContactId,
+                    getContent().getCurrentRawContactDelta().getContentValues());
         }
     }
 
