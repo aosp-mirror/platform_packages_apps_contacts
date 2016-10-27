@@ -723,9 +723,6 @@
     <!-- Dialog title when the user is selecting a raw contact to edit.  [CHAR LIMIT=128] -->
     <string name="contact_editor_pick_raw_contact_dialog_title">Choose linked contact</string>
 
-    <!-- Text next to a contact's name that lets the user know it is a read only contact.  [CHAR LIMIT=128] -->
-    <string name="contact_editor_pick_raw_contact_read_only"><xliff:g id="display_name">%s</xliff:g> (read only)</string>
-
     <!-- Button label to prompt the user to add an account (when there are 0 existing accounts on the device) [CHAR LIMIT=30] -->
     <string name="add_account">Add account</string>
 
