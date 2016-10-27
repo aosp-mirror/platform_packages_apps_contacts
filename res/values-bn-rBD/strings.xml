@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"সম্পাদনা করুন"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"মুছুন"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"ফটো পরিবর্তন করুন"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"হোম স্ক্রীনে রাখুন"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"পরিচিতিকে কল করুন"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"পরিচিতিকে পাঠ্য বার্তা পাঠান"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"লিঙ্কমুক্ত করুন"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"সকল পরিচিতি দেখান"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"প্রস্তাবিত পরিচিতিগুলি"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"সকল পরিচিতি"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"পরিচিতিগুলি লিঙ্ক করা হয়েছে"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g>কে মোছা হয়েছে"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> এবং <xliff:g id="NAME_1">%2$s</xliff:g>কে মোছা হয়েছে"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google থেকে"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> থেকে"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"রিংটোন সেট করুন"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ভয়েসমেলে সকল কল"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"শুধুমাত্র-পঠনযোগ্য অ্যাকাউন্টের পরিচিতিগুলি মোছা যায় না, কিন্তু সেগুলিকে লুকিয়ে রাখা যাবে৷"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"লুকান"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"যে পরিচিতিগুলি মোছা হবে সেগুলিতে একধিক অ্যাকাউন্টের বিশদ বিবরণ রয়েছে৷ শুধুমাত্র-পঠনযোগ্য অ্যাকাউন্টগুলির বিশদ বিবরণ লুকানো হবে, কিন্তু মুছে ফেলা হবে না৷"</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"নতুন ফটো তুলুন"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ফটো বেছে নিন"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"নতুন ফটো নির্বাচন করুন"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"পরিচিতি তালিকা আপডেট করা হচ্ছে৷"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"অনুসন্ধান করছে..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"নির্বাচিত দেখান"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"সকল দেখান"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> এর থেকে ফটো পরীক্ষা করা হয়েছে"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়নি"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়েছে"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"ভাষা পরিবর্তন দেখানোর জন্য পরিচিতির তালিকা আপডেট করা হচ্ছে৷\n\n অনুগ্রহ করে অপেক্ষা করুন…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"সহায়ক"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"সদৃশগুলি"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"নেভিগেশান ড্রয়ার খুলুন"</string>

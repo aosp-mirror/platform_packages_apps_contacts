@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"修改"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"删除"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"更换照片"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"放在主屏幕上"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"呼叫联系人"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"向联系人发送短信"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"取消关联"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"显示所有联系人"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"建议的联系人"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"所有联系人"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"联系人已关联"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"已删除<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"已删除<xliff:g id="NAME_0">%1$s</xliff:g>和<xliff:g id="NAME_1">%2$s</xliff:g>"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"来自 Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"来自 <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"设置铃声"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"所有来电转至语音信箱"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"系统无法删除来自只读帐号的联系人信息，但可以将这些信息隐藏。"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"隐藏"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"您要删除的联系人信息中包含来自多个帐号的详细信息。系统将隐藏来自只读帐号的详细信息，而不会删除这些信息。"</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"拍摄新照片"</string>
     <string name="pick_photo" msgid="2129509985223564942">"选择照片"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"选择新照片"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"正在更新联系人列表。"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"正在搜索..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"已选收件人"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"全部收件人"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"已选中来自 <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> 的照片"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"未选中来自未知帐号的照片"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"已选中来自未知帐号的照片"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"正在更新联系人列表，以反映语言的变更。\n\n请稍候…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"智能助理"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"重复的联系人"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"打开抽屉式导航栏"</string>
@@ -487,13 +491,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"自定义视图"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"将导入的联系人保存到："</string>
     <string name="import_from_sim" msgid="3859272228033941659">"从SIM卡导入"</string>
-    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"从 SIM 卡“<xliff:g id="SIM_NAME">^1</xliff:g>”导入\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"从 SIM 卡“<xliff:g id="SIM_NAME">%1$s</xliff:g>”导入"</string>
-    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
-    <skip />
+    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"从<xliff:g id="CARRIER_NAME">^1</xliff:g>的 SIM 卡导入\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"从<xliff:g id="CARRIER_NAME">%1$s</xliff:g>的 SIM 卡导入"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"从 .vcf 文件导入"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"要取消导入 <xliff:g id="FILENAME">%s</xliff:g> 吗​​？"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"要取消导出 <xliff:g id="FILENAME">%s</xliff:g> 吗​​？"</string>

@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Рэдагаваць"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Выдаліць"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Змяніць фота"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Размясціць на галоўным экране"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"Выклікаць кантакт"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Паведамленне кантакту"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Выдаліць сувязь"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Паказаць усе кантакты"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Прапанаваныя кантакты"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Усе кантакты"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Кантакты звязаны"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Карыстальнік <xliff:g id="NAME">%1$s</xliff:g> выдалены"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Карыстальнікі <xliff:g id="NAME_0">%1$s</xliff:g> і <xliff:g id="NAME_1">%2$s</xliff:g> выдалены"</string>
@@ -91,7 +94,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"З Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"З <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Задаць рынгтон"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Усе выклікі на галасавую пошту"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Кантакты з уліковых запісаў, даступных толькі для чытання, нельга выдаліць, але іх можна схаваць."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Схаваць"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Кантакт на выдаленне мае інфармацыю з некалькіх уліковых запісаў. Інфармацыя з уліковых запісаў, даступных толькі для чытання, будзе схавана, а не выдалена."</string>
@@ -204,7 +210,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Зрабiце новую фатаграфію"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Выбраць фота"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Выбраць новае фота"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"Спiс кантактаў абнаўляецца."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Пошук..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Паказаць выбраныя"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Паказаць усіх"</string>
@@ -351,7 +356,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Фота з уліковага запісу <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>пазначана"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Фота з невядомага ўліковага запісу не пазначана"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Пазначана фота з невядомага ўліковага запісу"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"Спіс кантактаў абнаўляецца, каб адлюстраваць змяненне мовы.\n\nПачакайце..."</string>
     <string name="menu_assistant" msgid="919866272301744261">"Памочнік"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Дублікаты"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Адкрыць высоўнае меню навігацыі"</string>
