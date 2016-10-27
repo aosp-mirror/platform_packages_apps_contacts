@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Szerkesztés"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Törlés"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Fénykép lecserélése"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Kezdőképernyőre"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"Ismerős hívása"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS küldése ismerősnek"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Szétválasztás"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Az összes névjegy megjelenítése"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Javasolt névjegyek"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Összes névjegy"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Névkegyek társítva"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> törölve"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> és <xliff:g id="NAME_1">%2$s</xliff:g> törölve"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"A Google rendszeréből"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Innen: <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Csengőhang"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Minden hívás a hangpostára"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Az írásvédett fiókokból származó névjegyeket nem lehet törölni, de el lehet rejteni őket."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Elrejtés"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"A törlésre kijelölt névjegy több fiókból is tartalmaz információkat. Az írásvédett fiókokból származó információkat csak elrejti a rendszer, nem törli őket."</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Új fénykép készítése"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Fotó kiválasztása"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Új fotó kiválasztása"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"Az ismerőslista frissítése folyamatban van."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Keresés..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Kiválasztottak megjelenítése"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Összes megjelenítése"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"A következőtől származó fotó kiválasztva: <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Az ismeretlen fiókból származó kép nincs kiválasztva"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Ismeretlen fiókból származó kép kiválasztva"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"A nyelv módosítása miatt folyamatban van a Címtár frissítése.\n\nKérjük, várjon…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Asszisztens"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Ismétlődések"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Navigációs fiók kinyitása"</string>

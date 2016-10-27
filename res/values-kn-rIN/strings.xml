@@ -40,10 +40,11 @@
     <string name="menu_editContact" msgid="9042415603857662633">"ಎಡಿಟ್"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ಅಳಿಸು"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"ಫೋಟೋ ಬದಲಾಯಿಸಿ"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ಮುಖಪುಟ ಪರದೆಯ ಮೇಲೆ ಇರಿಸು"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"ಕರೆಯ ಸಂಪರ್ಕ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"ಪಠ್ಯ ಸಂಪರ್ಕ"</string>
-    <string name="menu_splitAggregate" msgid="2627252205317945563">"ಲಿಂಕ್ ರದ್ದುಮಾಡು"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"ಲಿಂಕ್ ರದ್ದುಮಾಡಿ"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"ಸಂಪರ್ಕಗಳನ್ನು ತೆಗೆದುಹಾಕಿ"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"ಲೇಬಲ್‌ ಮರುಹೆಸರಿಸು"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"ಲೇಬಲ್ ಅಳಿಸು"</string>
@@ -54,9 +55,9 @@
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"ಸಂಪರ್ಕ ಸೇರಿಸಿ"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"ಹೊಸದನ್ನು ರಚಿಸಿ…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡುವುದೇ?"</string>
-    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ಲಿಂಕ್ ರದ್ದುಮಾಡು"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ಲಿಂಕ್ ರದ್ದುಮಾಡಿ"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
-    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"ಉಳಿಸು ಮತ್ತು ಲಿಂಕ್ ರದ್ದುಮಾಡು"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"ಉಳಿಸು ಮತ್ತು ಲಿಂಕ್ ರದ್ದುಮಾಡಿ"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಪರ್ಕದ ಜೊತೆಗೆ ಲಿಂಕ್ ಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"ಉಳಿಸು ಮತ್ತು ಲಿಂಕ್‌ ಮಾಡು"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"ಲಿಂಕ್‌"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ಎಲ್ಲ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸು"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ಸೂಚಿಸಲಾದ ಸಂಪರ್ಕಗಳು"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳು"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ಸಂಪರ್ಕಗಳನ್ನು ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> ಅಳಿಸಲಾಗಿದೆ"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> ಮತ್ತು <xliff:g id="NAME_1">%2$s</xliff:g> ಅಳಿಸಲಾಗಿದೆ"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google ನಿಂದ"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g>ಖಾತೆಯಿಂದ"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ರಿಂಗ್‌ಟೋನ್‌‌"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ಧ್ವನಿಮೇಲ್‌ಗೆ ಎಲ್ಲ ಕರೆಗಳು"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ನಿಮ್ಮ ಓದಲು-ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸಲಾಗುವುದಿಲ್ಲ, ಆದರೆ ಅವುಗಳನ್ನು ಮರೆಮಾಡಬಹುದು."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"ಮರೆಮಾಡು"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"ಬಹು ಖಾತೆಗಳಿಂದ ವಿವರಗಳನ್ನು ಹೊಂದಿರುವ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ. ಓದಲು-ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ವಿವರಗಳನ್ನು ಮರೆಮಾಡಲಾಗುತ್ತದೆ, ಅಳಿಸಲಾಗುವುದಿಲ್ಲ."</string>
@@ -134,10 +140,10 @@
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"ಆ ಲೇಬಲ್ ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"ಕೆಲವು ಸಂಪರ್ಕಗಳು ಇಮೇಲ್‌ಗಳನ್ನು ಹೊಂದಿಲ್ಲ."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"ಕೆಲವು ಸಂಪರ್ಕಗಳು ಫೋನ್ ಸಂಖ್ಯೆಗಳನ್ನು ಹೊಂದಿಲ್ಲ."</string>
-    <string name="menu_sendEmailOption" msgid="5978319931321657780">"ಇಮೇಲ್ ಕಳುಹಿಸು"</string>
-    <string name="menu_sendMessageOption" msgid="8850168125274916426">"ಸಂದೇಶ ಕಳುಹಿಸು"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"ಇಮೇಲ್ ಕಳುಹಿಸಿ"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"ಸಂದೇಶ ಕಳುಹಿಸಿ"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"ಸಂಪರ್ಕಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"</string>
-    <string name="send_to_selection" msgid="2251339182881603540">"ಕಳುಹಿಸು"</string>
+    <string name="send_to_selection" msgid="2251339182881603540">"ಕಳುಹಿಸಿ"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ <xliff:g id="COUNT">%d</xliff:g> ಸಂಪರ್ಕಗಳು</item>
       <item quantity="other">ಫೋನ್‌ ಸಂಖ್ಯೆಗಳೊಂದಿಗೆ <xliff:g id="COUNT">%d</xliff:g> ಸಂಪರ್ಕಗಳು</item>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"ಹೊಸ ಫೋಟೋ ತೆಗೆಯಿರಿ"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ಫೋಟೋ ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"ಹೊಸ ಫೋಟೋವನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ಆಯ್ಕೆಮಾಡಿರುವುದನ್ನು ತೋರಿಸು"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"ಎಲ್ಲ ತೋರಿಸು"</string>
@@ -234,7 +239,7 @@
     <string name="toast_text_copied" msgid="5143776250008541719">"ಪಠ್ಯವನ್ನು ನಕಲಿಸಲಾಗಿದೆ"</string>
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸುವುದೇ?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ತ್ಯಜಿಸು"</string>
-    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"ರದ್ದುಮಾಡು"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"ರದ್ದುಮಾಡಿ"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"ಗ್ರಾಹಕೀಕರಣಗಳನ್ನು ತ್ಯಜಿಸುವುದೇ?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ"</string>
@@ -302,7 +307,7 @@
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> ಲಿಂಕ್ ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳು"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ಲಿಂಕ್ ಸಂಪರ್ಕಗಳು"</string>
-    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ರದ್ದುಮಾಡು"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ರದ್ದುಮಾಡಿ"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ಸಂಭವನೀಯ ನಕಲುಗಳು</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ಸಂಭವನೀಯ ನಕಲುಗಳು</item>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="USER_NAME">%s </xliff:g><xliff:g id="ACCOUNT_TYPE">%s </xliff:g> ಅವರಿಂದ ಫೋಟೋ ಗುರುತಿಸಲಾಗಿದೆ"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ಅಪರಿಚಿತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿಲ್ಲ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ಅಪರಿಚಿತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿದೆ"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"ಭಾಷೆಯ ಬದಲಾವಣೆಯನ್ನು ಪ್ರತಿಬಿಂಬಿಸಲು ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ.\n\nದಯವಿಟ್ಟು ಕಾಯಿರಿ..."</string>
     <string name="menu_assistant" msgid="919866272301744261">"ಸಹಾಯಕ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ನಕಲಿಗಳು"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ನ್ಯಾವಿಗೇಶನ್ ಡ್ರಾಯರ್ ತೆರೆಯಿರಿ"</string>
@@ -483,7 +487,7 @@
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"ಸಿಂಕ್‌ನಿಂದ \"<xliff:g id="GROUP">%s</xliff:g>\" ಅನ್ನು ತೆಗೆದುಹಾಕುವುದರಿಂದ ಸಿಂಕ್‌ನಿಂದ ಯಾವುದೇ ಗುಂಪು ಮಾಡದಿರುವ ಸಂಪರ್ಕಗಳನ್ನು ಸಹ ತೆಗೆದುಹಾಕುತ್ತದೆ."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"ಪ್ರದರ್ಶನ ಆಯ್ಕೆಗಳನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ..."</string>
     <string name="menu_done" msgid="796017761764190697">"ಮುಗಿದಿದೆ"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"ರದ್ದುಮಾಡು"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"ರದ್ದುಮಾಡಿ"</string>
     <string name="listCustomView" msgid="1840624396582117590">"ಕಸ್ಟಮೈಸ್ ಮಾಡಿದ ವೀಕ್ಷಣೆ"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"ಆಮದು ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳನ್ನು ಇಲ್ಲಿ ಉಳಿಸಿ:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
@@ -618,7 +622,7 @@
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"ಸಿಮ್ ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಲು ವಿಫಲವಾಗಿದೆ"</string>
     <string name="sim_import_dialog_title" msgid="6699935401502172530">"ಆಮದು ಮಾಡಲು ಸಂಪರ್ಕಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
-    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"ಆಮದು ರದ್ದುಮಾಡು"</string>
+    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"ಆಮದು ರದ್ದುಮಾಡಿ"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"ಸ್ವಯಂಚಾಲಿತ ಸಿಂಕ್ ಆಫ್‌ ಆಗಿದೆ. ಆನ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"ವಜಾಗೊಳಿಸಿ"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"ಖಾತೆಯ ಸಿಂಕ್ ಆಫ್‌ ಆಗಿದೆ. ಆನ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ."</string>

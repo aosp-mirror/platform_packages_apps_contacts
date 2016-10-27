@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"ແກ້ໄຂ"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ລຶບ"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"ປ່ຽນຮູບ"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ວາງໃສ່ໜ້າຈໍຫຼັກ"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"ໂທຫາລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"ສົ່ງຂໍ້ຄວາມຫາລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"ບໍ່ລິ້ງ"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ສະແດງລາຍຊື່ຜູ່ຕິດຕໍ່ທັງໝົດ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ແນະນຳ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ລາຍຊື່ຜູ່ຕິດຕໍ່ທັງໝົດ"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ລິ້ງ​ແລ້ວ"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"ລຶບ <xliff:g id="NAME">%1$s</xliff:g> ອອກແລ້ວ"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"ລຶບ <xliff:g id="NAME_0">%1$s</xliff:g> ແລະ <xliff:g id="NAME_1">%2$s</xliff:g> ອອກແລ້ວ"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"ຈາກ Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"ຈາກ <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ຕັ້ງສຽງຣິງໂທນ"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ໂອນທຸກສາຍໄປຂໍ້ຄວາມສຽງ"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ຈາກ​ບັນ​ຊີ​ອ່ານ​ເທົ່າ​ນັ້ນ​ບໍ່​ສາ​ມາດ​ລຶບ​ໄດ້, ແຕ່​ພວກ​ມັນ​ຖືກ​ເຊື່ອງ​ໄດ້."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"ເຊື່ອງ"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"ລາຍຊື່ຕິດ​ຕໍ່ທີ່​ຈະ​ຖືກ​ລຶບ​ມີລາຍ​ລ​ະ​ອຽດຈາກຫຼາຍບັນຊີ. ລາຍ​ລະ​ອຽດຈາກບັນຊີອ່ານເທົ່ານັ້ນ ຈະຖືກເຊື່ອງໄວ້, ບໍ່ຖືກລຶບອອກ."</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"ຖ່າຍຮູບໃໝ່"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ເລືອກ​ຮູບ"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"ເລືອກຮູບໃໝ່"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"ລາຍການລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຖືກອັບເດດ."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ກຳລັງຊອກຫາ..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ສະແດງສິ່ງທີ່ເລືອກ"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"ສະແດງທັງໝົດ"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"ຮູບຖ່າຍ​ຈາກ <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>ໄດ້​ຮັບ​ການກວດ​ແລ້ວ"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ບໍ່ໄດ້ໝາຍເອົາຮູບຖ່າຍຈາກບັນຊີທີ່ບໍ່ຮູ້ຈັກແລ້ວ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ໝາຍເອົາຮູບຖ່າຍຈາກບັນຊີທີ່ບໍ່ຮູ້ຈັກແລ້ວ"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"ລາຍຊື່ຜູ້ຕິດຕໍ່ກຳລັງຖືກອັບເດດຕາມການປ່ຽນແປງຂອງພາສາ.\n\nກະລຸນາລໍຖ້າ..."</string>
     <string name="menu_assistant" msgid="919866272301744261">"ຜູ້ຊ່ວຍ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ລາຍການຊໍ້າກັນ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ເປີດແຖບການນຳທາງ"</string>

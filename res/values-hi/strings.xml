@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"संपादित करें"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"हटाएं"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"फ़ोटो बदलें"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"मुख्यपृष्ठ स्क्रीन पर रखें"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"संपर्क को कॉल करें"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"इस संपर्क को SMS भेजें"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"अनलिंक करें"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"सभी संपर्क दिखाएं"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"सुझाए गए संपर्क"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"सभी संपर्क"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"संपर्क लिंक कर दिए गए"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> को हटाया गया"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> और <xliff:g id="NAME_1">%2$s</xliff:g> को हटाया गया"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google से"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> से"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिंगटोन सेट करें"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ध्‍वनि‍मेल से सभी कॉल"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"आपके केवल पढ़े जाने वाले खातों के संपर्क हटाए नहीं जा सकते, लेकिन उन्हें छिपाया जा सकता है."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"छिपाएं"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"जिस संपर्क को हटाया जाना है उसमें एकाधिक खातों के विवरण हैं. केवल पढ़े जाने वाले खातों के विवरण छिपाए जाएंगे, उन्हें हटाया नहीं जाएगा."</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"नया फ़ोटो लें"</string>
     <string name="pick_photo" msgid="2129509985223564942">"फ़ोटो चुनें"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"नई फ़ोटो चुनें"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची से नई जानकारी मिल रही है."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"खोज रहा है…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"चयनित दिखाएं"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"सभी दिखाएं"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>की फ़ोटो चेक की गई"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"अज्ञात खाते की फ़ोटो नहीं जांची गई"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"अज्ञात खाते की फ़ोटो जांची गई"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"भाषा के बदलाव दिखाने के लिए संपर्क सूची अपडेट की जा रही है.\n\nकृपया प्रतीक्षा करें…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"सहायक"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"प्रतिलिपि"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"मार्गदर्शक ड्रॉवर खोलें"</string>

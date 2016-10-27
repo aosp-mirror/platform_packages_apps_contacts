@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Upravit"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Smazat"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Změnit fotografii"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Umístit na plochu"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"Volat kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Odeslat zprávu kontaktu"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Zrušit propojení"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Zobrazit všechny kontakty"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Navrhované kontakty"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Všechny kontakty"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontakty byly propojeny"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Kontakt <xliff:g id="NAME">%1$s</xliff:g> byl smazán"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Kontakty <xliff:g id="NAME_0">%1$s</xliff:g> a <xliff:g id="NAME_1">%2$s</xliff:g> byly smazány"</string>
@@ -91,7 +94,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Z účtu Googlu"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Z účtu služby <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastavit vyzvánění"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Hovory do hlas. schránky"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontakty z účtů pouze ke čtení nelze smazat, lze je však skrýt."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Skrýt"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Kontakt určený ke smazání obsahuje podrobnosti z několika účtů. Podrobnosti z účtů pouze ke čtení budou skryty, ale smazány nebudou."</string>
@@ -204,7 +210,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Pořídit novou fotografii"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Vybrat fotku"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Vybrat novou fotku"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"Probíhá aktualizace seznamu kontaktů."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Vyhledávání..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Zobrazit vybrané"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Zobrazit vše"</string>
@@ -351,7 +356,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Vybrána fotka z účtu <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> <xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Fotka z neznámého účtu nebyla vybrána"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotka z neznámého účtu byla vybrána"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"V souvislosti se změnou jazyka probíhá aktualizace seznamu kontaktů.\n\nČekejte prosím…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Asistent"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Duplicitní kontakty"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Otevřít navigační panel"</string>
@@ -509,13 +513,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"Vlastní zobrazení"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Účet k uložení importovaných kontaktů:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Importovat ze SIM karty"</string>
-    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"Importovat ze SIM karty <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Importovat ze SIM karty <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
-    <skip />
+    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"Importovat ze SIM karty <xliff:g id="CARRIER_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"Importovat ze SIM karty <xliff:g id="CARRIER_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Importovat ze souboru VCF"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Zrušit import souboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Zrušit export souboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
