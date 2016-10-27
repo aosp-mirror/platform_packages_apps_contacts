@@ -175,13 +175,13 @@
     <!-- Toast shown after two contacts have been linked by a user action without a name. [CHAR LIMIT=NONE] -->
     <string name="contactsJoinedMessage">Contacts linked</string>
 
-    <!-- Toast shown with names after user selected contacts are deleted by user action. [CHAR LIMIT=30] -->
+    <!-- Toast shown with names after user selected contacts are deleted by user action. [CHAR LIMIT=50] -->
     <string name="contacts_deleted_one_named_toast"><xliff:g id="name">%1$s</xliff:g> deleted</string>
 
-    <!-- Toast shown with names after user selected contacts are deleted by user action. [CHAR LIMIT=30] -->
+    <!-- Toast shown with names after user selected contacts are deleted by user action. [CHAR LIMIT=50] -->
     <string name="contacts_deleted_two_named_toast"><xliff:g id="name">%1$s</xliff:g> and <xliff:g id="name">%2$s</xliff:g> deleted</string>
 
-    <!-- Toast shown with names after user selected contacts are deleted by user action. [CHAR LIMIT=30] -->
+    <!-- Toast shown with names after user selected contacts are deleted by user action. [CHAR LIMIT=50] -->
     <string name="contacts_deleted_many_named_toast"><xliff:g id="name">%1$s</xliff:g>, <xliff:g id="name">%2$s</xliff:g>, <xliff:g id="name">%3$s</xliff:g>... deleted</string>
 
     <!-- Toast shown after contacts that the user has selected are deleted by a user action. [CHAR LIMIT=30] -->
