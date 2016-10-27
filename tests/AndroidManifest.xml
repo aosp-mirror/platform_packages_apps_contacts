@@ -36,8 +36,7 @@
     <uses-permission android:name="android.permission.READ_SOCIAL_STREAM" />
 
     <application
-        android:icon="@mipmap/ic_contacts_launcher_square"
-        android:roundIcon="@mipmap/ic_contacts_launcher"
+        android:icon="@mipmap/ic_contacts_launcher"
         android:label="@string/applicationLabel">
 
         <uses-library android:name="android.test.runner" />
