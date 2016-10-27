@@ -234,9 +234,10 @@ public class SimContactDao {
                             new SimContact(1, "Sim One", "15095550111", null),
                             new SimContact(2, "Sim Two", "15095550112", null),
                             new SimContact(3, "Sim Three", "15095550113", null),
-                            new SimContact(4, "Sim Four", "15095550114", null)
+                            new SimContact(4, "Sim Four", "15095550114", null),
+                            new SimContact(5, "411 & more", "411", null)
                     ))
-                    .addSimCard(new SimCard("fake-sim-id2", 1, "Carrier Two", "Card 2",
+                    .addSimCard(new SimCard("fake-sim-id2", 2, "Carrier Two", "Card 2",
                             "15095550102", "us").withContacts(
                             new SimContact(1, "John Sim", "15095550121", null),
                             new SimContact(2, "Bob Sim", "15095550122", null),

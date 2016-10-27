@@ -24,14 +24,10 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
-import android.support.annotation.RequiresApi;
-import android.support.v4.util.ArraySet;
-import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
-import android.telephony.TelephonyManager;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,15 +40,15 @@ import com.android.contacts.SimImportFragment;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
+import com.android.contacts.common.database.SimContactDao;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.SimCard;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountSelectionUtil;
 import com.android.contacts.common.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Set;
 
 /**
  * An dialog invoked to import/export contacts.
@@ -67,6 +63,7 @@ public class ImportDialogFragment extends DialogFragment
     public static final String EXTRA_SIM_ONLY = "extraSimOnly";
 
     private boolean mSimOnly = false;
+    private SimContactDao mSimDao;
 
     private final String[] LOOKUP_PROJECTION = new String[] {
             Contacts.LOOKUP_KEY
@@ -97,6 +94,7 @@ public class ImportDialogFragment extends DialogFragment
 
         final Bundle args = getArguments();
         mSimOnly = args != null && args.getBoolean(EXTRA_SIM_ONLY, false);
+        mSimDao = SimContactDao.create(getContext());
     }
 
     @Override
@@ -112,7 +110,6 @@ public class ImportDialogFragment extends DialogFragment
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Wrap our context to inflate list items using the correct theme
-        final Resources res = getActivity().getResources();
         final LayoutInflater dialogInflater = (LayoutInflater)getActivity()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -129,48 +126,7 @@ public class ImportDialogFragment extends DialogFragment
             }
         };
 
-        final TelephonyManager manager =
-                (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-        if (res.getBoolean(R.bool.config_allow_import_from_vcf_file) && !mSimOnly) {
-            adapter.add(new AdapterEntry(getString(R.string.import_from_vcf_file),
-                    R.string.import_from_vcf_file));
-        }
-
-        if (CompatUtils.isMSIMCompatible()) {
-            mSubscriptionManager = SubscriptionManager.from(getActivity());
-            if (manager != null && res.getBoolean(R.bool.config_allow_sim_import)) {
-                List<SubscriptionInfo> subInfoRecords = null;
-                try {
-                    subInfoRecords =  mSubscriptionManager.getActiveSubscriptionInfoList();
-                } catch (SecurityException e) {
-                    Log.w(TAG, "SecurityException thrown, lack permission for"
-                            + " getActiveSubscriptionInfoList", e);
-                }
-                if (subInfoRecords != null) {
-                    if (subInfoRecords.size() == 1) {
-                        adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
-                                R.string.import_from_sim, subInfoRecords.get(0).getSubscriptionId()));
-                    } else if (hasUniqueNonNullCarrierNames(subInfoRecords)) {
-                        for (SubscriptionInfo record : subInfoRecords) {
-                            adapter.add(new AdapterEntry(getSubDescriptionForCarrier(record),
-                                    R.string.import_from_sim, record.getSubscriptionId()));
-                        }
-                    } else {
-                        for (SubscriptionInfo record : subInfoRecords) {
-                            adapter.add(new AdapterEntry(getSubDescription(record),
-                                    R.string.import_from_sim, record.getSubscriptionId()));
-                        }
-                    }
-                }
-            }
-        } else {
-            if (manager != null && manager.hasIccCard()
-                    && res.getBoolean(R.bool.config_allow_sim_import)) {
-                adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
-                        R.string.import_from_sim, -1));
-            }
-        }
-
+        addItems(adapter);
 
         final DialogInterface.OnClickListener clickListener =
                 new DialogInterface.OnClickListener() {
@@ -199,6 +155,25 @@ public class ImportDialogFragment extends DialogFragment
                 .setCustomTitle(title)
                 .setSingleChoiceItems(adapter, -1, clickListener)
                 .create();
+    }
+
+    private void addItems(ArrayAdapter<AdapterEntry> adapter) {
+        final Resources res = getActivity().getResources();
+        if (res.getBoolean(R.bool.config_allow_import_from_vcf_file) && !mSimOnly) {
+            adapter.add(new AdapterEntry(getString(R.string.import_from_vcf_file),
+                    R.string.import_from_vcf_file));
+        }
+        final List<SimCard> sims = mSimDao.getSimCards();
+
+        if (sims.size() == 1) {
+            adapter.add(new AdapterEntry(getString(R.string.import_from_sim),
+                    R.string.import_from_sim, SimCard.NO_SUBSCRIPTION_ID));
+            return;
+        }
+        for (SimCard sim : sims) {
+            adapter.add(new AdapterEntry(getSimDescription(sim), R.string.import_from_sim,
+                    sim.getSubscriptionId()));
+        }
     }
 
     private boolean handleSimImportRequest(int subscriptionId) {
@@ -260,61 +235,22 @@ public class ImportDialogFragment extends DialogFragment
         dismiss();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
-    private boolean hasUniqueNonNullCarrierNames(List<SubscriptionInfo> subscriptions) {
-        final Set<CharSequence> names = new ArraySet<>();
-        for (SubscriptionInfo subscription : subscriptions) {
-            final CharSequence name = subscription.getCarrierName();
-            if (name == null) {
-                return false;
-            }
-            if (!names.add(name)) {
-                return false;
-            }
+    private CharSequence getSimDescription(SimCard sim) {
+        final CharSequence name = sim.getDisplayName();
+        CharSequence number = sim.getFormattedPhone();
+        // If formatting fails use the raw phone number
+        if (number == null) {
+            number = sim.getPhone();
         }
-        return true;
-    }
-
-    private CharSequence getSubDescription(SubscriptionInfo record) {
-        final CharSequence name = record.getDisplayName();
-        final CharSequence number = getFormattedNumber(record);
-
+        if (number != null) {
+            number = PhoneNumberUtilsCompat.createTtsSpannable(number);
+        }
         if (TextUtils.isEmpty(number)) {
-            return getString(R.string.import_from_sim_summary_no_number, name);
+            return getString(R.string.import_from_sim_summary_fmt, name);
         }
-
-        return TextUtils.expandTemplate(getString(R.string.import_from_sim_summary), name, number);
+        return new SpannableStringBuilder(getString(R.string.import_from_sim_summary_fmt, name))
+                .append('\n').append(number);
     }
-
-    private CharSequence getSubDescriptionForCarrier(SubscriptionInfo record) {
-        final CharSequence carrierName = record.getCarrierName();
-        final CharSequence number = getFormattedNumber(record);
-
-        if (TextUtils.isEmpty(number)) {
-            return getString(R.string.import_from_sim_summary_by_carrier_no_number, carrierName);
-        }
-
-        return TextUtils.expandTemplate(
-                getString(R.string.import_from_sim_summary_by_carrier), carrierName, number);
-    }
-
-    private CharSequence getFormattedNumber(SubscriptionInfo subscription) {
-        final String rawNumber = subscription.getNumber();
-        if (rawNumber == null) {
-            return null;
-        }
-        final String country = subscription.getCountryIso();
-        final String number;
-        if (country != null) {
-            number = PhoneNumberUtilsCompat.formatNumber(rawNumber, null,
-                    country.toUpperCase(Locale.US));
-        } else {
-            number = rawNumber;
-        }
-        return PhoneNumberUtilsCompat.createTtsSpannable(number);
-    }
-
-
 
     private static class AdapterEntry {
         public final CharSequence mLabel;
