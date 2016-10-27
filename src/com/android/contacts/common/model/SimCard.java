@@ -17,6 +17,7 @@ package com.android.contacts.common.model;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.SubscriptionInfo;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -26,6 +27,7 @@ import com.android.contacts.common.database.SimContactDao;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -73,7 +75,7 @@ public class SimCard {
         mCarrierName = carrierName;
         mDisplayName = displayName;
         mPhoneNumber = phoneNumber;
-        mCountryCode = countryCode;
+        mCountryCode = countryCode != null ? countryCode.toUpperCase(Locale.US) : null;
     }
 
     public SimCard(String simId, CharSequence carrierName,
@@ -87,6 +89,21 @@ public class SimCard {
 
     public int getSubscriptionId() {
         return mSubscriptionId;
+    }
+
+    public CharSequence getDisplayName() {
+        return mDisplayName;
+    }
+
+    public String getPhone() {
+        return mPhoneNumber;
+    }
+
+    public CharSequence getFormattedPhone() {
+        if (mPhoneNumber == null) {
+            return null;
+        }
+        return PhoneNumberUtils.formatNumber(mPhoneNumber, mCountryCode);
     }
 
     public boolean hasContacts() {
