@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Edit"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Hapus"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Ganti foto"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Letakkan di layar Utama"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"Hubungi kontak"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS kontak"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Batalkan tautan"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Tampilkan semua kontak"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Kontak yang disarankan"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Semua kontak"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontak ditautkan"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> dihapus"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> dan <xliff:g id="NAME_1">%2$s</xliff:g> dihapus"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Dari Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Dari <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setel nada dering"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Panggilan masuk kotak pesan"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontak dari akun hanya-baca tidak dapat dihapus, tetapi dapat disembunyikan."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Sembunyikan"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Kontak yang akan dihapus memiliki detail dari beberapa akun. Detail dari akun hanya-baca akan disembunyikan, tidak dihapus."</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Ambil foto baru"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Pilih foto"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Pilih foto baru"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"Daftar kontak sedang diperbarui."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Menelusuri..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Tampilkan yang dipilih"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Tampilkan semua"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Foto dari <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>dicentang"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto dari akun tak dikenal tidak dicentang"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto dari akun tak dikenal dicentang"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"Daftar kontak sedang diperbarui untuk menerapkan perubahan bahasa.\n\nTunggu…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Asisten"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Duplikat"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Buka panel samping navigasi"</string>

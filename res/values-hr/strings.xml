@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Uredi"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Izbriši"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Promijeni fotografiju"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Stavi na početni zaslon"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"Nazovi kontakt"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Poruka kontaktu"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Prekini vezu"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Prikaži sve kontakte"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Predloženi kontakti"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Svi kontakti"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontakti su povezani"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Izbrisano: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Izbrisano: <xliff:g id="NAME_0">%1$s</xliff:g> i <xliff:g id="NAME_1">%2$s</xliff:g>"</string>
@@ -88,7 +91,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"S Google računa"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"S računa: <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Postavi zvuk zvona"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Svi pozivi na govornu poštu"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontakti s računa koji su samo za čitanje ne mogu se izbrisati, ali se mogu sakriti."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Sakrij"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Kontakt koji želite izbrisati ima podatke s više računa. Podaci s računa koji su samo za čitanje neće se izbrisati, već samo sakriti."</string>
@@ -197,7 +203,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Snimi novu fotografiju"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Odaberi fotografiju"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Odaberite novu fotografiju"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"Popis kontakata ažurira se."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Pretraživanje..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Prikaži odabrano"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Pokaži sve"</string>
@@ -340,7 +345,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Fotografija s računa <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> odabrana"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Fotografija s nepoznatog računa nije odabrana"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotografija s nepoznatog računa odabrana"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"Popis kontakata ažurira se tako da odražava promjene jezika.\n\nPričekajte…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Pomoćnik"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Duplikati"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Otvaranje ladice za navigaciju"</string>
@@ -498,13 +502,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"Prilagođeni prikaz"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Spremite uvezene kontakte na račun:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Uvezi sa SIM kartice"</string>
-    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"Uvoz sa SIM-a <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Uvoz sa SIM-a <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
-    <skip />
+    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"Uvoz sa <xliff:g id="CARRIER_NAME">^1</xliff:g> SIM-a\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"Uvoz sa <xliff:g id="CARRIER_NAME">%1$s</xliff:g> SIM-a"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Uvoz iz .vcf datoteke"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Otkazati uvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Otkazati izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>?"</string>
