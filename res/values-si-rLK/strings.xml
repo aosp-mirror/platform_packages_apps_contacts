@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"සංස්කරණය කරන්න"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"මකන්න"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"ඡායාරූපය වෙනස් කරන්න"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"මුල් තිරයෙහි තබන්න"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"සම්බන්ධතාව අමතන්න"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"සම්බන්ධතාවයට කෙටි පණිවිඩයක් යවන්න"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"සබැඳි ඉවත් කරන්න"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"සියලු සම්බන්ධතා පෙන්වන්න"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"යෝජිත සම්බන්ධතා"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"සියලුම සම්බන්ධතා"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"සම්බන්ධතා සබැඳි කරන ලදී"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> මකන ලදී"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> සහ <xliff:g id="NAME_1">%2$s</xliff:g> මකන ලදී"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google වෙතින්"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> වෙතින්"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"රිංග්ටෝනය සකසන්න"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"හඬ තැපෑල වෙත සියලු ඇමතුම්"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ඔබේ කියවීමට-පමණි වන ගිණුම් වෙතින් වන සම්බන්ධතා මැකිය නොහැකිය, නමුත් ඒවා සැඟවිය හැකිය."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"සඟවන්න"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"මැකීමට ඇති සම්බන්ධතාවයෙහි බහුවිධ ගිණුම්වලින් විස්තර ඇත. කියවීමට-පමණි වන ගිණුම් වෙතින් වන විස්තර නොමකනු ඇත, ඒවා සඟවනු ලැබේ."</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"නව ඡායාරූපයක් ගන්න"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ඡායාරූපය තෝරන්න"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"අලුත් ඡායාරූපය තෝරන්න"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන වෙමින් පවතී."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"සොයමින්..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"තෝරාගත් ඒවා පෙන්වන්න"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"සියල්ල පෙන්වන්න"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> වෙතින් ඡායාරූපය පරීක්ෂා කරන ලදී"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"නොදන්නා ගිණුම වෙතින් වන ඡායාරූපය ලකුණු නොකරන ලදී"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"නොදන්නා ගිණුම වෙතින් වන ඡායාරූපය ලකුණු කරන ලදී"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"භාෂාවේ වෙනස් කිරීම පෙන්වීමට සම්බන්ධතා ලැයිස්තුව යාවත්කාලීන කරමින් පවතී.\n\nකරුණාකර රැඳී සිටින්න…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"සහායක"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"අනුපිටපත්"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"සංචාලන ලාච්චුව විවෘත කරන්න"</string>
@@ -487,13 +491,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"අභිරුචිකරණය කළ දසුන"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"ආයාත කළ සම්බන්ධතා මෙහි සුරකින්න:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"SIM පතෙන් ආයාත කරන්න"</string>
-    <!-- no translation found for import_from_sim_summary (1161327527717146878) -->
-    <skip />
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"<xliff:g id="SIM_NAME">^1</xliff:g>\n SIM <xliff:g id="SIM_NUMBER">^2</xliff:g> වෙතින් ආයාත කරන්න"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM වෙතින් ආයාත කරන්න"</string>
-    <!-- no translation found for import_from_sim_summary_by_carrier (5348370965071823993) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_by_carrier_no_number (7709554428711997959) -->
-    <skip />
+    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"<xliff:g id="CARRIER_NAME">^1</xliff:g>\n SIM <xliff:g id="SIM_NUMBER">^2</xliff:g> වෙතින් ආයාත කරන්න"</string>
+    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"<xliff:g id="CARRIER_NAME">%1$s</xliff:g> SIM වෙතින් ආයාත කරන්න"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf ගොනුවෙන් ආයාත කරන්න"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> ආයාත කිරීම අවලංගු කරන්නද?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> නිර්යාත කිරීම අවලංගු කරන්නද?"</string>

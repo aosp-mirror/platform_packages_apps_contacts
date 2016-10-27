@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"تعديل"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"حذف"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"تغيير الصورة"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"وضع على الشاشة الرئيسية"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"الاتصال بجهة الاتصال"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"إرسال رسالة لجهة الاتصال"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"إلغاء الربط"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"عرض جميع جهات الاتصال"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"جهات الاتصال المقترحة"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"جميع جهات الاتصال"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"تم ربط جهات الاتصال"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"تم حذف <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"تم حذف <xliff:g id="NAME_0">%1$s</xliff:g> و<xliff:g id="NAME_1">%2$s</xliff:g>"</string>
@@ -97,7 +100,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"‏من Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"من <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"تعيين نغمة رنين"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"جميع المكالمات إلى البريد الصوتي"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"يتعذر حذف جهات الاتصال من حساباتك المخصصة للقراءة فقط، ولكن يمكن إخفاؤها."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"إخفاء"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"تتضمن جهة الاتصال التي تريد حذفها تفاصيل من حسابات متعددة. وسيتم إخفاء التفاصيل الواردة من الحسابات المخصصة للقراءة فقط، وليس حذفها."</string>
@@ -218,7 +224,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"التقاط صورة جديدة"</string>
     <string name="pick_photo" msgid="2129509985223564942">"اختيار صورة"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"تحديد صورة جديدة"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"يجري تحديث قائمة جهات الاتصال."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"جارٍ البحث..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"عرض العناصر المحددة"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"عرض الكل"</string>
@@ -373,7 +378,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"تم تحديد صورة من <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"لم يتم تحديد صورة من حساب غير معروف"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"تم تحديد صورة من حساب غير معروف"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"يتم تحديث قائمة جهات الاتصال لتعكس التغيير الذي حدث في اللغة.\n\nالرجاء الانتظار…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"المساعد"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"جهات الاتصال المكررة"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"فتح لائحة التنقل"</string>
