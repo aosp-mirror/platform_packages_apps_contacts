@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"திருத்து"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"நீக்கு"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"படத்தை மாற்று"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"முகப்புத் திரையில் அமை"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"தொடர்பை அழை"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"தொடர்பிற்கு உரைச் செய்தியை அனுப்பு"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"தொடர்பைப் பிரி"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"எல்லா தொடர்புகளையும் காட்டு"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"பரிந்துரைக்கப்பட்ட தொடர்புகள்"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"எல்லா தொடர்புகளும்"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"தொடர்புகள் இணைக்கப்பட்டன"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> நீக்கப்பட்டார்"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> மற்றும் <xliff:g id="NAME_1">%2$s</xliff:g> நீக்கப்பட்டனர்"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google கணக்கிலிருந்து"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> இலிருந்து"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ரிங்டோனை அமை"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"அழைப்புகளை குரலஞ்சலிற்கு திருப்பு"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"படிக்க மட்டுமேயான கணக்குகளிலிருந்து தொடர்புகளை நீக்க முடியாது, ஆனால் அவற்றை மறைக்கலாம்."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"மறை"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"நீக்குவதற்குத் தேர்ந்தெடுத்த தொடர்பில் பல கணக்குகளின் விவரங்கள் உள்ளன. படிக்க மட்டுமேயான கணக்குகளின் விவரங்கள் மறைக்கப்படுமே தவிர நீக்கப்படாது."</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"புதிய படத்தை எடு"</string>
     <string name="pick_photo" msgid="2129509985223564942">"படத்தைத் தேர்வுசெய்யவும்"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"புதிய படத்தைத் தேர்ந்தெடுக்கவும்"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"தொடர்பு பட்டியல் புதுப்பிக்கப்படுகிறது."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"தேடுகிறது..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"தேர்ந்தெடுத்தவற்றைக் காட்டு"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"அனைத்தையும் காட்டு"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> வழங்கிய படம் தேர்ந்தெடுக்கப்பட்டது"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"அறியப்படாத கணக்கிலிருந்து படம் தேர்ந்தெடுக்கப்படவில்லை"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"அறியப்படாத கணக்கிலிருந்து படம் தேர்ந்தெடுக்கப்பட்டது"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"மொழி மாற்றத்தைக் காட்ட, தொடர்புப் பட்டியல் புதுப்பிக்கப்படுகிறது.\n\nகாத்திருக்கவும்…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"அசிஸ்டண்ட்"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"நகல்கள்"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"வழிசெலுத்தல் டிராயரைத் திறக்கும்"</string>
@@ -487,7 +491,7 @@
     <string name="listCustomView" msgid="1840624396582117590">"தனிப்பயனாக்கிய காட்சி"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"இறக்கிய தொடர்புகளை இதில் சேமிக்கவும்:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"சிம் கார்டிலிருந்து இறக்குமதிசெய்"</string>
-    <string name="import_from_sim_summary" msgid="1161327527717146878">"பின்வரும் சிம் <xliff:g id="SIM_NAME">^1</xliff:g> இலிருந்து இறக்கு:\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
+    <string name="import_from_sim_summary" msgid="1161327527717146878">"<xliff:g id="SIM_NAME">^1</xliff:g> சிம்மிலிருந்து இறக்கு:\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"<xliff:g id="SIM_NAME">%1$s</xliff:g> சிம்மிலிருந்து இறக்கு"</string>
     <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"<xliff:g id="CARRIER_NAME">^1</xliff:g> சிம்மிலிருந்து இறக்கு:\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
     <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"<xliff:g id="CARRIER_NAME">%1$s</xliff:g> சிம்மிலிருந்து இறக்கு"</string>

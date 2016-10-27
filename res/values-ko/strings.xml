@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"수정"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"삭제"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"사진 변경"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"홈 화면에 만들기"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"연락처로 전화 걸기"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"연락처에 문자 보내기"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"연결 해제"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"모든 연락처 표시"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"추천 연락처"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"모든 연락처"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"연락처가 연결되었습니다."</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g>님 삭제됨"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g>님과 <xliff:g id="NAME_1">%2$s</xliff:g>님 삭제됨"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google에서 제공"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> 계정 연락처"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"벨소리 설정"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"음성사서함 자동 연결"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"읽기 전용 계정의 연락처는 숨길 수 있지만 삭제할 수 없습니다."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"숨기기"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"삭제할 연락처에 여러 계정의 세부정보가 들어 있습니다. 읽기 전용 계정의 세부정보는 표시되지 않을 뿐 삭제되는 것은 아닙니다."</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"새 사진 찍기"</string>
     <string name="pick_photo" msgid="2129509985223564942">"사진 선택"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"새 사진 선택"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"주소록을 업데이트하고 있습니다."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"검색 중…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"선택한 항목 표시"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"모두 표시"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>의 사진 선택됨"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"알 수 없는 계정의 사진이 선택되지 않음"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"알 수 없는 계정의 사진이 선택됨"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"변경된 언어를 반영하도록 연락처 목록을 업데이트하는 중입니다.\n\n잠시 기다려 주세요."</string>
     <string name="menu_assistant" msgid="919866272301744261">"어시스턴트"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"중복된 활동"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"탐색 창 열기"</string>

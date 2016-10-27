@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"ပြင်ဆင်ရန်"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ဖျက်ရန်"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"ဓာတ်ပုံပြောင်းရန်"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ပင်မစာမျက်နှာတွင် တင်ထားပါ"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"အဆက်အသွယ်ကို ခေါ်ပါ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"အဆက်အသွယ်ကို စာတိုပို့ရန်"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"လင့်ခ် ဖြုတ်ရန်"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"အဆက်အသွယ်များအားလုံးအားပြပါ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"အကြုံပြုလိုသော အဆက်အသွယ်များ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"လိပ်စာများအားလုံး"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ကွင်းဆက်ထားသည့် အဆက်အသွယ်များ"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> ကို ဖျက်ပြီး"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> နှင့် <xliff:g id="NAME_1">%2$s</xliff:g> တို့ကို ဖျက်ပြီး"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google မှ"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> မှ"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ဖုန်းမြည်သံသတ်မှတ်ရန်"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ဖုန်းအားလုံးအသံစာပို့စနစ်သို့"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ဖတ်ရန် သက်သက် အကောင့်များကို ဖျက်မရနိုင်သော်လည်း ဝှက်ထားနိုင်ပါသည်။"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"ဝှက်ထားပါ"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"ဖျက်မည့် အဆက်အသွယ်ထဲတွင် အကောင့်အများအပြားမှ အချက်အလက်များ ပါဝင်ပါသည်။ ဖတ်ရန်သက်သက် အကောင့်များမှ အချက်အလက်များကို ဝှက်ထားမှာဖြစ်ပြီး ဖျက်ပစ်မည် မဟုတ်ပါ"</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"ဓာတ်ပုံအသစ်ရိုက်ပါ"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ပုံရွေးရန်"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"ပုံသစ်ရွေးရန်"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"အဆက်အသွယ်စာရင်းအား ပြုပြင်နေစဉ်"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ရှာဖွေနေသည်…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ရွေးချယ်ထားသည်ကိုပြပါ"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"အားလုံးကို ပြသရန်"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>ထံမှ ဓာတ်ပုံကို စစ်ကြည့်ပြီးပြီ"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"အမည်မသိအကောင့်မှ ဓာတ်ပုံဓာတ်ပုံ မစစ်ဆေးရသေးပါ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"အမည်မသိအကောင့်မှ ဓာတ်ပုံ စစ်ဆေးပြီးပါပြီ"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"ဘာသာစကားအပြောင်းအလဲကို ထင်ဟပ်ပေးရန် အဆက်အသွယ်စာရင်းကို မွမ်းမံနေပါသည်။\n\nခဏစောင့်ပေးပါ…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"အထောက်အကူ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"မိတ္တူပွားများ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"လမ်းညွှန်ချက်အကွက်ကို ဖွင့်ပါ"</string>

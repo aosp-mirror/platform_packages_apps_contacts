@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"ਸੰਪਾਦਿਤ ਕਰੋ"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ਮਿਟਾਓ"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"ਫੋਟੋ ਬਦਲੋ"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ਹੋਮ ਸਕ੍ਰੀਨ ’ਤੇ ਰੱਖੋ"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"ਸੰਪਰਕ ਨੂੰ ਕਾਲ ਕਰੋ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"ਟੈਕਸਟ ਸੰਪਰਕ"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"ਅਨਲਿੰਕ ਕਰੋ"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ਸਾਰੇ ਸੰਪਰਕ ਦਿਖਾਓ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ਸੁਝਾਏ ਗਏ ਸੰਪਰਕ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ਸਾਰੇ ਸੰਪਰਕ"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ਸੰਪਰਕ ਲਿੰਕ ਕੀਤੇ ਗਏ"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> ਅਤੇ <xliff:g id="NAME_1">%2$s</xliff:g> ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google ਤੋਂ"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> ਤੋਂ"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ਰਿੰਗਟੋਨ ਸੈੱਟ ਕਰੋ"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ਸਾਰੀਆਂ ਕਾਲਾਂ ਵੌਇਸਮੇਲ ਵਿੱਚ ਭੇਜੋ"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ਤੁਹਾਡੇ ਰੀਡ-ਓਨਲੀ ਖਾਤਿਆਂ ਤੋਂ ਸੰਪਰਕ ਹਟਾਏ ਨਹੀਂ ਜਾ ਸਕਦੇ ਹਨ, ਪਰ ਇਹਨਾਂ ਨੂੰ ਲੁਕਾਇਆ ਜਾ ਸਕਦਾ ਹੈ।"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"ਲੁਕਾਓ"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"ਇਸ ਹਟਾਏ ਜਾਣ ਵਾਲੇ ਸੰਪਰਕ ਕੋਲ ਇੱਕ ਤੋਂ ਜ਼ਿਆਦਾ ਖਾਤਿਆਂ  ਦੇ ਵੇਰਵੇ ਹਨ। ਰੀਡ-ਓਨਲੀ ਖਾਤਿਆਂ ਦੇ ਵੇਰਵੇ ਮਿਟਾਏ ਨਹੀਂ, ਲੁਕਾਏ ਜਾਣਗੇ।"</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"ਨਵੀਂ ਫੋਟੋ ਲਓ"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ਫੋਟੋ ਚੁਣੋ"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"ਨਵੀਂ ਫੋਟੋ ਚੁਣੋ"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"ਸੰਪਰਕ ਸੂਚੀ ਅਪਡੇਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ।"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ਖੋਜ ਰਿਹਾ ਹੈ..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"ਚੁਣਿਆ ਗਿਆ ਦਿਖਾਓ"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"ਸਾਰੇ ਦਿਖਾਓ"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> ਵਲੋਂ ਫੋਟੋ ਜਾਂਚੀ ਗਈ"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ਅਗਿਆਤ ਖਾਤੇ ਦੀ ਫੋਟੋ ਨਹੀਂ ਜਾਂਚੀ ਗਈ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ਅਗਿਆਤ ਖਾਤੇ ਦੀ ਫੋਟੋ ਜਾਂਚੀ ਗਈ"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"ਭਾਸ਼ਾ ਵਿੱਚ ਕੀਤੇ ਬਦਲਾਅ ਨੂੰ ਦਰਸ਼ਾਉਣ ਲਈ ਸੰਪਰਕ ਸੂਚੀ ਅੱਪਡੇਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ\n\nਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"ਸਹਾਇਕ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ਡੁਪਲੀਕੇਟ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ਆਵਾਗੌਣ ਦਰਾਜ਼ ਖੋਲ੍ਹੋ"</string>

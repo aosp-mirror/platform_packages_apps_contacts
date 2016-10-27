@@ -40,7 +40,8 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Bewerken"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Verwijderen"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Foto wijzigen"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Op startscherm plaatsen"</string>
+    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
+    <skip />
     <string name="menu_call" msgid="3992595586042260618">"Contact bellen"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Sms\'en naar contact"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Loskoppelen"</string>
@@ -66,6 +67,8 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Alle contacten weergeven"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Mogelijke contacten"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle contacten"</string>
+    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
+    <skip />
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Contacten gekoppeld"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> verwijderd"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> en <xliff:g id="NAME_1">%2$s</xliff:g> verwijderd"</string>
@@ -85,7 +88,10 @@
     <string name="title_from_google" msgid="4664084747121207202">"Van Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Van <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Beltoon instellen"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Alle oproepen naar voicemail"</string>
+    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
+    <skip />
+    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
+    <skip />
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Contacten uit alleen-lezen accounts kunnen niet worden verwijderd, maar kunnen wel worden verborgen."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Verbergen"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Het contact dat je verwijdert, bevat gegevens uit meerdere accounts. Gegevens uit alleen-lezen accounts worden verborgen, maar niet verwijderd."</string>
@@ -190,7 +196,6 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Nieuwe foto nemen"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Foto kiezen"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Nieuwe foto selecteren"</string>
-    <string name="upgrade_in_progress" msgid="474511436863451061">"Lijst met contactpersonen wordt bijgewerkt."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Zoeken..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Selectie weergeven"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Alles weergeven"</string>
@@ -329,7 +334,6 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Foto van <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> <xliff:g id="USER_NAME">%s </xliff:g> aangevinkt"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto uit onbekend account niet aangevinkt"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto uit onbekend account aangevinkt"</string>
-    <string name="locale_change_in_progress" msgid="6975676844194755501">"Lijst met contacten wordt geüpdatet op basis van de gewijzigde taal.\n\nEen ogenblik geduld…"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Assistent"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Duplicaten"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Zijmenu openen"</string>
