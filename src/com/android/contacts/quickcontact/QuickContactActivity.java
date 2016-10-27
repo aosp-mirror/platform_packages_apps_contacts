@@ -32,7 +32,6 @@ import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -48,7 +47,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Trace;
 import android.provider.CalendarContract;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
@@ -72,9 +70,7 @@ import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
-import android.support.v7.widget.CardView;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
 import android.text.BidiFormatter;
@@ -85,7 +81,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -94,12 +89,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.WindowManager;
-import android.view.accessibility.AccessibilityEvent;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -113,7 +102,6 @@ import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ClipboardUtils;
 import com.android.contacts.common.Collapser;
-import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestDesiredPermissionsActivity;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
@@ -135,7 +123,6 @@ import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContact;
 import com.android.contacts.common.model.RawContactDeltaList;
-import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.dataitem.CustomDataItem;
 import com.android.contacts.common.model.dataitem.DataItem;
@@ -160,8 +147,6 @@ import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.common.util.UriUtils;
 import com.android.contacts.common.util.ViewUtil;
 import com.android.contacts.detail.ContactDisplayUtils;
-import com.android.contacts.editor.AggregationSuggestionEngine;
-import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.editor.EditorUiUtils;
@@ -186,6 +171,7 @@ import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 import com.android.contacts.widget.QuickContactImageView;
 import com.android.contactsbind.HelpUtils;
+
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -195,11 +181,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -208,7 +191,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * {@link Intent#getSourceBounds()}.
  */
 public class QuickContactActivity extends ContactsActivity implements
-        AggregationSuggestionEngine.Listener, SplitContactConfirmationDialogFragment.Listener {
+        SplitContactConfirmationDialogFragment.Listener {
 
     /**
      * QuickContacts immediately takes up the full screen. All possible information is shown.
@@ -230,10 +213,7 @@ public class QuickContactActivity extends ContactsActivity implements
     private static final String TAG = "QuickContact";
 
     private static final String KEY_THEME_COLOR = "theme_color";
-    private static final String KEY_IS_SUGGESTION_LIST_COLLAPSED = "is_suggestion_list_collapsed";
-    private static final String KEY_SELECTED_SUGGESTION_CONTACTS = "selected_suggestion_contacts";
     private static final String KEY_PREVIOUS_CONTACT_ID = "previous_contact_id";
-    private static final String KEY_SUGGESTIONS_AUTO_SELECTED = "suggestions_auto_seleted";
 
     private static final String KEY_SEND_TO_VOICE_MAIL_STATE = "sendToVoicemailState";
     private static final String KEY_ARE_PHONE_OPTIONS_CHANGEABLE = "arePhoneOptionsChangable";
@@ -303,23 +283,7 @@ public class QuickContactActivity extends ContactsActivity implements
     private ExpandingEntryCardView mAboutCard;
     private ExpandingEntryCardView mPermissionExplanationCard;
 
-    // Suggestion card.
-    private boolean mShouldShowSuggestions = false;
-    private CardView mCollapsedSuggestionCardView;
-    private CardView mExpandSuggestionCardView;
-    private View mCollapsedSuggestionHeader;
-    private TextView mCollapsedSuggestionCardTitle;
-    private TextView mExpandSuggestionCardTitle;
-    private ImageView mSuggestionSummaryPhoto;
-    private TextView mSuggestionForName;
-    private TextView mSuggestionContactsNumber;
-    private LinearLayout mSuggestionList;
-    private Button mSuggestionsCancelButton;
-    private Button mSuggestionsLinkButton;
-    private boolean mIsSuggestionListCollapsed;
-    private boolean mSuggestionsShouldAutoSelected = true;
     private long mPreviousContactId = 0;
-
     // Permission explanation card.
     private boolean mShouldShowPermissionExplanation = false;
     private String mPermissionExplanationCardSubHeader = "";
@@ -328,10 +292,6 @@ public class QuickContactActivity extends ContactsActivity implements
     private AsyncTask<Void, Void, Cp2DataCardModel> mEntriesAndActionsTask;
     private AsyncTask<Void, Void, Void> mRecentDataTask;
 
-    private AggregationSuggestionEngine mAggregationSuggestionEngine;
-    private List<Suggestion> mSuggestions;
-
-    private TreeSet<Long> mSelectedAggregationIds = new TreeSet<>();
     /**
      * The last copy of Cp2DataCardModel that was passed to {@link #populateContactAndAboutCard}.
      */
@@ -534,211 +494,6 @@ public class QuickContactActivity extends ContactsActivity implements
             mScroller.setDisableTouchesForSuppressLayout(/* areTouchesDisabled = */ false);
         }
     };
-
-    @Override
-    public void onAggregationSuggestionChange() {
-        if (!mShouldShowSuggestions) {
-            return;
-        }
-        if (mAggregationSuggestionEngine == null) {
-            return;
-        }
-        mSuggestions = mAggregationSuggestionEngine.getSuggestions();
-        mCollapsedSuggestionCardView.setVisibility(View.GONE);
-        mExpandSuggestionCardView.setVisibility(View.GONE);
-        mSuggestionList.removeAllViews();
-
-        if (mContactData == null) {
-            return;
-        }
-
-        final String suggestionForName = mContactData.getDisplayName();
-        final int suggestionNumber = mSuggestions.size();
-
-        if (suggestionNumber <= 0) {
-            mSelectedAggregationIds.clear();
-            return;
-        }
-
-        ContactPhotoManager.DefaultImageRequest
-                request = new ContactPhotoManager.DefaultImageRequest(
-                suggestionForName, mContactData.getLookupKey(), ContactPhotoManager.TYPE_DEFAULT,
-                /* isCircular */ true );
-        final long photoId = mContactData.getPhotoId();
-        final byte[] photoBytes = mContactData.getThumbnailPhotoBinaryData();
-        if (photoBytes != null) {
-            ContactPhotoManager.getInstance(this).loadThumbnail(mSuggestionSummaryPhoto, photoId,
-                /* darkTheme */ false , /* isCircular */ true , request);
-        } else {
-            ContactPhotoManager.DEFAULT_AVATAR.applyDefaultImage(mSuggestionSummaryPhoto,
-                    -1, false, request);
-        }
-
-        final String suggestionTitle = getResources().getQuantityString(
-                R.plurals.quickcontact_suggestion_card_title, suggestionNumber, suggestionNumber);
-        mCollapsedSuggestionCardTitle.setText(suggestionTitle);
-        mExpandSuggestionCardTitle.setText(suggestionTitle);
-
-        mSuggestionForName.setText(suggestionForName);
-        final int linkedContactsNumber = mContactData.getRawContacts().size();
-        final String contactsInfo;
-        final String accountName = mContactData.getRawContacts().get(0).getAccountName();
-        if (linkedContactsNumber == 1 && accountName == null) {
-            mSuggestionContactsNumber.setVisibility(View.INVISIBLE);
-        }
-        if (linkedContactsNumber == 1 && accountName != null) {
-            contactsInfo = getResources().getString(R.string.contact_from_account_name,
-                    accountName);
-        } else {
-            contactsInfo = getResources().getString(
-                    R.string.quickcontact_contacts_number, linkedContactsNumber);
-        }
-        mSuggestionContactsNumber.setText(contactsInfo);
-
-        final Set<Long> suggestionContactIds = new HashSet<>();
-        for (Suggestion suggestion : mSuggestions) {
-            mSuggestionList.addView(inflateSuggestionListView(suggestion));
-            suggestionContactIds.add(suggestion.contactId);
-        }
-
-        if (mIsSuggestionListCollapsed) {
-            collapseSuggestionList();
-        } else {
-            expandSuggestionList();
-        }
-
-        // Remove contact Ids that are not suggestions.
-        final Set<Long> selectedSuggestionIds = com.google.common.collect.Sets.intersection(
-                mSelectedAggregationIds, suggestionContactIds);
-        mSelectedAggregationIds = new TreeSet<>(selectedSuggestionIds);
-        if (!mSelectedAggregationIds.isEmpty()) {
-            enableLinkButton();
-        }
-    }
-
-    private void collapseSuggestionList() {
-        mCollapsedSuggestionCardView.setVisibility(View.VISIBLE);
-        mExpandSuggestionCardView.setVisibility(View.GONE);
-        mIsSuggestionListCollapsed = true;
-    }
-
-    private void expandSuggestionList() {
-        mCollapsedSuggestionCardView.setVisibility(View.GONE);
-        mExpandSuggestionCardView.setVisibility(View.VISIBLE);
-        mIsSuggestionListCollapsed = false;
-    }
-
-    private View inflateSuggestionListView(final Suggestion suggestion) {
-        final LayoutInflater layoutInflater = LayoutInflater.from(this);
-        final View suggestionView = layoutInflater.inflate(
-                R.layout.quickcontact_suggestion_contact_item, null);
-
-        ContactPhotoManager.DefaultImageRequest
-                request = new ContactPhotoManager.DefaultImageRequest(
-                suggestion.name, suggestion.lookupKey, ContactPhotoManager.TYPE_DEFAULT, /*
-                isCircular */ true);
-        final ImageView photo = (ImageView) suggestionView.findViewById(
-                R.id.aggregation_suggestion_photo);
-        if (suggestion.photo != null) {
-            ContactPhotoManager.getInstance(this).loadThumbnail(photo, suggestion.photoId,
-                   /* darkTheme */ false, /* isCircular */ true, request);
-        } else {
-            ContactPhotoManager.DEFAULT_AVATAR.applyDefaultImage(photo, -1, false, request);
-        }
-
-        final TextView name = (TextView) suggestionView.findViewById(R.id.aggregation_suggestion_name);
-        name.setText(suggestion.name);
-
-        final TextView accountNameView = (TextView) suggestionView.findViewById(
-                R.id.aggregation_suggestion_account_name);
-        final String accountName = suggestion.rawContacts.get(0).accountName;
-        if (!TextUtils.isEmpty(accountName)) {
-            accountNameView.setText(
-                    getResources().getString(R.string.contact_from_account_name, accountName));
-        } else {
-            accountNameView.setVisibility(View.INVISIBLE);
-        }
-
-        final CheckBox checkbox = (CheckBox) suggestionView.findViewById(R.id.suggestion_checkbox);
-        final int[][] stateSet = new int[][] {
-                new int[] { android.R.attr.state_checked },
-                new int[] { -android.R.attr.state_checked }
-        };
-        final int[] colors = new int[] { mColorFilterColor, mColorFilterColor };
-        if (suggestion != null && suggestion.name != null) {
-            checkbox.setContentDescription(suggestion.name + " " +
-                    getResources().getString(R.string.contact_from_account_name, accountName));
-        }
-        checkbox.setButtonTintList(new ColorStateList(stateSet, colors));
-        checkbox.setChecked(mSuggestionsShouldAutoSelected ||
-                mSelectedAggregationIds.contains(suggestion.contactId));
-        if (checkbox.isChecked()) {
-            mSelectedAggregationIds.add(suggestion.contactId);
-        }
-        checkbox.setTag(suggestion.contactId);
-        checkbox.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final CheckBox checkBox = (CheckBox) v;
-                final Long contactId = (Long) checkBox.getTag();
-                if (mSelectedAggregationIds.contains(mContactData.getId())) {
-                    mSelectedAggregationIds.remove(mContactData.getId());
-                }
-                if (checkBox.isChecked()) {
-                    mSelectedAggregationIds.add(contactId);
-                    if (mSelectedAggregationIds.size() >= 1) {
-                        enableLinkButton();
-                    }
-                } else {
-                    mSelectedAggregationIds.remove(contactId);
-                    mSuggestionsShouldAutoSelected = false;
-                    if (mSelectedAggregationIds.isEmpty()) {
-                        disableLinkButton();
-                    }
-                }
-            }
-        });
-
-        return suggestionView;
-    }
-
-    private void enableLinkButton() {
-        mSuggestionsLinkButton.setClickable(true);
-        mSuggestionsLinkButton.getBackground().setColorFilter(mColorFilter);
-        mSuggestionsLinkButton.setTextColor(
-                ContextCompat.getColor(this, android.R.color.white));
-        mSuggestionsLinkButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Join selected contacts.
-                if (!mSelectedAggregationIds.contains(mContactData.getId())) {
-                    mSelectedAggregationIds.add(mContactData.getId());
-                }
-
-                final Long[] contactIdsArray = mSelectedAggregationIds.toArray(
-                        new Long[mSelectedAggregationIds.size()]);
-                final long[] contactIdsArray2 = new long[contactIdsArray.length];
-                for (int i = 0; i < contactIdsArray.length; i++) {
-                    contactIdsArray2[i] = contactIdsArray[i];
-                }
-
-                final Intent intent = ContactSaveService.createJoinSeveralContactsIntent(
-                        QuickContactActivity.this, contactIdsArray2);
-                QuickContactActivity.this.startService(intent);
-
-                disableLinkButton();
-            }
-        });
-    }
-
-    private void disableLinkButton() {
-        mSuggestionsLinkButton.setClickable(false);
-        mSuggestionsLinkButton.getBackground().setColorFilter(
-                ContextCompat.getColor(this, R.color.disabled_button_background),
-                PorterDuff.Mode.SRC_ATOP);
-        mSuggestionsLinkButton.setTextColor(
-                ContextCompat.getColor(this, R.color.disabled_button_text));
-    }
 
     private interface ContextMenuIds {
         static final int COPY_TEXT = 0;
@@ -1046,59 +801,6 @@ public class QuickContactActivity extends ContactsActivity implements
         mPermissionExplanationCard =
                 (ExpandingEntryCardView) findViewById(R.id.permission_explanation_card);
 
-        if (mShouldShowSuggestions) {
-            mCollapsedSuggestionCardView = (CardView) findViewById(R.id.collapsed_suggestion_card);
-            mExpandSuggestionCardView = (CardView) findViewById(R.id.expand_suggestion_card);
-            mCollapsedSuggestionHeader = findViewById(R.id.collapsed_suggestion_header);
-            mCollapsedSuggestionCardTitle = (TextView) findViewById(
-                    R.id.collapsed_suggestion_card_title);
-            mExpandSuggestionCardTitle = (TextView) findViewById(R.id.expand_suggestion_card_title);
-            mSuggestionSummaryPhoto = (ImageView) findViewById(R.id.suggestion_icon);
-            mSuggestionForName = (TextView) findViewById(R.id.suggestion_for_name);
-            mSuggestionContactsNumber = (TextView) findViewById(
-                    R.id.suggestion_for_contacts_number);
-            mSuggestionList = (LinearLayout) findViewById(R.id.suggestion_list);
-            mSuggestionsCancelButton = (Button) findViewById(R.id.cancel_button);
-            mSuggestionsLinkButton = (Button) findViewById(R.id.link_button);
-            if (savedInstanceState != null) {
-                mIsSuggestionListCollapsed = savedInstanceState.getBoolean(
-                        KEY_IS_SUGGESTION_LIST_COLLAPSED, true);
-                mPreviousContactId = savedInstanceState.getLong(KEY_PREVIOUS_CONTACT_ID);
-                mSuggestionsShouldAutoSelected = savedInstanceState.getBoolean(
-                        KEY_SUGGESTIONS_AUTO_SELECTED, true);
-                mSelectedAggregationIds = (TreeSet<Long>)
-                        savedInstanceState.getSerializable(KEY_SELECTED_SUGGESTION_CONTACTS);
-            } else {
-                mIsSuggestionListCollapsed = true;
-                mSelectedAggregationIds.clear();
-            }
-            if (mSelectedAggregationIds.isEmpty()) {
-                disableLinkButton();
-            } else {
-                enableLinkButton();
-            }
-            mCollapsedSuggestionHeader.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCollapsedSuggestionCardView.setVisibility(View.GONE);
-                    mExpandSuggestionCardView.setVisibility(View.VISIBLE);
-                    mIsSuggestionListCollapsed = false;
-                    mExpandSuggestionCardTitle.requestFocus();
-                    mExpandSuggestionCardTitle.sendAccessibilityEvent(
-                            AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
-                }
-            });
-
-            mSuggestionsCancelButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCollapsedSuggestionCardView.setVisibility(View.VISIBLE);
-                    mExpandSuggestionCardView.setVisibility(View.GONE);
-                    mIsSuggestionListCollapsed = true;
-                }
-            });
-        }
-
         mPermissionExplanationCard.setOnClickListener(mEntryClickHandler);
         mNoContactDetailsCard.setOnClickListener(mEntryClickHandler);
         mContactCard.setOnClickListener(mEntryClickHandler);
@@ -1240,12 +942,7 @@ public class QuickContactActivity extends ContactsActivity implements
         if (mColorFilter != null) {
             savedInstanceState.putInt(KEY_THEME_COLOR, mColorFilterColor);
         }
-        savedInstanceState.putBoolean(KEY_IS_SUGGESTION_LIST_COLLAPSED, mIsSuggestionListCollapsed);
         savedInstanceState.putLong(KEY_PREVIOUS_CONTACT_ID, mPreviousContactId);
-        savedInstanceState.putBoolean(
-                KEY_SUGGESTIONS_AUTO_SELECTED, mSuggestionsShouldAutoSelected);
-        savedInstanceState.putSerializable(
-                KEY_SELECTED_SUGGESTION_CONTACTS, mSelectedAggregationIds);
 
         // Phone specific options
         savedInstanceState.putBoolean(KEY_SEND_TO_VOICE_MAIL_STATE, mSendToVoicemailState);
@@ -1436,7 +1133,6 @@ public class QuickContactActivity extends ContactsActivity implements
     private void bindDataToCards(Cp2DataCardModel cp2DataCardModel) {
         startInteractionLoaders(cp2DataCardModel);
         populateContactAndAboutCard(cp2DataCardModel, /* shouldAddPhoneticName */ true);
-        populateSuggestionCard();
     }
 
     private void startInteractionLoaders(Cp2DataCardModel cp2DataCardModel) {
@@ -1547,53 +1243,6 @@ public class QuickContactActivity extends ContactsActivity implements
             destroyInteractionLoaders();
             startInteractionLoaders(mCachedCp2DataCardModel);
         }
-    }
-
-    private void populateSuggestionCard() {
-        if (!mShouldShowSuggestions) {
-            return;
-        }
-        // Initialize suggestion related view and data.
-        if (mPreviousContactId != mContactData.getId()) {
-            mCollapsedSuggestionCardView.setVisibility(View.GONE);
-            mExpandSuggestionCardView.setVisibility(View.GONE);
-            mIsSuggestionListCollapsed = true;
-            mSuggestionsShouldAutoSelected = true;
-            mSuggestionList.removeAllViews();
-        }
-
-        // Do not show the card when it's directory contact or invisible.
-        if (DirectoryContactUtil.isDirectoryContact(mContactData)
-                || InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)) {
-            return;
-        }
-
-        if (mAggregationSuggestionEngine == null) {
-            mAggregationSuggestionEngine = new AggregationSuggestionEngine(this);
-            mAggregationSuggestionEngine.setListener(this);
-            mAggregationSuggestionEngine.setSuggestionsLimit(getResources().getInteger(
-                    R.integer.quickcontact_suggestions_limit));
-            mAggregationSuggestionEngine.start();
-        }
-
-        mAggregationSuggestionEngine.setContactId(mContactData.getId());
-        if (mPreviousContactId != 0
-                && mPreviousContactId != mContactData.getId()) {
-            // Clear selected Ids when listing suggestions for new contact Id.
-            mSelectedAggregationIds.clear();
-        }
-        mPreviousContactId = mContactData.getId();
-
-        // Trigger suggestion engine to compute suggestions.
-        if (mContactData.getId() <= 0) {
-            return;
-        }
-        final ContentValues values = new ContentValues();
-        values.put(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME,
-                mContactData.getDisplayName());
-        values.put(ContactsContract.CommonDataKinds.StructuredName.PHONETIC_FAMILY_NAME,
-                mContactData.getPhoneticName());
-        mAggregationSuggestionEngine.onNameChange(ValuesDelta.fromBefore(values));
     }
 
     private void populateContactAndAboutCard(Cp2DataCardModel cp2DataCardModel,
@@ -2515,8 +2164,6 @@ public class QuickContactActivity extends ContactsActivity implements
                 if (imageViewDrawable == mPhotoView.getDrawable()) {
                     mHasComputedThemeColor = true;
                     setThemeColor(palette);
-                    // update color and photo in suggestion card
-                    onAggregationSuggestionChange();
                 }
             }
         }.execute();
@@ -2534,9 +2181,6 @@ public class QuickContactActivity extends ContactsActivity implements
         mContactCard.setColorAndFilter(mColorFilterColor, mColorFilter);
         mRecentCard.setColorAndFilter(mColorFilterColor, mColorFilter);
         mAboutCard.setColorAndFilter(mColorFilterColor, mColorFilter);
-        if (mShouldShowSuggestions) {
-            mSuggestionsCancelButton.setTextColor(mColorFilterColor);
-        }
     }
 
     private void updateStatusBarColor() {
@@ -2892,9 +2536,6 @@ public class QuickContactActivity extends ContactsActivity implements
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mAggregationSuggestionEngine != null) {
-            mAggregationSuggestionEngine.quit();
-        }
     }
 
     /**

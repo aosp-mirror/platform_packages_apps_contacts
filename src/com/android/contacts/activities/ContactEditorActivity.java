@@ -304,10 +304,10 @@ public class ContactEditorActivity extends ContactsActivity implements
                 }
 
                 @Override
-                public void onEditOtherContactRequested(
-                        Uri contactLookupUri, ArrayList<ContentValues> values) {
-                    final Intent intent = EditorIntents.createEditOtherContactIntent(
-                            ContactEditorActivity.this, contactLookupUri, values);
+                public void onEditOtherRawContactRequested(
+                        Uri contactLookupUri, long rawContactId, ArrayList<ContentValues> values) {
+                    final Intent intent = EditorIntents.createEditOtherRawContactIntent(
+                            ContactEditorActivity.this, contactLookupUri, rawContactId, values);
                     ImplicitIntentsUtil.startActivityInApp(
                             ContactEditorActivity.this, intent);
                     finish();
