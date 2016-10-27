@@ -16,13 +16,17 @@
 package com.android.contacts.tests;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
+import android.support.test.InstrumentationRegistry;
 import android.util.Log;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.util.SharedPreferenceUtil;
 
 /**
  * Contains utility methods that can be invoked directly from adb using RunMethodInstrumentation.
@@ -72,5 +76,18 @@ public class AdbHelpers {
 
     public static void clearDefaultAccount(Context context) {
         new ContactsPreferences(context).clearDefaultAccount();
+    }
+
+    public static void clearPreferences(Context context) {
+        SharedPreferenceUtil.clear(context);
+    }
+
+    public static void dumpPreferences(Context context) {
+        Log.d(TAG, "preferences=" + getAppContext().getSharedPreferences(
+                getAppContext().getPackageName(), Context.MODE_PRIVATE).getAll());
+    }
+
+    private static Context getAppContext() {
+        return InstrumentationRegistry.getTargetContext();
     }
 }

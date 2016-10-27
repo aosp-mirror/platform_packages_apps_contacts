@@ -45,6 +45,8 @@ import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.os.ResultReceiver;
 import android.text.TextUtils;
@@ -150,6 +152,7 @@ public class ContactSaveService extends IntentService {
 
     public static final String BROADCAST_GROUP_DELETED = "groupDeleted";
     public static final String BROADCAST_SIM_IMPORT_COMPLETE = "simImportComplete";
+    public static final String EXTRA_CALLBACK_DATA = "extraCallbackData";
 
     public static final String EXTRA_RESULT_CODE = "resultCode";
     public static final String EXTRA_RESULT_COUNT = "count";
@@ -208,7 +211,7 @@ public class ContactSaveService extends IntentService {
     public void onCreate() {
         super.onCreate();
         mGroupsDao = new GroupsDaoImpl(this);
-        mSimContactDao = new SimContactDao(this);
+        mSimContactDao = SimContactDao.create(this);
     }
 
     public static void registerListener(Listener listener) {
@@ -1685,12 +1688,14 @@ public class ContactSaveService extends IntentService {
         operations.add(builder.build());
     }
 
-    public static Intent createImportFromSimIntent(Context context,
-            ArrayList<SimContact> contacts, AccountWithDataSet targetAccount) {
+    public static Intent createImportFromSimIntent(@NonNull Context context,
+            @NonNull ArrayList<SimContact> contacts, @NonNull AccountWithDataSet targetAccount,
+            @Nullable  Bundle callbackData) {
         return new Intent(context, ContactSaveService.class)
                 .setAction(ACTION_IMPORT_FROM_SIM)
                 .putExtra(EXTRA_SIM_CONTACTS, contacts)
-                .putExtra(EXTRA_ACCOUNT, targetAccount);
+                .putExtra(EXTRA_ACCOUNT, targetAccount)
+                .putExtra(EXTRA_CALLBACK_DATA, callbackData);
     }
 
     private void importFromSim(Intent intent) {
@@ -1704,7 +1709,8 @@ public class ContactSaveService extends IntentService {
             // notify success
             LocalBroadcastManager.getInstance(this).sendBroadcast(result
                     .putExtra(EXTRA_RESULT_COUNT, contacts.size())
-                    .putExtra(EXTRA_RESULT_CODE, RESULT_SUCCESS));
+                    .putExtra(EXTRA_RESULT_CODE, RESULT_SUCCESS)
+                    .putExtra(EXTRA_CALLBACK_DATA, intent.getBundleExtra(EXTRA_CALLBACK_DATA)));
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "importFromSim completed successfully");
             }
