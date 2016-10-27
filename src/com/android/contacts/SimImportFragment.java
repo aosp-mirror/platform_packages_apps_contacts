@@ -40,6 +40,7 @@ import com.android.contacts.common.list.ContactListAdapter;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.SimCard;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
@@ -59,7 +60,8 @@ public class SimImportFragment extends DialogFragment
 
     private static final String KEY_SELECTED_IDS = "selectedIds";
     private static final String ARG_SUBSCRIPTION_ID = "subscriptionId";
-    public static final int NO_SUBSCRIPTION_ID = -1;
+
+    public static final String CALLBACK_KEY_SUBSCRIPTION_ID = "simSubscriptionId";
 
     private ContactsPreferences mPreferences;
     private AccountTypeManager mAccountTypeManager;
@@ -88,8 +90,8 @@ public class SimImportFragment extends DialogFragment
         mAdapter.setHasHeader(0, false);
 
         final Bundle args = getArguments();
-        mSubscriptionId = args == null ? NO_SUBSCRIPTION_ID : args.getInt(ARG_SUBSCRIPTION_ID,
-                NO_SUBSCRIPTION_ID);
+        mSubscriptionId = args == null ? SimCard.NO_SUBSCRIPTION_ID :
+                args.getInt(ARG_SUBSCRIPTION_ID, SimCard.NO_SUBSCRIPTION_ID);
 
         if (savedInstanceState == null) return;
         mSelectedContacts = savedInstanceState.getLongArray(KEY_SELECTED_IDS);
@@ -198,9 +200,11 @@ public class SimImportFragment extends DialogFragment
     }
 
     private void importCurrentSelections() {
+        final Bundle callbackData = new Bundle();
+        callbackData.putInt(CALLBACK_KEY_SUBSCRIPTION_ID, mSubscriptionId);
         ContactSaveService.startService(getContext(), ContactSaveService
                 .createImportFromSimIntent(getContext(), mAdapter.getSelectedContacts(),
-                mAccountHeaderPresenter.getCurrentAccount()));
+                mAccountHeaderPresenter.getCurrentAccount(), callbackData));
     }
 
     @Override
@@ -321,7 +325,7 @@ public class SimImportFragment extends DialogFragment
 
         public SimContactLoader(Context context, int subscriptionId) {
             super(context);
-            mDao = new SimContactDao(context);
+            mDao = SimContactDao.create(context);
             mSubscriptionId = subscriptionId;
         }
 
@@ -342,7 +346,7 @@ public class SimImportFragment extends DialogFragment
 
         @Override
         public ArrayList<SimContact> loadInBackground() {
-            if (mSubscriptionId != NO_SUBSCRIPTION_ID) {
+            if (mSubscriptionId != SimCard.NO_SUBSCRIPTION_ID) {
                 return mDao.loadSimContacts(mSubscriptionId);
             } else {
                 return mDao.loadSimContacts();
