@@ -110,6 +110,10 @@ public class SimCard {
         return PhoneNumberUtils.formatNumber(mPhoneNumber, mCountryCode);
     }
 
+    public boolean hasPhone() {
+        return mPhoneNumber != null;
+    }
+
     public String getCountryCode() {
         return mCountryCode;
     }
