@@ -311,6 +311,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 ContactsContract.Data.CONTACT_ID,
                 ContactsContract.CommonDataKinds.Email._ID,
                 ContactsContract.Data.IS_SUPER_PRIMARY,
+                ContactsContract.Data.TIMES_USED,
                 ContactsContract.Data.DATA1
         };
 
@@ -318,13 +319,47 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 ContactsContract.Data.CONTACT_ID,
                 ContactsContract.CommonDataKinds.Phone._ID,
                 ContactsContract.Data.IS_SUPER_PRIMARY,
+                ContactsContract.Data.TIMES_USED,
                 ContactsContract.Data.DATA1
         };
 
         public static final int CONTACT_ID = 0;
         public static final int ITEM_ID = 1;
         public static final int PRIMARY = 2;
-        public static final int DATA1 = 3;
+        public static final int TIMES_USED = 3;
+        public static final int DATA1 = 4;
+    }
+
+    /**
+     * Helper class for managing data related to contacts and emails/phone numbers.
+     */
+    private class ContactDataHelperClass {
+
+        private List<String> items = new ArrayList<>();
+        private String mostUsedItemId = null;
+        private int mostUsedTimes;
+        private String primaryItemId = null;
+
+        public void addItem(String item, int timesUsed, boolean primaryFlag) {
+            if (mostUsedItemId == null || timesUsed > mostUsedTimes) {
+                mostUsedItemId = item;
+                mostUsedTimes = timesUsed;
+            }
+            if (primaryFlag) {
+                primaryItemId = item;
+            }
+            items.add(item);
+        }
+
+        public boolean hasDefaultItem() {
+            return primaryItemId != null || items.size() == 1;
+        }
+
+        public String getDefaultSelectionItemId() {
+            return primaryItemId != null
+                    ? primaryItemId
+                    : mostUsedItemId;
+        }
     }
 
     private List<String> getSendToDataForIds(long[] ids, String scheme) {
@@ -366,10 +401,8 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         if(ids == null || ids.length == 0) return;
 
         // Get emails or phone numbers
-        // encounteredIds <contact_id, <item_id, is_super_primary>>
-        final Map<String, Map<String, Boolean>> encounteredIds = new HashMap<>();
-        // primaryItems <contact_id, has_super_primary>
-        final Map<String, Boolean> primaryItems = new HashMap<>();
+        // contactMap <contact_id, contact_data>
+        final Map<String, ContactDataHelperClass> contactMap = new HashMap<>();
         // itemList <item_data>
         final List<String> itemList = new ArrayList<>();
         final String sIds = GroupUtil.convertArrayToString(ids);
@@ -394,20 +427,18 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
                 final String contactId = cursor.getString(Query.CONTACT_ID);
                 final String itemId = cursor.getString(Query.ITEM_ID);
                 final boolean isPrimary = cursor.getInt(Query.PRIMARY) != 0;
+                final int timesUsed = cursor.getInt(Query.TIMES_USED);
                 final String data = cursor.getString(Query.DATA1);
 
-                if (!encounteredIds.containsKey(contactId)) {
-                    encounteredIds.put(contactId, new HashMap<String, Boolean>());
-                }
-                final Boolean prevHasSuperPrimary = primaryItems.get(contactId);
-                final boolean hasPrimary = prevHasSuperPrimary == null
-                        ? isPrimary
-                        : prevHasSuperPrimary || isPrimary;
-                primaryItems.put(contactId, hasPrimary);
-
                 if (!TextUtils.isEmpty(data)) {
-                    final Map<String, Boolean> itemMap = encounteredIds.get(contactId);
-                    itemMap.put(itemId, isPrimary);
+                    final ContactDataHelperClass contact;
+                    if (!contactMap.containsKey(contactId)) {
+                        contact = new ContactDataHelperClass();
+                        contactMap.put(contactId, contact);
+                    } else {
+                        contact = contactMap.get(contactId);
+                    }
+                    contact.addItem(itemId, timesUsed, isPrimary);
                     itemList.add(data);
                 }
             }
@@ -415,18 +446,15 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             cursor.close();
         }
 
-        // Start picker if a contact has multiple items with no superPrimary
-        for (Map.Entry<String, Map<String, Boolean>> i : encounteredIds.entrySet()) {
-            boolean hasSuperPrimary = primaryItems.get(i.getKey());
-            if (i.getValue().size() > 1 && !hasSuperPrimary) {
+        // Start picker if a contact does not have a default
+        for (ContactDataHelperClass i : contactMap.values()) {
+            if (!i.hasDefaultItem()) {
                 // Build list of default selected item ids
                 final List<Long> defaultSelection = new ArrayList<>();
-                for (Map.Entry<String, Map<String, Boolean>> j : encounteredIds.entrySet()) {
-                    for (Map.Entry<String, Boolean> k : j.getValue().entrySet()) {
-                        final String itemId = k.getKey();
-                        if (j.getValue().size() == 1 || k.getValue()) {
-                            defaultSelection.add(Long.parseLong(itemId));
-                        }
+                for (ContactDataHelperClass j : contactMap.values()) {
+                    final String selectionItemId = j.getDefaultSelectionItemId();
+                    if (selectionItemId != null) {
+                        defaultSelection.add(Long.parseLong(selectionItemId));
                     }
                 }
                 final long[] defaultSelectionArray = Longs.toArray(defaultSelection);
@@ -435,7 +463,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             }
         }
 
-        if (itemList.size() == 0 || encounteredIds.size() < ids.length) {
+        if (itemList.size() == 0 || contactMap.size() < ids.length) {
             Toast.makeText(getContext(), ContactsUtils.SCHEME_MAILTO.equals(sendScheme)
                             ? getString(R.string.groupSomeContactsNoEmailsToast)
                             : getString(R.string.groupSomeContactsNoPhonesToast),
