@@ -280,12 +280,13 @@ public class PeopleActivity extends ContactsDrawerActivity {
             }
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + mGroupUri);
             switchView(ContactsView.GROUP_VIEW);
+            mMembersFragment.toastForSaveAction(intent.getAction());
             return;
         }
 
         if (isGroupDeleteAction(intent.getAction())) {
-            toast(R.string.groupDeletedToast);
             popSecondLevel();
+            mMembersFragment.toastForSaveAction(intent.getAction());
             mCurrentView = ContactsView.ALL_CONTACTS;
             showFabWithAnimation(/* showFab */ true);
             return;
@@ -300,6 +301,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
             }
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + mGroupUri);
             switchView(ContactsView.GROUP_VIEW);
+            mMembersFragment.toastForSaveAction(intent.getAction());
         }
 
         setIntent(intent);
