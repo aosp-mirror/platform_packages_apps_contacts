@@ -64,6 +64,7 @@ import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.list.UiIntentActions;
+import com.android.contactsbind.FeedbackHelper;
 import com.android.contactsbind.experiments.Flags;
 import com.google.common.primitives.Longs;
 
@@ -882,9 +883,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     }
 
     public void updateExistingGroupFragment(Uri newGroupUri, String action) {
-        if (!GroupUtil.ACTION_SWITCH_GROUP.equals(action)) {
-            toast(getToastMessageForSaveAction(action));
-        }
+        toastForSaveAction(action);
 
         if (isEditMode() && getGroupCount() == 1) {
             // If we're deleting the last group member, exit edit mode
@@ -897,19 +896,30 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         }
     }
 
-    private static int getToastMessageForSaveAction(String action) {
+    public void toastForSaveAction(String action) {
+        int id = -1;
         switch(action) {
             case GroupUtil.ACTION_UPDATE_GROUP:
-                return R.string.groupUpdatedToast;
-            case GroupUtil.ACTION_ADD_TO_GROUP:
-                return R.string.groupMembersAddedToast;
+                id = R.string.groupUpdatedToast;
+                break;
             case GroupUtil.ACTION_REMOVE_FROM_GROUP:
-                return R.string.groupMembersRemovedToast;
+                id = R.string.groupMembersRemovedToast;
+                break;
             case GroupUtil.ACTION_CREATE_GROUP:
-                return R.string.groupCreatedToast;
+                id = R.string.groupCreatedToast;
+                break;
+            case GroupUtil.ACTION_ADD_TO_GROUP:
+                id = R.string.groupMembersAddedToast;
+                break;
+            case GroupUtil.ACTION_SWITCH_GROUP:
+                // No toast associated with this action.
+                break;
             default:
-                throw new IllegalArgumentException("Unhandled contact save action " + action);
+                FeedbackHelper.sendFeedback(getContext(), TAG,
+                        "toastForSaveAction passed unknown action: " + action,
+                        new IllegalArgumentException("Unhandled contact save action " + action));
         }
+        toast(id);
     }
 
     private void toast(int resId) {
