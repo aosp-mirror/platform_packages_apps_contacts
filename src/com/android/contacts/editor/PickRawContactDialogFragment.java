@@ -192,6 +192,11 @@ public class PickRawContactDialogFragment extends DialogFragment {
         }
     }
 
+    @Override
+    public Context getContext() {
+        return getActivity();
+    }
+
     public void setCursor(Cursor cursor) {
         if (mAdapter != null) {
             mAdapter.swapCursor(cursor);
