@@ -476,7 +476,7 @@ public class DynamicShortcuts {
     }
 
     public static void reportShortcutUsed(Context context, String lookupKey) {
-        if (!CompatUtils.isLauncherShortcutCompatible()) return;
+        if (!CompatUtils.isLauncherShortcutCompatible() || lookupKey == null) return;
         final ShortcutManager shortcutManager = (ShortcutManager) context
                 .getSystemService(Context.SHORTCUT_SERVICE);
         shortcutManager.reportShortcutUsed(lookupKey);
