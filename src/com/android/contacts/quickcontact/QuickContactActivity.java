@@ -2275,7 +2275,7 @@ public class QuickContactActivity extends ContactsActivity implements
                     return;
                 }
 
-                if (!mIsRecreatedInstance && !mShortcutUsageReported) {
+                if (!mIsRecreatedInstance && !mShortcutUsageReported && data != null) {
                     mShortcutUsageReported = true;
                     DynamicShortcuts.reportShortcutUsed(QuickContactActivity.this,
                             data.getLookupKey());
