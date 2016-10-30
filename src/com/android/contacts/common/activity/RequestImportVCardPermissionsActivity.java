@@ -43,9 +43,11 @@ public class RequestImportVCardPermissionsActivity extends RequestPermissionsAct
      * to prompt the user for these permissions. Moreover, finish the current activity.
      *
      * This is designed to be called inside {@link android.app.Activity#onCreate}
+     *
+     * @param isCallerSelf whether the vcard import was started from the contacts app itself.
      */
-    public static boolean startPermissionActivity(Activity activity) {
-        return startPermissionActivity(activity, REQUIRED_PERMISSIONS,
+    public static boolean startPermissionActivity(Activity activity, boolean isCallerSelf) {
+        return startPermissionActivity(activity, REQUIRED_PERMISSIONS, isCallerSelf,
                 RequestImportVCardPermissionsActivity.class);
     }
 }
