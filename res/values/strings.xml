@@ -1378,6 +1378,9 @@
     <!-- Action string for selecting a .vcf file to import contacts from [CHAR LIMIT=30] -->
     <string name="import_from_vcf_file" product="default">Import from .vcf file</string>
 
+    <!-- Dialog message asking the user for confirmation before starting to import contacts from a .vcf file. [CHAR LIMIT=NONE] -->
+    <string name="import_from_vcf_file_confirmation_message" product="default">Import contacts from vCard?</string>
+
     <!-- Message shown in a Dialog confirming a user's cancel request toward existing vCard import.
          The argument is file name for the vCard import the user wants to cancel.
          [CHAR LIMIT=128] -->
