@@ -1141,6 +1141,10 @@ public class MultiShrinkScroller extends FrameLayout {
         // Let's keep an eye on how long this method takes to complete.
         Trace.beginSection("updatePhotoTintAndDropShadow");
 
+        // Tell the photo view what tint we are trying to achieve. Depending on the type of
+        // drawable used, the photo view may or may not use this tint.
+        mPhotoView.setTint(mHeaderTintColor);
+
         if (mIsTwoPanel && !mPhotoView.isBasedOffLetterTile()) {
             // When in two panel mode, UX considers photo tinting unnecessary for non letter
             // tile photos.
@@ -1206,9 +1210,6 @@ public class MultiShrinkScroller extends FrameLayout {
         // TODO: remove re-allocation of ColorMatrixColorFilter objects (b/17627000)
         mPhotoView.setColorFilter(new ColorMatrixColorFilter(mColorMatrix));
 
-        // Tell the photo view what tint we are trying to achieve. Depending on the type of
-        // drawable used, the photo view may or may not use this tint.
-        mPhotoView.setTint(mHeaderTintColor);
         mTitleGradientDrawable.setAlpha(gradientAlpha);
         mActionBarGradientDrawable.setAlpha(gradientAlpha);
 
