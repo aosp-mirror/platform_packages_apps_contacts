@@ -268,12 +268,13 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             getPreferenceScreen().removePreference(findPreference(KEY_DISPLAY_ORDER));
         }
 
-        // Remove the "Default account" setting if there aren't any writable accounts
+        // Remove the default account and custom view settings there aren't any writable accounts
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(getContext());
         final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(
                 /* contactWritableOnly */ true);
         if (accounts.isEmpty()) {
             getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
+            getPreferenceScreen().removePreference(findPreference(KEY_CUSTOM_CONTACTS_FILTER));
         }
 
         final boolean isPhone = TelephonyManagerCompat.isVoiceCapable(
