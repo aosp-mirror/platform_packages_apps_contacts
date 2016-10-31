@@ -18,7 +18,7 @@ package com.android.contacts.common.logging;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 /**
  * Describes the results of a user search for a particular contact.
@@ -70,7 +70,7 @@ public final class SearchState implements Parcelable {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("queryLength", queryLength)
                 .add("numPartitions", numPartitions)
                 .add("numResults", numResults)
