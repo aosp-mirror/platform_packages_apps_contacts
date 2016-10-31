@@ -398,7 +398,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     }
 
     private void sendToGroup(long[] ids, String sendScheme, String title) {
-        if(ids == null || ids.length == 0) return;
+        if (ids == null || ids.length == 0) return;
 
         // Get emails or phone numbers
         // contactMap <contact_id, contact_data>
