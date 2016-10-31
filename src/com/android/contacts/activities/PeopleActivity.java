@@ -272,7 +272,8 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        if (GroupUtil.ACTION_CREATE_GROUP.equals(intent.getAction())) {
+        final String action = intent.getAction();
+        if (GroupUtil.ACTION_CREATE_GROUP.equals(action)) {
             mGroupUri = intent.getData();
             if (mGroupUri == null) {
                 toast(R.string.groupSavedErrorToast);
@@ -280,19 +281,19 @@ public class PeopleActivity extends ContactsDrawerActivity {
             }
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + mGroupUri);
             switchView(ContactsView.GROUP_VIEW);
-            mMembersFragment.toastForSaveAction(intent.getAction());
+            mMembersFragment.toastForSaveAction(action);
             return;
         }
 
-        if (isGroupDeleteAction(intent.getAction())) {
+        if (isGroupDeleteAction(action)) {
             popSecondLevel();
-            mMembersFragment.toastForSaveAction(intent.getAction());
+            mMembersFragment.toastForSaveAction(action);
             mCurrentView = ContactsView.ALL_CONTACTS;
             showFabWithAnimation(/* showFab */ true);
             return;
         }
 
-        if (isGroupSaveAction(intent.getAction())) {
+        if (isGroupSaveAction(action)) {
             mGroupUri = intent.getData();
             if (mGroupUri == null) {
                 popSecondLevel();
@@ -300,8 +301,15 @@ public class PeopleActivity extends ContactsDrawerActivity {
                 return;
             }
             if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "Received group URI " + mGroupUri);
-            switchView(ContactsView.GROUP_VIEW);
-            mMembersFragment.toastForSaveAction(intent.getAction());
+            // ACTION_REMOVE_FROM_GROUP doesn't reload data, so it shouldn't cause b/32223934
+            // but it's necessary to use the previous fragment since
+            // GroupMembersFragment#mIsEditMode needs to be persisted between remove actions.
+            if (GroupUtil.ACTION_REMOVE_FROM_GROUP.equals(action)) {
+                switchToOrUpdateGroupView(action);
+            } else {
+                switchView(ContactsView.GROUP_VIEW);
+            }
+            mMembersFragment.toastForSaveAction(action);
         }
 
         setIntent(intent);
@@ -747,7 +755,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
         mGroupUri = savedInstanceState.getParcelable(KEY_GROUP_URI);
     }
 
-    private void onGroupDeleted(Intent intent) {
+    private void onGroupDeleted(final Intent intent) {
         if (!ContactSaveService.canUndo(intent)) return;
 
         Snackbar.make(mLayoutRoot, getString(R.string.groupDeletedToast), Snackbar.LENGTH_LONG)
@@ -822,7 +830,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
             mMembersFragment = GroupMembersFragment.newInstance(mGroupUri);
             transaction.replace(
                     R.id.contacts_list_container, mMembersFragment, TAG_GROUP_VIEW);
-        } else if(isAssistantView()) {
+        } else if (isAssistantView()) {
             String fragmentTag;
             if (Flags.getInstance().getBoolean(Experiments.ASSISTANT)) {
                 fragmentTag = TAG_ASSISTANT;
