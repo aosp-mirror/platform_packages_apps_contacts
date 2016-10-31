@@ -26,6 +26,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.util.ArrayMap;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -48,6 +49,8 @@ import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.editor.AccountHeaderPresenter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -56,7 +59,7 @@ import java.util.TreeSet;
  * account
  */
 public class SimImportFragment extends DialogFragment
-        implements LoaderManager.LoaderCallbacks<ArrayList<SimContact>>,
+        implements LoaderManager.LoaderCallbacks<SimImportFragment.LoaderResult>,
         MultiSelectEntryContactListAdapter.SelectedContactsListener {
 
     private static final String KEY_SELECTED_IDS = "selectedIds";
@@ -127,13 +130,20 @@ public class SimImportFragment extends DialogFragment
                     .getDefaultOrBestFallback(mPreferences, mAccountTypeManager);
             mAccountHeaderPresenter.setCurrentAccount(currentDefaultAccount);
         }
+        mAccountHeaderPresenter.setObserver(new AccountHeaderPresenter.Observer() {
+            @Override
+            public void onChange(AccountHeaderPresenter sender) {
+                mAdapter.setAccount(sender.getCurrentAccount());
+            }
+        });
+        mAdapter.setAccount(mAccountHeaderPresenter.getCurrentAccount());
 
         mListView = (ListView) view.findViewById(R.id.list);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (mAdapter.existsInContacts(position)) {
+                if (mAdapter.existsInCurrentAccount(position)) {
                     Snackbar.make(getView(), R.string.sim_import_contact_exists_toast,
                             Snackbar.LENGTH_LONG).show();
                 } else {
@@ -178,7 +188,7 @@ public class SimImportFragment extends DialogFragment
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mAccountHeaderPresenter.onSaveInstanceState(outState);
-        if (mAdapter != null) {
+        if (mAdapter != null && mAdapter.mContacts != null) {
             outState.putLongArray(KEY_SELECTED_IDS, mAdapter.getSelectedContactIdsArray());
         }
     }
@@ -189,14 +199,14 @@ public class SimImportFragment extends DialogFragment
     }
 
     @Override
-    public void onLoadFinished(Loader<ArrayList<SimContact>> loader,
-            ArrayList<SimContact> data) {
+    public void onLoadFinished(Loader<LoaderResult> loader,
+            LoaderResult data) {
         mLoadingIndicator.hide();
         mListView.setEmptyView(getView().findViewById(R.id.empty_message));
         if (data == null) {
             return;
         }
-        mAdapter.setContacts(data);
+        mAdapter.setData(data);
         if (mSelectedContacts != null) {
             mAdapter.select(mSelectedContacts);
         } else {
@@ -205,7 +215,7 @@ public class SimImportFragment extends DialogFragment
     }
 
     @Override
-    public void onLoaderReset(Loader<ArrayList<SimContact>> loader) {
+    public void onLoaderReset(Loader<LoaderResult> loader) {
     }
 
     private void importCurrentSelections() {
@@ -268,6 +278,9 @@ public class SimImportFragment extends DialogFragment
     private static class SimContactAdapter extends ContactListAdapter {
         private ArrayList<SimContact> mContacts;
         private static float DISABLED_AVATAR_ALPHA = 0.38f;
+        private AccountWithDataSet mSelectedAccount;
+        private Map<AccountWithDataSet, Set<SimContact>> mExistingMap;
+        private Map<AccountWithDataSet, TreeSet<Long>> mPerAccountCheckedIds = new ArrayMap<>();
 
         public SimContactAdapter(Context context) {
             super(context);
@@ -288,13 +301,37 @@ public class SimImportFragment extends DialogFragment
             // clickable
             contactView.getCheckBox().setFocusable(false);
             contactView.getCheckBox().setClickable(false);
-            setViewEnabled(contactView, !mContacts.get(cursor.getPosition()).existsInContacts());
+            setViewEnabled(contactView, !existsInCurrentAccount(position));
         }
 
-        public void setContacts(ArrayList<SimContact> contacts) {
-            mContacts = contacts;
+        public void setData(LoaderResult result) {
+            mContacts = result.contacts;
+            mExistingMap = result.accountsMap;
             changeCursor(SimContact.convertToContactsCursor(mContacts,
                     ContactQuery.CONTACT_PROJECTION_PRIMARY));
+        }
+
+        public void setAccount(AccountWithDataSet account) {
+            if (mContacts == null) {
+                mSelectedAccount = account;
+                return;
+            }
+
+            // Save the checked state for the current account.
+            if (mSelectedAccount != null) {
+                mPerAccountCheckedIds.put(mSelectedAccount, getSelectedContactIds());
+            }
+
+            mSelectedAccount = account;
+
+            TreeSet<Long> checked = mPerAccountCheckedIds.get(mSelectedAccount);
+            if (checked == null) {
+                checked = getEnabledIdsForCurrentAccount();
+                mPerAccountCheckedIds.put(mSelectedAccount, checked);
+            }
+            setSelectedContactIds(checked);
+
+            notifyDataSetChanged();
         }
 
         public ArrayList<SimContact> getSelectedContacts() {
@@ -315,7 +352,7 @@ public class SimImportFragment extends DialogFragment
 
             final TreeSet<Long> selected = new TreeSet<>();
             for (SimContact contact : mContacts) {
-                if (!contact.existsInContacts()) {
+                if (!existsInCurrentAccount(contact)) {
                     selected.add(contact.getId());
                 }
             }
@@ -330,8 +367,25 @@ public class SimImportFragment extends DialogFragment
             setSelectedContactIds(selected);
         }
 
-        public boolean existsInContacts(int position) {
-            return mContacts.get(position).existsInContacts();
+        public boolean existsInCurrentAccount(int position) {
+            return existsInCurrentAccount(mContacts.get(position));
+        }
+
+        public boolean existsInCurrentAccount(SimContact contact) {
+            if (mSelectedAccount == null || !mExistingMap.containsKey(mSelectedAccount)) {
+                return false;
+            }
+            return mExistingMap.get(mSelectedAccount).contains(contact);
+        }
+
+        private TreeSet<Long> getEnabledIdsForCurrentAccount() {
+            final TreeSet<Long> result = new TreeSet<>();
+            for (SimContact contact : mContacts) {
+                if (!existsInCurrentAccount(contact)) {
+                    result.add(contact.getId());
+                }
+            }
+            return result;
         }
 
         private void setViewEnabled(ContactListItemView itemView, boolean enabled) {
@@ -341,10 +395,11 @@ public class SimImportFragment extends DialogFragment
         }
     }
 
-    public static class SimContactLoader extends AsyncTaskLoader<ArrayList<SimContact>> {
+
+    private static class SimContactLoader extends AsyncTaskLoader<LoaderResult> {
         private SimContactDao mDao;
         private final int mSubscriptionId;
-        private ArrayList<SimContact> mData;
+        LoaderResult mResult;
 
         public SimContactLoader(Context context, int subscriptionId) {
             super(context);
@@ -354,31 +409,42 @@ public class SimImportFragment extends DialogFragment
 
         @Override
         protected void onStartLoading() {
-            if (mData != null) {
-                deliverResult(mData);
+            if (mResult != null) {
+                deliverResult(mResult);
             } else {
                 forceLoad();
             }
         }
 
         @Override
-        public void deliverResult(ArrayList<SimContact> data) {
-            mData = data;
-            super.deliverResult(data);
+        public void deliverResult(LoaderResult result) {
+            mResult = result;
+            super.deliverResult(result);
         }
 
         @Override
-        public ArrayList<SimContact> loadInBackground() {
+        public LoaderResult loadInBackground() {
             final SimCard sim = mDao.getSimBySubscriptionId(mSubscriptionId);
+            LoaderResult result = new LoaderResult();
             if (sim == null) {
-                return new ArrayList<>();
+                result.contacts = new ArrayList<>();
+                result.accountsMap = Collections.emptyMap();
+                return result;
             }
-            return mDao.loadSimContactsWithExistingContactIds(sim);
+            result.contacts = mDao.loadContactsForSim(sim);
+            result.accountsMap = mDao.findAccountsOfExistingSimContacts(result.contacts);
+            return result;
         }
 
         @Override
         protected void onReset() {
-            mData = null;
+            mResult = null;
         }
+
+    }
+
+    public static class LoaderResult {
+        public ArrayList<SimContact> contacts;
+        public Map<AccountWithDataSet, Set<SimContact>> accountsMap;
     }
 }
