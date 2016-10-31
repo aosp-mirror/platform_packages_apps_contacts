@@ -15,7 +15,7 @@
  */
 package com.android.contacts.common.logging;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 /**
  * Describes how user view and use a list
@@ -83,7 +83,7 @@ public final class ListEvent {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("actionType", actionType)
                 .add("listType", listType)
                 .add("count", count)
