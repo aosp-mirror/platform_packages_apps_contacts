@@ -15,7 +15,7 @@
  */
 package com.android.contacts.common.logging;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 /**
  * Describes how user views and takes action in Quick contact
@@ -78,7 +78,7 @@ public final class QuickContactEvent {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("referrer", referrer)
                 .add("contactType", contactType)
                 .add("cardType", cardType)
