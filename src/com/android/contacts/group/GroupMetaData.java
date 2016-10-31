@@ -28,7 +28,7 @@ import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 /** Meta data for a contact group. */
 public final class GroupMetaData implements Parcelable {
@@ -127,7 +127,7 @@ public final class GroupMetaData implements Parcelable {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("accountName", accountName)
                 .add("accountType", accountType)
                 .add("dataSet", dataSet)
