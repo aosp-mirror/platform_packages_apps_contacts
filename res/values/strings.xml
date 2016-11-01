@@ -1370,13 +1370,35 @@
     <string name="dialog_new_contact_account">Save imported contacts to:</string>
 
     <!-- Action string for selecting SIM for importing contacts -->
-    <string name="import_from_sim">Import from SIM card</string>
+    <string name="import_from_sim">SIM card</string>
 
     <!-- Action string for selecting a SIM subscription for importing contacts -->
-    <string name="import_from_sim_summary_fmt">Import from SIM <xliff:g id="sim_name">%1$s</xliff:g></string>
+    <string name="import_from_sim_summary_fmt">SIM <xliff:g id="sim_name">%1$s</xliff:g></string>
+
+    <!-- Secondary string showing the number of SIM contacts for the SIM card on the action for
+         importing from that SIM. Only shown if there is no phone number available for the SIM card
+         [CHAR LIMIT=25] -->
+    <plurals name="import_from_sim_secondary_contact_count_fmt">
+        <item quantity="one">1 contact</item>
+        <item quantity="other">%1$d contacts</item>
+    </plurals>
+
+    <!-- Secondary string showing the number of SIM contacts and phone number for the SIM card
+         on the action for importing that SIM. Note that the bullet character is purely a visual
+         separator between the contact count and phone number; it has no grammatical meaning in
+         this string [CHAR LIMIT=35]-->
+    <plurals name="import_from_sim_secondary_template">
+        <item quantity="one"><xliff:g id="count">^1</xliff:g> contact • <xliff:g id="phone_number">^2</xliff:g></item>
+        <item quantity="other"><xliff:g id="count">^1</xliff:g> contacts • <xliff:g id="phone_number">^2</xliff:g></item>
+    </plurals>
+
+
 
     <!-- Action string for selecting a .vcf file to import contacts from [CHAR LIMIT=30] -->
-    <string name="import_from_vcf_file" product="default">Import from .vcf file</string>
+    <string name="import_from_vcf_file" product="default">.vcf file</string>
+
+    <!-- Message shown on Import from dialog when there is nothing available to import (no .vcf option or SIM cards) [CHAR LIMIT=NONE] -->
+    <string name="nothing_to_import_message">Nothing to import</string>
 
     <!-- Dialog message asking the user for confirmation before starting to import contacts from a .vcf file. [CHAR LIMIT=NONE] -->
     <string name="import_from_vcf_file_confirmation_message" product="default">Import contacts from vCard?</string>
@@ -1622,7 +1644,7 @@
     <string name="dialog_export">Export contacts</string>
 
     <!-- Dialog title when importing contacts from an external source. [CHAR LIMIT=36] -->
-    <string name="dialog_import">Import contacts</string>
+    <string name="dialog_import">Import contacts from</string>
 
     <!-- Toast indicating that sharing a contact has failed. [CHAR LIMIT=NONE]  -->
     <string name="share_error">This contact can\'t be shared.</string>
@@ -1867,4 +1889,5 @@
 
     <!-- Generic label for the SIM card when there is only a single SIM in the device [CHAR LIMIT=10]-->
     <string name="single_sim_display_label">SIM</string>
+
 </resources>

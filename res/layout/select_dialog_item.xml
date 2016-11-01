@@ -19,14 +19,35 @@
   in the contact editor. This is similar to the framework's select_dialog_item_material.xml layout
   except the text appearance is medium and the padding is set to match the material spec.
 -->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/text1"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:textAlignment="viewStart"
-    android:textColor="@color/contacts_text_color"
-    android:textSize="16sp"
-    android:gravity="center_vertical"
-    android:paddingStart="24dip"
-    android:paddingEnd="24dip"
-    android:ellipsize="marquee" />
+    android:layout_height="56dp"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingEnd="24dp"
+    android:paddingStart="24dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/primary_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:ellipsize="marquee"
+        android:gravity="start|center_vertical"
+        android:textAlignment="viewStart"
+        android:textAppearance="?android:textAppearanceListItem"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/secondary_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical|start"
+        android:textAlignment="viewStart"
+        android:textAppearance="?android:textAppearanceListItemSecondary"
+        android:textColor="?android:textColorSecondary"
+        />
+</LinearLayout>

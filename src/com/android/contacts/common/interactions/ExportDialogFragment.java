@@ -97,10 +97,14 @@ public class ExportDialogFragment extends DialogFragment {
                 R.layout.select_dialog_item) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                final TextView result = (TextView)(convertView != null ? convertView :
-                        dialogInflater.inflate(R.layout.select_dialog_item, parent, false));
+                final View result = convertView != null ? convertView :
+                        dialogInflater.inflate(R.layout.select_dialog_item, parent, false);
 
-                result.setText(getItem(position).mLabel);
+                final TextView text = (TextView) result.findViewById(R.id.primary_text);
+                final View secondaryText = result.findViewById(R.id.secondary_text);
+                secondaryText.setVisibility(View.GONE);
+
+                text.setText(getItem(position).mLabel);
                 return result;
             }
         };
