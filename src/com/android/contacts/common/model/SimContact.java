@@ -26,27 +26,41 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.google.common.collect.ComparisonChain;
+import com.google.common.collect.Ordering;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Holds data for contacts loaded from the SIM card.
  */
 public class SimContact implements Parcelable {
+    public static final long EXISTING_CONTACT_UNINITIALIZED = -2;
+    public static final long NO_EXISTING_CONTACT = -1;
+
     private final long mId;
     private final String mName;
     private final String mPhone;
     private final String[] mEmails;
 
+    private final long mRawContactId;
+
     public SimContact(long id, String name, String phone, String[] emails) {
-        this.mId = id;
-        this.mName = name;
-        this.mPhone = phone;
-        this.mEmails = emails;
+        this(id, name, phone, emails, EXISTING_CONTACT_UNINITIALIZED);
     }
 
+    public SimContact(long id, String name, String phone, String[] emails, long rawContactId) {
+        mId = id;
+        mName = name;
+        mPhone = phone;
+        mEmails = emails;
+        mRawContactId = rawContactId;
+    }
     public long getId() {
         return mId;
     }
@@ -61,6 +75,13 @@ public class SimContact implements Parcelable {
 
     public String[] getEmails() {
         return mEmails;
+    }
+
+    public boolean existsInContacts() {
+        if (mRawContactId == EXISTING_CONTACT_UNINITIALIZED) {
+            throw new IllegalStateException("Raw contact ID is uninitialized");
+        }
+        return mRawContactId > 0;
     }
 
     public void appendCreateContactOperations(List<ContentProviderOperation> ops,
@@ -106,6 +127,22 @@ public class SimContact implements Parcelable {
                 .add(ContactsContract.Contacts.LOOKUP_KEY, getLookupKey());
     }
 
+    public boolean hasName() {
+        return mName != null;
+    }
+
+    public boolean hasPhone() {
+        return mPhone != null;
+    }
+
+    public boolean hasEmails() {
+        return mEmails != null && mEmails.length > 0;
+    }
+
+    public SimContact withRawContactId(long id) {
+        return new SimContact(mId, mName, mPhone, mEmails, id);
+    }
+
     /**
      * Generate a "fake" lookup key. This is needed because
      * {@link com.android.contacts.common.ContactPhotoManager} will only generate a letter avatar
@@ -128,6 +165,7 @@ public class SimContact implements Parcelable {
                 ", mName='" + mName + '\'' +
                 ", mPhone='" + mPhone + '\'' +
                 ", mEmails=" + Arrays.toString(mEmails) +
+                ", mRawContactId=" + mRawContactId +
                 '}';
     }
 
@@ -138,10 +176,9 @@ public class SimContact implements Parcelable {
 
         final SimContact that = (SimContact) o;
 
-        if (mId != that.mId) return false;
-        if (mName != null ? !mName.equals(that.mName) : that.mName != null) return false;
-        if (mPhone != null ? !mPhone.equals(that.mPhone) : that.mPhone != null) return false;
-        return Arrays.equals(mEmails, that.mEmails);
+        return mId == that.mId && mRawContactId == that.mRawContactId
+                && Objects.equals(mName, that.mName) && Objects.equals(mPhone, that.mPhone)
+                && Arrays.equals(mEmails, that.mEmails);
     }
 
     @Override
@@ -150,6 +187,7 @@ public class SimContact implements Parcelable {
         result = 31 * result + (mName != null ? mName.hashCode() : 0);
         result = 31 * result + (mPhone != null ? mPhone.hashCode() : 0);
         result = 31 * result + Arrays.hashCode(mEmails);
+        result = 31 * result + (int) (mRawContactId ^ (mRawContactId >>> 32));
         return result;
     }
 
@@ -164,6 +202,7 @@ public class SimContact implements Parcelable {
         dest.writeString(mName);
         dest.writeString(mPhone);
         dest.writeStringArray(mEmails);
+        dest.writeLong(mRawContactId);
     }
 
     /**
@@ -185,11 +224,12 @@ public class SimContact implements Parcelable {
     public static final Creator<SimContact> CREATOR = new Creator<SimContact>() {
         @Override
         public SimContact createFromParcel(Parcel source) {
-            long id = source.readLong();
-            String name = source.readString();
-            String phone = source.readString();
-            String[] emails = source.createStringArray();
-            return new SimContact(id, name, phone, emails);
+            final long id = source.readLong();
+            final String name = source.readString();
+            final String phone = source.readString();
+            final String[] emails = source.createStringArray();
+            final long contactId = source.readLong();
+            return new SimContact(id, name, phone, emails, contactId);
         }
 
         @Override
@@ -197,4 +237,39 @@ public class SimContact implements Parcelable {
             return new SimContact[size];
         }
     };
+
+    /**
+     * Returns the index of a contact with a matching name and phone
+     * @param contacts list to search. Should be sorted using
+     * {@link SimContact#compareByPhoneThenName()}
+     * @param phone the phone to search for
+     * @param name the name to search for
+     */
+    public static int findByPhoneAndName(List<SimContact> contacts, String phone, String name) {
+        return Collections.binarySearch(contacts, new SimContact(-1, name, phone, null,
+                NO_EXISTING_CONTACT), compareByPhoneThenName());
+    }
+
+    public static final Comparator<SimContact> compareByPhoneThenName() {
+        return new Comparator<SimContact>() {
+            @Override
+            public int compare(SimContact lhs, SimContact rhs) {
+                return ComparisonChain.start()
+                        .compare(lhs.mPhone, rhs.mPhone,
+                                Ordering.<String>natural().nullsFirst())
+                        .compare(lhs.mName, rhs.mName, Ordering.<String>natural().nullsFirst())
+                        .result();
+            }
+        };
+    }
+
+    public static final Comparator<SimContact> compareById() {
+        return new Comparator<SimContact>() {
+            @Override
+            public int compare(SimContact lhs, SimContact rhs) {
+                // We assume ids are unique.
+                return Long.compare(lhs.mId, rhs.mId);
+            }
+        };
+    }
 }

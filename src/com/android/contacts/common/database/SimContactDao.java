@@ -29,13 +29,14 @@ import android.os.Build;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.support.annotation.VisibleForTesting;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.util.SparseArray;
 
+import com.android.contacts.R;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.model.SimCard;
@@ -44,8 +45,10 @@ import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contactsbind.experiments.Flags;
+import com.google.common.base.Joiner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,6 +58,12 @@ import java.util.List;
  */
 public class SimContactDao {
     private static final String TAG = "SimContactDao";
+
+    // Maximum number of SIM contacts to import in a single ContentResolver.applyBatch call.
+    // This is necessary to avoid TransactionTooLargeException when there are a large number of
+    // contacts. This has been tested on Nexus 6 NME70B and is probably be conservative enough
+    // to work on any phone.
+    private static final int IMPORT_MAX_BATCH_SIZE = 300;
 
     // Set to true for manual testing on an emulator or phone without a SIM card
     // DO NOT SUBMIT if set to true
@@ -72,7 +81,7 @@ public class SimContactDao {
     private final ContentResolver mResolver;
     private final TelephonyManager mTelephonyManager;
 
-    public SimContactDao(Context context) {
+    private SimContactDao(Context context) {
         mContext = context;
         mResolver = context.getContentResolver();
         mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -86,20 +95,21 @@ public class SimContactDao {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                for (SimCard card : getSimCards()) {
-                    // We don't actually have to do any caching ourselves. Some other layer must do
-                    // caching of the data (OS or framework) because subsequent queries are very
-                    // fast.
-                    card.loadContacts(SimContactDao.this);
-                }
+                getSimCardsWithContacts();
                 return null;
             }
         }.execute();
     }
 
+    public Context getContext() {
+        return mContext;
+    }
+
     public boolean canReadSimContacts() {
+        // Require SIM_STATE_READY because the TelephonyManager methods related to SIM require
+        // this state
         return hasTelephony() && hasPermissions() &&
-                mTelephonyManager.getSimState() != TelephonyManager.SIM_STATE_ABSENT;
+                mTelephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY;
     }
 
     public List<SimCard> getSimCards() {
@@ -108,22 +118,24 @@ public class SimContactDao {
         }
         final List<SimCard> sims = CompatUtils.isMSIMCompatible() ?
                 getSimCardsFromSubscriptions() :
-                Collections.singletonList(SimCard.create(mTelephonyManager));
+                Collections.singletonList(SimCard.create(mTelephonyManager,
+                        mContext.getString(R.string.single_sim_display_label)));
         return SharedPreferenceUtil.restoreSimStates(mContext, sims);
     }
 
-    @NonNull
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP_MR1)
-    private List<SimCard> getSimCardsFromSubscriptions() {
-        final SubscriptionManager subscriptionManager = (SubscriptionManager)
-                mContext.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
-        final List<SubscriptionInfo> subscriptions = subscriptionManager
-                .getActiveSubscriptionInfoList();
-        final ArrayList<SimCard> result = new ArrayList<>();
-        for (SubscriptionInfo subscriptionInfo : subscriptions) {
-            result.add(SimCard.create(subscriptionInfo));
+    public List<SimCard> getSimCardsWithContacts() {
+        final List<SimCard> result = new ArrayList<>();
+        for (SimCard sim : getSimCards()) {
+            result.add(sim.withContacts(loadContactsForSim(sim)));
         }
         return result;
+    }
+
+    public ArrayList<SimContact> loadContactsForSim(SimCard sim) {
+        if (sim.hasValidSubscriptionId()) {
+            return loadSimContacts(sim.getSubscriptionId());
+        }
+        return loadSimContacts();
     }
 
     public ArrayList<SimContact> loadSimContacts(int subscriptionId) {
@@ -137,8 +149,74 @@ public class SimContactDao {
         return loadFrom(ICC_CONTENT_URI);
     }
 
-    public Context getContext() {
-        return mContext;
+    public ArrayList<SimContact> loadSimContactsWithExistingContactIds(SimCard sim) {
+        return getSimContactsWithRawContacts(sim);
+    }
+
+    public ContentProviderResult[] importContacts(List<SimContact> contacts,
+            AccountWithDataSet targetAccount)
+            throws RemoteException, OperationApplicationException {
+        if (contacts.size() < IMPORT_MAX_BATCH_SIZE) {
+            return importBatch(contacts, targetAccount);
+        }
+        final List<ContentProviderResult> results = new ArrayList<>();
+        for (int i = 0; i < contacts.size(); i += IMPORT_MAX_BATCH_SIZE) {
+            results.addAll(Arrays.asList(importBatch(
+                    contacts.subList(i, Math.min(contacts.size(), i + IMPORT_MAX_BATCH_SIZE)),
+                    targetAccount)));
+        }
+        return results.toArray(new ContentProviderResult[results.size()]);
+    }
+
+    public void persistSimState(SimCard sim) {
+        SharedPreferenceUtil.persistSimStates(mContext, Collections.singletonList(sim));
+    }
+
+    public void persistSimStates(List<SimCard> simCards) {
+        SharedPreferenceUtil.persistSimStates(mContext, simCards);
+    }
+
+    public SimCard getFirstSimCard() {
+        return getSimBySubscriptionId(SimCard.NO_SUBSCRIPTION_ID);
+    }
+
+    public SimCard getSimBySubscriptionId(int subscriptionId) {
+        final List<SimCard> sims = getSimCards();
+        if (subscriptionId == SimCard.NO_SUBSCRIPTION_ID && !sims.isEmpty()) {
+            return sims.get(0);
+        }
+        for (SimCard sim : getSimCards()) {
+            if (sim.getSubscriptionId() == subscriptionId) {
+                return sim;
+            }
+        }
+        return null;
+    }
+
+    private ContentProviderResult[] importBatch(List<SimContact> contacts,
+            AccountWithDataSet targetAccount)
+            throws RemoteException, OperationApplicationException {
+        final ArrayList<ContentProviderOperation> ops =
+                createImportOperations(contacts, targetAccount);
+        return mResolver.applyBatch(ContactsContract.AUTHORITY, ops);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP_MR1)
+    private List<SimCard> getSimCardsFromSubscriptions() {
+        final SubscriptionManager subscriptionManager = (SubscriptionManager)
+                mContext.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+        final List<SubscriptionInfo> subscriptions = subscriptionManager
+                .getActiveSubscriptionInfoList();
+        final ArrayList<SimCard> result = new ArrayList<>();
+        for (SubscriptionInfo subscriptionInfo : subscriptions) {
+            result.add(SimCard.create(subscriptionInfo));
+        }
+        return result;
+    }
+
+    private List<SimContact> getContactsForSim(SimCard sim) {
+        final List<SimContact> contacts = sim.getContacts();
+        return contacts != null ? contacts : loadContactsForSim(sim);
     }
 
     private ArrayList<SimContact> loadFrom(Uri uri) {
@@ -171,37 +249,82 @@ public class SimContactDao {
         return result;
     }
 
-    public ContentProviderResult[] importContacts(List<SimContact> contacts,
-            AccountWithDataSet targetAccount)
-            throws RemoteException, OperationApplicationException {
-        final ArrayList<ContentProviderOperation> ops =
-                createImportOperations(contacts, targetAccount);
-        return mResolver.applyBatch(ContactsContract.AUTHORITY, ops);
-    }
-
-    public void persistSimState(SimCard sim) {
-        SharedPreferenceUtil.persistSimStates(mContext, Collections.singletonList(sim));
-    }
-
-    public void persistSimStates(List<SimCard> simCards) {
-        SharedPreferenceUtil.persistSimStates(mContext, simCards);
-    }
-
-    public SimCard getFirstSimCard() {
-        return getSimBySubscriptionId(SimCard.NO_SUBSCRIPTION_ID);
-    }
-
-    public SimCard getSimBySubscriptionId(int subscriptionId) {
-        final List<SimCard> sims = getSimCards();
-        if (subscriptionId == SimCard.NO_SUBSCRIPTION_ID && !sims.isEmpty()) {
-            return sims.get(0);
+    private ArrayList<SimContact> getSimContactsWithRawContacts(SimCard sim) {
+        final ArrayList<SimContact> contacts = new ArrayList<>(getContactsForSim(sim));
+        for (int i = 0; i < contacts.size(); i += DataQuery.MAX_BATCH_SIZE) {
+            final List<SimContact> batch =
+                    contacts.subList(i, Math.min(i + DataQuery.MAX_BATCH_SIZE, contacts.size()));
+            setRawContactsForSimContacts(batch);
         }
-        for (SimCard sim : getSimCards()) {
-            if (sim.getSubscriptionId() == subscriptionId) {
-                return sim;
+        // Restore default sort order
+        Collections.sort(contacts, SimContact.compareById());
+        return contacts;
+    }
+
+    private void setRawContactsForSimContacts(List<SimContact> contacts) {
+        final StringBuilder selectionBuilder = new StringBuilder();
+
+        int phoneCount = 0;
+        for (SimContact contact : contacts) {
+            if (contact.hasPhone()) {
+                phoneCount++;
             }
         }
-        return null;
+        List<String> selectionArgs = new ArrayList<>(phoneCount + 1);
+
+        selectionBuilder.append(ContactsContract.Data.MIMETYPE).append("=? AND ");
+        selectionArgs.add(Phone.CONTENT_ITEM_TYPE);
+
+        selectionBuilder.append(Phone.NUMBER).append(" IN (")
+                .append(Joiner.on(',').join(Collections.nCopies(phoneCount, '?')))
+                .append(")");
+        for (SimContact contact : contacts) {
+            if (contact.hasPhone()) {
+                selectionArgs.add(contact.getPhone());
+            }
+        }
+
+        final Cursor cursor = mResolver.query(ContactsContract.Data.CONTENT_URI.buildUpon()
+                        .appendQueryParameter(ContactsContract.Data.VISIBLE_CONTACTS_ONLY, "true")
+                        .build(),
+                DataQuery.PROJECTION,
+                selectionBuilder.toString(),
+                selectionArgs.toArray(new String[selectionArgs.size()]),
+                ContactsContract.Data.RAW_CONTACT_ID + " ASC");
+
+        if (cursor == null) {
+            initializeRawContactIds(contacts);
+            return;
+        }
+
+        try {
+            setRawContactsForSimContacts(contacts, cursor);
+        } finally {
+            cursor.close();
+        }
+    }
+
+    private void initializeRawContactIds(List<SimContact> contacts) {
+        for (int i = 0; i < contacts.size(); i++) {
+            contacts.set(i, contacts.get(i).withRawContactId(SimContact.NO_EXISTING_CONTACT));
+        }
+    }
+
+    private void setRawContactsForSimContacts(List<SimContact> contacts, Cursor cursor) {
+        initializeRawContactIds(contacts);
+        Collections.sort(contacts, SimContact.compareByPhoneThenName());
+
+        while (cursor.moveToNext()) {
+            final String number = DataQuery.getPhoneNumber(cursor);
+            final String name = DataQuery.getDisplayName(cursor);
+
+            int index = SimContact.findByPhoneAndName(contacts, number, name);
+            if (index < 0) {
+                continue;
+            }
+            final SimContact contact = contacts.get(index);
+            contacts.set(index, contact.withRawContactId(DataQuery.getRawContactId(cursor)));
+        }
     }
 
     private ArrayList<ContentProviderOperation> createImportOperations(List<SimContact> contacts,
@@ -242,10 +365,10 @@ public class SimContactDao {
                             new SimContact(1, "John Sim", "15095550121", null),
                             new SimContact(2, "Bob Sim", "15095550122", null),
                             new SimContact(3, "Mary Sim", "15095550123", null),
-                            new SimContact(4, "Alice Sim", "15095550124", null)
+                            new SimContact(4, "Alice Sim", "15095550124", null),
+                            new SimContact(5, "Sim Duplicate", "15095550121", null)
                     ));
         }
-
         return new SimContactDao(context);
     }
 
@@ -288,6 +411,33 @@ public class SimContactDao {
         @Override
         public boolean canReadSimContacts() {
             return true;
+        }
+    }
+
+    // Query used for detecting existing contacts that may match a SimContact.
+    private static final class DataQuery {
+        // How many SIM contacts to consider in a single query. This prevents hitting the SQLite
+        // query parameter limit.
+        static final int MAX_BATCH_SIZE = 100;
+
+        public static final String[] PROJECTION = new String[] {
+                ContactsContract.Data.RAW_CONTACT_ID, Phone.NUMBER, Phone.DISPLAY_NAME
+        };
+
+        public static final int RAW_CONTACT_ID = 0;
+        public static final int PHONE_NUMBER = 1;
+        public static final int DISPLAY_NAME = 2;
+
+        public static long getRawContactId(Cursor cursor) {
+            return cursor.getLong(RAW_CONTACT_ID);
+        }
+
+        public static String getPhoneNumber(Cursor cursor) {
+            return cursor.getString(PHONE_NUMBER);
+        }
+
+        public static String getDisplayName(Cursor cursor) {
+            return cursor.getString(DISPLAY_NAME);
         }
     }
 }

@@ -31,6 +31,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.SearchSnippets;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatImageButton;
@@ -1156,7 +1157,8 @@ public class ContactListItemView extends ViewGroup
             mNameTextView = new TextView(getContext());
             mNameTextView.setSingleLine(true);
             mNameTextView.setEllipsize(getTextEllipsis());
-            mNameTextView.setTextColor(mNameTextViewTextColor);
+            mNameTextView.setTextColor(ResourcesCompat.getColorStateList(getResources(),
+                    R.color.contact_list_name_text_color, getContext().getTheme()));
             mNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mNameTextViewTextSize);
             // Manually call setActivated() since this view may be added after the first
             // setActivated() call toward this whole item view.
