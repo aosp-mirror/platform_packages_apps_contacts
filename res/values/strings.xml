@@ -1821,6 +1821,10 @@
          SIM card  -->
     <string name="sim_import_empty_message">No contacts on your SIM card</string>
 
+    <!-- Snackbar message shown on the SIM import screen when the user taps on a contact that
+         is disabled because an exact duplicate already exists in their contacts [CHAR LIMIT=60] -->
+    <string name="sim_import_contact_exists_toast">Contact already exists in your list</string>
+
     <!-- Toast shown on settings screen when importing from SIM completes successfully -->
     <plurals name="sim_import_success_toast_fmt">
         <item quantity="one">1 SIM contact imported</item>
@@ -1860,4 +1864,7 @@
 
     <!-- No network connection error message [CHAR LIMIT=50] -->
     <string name="connection_error_message">No connection</string>
+
+    <!-- Generic label for the SIM card when there is only a single SIM in the device [CHAR LIMIT=10]-->
+    <string name="single_sim_display_label">SIM</string>
 </resources>

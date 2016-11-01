@@ -22,10 +22,8 @@ import android.telephony.SubscriptionInfo;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import com.android.contacts.common.database.SimContactDao;
-
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -65,7 +63,9 @@ public class SimCard {
         mCountryCode = other.mCountryCode;
         mDismissed = other.mDismissed;
         mImported = other.mImported;
-        mContacts = other.mContacts;
+        if (other.mContacts != null) {
+            mContacts = new ArrayList<>(other.mContacts);
+        }
     }
 
     public SimCard(String simId, int subscriptionId, CharSequence carrierName,
@@ -91,6 +91,10 @@ public class SimCard {
         return mSubscriptionId;
     }
 
+    public boolean hasValidSubscriptionId() {
+        return mSubscriptionId != NO_SUBSCRIPTION_ID;
+    }
+
     public CharSequence getDisplayName() {
         return mDisplayName;
     }
@@ -104,6 +108,10 @@ public class SimCard {
             return null;
         }
         return PhoneNumberUtils.formatNumber(mPhoneNumber, mCountryCode);
+    }
+
+    public String getCountryCode() {
+        return mCountryCode;
     }
 
     public boolean hasContacts() {
@@ -137,22 +145,7 @@ public class SimCard {
     }
 
     public List<SimContact> getContacts() {
-        if (mContacts == null) {
-            throw new IllegalStateException("Contacts not loaded.");
-        }
         return mContacts;
-    }
-
-    public synchronized void loadContacts(SimContactDao dao) {
-        if (mSubscriptionId == NO_SUBSCRIPTION_ID) {
-            // Load from the default SIM card.
-            mContacts = dao.loadSimContacts();
-        } else {
-            mContacts = dao.loadSimContacts(mSubscriptionId);
-        }
-        if (mContacts == null) {
-            mContacts = Collections.emptyList();
-        }
     }
 
     public SimCard withImportAndDismissStates(boolean imported, boolean dismissed) {
@@ -168,6 +161,12 @@ public class SimCard {
 
     public SimCard withDismissedState(boolean dismissed) {
         return withImportAndDismissStates(dismissed, mImported);
+    }
+
+    public SimCard withContacts(List<SimContact> contacts) {
+        final SimCard copy = new SimCard(this);
+        copy.mContacts = contacts;
+        return copy;
     }
 
     public SimCard withContacts(SimContact... contacts) {
@@ -206,10 +205,15 @@ public class SimCard {
                 info.getCountryIso());
     }
 
-    public static SimCard create(TelephonyManager telephony) {
-        SimCard simCard = new SimCard(telephony.getSimSerialNumber(),
-                telephony.getNetworkOperatorName(), "SIM", telephony.getLine1Number(),
-                telephony.getNetworkCountryIso());
-        return simCard;
+    public static SimCard create(TelephonyManager telephony, String displayLabel) {
+        if (telephony.getSimState() == TelephonyManager.SIM_STATE_READY) {
+            return new SimCard(telephony.getSimSerialNumber(),
+                    telephony.getSimOperatorName(), displayLabel, telephony.getLine1Number(),
+                    telephony.getSimCountryIso());
+        } else {
+            // This should never happen but in case it does just fallback to an "empty" instance
+            return new SimCard(/* SIM id */ "", /* operator name */ null, displayLabel,
+                    /* phone number */ "", /* Country code */ null);
+        }
     }
 }
