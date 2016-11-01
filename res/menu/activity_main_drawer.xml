@@ -16,7 +16,8 @@
   limitations under the License.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:id="@+id/nav_utilities">
         <item
@@ -25,6 +26,7 @@
             android:title="@string/contactsList" />
         <item
             android:id="@+id/nav_assistant"
+            app:actionViewClass="android.widget.LinearLayout"
             android:icon="@drawable/ic_assistant"
             android:title="@string/menu_assistant"/>
         <item

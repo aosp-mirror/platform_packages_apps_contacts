@@ -28,11 +28,13 @@ import android.provider.ContactsContract.Intents;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +42,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.contacts.activities.ActionBarAdapter;
@@ -138,6 +141,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             // overlaid by the action bar of the newly-created fragment.
             stopSearchAndSelection();
             updateStatusBarBackground();
+            initializeAssistantNewBadge();
         }
 
         private void stopSearchAndSelection() {
@@ -198,6 +202,9 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     // The account the new group will be created under.
     private AccountWithDataSet mNewGroupAccount;
 
+    // Recycle badge if possible
+    private TextView mAssistantNewBadge;
+
     // Checkable menu item lookup maps. Every map declared here should be added to
     // clearCheckedMenus() so that they can be cleared.
     // TODO find a better way to handle selected menu item state, when switching to fragments.
@@ -247,11 +254,31 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         mNavigationView.setNavigationItemSelectedListener(this);
         setUpMenu();
 
+        initializeAssistantNewBadge();
         loadGroupsAndFilters();
 
         if (savedState != null && savedState.containsKey(KEY_NEW_GROUP_ACCOUNT)) {
             mNewGroupAccount = AccountWithDataSet.unstringify(
                     savedState.getString(KEY_NEW_GROUP_ACCOUNT));
+        }
+    }
+
+    private void initializeAssistantNewBadge() {
+        if (!Flags.getInstance().getBoolean(Experiments.ASSISTANT)) {
+            return;
+        }
+        final LinearLayout newBadgeFrame = (LinearLayout) MenuItemCompat.getActionView(
+                mNavigationView.getMenu().findItem(R.id.nav_assistant));
+        final boolean showWelcomeBadge = !SharedPreferenceUtil.isWelcomeCardDismissed(this);
+        if (showWelcomeBadge && newBadgeFrame.getChildCount() == 0) {
+            if (mAssistantNewBadge == null) {
+                mAssistantNewBadge = (TextView) LayoutInflater.from(this)
+                        .inflate(R.layout.assistant_new_badge, null);
+            }
+            newBadgeFrame.setGravity(Gravity.CENTER_VERTICAL);
+            newBadgeFrame.addView(mAssistantNewBadge);
+        } else if (!showWelcomeBadge && newBadgeFrame.getChildCount() > 0) {
+            newBadgeFrame.removeAllViews();
         }
     }
 

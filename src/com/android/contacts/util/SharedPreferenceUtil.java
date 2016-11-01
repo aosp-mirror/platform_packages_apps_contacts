@@ -57,6 +57,9 @@ public class SharedPreferenceUtil {
     private static final String PREFERENCE_KEY_DISMISSED_DEVICES =
             "dismissedDevices";
 
+    public static final String PREFERENCE_WELCOME_CARD_DISMISSED =
+            "welcome-reminder-card-dismissed";
+
     public static boolean getHamburgerPromoDisplayedBefore(Context context) {
         return getSharedPreferences(context)
                 .getBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED_BEFORE, false);
@@ -231,6 +234,16 @@ public class SharedPreferenceUtil {
         getSharedPreferences(context).edit()
                 .putStringSet(PREFERENCE_KEY_DISMISSED_DEVICES, dismissedDevices)
                 .commit();
+    }
+
+    public static boolean isWelcomeCardDismissed(Context context) {
+        return getSharedPreferences(context).getBoolean(PREFERENCE_WELCOME_CARD_DISMISSED,
+                false);
+    }
+
+    public static void setWelcomeCardDismissed(Context context, boolean isDismissed) {
+        getSharedPreferences(context).edit().putBoolean(PREFERENCE_WELCOME_CARD_DISMISSED,
+                isDismissed).apply();
     }
 
     public static void clear(Context context) {
