@@ -40,8 +40,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"ಎಡಿಟ್"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ಅಳಿಸು"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"ಫೋಟೋ ಬದಲಾಯಿಸಿ"</string>
-    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
-    <skip />
+    <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"ಶಾರ್ಟ್‌ಕಟ್ ರಚಿಸಿ"</string>
     <string name="menu_call" msgid="3992595586042260618">"ಕರೆಯ ಸಂಪರ್ಕ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"ಪಠ್ಯ ಸಂಪರ್ಕ"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"ಲಿಂಕ್ ರದ್ದುಮಾಡಿ"</string>
@@ -67,8 +66,7 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ಎಲ್ಲ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸು"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"ಸೂಚಿಸಲಾದ ಸಂಪರ್ಕಗಳು"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳು"</string>
-    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
-    <skip />
+    <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ಸಂಪರ್ಕಗಳನ್ನು ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> ಅಳಿಸಲಾಗಿದೆ"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> ಮತ್ತು <xliff:g id="NAME_1">%2$s</xliff:g> ಅಳಿಸಲಾಗಿದೆ"</string>
@@ -88,10 +86,8 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google ನಿಂದ"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g>ಖಾತೆಯಿಂದ"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ರಿಂಗ್‌ಟೋನ್‌‌"</string>
-    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
-    <skip />
-    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"ಧ್ವನಿಮೇಲ್‌ಗೆ ರೂಟ್ ಮಾಡಿ"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"ಧ್ವನಿಮೇಲ್‌ಗೆ ಅನ್‌ರೂಟ್ ಮಾಡಿ"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ನಿಮ್ಮ ಓದಲು-ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸಲಾಗುವುದಿಲ್ಲ, ಆದರೆ ಅವುಗಳನ್ನು ಮರೆಮಾಡಬಹುದು."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"ಮರೆಮಾಡು"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"ಬಹು ಖಾತೆಗಳಿಂದ ವಿವರಗಳನ್ನು ಹೊಂದಿರುವ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ. ಓದಲು-ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ವಿವರಗಳನ್ನು ಮರೆಮಾಡಲಾಗುತ್ತದೆ, ಅಳಿಸಲಾಗುವುದಿಲ್ಲ."</string>
@@ -255,7 +251,6 @@
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ಹೊಸ ಸಂಪರ್ಕ ಸೇರಿಸಿ"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ಸಂಪರ್ಕವನ್ನು ಎಡಿಟ್ ಮಾಡಿ"</string>
     <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"ಲಿಂಕ್ ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳನ್ನು ಆರಿಸಿ"</string>
-    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (ಓದಲು ಮಾತ್ರ)"</string>
     <string name="add_account" msgid="8201790677994503186">"ಖಾತೆ ಸೇರಿಸಿ"</string>
     <string name="add_new_account" msgid="5748627740680940264">"ಹೊಸ ಖಾತೆಯನ್ನು ಸೇರಿಸಿ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ಡೇಟಾಬೇಸ್‌‌ ಫೈಲ್‌ಗಳನ್ನು ರಫ್ತು ಮಾಡಿ"</string>
@@ -491,11 +486,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"ಕಸ್ಟಮೈಸ್ ಮಾಡಿದ ವೀಕ್ಷಣೆ"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"ಆಮದು ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳನ್ನು ಇಲ್ಲಿ ಉಳಿಸಿ:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_from_sim_summary" msgid="1161327527717146878">"<xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g> ಸಿಮ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"<xliff:g id="SIM_NAME">%1$s</xliff:g> ಸಿಮ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"<xliff:g id="CARRIER_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g> ಸಿಮ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"<xliff:g id="CARRIER_NAME">%1$s</xliff:g> ಸಿಮ್‌‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
+    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"<xliff:g id="SIM_NAME">%1$s</xliff:g> ಸಿಮ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf ಫೈಲ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
+    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> ಆಮದು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard ಆಮದು/ರಫ್ತು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ"</string>
