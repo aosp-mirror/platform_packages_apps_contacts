@@ -47,6 +47,9 @@ public class FavoritesAndContactsLoader extends CursorLoader implements Autocomp
     private CountDownLatch mAutocompleteLatch = new CountDownLatch(1);
     private Cursor mAutocompleteCursor;
     private int mAutocompleteTimeout;
+    // If we didn't get anything back from autocomplete and we've fallen back to CP2,
+    // we can't wait for the Experiments.SEARCH_YENTA_TIMEOUT_MILLIS everytime the query changes.
+    private boolean mAutocompleteFallback;
 
     public FavoritesAndContactsLoader(Context context) {
         super(context);
@@ -71,14 +74,27 @@ public class FavoritesAndContactsLoader extends CursorLoader implements Autocomp
     @Override
     public Cursor loadInBackground() {
         List<Cursor> cursors = Lists.newArrayList();
+
+        // Load favorites
         if (mLoadFavorites) {
             cursors.add(loadFavoritesContacts());
         }
 
-        if (mAutocompleteQuery != null) {
+        // Load contacts
+        final Cursor contactsCursor;
+        if (mAutocompleteQuery == null || mAutocompleteFallback) {
+            // Query CP2 normally
+            contactsCursor = loadContacts();
+            cursors.add(contactsCursor);
+        } else {
             final AutocompleteHelper autocompleteHelper =
                     ObjectFactory.getAutocompleteHelper(getContext());
-            if (autocompleteHelper != null) {
+            if (autocompleteHelper == null) {
+                // Fallback to CP2, the flag is on but we couldn't instantiate autocomplete
+                contactsCursor = loadContacts();
+                cursors.add(contactsCursor);
+                mAutocompleteFallback = true;
+            } else {
                 autocompleteHelper.setListener(this);
                 autocompleteHelper.setProjection(mProjection);
                 autocompleteHelper.setQuery(mAutocompleteQuery);
@@ -89,20 +105,17 @@ public class FavoritesAndContactsLoader extends CursorLoader implements Autocomp
                 } catch (InterruptedException e) {
                     logw("Interrupted while waiting for autocompletions");
                 }
-                if (mAutocompleteCursor != null) {
+                if (mAutocompleteCursor != null && mAutocompleteCursor.getCount() > 0) {
+                    contactsCursor = null;
                     cursors.add(mAutocompleteCursor);
-                    // TODO: exclude these results from the main loader results, see b/30742359
+                } else {
+                    // Fallback to CP2, we didn't get anything back from autocomplete
+                    contactsCursor = loadContacts();
+                    cursors.add(loadContacts());
+                    mAutocompleteFallback = true;
                 }
             }
         }
-
-        // TODO: if the autocomplete experiment in on, only show those results even if they're empty
-        final Cursor contactsCursor = mAutocompleteQuery == null ? loadContacts() : null;
-        if (mAutocompleteQuery == null) {
-            cursors.add(contactsCursor);
-        }
-        // Guard against passing an empty array to the MergeCursor constructor
-        if (cursors.isEmpty()) cursors.add(null);
 
         return new MergeCursor(cursors.toArray(new Cursor[cursors.size()])) {
             @Override
