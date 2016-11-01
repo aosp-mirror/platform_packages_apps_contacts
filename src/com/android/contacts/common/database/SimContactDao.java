@@ -207,6 +207,9 @@ public class SimContactDao {
                 mContext.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
         final List<SubscriptionInfo> subscriptions = subscriptionManager
                 .getActiveSubscriptionInfoList();
+        if (subscriptions == null) {
+            return Collections.emptyList();
+        }
         final ArrayList<SimCard> result = new ArrayList<>();
         for (SubscriptionInfo subscriptionInfo : subscriptions) {
             result.add(SimCard.create(subscriptionInfo));
