@@ -40,8 +40,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"ပြင်ဆင်ရန်"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"ဖျက်ရန်"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"ဓာတ်ပုံပြောင်းရန်"</string>
-    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
-    <skip />
+    <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"ဖြတ်လမ်းလင့်ခ် ပြုလုပ်ရန်"</string>
     <string name="menu_call" msgid="3992595586042260618">"အဆက်အသွယ်ကို ခေါ်ပါ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"အဆက်အသွယ်ကို စာတိုပို့ရန်"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"လင့်ခ် ဖြုတ်ရန်"</string>
@@ -67,8 +66,7 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"အဆက်အသွယ်များအားလုံးအားပြပါ"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"အကြုံပြုလိုသော အဆက်အသွယ်များ"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"လိပ်စာများအားလုံး"</string>
-    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
-    <skip />
+    <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> ကို လင့်ခ်ချိတ်လိုက်ပါပြီ"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ကွင်းဆက်ထားသည့် အဆက်အသွယ်များ"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> ကို ဖျက်ပြီး"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> နှင့် <xliff:g id="NAME_1">%2$s</xliff:g> တို့ကို ဖျက်ပြီး"</string>
@@ -88,10 +86,8 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google မှ"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> မှ"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ဖုန်းမြည်သံသတ်မှတ်ရန်"</string>
-    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
-    <skip />
-    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"အသံမေးလ်သို့ ပို့ရန်"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"အသံမေးလ်သို့ မပို့ရန်"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"ဖတ်ရန် သက်သက် အကောင့်များကို ဖျက်မရနိုင်သော်လည်း ဝှက်ထားနိုင်ပါသည်။"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"ဝှက်ထားပါ"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"ဖျက်မည့် အဆက်အသွယ်ထဲတွင် အကောင့်အများအပြားမှ အချက်အလက်များ ပါဝင်ပါသည်။ ဖတ်ရန်သက်သက် အကောင့်များမှ အချက်အလက်များကို ဝှက်ထားမှာဖြစ်ပြီး ဖျက်ပစ်မည် မဟုတ်ပါ"</string>
@@ -255,7 +251,6 @@
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"အဆက်အသွယ်သစ် ထည့်မည်"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"အဆက်အသွယ်အားပြင်ရန်"</string>
     <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"လင့်ခ်ချိတ်ထားသောအဆက်အသွယ်ကို ရွေးပါ"</string>
-    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (ဖတ်ရန်အတွက်သာ)"</string>
     <string name="add_account" msgid="8201790677994503186">"အကောင့်ထည့်ရန်"</string>
     <string name="add_new_account" msgid="5748627740680940264">"အကောင့်အသစ်ထည့်ပါ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ဒေ့ဘာဘေ့စ်ဖိုင်များကို အပြင်သို့ထုတ်ပါ"</string>
@@ -491,11 +486,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"စိတ်ကြိုက်ကြည့်ရှုမှု"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"တင်သွင်းထားသောအဆက်အသွယ်များကို သိမ်းရမည့်အကောင့် -"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"ဆင်းမ်ကဒ်မှ တင်သွင်းရန်"</string>
-    <string name="import_from_sim_summary" msgid="1161327527717146878">"<xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g> ဆင်းမ်ကဒ်မှ တင်သွင်းရန်"</string>
-    <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"ဆင်းမ်ကဒ်မှ တင်သွင်းရန် <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"<xliff:g id="CARRIER_NAME">^1</xliff:g> ဆင်းမ်ကဒ်\n<xliff:g id="SIM_NUMBER">^2</xliff:g> မှ တင်သွင်းရန်"</string>
-    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"<xliff:g id="CARRIER_NAME">%1$s</xliff:g> ဆင်းမ်ကဒ်မှ တင်သွင်းရန်"</string>
+    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM မှ တင်သွင်းရန်"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf ဖိုင်မှ တင်သွင်းရန်"</string>
+    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> တင်သွင်းခြင်းကို မလုပ်တော့ဘူးလား။"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> တင်ပို့ခြင်းကို မလုပ်တော့ဘူးလား။"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"လိပ်စာကဒ် တင်သွင်း/ပို့ခြင်း ဖျက်မရပါ"</string>
