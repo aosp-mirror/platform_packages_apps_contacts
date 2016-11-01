@@ -40,8 +40,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Редагувати"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Видалити"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Змінити фото"</string>
-    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
-    <skip />
+    <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Створити ярлик"</string>
     <string name="menu_call" msgid="3992595586042260618">"Набрати конт."</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Повід. контакт"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Розділити"</string>
@@ -67,8 +66,7 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Показ. всі контакти"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Пропоновані контакти"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Усі контакти"</string>
-    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
-    <skip />
+    <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"Контакт <xliff:g id="NAME">%s</xliff:g> зв’язано"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Контакти об’єднано"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Контакт <xliff:g id="NAME">%1$s</xliff:g> видалено"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> і <xliff:g id="NAME_1">%2$s</xliff:g> видалено"</string>
@@ -94,10 +92,8 @@
     <string name="title_from_google" msgid="4664084747121207202">"Від Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"З обл. запису <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Мелодія"</string>
-    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
-    <skip />
-    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Спрямовувати на голосову пошту"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Не спрямовувати на гол. пошту"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Дані з облікових записів лише для перегляду не можна видалити, але можна сховати."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Сховати"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"У контакті, який ви хочете видалити, є дані з кількох облікових записів. Дані з облікових записів лише для перегляду буде сховано, а не видалено."</string>
@@ -269,7 +265,6 @@
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додати контакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Змінити контакт"</string>
     <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Вибрати зв’язаний контакт"</string>
-    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (лише перегляд)"</string>
     <string name="add_account" msgid="8201790677994503186">"Додати обліковий запис"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Додати новий обліковий запис"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Експортувати файли бази даних"</string>
@@ -513,11 +508,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"Користувацький режим"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Зберегти імпортовані контакти в обліковий запис:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Імпорт із SIM-карти"</string>
-    <string name="import_from_sim_summary" msgid="1161327527717146878">"Імпортувати із SIM-карти <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Імпортувати із SIM-карти \"<xliff:g id="SIM_NAME">%1$s</xliff:g>\""</string>
-    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"Імпортувати із SIM-карти <xliff:g id="CARRIER_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"Імпортувати із SIM-карти <xliff:g id="CARRIER_NAME">%1$s</xliff:g>"</string>
+    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"Імпортувати із SIM-карти (<xliff:g id="SIM_NAME">%1$s</xliff:g>)"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Імпортувати з файлу .vcf"</string>
+    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Скасувати імпорт файлу <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Скасувати експорт файлу <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Не вдалося скасув. імпорт/експорт vCard"</string>

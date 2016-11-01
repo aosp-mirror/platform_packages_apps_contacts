@@ -40,8 +40,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"ערוך"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"מחק"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"החלפת תמונה"</string>
-    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
-    <skip />
+    <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"צור קיצור דרך"</string>
     <string name="menu_call" msgid="3992595586042260618">"התקשר לאיש קשר"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"בטל קישור"</string>
@@ -67,8 +66,7 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"הצג את כל אנשי הקשר"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"אנשי קשר מוצעים"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"כל אנשי הקשר"</string>
-    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
-    <skip />
+    <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> מקושר/ת"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"אנשי הקשר קושרו"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"מחקת את <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> ו-<xliff:g id="NAME_1">%2$s</xliff:g> נמחקו"</string>
@@ -94,10 +92,8 @@
     <string name="title_from_google" msgid="4664084747121207202">"‏מ-Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"מ-<xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"הגדר רינגטון"</string>
-    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
-    <skip />
-    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"נתב לדואר הקולי"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"בטל את הניתוב לדואר הקולי"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"לא ניתן למחוק אנשי קשר מחשבונות לקריאה-בלבד, אך ניתן להסתיר אותם."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"הסתר"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"איש הקשר שנבחר למחיקה מכיל פרטים מחשבונות מרובים. פרטים מחשבונות לקריאה-בלבד יוסתרו ולא יימחקו."</string>
@@ -269,7 +265,6 @@
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"הוספת איש קשר חדש"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ערוך איש קשר"</string>
     <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"בחר את איש הקשר המקושר"</string>
-    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (לקריאה בלבד)"</string>
     <string name="add_account" msgid="8201790677994503186">"הוסף חשבון"</string>
     <string name="add_new_account" msgid="5748627740680940264">"הוסף חשבון חדש"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ייצוא קובצי מסד נתונים"</string>
@@ -513,11 +508,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"תצוגה מותאמת אישית"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"מיקום השמירה של אנשי הקשר שמיובאים:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"‏ייבא מכרטיס SIM"</string>
-    <string name="import_from_sim_summary" msgid="1161327527717146878">"‏יבא מכרטיס SIM <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"‏יבא מכרטיס ה-SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"‏יבא מכרטיס SIM של <xliff:g id="CARRIER_NAME">^1</xliff:g> \n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"‏יבא מכרטיס SIM של <xliff:g id="CARRIER_NAME">%1$s</xliff:g>"</string>
+    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"‏ייבא מכרטיס ה-SIM ‏<xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"‏יבא מקובץ ‎.vcf"</string>
+    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"לבטל את הייבוא של <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"לבטל את הייצוא של <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"‏לא ניתן לבטל ייבוא/ייצוא של vCard"</string>

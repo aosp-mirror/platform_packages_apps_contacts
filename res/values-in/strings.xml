@@ -40,8 +40,7 @@
     <string name="menu_editContact" msgid="9042415603857662633">"Edit"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Hapus"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Ganti foto"</string>
-    <!-- no translation found for menu_create_contact_shortcut (1663022219127343858) -->
-    <skip />
+    <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Buat pintasan"</string>
     <string name="menu_call" msgid="3992595586042260618">"Hubungi kontak"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS kontak"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Batalkan tautan"</string>
@@ -67,8 +66,7 @@
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Tampilkan semua kontak"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Kontak yang disarankan"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Semua kontak"</string>
-    <!-- no translation found for contactsJoinedNamedMessage (1299418263439579455) -->
-    <skip />
+    <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> ditautkan"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontak ditautkan"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> dihapus"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> dan <xliff:g id="NAME_1">%2$s</xliff:g> dihapus"</string>
@@ -88,10 +86,8 @@
     <string name="title_from_google" msgid="4664084747121207202">"Dari Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Dari <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setel nada dering"</string>
-    <!-- no translation found for menu_redirect_calls_to_vm (83331924006712755) -->
-    <skip />
-    <!-- no translation found for menu_unredirect_calls_to_vm (8725542534701811737) -->
-    <skip />
+    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Rute ke pesan suara"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Batalkan rute ke pesan suara"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontak dari akun hanya-baca tidak dapat dihapus, tetapi dapat disembunyikan."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Sembunyikan"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Kontak yang akan dihapus memiliki detail dari beberapa akun. Detail dari akun hanya-baca akan disembunyikan, tidak dihapus."</string>
@@ -255,7 +251,6 @@
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Tambah kontak baru"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edit kontak"</string>
     <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Pilih kontak tertaut"</string>
-    <string name="contact_editor_pick_raw_contact_read_only" msgid="5505352743052484053">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (hanya baca)"</string>
     <string name="add_account" msgid="8201790677994503186">"Tambahkan akun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tambahkan akun baru"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Ekspor file basis data"</string>
@@ -491,11 +486,10 @@
     <string name="listCustomView" msgid="1840624396582117590">"Tampilan khusus"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Simpan kontak yang diimpor ke:"</string>
     <string name="import_from_sim" msgid="3859272228033941659">"Impor dari kartu SIM"</string>
-    <string name="import_from_sim_summary" msgid="1161327527717146878">"Impor dari SIM <xliff:g id="SIM_NAME">^1</xliff:g>\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_no_number" msgid="880612418352086012">"Impor dari SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sim_summary_by_carrier" msgid="5348370965071823993">"Impor dari <xliff:g id="CARRIER_NAME">^1</xliff:g> SIM\n<xliff:g id="SIM_NUMBER">^2</xliff:g>"</string>
-    <string name="import_from_sim_summary_by_carrier_no_number" msgid="7709554428711997959">"Impor dari <xliff:g id="CARRIER_NAME">%1$s</xliff:g> SIM"</string>
+    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"Impor dari SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Impor dari file .vcf"</string>
+    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
+    <skip />
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Batalkan impor <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Batalkan ekspor <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Tidak dpt membatalkan impor/ekspor vCard"</string>
