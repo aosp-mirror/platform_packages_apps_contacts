@@ -21,7 +21,7 @@ public class SimContactTests {
     public void parcelRoundtrip() {
         assertParcelsCorrectly(new SimContact(1, "name1", "phone1",
                 new String[] { "email1a", "email1b" }));
-        assertParcelsCorrectly(new SimContact(2, "name2", "phone2", null));
+        assertParcelsCorrectly(new SimContact(2, "name2", "phone2", null, 2));
         assertParcelsCorrectly(new SimContact(3, "name3", null,
                 new String[] { "email3" }));
         assertParcelsCorrectly(new SimContact(4, null, "phone4",

@@ -25,6 +25,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -132,7 +133,12 @@ public class SimImportFragment extends DialogFragment
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mAdapter.toggleSelectionOfContactId(id);
+                if (mAdapter.existsInContacts(position)) {
+                    Snackbar.make(getView(), R.string.sim_import_contact_exists_toast,
+                            Snackbar.LENGTH_LONG).show();
+                } else {
+                    mAdapter.toggleSelectionOfContactId(id);
+                }
             }
         });
         mImportButton = view.findViewById(R.id.import_button);
@@ -185,14 +191,17 @@ public class SimImportFragment extends DialogFragment
     @Override
     public void onLoadFinished(Loader<ArrayList<SimContact>> loader,
             ArrayList<SimContact> data) {
+        mLoadingIndicator.hide();
         mListView.setEmptyView(getView().findViewById(R.id.empty_message));
+        if (data == null) {
+            return;
+        }
         mAdapter.setContacts(data);
         if (mSelectedContacts != null) {
             mAdapter.select(mSelectedContacts);
         } else {
             mAdapter.selectAll();
         }
-        mLoadingIndicator.hide();
     }
 
     @Override
@@ -258,6 +267,7 @@ public class SimImportFragment extends DialogFragment
 
     private static class SimContactAdapter extends ContactListAdapter {
         private ArrayList<SimContact> mContacts;
+        private static float DISABLED_AVATAR_ALPHA = 0.38f;
 
         public SimContactAdapter(Context context) {
             super(context);
@@ -278,6 +288,7 @@ public class SimImportFragment extends DialogFragment
             // clickable
             contactView.getCheckBox().setFocusable(false);
             contactView.getCheckBox().setClickable(false);
+            setViewEnabled(contactView, !mContacts.get(cursor.getPosition()).existsInContacts());
         }
 
         public void setContacts(ArrayList<SimContact> contacts) {
@@ -304,7 +315,9 @@ public class SimImportFragment extends DialogFragment
 
             final TreeSet<Long> selected = new TreeSet<>();
             for (SimContact contact : mContacts) {
-                selected.add(contact.getId());
+                if (!contact.existsInContacts()) {
+                    selected.add(contact.getId());
+                }
             }
             setSelectedContactIds(selected);
         }
@@ -315,6 +328,16 @@ public class SimImportFragment extends DialogFragment
                 selected.add(contact);
             }
             setSelectedContactIds(selected);
+        }
+
+        public boolean existsInContacts(int position) {
+            return mContacts.get(position).existsInContacts();
+        }
+
+        private void setViewEnabled(ContactListItemView itemView, boolean enabled) {
+            itemView.getCheckBox().setEnabled(enabled);
+            itemView.getPhotoView().setAlpha(enabled ? 1f : DISABLED_AVATAR_ALPHA);
+            itemView.getNameTextView().setEnabled(enabled);
         }
     }
 
@@ -346,11 +369,11 @@ public class SimImportFragment extends DialogFragment
 
         @Override
         public ArrayList<SimContact> loadInBackground() {
-            if (mSubscriptionId != SimCard.NO_SUBSCRIPTION_ID) {
-                return mDao.loadSimContacts(mSubscriptionId);
-            } else {
-                return mDao.loadSimContacts();
+            final SimCard sim = mDao.getSimBySubscriptionId(mSubscriptionId);
+            if (sim == null) {
+                return new ArrayList<>();
             }
+            return mDao.loadSimContactsWithExistingContactIds(sim);
         }
 
         @Override
