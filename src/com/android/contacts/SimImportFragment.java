@@ -89,6 +89,8 @@ public class SimImportFragment extends DialogFragment
         mAccountTypeManager = AccountTypeManager.getInstance(getActivity());
         mAdapter = new SimContactAdapter(getActivity());
 
+        // This needs to be set even though photos aren't loaded because the adapter assumes it
+        // will be non-null
         mAdapter.setPhotoLoader(ContactPhotoManager.getInstance(getActivity()));
         mAdapter.setDisplayCheckBoxes(true);
         mAdapter.setHasHeader(0, false);
@@ -277,7 +279,6 @@ public class SimImportFragment extends DialogFragment
 
     private static class SimContactAdapter extends ContactListAdapter {
         private ArrayList<SimContact> mContacts;
-        private static float DISABLED_AVATAR_ALPHA = 0.38f;
         private AccountWithDataSet mSelectedAccount;
         private Map<AccountWithDataSet, Set<SimContact>> mExistingMap;
         private Map<AccountWithDataSet, TreeSet<Long>> mPerAccountCheckedIds = new ArrayMap<>();
@@ -295,7 +296,6 @@ public class SimImportFragment extends DialogFragment
             super.bindView(itemView, partition, cursor, position);
             ContactListItemView contactView = (ContactListItemView) itemView;
             bindNameAndViewId(contactView, cursor);
-            bindPhoto(contactView, partition, cursor);
 
             // For accessibility. Tapping the item checks this so we don't need it to be separately
             // clickable
@@ -390,7 +390,6 @@ public class SimImportFragment extends DialogFragment
 
         private void setViewEnabled(ContactListItemView itemView, boolean enabled) {
             itemView.getCheckBox().setEnabled(enabled);
-            itemView.getPhotoView().setAlpha(enabled ? 1f : DISABLED_AVATAR_ALPHA);
             itemView.getNameTextView().setEnabled(enabled);
         }
     }
