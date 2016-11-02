@@ -40,12 +40,12 @@ import java.util.List;
 import java.util.Map;
 
 @SmallTest
-public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
+public class Cp2DeviceLocalAccountLocatorTests extends AndroidTestCase {
 
     // Basic smoke test that just checks that it doesn't throw when loading from CP2. We don't
     // care what CP2 actually contains for this.
     public void testShouldNotCrash() {
-        final DeviceLocalAccountLocator sut = new DeviceLocalAccountLocator(
+        final DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
                 getContext().getContentResolver(),
                 new DeviceLocalAccountTypeFactory.Default(getContext()),
                 Collections.<AccountWithDataSet>emptyList());
@@ -80,7 +80,7 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
         final DeviceLocalAccountTypeFactory stubFactory = new FakeDeviceAccountTypeFactory()
                 .withDeviceTypes(null, "vnd.sec.contact.phone")
                 .withSimTypes("vnd.sec.contact.sim");
-        final DeviceLocalAccountLocator sut = new DeviceLocalAccountLocator(
+        final DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
                 createStubResolverWithContentQueryResult(queryResult(
                         "user", "com.example",
                         "user", "com.example",
@@ -98,7 +98,7 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
     }
 
     public void test_getDeviceLocalAccounts_doesNotContainItemsForKnownAccounts() {
-        final DeviceLocalAccountLocator sut = new DeviceLocalAccountLocator(
+        final Cp2DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
                 getContext().getContentResolver(), new FakeDeviceAccountTypeFactory(),
                 Arrays.asList(new AccountWithDataSet("user", "com.example", null),
                         new AccountWithDataSet("user1", "com.example", null),
@@ -116,7 +116,7 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
         final DeviceLocalAccountTypeFactory stubFactory = new FakeDeviceAccountTypeFactory()
                 .withDeviceTypes(null, "vnd.sec.contact.phone")
                 .withSimTypes("vnd.sec.contact.sim");
-        final DeviceLocalAccountLocator sut = new DeviceLocalAccountLocator(
+        final DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
                 createContentResolverWithProvider(new FakeContactsProvider()
                         .withQueryResult(ContactsContract.Settings.CONTENT_URI, queryResult(
                                 "phone_account", "vnd.sec.contact.phone",
@@ -130,7 +130,7 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
         final DeviceLocalAccountTypeFactory stubFactory = new FakeDeviceAccountTypeFactory()
                 .withDeviceTypes(null, "vnd.sec.contact.phone")
                 .withSimTypes("vnd.sec.contact.sim");
-        final DeviceLocalAccountLocator sut = new DeviceLocalAccountLocator(
+        final DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
                 createContentResolverWithProvider(new FakeContactsProvider()
                         .withQueryResult(ContactsContract.Groups.CONTENT_URI, queryResult(
                                 "phone_account", "vnd.sec.contact.phone",
@@ -142,7 +142,7 @@ public class DeviceLocalAccountLocatorTests extends AndroidTestCase {
 
     private DeviceLocalAccountLocator createWithQueryResult(
             Cursor cursor) {
-        final DeviceLocalAccountLocator locator = new DeviceLocalAccountLocator(
+        final DeviceLocalAccountLocator locator = new Cp2DeviceLocalAccountLocator(
                 createStubResolverWithContentQueryResult(cursor),
                 new DeviceLocalAccountTypeFactory.Default(getContext()),
                 Collections.<AccountWithDataSet>emptyList());

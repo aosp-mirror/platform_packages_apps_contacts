@@ -15,128 +15,41 @@
  */
 package com.android.contacts.common.model;
 
-import android.accounts.AccountManager;
-import android.content.ContentResolver;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.ContactsContract;
-import android.support.annotation.VisibleForTesting;
+import android.content.Context;
 
+import com.android.contacts.common.Experiments;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
+import com.android.contactsbind.ObjectFactory;
+import com.android.contactsbind.experiments.Flags;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 /**
- * DeviceLocalAccountLocator attempts to create accounts for "Device" contacts by querying
- * CP2 for records with {@link android.provider.ContactsContract.RawContacts#ACCOUNT_TYPE} columns
- * that do not exist for any account returned by {@link AccountManager#getAccounts()}
- *
- * This class should be used from a background thread since it does DB queries
+ * Attempts to detect accounts for device contacts
  */
-public class DeviceLocalAccountLocator {
+public abstract class DeviceLocalAccountLocator {
 
-    // Note this class is assuming ACCOUNT_NAME and ACCOUNT_TYPE have same values in
-    // RawContacts, Groups, and Settings. This assumption simplifies the code somewhat and it
-    // is true right now and unlikely to ever change.
-    @VisibleForTesting
-    static String[] PROJECTION = new String[] {
-            ContactsContract.RawContacts.ACCOUNT_NAME, ContactsContract.RawContacts.ACCOUNT_TYPE,
-            ContactsContract.RawContacts.DATA_SET
+    /**
+     * Returns a list of device local accounts
+     */
+    public abstract List<AccountWithDataSet> getDeviceLocalAccounts();
+
+    // This works on Nexus and AOSP because the local device account is the null account but most
+    // OEMs have a special account name and type for their device account.
+    public static final DeviceLocalAccountLocator NULL_ONLY = new DeviceLocalAccountLocator() {
+        @Override
+        public List<AccountWithDataSet> getDeviceLocalAccounts() {
+            return Collections.singletonList(AccountWithDataSet.getNullAccount());
+        }
     };
 
-    private static final int COL_NAME = 0;
-    private static final int COL_TYPE = 1;
-    private static final int COL_DATA_SET = 2;
-
-    private final ContentResolver mResolver;
-    private final DeviceLocalAccountTypeFactory mAccountTypeFactory;
-
-    private final String mSelection;
-    private final String[] mSelectionArgs;
-
-    public DeviceLocalAccountLocator(ContentResolver contentResolver,
-            DeviceLocalAccountTypeFactory factory,
+    public static DeviceLocalAccountLocator create(Context context,
             List<AccountWithDataSet> knownAccounts) {
-        mResolver = contentResolver;
-        mAccountTypeFactory = factory;
-
-        final Set<String> knownAccountTypes = new HashSet<>();
-        for (AccountWithDataSet account : knownAccounts) {
-            knownAccountTypes.add(account.type);
+        if (Flags.getInstance().getBoolean(Experiments.OEM_CP2_DEVICE_ACCOUNT_DETECTION_ENABLED)) {
+            return new Cp2DeviceLocalAccountLocator(context.getContentResolver(),
+                    ObjectFactory.getDeviceLocalAccountTypeFactory(context), knownAccounts);
         }
-        mSelection = getSelection(knownAccountTypes);
-        mSelectionArgs = getSelectionArgs(knownAccountTypes);
-    }
-
-    public List<AccountWithDataSet> getDeviceLocalAccounts() {
-
-        final Set<AccountWithDataSet> localAccounts = new HashSet<>();
-
-        // Many device accounts have default groups associated with them.
-        addAccountsFromQuery(ContactsContract.Groups.CONTENT_URI, localAccounts);
-        addAccountsFromQuery(ContactsContract.Settings.CONTENT_URI, localAccounts);
-        addAccountsFromQuery(ContactsContract.RawContacts.CONTENT_URI, localAccounts);
-
-        return new ArrayList<>(localAccounts);
-    }
-
-    private void addAccountsFromQuery(Uri uri, Set<AccountWithDataSet> accounts) {
-        final Cursor cursor = mResolver.query(uri, PROJECTION, mSelection, mSelectionArgs, null);
-
-        if (cursor == null) return;
-
-        try {
-            addAccountsFromCursor(cursor, accounts);
-        } finally {
-            cursor.close();
-        }
-    }
-
-    private void addAccountsFromCursor(Cursor cursor, Set<AccountWithDataSet> accounts) {
-        while (cursor.moveToNext()) {
-            final String name = cursor.getString(COL_NAME);
-            final String type = cursor.getString(COL_TYPE);
-            final String dataSet = cursor.getString(COL_DATA_SET);
-
-            if (DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
-                    mAccountTypeFactory, type)) {
-                accounts.add(new AccountWithDataSet(name, type, dataSet));
-            }
-        }
-    }
-
-    @VisibleForTesting
-    public String getSelection() {
-        return mSelection;
-    }
-
-    @VisibleForTesting
-    public String[] getSelectionArgs() {
-        return mSelectionArgs;
-    }
-
-    private static String getSelection(Set<String> knownAccountTypes) {
-        final StringBuilder sb = new StringBuilder()
-                .append(ContactsContract.RawContacts.ACCOUNT_TYPE).append(" IS NULL");
-        if (knownAccountTypes.isEmpty()) {
-            return sb.toString();
-        }
-        sb.append(" OR ").append(ContactsContract.RawContacts.ACCOUNT_TYPE).append(" NOT IN (");
-        for (String ignored : knownAccountTypes) {
-            sb.append("?,");
-        }
-        // Remove trailing ','
-        sb.deleteCharAt(sb.length() - 1).append(')');
-        return sb.toString();
-    }
-
-    private static String[] getSelectionArgs(Set<String> knownAccountTypes) {
-        if (knownAccountTypes.isEmpty()) return null;
-
-        return knownAccountTypes.toArray(new String[knownAccountTypes.size()]);
+        return NULL_ONLY;
     }
 }
