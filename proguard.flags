@@ -44,6 +44,7 @@
 -keep class com.android.contacts.common.model.BuilderWrapper { *; }
 -keep class com.android.contacts.common.model.Contact { *; }
 -keep class com.android.contacts.common.model.ContactLoader { *; }
+-keep class com.android.contacts.common.model.Cp2DeviceLocalAccountLocator { *; }
 -keep class com.android.contacts.common.model.CPOWrapper { *; }
 -keep class com.android.contacts.common.model.dataitem.DataItem { *; }
 -keep class com.android.contacts.common.model.dataitem.DataKind { *; }
