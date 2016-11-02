@@ -665,11 +665,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
             }
         }
 
-        final DeviceLocalAccountLocator deviceAccounts =
-                new DeviceLocalAccountLocator(mContext.getContentResolver(),
-                        mDeviceLocalAccountTypeFactory,
-                        allAccounts);
-        final List<AccountWithDataSet> localAccounts = deviceAccounts.getDeviceLocalAccounts();
+        final DeviceLocalAccountLocator deviceAccountLocator = DeviceLocalAccountLocator
+                .create(mContext, allAccounts);
+        final List<AccountWithDataSet> localAccounts = deviceAccountLocator
+                .getDeviceLocalAccounts();
         allAccounts.addAll(localAccounts);
 
         for (AccountWithDataSet localAccount : localAccounts) {

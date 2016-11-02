@@ -58,6 +58,12 @@ public final class Experiments {
     public static final String DYNAMIC_SHORTCUTS = "Shortcuts__dynamic_shortcuts";
 
     /**
+     * Experiment to enable device account detection using CP2 queries
+     */
+    public static final String OEM_CP2_DEVICE_ACCOUNT_DETECTION_ENABLED =
+            "OEM__cp2_device_account_detection_enabled";
+
+    /**
      * Experiment to toggle contacts sync using the pull to refresh gesture.
      */
     public static final String PULL_TO_REFRESH = "PullToRefresh__pull_to_refresh";
