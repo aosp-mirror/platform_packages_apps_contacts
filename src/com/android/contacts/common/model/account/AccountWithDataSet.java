@@ -247,9 +247,13 @@ public class AccountWithDataSet implements Parcelable {
     public static AccountWithDataSet getDefaultOrBestFallback(ContactsPreferences preferences,
             AccountTypeManager accountTypeManager) {
         if (preferences.isDefaultAccountSet()) {
-            return preferences.getDefaultAccount();
+            final AccountWithDataSet account = preferences.getDefaultAccount();
+            if (accountTypeManager.contains(account, true)) {
+                return account;
+            }
         }
-        List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(/* writableOnly */ true);
+        final List<AccountWithDataSet> accounts = accountTypeManager
+                .getAccounts(/* writableOnly */ true);
 
         if (accounts.isEmpty()) {
             return AccountWithDataSet.getNullAccount();
