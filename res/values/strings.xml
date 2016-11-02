@@ -926,6 +926,9 @@
     <!-- The menu item to open the link/merge duplicates activity. [CHAR LIMIT=20]-->
     <string name="menu_duplicates">Duplicates</string>
 
+    <!-- Assistant 'NEW' badge text. Badge shown next to Assistant in left drawer menu when user has not visited it yet. [CHAR LIMIT=10] -->
+    <string name="menu_assistant_new_badge">New</string>
+
     <!-- Open drawer content descriptions [CHAR LIMIT=40] -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
 
