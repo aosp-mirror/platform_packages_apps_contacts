@@ -26,6 +26,7 @@
     android:paddingBottom="@dimen/nav_new_badge_vertical_pad"
     android:background="@drawable/new_badge_background"
     android:textSize="@dimen/nav_new_badge_font_size"
+    android:textStyle="bold"
     android:textAllCaps="true"
-    android:textColor="#FFFFFF"
+    android:textColor="@android:color/white"
     android:text="@string/menu_assistant_new_badge"/>
