@@ -30,7 +30,10 @@ import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.VisibleForTesting;
+import android.support.v4.util.ArrayMap;
+import android.support.v4.util.ArraySet;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -50,7 +53,10 @@ import com.google.common.base.Joiner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Provides data access methods for loading contacts from a SIM card and and migrating these
@@ -149,10 +155,6 @@ public class SimContactDao {
         return loadFrom(ICC_CONTENT_URI);
     }
 
-    public ArrayList<SimContact> loadSimContactsWithExistingContactIds(SimCard sim) {
-        return getSimContactsWithRawContacts(sim);
-    }
-
     public ContentProviderResult[] importContacts(List<SimContact> contacts,
             AccountWithDataSet targetAccount)
             throws RemoteException, OperationApplicationException {
@@ -193,6 +195,62 @@ public class SimContactDao {
         return null;
     }
 
+    public Map<AccountWithDataSet, Set<SimContact>> findAccountsOfExistingSimContacts(
+            List<SimContact> contacts) {
+        final Map<AccountWithDataSet, Set<SimContact>> result = new ArrayMap<>();
+        for (int i = 0; i < contacts.size(); i += IMPORT_MAX_BATCH_SIZE) {
+            findAccountsOfExistingSimContacts(
+                    contacts.subList(i, Math.min(contacts.size(), i + IMPORT_MAX_BATCH_SIZE)),
+                    result);
+        }
+        return result;
+    }
+
+    private void findAccountsOfExistingSimContacts(List<SimContact> contacts,
+            Map<AccountWithDataSet, Set<SimContact>> result) {
+        final Map<Long, List<SimContact>> rawContactToSimContact = new HashMap<>();
+        Collections.sort(contacts, SimContact.compareByPhoneThenName());
+
+        final Cursor dataCursor = queryRawContactsForSimContacts(contacts);
+
+        try {
+            while (dataCursor.moveToNext()) {
+                final String number = DataQuery.getPhoneNumber(dataCursor);
+                final String name = DataQuery.getDisplayName(dataCursor);
+
+                final int index = SimContact.findByPhoneAndName(contacts, number, name);
+                if (index < 0) {
+                    continue;
+                }
+                final SimContact contact = contacts.get(index);
+                final long id = DataQuery.getRawContactId(dataCursor);
+                if (!rawContactToSimContact.containsKey(id)) {
+                    rawContactToSimContact.put(id, new ArrayList<SimContact>());
+                }
+                rawContactToSimContact.get(id).add(contact);
+            }
+        } finally {
+            dataCursor.close();
+        }
+
+        final Cursor accountsCursor = queryAccountsOfRawContacts(rawContactToSimContact.keySet());
+        try {
+            while (accountsCursor.moveToNext()) {
+                final AccountWithDataSet account = AccountQuery.getAccount(accountsCursor);
+                final long id = AccountQuery.getId(accountsCursor);
+                if (!result.containsKey(account)) {
+                    result.put(account, new ArraySet<SimContact>());
+                }
+                for (SimContact contact : rawContactToSimContact.get(id)) {
+                    result.get(account).add(contact);
+                }
+            }
+        } finally {
+            accountsCursor.close();
+        }
+    }
+
+
     private ContentProviderResult[] importBatch(List<SimContact> contacts,
             AccountWithDataSet targetAccount)
             throws RemoteException, OperationApplicationException {
@@ -207,9 +265,6 @@ public class SimContactDao {
                 mContext.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
         final List<SubscriptionInfo> subscriptions = subscriptionManager
                 .getActiveSubscriptionInfoList();
-        if (subscriptions == null) {
-            return Collections.emptyList();
-        }
         final ArrayList<SimCard> result = new ArrayList<>();
         for (SubscriptionInfo subscriptionInfo : subscriptions) {
             result.add(SimCard.create(subscriptionInfo));
@@ -252,19 +307,7 @@ public class SimContactDao {
         return result;
     }
 
-    private ArrayList<SimContact> getSimContactsWithRawContacts(SimCard sim) {
-        final ArrayList<SimContact> contacts = new ArrayList<>(getContactsForSim(sim));
-        for (int i = 0; i < contacts.size(); i += DataQuery.MAX_BATCH_SIZE) {
-            final List<SimContact> batch =
-                    contacts.subList(i, Math.min(i + DataQuery.MAX_BATCH_SIZE, contacts.size()));
-            setRawContactsForSimContacts(batch);
-        }
-        // Restore default sort order
-        Collections.sort(contacts, SimContact.compareById());
-        return contacts;
-    }
-
-    private void setRawContactsForSimContacts(List<SimContact> contacts) {
+    private Cursor queryRawContactsForSimContacts(List<SimContact> contacts) {
         final StringBuilder selectionBuilder = new StringBuilder();
 
         int phoneCount = 0;
@@ -287,47 +330,32 @@ public class SimContactDao {
             }
         }
 
-        final Cursor cursor = mResolver.query(ContactsContract.Data.CONTENT_URI.buildUpon()
+        return mResolver.query(ContactsContract.Data.CONTENT_URI.buildUpon()
                         .appendQueryParameter(ContactsContract.Data.VISIBLE_CONTACTS_ONLY, "true")
                         .build(),
                 DataQuery.PROJECTION,
                 selectionBuilder.toString(),
                 selectionArgs.toArray(new String[selectionArgs.size()]),
-                ContactsContract.Data.RAW_CONTACT_ID + " ASC");
-
-        if (cursor == null) {
-            initializeRawContactIds(contacts);
-            return;
-        }
-
-        try {
-            setRawContactsForSimContacts(contacts, cursor);
-        } finally {
-            cursor.close();
-        }
+                null);
     }
 
-    private void initializeRawContactIds(List<SimContact> contacts) {
-        for (int i = 0; i < contacts.size(); i++) {
-            contacts.set(i, contacts.get(i).withRawContactId(SimContact.NO_EXISTING_CONTACT));
+    private Cursor queryAccountsOfRawContacts(Set<Long> ids) {
+        final StringBuilder selectionBuilder = new StringBuilder();
+
+        final String[] args = new String[ids.size()];
+
+        selectionBuilder.append(RawContacts._ID).append(" IN (")
+                .append(Joiner.on(',').join(Collections.nCopies(args.length, '?')))
+                .append(")");
+        int i = 0;
+        for (long id : ids) {
+            args[i++] = String.valueOf(id);
         }
-    }
-
-    private void setRawContactsForSimContacts(List<SimContact> contacts, Cursor cursor) {
-        initializeRawContactIds(contacts);
-        Collections.sort(contacts, SimContact.compareByPhoneThenName());
-
-        while (cursor.moveToNext()) {
-            final String number = DataQuery.getPhoneNumber(cursor);
-            final String name = DataQuery.getDisplayName(cursor);
-
-            int index = SimContact.findByPhoneAndName(contacts, number, name);
-            if (index < 0) {
-                continue;
-            }
-            final SimContact contact = contacts.get(index);
-            contacts.set(index, contact.withRawContactId(DataQuery.getRawContactId(cursor)));
-        }
+        return mResolver.query(RawContacts.CONTENT_URI,
+                AccountQuery.PROJECTION,
+                selectionBuilder.toString(),
+                args,
+                null);
     }
 
     private ArrayList<ContentProviderOperation> createImportOperations(List<SimContact> contacts,
@@ -441,6 +469,22 @@ public class SimContactDao {
 
         public static String getDisplayName(Cursor cursor) {
             return cursor.getString(DISPLAY_NAME);
+        }
+    }
+
+    private static final class AccountQuery {
+        public static final String[] PROJECTION = new String[] {
+                RawContacts._ID, RawContacts.ACCOUNT_NAME, RawContacts.ACCOUNT_TYPE,
+                RawContacts.DATA_SET
+        };
+
+        public static long getId(Cursor cursor) {
+            return cursor.getLong(0);
+        }
+
+        public static AccountWithDataSet getAccount(Cursor cursor) {
+            return new AccountWithDataSet(cursor.getString(1), cursor.getString(2),
+                    cursor.getString(3));
         }
     }
 }
