@@ -31,11 +31,6 @@ public final class Experiments {
     public static final String ASSISTANT = "Assistant__enable_assistant";
 
     /**
-     * Experiment to show the restore assistant on the assistants view.
-     */
-    public static final String ASSISTANT_RESTORE = "Assistant__restore";
-
-    /**
      * Whether to open contact sheet (aka smart profile) instead of our own QuickContact.
      */
     public static final String CONTACT_SHEET = "QuickContact__contact_sheet";
@@ -53,20 +48,10 @@ public final class Experiments {
             "Shortcuts__dynamic_min_content_change_update_delay_millis";
 
     /**
-     * Experiment to enable dynamic strequent shortcuts.
-     */
-    public static final String DYNAMIC_SHORTCUTS = "Shortcuts__dynamic_shortcuts";
-
-    /**
      * Experiment to enable device account detection using CP2 queries
      */
     public static final String OEM_CP2_DEVICE_ACCOUNT_DETECTION_ENABLED =
             "OEM__cp2_device_account_detection_enabled";
-
-    /**
-     * Experiment to toggle contacts sync using the pull to refresh gesture.
-     */
-    public static final String PULL_TO_REFRESH = "PullToRefresh__pull_to_refresh";
 
     /**
      * Flags for maximum time to show spinner for a contacts sync.
@@ -83,11 +68,6 @@ public final class Experiments {
      * The time to wait for Yenta search results before giving up.
      */
     public static final String SEARCH_YENTA_TIMEOUT_MILLIS = "Search__yenta_timeout";
-
-    /**
-     * The options for sending email/messages to groups and selections
-     */
-    public static final String SEND_TO_GROUP = "Groups__send_to_group";
 
     private Experiments() {
     }
