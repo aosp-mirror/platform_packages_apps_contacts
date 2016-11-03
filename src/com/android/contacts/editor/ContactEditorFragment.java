@@ -987,6 +987,9 @@ public class ContactEditorFragment extends Fragment implements
             mStatus = Status.SUB_ACTIVITY;
             startActivityForResult(intent, REQUEST_CODE_ACCOUNTS_CHANGED);
         } else {
+            // Make sure the default account is automatically set if there is only one non-device
+            // account.
+            mEditorUtils.maybeUpdateDefaultAccount();
             // Otherwise, there should be a default account. Then either create a local contact
             // (if default account is null) or create a contact with the specified account.
             AccountWithDataSet defaultAccount = mEditorUtils.getOnlyOrDefaultAccount();
