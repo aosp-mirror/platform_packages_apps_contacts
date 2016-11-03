@@ -391,6 +391,12 @@ public class SimImportFragment extends DialogFragment
         private void setViewEnabled(ContactListItemView itemView, boolean enabled) {
             itemView.getCheckBox().setEnabled(enabled);
             itemView.getNameTextView().setEnabled(enabled);
+            // If the checkbox is left to default it's "unchecked" state will be announced when
+            // it is clicked on instead of the snackbar which is not useful.
+            int accessibilityMode = enabled ?
+                    View.IMPORTANT_FOR_ACCESSIBILITY_YES :
+                    View.IMPORTANT_FOR_ACCESSIBILITY_NO;
+            itemView.getCheckBox().setImportantForAccessibility(accessibilityMode);
         }
     }
 
