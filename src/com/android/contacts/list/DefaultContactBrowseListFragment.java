@@ -198,9 +198,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
                     setSyncOffAlert();
 
                     // Determine whether the account has pullToRefresh feature
-                    if (Flags.getInstance().getBoolean(Experiments.PULL_TO_REFRESH)) {
-                        setSwipeRefreshLayoutEnabledOrNot(getFilter());
-                    }
+                    setSwipeRefreshLayoutEnabledOrNot(getFilter());
                     break;
                 case ActionBarAdapter.Listener.Action.CHANGE_SEARCH_QUERY:
                     final String queryString = mActionBarAdapter.getQueryString();
@@ -473,9 +471,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     protected void onCreateView(LayoutInflater inflater, ViewGroup container) {
         super.onCreateView(inflater, container);
 
-        if (Flags.getInstance().getBoolean(Experiments.PULL_TO_REFRESH)) {
-            initSwipeRefreshLayout();
-        }
+        initSwipeRefreshLayout();
+
         // Putting the header view inside a container will allow us to make
         // it invisible later. See checkHeaderViewVisibility()
         final FrameLayout headerContainer = new FrameLayout(inflater.getContext());
@@ -843,9 +840,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         setSyncOffAlert();
 
         // Determine whether the account has pullToRefresh feature
-        if (Flags.getInstance().getBoolean(Experiments.PULL_TO_REFRESH)) {
-            setSwipeRefreshLayoutEnabledOrNot(filter);
-        }
+        setSwipeRefreshLayoutEnabledOrNot(filter);
     }
 
     private void setSwipeRefreshLayoutEnabledOrNot(ContactListFilter filter) {

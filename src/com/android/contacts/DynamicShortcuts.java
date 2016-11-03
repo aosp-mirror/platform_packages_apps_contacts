@@ -407,8 +407,6 @@ public class DynamicShortcuts {
             final Flags flags = Flags.getInstance();
             Log.d(TAG, "DyanmicShortcuts.initialize\nVERSION >= N_MR1? " +
                     (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) +
-                    "\n" + Experiments.DYNAMIC_SHORTCUTS + " enabled? " +
-                    flags.getBoolean(Experiments.DYNAMIC_SHORTCUTS) +
                     "\nisJobScheduled? " + isJobScheduled(context) +
                     "\nminDelay=" +
                     flags.getInteger(Experiments.DYNAMIC_MIN_CONTENT_CHANGE_UPDATE_DELAY_MILLIS) +
@@ -420,11 +418,7 @@ public class DynamicShortcuts {
 
         final DynamicShortcuts shortcuts = new DynamicShortcuts(context);
 
-        if (!Flags.getInstance().getBoolean(Experiments.DYNAMIC_SHORTCUTS)) {
-            // Clear dynamic shortcuts if the flag is not enabled. This prevents shortcuts from
-            // staying around if it is enabled then later disabled (due to bugs for instance).
-            shortcuts.handleFlagDisabled();
-        } else if (!shortcuts.hasRequiredPermissions()) {
+        if (!shortcuts.hasRequiredPermissions()) {
             final IntentFilter filter = new IntentFilter();
             filter.addAction(RequestPermissionsActivity.BROADCAST_PERMISSIONS_GRANTED);
             LocalBroadcastManager.getInstance(shortcuts.mContext).registerReceiver(
