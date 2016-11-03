@@ -449,10 +449,8 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
         super.onPause();
 
-        if (Flags.getInstance().getBoolean(Experiments.PULL_TO_REFRESH)) {
-            ContentResolver.removeStatusChangeListener(mStatusChangeListenerHandle);
-            onSyncStateUpdated();
-        }
+        ContentResolver.removeStatusChangeListener(mStatusChangeListenerHandle);
+        onSyncStateUpdated();
     }
 
     @Override
@@ -471,14 +469,13 @@ public class PeopleActivity extends ContactsDrawerActivity {
         mProviderStatusWatcher.start();
         updateViewConfiguration(true);
 
-        if (Flags.getInstance().getBoolean(Experiments.PULL_TO_REFRESH)) {
-            mStatusChangeListenerHandle = ContentResolver.addStatusChangeListener(
-                    ContentResolver.SYNC_OBSERVER_TYPE_ACTIVE
-                            | ContentResolver.SYNC_OBSERVER_TYPE_PENDING
-                            | ContentResolver.SYNC_OBSERVER_TYPE_SETTINGS,
-                    mSyncStatusObserver);
-            onSyncStateUpdated();
-        }
+        mStatusChangeListenerHandle = ContentResolver.addStatusChangeListener(
+                ContentResolver.SYNC_OBSERVER_TYPE_ACTIVE
+                        | ContentResolver.SYNC_OBSERVER_TYPE_PENDING
+                        | ContentResolver.SYNC_OBSERVER_TYPE_SETTINGS,
+                mSyncStatusObserver);
+        onSyncStateUpdated();
+
         initializeFabVisibility();
         initializeHomeVisibility();
 
