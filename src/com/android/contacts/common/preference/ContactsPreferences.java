@@ -16,13 +16,10 @@
 
 package com.android.contacts.common.preference;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -219,7 +216,8 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
             return defaultAccount == null || !defaultAccount.isNullAccount();
         }
 
-        if (currentWritableAccounts.size() == 1) {
+        if (currentWritableAccounts.size() == 1
+                && !currentWritableAccounts.get(0).isNullAccount()) {
             return false;
         }
 
