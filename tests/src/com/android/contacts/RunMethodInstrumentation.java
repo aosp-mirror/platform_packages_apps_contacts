@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.test.InstrumentationRegistry;
 import android.util.Log;
 
@@ -62,6 +63,9 @@ public class RunMethodInstrumentation extends Instrumentation {
         Log.d(TAG, "Running " + className + "." + methodName);
         Log.d(TAG, "args=" + args);
 
+        if (arguments.containsKey("debug") && Boolean.parseBoolean(arguments.getString("debug"))) {
+            Debug.waitForDebugger();
+        }
         start();
     }
 
