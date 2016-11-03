@@ -17,6 +17,7 @@
 package com.android.contacts.editor;
 
 import android.accounts.Account;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -1240,6 +1241,13 @@ public class ContactEditorFragment extends Fragment implements
         editorView.setState(mState, mMaterialPalette, mViewIdGenerator,
                 mHasNewContact, mIsUserProfile, mAccountWithDataSet,
                 mRawContactIdToDisplayAlone);
+        if (isEditingReadOnlyRawContact()) {
+            final ActionBar actionBar = getEditorActivity().getActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle(R.string.contact_editor_title_read_only_contact);
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_back_arrow);
+            }
+        }
 
         // Set up the photo widget
         editorView.setPhotoListener(this);

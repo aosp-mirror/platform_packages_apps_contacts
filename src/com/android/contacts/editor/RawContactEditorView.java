@@ -212,8 +212,8 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
     // Account header
     private View mAccountHeaderContainer;
-    private TextView mAccountHeaderType;
-    private TextView mAccountHeaderName;
+    private TextView mAccountHeaderPrimaryText;
+    private TextView mAccountHeaderSecondaryText;
     private ImageView mAccountHeaderIcon;
     private ImageView mAccountHeaderExpanderIcon;
 
@@ -254,8 +254,8 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
         // Account header
         mAccountHeaderContainer = findViewById(R.id.account_header_container);
-        mAccountHeaderType = (TextView) findViewById(R.id.account_type);
-        mAccountHeaderName = (TextView) findViewById(R.id.account_name);
+        mAccountHeaderPrimaryText = (TextView) findViewById(R.id.account_type);
+        mAccountHeaderSecondaryText = (TextView) findViewById(R.id.account_name);
         mAccountHeaderIcon = (ImageView) findViewById(R.id.account_type_icon);
         mAccountHeaderExpanderIcon = (ImageView) findViewById(R.id.account_expander_icon);
 
@@ -489,6 +489,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
         // Setup the view
         addPhotoView();
+        setAccountInfo();
         if (isReadOnlyRawContact()) {
             // We're want to display the inputs fields for a single read only raw contact
             addReadOnlyRawContactEditorViews();
@@ -499,7 +500,6 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
     }
 
     private void setupEditorNormally() {
-        addAccountInfo();
         addKindSectionViews();
 
         mMoreFields.setVisibility(hasMoreFields() ? View.VISIBLE : View.GONE);
@@ -600,7 +600,6 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
     private void addReadOnlyRawContactEditorViews() {
         mKindSectionViews.removeAllViews();
-        addAccountInfo();
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(
                 getContext());
         final AccountType type = mCurrentRawContactDelta.getAccountType(accountTypes);
@@ -713,18 +712,23 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         mKindSectionViews.addView(field);
     }
 
-    private void addAccountInfo() {
-        mAccountHeaderContainer.setVisibility(View.GONE);
-
+    private void setAccountInfo() {
         final AccountDisplayInfo account =
                 mAccountDisplayInfoFactory.getAccountDisplayInfoFor(mCurrentRawContactDelta);
 
         // Get the account information for the primary raw contact delta
-        final String accountLabel = mIsUserProfile
-                ? EditorUiUtils.getAccountHeaderLabelForMyProfile(getContext(), account)
-                : account.getNameLabel().toString();
-
-        addAccountHeader(accountLabel);
+        if (isReadOnlyRawContact()) {
+            final String accountType = account.getTypeLabel().toString();
+            setAccountHeader(accountType,
+                    getResources().getString(
+                            R.string.editor_account_selector_read_only_title, accountType));
+        } else {
+            final String accountLabel = mIsUserProfile
+                    ? EditorUiUtils.getAccountHeaderLabelForMyProfile(getContext(), account)
+                    : account.getNameLabel().toString();
+            setAccountHeader(getResources().getString(R.string.editor_account_selector_title),
+                    accountLabel);
+        }
 
         // If we're saving a new contact and there are multiple accounts, add the account selector.
         final List<AccountWithDataSet> accounts =
@@ -734,18 +738,9 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         }
     }
 
-    private void addAccountHeader(String accountLabel) {
-        mAccountHeaderContainer.setVisibility(View.VISIBLE);
-
-        // Set the account name
-        mAccountHeaderName.setVisibility(View.VISIBLE);
-        mAccountHeaderName.setText(accountLabel);
-
-        // Set the account type
-        final String selectorTitle = getResources().getString(isReadOnlyRawContact() ?
-                R.string.editor_account_selector_read_only_title :
-                R.string.editor_account_selector_title);
-        mAccountHeaderType.setText(selectorTitle);
+    private void setAccountHeader(String primaryText, String secondaryText) {
+        mAccountHeaderPrimaryText.setText(primaryText);
+        mAccountHeaderSecondaryText.setText(secondaryText);
 
         // Set the icon
         final AccountType accountType =
@@ -754,8 +749,8 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
         // Set the content description
         mAccountHeaderContainer.setContentDescription(
-                EditorUiUtils.getAccountInfoContentDescription(accountLabel,
-                        selectorTitle));
+                EditorUiUtils.getAccountInfoContentDescription(primaryText,
+                        secondaryText));
     }
 
     private void addAccountSelector(final RawContactDelta rawContactDelta) {
