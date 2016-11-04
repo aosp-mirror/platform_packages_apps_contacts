@@ -110,7 +110,7 @@
     <string name="noGroups" msgid="8614664663561385253">"Ingen grupper."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Du må ha en konto for å opprette grupper."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Det er ingen personer i denne gruppen."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"Rediger gruppen for å legge til noen."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"Endre gruppen for å legge til noen."</string>
     <string name="savingContact" msgid="4075751076741924939">"Lagrer kontakt…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt er lagret"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Tilknytningen mellom kontaktene er fjernet"</string>

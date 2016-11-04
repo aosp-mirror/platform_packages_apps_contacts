@@ -185,7 +185,7 @@
     <string name="description_star" msgid="2605854427360036550">"ընտրյալ"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Փոփոխել կոնտակտը"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Կապե՞լ այս կոնտակտը ընտրված կոնտակտի հետ:"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Անցնե՞լ ընտրված կոնտակտի խմբագրմանը: Մինչ այս պահը ձեր մուտքագրած տեղեկությունները կպատճենվեն:"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Խմբագրե՞լ ընտրված կոնտակտը: Մինչ այս պահը ձեր մուտքագրած տեղեկությունները կպատճենվեն:"</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Պատճենել Իմ կոնտակտներում"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"Ավելացնել Իմ կոնտակտներին"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> գրացուցակ"</string>
@@ -249,7 +249,7 @@
     <string name="menu_export_database" msgid="2659719297530170820">"Արտահանել տվյալների շտեմարանի ֆայլերը"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"ավելացնել նոր կոնտակտ"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Տեսնել ավելին"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Տեսնել պակաս"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Կոծկել"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Տեսնել բոլորը"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Վերջին գործողությունները"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Տեղեկատվություն"</string>

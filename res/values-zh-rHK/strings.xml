@@ -51,7 +51,7 @@
     <string name="menu_change_photo" msgid="7769177631511496210">"變更相片"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"新增到主畫面"</string>
     <string name="menu_call" msgid="3992595586042260618">"致電聯絡人"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"傳送簡訊至聯絡人"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"傳送短訊至聯絡人"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"解除連結"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"編輯"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"刪除"</string>

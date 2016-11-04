@@ -158,7 +158,7 @@
     <string name="video_chat" msgid="1872255818640336072">"Видео чат"</string>
     <string name="connections" msgid="8098440723172028350">"Байланыстар"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Байланыс қосу"</string>
-    <string name="recent" msgid="2659189233141493004">"Жуықта қолданылған"</string>
+    <string name="recent" msgid="2659189233141493004">"Соңғы"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Соңғы жаңартулар"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> контакт"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> есептік жазбасы"</string>
