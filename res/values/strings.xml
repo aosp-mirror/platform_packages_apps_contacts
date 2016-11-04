@@ -1835,9 +1835,6 @@
     <!-- Toast shown when a dynamic shortcut is tapped after being disabled because the contact was removed -->
     <string name="dynamic_shortcut_contact_removed_message">Contact was removed</string>
 
-    <!-- Error message displayed to user when they started the app, but could not sign in to Google's servers. [CHAR LIMIT=50]-->
-    <string name="connection_failed">Failed to sign in</string>
-
     <!-- Text for button shown in toolbar to start import of SIM contacts -->
     <string name="sim_import_button_text">Import</string>
 

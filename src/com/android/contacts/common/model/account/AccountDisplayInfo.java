@@ -65,7 +65,7 @@ public class AccountDisplayInfo {
     }
 
     public boolean isGoogleAccount() {
-        return mSource.isWritableGoogleAccount();
+        return GoogleAccountType.ACCOUNT_TYPE.equals(mSource.type) && mSource.dataSet == null;
     }
 
     public boolean isDeviceAccount() {

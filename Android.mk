@@ -12,7 +12,7 @@ support_library_root_dir := prebuilts/sdk/current/support
 endif
 
 src_dirs := src src-bind $(phone_common_dir)/src
-res_dirs := res res-aosp res-bind res-icons $(phone_common_dir)/res
+res_dirs := res res-aosp res-icons $(phone_common_dir)/res
 asset_dirs := assets
 
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))

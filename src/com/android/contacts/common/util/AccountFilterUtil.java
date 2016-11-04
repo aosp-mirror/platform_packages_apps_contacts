@@ -32,7 +32,6 @@ import android.widget.Toast;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorActivity;
-import com.android.contacts.common.Experiments;
 import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
 import com.android.contacts.common.list.ContactListFilterController;
@@ -43,7 +42,6 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contactsbind.ObjectFactory;
-import com.android.contactsbind.experiments.Flags;
 
 import com.google.common.collect.Lists;
 
@@ -91,7 +89,8 @@ public class AccountFilterUtil {
             if (filter.filterType == ContactListFilter.FILTER_TYPE_CUSTOM) {
                 filterController.selectCustomFilter();
             } else {
-                filterController.setContactListFilter(filter, shouldPersistFilter(filter));
+                filterController.setContactListFilter(filter, /* persistent */
+                        filter.filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS);
             }
         }
     }
@@ -133,7 +132,6 @@ public class AccountFilterUtil {
     private static List<ContactListFilter> loadAccountFilters(Context context,
             DeviceLocalAccountTypeFactory deviceAccountTypeFactory) {
         final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
-
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
         final List<AccountWithDataSet> accounts = accountTypeManager.getSortedAccounts(
                 /* defaultAccount */ getDefaultAccount(context), /* contactWritableOnly */ true);
@@ -237,12 +235,5 @@ public class AccountFilterUtil {
         }
         return account.withFormattedName(context, R.string.title_from_other_accounts)
                 .getNameLabel().toString();
-    }
-
-    public static boolean shouldPersistFilter(ContactListFilter filter) {
-        if (Flags.getInstance().getBoolean(Experiments.ACCOUNT_SWITCHER)) {
-            return true;
-        }
-        return filter != null && filter.isContactsFilterType();
     }
 }
