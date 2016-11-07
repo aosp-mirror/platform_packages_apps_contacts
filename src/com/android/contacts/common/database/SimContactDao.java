@@ -71,6 +71,10 @@ public class SimContactDao {
     // to work on any phone.
     private static final int IMPORT_MAX_BATCH_SIZE = 300;
 
+    // How many SIM contacts to consider in a single query. This prevents hitting the SQLite
+    // query parameter limit.
+    static final int QUERY_MAX_BATCH_SIZE = 100;
+
     // Set to true for manual testing on an emulator or phone without a SIM card
     // DO NOT SUBMIT if set to true
     private static final boolean USE_FAKE_INSTANCE = false;
@@ -198,9 +202,9 @@ public class SimContactDao {
     public Map<AccountWithDataSet, Set<SimContact>> findAccountsOfExistingSimContacts(
             List<SimContact> contacts) {
         final Map<AccountWithDataSet, Set<SimContact>> result = new ArrayMap<>();
-        for (int i = 0; i < contacts.size(); i += IMPORT_MAX_BATCH_SIZE) {
+        for (int i = 0; i < contacts.size(); i += QUERY_MAX_BATCH_SIZE) {
             findAccountsOfExistingSimContacts(
-                    contacts.subList(i, Math.min(contacts.size(), i + IMPORT_MAX_BATCH_SIZE)),
+                    contacts.subList(i, Math.min(contacts.size(), i + QUERY_MAX_BATCH_SIZE)),
                     result);
         }
         return result;
@@ -383,16 +387,16 @@ public class SimContactDao {
     public static SimContactDao create(Context context) {
         if (USE_FAKE_INSTANCE) {
             return new DebugImpl(context)
-                    .addSimCard(new SimCard("fake-sim-id1", 1, "Fake Carrier", "Card 1",
-                            "15095550101", "us").withContacts(
+                    .addSimCard(new SimCard("fake-sim-id1", 1, "Fake Carrier",
+                            "Card 1", "15095550101", "us").withContacts(
                             new SimContact(1, "Sim One", "15095550111", null),
                             new SimContact(2, "Sim Two", "15095550112", null),
                             new SimContact(3, "Sim Three", "15095550113", null),
                             new SimContact(4, "Sim Four", "15095550114", null),
                             new SimContact(5, "411 & more", "411", null)
                     ))
-                    .addSimCard(new SimCard("fake-sim-id2", 2, "Carrier Two", "Card 2",
-                            "15095550102", "us").withContacts(
+                    .addSimCard(new SimCard("fake-sim-id2", 2, "Carrier Two",
+                            "Card 2", "15095550102", "us").withContacts(
                             new SimContact(1, "John Sim", "15095550121", null),
                             new SimContact(2, "Bob Sim", "15095550122", null),
                             new SimContact(3, "Mary Sim", "15095550123", null),
@@ -405,7 +409,7 @@ public class SimContactDao {
 
     // TODO remove this class and the USE_FAKE_INSTANCE flag once this code is not under
     // active development or anytime after 3/1/2017
-    private static class DebugImpl extends SimContactDao {
+    public static class DebugImpl extends SimContactDao {
 
         private List<SimCard> mSimCards = new ArrayList<>();
         private SparseArray<SimCard> mCardsBySubscription = new SparseArray<>();
@@ -447,9 +451,6 @@ public class SimContactDao {
 
     // Query used for detecting existing contacts that may match a SimContact.
     private static final class DataQuery {
-        // How many SIM contacts to consider in a single query. This prevents hitting the SQLite
-        // query parameter limit.
-        static final int MAX_BATCH_SIZE = 100;
 
         public static final String[] PROJECTION = new String[] {
                 ContactsContract.Data.RAW_CONTACT_ID, Phone.NUMBER, Phone.DISPLAY_NAME

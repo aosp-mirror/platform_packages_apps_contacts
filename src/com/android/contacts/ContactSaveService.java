@@ -49,6 +49,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.os.ResultReceiver;
+import android.telephony.SubscriptionInfo;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -62,6 +63,7 @@ import com.android.contacts.common.model.CPOWrapper;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
+import com.android.contacts.common.model.SimCard;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
@@ -70,11 +72,11 @@ import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contactsbind.FeedbackHelper;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -149,10 +151,16 @@ public class ContactSaveService extends IntentService {
 
     public static final String ACTION_IMPORT_FROM_SIM = "importFromSim";
     public static final String EXTRA_SIM_CONTACTS = "simContacts";
+    public static final String EXTRA_SIM_SUBSCRIPTION_ID = "simSubscriptionId";
+
+    // For debugging and testing what happens when requests are queued up.
+    public static final String ACTION_SLEEP = "sleep";
+    public static final String EXTRA_SLEEP_DURATION = "sleepDuration";
 
     public static final String BROADCAST_GROUP_DELETED = "groupDeleted";
     public static final String BROADCAST_SIM_IMPORT_COMPLETE = "simImportComplete";
-    public static final String EXTRA_CALLBACK_DATA = "extraCallbackData";
+
+    public static final String BROADCAST_SERVICE_STATE_CHANGED = "serviceStateChanged";
 
     public static final String EXTRA_RESULT_CODE = "resultCode";
     public static final String EXTRA_RESULT_COUNT = "count";
@@ -197,6 +205,9 @@ public class ContactSaveService extends IntentService {
     private static final CopyOnWriteArrayList<Listener> sListeners =
             new CopyOnWriteArrayList<Listener>();
 
+    // Holds the current state of the service
+    private static final State sState = new State();
+
     private Handler mMainHandler;
     private GroupsDao mGroupsDao;
     private SimContactDao mSimContactDao;
@@ -228,6 +239,15 @@ public class ContactSaveService extends IntentService {
 
     public static void unregisterListener(Listener listener) {
         sListeners.remove(listener);
+    }
+
+    public static State getState() {
+        return sState;
+    }
+
+    private void notifyStateChanged() {
+        LocalBroadcastManager.getInstance(this)
+                .sendBroadcast(new Intent(BROADCAST_SERVICE_STATE_CHANGED));
     }
 
     /**
@@ -279,8 +299,17 @@ public class ContactSaveService extends IntentService {
         return getApplicationContext().getSystemService(name);
     }
 
+    // Parent classes Javadoc says not to override this method but we're doing it just to update
+    // our state which should be OK since we're still doing the work in onHandleIntent
     @Override
-    protected void onHandleIntent(Intent intent) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        sState.onStart(intent);
+        notifyStateChanged();
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    protected void onHandleIntent(final Intent intent) {
         if (intent == null) {
             Log.d(TAG, "onHandleIntent: could not handle null intent");
             return;
@@ -332,7 +361,12 @@ public class ContactSaveService extends IntentService {
             undo(intent);
         } else if (ACTION_IMPORT_FROM_SIM.equals(action)) {
             importFromSim(intent);
+        } else if (ACTION_SLEEP.equals(action)) {
+            sleepForDebugging(intent);
         }
+
+        sState.onFinish(intent);
+        notifyStateChanged();
     }
 
     /**
@@ -1688,36 +1722,82 @@ public class ContactSaveService extends IntentService {
         operations.add(builder.build());
     }
 
-    public static Intent createImportFromSimIntent(@NonNull Context context,
-            @NonNull ArrayList<SimContact> contacts, @NonNull AccountWithDataSet targetAccount,
-            @Nullable  Bundle callbackData) {
+    /**
+     * Returns an intent that can be used to import the contacts into targetAccount.
+     *
+     * @param context context to use for creating the intent
+     * @param subscriptionId the subscriptionId of the SIM card that is being imported. See
+     *                       {@link SubscriptionInfo#getSubscriptionId()}. Upon completion the
+     *                       SIM for that subscription ID will be marked as imported
+     * @param contacts the contacts to import
+     * @param targetAccount the account import the contacts into
+     */
+    public static Intent createImportFromSimIntent(Context context, int subscriptionId,
+            ArrayList<SimContact> contacts, AccountWithDataSet targetAccount) {
         return new Intent(context, ContactSaveService.class)
                 .setAction(ACTION_IMPORT_FROM_SIM)
                 .putExtra(EXTRA_SIM_CONTACTS, contacts)
-                .putExtra(EXTRA_ACCOUNT, targetAccount)
-                .putExtra(EXTRA_CALLBACK_DATA, callbackData);
+                .putExtra(EXTRA_SIM_SUBSCRIPTION_ID, subscriptionId)
+                .putExtra(EXTRA_ACCOUNT, targetAccount);
     }
 
     private void importFromSim(Intent intent) {
         final Intent result = new Intent(BROADCAST_SIM_IMPORT_COMPLETE)
                 .putExtra(EXTRA_OPERATION_REQUESTED_AT_TIME, System.currentTimeMillis());
+        final int subscriptionId = intent.getIntExtra(EXTRA_SIM_SUBSCRIPTION_ID,
+                SimCard.NO_SUBSCRIPTION_ID);
         try {
             final AccountWithDataSet targetAccount = intent.getParcelableExtra(EXTRA_ACCOUNT);
             final ArrayList<SimContact> contacts =
                     intent.getParcelableArrayListExtra(EXTRA_SIM_CONTACTS);
             mSimContactDao.importContacts(contacts, targetAccount);
+
+            // Update the imported state of the SIM card that was imported
+            final SimCard sim = mSimContactDao.getSimBySubscriptionId(subscriptionId);
+            if (sim != null) {
+                mSimContactDao.persistSimState(sim.withImportedState(true));
+            }
+
             // notify success
             LocalBroadcastManager.getInstance(this).sendBroadcast(result
                     .putExtra(EXTRA_RESULT_COUNT, contacts.size())
                     .putExtra(EXTRA_RESULT_CODE, RESULT_SUCCESS)
-                    .putExtra(EXTRA_CALLBACK_DATA, intent.getBundleExtra(EXTRA_CALLBACK_DATA)));
+                    .putExtra(EXTRA_SIM_SUBSCRIPTION_ID, subscriptionId));
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "importFromSim completed successfully");
             }
         } catch (RemoteException|OperationApplicationException e) {
             FeedbackHelper.sendFeedback(this, TAG, "Failed to import contacts from SIM card", e);
             LocalBroadcastManager.getInstance(this).sendBroadcast(result
-                    .putExtra(EXTRA_RESULT_CODE, RESULT_FAILURE));
+                    .putExtra(EXTRA_RESULT_CODE, RESULT_FAILURE)
+                    .putExtra(EXTRA_SIM_SUBSCRIPTION_ID, subscriptionId));
+        }
+    }
+
+    /**
+     * Returns an intent that can start this service and cause it to sleep for the specified time.
+     *
+     * This exists purely for debugging and manual testing. Since this service uses a single thread
+     * it is useful to have a way to test behavior when work is queued up and most of the other
+     * operations complete too quickly to simulate that under normal conditions.
+     */
+    public static Intent createSleepIntent(Context context, long millis) {
+        return new Intent(context, ContactSaveService.class).setAction(ACTION_SLEEP)
+                .putExtra(EXTRA_SLEEP_DURATION, millis);
+    }
+
+    private void sleepForDebugging(Intent intent) {
+        long duration = intent.getLongExtra(EXTRA_SLEEP_DURATION, 1000);
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, "sleeping for " + duration + "ms");
+        }
+        try {
+            Thread.sleep(duration);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, "finished sleeping");
         }
     }
 
@@ -1872,6 +1952,64 @@ public class ContactSaveService extends IntentService {
 
         public int delete(Uri groupUri) {
             return contentResolver.delete(groupUri, null, null);
+        }
+    }
+
+    /**
+     * Keeps track of which operations have been requested but have not yet finished for this
+     * service.
+     */
+    public static class State {
+        private final CopyOnWriteArrayList<Intent> mPending;
+
+        public State() {
+            mPending = new CopyOnWriteArrayList<>();
+        }
+
+        public State(Collection<Intent> pendingActions) {
+            mPending = new CopyOnWriteArrayList<>(pendingActions);
+        }
+
+        public boolean isIdle() {
+            return mPending.isEmpty();
+        }
+
+        public Intent getCurrentIntent() {
+            return mPending.isEmpty() ? null : mPending.get(0);
+        }
+
+        /**
+         * Returns the first intent requested that has the specified action or null if no intent
+         * with that action has been requested.
+         */
+        public Intent getNextIntentWithAction(String action) {
+            for (Intent intent : mPending) {
+                if (action.equals(intent.getAction())) {
+                    return intent;
+                }
+            }
+            return null;
+        }
+
+        public boolean isActionPending(String action) {
+            return getNextIntentWithAction(action) != null;
+        }
+
+        private void onFinish(Intent intent) {
+            if (mPending.isEmpty()) {
+                return;
+            }
+            final String action = mPending.get(0).getAction();
+            if (action.equals(intent.getAction())) {
+                mPending.remove(0);
+            }
+        }
+
+        private void onStart(Intent intent) {
+            if (intent.getAction() == null) {
+                return;
+            }
+            mPending.add(intent);
         }
     }
 }
