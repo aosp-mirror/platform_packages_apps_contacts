@@ -100,18 +100,6 @@ public class EditorIntents {
         return intent;
     }
 
-    /**
-     * Returns an Intent to start the {@link ContactSelectionActivity} for a
-     * new or existing contact.
-     */
-    public static Intent createInsertOrEditContactIntent(Context context,
-            RawContactDeltaList rawContactDeltaList, String displayName, String phoneticName) {
-        final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT, Contacts.CONTENT_URI,
-                context, ContactSelectionActivity.class);
-        putRawContactDeltaValues(intent, rawContactDeltaList, displayName, phoneticName);
-        return intent;
-    }
-
     private static void putMaterialPalette(Intent intent, MaterialPalette materialPalette) {
         if (materialPalette != null) {
             intent.putExtra(
