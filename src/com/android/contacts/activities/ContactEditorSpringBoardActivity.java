@@ -6,7 +6,6 @@ import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.Loader;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -17,13 +16,14 @@ import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.editor.PickRawContactDialogFragment;
 import com.android.contacts.editor.PickRawContactLoader;
+import com.android.contacts.editor.PickRawContactLoader.RawContactsMetadata;
+import com.android.contactsbind.FeedbackHelper;
 
 /**
  * Transparent springboard activity that hosts a dialog to select a raw contact to edit.
@@ -36,36 +36,36 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     private static final String TAG_RAW_CONTACTS_DIALOG = "rawContactsDialog";
     private static final int LOADER_RAW_CONTACTS = 1;
 
+    public static final String EXTRA_SHOW_READ_ONLY = "showReadOnly";
+
     private Uri mUri;
-    private Cursor mCursor;
+    private RawContactsMetadata mResult;
     private MaterialPalette mMaterialPalette;
-    private boolean mIsUserProfile;
     private boolean mHasWritableAccount;
     private int mWritableAccountPosition;
 
     /**
      * The contact data loader listener.
      */
-    protected final LoaderManager.LoaderCallbacks<Cursor> mRawContactLoaderListener =
-            new LoaderManager.LoaderCallbacks<Cursor>() {
+    protected final LoaderManager.LoaderCallbacks<RawContactsMetadata> mRawContactLoaderListener =
+            new LoaderManager.LoaderCallbacks<RawContactsMetadata>() {
 
                 @Override
-                public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+                public Loader<RawContactsMetadata> onCreateLoader(int id, Bundle args) {
                     return new PickRawContactLoader(ContactEditorSpringBoardActivity.this, mUri);
                 }
 
                 @Override
-                public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-                    if (cursor == null) {
-                        Toast.makeText(ContactEditorSpringBoardActivity.this,
-                                R.string.editor_failed_to_load, Toast.LENGTH_SHORT).show();
-                        finish();
+                public void onLoadFinished(Loader<RawContactsMetadata> loader,
+                        RawContactsMetadata result) {
+                    if (result == null) {
+                        toastErrorAndFinish();
                         return;
                     }
-                    mCursor = cursor;
-                    mIsUserProfile = ((PickRawContactLoader) loader).isUserProfile();
+                    mResult = result;
+                    maybeTrimReadOnly();
                     setHasWritableAccount();
-                    if (mCursor.getCount() > 1 && mHasWritableAccount) {
+                    if (mResult.rawContacts.size() > 1 && mHasWritableAccount) {
                         showDialog();
                     } else {
                         loadEditor();
@@ -73,8 +73,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
                 }
 
                 @Override
-                public void onLoaderReset(Loader<Cursor> loader) {
-                    mCursor = null;
+                public void onLoaderReset(Loader<RawContactsMetadata> loader) {
                 }
             };
 
@@ -111,6 +110,11 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
                 RawContacts.CONTENT_ITEM_TYPE.equals(type)) {
             final long rawContactId = ContentUris.parseId(mUri);
             startEditorAndForwardExtras(getIntentForRawContact(rawContactId));
+        } else if (android.provider.Contacts.AUTHORITY.equals(authority)) {
+            // Fail if given a legacy URI.
+            FeedbackHelper.sendFeedback(this, TAG,
+                    "Legacy Uri was passed to editor.", new IllegalArgumentException());
+            toastErrorAndFinish();
         } else {
             getLoaderManager().initLoader(LOADER_RAW_CONTACTS, null, mRawContactLoaderListener);
         }
@@ -122,6 +126,19 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     }
 
     /**
+     * If not configured to show read only raw contact, trim them from the result.
+     */
+    private void maybeTrimReadOnly() {
+        final boolean showReadOnly = getIntent().getBooleanExtra(EXTRA_SHOW_READ_ONLY, false);
+        mResult.showReadOnly = showReadOnly;
+
+        if (showReadOnly) {
+            return;
+        }
+        mResult.trimReadOnly(AccountTypeManager.getInstance(this));
+    }
+
+    /**
      * Start the dialog to pick the raw contact to edit.
      */
     private void showDialog() {
@@ -130,8 +147,6 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
                 fm.findFragmentByTag(TAG_RAW_CONTACTS_DIALOG);
         if (oldFragment != null && oldFragment.getDialog() != null
                 && oldFragment.getDialog().isShowing()) {
-            // Just update the cursor without reshowing the dialog.
-            oldFragment.setCursor(mCursor);
             return;
         }
         final FragmentTransaction ft = fm.beginTransaction();
@@ -139,7 +154,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
             ft.remove(oldFragment);
         }
         final PickRawContactDialogFragment newFragment = PickRawContactDialogFragment.getInstance(
-                 mCursor, mIsUserProfile);
+                 mResult);
         ft.add(newFragment, TAG_RAW_CONTACTS_DIALOG);
         // commitAllowingStateLoss is safe in this activity because the fragment entirely depends
         // on the result of the loader. Even if we lose the fragment because the activity was
@@ -156,18 +171,13 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     private void loadEditor() {
         final Intent intent;
         if (mHasWritableAccount) {
-            mCursor.moveToPosition(mWritableAccountPosition);
-            final long rawContactId = mCursor.getLong(PickRawContactLoader.RAW_CONTACT_ID);
-            intent = getIntentForRawContact(rawContactId);
+            intent = getIntentForRawContact(mResult.rawContacts.get(mWritableAccountPosition).id);
         } else {
             // If the contact has only read-only raw contacts, we'll want to let the editor create
             // the writable raw contact for it.
             intent = EditorIntents.createEditContactIntent(this, mUri, mMaterialPalette, -1);
             intent.setClass(this, ContactEditorActivity.class);
         }
-        // Destroy the loader to prevent multiple onLoadFinished calls in case CP2 is updating in
-        // the background.
-        getLoaderManager().destroyLoader(LOADER_RAW_CONTACTS);
         startEditorAndForwardExtras(intent);
     }
 
@@ -175,18 +185,9 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
      * Determines if this contact has a writable account.
      */
     private void setHasWritableAccount() {
-        mCursor.moveToPosition(-1);
-        while (mCursor.moveToNext()) {
-            final String accountType = mCursor.getString(PickRawContactLoader.ACCOUNT_TYPE);
-            final String dataSet = mCursor.getString(PickRawContactLoader.DATA_SET);
-            final AccountType account = AccountTypeManager.getInstance(this)
-                    .getAccountType(accountType, dataSet);
-            if (account.areContactsWritable()) {
-                mHasWritableAccount = true;
-                mWritableAccountPosition = mCursor.getPosition();
-                return;
-            }
-        }
+        mWritableAccountPosition = mResult.getIndexOfFirstWritableAccount(
+                AccountTypeManager.getInstance(this));
+        mHasWritableAccount = mWritableAccountPosition != -1;
     }
 
     /**
@@ -210,5 +211,12 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
             intent.putExtras(extras);
         }
         ImplicitIntentsUtil.startActivityInApp(this, intent);
+    }
+
+    private void toastErrorAndFinish() {
+        Toast.makeText(ContactEditorSpringBoardActivity.this,
+                R.string.editor_failed_to_load, Toast.LENGTH_SHORT).show();
+        setResult(RESULT_CANCELED, null);
+        finish();
     }
 }
