@@ -95,7 +95,7 @@ public class ImportDialogFragment extends DialogFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setStyle(STYLE_NORMAL, R.style.ContactsAlertDialogThemeAppCompat);
+        setStyle(STYLE_NORMAL, R.style.ContactsAlertDialogTheme);
 
         final Bundle args = getArguments();
         mSimOnly = args != null && args.getBoolean(EXTRA_SIM_ONLY, false);
