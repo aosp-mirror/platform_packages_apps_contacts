@@ -16,6 +16,8 @@
 
 package com.android.contacts.group;
 
+import android.app.Fragment;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -57,6 +59,8 @@ public final class GroupUtil {
     public static final String ACTION_REMOVE_FROM_GROUP = "removeFromGroup";
     public static final String ACTION_SWITCH_GROUP = "switchGroup";
     public static final String ACTION_UPDATE_GROUP = "updateGroup";
+
+    public static final int RESULT_SEND_TO_SELECTION = 100;
 
     // System IDs of FFC groups in Google accounts
     private static final Set<String> FFC_GROUPS =
@@ -100,12 +104,48 @@ public final class GroupUtil {
                 isFirstGroupInAccount, memberCount, isReadOnly, systemId);
     }
 
+    public static List<String> getSendToDataForIds(Context context, long[] ids, String scheme) {
+        final List<String> items = new ArrayList<>();
+        final String sIds = GroupUtil.convertArrayToString(ids);
+        final String select = (ContactsUtils.SCHEME_MAILTO.equals(scheme)
+                ? GroupMembersFragment.Query.EMAIL_SELECTION
+                + " AND " + ContactsContract.CommonDataKinds.Email._ID + " IN (" + sIds + ")"
+                : GroupMembersFragment.Query.PHONE_SELECTION
+                + " AND " + ContactsContract.CommonDataKinds.Phone._ID + " IN (" + sIds + ")");
+        final ContentResolver contentResolver = context.getContentResolver();
+        final Cursor cursor = contentResolver.query(ContactsContract.Data.CONTENT_URI,
+                ContactsUtils.SCHEME_MAILTO.equals(scheme)
+                        ? GroupMembersFragment.Query.EMAIL_PROJECTION
+                        : GroupMembersFragment.Query.PHONE_PROJECTION,
+                select, null, null);
+
+        if (cursor == null) {
+            return items;
+        }
+
+        try {
+            cursor.moveToPosition(-1);
+            while (cursor.moveToNext()) {
+                final String data = cursor.getString(GroupMembersFragment.Query.DATA1);
+
+                if (!TextUtils.isEmpty(data)) {
+                    items.add(data);
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return items;
+    }
+
     /** Returns an Intent to send emails/phones to some activity/app */
-    public static Intent createSendToSelectionIntent(
-            String itemsList, String sendScheme, String title) {
+    public static void startSendToSelectionActivity(
+            Fragment fragment, String itemsList, String sendScheme, String title) {
         final Intent intent = new Intent(Intent.ACTION_SENDTO,
                 Uri.fromParts(sendScheme, itemsList, null));
-        return Intent.createChooser(intent, title);
+        fragment.startActivityForResult(
+                Intent.createChooser(intent, title), RESULT_SEND_TO_SELECTION);
     }
 
     /** Returns an Intent to pick emails/phones to send to selection (or group) */
