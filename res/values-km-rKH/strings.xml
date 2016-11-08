@@ -250,7 +250,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ជ្រើសគណនីលំនាំដើមសម្រាប់ទំនាក់ទំនងថ្មី៖"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"បញ្ចូល​ទំនាក់ទំនងថ្មី"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"កែ​ទំនាក់ទំនង"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"ជ្រើសយក​ទំនាក់ទំនង​ដែល​បាន​តភ្ជាប់"</string>
+    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"បញ្ចូល​​គណនី"</string>
     <string name="add_new_account" msgid="5748627740680940264">"បន្ថែម​គណនី​ថ្មី"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"នាំចេញ​ឯកសារ​មូលដ្ឋាន​ទិន្នន័យ"</string>
@@ -293,7 +296,8 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"ប្ដូររូបថត"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"មិន​អាច​បើក​កម្មវិធី​កែសម្រួល​បាន​ទេ។"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"រក្សាទុកទៅ"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"កំពុង​មើល"</string>
+    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
+    <skip />
     <string name="editor_account_selector_description" msgid="3324358600570627740">"កំពុង​រក្សាទុក​ទៅ <xliff:g id="ACCOUNT_NAME">%s</xliff:g> នៅ​ពេល​នេះ។ សូម​ចុច​ពីរ​ដង ដើម្បី​ជ្រើសយក​គណនី​ផ្សេង។"</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">ទំនាក់ទំនងដែលបានតភ្ជាប់ (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -329,8 +333,10 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"បានជ្រើសរូបថតពី <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"មិនបានជ្រើសរូបថតពីគណនីមិនស្គាល់ទេ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"បានជ្រើសរូបថតពីគណនីមិនស្គាល់"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"អ្នកជំនួយការ"</string>
+    <!-- no translation found for menu_assistant (5760693735722052454) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"ស្ទួន"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"ថ្មី"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"បើក​ផ្ទាំង​រុករក"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"បិទ​ផ្ទាំង​រុករក"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ស្លាក"</string>
@@ -485,11 +491,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"បោះ​បង់​"</string>
     <string name="listCustomView" msgid="1840624396582117590">"ទិដ្ឋភាព​​ផ្ទាល់ខ្លួន"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"រក្សាទំនាក់ទំនងដែលបាននាំចូលទៅ៖"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"នាំចូល​ពី​ស៊ីម​កាត"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"នាំចូល​ពី SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"នាំចូូលពីឯកសារ .vcf"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"ស៊ីមកាត"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="other">ទំនាក់ទំនង %1$d</item>
+      <item quantity="one">ទំនាក់ទំនង 1</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="other">ទំនាក់ទំនង <xliff:g id="COUNT_2">^1</xliff:g> • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one">ទំនាក់ទំនង <xliff:g id="COUNT_0">^1</xliff:g> • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"ឯកសារ .vcf"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"គ្មាន​អ្វី​ត្រូវ​នាំចូល"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"នាំចូល​ទំនាក់ទំនង​ពី vCard ដែរ​ឬ​ទេ?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"បោះបង់​ការ​នាំចូល <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"បោះបង់​ការ​នាំចេញ <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"មិន​អាច​បោះបង់​ការ​នាំចេញ/នាំចូល vCard"</string>
@@ -555,7 +569,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"ចែករំលែកទំនាក់ទំនងទាំងអស់"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"ការចែករំលែកទំនាក់ទំនង​មិន​បាន​សម្រេច។"</string>
     <string name="dialog_export" msgid="1628001095187741417">"នាំចេញ​ទំនាក់ទំនង"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"នាំចូល​ទំនាក់ទំនង"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"នាំចូល​ទំនាក់ទំនង​ពី"</string>
     <string name="share_error" msgid="948429331673358107">"ទំនាក់ទំនង​នេះ​មិន​អាច​ចែករំលែក​បាន​ទេ។"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"មិនមានទំនាក់ទំនងដើម្បីចែករំលែកទេ។"</string>
     <string name="menu_search" msgid="9147752853603483719">"ស្វែងរក"</string>
@@ -610,6 +624,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"ជ្រើស​រើសទំនាក់ទំនង"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"បាន​ជ្រើសរើស <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"គ្មាន​ទំនាក់ទំនង​នៅ​ក្នុង​​ស៊ីមកាត​របស់​អ្នក​ទេ"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"ទំនាក់ទំនង​មាន​រួច​ហើយ​នៅ​ក្នុង​បញ្ជី​របស់​អ្នក"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="other">បាន​នាំចូល​ទំនាក់ទំនង SIM <xliff:g id="COUNT">%d</xliff:g></item>
       <item quantity="one">បាន​នាំចូល​ទំនាក់ទំនង SIM 1</item>
@@ -625,4 +640,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"មិន​ត្រឹមតែ​ទំនាក់ទំនង​ទេ រាល់​ការ​ផ្លាស់ប្ដូរ​ដែល​អ្នក​ធ្វើ​ចំពោះ​កម្មវិធី និង​គណនី​ទាំងអស់ នឹង​ត្រូវ​បាន​ធ្វើ​សមកាលកម្ម​រវាង​បណ្ដាញ និង​ឧបករណ៍​របស់​អ្នក។"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"បើក"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"គ្មាន​ការ​តភ្ជាប់"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
 </resources>

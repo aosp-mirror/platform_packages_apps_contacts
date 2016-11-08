@@ -250,7 +250,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"नयाँ सम्पर्क ठेगानाहरूका लागि पूर्वनिर्धारित खाता छान्‍नुहोस्:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"नयाँ सम्पर्क थप्ने"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"सम्पर्क सम्पादन"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"लिंक गरिएको सम्पर्क छान्नुहोस्"</string>
+    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"खाता थप्नुहोस्"</string>
     <string name="add_new_account" msgid="5748627740680940264">"नयाँ खाता थप्नुहोस्"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"डेटाबेस फाइलहरू निर्यात गर्नुहोस्"</string>
@@ -293,7 +296,8 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"तस्बिर बदल्नुहोस्"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"सम्पादक खोल्न सकिएन।"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"यसमा सुरक्षित गरिँदै"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"हेर्दै"</string>
+    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
+    <skip />
     <string name="editor_account_selector_description" msgid="3324358600570627740">"हाल <xliff:g id="ACCOUNT_NAME">%s</xliff:g> मा सुरक्षित गरिँदै। भिन्‍न खाता चयन गर्न डबल ट्याप गर्नुहोस्।"</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">लिंक गरिएका सम्पर्क ठेगानाहरू (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -329,8 +333,10 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> बाट तस्बिर जाँच गरियो"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"अज्ञात खाताको तस्बिर जाँच गरिएन"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"अज्ञात खाताको तस्बिर जाँच गरियो"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"सहायक"</string>
+    <!-- no translation found for menu_assistant (5760693735722052454) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"प्रतिलिपिहरू"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"नयाँ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"नेभिगेसन ड्रअर खोल्नुहोस्"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"नेभिगेसन ड्रअर बन्द गर्नुहोस्"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"लेबलहरू"</string>
@@ -485,11 +491,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"रद्द गर्नुहोस्"</string>
     <string name="listCustomView" msgid="1840624396582117590">"आफू अनुकूल पारिएको दृश्य"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"आयातीत सम्पर्कहरू निम्नमा सुरक्षित गर्नुहोस्:"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"SIM कार्डबाट आयात गर्नुहोस्"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g> बाट आयात गर्नुहोस्"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf फाइलबाट आयात गर्नुहोस्"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"SIM कार्ड"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="other">%1$d सम्पर्कहरू</item>
+      <item quantity="one">१ सम्पर्क</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> सम्पर्कहरू • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> सम्पर्क • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf फाइल"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"आयात गर्न केही छैन"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard बाट सम्पर्कहरू पुनर्स्थापना गर्नुहोस्?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g>को आयात रद्द गर्ने?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g>को निर्यात रद्द गर्ने?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard आयात/निर्यात रद्द गर्न सकिएन"</string>
@@ -555,7 +569,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"सबै सम्पर्क आदान-प्रदान गर्ने"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"सम्पर्कहरू आदान-प्रदान गर्न सकिएन।"</string>
     <string name="dialog_export" msgid="1628001095187741417">"सम्पर्क ठेगानाहरू निर्यात गर्नुहोस्"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"सम्पर्कहरू आयात गर्नुहोस्"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"निम्नबाट सम्पर्कहरू आयात गर्नुहोस्"</string>
     <string name="share_error" msgid="948429331673358107">"यो सम्पर्क साझेदारी गर्न मिल्दैन।"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"आदान-प्रदान गर्न कुनै सम्पर्क ठेगानाहरू छैनन्।"</string>
     <string name="menu_search" msgid="9147752853603483719">"खोज्नुहोस्"</string>
@@ -610,6 +624,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"सम्पर्कहरू चयन गर्नुहोस्"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> चयन गरियो"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"तपाईँको SIM कार्डमा कुनै पनि सम्पर्कहरू छैनन्।"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"तपाईंको सूचीमा सम्पर्क पहिले नै विद्यमान छ"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="other">SIM को <xliff:g id="COUNT">%d</xliff:g> सम्पर्कहरू आयात गरिए</item>
       <item quantity="one">SIM को १ सम्पर्क आयात गरियो</item>
@@ -625,4 +640,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"तपाईंले सम्पर्क ठेगानाहरूमा मात्र नभई, सबै अनुप्रयोग र खाताहरूमा गरेका परिवर्तनहरू वेब र तपाईंका अन्य यन्त्रहरूका बीचमा सिंक्रोनाइज हुने छन्।"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"खोल्नुहोस्"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"जडान छैन"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
 </resources>
