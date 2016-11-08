@@ -278,7 +278,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"اختيار حساب افتراضي لجهات الاتصال الجديدة:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"إضافة جهة اتصال جديدة"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"تعديل جهة الاتصال"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"اختر جهة اتصال مرتبطة"</string>
+    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"إضافة حساب"</string>
     <string name="add_new_account" msgid="5748627740680940264">"إضافة حساب جديد"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"تصدير ملفات قاعدة البيانات"</string>
@@ -321,7 +324,8 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"تغيير الصورة"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"أخفق فتح المحرر."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"الحفظ في"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"المشاهدة"</string>
+    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
+    <skip />
     <string name="editor_account_selector_description" msgid="3324358600570627740">"جارٍ الحفظ حاليًا في <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. يمكنك النقر نقرًا مزدوجًا لاختيار حساب آخر."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="zero">جهات الاتصال المرتبطة (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -373,8 +377,10 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"تم تحديد صورة من <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"لم يتم تحديد صورة من حساب غير معروف"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"تم تحديد صورة من حساب غير معروف"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"المساعد"</string>
+    <!-- no translation found for menu_assistant (5760693735722052454) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"جهات الاتصال المكررة"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"جديد"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"فتح لائحة التنقل"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"إغلاق لائحة التنقل"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"التصنيفات"</string>
@@ -529,11 +535,27 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"إلغاء"</string>
     <string name="listCustomView" msgid="1840624396582117590">"عرض مُخصص"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"حفظ جهات الاتصال المستوردة إلى:"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"‏استيراد من شريحة SIM"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"‏استيراد من شريحة SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"‏الاستيراد من ملف vcf."</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"‏شريحة SIM"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"‏شريحة SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="zero">‏%1$d جهة اتصال</item>
+      <item quantity="two">‏%1$d جهتا اتصال</item>
+      <item quantity="few">‏%1$d جهات اتصال</item>
+      <item quantity="many">‏%1$d جهة اتصال</item>
+      <item quantity="other">‏%1$d جهة اتصال</item>
+      <item quantity="one">جهة اتصال واحدة</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="zero"><xliff:g id="COUNT_2">^1</xliff:g> جهة اتصال • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="two"><xliff:g id="COUNT_2">^1</xliff:g> جهتا اتصال • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="few"><xliff:g id="COUNT_2">^1</xliff:g> جهات اتصال • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="many"><xliff:g id="COUNT_2">^1</xliff:g> جهة اتصال • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> جهة اتصال • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> جهة اتصال • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"‏ملف .vcf"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"لا يوجد شيء للاستيراد"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"‏استيراد جهات الاتصال من vCard؟"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"هل تريد إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"هل تريد إلغاء تصدير <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"‏تعذر إلغاء استيراد/تصدير vCard"</string>
@@ -599,7 +621,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"مشاركة جميع جهات الاتصال"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"أخفقت مشاركة جهات الاتصال."</string>
     <string name="dialog_export" msgid="1628001095187741417">"تصدير جهات الاتصال"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"استيراد جهات الاتصال"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"استيراد جهات اتصال من"</string>
     <string name="share_error" msgid="948429331673358107">"لا يمكن مشاركة جهة الاتصال هذه."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"ليست هناك جهات اتصال لمشاركتها."</string>
     <string name="menu_search" msgid="9147752853603483719">"بحث"</string>
@@ -654,11 +676,11 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ساعة <xliff:g id="MINUTES_1">%s</xliff:g> دقيقة <xliff:g id="SECONDS">%s</xliff:g> ثانية"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"تم تعطيل هذا الاختصار"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"تمت إزالة جهة الاتصال"</string>
-    <string name="connection_failed" msgid="7558253972301525402">"أخفق تسجيل الدخول"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"استيراد"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"تحديد جهات الاتصال"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"تم تحديد <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"‏ليس هناك جهات اتصال على شريحة SIM"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"جهة الاتصال موجودة فعلاً في قائمتك"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="zero">‏تم استيراد جهتي اتصال (<xliff:g id="COUNT">%d</xliff:g>) من شريحة SIM</item>
       <item quantity="two">‏تم استيراد <xliff:g id="COUNT">%d</xliff:g> جهات اتصال من شريحة SIM</item>
@@ -677,4 +699,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"ستتم مزامنة التغييرات التي أجريتها على كل التطبيقات والحسابات، وليس فقط جهات الاتصال، بين الويب وأجهزتك."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"تشغيل"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"لا اتصال"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"‏شريحة SIM"</string>
 </resources>

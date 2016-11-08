@@ -250,7 +250,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Veldu sjálfgefinn reikning fyrir nýja tengiliði:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Bæta tengilið við"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Breyta tengilið"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Veldu tengdan tengilið"</string>
+    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"Bæta reikningi við"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Bæta nýjum reikningi við"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Flytja út gagnagrunnsskrár"</string>
@@ -293,7 +296,8 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Skipta um mynd"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Mistókst að opna ritilinn."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Vistar í"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Í skoðun"</string>
+    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
+    <skip />
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Vistar núna á <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Ýttu tvisvar til að velja annan reikning."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="one">Tengdir tengiliðir (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -329,8 +333,10 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Mynd frá <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>valin"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Mynd af óþekktum reikningi ekki valin"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Mynd af óþekktum reikningi valin"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"Aðstoðarmaður"</string>
+    <!-- no translation found for menu_assistant (5760693735722052454) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"Tvítekningar"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nýtt"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Opna yfirlitsskúffu"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Loka yfirlitsskúffu"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Skýringar"</string>
@@ -485,11 +491,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"Hætta við"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Sérsniðið yfirlit"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Vista innflutta tengiliði á:"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"Flytja inn af SIM-korti"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"Flytja inn af SIM-korti <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Flytja inn úr .vcf-skrá"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"SIM-korti"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="one">%1$d tengiliður</item>
+      <item quantity="other">%1$d tengiliðir</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> tengiliður • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> tengiliðir • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf-skrá"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"Ekkert til að flytja inn"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Flytja inn tengiliði af vCard?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Hætta við innflutning á <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Hætta við útflutning á <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Ekki tókst að hætta við flutning vCard"</string>
@@ -555,7 +569,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Deila öllum tengiliðum"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Ekki tókst að deila tengiliðum."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Flytja út tengiliði"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"Flytja inn tengiliði"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Flytja inn tengiliði af"</string>
     <string name="share_error" msgid="948429331673358107">"Ekki er hægt að deila þessum tengilið."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Engir tengiliðir til að deila."</string>
     <string name="menu_search" msgid="9147752853603483719">"Leita"</string>
@@ -606,11 +620,11 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> klst. <xliff:g id="MINUTES_1">%s</xliff:g> mín. <xliff:g id="SECONDS">%s</xliff:g> sek."</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Þessi flýtileið hefur verið gerð óvirk"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Tengiliður var fjarlægður"</string>
-    <string name="connection_failed" msgid="7558253972301525402">"Innskráning tókst ekki"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"Flytja inn"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Velja tengiliði"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> valdir"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Engir tengiliðir á SIM-kortinu"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Tengiliðurinn er þegar á listanum þínum"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> SIM-tengiliður fluttur inn</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM-tengiliðir fluttir inn</item>
@@ -625,4 +639,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Breytingar sem þú gerir á öllum forritum og reikningum, ekki bara Tengiliðum, verða samstilltar á milli vefjarins og tækjanna þinna."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Kveikja"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Engin tenging"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
 </resources>
