@@ -184,7 +184,7 @@ public class SimCard {
     }
 
     public SimCard withDismissedState(boolean dismissed) {
-        return withImportAndDismissStates(dismissed, mImported);
+        return withImportAndDismissStates(mImported, dismissed);
     }
 
     public SimCard withContacts(List<SimContact> contacts) {
