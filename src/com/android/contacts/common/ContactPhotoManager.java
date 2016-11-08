@@ -467,7 +467,7 @@ public abstract class ContactPhotoManager implements ComponentCallbacks2 {
     /**
      * Calls {@link #loadThumbnail(ImageView, long, boolean, DefaultImageRequest,
      * DefaultImageProvider)} using the {@link DefaultImageProvider} {@link #DEFAULT_AVATAR}.
-    */
+     */
     public final void loadThumbnail(ImageView view, long photoId, boolean darkTheme,
             boolean isCircular, DefaultImageRequest defaultImageRequest) {
         loadThumbnail(view, photoId, darkTheme, isCircular, defaultImageRequest, DEFAULT_AVATAR);
@@ -830,7 +830,7 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         } else {
             if (DEBUG) Log.d(TAG, "loadPhoto request: " + photoId);
             loadPhotoByIdOrUri(view, Request.createFromThumbnailId(photoId, darkTheme, isCircular,
-                    defaultProvider));
+                    defaultProvider, defaultImageRequest));
         }
     }
 
@@ -1178,6 +1178,8 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
 
     /**
      * Stores the supplied bitmap in cache.
+     * bytes should be null to indicate a failure to load the photo. An empty byte[] signifies
+     * a successful load but no photo was available.
      */
     private void cacheBitmap(Object key, byte[] bytes, boolean preloading, int requestedExtent) {
         if (DEBUG) {
@@ -1507,6 +1509,9 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                     while (cursor.moveToNext()) {
                         Long id = cursor.getLong(0);
                         byte[] bytes = cursor.getBlob(1);
+                        if (bytes == null) {
+                            bytes = new byte[0];
+                        }
                         cacheBitmap(id, bytes, preloading, -1);
                         mPhotoIds.remove(id);
                     }
@@ -1526,8 +1531,11 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                                 ContentUris.withAppendedId(Data.CONTENT_URI, id),
                                 COLUMNS, null, null, null);
                         if (profileCursor != null && profileCursor.moveToFirst()) {
-                            cacheBitmap(profileCursor.getLong(0), profileCursor.getBlob(1),
-                                    preloading, -1);
+                            byte[] bytes = profileCursor.getBlob(1);
+                            if (bytes == null) {
+                                bytes = new byte[0];
+                            }
+                            cacheBitmap(profileCursor.getLong(0), bytes, preloading, -1);
                         } else {
                             // Couldn't load a photo this way either.
                             cacheBitmap(id, null, preloading, -1);
@@ -1641,9 +1649,9 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
         }
 
         public static Request createFromThumbnailId(long id, boolean darkTheme, boolean isCircular,
-                DefaultImageProvider defaultProvider) {
+                DefaultImageProvider defaultProvider, DefaultImageRequest defaultRequest) {
             return new Request(id, null /* no URI */, -1, darkTheme, isCircular, defaultProvider,
-                    /* defaultRequest */ null);
+                    defaultRequest);
         }
 
         public static Request createFromUri(Uri uri, int requestedExtent, boolean darkTheme,
