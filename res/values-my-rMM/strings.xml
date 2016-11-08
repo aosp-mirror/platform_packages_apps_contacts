@@ -250,7 +250,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"အဆက်အသွယ် အသစ်များအတွက် မူရင်းအကောင့်ကို ရွေးပါ။"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"အဆက်အသွယ်သစ် ထည့်မည်"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"အဆက်အသွယ်အားပြင်ရန်"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"လင့်ခ်ချိတ်ထားသောအဆက်အသွယ်ကို ရွေးပါ"</string>
+    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"အကောင့်ထည့်ရန်"</string>
     <string name="add_new_account" msgid="5748627740680940264">"အကောင့်အသစ်ထည့်ပါ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ဒေ့ဘာဘေ့စ်ဖိုင်များကို အပြင်သို့ထုတ်ပါ"</string>
@@ -293,7 +296,8 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"ဓာတ်ပုံ ပြောင်းပါ"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"အယ်ဒီတာကို ဖွင့်၍မရပါ။"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"အောက်ပါသို့ သိမ်းနေပါသည်"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"ကြည့်ရှုနေပါသည်"</string>
+    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
+    <skip />
     <string name="editor_account_selector_description" msgid="3324358600570627740">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> သို့ လတ်တလောသိမ်းနေပါသည်။ အခြားအကောင့်ရွေးရန် နှစ်ချက်တို့ပါ။"</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">လင့်ခ်ချိတ်ထားသောအဆက်အသွယ် (<xliff:g id="COUNT">%d</xliff:g>) ခု</item>
@@ -329,8 +333,10 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>ထံမှ ဓာတ်ပုံကို စစ်ကြည့်ပြီးပြီ"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"အမည်မသိအကောင့်မှ ဓာတ်ပုံဓာတ်ပုံ မစစ်ဆေးရသေးပါ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"အမည်မသိအကောင့်မှ ဓာတ်ပုံ စစ်ဆေးပြီးပါပြီ"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"အထောက်အကူ"</string>
+    <!-- no translation found for menu_assistant (5760693735722052454) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"မိတ္တူပွားများ"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"အသစ်"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"လမ်းညွှန်ချက်အကွက်ကို ဖွင့်ပါ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"လမ်းညွှန်ချက်အကွက်ကို ပိတ်ပါ"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"အညွှန်းများ"</string>
@@ -485,11 +491,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"မလုပ်တော့"</string>
     <string name="listCustomView" msgid="1840624396582117590">"စိတ်ကြိုက်ကြည့်ရှုမှု"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"တင်သွင်းထားသောအဆက်အသွယ်များကို သိမ်းရမည့်အကောင့် -"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"ဆင်းမ်ကဒ်မှ တင်သွင်းရန်"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM မှ တင်သွင်းရန်"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf ဖိုင်မှ တင်သွင်းရန်"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"ဆင်းမ်ကဒ်"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"<xliff:g id="SIM_NAME">%1$s</xliff:g> ဆင်းမ်ကဒ်"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="other">အဆက်အသွယ် %1$d ခု</item>
+      <item quantity="one">အဆက်အသွယ် ၁ ခု</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="other">အဆက်အသွယ် <xliff:g id="COUNT_2">^1</xliff:g> ခု • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one">အဆက်အသွယ် <xliff:g id="COUNT_0">^1</xliff:g> ခု • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf ဖိုင်"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"တင်သွင်းစရာ မရှိပါ"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"လိပ်စာကဒ်မှ အဆက်အသွယ်များကို တင်သွင်းမလား။"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> တင်သွင်းခြင်းကို မလုပ်တော့ဘူးလား။"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> တင်ပို့ခြင်းကို မလုပ်တော့ဘူးလား။"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"လိပ်စာကဒ် တင်သွင်း/ပို့ခြင်း ဖျက်မရပါ"</string>
@@ -555,7 +569,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"အဆက်အသွယ်အားလုံးမျှဝေရန်"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"အဆက်အသွယ်များ မျှဝေ၍မရပါ။"</string>
     <string name="dialog_export" msgid="1628001095187741417">"အဆက်အသွယ်များ တင်ပို့ပါ"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"အဆက်အသွယ်များ တင်သွင်းရန်"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"အောက်ပါထံမှ အဆက်အသွယ်များ တင်သွင်းပါ"</string>
     <string name="share_error" msgid="948429331673358107">"ဤအဆက်အသွယ်ကို မျှဝေ၍မရပါ။"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"မျှဝေရန်အဆက်အသွယ် မရှိပါ။"</string>
     <string name="menu_search" msgid="9147752853603483719">"ရှာဖွေရန်"</string>
@@ -610,6 +624,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"အဆက်အသွယ်များကို ရွေးပါ"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> ခုကို ရွေးလိုက်ပါပြီ"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"ဆင်းမ်ကဒ်ထဲတွင် လိပ်စာ မရှိပါ"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"အဆက်အသွယ်က သင့်စာရင်းတွင် ရှိနှင့်နေပါပြီ"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="other">ဆင်းမ်အဆက်အသွယ် <xliff:g id="COUNT">%d</xliff:g> ခုကို တင်သွင်းပြီးပါပြီ</item>
       <item quantity="one">ဆင်းမ်အဆက်အသွယ် ၁ ခုကို တင်သွင်းပြီးပါပြီ</item>
@@ -625,4 +640,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"အဆက်အသွယ်များသာမက အက်ပ်များနှင့် အကောင့်များအားလုံးတွင် သင်လုပ်သည့်ပြောင်းလဲမှုများကို ဝဘ်နှင့် သင့်စက်ကိရိယာများအကြား စင့်ခ်လုပ်ပေးသွားပါမည်။"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ဖွင့်ရန်"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"ချိတ်ဆက်မှုမရှိပါ"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"ဆင်းမ်ကဒ်"</string>
 </resources>
