@@ -183,7 +183,7 @@ public class SimContactDao {
     }
 
     public SimCard getSimBySubscriptionId(int subscriptionId) {
-        final List<SimCard> sims = getSimCards();
+        final List<SimCard> sims = SharedPreferenceUtil.restoreSimStates(mContext, getSimCards());
         if (subscriptionId == SimCard.NO_SUBSCRIPTION_ID && !sims.isEmpty()) {
             return sims.get(0);
         }
