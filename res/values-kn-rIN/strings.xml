@@ -331,6 +331,7 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ಅಪರಿಚಿತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿದೆ"</string>
     <string name="menu_assistant" msgid="919866272301744261">"ಸಹಾಯಕ"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"ನಕಲಿಗಳು"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"ಹೊಸತು"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ನ್ಯಾವಿಗೇಶನ್ ಡ್ರಾಯರ್ ತೆರೆಯಿರಿ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ನ್ಯಾವಿಗೇಶನ್ ಡ್ರಾಯರ್ ಮುಚ್ಚಿ"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ಲೇಬಲ್‌ಗಳು"</string>
@@ -485,11 +486,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"ರದ್ದುಮಾಡಿ"</string>
     <string name="listCustomView" msgid="1840624396582117590">"ಕಸ್ಟಮೈಸ್ ಮಾಡಿದ ವೀಕ್ಷಣೆ"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"ಆಮದು ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳನ್ನು ಇಲ್ಲಿ ಉಳಿಸಿ:"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"<xliff:g id="SIM_NAME">%1$s</xliff:g> ಸಿಮ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf ಫೈಲ್‌ನಿಂದ ಆಮದು ಮಾಡಿ"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"ಸಿಮ್‌ ಕಾರ್ಡ್"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"ಸಿಮ್ <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="one">%1$d ಸಂಪರ್ಕಗಳು</item>
+      <item quantity="other">%1$d ಸಂಪರ್ಕಗಳು</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> ಸಂಪರ್ಕಗಳು • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> ಸಂಪರ್ಕಗಳು • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf ಫೈಲ್‌"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"ಆಮದು ಮಾಡಲು ಏನೂ ಇಲ್ಲ"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard ನಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ಆಮದುಮಾಡುವುದೇ?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> ಆಮದು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard ಆಮದು/ರಫ್ತು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ"</string>
@@ -555,7 +564,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"ಎಲ್ಲ ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ವಿಫಲವಾಗಿದೆ."</string>
     <string name="dialog_export" msgid="1628001095187741417">"ಸಂಪರ್ಕಗಳನ್ನು ರಫ್ತು ಮಾಡಿ"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"ಇದರಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
     <string name="share_error" msgid="948429331673358107">"ಈ ಸಂಪರ್ಕವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಸಾಧ್ಯವಿಲ್ಲ."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"ಹಂಚಿಕೊಳ್ಳಲು ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ."</string>
     <string name="menu_search" msgid="9147752853603483719">"ಹುಡುಕಿ"</string>
@@ -610,6 +619,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"ಸಂಪರ್ಕಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"ನಿಮ್ಮ ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಲ್ಲಿ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"ಸಂಪರ್ಕ ಈಗಾಗಲೇ ನಿಮ್ಮ ಪಟ್ಟಿಯಲ್ಲಿ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ಸಿಮ್ ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗಿದೆ</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ಸಿಮ್ ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗಿದೆ</item>
@@ -624,4 +634,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"ಎಲ್ಲ ಅಪ್ಲಿಕೇಶನ್‌ಗಳು ಮತ್ತು ಖಾತೆಗಳಿಗೆ ನೀವು ಮಾಡುವ ಬದಲಾವಣೆಗಳು ಸಂಪರ್ಕಗಳಿಗೆ ಮಾತ್ರವಲ್ಲದೆ, ವೆಬ್ ಮತ್ತು ನಿಮ್ಮ ಸಾಧನಗಳ ನಡುವೆ ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಲಾಗುತ್ತದೆ."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ಆನ್ ಮಾಡಿ"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"ಯಾವುದೇ ಸಂಪರ್ಕವಿಲ್ಲ"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"ಸಿಮ್"</string>
 </resources>

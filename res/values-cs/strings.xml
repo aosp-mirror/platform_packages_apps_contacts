@@ -353,6 +353,7 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotka z neznámého účtu byla vybrána"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Asistent"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Duplicitní kontakty"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Novinka"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Otevřít navigační panel"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Zavřít navigační panel"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Štítky"</string>
@@ -507,11 +508,23 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"Zrušit"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Vlastní zobrazení"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Účet k uložení importovaných kontaktů:"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"Importovat ze SIM karty"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"Importovat ze SIM karty <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Importovat ze souboru VCF"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"SIM karta"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM karta <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="few">%1$d kontakty</item>
+      <item quantity="many">%1$d kontaktu</item>
+      <item quantity="other">%1$d kontaktů</item>
+      <item quantity="one">1 kontakt</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="few"><xliff:g id="COUNT_2">^1</xliff:g> kontakty • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="many"><xliff:g id="COUNT_2">^1</xliff:g> kontaktu • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> kontaktů • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> kontakt • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"Soubor .vcf"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"Nic k importování"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Importovat kontakty ze souboru vCard?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Zrušit import souboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Zrušit export souboru <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Import/export vizitky vCard nelze zrušit"</string>
@@ -577,7 +590,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Sdílet všechny kontakty"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Kontakty se nepodařilo sdílet."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Exportovat kontakty"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"Importovat kontakty"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Importovat kontakty z umístění"</string>
     <string name="share_error" msgid="948429331673358107">"Tento kontakt nelze sdílet."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Nejsou dostupné žádné kontakty ke sdílení."</string>
     <string name="menu_search" msgid="9147752853603483719">"Hledat"</string>
@@ -634,6 +647,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Vyberte kontakty"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"Vybráno: <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Na SIM kartě nejsou žádné kontakty"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Kontakt už je na vašem seznamu"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="few">Byly importovány <xliff:g id="COUNT">%d</xliff:g> kontakty ze SIM karty</item>
       <item quantity="many">Bylo importováno <xliff:g id="COUNT">%d</xliff:g> kontaktu ze SIM karty</item>
@@ -650,4 +664,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Změny, které provedete ve všech aplikacích a účtech (ne jen v Kontaktech), budou synchronizovány mezi webem a vašimi zařízeními."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Zapnout"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Nejste připojeni"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM karta"</string>
 </resources>

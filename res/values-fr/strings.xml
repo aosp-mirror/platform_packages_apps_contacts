@@ -68,9 +68,9 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Tous les contacts"</string>
     <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> associé"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Les contacts ont bien été associés."</string>
-    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Compte de <xliff:g id="NAME">%1$s</xliff:g> supprimé"</string>
-    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Comptes de <xliff:g id="NAME_0">%1$s</xliff:g> et <xliff:g id="NAME_1">%2$s</xliff:g> supprimés"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"Comptes de <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>, etc. supprimés"</string>
+    <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Contact <xliff:g id="NAME">%1$s</xliff:g> supprimé"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Contacts <xliff:g id="NAME_0">%1$s</xliff:g> et <xliff:g id="NAME_1">%2$s</xliff:g> supprimés"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"Contacts <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>, etc. supprimés"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">Contact supprimé.</item>
       <item quantity="other">Contacts supprimés.</item>
@@ -331,6 +331,7 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Photo d\'un compte inconnu sélectionnée"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Assistant"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Doublons"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nouveau"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Ouvrir le panneau de navigation"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Fermer le panneau de navigation"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Libellés"</string>
@@ -485,11 +486,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"Annuler"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Vue personnalisée"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Enregistrer les contacts importés sur :"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"Importer à partir de la carte SIM"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"Importer depuis la carte SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Importer depuis un fichier .vcf"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"Carte SIM"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="one">%1$d contact</item>
+      <item quantity="other">%1$d contacts</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> contact • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> contacts • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"Fichier .vcf"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"Aucun contact à importer"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Importer les contacts de la vCard ?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Annuler l\'importation de \"<xliff:g id="FILENAME">%s</xliff:g>\" ?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Annuler l\'exportation de \"<xliff:g id="FILENAME">%s</xliff:g>\" ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Impossible annuler import./export. vCard"</string>
@@ -555,7 +564,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Partager tous les contacts"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Échec du partage des contacts."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Exporter les contacts"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"Importer des contacts"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Importer des contacts de"</string>
     <string name="share_error" msgid="948429331673358107">"Impossible de partager ce contact."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Aucun contact à partager."</string>
     <string name="menu_search" msgid="9147752853603483719">"Rechercher"</string>
@@ -610,6 +619,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Sélectionner des contacts"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> contacts sélectionnés"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Aucun contact n\'a été trouvé sur votre carte SIM."</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Le contact figure déjà dans votre liste."</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact importé depuis la carte SIM</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts importés depuis la carte SIM</item>
@@ -624,4 +634,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Les modifications que vous apportez à l\'ensemble des applications et des comptes, pas seulement dans l\'application Contacts, sont synchronisées entre le Web et vos appareils."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Activer"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Aucune connexion"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"Carte SIM"</string>
 </resources>

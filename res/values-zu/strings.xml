@@ -331,6 +331,7 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Isithombe esivela ku-akhawunti engaziwa sithikhiwe"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Umsizi"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Impinda"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Okusha"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Vula ikhabethe lokuzulazula"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Vala ikhabethe lokuzulazula"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Amalebula"</string>
@@ -485,11 +486,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"Khansela"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Ukubuka okungokwezifiso"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Londoloza oxhumana nabo abangenisiwe ku-:"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"Ngenisa kusuka kwikhadi le-SIM"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"Ngenisa kusuka ku-SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Ngenisa kusukela kufayela le-.vcf"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"I-SIM card"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="one">%d oxhumana nabo</item>
+      <item quantity="other">%d oxhumana nabo</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> oxhumana nabo • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> oxhumana nabo • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf file"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"Akukho okungangeniswa"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Ngenisa oxhumana nabo kusukela ku-vCard?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Misa ukulndwa kwe <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Misa ukulandwa kwe <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Yehlulekile ukukhansela ukungenisa/thekelisa i-vCard"</string>
@@ -555,7 +564,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Yabelana bonke oxhumana nabo"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Yehlulekile ukwabelana ngoxhumana nabo."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Thekelisa othintana nabo"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"Ngenisa othintana nabo"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Ngenisa oxhumana nabo kusuka ku-"</string>
     <string name="share_error" msgid="948429331673358107">"Lona oxhumana naye ngeke ukwazi ukwabelana ngaye."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Abekho oxhumana nabo ongabelana nabo."</string>
     <string name="menu_search" msgid="9147752853603483719">"Sesha"</string>
@@ -610,6 +619,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Khetha oxhumana nabo"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> Okukhethiwe"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Abekho oxhumana nabo kukhadi lakho le-SIM"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Oxhumana naye usuvele ulondoloziwe kuhlu lwakho"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> oxhumana nabo be-SIM bangenisiwe</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> oxhumana nabo be-SIM bangenisiwe</item>
@@ -624,4 +634,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Izinguquko ozenzayo kuzo zonke izinhlelo zokusebenza nama-akhawunti, hhayi oxhumana nabo nje kuphela, kuzovumelaniswa phakathi kwewebhu namadivayisi akho."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Vula"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Akukho ukuxhumana"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"I-SIM"</string>
 </resources>

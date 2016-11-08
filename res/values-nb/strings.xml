@@ -331,6 +331,7 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Det er merket av for et bilde fra en ukjent konto"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Assistent"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Duplikater"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nye"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Åpne uttrekksmenyen"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Lukk uttrekksmenyen"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Etiketter"</string>
@@ -485,11 +486,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"Avbryt"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Tilpasset visning"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Lagre importerte kontakter i:"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"Importér fra SIM-kort"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"Importér fra SIM-kortet <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Importer fra .vcf-fil"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"SIM-kort"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="other">%1$d kontakter</item>
+      <item quantity="one">1 kontakt</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> kontakter • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> kontakt • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"VCF-fil"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"Ingenting å importere"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Vil du importere kontakter fra vCard?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Vil du avbryte importen av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Vil du avbryte eksporten av <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Kunne ikke kansellere imp./eksp. av vCard"</string>
@@ -555,7 +564,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Del alle kontaktene"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Kunne ikke dele kontaktene."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Eksporter kontakter"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"Importer kontakter"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Importér kontakter fra"</string>
     <string name="share_error" msgid="948429331673358107">"Denne kontakten kan ikke deles."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Det finnes ingen kontakter å dele."</string>
     <string name="menu_search" msgid="9147752853603483719">"Søk"</string>
@@ -610,6 +619,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Velg kontakter"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> er valgt"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Du har ingen kontakter på SIM-kortet ditt"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Kontakten er allerede i listen din"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM-kontakter ble importert</item>
       <item quantity="one">Én SIM-kontakt ble importert</item>
@@ -624,4 +634,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Endringer du gjør i alle apper og kontoer, ikke bare i Kontakter, blir synkronisert mellom nettet og enhetene dine."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Slå på"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Ingen tilkobling"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
 </resources>
