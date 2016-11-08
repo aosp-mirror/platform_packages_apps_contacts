@@ -118,6 +118,18 @@ public class SimCard {
         return mCountryCode;
     }
 
+    /**
+     * Returns whether the contacts for this SIM card have been initialized.
+     */
+    public boolean areContactsAvailable() {
+        return mContacts != null;
+    }
+
+    /**
+     * Returns whether this SIM card has any SIM contacts.
+     *
+     * A precondition of this method is that the contacts have been initialized.
+     */
     public boolean hasContacts() {
         if (mContacts == null) {
             throw new IllegalStateException("Contacts not loaded.");
@@ -125,6 +137,11 @@ public class SimCard {
         return !mContacts.isEmpty();
     }
 
+    /**
+     * Returns the number of contacts stored on this SIM card.
+     *
+     * A precondition of this method is that the contacts have been initialized.
+     */
     public int getContactCount() {
         if (mContacts == null) {
             throw new IllegalStateException("Contacts not loaded.");
@@ -148,6 +165,9 @@ public class SimCard {
         return !isDismissed() && !isImported() && hasContacts();
     }
 
+    /**
+     * Returns the contacts for this SIM card or null if the contacts have not been initialized.
+     */
     public List<SimContact> getContacts() {
         return mContacts;
     }
