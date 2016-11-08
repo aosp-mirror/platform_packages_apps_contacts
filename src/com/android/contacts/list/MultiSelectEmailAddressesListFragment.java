@@ -15,9 +15,9 @@
  */
 package com.android.contacts.list;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,7 +27,9 @@ import android.view.ViewGroup;
 
 import com.android.contacts.R;
 import com.android.contacts.common.logging.ListEvent;
+import com.android.contacts.group.GroupUtil;
 
+import java.util.List;
 import java.util.TreeSet;
 
 /** Displays a list of emails with check boxes. */
@@ -74,6 +76,11 @@ public class MultiSelectEmailAddressesListFragment
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        getActivity().finish();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.menu_send: {
@@ -81,13 +88,10 @@ public class MultiSelectEmailAddressesListFragment
                         UiIntentActions.SELECTION_SEND_SCHEME);
                 final String title= getActivity().getIntent().getStringExtra(
                         UiIntentActions.SELECTION_SEND_TITLE);
-                final Intent intent = new Intent();
-                intent.putExtra(UiIntentActions.TARGET_CONTACT_IDS_EXTRA_KEY,
-                        getAdapter().getSelectedContactIdsArray());
-                intent.putExtra(UiIntentActions.SELECTION_SEND_SCHEME, scheme);
-                intent.putExtra(UiIntentActions.SELECTION_SEND_TITLE, title);
-                getActivity().setResult(Activity.RESULT_OK, intent);
-                getActivity().finish();
+                final List<String> items = GroupUtil.getSendToDataForIds(
+                        getActivity(), getAdapter().getSelectedContactIdsArray(), scheme);
+                final String list = TextUtils.join(",", items);
+                GroupUtil.startSendToSelectionActivity(this, list, scheme, title);
                 return true;
             }
         }
