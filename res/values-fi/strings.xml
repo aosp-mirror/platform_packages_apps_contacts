@@ -250,7 +250,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Valitse uusien yhteystietojen oletustili:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Lisää yhteystieto"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Muokkaa yhteystietoa"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Valitse linkitetty yhteystieto"</string>
+    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"Lisää tili"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Lisää uusi tili"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Vie tietokantatiedostot"</string>
@@ -293,7 +296,8 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Vaihda kuva"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Muokkausnäkymän avaaminen epäonnistui."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Tallennetaan tilille"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Katselu"</string>
+    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
+    <skip />
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Tallennetaan tilille <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Valitse toinen tili kaksoisnapauttamalla."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">Linkitetyt yhteystiedot (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -329,8 +333,10 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Tilin <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> kuva on valittuna."</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Tuntemattoman tilin kuva ei ole valittuna."</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Tuntemattoman tilin kuva on valittuna."</string>
-    <string name="menu_assistant" msgid="919866272301744261">"Assistant"</string>
+    <!-- no translation found for menu_assistant (5760693735722052454) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"Kopiot"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Uusi"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Avaa navigoinnin vetopaneeli"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Sulje navigoinnin vetopaneeli"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Tunnisteet"</string>
@@ -485,11 +491,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"Peruuta"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Muokattu näkymä"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Tallenna tuodut yhteystiedot kohteeseen"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"Tuo SIM-kortilta"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"Tuo SIM-kortilta <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">"Tuo .vcf-tiedostosta"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"SIM-kortti"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM-kortti <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="other">%1$d yhteystietoa</item>
+      <item quantity="one">1 yhteystieto</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> yhteystietoa • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> yhteystieto • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf-tiedosto"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"Ei tuotavia tietoja"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Tuodaanko yhteystiedot vCard-tiedostosta?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Peruuta kohteen <xliff:g id="FILENAME">%s</xliff:g> tuonti?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Peruuta kohteen <xliff:g id="FILENAME">%s</xliff:g> vienti?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCardin tuonnin/viennin peruutus epäonn."</string>
@@ -555,7 +569,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Jaa kaikki yhteystiedot"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Yhteystietojen jakaminen epäonnistui."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Vie yhteystiedot"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"Tuo yhteystietoja"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Tuo yhteystiedot lähteestä"</string>
     <string name="share_error" msgid="948429331673358107">"Yhteystieto ei jaettavissa"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Jaettavia yhteystietoja ei ole."</string>
     <string name="menu_search" msgid="9147752853603483719">"Haku"</string>
@@ -610,6 +624,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Valitse yhteystiedot"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> valittuna"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"SIM-kortilla ei ole yhteystietoja."</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Yhteystieto on jo luettelossasi."</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM-yhteystietoa tuotiin.</item>
       <item quantity="one">Yksi SIM-yhteystieto tuotiin.</item>
@@ -624,4 +639,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Yhteystietoihin ja kaikkiin muihin sovelluksiin ja tileihin tekemäsi muutokset synkronoidaan verkon ja laitteidesi välillä."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Ota käyttöön"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Ei yhteyttä"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM-kortti"</string>
 </resources>

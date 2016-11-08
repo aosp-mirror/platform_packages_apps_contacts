@@ -250,7 +250,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"নতুন পরিচিতিগুলির জন্য একটি ডিফল্ট অ্যাকাউন্ট বেছে নিন:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"নতুন পরিচিতি জুড়ুন"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"পরিচিতি সম্পাদনা করুন"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"লিঙ্ক করা পরিচিতি চয়ন করুন"</string>
+    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"অ্যাকাউন্ট জুড়ুন"</string>
     <string name="add_new_account" msgid="5748627740680940264">"নতুন অ্যাকাউন্ট যোগ করুন"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ডেটাবেস ফাইলগুলি রপ্তানি করুন"</string>
@@ -293,7 +296,8 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"ফটো পরিবর্তন করুন"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"সম্পাদক খোলা গেল না৷"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"এতে সংরক্ষণ করা হচ্ছে"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"দেখা হচ্ছে"</string>
+    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
+    <skip />
     <string name="editor_account_selector_description" msgid="3324358600570627740">"বর্তমানে <xliff:g id="ACCOUNT_NAME">%s</xliff:g> এ সংরক্ষণ করা হচ্ছে৷ কোনো আলাদা অ্যাকাউন্ট চয়ন করার জন্য দুবার আলতো চাপুন৷"</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="one">লিঙ্ক করা পরিচিতিগুলি (<xliff:g id="COUNT">%d</xliff:g>টি)</item>
@@ -329,8 +333,10 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> এর থেকে ফটো পরীক্ষা করা হয়েছে"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়নি"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"অজানা অ্যাকাউন্টের ফটোতে টিক চিহ্ন দেওয়া হয়েছে"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"সহায়ক"</string>
+    <!-- no translation found for menu_assistant (5760693735722052454) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"সদৃশগুলি"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"নতুন"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"নেভিগেশান ড্রয়ার খুলুন"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"নেভিগেশান ড্রয়ার বন্ধ করুন"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"লেবেলগুলি"</string>
@@ -485,11 +491,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"বাতিল করুন"</string>
     <string name="listCustomView" msgid="1840624396582117590">"কাস্টমাইজ করা দৃশ্য"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"আমদানি করা পরিচিতিগুলি এতে সংরক্ষণ করুন:"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"সিম কার্ড থেকে আমদানি করুন"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM থেকে আমদানি করুন"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf ফাইল থেকে আমদানি করুন"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"SIM কার্ড"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="one">%dটি পরিচিতি</item>
+      <item quantity="other">%dটি পরিচিতি</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g>টি পরিচিতি • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g>টি পরিচিতি • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf ফাইল"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"আমদানি করার জন্য কিছুই নেই"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard থেকে পরিচিতিগুলি আমদানি করবেন?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> এর আমদানি বাতিল করবেন?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> এর রপ্তানি বাতিল করবেন?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard এর আমদানি/রপ্তানি বাতিল করা যায়নি"</string>
@@ -555,7 +569,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"সকল পরিচিতি শেয়ার করুন"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"পরিচিতিগুলিকে শেয়ার করতে ব্যর্থ হয়েছে৷"</string>
     <string name="dialog_export" msgid="1628001095187741417">"পরিচিতিগুলি রপ্তানি করুন"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"পরিচিতিগুলি আমদানি করুন"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"এর থেকে পরিচিতিগুলি আমদানি করুন"</string>
     <string name="share_error" msgid="948429331673358107">"এই পরিচিতিটিকে শেয়ার করা যাবে না৷"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"শেয়ার করার জন্য কোনো পরিচিতি নেই৷"</string>
     <string name="menu_search" msgid="9147752853603483719">"অনুসন্ধান"</string>
@@ -610,6 +624,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"পরিচিতিগুলি নির্বাচন করুন"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g>টি নির্বাচন করা হয়েছে"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"আপনার SIM কার্ডে কোনো পরিচিতি নেই"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"পরিচিতিটি ইতিমধ্যেই আপনার তালিকাতে রয়েছে"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="one">SIM কার্ডে থাকা <xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি আমদানি করা হয়েছে</item>
       <item quantity="other">SIM কার্ডে থাকা <xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি আমদানি করা হয়েছে</item>
@@ -624,4 +639,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"পরিচিতি ছাড়াও, সমস্ত অ্যাপ এবং অ্যাকাউন্টে আপনার করা পরিবর্তনগুলি, ওয়েব এবং আপনার ডিভাইসগুলির মধ্যে সিঙ্ক্রোনাইজ হবে।"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"চালু করুন"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"কোনো সংযোগ নেই"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
 </resources>
