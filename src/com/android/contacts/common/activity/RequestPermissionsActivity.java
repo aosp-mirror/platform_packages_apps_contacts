@@ -76,11 +76,7 @@ public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
         if (permissions != null && permissions.length > 0
                 && isAllGranted(permissions, grantResults)) {
             mPreviousActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            if (mIsCallerSelf) {
-                startActivityForResult(mPreviousActivityIntent, 0);
-            } else {
-                startActivity(mPreviousActivityIntent);
-            }
+            startActivity(mPreviousActivityIntent);
             finish();
             overridePendingTransition(0, 0);
 

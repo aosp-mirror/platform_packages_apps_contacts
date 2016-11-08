@@ -75,7 +75,7 @@ import java.util.List;
  * any Dialog in the instance. So this code is careless about the management around managed
  * dialogs stuffs (like how onCreateDialog() is used).
  */
-public class ImportVCardActivity extends Activity implements ImportVCardDialogFragment.Listener {
+public class ImportVCardActivity extends Activity {
     private static final String LOG_TAG = "VCardImport";
 
     private static final int SELECT_ACCOUNT = 0;
@@ -546,8 +546,8 @@ public class ImportVCardActivity extends Activity implements ImportVCardDialogFr
         // Reading uris from non-storage needs the permission granted from the source intent,
         // instead of permissions from RequestImportVCardPermissionActivity. So skipping requesting
         // permissions from RequestImportVCardPermissionActivity for uris from non-storage source.
-        if (isStorageUri(sourceUri) && RequestImportVCardPermissionsActivity
-                .startPermissionActivity(this, isCallerSelf(this))) {
+        if (isStorageUri(sourceUri)
+                && RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
             return;
         }
 
@@ -571,8 +571,7 @@ public class ImportVCardActivity extends Activity implements ImportVCardDialogFr
         }
 
         // Always request required permission for contacts before importing the vcard.
-        if (RequestImportVCardPermissionsActivity.startPermissionActivity(this,
-                isCallerSelf(this))) {
+        if (RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
             return;
         }
 
@@ -604,41 +603,7 @@ public class ImportVCardActivity extends Activity implements ImportVCardDialogFr
             }
         }
 
-        if (isCallerSelf(this)) {
-            startImport(sourceUri, sourceDisplayName);
-        } else {
-            ImportVCardDialogFragment.show(this, sourceUri, sourceDisplayName);
-        }
-    }
-
-    private static boolean isCallerSelf(Activity activity) {
-        // {@link Activity#getCallingActivity()} is a safer alternative to
-        // {@link Activity#getCallingPackage()} that works around a
-        // framework bug where getCallingPackage() can sometimes return null even when the
-        // current activity *was* in fact launched via a startActivityForResult() call.
-        //
-        // (The bug happens if the task stack needs to be re-created by the framework after
-        // having been killed due to memory pressure or by the "Don't keep activities"
-        // developer option; see bug 7494866 for the full details.)
-        //
-        // Turns out that {@link Activity#getCallingActivity()} *does* return correct info
-        // even in the case where getCallingPackage() is broken, so the workaround is simply
-        // to get the package name from getCallingActivity().getPackageName() instead.
-        final ComponentName callingActivity = activity.getCallingActivity();
-        if (callingActivity == null) return false;
-        final String packageName = callingActivity.getPackageName();
-        if (packageName == null) return false;
-        return packageName.equals(activity.getApplicationContext().getPackageName());
-    }
-
-    @Override
-    public void onImportVCardConfirmed(Uri sourceUri, String sourceDisplayName) {
         startImport(sourceUri, sourceDisplayName);
-    }
-
-    @Override
-    public void onImportVCardDenied() {
-        finish();
     }
 
     @Override
