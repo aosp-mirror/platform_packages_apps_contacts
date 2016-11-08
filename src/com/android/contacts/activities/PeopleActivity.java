@@ -107,7 +107,6 @@ public class PeopleActivity extends ContactsDrawerActivity {
     private View mFloatingActionButtonContainer;
     private boolean wasLastFabAnimationScaleIn = false;
 
-    private ContactsUnavailableFragment mContactsUnavailableFragment;
     private ProviderStatusWatcher mProviderStatusWatcher;
     private Integer mProviderStatus;
 
@@ -217,24 +216,6 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
     private boolean areContactsAvailable() {
         return (mProviderStatus != null) && mProviderStatus.equals(ProviderStatus.STATUS_NORMAL);
-    }
-
-    /**
-     * Initialize fragments that are (or may not be) in the layout.
-     *
-     * For the fragments that are in the layout, we initialize them in
-     * {@link #createViewsAndFragments()} after inflating the layout.
-     *
-     * However, the {@link ContactsUnavailableFragment} is a special fragment which may not
-     * be in the layout, so we have to do the initialization here.
-     *
-     * The ContactsUnavailableFragment is always created at runtime.
-     */
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof ContactsUnavailableFragment) {
-            mContactsUnavailableFragment = (ContactsUnavailableFragment)fragment;
-        }
     }
 
     @Override
@@ -562,27 +543,27 @@ public class PeopleActivity extends ContactsDrawerActivity {
         // actually at least one real account (not "local" account) on device.
         if (shouldShowList()) {
             if (mAllFragment != null) {
-                transaction.show(mAllFragment);
+                final Fragment unavailableFragment = fragmentManager
+                        .findFragmentByTag(TAG_UNAVAILABLE);
+                if (unavailableFragment != null) {
+                    transaction.remove(unavailableFragment);
+                }
+                if (mAllFragment.isHidden()) {
+                    transaction.show(mAllFragment);
+                }
                 mAllFragment.setContactsAvailable(areContactsAvailable());
                 mAllFragment.setEnabled(true);
-            }
-            if (mContactsUnavailableFragment != null) {
-                transaction.hide(mContactsUnavailableFragment);
             }
         } else {
             // Setting up the page so that the user can still use the app
             // even without an account.
             if (mAllFragment != null) {
                 mAllFragment.setEnabled(false);
-                transaction.hide(mAllFragment);
             }
-            if (mContactsUnavailableFragment == null) {
-                mContactsUnavailableFragment = new ContactsUnavailableFragment();
-                transaction.add(R.id.contacts_list_container, mContactsUnavailableFragment,
-                        TAG_UNAVAILABLE);
-            }
-            transaction.show(mContactsUnavailableFragment);
-            mContactsUnavailableFragment.updateStatus(mProviderStatus);
+            final ContactsUnavailableFragment fragment = new ContactsUnavailableFragment();
+            transaction.hide(mAllFragment);
+            transaction.replace(R.id.contacts_unavailable_container, fragment, TAG_UNAVAILABLE);
+            fragment.updateStatus(mProviderStatus);
         }
         if (!transaction.isEmpty()) {
             transaction.commit();
