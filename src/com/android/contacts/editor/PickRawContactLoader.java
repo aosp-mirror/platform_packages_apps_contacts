@@ -9,16 +9,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Loader for the pick a raw contact to edit activity. Loads all raw contact metadata for the
@@ -47,11 +43,6 @@ public class PickRawContactLoader extends
     private static final int DISPLAY_NAME_PRIMARY = 4;
     private static final int DISPLAY_NAME_ALTERNATIVE = 5;
 
-    private static final String PHOTO_SELECTION_PREFIX =
-            ContactsContract.Data.RAW_CONTACT_ID + " IN (";
-    private static final String PHOTO_SELECTION_SUFFIX = ") AND " + ContactsContract.Data.MIMETYPE
-            + "=" + ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE;
-
     public PickRawContactLoader(Context context, Uri contactUri) {
         super(context);
         mContactUri = ensureIsContactUri(contactUri);
@@ -62,7 +53,7 @@ public class PickRawContactLoader extends
         final ContentResolver resolver = getContext().getContentResolver();
         // Get the id of the contact we're looking at.
         final Cursor contactCursor = resolver.query(
-                mContactUri, new String[] {Contacts._ID, Contacts.IS_USER_PROFILE}, null,
+                mContactUri, new String[]{Contacts._ID, Contacts.IS_USER_PROFILE}, null,
                 null, null);
 
         if (contactCursor == null) {
@@ -101,50 +92,19 @@ public class PickRawContactLoader extends
         }
 
         rawContactCursor.moveToPosition(-1);
-        final StringBuilder photoSelection = new StringBuilder(PHOTO_SELECTION_PREFIX);
-        final Map<Long, RawContact> rawContactMap = new HashMap<>();
         try {
             while (rawContactCursor.moveToNext()) {
                 RawContact rawContact = new RawContact();
                 rawContact.id = rawContactCursor.getLong(RAW_CONTACT_ID);
-                photoSelection.append(rawContact.id).append(',');
                 rawContact.displayName = rawContactCursor.getString(DISPLAY_NAME_PRIMARY);
                 rawContact.displayNameAlt = rawContactCursor.getString(DISPLAY_NAME_ALTERNATIVE);
                 rawContact.accountName = rawContactCursor.getString(ACCOUNT_NAME);
                 rawContact.accountType = rawContactCursor.getString(ACCOUNT_TYPE);
                 rawContact.accountDataSet = rawContactCursor.getString(DATA_SET);
                 result.rawContacts.add(rawContact);
-                rawContactMap.put(rawContact.id, rawContact);
             }
         } finally {
             rawContactCursor.close();
-        }
-
-        // Remove the last ','
-        if (photoSelection.length() > 0) {
-            photoSelection.deleteCharAt(photoSelection.length() - 1);
-        }
-        photoSelection.append(PHOTO_SELECTION_SUFFIX);
-
-        final Uri dataUri = result.isUserProfile
-                ? Uri.withAppendedPath(Profile.CONTENT_URI, Data.CONTENT_URI.getPath())
-                : Data.CONTENT_URI;
-        final Cursor photoCursor = resolver.query(
-                dataUri,
-                new String[] {Data.RAW_CONTACT_ID, Contacts.Photo._ID},
-                photoSelection.toString(), null, null);
-
-        if (photoCursor != null) {
-            try {
-                photoCursor.moveToPosition(-1);
-                while (photoCursor.moveToNext()) {
-                    final long rawContactId = photoCursor.getLong(/* Data.RAW_CONTACT_ID */ 0);
-                    rawContactMap.get(rawContactId).photoId =
-                            photoCursor.getLong(/* PHOTO._ID */ 1);
-                }
-            } finally {
-                photoCursor.close();
-            }
         }
         return result;
     }
@@ -265,7 +225,6 @@ public class PickRawContactLoader extends
                 };
 
         public long id;
-        public long photoId;
         public String displayName;
         public String displayNameAlt;
         public String accountName;
@@ -276,7 +235,6 @@ public class PickRawContactLoader extends
 
         private RawContact(Parcel in) {
             id = in.readLong();
-            photoId = in.readLong();
             displayName = in.readString();
             displayNameAlt = in.readString();
             accountName = in.readString();
@@ -292,7 +250,6 @@ public class PickRawContactLoader extends
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeLong(id);
-            dest.writeLong(photoId);
             dest.writeString(displayName);
             dest.writeString(displayNameAlt);
             dest.writeString(accountName);
