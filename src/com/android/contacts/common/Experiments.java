@@ -21,11 +21,6 @@ package com.android.contacts.common;
 public final class Experiments {
 
     /**
-     * Experiment to enable assistant in left navigation drawer.
-     */
-    public static final String ASSISTANT = "Assistant__enable_assistant";
-
-    /**
      * Whether to open contact sheet (aka smart profile) instead of our own QuickContact.
      */
     public static final String CONTACT_SHEET = "QuickContact__contact_sheet";

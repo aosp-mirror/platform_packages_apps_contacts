@@ -29,10 +29,6 @@
             app:actionViewClass="android.widget.LinearLayout"
             android:icon="@drawable/ic_assistant"
             android:title="@string/menu_assistant"/>
-        <item
-            android:id="@+id/nav_find_duplicates"
-            android:icon="@drawable/ic_menu_duplicates"
-            android:title="@string/menu_duplicates"/>
     </group>
 
     <group android:id="@+id/groups">
