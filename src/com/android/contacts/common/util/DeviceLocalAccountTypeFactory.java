@@ -52,6 +52,7 @@ public interface DeviceLocalAccountTypeFactory {
 
         public static boolean isLocalAccountType(DeviceLocalAccountTypeFactory factory,
                 String type) {
+
             return isLocalAccountType(factory.classifyAccount(type));
         }
     }

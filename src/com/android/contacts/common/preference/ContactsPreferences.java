@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -67,10 +66,6 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
     public static final String PREF_DISPLAY_ONLY_PHONES = "only_phones";
 
     public static final boolean PREF_DISPLAY_ONLY_PHONES_DEFAULT = false;
-
-    private static final String NAV_DRAWER_FIRST_RECENT = "NavigationDrawer_first_recent";
-
-    private static final String NAV_DRAWER_SECOND_RECENT = "NavigationDrawer_second_recent";
 
     /**
      * Value to use when a preference is unassigned and needs to be read from the shared preferences
@@ -236,26 +231,6 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
 
         // All good.
         return false;
-    }
-
-    public void setRecentAccounts(@NonNull List<String> recentAccounts) {
-        final int size = recentAccounts.size();
-        final Editor editor = mPreferences.edit();
-        editor.putString(NAV_DRAWER_FIRST_RECENT, size > 0 ? recentAccounts.get(0) : null);
-        editor.putString(NAV_DRAWER_SECOND_RECENT, size > 1 ? recentAccounts.get(1) : null);
-        editor.commit();
-    }
-
-    public void getRecentAccounts(List<String> recentAccounts) {
-        recentAccounts.clear();
-        String recent = mPreferences.getString(NAV_DRAWER_FIRST_RECENT, null);
-        if (recent != null) {
-            recentAccounts.add(recent);
-        }
-        recent = mPreferences.getString(NAV_DRAWER_SECOND_RECENT, null);
-        if (recent != null) {
-            recentAccounts.add(recent);
-        }
     }
 
     public void registerChangeListener(ChangeListener listener) {

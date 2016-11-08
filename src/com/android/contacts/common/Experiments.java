@@ -21,11 +21,6 @@ package com.android.contacts.common;
 public final class Experiments {
 
     /**
-     * Experiment to enable account switcher
-     */
-    public static final String ACCOUNT_SWITCHER = "Account__account_switcher_enable";
-
-    /**
      * Experiment to enable assistant in left navigation drawer.
      */
     public static final String ASSISTANT = "Assistant__enable_assistant";
