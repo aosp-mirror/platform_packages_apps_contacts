@@ -331,6 +331,7 @@ public class ContactEditorFragment extends Fragment implements
     //
     // Used to store existing contact data so it can be re-applied during a rebind call,
     // i.e. account switch.
+    protected Contact mContact;
     protected ImmutableList<RawContact> mRawContacts;
     protected Cursor mGroupMetaData;
 
@@ -1038,6 +1039,7 @@ public class ContactEditorFragment extends Fragment implements
             Log.v(TAG, "Ignoring background change. This will have to be rebased later");
             return;
         }
+        mContact = contact;
         mRawContacts = contact.getRawContacts();
 
         // Check for writable raw contacts.  If there are none, then we need to create one so user
@@ -1214,7 +1216,7 @@ public class ContactEditorFragment extends Fragment implements
         }
         final int writableIndex = mState.indexOfFirstWritableRawContact(getContext());
         final RawContactDelta writable = mState.get(writableIndex);
-        final RawContactDelta readOnly = mState.get(writableIndex == 0 ? 1 : 0);
+        final RawContactDelta readOnly = mState.getByRawContactId(mContact.getNameRawContactId());
         final ValuesDelta writeNameDelta = writable
                 .getSuperPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
         final ValuesDelta readNameDelta = readOnly
