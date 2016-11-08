@@ -16,7 +16,6 @@
 
 package com.android.contacts.common.util;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -54,53 +53,53 @@ public class AccountSelectionUtil {
     public static class AccountSelectedListener
             implements DialogInterface.OnClickListener {
 
-        final private Activity mActivity;
+        final private Context mContext;
         final private int mResId;
         final private int mSubscriptionId;
 
         final protected List<AccountWithDataSet> mAccountList;
 
-        public AccountSelectedListener(Activity activity, List<AccountWithDataSet> accountList,
+        public AccountSelectedListener(Context context, List<AccountWithDataSet> accountList,
                 int resId, int subscriptionId) {
             if (accountList == null || accountList.size() == 0) {
                 Log.e(LOG_TAG, "The size of Account list is 0.");
             }
-            mActivity = activity;
+            mContext = context;
             mAccountList = accountList;
             mResId = resId;
             mSubscriptionId = subscriptionId;
         }
 
-        public AccountSelectedListener(Activity activity, List<AccountWithDataSet> accountList,
+        public AccountSelectedListener(Context context, List<AccountWithDataSet> accountList,
                 int resId) {
             // Subscription id is only needed for importing from SIM card. We can safely ignore
             // its value for SD card importing.
-            this(activity, accountList, resId, /* subscriptionId = */ -1);
+            this(context, accountList, resId, /* subscriptionId = */ -1);
         }
 
         public void onClick(DialogInterface dialog, int which) {
             dialog.dismiss();
-            doImport(mActivity, mResId, mAccountList.get(which), mSubscriptionId);
+            doImport(mContext, mResId, mAccountList.get(which), mSubscriptionId);
         }
     }
 
-    public static Dialog getSelectAccountDialog(Activity activity, int resId) {
-        return getSelectAccountDialog(activity, resId, null, null);
+    public static Dialog getSelectAccountDialog(Context context, int resId) {
+        return getSelectAccountDialog(context, resId, null, null);
     }
 
-    public static Dialog getSelectAccountDialog(Activity activity, int resId,
+    public static Dialog getSelectAccountDialog(Context context, int resId,
             DialogInterface.OnClickListener onClickListener) {
-        return getSelectAccountDialog(activity, resId, onClickListener, null);
+        return getSelectAccountDialog(context, resId, onClickListener, null);
     }
 
     /**
      * When OnClickListener or OnCancelListener is null, uses a default listener.
      * The default OnCancelListener just closes itself with {@link Dialog#dismiss()}.
      */
-    public static Dialog getSelectAccountDialog(Activity activity, int resId,
+    public static Dialog getSelectAccountDialog(Context context, int resId,
             DialogInterface.OnClickListener onClickListener,
             DialogInterface.OnCancelListener onCancelListener) {
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(activity);
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
         final List<AccountWithDataSet> writableAccountList = accountTypes.getAccounts(true);
 
         Log.i(LOG_TAG, "The number of available accounts: " + writableAccountList.size());
@@ -109,12 +108,12 @@ public class AccountSelectionUtil {
 
         // Wrap our context to inflate list items using correct theme
         final Context dialogContext = new ContextThemeWrapper(
-                activity, android.R.style.Theme_Light);
+                context, android.R.style.Theme_Light);
         final LayoutInflater dialogInflater = (LayoutInflater)dialogContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final ArrayAdapter<AccountWithDataSet> accountAdapter =
             new ArrayAdapter<AccountWithDataSet>(
-                    activity, R.layout.account_selector_list_item_condensed, writableAccountList) {
+                    context, R.layout.account_selector_list_item_condensed, writableAccountList) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 if (convertView == null) {
@@ -142,7 +141,7 @@ public class AccountSelectionUtil {
 
         if (onClickListener == null) {
             AccountSelectedListener accountSelectedListener =
-                new AccountSelectedListener(activity, writableAccountList, resId);
+                new AccountSelectedListener(context, writableAccountList, resId);
             onClickListener = accountSelectedListener;
         }
         if (onCancelListener == null) {
@@ -152,8 +151,8 @@ public class AccountSelectionUtil {
                 }
             };
         }
-        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        final TextView title = (TextView) View.inflate(activity, R.layout.dialog_title, null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final TextView title = (TextView) View.inflate(context, R.layout.dialog_title, null);
         title.setText(R.string.dialog_new_contact_account);
         builder.setCustomTitle(title);
         builder.setSingleChoiceItems(accountAdapter, 0, onClickListener);
@@ -162,12 +161,12 @@ public class AccountSelectionUtil {
         return result;
     }
 
-    public static void doImport(Activity activity, int resId, AccountWithDataSet account,
+    public static void doImport(Context context, int resId, AccountWithDataSet account,
             int subscriptionId) {
         if (resId == R.string.import_from_sim) {
-            doImportFromSim(activity, account, subscriptionId);
+            doImportFromSim(context, account, subscriptionId);
         } else if (resId == R.string.import_from_vcf_file) {
-            doImportFromVcfFile(activity, account);
+            doImportFromVcfFile(context, account);
         }
     }
 
@@ -185,8 +184,8 @@ public class AccountSelectionUtil {
         context.startActivity(importIntent);
     }
 
-    public static void doImportFromVcfFile(Activity activity, AccountWithDataSet account) {
-        Intent importIntent = new Intent(activity, ImportVCardActivity.class);
+    public static void doImportFromVcfFile(Context context, AccountWithDataSet account) {
+        Intent importIntent = new Intent(context, ImportVCardActivity.class);
         if (account != null) {
             importIntent.putExtra("account_name", account.name);
             importIntent.putExtra("account_type", account.type);
@@ -199,6 +198,6 @@ public class AccountSelectionUtil {
         }
         mVCardShare = false;
         mPath = null;
-        activity.startActivityForResult(importIntent, 0);
+        context.startActivity(importIntent);
     }
 }
