@@ -250,7 +250,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"新しい連絡先のデフォルトアカウントを選択してください。"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新しい連絡先を追加"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"連絡先を編集"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"リンクされた連絡先の選択"</string>
+    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"アカウントを追加"</string>
     <string name="add_new_account" msgid="5748627740680940264">"新しいアカウントを追加"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"データベースファイルをエクスポート"</string>
@@ -293,7 +296,8 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"写真を変更"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"エディタを開けませんでした。"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"保存先"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"表示中"</string>
+    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
+    <skip />
     <string name="editor_account_selector_description" msgid="3324358600570627740">"現在、連絡先は <xliff:g id="ACCOUNT_NAME">%s</xliff:g> に保存される設定になっています。ダブルタップすると別のアカウントを選択できます。"</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">リンクされた連絡先（<xliff:g id="COUNT">%d</xliff:g> 件）</item>
@@ -329,8 +333,11 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> の写真は選択されています"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"不明なアカウントの写真は選択されていません"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"不明なアカウントの写真が選択されています"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"アシスタント"</string>
+    <!-- no translation found for menu_assistant (5760693735722052454) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"重複"</string>
+    <!-- no translation found for menu_assistant_new_badge (3132884821616980034) -->
+    <skip />
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ナビゲーションドロワーを開く"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ナビゲーションドロワーを閉じる"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ラベル"</string>
@@ -485,11 +492,17 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"キャンセル"</string>
     <string name="listCustomView" msgid="1840624396582117590">"カスタムビュー"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"インポートした連絡先の保存先:"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"SIMカードからインポート"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"SIM（<xliff:g id="SIM_NAME">%1$s</xliff:g>）からインポート"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf からインポート"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
+    <!-- no translation found for import_from_sim (6912071635295799131) -->
     <skip />
+    <!-- no translation found for import_from_sim_summary_fmt (5169032449686348118) -->
+    <skip />
+    <!-- no translation found for import_from_sim_secondary_contact_count_fmt (5821095773211149295) -->
+    <!-- no translation found for import_from_sim_secondary_template (2484832025802907060) -->
+    <!-- no translation found for import_from_vcf_file (8662528435646418203) -->
+    <skip />
+    <!-- no translation found for nothing_to_import_message (1651921906873335656) -->
+    <skip />
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard から連絡先をインポートしますか？"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g>のインポートをキャンセルしますか？"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g>のエクスポートをキャンセルしますか？"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCardインポート/エクスポート取り消し不可"</string>
@@ -555,7 +568,8 @@
     <string name="share_contacts" msgid="8109287987498711664">"すべての連絡先を共有"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"連絡先を共有できませんでした。"</string>
     <string name="dialog_export" msgid="1628001095187741417">"連絡先のエクスポート"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"連絡先のインポート"</string>
+    <!-- no translation found for dialog_import (2423592905927819672) -->
+    <skip />
     <string name="share_error" msgid="948429331673358107">"この連絡先は共有できません。"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"共有する連絡先がありません。"</string>
     <string name="menu_search" msgid="9147752853603483719">"検索"</string>
@@ -610,6 +624,8 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"連絡先の選択"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> 件選択済み"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"SIM カードに連絡先がありません"</string>
+    <!-- no translation found for sim_import_contact_exists_toast (1503743663717316732) -->
+    <skip />
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> 件の SIM の連絡先をインポートしました</item>
       <item quantity="one">1 件の SIM の連絡先をインポートしました</item>
@@ -624,4 +640,6 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"連絡先だけでなく、あらゆるアプリとアカウントに加えた変更内容がウェブとご利用の端末間で同期されるようになります。"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ON にする"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"ネットワークに接続されていません"</string>
+    <!-- no translation found for single_sim_display_label (6985770499439371497) -->
+    <skip />
 </resources>
