@@ -147,6 +147,14 @@
     <!-- Positive button text from the confirmation dialog for joining contacts when there are unsaved changes. [CHAR LIMIT = 60] -->
     <string name="joinConfirmation_positive_button">Save and Link</string>
 
+    <!-- The text to show on on a ProgressDialog indicating we're currently linking
+         contacts [CHAR LIMIT=20]-->
+    <string name="contacts_linking_progress_bar">Linking</string>
+
+    <!-- The text to show on on a ProgressDialog indicating we're currently unlinking
+     contacts [CHAR LIMIT=20]-->
+    <string name="contacts_unlinking_progress_bar">Unlinking</string>
+
     <!-- Menu item that links an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Link</string>
 
@@ -746,7 +754,7 @@
     <!-- Button label to prompt the user to add another account (when there are already existing accounts on the device) [CHAR LIMIT=30] -->
     <string name="add_new_account">Add new account</string>
 
-    <!-- Menu item shown only when the special debug mode is enabled, which is used to send all contacts database files via email.  [CHAR LIMI=NONE] -->
+    <!-- Menu item shown only when the special debug mode is enabled, which is used to send all contacts database files via email.  [CHAR LIMIT=NONE] -->
     <string name="menu_export_database">Export database files</string>
 
     <!-- Content description for the button that adds a new contact

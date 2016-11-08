@@ -34,6 +34,7 @@ import com.android.contacts.R;
 public class SplitContactConfirmationDialogFragment extends DialogFragment {
 
     private static final String ARG_HAS_PENDING_CHANGES = "hasPendingChanges";
+    public static final String TAG = "splitContactConfirmation";
 
     /**
      * Callbacks for the dialog host.
@@ -47,6 +48,11 @@ public class SplitContactConfirmationDialogFragment extends DialogFragment {
          *         that should be saved before the split.
          */
         void onSplitContactConfirmed(boolean hasPendingChanges);
+
+        /**
+         * Invoked if the user has canceled or dismissed the dialog without making a choice.
+         */
+        void onSplitContactCanceled();
     }
 
     public static void show(ContactEditorFragment fragment, boolean hasPendingChanges) {
@@ -65,8 +71,8 @@ public class SplitContactConfirmationDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHasPendingChanges = getArguments() == null
-                ? false : getArguments().getBoolean(ARG_HAS_PENDING_CHANGES);
+        mHasPendingChanges = getArguments() != null
+                && getArguments().getBoolean(ARG_HAS_PENDING_CHANGES);
     }
 
     @Override
@@ -81,14 +87,28 @@ public class SplitContactConfirmationDialogFragment extends DialogFragment {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        final Listener targetListener = getTargetFragment() == null
-                                ? (Listener) getActivity()
-                                : (Listener) getTargetFragment();
-                        targetListener.onSplitContactConfirmed(mHasPendingChanges);
+                        getListener().onSplitContactConfirmed(mHasPendingChanges);
                     }
                 });
-        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onCancel(dialog);
+            }
+        });
         builder.setCancelable(false);
         return builder.create();
+    }
+
+    private Listener getListener() {
+        return getTargetFragment() == null
+                ? (Listener) getActivity()
+                : (Listener) getTargetFragment();
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        super.onCancel(dialog);
+        getListener().onSplitContactCanceled();
     }
 }

@@ -23,12 +23,15 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -70,6 +73,7 @@ import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.graphics.Palette;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
@@ -122,7 +126,6 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.Contact;
 import com.android.contacts.common.model.ContactLoader;
 import com.android.contacts.common.model.RawContact;
-import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.dataitem.CustomDataItem;
 import com.android.contacts.common.model.dataitem.DataItem;
@@ -150,7 +153,6 @@ import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.editor.EditorUiUtils;
-import com.android.contacts.editor.SplitContactConfirmationDialogFragment;
 import com.android.contacts.interactions.CalendarInteractionsLoader;
 import com.android.contacts.interactions.CallLogInteractionsLoader;
 import com.android.contacts.interactions.ContactDeletionInteraction;
@@ -190,8 +192,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * data asynchronously, and then shows a popup with details centered around
  * {@link Intent#getSourceBounds()}.
  */
-public class QuickContactActivity extends ContactsActivity implements
-        SplitContactConfirmationDialogFragment.Listener {
+public class QuickContactActivity extends ContactsActivity {
 
     /**
      * QuickContacts immediately takes up the full screen. All possible information is shown.
@@ -275,6 +276,8 @@ public class QuickContactActivity extends ContactsActivity implements
     private boolean mHasAlreadyBeenOpened;
     private boolean mOnlyOnePhoneNumber;
     private boolean mOnlyOneEmail;
+    private ProgressDialog mProgressDialog;
+    private SaveServiceListener mListener;
 
     private QuickContactImageView mPhotoView;
     private ExpandingEntryCardView mContactCard;
@@ -729,6 +732,18 @@ public class QuickContactActivity extends ContactsActivity implements
                     savedInstanceState.getBoolean(KEY_ARE_PHONE_OPTIONS_CHANGEABLE);
             mCustomRingtone = savedInstanceState.getString(KEY_CUSTOM_RINGTONE);
         }
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setCancelable(false);
+
+        mListener = new SaveServiceListener();
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ContactSaveService.BROADCAST_LINK_COMPLETE);
+        intentFilter.addAction(ContactSaveService.BROADCAST_UNLINK_COMPLETE);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mListener,
+                intentFilter);
+
+
         mShouldLog = true;
 
         // There're 3 states for each permission:
@@ -1243,6 +1258,14 @@ public class QuickContactActivity extends ContactsActivity implements
             destroyInteractionLoaders();
             startInteractionLoaders(mCachedCp2DataCardModel);
         }
+        maybeShowProgressDialog();
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        dismissProgressBar();
     }
 
     private void populateContactAndAboutCard(Cp2DataCardModel cp2DataCardModel,
@@ -2690,13 +2713,17 @@ public class QuickContactActivity extends ContactsActivity implements
                 editMenuItem.setVisible(false);
             }
 
-            final MenuItem splitMenuItem = menu.findItem(R.id.menu_split);
-            splitMenuItem.setVisible(isContactEditable() && !mContactData.isUserProfile()
-                    && mContactData.isMultipleRawContacts());
-
+            // The link menu item is only visible if this has a single raw contact.
             final MenuItem joinMenuItem = menu.findItem(R.id.menu_join);
             joinMenuItem.setVisible(!InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)
-                    && isContactEditable() && !mContactData.isUserProfile());
+                    && isContactEditable() && !mContactData.isUserProfile()
+                    && !mContactData.isMultipleRawContacts());
+
+            // Viewing linked contacts can only happen if there are multiple raw contacts and
+            // the link menu isn't available.
+            final MenuItem linkedContactsMenuItem = menu.findItem(R.id.menu_linked_contacts);
+            linkedContactsMenuItem.setVisible(mContactData.isMultipleRawContacts()
+                    && !joinMenuItem.isVisible());
 
             final MenuItem deleteMenuItem = menu.findItem(R.id.menu_delete);
             deleteMenuItem.setVisible(isContactEditable() && !mContactData.isUserProfile());
@@ -2811,10 +2838,10 @@ public class QuickContactActivity extends ContactsActivity implements
                     editContact();
                 }
                 return true;
-            case R.id.menu_split:
-                return doSplitContactAction();
             case R.id.menu_join:
                 return doJoinContactAction();
+            case R.id.menu_linked_contacts:
+                return showRawContactPickerDialog();
             case R.id.menu_delete:
                 Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
                         ActionType.REMOVE, /* thirdPartyAction */ null);
@@ -2861,6 +2888,18 @@ public class QuickContactActivity extends ContactsActivity implements
         }
     }
 
+    private boolean showRawContactPickerDialog() {
+        if (mContactData == null) return false;
+        startActivityForResult(EditorIntents.createViewLinkedContactsIntent(
+                QuickContactActivity.this,
+                mContactData.getLookupUri(),
+                mHasComputedThemeColor
+                        ? new MaterialPalette(mColorFilterColor, mStatusBarColor)
+                        : null),
+                REQUEST_CODE_CONTACT_EDITOR_ACTIVITY);
+        return true;
+    }
+
     private boolean doJoinContactAction() {
         if (mContactData == null) return false;
 
@@ -2880,34 +2919,9 @@ public class QuickContactActivity extends ContactsActivity implements
                 this, mPreviousContactId, contactId, QuickContactActivity.class,
                 Intent.ACTION_VIEW);
         this.startService(intent);
+        showLinkProgressBar();
     }
 
-    private boolean doSplitContactAction() {
-        if (mContactData == null) return false;
-
-        final SplitContactConfirmationDialogFragment dialog = new
-                SplitContactConfirmationDialogFragment();
-        dialog.show(getFragmentManager(), "splitContact");
-        return true;
-    }
-
-    @Override
-    public void onSplitContactConfirmed(boolean hasPendingChanges) {
-        final RawContactDeltaList rawContactDeltaList= mContactData.createRawContactDeltaList();
-        rawContactDeltaList.markRawContactsForSplitting();
-        final Intent intent = ContactSaveService.createSaveContactIntent(this,
-                rawContactDeltaList,
-                /* saveModeExtraKey */ "",
-                /* saveMode */ 0,
-                mContactData.isUserProfile(),
-                ((Activity) this).getClass(),
-                ACTION_SPLIT_COMPLETED,
-                /* updatedPhotos */ null,
-                /* joinContactIdExtraKey =*/ null,
-                /* joinContactId =*/ null);
-        ContactSaveService.startService(this, intent,
-                ContactEditorActivity.ContactEditor.SaveMode.SPLIT);
-    }
 
     private void doPickRingtone() {
         final Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
@@ -2929,6 +2943,48 @@ public class QuickContactActivity extends ContactsActivity implements
             startActivityForResult(intent, REQUEST_CODE_PICK_RINGTONE);
         } catch (ActivityNotFoundException ex) {
             Toast.makeText(this, R.string.missing_app, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void dismissProgressBar() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    private void showLinkProgressBar() {
+        mProgressDialog.setMessage(getString(R.string.contacts_linking_progress_bar));
+        mProgressDialog.show();
+    }
+
+    private void showUnlinkProgressBar() {
+        mProgressDialog.setMessage(getString(R.string.contacts_unlinking_progress_bar));
+        mProgressDialog.show();
+    }
+
+    private void maybeShowProgressDialog() {
+        if (ContactSaveService.getState().isActionPending(
+                ContactSaveService.ACTION_SPLIT_CONTACT)) {
+            showUnlinkProgressBar();
+        } else if (ContactSaveService.getState().isActionPending(
+                ContactSaveService.ACTION_JOIN_CONTACTS)) {
+            showLinkProgressBar();
+        }
+    }
+
+    private class SaveServiceListener extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Got broadcast from save service " + intent);
+            }
+            if (ContactSaveService.BROADCAST_LINK_COMPLETE.equals(intent.getAction())
+                    || ContactSaveService.BROADCAST_UNLINK_COMPLETE.equals(intent.getAction())) {
+                dismissProgressBar();
+                if (ContactSaveService.BROADCAST_UNLINK_COMPLETE.equals(intent.getAction())) {
+                    finish();
+                }
+            }
         }
     }
 }
