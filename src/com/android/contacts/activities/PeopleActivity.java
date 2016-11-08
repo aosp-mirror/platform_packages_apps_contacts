@@ -843,29 +843,11 @@ public class PeopleActivity extends ContactsDrawerActivity {
             transaction.replace(
                     R.id.contacts_list_container, mMembersFragment, TAG_GROUP_VIEW);
         } else if (isAssistantView()) {
-            String fragmentTag;
-            if (Flags.getInstance().getBoolean(Experiments.ASSISTANT)) {
-                fragmentTag = TAG_ASSISTANT;
-            } else {
-                fragmentTag = TAG_DUPLICATES;
-            }
-
-            Fragment uiFragment = fragmentManager.findFragmentByTag(fragmentTag);
+            Fragment uiFragment = fragmentManager.findFragmentByTag(TAG_ASSISTANT);
             if (uiFragment == null) {
-                uiFragment = ObjectFactory.getAssistantFragment(fragmentTag);
+                uiFragment = ObjectFactory.getAssistantFragment();
             }
-            transaction.replace(R.id.contacts_list_container, uiFragment, fragmentTag);
-
-            if (!Flags.getInstance().getBoolean(Experiments.ASSISTANT)) {
-                Fragment duplicatesUtilFragment =
-                        fragmentManager.findFragmentByTag(TAG_DUPLICATES_UTIL);
-                if (duplicatesUtilFragment == null) {
-                    duplicatesUtilFragment = ObjectFactory.getDuplicatesUtilFragment();
-                }
-                if (!duplicatesUtilFragment.isAdded()) {
-                    transaction.add(duplicatesUtilFragment, TAG_DUPLICATES_UTIL);
-                }
-            }
+            transaction.replace(R.id.contacts_list_container, uiFragment, TAG_ASSISTANT);
             resetToolBarStatusBarColor();
         }
         transaction.addToBackStack(TAG_SECOND_LEVEL);
