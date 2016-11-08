@@ -250,7 +250,10 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"புதிய தொடர்புகளுக்கான இயல்பு கணக்கைத் தேர்வுசெய்க:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"புதிய தொடர்பைச் சேர்"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"தொடர்பைத் திருத்து"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"இணைத்த தொடர்பைத் தேர்வு செய்க"</string>
+    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
+    <skip />
+    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"கணக்கைச் சேர்"</string>
     <string name="add_new_account" msgid="5748627740680940264">"புதிய கணக்கைச் சேர்"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"தரவுத்தள கோப்புகளை ஏற்றுமதி செய்"</string>
@@ -293,7 +296,8 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"படத்தை மாற்றும்"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"எடிட்டரைத் திறக்க முடியவில்லை."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"இதில் சேமிக்கிறது:"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"பார்ப்பது"</string>
+    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
+    <skip />
     <string name="editor_account_selector_description" msgid="3324358600570627740">"தற்போது <xliff:g id="ACCOUNT_NAME">%s</xliff:g> இல் சேமிக்கிறது. வேறொரு கணக்கைத் தேர்ந்தெடுக்க, இருமுறை தட்டவும்."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">இணைத்த தொடர்புகள் (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -329,8 +333,10 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> வழங்கிய படம் தேர்ந்தெடுக்கப்பட்டது"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"அறியப்படாத கணக்கிலிருந்து படம் தேர்ந்தெடுக்கப்படவில்லை"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"அறியப்படாத கணக்கிலிருந்து படம் தேர்ந்தெடுக்கப்பட்டது"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"அசிஸ்டண்ட்"</string>
+    <!-- no translation found for menu_assistant (5760693735722052454) -->
+    <skip />
     <string name="menu_duplicates" msgid="4129802988372197257">"நகல்கள்"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"புதிது"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"வழிசெலுத்தல் டிராயரைத் திறக்கும்"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"வழிசெலுத்தல் டிராயரை மூடும்"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"லேபிள்கள்"</string>
@@ -485,11 +491,19 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"ரத்துசெய்"</string>
     <string name="listCustomView" msgid="1840624396582117590">"தனிப்பயனாக்கிய காட்சி"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"இறக்கிய தொடர்புகளை இதில் சேமிக்கவும்:"</string>
-    <string name="import_from_sim" msgid="3859272228033941659">"சிம் கார்டிலிருந்து இறக்குமதிசெய்"</string>
-    <string name="import_from_sim_summary_fmt" msgid="354177982654521024">"<xliff:g id="SIM_NAME">%1$s</xliff:g> சிம்மிலிருந்து இறக்கு"</string>
-    <string name="import_from_vcf_file" product="default" msgid="5304572242183878086">".vcf கோப்பிலிருந்து இறக்கு"</string>
-    <!-- no translation found for import_from_vcf_file_confirmation_message (967723361108008345) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"சிம் கார்டு"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"<xliff:g id="SIM_NAME">%1$s</xliff:g> சிம்"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="other">%1$d தொடர்புகள்</item>
+      <item quantity="one">1 தொடர்பு</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> தொடர்புகள் • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> தொடர்பு • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf கோப்பு"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"இறக்குவதற்கு எதுவுமில்லை"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard இலிருந்து தொடர்புகளை இறக்கவா?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> இன் இறக்குமதியை ரத்துசெய்யவா?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> இன் ஏற்றுமதியை ரத்துசெய்யவா?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard இன் இறக்குமதி/ஏற்றுமதியை ரத்துசெய்ய முடியவில்லை"</string>
@@ -555,7 +569,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"எல்லா தொடர்புகளையும் பகிர்"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"தொடர்புகளைப் பகிர முடியவில்லை."</string>
     <string name="dialog_export" msgid="1628001095187741417">"தொடர்புகளை ஏற்று"</string>
-    <string name="dialog_import" msgid="2431698729761448759">"தொடர்புகளை இறக்குமதி செய்"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"இதிலிருந்து தொடர்புகளை இறக்கு:"</string>
     <string name="share_error" msgid="948429331673358107">"தொடர்பைப் பகிர முடியவில்லை."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"பகிர, தொடர்புகள் இல்லை."</string>
     <string name="menu_search" msgid="9147752853603483719">"தேடு"</string>
@@ -606,11 +620,11 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ம <xliff:g id="MINUTES_1">%s</xliff:g> நி <xliff:g id="SECONDS">%s</xliff:g> வி"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"இந்தக் குறுக்குவழி முடக்கப்பட்டது"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"தொடர்பு அகற்றப்பட்டது"</string>
-    <string name="connection_failed" msgid="7558253972301525402">"உள்நுழைய முடியவில்லை"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"இறக்கு"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"தொடர்புகளைத் தேர்ந்தெடு"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> தேர்ந்தெடுக்கப்பட்டன"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"சிம் கார்டில் தொடர்புகள் இல்லை"</string>
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"தொடர்பு ஏற்கனவே உங்கள் பட்டியலில் உள்ளது"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> சிம் தொடர்புகள் இறக்கப்பட்டன</item>
       <item quantity="one">1 சிம் தொடர்பு இறக்கப்பட்டது</item>
@@ -625,4 +639,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"எல்லாப் பயன்பாடுகளிலும் கணக்குகளிலும் நீங்கள் செய்யும் மாற்றங்கள், தொடர்புகளில் மட்டுமல்லாமல் இணையத்திலும் உங்கள் சாதனங்களிலும் ஒத்திசைக்கப்படும்."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"இயக்கு"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"இணைப்பு இல்லை"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"சிம்"</string>
 </resources>
