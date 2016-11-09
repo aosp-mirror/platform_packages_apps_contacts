@@ -1877,11 +1877,10 @@
     <string name="account_sync_off">Account sync is off. Tap to turn on.</string>
 
     <!-- Title of dialog to turn auto-sync on [CHAR LIMIT=100] -->
-    <string name="turn_auto_sync_on_dialog_title">Turn auto-sync on?</string>
+    <string name="turn_auto_sync_on_dialog_title">Turn on auto-sync?</string>
 
     <!-- Text of dialog to turn auto-sync on [CHAR LIMIT=500] -->
-    <string name="turn_auto_sync_on_dialog_body">Changes you make to all apps and accounts,
-        not just Contacts, will be synchronized between the web and your devices.</string>
+    <string name="turn_auto_sync_on_dialog_body">Changes you make to all apps and accounts, not just Google Contacts, will be kept up to date between the web and your devices.</string>
 
     <!-- Confirm button text for dialog to turn auto-sync on [CHAR LIMIT=30] -->
     <string name="turn_auto_sync_on_dialog_confirm_btn">Turn on</string>
