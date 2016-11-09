@@ -1405,6 +1405,9 @@
     <!-- Message shown on Import from dialog when there is nothing available to import (no .vcf option or SIM cards) [CHAR LIMIT=NONE] -->
     <string name="nothing_to_import_message">Nothing to import</string>
 
+    <!-- Dialog message asking the user for confirmation before starting to import contacts from a .vcf file. [CHAR LIMIT=NONE] -->
+    <string name="import_from_vcf_file_confirmation_message" product="default">Import contacts from vCard?</string>
+
     <!-- Message shown in a Dialog confirming a user's cancel request toward existing vCard import.
          The argument is file name for the vCard import the user wants to cancel.
          [CHAR LIMIT=128] -->
