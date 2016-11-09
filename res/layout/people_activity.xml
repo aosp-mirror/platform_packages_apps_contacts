@@ -20,6 +20,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <!-- This is kind of a hack. Really we should be able to put the ContactsUnavailableFragment
+         into contacts_list_container but that causes issues with the fragment back stack
+         on older API levels -->
+    <FrameLayout
+        android:id="@+id/contacts_unavailable_container"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
     <FrameLayout
         android:id="@+id/contacts_list_container"
         android:layout_height="match_parent"
