@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.common.logging.EditorEvent;
+import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountDisplayInfo;
 import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
@@ -181,6 +183,10 @@ public class PickRawContactDialogFragment extends DialogFragment {
             }
         });
         builder.setCancelable(true);
+        if (savedInstanceState == null) {
+            Logger.logEditorEvent(EditorEvent.EventType.SHOW_RAW_CONTACT_PICKER,
+                    /* numberRawContacts */ mAdapter.getCount());
+        }
         return builder.create();
     }
 
