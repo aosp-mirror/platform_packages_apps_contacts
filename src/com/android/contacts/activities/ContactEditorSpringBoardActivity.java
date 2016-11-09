@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.common.logging.EditorEvent;
+import com.android.contacts.common.logging.Logger;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
@@ -108,6 +110,8 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
         // Go straight to editor if we're passed a raw contact Uri.
         if (ContactsContract.AUTHORITY.equals(authority) &&
                 RawContacts.CONTENT_ITEM_TYPE.equals(type)) {
+            Logger.logEditorEvent(
+                    EditorEvent.EventType.SHOW_RAW_CONTACT_PICKER, /* numberRawContacts */ 0);
             final long rawContactId = ContentUris.parseId(mUri);
             startEditorAndForwardExtras(getIntentForRawContact(rawContactId));
         } else if (android.provider.Contacts.AUTHORITY.equals(authority)) {
@@ -169,6 +173,8 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
      * the editor is started normally and handles creation of a new writable raw contact.
      */
     private void loadEditor() {
+        Logger.logEditorEvent(
+                EditorEvent.EventType.SHOW_RAW_CONTACT_PICKER, /* numberRawContacts */ 0);
         final Intent intent;
         if (mHasWritableAccount) {
             intent = getIntentForRawContact(mResult.rawContacts.get(mWritableAccountPosition).id);
