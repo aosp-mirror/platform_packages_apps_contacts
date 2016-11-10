@@ -218,13 +218,13 @@
     <string name="menu_unredirect_calls_to_vm">Unroute to voicemail</string>
 
     <!-- Warning dialog contents after users select to delete a ReadOnly contact. [CHAR LIMIT=NONE] -->
-    <string name="readOnlyContactWarning">Contacts from your read-only accounts cannot be deleted, but they can be hidden.</string>
+    <string name="readOnlyContactWarning">This contact is read-only. It can\'t be deleted, but you can hide it.</string>
 
     <!-- Positive button text of the warning dialog contents after users select to delete a ReadOnly contact. [CHAR LIMIT=30]-->
-    <string name="readOnlyContactWarning_positive_button">Hide</string>
+    <string name="readOnlyContactWarning_positive_button">Hide Contact</string>
 
     <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. [CHAR LIMIT=NONE]-->
-    <string name="readOnlyContactDeleteConfirmation">The contact to be deleted has details from multiple accounts. Details from read-only accounts will be hidden, not deleted.</string>
+    <string name="readOnlyContactDeleteConfirmation">Read-only accounts in this contact will be hidden, not deleted.</string>
 
     <!-- Confirmation dialog. Shown after user selects to delete one writable contact [CHAR LIMIT=NONE]  -->
     <string name="single_delete_confirmation">Delete this contact?</string>
