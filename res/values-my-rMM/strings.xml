@@ -250,10 +250,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"အဆက်အသွယ် အသစ်များအတွက် မူရင်းအကောင့်ကို ရွေးပါ။"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"အဆက်အသွယ်သစ် ထည့်မည်"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"အဆက်အသွယ်အားပြင်ရန်"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"ကြည့်ရန်အတွက်သာ"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"ပြင်ဆင်လိုသည့် အဆက်အသွယ်ကို ရွေးချယ်ပါ"</string>
     <string name="add_account" msgid="8201790677994503186">"အကောင့်ထည့်ရန်"</string>
     <string name="add_new_account" msgid="5748627740680940264">"အကောင့်အသစ်ထည့်ပါ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ဒေ့ဘာဘေ့စ်ဖိုင်များကို အပြင်သို့ထုတ်ပါ"</string>
@@ -296,8 +294,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"ဓာတ်ပုံ ပြောင်းပါ"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"အယ်ဒီတာကို ဖွင့်၍မရပါ။"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"အောက်ပါသို့ သိမ်းနေပါသည်"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> ထံမှအဆက်အသွယ်ကို ပြင်ဆင်၍မရပါ"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> သို့ လတ်တလောသိမ်းနေပါသည်။ အခြားအကောင့်ရွေးရန် နှစ်ချက်တို့ပါ။"</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">လင့်ခ်ချိတ်ထားသောအဆက်အသွယ် (<xliff:g id="COUNT">%d</xliff:g>) ခု</item>
@@ -333,9 +330,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>ထံမှ ဓာတ်ပုံကို စစ်ကြည့်ပြီးပြီ"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"အမည်မသိအကောင့်မှ ဓာတ်ပုံဓာတ်ပုံ မစစ်ဆေးရသေးပါ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"အမည်မသိအကောင့်မှ ဓာတ်ပုံ စစ်ဆေးပြီးပါပြီ"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"မိတ္တူပွားများ"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"အကြံပြုချက်များ"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"အသစ်"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"လမ်းညွှန်ချက်အကွက်ကို ဖွင့်ပါ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"လမ်းညွှန်ချက်အကွက်ကို ပိတ်ပါ"</string>

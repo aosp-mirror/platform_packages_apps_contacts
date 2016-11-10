@@ -250,10 +250,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Kies een standaardaccount voor nieuwe contacten"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Contact toevoegen"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Contact bewerken"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Alleen weergeven"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Contact kiezen om te bewerken"</string>
     <string name="add_account" msgid="8201790677994503186">"Account toevoegen"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Nieuw account toevoegen"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Databasebestanden exporteren"</string>
@@ -296,8 +294,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Foto wijzigen"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Kan editor niet openen."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Opslaan in"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Contactgegevens van <xliff:g id="ACCOUNT">%s</xliff:g> kunnen niet worden bewerkt"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Wordt momenteel opgeslagen in <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Dubbeltik om een ander account te kiezen."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">Gelinkte contacten (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -333,9 +330,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Foto van <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> <xliff:g id="USER_NAME">%s </xliff:g> aangevinkt"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto uit onbekend account niet aangevinkt"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto uit onbekend account aangevinkt"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"Duplicaten"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Suggesties"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nieuw"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Zijmenu openen"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Zijmenu sluiten"</string>

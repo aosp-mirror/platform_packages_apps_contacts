@@ -250,10 +250,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Шинэ харилцагчид өгөгдмөл бүртгэл сонгох:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Шинэ харилцагч нэмэх"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Харилцагчийг засварлах"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Зөвхөн харах"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Засварлах харилцагчийг сонгоно уу"</string>
     <string name="add_account" msgid="8201790677994503186">"Бүртгэл нэмэх"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Шинэ бүртгэл нэмэх"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Өгөгдлийн сангийн файлуудыг экспорт хийх"</string>
@@ -296,8 +294,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Зураг солих"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Засварлагчийг нээж чадсангүй."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Хадгалж байна"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g>-н харилцагчийн мэдээллийг засварлах боломжгүй"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Одоогоор <xliff:g id="ACCOUNT_NAME">%s</xliff:g>-д хадгалж байна. Өөр бүртгэл сонгохын тулд хоёр товшино уу."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">Холбогдсон харилцагч (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -333,9 +330,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>-н зургийг сонгосон"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Үл мэдэгдэх бүртгэлийн зургийг сонгоогүй"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Үл мэдэгдэх бүртгэлийн зургийг сонгосон"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"Давхцал"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Санал болголт"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Шинэ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Навигацын шургуулгыг нээх"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Навигацын шургуулгыг хаах"</string>
