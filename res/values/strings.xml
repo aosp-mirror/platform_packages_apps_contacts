@@ -150,6 +150,9 @@
     <!-- Menu item that links an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Link</string>
 
+    <!-- Menu item that opens a dialog that shows all linked contacts that make up this one. [CHAR LIMIT=30] -->
+    <string name="menu_linkedContacts">View linked contacts</string>
+
     <!-- Menu item (in the action bar) to indicate that changes should be saved [CHAR LIMIT=20] -->
     <string name="menu_save">Save</string>
 
@@ -727,6 +730,15 @@
 
     <!-- Dialog title when the user is selecting a raw contact to edit.  [CHAR LIMIT=128] -->
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title">Choose contact to edit</string>
+
+    <!-- Dialog title showing the user the list of contacts that are linked together to create the aggregate they are viewing.  [CHAR LIMIT=128] -->
+    <string name="contact_editor_pick_linked_contact_dialog_title">Linked contacts</string>
+
+    <!-- Dialog button label to prompt user to add more linked contacts to the one they're viewing. [CHAR LIMIT=15] -->
+    <string name="contact_editor_add_linked_contact">Add</string>
+
+    <!-- Dialog button label to prompt user to unlinked the contact they're looking at to it's constituent parts. [CHAR LIMIT=15] -->
+    <string name="contact_editor_unlink_contacts">Unlink</string>
 
     <!-- Button label to prompt the user to add an account (when there are 0 existing accounts on the device) [CHAR LIMIT=30] -->
     <string name="add_account">Add account</string>
