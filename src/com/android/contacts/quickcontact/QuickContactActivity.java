@@ -908,7 +908,7 @@ public class QuickContactActivity extends ContactsActivity implements
         } else if (requestCode == REQUEST_CODE_JOIN) {
             // Ignore failed requests
             if (resultCode != Activity.RESULT_OK) {
-                processIntent(data);
+                return;
             }
             if (data != null) {
                 joinAggregate(ContentUris.parseId(data.getData()));
