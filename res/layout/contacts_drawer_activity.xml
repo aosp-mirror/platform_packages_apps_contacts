@@ -24,9 +24,6 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <!-- To prevent hamburger menu from getting the initial focus. -->
-    <include layout="@layout/dummy_view_for_initial_focus"/>
-
     <include layout="@layout/contacts_main_content"/>
 
     <include layout="@layout/navigation_view"/>
