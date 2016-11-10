@@ -26,14 +26,13 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            style="@style/ContactsToolbarStyle"
+            style="@style/LightToolbarStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:elevation="3dp"
+            android:theme="@style/LightToolbarThemeOverlay"
             app:navigationContentDescription="@string/sim_import_cancel_content_description"
-            app:navigationIcon="@drawable/ic_close_dk"
+            app:navigationIcon="@drawable/ic_close_24dp"
             app:title="@string/sim_import_title_none_selected">
 
             <Button
@@ -46,14 +45,51 @@
                 />
         </android.support.v7.widget.Toolbar>
 
-        <FrameLayout
+
+        <!-- This is managed by AccountHeaderPresenter so the IDs in this section must
+             match the equivalent views in layout/editor_account_header.xml -->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/account_header_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:colorBackground"
-            android:elevation="4dp">
+            android:minHeight="48dp"
+            android:orientation="horizontal"
+            android:paddingEnd="32dp"
+            android:paddingStart="16dp">
 
-            <include layout="@layout/editor_account_header"/>
-        </FrameLayout>
+            <ImageView
+                android:id="@+id/account_type_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="32dp"/>
+
+            <TextView
+                android:id="@+id/account_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:textColor="@color/secondary_text_color"
+                android:textSize="16sp"/>
+
+            <ImageView
+                android:id="@+id/account_expander_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="9dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="center"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:tint="?android:textColorSecondary"
+                android:visibility="gone"/>
+        </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
