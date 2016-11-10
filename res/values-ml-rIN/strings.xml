@@ -250,10 +250,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"പുതിയ കോൺടാക്റ്റുകൾക്ക് ഒരു ഡിഫോൾട്ട് അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"പുതിയവ ചേർക്കൂ"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"എഡിറ്റുചെയ്യുക"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"കാഴ്‌ച മാത്രം"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"എഡിറ്റുചെയ്യാൻ കോൺടാക്‌റ്റ്‌ തിരഞ്ഞെടുക്കുക"</string>
     <string name="add_account" msgid="8201790677994503186">"അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="add_new_account" msgid="5748627740680940264">"പുതിയ അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ഡാറ്റാബേസ് ഫയലുകൾ എക്‌സ്‌പോർട്ടുചെയ്യുക"</string>
@@ -296,8 +294,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"ഫോട്ടോ മാറ്റുക"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"എഡിറ്റർ തുറക്കുന്നത് പരാജയപ്പെട്ടു."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"ഇതിലേക്ക് സംരക്ഷിക്കുന്നു"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> എന്നതിലുള്ള കോൺടാക്‌റ്റ്‌ എഡിറ്റുചെയ്യാനാവില്ല"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"നിലവിൽ <xliff:g id="ACCOUNT_NAME">%s</xliff:g> എന്ന അക്കൗണ്ടിലേക്ക് സംരക്ഷിക്കുന്നു. മറ്റൊരു അക്കൗണ്ടിലേക്ക് സംരക്ഷിക്കാൻ രണ്ടുതവണ ടാപ്പുചെയ്യുക."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">ലിങ്കുചെയ്ത കോൺടാക്റ്റുകൾ (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -333,9 +330,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> എന്നതിൽ നിന്നുള്ള ഫോട്ടോ ചെക്കുചെയ്തു"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തിട്ടില്ല"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തു"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"ഡ്യൂപ്ലിക്കേറ്റുകൾ"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"നിര്‍ദ്ദേശങ്ങള്‍"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"പുതിയത്"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"നാവിഗേഷൻ ഡ്രോയർ തുറക്കുക"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"നാവിഗേഷൻ ഡ്രോയർ അടയ്‌ക്കുക"</string>
@@ -503,7 +498,6 @@
     </plurals>
     <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf ഫയൽ"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"ഇമ്പോർട്ടുചെയ്യാനൊന്നുമില്ല"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard-ൽ നിന്ന്‌ കോൺടാക്‌റ്റുകൾ ഇമ്പോർട്ടുചെയ്യണോ?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് ഇമ്പോർട്ടുചെയ്യുന്നത് റദ്ദാക്കണോ?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് എക്‌സ്‌പോർട്ടുചെയ്യുന്നത് റദ്ദാക്കണോ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard ഇമ്പോർട്ടുചെയ്യൽ/എക്‌സ്‌പോർട്ടുചെയ്യൽ റദ്ദാക്കാനായില്ല"</string>

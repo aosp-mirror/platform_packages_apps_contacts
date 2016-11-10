@@ -278,10 +278,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"اختيار حساب افتراضي لجهات الاتصال الجديدة:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"إضافة جهة اتصال جديدة"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"تعديل جهة الاتصال"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"للعرض فقط"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"اختيار جهة اتصال لتعديلها"</string>
     <string name="add_account" msgid="8201790677994503186">"إضافة حساب"</string>
     <string name="add_new_account" msgid="5748627740680940264">"إضافة حساب جديد"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"تصدير ملفات قاعدة البيانات"</string>
@@ -324,8 +322,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"تغيير الصورة"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"أخفق فتح المحرر."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"الحفظ في"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"معلومات جهة الاتصال من <xliff:g id="ACCOUNT">%s</xliff:g> غير قابلة للتعديل"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"جارٍ الحفظ حاليًا في <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. يمكنك النقر نقرًا مزدوجًا لاختيار حساب آخر."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="zero">جهات الاتصال المرتبطة (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -377,9 +374,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"تم تحديد صورة من <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"لم يتم تحديد صورة من حساب غير معروف"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"تم تحديد صورة من حساب غير معروف"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"جهات الاتصال المكررة"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"الاقتراحات"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"جديد"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"فتح لائحة التنقل"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"إغلاق لائحة التنقل"</string>
@@ -555,7 +550,6 @@
     </plurals>
     <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"‏ملف .vcf"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"لا يوجد شيء للاستيراد"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"‏استيراد جهات الاتصال من vCard؟"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"هل تريد إلغاء استيراد <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"هل تريد إلغاء تصدير <xliff:g id="FILENAME">%s</xliff:g>؟"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"‏تعذر إلغاء استيراد/تصدير vCard"</string>

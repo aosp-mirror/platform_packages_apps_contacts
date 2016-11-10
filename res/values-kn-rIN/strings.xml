@@ -250,10 +250,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ಹೊಸ ಸಂಪರ್ಕಗಳಿಗೆ ಡಿಫಾಲ್ಟ್ ಖಾತೆ ಆಯ್ಕೆಮಾಡಿ:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ಹೊಸ ಸಂಪರ್ಕ ಸೇರಿಸಿ"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ಸಂಪರ್ಕವನ್ನು ಎಡಿಟ್ ಮಾಡಿ"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"ವೀಕ್ಷಣೆ ಮಾತ್ರ"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"ಎಡಿಟ್ ಮಾಡಲು ಸಂಪರ್ಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="add_account" msgid="8201790677994503186">"ಖಾತೆ ಸೇರಿಸಿ"</string>
     <string name="add_new_account" msgid="5748627740680940264">"ಹೊಸ ಖಾತೆಯನ್ನು ಸೇರಿಸಿ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ಡೇಟಾಬೇಸ್‌‌ ಫೈಲ್‌ಗಳನ್ನು ರಫ್ತು ಮಾಡಿ"</string>
@@ -296,8 +294,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"ಫೋಟೋ ಬದಲಾಯಿಸಿ"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"ಸಂಪಾದಕವನ್ನು ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"ಇದಕ್ಕೆ ಉಳಿಸಲಾಗುತ್ತಿದೆ"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> ನಲ್ಲಿನ ಸಂಪರ್ಕದ ಮಾಹಿತಿಯು ಎಡಿಟ್ ಮಾಡಲು ಆಗುವುದಿಲ್ಲ"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"ಪ್ರಸ್ತುತ <xliff:g id="ACCOUNT_NAME">%s</xliff:g> ಖಾತೆಗೆ ಉಳಿಸಲಾಗುತ್ತಿದೆ. ಬೇರೆ ಖಾತೆಯನ್ನು ಆಯ್ಕೆಮಾಡಲು ಡಬಲ್ ಟ್ಯಾಪ್ ಮಾಡಿ."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="one">ಲಿಂಕ್ ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳು (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -333,9 +330,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="USER_NAME">%s </xliff:g><xliff:g id="ACCOUNT_TYPE">%s </xliff:g> ಅವರಿಂದ ಫೋಟೋ ಗುರುತಿಸಲಾಗಿದೆ"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ಅಪರಿಚಿತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿಲ್ಲ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ಅಪರಿಚಿತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿದೆ"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"ನಕಲಿಗಳು"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"ಸಲಹೆಗಳು"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"ಹೊಸತು"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ನ್ಯಾವಿಗೇಶನ್ ಡ್ರಾಯರ್ ತೆರೆಯಿರಿ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ನ್ಯಾವಿಗೇಶನ್ ಡ್ರಾಯರ್ ಮುಚ್ಚಿ"</string>
@@ -503,7 +498,6 @@
     </plurals>
     <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf ಫೈಲ್‌"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"ಆಮದು ಮಾಡಲು ಏನೂ ಇಲ್ಲ"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard ನಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ಆಮದುಮಾಡುವುದೇ?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> ಆಮದು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸುವುದೇ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard ಆಮದು/ರಫ್ತು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ"</string>
