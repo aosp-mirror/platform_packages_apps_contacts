@@ -264,10 +264,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Виберіть обліковий запис за умовчанням для нових контактів:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додати контакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Змінити контакт"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Лише перегляд"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Вибрати контакт для редагування"</string>
     <string name="add_account" msgid="8201790677994503186">"Додати обліковий запис"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Додати новий обліковий запис"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Експортувати файли бази даних"</string>
@@ -310,8 +308,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Змініть фотографію"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Не вдалося відкрити редактор."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Зберігання в обліковий запис"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Контакти з облікового запису <xliff:g id="ACCOUNT">%s</xliff:g> не можна редагувати"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Наразі контакт зберігається в обліковий запис <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Двічі торкніться, щоб вибрати інший обліковий запис."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="one">Об’єднані контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -355,9 +352,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Фото з <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> вибрано"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Фото з невідомого облікового запису не вибрано"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Фото з невідомого облікового запису вибрано"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"Копії"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Пропозиції"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Нові"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Відкрити панель навігації"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Закрити панель навігації"</string>
@@ -529,7 +524,6 @@
     </plurals>
     <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"Файл .vcf"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"Немає контактів для імпорту"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Імпортувати контакти з файлу vCard?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Скасувати імпорт файлу <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Скасувати експорт файлу <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Не вдалося скасув. імпорт/експорт vCard"</string>

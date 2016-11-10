@@ -250,10 +250,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Pilih akaun lalai untuk kenalan baharu:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Tambah kenalan baru"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edit kenalan"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Lihat sahaja"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Pilih kenalan untuk diedit"</string>
     <string name="add_account" msgid="8201790677994503186">"Tambah akaun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tambah akaun baharu"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksport fail pangkalan data"</string>
@@ -296,8 +294,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Tukar foto"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Gagal membuka editor."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Menyimpan ke"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Maklumat kenalan daripada <xliff:g id="ACCOUNT">%s</xliff:g> tidak boleh diedit"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Sedang disimpan pada <xliff:g id="ACCOUNT_NAME">%s</xliff:g> pada masa ini. Ketik dua kali untuk memilih akaun yang lain."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">Kenalan dipautkan (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -333,11 +330,8 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Foto daripada <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>ditandai"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto daripada akaun yang tidak diketahui tidak ditandai"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto daripada akaun yang tidak diketahui ditandai"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"Pendua"</string>
-    <!-- no translation found for menu_assistant_new_badge (3132884821616980034) -->
-    <skip />
+    <string name="menu_assistant" msgid="5760693735722052454">"Cadangan"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Baharu"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Buka laci navigasi"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Tutup laci navigasi"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Label"</string>
@@ -492,17 +486,18 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"Batal"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Paparan yang disesuaikan"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Simpan kenalan yang diimport ke:"</string>
-    <!-- no translation found for import_from_sim (6912071635295799131) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_fmt (5169032449686348118) -->
-    <skip />
-    <!-- no translation found for import_from_sim_secondary_contact_count_fmt (5821095773211149295) -->
-    <!-- no translation found for import_from_sim_secondary_template (2484832025802907060) -->
-    <!-- no translation found for import_from_vcf_file (8662528435646418203) -->
-    <skip />
-    <!-- no translation found for nothing_to_import_message (1651921906873335656) -->
-    <skip />
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Import kenalan daripada vCard?"</string>
+    <string name="import_from_sim" msgid="6912071635295799131">"Kad SIM"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="other">%1$d kenalan</item>
+      <item quantity="one">1 kenalan</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> kenalan • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> kenalan • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"Fail .vcf"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"Tiada apa-apa untuk diimport"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Batalkan pengimportan <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Batalkan pengeksportan <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Tidak dapat membatalkan import/eksport vCard"</string>
@@ -570,8 +565,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Kongsi semua kenalan"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Gagal berkongsi kenalan."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Eksport kenalan"</string>
-    <!-- no translation found for dialog_import (2423592905927819672) -->
-    <skip />
+    <string name="dialog_import" msgid="2423592905927819672">"Import kenalan daripada"</string>
     <string name="share_error" msgid="948429331673358107">"Kenalan ini tidak boleh dikongsi."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Tiada kenalan untuk dikongsi."</string>
     <string name="menu_search" msgid="9147752853603483719">"Cari"</string>
@@ -626,8 +620,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Pilih kenalan"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> Dipilih"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Tiada kenalan pada kad SIM anda"</string>
-    <!-- no translation found for sim_import_contact_exists_toast (1503743663717316732) -->
-    <skip />
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Kenalan sudah wujud dalam senarai anda"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kenalan SIM diimport</item>
       <item quantity="one">1 kenalan SIM diimport</item>
@@ -642,6 +635,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Perubahan yang anda buat kepada semua apl dan akaun, bukan hanya Kenalan, akan disegerakkan antara web dengan peranti anda."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Hidupkan"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Tiada sambungan"</string>
-    <!-- no translation found for single_sim_display_label (6985770499439371497) -->
-    <skip />
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
 </resources>

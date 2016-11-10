@@ -250,10 +250,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Sélectionnez un compte par défaut pour les nouveaux contacts :"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ajouter un contact"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier contact"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Lecture seule"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Choisir le contact à modifier"</string>
     <string name="add_account" msgid="8201790677994503186">"Ajouter un compte"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ajouter un compte"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exporter les fichiers de la base de données"</string>
@@ -296,8 +294,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Changer de photo"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Échec de l\'ouverture de l\'éditeur."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Enregistrement sur le compte"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Les coordonnées de <xliff:g id="ACCOUNT">%s</xliff:g> ne sont pas modifiables."</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Enregistrement en cours sur le compte <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Appuyez deux fois pour choisir un autre compte."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="one">Contact associé (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -333,9 +330,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Photo <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> – <xliff:g id="USER_NAME">%s </xliff:g> cochée"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Photo d\'un compte inconnu non sélectionnée"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Photo d\'un compte inconnu sélectionnée"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"Doublons"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Suggestions"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nouveau"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Ouvrir le panneau de navigation"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Fermer le panneau de navigation"</string>
@@ -503,7 +498,6 @@
     </plurals>
     <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"Fichier .vcf"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"Aucun contact à importer"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Importer les contacts de la vCard ?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Annuler l\'importation de \"<xliff:g id="FILENAME">%s</xliff:g>\" ?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Annuler l\'exportation de \"<xliff:g id="FILENAME">%s</xliff:g>\" ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Impossible annuler import./export. vCard"</string>
