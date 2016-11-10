@@ -250,10 +250,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Изберете стандартен профил за новите контакти:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Добавяне"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Редактиране"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Само преглед"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Избор на контакт за редактиране"</string>
     <string name="add_account" msgid="8201790677994503186">"Добавяне"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Добавяне на нов профил"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Експортиране на файловете на базата от данни"</string>
@@ -296,8 +294,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Промяна на снимката"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Отварянето на редактора не бе успешно."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Запазва се във:"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Данните за контакта от <xliff:g id="ACCOUNT">%s</xliff:g> не могат да се редактират"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Понастоящем се запазва в профила <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Докоснете двукратно, за да изберете друг."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">Свързани контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -333,9 +330,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Снимката от <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> е с отметка"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Неизбрана снимка от неизвестен профил"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Избрана снимка от неизвестен профил"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"Дублирани"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Предложения"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Ново"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Отваряне на слоя за навигация"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Затваряне на слоя за навигация"</string>
