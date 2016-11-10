@@ -634,5 +634,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Endringer du gjør i alle apper og kontoer, ikke bare i Kontakter, blir synkronisert mellom nettet og enhetene dine."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Slå på"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Ingen tilkobling"</string>
-    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM-kort"</string>
 </resources>

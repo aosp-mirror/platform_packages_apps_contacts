@@ -501,7 +501,7 @@
     <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"Cardul SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
       <item quantity="few">%1$d persoane de contact</item>
-      <item quantity="other">%1$d de persoane de contact</item>
+      <item quantity="other">%1$d persoane de contact</item>
       <item quantity="one">O persoană de contact</item>
     </plurals>
     <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">

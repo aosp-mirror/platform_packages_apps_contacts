@@ -331,8 +331,7 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"නොදන්නා ගිණුම වෙතින් වන ඡායාරූපය ලකුණු කරන ලදී"</string>
     <string name="menu_assistant" msgid="919866272301744261">"සහායක"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"අනුපිටපත්"</string>
-    <!-- no translation found for menu_assistant_new_badge (3132884821616980034) -->
-    <skip />
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"නව"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"සංචාලන ලාච්චුව විවෘත කරන්න"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"සංචාලන ලාච්චුව වසන්න"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ලේබල"</string>
@@ -487,16 +486,18 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"අවලංගු කරන්න"</string>
     <string name="listCustomView" msgid="1840624396582117590">"අභිරුචිකරණය කළ දසුන"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"ආයාත කළ සම්බන්ධතා මෙහි සුරකින්න:"</string>
-    <!-- no translation found for import_from_sim (6912071635295799131) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_fmt (5169032449686348118) -->
-    <skip />
-    <!-- no translation found for import_from_sim_secondary_contact_count_fmt (5821095773211149295) -->
-    <!-- no translation found for import_from_sim_secondary_template (2484832025802907060) -->
-    <!-- no translation found for import_from_vcf_file (8662528435646418203) -->
-    <skip />
-    <!-- no translation found for nothing_to_import_message (1651921906873335656) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"SIM කාඩ් පත"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="one">සම්බන්ධතා %1$d</item>
+      <item quantity="other">සම්බන්ධතා %1$d</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="one">සම්බන්ධතා <xliff:g id="COUNT_2">^1</xliff:g> • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="other">සම්බන්ධතා <xliff:g id="COUNT_2">^1</xliff:g> • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf ගොනුව"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"ආයාත කිරීමට කිසිවක් නැත"</string>
     <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard වෙතින් සම්බන්ධතා ආයාත කරන්න"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> ආයාත කිරීම අවලංගු කරන්නද?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> නිර්යාත කිරීම අවලංගු කරන්නද?"</string>
@@ -563,8 +564,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"සියලු සම්බන්ධතා බෙදා ගන්න"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"සම්බන්ධතා බෙදා ගැනීමට අසමත් විය."</string>
     <string name="dialog_export" msgid="1628001095187741417">"සම්බන්ධතා නිර්යාත කරන්න"</string>
-    <!-- no translation found for dialog_import (2423592905927819672) -->
-    <skip />
+    <string name="dialog_import" msgid="2423592905927819672">"වෙතින් සම්බන්ධතා ආයාත කරන්න"</string>
     <string name="share_error" msgid="948429331673358107">"මෙම සම්බන්ධතාව බෙදා ගත නොහැක."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"බෙදා ගැනීමට සම්බන්ධතා නොමැත."</string>
     <string name="menu_search" msgid="9147752853603483719">"සෙවීම"</string>
@@ -619,8 +619,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"සම්බන්ධතා තෝරන්න"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g>ක් තෝරා ගන්නා ලදි"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"ඔබේ SIM කාඩ්පතේ සම්බන්ධතා නොමැත"</string>
-    <!-- no translation found for sim_import_contact_exists_toast (1503743663717316732) -->
-    <skip />
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"සම්බන්ධතාව දැනටමත් ඔබේ ලැයිස්තුවෙහි පවතී"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="one">SIM සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g>ක් ආයාත කරන ලදී</item>
       <item quantity="other">SIM සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g>ක් ආයාත කරන ලදී</item>
@@ -635,6 +634,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"සම්බන්ධතාවලට පමණක් නොව, සියලු යෙදුම් සහ ගිණුම්වලට ඔබ කරන වෙනස් කිරීම්, වෙබය සහ ඔබගේ උපාංග අතර සමමුහුර්ත කරනු ඇත."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ක්‍රියාත්මක කරන්න"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"සම්බන්ධතාව නැත"</string>
-    <!-- no translation found for single_sim_display_label (6985770499439371497) -->
-    <skip />
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
 </resources>

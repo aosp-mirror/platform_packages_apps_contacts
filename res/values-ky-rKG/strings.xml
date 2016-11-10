@@ -589,7 +589,7 @@
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> байланыш • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> байланыш • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf файлы"</string>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"VCF-файл"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"Импорттоого эч нерсе жок"</string>
     <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard байланыштары импорттолсунбу?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> файлын импорттоо токтотулсунбу?"</string>

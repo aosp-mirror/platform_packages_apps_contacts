@@ -331,8 +331,7 @@
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Անհայտ հաշվից լուսանկարն ընտրված է"</string>
     <string name="menu_assistant" msgid="919866272301744261">"Օգնական"</string>
     <string name="menu_duplicates" msgid="4129802988372197257">"Կրկնօրինակներ"</string>
-    <!-- no translation found for menu_assistant_new_badge (3132884821616980034) -->
-    <skip />
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Նոր"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Բացել նավարկման դարակը"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Փակել նավարկման դարակը"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Պիտակներ"</string>
@@ -487,16 +486,18 @@
     <string name="menu_doNotSave" msgid="58593876893538465">"Չեղարկել"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Անհատական դիտակերպ"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Պահել ներմուծված կոնտակտներն այստեղ՝"</string>
-    <!-- no translation found for import_from_sim (6912071635295799131) -->
-    <skip />
-    <!-- no translation found for import_from_sim_summary_fmt (5169032449686348118) -->
-    <skip />
-    <!-- no translation found for import_from_sim_secondary_contact_count_fmt (5821095773211149295) -->
-    <!-- no translation found for import_from_sim_secondary_template (2484832025802907060) -->
-    <!-- no translation found for import_from_vcf_file (8662528435646418203) -->
-    <skip />
-    <!-- no translation found for nothing_to_import_message (1651921906873335656) -->
-    <skip />
+    <string name="import_from_sim" msgid="6912071635295799131">"SIM քարտից"</string>
+    <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM-ից"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
+      <item quantity="one">%1$d contacts</item>
+      <item quantity="other">%1$d կոնտակտ</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="2484832025802907060">
+      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> contacts • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> կոնտակտ • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+    </plurals>
+    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf ֆայլից"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"Ներմուծելու ոչինչ չկա"</string>
     <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Վերականգնե՞լ կոնտակտները vCard-ից։"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Չեղարկե՞լ <xliff:g id="FILENAME">%s</xliff:g>-ի ներմուծումը"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Չեղարկե՞լ <xliff:g id="FILENAME">%s</xliff:g>-ի արտահանումը"</string>
@@ -563,8 +564,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Կիսվել բոլոր կոնտակտներով"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Չհաջողվեց կիսվել կոնտակտներով:"</string>
     <string name="dialog_export" msgid="1628001095187741417">"Արտահանել կոնտակտները"</string>
-    <!-- no translation found for dialog_import (2423592905927819672) -->
-    <skip />
+    <string name="dialog_import" msgid="2423592905927819672">"Կոնտակտների ներմուծում"</string>
     <string name="share_error" msgid="948429331673358107">"Չհաջողվեց կիսվել կոնտակտով:"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Հասանելի կոնտակտներ չկան։"</string>
     <string name="menu_search" msgid="9147752853603483719">"Որոնել"</string>
@@ -619,8 +619,7 @@
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Ընտրեք կոնտակտները"</string>
     <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"Ընտրվել է <xliff:g id="COUNT">%d</xliff:g>-ը"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Ձեր SIM քարտում կոնտակտներ չկան"</string>
-    <!-- no translation found for sim_import_contact_exists_toast (1503743663717316732) -->
-    <skip />
+    <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Կոնտակտն արդեն առկա է ձեր ցանկում"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> SIM contacts imported</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> կոնտակտ SIM քարտից ներմուծվեց</item>
@@ -635,6 +634,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Ինչպես Կոնտակտներում, այնպես էլ մյուս բոլոր հավելվածներում և հաշիվներում կատարած փոփոխությունները կհամաժամեցվեն վեբ միջերեսի և ձեր սարքերի միջև:"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Միացնել"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Կապ չկա"</string>
-    <!-- no translation found for single_sim_display_label (6985770499439371497) -->
-    <skip />
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM քարտ"</string>
 </resources>
