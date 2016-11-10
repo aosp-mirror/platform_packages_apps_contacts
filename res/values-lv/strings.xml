@@ -257,10 +257,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Izvēlieties noklusējuma kontu, kurā saglabāt jaunās kontaktpersonas:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Pievienošana"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Rediģēšana"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Tikai skatīšana"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Rediģējamās kontaktpersonas izvēle"</string>
     <string name="add_account" msgid="8201790677994503186">"Pievienot kontu"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Pievienot jaunu kontu"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksportēt datu bāzes failus"</string>
@@ -303,8 +301,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Mainīt fotoattēlu"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Neizdevās atvērt redaktoru."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Tiks saglabāts šajā kontā:"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Konta <xliff:g id="ACCOUNT">%s</xliff:g> kontaktinformāciju nevar rediģēt"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Pašlaik notiek saglabāšana kontā <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Veiciet dubultskārienu, lai izvēlētos citu kontu."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="zero">Saistītās kontaktpersonas (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -344,9 +341,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Fotoattēls no <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> ir atlasīts."</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Nav atzīmēts fotoattēls no nezināma konta"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Atzīmēts fotoattēls no nezināma konta"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"Dublikāti"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Ieteikumi"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Jauns"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Atvērt navigācijas atvilktni"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Aizvērt navigācijas atvilktni"</string>

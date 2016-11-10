@@ -250,10 +250,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"เลือกบัญชีเริ่มต้นสำหรับรายชื่อติดต่อใหม่:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"เพิ่มรายชื่อติดต่อ"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"แก้ไขรายชื่อติดต่อ"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"ดูอย่างเดียว"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"เลือกผู้ติดต่อเพื่อแก้ไข"</string>
     <string name="add_account" msgid="8201790677994503186">"เพิ่มบัญชี"</string>
     <string name="add_new_account" msgid="5748627740680940264">"เพิ่มบัญชีใหม่"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ส่งออกไฟล์ฐานข้อมูล"</string>
@@ -296,8 +294,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"เปลี่ยนรูปภาพ"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"ไม่สามารถเปิดตัวแก้ไข"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"บันทึกลงใน"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"ข้อมูลติดต่อจาก <xliff:g id="ACCOUNT">%s</xliff:g> ไม่สามารถแก้ไขได้"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"ขณะนี้กำลังบันทึกไปยัง <xliff:g id="ACCOUNT_NAME">%s</xliff:g> แตะ 2 ครั้งเพื่อเลือกบัญชีอื่น"</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">รายชื่อติดต่อที่ลิงก์ (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -333,9 +330,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"เลือกรูปภาพจาก <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"รูปภาพนี้ไม่ได้เลือกจากบัญชีที่ไม่รู้จัก"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"รูปภาพนี้เลือกจากบัญชีที่ไม่รู้จัก"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"รายการซ้ำ"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"คำแนะนำ"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"ใหม่"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"เปิดลิ้นชักการนำทาง"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ปิดลิ้นชักการนำทาง"</string>
