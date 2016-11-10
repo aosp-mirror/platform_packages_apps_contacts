@@ -42,7 +42,7 @@
     <!-- Color of the status bar above the contextual selection bar. -->
     <color name="contextual_selection_bar_status_bar_color">#bababa</color>
 
-    <color name="primary_color_dark">#2a56c6</color>
+    <color name="primary_color_dark">#1c3aa9</color>
     <color name="primary_color">#2a56c6</color>
 
     <color name="group_primary_color_dark">#546E7A</color>
