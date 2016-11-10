@@ -250,10 +250,8 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Velg en standardkonto for nye kontakter."</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Legg til ny kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Rediger"</string>
-    <!-- no translation found for contact_editor_title_read_only_contact (2443496574528842237) -->
-    <skip />
-    <!-- no translation found for contact_editor_pick_raw_contact_to_edit_dialog_title (4186699385645902152) -->
-    <skip />
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Kun visning"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Velg kontakten du vil endre"</string>
     <string name="add_account" msgid="8201790677994503186">"Legg til konto"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Legg til ny konto"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Eksporter databasefilene"</string>
@@ -296,8 +294,7 @@
     <string name="editor_change_photo_content_description" msgid="754100561085306263">"Bytt bilde"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Kunne ikke åpne redigeringsvinduet."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Lagres i"</string>
-    <!-- no translation found for editor_account_selector_read_only_title (4137969650184457126) -->
-    <skip />
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Kontaktinformasjonen fra <xliff:g id="ACCOUNT">%s</xliff:g> kan ikke endres"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Lagrer på <xliff:g id="ACCOUNT_NAME">%s</xliff:g> for øyeblikket. Dobbelttrykk for å velge en annen konto."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="other">Sammenknyttede kontakter (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -333,9 +330,7 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Bilde fra <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> er markert"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Det er ikke merket av for noe bilde fra en ukjent konto"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Det er merket av for et bilde fra en ukjent konto"</string>
-    <!-- no translation found for menu_assistant (5760693735722052454) -->
-    <skip />
-    <string name="menu_duplicates" msgid="4129802988372197257">"Duplikater"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Forslag"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nye"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Åpne uttrekksmenyen"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Lukk uttrekksmenyen"</string>
@@ -640,5 +635,5 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Endringer du gjør i alle apper og kontoer, ikke bare i Kontakter, blir synkronisert mellom nettet og enhetene dine."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Slå på"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Ingen tilkobling"</string>
-    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
+    <string name="single_sim_display_label" msgid="6985770499439371497">"SIM-kort"</string>
 </resources>
