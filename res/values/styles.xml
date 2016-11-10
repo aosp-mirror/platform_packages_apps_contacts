@@ -91,6 +91,8 @@
         <item name="list_item_avatar_offset_top">-1dp</item>
         <!-- Favorites -->
         <item name="favorites_padding_bottom">0dip</item>
+        <!-- Popup menu -->
+        <item name="android:popupMenuStyle">@style/PopupMenuStyle</item>
     </style>
 
     <style name="PeopleActivityTheme" parent="@style/PeopleThemeAppCompat">
@@ -166,6 +168,17 @@
         <!-- Favorites -->
         <item name="favorites_padding_bottom">0dip</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <!-- Popup menu -->
+        <item name="android:popupMenuStyle">@style/PopupMenuStyleAppCompat</item>
+        <item name="popupMenuStyle">@style/PopupMenuStyleAppCompat</item>
+    </style>
+
+    <style name="PopupMenuStyle" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@android:color/white</item>
+    </style>
+
+    <style name="PopupMenuStyleAppCompat" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@android:color/white</item>
     </style>
 
     <style name="ContactsActionButtonStyle" parent="Widget.AppCompat.ActionButton">
