@@ -45,6 +45,8 @@ public abstract class RequestPermissionsActivityBase extends Activity
     protected static final String EXTRA_STARTED_PERMISSIONS_ACTIVITY =
             "started_permissions_activity";
 
+    protected static final String EXTRA_IS_CALLER_SELF = "is_caller_self";
+
     private static final int PERMISSIONS_REQUEST_ALL_PERMISSIONS = 1;
 
     /**
@@ -55,10 +57,14 @@ public abstract class RequestPermissionsActivityBase extends Activity
 
     protected Intent mPreviousActivityIntent;
 
+    /** If true then start the target activity "for result" after permissions are granted. */
+    protected boolean mIsCallerSelf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPreviousActivityIntent = (Intent) getIntent().getExtras().get(PREVIOUS_ACTIVITY_INTENT);
+        mIsCallerSelf = getIntent().getBooleanExtra(EXTRA_IS_CALLER_SELF, false);
 
         // Only start a requestPermissions() flow when first starting this activity the first time.
         // The process is likely to be restarted during the permission flow (necessary to enable
@@ -76,10 +82,17 @@ public abstract class RequestPermissionsActivityBase extends Activity
      */
     protected static boolean startPermissionActivity(Activity activity,
             String[] requiredPermissions, Class<?> newActivityClass) {
+        return startPermissionActivity(activity, requiredPermissions, /* isCallerSelf */ false,
+                newActivityClass);
+    }
+
+    protected static boolean startPermissionActivity(Activity activity,
+                String[] requiredPermissions, boolean isCallerSelf, Class<?> newActivityClass) {
         if (!hasPermissions(activity, requiredPermissions)) {
             final Intent intent = new Intent(activity,  newActivityClass);
             activity.getIntent().putExtra(EXTRA_STARTED_PERMISSIONS_ACTIVITY, true);
             intent.putExtra(PREVIOUS_ACTIVITY_INTENT, activity.getIntent());
+            intent.putExtra(EXTRA_IS_CALLER_SELF, isCallerSelf);
             activity.startActivity(intent);
             activity.finish();
             return true;
