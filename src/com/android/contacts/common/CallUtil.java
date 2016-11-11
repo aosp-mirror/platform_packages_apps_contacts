@@ -20,6 +20,7 @@ import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.PhoneAccountSdkCompat;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.common.util.PhoneNumberHelper;
+import com.android.contactsbind.FeedbackHelper;
 import com.android.phone.common.PhoneConstants;
 
 import android.content.Context;
@@ -40,6 +41,8 @@ import java.util.List;
  * The privileged version of this util exists inside Dialer.
  */
 public class CallUtil {
+
+    public static final String TAG = "CallUtil";
 
     /**
      * Indicates that the video calling is not available.
@@ -140,26 +143,32 @@ public class CallUtil {
             return VIDEO_CALLING_DISABLED;
         }
 
-        List<PhoneAccountHandle> accountHandles = telecommMgr.getCallCapablePhoneAccounts();
-        for (PhoneAccountHandle accountHandle : accountHandles) {
-            PhoneAccount account = telecommMgr.getPhoneAccount(accountHandle);
-            if (account != null) {
-                if (account.hasCapabilities(PhoneAccount.CAPABILITY_VIDEO_CALLING)) {
-                    // Builds prior to N do not have presence support.
-                    if (!CompatUtils.isVideoPresenceCompatible()) {
-                        return VIDEO_CALLING_ENABLED;
-                    }
+        try {
+            List<PhoneAccountHandle> accountHandles = telecommMgr.getCallCapablePhoneAccounts();
+            for (PhoneAccountHandle accountHandle : accountHandles) {
+                PhoneAccount account = telecommMgr.getPhoneAccount(accountHandle);
+                if (account != null) {
+                    if (account.hasCapabilities(PhoneAccount.CAPABILITY_VIDEO_CALLING)) {
+                        // Builds prior to N do not have presence support.
+                        if (!CompatUtils.isVideoPresenceCompatible()) {
+                            return VIDEO_CALLING_ENABLED;
+                        }
 
-                    int videoCapabilities = VIDEO_CALLING_ENABLED;
-                    if (account.hasCapabilities(
-                            PhoneAccountSdkCompat.CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE)) {
-                        videoCapabilities |= VIDEO_CALLING_PRESENCE;
+                        int videoCapabilities = VIDEO_CALLING_ENABLED;
+                        if (account.hasCapabilities(PhoneAccountSdkCompat
+                                .CAPABILITY_VIDEO_CALLING_RELIES_ON_PRESENCE)) {
+                            videoCapabilities |= VIDEO_CALLING_PRESENCE;
+                        }
+                        return videoCapabilities;
                     }
-                    return videoCapabilities;
                 }
             }
+            return VIDEO_CALLING_DISABLED;
+        } catch (SecurityException e) {
+            FeedbackHelper.sendFeedback(context, TAG,
+                    "Security exception when querying intent activities", e);
+            return VIDEO_CALLING_DISABLED;
         }
-        return VIDEO_CALLING_DISABLED;
     }
 
     /**
