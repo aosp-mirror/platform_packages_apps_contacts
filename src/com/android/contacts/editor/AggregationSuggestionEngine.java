@@ -40,8 +40,7 @@ import android.text.TextUtils;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.compat.AggregationSuggestionsCompat;
-
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -69,7 +68,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(Suggestion.class)
+            return MoreObjects.toStringHelper(Suggestion.class)
                     .add("contactId", contactId)
                     .add("contactLookupKey", contactLookupKey)
                     .add("rawContactId", rawContactId)
