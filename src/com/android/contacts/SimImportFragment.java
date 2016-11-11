@@ -281,10 +281,8 @@ public class SimImportFragment extends Fragment
                 importableContacts.add(mAdapter.getItem(checked.keyAt(i)));
             }
         }
-        ContactSaveService.startService(getContext(), ContactSaveService
-                .createImportFromSimIntent(getContext(), mSubscriptionId,
-                        importableContacts,
-                        mAccountHeaderPresenter.getCurrentAccount()));
+        SimImportService.startImport(getContext(), mSubscriptionId, importableContacts,
+                mAccountHeaderPresenter.getCurrentAccount());
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
