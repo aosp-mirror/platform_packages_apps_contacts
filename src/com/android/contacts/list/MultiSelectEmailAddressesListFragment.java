@@ -38,7 +38,7 @@ public class MultiSelectEmailAddressesListFragment
 
     public MultiSelectEmailAddressesListFragment() {
         setPhotoLoaderEnabled(true);
-        setSectionHeaderDisplayEnabled(true);
+        setSectionHeaderDisplayEnabled(false);
         setSearchMode(false);
         setHasOptionsMenu(true);
         setListType(ListEvent.ListType.PICK_EMAIL);
