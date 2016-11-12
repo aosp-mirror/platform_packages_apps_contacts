@@ -24,7 +24,6 @@ import android.content.OperationApplicationException;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
@@ -40,14 +39,12 @@ import android.telephony.TelephonyManager;
 import android.util.SparseArray;
 
 import com.android.contacts.R;
-import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.model.SimCard;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.util.SharedPreferenceUtil;
-import com.android.contactsbind.experiments.Flags;
 import com.google.common.base.Joiner;
 
 import java.util.ArrayList;
@@ -97,17 +94,6 @@ public class SimContactDao {
         mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
     }
 
-    public void warmupSimQueryIfNeeded() {
-        if (!canReadSimContacts()) return;
-
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                getSimCardsWithContacts();
-                return null;
-            }
-        }.execute();
-    }
 
     public Context getContext() {
         return mContext;
@@ -279,13 +265,19 @@ public class SimContactDao {
         return contacts != null ? contacts : loadContactsForSim(sim);
     }
 
+    // See b/32831092
+    // Sometimes the SIM contacts provider seems to get stuck if read from multiple threads
+    // concurrently. So we just have a global lock around it to prevent potential issues.
+    private static final Object SIM_READ_LOCK = new Object();
     private ArrayList<SimContact> loadFrom(Uri uri) {
-        final Cursor cursor = mResolver.query(uri, null, null, null, null);
+        synchronized (SIM_READ_LOCK) {
+            final Cursor cursor = mResolver.query(uri, null, null, null, null);
 
-        try {
-            return loadFromCursor(cursor);
-        } finally {
-            cursor.close();
+            try {
+                return loadFromCursor(cursor);
+            } finally {
+                cursor.close();
+            }
         }
     }
 
@@ -420,10 +412,6 @@ public class SimContactDao {
             mSimCards.add(sim);
             mCardsBySubscription.put(sim.getSubscriptionId(), sim);
             return this;
-        }
-
-        @Override
-        public void warmupSimQueryIfNeeded() {
         }
 
         @Override
