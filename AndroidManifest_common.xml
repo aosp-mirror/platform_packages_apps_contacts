@@ -351,7 +351,20 @@
             </intent-filter>
         </activity>
 
-        <activity
+         <!-- Keep support for apps that expect the Compact editor -->
+         <activity-alias android:name="com.android.contacts.activities.CompactContactEditorActivity"
+             android:exported="true"
+             android:targetActivity=".activities.ContactEditorActivity">
+             <intent-filter>
+                 <action android:name="android.intent.action.INSERT" />
+                 <category android:name="android.intent.category.DEFAULT" />
+                 <data android:mimeType="vnd.android.cursor.dir/person" />
+                 <data android:mimeType="vnd.android.cursor.dir/contact" />
+                 <data android:mimeType="vnd.android.cursor.dir/raw_contact" />
+             </intent-filter>
+         </activity-alias>
+
+         <activity
             android:name=".activities.ContactEditorSpringBoardActivity"
             android:noHistory="true"
             android:theme="@style/TransparentThemeAppCompat">
