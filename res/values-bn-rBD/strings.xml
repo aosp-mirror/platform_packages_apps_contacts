@@ -60,6 +60,8 @@
     <string name="joinConfirmation" msgid="8262614843581924365">"আপনি কি আপনার ইতিমধ্যে করা পরিবর্তনগুলি সংরক্ষণ এবং নির্বাচিত পরিচিতির সাথে লিঙ্ক করতে চান?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"সংরক্ষণ ও লিঙ্ক করুন"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"লিঙ্ক করুন"</string>
+    <!-- no translation found for menu_linkedContacts (400444389718855621) -->
+    <skip />
     <string name="menu_save" msgid="1727844363591825909">"সংরক্ষণ করুন"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"পরিচিতিগুলি লিঙ্ক করুন"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"যে পরিচিতিটিকে <xliff:g id="NAME">%s</xliff:g> এর সাথে লিঙ্ক করতে চান বেছে নিন:"</string>
@@ -88,9 +90,12 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"রিংটোন সেট করুন"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"ভয়েসমেলে রুট করুন"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"ভয়েসমেল থেকে আনরুট করুন"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"শুধুমাত্র-পঠনযোগ্য অ্যাকাউন্টের পরিচিতিগুলি মোছা যায় না, কিন্তু সেগুলিকে লুকিয়ে রাখা যাবে৷"</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"লুকান"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"যে পরিচিতিগুলি মোছা হবে সেগুলিতে একধিক অ্যাকাউন্টের বিশদ বিবরণ রয়েছে৷ শুধুমাত্র-পঠনযোগ্য অ্যাকাউন্টগুলির বিশদ বিবরণ লুকানো হবে, কিন্তু মুছে ফেলা হবে না৷"</string>
+    <!-- no translation found for readOnlyContactWarning (7514475664695089411) -->
+    <skip />
+    <!-- no translation found for readOnlyContactWarning_positive_button (8914797212167683673) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (4717023505914239809) -->
+    <skip />
     <string name="single_delete_confirmation" msgid="3106905986948679720">"এই পরিচিতিটি মুছবেন?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"নির্বাচিত পরিচিতিগুলি মুছে ফেলতে চান?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"শুধুমাত্র-পঠনযোগ্য অ্যাকাউন্টের পরিচিতিগুলি মোছা যায় না, কিন্তু সেগুলিকে লুকিয়ে রাখা যাবে৷"</string>
@@ -138,7 +143,8 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"কিছু পরিচিতির ফোন নম্বর নেই৷"</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"ইমেল পাঠান"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"বার্তা পাঠান"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"পরিচিতিগুলিকে নির্বাচন করুন"</string>
+    <!-- no translation found for pickerSelectContactsActivityTitle (1936544190231136729) -->
+    <skip />
     <string name="send_to_selection" msgid="2251339182881603540">"পাঠান"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">ফোন নম্বর সহ <xliff:g id="COUNT">%d</xliff:g>টি পরিচিতি</item>
@@ -252,6 +258,12 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"পরিচিতি সম্পাদনা করুন"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"কেবলমাত্র দেখার জন্য"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"সম্পাদনা করার জন্য একটি পরিচিতি বেছে নিন"</string>
+    <!-- no translation found for contact_editor_pick_linked_contact_dialog_title (4618465940423857694) -->
+    <skip />
+    <!-- no translation found for contact_editor_add_linked_contact (426142748048816297) -->
+    <skip />
+    <!-- no translation found for contact_editor_unlink_contacts (4525214336177236653) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"অ্যাকাউন্ট জুড়ুন"</string>
     <string name="add_new_account" msgid="5748627740680940264">"নতুন অ্যাকাউন্ট যোগ করুন"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ডেটাবেস ফাইলগুলি রপ্তানি করুন"</string>
@@ -337,7 +349,8 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"লেবেলগুলি"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"অ্যাকাউন্টগুলি"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"আপনার ইতিহাস একসাথে দেখুন"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ইভেন্ট এবং বার্তাগুলি"</string>
+    <!-- no translation found for permission_explanation_subheader_calendar_and_SMS (5411144298889835768) -->
+    <skip />
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ইভেন্টগুলি"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"বার্তাগুলি"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"আপনার তালিকা সংগঠিত করুন"</string>
@@ -630,8 +643,10 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"স্বতঃ-সিঙ্ক বন্ধ আছে৷ চালু করতে আলতো চাপ দিন৷"</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"খারিজ করুন"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"অ্যাকাউন্ট সিঙ্ক বন্ধ আছে৷ চালু করতে আলতো চাপ দিন৷"</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"স্বতঃ-সিঙ্ক চালু করবেন?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"পরিচিতি ছাড়াও, সমস্ত অ্যাপ এবং অ্যাকাউন্টে আপনার করা পরিবর্তনগুলি, ওয়েব এবং আপনার ডিভাইসগুলির মধ্যে সিঙ্ক্রোনাইজ হবে।"</string>
+    <!-- no translation found for turn_auto_sync_on_dialog_title (333965456829670541) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (5025336917533693997) -->
+    <skip />
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"চালু করুন"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"কোনো সংযোগ নেই"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>

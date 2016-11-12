@@ -60,6 +60,8 @@
     <string name="joinConfirmation" msgid="8262614843581924365">"మీరు ఇప్పటికే చేసిన మార్పులను సేవ్ చేసి, ఎంచుకున్న పరిచయంతో లింక్ చేయాలనుకుంటున్నారా?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"సేవ్ చేసి, లింక్ చేయి"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"లింక్ చేయి"</string>
+    <!-- no translation found for menu_linkedContacts (400444389718855621) -->
+    <skip />
     <string name="menu_save" msgid="1727844363591825909">"సేవ్ చేయి"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"పరిచయాలను లింక్ చేయండి"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"మీరు <xliff:g id="NAME">%s</xliff:g>తో లింక్ చేయాలనుకునే పరిచయాన్ని ఎంచుకోండి:"</string>
@@ -88,9 +90,12 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"రింగ్‌టో‌న్‌ను సెట్ చేయి"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"వాయిస్ మెయిల్‌కు మళ్లించు"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"వాయిస్ మెయిల్‌కు మళ్లించవద్దు"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"మీ చదవడానికి మాత్రమే ఖాతాల నుండి పరిచయాలు తొలగించబడవు, కానీ అవి దాచబడవచ్చు."</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"దాచు"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"తొలగించాల్సిన పరిచయం పలు ఖాతాల నుండి వివరాలను కలిగి ఉంది. చదవడానికి మాత్రమే ఖాతాల నుండి వివరాలు దాచబడతాయి, తొలగించబడవు."</string>
+    <!-- no translation found for readOnlyContactWarning (7514475664695089411) -->
+    <skip />
+    <!-- no translation found for readOnlyContactWarning_positive_button (8914797212167683673) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (4717023505914239809) -->
+    <skip />
     <string name="single_delete_confirmation" msgid="3106905986948679720">"ఈ పరిచయాన్ని తొలగించాలా?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"ఎంచుకున్న పరిచయాలను తొలగించాలా?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"మీ చదవడానికి మాత్రమే ఖాతాల నుండి పరిచయాలు తొలగించబడవు, కానీ అవి దాచబడవచ్చు."</string>
@@ -138,7 +143,8 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"కొన్ని పరిచయాలకు ఫోన్ నంబర్‌లు లేవు."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"ఇమెయిల్‌ను పంపు"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"సందేశాన్ని పంపు"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"పరిచయాలను ఎంచుకోండి"</string>
+    <!-- no translation found for pickerSelectContactsActivityTitle (1936544190231136729) -->
+    <skip />
     <string name="send_to_selection" msgid="2251339182881603540">"పంపు"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">ఫోన్ నంబర్‌లు ఉన్న <xliff:g id="COUNT">%d</xliff:g> పరిచయాలు</item>
@@ -252,6 +258,12 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"సవరించండి"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"వీక్షణ మాత్రమే"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"సవరించాల్సిన పరిచయాన్ని ఎంచుకోండి"</string>
+    <!-- no translation found for contact_editor_pick_linked_contact_dialog_title (4618465940423857694) -->
+    <skip />
+    <!-- no translation found for contact_editor_add_linked_contact (426142748048816297) -->
+    <skip />
+    <!-- no translation found for contact_editor_unlink_contacts (4525214336177236653) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"ఖాతాను జోడించు"</string>
     <string name="add_new_account" msgid="5748627740680940264">"కొత్త ఖాతాను జోడించు"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"డేటాబేస్ ఫైల్‌లను ఎగుమతి చేయి"</string>
@@ -337,7 +349,8 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"లేబుల్‌లు"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"ఖాతాలు"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"మీ చరిత్ర అంతా కలిపి చూడండి"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ఈవెంట్‌లు మరియు సందేశాలు"</string>
+    <!-- no translation found for permission_explanation_subheader_calendar_and_SMS (5411144298889835768) -->
+    <skip />
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ఈవెంట్‌లు"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"సందేశాలు"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"మీ జాబితాను ఉత్తమంగా నిర్వహించండి"</string>
@@ -630,8 +643,10 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"స్వీయ-సమకాలీకరణ ఆఫ్‌లో ఉంది. ఆన్ చేయడానికి నొక్కండి."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"తీసివేస్తుంది"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"ఖాతా సమకాలీకరణ ఆఫ్‌లో ఉంది. ఆన్ చేయడానికి నొక్కండి."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"స్వీయ-సమకాలీకరణను ఆన్ చేయాలా?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"మీరు కేవలం పరిచయాలకు చేసే మార్పులే కాకుండా అన్ని అనువర్తనాలు మరియు ఖాతాలకు చేసే మార్పులు వెబ్ మరియు మీ పరికరాల మధ్య సమకాలీకరించబడతాయి."</string>
+    <!-- no translation found for turn_auto_sync_on_dialog_title (333965456829670541) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (5025336917533693997) -->
+    <skip />
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ఆన్ చేయండి"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"కనెక్షన్ లేదు"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
