@@ -60,6 +60,8 @@
     <string name="joinConfirmation" msgid="8262614843581924365">"क्या आप पहले से किए गए बदलावों को सहेजना और चयनित संपर्कों से लिंक करना चाहते हैं?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"सहेजें और लिंक करें"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"लिंक करें"</string>
+    <!-- no translation found for menu_linkedContacts (400444389718855621) -->
+    <skip />
     <string name="menu_save" msgid="1727844363591825909">"सहेजें"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"संपर्क लिंक करें"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"वह संपर्क चुनें जिसे आप <xliff:g id="NAME">%s</xliff:g> के साथ लिंक करना चाहते हैं:"</string>
@@ -88,9 +90,12 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"रिंगटोन सेट करें"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"वॉइसमेल पर रूट करें"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"वॉइसमेल से रूट हटाएं"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"आपके केवल पढ़े जाने वाले खातों के संपर्क हटाए नहीं जा सकते, लेकिन उन्हें छिपाया जा सकता है."</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"छिपाएं"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"जिस संपर्क को हटाया जाना है उसमें एकाधिक खातों के विवरण हैं. केवल पढ़े जाने वाले खातों के विवरण छिपाए जाएंगे, उन्हें हटाया नहीं जाएगा."</string>
+    <!-- no translation found for readOnlyContactWarning (7514475664695089411) -->
+    <skip />
+    <!-- no translation found for readOnlyContactWarning_positive_button (8914797212167683673) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (4717023505914239809) -->
+    <skip />
     <string name="single_delete_confirmation" msgid="3106905986948679720">"यह संपर्क हटाएं?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"चयनित संपर्क हटाएं?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"आपके केवल पढ़े जाने वाले खातों के संपर्क हटाए नहीं जा सकते, लेकिन उन्हें छिपाया जा सकता है."</string>
@@ -138,7 +143,8 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"कुछ संपर्कों में फ़ोन नंबर नहीं हैं."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"ईमेल भेजें"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"संदेश भेजें"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"संपर्क चुनें"</string>
+    <!-- no translation found for pickerSelectContactsActivityTitle (1936544190231136729) -->
+    <skip />
     <string name="send_to_selection" msgid="2251339182881603540">"भेजें"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one">फ़ोन नंबर वाले <xliff:g id="COUNT">%d</xliff:g> संपर्क</item>
@@ -252,6 +258,12 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"संपर्क संपादित करें"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"केवल देखने के लिए"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"संपादित करने के लिए संपर्क चुनें"</string>
+    <!-- no translation found for contact_editor_pick_linked_contact_dialog_title (4618465940423857694) -->
+    <skip />
+    <!-- no translation found for contact_editor_add_linked_contact (426142748048816297) -->
+    <skip />
+    <!-- no translation found for contact_editor_unlink_contacts (4525214336177236653) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"खाता जोड़ें"</string>
     <string name="add_new_account" msgid="5748627740680940264">"नया खाता जोड़ें"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"डेटाबेस फ़ाइलें निर्यात करें"</string>
@@ -337,7 +349,8 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"लेबल"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"खाते"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"अपना इतिहास एक साथ देखें"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"ईवेंट और संदेश"</string>
+    <!-- no translation found for permission_explanation_subheader_calendar_and_SMS (5411144298889835768) -->
+    <skip />
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ईवेंट"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"संदेश"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"अपनी सूची व्यवस्थित करें"</string>
@@ -498,6 +511,7 @@
     </plurals>
     <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf फ़ाइल"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"आयात करने के लिए कुछ नहीं है"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard से संपर्कों को आयात करना चाहते हैं?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> का आयात रहने दें?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> का निर्यात रहने दें?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard आयात/निर्यात रद्द नहीं हो सका"</string>
@@ -629,8 +643,10 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"स्वतः समन्वयन बंद है. चालू करने के लिए टैप करें."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"खारिज करें"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"खाता समन्वयन बंद है. चालू करने के लिए टैप करें."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"स्वतः समन्वयन चालू करना चाहते हैं?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"आपके द्वारा न केवल संपर्क में, बल्कि सभी ऐप्लिकेशन और खातों में किए जाने वाले बदलाव, वेब और आपके डिवाइस के बीच समन्वयित किए जाएंगे."</string>
+    <!-- no translation found for turn_auto_sync_on_dialog_title (333965456829670541) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (5025336917533693997) -->
+    <skip />
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"चालू करें"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"कोई कनेक्शन नहीं"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"सिम"</string>
