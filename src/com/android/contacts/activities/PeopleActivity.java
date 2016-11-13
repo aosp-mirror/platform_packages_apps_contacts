@@ -810,8 +810,12 @@ public class PeopleActivity extends ContactsDrawerActivity {
                     R.id.contacts_list_container, mMembersFragment, TAG_GROUP_VIEW);
         } else if (isAssistantView()) {
             Fragment uiFragment = fragmentManager.findFragmentByTag(TAG_ASSISTANT);
+            Fragment unavailableFragment = fragmentManager.findFragmentByTag(TAG_UNAVAILABLE);
             if (uiFragment == null) {
                 uiFragment = ObjectFactory.getAssistantFragment();
+            }
+            if (unavailableFragment != null) {
+                transaction.remove(unavailableFragment);
             }
             transaction.replace(R.id.contacts_list_container, uiFragment, TAG_ASSISTANT);
             resetToolBarStatusBarColor();
