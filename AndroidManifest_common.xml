@@ -355,7 +355,7 @@
          <activity-alias android:name="com.android.contacts.activities.CompactContactEditorActivity"
              android:exported="true"
              android:targetActivity=".activities.ContactEditorActivity">
-             <intent-filter>
+             <intent-filter android:priority="-1">
                  <action android:name="android.intent.action.INSERT" />
                  <category android:name="android.intent.category.DEFAULT" />
                  <data android:mimeType="vnd.android.cursor.dir/person" />
