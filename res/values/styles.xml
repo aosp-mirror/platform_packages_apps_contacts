@@ -231,6 +231,21 @@
         <item name="titleTextAppearance">@style/ContactsActionBarTitleTextAppCompat</item>
     </style>
 
+    <style name="LightToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:tint">?android:textColorSecondary</item>
+    </style>
+
+    <style name="LightToolbarThemeOverlay" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="toolbarNavigationButtonStyle">@style/LightToolbarNavigationButtonStyle</item>
+    </style>
+
+    <style name="LightToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/contextual_selection_bar_color</item>
+        <item name="background">@color/contextual_selection_bar_color</item>
+        <item name="android:titleTextAppearance">@style/ContactsActionBarTitleTextBlack</item>
+        <item name="titleTextAppearance">@style/ContactsActionBarTitleTextBlack</item>
+    </style>
+
     <!-- Text in the action bar at the top of the screen -->
     <style name="ContactsActionBarTitleText"
            parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">

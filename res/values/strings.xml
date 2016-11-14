@@ -1850,9 +1850,6 @@
     <!-- Toolbar title shown when importing SIM contacts and none are selected -->
     <string name="sim_import_title_none_selected">Select contacts</string>
 
-    <!-- Toolbar title shown when importing SIM contacts and some are selected -->
-    <string name="sim_import_title_some_selected_fmt"><xliff:g id="count">%d</xliff:g> Selected</string>
-
     <!-- Message shown when the SIM import screen is displayed but there are no contacts on the
          SIM card  -->
     <string name="sim_import_empty_message">No contacts on your SIM card</string>
