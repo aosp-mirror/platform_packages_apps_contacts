@@ -20,7 +20,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -48,22 +47,18 @@ public final class SelectAccountDialogFragment extends DialogFragment {
      * Show the dialog.
      *
      * @param fragmentManager {@link FragmentManager}.
-     * @param targetFragment {@link Fragment} that implements {@link Listener}.
      * @param titleResourceId resource ID to use as the title.
      * @param accountListFilter account filter.
      * @param extraArgs Extra arguments, which will later be passed to
      *     {@link Listener#onAccountChosen}.  {@code null} will be converted to
      *     {@link Bundle#EMPTY}.
      */
-    public static <F extends Fragment & Listener> void show(FragmentManager fragmentManager,
-            F targetFragment, int titleResourceId,
+    public static void show(FragmentManager fragmentManager, int titleResourceId,
             AccountListFilter accountListFilter, Bundle extraArgs) {
-        show(fragmentManager, targetFragment, titleResourceId, accountListFilter, extraArgs,
-                /* tag */ null);
+        show(fragmentManager, titleResourceId, accountListFilter, extraArgs, /* tag */ null);
     }
 
-    public static <F extends Fragment & Listener> void show(FragmentManager fragmentManager,
-            F targetFragment, int titleResourceId,
+    public static void show(FragmentManager fragmentManager, int titleResourceId,
             AccountListFilter accountListFilter, Bundle extraArgs, String tag) {
         final Bundle args = new Bundle();
         args.putInt(KEY_TITLE_RES_ID, titleResourceId);
@@ -72,9 +67,6 @@ public final class SelectAccountDialogFragment extends DialogFragment {
 
         final SelectAccountDialogFragment instance = new SelectAccountDialogFragment();
         instance.setArguments(args);
-        if (targetFragment != null) {
-            instance.setTargetFragment(targetFragment, 0);
-        }
         instance.show(fragmentManager, tag);
     }
 
@@ -115,14 +107,8 @@ public final class SelectAccountDialogFragment extends DialogFragment {
         }
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle b) {
-        setTargetFragment(null, -1);
-        super.onSaveInstanceState(b);
-    }
-
     /**
-     * Calls {@link Listener#onAccountChosen} of {@code targetFragment}.
+     * Calls {@link Listener#onAccountChosen}.
      */
     private void onAccountSelected(AccountWithDataSet account) {
         final Listener listener = getListener();
@@ -133,14 +119,9 @@ public final class SelectAccountDialogFragment extends DialogFragment {
 
     private Listener getListener() {
         Listener listener = null;
-        final Fragment targetFragment = getTargetFragment();
-        if (targetFragment == null) {
-            final Activity activity = getActivity();
-            if (activity != null && activity instanceof Listener) {
-                listener = (Listener) activity;
-            }
-        } else if (targetFragment instanceof Listener) {
-            listener = (Listener) targetFragment;
+        final Activity activity = getActivity();
+        if (activity != null && activity instanceof Listener) {
+            listener = (Listener) activity;
         }
         return listener;
     }
