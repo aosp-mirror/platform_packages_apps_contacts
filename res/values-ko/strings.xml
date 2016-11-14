@@ -60,6 +60,8 @@
     <string name="joinConfirmation" msgid="8262614843581924365">"이미 변경한 내용을 저장하고 선택한 연락처와 연결하시겠습니까?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"저장 및 연결"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"연결"</string>
+    <!-- no translation found for menu_linkedContacts (400444389718855621) -->
+    <skip />
     <string name="menu_save" msgid="1727844363591825909">"저장"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"연락처 연결"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g>님과 연결하려는 연락처 선택:"</string>
@@ -88,9 +90,12 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"벨소리 설정"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"음성사서함으로 전달"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"음성사서함으로 전달 안함"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"읽기 전용 계정의 연락처는 숨길 수 있지만 삭제할 수 없습니다."</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"숨기기"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"삭제할 연락처에 여러 계정의 세부정보가 들어 있습니다. 읽기 전용 계정의 세부정보는 표시되지 않을 뿐 삭제되는 것은 아닙니다."</string>
+    <!-- no translation found for readOnlyContactWarning (7514475664695089411) -->
+    <skip />
+    <!-- no translation found for readOnlyContactWarning_positive_button (8914797212167683673) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (4717023505914239809) -->
+    <skip />
     <string name="single_delete_confirmation" msgid="3106905986948679720">"이 연락처를 삭제하시겠습니까?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"선택한 연락처를 삭제하시겠습니까?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"읽기 전용 계정의 연락처는 숨길 수 있지만 삭제할 수 없습니다."</string>
@@ -138,7 +143,8 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"전화번호가 없는 연락처가 있습니다."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"이메일 보내기"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"메시지 보내기"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"연락처 선택"</string>
+    <!-- no translation found for pickerSelectContactsActivityTitle (1936544190231136729) -->
+    <skip />
     <string name="send_to_selection" msgid="2251339182881603540">"보내기"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">전화번호가 포함된 연락처 <xliff:g id="COUNT">%d</xliff:g>개</item>
@@ -252,6 +258,12 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"연락처 수정"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"보기 전용"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"수정할 연락처 선택"</string>
+    <!-- no translation found for contact_editor_pick_linked_contact_dialog_title (4618465940423857694) -->
+    <skip />
+    <!-- no translation found for contact_editor_add_linked_contact (426142748048816297) -->
+    <skip />
+    <!-- no translation found for contact_editor_unlink_contacts (4525214336177236653) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"계정 추가"</string>
     <string name="add_new_account" msgid="5748627740680940264">"새 계정 추가"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"데이터베이스 파일 내보내기"</string>
@@ -337,7 +349,8 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"라벨"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"계정"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"기록 함께 표시"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"일정 및 메시지"</string>
+    <!-- no translation found for permission_explanation_subheader_calendar_and_SMS (5411144298889835768) -->
+    <skip />
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"일정"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"메시지"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"목록 정리"</string>
@@ -630,8 +643,10 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"자동 동기화가 사용 중지되어 있습니다. 사용 설정하려면 탭하세요."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"해제"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"계정 동기화가 사용 중지되어 있습니다. 사용 설정하려면 탭하세요."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"자동 동기화를 사용하시겠습니까?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"주소록뿐만 아니라 모든 앱과 계정의 변경사항이 웹 및 기기 간에 동기화됩니다."</string>
+    <!-- no translation found for turn_auto_sync_on_dialog_title (333965456829670541) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (5025336917533693997) -->
+    <skip />
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"사용"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"연결되지 않음"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>

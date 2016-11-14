@@ -60,6 +60,8 @@
     <string name="joinConfirmation" msgid="8262614843581924365">"คุณต้องการบันทึกการเปลี่ยนแปลงที่ได้ทำไปแล้วและลิงก์กับรายชื่อติดต่อที่เลือกไว้ไหม"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"บันทึกและลิงก์"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"ลิงก์"</string>
+    <!-- no translation found for menu_linkedContacts (400444389718855621) -->
+    <skip />
     <string name="menu_save" msgid="1727844363591825909">"บันทึก"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"ลิงก์รายชื่อติดต่อ"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"เลือกรายชื่อติดต่อที่คุณต้องการลิงก์กับ <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -88,9 +90,12 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ตั้งเสียงเรียกเข้า"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"โอนสายไปยังข้อความเสียง"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"ยกเลิกการโอนสายไปยังข้อความเสียง"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"ไม่สามารถลบรายชื่อติดต่อจากบัญชีอ่านอย่างเดียว แต่สามารถซ่อนรายชื่อติดต่อได้"</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"ซ่อน"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"รายชื่อติดต่อที่จะลบมีรายละเอียดจากหลายบัญชี ระบบจะซ่อนรายละเอียดจากบัญชีอ่านอย่างเดียว แต่ไม่ได้ลบรายละเอียด"</string>
+    <!-- no translation found for readOnlyContactWarning (7514475664695089411) -->
+    <skip />
+    <!-- no translation found for readOnlyContactWarning_positive_button (8914797212167683673) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (4717023505914239809) -->
+    <skip />
     <string name="single_delete_confirmation" msgid="3106905986948679720">"ลบรายชื่อติดต่อนี้ไหม"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"ลบรายชื่อติดต่อที่เลือกไว้ไหม"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"ไม่สามารถลบรายชื่อติดต่อจากบัญชีอ่านอย่างเดียว แต่สามารถซ่อนรายชื่อติดต่อได้"</string>
@@ -138,7 +143,8 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"รายชื่อติดต่อบางรายการไม่มีหมายเลขโทรศัพท์"</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"ส่งอีเมล"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"ส่งข้อความ"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"เลือกรายชื่อติดต่อ"</string>
+    <!-- no translation found for pickerSelectContactsActivityTitle (1936544190231136729) -->
+    <skip />
     <string name="send_to_selection" msgid="2251339182881603540">"ส่ง"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> รายชื่อติดต่อมีหมายเลขโทรศัพท์</item>
@@ -252,6 +258,12 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"แก้ไขรายชื่อติดต่อ"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"ดูอย่างเดียว"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"เลือกผู้ติดต่อเพื่อแก้ไข"</string>
+    <!-- no translation found for contact_editor_pick_linked_contact_dialog_title (4618465940423857694) -->
+    <skip />
+    <!-- no translation found for contact_editor_add_linked_contact (426142748048816297) -->
+    <skip />
+    <!-- no translation found for contact_editor_unlink_contacts (4525214336177236653) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"เพิ่มบัญชี"</string>
     <string name="add_new_account" msgid="5748627740680940264">"เพิ่มบัญชีใหม่"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ส่งออกไฟล์ฐานข้อมูล"</string>
@@ -337,7 +349,8 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"ป้ายกำกับ"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"บัญชี"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"ดูประวัติพร้อมกัน"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"กิจกรรมและข้อความ"</string>
+    <!-- no translation found for permission_explanation_subheader_calendar_and_SMS (5411144298889835768) -->
+    <skip />
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"กิจกรรม"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"ข้อความ"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"จัดระเบียบรายชื่อ"</string>
@@ -630,8 +643,10 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"ซิงค์อัตโนมัติปิดอยู่ แตะเพื่อเปิด"</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"ปิด"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"ซิงค์บัญชีปิดอยู่ แตะเพื่อเปิด"</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"เปิดซิงค์อัตโนมัติไหม"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"ระบบจะซิงค์ข้อมูลการเปลี่ยนแปลงต่างๆ ทั้งรายชื่อติดต่อรวมถึงแอปและบัญชีทั้งหมดระหว่างเว็บและอุปกรณ์ของคุณ"</string>
+    <!-- no translation found for turn_auto_sync_on_dialog_title (333965456829670541) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (5025336917533693997) -->
+    <skip />
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"เปิด"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"ไม่มีการเชื่อมต่อ"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"ซิม"</string>

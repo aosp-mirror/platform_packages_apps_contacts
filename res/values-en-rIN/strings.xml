@@ -60,6 +60,8 @@
     <string name="joinConfirmation" msgid="8262614843581924365">"Would you like to save the changes that you already made and link with the contact selected?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Save and Link"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Link"</string>
+    <!-- no translation found for menu_linkedContacts (400444389718855621) -->
+    <skip />
     <string name="menu_save" msgid="1727844363591825909">"Save"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Link contacts"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Choose the contact who you want to link with <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -88,9 +90,12 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Set ringtone"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Route to voicemail"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Don\'t route to voicemail"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Contacts from your read-only accounts cannot be deleted, but they can be hidden."</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Hide"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"The contact to be deleted has details from multiple accounts. Details from read-only accounts will be hidden, not deleted."</string>
+    <!-- no translation found for readOnlyContactWarning (7514475664695089411) -->
+    <skip />
+    <!-- no translation found for readOnlyContactWarning_positive_button (8914797212167683673) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (4717023505914239809) -->
+    <skip />
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Delete this contact?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Delete selected contacts?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Contacts from your read-only accounts cannot be deleted, but they can be hidden."</string>
@@ -138,7 +143,8 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Some contacts do not have phone numbers."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"Send email"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Send message"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Select contacts"</string>
+    <!-- no translation found for pickerSelectContactsActivityTitle (1936544190231136729) -->
+    <skip />
     <string name="send_to_selection" msgid="2251339182881603540">"Send"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts with phone numbers</item>
@@ -252,6 +258,12 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edit contact"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"View only"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Choose contact to edit"</string>
+    <!-- no translation found for contact_editor_pick_linked_contact_dialog_title (4618465940423857694) -->
+    <skip />
+    <!-- no translation found for contact_editor_add_linked_contact (426142748048816297) -->
+    <skip />
+    <!-- no translation found for contact_editor_unlink_contacts (4525214336177236653) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"Add account"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Add new account"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Export database files"</string>
@@ -337,7 +349,8 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"Labels"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Accounts"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"See your history together"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Events and messages"</string>
+    <!-- no translation found for permission_explanation_subheader_calendar_and_SMS (5411144298889835768) -->
+    <skip />
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Events"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Messages"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Organise your list"</string>
@@ -630,8 +643,10 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"Auto-sync is off. Tap to turn on."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Dismiss"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Account sync is off. Tap to turn on."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Turn auto-sync on?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Changes that you make to all apps and accounts, not just Contacts, will be synchronised between the web and your devices."</string>
+    <!-- no translation found for turn_auto_sync_on_dialog_title (333965456829670541) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (5025336917533693997) -->
+    <skip />
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Turn on"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"No connection"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
