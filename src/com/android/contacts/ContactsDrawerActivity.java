@@ -705,9 +705,9 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             onAccountChosen(accounts.get(0), /* extraArgs */ null);
             return;
         }
-        SelectAccountDialogFragment.show(getFragmentManager(), null,
-                R.string.dialog_new_group_account, AccountListFilter.ACCOUNTS_GROUP_WRITABLE,
-                /* extraArgs */ null, TAG_SELECT_ACCOUNT_DIALOG);
+        SelectAccountDialogFragment.show(getFragmentManager(), R.string.dialog_new_group_account,
+                AccountListFilter.ACCOUNTS_GROUP_WRITABLE, /* extraArgs */ null,
+                TAG_SELECT_ACCOUNT_DIALOG);
     }
 
     @Override

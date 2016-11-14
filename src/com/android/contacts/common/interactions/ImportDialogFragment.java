@@ -25,9 +25,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.text.TextUtilsCompat;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,12 +51,11 @@ import java.util.List;
 /**
  * An dialog invoked to import/export contacts.
  */
-public class ImportDialogFragment extends DialogFragment
-        implements SelectAccountDialogFragment.Listener {
+public class ImportDialogFragment extends DialogFragment {
     public static final String TAG = "ImportDialogFragment";
 
-    private static final String KEY_RES_ID = "resourceId";
-    private static final String KEY_SUBSCRIPTION_ID = "subscriptionId";
+    public static final String KEY_RES_ID = "resourceId";
+    public static final String KEY_SUBSCRIPTION_ID = "subscriptionId";
 
     public static final String EXTRA_SIM_ONLY = "extraSimOnly";
 
@@ -178,20 +174,16 @@ public class ImportDialogFragment extends DialogFragment
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                boolean dismissDialog;
                 final int resId = adapter.getItem(which).mChoiceResourceId;
                 if (resId == R.string.import_from_sim) {
-                    dismissDialog = handleSimImportRequest(adapter.getItem(which).mSim);
+                    handleSimImportRequest(adapter.getItem(which).mSim);
                 } else if (resId == R.string.import_from_vcf_file) {
-                        dismissDialog = handleImportRequest(resId, SimCard.NO_SUBSCRIPTION_ID);
+                    handleImportRequest(resId, SimCard.NO_SUBSCRIPTION_ID);
                 } else {
-                    dismissDialog = true;
                     Log.e(TAG, "Unexpected resource: "
                             + getActivity().getResources().getResourceEntryName(resId));
                 }
-                if (dismissDialog) {
-                    dialog.dismiss();
-                }
+                dialog.dismiss();
             }
         };
 
@@ -238,18 +230,15 @@ public class ImportDialogFragment extends DialogFragment
         }
     }
 
-    private boolean handleSimImportRequest(SimCard sim) {
+    private void handleSimImportRequest(SimCard sim) {
         SimImportFragment.newInstance(sim.getSubscriptionId()).show(getFragmentManager(),
                 "SimImport");
-        return true;
     }
 
     /**
      * Handle "import from SD".
-     *
-     * @return {@code true} if the dialog show be closed.  {@code false} otherwise.
      */
-    private boolean handleImportRequest(int resId, int subscriptionId) {
+    private void handleImportRequest(int resId, int subscriptionId) {
         // There are three possibilities:
         // - more than one accounts -> ask the user
         // - just one account -> use the account without asking the user
@@ -263,39 +252,13 @@ public class ImportDialogFragment extends DialogFragment
             args.putInt(KEY_RES_ID, resId);
             args.putInt(KEY_SUBSCRIPTION_ID, subscriptionId);
             SelectAccountDialogFragment.show(
-                    getFragmentManager(), this,
-                    R.string.dialog_new_contact_account,
+                    getFragmentManager(), R.string.dialog_new_contact_account,
                     AccountListFilter.ACCOUNTS_CONTACT_WRITABLE, args);
-
-            // In this case, because this DialogFragment is used as a target fragment to
-            // SelectAccountDialogFragment, we can't close it yet.  We close the dialog when
-            // we get a callback from it.
-            return false;
+        } else {
+            AccountSelectionUtil.doImport(getActivity(), resId,
+                    (size == 1 ? accountList.get(0) : null),
+                    (CompatUtils.isMSIMCompatible() ? subscriptionId : -1));
         }
-
-        AccountSelectionUtil.doImport(getActivity(), resId,
-                (size == 1 ? accountList.get(0) : null),
-                (CompatUtils.isMSIMCompatible() ? subscriptionId : -1));
-        return true; // Close the dialog.
-    }
-
-    /**
-     * Called when an account is selected on {@link SelectAccountDialogFragment}.
-     */
-    @Override
-    public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
-        AccountSelectionUtil.doImport(getActivity(), extraArgs.getInt(KEY_RES_ID),
-                account, extraArgs.getInt(KEY_SUBSCRIPTION_ID));
-
-        // At this point the dialog is still showing (which is why we can use getActivity() above)
-        // So close it.
-        dismiss();
-    }
-
-    @Override
-    public void onAccountSelectorCancelled() {
-        // See onAccountChosen() -- at this point the dialog is still showing.  Close it.
-        dismiss();
     }
 
     private CharSequence getSimDescription(SimCard sim, int index) {
