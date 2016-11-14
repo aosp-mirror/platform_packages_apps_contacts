@@ -60,6 +60,8 @@
     <string name="joinConfirmation" msgid="8262614843581924365">"Енгізіп қойған өзгертулерді сақтау және таңдалған контактімен байланыстыру керек пе?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Сақтау және байланыстыру"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Байланыстыру"</string>
+    <!-- no translation found for menu_linkedContacts (400444389718855621) -->
+    <skip />
     <string name="menu_save" msgid="1727844363591825909">"Сақтау"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Контактілерді байланыстыру"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> өзара байланысатын контактіні таңдаңыз:"</string>
@@ -88,9 +90,12 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Рингтонды орнату"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Дауыстық поштаға ауыстыру"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Дауыстық поштаны шығару"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Тек оқуға арналған есептік жазбалардағы контактілерді жою мүмкін емес, бірақ оларды жасыруға болады."</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Жасыру"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Жойылатын контактіде бірнеше есептік жазбадан алынған мәліметтер бар. Тек оқуға арналған есептік жазбалардан алынған мәліметтер жойылмайды, жасырылады."</string>
+    <!-- no translation found for readOnlyContactWarning (7514475664695089411) -->
+    <skip />
+    <!-- no translation found for readOnlyContactWarning_positive_button (8914797212167683673) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (4717023505914239809) -->
+    <skip />
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Осы контактіні жою керек пе?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Таңдалған контактілерді жою керек пе?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Тек оқуға арналған есептік жазбалардағы контактілерді жою мүмкін емес, бірақ оларды жасыруға болады."</string>
@@ -138,7 +143,8 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Кейбір контактілердің телефон нөмірлері жоқ."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"Электрондық хат жіберу"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Хабарды жіберу"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Контактілерді таңдау"</string>
+    <!-- no translation found for pickerSelectContactsActivityTitle (1936544190231136729) -->
+    <skip />
     <string name="send_to_selection" msgid="2251339182881603540">"Жіберу"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other">Телефон нөмірі бар <xliff:g id="COUNT">%d</xliff:g> контакт</item>
@@ -252,6 +258,12 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Контактіні өңдеу"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Көру мүмкіндігі ғана бар"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Өзгертілетін контактіні таңдаңыз"</string>
+    <!-- no translation found for contact_editor_pick_linked_contact_dialog_title (4618465940423857694) -->
+    <skip />
+    <!-- no translation found for contact_editor_add_linked_contact (426142748048816297) -->
+    <skip />
+    <!-- no translation found for contact_editor_unlink_contacts (4525214336177236653) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"Ес. жазба қосу"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Жаңа есептік жазба қосу"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Дерекқор файлдарын экспорттау"</string>
@@ -337,7 +349,8 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"Белгілер"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Есептік жазбалар"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"Тарихыңызды бірге көріңіз"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Оқиғалар және хабарлар"</string>
+    <!-- no translation found for permission_explanation_subheader_calendar_and_SMS (5411144298889835768) -->
+    <skip />
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Оқиғалар"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Хабарлар"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Тізіміңізді реттеңіз"</string>
@@ -498,6 +511,7 @@
     </plurals>
     <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf файлы"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"Импортталатын ешнәрсе жоқ"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard контактілерін импорттау қажет пе?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> импорттау тоқтатылсын ба?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> экспорттау тоқтатылсын ба?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard импорттау/экспорттау тоқтатылмады"</string>
@@ -629,8 +643,10 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"Автоматты синхрондау өшірулі. Қосу үшін түртіңіз."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Жабу"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Автоматты синхрондау өшірулі. Қосу үшін түртіңіз."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Автоматты синхрондауды қосу қажет пе?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Контактілерге ғана емес, барлық қолданбалар мен есептік жазбаларға енгізілген өзгерістер желі және құрылғыларыңыздың арасында синхрондалады."</string>
+    <!-- no translation found for turn_auto_sync_on_dialog_title (333965456829670541) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (5025336917533693997) -->
+    <skip />
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Қосу"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Байланыс жоқ"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>

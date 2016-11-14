@@ -60,6 +60,8 @@
     <string name="joinConfirmation" msgid="8262614843581924365">"Ingin menyimpan perubahan yang sudah dilakukan dan menautkan dengan kontak yang dipilih?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Simpan dan Tautkan"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Tautkan"</string>
+    <!-- no translation found for menu_linkedContacts (400444389718855621) -->
+    <skip />
     <string name="menu_save" msgid="1727844363591825909">"Simpan"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Tautkan kontak"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Pilih kontak yang ingin Anda tautkan dengan <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -88,9 +90,12 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setel nada dering"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Rute ke pesan suara"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Batalkan rute ke pesan suara"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontak dari akun hanya-baca tidak dapat dihapus, tetapi dapat disembunyikan."</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Sembunyikan"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Kontak yang akan dihapus memiliki detail dari beberapa akun. Detail dari akun hanya-baca akan disembunyikan, tidak dihapus."</string>
+    <!-- no translation found for readOnlyContactWarning (7514475664695089411) -->
+    <skip />
+    <!-- no translation found for readOnlyContactWarning_positive_button (8914797212167683673) -->
+    <skip />
+    <!-- no translation found for readOnlyContactDeleteConfirmation (4717023505914239809) -->
+    <skip />
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Hapus kontak ini?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Hapus kontak yang dipilih?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontak dari akun hanya-baca tidak dapat dihapus, tetapi dapat disembunyikan."</string>
@@ -138,7 +143,8 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Beberapa kontak tidak memiliki nomor telepon."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"Kirim email"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Kirim pesan"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Pilih Kontak"</string>
+    <!-- no translation found for pickerSelectContactsActivityTitle (1936544190231136729) -->
+    <skip />
     <string name="send_to_selection" msgid="2251339182881603540">"Kirim"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontak dengan nomor telepon</item>
@@ -252,6 +258,12 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Edit kontak"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Hanya lihat"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Pilih kontak untuk diedit"</string>
+    <!-- no translation found for contact_editor_pick_linked_contact_dialog_title (4618465940423857694) -->
+    <skip />
+    <!-- no translation found for contact_editor_add_linked_contact (426142748048816297) -->
+    <skip />
+    <!-- no translation found for contact_editor_unlink_contacts (4525214336177236653) -->
+    <skip />
     <string name="add_account" msgid="8201790677994503186">"Tambahkan akun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Tambahkan akun baru"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Ekspor file basis data"</string>
@@ -337,7 +349,8 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"Label"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Akun"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"Lihat riwayat bersama"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Acara dan Pesan"</string>
+    <!-- no translation found for permission_explanation_subheader_calendar_and_SMS (5411144298889835768) -->
+    <skip />
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Acara"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Pesan"</string>
     <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Atur daftar kontak Anda"</string>
@@ -498,6 +511,7 @@
     </plurals>
     <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"File .vcf"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"Tidak ada yang diimpor"</string>
+    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Impor kontak dari vCard?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Batalkan impor <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Batalkan ekspor <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Tidak dpt membatalkan impor/ekspor vCard"</string>
@@ -629,8 +643,10 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"Sinkronisasi otomatis tidak aktif. Tap untuk mengaktifkan."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Tutup"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Sinkronisasi akun tidak aktif. Tap untuk mengaktifkan."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Aktifkan sinkronisasi otomatis?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Perubahan yang Anda lakukan pada semua aplikasi dan akun, bukan hanya Kontak, akan disinkronkan antara web dan perangkat."</string>
+    <!-- no translation found for turn_auto_sync_on_dialog_title (333965456829670541) -->
+    <skip />
+    <!-- no translation found for turn_auto_sync_on_dialog_body (5025336917533693997) -->
+    <skip />
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Aktifkan"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Tidak ada sambungan"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
