@@ -47,9 +47,11 @@ import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.editor.AccountHeaderPresenter;
+import com.google.common.primitives.Longs;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -62,7 +64,7 @@ public class SimImportFragment extends DialogFragment
         implements LoaderManager.LoaderCallbacks<SimImportFragment.LoaderResult>,
         MultiSelectEntryContactListAdapter.SelectedContactsListener {
 
-    private static final String KEY_SELECTED_IDS = "selectedIds";
+    private static final String KEY_SUFFIX_SELECTED_IDS = "_selectedIds";
     private static final String ARG_SUBSCRIPTION_ID = "subscriptionId";
 
     private ContactsPreferences mPreferences;
@@ -73,8 +75,6 @@ public class SimImportFragment extends DialogFragment
     private Toolbar mToolbar;
     private ListView mListView;
     private View mImportButton;
-
-    private long[] mSelectedContacts;
 
     private int mSubscriptionId;
 
@@ -96,9 +96,6 @@ public class SimImportFragment extends DialogFragment
         final Bundle args = getArguments();
         mSubscriptionId = args == null ? SimCard.NO_SUBSCRIPTION_ID :
                 args.getInt(ARG_SUBSCRIPTION_ID, SimCard.NO_SUBSCRIPTION_ID);
-
-        if (savedInstanceState == null) return;
-        mSelectedContacts = savedInstanceState.getLongArray(KEY_SELECTED_IDS);
     }
 
     @Override
@@ -137,6 +134,7 @@ public class SimImportFragment extends DialogFragment
             }
         });
         mAdapter.setAccount(mAccountHeaderPresenter.getCurrentAccount());
+        restoreAdapterSelectedStates(savedInstanceState);
 
         mListView = (ListView) view.findViewById(R.id.list);
         mListView.setAdapter(mAdapter);
@@ -188,9 +186,7 @@ public class SimImportFragment extends DialogFragment
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mAccountHeaderPresenter.onSaveInstanceState(outState);
-        if (mAdapter != null && mAdapter.mContacts != null) {
-            outState.putLongArray(KEY_SELECTED_IDS, mAdapter.getSelectedContactIdsArray());
-        }
+        saveAdapterSelectedStates(outState);
     }
 
     @Override
@@ -207,15 +203,39 @@ public class SimImportFragment extends DialogFragment
             return;
         }
         mAdapter.setData(data);
-        if (mSelectedContacts != null) {
-            mAdapter.select(mSelectedContacts);
-        } else {
-            mAdapter.selectAll();
-        }
     }
 
     @Override
     public void onLoaderReset(Loader<LoaderResult> loader) {
+    }
+
+    private void restoreAdapterSelectedStates(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            return;
+        }
+
+        final List<AccountWithDataSet> accounts = mAccountTypeManager.getAccounts(true);
+        for (AccountWithDataSet account : accounts) {
+            final long[] selections = savedInstanceState.getLongArray(
+                    account.stringify() + KEY_SUFFIX_SELECTED_IDS);
+            if (selections != null) {
+                mAdapter.setSelectionsForAccount(account, selections);
+            }
+        }
+    }
+
+    private void saveAdapterSelectedStates(Bundle outState) {
+        if (mAdapter == null) {
+            return;
+        }
+
+        // Make sure the selections are up-to-date
+        mAdapter.storeCurrentSelections();
+        for (Map.Entry<AccountWithDataSet, TreeSet<Long>> entry :
+                mAdapter.getSelectedIds().entrySet()) {
+            final long[] ids = Longs.toArray(entry.getValue());
+            outState.putLongArray(entry.getKey().stringify() + KEY_SUFFIX_SELECTED_IDS, ids);
+        }
     }
 
     private void importCurrentSelections() {
@@ -306,6 +326,7 @@ public class SimImportFragment extends DialogFragment
             mExistingMap = result.accountsMap;
             changeCursor(SimContact.convertToContactsCursor(mContacts,
                     ContactQuery.CONTACT_PROJECTION_PRIMARY));
+            updateDisplayedSelections();
         }
 
         public void setAccount(AccountWithDataSet account) {
@@ -315,11 +336,25 @@ public class SimImportFragment extends DialogFragment
             }
 
             // Save the checked state for the current account.
+            storeCurrentSelections();
+            mSelectedAccount = account;
+            updateDisplayedSelections();
+        }
+
+        public void storeCurrentSelections() {
             if (mSelectedAccount != null) {
                 mPerAccountCheckedIds.put(mSelectedAccount, getSelectedContactIds());
             }
+        }
 
-            mSelectedAccount = account;
+        public Map<AccountWithDataSet, TreeSet<Long>> getSelectedIds() {
+            return mPerAccountCheckedIds;
+        }
+
+        private void updateDisplayedSelections() {
+            if (mContacts == null) {
+                return;
+            }
 
             TreeSet<Long> checked = mPerAccountCheckedIds.get(mSelectedAccount);
             if (checked == null) {
@@ -344,24 +379,12 @@ public class SimImportFragment extends DialogFragment
             return selected;
         }
 
-        public void selectAll() {
-            if (mContacts == null) return;
-
-            final TreeSet<Long> selected = new TreeSet<>();
-            for (SimContact contact : mContacts) {
-                if (!existsInCurrentAccount(contact)) {
-                    selected.add(contact.getId());
-                }
+        public void setSelectionsForAccount(AccountWithDataSet account, long[] contacts) {
+            final TreeSet<Long> selected = new TreeSet<>(Longs.asList(contacts));
+            mPerAccountCheckedIds.put(account, selected);
+            if (account.equals(mSelectedAccount)) {
+                updateDisplayedSelections();
             }
-            setSelectedContactIds(selected);
-        }
-
-        public void select(long[] contacts) {
-            final TreeSet<Long> selected = new TreeSet<>();
-            for (long contact : contacts) {
-                selected.add(contact);
-            }
-            setSelectedContactIds(selected);
         }
 
         public boolean existsInCurrentAccount(int position) {
