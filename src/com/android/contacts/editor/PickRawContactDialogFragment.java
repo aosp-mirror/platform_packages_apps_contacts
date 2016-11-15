@@ -3,9 +3,12 @@ package com.android.contacts.editor;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,7 +100,7 @@ public class PickRawContactDialogFragment extends DialogFragment {
 
             String displayName =
                     mPreferences.getDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
-                            ? rawContact.displayName : rawContact.displayNameAlt;
+                    ? rawContact.displayName : rawContact.displayNameAlt;
 
             if (TextUtils.isEmpty(displayName)) {
                 displayName = mContext.getString(R.string.missing_name);
@@ -127,12 +130,16 @@ public class PickRawContactDialogFragment extends DialogFragment {
             final ContactPhotoManager.DefaultImageRequest
                     request = new ContactPhotoManager.DefaultImageRequest(
                     displayName, String.valueOf(rawContact.id), /* isCircular = */ true);
+            final Uri photoUri = Uri.withAppendedPath(
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContact.id),
+                    RawContacts.DisplayPhoto.CONTENT_DIRECTORY);
 
-            ContactPhotoManager.getInstance(mContext).loadThumbnail(holder.photo,
-                    rawContact.photoId,
+            ContactPhotoManager.getInstance(mContext).loadDirectoryPhoto(holder.photo,
+                    photoUri,
                     /* darkTheme = */ false,
                     /* isCircular = */ true,
                     request);
+
             return view;
         }
 
