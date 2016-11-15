@@ -141,7 +141,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             // overlaid by the action bar of the newly-created fragment.
             stopSearchAndSelection();
             updateStatusBarBackground();
-            initializeAssistantNewBadge();
         }
 
         private void stopSearchAndSelection() {
@@ -184,6 +183,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 mRunnable.run();
                 mRunnable = null;
             }
+            initializeAssistantNewBadge();
         }
 
         public void runWhenIdle(Runnable runnable) {
@@ -264,7 +264,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     }
 
     private void initializeAssistantNewBadge() {
-        if (!Flags.getInstance().getBoolean(Experiments.ASSISTANT)) {
+        if (!Flags.getInstance().getBoolean(Experiments.ASSISTANT)
+                || mNavigationView == null) {
             return;
         }
         final LinearLayout newBadgeFrame = (LinearLayout) MenuItemCompat.getActionView(
