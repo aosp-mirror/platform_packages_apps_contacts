@@ -222,7 +222,7 @@
         <activity android:name=".common.activity.LicenseActivity"
             android:label="@string/activity_title_licenses"
             android:theme="@style/ContactsPreferencesTheme"
-            android:exported="false" />
+            android:exported="true" />
 
         <!-- Used to filter contacts list by account -->
         <activity
