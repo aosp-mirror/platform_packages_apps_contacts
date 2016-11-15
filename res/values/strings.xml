@@ -720,6 +720,11 @@
          at a pre-determined text size. [CHAR LIMIT=20] -->
     <string name="contact_editor_title_existing_contact">Edit contact</string>
 
+    <!-- Title of the editor activity when viewing a read-only raw contact. The char
+         limit is short and cannot be increased, since this needs to be displayed in a single line
+         at a pre-determined text size. [CHAR LIMIT=20] -->
+    <string name="contact_editor_title_read_only_contact">View only</string>
+
     <!-- Dialog title when the user is selecting a raw contact to edit.  [CHAR LIMIT=128] -->
     <string name="contact_editor_pick_raw_contact_dialog_title">Choose linked contact</string>
 
@@ -832,8 +837,8 @@
     <!-- Label for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=30] -->
     <string name="editor_account_selector_title">Saving to</string>
 
-    <!-- Label for the account selector to indicate which read-only account is being viewed. [CHAR LIMIT=30] -->
-    <string name="editor_account_selector_read_only_title">Viewing</string>
+    <!-- Label for the account selector to indicate the current information comes from a read-only account. [CHAR LIMIT=50] -->
+    <string name="editor_account_selector_read_only_title">Contact info from <xliff:g id="account">%s</xliff:g> is not editable</string>
 
     <!-- Content description for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=NONE] -->
     <string name="editor_account_selector_description">Currently saving to <xliff:g id="account_name">%s</xliff:g>. Double-tap to pick a different account.</string>
