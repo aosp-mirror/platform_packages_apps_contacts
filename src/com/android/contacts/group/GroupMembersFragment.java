@@ -268,13 +268,9 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         final boolean isSelectionMode = mActionBarAdapter.isSelectionMode();
         final boolean isGroupEditable = mGroupMetaData != null && mGroupMetaData.editable;
         final boolean isGroupReadOnly = mGroupMetaData != null && mGroupMetaData.readOnly;
-        final boolean experimentFlagSet =
-                Flags.getInstance().getBoolean(Experiments.SEND_TO_GROUP);
 
-        setVisible(menu, R.id.menu_multi_send_email, !mIsEditMode && !isGroupEmpty()
-                && experimentFlagSet);
-        setVisible(menu, R.id.menu_multi_send_message, !mIsEditMode && !isGroupEmpty()
-                && experimentFlagSet);
+        setVisible(menu, R.id.menu_multi_send_email, !mIsEditMode && !isGroupEmpty());
+        setVisible(menu, R.id.menu_multi_send_message, !mIsEditMode && !isGroupEmpty());
         setVisible(menu, R.id.menu_add, isGroupEditable && !isSelectionMode);
         setVisible(menu, R.id.menu_rename_group, !isGroupReadOnly && !isSelectionMode);
         setVisible(menu, R.id.menu_delete_group, !isGroupReadOnly && !isSelectionMode);
