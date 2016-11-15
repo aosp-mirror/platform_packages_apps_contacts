@@ -25,7 +25,6 @@ import android.text.TextUtils;
 
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorSpringBoardActivity;
-import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
 
@@ -49,6 +48,15 @@ public class EditorIntents {
                 ContactEditorSpringBoardActivity.class);
         putMaterialPalette(intent, materialPalette);
         putPhotoId(intent, photoId);
+        return intent;
+    }
+
+    public static Intent createViewLinkedContactsIntent(Context context, Uri uri,
+            MaterialPalette materialPalette) {
+        final Intent intent = createEditContactIntent(context, uri, materialPalette,
+                /* photoId */ -1);
+        intent.putExtra(ContactEditorSpringBoardActivity.EXTRA_SHOW_READ_ONLY, true);
+
         return intent;
     }
 

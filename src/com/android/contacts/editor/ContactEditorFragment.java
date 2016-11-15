@@ -799,6 +799,9 @@ public class ContactEditorFragment extends Fragment implements
         save(SaveMode.SPLIT);
     }
 
+    @Override
+    public void onSplitContactCanceled() {}
+
     private boolean doSplitContactAction() {
         if (!hasValidState()) return false;
 
