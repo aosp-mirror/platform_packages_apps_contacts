@@ -132,6 +132,20 @@ public class ContactEditorUtils {
         return mContactsPrefs.shouldShowAccountChangedNotification(getWritableAccounts());
     }
 
+    /**
+     * Sets the only non-device account to be default if it is not already.
+     */
+    public void maybeUpdateDefaultAccount() {
+        final List<AccountWithDataSet> currentWritableAccounts = getWritableAccounts();
+        if (currentWritableAccounts.size() == 1) {
+            final AccountWithDataSet onlyAccount = currentWritableAccounts.get(0);
+            if (!onlyAccount.isNullAccount()
+                    && !onlyAccount.equals(mContactsPrefs.getDefaultAccount())) {
+                mContactsPrefs.setDefaultAccount(onlyAccount);
+            }
+        }
+    }
+
     @VisibleForTesting
     String[] getWritableAccountTypeStrings() {
         final Set<String> types = Sets.newHashSet();
