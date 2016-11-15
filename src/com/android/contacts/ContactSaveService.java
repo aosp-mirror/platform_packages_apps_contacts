@@ -1220,7 +1220,7 @@ public class ContactSaveService extends IntentService {
         final String[] names = intent.getStringArrayExtra(
                 ContactSaveService.EXTRA_DISPLAY_NAME_ARRAY);
         final String deleteToastMessage;
-        if (names.length == 0) {
+        if (contactIds.length != names.length || names.length == 0) {
             deleteToastMessage = getResources().getQuantityString(
                     R.plurals.contacts_deleted_toast, contactIds.length);
         } else if (names.length == 1) {
@@ -1233,6 +1233,7 @@ public class ContactSaveService extends IntentService {
             deleteToastMessage = getResources().getString(
                     R.string.contacts_deleted_many_named_toast, names);
         }
+
         mMainHandler.post(new Runnable() {
             @Override
             public void run() {
