@@ -265,8 +265,12 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         if (mNavigationView == null) {
             return;
         }
-        final LinearLayout newBadgeFrame = (LinearLayout) MenuItemCompat.getActionView(
-                mNavigationView.getMenu().findItem(R.id.nav_assistant));
+        final MenuItem assistantMenu = mNavigationView.getMenu().findItem(R.id.nav_assistant);
+        if (assistantMenu == null) {
+            return;
+        }
+        final LinearLayout newBadgeFrame =
+                (LinearLayout) MenuItemCompat.getActionView(assistantMenu);
         final boolean showWelcomeBadge = !SharedPreferenceUtil.isWelcomeCardDismissed(this);
         if (showWelcomeBadge && newBadgeFrame.getChildCount() == 0) {
             if (mAssistantNewBadge == null) {
