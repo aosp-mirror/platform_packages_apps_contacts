@@ -1,5 +1,6 @@
 package com.android.contacts.activities;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.LoaderManager;
@@ -13,6 +14,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.widget.Toast;
 
 import com.android.contacts.AppCompatContactsActivity;
+import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
 import com.android.contacts.common.logging.EditorEvent;
@@ -25,15 +27,18 @@ import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.editor.PickRawContactDialogFragment;
 import com.android.contacts.editor.PickRawContactLoader;
 import com.android.contacts.editor.PickRawContactLoader.RawContactsMetadata;
+import com.android.contacts.editor.SplitContactConfirmationDialogFragment;
+import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contactsbind.FeedbackHelper;
 
 /**
  * Transparent springboard activity that hosts a dialog to select a raw contact to edit.
- * This activity has noHistory set to true, and all intents coming out from it have
- * {@code FLAG_ACTIVITY_FORWARD_RESULT} set.
+ * All intents coming out from this activity have {@code FLAG_ACTIVITY_FORWARD_RESULT} set.
  */
 public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity implements
-        PickRawContactDialogFragment.PickRawContactListener {
+        PickRawContactDialogFragment.PickRawContactListener,
+        SplitContactConfirmationDialogFragment.Listener {
+
     private static final String TAG = "EditorSpringBoard";
     private static final String TAG_RAW_CONTACTS_DIALOG = "rawContactsDialog";
     private static final int LOADER_RAW_CONTACTS = 1;
@@ -44,6 +49,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     private RawContactsMetadata mResult;
     private MaterialPalette mMaterialPalette;
     private boolean mHasWritableAccount;
+    private boolean mShowReadOnly;
     private int mWritableAccountPosition;
 
     /**
@@ -65,13 +71,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
                         return;
                     }
                     mResult = result;
-                    maybeTrimReadOnly();
-                    setHasWritableAccount();
-                    if (mResult.rawContacts.size() > 1 && mHasWritableAccount) {
-                        showDialog();
-                    } else {
-                        loadEditor();
-                    }
+                    onLoad();
                 }
 
                 @Override
@@ -103,6 +103,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
             mMaterialPalette = new MaterialPalette(intent.getIntExtra(primary, -1),
                     intent.getIntExtra(secondary, -1));
         }
+        mShowReadOnly = intent.getBooleanExtra(EXTRA_SHOW_READ_ONLY, false);
 
         mUri = intent.getData();
         final String authority = mUri.getAuthority();
@@ -130,15 +131,27 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     }
 
     /**
+     * Once the load is finished, decide whether to show the dialog or load the editor directly.
+     */
+    private void onLoad() {
+        maybeTrimReadOnly();
+        setHasWritableAccount();
+        if (mShowReadOnly || (mResult.rawContacts.size() > 1 && mHasWritableAccount)) {
+            showDialog();
+        } else {
+            loadEditor();
+        }
+    }
+
+    /**
      * If not configured to show read only raw contact, trim them from the result.
      */
     private void maybeTrimReadOnly() {
-        final boolean showReadOnly = getIntent().getBooleanExtra(EXTRA_SHOW_READ_ONLY, false);
-        mResult.showReadOnly = showReadOnly;
-
-        if (showReadOnly) {
+        mResult.showReadOnly = mShowReadOnly;
+        if (mShowReadOnly) {
             return;
         }
+
         mResult.trimReadOnly(AccountTypeManager.getInstance(this));
     }
 
@@ -147,19 +160,18 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
      */
     private void showDialog() {
         final FragmentManager fm = getFragmentManager();
-        final PickRawContactDialogFragment oldFragment = (PickRawContactDialogFragment)
-                fm.findFragmentByTag(TAG_RAW_CONTACTS_DIALOG);
-        if (oldFragment != null && oldFragment.getDialog() != null
-                && oldFragment.getDialog().isShowing()) {
+        final SplitContactConfirmationDialogFragment split =
+                (SplitContactConfirmationDialogFragment) fm
+                        .findFragmentByTag(SplitContactConfirmationDialogFragment.TAG);
+        // If we were showing the split confirmation before show it again.
+        if (split != null && split.isAdded()) {
+            fm.beginTransaction().show(split).commitAllowingStateLoss();
             return;
         }
         final FragmentTransaction ft = fm.beginTransaction();
-        if (oldFragment != null) {
-            ft.remove(oldFragment);
-        }
-        final PickRawContactDialogFragment newFragment = PickRawContactDialogFragment.getInstance(
+        final PickRawContactDialogFragment pick = PickRawContactDialogFragment.getInstance(
                  mResult);
-        ft.add(newFragment, TAG_RAW_CONTACTS_DIALOG);
+        ft.add(pick, TAG_RAW_CONTACTS_DIALOG);
         // commitAllowingStateLoss is safe in this activity because the fragment entirely depends
         // on the result of the loader. Even if we lose the fragment because the activity was
         // in the background, when it comes back onLoadFinished will be called again which will
@@ -185,6 +197,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
             intent.setClass(this, ContactEditorActivity.class);
         }
         startEditorAndForwardExtras(intent);
+        finish();
     }
 
     /**
@@ -224,5 +237,41 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
                 R.string.editor_failed_to_load, Toast.LENGTH_SHORT).show();
         setResult(RESULT_CANCELED, null);
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Ignore failed requests
+        if (resultCode != Activity.RESULT_OK) {
+            finish();
+        }
+        if (data != null) {
+            final Intent intent = ContactSaveService.createJoinContactsIntent(
+                    this, mResult.contactId, ContentUris.parseId(data.getData()),
+                    QuickContactActivity.class, Intent.ACTION_VIEW);
+            startService(intent);
+            finish();
+        }
+    }
+
+    @Override
+    public void onSplitContactConfirmed(boolean hasPendingChanges) {
+        final long[][] rawContactIds = getRawContactIds();
+        final Intent intent = ContactSaveService.createHardSplitContactIntent(this, rawContactIds);
+        startService(intent);
+        finish();
+    }
+
+    @Override
+    public void onSplitContactCanceled() {
+        finish();
+    }
+
+    private long[][] getRawContactIds() {
+        final long[][] result = new long[mResult.rawContacts.size()][1];
+        for (int i = 0; i < mResult.rawContacts.size(); i++) {
+            result[i][0] = mResult.rawContacts.get(i).id;
+        }
+        return result;
     }
 }

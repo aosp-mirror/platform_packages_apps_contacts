@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import static android.Manifest.permission.WRITE_CONTACTS;
+
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
@@ -45,8 +47,6 @@ import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.os.ResultReceiver;
 import android.telephony.SubscriptionInfo;
@@ -72,6 +72,7 @@ import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contactsbind.FeedbackHelper;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -80,8 +81,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import static android.Manifest.permission.WRITE_CONTACTS;
 
 /**
  * A service responsible for saving changes to the content provider.
@@ -133,6 +132,7 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_DATA_ID = "dataId";
 
     public static final String ACTION_SPLIT_CONTACT = "splitContact";
+    public static final String EXTRA_HARD_SPLIT = "extraHardSplit";
 
     public static final String ACTION_JOIN_CONTACTS = "joinContacts";
     public static final String ACTION_JOIN_SEVERAL_CONTACTS = "joinSeveralContacts";
@@ -159,6 +159,8 @@ public class ContactSaveService extends IntentService {
 
     public static final String BROADCAST_GROUP_DELETED = "groupDeleted";
     public static final String BROADCAST_SIM_IMPORT_COMPLETE = "simImportComplete";
+    public static final String BROADCAST_LINK_COMPLETE = "linkComplete";
+    public static final String BROADCAST_UNLINK_COMPLETE = "unlinkComplete";
 
     public static final String BROADCAST_SERVICE_STATE_CHANGED = "serviceStateChanged";
 
@@ -1244,7 +1246,7 @@ public class ContactSaveService extends IntentService {
 
     /**
      * Creates an intent that can be sent to this service to split a contact into it's constituent
-     * pieces. This will set the raw contact ids to TYPE_AUTOMATIC for AggregationExceptions so
+     * pieces. This will set the raw contact ids to {@link AggregationExceptions#TYPE_AUTOMATIC} so
      * they may be re-merged by the auto-aggregator.
      */
     public static Intent createSplitContactIntent(Context context, long[][] rawContactIds,
@@ -1256,10 +1258,24 @@ public class ContactSaveService extends IntentService {
         return serviceIntent;
     }
 
+    /**
+     * Creates an intent that can be sent to this service to split a contact into it's constituent
+     * pieces. This will explicitly set the raw contact ids to
+     * {@link AggregationExceptions#TYPE_KEEP_SEPARATE}.
+     */
+    public static Intent createHardSplitContactIntent(Context context, long[][] rawContactIds) {
+        final Intent serviceIntent = new Intent(context, ContactSaveService.class);
+        serviceIntent.setAction(ContactSaveService.ACTION_SPLIT_CONTACT);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_RAW_CONTACT_IDS, rawContactIds);
+        serviceIntent.putExtra(ContactSaveService.EXTRA_HARD_SPLIT, true);
+        return serviceIntent;
+    }
+
     private void splitContact(Intent intent) {
         final long rawContactIds[][] = (long[][]) intent
                 .getSerializableExtra(EXTRA_RAW_CONTACT_IDS);
         final ResultReceiver receiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER);
+        final boolean hardSplit = intent.getBooleanExtra(EXTRA_HARD_SPLIT, false);
         if (rawContactIds == null) {
             Log.e(TAG, "Invalid argument for splitContact request");
             if (receiver != null) {
@@ -1273,7 +1289,8 @@ public class ContactSaveService extends IntentService {
         for (int i = 0; i < rawContactIds.length; i++) {
             for (int j = 0; j < rawContactIds.length; j++) {
                 if (i != j) {
-                    if (!buildSplitTwoContacts(operations, rawContactIds[i], rawContactIds[j])) {
+                    if (!buildSplitTwoContacts(operations, rawContactIds[i], rawContactIds[j],
+                            hardSplit)) {
                         if (receiver != null) {
                             receiver.send(CP2_ERROR, new Bundle());
                             return;
@@ -1288,6 +1305,8 @@ public class ContactSaveService extends IntentService {
             }
             return;
         }
+        LocalBroadcastManager.getInstance(this)
+                .sendBroadcast(new Intent(BROADCAST_UNLINK_COMPLETE));
         if (receiver != null) {
             receiver.send(CONTACTS_SPLIT, new Bundle());
         } else {
@@ -1301,7 +1320,7 @@ public class ContactSaveService extends IntentService {
      * @return false if an error occurred, true otherwise.
      */
     private boolean buildSplitTwoContacts(ArrayList<ContentProviderOperation> operations,
-            long[] rawContactIds1, long[] rawContactIds2) {
+            long[] rawContactIds1, long[] rawContactIds2, boolean hardSplit) {
         if (rawContactIds1 == null || rawContactIds2 == null) {
             Log.e(TAG, "Invalid arguments for splitContact request");
             return false;
@@ -1312,7 +1331,7 @@ public class ContactSaveService extends IntentService {
         final int batchSize = MAX_CONTACTS_PROVIDER_BATCH_SIZE;
         for (int i = 0; i < rawContactIds1.length; i++) {
             for (int j = 0; j < rawContactIds2.length; j++) {
-                buildSplitContactDiff(operations, rawContactIds1[i], rawContactIds2[j]);
+                buildSplitContactDiff(operations, rawContactIds1[i], rawContactIds2[j], hardSplit);
                 // Before we get to 500 we need to flush the operations list
                 if (operations.size() > 0 && operations.size() % batchSize == 0) {
                     if (!applyOperations(resolver, operations)) {
@@ -1453,6 +1472,8 @@ public class ContactSaveService extends IntentService {
                     showToast(R.string.contactsJoinedNamedMessage, name);
                 }
             }
+            LocalBroadcastManager.getInstance(this)
+                    .sendBroadcast(new Intent(BROADCAST_LINK_COMPLETE));
         } else {
             if (receiver != null) {
                 receiver.send(CP2_ERROR, new Bundle());
@@ -1591,6 +1612,8 @@ public class ContactSaveService extends IntentService {
             Uri uri = RawContacts.getContactLookupUri(resolver,
                     ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactIds[0]));
             callbackIntent.setData(uri);
+            LocalBroadcastManager.getInstance(this)
+                    .sendBroadcast(new Intent(BROADCAST_LINK_COMPLETE));
         }
         deliverCallback(callbackIntent);
     }
@@ -1710,13 +1733,18 @@ public class ContactSaveService extends IntentService {
     }
 
     /**
-     * Construct a {@link AggregationExceptions#TYPE_AUTOMATIC} ContentProviderOperation.
+     * Construct a {@link AggregationExceptions#TYPE_AUTOMATIC} or a
+     * {@link AggregationExceptions#TYPE_KEEP_SEPARATE} ContentProviderOperation if a hard split is
+     * requested.
      */
     private void buildSplitContactDiff(ArrayList<ContentProviderOperation> operations,
-            long rawContactId1, long rawContactId2) {
+            long rawContactId1, long rawContactId2, boolean hardSplit) {
         final Builder builder =
                 ContentProviderOperation.newUpdate(AggregationExceptions.CONTENT_URI);
-        builder.withValue(AggregationExceptions.TYPE, AggregationExceptions.TYPE_AUTOMATIC);
+        builder.withValue(AggregationExceptions.TYPE,
+                hardSplit
+                        ? AggregationExceptions.TYPE_KEEP_SEPARATE
+                        : AggregationExceptions.TYPE_AUTOMATIC);
         builder.withValue(AggregationExceptions.RAW_CONTACT_ID1, rawContactId1);
         builder.withValue(AggregationExceptions.RAW_CONTACT_ID2, rawContactId2);
         operations.add(builder.build());
