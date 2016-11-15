@@ -45,6 +45,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.group.GroupMembersFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -375,10 +376,14 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
 
         bindListHeaderCommon(listView, accountFilterContainer);
 
-        // Set text of count of contacts and account name (if it's a Google account)
+        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
+        final AccountType accountType = accountTypeManager.getAccountType(
+                accountWithDataSet.type, accountWithDataSet.dataSet);
+
+        // Set text of count of contacts and account name
         final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
                 R.id.account_filter_header);
-        final String headerText = GoogleAccountType.ACCOUNT_TYPE.equals(accountWithDataSet.type)
+        final String headerText = shouldShowAccountName(accountType)
                 ? String.format(context.getResources().getQuantityString(
                         R.plurals.contacts_count_with_account, memberCount),
                                 memberCount, accountWithDataSet.name)
@@ -388,9 +393,6 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         accountFilterHeader.setAllCaps(false);
 
         // Set icon of the account
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
-        final AccountType accountType = accountTypeManager.getAccountType(
-                accountWithDataSet.type, accountWithDataSet.dataSet);
         final Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
         final ImageView accountFilterHeaderIcon = (ImageView) accountFilterContainer
                 .findViewById(R.id.account_filter_icon);
@@ -425,6 +427,11 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
 
         accountFilterHeaderIcon.setVisibility(View.VISIBLE);
         accountFilterHeaderIcon.setImageDrawable(icon);
+    }
+
+    private boolean shouldShowAccountName(AccountType accountType) {
+        return (accountType.isGroupMembershipEditable() && this instanceof GroupMembersFragment)
+                || GoogleAccountType.ACCOUNT_TYPE.equals(accountType.accountType);
     }
 
     private void setMargins(View v, int l, int r) {
