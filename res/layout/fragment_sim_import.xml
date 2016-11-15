@@ -63,8 +63,8 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="8dp"
-                android:clipToPadding="false"/>
+                android:clipToPadding="false"
+                android:paddingTop="8dp"/>
 
             <android.support.v4.widget.ContentLoadingProgressBar
                 android:id="@+id/loading_progress"
