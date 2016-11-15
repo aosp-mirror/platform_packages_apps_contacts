@@ -925,13 +925,13 @@
     <!-- Content description of photo in photo picker indicating a photo from unknown account is selected. -->
     <string name="photo_view_description_checked_no_info">Photo from unknown account checked</string>
 
-    <!-- Left drawer menu item to open contacts assistant cards. [CHAR LIMIT=20]-->
-    <string name="menu_assistant">Assistant</string>
+    <!-- Left drawer menu item to open contacts assistant/suggestion cards. [CHAR LIMIT=20]-->
+    <string name="menu_assistant">Suggestions</string>
 
     <!-- The menu item to open the link/merge duplicates activity. [CHAR LIMIT=20]-->
     <string name="menu_duplicates">Duplicates</string>
 
-    <!-- Assistant 'NEW' badge text. Badge shown next to Assistant in left drawer menu when user has not visited it yet. [CHAR LIMIT=10] -->
+    <!-- Badge shown next to Suggestions in left drawer menu when user has not visited it yet. [CHAR LIMIT=10] -->
     <string name="menu_assistant_new_badge">New</string>
 
     <!-- Open drawer content descriptions [CHAR LIMIT=40] -->
