@@ -1,22 +1,31 @@
 package com.android.contacts.editor;
 
+import android.content.AsyncTaskLoader;
+import android.content.ContentResolver;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.RawContacts;
+
+import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.common.model.account.AccountType;
+
+import java.util.ArrayList;
 
 /**
  * Loader for the pick a raw contact to edit activity. Loads all raw contact metadata for the
  * given Contact {@link Uri}.
  */
-public class PickRawContactLoader extends CursorLoader {
+public class PickRawContactLoader extends
+        AsyncTaskLoader<PickRawContactLoader.RawContactsMetadata> {
     private Uri mContactUri;
-    private boolean mIsUserProfile;
+    private RawContactsMetadata mCachedResult;
 
-    public static final String[] COLUMNS = new String[] {
+    private static final String[] RAW_CONTACT_PROJECTION = new String[] {
             RawContacts.ACCOUNT_NAME,
             RawContacts.ACCOUNT_TYPE,
             RawContacts.DATA_SET,
@@ -25,53 +34,97 @@ public class PickRawContactLoader extends CursorLoader {
             RawContacts.DISPLAY_NAME_ALTERNATIVE
     };
 
-    public static final String SELECTION = RawContacts.CONTACT_ID + "=?";
+    private static final String RAW_CONTACT_SELECTION = RawContacts.CONTACT_ID + "=?";
 
-    public static final int ACCOUNT_NAME = 0;
-    public static final int ACCOUNT_TYPE = 1;
-    public static final int DATA_SET = 2;
-    public static final int RAW_CONTACT_ID = 3;
-    public static final int DISPLAY_NAME_PRIMARY = 4;
-    public static final int DISPLAY_NAME_ALTERNATIVE = 5;
+    private static final int ACCOUNT_NAME = 0;
+    private static final int ACCOUNT_TYPE = 1;
+    private static final int DATA_SET = 2;
+    private static final int RAW_CONTACT_ID = 3;
+    private static final int DISPLAY_NAME_PRIMARY = 4;
+    private static final int DISPLAY_NAME_ALTERNATIVE = 5;
 
     public PickRawContactLoader(Context context, Uri contactUri) {
-        super(context, ensureIsContactUri(contactUri), COLUMNS, SELECTION, null, RawContacts._ID);
-        mContactUri = contactUri;
+        super(context);
+        mContactUri = ensureIsContactUri(contactUri);
     }
 
     @Override
-    public Cursor loadInBackground() {
+    public RawContactsMetadata loadInBackground() {
+        final ContentResolver resolver = getContext().getContentResolver();
         // Get the id of the contact we're looking at.
-        final Cursor cursor = getContext().getContentResolver()
-                .query(mContactUri, new String[] { Contacts._ID, Contacts.IS_USER_PROFILE }, null,
+        final Cursor contactCursor = resolver.query(
+                mContactUri, new String[]{Contacts._ID, Contacts.IS_USER_PROFILE}, null,
                 null, null);
 
-        if (cursor == null) {
+        if (contactCursor == null) {
             return null;
         }
 
-        if (cursor.getCount() < 1) {
-            cursor.close();
+        if (contactCursor.getCount() < 1) {
+            contactCursor.close();
             return null;
         }
 
-        cursor.moveToFirst();
-        final long contactId = cursor.getLong(/* Contacts._ID */ 0);
-        mIsUserProfile = cursor.getInt(/* Contacts.IS_USER_PROFILE */ 1) == 1;
+        final RawContactsMetadata result = new RawContactsMetadata();
+        final long contactId;
+        try {
+            contactCursor.moveToFirst();
+            contactId = contactCursor.getLong(/* Contacts._ID */ 0);
+            result.isUserProfile = contactCursor.getInt(/* Contacts.IS_USER_PROFILE */ 1) == 1;
+        } finally {
+            contactCursor.close();
+        }
 
-        cursor.close();
-        // Update selection arguments and uri.
-        setSelectionArgs(new String[]{ Long.toString(contactId) });
-        if (mIsUserProfile) {
-            setUri(ContactsContract.Profile.CONTENT_RAW_CONTACTS_URI);
+        // Load RawContact data
+        final Uri rawContactUri;
+        if (result.isUserProfile) {
+            rawContactUri = ContactsContract.Profile.CONTENT_RAW_CONTACTS_URI;
         } else {
-            setUri(RawContacts.CONTENT_URI);
+            rawContactUri = RawContacts.CONTENT_URI;
         }
-        return super.loadInBackground();
+
+        final Cursor rawContactCursor = resolver.query(
+                rawContactUri, RAW_CONTACT_PROJECTION, RAW_CONTACT_SELECTION,
+                new String[] {Long.toString(contactId)}, null);
+
+        if (rawContactCursor == null) {
+            return null;
+        }
+
+        rawContactCursor.moveToPosition(-1);
+        try {
+            while (rawContactCursor.moveToNext()) {
+                RawContact rawContact = new RawContact();
+                rawContact.id = rawContactCursor.getLong(RAW_CONTACT_ID);
+                rawContact.displayName = rawContactCursor.getString(DISPLAY_NAME_PRIMARY);
+                rawContact.displayNameAlt = rawContactCursor.getString(DISPLAY_NAME_ALTERNATIVE);
+                rawContact.accountName = rawContactCursor.getString(ACCOUNT_NAME);
+                rawContact.accountType = rawContactCursor.getString(ACCOUNT_TYPE);
+                rawContact.accountDataSet = rawContactCursor.getString(DATA_SET);
+                result.rawContacts.add(rawContact);
+            }
+        } finally {
+            rawContactCursor.close();
+        }
+        return result;
     }
 
-    public boolean isUserProfile() {
-        return mIsUserProfile;
+    @Override
+    public void deliverResult(RawContactsMetadata data) {
+        mCachedResult = data;
+        if (isStarted()) {
+            super.deliverResult(data);
+        }
+    }
+
+    @Override
+    protected void onStartLoading() {
+        super.onStartLoading();
+        if (mCachedResult == null) {
+            forceLoad();
+        } else {
+            deliverResult(mCachedResult);
+        }
     }
 
     /**
@@ -86,5 +139,122 @@ public class PickRawContactLoader extends CursorLoader {
             throw new IllegalArgumentException("Invalid contact Uri: " + uri);
         }
         return uri;
+    }
+
+    public static class RawContactsMetadata implements Parcelable {
+        public static final Parcelable.Creator<RawContactsMetadata> CREATOR =
+                new Parcelable.Creator<RawContactsMetadata>() {
+                    @Override
+                    public RawContactsMetadata createFromParcel(Parcel source) {
+                        return new RawContactsMetadata(source);
+                    }
+
+                    @Override
+                    public RawContactsMetadata[] newArray(int size) {
+                        return new RawContactsMetadata[size];
+                    }
+                };
+
+        public boolean isUserProfile;
+        public boolean showReadOnly = false;
+        public ArrayList<RawContact> rawContacts = new ArrayList<>();
+
+        public RawContactsMetadata() {}
+
+        private RawContactsMetadata(Parcel in) {
+            isUserProfile = in.readInt() == 1;
+            showReadOnly = in.readInt() == 1;
+            in.readTypedList(rawContacts, RawContact.CREATOR);
+        }
+
+        /**
+         * Removes all read-only raw contacts.
+         */
+        public void trimReadOnly(AccountTypeManager accountManager) {
+            for (int i = rawContacts.size() - 1; i >= 0 ; i--) {
+                final RawContact rawContact = rawContacts.get(i);
+                final AccountType account = accountManager.getAccountType(
+                        rawContact.accountType, rawContact.accountDataSet);
+                if (!account.areContactsWritable()) {
+                    rawContacts.remove(i);
+                }
+            }
+        }
+
+        /**
+         * Returns the index of the first writable account in this contact or -1 if none exist.
+         */
+        public int getIndexOfFirstWritableAccount(AccountTypeManager accountManager) {
+            for (int i = 0; i < rawContacts.size(); i++) {
+                final RawContact rawContact = rawContacts.get(i);
+                final AccountType account = accountManager.getAccountType(
+                        rawContact.accountType, rawContact.accountDataSet);
+                if (account.areContactsWritable()) {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(isUserProfile ? 1 : 0);
+            dest.writeInt(showReadOnly ? 1 : 0);
+            dest.writeTypedList(rawContacts);
+        }
+    }
+
+    public static class RawContact implements Parcelable {
+        public static final Parcelable.Creator<RawContact> CREATOR =
+                new Parcelable.Creator<RawContact>() {
+                    @Override
+                    public RawContact createFromParcel(Parcel source) {
+                        return new RawContact(source);
+                    }
+
+                    @Override
+                    public RawContact[] newArray(int size) {
+                        return new RawContact[size];
+                    }
+                };
+
+        public long id;
+        public String displayName;
+        public String displayNameAlt;
+        public String accountName;
+        public String accountType;
+        public String accountDataSet;
+
+        public RawContact() {}
+
+        private RawContact(Parcel in) {
+            id = in.readLong();
+            displayName = in.readString();
+            displayNameAlt = in.readString();
+            accountName = in.readString();
+            accountType = in.readString();
+            accountDataSet = in.readString();
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeLong(id);
+            dest.writeString(displayName);
+            dest.writeString(displayNameAlt);
+            dest.writeString(accountName);
+            dest.writeString(accountType);
+            dest.writeString(accountDataSet);
+        }
     }
 }

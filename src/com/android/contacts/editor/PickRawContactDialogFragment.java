@@ -6,7 +6,6 @@ import android.app.DialogFragment;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.RawContacts;
@@ -14,8 +13,9 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.android.contacts.R;
@@ -27,6 +27,8 @@ import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.editor.PickRawContactLoader.RawContact;
+import com.android.contacts.editor.PickRawContactLoader.RawContactsMetadata;
 
 /**
  * Should only be started from an activity that implements {@link PickRawContactListener}.
@@ -34,7 +36,7 @@ import com.android.contacts.common.preference.ContactsPreferences;
  * for the chosen raw contact.
  */
 public class PickRawContactDialogFragment extends DialogFragment {
-    private static final String ARGS_IS_USER_PROFILE = "isUserProfile";
+    private static final String ARGS_RAW_CONTACTS_METADATA = "rawContactsMetadata";
 
     public interface PickRawContactListener {
         void onPickRawContact(long rawContactId);
@@ -43,69 +45,93 @@ public class PickRawContactDialogFragment extends DialogFragment {
     /**
      * Used to list the account info for the given raw contacts list.
      */
-    private final class RawContactAccountListAdapter extends CursorAdapter {
+    private final class RawContactAccountListAdapter extends BaseAdapter {
         private final LayoutInflater mInflater;
         private final Context mContext;
+        private final RawContactsMetadata mRawContactsMetadata;
         private final AccountDisplayInfoFactory mAccountDisplayInfoFactory;
         private final AccountTypeManager mAccountTypeManager;
         private final ContactsPreferences mPreferences;
 
-        public RawContactAccountListAdapter(Context context, Cursor cursor) {
-            super(context, cursor, 0);
+        public RawContactAccountListAdapter(Context context,
+                RawContactsMetadata rawContactsMetadata) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
             mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forWritableAccounts(context);
             mAccountTypeManager = AccountTypeManager.getInstance(context);
             mPreferences = new ContactsPreferences(context);
+            mRawContactsMetadata = rawContactsMetadata;
         }
 
         @Override
-        public void bindView(View view, Context context, Cursor cursor) {
-            final long rawContactId = cursor.getLong(PickRawContactLoader.RAW_CONTACT_ID);
-            final String accountName = cursor.getString(PickRawContactLoader.ACCOUNT_NAME);
-            final String accountType = cursor.getString(PickRawContactLoader.ACCOUNT_TYPE);
-            final String dataSet = cursor.getString(PickRawContactLoader.DATA_SET);
-            final AccountType account = mAccountTypeManager.getAccountType(accountType, dataSet);
+        public int getCount() {
+            return mRawContactsMetadata.rawContacts.size();
+        }
 
-            final int displayNameColumn =
+        @Override
+        public Object getItem(int position) {
+            return mRawContactsMetadata.rawContacts.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return mRawContactsMetadata.rawContacts.get(position).id;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final View view;
+            final RawContactViewHolder holder;
+            if (convertView == null) {
+                view = mInflater.inflate(R.layout.raw_contact_list_item, parent, false);
+                holder = new RawContactViewHolder();
+                holder.displayName = (TextView) view.findViewById(R.id.display_name);
+                holder.accountName = (TextView) view.findViewById(R.id.account_name);
+                holder.accountIcon = (ImageView) view.findViewById(R.id.account_icon);
+                holder.photo = (ImageView) view.findViewById(R.id.photo);
+                view.setTag(holder);
+            } else {
+                view = convertView;
+                holder = (RawContactViewHolder) view.getTag();
+            }
+            final RawContact rawContact = mRawContactsMetadata.rawContacts.get(position);
+            final AccountType account = mAccountTypeManager.getAccountType(rawContact.accountType,
+                    rawContact.accountDataSet);
+
+            String displayName =
                     mPreferences.getDisplayOrder() == ContactsPreferences.DISPLAY_ORDER_PRIMARY
-                            ? PickRawContactLoader.DISPLAY_NAME_PRIMARY
-                            : PickRawContactLoader.DISPLAY_NAME_ALTERNATIVE;
-
-            String displayName = cursor.getString(displayNameColumn);
+                    ? rawContact.displayName : rawContact.displayNameAlt;
 
             if (TextUtils.isEmpty(displayName)) {
                 displayName = mContext.getString(R.string.missing_name);
             }
-            final RawContactViewHolder holder = (RawContactViewHolder) view.getTag();
             holder.displayName.setText(displayName);
 
             final String accountDisplayLabel;
 
             // Use the same string as editor if it's an editable user profile raw contact.
-            if (mIsUserProfile && account.areContactsWritable()) {
+            if (mRawContactsMetadata.isUserProfile && account.areContactsWritable()) {
                 final AccountDisplayInfo displayInfo =
                         mAccountDisplayInfoFactory.getAccountDisplayInfo(
-                                new AccountWithDataSet(accountName, accountType, dataSet));
+                                new AccountWithDataSet(rawContact.accountName,
+                                        rawContact.accountType, rawContact.accountDataSet));
                 accountDisplayLabel = EditorUiUtils.getAccountHeaderLabelForMyProfile(mContext,
                         displayInfo);
-            }
-            else if (GoogleAccountType.ACCOUNT_TYPE.equals(accountType)
+            } else if (GoogleAccountType.ACCOUNT_TYPE.equals(rawContact.accountType)
                     && account.dataSet == null) {
                 // Focus Google accounts have the account name shown
-                accountDisplayLabel = accountName;
+                accountDisplayLabel = rawContact.accountName;
             } else {
                 accountDisplayLabel = account.getDisplayLabel(mContext).toString();
             }
 
             holder.accountName.setText(accountDisplayLabel);
             holder.accountIcon.setImageDrawable(account.getDisplayIcon(mContext));
-
             final ContactPhotoManager.DefaultImageRequest
                     request = new ContactPhotoManager.DefaultImageRequest(
-                    displayName, String.valueOf(rawContactId), /* isCircular = */ true);
+                    displayName, String.valueOf(rawContact.id), /* isCircular = */ true);
             final Uri photoUri = Uri.withAppendedPath(
-                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId),
+                    ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContact.id),
                     RawContacts.DisplayPhoto.CONTENT_DIRECTORY);
 
             ContactPhotoManager.getInstance(mContext).loadDirectoryPhoto(holder.photo,
@@ -113,24 +139,8 @@ public class PickRawContactDialogFragment extends DialogFragment {
                     /* darkTheme = */ false,
                     /* isCircular = */ true,
                     request);
-        }
 
-        @Override
-        public View newView(Context context, Cursor cursor, ViewGroup parent) {
-            final View view = mInflater.inflate(R.layout.raw_contact_list_item, parent, false);
-            final RawContactViewHolder holder = new RawContactViewHolder();
-            holder.displayName = (TextView) view.findViewById(R.id.display_name);
-            holder.accountName = (TextView) view.findViewById(R.id.account_name);
-            holder.accountIcon = (ImageView) view.findViewById(R.id.account_icon);
-            holder.photo = (ImageView) view.findViewById(R.id.photo);
-            view.setTag(holder);
             return view;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            getCursor().moveToPosition(position);
-            return getCursor().getLong(PickRawContactLoader.RAW_CONTACT_ID);
         }
 
         class RawContactViewHolder {
@@ -141,17 +151,13 @@ public class PickRawContactDialogFragment extends DialogFragment {
         }
     }
 
-    // Cursor holding all raw contact rows for the given Contact.
-    private Cursor mCursor;
-    private CursorAdapter mAdapter;
-    private boolean mIsUserProfile;
+    private ListAdapter mAdapter;
 
-    public static PickRawContactDialogFragment getInstance(Cursor cursor, boolean isUserProfile) {
+    public static PickRawContactDialogFragment getInstance(RawContactsMetadata metadata) {
         final PickRawContactDialogFragment fragment = new PickRawContactDialogFragment();
         final Bundle args = new Bundle();
-        args.putBoolean(ARGS_IS_USER_PROFILE, isUserProfile);
+        args.putParcelable(ARGS_RAW_CONTACTS_METADATA, metadata);
         fragment.setArguments(args);
-        fragment.setCursor(cursor);
         return fragment;
     }
 
@@ -161,9 +167,19 @@ public class PickRawContactDialogFragment extends DialogFragment {
             throw new IllegalArgumentException(
                     "Host activity doesn't implement PickRawContactListener");
         }
+        final Bundle args = getArguments();
+        if (args == null) {
+            throw new IllegalArgumentException("Dialog created with no arguments");
+        }
+
+        final RawContactsMetadata metadata = args.getParcelable(ARGS_RAW_CONTACTS_METADATA);
+        if (metadata == null) {
+            throw new IllegalArgumentException("Dialog created with null RawContactsMetadata");
+        }
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        mAdapter = new RawContactAccountListAdapter(getContext(), mCursor);
-        builder.setTitle(R.string.contact_editor_pick_raw_contact_dialog_title);
+        mAdapter = new RawContactAccountListAdapter(getContext(), metadata);
+        builder.setTitle(R.string.contact_editor_pick_raw_contact_to_edit_dialog_title);
         builder.setAdapter(mAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -178,30 +194,12 @@ public class PickRawContactDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        mCursor = null;
         finishActivity();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        final Bundle args = getArguments();
-        if (args != null) {
-            mIsUserProfile = args.getBoolean(ARGS_IS_USER_PROFILE);
-        }
     }
 
     @Override
     public Context getContext() {
         return getActivity();
-    }
-
-    public void setCursor(Cursor cursor) {
-        if (mAdapter != null) {
-            mAdapter.swapCursor(cursor);
-        }
-        mCursor = cursor;
     }
 
     private void finishActivity() {
