@@ -187,24 +187,24 @@ public abstract class BaseAccountType extends AccountType {
                 context.getResources().getBoolean(R.bool.config_editor_field_order_primary);
 
         kind.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                FLAGS_PERSON_NAME).setLongForm(true));
+                FLAGS_PERSON_NAME).setOptional(true));
         if (!displayOrderPrimary) {
             kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
                     FLAGS_PERSON_NAME));
             kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                    FLAGS_PERSON_NAME).setLongForm(true));
+                    FLAGS_PERSON_NAME).setOptional(true));
             kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
                     FLAGS_PERSON_NAME));
         } else {
             kind.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
                     FLAGS_PERSON_NAME));
             kind.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                    FLAGS_PERSON_NAME).setLongForm(true));
+                    FLAGS_PERSON_NAME).setOptional(true));
             kind.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
                     FLAGS_PERSON_NAME));
         }
         kind.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                FLAGS_PERSON_NAME).setLongForm(true));
+                FLAGS_PERSON_NAME).setOptional(true));
 
         return kind;
     }
