@@ -76,6 +76,8 @@ public class AccountHeaderPresenter {
     public AccountHeaderPresenter(View container) {
         mContext = container.getContext();
         mAccountHeaderContainer = container;
+        // mAccountHeaderType is optional and may not be in the container view in which case
+        // the variable will be null
         mAccountHeaderType = (TextView) container.findViewById(R.id.account_type);
         mAccountHeaderName = (TextView) container.findViewById(R.id.account_name);
         mAccountHeaderIcon = (ImageView) container.findViewById(R.id.account_type_icon);
@@ -144,7 +146,9 @@ public class AccountHeaderPresenter {
 
         // Set the account type
         final String selectorTitle = mContext.getResources().getString(mSelectorTitle);
-        mAccountHeaderType.setText(selectorTitle);
+        if (mAccountHeaderType != null) {
+            mAccountHeaderType.setText(selectorTitle);
+        }
 
         // Set the icon
         final AccountDisplayInfo displayInfo = mAccountDisplayInfoFactory

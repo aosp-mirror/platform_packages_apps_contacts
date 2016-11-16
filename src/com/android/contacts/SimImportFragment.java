@@ -27,11 +27,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.util.ArrayMap;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -60,7 +62,7 @@ import java.util.TreeSet;
  */
 public class SimImportFragment extends DialogFragment
         implements LoaderManager.LoaderCallbacks<SimImportFragment.LoaderResult>,
-        MultiSelectEntryContactListAdapter.SelectedContactsListener {
+        MultiSelectEntryContactListAdapter.SelectedContactsListener, AbsListView.OnScrollListener {
 
     private static final String KEY_SELECTED_IDS = "selectedIds";
     private static final String ARG_SUBSCRIPTION_ID = "subscriptionId";
@@ -68,7 +70,9 @@ public class SimImportFragment extends DialogFragment
     private ContactsPreferences mPreferences;
     private AccountTypeManager mAccountTypeManager;
     private SimContactAdapter mAdapter;
+    private View mAccountHeaderContainer;
     private AccountHeaderPresenter mAccountHeaderPresenter;
+    private float mAccountScrolledElevationPixels;
     private ContentLoadingProgressBar mLoadingIndicator;
     private Toolbar mToolbar;
     private ListView mListView;
@@ -121,8 +125,11 @@ public class SimImportFragment extends DialogFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_sim_import, container, false);
 
+        mAccountHeaderContainer = view.findViewById(R.id.account_header_container);
+        mAccountScrolledElevationPixels = getResources()
+                .getDimension(R.dimen.contact_list_header_elevation);
         mAccountHeaderPresenter = new AccountHeaderPresenter(
-                view.findViewById(R.id.account_header_container));
+                mAccountHeaderContainer);
         if (savedInstanceState != null) {
             mAccountHeaderPresenter.onRestoreInstanceState(savedInstanceState);
         } else {
@@ -139,6 +146,7 @@ public class SimImportFragment extends DialogFragment
         mAdapter.setAccount(mAccountHeaderPresenter.getCurrentAccount());
 
         mListView = (ListView) view.findViewById(R.id.list);
+        mListView.setOnScrollListener(this);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -160,7 +168,8 @@ public class SimImportFragment extends DialogFragment
                 dismiss();
             }
         });
-        mImportButton.setEnabled(mAdapter.getSelectedContactIds().size() > 0);
+        mImportButton.setVisibility(mAdapter.getSelectedContactIds().size() > 0 ?
+                View.VISIBLE : View.GONE);
 
         mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -240,11 +249,10 @@ public class SimImportFragment extends DialogFragment
         if (selectedCount == 0) {
             mToolbar.setTitle(R.string.sim_import_title_none_selected);
         } else {
-            mToolbar.setTitle(getString(R.string.sim_import_title_some_selected_fmt,
-                    selectedCount));
+            mToolbar.setTitle(String.valueOf(selectedCount));
         }
         if (mImportButton != null) {
-            mImportButton.setEnabled(selectedCount > 0);
+            mImportButton.setVisibility(selectedCount > 0 ? View.VISIBLE : View.GONE);
         }
     }
 
@@ -253,6 +261,24 @@ public class SimImportFragment extends DialogFragment
             return super.getContext();
         }
         return getActivity();
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) { }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+            int totalItemCount) {
+        int firstCompletelyVisibleItem = firstVisibleItem;
+        if (view != null && view.getChildAt(0) != null && view.getChildAt(0).getTop() < 0) {
+            firstCompletelyVisibleItem++;
+        }
+
+        if (firstCompletelyVisibleItem == 0) {
+            ViewCompat.setElevation(mAccountHeaderContainer, 0);
+        } else {
+            ViewCompat.setElevation(mAccountHeaderContainer, mAccountScrolledElevationPixels);
+        }
     }
 
     /**
