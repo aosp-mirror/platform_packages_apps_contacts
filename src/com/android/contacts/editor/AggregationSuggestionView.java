@@ -16,10 +16,8 @@
 
 package com.android.contacts.editor;
 
-import android.content.ContentUris;
 import android.content.Context;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -65,21 +63,18 @@ public class AggregationSuggestionView extends LinearLayout {
         final ContactPhotoManager.DefaultImageRequest
                 request = new ContactPhotoManager.DefaultImageRequest(
                 suggestion.name, String.valueOf(suggestion.rawContactId), /* isCircular = */ false);
-        final Uri photoUri = Uri.withAppendedPath(ContentUris.withAppendedId(
-                ContactsContract.RawContacts.CONTENT_URI, suggestion.rawContactId),
-                ContactsContract.RawContacts.DisplayPhoto.CONTENT_DIRECTORY);
         final ImageView photoView = (ImageView) findViewById(
                 R.id.aggregation_suggestion_photo);
-        ContactPhotoManager.getInstance(getContext()).loadDirectoryPhoto(photoView,
-                photoUri,
+        ContactPhotoManager.getInstance(getContext()).loadThumbnail(photoView,
+                suggestion.photoId,
                 /* darkTheme = */ false,
                 /* isCircular = */ false,
                 request);
 
-        TextView name = (TextView) findViewById(R.id.aggregation_suggestion_name);
+        final TextView name = (TextView) findViewById(R.id.aggregation_suggestion_name);
         name.setText(suggestion.name);
 
-        TextView data = (TextView) findViewById(R.id.aggregation_suggestion_data);
+        final TextView data = (TextView) findViewById(R.id.aggregation_suggestion_data);
         String dataText = null;
         if (suggestion.nickname != null) {
             dataText = suggestion.nickname;
