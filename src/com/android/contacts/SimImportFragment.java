@@ -65,8 +65,6 @@ public class SimImportFragment extends DialogFragment
     private static final String KEY_SELECTED_IDS = "selectedIds";
     private static final String ARG_SUBSCRIPTION_ID = "subscriptionId";
 
-    public static final String CALLBACK_KEY_SUBSCRIPTION_ID = "simSubscriptionId";
-
     private ContactsPreferences mPreferences;
     private AccountTypeManager mAccountTypeManager;
     private SimContactAdapter mAdapter;
@@ -221,11 +219,10 @@ public class SimImportFragment extends DialogFragment
     }
 
     private void importCurrentSelections() {
-        final Bundle callbackData = new Bundle();
-        callbackData.putInt(CALLBACK_KEY_SUBSCRIPTION_ID, mSubscriptionId);
         ContactSaveService.startService(getContext(), ContactSaveService
-                .createImportFromSimIntent(getContext(), mAdapter.getSelectedContacts(),
-                mAccountHeaderPresenter.getCurrentAccount(), callbackData));
+                .createImportFromSimIntent(getContext(), mSubscriptionId,
+                        mAdapter.getSelectedContacts(),
+                        mAccountHeaderPresenter.getCurrentAccount()));
     }
 
     @Override
