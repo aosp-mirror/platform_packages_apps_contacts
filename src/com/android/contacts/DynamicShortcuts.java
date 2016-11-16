@@ -215,9 +215,14 @@ public class DynamicShortcuts {
         final List<ShortcutInfo> result = new ArrayList<>();
 
         try {
-            // For some reason the limit query parameter is ignored for the strequent content uri
-            for (int i = 0; i < MAX_SHORTCUTS && cursor.moveToNext(); i++) {
-                result.add(createShortcutFromRow(cursor));
+            int i = 0;
+            while (i < MAX_SHORTCUTS && cursor.moveToNext()) {
+                final ShortcutInfo shortcut = createShortcutFromRow(cursor);
+                if (shortcut == null) {
+                    continue;
+                }
+                result.add(shortcut);
+                i++;
             }
         } finally {
             cursor.close();
@@ -229,6 +234,9 @@ public class DynamicShortcuts {
     @VisibleForTesting
     ShortcutInfo createShortcutFromRow(Cursor cursor) {
         final ShortcutInfo.Builder builder = builderForContactShortcut(cursor);
+        if (builder == null) {
+            return null;
+        }
         addIconForContact(cursor, builder);
         return builder.build();
     }
@@ -243,6 +251,9 @@ public class DynamicShortcuts {
 
     @VisibleForTesting
     ShortcutInfo.Builder builderForContactShortcut(long id, String lookupKey, String displayName) {
+        if (lookupKey == null || displayName == null) {
+            return null;
+        }
         final PersistableBundle extras = new PersistableBundle();
         extras.putLong(Contacts._ID, id);
 
@@ -392,8 +403,6 @@ public class DynamicShortcuts {
                         JobInfo.TriggerContentUri.FLAG_NOTIFY_FOR_DESCENDANTS))
                 .setTriggerContentUpdateDelay(mContentChangeMinUpdateDelay)
                 .setTriggerContentMaxDelay(mContentChangeMaxUpdateDelay)
-                // Minimize impact on UX by waiting for idle before updating.
-                .setRequiresDeviceIdle(true)
                 .build();
         mJobScheduler.schedule(job);
     }
