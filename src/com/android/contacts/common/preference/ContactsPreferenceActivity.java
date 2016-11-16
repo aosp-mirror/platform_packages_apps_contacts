@@ -34,15 +34,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.common.R;
+import com.android.contacts.common.interactions.ImportDialogFragment;
 import com.android.contacts.common.list.ProviderStatusWatcher;
+import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment.ProfileListener;
 import com.android.contacts.common.preference.DisplayOptionsPreferenceFragment.ProfileQuery;
+import com.android.contacts.common.util.AccountSelectionUtil;
+import com.android.contacts.editor.SelectAccountDialogFragment;
 
 /**
  * Contacts settings.
  */
-public final class ContactsPreferenceActivity extends PreferenceActivity implements
-        ProfileListener {
+public final class ContactsPreferenceActivity extends PreferenceActivity
+        implements ProfileListener, SelectAccountDialogFragment.Listener {
 
     private static final String TAG_ABOUT = "about_contacts";
     private static final String TAG_DISPLAY_OPTIONS = "display_options";
@@ -209,5 +213,15 @@ public final class ContactsPreferenceActivity extends PreferenceActivity impleme
         final DisplayOptionsPreferenceFragment fragment = (DisplayOptionsPreferenceFragment)
                 getFragmentManager().findFragmentByTag(TAG_DISPLAY_OPTIONS);
         fragment.updateMyInfoPreference(hasProfile, displayName, contactId);
+    }
+
+    @Override
+    public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
+        AccountSelectionUtil.doImport(this, extraArgs.getInt(ImportDialogFragment
+                .KEY_RES_ID), account, extraArgs.getInt(ImportDialogFragment.KEY_SUBSCRIPTION_ID));
+    }
+
+    @Override
+    public void onAccountSelectorCancelled() {
     }
 }
