@@ -49,16 +49,6 @@ public final class Experiments {
     public static final String PULL_TO_REFRESH_CANCEL_REFRESH_MILLIS =
             "PullToRefresh__cancel_refresh_millis";
 
-    /**
-     * Search study boolean indicating whether to inject yenta search results before CP2 results.
-     */
-    public static final String SEARCH_YENTA = "Search__yenta";
-
-    /**
-     * The time to wait for Yenta search results before giving up.
-     */
-    public static final String SEARCH_YENTA_TIMEOUT_MILLIS = "Search__yenta_timeout";
-
     private Experiments() {
     }
 }
