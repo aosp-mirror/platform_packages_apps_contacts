@@ -961,7 +961,7 @@
 
     <!-- Content displayed in QuickContact activity after Contacts app receiving
          Calendar and SMS permissions [CHAR LIMIT=60] -->
-    <string name="permission_explanation_subheader_calendar_and_SMS">Events and Messages</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS">Events and messages</string>
 
     <!-- Content displayed in QuickContact activity after Contacts app receiving
          Calendar permission [CHAR LIMIT=40] -->
