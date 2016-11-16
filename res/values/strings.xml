@@ -374,8 +374,8 @@
     <!-- Option name to send message to all members of a group/selection [CHAR LIMIT=30] -->
     <string name="menu_sendMessageOption">Send message</string>
 
-    <!-- Activity title when the user is selecting items [CHAR LIMIT=128] -->
-    <string name="pickerSelectContactsActivityTitle">Select Contacts</string>
+    <!-- Activity title when the user is selecting items [CHAR LIMIT=40] -->
+    <string name="pickerSelectContactsActivityTitle">Choose Contacts</string>
 
     <!-- The menu item to send the currently selected contacts to selected items [CHAR LIMIT=10] -->
     <string name="send_to_selection">Send</string>
