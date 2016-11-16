@@ -45,6 +45,7 @@ import android.util.Log;
 import android.util.TimingLogger;
 
 import com.android.contacts.R;
+import com.android.contacts.common.Experiments;
 import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.list.ContactListFilterController;
 import com.android.contacts.common.model.account.AccountType;
@@ -59,6 +60,7 @@ import com.android.contacts.common.model.dataitem.DataKind;
 import com.android.contacts.common.util.Constants;
 import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 import com.android.contactsbind.ObjectFactory;
+import com.android.contactsbind.experiments.Flags;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
@@ -464,26 +466,29 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
         ContentResolver.addStatusChangeListener(ContentResolver.SYNC_OBSERVER_TYPE_SETTINGS, this);
 
-        // Observe changes to RAW_CONTACTS so that we will update the list of "Device" accounts
-        // if a new device contact is added.
-        mContext.getContentResolver().registerContentObserver(
-                ContactsContract.RawContacts.CONTENT_URI, /* notifyDescendents */ true,
-                new ContentObserver(mListenerHandler) {
-            @Override
-            public boolean deliverSelfNotifications() {
-                return true;
-            }
 
-            @Override
-            public void onChange(boolean selfChange) {
-                mListenerHandler.sendEmptyMessage(MESSAGE_LOAD_DATA);
-            }
+        if (Flags.getInstance().getBoolean(Experiments.OEM_CP2_DEVICE_ACCOUNT_DETECTION_ENABLED)) {
+            // Observe changes to RAW_CONTACTS so that we will update the list of "Device" accounts
+            // if a new device contact is added.
+            mContext.getContentResolver().registerContentObserver(
+                    ContactsContract.RawContacts.CONTENT_URI, /* notifyDescendents */ true,
+                    new ContentObserver(mListenerHandler) {
+                        @Override
+                        public boolean deliverSelfNotifications() {
+                            return true;
+                        }
 
-            @Override
-            public void onChange(boolean selfChange, Uri uri) {
-                mListenerHandler.sendEmptyMessage(MESSAGE_LOAD_DATA);
-            }
-        });
+                        @Override
+                        public void onChange(boolean selfChange) {
+                            mListenerHandler.sendEmptyMessage(MESSAGE_LOAD_DATA);
+                        }
+
+                        @Override
+                        public void onChange(boolean selfChange, Uri uri) {
+                            mListenerHandler.sendEmptyMessage(MESSAGE_LOAD_DATA);
+                        }
+                    });
+        }
 
         mListenerHandler.sendEmptyMessage(MESSAGE_LOAD_DATA);
     }
