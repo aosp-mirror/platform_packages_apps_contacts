@@ -972,9 +972,9 @@
     <string name="permission_explanation_subheader_SMS">Messages</string>
 
     <!-- The header text for hamburger promo [CHAR LIMIT=60]-->
-    <string name="hamburger_feature_highlight_header">Organize your list</string>
+    <string name="hamburger_feature_highlight_header">Suggestions</string>
     <!-- The body text for hamburger promo [CHAR LIMIT=200]-->
-    <string name="hamburger_feature_highlight_body">Clean up duplicates &amp; group contacts by label</string>
+    <string name="hamburger_feature_highlight_body">Keep your contacts organized and useful</string>
 
     <!-- The label for the action shown in a snackbar after an operation that modifies some data is performed.
          The user can click on the action to rollback the modification-->
