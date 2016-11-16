@@ -2450,6 +2450,8 @@ public class QuickContactActivity extends ContactsActivity implements
                                 ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
                     }
                     mRecentCard.setVisibility(View.VISIBLE);
+                } else {
+                    mRecentCard.setVisibility(View.GONE);
                 }
 
                 Trace.endSection();
