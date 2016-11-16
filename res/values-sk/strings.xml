@@ -60,8 +60,7 @@
     <string name="joinConfirmation" msgid="8262614843581924365">"Chcete vykonané zmeny uložiť a prepojiť s vybratým kontaktom?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Uložiť a prepojiť"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Prepojiť"</string>
-    <!-- no translation found for menu_linkedContacts (400444389718855621) -->
-    <skip />
+    <string name="menu_linkedContacts" msgid="400444389718855621">"Zobraziť prepojené kontakty"</string>
     <string name="menu_save" msgid="1727844363591825909">"Uložiť"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Prepojenie kontaktov"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Vyberte kontakt, ktorý chcete prepojiť s kontaktom <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -96,12 +95,9 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastaviť zvonenie"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Smerovať do hlasovej schránky"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Nesmerovať do hlas. schránky"</string>
-    <!-- no translation found for readOnlyContactWarning (7514475664695089411) -->
-    <skip />
-    <!-- no translation found for readOnlyContactWarning_positive_button (8914797212167683673) -->
-    <skip />
-    <!-- no translation found for readOnlyContactDeleteConfirmation (4717023505914239809) -->
-    <skip />
+    <string name="readOnlyContactWarning" msgid="7514475664695089411">"Tento kontakt je určený iba na čítanie. Nedá sa odstrániť, ale môžete ho skryť."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Skryť kontakt"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"Účty tohto kontaktu určené iba na čítanie sa neodstránia, ale skryjú."</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Odstrániť tento kontakt?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Odstrániť vybraté kontakty?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontakty z účtov iba na čítanie nie je možné odstrániť, ale dajú sa skryť."</string>
@@ -149,8 +145,7 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Niektoré kontakty nemajú telefónne číslo."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"Odoslať e-mail"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Odoslať správu"</string>
-    <!-- no translation found for pickerSelectContactsActivityTitle (1936544190231136729) -->
-    <skip />
+    <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Výber kontaktov"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Odoslať"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> kontakty s telefónnym číslom</item>
@@ -272,12 +267,9 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Upraviť kontakt"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Iba zobrazenie"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Vyberte kontakt, ktorý chcete upraviť"</string>
-    <!-- no translation found for contact_editor_pick_linked_contact_dialog_title (4618465940423857694) -->
-    <skip />
-    <!-- no translation found for contact_editor_add_linked_contact (426142748048816297) -->
-    <skip />
-    <!-- no translation found for contact_editor_unlink_contacts (4525214336177236653) -->
-    <skip />
+    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Prepojené kontakty"</string>
+    <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"Pridať"</string>
+    <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Odpojiť"</string>
     <string name="add_account" msgid="8201790677994503186">"Pridať účet"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Pridať nový účet"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportovať súbory databázy"</string>
@@ -371,12 +363,13 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"Štítky"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Účty"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"Zobrazte si históriu naraz"</string>
-    <!-- no translation found for permission_explanation_subheader_calendar_and_SMS (5411144298889835768) -->
-    <skip />
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Udalosti a správy"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Udalosti"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Správy"</string>
-    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Uporiadajte si zoznam"</string>
-    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Vymažte duplikáty a zoskupte kontakty podľa štítkov"</string>
+    <!-- no translation found for hamburger_feature_highlight_header (5762679188565585072) -->
+    <skip />
+    <!-- no translation found for hamburger_feature_highlight_body (4403398269286898733) -->
+    <skip />
     <string name="undo" msgid="1425165101664071422">"Späť"</string>
     <string name="call_custom" msgid="6385303130912713318">"Volať na číslo <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Zavolať domov"</string>
@@ -658,7 +651,6 @@
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Kontakt bol odstránený"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"Importovať"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Výber kontaktov"</string>
-    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"Vybraté: <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Na SIM karte nie sú žiadne kontakty"</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Kontakt sa už vo vašom zozname nachádza"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
@@ -673,10 +665,8 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"Automatická synchronizácia je vypnutá. Zapnete ju klepnutím."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Odmietnuť"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Synchronizácia účtov je vypnutá. Zapnete ju klepnutím."</string>
-    <!-- no translation found for turn_auto_sync_on_dialog_title (333965456829670541) -->
-    <skip />
-    <!-- no translation found for turn_auto_sync_on_dialog_body (5025336917533693997) -->
-    <skip />
+    <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"Chcete zapnúť automatickú synchronizáciu?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Medzi webom a vašimi zariadeniami sa budú aktualizovať zmeny, ktoré vykonáte vo všetkých aplikáciách a účtoch, nielen v Kontaktoch Google."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Zapnúť"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Žiadne pripojenie"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM karta"</string>
