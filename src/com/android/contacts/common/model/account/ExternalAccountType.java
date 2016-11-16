@@ -153,7 +153,12 @@ public class ExternalAccountType extends BaseAccountType {
             }
             error.append(" for external package ");
             error.append(packageName);
-            FeedbackHelper.sendFeedback(context, TAG, "Failed to build external account type", e);
+            // Only send feedback if not from tests. There are tests that expect failures so no need
+            // to report those.
+            if (injectedMetadata == null) {
+                FeedbackHelper.sendFeedback(context, TAG, "Failed to build external account type",
+                        e);
+            }
             return;
         } finally {
             if (parser != null) {
