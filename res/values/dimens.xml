@@ -148,8 +148,8 @@
     <!-- For join screen. Mainly for tablet. -->
     <dimen name="join_header_left_margin">@dimen/contact_browser_list_header_left_margin</dimen>
     <dimen name="join_header_right_margin">@dimen/contact_browser_list_header_right_margin</dimen>
-    <dimen name="join_header_top_margin">16dip</dimen>
-    <dimen name="join_header_bottom_margin">0dip</dimen>
+    <dimen name="join_header_top_margin">12dip</dimen>
+    <dimen name="join_header_bottom_margin">12dip</dimen>
 
     <dimen name="contact_filter_header_min_height">24dip</dimen>
 

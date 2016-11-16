@@ -160,7 +160,6 @@ public class MultiSelectPhoneNumbersListAdapter extends MultiSelectEntryContactL
         cursor.moveToPosition(position);
 
         bindViewId(view, cursor, PhoneQuery.PHONE_ID);
-        bindSectionHeaderAndDivider(view, position);
         if (isFirstEntry) {
             bindName(view, cursor);
             bindQuickContact(view, partition, cursor, PhoneQuery.PHOTO_ID,
@@ -188,15 +187,6 @@ public class MultiSelectPhoneNumbersListAdapter extends MultiSelectEntryContactL
         }
         view.setLabel(label);
         view.showData(cursor, PhoneQuery.PHONE_NUMBER);
-    }
-
-    protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
-        if (isSectionHeaderDisplayEnabled()) {
-            Placement placement = getItemPlacementInSection(position);
-            view.setSectionHeader(placement.firstInSection ? placement.sectionHeader : null);
-        } else {
-            view.setSectionHeader(null);
-        }
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {

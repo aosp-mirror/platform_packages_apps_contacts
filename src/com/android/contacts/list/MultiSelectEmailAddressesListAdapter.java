@@ -160,7 +160,6 @@ public class MultiSelectEmailAddressesListAdapter extends MultiSelectEntryContac
         cursor.moveToPosition(position);
 
         bindViewId(view, cursor, EmailQuery.EMAIL_ID);
-        bindSectionHeaderAndDivider(view, position);
         if (isFirstEntry) {
             bindName(view, cursor);
             bindQuickContact(view, partition, cursor, EmailQuery.PHOTO_ID,
@@ -188,16 +187,6 @@ public class MultiSelectEmailAddressesListAdapter extends MultiSelectEntryContac
         }
         view.setLabel(label);
         view.showData(cursor, EmailQuery.EMAIL_ADDRESS);
-    }
-
-    protected void bindSectionHeaderAndDivider(final ContactListItemView view, int position) {
-        final int section = getSectionForPosition(position);
-        if (getPositionForSection(section) == position) {
-            final String title = (String)getSections()[section];
-            view.setSectionHeader(title);
-        } else {
-            view.setSectionHeader(null);
-        }
     }
 
     protected void bindName(final ContactListItemView view, Cursor cursor) {

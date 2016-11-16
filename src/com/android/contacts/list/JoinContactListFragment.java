@@ -146,7 +146,7 @@ public class JoinContactListFragment extends ContactEntryListFragment<JoinContac
     @Override
     public JoinContactListAdapter createListAdapter() {
         JoinContactListAdapter adapter = new JoinContactListAdapter(getActivity());
-        adapter.setPhotoPosition(ContactListItemView.getDefaultPhotoPosition(true /* opposite */));
+        adapter.setPhotoPosition(ContactListItemView.getDefaultPhotoPosition(false /* opposite */));
         return adapter;
     }
 
