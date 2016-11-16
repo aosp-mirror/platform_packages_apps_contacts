@@ -325,9 +325,12 @@ public class SimImportFragment extends DialogFragment
         private AccountWithDataSet mSelectedAccount;
         private Map<AccountWithDataSet, Set<SimContact>> mExistingMap;
         private Map<AccountWithDataSet, TreeSet<Long>> mPerAccountCheckedIds = new ArrayMap<>();
+        private final int mCheckboxPaddingEnd;
 
         public SimContactAdapter(Context context) {
             super(context);
+            mCheckboxPaddingEnd = context.getResources()
+                    .getDimensionPixelOffset(R.dimen.sim_import_checkbox_end_padding);
         }
 
         @Override
@@ -344,6 +347,10 @@ public class SimImportFragment extends DialogFragment
             // clickable
             contactView.getCheckBox().setFocusable(false);
             contactView.getCheckBox().setClickable(false);
+            // The default list pads the checkbox by a larger amount than we want.
+            contactView.setPaddingRelative(contactView.getPaddingStart(),
+                    contactView.getPaddingTop(), mCheckboxPaddingEnd,
+                    contactView.getPaddingBottom());
             setViewEnabled(contactView, !existsInCurrentAccount(position));
         }
 

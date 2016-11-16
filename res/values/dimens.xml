@@ -458,4 +458,9 @@
     <dimen name="call_subject_dialog_secondary_text_size">14sp</dimen>
     <!-- Row padding for call subject history items. -->
     <dimen name="call_subject_history_item_padding">15dp</dimen>
+
+    <!-- Padding between SIM checkbox and end of row -->
+    <dimen name="sim_import_checkbox_end_padding">16dp</dimen>
+
+
 </resources>
