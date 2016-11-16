@@ -15,7 +15,6 @@
  */
 package com.android.contacts.tests;
 
-import android.content.ContentProvider;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
@@ -29,9 +28,10 @@ import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
 import android.telephony.TelephonyManager;
 
+import com.android.contacts.common.database.SimContactDaoImpl;
+import com.android.contacts.common.model.SimCard;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.database.SimContactDao;
-import com.android.contacts.common.test.mocks.MockContentProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,39 +59,13 @@ public class SimContactsTestHelper {
     }
 
     public int getSimContactCount() {
-        Cursor cursor = mContext.getContentResolver().query(SimContactDao.ICC_CONTENT_URI,
+        Cursor cursor = mContext.getContentResolver().query(SimContactDaoImpl.ICC_CONTENT_URI,
                 null, null, null, null);
         try {
             return cursor.getCount();
         } finally {
             cursor.close();
         }
-    }
-
-    public ContentValues iccRow(long id, String name, String number, String emails) {
-        ContentValues values = new ContentValues();
-        values.put(SimContactDao._ID, id);
-        values.put(SimContactDao.NAME, name);
-        values.put(SimContactDao.NUMBER, number);
-        values.put(SimContactDao.EMAILS, emails);
-        return values;
-    }
-
-    public ContentProvider iccProviderExpectingNoQueries() {
-        return new MockContentProvider();
-    }
-
-    public ContentProvider emptyIccProvider() {
-        final MockContentProvider provider = new MockContentProvider();
-        provider.expectQuery(SimContactDao.ICC_CONTENT_URI)
-                .withDefaultProjection(
-                        SimContactDao._ID, SimContactDao.NAME,
-                        SimContactDao.NUMBER, SimContactDao.EMAILS)
-                .withAnyProjection()
-                .withAnySelection()
-                .withAnySortOrder()
-                .returnEmptyCursor();
-        return provider;
     }
 
     public Uri addSimContact(String name, String number) {
@@ -102,23 +76,26 @@ public class SimContactsTestHelper {
             values.put("tag", name);
         }
         if (number != null) {
-            values.put(SimContactDao.NUMBER, number);
+            values.put(SimContactDaoImpl.NUMBER, number);
         }
-        return mResolver.insert(SimContactDao.ICC_CONTENT_URI, values);
+        return mResolver.insert(SimContactDaoImpl.ICC_CONTENT_URI, values);
     }
 
     public ContentProviderResult[] deleteAllSimContacts()
             throws RemoteException, OperationApplicationException {
-        SimContactDao dao = SimContactDao.create(mContext);
-        List<SimContact> contacts = dao.loadSimContacts();
+        final List<SimCard> sims = mSimDao.getSimCards();
+        if (sims.isEmpty()) {
+            throw new IllegalStateException("Expected SIM card");
+        }
+        final List<SimContact> contacts = mSimDao.loadContactsForSim(sims.get(0));
         ArrayList<ContentProviderOperation> ops = new ArrayList<>();
         for (SimContact contact : contacts) {
             ops.add(ContentProviderOperation
-                    .newDelete(SimContactDao.ICC_CONTENT_URI)
+                    .newDelete(SimContactDaoImpl.ICC_CONTENT_URI)
                     .withSelection(getWriteSelection(contact), null)
                     .build());
         }
-        return mResolver.applyBatch(SimContactDao.ICC_CONTENT_URI.getAuthority(), ops);
+        return mResolver.applyBatch(SimContactDaoImpl.ICC_CONTENT_URI.getAuthority(), ops);
     }
 
     public ContentProviderResult[] restore(ArrayList<ContentProviderOperation> restoreOps)
@@ -128,13 +105,17 @@ public class SimContactsTestHelper {
         // Remove SIM contacts because we assume that caller wants the data to be in the exact
         // state as when the restore ops were captured.
         deleteAllSimContacts();
-        return mResolver.applyBatch(SimContactDao.ICC_CONTENT_URI.getAuthority(), restoreOps);
+        return mResolver.applyBatch(SimContactDaoImpl.ICC_CONTENT_URI.getAuthority(), restoreOps);
     }
 
     public ArrayList<ContentProviderOperation> captureRestoreSnapshot() {
-        ArrayList<SimContact> contacts = mSimDao.loadSimContacts();
+        final List<SimCard> sims = mSimDao.getSimCards();
+        if (sims.isEmpty()) {
+            throw new IllegalStateException("Expected SIM card");
+        }
+        final ArrayList<SimContact> contacts = mSimDao.loadContactsForSim(sims.get(0));
 
-        ArrayList<ContentProviderOperation> ops = new ArrayList<>();
+        final ArrayList<ContentProviderOperation> ops = new ArrayList<>();
         for (SimContact contact : contacts) {
             final String[] emails = contact.getEmails();
             if (emails != null && emails.length > 0) {
@@ -142,7 +123,7 @@ public class SimContactsTestHelper {
                         " Please manually remove SIM contacts with emails.");
             }
             ops.add(ContentProviderOperation
-                    .newInsert(SimContactDao.ICC_CONTENT_URI)
+                    .newInsert(SimContactDaoImpl.ICC_CONTENT_URI)
                     .withValue("tag", contact.getName())
                     .withValue("number", contact.getPhone())
                     .build());
@@ -151,15 +132,15 @@ public class SimContactsTestHelper {
     }
 
     public String getWriteSelection(SimContact simContact) {
-        return "tag='" + simContact.getName() + "' AND " + SimContactDao.NUMBER + "='" +
+        return "tag='" + simContact.getName() + "' AND " + SimContactDaoImpl.NUMBER + "='" +
                 simContact.getPhone() + "'";
     }
 
     public int deleteSimContact(@NonNull  String name, @NonNull  String number) {
         // IccProvider doesn't use the selection args.
         final String selection = "tag='" + name + "' AND " +
-                SimContactDao.NUMBER + "='" + number + "'";
-        return mResolver.delete(SimContactDao.ICC_CONTENT_URI, selection, null);
+                SimContactDaoImpl.NUMBER + "='" + number + "'";
+        return mResolver.delete(SimContactDaoImpl.ICC_CONTENT_URI, selection, null);
     }
 
     public boolean isSimReady() {

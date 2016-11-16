@@ -32,6 +32,7 @@ import android.util.TimingLogger;
 
 import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.common.database.SimContactDao;
+import com.android.contacts.common.database.SimContactDaoImpl;
 import com.android.contacts.common.model.SimCard;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -48,6 +49,26 @@ import java.util.concurrent.Executors;
 public class SimImportService extends Service {
 
     private static final String TAG = "SimImportService";
+
+    /**
+     * Wrapper around the service state for testability
+     */
+    public interface StatusProvider {
+
+        /**
+         * Returns whether there is any imports still pending
+         *
+         * <p>This should be called from the UI thread</p>
+         */
+        boolean isRunning();
+
+        /**
+         * Returns whether an import for sim has been requested
+         *
+         * <p>This should be called from the UI thread</p>
+         */
+        boolean isImporting(SimCard sim);
+    }
 
     public static final String EXTRA_ACCOUNT = "account";
     public static final String EXTRA_SIM_CONTACTS = "simContacts";
@@ -74,12 +95,24 @@ public class SimImportService extends Service {
     // Keeps track of current tasks. This is only modified from the UI thread.
     private static List<ImportTask> sPending = new ArrayList<>();
 
+    private static StatusProvider sStatusProvider = new StatusProvider() {
+        @Override
+        public boolean isRunning() {
+            return !sPending.isEmpty();
+        }
+
+        @Override
+        public boolean isImporting(SimCard sim) {
+            return SimImportService.isImporting(sim);
+        }
+    };
+
     /**
      * Returns whether an import for sim has been requested
      *
      * <p>This should be called from the UI thread</p>
      */
-    public static boolean isImporting(SimCard sim) {
+    private static boolean isImporting(SimCard sim) {
         for (ImportTask task : sPending) {
             if (task.getSim().equals(sim)) {
                 return true;
@@ -88,13 +121,8 @@ public class SimImportService extends Service {
         return false;
     }
 
-    /**
-     * Returns whether there is any imports still pending
-     *
-     * <p>This should be called from the UI thread</p>
-     */
-    public static boolean isRunning() {
-        return !sPending.isEmpty();
+    public static StatusProvider getStatusProvider() {
+        return sStatusProvider;
     }
 
     /**

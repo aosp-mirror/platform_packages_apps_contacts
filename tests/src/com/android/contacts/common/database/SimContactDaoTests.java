@@ -30,6 +30,7 @@ import android.support.test.filters.SdkSuppress;
 import android.support.test.filters.Suppress;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.android.contacts.common.model.SimCard;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.tests.AccountsTestHelper;
@@ -281,7 +282,8 @@ public class SimContactDaoTests {
             mSimTestHelper.addSimContact("Test Simthree", "15095550103");
 
             final SimContactDao sut = SimContactDao.create(getContext());
-            final ArrayList<SimContact> contacts = sut.loadSimContacts();
+            final SimCard sim = sut.getSimCards().get(0);
+            final ArrayList<SimContact> contacts = sut.loadContactsForSim(sim);
 
             assertThat(contacts.get(0), isSimContactWithNameAndPhone("Test Simone", "15095550101"));
             assertThat(contacts.get(1), isSimContactWithNameAndPhone("Test Simtwo", "15095550102"));

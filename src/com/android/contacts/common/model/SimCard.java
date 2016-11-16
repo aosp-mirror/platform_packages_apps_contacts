@@ -221,6 +221,20 @@ public class SimCard {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "SimCard{" +
+                "mSimId='" + mSimId + '\'' +
+                ", mSubscriptionId=" + mSubscriptionId +
+                ", mCarrierName=" + mCarrierName +
+                ", mDisplayName=" + mDisplayName +
+                ", mPhoneNumber='" + mPhoneNumber + '\'' +
+                ", mCountryCode='" + mCountryCode + '\'' +
+                ", mDismissed=" + mDismissed +
+                ", mImported=" + mImported +
+                ", mContacts=" + mContacts +
+                '}';
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public static SimCard create(SubscriptionInfo info) {
