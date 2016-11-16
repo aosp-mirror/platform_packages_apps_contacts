@@ -601,7 +601,7 @@
     <string name="about_build_version" msgid="1765533099416999801">"빌드 버전"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"오픈소스 라이선스"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"오픈소스 소프트웨어 라이선스 세부정보"</string>
-    <string name="about_privacy_policy" msgid="3705518622499152626">"개인정보취급방침"</string>
+    <string name="about_privacy_policy" msgid="3705518622499152626">"개인정보처리방침"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"서비스 약관"</string>
     <string name="activity_title_licenses" msgid="5467767062737708066">"오픈소스 라이선스"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"URL을 열지 못했습니다."</string>
