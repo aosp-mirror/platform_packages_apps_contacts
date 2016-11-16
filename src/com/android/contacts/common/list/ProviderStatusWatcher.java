@@ -27,6 +27,8 @@ import android.util.Log;
 
 import com.android.contacts.common.compat.ProviderStatusCompat;
 
+import com.android.contactsbind.FeedbackHelper;
+
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
@@ -230,6 +232,10 @@ public class ProviderStatusWatcher extends ContentObserver {
                         cursor.close();
                     }
                 }
+                return false;
+            } catch (SecurityException e) {
+                FeedbackHelper.sendFeedback(mContext, TAG,
+                        "Security exception when querying provider status", e);
                 return false;
             } finally {
                 synchronized (mSignal) {

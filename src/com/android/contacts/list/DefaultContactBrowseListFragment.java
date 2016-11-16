@@ -717,7 +717,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     }
 
     private void setDirectorySearchMode() {
-        if (mContactsRequest.isDirectorySearchEnabled()) {
+        if (mContactsRequest != null && mContactsRequest.isDirectorySearchEnabled()) {
             setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_DEFAULT);
         } else {
             setDirectorySearchMode(DirectoryListLoader.SEARCH_MODE_NONE);
