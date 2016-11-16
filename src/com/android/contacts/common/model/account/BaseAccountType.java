@@ -947,24 +947,24 @@ public abstract class BaseAccountType extends AccountType {
             kinds.add(kn);
 
             kn.fieldList.add(new EditField(StructuredName.PREFIX, R.string.name_prefix,
-                    FLAGS_PERSON_NAME).setLongForm(true));
+                    FLAGS_PERSON_NAME).setOptional(true));
             if (!displayOrderPrimary) {
                 kn.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
                         FLAGS_PERSON_NAME));
                 kn.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                        FLAGS_PERSON_NAME).setLongForm(true));
+                        FLAGS_PERSON_NAME).setOptional(true));
                 kn.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
                         FLAGS_PERSON_NAME));
             } else {
                 kn.fieldList.add(new EditField(StructuredName.GIVEN_NAME, R.string.name_given,
                         FLAGS_PERSON_NAME));
                 kn.fieldList.add(new EditField(StructuredName.MIDDLE_NAME, R.string.name_middle,
-                        FLAGS_PERSON_NAME).setLongForm(true));
+                        FLAGS_PERSON_NAME).setOptional(true));
                 kn.fieldList.add(new EditField(StructuredName.FAMILY_NAME, R.string.name_family,
                         FLAGS_PERSON_NAME));
             }
             kn.fieldList.add(new EditField(StructuredName.SUFFIX, R.string.name_suffix,
-                    FLAGS_PERSON_NAME).setLongForm(true));
+                    FLAGS_PERSON_NAME).setOptional(true));
 
             // Phonetic name
             final DataKind kp = newDataKind(context, parser, attrs, true,
