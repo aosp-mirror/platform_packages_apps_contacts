@@ -61,6 +61,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
         public long contactId;
         public String contactLookupKey;
         public long rawContactId;
+        public long photoId;
         public String name;
         public String phoneNumber;
         public String emailAddress;
@@ -72,6 +73,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
                     .add("contactId", contactId)
                     .add("contactLookupKey", contactLookupKey)
                     .add("rawContactId", rawContactId)
+                    .add("photoId", photoId)
                     .add("name", name)
                     .add("phoneNumber", phoneNumber)
                     .add("emailAddress", emailAddress)
@@ -284,7 +286,8 @@ public class AggregationSuggestionEngine extends HandlerThread {
                 Data.IS_SUPER_PRIMARY,
                 RawContacts.ACCOUNT_TYPE,
                 RawContacts.ACCOUNT_NAME,
-                RawContacts.DATA_SET
+                RawContacts.DATA_SET,
+                Contacts.PHOTO_ID
         };
 
         public static final int CONTACT_ID = 0;
@@ -296,6 +299,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
         public static final int ACCOUNT_TYPE = 6;
         public static final int ACCOUNT_NAME = 7;
         public static final int DATA_SET = 8;
+        public static final int PHOTO_ID = 9;
     }
 
     private void loadAggregationSuggestions(Uri uri) {
@@ -386,6 +390,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
                 if (rawContactId != currentRawContactId) {
                     suggestion = new Suggestion();
                     suggestion.rawContactId = rawContactId;
+                    suggestion.photoId = mDataCursor.getLong(DataQuery.PHOTO_ID);
                     suggestion.contactId = mDataCursor.getLong(DataQuery.CONTACT_ID);
                     suggestion.contactLookupKey = mDataCursor.getString(DataQuery.LOOKUP_KEY);
                     final String accountName = mDataCursor.getString(DataQuery.ACCOUNT_NAME);
