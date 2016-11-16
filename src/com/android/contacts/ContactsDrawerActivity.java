@@ -47,7 +47,6 @@ import android.widget.Toast;
 
 import com.android.contacts.activities.ActionBarAdapter;
 import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.Experiments;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.list.AccountFilterActivity;
 import com.android.contacts.common.list.ContactListFilter;
@@ -78,7 +77,6 @@ import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contactsbind.HelpUtils;
 import com.android.contactsbind.ObjectFactory;
-import com.android.contactsbind.experiments.Flags;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -264,8 +262,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     }
 
     private void initializeAssistantNewBadge() {
-        if (!Flags.getInstance().getBoolean(Experiments.ASSISTANT)
-                || mNavigationView == null) {
+        if (mNavigationView == null) {
             return;
         }
         final LinearLayout newBadgeFrame = (LinearLayout) MenuItemCompat.getActionView(
@@ -302,19 +299,10 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     private void setUpMenu() {
         final Menu menu = mNavigationView.getMenu();
 
-        if (ObjectFactory.getDuplicatesUtilFragment() == null) {
+        if (ObjectFactory.getAssistantFragment() == null) {
             menu.removeItem(R.id.nav_assistant);
-            menu.removeItem(R.id.nav_find_duplicates);
         } else {
-            int id;
-            if (Flags.getInstance().getBoolean(Experiments.ASSISTANT)) {
-                id = R.id.nav_assistant;
-                menu.removeItem(R.id.nav_find_duplicates);
-            } else {
-                id = R.id.nav_find_duplicates;
-                menu.removeItem(R.id.nav_assistant);
-            }
-
+            final int id = R.id.nav_assistant;
             final MenuItem assistantMenu = menu.findItem(id);
             mIdMenuMap.put(id, assistantMenu);
             if (isAssistantView()) {
@@ -631,7 +619,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     HelpUtils.launchHelpAndFeedbackForMainScreen(ContactsDrawerActivity.this);
                 } else if (id == R.id.nav_all_contacts) {
                     switchToAllContacts();
-                } else if (id == R.id.nav_assistant || id == R.id.nav_find_duplicates) {
+                } else if (id == R.id.nav_assistant) {
                     if (!isAssistantView()) {
                         launchAssistant();
                         updateMenuSelection(item);

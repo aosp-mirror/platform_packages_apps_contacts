@@ -928,9 +928,6 @@
     <!-- Left drawer menu item to open contacts assistant/suggestion cards. [CHAR LIMIT=20]-->
     <string name="menu_assistant">Suggestions</string>
 
-    <!-- The menu item to open the link/merge duplicates activity. [CHAR LIMIT=20]-->
-    <string name="menu_duplicates">Duplicates</string>
-
     <!-- Badge shown next to Suggestions in left drawer menu when user has not visited it yet. [CHAR LIMIT=10] -->
     <string name="menu_assistant_new_badge">New</string>
 

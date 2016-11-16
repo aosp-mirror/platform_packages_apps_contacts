@@ -94,9 +94,7 @@ public class SimContactDao {
     }
 
     public void warmupSimQueryIfNeeded() {
-        // Not needed if we don't have an Assistant section
-        if (!Flags.getInstance().getBoolean(Experiments.ASSISTANT) ||
-                !canReadSimContacts()) return;
+        if (!canReadSimContacts()) return;
 
         new AsyncTask<Void, Void, Void>() {
             @Override
