@@ -96,8 +96,19 @@ public abstract class Logger {
         }
     }
 
+    public static void logEditorEvent(int eventType, int numberRawContacts) {
+        final Logger logger = getInstance();
+        if (logger != null) {
+            final EditorEvent event = new EditorEvent();
+            event.eventType = eventType;
+            event.numberRawContacts = numberRawContacts;
+            logger.logEditorEventImpl(event);
+        }
+    }
+
     public abstract void logScreenViewImpl(int screenType, int previousScreenType);
     public abstract void logSearchEventImpl(SearchState searchState);
     public abstract void logListEventImpl(ListEvent event);
     public abstract void logQuickContactEventImpl(QuickContactEvent event);
+    public abstract void logEditorEventImpl(EditorEvent event);
 }
