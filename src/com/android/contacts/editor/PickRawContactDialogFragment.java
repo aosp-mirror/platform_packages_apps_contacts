@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.logging.EditorEvent;
 import com.android.contacts.common.logging.Logger;
@@ -28,6 +30,7 @@ import com.android.contacts.common.model.account.GoogleAccountType;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.editor.PickRawContactLoader.RawContact;
 import com.android.contacts.editor.PickRawContactLoader.RawContactsMetadata;
+import com.android.contacts.list.UiIntentActions;
 
 /**
  * Should only be started from an activity that implements {@link PickRawContactListener}.
@@ -36,6 +39,7 @@ import com.android.contacts.editor.PickRawContactLoader.RawContactsMetadata;
  */
 public class PickRawContactDialogFragment extends DialogFragment {
     private static final String ARGS_RAW_CONTACTS_METADATA = "rawContactsMetadata";
+    private static final int REQUEST_CODE_JOIN = 3;
 
     public interface PickRawContactListener {
         void onPickRawContact(long rawContactId);
@@ -147,6 +151,7 @@ public class PickRawContactDialogFragment extends DialogFragment {
     }
 
     private ListAdapter mAdapter;
+    private boolean mShouldFinishActivity = true;
 
     public static PickRawContactDialogFragment getInstance(RawContactsMetadata metadata) {
         final PickRawContactDialogFragment fragment = new PickRawContactDialogFragment();
@@ -174,7 +179,35 @@ public class PickRawContactDialogFragment extends DialogFragment {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         mAdapter = new RawContactAccountListAdapter(getContext(), metadata);
-        builder.setTitle(R.string.contact_editor_pick_raw_contact_to_edit_dialog_title);
+        if (metadata.showReadOnly) {
+            builder.setTitle(R.string.contact_editor_pick_linked_contact_dialog_title);
+            builder.setPositiveButton(R.string.contact_editor_add_linked_contact,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mShouldFinishActivity = false;
+                            final Intent intent = new Intent(getActivity(),
+                                    ContactSelectionActivity.class);
+                            intent.setAction(UiIntentActions.PICK_JOIN_CONTACT_ACTION);
+                            intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY,
+                                    metadata.contactId);
+                            getActivity().startActivityForResult(intent, REQUEST_CODE_JOIN);
+                        }
+                    });
+            builder.setNeutralButton(R.string.contact_editor_unlink_contacts,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mShouldFinishActivity = false;
+                            final SplitContactConfirmationDialogFragment splitDialog = new
+                                    SplitContactConfirmationDialogFragment();
+                            splitDialog.show(getActivity().getFragmentManager(),
+                                    SplitContactConfirmationDialogFragment.TAG);
+                        }
+                    });
+        } else {
+            builder.setTitle(R.string.contact_editor_pick_raw_contact_to_edit_dialog_title);
+        }
         builder.setAdapter(mAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -193,7 +226,9 @@ public class PickRawContactDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        finishActivity();
+        if (mShouldFinishActivity) {
+            finishActivity();
+        }
     }
 
     @Override

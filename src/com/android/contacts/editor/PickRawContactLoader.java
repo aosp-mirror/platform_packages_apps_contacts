@@ -75,10 +75,9 @@ public class PickRawContactLoader extends
         }
 
         final RawContactsMetadata result = new RawContactsMetadata();
-        final long contactId;
         try {
             contactCursor.moveToFirst();
-            contactId = contactCursor.getLong(/* Contacts._ID */ 0);
+            result.contactId = contactCursor.getLong(/* Contacts._ID */ 0);
             result.isUserProfile = contactCursor.getInt(/* Contacts.IS_USER_PROFILE */ 1) == 1;
         } finally {
             contactCursor.close();
@@ -94,7 +93,7 @@ public class PickRawContactLoader extends
 
         final Cursor rawContactCursor = resolver.query(
                 rawContactUri, RAW_CONTACT_PROJECTION, RAW_CONTACT_SELECTION,
-                new String[] {Long.toString(contactId)}, null);
+                new String[] {Long.toString(result.contactId)}, null);
 
         if (rawContactCursor == null) {
             return null;
@@ -195,6 +194,7 @@ public class PickRawContactLoader extends
                     }
                 };
 
+        public long contactId;
         public boolean isUserProfile;
         public boolean showReadOnly = false;
         public ArrayList<RawContact> rawContacts = new ArrayList<>();
@@ -202,6 +202,7 @@ public class PickRawContactLoader extends
         public RawContactsMetadata() {}
 
         private RawContactsMetadata(Parcel in) {
+            contactId = in.readLong();
             isUserProfile = in.readInt() == 1;
             showReadOnly = in.readInt() == 1;
             in.readTypedList(rawContacts, RawContact.CREATOR);
@@ -244,6 +245,7 @@ public class PickRawContactLoader extends
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
+            dest.writeLong(contactId);
             dest.writeInt(isUserProfile ? 1 : 0);
             dest.writeInt(showReadOnly ? 1 : 0);
             dest.writeTypedList(rawContacts);

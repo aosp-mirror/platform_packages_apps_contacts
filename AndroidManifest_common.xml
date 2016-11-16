@@ -366,7 +366,6 @@
 
          <activity
             android:name=".activities.ContactEditorSpringBoardActivity"
-            android:noHistory="true"
             android:theme="@style/TransparentThemeAppCompat">
 
              <intent-filter>
