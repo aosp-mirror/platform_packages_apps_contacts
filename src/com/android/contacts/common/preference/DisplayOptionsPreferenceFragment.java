@@ -57,6 +57,7 @@ import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.util.AccountFilterUtil;
 import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contactsbind.HelpUtils;
 
 import java.util.List;
 
@@ -226,7 +227,9 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         }
 
         final Preference aboutPreference = findPreference(KEY_ABOUT);
-        aboutPreference.setOnPreferenceClickListener(this);
+        if (aboutPreference != null) {
+            aboutPreference.setOnPreferenceClickListener(this);
+        }
 
         final Preference customFilterPreference = findPreference(KEY_CUSTOM_CONTACTS_FILTER);
         if (customFilterPreference != null) {
@@ -261,6 +264,10 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         final Resources resources = getResources();
         if (!resources.getBoolean(R.bool.config_sort_order_user_changeable)) {
             getPreferenceScreen().removePreference(findPreference(KEY_SORT_ORDER));
+        }
+
+        if (HelpUtils.isHelpAndFeedbackAvailable()) {
+            getPreferenceScreen().removePreference(findPreference(KEY_ABOUT));
         }
 
         // Disable display order for CJK locales as well
