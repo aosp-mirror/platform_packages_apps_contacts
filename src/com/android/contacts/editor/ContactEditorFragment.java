@@ -17,7 +17,6 @@
 package com.android.contacts.editor;
 
 import android.accounts.Account;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -55,6 +54,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.GroupMetaDataLoader;
@@ -1247,10 +1247,11 @@ public class ContactEditorFragment extends Fragment implements
                 mHasNewContact, mIsUserProfile, mAccountWithDataSet,
                 mRawContactIdToDisplayAlone);
         if (isEditingReadOnlyRawContact()) {
-            final ActionBar actionBar = getEditorActivity().getActionBar();
-            if (actionBar != null) {
-                actionBar.setTitle(R.string.contact_editor_title_read_only_contact);
-                actionBar.setHomeAsUpIndicator(R.drawable.ic_back_arrow);
+            final Toolbar toolbar = getEditorActivity().getToolbar();
+            if (toolbar != null) {
+                toolbar.setTitle(R.string.contact_editor_title_read_only_contact);
+                toolbar.setNavigationIcon(R.drawable.ic_back_arrow);
+                toolbar.setNavigationContentDescription(R.string.back_arrow_content_description);
             }
         }
 

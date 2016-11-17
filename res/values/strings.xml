@@ -564,6 +564,12 @@
     <!-- The title of the Edit-Contact screen -->
     <string name="edit_contact">Edit contact</string>
 
+    <!-- Content description for a cancel button. [CHAR LIMIT=NONE] -->
+    <string name="cancel_button_content_description">Cancel</string>
+
+    <!-- Content description for a back button. [CHAR LIMIT=NONE] -->
+    <string name="back_arrow_content_description">Back</string>
+
     <!-- Content description for the fake action menu up button as used
          inside edit or select. [CHAR LIMIT=NONE] -->
     <string name="action_menu_back_from_edit_select">close</string>
