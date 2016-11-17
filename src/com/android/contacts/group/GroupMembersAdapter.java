@@ -150,7 +150,8 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
         final ContactListItemView view = (ContactListItemView) v;
         bindSectionHeaderAndDivider(view, position);
         bindName(view, cursor);
-        bindPhoto(view, cursor);
+        bindPhoto(view, cursor, GroupMembersQuery.CONTACT_PHOTO_ID,
+                GroupMembersQuery.CONTACT_LOOKUP_KEY, GroupMembersQuery.CONTACT_DISPLAY_NAME);
         bindDeleteButton(view, position);
     }
 
@@ -167,17 +168,6 @@ public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {
     private void bindName(ContactListItemView view, Cursor cursor) {
         view.showDisplayName(cursor, GroupMembersQuery.CONTACT_DISPLAY_NAME,
                 getContactNameDisplayOrder());
-    }
-
-    private void bindPhoto(final ContactListItemView view, Cursor cursor) {
-        final long photoId = cursor.isNull(GroupMembersQuery.CONTACT_PHOTO_ID)
-                ? 0 : cursor.getLong(GroupMembersQuery.CONTACT_PHOTO_ID);
-        final DefaultImageRequest imageRequest = photoId == 0
-                ? getDefaultImageRequestFromCursor(cursor, GroupMembersQuery.CONTACT_DISPLAY_NAME,
-                        GroupMembersQuery.CONTACT_LOOKUP_KEY)
-                : null;
-        getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false, getCircularPhotos(),
-                imageRequest);
     }
 
     private void bindDeleteButton(final ContactListItemView view, int position) {
