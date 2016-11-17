@@ -685,10 +685,8 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
     private void bindData(Drawable icon, String iconContentDescription, CharSequence data,
             CharSequence type, boolean isFirstEntry, boolean forceLTR) {
-        final LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
-        final View field = inflater.inflate(R.layout.item_read_only_field, mKindSectionViews,
-                false);
+        final View field = mLayoutInflater.inflate(R.layout.item_read_only_field, mKindSectionViews,
+                /* attachToRoot */ false);
         if (isFirstEntry) {
             final ImageView imageView = (ImageView) field.findViewById(R.id.kind_icon);
             imageView.setImageDrawable(icon);
@@ -749,8 +747,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
         // Set the content description
         mAccountHeaderContainer.setContentDescription(
-                EditorUiUtils.getAccountInfoContentDescription(primaryText,
-                        secondaryText));
+                EditorUiUtils.getAccountInfoContentDescription(secondaryText, primaryText));
     }
 
     private void addAccountSelector(final RawContactDelta rawContactDelta) {
