@@ -1035,7 +1035,7 @@ public class ContactListItemView extends ViewGroup
         headerImageView.setImageTintList(ColorStateList.valueOf(getResources()
                 .getColor(R.color.material_star_pink)));
         headerImageView.setContentDescription(
-                getContext().getString(R.string.list_filter_all_starred));
+                getContext().getString(R.string.contactsFavoritesLabel));
         headerImageView.setVisibility(View.VISIBLE);
         addView(headerImageView);
     }
