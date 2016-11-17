@@ -115,16 +115,6 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
     }
 
     @Override
-    public void onSelectedContactsChangedViaCheckBox() {
-        if (getAdapter().getSelectedContactIds().size() == 0) {
-            // Last checkbox has been unchecked. So we should stop displaying checkboxes.
-            mCheckBoxListListener.onStopDisplayingCheckBoxes();
-        } else {
-            onSelectedContactsChanged();
-        }
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
@@ -403,8 +393,8 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         if (accountType instanceof GoogleAccountType) {
             accountFilterHeaderIcon.getLayoutParams().height = getResources()
                     .getDimensionPixelOffset(R.dimen.contact_browser_list_header_icon_size);
-            accountFilterHeaderIcon.getLayoutParams().width =
-                    accountFilterHeaderIcon.getLayoutParams().height;
+            accountFilterHeaderIcon.getLayoutParams().width = getResources()
+                    .getDimensionPixelOffset(R.dimen.contact_browser_list_header_icon_size);
 
             setMargins(accountFilterHeaderIcon,
                     getResources().getDimensionPixelOffset(
@@ -414,8 +404,8 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         } else {
             accountFilterHeaderIcon.getLayoutParams().height = getResources()
                     .getDimensionPixelOffset(R.dimen.contact_browser_list_header_icon_size_alt);
-            accountFilterHeaderIcon.getLayoutParams().width =
-                    accountFilterHeaderIcon.getLayoutParams().height;
+            accountFilterHeaderIcon.getLayoutParams().width = getResources()
+                    .getDimensionPixelOffset(R.dimen.contact_browser_list_header_icon_size_alt);
 
             setMargins(accountFilterHeaderIcon,
                     getResources().getDimensionPixelOffset(

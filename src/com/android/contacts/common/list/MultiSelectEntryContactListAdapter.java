@@ -20,7 +20,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 
 import com.android.contacts.group.GroupUtil;
@@ -35,13 +34,12 @@ public abstract class MultiSelectEntryContactListAdapter extends ContactEntryLis
 
     private SelectedContactsListener mSelectedContactsListener;
     private DeleteContactListener mDeleteContactListener;
-    private TreeSet<Long> mSelectedContactIds = new TreeSet<Long>();
+    private TreeSet<Long> mSelectedContactIds = new TreeSet<>();
     private boolean mDisplayCheckBoxes;
     private final int mContactIdColumnIndex;
 
     public interface SelectedContactsListener {
         void onSelectedContactsChanged();
-        void onSelectedContactsChangedViaCheckBox();
     }
 
     public interface DeleteContactListener {
@@ -149,18 +147,17 @@ public abstract class MultiSelectEntryContactListAdapter extends ContactEntryLis
             return cursor.getLong(getContactColumnIdIndex());
         }
         return 0;
-     }
+    }
 
     @Override
     protected void bindView(View itemView, int partition, Cursor cursor, int position) {
         super.bindView(itemView, partition, cursor, position);
         final ContactListItemView view = (ContactListItemView) itemView;
         bindViewId(view, cursor, getContactColumnIdIndex());
-        bindCheckBox(view, cursor, position, partition == ContactsContract.Directory.DEFAULT);
+        bindCheckBox(view, cursor, partition == ContactsContract.Directory.DEFAULT);
     }
 
-    private void bindCheckBox(ContactListItemView view, Cursor cursor, int position,
-            boolean isLocalDirectory) {
+    private void bindCheckBox(ContactListItemView view, Cursor cursor, boolean isLocalDirectory) {
         // Disable clicking on all contacts from remote directories when showing check boxes. We do
         // this by telling the view to handle clicking itself.
         view.setClickable(!isLocalDirectory && mDisplayCheckBoxes);
@@ -173,24 +170,7 @@ public abstract class MultiSelectEntryContactListAdapter extends ContactEntryLis
         final CheckBox checkBox = view.getCheckBox();
         final long contactId = cursor.getLong(mContactIdColumnIndex);
         checkBox.setChecked(mSelectedContactIds.contains(contactId));
+        checkBox.setClickable(false);
         checkBox.setTag(contactId);
-        checkBox.setOnClickListener(mCheckBoxClickListener);
     }
-
-    private final OnClickListener mCheckBoxClickListener = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            final CheckBox checkBox = (CheckBox) v;
-            final Long contactId = (Long) checkBox.getTag();
-            if (checkBox.isChecked()) {
-                mSelectedContactIds.add(contactId);
-            } else {
-                mSelectedContactIds.remove(contactId);
-            }
-            notifyDataSetChanged();
-            if (mSelectedContactsListener != null) {
-                mSelectedContactsListener.onSelectedContactsChangedViaCheckBox();
-            }
-        }
-    };
 }
