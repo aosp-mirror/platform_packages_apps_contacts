@@ -851,6 +851,9 @@
     <!-- Content description for the contact editor photo overlay which, when clicked, shows a dialog with the options for changing the contact photo. [CHAR LIMIT=30] -->
     <string name="editor_change_photo_content_description">Change photo</string>
 
+    <!-- Accessibility content description, describes the image as being the photo for the contact the user is viewing. [CHAR LIMIT=NONE] -->
+    <string name="editor_contact_photo_content_description">Contact photo</string>
+
     <!-- Toast message displayed when the editor fails to load for a contacts. [CHAR LIMIT=NONE] -->
     <string name="editor_failed_to_load">Failed to open editor.</string>
 
