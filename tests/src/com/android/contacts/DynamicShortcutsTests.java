@@ -100,6 +100,14 @@ public class DynamicShortcutsTests extends AndroidTestCase {
         assertEquals(1l, shortcut.getExtras().getLong(Contacts._ID));
     }
 
+    public void test_builderForContactShortcut_returnsNullWhenNameIsNull() {
+        final DynamicShortcuts sut = createDynamicShortcuts();
+
+        final ShortcutInfo.Builder shortcut = sut.builderForContactShortcut(1l, "lookup_key", null);
+
+        assertNull(shortcut);
+    }
+
     public void test_builderForContactShortcut_ellipsizesLongNamesForLabels() {
         final DynamicShortcuts sut = createDynamicShortcuts();
         sut.setShortLabelMaxLength(5);
@@ -182,6 +190,43 @@ public class DynamicShortcutsTests extends AndroidTestCase {
         assertThat(arg.get(1), isShortcutForContact(2l, "freq_key", "freq name"));
         assertThat(arg.get(2), isShortcutForContact(3l, "starred_2", "Starred Two"));
     }
+
+    public void test_refresh_skipsContactsWithNullName() {
+        final ShortcutManager mockShortcutManager = mock(ShortcutManager.class);
+        when(mockShortcutManager.getPinnedShortcuts()).thenReturn(
+                Collections.<ShortcutInfo>emptyList());
+        final DynamicShortcuts sut = createDynamicShortcuts(resolverWithExpectedQueries(
+                queryFor(Contacts.CONTENT_STREQUENT_URI,
+                        1l, "key1", "first",
+                        2l, "key2", "second",
+                        3l, "key3", null,
+                        4l, null, null,
+                        5l, "key5", "fifth",
+                        6l, "key6", "sixth")), mockShortcutManager);
+
+        sut.refresh();
+
+        final ArgumentCaptor<List<ShortcutInfo>> updateArgs =
+                ArgumentCaptor.forClass((Class) List.class);
+
+        verify(mockShortcutManager).setDynamicShortcuts(updateArgs.capture());
+
+        final List<ShortcutInfo> arg = updateArgs.getValue();
+        assertThat(arg.size(), equalTo(3));
+        assertThat(arg.get(0), isShortcutForContact(1l, "key1", "first"));
+        assertThat(arg.get(1), isShortcutForContact(2l, "key2", "second"));
+        assertThat(arg.get(2), isShortcutForContact(5l, "key5", "fifth"));
+
+
+        // Also verify that it doesn't crash if there are fewer than 3 valid strequent contacts
+        createDynamicShortcuts(resolverWithExpectedQueries(
+                queryFor(Contacts.CONTENT_STREQUENT_URI,
+                        1l, "key1", "first",
+                        2l, "key2", "second",
+                        3l, "key3", null,
+                        4l, null, null)), mock(ShortcutManager.class)).refresh();
+    }
+
 
     public void test_handleFlagDisabled_stopsJob() {
         final ShortcutManager mockShortcutManager = mock(ShortcutManager.class);
