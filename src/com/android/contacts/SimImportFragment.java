@@ -20,43 +20,40 @@ import android.app.DialogFragment;
 import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Loader;
-import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.database.SimContactDao;
-import com.android.contacts.common.list.ContactListAdapter;
-import com.android.contacts.common.list.ContactListItemView;
-import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.SimCard;
 import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.editor.AccountHeaderPresenter;
-import com.google.common.primitives.Longs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Dialog that presents a list of contacts from a SIM card that can be imported into a selected
@@ -64,10 +61,11 @@ import java.util.TreeSet;
  */
 public class SimImportFragment extends DialogFragment
         implements LoaderManager.LoaderCallbacks<SimImportFragment.LoaderResult>,
-        MultiSelectEntryContactListAdapter.SelectedContactsListener, AbsListView.OnScrollListener {
+        AdapterView.OnItemClickListener, AbsListView.OnScrollListener {
 
     private static final String KEY_SUFFIX_SELECTED_IDS = "_selectedIds";
     private static final String ARG_SUBSCRIPTION_ID = "subscriptionId";
+    private static final String TAG = "SimImportFragment";
 
     private ContactsPreferences mPreferences;
     private AccountTypeManager mAccountTypeManager;
@@ -80,6 +78,8 @@ public class SimImportFragment extends DialogFragment
     private ListView mListView;
     private View mImportButton;
 
+    private final Map<AccountWithDataSet, long[]> mPerAccountCheckedIds = new ArrayMap<>();
+
     private int mSubscriptionId;
 
     @Override
@@ -90,12 +90,6 @@ public class SimImportFragment extends DialogFragment
         mPreferences = new ContactsPreferences(getContext());
         mAccountTypeManager = AccountTypeManager.getInstance(getActivity());
         mAdapter = new SimContactAdapter(getActivity());
-
-        // This needs to be set even though photos aren't loaded because the adapter assumes it
-        // will be non-null
-        mAdapter.setPhotoLoader(ContactPhotoManager.getInstance(getActivity()));
-        mAdapter.setDisplayCheckBoxes(true);
-        mAdapter.setHasHeader(0, false);
 
         final Bundle args = getArguments();
         mSubscriptionId = args == null ? SimCard.NO_SUBSCRIPTION_ID :
@@ -137,7 +131,10 @@ public class SimImportFragment extends DialogFragment
         mAccountHeaderPresenter.setObserver(new AccountHeaderPresenter.Observer() {
             @Override
             public void onChange(AccountHeaderPresenter sender) {
+                rememberSelectionsForCurrentAccount();
                 mAdapter.setAccount(sender.getCurrentAccount());
+                showSelectionsForCurrentAccount();
+                updateToolbarWithCurrentSelections();
             }
         });
         mAdapter.setAccount(mAccountHeaderPresenter.getCurrentAccount());
@@ -146,17 +143,8 @@ public class SimImportFragment extends DialogFragment
         mListView = (ListView) view.findViewById(R.id.list);
         mListView.setOnScrollListener(this);
         mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (mAdapter.existsInCurrentAccount(position)) {
-                    Snackbar.make(getView(), R.string.sim_import_contact_exists_toast,
-                            Snackbar.LENGTH_LONG).show();
-                } else {
-                    mAdapter.toggleSelectionOfContactId(id);
-                }
-            }
-        });
+        mListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
+        mListView.setOnItemClickListener(this);
         mImportButton = view.findViewById(R.id.import_button);
         mImportButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,8 +154,6 @@ public class SimImportFragment extends DialogFragment
                 dismiss();
             }
         });
-        mImportButton.setVisibility(mAdapter.getSelectedContactIds().size() > 0 ?
-                View.VISIBLE : View.GONE);
 
         mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -178,9 +164,53 @@ public class SimImportFragment extends DialogFragment
         });
 
         mLoadingIndicator = (ContentLoadingProgressBar) view.findViewById(R.id.loading_progress);
-        mAdapter.setSelectedContactsListener(this);
 
         return view;
+    }
+
+    private void rememberSelectionsForCurrentAccount() {
+        final AccountWithDataSet current = mAdapter.getAccount();
+        final long[] ids = mListView.getCheckedItemIds();
+        Arrays.sort(ids);
+        mPerAccountCheckedIds.put(current, ids);
+    }
+
+    private void showSelectionsForCurrentAccount() {
+        final long[] ids = mPerAccountCheckedIds.get(mAdapter.getAccount());
+        if (ids == null) {
+            selectAll();
+            return;
+        }
+        for (int i = 0, len = mListView.getCount(); i < len; i++) {
+            mListView.setItemChecked(i,
+                    Arrays.binarySearch(ids, mListView.getItemIdAtPosition(i)) >= 0);
+        }
+    }
+
+    private void selectAll() {
+        for (int i = 0, len = mListView.getCount(); i < len; i++) {
+            mListView.setItemChecked(i, true);
+        }
+    }
+
+    private void updateToolbarWithCurrentSelections() {
+        // The ListView keeps checked state for items that are disabled but we only want  to
+        // consider items that don't exist in the current account when updating the toolbar
+        int importableCount = 0;
+        final SparseBooleanArray checked = mListView.getCheckedItemPositions();
+        for (int i = 0; i < checked.size(); i++) {
+            if (checked.valueAt(i) && !mAdapter.existsInCurrentAccount(i)) {
+                importableCount++;
+            }
+        }
+
+        if (importableCount == 0) {
+            mImportButton.setVisibility(View.GONE);
+            mToolbar.setTitle(R.string.sim_import_title_none_selected);
+        } else {
+            mToolbar.setTitle(String.valueOf(importableCount));
+            mImportButton.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -195,6 +225,7 @@ public class SimImportFragment extends DialogFragment
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mAccountHeaderPresenter.onSaveInstanceState(outState);
+        rememberSelectionsForCurrentAccount();
         saveAdapterSelectedStates(outState);
     }
 
@@ -207,11 +238,14 @@ public class SimImportFragment extends DialogFragment
     public void onLoadFinished(Loader<LoaderResult> loader,
             LoaderResult data) {
         mLoadingIndicator.hide();
-        mListView.setEmptyView(getView().findViewById(R.id.empty_message));
         if (data == null) {
             return;
         }
         mAdapter.setData(data);
+        mListView.setEmptyView(getView().findViewById(R.id.empty_message));
+
+        showSelectionsForCurrentAccount();
+        updateToolbarWithCurrentSelections();
     }
 
     @Override
@@ -227,9 +261,7 @@ public class SimImportFragment extends DialogFragment
         for (AccountWithDataSet account : accounts) {
             final long[] selections = savedInstanceState.getLongArray(
                     account.stringify() + KEY_SUFFIX_SELECTED_IDS);
-            if (selections != null) {
-                mAdapter.setSelectionsForAccount(account, selections);
-            }
+            mPerAccountCheckedIds.put(account, selections);
         }
     }
 
@@ -239,35 +271,34 @@ public class SimImportFragment extends DialogFragment
         }
 
         // Make sure the selections are up-to-date
-        mAdapter.storeCurrentSelections();
-        for (Map.Entry<AccountWithDataSet, TreeSet<Long>> entry :
-                mAdapter.getSelectedIds().entrySet()) {
-            final long[] ids = Longs.toArray(entry.getValue());
-            outState.putLongArray(entry.getKey().stringify() + KEY_SUFFIX_SELECTED_IDS, ids);
+        for (Map.Entry<AccountWithDataSet, long[]> entry : mPerAccountCheckedIds.entrySet()) {
+            outState.putLongArray(entry.getKey().stringify() + KEY_SUFFIX_SELECTED_IDS,
+                    entry.getValue());
         }
     }
 
     private void importCurrentSelections() {
+        final SparseBooleanArray checked = mListView.getCheckedItemPositions();
+        final ArrayList<SimContact> importableContacts = new ArrayList<>(checked.size());
+        for (int i = 0; i < checked.size(); i++) {
+            // It's possible for existing contacts to be "checked" but we only want to import the
+            // ones that don't already exist
+            if (checked.valueAt(i) && !mAdapter.existsInCurrentAccount(i)) {
+                importableContacts.add(mAdapter.getItem(i));
+            }
+        }
         ContactSaveService.startService(getContext(), ContactSaveService
                 .createImportFromSimIntent(getContext(), mSubscriptionId,
-                        mAdapter.getSelectedContacts(),
+                        importableContacts,
                         mAccountHeaderPresenter.getCurrentAccount()));
     }
 
-    @Override
-    public void onSelectedContactsChanged() {
-        updateSelectedCount();
-    }
-
-    private void updateSelectedCount() {
-        final int selectedCount = mAdapter.getSelectedContactIds().size();
-        if (selectedCount == 0) {
-            mToolbar.setTitle(R.string.sim_import_title_none_selected);
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (mAdapter.existsInCurrentAccount(position)) {
+            Snackbar.make(getView(), R.string.sim_import_contact_exists_toast,
+                    Snackbar.LENGTH_LONG).show();
         } else {
-            mToolbar.setTitle(String.valueOf(selectedCount));
-        }
-        if (mImportButton != null) {
-            mImportButton.setVisibility(selectedCount > 0 ? View.VISIBLE : View.GONE);
+            updateToolbarWithCurrentSelections();
         }
     }
 
@@ -315,108 +346,68 @@ public class SimImportFragment extends DialogFragment
         return fragment;
     }
 
-    private static class SimContactAdapter extends ContactListAdapter {
-        private ArrayList<SimContact> mContacts;
-        private AccountWithDataSet mSelectedAccount;
+    private static class SimContactAdapter extends ArrayAdapter<SimContact> {
         private Map<AccountWithDataSet, Set<SimContact>> mExistingMap;
-        private Map<AccountWithDataSet, TreeSet<Long>> mPerAccountCheckedIds = new ArrayMap<>();
-        private final int mCheckboxPaddingEnd;
+        private AccountWithDataSet mSelectedAccount;
+        private LayoutInflater mInflater;
 
         public SimContactAdapter(Context context) {
-            super(context);
-            mCheckboxPaddingEnd = context.getResources()
-                    .getDimensionPixelOffset(R.dimen.sim_import_checkbox_end_padding);
+            super(context, 0);
+            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
-        public void configureLoader(CursorLoader loader, long directoryId) {
+        public long getItemId(int position) {
+            return getItem(position).getId();
         }
 
         @Override
-        protected void bindView(View itemView, int partition, Cursor cursor, int position) {
-            super.bindView(itemView, partition, cursor, position);
-            ContactListItemView contactView = (ContactListItemView) itemView;
-            bindNameAndViewId(contactView, cursor);
+        public boolean hasStableIds() {
+            return true;
+        }
 
-            // For accessibility. Tapping the item checks this so we don't need it to be separately
-            // clickable
-            contactView.getCheckBox().setFocusable(false);
-            contactView.getCheckBox().setClickable(false);
-            // The default list pads the checkbox by a larger amount than we want.
-            contactView.setPaddingRelative(contactView.getPaddingStart(),
-                    contactView.getPaddingTop(), mCheckboxPaddingEnd,
-                    contactView.getPaddingBottom());
-            setViewEnabled(contactView, !existsInCurrentAccount(position));
+        @Override
+        public int getViewTypeCount() {
+            return 2;
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return !existsInCurrentAccount(position) ? 0 : 1;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView text = (TextView) convertView;
+            if (text == null) {
+                final int layoutRes = existsInCurrentAccount(position) ?
+                        R.layout.sim_import_list_item_disabled :
+                        R.layout.sim_import_list_item;
+                text = (TextView) mInflater.inflate(layoutRes, parent, false);
+            }
+            text.setText(getItemLabel(getItem(position)));
+
+            return text;
         }
 
         public void setData(LoaderResult result) {
-            mContacts = result.contacts;
+            clear();
+            addAll(result.contacts);
             mExistingMap = result.accountsMap;
-            changeCursor(SimContact.convertToContactsCursor(mContacts,
-                    ContactQuery.CONTACT_PROJECTION_PRIMARY));
-            updateDisplayedSelections();
         }
 
         public void setAccount(AccountWithDataSet account) {
-            if (mContacts == null) {
-                mSelectedAccount = account;
-                return;
-            }
-
-            // Save the checked state for the current account.
-            storeCurrentSelections();
             mSelectedAccount = account;
-            updateDisplayedSelections();
-        }
-
-        public void storeCurrentSelections() {
-            if (mSelectedAccount != null) {
-                mPerAccountCheckedIds.put(mSelectedAccount, getSelectedContactIds());
-            }
-        }
-
-        public Map<AccountWithDataSet, TreeSet<Long>> getSelectedIds() {
-            return mPerAccountCheckedIds;
-        }
-
-        private void updateDisplayedSelections() {
-            if (mContacts == null) {
-                return;
-            }
-
-            TreeSet<Long> checked = mPerAccountCheckedIds.get(mSelectedAccount);
-            if (checked == null) {
-                checked = getEnabledIdsForCurrentAccount();
-                mPerAccountCheckedIds.put(mSelectedAccount, checked);
-            }
-            setSelectedContactIds(checked);
-
             notifyDataSetChanged();
         }
 
-        public ArrayList<SimContact> getSelectedContacts() {
-            if (mContacts == null) return null;
-
-            final Set<Long> selectedIds = getSelectedContactIds();
-            final ArrayList<SimContact> selected = new ArrayList<>();
-            for (SimContact contact : mContacts) {
-                if (selectedIds.contains(contact.getId())) {
-                    selected.add(contact);
-                }
-            }
-            return selected;
-        }
-
-        public void setSelectionsForAccount(AccountWithDataSet account, long[] contacts) {
-            final TreeSet<Long> selected = new TreeSet<>(Longs.asList(contacts));
-            mPerAccountCheckedIds.put(account, selected);
-            if (account.equals(mSelectedAccount)) {
-                updateDisplayedSelections();
-            }
+        public AccountWithDataSet getAccount() {
+            return mSelectedAccount;
         }
 
         public boolean existsInCurrentAccount(int position) {
-            return existsInCurrentAccount(mContacts.get(position));
+            return existsInCurrentAccount(getItem(position));
         }
 
         public boolean existsInCurrentAccount(SimContact contact) {
@@ -426,25 +417,17 @@ public class SimImportFragment extends DialogFragment
             return mExistingMap.get(mSelectedAccount).contains(contact);
         }
 
-        private TreeSet<Long> getEnabledIdsForCurrentAccount() {
-            final TreeSet<Long> result = new TreeSet<>();
-            for (SimContact contact : mContacts) {
-                if (!existsInCurrentAccount(contact)) {
-                    result.add(contact.getId());
-                }
+        private String getItemLabel(SimContact contact) {
+            if (contact.hasName()) {
+                return contact.getName();
+            } else if (contact.hasPhone()) {
+                return contact.getPhone();
+            } else if (contact.hasEmails()) {
+                return contact.getEmails()[0];
+            } else {
+                // This isn't really possible because we skip empty SIM contacts during loading
+                return "";
             }
-            return result;
-        }
-
-        private void setViewEnabled(ContactListItemView itemView, boolean enabled) {
-            itemView.getCheckBox().setEnabled(enabled);
-            itemView.getNameTextView().setEnabled(enabled);
-            // If the checkbox is left to default it's "unchecked" state will be announced when
-            // it is clicked on instead of the snackbar which is not useful.
-            int accessibilityMode = enabled ?
-                    View.IMPORTANT_FOR_ACCESSIBILITY_YES :
-                    View.IMPORTANT_FOR_ACCESSIBILITY_NO;
-            itemView.getCheckBox().setImportantForAccessibility(accessibilityMode);
         }
     }
 
