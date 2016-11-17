@@ -116,10 +116,14 @@ public class PhotoEditorView extends RelativeLayout implements View.OnClickListe
             mPhotoIcon.setVisibility(View.GONE);
             mPhotoIconOverlay.setVisibility(View.GONE);
             mPhotoTouchInterceptOverlay.setClickable(false);
+            mPhotoTouchInterceptOverlay.setContentDescription(getContext().getString(
+                    R.string.editor_contact_photo_content_description));
         } else {
             mPhotoIcon.setVisibility(View.VISIBLE);
             mPhotoIconOverlay.setVisibility(View.VISIBLE);
             mPhotoTouchInterceptOverlay.setOnClickListener(this);
+            mPhotoTouchInterceptOverlay.setContentDescription(getContext().getString(
+                    R.string.editor_change_photo_content_description));
         }
     }
 
