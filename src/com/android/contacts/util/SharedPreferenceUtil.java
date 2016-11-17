@@ -36,14 +36,14 @@ public class SharedPreferenceUtil {
     public static final String PREFERENCE_KEY_GLOBAL_SYNC_OFF_DISMISSES =
             "num-of-dismisses-auto-sync-off";
 
-    private static final String PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED_BEFORE =
-            "hamburgerPromoDisplayedBefore";
+    private static final String PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED =
+            "hamburgerPromoDisplayed";
 
-    private static final String PREFERENCE_KEY_HAMBURGER_MENU_CLICKED_BEFORE =
-            "hamburgerMenuClickedBefore";
+    private static final String PREFERENCE_KEY_HAMBURGER_MENU_CLICKED =
+            "hamburgerMenuClicked";
 
-    private static final String PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED_BEFORE =
-            "hamburgerPromoTriggerActionHappenedBefore";
+    private static final String PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED =
+            "hamburgerPromoTriggerActionHappened";
 
     private static final String PREFERENCE_KEY_IMPORTED_SIM_CARDS =
             "importedSimCards";
@@ -62,34 +62,34 @@ public class SharedPreferenceUtil {
 
     public static boolean getHamburgerPromoDisplayedBefore(Context context) {
         return getSharedPreferences(context)
-                .getBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED_BEFORE, false);
+                .getBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED, false);
     }
 
     public static void setHamburgerPromoDisplayedBefore(Context context) {
         getSharedPreferences(context).edit()
-                .putBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED_BEFORE, true)
+                .putBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED, true)
                 .apply();
     }
 
     public static boolean getHamburgerMenuClickedBefore(Context context) {
         return getSharedPreferences(context)
-                .getBoolean(PREFERENCE_KEY_HAMBURGER_MENU_CLICKED_BEFORE, false);
+                .getBoolean(PREFERENCE_KEY_HAMBURGER_MENU_CLICKED, false);
     }
 
     public static void setHamburgerMenuClickedBefore(Context context) {
         getSharedPreferences(context).edit()
-                .putBoolean(PREFERENCE_KEY_HAMBURGER_MENU_CLICKED_BEFORE, true)
+                .putBoolean(PREFERENCE_KEY_HAMBURGER_MENU_CLICKED, true)
                 .apply();
     }
 
     public static boolean getHamburgerPromoTriggerActionHappenedBefore(Context context) {
         return getSharedPreferences(context)
-                .getBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED_BEFORE, false);
+                .getBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED, false);
     }
 
     public static void setHamburgerPromoTriggerActionHappenedBefore(Context context) {
         getSharedPreferences(context).edit()
-                .putBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED_BEFORE, true)
+                .putBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED, true)
                 .apply();
     }
 
