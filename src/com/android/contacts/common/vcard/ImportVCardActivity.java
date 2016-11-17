@@ -290,7 +290,12 @@ public class ImportVCardActivity extends Activity implements ImportVCardDialogFr
             } finally {
                 Log.i(LOG_TAG, "Finished caching vCard.");
                 mWakeLock.release();
-                unbindService(mConnection);
+                try {
+                    unbindService(mConnection);
+                } catch (IllegalArgumentException e) {
+                    FeedbackHelper.sendFeedback(ImportVCardActivity.this, LOG_TAG,
+                            "Cannot unbind service connection", e);
+                }
                 mProgressDialogForCachingVCard.dismiss();
                 mProgressDialogForCachingVCard = null;
                 finish();
