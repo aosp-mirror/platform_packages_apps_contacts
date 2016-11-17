@@ -193,7 +193,7 @@
     <string name="contacts_deleted_two_named_toast"><xliff:g id="name">%1$s</xliff:g> and <xliff:g id="name">%2$s</xliff:g> deleted</string>
 
     <!-- Toast shown with names after user selected contacts are deleted by user action. [CHAR LIMIT=50] -->
-    <string name="contacts_deleted_many_named_toast"><xliff:g id="name">%1$s</xliff:g>, <xliff:g id="name">%2$s</xliff:g>, <xliff:g id="name">%3$s</xliff:g>... deleted</string>
+    <string name="contacts_deleted_many_named_toast"><xliff:g id="name">%1$s</xliff:g>, <xliff:g id="name">%2$s</xliff:g>, <xliff:g id="name">%3$s</xliff:g>\u2026 deleted</string>
 
     <!-- Toast shown after contacts that the user has selected are deleted by a user action. [CHAR LIMIT=30] -->
     <plurals name="contacts_deleted_toast">
