@@ -122,8 +122,7 @@ public class PhotoEditorView extends RelativeLayout implements View.OnClickListe
             mPhotoIcon.setVisibility(View.VISIBLE);
             mPhotoIconOverlay.setVisibility(View.VISIBLE);
             mPhotoTouchInterceptOverlay.setOnClickListener(this);
-            mPhotoTouchInterceptOverlay.setContentDescription(getContext().getString(
-                    R.string.editor_change_photo_content_description));
+            updatePhotoDescription();
         }
     }
 
@@ -212,13 +211,21 @@ public class PhotoEditorView extends RelativeLayout implements View.OnClickListe
     private void setPhoto(Bitmap bitmap) {
         mPhotoImageView.setImageBitmap(bitmap);
         mIsNonDefaultPhotoBound = true;
+        updatePhotoDescription();
     }
 
     private void setDefaultPhoto(MaterialPalette materialPalette) {
         mIsNonDefaultPhotoBound = false;
+        updatePhotoDescription();
         EditorUiUtils.setDefaultPhoto(mPhotoImageView, getResources(), materialPalette);
     }
 
+    private void updatePhotoDescription() {
+        mPhotoTouchInterceptOverlay.setContentDescription(getContext().getString(
+                mIsNonDefaultPhotoBound
+                        ? R.string.editor_change_photo_content_description
+                        : R.string.editor_add_photo_content_description));
+    }
     /**
      * Binds a full size photo loaded from the given Uri.
      */
@@ -226,6 +233,7 @@ public class PhotoEditorView extends RelativeLayout implements View.OnClickListe
         EditorUiUtils.loadPhoto(ContactPhotoManager.getInstance(getContext()),
                 mPhotoImageView, photoUri);
         mIsNonDefaultPhotoBound = true;
+        updatePhotoDescription();
     }
 
     /**
