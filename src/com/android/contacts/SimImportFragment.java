@@ -259,11 +259,6 @@ public class SimImportFragment extends DialogFragment
         updateSelectedCount();
     }
 
-    @Override
-    public void onSelectedContactsChangedViaCheckBox() {
-        updateSelectedCount();
-    }
-
     private void updateSelectedCount() {
         final int selectedCount = mAdapter.getSelectedContactIds().size();
         if (selectedCount == 0) {
