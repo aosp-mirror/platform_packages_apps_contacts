@@ -17,6 +17,7 @@
 package com.android.contacts.editor;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -161,6 +162,18 @@ public class GroupMembershipView extends LinearLayout
     private boolean mDefaultGroupVisibilityKnown;
     private boolean mDefaultGroupVisible;
     private boolean mCreatedNewGroup;
+    private GroupNameEditDialogFragment mGroupNameEditDialogFragment;
+    private GroupNameEditDialogFragment.Listener mListener =
+            new GroupNameEditDialogFragment.Listener() {
+                @Override
+                public void onGroupNameEditCancelled() {
+                }
+
+                @Override
+                public void onGroupNameEditCompleted(String name) {
+                    mCreatedNewGroup = true;
+                }
+            };
 
     private String mNoGroupString;
     private int mPrimaryTextColor;
@@ -183,6 +196,15 @@ public class GroupMembershipView extends LinearLayout
         mNoGroupString = getContext().getString(R.string.group_edit_field_hint_text);
         setFocusable(true);
         setFocusableInTouchMode(true);
+    }
+
+    private void setGroupNameEditDialogFragment() {
+        final FragmentManager fragmentManager = ((Activity) getContext()).getFragmentManager();
+        mGroupNameEditDialogFragment = (GroupNameEditDialogFragment)
+                fragmentManager.findFragmentByTag(TAG_CREATE_GROUP_FRAGMENT);
+        if (mGroupNameEditDialogFragment != null) {
+            mGroupNameEditDialogFragment.setListener(mListener);
+        }
     }
 
     @Override
@@ -240,6 +262,7 @@ public class GroupMembershipView extends LinearLayout
         mDefaultGroupVisibilityKnown = false;
         mCreatedNewGroup = false;
         updateView();
+        setGroupNameEditDialogFragment();
     }
 
     private void updateView() {
@@ -453,24 +476,12 @@ public class GroupMembershipView extends LinearLayout
     private void createNewGroup() {
         UiClosables.closeQuietly(mPopup);
         mPopup = null;
-
-        final GroupNameEditDialogFragment dialog =
-                GroupNameEditDialogFragment.newInstanceForCreation(
-                        new AccountWithDataSet(mAccountName, mAccountType, mDataSet), null);
-
-        // If the device is rotated after the dialog is shown, the listener will become null,
-        // so that the popup from GroupMembershipView will not be shown.
-        dialog.setListener(new GroupNameEditDialogFragment.Listener() {
-            @Override
-            public void onGroupNameEditStarted(String groupName) {
-                mCreatedNewGroup = true;
-            }
-            @Override
-            public void onGroupNameEditCancelled() { }
-        });
-        dialog.show(
+        mGroupNameEditDialogFragment =
+                    GroupNameEditDialogFragment.newInstanceForCreation(
+                            new AccountWithDataSet(mAccountName, mAccountType, mDataSet), null);
+        mGroupNameEditDialogFragment.setListener(mListener);
+        mGroupNameEditDialogFragment.show(
                 ((Activity) getContext()).getFragmentManager(),
                 TAG_CREATE_GROUP_FRAGMENT);
     }
-
 }

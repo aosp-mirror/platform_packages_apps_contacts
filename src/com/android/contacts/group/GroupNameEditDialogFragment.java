@@ -67,15 +67,15 @@ public final class GroupNameEditDialogFragment extends DialogFragment implements
 
     /** Callbacks for hosts of the {@link GroupNameEditDialogFragment}. */
     public interface Listener {
-        void onGroupNameEditStarted(String name);
         void onGroupNameEditCancelled();
+        void onGroupNameEditCompleted(String name);
 
         public static final Listener None = new Listener() {
             @Override
-            public void onGroupNameEditStarted(String name) { }
+            public void onGroupNameEditCancelled() { }
 
             @Override
-            public void onGroupNameEditCancelled() { }
+            public void onGroupNameEditCompleted(String name) { }
         };
     }
 
@@ -126,6 +126,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment implements
         } else {
             mGroupName = savedInstanceState.getString(ARG_GROUP_NAME);
         }
+
         mGroupId = args.getLong(ARG_GROUP_ID, NO_GROUP_ID);
         mIsInsert = args.getBoolean(ARG_IS_INSERT, true);
         mAccount = getArguments().getParcelable(ARG_ACCOUNT);
@@ -252,7 +253,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment implements
                     name, getActivity().getClass(), callbackAction);
         }
         ContactSaveService.startService(getActivity(), serviceIntent);
-        getListener().onGroupNameEditStarted(name);
+        getListener().onGroupNameEditCompleted(mGroupName);
         dismiss();
     }
 
