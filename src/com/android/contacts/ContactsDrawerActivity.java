@@ -24,6 +24,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract.Intents;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
@@ -112,11 +113,11 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     private static final String KEY_NEW_GROUP_ACCOUNT = "newGroupAccount";
     private static final String KEY_CONTACTS_VIEW = "contactsView";
 
+    private static final long DRAWER_CLOSE_DELAY = 300L;
+
     protected ContactsView mCurrentView;
 
     private class ContactsActionBarDrawerToggle extends ActionBarDrawerToggle {
-
-        private Runnable mRunnable;
         private boolean mMenuClickedBefore = SharedPreferenceUtil.getHamburgerMenuClickedBefore(
                 ContactsDrawerActivity.this);
 
@@ -177,15 +178,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             if (newState != DrawerLayout.STATE_IDLE) {
                 updateStatusBarBackground();
             }
-            if (mRunnable != null && newState == DrawerLayout.STATE_IDLE) {
-                mRunnable.run();
-                mRunnable = null;
-            }
             initializeAssistantNewBadge();
-        }
-
-        public void runWhenIdle(Runnable runnable) {
-            mRunnable = runnable;
         }
     }
 
@@ -437,14 +430,9 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        mToggle.runWhenIdle(new Runnable() {
-                            @Override
-                            public void run() {
-                                onGroupMenuItemClicked(groupListItem.getGroupId(),
-                                        groupListItem.getTitle());
-                                updateMenuSelection(menuItem);
-                            }
-                        });
+                        onGroupMenuItemClicked(groupListItem.getGroupId(),
+                                groupListItem.getTitle());
+                        updateMenuSelection(menuItem);
                         mDrawer.closeDrawer(GravityCompat.START);
                         return true;
                     }
@@ -464,12 +452,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                mToggle.runWhenIdle(new Runnable() {
-                    @Override
-                    public void run() {
-                        onCreateGroupMenuItemClicked();
-                    }
-                });
+                onCreateGroupMenuItemClicked();
                 mDrawer.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -562,13 +545,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    mToggle.runWhenIdle(new Runnable() {
-                        @Override
-                        public void run() {
-                            onFilterMenuItemClicked(intent);
-                            updateMenuSelection(menuItem);
-                        }
-                    });
+                    onFilterMenuItemClicked(intent);
+                    updateMenuSelection(menuItem);
                     mDrawer.closeDrawer(GravityCompat.START);
                     return true;
                 }
@@ -614,28 +592,29 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
         final int id = item.getItemId();
-        mToggle.runWhenIdle(new Runnable() {
-            @Override
-            public void run() {
-                if (id == R.id.nav_settings) {
+
+        if (id == R.id.nav_settings) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
                     startActivity(createPreferenceIntent());
-                } else if (id == R.id.nav_help) {
-                    HelpUtils.launchHelpAndFeedbackForMainScreen(ContactsDrawerActivity.this);
-                } else if (id == R.id.nav_all_contacts) {
-                    switchToAllContacts();
-                } else if (id == R.id.nav_assistant) {
-                    if (!isAssistantView()) {
-                        launchAssistant();
-                        updateMenuSelection(item);
-                    }
-                } else if (item.getIntent() != null) {
-                    ImplicitIntentsUtil.startActivityInApp(ContactsDrawerActivity.this,
-                            item.getIntent());
-                } else {
-                    Log.w(TAG, "Unhandled navigation view item selection");
                 }
+            }, DRAWER_CLOSE_DELAY);
+        } else if (id == R.id.nav_help) {
+            HelpUtils.launchHelpAndFeedbackForMainScreen(ContactsDrawerActivity.this);
+        } else if (id == R.id.nav_all_contacts) {
+            switchToAllContacts();
+        } else if (id == R.id.nav_assistant) {
+            if (!isAssistantView()) {
+                launchAssistant();
+                updateMenuSelection(item);
             }
-        });
+        } else if (item.getIntent() != null) {
+            ImplicitIntentsUtil.startActivityInApp(ContactsDrawerActivity.this,
+                    item.getIntent());
+        } else {
+            Log.w(TAG, "Unhandled navigation view item selection");
+        }
 
         mDrawer.closeDrawer(GravityCompat.START);
         return true;
