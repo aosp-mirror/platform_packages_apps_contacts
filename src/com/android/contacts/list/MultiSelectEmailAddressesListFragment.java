@@ -53,11 +53,6 @@ public class MultiSelectEmailAddressesListFragment
     }
 
     @Override
-    public void onSelectedContactsChangedViaCheckBox() {
-        onSelectedContactsChanged();
-    }
-
-    @Override
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.items_multi_select, menu);
