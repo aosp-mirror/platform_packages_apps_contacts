@@ -848,8 +848,11 @@
     <!-- Button to expand the contact editor to show all available input fields. [CHAR LIMIT=60] -->
     <string name="editor_more_fields">More fields</string>
 
-    <!-- Content description for the contact editor photo overlay which, when clicked, shows a dialog with the options for changing the contact photo. [CHAR LIMIT=30] -->
-    <string name="editor_change_photo_content_description">Change photo</string>
+    <!-- Content description for the contact editor photo overlay which, when clicked, shows a dialog with the options for changing the contact photo. [CHAR LIMIT=NONE] -->
+    <string name="editor_change_photo_content_description">Change contact photo</string>
+
+    <!-- Content description for the contact editor photo overlay which, when clicked, shows a dialog with the options for adding a contact photo. [CHAR LIMIT=NONE] -->
+    <string name="editor_add_photo_content_description">Add contact photo</string>
 
     <!-- Accessibility content description, describes the image as being the photo for the contact the user is viewing. [CHAR LIMIT=NONE] -->
     <string name="editor_contact_photo_content_description">Contact photo</string>
