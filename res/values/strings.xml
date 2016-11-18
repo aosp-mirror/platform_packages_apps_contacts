@@ -1906,4 +1906,9 @@
     <!-- Generic label for the SIM card when there is only a single SIM in the device [CHAR LIMIT=10]-->
     <string name="single_sim_display_label">SIM</string>
 
+    <!-- Content description for dropdown arrow (https://material.io/icons/#ic_arrow_drop_down)
+         This is used to indicate that a list of options can be opened by tapping on it.
+         [CHAR LIMIT=NONE] -->
+    <string name="show_more_content_description">Show more</string>
+
 </resources>

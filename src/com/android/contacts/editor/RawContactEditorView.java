@@ -753,7 +753,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
     private void addAccountSelector(final RawContactDelta rawContactDelta) {
         // Add handlers for choosing another account to save to.
         mAccountHeaderExpanderIcon.setVisibility(View.VISIBLE);
-        mAccountHeaderContainer.setOnClickListener(new View.OnClickListener() {
+        final OnClickListener clickListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
                 final ListPopupWindow popup = new ListPopupWindow(getContext(), null);
@@ -783,7 +783,11 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
                 });
                 popup.show();
             }
-        });
+        };
+        mAccountHeaderContainer.setOnClickListener(clickListener);
+        // Make the expander icon clickable so that it will be announced as a button by
+        // talkback
+        mAccountHeaderExpanderIcon.setOnClickListener(clickListener);
     }
 
     private void addPhotoView() {
