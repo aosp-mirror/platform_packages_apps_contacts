@@ -244,9 +244,9 @@
     <!-- Navigation drawer header height, the same as the status bar in landscape and portrait modes -->
     <dimen name="nav_header_height">24dp</dimen>
 
-    <!-- Navigation drawer margins, per the Android Design guidelines. -->
-    <dimen name="nav_activity_horizontal_margin">16dp</dimen>
-    <dimen name="nav_activity_vertical_margin">16dp</dimen>
+    <!-- Default activity margins, per the Android Material Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="nav_new_badge_corners">3dp</dimen>
     <dimen name="nav_new_badge_vertical_pad">2dp</dimen>
