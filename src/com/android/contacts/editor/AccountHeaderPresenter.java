@@ -203,6 +203,9 @@ public class AccountHeaderPresenter {
         addAccountHeader(nameLabel);
         // Add handlers for choosing another account to save to.
         mAccountHeaderExpanderIcon.setVisibility(View.VISIBLE);
+        // Add the listener to the icon so that it will be announced by talkback as a clickable
+        // element
+        mAccountHeaderExpanderIcon.setOnClickListener(listener);
         mAccountHeaderContainer.setOnClickListener(listener);
     }
 
