@@ -1337,13 +1337,13 @@
          fields corresponding to each part of the name (Name Prefix, First Name,
          Middle Name, Last Name, Name Suffix).
          [CHAR LIMIT=NONE] -->
-    <string name="expand_name_fields_description">Expand name fields</string>
+    <string name="expand_name_fields_description">Show more name fields</string>
 
     <!-- Content description for the collapse name fields button. [CHAR LIMIT=NONE] -->
     <string name="collapse_name_fields_description">Collapse name fields</string>
 
     <!-- Content description for the expand phonetic name fields button. [CHAR LIMIT=NONE] -->
-    <string name="expand_phonetic_name_fields_description">Expand phonetic name fields</string>
+    <string name="expand_phonetic_name_fields_description">Show more phonetic name fields</string>
 
     <!-- Content description for the collapse phonetic name fields button. [CHAR LIMIT=NONE] -->
     <string name="collapse_phonetic_name_fields_description">Collapse phonetic name fields</string>
