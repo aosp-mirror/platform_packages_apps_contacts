@@ -29,6 +29,7 @@ import android.os.Process;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Contacts.AggregationSuggestions;
@@ -40,6 +41,7 @@ import android.text.TextUtils;
 import com.android.contacts.common.model.ValuesDelta;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.compat.AggregationSuggestionsCompat;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 
@@ -61,7 +63,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
         public long contactId;
         public String contactLookupKey;
         public long rawContactId;
-        public long photoId;
+        public long photoId = -1;
         public String name;
         public String phoneNumber;
         public String emailAddress;
@@ -274,7 +276,8 @@ public class AggregationSuggestionEngine extends HandlerThread {
                         + Phone.CONTENT_ITEM_TYPE + "','"
                         + Email.CONTENT_ITEM_TYPE + "','"
                         + StructuredName.CONTENT_ITEM_TYPE + "','"
-                        + Nickname.CONTENT_ITEM_TYPE + "')"
+                        + Nickname.CONTENT_ITEM_TYPE + "','"
+                        + Photo.CONTENT_ITEM_TYPE + "')"
                         + " AND " + Data.CONTACT_ID + " IN (";
 
         public static final String[] COLUMNS = {
@@ -287,7 +290,7 @@ public class AggregationSuggestionEngine extends HandlerThread {
                 RawContacts.ACCOUNT_TYPE,
                 RawContacts.ACCOUNT_NAME,
                 RawContacts.DATA_SET,
-                Contacts.PHOTO_ID
+                Contacts.Photo._ID
         };
 
         public static final int CONTACT_ID = 0;
@@ -390,7 +393,6 @@ public class AggregationSuggestionEngine extends HandlerThread {
                 if (rawContactId != currentRawContactId) {
                     suggestion = new Suggestion();
                     suggestion.rawContactId = rawContactId;
-                    suggestion.photoId = mDataCursor.getLong(DataQuery.PHOTO_ID);
                     suggestion.contactId = mDataCursor.getLong(DataQuery.CONTACT_ID);
                     suggestion.contactLookupKey = mDataCursor.getString(DataQuery.LOOKUP_KEY);
                     final String accountName = mDataCursor.getString(DataQuery.ACCOUNT_NAME);
@@ -429,6 +431,11 @@ public class AggregationSuggestionEngine extends HandlerThread {
                     final String data = mDataCursor.getString(DataQuery.DATA1);
                     if (!TextUtils.isEmpty(data) && suggestion.name == null) {
                         suggestion.name = data;
+                    }
+                } else if (Photo.CONTENT_ITEM_TYPE.equals(mimetype)) {
+                    final Long id = mDataCursor.getLong(DataQuery.PHOTO_ID);
+                    if (suggestion.photoId == -1) {
+                        suggestion.photoId = id;
                     }
                 }
             }
