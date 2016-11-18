@@ -53,9 +53,13 @@ import static org.junit.Assert.assertThat;
 @RunWith(Enclosed.class)
 public class SimContactDaoTests {
 
-    // Lollipop MR1 required for AccountManager.removeAccountExplicitly
+    // On pre-M addAccountExplicitly (which we call via AccountsTestHelper) causes a
+    // SecurityException to be thrown unless we add AUTHENTICATE_ACCOUNTS permission to the app
+    // manifest. Instead of adding the extra permission just for tests we'll just only run them
+    // on M or newer
+    @SdkSuppress(minSdkVersion = VERSION_CODES.M)
+    // Lollipop MR1 is required for removeAccountExplicitly
     @RequiresApi(api = VERSION_CODES.LOLLIPOP_MR1)
-    @SdkSuppress(minSdkVersion = VERSION_CODES.LOLLIPOP_MR1)
     @LargeTest
     @RunWith(AndroidJUnit4.class)
     public static class ImportIntegrationTest {

@@ -20,15 +20,12 @@ import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Build;
-import android.os.Bundle;
 import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.test.InstrumentationRegistry;
-import android.util.Log;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.preference.ContactsPreferences;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
