@@ -116,13 +116,6 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
                 sortOrder = STREQUENT_SORT;
-                if (Flags.getInstance().getBoolean(Experiments.SEARCH_YENTA)
-                        && loader instanceof FavoritesAndContactsLoader
-                        && directoryId == Directory.DEFAULT) {
-                    final FavoritesAndContactsLoader favoritesAndContactsLoader =
-                            (FavoritesAndContactsLoader) loader;
-                    favoritesAndContactsLoader.setAutocompleteQuery(query);
-                }
             }
         } else {
             final ContactListFilter filter = getFilter();
