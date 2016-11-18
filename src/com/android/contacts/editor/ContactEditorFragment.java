@@ -1250,6 +1250,8 @@ public class ContactEditorFragment extends Fragment implements
             final Toolbar toolbar = getEditorActivity().getToolbar();
             if (toolbar != null) {
                 toolbar.setTitle(R.string.contact_editor_title_read_only_contact);
+                // Set activity title for Talkback
+                getEditorActivity().setTitle(R.string.contact_editor_title_read_only_contact);
                 toolbar.setNavigationIcon(R.drawable.ic_back_arrow);
                 toolbar.setNavigationContentDescription(R.string.back_arrow_content_description);
             }

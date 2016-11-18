@@ -353,6 +353,8 @@ public class ContactEditorActivity extends ContactsActivity implements
             mActionBarTitleResId = R.string.contact_editor_title_new_contact;
         }
         mToolbar.setTitle(mActionBarTitleResId);
+        // Set activity title for Talkback
+        setTitle(mActionBarTitleResId);
         setActionBar(mToolbar);
 
         if (savedState == null) {
