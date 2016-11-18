@@ -22,6 +22,7 @@ import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.CheckBox;
 
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.group.GroupUtil;
 
 import java.util.TreeSet;
@@ -155,6 +156,24 @@ public abstract class MultiSelectEntryContactListAdapter extends ContactEntryLis
         final ContactListItemView view = (ContactListItemView) itemView;
         bindViewId(view, cursor, getContactColumnIdIndex());
         bindCheckBox(view, cursor, partition == ContactsContract.Directory.DEFAULT);
+    }
+
+    /**
+      * Loads the photo for the photo view.
+      * @param photoIdColumn Index of the photo id column
+      * @param lookUpKeyColumn Index of the lookup key column
+      * @param displayNameColumn Index of the display name column
+      */
+    protected void bindPhoto(final ContactListItemView view, final Cursor cursor,
+           final int photoIdColumn, final int lookUpKeyColumn, final int displayNameColumn) {
+        final long photoId = cursor.isNull(photoIdColumn)
+            ? 0 : cursor.getLong(photoIdColumn);
+        final ContactPhotoManager.DefaultImageRequest imageRequest = photoId == 0
+            ? getDefaultImageRequestFromCursor(cursor, displayNameColumn,
+            lookUpKeyColumn)
+            : null;
+        getPhotoLoader().loadThumbnail(view.getPhotoView(), photoId, false, getCircularPhotos(),
+                imageRequest);
     }
 
     private void bindCheckBox(ContactListItemView view, Cursor cursor, boolean isLocalDirectory) {
