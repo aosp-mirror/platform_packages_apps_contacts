@@ -168,16 +168,19 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
             fm.beginTransaction().show(split).commitAllowingStateLoss();
             return;
         }
-        final FragmentTransaction ft = fm.beginTransaction();
-        final PickRawContactDialogFragment pick = PickRawContactDialogFragment.getInstance(
-                 mResult);
-        ft.add(pick, TAG_RAW_CONTACTS_DIALOG);
-        // commitAllowingStateLoss is safe in this activity because the fragment entirely depends
-        // on the result of the loader. Even if we lose the fragment because the activity was
-        // in the background, when it comes back onLoadFinished will be called again which will
-        // have all the state the picker needs. This situation should be very rare, since the load
-        // should be quick.
-        ft.commitAllowingStateLoss();
+        PickRawContactDialogFragment pick = (PickRawContactDialogFragment) fm
+                .findFragmentByTag(TAG_RAW_CONTACTS_DIALOG);
+        if (pick == null) {
+            pick = PickRawContactDialogFragment.getInstance(mResult);
+            final FragmentTransaction ft = fm.beginTransaction();
+            ft.add(pick, TAG_RAW_CONTACTS_DIALOG);
+            // commitAllowingStateLoss is safe in this activity because the fragment entirely
+            // depends on the result of the loader. Even if we lose the fragment because the
+            // activity was in the background, when it comes back onLoadFinished will be called
+            // again which will have all the state the picker needs. This situation should be
+            // very rare, since the load should be quick.
+            ft.commitAllowingStateLoss();
+        }
     }
 
     /**
