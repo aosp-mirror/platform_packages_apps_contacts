@@ -1378,6 +1378,10 @@ public class ContactEditorFragment extends Fragment implements
 
 
     private String getNameToDisplay(Uri contactUri) {
+        // The contact has been deleted or the uri is otherwise no longer right.
+        if (contactUri == null) {
+            return null;
+        }
         final ContentResolver resolver = mContext.getContentResolver();
         final Cursor cursor = resolver.query(contactUri, new String[]{
                 ContactsContract.Contacts.DISPLAY_NAME,
