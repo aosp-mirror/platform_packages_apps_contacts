@@ -19,6 +19,8 @@
         <item name="android:listViewStyle">@style/ListViewStyle</item>
         <item name="android:actionBarStyle">@style/EditorActionBarStyle</item>
         <item name="android:colorButtonNormal">@color/background_primary</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="Theme">
@@ -221,6 +223,8 @@
 
     <style name="EditorActionBarStyle" parent="@style/ContactsActionBarStyle">
         <item name="android:contentInsetStart">72dp</item>
+        <item name="android:contentInsetStartWithNavigation">72dp</item>
+        <item name="android:titleTextAppearance">@style/ContactsActionBarTitleText</item>
     </style>
 
     <!-- When this style was added, android:toolbarStyle was private. Therefore, this style
