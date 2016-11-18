@@ -14,7 +14,6 @@
 package com.android.contactsbind;
 
 import com.android.contacts.common.logging.Logger;
-import com.android.contactsbind.search.AutocompleteHelper;
 import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 
 import android.app.Fragment;
@@ -28,10 +27,6 @@ import android.net.Uri;
 public class ObjectFactory {
 
     public static Logger getLogger() {
-        return null;
-    }
-
-    public static AutocompleteHelper getAutocompleteHelper(Context context) {
         return null;
     }
 
