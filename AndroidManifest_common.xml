@@ -441,6 +441,11 @@
         <activity android:name=".common.vcard.ShareVCardActivity"
                   android:theme="@style/BackgroundOnlyTheme" />
 
+         <activity android:name=".activities.SimImportActivity"
+             android:theme="@style/PeopleThemeAppCompat.FullScreenDialog.SimImportActivity"
+             android:label="@string/sim_import_title" />
+
+
         <service
             android:name=".common.vcard.VCardService"
             android:exported="false" />

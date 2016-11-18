@@ -38,7 +38,9 @@
         <item name="android:listViewStyle">@style/ListViewStyle</item>
         <!-- We need to use a light ripple behind ActionBar items in order for them to
              be visible when using some of the darker ActionBar tints -->
-        <item name="android:actionBarItemBackground">@drawable/item_background_material_borderless_dark</item>
+        <item name="android:actionBarItemBackground">
+            @drawable/item_background_material_borderless_dark
+        </item>
     </style>
 
     <style name="PeopleTheme" parent="@android:style/Theme.Material.Light">
@@ -208,7 +210,7 @@
     </style>
 
     <style name="ContactsActionBarStyleAppCompat"
-           parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <!-- Styles that require AppCompat compatibility, remember to update both sets -->
         <item name="android:background">@color/actionbar_background_color</item>
         <item name="background">@color/actionbar_background_color</item>
@@ -252,7 +254,7 @@
 
     <!-- Text in the action bar at the top of the screen -->
     <style name="ContactsActionBarTitleText"
-           parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
+        parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
         <item name="android:textSize">20dp</item>
         <item name="android:textColor">@color/actionbar_text_color</item>
     </style>
@@ -268,7 +270,7 @@
 
     <!-- Action bar overflow menu icon. -->
     <style name="ContactsActionBarOverflowQP"
-           parent="Widget.AppCompat.Light.ActionButton.Overflow">
+        parent="Widget.AppCompat.Light.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_more_vert</item>
         <item name="android:tint">@color/action_bar_button_text_color</item>
     </style>
@@ -282,7 +284,7 @@
         <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
-    <style name="ContactPickerTheme" parent="PeopleActivityTheme" >
+    <style name="ContactPickerTheme" parent="PeopleActivityTheme">
     </style>
 
     <style name="ContactsPreferencesTheme" parent="@style/PeopleThemeAppCompat">
@@ -441,6 +443,7 @@
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textAllCaps">true</item>
     </style>
+
     <style name="DirectoryHeader">
         <item name="android:background">@android:color/transparent</item>
     </style>
@@ -549,9 +552,16 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
     <style name="PeopleThemeAppCompat.FullScreenDialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
-        <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
         <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
         <item name="android:windowAnimationStyle">@style/FullScreenDialogAnimationStyle</item>
+    </style>
+
+    <style name="PeopleThemeAppCompat.FullScreenDialog.SimImportActivity">
+        <!-- This is necessary because the window is partially transparent during the enter
+             and exit animations -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:statusBarColor">@color/contextual_selection_bar_status_bar_color</item>
     </style>
 </resources>
