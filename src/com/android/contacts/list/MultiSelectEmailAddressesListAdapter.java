@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 
 import android.provider.ContactsContract.CommonDataKinds.Email;
 
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.preference.ContactsPreferences;
@@ -162,9 +163,8 @@ public class MultiSelectEmailAddressesListAdapter extends MultiSelectEntryContac
         bindViewId(view, cursor, EmailQuery.EMAIL_ID);
         if (isFirstEntry) {
             bindName(view, cursor);
-            bindQuickContact(view, partition, cursor, EmailQuery.PHOTO_ID,
-                    EmailQuery.PHOTO_URI, EmailQuery.CONTACT_ID,
-                    EmailQuery.LOOKUP_KEY, EmailQuery.DISPLAY_NAME);
+            bindPhoto(view, cursor, EmailQuery.PHOTO_ID, EmailQuery.LOOKUP_KEY,
+                    EmailQuery.DISPLAY_NAME);
         } else {
             unbindName(view);
             view.removePhotoView(true, false);

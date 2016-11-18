@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
+import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.list.ContactListItemView;
 import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
 import com.android.contacts.common.preference.ContactsPreferences;
@@ -162,9 +163,8 @@ public class MultiSelectPhoneNumbersListAdapter extends MultiSelectEntryContactL
         bindViewId(view, cursor, PhoneQuery.PHONE_ID);
         if (isFirstEntry) {
             bindName(view, cursor);
-            bindQuickContact(view, partition, cursor, PhoneQuery.PHOTO_ID,
-                        PhoneQuery.PHOTO_URI, PhoneQuery.CONTACT_ID,
-                        PhoneQuery.LOOKUP_KEY, PhoneQuery.DISPLAY_NAME);
+            bindPhoto(view, cursor, PhoneQuery.PHOTO_ID, PhoneQuery.LOOKUP_KEY,
+                PhoneQuery.DISPLAY_NAME);
         } else {
             unbindName(view);
             view.removePhotoView(true, false);
