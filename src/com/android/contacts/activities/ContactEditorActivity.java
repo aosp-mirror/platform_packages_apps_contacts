@@ -16,7 +16,6 @@
 
 package com.android.contacts.activities;
 
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
@@ -27,6 +26,7 @@ import android.provider.ContactsContract.QuickContact;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toolbar;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
@@ -255,6 +255,7 @@ public class ContactEditorActivity extends ContactsActivity implements
 
     private int mActionBarTitleResId;
     private ContactEditor mFragment;
+    private Toolbar mToolbar;
     private boolean mFinishActivityOnSaveCompleted;
     private DialogManager mDialogManager = new DialogManager(this);
 
@@ -344,20 +345,15 @@ public class ContactEditorActivity extends ContactsActivity implements
             return;
         }
 
-        final ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            if (Intent.ACTION_EDIT.equals(action)) {
-                mActionBarTitleResId = R.string.contact_editor_title_existing_contact;
-            } else {
-                mActionBarTitleResId = R.string.contact_editor_title_new_contact;
-            }
-            actionBar.setTitle(getResources().getString(mActionBarTitleResId));
-            actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_close_dk);
-        }
-
         setContentView(R.layout.contact_editor_activity);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (Intent.ACTION_EDIT.equals(action)) {
+            mActionBarTitleResId = R.string.contact_editor_title_existing_contact;
+        } else {
+            mActionBarTitleResId = R.string.contact_editor_title_new_contact;
+        }
+        mToolbar.setTitle(mActionBarTitleResId);
+        setActionBar(mToolbar);
 
         if (savedState == null) {
             // Create the editor and photo selection fragments
@@ -376,7 +372,7 @@ public class ContactEditorActivity extends ContactsActivity implements
                     .findFragmentByTag(TAG_EDITOR_FRAGMENT);
             final FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             fragmentTransaction.show(getEditorFragment()).commit();
-            getActionBar().setTitle(getResources().getString(mActionBarTitleResId));
+            mToolbar.setTitle(mActionBarTitleResId);
         }
 
         // Set listeners
@@ -472,6 +468,10 @@ public class ContactEditorActivity extends ContactsActivity implements
     public void changePhoto(int photoMode) {
         mPhotoMode = photoMode;
         PhotoSourceDialogFragment.show(this, mPhotoMode);
+    }
+
+    public Toolbar getToolbar() {
+        return mToolbar;
     }
 
     @Override
