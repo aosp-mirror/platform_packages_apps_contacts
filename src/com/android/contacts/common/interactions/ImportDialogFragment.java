@@ -23,6 +23,7 @@ import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -34,6 +35,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.android.contacts.SimImportFragment;
+import com.android.contacts.activities.SimImportActivity;
 import com.android.contacts.common.R;
 import com.android.contacts.common.compat.CompatUtils;
 import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
@@ -231,8 +233,8 @@ public class ImportDialogFragment extends DialogFragment {
     }
 
     private void handleSimImportRequest(SimCard sim) {
-        SimImportFragment.newInstance(sim.getSubscriptionId()).show(getFragmentManager(),
-                "SimImport");
+        startActivity(new Intent(getActivity(), SimImportActivity.class)
+                .putExtra(SimImportActivity.EXTRA_SUBSCRIPTION_ID, sim.getSubscriptionId()));
     }
 
     /**
