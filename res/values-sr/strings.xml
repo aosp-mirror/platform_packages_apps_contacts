@@ -59,7 +59,10 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Сачувај и раздвоји"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Желите ли да сачувате промене које сте већ обавили и обједините овај контакт са изабраним контактом?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Сачувај и обједини"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"Повезује се"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"Опозива се веза"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Обједини"</string>
+    <string name="menu_linkedContacts" msgid="400444389718855621">"Прикажи обједињене контакте"</string>
     <string name="menu_save" msgid="1727844363591825909">"Сачувај"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Обједините контакте"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Изаберите контакт који желите да обједините са контактом <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -70,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Контакти су обједињени"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> је избрисан/а"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> и <xliff:g id="NAME_1">%2$s</xliff:g> су избрисани"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... су избрисани"</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">Контакти су избрисани</item>
       <item quantity="few">Контакти су избрисани</item>
@@ -91,9 +95,9 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Подеси мелодију звона"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Усмери на говорну пошту"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Не усмеравај на говорну пошту"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Контакти са налога који су само за читање не могу да се избришу, али могу да се сакрију."</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Сакриј"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Контакт који сте изабрали за брисање садржи детаље са више налога. Детаљи са налога који су само за читање ће бити скривени, али не и избрисани."</string>
+    <string name="readOnlyContactWarning" msgid="7514475664695089411">"Овај контакт је само за читање. Не можете да га избришете, али можете да га сакријете."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Сакриј контакт"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"Налози који су само за читање у оквиру овог контакта ће бити скривени, а не избрисани."</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Желите ли да избришете овај контакт?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Желите ли да избришете изабране контакте?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Контакти са налога који су само за читање не могу да се избришу, али могу да се сакрију."</string>
@@ -141,7 +145,7 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Неки контакти немају број телефона."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"Пошаљи имејл"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Пошаљи поруку"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Изаберите контакте"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Изаберите контакте"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Пошаљи"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> контакт са бројем телефона</item>
@@ -211,6 +215,10 @@
     <string name="change_photo" msgid="8530597935483526383">"Промени"</string>
     <string name="description_star" msgid="2605854427360036550">"омиљено"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Измени контакт"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"затворите"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Желите ли да актуелни контакт обједините са изабраним контактом?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Желите ли да пребаците на уређивање изабраног контакта? Биће копиране информације које сте унели до сада."</string>
@@ -255,13 +263,19 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Одвојте мало времена да бисте додали налог помоћу ког ћете направити резервну копију контаката на Google-у."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Нови контакти ће бити сачувани на налогу <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Изаберите подразумевани налог за нове контакте:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додај нови контакт"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Измени контакт"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Изаберите повезани контакт"</string>
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Само преглед"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Изаберите контакт за измену"</string>
+    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Обједињени контакти"</string>
+    <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"Додај"</string>
+    <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Раздвој"</string>
     <string name="add_account" msgid="8201790677994503186">"Додај налог"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Додај нови налог"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Извези датотеке базе података"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"додавање новог контакта"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Прикажи више"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Прикажи мање"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Недавно"</string>
@@ -297,10 +311,15 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ви: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts ради боље кад унесете Hangouts идентификатор особе у поље за имејл адресу или број телефона."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Још поља"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"Промените слику"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Oтварање уређивача није успело."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Чува се на"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Гледате"</string>
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Није могуће изменити контакт информације са <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Тренутно се чува на <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Додирните двапут да бисте изабрали други налог."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="one">Обједињени контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -340,19 +359,18 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Слика са <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> налога <xliff:g id="USER_NAME">%s </xliff:g> је означена"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Слика са непознатог налога није означена"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Слика са непознатог налога је означена"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"Помоћник"</string>
-    <string name="menu_duplicates" msgid="4129802988372197257">"Дупликати"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Предлози"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Ново"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Отвори фиоку за навигацију"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Затвори фиоку за навигацију"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Ознаке"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Налози"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"Прегледајте историју заједно"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Догађаји и поруке"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Догађаји и поруке"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Догађаји"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Поруке"</string>
-    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Организујте листу"</string>
-    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Уклоните дупликате и групишите контакте према ознаци"</string>
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"Предлози"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"Нека вам контакти буду организовани и корисни"</string>
     <string name="undo" msgid="1425165101664071422">"Опозови"</string>
     <string name="call_custom" msgid="6385303130912713318">"Позови <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Позови кућни телефон"</string>
@@ -474,9 +492,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Започни ћаскање преко Jabber-а"</string>
     <string name="chat" msgid="9025361898797412245">"Ћаскање"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"избриши"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"Проширите поља за име"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"Скупите поља за име"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"Проширите поља за фонетско име"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Скупите поља за фонетско име"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"Проширите"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"Скупите"</string>
@@ -580,7 +600,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"Увезите контакте"</string>
     <string name="share_error" msgid="948429331673358107">"Овај контакт не може да се дели."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Нема контаката за дељење."</string>
-    <string name="menu_search" msgid="9147752853603483719">"Претрага"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Контакти за приказ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Контакти за приказ"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"Дефинишите прилагођени приказ"</string>
@@ -631,7 +650,6 @@
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Контакт је уклоњен"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"Увeзи"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Изаберите контакте"</string>
-    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"Изабрали сте <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Нема контаката на SIM картици"</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Контакт је већ на листи"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
@@ -645,9 +663,11 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"Аутоматска синхронизација је искључена. Додирните да бисте је укључили."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Одбаците"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Синхронизација налога је искључена. Додирните да бисте је укључили."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Желите да укључите аутоматску синхронизацију?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"На вебу и уређајима ће се синхронизовати промене које уносите у свим апликацијама и на свим налозима, а не само у Контактима."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"Желите да укључите аутоматску синхронизацију?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"На вебу и уређајима ће се редовно ажурирати промене које уносите у свим апликацијама и на свим налозима, а не само у Google контактима."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Укључи"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Веза није успостављена"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>

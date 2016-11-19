@@ -59,7 +59,10 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Зберегти та розділити"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Зберегти зміни й об’єднати з вибраним контактом?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Зберегти й об’єднати"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"Об’єднання"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"Розділення"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Об’єднати"</string>
+    <string name="menu_linkedContacts" msgid="400444389718855621">"Переглянути об’єднані контакти"</string>
     <string name="menu_save" msgid="1727844363591825909">"Зберегти"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Об’єднання контактів"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Виберіть контакт, який ви хочете об’єднати з контактом <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -70,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Контакти об’єднано"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Контакт <xliff:g id="NAME">%1$s</xliff:g> видалено"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> і <xliff:g id="NAME_1">%2$s</xliff:g> видалено"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… видалено"</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">Контакти видалено</item>
       <item quantity="few">Контакти видалено</item>
@@ -94,9 +98,9 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Мелодія"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Спрямовувати на голосову пошту"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Не спрямовувати на гол. пошту"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Дані з облікових записів лише для перегляду не можна видалити, але можна сховати."</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Сховати"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"У контакті, який ви хочете видалити, є дані з кількох облікових записів. Дані з облікових записів лише для перегляду буде сховано, а не видалено."</string>
+    <string name="readOnlyContactWarning" msgid="7514475664695089411">"Цей контакт доступний лише для перегляду. Його не можна видалити, однак можна сховати."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Сховати контакт"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"Дані з облікових записів лише для перегляду буде сховано в цьому контакті, а не видалено."</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Видалити цей контакт?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Видалити вибрані контакти?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Дані з облікових записів лише для перегляду не можна видалити, але можна сховати."</string>
@@ -144,7 +148,7 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Деякі контакти не мають номерів телефону."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"Надіслати електронний лист"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Надіслати повідомлення"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Вибір контактів"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Вибрати контакти"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Надіслати"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> контакт із номерами телефону</item>
@@ -218,6 +222,10 @@
     <string name="change_photo" msgid="8530597935483526383">"Змінити"</string>
     <string name="description_star" msgid="2605854427360036550">"вибране"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Редаг. контакта"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"закрити"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Об’єднати поточний контакт із вибраним контактом?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Перейти до редагування вибраного контакта? Введену досі інформацію буде скопійовано."</string>
@@ -262,13 +270,19 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Додайте обліковий запис, щоб створити резервну копію ваших контактів у Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Нові контакти буде збережено в обліковому записі <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Виберіть обліковий запис за умовчанням для нових контактів:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Додати контакт"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Змінити контакт"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Вибрати зв’язаний контакт"</string>
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Лише перегляд"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Вибрати контакт для редагування"</string>
+    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Об’єднані контакти"</string>
+    <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"Додати"</string>
+    <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Розділити"</string>
     <string name="add_account" msgid="8201790677994503186">"Додати обліковий запис"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Додати новий обліковий запис"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Експортувати файли бази даних"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"додати нового контакта"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Показати більше"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Показати менше"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Нещодавні"</string>
@@ -304,10 +318,15 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ви: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Щоб сервіс Hangouts працював краще, введіть свій ідентифікатор Hangouts у поле \"Електронна адреса\" або \"Телефон\"."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Більше полів"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"Змініть фотографію"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Не вдалося відкрити редактор."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Зберігання в обліковий запис"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Переглядається"</string>
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Контакти з облікового запису <xliff:g id="ACCOUNT">%s</xliff:g> не можна редагувати"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Наразі контакт зберігається в обліковий запис <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Двічі торкніться, щоб вибрати інший обліковий запис."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="one">Об’єднані контакти (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -351,19 +370,18 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Фото з <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> вибрано"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Фото з невідомого облікового запису не вибрано"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Фото з невідомого облікового запису вибрано"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"Помічник"</string>
-    <string name="menu_duplicates" msgid="4129802988372197257">"Копії"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Пропозиції"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Нові"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Відкрити панель навігації"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Закрити панель навігації"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Мітки"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Облікові записи"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"Показувати всю історію разом"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Події й повідомлення"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Події та повідомлення"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Події"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Повідомлення"</string>
-    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Упорядкуйте свій список контактів"</string>
-    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Видаліть копії та групуйте контакти за мітками"</string>
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"Пропозиції"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"Упорядковуйте свої контакти для зручності користування"</string>
     <string name="undo" msgid="1425165101664071422">"Відмінити"</string>
     <string name="call_custom" msgid="6385303130912713318">"Зателефонувати на такий номер: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Набрати дом. ном."</string>
@@ -485,9 +503,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Чат через Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Чат"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"видалити"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"Розгорнути поля імен"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"Згорнути поля імен"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"Розгорнути поля вимови імен"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Згорнути поля вимови імен"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"Розгорнути"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"Згорнути"</string>
@@ -593,7 +613,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"Імпорт контактів із джерела:"</string>
     <string name="share_error" msgid="948429331673358107">"Цей контакт неможливо надіслати."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Немає контактів, якими можна поділитися."</string>
-    <string name="menu_search" msgid="9147752853603483719">"Пошук"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Контакти для показу"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Контакти для показу"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"Визначити користувацький режим"</string>
@@ -645,7 +664,6 @@
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Контакт вилучено"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"Імпортувати"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Вибрати контакти"</string>
-    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"Вибрано <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"На SIM-карті немає контактів"</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Контакт уже є у вашому списку"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
@@ -660,9 +678,11 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"Автоматичну синхронізацію вимкнено. Торкніться, щоб увімкнути."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Закрити"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Синхронізацію облікового запису вимкнено. Торкніться, щоб увімкнути."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Увімкнути автоматичну синхронізацію?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Між веб-версією та пристроями синхронізуватимуться зміни, які ви вносите у всіх додатках і облікових записах, а не лише в Контактах."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"Увімкнути автоматичну синхронізацію?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Зміни, які ви вносите в усі додатки й облікові записи (не тільки в Контакти Google), синхронізуватимуться між веб-версією та вашими пристроями."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Увімкнути"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Немає з’єднання"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM-карта"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>
