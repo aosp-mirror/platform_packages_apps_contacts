@@ -59,6 +59,8 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Gardar e desligar"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Queres gardar os cambios que xa fixeches e ligalos co contacto seleccionado?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Gardar e ligar"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"Ligando"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"Desligando"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Ligar"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"Ver contactos ligados"</string>
     <string name="menu_save" msgid="1727844363591825909">"Gardar"</string>
@@ -71,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Ligáronse os contactos"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Eliminouse a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Eliminouse a <xliff:g id="NAME_0">%1$s</xliff:g> e <xliff:g id="NAME_1">%2$s</xliff:g>"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"Eliminouse a <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>..."</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">Elimináronse os contactos</item>
       <item quantity="one">Eliminouse o contacto</item>
@@ -205,6 +208,10 @@
     <string name="change_photo" msgid="8530597935483526383">"Cambiar"</string>
     <string name="description_star" msgid="2605854427360036550">"favorito"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Editar contacto"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"pechar"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Queres ligar o contacto actual co contacto seleccionado?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Cambiar para editar o contacto seleccionado? Copiarase a información introducida ata o momento."</string>
@@ -249,7 +256,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Engade unha conta para facer a copia de seguranza dos teus contactos en Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Os contactos novos gardaranse en <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Escolle unha conta predeterminada para novos contactos:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Engadir contacto"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar contacto"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Só visualización"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Escoller contacto para editar"</string>
@@ -259,7 +267,8 @@
     <string name="add_account" msgid="8201790677994503186">"Engadir conta"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Engadir conta nova"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportar ficheiros da base de datos"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"engadir novo contacto"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Ver máis"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Ver menos"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Recente"</string>
@@ -295,7 +304,12 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ti: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts funciona mellor se introduces o identificador de Hangouts da persoa no campo do correo electrónico ou do teléfono."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Máis campos"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"Cambiar foto"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Produciuse un erro ao abrir o editor."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Gardando en"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"A información de contacto de <xliff:g id="ACCOUNT">%s</xliff:g> non se pode editar"</string>
@@ -344,10 +358,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Eventos e mensaxes"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Eventos"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Mensaxes"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (5762679188565585072) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (4403398269286898733) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"Suxestións"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"Mantén os teus contactos organizados e de modo que sexan útiles"</string>
     <string name="undo" msgid="1425165101664071422">"Desfacer"</string>
     <string name="call_custom" msgid="6385303130912713318">"Chamar a: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Chamar á casa"</string>
@@ -469,9 +481,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Chatear con Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Chatear"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"eliminar"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"Despregar campos de nome"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"Contraer campos de nome"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"Despregar campos de nome fonético"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Contraer campos de nome fonético"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"Despregar"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"Contraer"</string>
@@ -573,7 +587,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"Importar contactos de"</string>
     <string name="share_error" msgid="948429331673358107">"Non se pode compartir este contacto."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Non hai ningún contacto para compartir."</string>
-    <string name="menu_search" msgid="9147752853603483719">"Buscar"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contactos para mostrar"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contactos para mostrar"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"Definir vista personalizada"</string>
@@ -640,4 +653,6 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Activar"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Sen conexión"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>

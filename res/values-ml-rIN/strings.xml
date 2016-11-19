@@ -59,6 +59,8 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"സംരക്ഷിച്ച് അൺലിങ്കുചെയ്യുക"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"നിങ്ങൾ ഇതിനകം വരുത്തിയിട്ടുള്ള മാറ്റങ്ങൾ സംരക്ഷിക്കാനും തിരഞ്ഞെടുത്ത കോൺടാക്റ്റുമായി ലിങ്കുചെയ്യാനും താൽപ്പര്യപ്പെടുന്നുണ്ടോ?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"സംരക്ഷിച്ച് ലിങ്കുചെയ്യുക"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"ലിങ്കുചെയ്യുന്നു"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"അൺലിങ്കുചെയ്യുന്നു"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"ലിങ്ക്"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"ലിങ്കുചെയ്‌ത കോൺടാക്‌റ്റുകൾ കാണുക"</string>
     <string name="menu_save" msgid="1727844363591825909">"സംരക്ഷിക്കുക"</string>
@@ -71,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ലിങ്കുചെയ്ത കോൺടാക്റ്റുകൾ"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> എന്ന കോൺടാക്റ്റിനെ ഇല്ലാതാക്കി"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g>,<xliff:g id="NAME_1">%2$s</xliff:g> എന്നീ കോൺടാക്റ്റുകളെ ഇല്ലാതാക്കി"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... ഇല്ലാതാക്കി"</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">കോൺടാക്റ്റുകൾ ഇല്ലാതാക്കി</item>
       <item quantity="one">കോൺടാക്റ്റ് ഇല്ലാതാക്കി</item>
@@ -205,6 +208,10 @@
     <string name="change_photo" msgid="8530597935483526383">"മാറ്റുക"</string>
     <string name="description_star" msgid="2605854427360036550">"പ്രിയപ്പെട്ടതാക്കുക"</string>
     <string name="edit_contact" msgid="7529281274005689512">"കോൺടാ‌ക്‌റ്റ് തിരുത്തുക"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"അടയ്‌ക്കുക"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"തിരഞ്ഞെടുത്ത കോൺടാക്റ്റുമായി നിലവിലെ കോൺടാക്റ്റ് ലിങ്കുചെയ്യണോ?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"തിരഞ്ഞെടുത്ത കോൺടാക്റ്റ് എഡിറ്റുചെയ്യുന്നതിലേക്ക് മാറണോ? ഇതുവരെ നിങ്ങൾ നൽകിയ വിവരങ്ങൾ പകർത്തപ്പെടും."</string>
@@ -249,7 +256,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"കുറച്ചുസമയമെടുത്ത് ഒരു അക്കൗണ്ട് ചേർക്കുക, അത് Google-ൽ നിങ്ങളുടെ കോൺടാക്‌റ്റുകളുടെ ബായ്‌ക്കപ്പെടുക്കുന്നതിനിടയാക്കും."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"പുതിയ കോൺടാക്റ്റുകൾ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> എന്ന അക്കൗണ്ടിലേക്ക് സംരക്ഷിക്കപ്പെടും."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"പുതിയ കോൺടാക്റ്റുകൾക്ക് ഒരു ഡിഫോൾട്ട് അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"പുതിയവ ചേർക്കൂ"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"എഡിറ്റുചെയ്യുക"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"കാഴ്‌ച മാത്രം"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"എഡിറ്റുചെയ്യാൻ കോൺടാക്‌റ്റ്‌ തിരഞ്ഞെടുക്കുക"</string>
@@ -259,7 +267,8 @@
     <string name="add_account" msgid="8201790677994503186">"അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="add_new_account" msgid="5748627740680940264">"പുതിയ അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ഡാറ്റാബേസ് ഫയലുകൾ എക്‌സ്‌പോർട്ടുചെയ്യുക"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"പുതിയവ ചേർക്കൂ"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"കൂടുതൽ‍ കാണുക"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"കുറച്ച് കാണുക"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"പുതിയത്"</string>
@@ -295,7 +304,12 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"നിങ്ങൾ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ഇമെയിൽ ഫീൽഡിലോ ഫോൺ ഫീൽഡിലോ വ്യക്തിയുടെ Hangouts ഐഡന്റിഫയർ നൽകുമ്പോൾ, Hangouts മികച്ചതായി പ്രവർത്തിക്കുന്നു."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"കൂടുതൽ ഫീൽഡുകൾ"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"ഫോട്ടോ മാറ്റുക"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"എഡിറ്റർ തുറക്കുന്നത് പരാജയപ്പെട്ടു."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"ഇതിലേക്ക് സംരക്ഷിക്കുന്നു"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> എന്നതിലുള്ള കോൺടാക്‌റ്റ്‌ എഡിറ്റുചെയ്യാനാവില്ല"</string>
@@ -344,10 +358,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"ഇവന്റുകളും സന്ദേശങ്ങളും"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ഇവന്റുകൾ"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"സന്ദേശങ്ങള്‍‌"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (5762679188565585072) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (4403398269286898733) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"നിര്‍ദ്ദേശങ്ങള്‍"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"നിങ്ങളുടെ കോൺടാക്‌റ്റുകൾ ചിട്ടപ്പെടുത്തി, ഉപയോഗപ്രദമായ രീതിയിൽ സൂക്ഷിക്കുക"</string>
     <string name="undo" msgid="1425165101664071422">"പഴയപടിയാക്കുക"</string>
     <string name="call_custom" msgid="6385303130912713318">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> എന്ന നമ്പറിൽ വിളിക്കുക"</string>
     <string name="call_home" msgid="1990519474420545392">"വീട്ടിലെ ഫോണിലേക്ക് വിളിക്കുക"</string>
@@ -469,9 +481,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber ഉപയോഗിച്ച് ചാറ്റുചെയ്യുക"</string>
     <string name="chat" msgid="9025361898797412245">"ചാറ്റുചെയ്യുക"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"ഇല്ലാതാക്കുക"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"പേരിന്റെ ഫീൽഡുകൾ വികസിപ്പിക്കുക"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"പേരിന്റെ ഫീൽഡുകൾ ചുരുക്കുക"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"ഫൊണറ്റിക് പേരിന്റെ ഫീൽഡുകൾ വികസിപ്പിക്കുക"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"ഫൊണറ്റിക് പേരിന്റെ ഫീൽഡുകൾ ചുരുക്കുക"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"വികസിപ്പിക്കുക"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"ചുരുക്കുക"</string>
@@ -573,7 +587,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"ഇതിൽ നിന്ന്‌ കോൺടാക്‌റ്റ് ഇമ്പോർട്ടുചെയ്യൂ"</string>
     <string name="share_error" msgid="948429331673358107">"ഈ കോൺടാക്റ്റ് പങ്കിടാനാകില്ല."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"പങ്കിടാൻ കോൺടാക്റ്റുകളൊന്നും ഇല്ല."</string>
-    <string name="menu_search" msgid="9147752853603483719">"തിരയുക"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ദൃശ്യമാക്കേണ്ട കോൺടാക്റ്റുകൾ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ദൃശ്യമാക്കേണ്ട കോൺടാക്റ്റുകൾ"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"ഇഷ്‌ടാനുസൃതമാക്കിയ കാഴ്‌ച നിർവ്വചിക്കുക"</string>
@@ -640,4 +653,6 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ഓൺ ചെയ്യുക"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"കണക്ഷനൊന്നുമില്ല"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"സിം"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>
