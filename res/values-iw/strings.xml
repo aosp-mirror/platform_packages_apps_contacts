@@ -59,7 +59,10 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"שמור ובטל את הקישור"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"האם ברצונך לשמור את השינויים שכבר ביצעת ולקשר לאיש הקשר שנבחר?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"שמור וקשר"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"הקישור מתבצע"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"ביטול הקישור מתבצע"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"קשר"</string>
+    <string name="menu_linkedContacts" msgid="400444389718855621">"הצג את אנשי הקשר המקושרים"</string>
     <string name="menu_save" msgid="1727844363591825909">"שמור"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"קישור אנשי קשר"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"בחר את איש הקשר שברצונך לקשר עם <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -70,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"אנשי הקשר קושרו"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"מחקת את <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> ו-<xliff:g id="NAME_1">%2$s</xliff:g> נמחקו"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... נמחקו"</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="two">אנשי קשר נמחקו</item>
       <item quantity="many">אנשי קשר נמחקו</item>
@@ -94,9 +98,9 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"הגדר רינגטון"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"נתב לדואר הקולי"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"בטל את הניתוב לדואר הקולי"</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"לא ניתן למחוק אנשי קשר מחשבונות לקריאה-בלבד, אך ניתן להסתיר אותם."</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"הסתר"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"איש הקשר שנבחר למחיקה מכיל פרטים מחשבונות מרובים. פרטים מחשבונות לקריאה-בלבד יוסתרו ולא יימחקו."</string>
+    <string name="readOnlyContactWarning" msgid="7514475664695089411">"איש הקשר הזה הוא לקריאה בלבד. אי אפשר למחוק אותו, אלא רק להסתיר אותו."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"הסתר את איש הקשר"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"חשבונות לקריאה בלבד באיש הקשר הזה יוסתרו ולא יימחקו."</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"האם למחוק את איש הקשר הזה?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"האם למחוק את אנשי הקשר שנבחרו?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"לא ניתן למחוק אנשי קשר מחשבונות לקריאה-בלבד, אך ניתן להסתיר אותם."</string>
@@ -144,7 +148,7 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"לחלק מאנשי הקשר אין מספרי טלפון."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"שלח אימייל"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"שלח הודעה"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"בחר אנשי קשר"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"בחר אנשי קשר"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"שלח"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="two"><xliff:g id="COUNT">%d</xliff:g> אנשי קשר עם מספרי טלפון</item>
@@ -218,6 +222,10 @@
     <string name="change_photo" msgid="8530597935483526383">"שנה"</string>
     <string name="description_star" msgid="2605854427360036550">"מועדף"</string>
     <string name="edit_contact" msgid="7529281274005689512">"ערוך איש קשר"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"סגירה"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"לקשר את איש הקשר הנוכחי לאיש הקשר שנבחר?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"לעבור לעריכה של איש הקשר שנבחר? המידע שהזנת עד עכשיו יועתק."</string>
@@ -262,13 +270,19 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"‏הקדש דקה כדי להוסיף חשבון Google שבו תגבה את אנשי הקשר שלך."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"אנשי קשר חדשים יישמרו ב-<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"בחר חשבון ברירת מחדל לאנשי קשר חדשים:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"הוספת איש קשר חדש"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ערוך איש קשר"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"בחר את איש הקשר המקושר"</string>
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"תצוגה בלבד"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"בחר איש קשר לעריכה"</string>
+    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"אנשי קשר מקושרים"</string>
+    <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"הוסף"</string>
+    <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"בטל את הקישור"</string>
     <string name="add_account" msgid="8201790677994503186">"הוסף חשבון"</string>
     <string name="add_new_account" msgid="5748627740680940264">"הוסף חשבון חדש"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ייצוא קובצי מסד נתונים"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"הוסף איש קשר חדש"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"הצג יותר"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"הצג פחות"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"מהזמן האחרון"</string>
@@ -304,10 +318,15 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"אתה: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"‏Hangouts פועל טוב יותר כשאתה מזין את מזהה ה-Hangouts של המשתמש בשדה האימייל או בשדה הטלפון."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"שדות נוספים"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"החלף תמונה"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"לא ניתן היה לפתוח את העורך."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"חשבון לשמירה"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"מוצג"</string>
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"לא ניתן לערוך את פרטי איש הקשר מהחשבון <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"החשבון לשמירה הוא <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. הקש פעמיים כדי לבחור חשבון אחר."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="two">שני אנשי קשר מקושרים (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -351,19 +370,18 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"תמונה מ-<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>סומנה"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"לא סומנה תמונה מחשבון לא ידוע"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"סומנה תמונה מחשבון לא ידוע"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"Assistant"</string>
-    <string name="menu_duplicates" msgid="4129802988372197257">"כפילויות"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"הצעות"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"חדש"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"פתח את חלונית ההזזה לניווט"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"סגור את חלונית ההזזה לניווט"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"תוויות"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"חשבונות"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"הצגה של ההיסטוריה המשותפת שלכם"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"אירועים והודעות"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"אירועים והודעות"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"אירועים"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"הודעות"</string>
-    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"סידור הרשימה"</string>
-    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"מחק עותקים כפולים וקבץ את אנשי הקשר לפי תוויות"</string>
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"הצעות"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"שמור על סדר וארגון באנשי הקשר"</string>
     <string name="undo" msgid="1425165101664071422">"בטל"</string>
     <string name="call_custom" msgid="6385303130912713318">"התקשר אל <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"התקשר לבית"</string>
@@ -485,9 +503,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"‏שוחח בצ\'אט באמצעות Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"שוחח בצ\'אט"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"מחק"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"הרחבה של שדות השמות"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"כיווץ של שדות השמות"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"הרחבה של שדות השמות הפונטיים"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"כיווץ של שדות השמות הפונטיים"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"הרחב"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"כווץ"</string>
@@ -593,7 +613,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"המקור לייבוא של אנשי הקשר"</string>
     <string name="share_error" msgid="948429331673358107">"לא ניתן לשתף איש קשר זה."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"אין אנשי קשר שניתן לשתף."</string>
-    <string name="menu_search" msgid="9147752853603483719">"חפש"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"אנשי קשר להצגה"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"אנשי קשר להצגה"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"הגדרה של תצוגה מותאמת אישית"</string>
@@ -645,7 +664,6 @@
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"איש הקשר הוסר"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"ייבא"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"בחירת אנשי קשר"</string>
-    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"<xliff:g id="COUNT">%d</xliff:g> נבחרו"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"‏אין אף איש קשר בכרטיס ה-SIM"</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"איש הקשר כבר קיים ברשימה"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
@@ -660,9 +678,11 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"הסינכרון האוטומטי מושבת. הקש כדי להפעיל אותו."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"סגירה"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"סנכרון החשבון מושבת. הקש כדי להפעיל אותו."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"להפעיל סנכרון אוטומטי?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"השינויים שתבצע בכל האפליקציות והחשבונות, לא רק באנשי הקשר, יסונכרנו בין האינטרנט לבין המכשירים שלך."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"האם להשבית את הסנכרון האוטומטי?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"‏השינויים שתבצע בכל האפליקציות והחשבונות, לא רק באנשי הקשר מחשבון Google, יסונכרנו בין האינטרנט לבין המכשירים שלך."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"הפעל"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"אין חיבור"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"‏כרטיס SIM"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>

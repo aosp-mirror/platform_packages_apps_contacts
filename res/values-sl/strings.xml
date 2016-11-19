@@ -59,7 +59,10 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Shrani in razdruži"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Ali želite shraniti že narejene spremembe in združiti z izbranim stikom?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Shrani in združi"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"Povezovanje"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"Prekinjanje povezave"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Poveži"</string>
+    <string name="menu_linkedContacts" msgid="400444389718855621">"Ogled povezanih stikov"</string>
     <string name="menu_save" msgid="1727844363591825909">"Shrani"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Povezava stikov"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Izberite stik, ki ga želite povezati s stikom <xliff:g id="NAME">%s</xliff:g>:"</string>
@@ -70,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Stika povezana"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Stik <xliff:g id="NAME">%1$s</xliff:g> je izbrisan"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Stika <xliff:g id="NAME_0">%1$s</xliff:g> in <xliff:g id="NAME_1">%2$s</xliff:g> sta izbrisana"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"Izbrisani stiki: <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g> ..."</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">Stik je izbrisan</item>
       <item quantity="two">Stiki so izbrisani</item>
@@ -94,9 +98,9 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastavi zvonj."</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Preusmeri v sporočila v odziv."</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Prekliči preusmeritev v odziv."</string>
-    <string name="readOnlyContactWarning" msgid="5526727661978307833">"Stikov iz računov, ki so samo za branje, ni mogoče izbrisati, mogoče pa jih je skriti."</string>
-    <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Skrij"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"Stik, ki ga želite izbrisati, ima podrobnosti iz več računov. Podatki iz računov, ki so samo za branje, ne bodo izbrisani, temveč skriti."</string>
+    <string name="readOnlyContactWarning" msgid="7514475664695089411">"Ta stik je samo za branje. Stika ni mogoče izbrisati, mogoče pa ga je skriti."</string>
+    <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Skrij stik"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"Računi tega stika, ki so samo za branje, ne bodo izbrisani, temveč skriti."</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Želite izbrisati ta stik?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Želite izbrisati izbrane stike?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Stikov iz računov, ki so samo za branje, ni mogoče izbrisati, mogoče pa jih je skriti."</string>
@@ -144,7 +148,7 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Nekateri stiki nimajo telefonskih številk."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"Pošlji e-pošto"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Pošlji sporočilo"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="2252684022188382496">"Izbiranje stikov"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Izbiranje stikov"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Pošlji"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> stik s telefonsko številko</item>
@@ -218,6 +222,10 @@
     <string name="change_photo" msgid="8530597935483526383">"Spremeni"</string>
     <string name="description_star" msgid="2605854427360036550">"priljubljeno"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Uredi stik"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"zapri"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Želite povezati stik z izbranim stikom?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Želite urejati izbrani stik? Podatki, ki ste jih doslej vnesli, bodo kopirani."</string>
@@ -262,13 +270,19 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Vzemite si trenutek in dodajte račun, s katerim boste varnostno kopirali svoje stike v Googlu."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Novi stiki bodo shranjeni v račun <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Izberite privzeti račun za nove stike:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dodaj nov stik"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Urejanje stika"</string>
-    <string name="contact_editor_pick_raw_contact_dialog_title" msgid="9020902336507940034">"Izbira povezanega stika"</string>
+    <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Samo za ogled"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Izbira stika za urejanje"</string>
+    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Povezani stiki"</string>
+    <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"Dodaj"</string>
+    <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Odstrani povez."</string>
     <string name="add_account" msgid="8201790677994503186">"Dodaj račun"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj nov račun"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Izvoz datotek zbirke"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"dodaj novi stik"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Pokaži več"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Pokaži manj"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Nedavno"</string>
@@ -304,10 +318,15 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vi: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Pogovori Hangouts delujejo bolje, če v polje za e-pošto ali polje za telefon vnesete identifikator osebe za pogovore Hangouts."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Več polj"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"Sprememba fotografije"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Odpiranje urejevalnika ni uspelo."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Shranjevanje v"</string>
-    <string name="editor_account_selector_read_only_title" msgid="8315171723911587719">"Ogled v teku"</string>
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Podatkov o stiku iz računa <xliff:g id="ACCOUNT">%s</xliff:g> ni mogoče urejati"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Trenutno se shranjuje v račun <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Če želite izbrati drug račun, se dvakrat dotaknite."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
       <item quantity="one">Povezani stiki (<xliff:g id="COUNT">%d</xliff:g>)</item>
@@ -351,19 +370,18 @@
     <string name="photo_view_description_checked" msgid="3906597168607472795">"Fotografija iz <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> je označena"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Fotografija iz neznanega računa ni izbrana"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Fotografija iz neznanega računa je izbrana"</string>
-    <string name="menu_assistant" msgid="919866272301744261">"Pomočnik"</string>
-    <string name="menu_duplicates" msgid="4129802988372197257">"Dvojniki"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Predlogi"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Novo"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Odpri predal za krmarjenje"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Zapri predal za krmarjenje"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Oznake"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Računi"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"Zgodovino si oglejte na enem mestu"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="630115334220569184">"Dogodki in sporočila"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Dogodki in sporočila"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Dogodki"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Sporočila"</string>
-    <string name="hamburger_feature_highlight_header" msgid="7442308698936786415">"Organiziranje seznama"</string>
-    <string name="hamburger_feature_highlight_body" msgid="6268711111318172098">"Počistite dvojnike in povežite stike v skupine z oznakami"</string>
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"Predlogi"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"Naj bodo stiki vedno pregledni in priročni"</string>
     <string name="undo" msgid="1425165101664071422">"Razveljavi"</string>
     <string name="call_custom" msgid="6385303130912713318">"Pokliči: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Pokliči domov"</string>
@@ -485,9 +503,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Klepet s storitvijo Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Klepet"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"brisanje"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"Razširi imenska polja"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"Strni imenska polja"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"Razširi fonetična imenska polja"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Strni fonetična imenska polja"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"Razširi"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"Strni"</string>
@@ -593,7 +613,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"Uvoz stikov iz:"</string>
     <string name="share_error" msgid="948429331673358107">"Tega stika ni mogoče dati v skupno rabo."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Ni stikov za skupno rabo."</string>
-    <string name="menu_search" msgid="9147752853603483719">"Iskanje"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Stiki, ki naj bodo prikazani"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Stiki za prikaz"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"Določi prilagojen pogled"</string>
@@ -645,7 +664,6 @@
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Stik je bil odstranjen"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"Uvozi"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Izbiranje stikov"</string>
-    <string name="sim_import_title_some_selected_fmt" msgid="2978159841027256106">"Izbrani: <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Na kartici SIM ni nobenega stika"</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Stik že obstaja na seznamu"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
@@ -660,9 +678,11 @@
     <string name="auto_sync_off" msgid="2180147284456026587">"Samodejna sinhronizacija je izklopljena. Dotaknite se, da jo vklopite."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Opusti"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Sinhronizacija računa je izklopljena. Dotaknite se, da jo vklopite."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="8903372459240477752">"Želite vklopiti samodejno sinhronizacijo?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="1877453194578173890">"Spremembe, ki jih izvedete v Stikih ter tudi vseh aplikacijah in računih, bodo sinhronizirane med spletom in vašimi napravami."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"Želite vklopiti samodejno sinhronizacijo?"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Spremembe, ki jih izvedete v Google Stikih ter tudi vseh aplikacijah in računih, bodo sinhronizirane med spletom in vašimi napravami."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Vklopi"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Ni povezave"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"Kart. SIM"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>
