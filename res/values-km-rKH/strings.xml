@@ -59,6 +59,8 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"រក្សាទុក និងផ្តាច់ការតភ្ជាប់"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"តើអ្នកចង់រក្សាទុកការផ្លាស់ប្តូរដែលអ្នកបានធ្វើឡើង និងតភ្ជាប់ជាមួយទំនាក់ទំនងដែលបានជ្រើសដែរឬទេ?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"រក្សាទុក និងតភ្ជាប់"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"កំពុង​តភ្ជាប់"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"កំពុង​ផ្ដាច់"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"តភ្ជាប់"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"មើល​ទំនាក់ទំនង​ដែល​បាន​តភ្ជាប់"</string>
     <string name="menu_save" msgid="1727844363591825909">"រក្សាទុក"</string>
@@ -71,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"បានតភ្ជាប់ទំនាក់ទំនង"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"បាន​លុប <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"បាន​លុប <xliff:g id="NAME_0">%1$s</xliff:g> និង <xliff:g id="NAME_1">%2$s</xliff:g>"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"បានលុប <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>..."</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">បានលុបទំនាក់ទំនង</item>
       <item quantity="one">បានលុបទំនាក់ទំនង</item>
@@ -205,6 +208,10 @@
     <string name="change_photo" msgid="8530597935483526383">"ផ្លាស់ប្ដូរ"</string>
     <string name="description_star" msgid="2605854427360036550">"សំណព្វ"</string>
     <string name="edit_contact" msgid="7529281274005689512">"កែ​ទំនាក់ទំនង"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"បិទ"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"តភ្ជាប់ទំនាក់ទំនងបច្ចុប្បន្នជាមួយទំនាក់ទំនងដែលបានជ្រើស?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ប្ដូរ​ដើម្បី​កែ​ទំនាក់ទំនង​ដែល​បាន​ជ្រើស? ព័ត៌មាន​ដែល​អ្នក​បញ្ចូល​នឹង​បាន​ចម្លង។"</string>
@@ -249,7 +256,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"ចំណាយ​ពេល​មួយ​​ភ្លែត​ដើម្បី​បន្ថែម​គណនី​ដែល​ត្រូវ​បម្រុងទុក​ទំនាក់ទំនង​ទៅ Google។"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ទំនាក់ទំនងថ្មីនឹងត្រូវបានរក្សាទុកទៅក្នុង <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ជ្រើសគណនីលំនាំដើមសម្រាប់ទំនាក់ទំនងថ្មី៖"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"បញ្ចូល​ទំនាក់ទំនងថ្មី"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"កែ​ទំនាក់ទំនង"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"បានតែ​មើល"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"ជ្រើសរើស​ទំនាក់ទំនង​ត្រូវ​កែសម្រួល"</string>
@@ -259,7 +267,8 @@
     <string name="add_account" msgid="8201790677994503186">"បញ្ចូល​​គណនី"</string>
     <string name="add_new_account" msgid="5748627740680940264">"បន្ថែម​គណនី​ថ្មី"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"នាំចេញ​ឯកសារ​មូលដ្ឋាន​ទិន្នន័យ"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"បញ្ចូល​​ទំនាក់ទំនង​ថ្មី"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"​មើល​​ច្រើន​ជាង"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"​មើល​តិច​ជាង"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"ថ្មីៗ"</string>
@@ -295,7 +304,12 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"អ្នក៖ <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts ដំណើរការបានយ៉ាងល្អ នៅពេលដែលអ្នកបញ្ចូលអត្តសញ្ញាណ Hangouts របស់បុគ្គលនោះទៅក្នុងប្រអប់អ៊ីម៉ែល ឬប្រអប់លេខទូរស័ព្ទ។"</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"ប្រឡោះ​បញ្ចូល​បន្ថែម"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"ប្ដូររូបថត"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"មិន​អាច​បើក​កម្មវិធី​កែសម្រួល​បាន​ទេ។"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"រក្សាទុកទៅ"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"ព័ត៌មាន​អំពី​ទំនាក់ទំនង​ពី <xliff:g id="ACCOUNT">%s</xliff:g> មិន​អាច​កែ​សម្រួល​បាន​ទេ"</string>
@@ -344,10 +358,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"ព្រឹត្តិការណ៍ និង​សារ"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ព្រឹត្តិការណ៍"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"សារ"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (5762679188565585072) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (4403398269286898733) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"ការណែនាំ"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"រក្សា​ទំនាក់ទំនង​របស់​អ្នក​ឲ្យ​​រៀបរយ និង​​មាន​ប្រយោជន៍​ជា​និច្ច"</string>
     <string name="undo" msgid="1425165101664071422">"មិនធ្វើវិញ"</string>
     <string name="call_custom" msgid="6385303130912713318">"ការ​ហៅទូរសព្ទ​ទៅ​ <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"ហៅ​ទៅ​ផ្ទះ"</string>
@@ -469,9 +481,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"ជជែក​ដោយ​ប្រើ Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"ជជែក"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"លុប​"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"ពង្រីកវាលឈ្មោះ"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"លាក់​​វាល​ឈ្មោះ"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"ពង្រីក​វាលឈ្មោះ​តាម​សូរសព្ទ"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"លាក់​វាល​ឈ្មោះ​តាម​សូរស័ព្ទ"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"ពង្រីក"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"លាក់"</string>
@@ -573,7 +587,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"នាំចូល​ទំនាក់ទំនង​ពី"</string>
     <string name="share_error" msgid="948429331673358107">"ទំនាក់ទំនង​នេះ​មិន​អាច​ចែករំលែក​បាន​ទេ។"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"មិនមានទំនាក់ទំនងដើម្បីចែករំលែកទេ។"</string>
-    <string name="menu_search" msgid="9147752853603483719">"ស្វែងរក"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ទំនាក់ទំនង​ដែល​ត្រូវ​បង្ហាញ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ទំនាក់ទំនង​ដែល​ត្រូវ​បង្ហាញ"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"កំណត់ទិដ្ឋភាពផ្ទាល់ខ្លួន"</string>
@@ -640,4 +653,6 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"បើក"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"គ្មាន​ការ​តភ្ជាប់"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>

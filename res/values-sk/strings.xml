@@ -59,6 +59,8 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Uložiť a zrušiť prepojenie"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Chcete vykonané zmeny uložiť a prepojiť s vybratým kontaktom?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Uložiť a prepojiť"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"Prepája sa"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"Odpája sa"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Prepojiť"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"Zobraziť prepojené kontakty"</string>
     <string name="menu_save" msgid="1727844363591825909">"Uložiť"</string>
@@ -71,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontakty boli prepojené"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> – odstránený/-á"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> a <xliff:g id="NAME_1">%2$s</xliff:g> – odstránení"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... – odstránení"</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="few">Kontakty boli odstránené</item>
       <item quantity="many">Kontakty boli odstránené</item>
@@ -219,6 +222,10 @@
     <string name="change_photo" msgid="8530597935483526383">"Zmeniť"</string>
     <string name="description_star" msgid="2605854427360036550">"zaradiť medzi obľúbené"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Upraviť kontakt"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"zavrieť"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Prepojiť aktuálny kontakt s vybraným kontaktom?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Prepnúť do režimu úpravy vybraného kontaktu? Doposiaľ zadané informácie budú skopírované."</string>
@@ -263,7 +270,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Nájdite si chvíľu na pridanie účtu, v ktorom sa na Googli budú zálohovať vaše kontakty."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Nové kontakty sa budú ukladať do účtu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Vyberte predvolený účet pre nové kontakty:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Pridať nový kontakt"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Upraviť kontakt"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Iba zobrazenie"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Vyberte kontakt, ktorý chcete upraviť"</string>
@@ -273,7 +281,8 @@
     <string name="add_account" msgid="8201790677994503186">"Pridať účet"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Pridať nový účet"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportovať súbory databázy"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"pridať nový kontakt"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Zobraziť viac"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Zobraziť menej"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Nedávne"</string>
@@ -309,7 +318,12 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vy: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Služba Hangouts funguje lepšie, keď do poľa pre e-mailovú adresu alebo telefón zadáte identifikátor osoby v službe Hangouts."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Ďalšie polia"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"Zmeniť fotku"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Nepodarilo sa otvoriť editor"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Ukladá sa do:"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Kontaktné informácie z účtu <xliff:g id="ACCOUNT">%s</xliff:g> sa nedajú upravovať"</string>
@@ -366,10 +380,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Udalosti a správy"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Udalosti"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Správy"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (5762679188565585072) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (4403398269286898733) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"Návrhy"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"Usporiadajte svoje kontakty, aby boli užitočnejšie"</string>
     <string name="undo" msgid="1425165101664071422">"Späť"</string>
     <string name="call_custom" msgid="6385303130912713318">"Volať na číslo <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="1990519474420545392">"Zavolať domov"</string>
@@ -491,9 +503,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Zhovárať sa pomocou služby Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Rozhovor"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"odstrániť"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"Rozbaliť polia mien"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"Zbaliť polia mien"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"Rozbaliť polia foneticky zadaných mien"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Zbaliť polia foneticky zadaných mien"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"Rozbaliť"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"Zbaliť"</string>
@@ -599,7 +613,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"Importovanie kontaktov z:"</string>
     <string name="share_error" msgid="948429331673358107">"Tento kontakt nie je možné zdieľať."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Nemáte žiadne kontakty na zdieľanie"</string>
-    <string name="menu_search" msgid="9147752853603483719">"Hľadať"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty na zobrazenie"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakty na zobrazenie"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"Definovanie prispôsobeného zobrazenia"</string>
@@ -670,4 +683,6 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Zapnúť"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Žiadne pripojenie"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM karta"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>

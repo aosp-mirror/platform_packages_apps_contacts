@@ -59,6 +59,8 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"ਸਹੇਜੋ ਅਤੇ ਅਨਲਿੰਕ ਕਰੋ"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"ਕੀ ਤੁਸੀਂ ਤੁਹਾਡੇ ਵੱਲੋਂ ਪਹਿਲਾਂ ਤੋਂ ਕੀਤੇ ਬਦਲਾਵਾਂ ਨੂੰ ਸਹੇਜਣਾ ਅਤੇ ਚੁੁਣੇ ਗਏ ਸੰਪਰਕ ਨਾਲ ਲਿੰਕ ਕਰਨਾ ਚਾਹੋਗੇ?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"ਸਹੇਜੋੋ ਅਤੇ ਲਿੰਕ ਕਰੋ"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"ਲਿੰਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"ਅਣਲਿੰਕ ਕਰ ਰਿਹਾ ਹੈ"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"ਲਿੰਕ"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"ਲਿੰਕ ਕੀਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਵੇਖੋ"</string>
     <string name="menu_save" msgid="1727844363591825909">"ਰੱਖਿਅਤ ਕਰੋ"</string>
@@ -71,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ਸੰਪਰਕ ਲਿੰਕ ਕੀਤੇ ਗਏ"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> ਅਤੇ <xliff:g id="NAME_1">%2$s</xliff:g> ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one"> ਸੰਪਰਕ ਹਟਾਏ</item>
       <item quantity="other"> ਸੰਪਰਕ ਹਟਾਏ</item>
@@ -89,9 +92,9 @@
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ਰਿੰਗਟੋਨ ਸੈੱਟ ਕਰੋ"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"ਵੌਇਸਮੇਲ ਵੱਲ ਰੂਟ ਕਰੋ"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"ਵੌਇਸਮੇਲ ਵੱਲ ਰੂਟ ਕਰਨਾ ਹਟਾਓ"</string>
-    <string name="readOnlyContactWarning" msgid="7514475664695089411">"ਇਹ ਸੰਪਰਕ ਸਿਰਫ਼ ਪੜ੍ਹਨਯੋਗ ਹੈ। ਇਸ ਨੂੰ ਮਿਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ, ਪਰ ਤੁਸੀਂ ਇਸ ਨੂੰ ਲੁਕਾ ਸਕਦੇ ਹੋ।"</string>
+    <string name="readOnlyContactWarning" msgid="7514475664695089411">"ਇਹ ਸੰਪਰਕ ਸਿਰਫ਼-ਪੜ੍ਹਨਯੋਗ ਹੈ। ਇਸ ਨੂੰ ਮਿਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ, ਪਰ ਤੁਸੀਂ ਇਸ ਨੂੰ ਲੁਕਾ ਸਕਦੇ ਹੋ।"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"ਸੰਪਰਕ ਲੁਕਾਓ"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"ਇਸ ਸੰਪਰਕ ਵਿੱਚੋਂ ਸਿਰਫ਼ ਪੜ੍ਹਨਯੋਗ ਖਾਤੇ ਲੁਕਾਏ ਜਾਣਗੇ, ਮਿਟਾਏ ਨਹੀਂ ਜਾਣਗੇ।"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"ਇਸ ਸੰਪਰਕ ਵਿਚਲੇ ਸਿਰਫ਼-ਪੜ੍ਹਨਯੋਗ ਖਾਤੇ ਲੁਕਾਏ ਜਾਣਗੇ, ਪਰ ਮਿਟਾਏ ਨਹੀਂ ਜਾਣਗੇ।"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"ਕੀ ਇਸ ਸੰਪਰਕ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"ਕੀ ਚੁਣੇ ਸੰਪਰਕ ਹਟਾਉਣੇ ਹਨ?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"ਤੁਹਾਡੇ ਰੀਡ-ਓਨਲੀ ਖਾਤਿਆਂ ਤੋਂ ਸੰਪਰਕ ਹਟਾਏ ਨਹੀਂ ਜਾ ਸਕਦੇ ਹਨ, ਪਰ ਇਹਨਾਂ ਨੂੰ ਲੁਕਾਇਆ ਜਾ ਸਕਦਾ ਹੈ।"</string>
@@ -205,6 +208,10 @@
     <string name="change_photo" msgid="8530597935483526383">"ਬਦਲੋ"</string>
     <string name="description_star" msgid="2605854427360036550">"ਮਨਪਸੰਦ"</string>
     <string name="edit_contact" msgid="7529281274005689512">"ਸੰਪਰਕ ਸੰਪਾਦਿਤ ਕਰੋ"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"ਬੰਦ ਕਰੋ"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"ਕੀ ਚੁਣੇ ਗਏ ਸੰਪਰਕ ਨਾਲ ਮੌਜੂਦਾ ਸੰਪਰਕ ਲਿੰਕ ਕਰਨਾ ਹੈ?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ਕੀ ਚੁਣੇ ਗਏ ਸੰਪਰਕ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ ਸਵਿਚ ਕਰਨਾ ਹੈ? ਹੁਣ ਤੱਕ ਤੁਸੀਂ ਜੋ ਜਾਣਕਾਰੀ ਦਰਜ ਕੀਤੀ, ੁਹ ਕਾਪੀ ਕੀਤੀ ਜਾਏਗੀ।"</string>
@@ -249,7 +256,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"ਕਿਸੇ ਉਸ ਖਾਤੇ ਨੂੰ ਸ਼ਾਮਲ ਕਰਨ ਵਿੱਚ ਕੁਝ ਸਮਾਂ ਲਗਾਓ ਜੋ Google \'ਤੇ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਦਾ ਬੈਕਅੱਪ ਲਵੇਗਾ।"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ਨਵੇਂ ਸੰਪਰਕ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ਵਿੱਚ ਰੱਖਿਅਤ ਕੀਤੇ ਜਾਣਗੇ।"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ਨਵੇਂ ਸੰਪਰਕਾਂ ਲਈ ਇੱਕ ਪੂਰਵ-ਨਿਰਧਾਰਤ ਖਾਤਾ ਚੁਣੋ:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ਨਵਾਂ ਸੰਪਰਕ ਸ਼ਾਮਲ ਕਰੋ"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ਸੰਪਰਕ ਸੰਪਾਦਿਤ ਕਰੋ"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"ਸਿਰਫ਼ ਦੇਖਣ ਲਈ"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ ਸੰਪਰਕ ਚੁਣੋ"</string>
@@ -259,7 +267,8 @@
     <string name="add_account" msgid="8201790677994503186">"ਖਾਤਾ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="add_new_account" msgid="5748627740680940264">"ਨਵਾਂ ਖਾਤਾ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ਡਾਟਾਬੇਸ ਫਾਈਲਾਂ ਨਿਰਯਾਤ ਕਰੋ"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"ਨਵਾਂ ਸੰਪਰਕ ਸ਼ਾਮਲ ਕਰੋ"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"ਹੋਰ ਦੇਖੋ"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"ਘੱਟ ਦੇਖੋ"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"ਹਾਲੀਆ"</string>
@@ -295,7 +304,12 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"ਤੁਸੀਂ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ਜਦੋਂ ਤੁਸੀਂ ਈਮੇਲ ਖੇਤਰ ਜਾਂ ਫੋਨ ਖੇਤਰ ਵਿੱਚ ਵਿਅਕਤੀ ਦਾ ਹੈਂਗਆਊਟਸ ਆਈਡੈਂਟੀਫਾਇਰ ਦਰਜ ਕਰਦੇ ਹੋ ਤਾਂ ਹੈਂਗਆਊਟਸ ਬਿਹਤਰ ਕੰਮ ਕਰਦਾ ਹੈ।"</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"ਹੋਰ ਖੇਤਰ"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"ਫ਼ੋਟੋ ਬਦਲੋ"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"ਸੰਪਾਦਕ ਖੋਲ੍ਹਣਾ ਅਸਫਲ ਰਿਹਾ।"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"ਇਸ ਵਿੱਚ ਰੱਖਿਅਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> ਤੋਂ ਪ੍ਰਾਪਤ ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਸੰਪਾਦਿਤ ਕਰਨਯੋਗ ਨਹੀਂ ਹੈ"</string>
@@ -344,10 +358,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"ਵਰਤਾਰੇ ਅਤੇ ਸੁਨੇਹੇ"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ਵਰਤਾਰੇ"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"ਸੁਨੇਹੇ"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (5762679188565585072) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (4403398269286898733) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"ਸੁਝਾਅ"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"ਆਪਣੇ ਸੰਪਰਕਾਂ ਨੂੰ ਵਿਵਸਥਿਤ ਅਤੇ ਲਾਭਕਾਰੀ ਰੱਖੋ"</string>
     <string name="undo" msgid="1425165101664071422">"ਅਣਕੀਤਾ ਕਰੋ"</string>
     <string name="call_custom" msgid="6385303130912713318">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> ਨੂੰ ਕਾਲ ਕਰੋ"</string>
     <string name="call_home" msgid="1990519474420545392">"ਘਰ ਦੇ ਫ਼ੋਨ ਨੰਬਰ \'ਤੇ ਕਾਲ ਕਰੋ"</string>
@@ -469,9 +481,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber ਵਰਤਦੇ ਹੋਏ ਚੈਟ ਕਰੋ"</string>
     <string name="chat" msgid="9025361898797412245">"ਚੈਟ"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"ਮਿਟਾਓ"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"ਨਾਮ ਖੇਤਰਾਂਂ ਦਾ ਵਿਸਤਾਰ ਕਰੋ"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"ਨਾਮ ਖੇਤਰਾਂ ਨੂੰ ਸੁੰਗੇੜੋ"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"ਫ਼ੋਨੈਟਿਕ ਨਾਮ ਖੇਤਰਾਂ ਦਾ ਵਿਸਤਾਰ ਕਰੋ"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"ਫ਼ੋਨੈਟਿਕ ਨਾਮ ਖੇਤਰਾਂ ਨੂੰ ਸੁੰਗੇੜੋ"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"ਵਿਸਤਾਰ ਕਰੋ"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"ਸੁੰਗੇੜੋ"</string>
@@ -573,7 +587,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"ਇਸ ਤੋਂ ਸੰਪਰਕ ਆਯਾਤ ਕਰੋ"</string>
     <string name="share_error" msgid="948429331673358107">"ਇਸ ਸੰਪਰਕ ਨੂੰ ਸਾਂਝਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"ਸਾਂਝਾ ਕਰਨ ਲਈ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ।"</string>
-    <string name="menu_search" msgid="9147752853603483719">"ਖੋਜੋ"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਸੰਪਰਕ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਸੰਪਰਕ"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"ਵਿਸ਼ੇਸ਼-ਵਿਉਂਤਬੱਧ ਕੀਤੇ ਦ੍ਰਿਸ਼ ਨੂੰ ਪ੍ਰਭਾਸ਼ਿਤ ਕਰੋ"</string>
@@ -636,8 +649,10 @@
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"ਖਾਰਜ ਕਰੋ"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"ਖਾਤਾ ਸਮਕਾਲੀਕਰਨ ਬੰਦ ਹੈ। ਚਾਲੂ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ।"</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"ਕੀ ਸਵੈ-ਸਮਕਾਲੀਕਰਨ ਚਾਲੂ ਕਰਨਾ ਹੈ?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"ਨਾ ਸਿਰਫ਼ Google ਸੰਪਰਕਾਂ ਲਈ, ਬਲਕਿ ਸਾਰੀਆਂ ਐਪਾਂ ਅਤੇ ਖਾਤਿਆਂ ਲਈ ਕੀਤੀਆਂ ਗਈਆਂ ਤੁਹਾਡੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਵੈੱਬ ਅਤੇ ਤੁਹਾਡੀਆਂ ਡੀਵਾਈਸਾਂ ਵਿਚਕਾਰ ਨਵਾਂ ਰੱਖਿਆ ਜਾਵੇਗਾ।"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"ਨਾ ਸਿਰਫ਼ Google ਸੰਪਰਕਾਂ ਲਈ, ਬਲਕਿ ਸਾਰੀਆਂ ਐਪਾਂ ਅਤੇ ਖਾਤਿਆਂ ਲਈ ਕੀਤੀਆਂ ਗਈਆਂ ਤੁਹਾਡੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਵੈੱਬ ਅਤੇ ਤੁਹਾਡੀਆਂ ਡੀਵਾਈਸਾਂ ਵਿਚਕਾਰ ਅੱਪ ਟੂ ਡੇਟ ਰੱਖਿਆ ਜਾਵੇਗਾ।"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ਚਾਲੂ ਕਰੋ"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"ਕੋਈ ਕਨੈਕਸ਼ਨ ਨਹੀਂ"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>
