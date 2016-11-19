@@ -59,6 +59,8 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Сақтау және байланысты жою"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Енгізіп қойған өзгертулерді сақтау және таңдалған контактімен байланыстыру керек пе?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Сақтау және байланыстыру"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"Байланыстыруда"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"Байланыс жойылуда"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Байланыстыру"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"Байланысты контактілер"</string>
     <string name="menu_save" msgid="1727844363591825909">"Сақтау"</string>
@@ -71,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Контактілер байланыстырылды"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> жойылды"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> және <xliff:g id="NAME_1">%2$s</xliff:g> жойылды"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... жойылды"</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">Контактілер жойылды</item>
       <item quantity="one">Контакт жойылды</item>
@@ -205,6 +208,10 @@
     <string name="change_photo" msgid="8530597935483526383">"Өзгерту"</string>
     <string name="description_star" msgid="2605854427360036550">"сүйікті"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Контактіні жөндеу"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"жабу"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Ағымдағы контактіні таңдалған контактімен байланыстыру керек пе?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Таңдалған контактіні жөндеуге ауысуды қалайсыз ба? Осы уақытқа дейін сіз енгізген ақпараттың көшірмесі жасалады."</string>
@@ -249,7 +256,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Google-ға контактілеріңіздің сақтық көшірмесін жасайтын есептік жазба қосу үшін бір минут уақыт бөліңіз."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Жаңа контактілер <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> есептік жазбасында сақталады."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Жаңа контактілерге арналған әдепкі есептік жазбаны таңдаңыз:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Жаңа контакт қосу"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Контактіні өңдеу"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Көру мүмкіндігі ғана бар"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Өзгертілетін контактіні таңдаңыз"</string>
@@ -259,7 +267,8 @@
     <string name="add_account" msgid="8201790677994503186">"Ес. жазба қосу"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Жаңа есептік жазба қосу"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Дерекқор файлдарын экспорттау"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"жаңа контакт қосу"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Көбірек көру"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Азырақ көру"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Жақындағы"</string>
@@ -295,7 +304,12 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Сіз: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts қолданбасы электрондық пошта өрісіне немесе телефон өрісіне адамның Hangouts идентификаторын енгізгенде жақсырақ жұмыс істейді."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Тағы"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"Суретті өзгерту"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Өңдегішті ашу мүмкін болмады."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Cақтау:"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> контакт деректері өзгертілмейді"</string>
@@ -344,10 +358,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Оқиғалар және хабарлар"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Оқиғалар"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Хабарлар"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (5762679188565585072) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (4403398269286898733) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"Ұсыныстар"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"Контактілерді реттеу және тиімді пайдалану жолы"</string>
     <string name="undo" msgid="1425165101664071422">"Қайтару"</string>
     <string name="call_custom" msgid="6385303130912713318">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> нөміріне қоңырау шалу"</string>
     <string name="call_home" msgid="1990519474420545392">"Үйге қоңырау шалу"</string>
@@ -469,9 +481,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber арқылы чаттасу"</string>
     <string name="chat" msgid="9025361898797412245">"Чат"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"жою"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"Аты-жөні өрістерін жаю"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"Аты-жөні өрістерін жию"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"Фонетикалық аты-жөні өрістерін жаю"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Фонетикалық аты-жөні өрістерін жию"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"Жаю"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"Жию"</string>
@@ -573,7 +587,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"Контактілерді импорттау:"</string>
     <string name="share_error" msgid="948429331673358107">"Бұл контактіні бөлісу мүмкін болмады"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Бөлісетін контактілер жоқ."</string>
-    <string name="menu_search" msgid="9147752853603483719">"Іздеу"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Көрсетілетін контактілер"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Көрсетілетін контактілер"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"Реттелген көріністі анықтау"</string>
@@ -640,4 +653,6 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Қосу"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Байланыс жоқ"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>
