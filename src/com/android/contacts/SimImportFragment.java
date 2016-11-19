@@ -15,8 +15,8 @@
  */
 package com.android.contacts;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
+import android.app.Activity;
+import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
@@ -59,13 +59,12 @@ import java.util.Set;
  * Dialog that presents a list of contacts from a SIM card that can be imported into a selected
  * account
  */
-public class SimImportFragment extends DialogFragment
+public class SimImportFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<SimImportFragment.LoaderResult>,
         AdapterView.OnItemClickListener, AbsListView.OnScrollListener {
 
     private static final String KEY_SUFFIX_SELECTED_IDS = "_selectedIds";
     private static final String ARG_SUBSCRIPTION_ID = "subscriptionId";
-    private static final String TAG = "SimImportFragment";
 
     private ContactsPreferences mPreferences;
     private AccountTypeManager mAccountTypeManager;
@@ -86,7 +85,6 @@ public class SimImportFragment extends DialogFragment
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setStyle(STYLE_NORMAL, R.style.PeopleThemeAppCompat_FullScreenDialog);
         mPreferences = new ContactsPreferences(getContext());
         mAccountTypeManager = AccountTypeManager.getInstance(getActivity());
         mAdapter = new SimContactAdapter(getActivity());
@@ -97,15 +95,6 @@ public class SimImportFragment extends DialogFragment
     }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        // Set the title for accessibility. It isn't displayed but will get announced when the
-        // window is shown
-        dialog.setTitle(R.string.sim_import_dialog_title);
-        return dialog;
-    }
-
-    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getLoaderManager().initLoader(0, null, this);
@@ -113,7 +102,8 @@ public class SimImportFragment extends DialogFragment
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_sim_import, container, false);
 
         mAccountHeaderContainer = view.findViewById(R.id.account_header_container);
@@ -151,7 +141,8 @@ public class SimImportFragment extends DialogFragment
             public void onClick(View v) {
                 importCurrentSelections();
                 // Do we wait for import to finish?
-                dismiss();
+                getActivity().setResult(Activity.RESULT_OK);
+                getActivity().finish();
             }
         });
 
@@ -159,7 +150,8 @@ public class SimImportFragment extends DialogFragment
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+                getActivity().setResult(Activity.RESULT_CANCELED);
+                getActivity().finish();
             }
         });
 
