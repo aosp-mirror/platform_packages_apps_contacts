@@ -59,6 +59,8 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"సేవ్ చేసి, వేరు చేయి"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"మీరు ఇప్పటికే చేసిన మార్పులను సేవ్ చేసి, ఎంచుకున్న పరిచయంతో లింక్ చేయాలనుకుంటున్నారా?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"సేవ్ చేసి, లింక్ చేయి"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"లింక్ చేస్తున్నాము"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"అన్‌లింక్ చేస్తున్నాము"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"లింక్ చేయి"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"లింక్ చేసిన పరిచయాలను చూడండి"</string>
     <string name="menu_save" msgid="1727844363591825909">"సేవ్ చేయి"</string>
@@ -71,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"పరిచయాలు లింక్ చేయబడ్డాయి"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> తొలగించబడింది"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> మరియు <xliff:g id="NAME_1">%2$s</xliff:g> తొలగించబడ్డాయి"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... తొలగించబడ్డాయి"</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">పరిచయాలు తొలగించబడ్డాయి</item>
       <item quantity="one">పరిచయం తొలగించబడింది</item>
@@ -205,6 +208,10 @@
     <string name="change_photo" msgid="8530597935483526383">"మార్చు"</string>
     <string name="description_star" msgid="2605854427360036550">"ఇష్టంగా గుర్తించు"</string>
     <string name="edit_contact" msgid="7529281274005689512">"పరిచయాన్ని సవరించు"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"మూసివేస్తుంది"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"ప్రస్తుత పరిచయాన్ని ఎంచుకున్న పరిచయంతో లింక్ చేయాలా?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ఎంచుకున్న పరిచయాన్ని సవరించగల స్థితికి మార్చాలా? మీరు ఇప్పటి వరకు నమోదు చేసిన సమాచారం కాపీ చేయబడుతుంది."</string>
@@ -249,7 +256,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"మీ పరిచయాలను Googleకు బ్యాకప్ చేసే ఖాతాను జోడించడానికి ఒక నిమిషం కేటాయించండి."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"కొత్త పరిచయాలు <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>కి సేవ్ చేయబడతాయి."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"కొత్త పరిచయాల కోసం డిఫాల్ట్ ఖాతాను ఎంచుకోండి:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"కొత్త పరిచయం చేర్చు"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"సవరించండి"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"వీక్షణ మాత్రమే"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"సవరించాల్సిన పరిచయాన్ని ఎంచుకోండి"</string>
@@ -259,7 +267,8 @@
     <string name="add_account" msgid="8201790677994503186">"ఖాతాను జోడించు"</string>
     <string name="add_new_account" msgid="5748627740680940264">"కొత్త ఖాతాను జోడించు"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"డేటాబేస్ ఫైల్‌లను ఎగుమతి చేయి"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"కొత్త పరిచయాన్ని జోడించు"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"మరిన్ని చూడండి"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"తక్కువ చూడండి"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"ఇటీవలివి"</string>
@@ -295,7 +304,12 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"మీరు: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"మీరు ఇమెయిల్ ఫీల్డ్ లేదా ఫోన్ ఫీల్డ్‌లో వ్యక్తి యొక్క Hangouts ఐడెంటిఫైయర్‌ని నమోదు చేసినప్పుడు Hangouts ఉత్తమంగా పని చేస్తాయి."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"మరిన్ని ఫీల్డ్‌లు"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"ఫోటోను మార్చండి"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"ఎడిటర్‌ను తెరవడం విఫలమైంది."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"దీనికి సేవ్ చేయబడుతోంది"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g>లోని సంప్రదింపు సమాచారం సవరించగలిగే విధంగా లేదు"</string>
@@ -344,10 +358,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"ఈవెంట్‌లు మరియు సందేశాలు"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"ఈవెంట్‌లు"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"సందేశాలు"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (5762679188565585072) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (4403398269286898733) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"సూచనలు"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"మీ పరిచయాలను ఉత్తమంగా నిర్వహించండి మరియు ఉపయోగించండి"</string>
     <string name="undo" msgid="1425165101664071422">"చర్య రద్దు చేయి"</string>
     <string name="call_custom" msgid="6385303130912713318">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>కి కాల్ చేయి"</string>
     <string name="call_home" msgid="1990519474420545392">"ఇంటికి కాల్ చేయండి"</string>
@@ -469,9 +481,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabberని ఉపయోగించి చాట్ చేయండి"</string>
     <string name="chat" msgid="9025361898797412245">"చాట్ చేయండి"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"తొలగించు"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"పేరు ఫీల్డ్‌లను విస్తరింపజేస్తుంది"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"పేరు ఫీల్డ్‌లను కుదిస్తుంది"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"ఫొనెటిక్ పేరు ఫీల్డ్‌లను విస్తరింపజేస్తుంది"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"ఫొనెటిక్ పేరు ఫీల్డ్‌లను కుదిస్తుంది"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"విస్తరింపజేస్తుంది"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"కుదిస్తుంది"</string>
@@ -573,7 +587,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"దీనిలో నుండి పరిచయాలను దిగుమతి చేయండి"</string>
     <string name="share_error" msgid="948429331673358107">"ఈ పరిచయాన్ని భాగస్వామ్యం చేయడం సాధ్యపడదు."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"భాగస్వామ్యం చేయడానికి పరిచయాలు ఏవీ లేవు."</string>
-    <string name="menu_search" msgid="9147752853603483719">"శోధించు"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"అనుకూలీకృత వీక్షణను నిర్వచించండి"</string>
@@ -640,4 +653,6 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"ఆన్ చేయండి"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"కనెక్షన్ లేదు"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>

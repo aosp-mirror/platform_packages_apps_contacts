@@ -59,6 +59,8 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"저장 및 연결 해제"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"이미 변경한 내용을 저장하고 선택한 연락처와 연결하시겠습니까?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"저장 및 연결"</string>
+    <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"연결 중"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"연결 해제 중"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"연결"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"연결된 연락처 보기"</string>
     <string name="menu_save" msgid="1727844363591825909">"저장"</string>
@@ -71,7 +73,8 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"연락처가 연결되었습니다."</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g>님 삭제됨"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g>님과 <xliff:g id="NAME_1">%2$s</xliff:g>님 삭제됨"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="2501253934529429326">"<xliff:g id="NAME_0">%1$s</xliff:g>님, <xliff:g id="NAME_1">%2$s</xliff:g>님, <xliff:g id="NAME_2">%3$s</xliff:g>님... 삭제됨"</string>
+    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
+    <skip />
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">연락처 삭제됨</item>
       <item quantity="one">연락처 삭제됨</item>
@@ -205,6 +208,10 @@
     <string name="change_photo" msgid="8530597935483526383">"변경"</string>
     <string name="description_star" msgid="2605854427360036550">"즐겨찾기"</string>
     <string name="edit_contact" msgid="7529281274005689512">"연락처 수정"</string>
+    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
+    <skip />
+    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
+    <skip />
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"닫기"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"이 연락처와 선택한 연락처를 연결하시겠습니까?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"선택한 연락처를 수정하시겠습니까? 지금까지 입력하신 정보는 복사됩니다."</string>
@@ -249,7 +256,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"잠시 시간을 내어 연락처를 Google에 백업할 계정을 추가하세요."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"새 연락처가 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>에 저장됩니다."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"새 연락처에 대한 기본 계정 선택:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"새 연락처 추가"</string>
+    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
+    <skip />
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"연락처 수정"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"보기 전용"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"수정할 연락처 선택"</string>
@@ -259,7 +267,8 @@
     <string name="add_account" msgid="8201790677994503186">"계정 추가"</string>
     <string name="add_new_account" msgid="5748627740680940264">"새 계정 추가"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"데이터베이스 파일 내보내기"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"새 연락처 추가"</string>
+    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
+    <skip />
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"더보기"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"간략히 보기"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"최근"</string>
@@ -295,7 +304,12 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"내가 보낸 메시지: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"사용자의 행아웃 식별자를 이메일 입력란 또는 휴대전화 입력란에 입력하면 행아웃이 더 잘 작동합니다."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"입력란 더보기"</string>
-    <string name="editor_change_photo_content_description" msgid="754100561085306263">"사진 변경"</string>
+    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
+    <skip />
+    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
+    <skip />
+    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
+    <skip />
     <string name="editor_failed_to_load" msgid="1623639078580475818">"편집기를 열지 못했습니다."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"다음에 저장"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g>의 연락처 정보는 수정할 수 없습니다."</string>
@@ -344,10 +358,8 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"일정 및 메시지"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"일정"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"메시지"</string>
-    <!-- no translation found for hamburger_feature_highlight_header (5762679188565585072) -->
-    <skip />
-    <!-- no translation found for hamburger_feature_highlight_body (4403398269286898733) -->
-    <skip />
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"추천"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"연락처를 정리하고 유용하게 사용할 수 있습니다."</string>
     <string name="undo" msgid="1425165101664071422">"실행취소"</string>
     <string name="call_custom" msgid="6385303130912713318">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>에 전화 걸기"</string>
     <string name="call_home" msgid="1990519474420545392">"집으로 전화걸기"</string>
@@ -469,9 +481,11 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber로 채팅"</string>
     <string name="chat" msgid="9025361898797412245">"채팅"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"삭제"</string>
-    <string name="expand_name_fields_description" msgid="6883935911480726652">"이름 입력란 펼치기"</string>
+    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
+    <skip />
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"이름 입력란 접기"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="3865726859582581741">"이름(소리나는 대로) 입력란 펼치기"</string>
+    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
+    <skip />
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"이름(소리나는 대로) 입력란 접기"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"펼치기"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"접기"</string>
@@ -573,7 +587,6 @@
     <string name="dialog_import" msgid="2423592905927819672">"연락처를 가져올 위치"</string>
     <string name="share_error" msgid="948429331673358107">"연락처를 공유할 수 없습니다."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"공유할 연락처가 없습니다."</string>
-    <string name="menu_search" msgid="9147752853603483719">"검색"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"표시할 연락처"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"표시할 연락처"</string>
     <string name="custom_list_filter" msgid="2105275443109077687">"맞춤설정 보기 정의"</string>
@@ -640,4 +653,6 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"사용"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"연결되지 않음"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
+    <!-- no translation found for show_more_content_description (4277410425912984722) -->
+    <skip />
 </resources>
