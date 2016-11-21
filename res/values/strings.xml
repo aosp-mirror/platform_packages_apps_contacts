@@ -158,7 +158,7 @@
     <!-- Menu item that links an aggregate with another aggregate -->
     <string name="menu_joinAggregate">Link</string>
 
-    <!-- Menu item that opens a dialog that shows all linked contacts that make up this one. [CHAR LIMIT=30] -->
+    <!-- Menu item that opens a dialog that shows all linked contacts that make up this one. [CHAR LIMIT=35] -->
     <string name="menu_linkedContacts">View linked contacts</string>
 
     <!-- Menu item (in the action bar) to indicate that changes should be saved [CHAR LIMIT=20] -->
@@ -234,7 +234,8 @@
     <!-- Positive button text of the warning dialog contents after users select to delete a ReadOnly contact. [CHAR LIMIT=30]-->
     <string name="readOnlyContactWarning_positive_button">Hide Contact</string>
 
-    <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable sources. [CHAR LIMIT=NONE]-->
+    <!-- Warning dialog contents after users selects to delete a contact with ReadOnly and Writable data sources.
+         Tells the user that data from the read-only accounts will be hidden and not deleted. [CHAR LIMIT=NONE]-->
     <string name="readOnlyContactDeleteConfirmation">Read-only accounts in this contact will be hidden, not deleted.</string>
 
     <!-- Confirmation dialog. Shown after user selects to delete one writable contact [CHAR LIMIT=NONE]  -->
