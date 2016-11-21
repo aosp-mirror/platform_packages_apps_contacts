@@ -418,7 +418,7 @@ public class ExternalAccountType extends BaseAccountType {
             return -1; // Empty text is okay.
         }
         if (resourceName.charAt(0) != '@') {
-            if (Log.isLoggable(TAG, Log.WARN)) {
+            if (Log.isLoggable(TAG, Log.WARN) && !isFromTestApp(packageName)) {
                 Log.w(TAG, xmlAttributeName + " must be a resource name beginnig with '@'");
             }
             return -1;
@@ -428,18 +428,23 @@ public class ExternalAccountType extends BaseAccountType {
         try {
              res = context.getPackageManager().getResourcesForApplication(packageName);
         } catch (NameNotFoundException e) {
-            if (Log.isLoggable(TAG, Log.WARN)) {
+            if (Log.isLoggable(TAG, Log.WARN) && !isFromTestApp(packageName)) {
                 Log.w(TAG, "Unable to load package " + packageName);
             }
             return -1;
         }
         final int resId = res.getIdentifier(name, null, packageName);
         if (resId == 0) {
-            if (Log.isLoggable(TAG, Log.WARN)) {
+            if (Log.isLoggable(TAG, Log.WARN) && !isFromTestApp(packageName)) {
                 Log.w(TAG, "Unable to load " + resourceName + " from package " + packageName);
             }
             return -1;
         }
         return resId;
+    }
+
+    @VisibleForTesting
+    static boolean isFromTestApp(String packageName) {
+        return TextUtils.equals(packageName, "com.google.android.contacts.tests");
     }
 }
