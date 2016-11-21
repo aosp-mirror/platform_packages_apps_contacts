@@ -189,6 +189,9 @@ public class AccountHeaderPresenter {
                 UiClosables.closeQuietly(popup);
                 final AccountWithDataSet newAccount = adapter.getItem(position);
                 setCurrentAccount(newAccount);
+                // Make sure the new selection will be announced once it's changed
+                mAccountHeaderContainer.setAccessibilityLiveRegion(
+                        View.ACCESSIBILITY_LIVE_REGION_POLITE);
             }
         });
         mAccountHeaderContainer.post(new Runnable() {
