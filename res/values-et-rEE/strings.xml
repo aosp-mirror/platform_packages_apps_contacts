@@ -75,7 +75,7 @@
       <item quantity="other">Kontaktid kustutati</item>
       <item quantity="one">Kontakt kustutati</item>
     </plurals>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Määrake helin"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Määra helin"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Kõik kõned kõneposti"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kirjutuskaitsega kontodel olevaid kontakte ei saa kustutada, kuid need saab peita."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Peida"</string>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"Määra vaikeseadeks"</string>
     <string name="clear_default" msgid="7193185801596678067">"Kustuta vaikeseaded"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Tekst on kopeeritud"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Kas loobute oma muudatustest?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Loobu"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Kas soovite muudatustest loobuda ja muutmise lõpetada?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Loobu"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Jätka muutmist"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Minu profiili seadistamine"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Sisestage isiku nimi"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Minu kohalik profiil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Minu profiil: <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Kõigi kontaktide kuvamine"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Teenus Kontaktid töötab Google\'i kontoga paremini.\n\n• Pääsete sellele juurde igast veebibrauserist.\n• Varundage oma kontaktid turvaliselt."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Hoidke oma kontaktid turvalisena ka siis, kui kaotate telefoni: sünkroonige need võrguteenusega."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto lisamine"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Teie uut kontakti ei varundata. Kas lisada konto, mis varundab kontakte veebis?"</string>
@@ -263,7 +263,7 @@
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Pealkirjata sündmus)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"Määra"</string>
-    <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
+    <string name="header_im_entry" msgid="3581720979640225615">"Kiirsuhtlus"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Organisatsioon"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Hüüdnimi"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"Märge"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Tundmatult kontolt pärinev foto pole märgitud"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Tundmatult kontolt pärinev foto on märgitud"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Kontaktiloendit värskendatakse keele muutmise kajastamiseks.\n\nPalun oodake ..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Lisa number"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Blokeeri number"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Lisage nr või otsige kontakte"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Kas soovite deblokeerida numbri <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"DEBLOKEERI"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Kas soovite blokeerida numbri <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"BLOKEERI"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"Number <xliff:g id="NUMBER">%1$s</xliff:g> on blokeeritud"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"Number <xliff:g id="NUMBER">%1$s</xliff:g> on deblokeeritud"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> on kehtetu."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Kõnede blokeerimine on ajutiselt väljas"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Kõnede blokeerimine on keelatud, kuna võtsite sellelt telefonilt viimase 48 tunni jooksul ühendust hädaabiteenustega. See lubatakse 48 tunni möödumisel automaatselt uuesti."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Impordi"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Vaata numbreid"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Lisa number"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Kõnede blokeerimine on 48 tunniks keelatud"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Keelatud, kuna tehti hädaabikõne."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"VÕTA TAG."</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> on juba blokeeritud."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Numbri deblokeerimine"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Kontakti <xliff:g id="NAMEORNUMBER">%1$s</xliff:g> üksikasjad"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Importimine ebaõnnestus"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Impordi numbrid"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Kontaktide otsimiseks lülitage sisse kontaktiload."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Lülita sisse"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokeeritud numbrid"</string>
 </resources>

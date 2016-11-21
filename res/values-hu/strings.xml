@@ -52,18 +52,18 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Kezdőképernyőre"</string>
     <string name="menu_call" msgid="3992595586042260618">"Ismerős hívása"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"SMS küldése ismerősnek"</string>
-    <string name="menu_splitAggregate" msgid="2627252205317945563">"Társítás megszüntetése"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Szétválasztás"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Szerkesztés"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Törlés"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Névjegy hozzáadása"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Csoport hozzáadása"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Szeretné több névjegyre szétbontani ezt a névjegyet?"</string>
-    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Szétbontás"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Szétválasztás"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Szeretné menteni a végrehajtott módosításokat, és több névjeggyé szétbontani ezt a névjegyet?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Mentés és szétbontás"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Szeretné menteni a végrehajtott módosításokat, és társítani a kiválasztott névjegyet?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Mentés és társítás"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Társítás"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Összekapcsolás"</string>
     <string name="menu_save" msgid="1727844363591825909">"Mentés"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Névjegyek társítása"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Válassza ki a névjegyet, amelyet a következővel szeretne társítani: <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -82,7 +82,7 @@
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"A törlésre kijelölt névjegy több fiókból is tartalmaz információkat. Az írásvédett fiókokból származó információkat csak elrejti a rendszer, nem törli őket."</string>
     <string name="batch_link_single_contact_warning" msgid="1346058571502058767">"Társításhoz legalább két névjegyet kell kiválasztania."</string>
     <string name="batch_link_confirmation" msgid="5845237114309114908">"Társítja a kiválasztott névjegyeket?"</string>
-    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Társítás"</string>
+    <string name="batch_link_confirmation_positive_button" msgid="5018899675473363525">"Összekapcsolás"</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Törli ezt a névjegyet?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Törli a kijelölt névjegyeket?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Az írásvédett fiókokból származó névjegyeket nem lehet törölni, de el lehet rejteni őket."</string>
@@ -148,7 +148,7 @@
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Nincs megfelelő alkalmazás a művelet elvégzésére."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Kattintással visszatér az előző képernyőre"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Telefonszám hozzáadása"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"E-mail cím hozzáadása"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"E-mail-cím hozzáadása"</string>
     <string name="missing_app" msgid="1466111003546611387">"Nincs megfelelő alkalmazás a művelet elvégzéséhez."</string>
     <string name="menu_share" msgid="943789700636542260">"Megosztás"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Hozzáadás a névjegyekhez"</string>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"Beállítás alapértelmezettként"</string>
     <string name="clear_default" msgid="7193185801596678067">"Alapértelmezés törlése"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Másolt szöveg"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Elveti a módosításokat?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Elvetés"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Elveti a módosításokat, és kilép a szerkesztésből?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Elvetés"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Szerkesztés folytatása"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> -- <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Saját profil beállítása"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Írja be a személy nevét"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Helyi profilom"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profilom"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Az összes névjegy megjelenítése"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"A Névjegyek alkalmazás jobban működik egy Google-fiókkal.\n\n• Bármilyen böngészőből elérheti.\n• Biztonsági másolatot készíthet névjegyeiről."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Tartsa névjegyeit biztonságban akkor is, ha elveszíti a telefont: szinkronizáljon egy online szolgáltatással."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Fiók hozzáadása"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Az új névjegyről nem készül biztonsági másolat. Hozzáad egy olyan fiókot, amelyik online biztonsági másolatot készít a névjegyekről?"</string>
@@ -294,7 +294,7 @@
       <item quantity="other">Társított névjegyek (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Társított névjegy</item>
     </plurals>
-    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> társított névjegy"</string>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> összekapcsolt névjegy"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"NÉVJEGYEK TÁRSÍTÁSA"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"MÉGSE"</string>
@@ -314,7 +314,7 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Ez a névjegy"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Lehetséges ismétlődések"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Lehet, hogy ezek a névjegyek ugyanahhoz a személyhez tartoznak. Lehetőség van a névjegyek egyesítésére."</string>
-    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Társított névjegyek"</string>
+    <string name="compact_editor_linked_contacts_title" msgid="4417919183651782674">"Összekapcsolt névjegyek"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Az Ön fiókjaiból"</string>
     <string name="take_a_photo_button" msgid="6268693854069113488">"Fotó készítése"</string>
     <string name="all_photos_button" msgid="1943122929420111351">"Az összes fotó"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Az ismeretlen fiókból származó kép nincs kiválasztva"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Ismeretlen fiókból származó kép kiválasztva"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"A nyelv módosítása miatt folyamatban van a Címtár frissítése.\n\nKérjük, várjon..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Szám hozzáadása"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Szám tiltása"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Adjon meg egy számot, vagy keressen a névjegyek között"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Feloldja a következő szám tiltását: <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"TILTÁS FELOLDÁSA"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Letiltja a következő számot: <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"LETILTÁS"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"A következő szám letiltva: <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"A következő szám tiltása feloldva: <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"A(z) <xliff:g id="NUMBER">%1$s</xliff:g> érvénytelen."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Hívástiltás átmenetileg felfüggesztve"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Felfüggesztettük a hívások tiltását, mert az elmúlt 48 órában tárcsázta a segélyhívót erről a telefonról. A funkciót automatikusan újból engedélyezzük 48 óra elteltével."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Importálás"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Számok megtekintése"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Szám hozzáadása"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"A hívások tiltása funkció kikapcsolva 48 órára"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Letiltva vészhívás miatt."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"VISSZAVONÁS"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"A következő szám már le van tiltva: <xliff:g id="NUMBER">%1$s</xliff:g>."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Szám tiltásának feloldása"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> részletes adatai."</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Az importálás nem sikerült"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Számok importálása"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"A névjegyek kereséséhez adja meg a Névjegyek engedélyeket."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Engedélyezés"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Letiltott számok"</string>
 </resources>

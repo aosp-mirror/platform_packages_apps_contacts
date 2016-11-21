@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="applicationLabel" msgid="3906689777043645443">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="applicationLabel" msgid="3906689777043645443">"ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="launcherActivityLabel" msgid="6497230399032392417">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="quickContactActivityLabel" msgid="7985456650689347268">"ເບິ່ງລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="editContactActivityLabel" msgid="1129944572070802839">"ແກ້ໄຂລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
@@ -24,12 +24,12 @@
     <string name="shortcutContact" msgid="749243779392912958">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ໂທຫາໂດຍກົງ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ສົ່ງຂໍ້ຄວາມຫາໂດຍກົງ"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ເລືອກທາງລັດລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ເລືອກທາງລັດລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ເລືອກໝາຍເລກເພື່ອໂທ"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ເລືອກເບີເພື່ອສົ່ງຂໍ້ຄວາມ"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ເພີ່ມໃສ່​ລາຍຊື່​ຜູ່ຕິດຕໍ່"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ເລືອກລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ສ້າງລາຍຊື່ຜູ່ຕິດຕໍ່ໃໝ່"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ເລືອກລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="starredList" msgid="4817256136413959463">"ໝາຍດາວແລ້ວ"</string>
     <string name="frequentList" msgid="7154768136473953056">"ເລື້ອຍໆ"</string>
     <string name="strequentList" msgid="5640192862059373511">"ລາຍການທີ່ມັກ"</string>
@@ -72,8 +72,8 @@
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ລາຍຊື່ຜູ່ຕິດຕໍ່ທັງໝົດ"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ລິ້ງ​ແລ້ວ"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
-      <item quantity="other">ລາຍ​ຊື່​ຕິດ​ຕໍ່​ຖືກ​ລຶບ​ແລ້ວ</item>
-      <item quantity="one">ລາຍ​ຊື່​ຕິດ​ຕໍ່​ຖືກ​ລຶບ​ແລ້ວ</item>
+      <item quantity="other">ລາຍຊື່ຜູ້ຕິດຕໍ່ຖືກລຶບອອກແລ້ວ</item>
+      <item quantity="one">ລາຍຊື່ຜູ້ຕິດຕໍ່ຖືກລຶບອອກແລ້ວ</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ຕັ້ງສຽງຣິງໂທນ"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"ໂອນທຸກສາຍໄປຂໍ້ຄວາມສຽງ"</string>
@@ -94,8 +94,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"ເພີ່ມລາຍຊື່ຕິດຕໍ່ໃສ່ໜ້າຈໍຫຼັກແລ້ວ."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ເພີ່ມ​ໃສ່​ໜ້າ​ຈໍ​ຫຼັກ​ແລ້ວ."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"ສ້າງລາຍຊື່ຜູ່ຕິດຕໍ່ໃໝ່"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"ສ້າງລາຍຊື່ຜູ່ຕິດຕໍ່ໃໝ່"</string>
+    <string name="pickerNewContactHeader" msgid="7750705279843568147">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
+    <string name="pickerNewContactText" msgid="6166997164401048211">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
   <string-array name="otherLabels">
     <item msgid="8287841928119937597">"ອົງກອນ"</item>
     <item msgid="7196592230748086755">"ໝາຍເຫດ"</item>
@@ -151,7 +151,7 @@
     <string name="quickcontact_add_email" msgid="739298028384348482">"ເພີ່ມອີເມວ"</string>
     <string name="missing_app" msgid="1466111003546611387">"ບໍ່ພົບແອັບຯທີ່ໃຊ້ເພື່ອດຳເນີນການ."</string>
     <string name="menu_share" msgid="943789700636542260">"ແບ່ງປັນ"</string>
-    <string name="menu_add_contact" msgid="3198704337220892684">"​ເພີ່ມ​ໃນ​ລາຍ​ຊື່​ຜູ່​ຕິດ​ຕໍ່"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"ເພີ່ມໃສ່ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="share_via" msgid="563121028023030093">"ແບ່ງປັນລາຍຊື່ຜູ່ຕິດຕໍ່ຜ່ານທາງ"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"ສ້າງກຸ່ມພາຍໃຕ້ບັນຊີ"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ການສົນທະນາດ້ວຍສຽງ"</string>
@@ -192,7 +192,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"ກຳນົດເອງ"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ການຕັ້ງຄ່າ"</string>
     <string name="menu_settings" msgid="377929915873428211">"ການຕັ້ງຄ່າ"</string>
-    <string name="menu_help" msgid="1680178646764069976">"ຊ່ວຍ​ເຫຼືອ &amp; ຄຳ​ຕິ​ຊົມ"</string>
+    <string name="menu_help" msgid="1680178646764069976">"ຊ່ວຍ​ເຫຼືອ ແລະ ຄຳ​ຕິ​ຊົມ"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ໂຕເລືອກການສະແດງຜົນ"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"ເບີໂທລະສັບ"</string>
@@ -203,7 +203,7 @@
     <string name="date_year_toggle" msgid="7122002148518724139">"ລວມ​ປີ​ນຳ"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ກຳລັງໂຫລດ..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ສ້າງລາຍຊື່ຜູ່ຕິດຕໍ່ໃໝ່"</string>
+    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"ເພີ່ມບັນຊີ"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"ນຳເຂົ້າລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"ສ້າງ​ກຸ່ມ​ໃໝ່"</string>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"ຕັ້ງຄ່າເລີ່ມຕົ້ນ"</string>
     <string name="clear_default" msgid="7193185801596678067">"ລຶບຄ່າເລີ່ມຕົ້ນ"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"ສຳເນົາຂໍ້ຄວາມແລ້ວ"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"ຍົກເລີກການແກ້ໄຂຂອງທ່ານ?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"ລຶບ​ຖິ້​ມ"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"ຍົກເລີກການປ່ຽນແປງຂອງທ່ານ ແລະ ອອກຈາກການແກ້ໄຂບໍ?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ຍົກເລີກ"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"ສືບຕໍ່ແກ້ໄຂ"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"ຕັ້ງຄ່າໂປຣໄຟລ໌ຂອງຂ້ອຍ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"ພິມຊື່ຄົນ"</string>
@@ -235,19 +236,18 @@
     <string name="local_profile_title" msgid="2021416826991393684">"ໂປຣໄຟລ໌ໃນອຸປະກອນຂອງຂ້ອຍ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ໂປຣໄຟລ໌ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ຂອງຂ້ອຍ"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ສະແດງລາຍຊື່ຜູ່ຕິດຕໍ່ທັງໝົດ"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"ລາຍຊື່ຜູ່ຕິດຕໍ່​ຈະ​ເຮັດ​ວຽກ​ໄດ້​ດີ​ຂຶ້ນ​ເມື່ອ​ໃຊ້​ຮ່ວມ​ກັບ​ບັນ​ຊີ Google.\n\n• ເຂົ້າ​ເຖິງ​ໄດ້​ຈາກ​ທຸກ​ໂປຣແກຣມ​ທ່ອງ​ເວັບ.\n• ສຳຮອງ​ຂໍ້ມູນ​ລາຍຊື່ຜູ່ຕິດຕໍ່​ຂອງ​ທ່ານ​ໄວ້​ຢ່າງ​ປອດ​ໄພ."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"ເກັບຮັກສາລາຍຊື່ຜູ່ຕິດຕໍ່ຂອງທ່ານໄວ້ຢ່າງປອດໄພ ເຖິງແມ່ນວ່າໂທລະສັບຂອງທ່ານຈະເສຍກໍຕາມ ດ້ວຍການຊິ້ງຂໍ້ມູນກັບບໍລິການອອນລາຍ."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ເພີ່ມບັນຊີ"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ລາຍຊື່ຜູ່ຕິດຕໍ່ໃໝ່ຂອງທ່ານຈະບໍ່ຖືກສຳຮອງຂໍ້ມູນ. ທ່ານຕ້ອງການເພີ່ມບັນຊີ ທີ່ສາມາດສຳຮອງຂໍ້ມູນອອນລາຍໄດ້ຫຼືບໍ່?"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່ຂອງທ່ານຈະບໍ່ຖືກສຳຮອງຂໍ້ມູນ. ທ່ານຕ້ອງການເພີ່ມບັນຊີ ທີ່ສາມາດສຳຮອງຂໍ້ມູນອອນລາຍໄດ້ຫຼືບໍ່?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໃໝ່​ຈະ​ຖືກ​ບັນ​ທຶກ​ໃສ່ <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ເລືອກ​ບັນ​ຊີ​ເລີ່ມຕົ້ນ​ສຳ​ລັບ​ລາຍ​ຊື່​ຕິດ​ຕໍ່​ໃໝ່:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"​ເພີ່ມ​ລາຍ​ຊື່​ຜູ່​ຕິດ​ຕໍ່​ໃໝ່"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ແກ້ໄຂລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="keep_local" msgid="1258761699192993322">"ຈັດເກັບໃນເຄື່ອງ"</string>
     <string name="add_account" msgid="8201790677994503186">"ເພີ່ມບັນຊີ"</string>
     <string name="add_new_account" msgid="5748627740680940264">"ເພີ່ມບັນຊີໃໝ່"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ສົ່ງອອກໄຟລ໌ຖານຂໍ້ມູນ"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"ເພີ່ມ​ລາຍຊື່​ຜູ່​ຕິດຕໍ່"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"​ເບິ່ງ​ເພີ່ມ​ເຕີມ"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"​​ເບິ່ງ​ໜ້ອຍ​ລົງ"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"ເບິ່ງ​ທັງ​ໝົດ"</string>
@@ -285,7 +285,7 @@
     <string name="content_description_recent_call" msgid="5183800406316723676">"ການ​ໂທຫຼ້າ​ສຸດ. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. ຄລິກ​ເພື່ອ​ໂທ​ກັບ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"​ທ່ານ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts ເຮັດ​ວຽກ​ໄດ້​ດີ​ຂຶ້ນ ເມື່ອ​ທ່ານ​ປ້ອນ​ຕົວ​ລະ​ບຸ​ Hangouts ຂອງ​ບຸກ​ຄົນ​ໃສ່​ບ່ອນ​ໃສ່ອີເມວ ຫຼື​ບ່ອນ​ໃສ່​ໂທ​ລະ​ສັບ​ຂອງ​ທ່ານ."</string>
-    <string name="compact_editor_more_fields" msgid="5987638193568699600">"ເຂດໃສ່ຂໍ້ມູນເພີ່ມເຕີມ"</string>
+    <string name="compact_editor_more_fields" msgid="5987638193568699600">"ຊ່ອງຂໍ້ມູນເພີ່ມເຕີມ"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ປ່ຽນຮູບ"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ເປີດ​ເຄື່ອງ​ຕັດ​ຕໍ່​ບໍ່​ສຳ​ເລັດ."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"ກຳ​ລັງ​ບັນ​ທຶກ​ໃສ່"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ບໍ່ໄດ້ໝາຍເອົາຮູບຖ່າຍຈາກບັນຊີທີ່ບໍ່ຮູ້ຈັກແລ້ວ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ໝາຍເອົາຮູບຖ່າຍຈາກບັນຊີທີ່ບໍ່ຮູ້ຈັກແລ້ວ"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ລາຍຊື່ຜູ່ຕິດຕໍ່ກຳລັງຖືກອັບເດດ ຕາມການປ່ຽນແປງຂອງພາສາ.\n\nກະລຸນາລໍຖ້າ..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"ເພີ່ມໝາຍເລກ"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"ບ​ລັອກ​ໝາຍ​ເລກ"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"ເພີ່ມ​ເບີ​ໂທ​ລະ​ສັບ ຫຼື ຊອກ​ຫາ​ລາຍ​ຊື່​ຕິດ​ຕໍ່"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"ປົດ​ບ​ລັອກ <xliff:g id="NUMBER">%1$s</xliff:g> ບ​ໍ?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"​ປົດ​ບລັອກ"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"ບ​ລັອກ <xliff:g id="NUMBER">%1$s</xliff:g> ບໍ?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"ບລັອກ"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> ຖືກບ​ລັອກໄວ້​ແລ້ວ"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> ຖືກບ​ລັອກໄວ້​ແລ້ວ"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> ບໍ່ຖືກຕ້ອງ."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"ການບ​ລັອກ​ສາຍ​ໂທ​ປິດ​ຊົ່ວ​ຄາວ"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"ການບ​ລັອກ​ສາຍ​ໂທ​ຖືກ​ປິດ​ໃຊ້​ງານ​ແລ້ວ ເພາະ​ວ່າ​ທ່ານ​ໄດ້​ຕິດ​ຕໍ່​ຫາ​ຝ່າຍ​ບໍ​ລິ​ການ​ສຸກ​ເສີນ​ຈາກ​ໂທ​ລະ​ສັບ​ນີ້​ພາຍ​ໃນ 48 ຊົ່ວ​ໂມງ​ສຸດ​ທ້າຍ. ມັນ​ຈະ​ຖືກ​ເປີດ​ໃຊ້​ງານ​ອີກ​ໂດຍ​ອັດ​ຕະ​ໂນ​ມັດ ເມື່ອ​ໝົດ​ໄລ​ຍະ 48 ຊົ່ວ​ໂມງ​ໄປ​ແລ້ວ."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"ນໍາເຂົ້າ"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"ເບິ່ງ​ຕົວ​ເລກ"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"ເພີ່ມໝາຍເລກ"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"ການບ​ລັອກ​ສາຍ​ໂທ​ຖືກ​ປິດ​ໃຊ້​ງານ​ແລ້ວ​ເປັນ​ເວ​ລາ 48 ຊົ່​ວ​ໂມງ"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"ປິດ​ໃຊ້​ງານ​ແລ້ວ ເພາະ​ວ່າ​ໄດ້​ມີ​ການ​ໂທ​ສຸກ​ເສີນ."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"ບໍ່​ເຮັດ"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ຖືກ​ບ​ລັອກ​ແລ້ວ."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"ປົດ​ບ​ລັອກ​ໝາຍ​ເລກ"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"ລາຍລະອຽດ​ລາຍຊື່​ຜູ່ຕິດຕໍ່​ສຳລັບ <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"ນຳ​ເຂົ້າ​ລົ້ມ​ເຫລວ"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"ນຳ​ຕົວ​ເລກ​ເຂົ້າ"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"ເພື່ອຄົ້ນຫາລາຍາຊື່ຂອງທ່ານ, ໃຫ້ເປີດການອະນຸຍາດລາຍຊື່."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"ເປີດ​"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ເບີໂທທີ່ບລັອກໄວ້"</string>
 </resources>

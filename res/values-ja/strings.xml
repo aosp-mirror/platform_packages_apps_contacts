@@ -160,7 +160,7 @@
     <string name="add_connection_button" msgid="4861308615789601727">"連絡先を招待"</string>
     <string name="recent" msgid="2659189233141493004">"最近"</string>
     <string name="recent_updates" msgid="4267258535615860710">"最近の更新"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>からの連絡先"</string>
+    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>の連絡先"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>のアカウント"</string>
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"デフォルトに設定"</string>
     <string name="clear_default" msgid="7193185801596678067">"デフォルトを解除"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"テキストをコピーしました"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"変更を破棄しますか？"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"破棄"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"変更を破棄して編集を終了しますか？"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"破棄"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"編集を続ける"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"プロファイルを設定"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"名前を入力"</string>
@@ -235,8 +236,7 @@
     <string name="local_profile_title" msgid="2021416826991393684">"ローカルプロファイル"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>のプロファイル"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"すべての連絡先を表示しています"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Googleアカウントがあれば連絡先をもっと活用できます。\n\n• どのウェブブラウザからもアクセスできます。\n• 連絡先を安全にバックアップできます。"</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"携帯端末を紛失したときにも連絡先を保護するため、オンラインサービスと同期させます。"</string>
+    <string name="generic_no_account_prompt" msgid="7218827704367325460">"モバイル端末を紛失したときにも連絡先を保護するため、オンラインサービスと同期させます。"</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"アカウントの追加"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"新しい連絡先はバックアップされません。オンラインで連絡先をバックアップするアカウントを追加しますか？"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"新しい連絡先を<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>に保存します"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"不明なアカウントの写真は選択されていません"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"不明なアカウントの写真が選択されています"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"言語の変更に伴い連絡先リストを更新しています。\n\nしばらくお待ちください..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"電話番号を追加"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"番号をブロック"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"番号を追加するか連絡先を検索"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g>のブロックを解除しますか？"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ブロックを解除"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g>をブロックしますか？"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"ブロック"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g>をブロックしました"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g>のブロックを解除しました"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g>は無効な番号です。"</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"通話のブロックは一時的にOFFです"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"このスマートフォンから緊急通報番号への発信が過去48時間以内に行われているため、通話のブロックは無効になっています。48時間経過すると、通話のブロックは自動的に有効になります。"</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"インポート"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"番号を表示"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"電話番号を追加"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"通話のブロックは48時間経過するまで無効になりました"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"緊急通報を行ったため無効になりました。"</string>
-    <string name="block_number_undo" msgid="591338370336724156">"元に戻す"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g>は既にブロックしています。"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"番号のブロックを解除"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g>の連絡先の詳細"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"インポートに失敗しました"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"番号をインポート"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"連絡先を検索するには、連絡先権限をONにしてください。"</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"ONにする"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ブロックした番号"</string>
 </resources>
