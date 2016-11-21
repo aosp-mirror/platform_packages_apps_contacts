@@ -200,7 +200,6 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
             intent.setClass(this, ContactEditorActivity.class);
         }
         startEditorAndForwardExtras(intent);
-        finish();
     }
 
     /**
@@ -233,6 +232,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
             intent.putExtras(extras);
         }
         ImplicitIntentsUtil.startActivityInApp(this, intent);
+        finish();
     }
 
     private void toastErrorAndFinish() {
