@@ -54,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:colorBackground"
+            android:focusable="true"
             android:minHeight="48dp"
             android:orientation="horizontal"
             android:paddingEnd="@dimen/activity_horizontal_margin"
