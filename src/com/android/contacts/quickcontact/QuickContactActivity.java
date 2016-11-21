@@ -1015,7 +1015,7 @@ public class QuickContactActivity extends ContactsActivity {
             destroyInteractionLoaders();
             mContactLoader = (ContactLoader) (Loader<?>) getLoaderManager().getLoader(
                     LOADER_CONTACT_ID);
-            mContactLoader.setLookupUri(mLookupUri);
+            mContactLoader.setNewLookup(mLookupUri);
             mCachedCp2DataCardModel = null;
         }
         mContactLoader.forceLoad();

@@ -299,8 +299,9 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
         public static final int EXPORT_SUPPORT = 5;
     }
 
-    public void setLookupUri(Uri lookupUri) {
+    public void setNewLookup(Uri lookupUri) {
         mLookupUri = lookupUri;
+        mContact = null;
     }
 
     @Override
