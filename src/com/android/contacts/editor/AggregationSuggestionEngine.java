@@ -207,10 +207,6 @@ public class AggregationSuggestionEngine extends HandlerThread {
         appendValue(nameSb, values, StructuredName.FAMILY_NAME);
         appendValue(nameSb, values, StructuredName.SUFFIX);
 
-        if (nameSb.length() == 0) {
-            appendValue(nameSb, values, StructuredName.DISPLAY_NAME);
-        }
-
         StringBuilder phoneticNameSb = new StringBuilder();
         appendValue(phoneticNameSb, values, StructuredName.PHONETIC_FAMILY_NAME);
         appendValue(phoneticNameSb, values, StructuredName.PHONETIC_MIDDLE_NAME);
