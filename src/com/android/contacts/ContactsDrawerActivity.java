@@ -437,6 +437,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                         return true;
                     }
                 });
+
+                updateMenuContentDescription(menuItem, getString(R.string.group_name_dialog_hint));
             }
         }
 
@@ -528,7 +530,6 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             return;
         }
 
-
         for (int i = 0; i < accountFilterItems.size(); i++) {
             final ContactListFilter filter = accountFilterItems.get(i);
             final AccountDisplayInfo displayableAccount =
@@ -556,19 +557,24 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                 // Get rid of the default menu item overlay and show original account icons.
                 menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
             }
-            // Create a dummy action view to attach extra hidden content description to the menuItem
-            // for Talkback. We want Talkback to read out the account type but not have it be part
-            // of the menuItem title.
-            LinearLayout view = (LinearLayout) LayoutInflater.from(this)
-                    .inflate(R.layout.account_type_info, null);
-            view.setContentDescription(displayableAccount.getTypeLabel());
-            view.setVisibility(View.VISIBLE);
-            menuItem.setActionView(view);
+
+            updateMenuContentDescription(menuItem, displayableAccount.getTypeLabel());
         }
 
         if (isAccountView()) {
             updateFilterMenu(mContactListFilterController.getFilter());
         }
+    }
+
+    private void updateMenuContentDescription(MenuItem menuItem, CharSequence contentDescription) {
+        // Create a dummy action view to attach extra hidden content description to the menuItem
+        // for Talkback. We want Talkback to read out the account type but not have it be part
+        // of the menuItem title.
+        final LinearLayout view = (LinearLayout) LayoutInflater.from(this)
+                .inflate(R.layout.menu_item_action_view, null);
+        view.setContentDescription(contentDescription);
+        view.setVisibility(View.VISIBLE);
+        menuItem.setActionView(view);
     }
 
     public void updateFilterMenu(ContactListFilter filter) {
