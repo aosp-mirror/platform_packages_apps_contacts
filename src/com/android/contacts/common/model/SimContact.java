@@ -70,8 +70,8 @@ public class SimContact implements Parcelable {
 
     public void appendCreateContactOperations(List<ContentProviderOperation> ops,
             AccountWithDataSet targetAccount) {
-        // nothing to save.
-        if (mName == null && mPhone == null && mEmails == null) return;
+        // There is nothing to save so skip it.
+        if (!hasName() && !hasPhone() && !hasEmails()) return;
 
         final int rawContactOpIndex = ops.size();
         ops.add(ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
