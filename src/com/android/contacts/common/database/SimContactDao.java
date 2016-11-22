@@ -29,6 +29,8 @@ import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.VisibleForTesting;
 import android.support.v4.util.ArrayMap;
@@ -36,6 +38,7 @@ import android.support.v4.util.ArraySet;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.SparseArray;
 
 import com.android.contacts.R;
@@ -51,6 +54,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -183,6 +187,10 @@ public class SimContactDao {
         return null;
     }
 
+    /**
+     * Finds SIM contacts that exist in CP2 and associates the account of the CP2 contact with
+     * the SIM contact
+     */
     public Map<AccountWithDataSet, Set<SimContact>> findAccountsOfExistingSimContacts(
             List<SimContact> contacts) {
         final Map<AccountWithDataSet, Set<SimContact>> result = new ArrayMap<>();
@@ -237,7 +245,6 @@ public class SimContactDao {
             accountsCursor.close();
         }
     }
-
 
     private ContentProviderResult[] importBatch(List<SimContact> contacts,
             AccountWithDataSet targetAccount)
@@ -305,27 +312,49 @@ public class SimContactDao {
         final StringBuilder selectionBuilder = new StringBuilder();
 
         int phoneCount = 0;
+        int nameCount = 0;
         for (SimContact contact : contacts) {
             if (contact.hasPhone()) {
                 phoneCount++;
+            } else if (contact.hasName()) {
+                nameCount++;
             }
         }
         List<String> selectionArgs = new ArrayList<>(phoneCount + 1);
 
-        selectionBuilder.append(ContactsContract.Data.MIMETYPE).append("=? AND ");
+        selectionBuilder.append('(');
+        selectionBuilder.append(Data.MIMETYPE).append("=? AND ");
         selectionArgs.add(Phone.CONTENT_ITEM_TYPE);
 
         selectionBuilder.append(Phone.NUMBER).append(" IN (")
                 .append(Joiner.on(',').join(Collections.nCopies(phoneCount, '?')))
-                .append(")");
+                .append(')');
         for (SimContact contact : contacts) {
             if (contact.hasPhone()) {
                 selectionArgs.add(contact.getPhone());
             }
         }
+        selectionBuilder.append(')');
 
-        return mResolver.query(ContactsContract.Data.CONTENT_URI.buildUpon()
-                        .appendQueryParameter(ContactsContract.Data.VISIBLE_CONTACTS_ONLY, "true")
+        if (nameCount > 0) {
+            selectionBuilder.append(" OR (");
+
+            selectionBuilder.append(Data.MIMETYPE).append("=? AND ");
+            selectionArgs.add(StructuredName.CONTENT_ITEM_TYPE);
+
+            selectionBuilder.append(Data.DISPLAY_NAME).append(" IN (")
+                    .append(Joiner.on(',').join(Collections.nCopies(nameCount, '?')))
+                    .append(')');
+            for (SimContact contact : contacts) {
+                if (!contact.hasPhone() && contact.hasName()) {
+                    selectionArgs.add(contact.getName());
+                }
+            }
+        }
+        selectionBuilder.append(')');
+
+        return mResolver.query(Data.CONTENT_URI.buildUpon()
+                        .appendQueryParameter(Data.VISIBLE_CONTACTS_ONLY, "true")
                         .build(),
                 DataQuery.PROJECTION,
                 selectionBuilder.toString(),
@@ -439,23 +468,28 @@ public class SimContactDao {
     private static final class DataQuery {
 
         public static final String[] PROJECTION = new String[] {
-                ContactsContract.Data.RAW_CONTACT_ID, Phone.NUMBER, Phone.DISPLAY_NAME
+                Data.RAW_CONTACT_ID, Phone.NUMBER, Data.DISPLAY_NAME, Data.MIMETYPE
         };
 
         public static final int RAW_CONTACT_ID = 0;
         public static final int PHONE_NUMBER = 1;
         public static final int DISPLAY_NAME = 2;
+        public static final int MIMETYPE = 3;
 
         public static long getRawContactId(Cursor cursor) {
             return cursor.getLong(RAW_CONTACT_ID);
         }
 
         public static String getPhoneNumber(Cursor cursor) {
-            return cursor.getString(PHONE_NUMBER);
+            return isPhoneNumber(cursor) ? cursor.getString(PHONE_NUMBER) : null;
         }
 
         public static String getDisplayName(Cursor cursor) {
             return cursor.getString(DISPLAY_NAME);
+        }
+
+        public static boolean isPhoneNumber(Cursor cursor) {
+            return Phone.CONTENT_ITEM_TYPE.equals(cursor.getString(MIMETYPE));
         }
     }
 
