@@ -588,7 +588,8 @@ public class ContactListItemView extends ViewGroup
         // Calculate height including padding.
         int height = (mNameTextViewHeight + mPhoneticNameTextViewHeight +
                 mLabelAndDataViewMaxHeight +
-                mSnippetTextViewHeight + mStatusTextViewHeight);
+                mSnippetTextViewHeight + mStatusTextViewHeight
+                + getPaddingBottom() + getPaddingTop());
 
         // Make sure the height is at least as high as the photo
         height = Math.max(height, mPhotoViewHeight + getPaddingBottom() + getPaddingTop());
