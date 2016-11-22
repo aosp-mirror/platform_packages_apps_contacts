@@ -79,6 +79,11 @@ public class ExternalAccountTypeTest extends InstrumentationTestCase {
                 "@string/test_string", packageName, ""));
     }
 
+    public void testIsFromTestApp() {
+        assertTrue(ExternalAccountType.isFromTestApp("com.google.android.contacts.tests"));
+        assertFalse(ExternalAccountType.isFromTestApp("com.google.android.contacts"));
+    }
+
     /**
      * Initialize with an invalid package name and see if type will be initialized, but empty.
      */
