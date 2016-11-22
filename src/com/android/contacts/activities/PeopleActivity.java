@@ -46,6 +46,7 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -736,15 +737,25 @@ public class PeopleActivity extends ContactsDrawerActivity {
     private void onGroupDeleted(final Intent intent) {
         if (!ContactSaveService.canUndo(intent)) return;
 
-        Snackbar.make(mLayoutRoot, getString(R.string.groupDeletedToast), Snackbar.LENGTH_LONG)
+        final AccessibilityManager am =
+                (AccessibilityManager) getSystemService(Context.ACCESSIBILITY_SERVICE);
+        final int length = am.isEnabled() ? Snackbar.LENGTH_INDEFINITE : Snackbar.LENGTH_LONG;
+        final String message = getString(R.string.groupDeletedToast);
+
+        final Snackbar snackbar = Snackbar.make(mLayoutRoot, message, length)
                 .setAction(R.string.undo, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         ContactSaveService.startService(PeopleActivity.this,
                                 ContactSaveService.createUndoIntent(PeopleActivity.this, intent));
                     }
-                }).setActionTextColor(ContextCompat.getColor(this, R.color.snackbar_action_text))
-                .show();
+                }).setActionTextColor(ContextCompat.getColor(this, R.color.snackbar_action_text));
+
+        // Announce for a11y talkback
+        mLayoutRoot.announceForAccessibility(message);
+        mLayoutRoot.announceForAccessibility(getString(R.string.undo));
+
+        snackbar.show();
     }
 
     private class SaveServiceListener extends BroadcastReceiver {
