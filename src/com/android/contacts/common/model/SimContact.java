@@ -48,7 +48,7 @@ public class SimContact implements Parcelable {
     public SimContact(long id, String name, String phone, String[] emails) {
         mId = id;
         mName = name;
-        mPhone = phone;
+        mPhone = phone == null ? "" : phone.trim();
         mEmails = emails;
     }
 
@@ -84,7 +84,7 @@ public class SimContact implements Parcelable {
             ops.add(createInsertOp(rawContactOpIndex, StructuredName.CONTENT_ITEM_TYPE,
                     StructuredName.DISPLAY_NAME, mName));
         }
-        if (mPhone != null) {
+        if (!mPhone.isEmpty()) {
             ops.add(createInsertOp(rawContactOpIndex, Phone.CONTENT_ITEM_TYPE,
                     Phone.NUMBER, mPhone));
         }
@@ -116,7 +116,7 @@ public class SimContact implements Parcelable {
     }
 
     public boolean hasPhone() {
-        return mPhone != null;
+        return !mPhone.isEmpty();
     }
 
     public boolean hasEmails() {
@@ -230,8 +230,7 @@ public class SimContact implements Parcelable {
             @Override
             public int compare(SimContact lhs, SimContact rhs) {
                 return ComparisonChain.start()
-                        .compare(lhs.mPhone, rhs.mPhone,
-                                Ordering.<String>natural().nullsFirst())
+                        .compare(lhs.mPhone, rhs.mPhone)
                         .compare(lhs.mName, rhs.mName, Ordering.<String>natural().nullsFirst())
                         .result();
             }
