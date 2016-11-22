@@ -1884,8 +1884,8 @@
          when the window is first opened [CHAR LIMIT=40] -->
     <string name="sim_import_title">Import from SIM</string>
 
-    <!-- Content description of the cancel navigation icon shown in SIM import screen toolbar -->
-    <string name="sim_import_cancel_content_description">Cancel import</string>
+    <!-- Content description of the cancel navigation icon shown in SIM import screen toolbar [CHAR LIMIT=NONE]-->
+    <string name="sim_import_cancel_content_description">Cancel</string>
 
     <!-- Alert for letting user know that their device auto-sync setting is turned off,
          in case they are wondering why they are not seeing any contact. [CHAR LIMIT=150] -->
