@@ -25,6 +25,7 @@ import android.provider.ContactsContract;
 import android.support.annotation.RequiresApi;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
+import android.support.test.filters.MediumTest;
 import android.support.test.filters.SdkSuppress;
 import android.support.test.filters.Suppress;
 import android.support.test.runner.AndroidJUnit4;
@@ -45,10 +46,14 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static android.os.Build.VERSION_CODES;
 import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Enclosed.class)
 public class SimContactDaoTests {
@@ -194,6 +199,54 @@ public class SimContactDaoTests {
                             mAccount.type,
                             name
                     }, null));
+        }
+    }
+
+    @SdkSuppress(minSdkVersion = VERSION_CODES.M)
+    // Lollipop MR1 is required for removeAccountExplicitly
+    @RequiresApi(api = VERSION_CODES.LOLLIPOP_MR1)
+    @MediumTest
+    @RunWith(AndroidJUnit4.class)
+    public static class ExistingContactsTest {
+
+        private Context mContext;
+        private AccountsTestHelper mAccountHelper;
+        private AccountWithDataSet mAccount;
+        // We need to generate something distinct to prevent flakiness on devices that may not
+        // start with an empty CP2 DB
+        private String mNameSuffix = "";
+
+        @Before
+        public void setUp() {
+            mContext = InstrumentationRegistry.getTargetContext();
+            mAccountHelper = new AccountsTestHelper(InstrumentationRegistry.getContext());
+            mAccount = mAccountHelper.addTestAccount();
+            mNameSuffix = "testAt" + System.nanoTime();
+        }
+
+        @After
+        public void tearDown() {
+            mAccountHelper.cleanup();
+        }
+
+        @Test
+        public void findAccountsOfExistingContactsReturnsEmptyMapWhenNoMatchingContactsExist() {
+            final SimContactDao sut = createDao();
+
+            final List<SimContact> contacts = Arrays.asList(
+                    new SimContact(1, "Name 1 " + mNameSuffix, "15095550101", null),
+                    new SimContact(2, "Name 2 " + mNameSuffix, "15095550102", null),
+                    new SimContact(3, "Name 3 " + mNameSuffix, "15095550103", null),
+                    new SimContact(4, "Name 4 " + mNameSuffix, "15095550104", null));
+
+            final Map<AccountWithDataSet, Set<SimContact>> existing = sut
+                    .findAccountsOfExistingSimContacts(contacts);
+
+            assertTrue(existing.isEmpty());
+        }
+
+        private SimContactDao createDao() {
+            return SimContactDao.create(mContext);
         }
     }
 

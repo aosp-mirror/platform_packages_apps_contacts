@@ -350,8 +350,8 @@ public class SimContactDao {
                     selectionArgs.add(contact.getName());
                 }
             }
+            selectionBuilder.append(')');
         }
-        selectionBuilder.append(')');
 
         return mResolver.query(Data.CONTENT_URI.buildUpon()
                         .appendQueryParameter(Data.VISIBLE_CONTACTS_ONLY, "true")
