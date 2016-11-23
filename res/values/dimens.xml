@@ -118,6 +118,15 @@
     <!-- Minimum width for the photo action popup options -->
     <dimen name="photo_action_popup_min_width">300dip</dimen>
 
+    <!-- Minimum width for the custom label edit dialog -->
+    <dimen name="custom_dialog_min_width">300dip</dimen>
+
+    <!-- Custom dialog padding dimens -->
+    <dimen name="custom_dialog_layout_padding">24dip</dimen>
+
+    <!-- Custom dialog layout dimens -->
+    <dimen name="custom_dialog_layout">4dip</dimen>
+
     <!-- Top and bottom padding for a contact detail item -->
     <dimen name="detail_item_vertical_margin">8dip</dimen>
 
@@ -269,7 +278,7 @@
     <dimen name="edit_group_end_margin">72dp</dimen>
 
     <!-- Minimum height for group name EditText -->
-    <dimen name="group_name_edit_text_min_height">48dp</dimen>
+    <dimen name="dialog_edit_text_min_height">48dp</dimen>
 
     <!-- Distance to pull down before causing a refresh. -->
     <dimen name="pull_to_refresh_distance">40dp</dimen>
