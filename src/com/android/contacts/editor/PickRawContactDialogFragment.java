@@ -194,7 +194,7 @@ public class PickRawContactDialogFragment extends DialogFragment {
                             getActivity().startActivityForResult(intent, REQUEST_CODE_JOIN);
                         }
                     });
-            builder.setNeutralButton(R.string.contact_editor_unlink_contacts,
+            builder.setNegativeButton(R.string.contact_editor_unlink_contacts,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
