@@ -486,7 +486,10 @@
     <string name="group_name_dialog_update_title">Rename label</string>
 
     <!-- Hint for the label name input field on the insert and update label dialogs [CHAR LIMIT=15] -->
-    <string name="group_name_dialog_hint">Label</string>
+    <string name="group_name_dialog_hint">Label name</string>
+
+    <!-- Hint for the custom label name input filed on dialogs [CHAR LIMIT=15] -->
+    <string name="label_name_dialog_hint">Label name</string>
 
     <!-- Generic action string for starting an audio chat. Used by AccessibilityService to announce the purpose of the view. [CHAR LIMIT=NONE] -->
     <string name="audio_chat">Voice chat</string>
