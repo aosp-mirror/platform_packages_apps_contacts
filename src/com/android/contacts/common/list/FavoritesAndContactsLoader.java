@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.database.MergeCursor;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 
@@ -73,8 +74,9 @@ public class FavoritesAndContactsLoader extends CursorLoader {
         // correctly handles null cursors.
         try {
             return super.loadInBackground();
-        } catch (NullPointerException | SecurityException e) {
-            // Ignore NPEs and SecurityExceptions thrown by providers
+
+        } catch (NullPointerException | SQLiteException | SecurityException e) {
+            // Ignore NPEs, SQLiteExceptions and SecurityExceptions thrown by providers
         }
         return null;
     }
