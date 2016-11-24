@@ -191,7 +191,7 @@ public class SimImportFragment extends Fragment
         int importableCount = 0;
         final SparseBooleanArray checked = mListView.getCheckedItemPositions();
         for (int i = 0; i < checked.size(); i++) {
-            if (checked.valueAt(i) && !mAdapter.existsInCurrentAccount(i)) {
+            if (checked.valueAt(i) && !mAdapter.existsInCurrentAccount(checked.keyAt(i))) {
                 importableCount++;
             }
         }
@@ -215,9 +215,11 @@ public class SimImportFragment extends Fragment
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        rememberSelectionsForCurrentAccount();
+        // We'll restore this manually so we don't need the list to preserve it's own state.
+        mListView.clearChoices();
         super.onSaveInstanceState(outState);
         mAccountHeaderPresenter.onSaveInstanceState(outState);
-        rememberSelectionsForCurrentAccount();
         saveAdapterSelectedStates(outState);
     }
 
@@ -276,7 +278,7 @@ public class SimImportFragment extends Fragment
             // It's possible for existing contacts to be "checked" but we only want to import the
             // ones that don't already exist
             if (checked.valueAt(i) && !mAdapter.existsInCurrentAccount(i)) {
-                importableContacts.add(mAdapter.getItem(i));
+                importableContacts.add(mAdapter.getItem(checked.keyAt(i)));
             }
         }
         ContactSaveService.startService(getContext(), ContactSaveService
@@ -350,6 +352,11 @@ public class SimImportFragment extends Fragment
 
         @Override
         public long getItemId(int position) {
+            // This can be called by the framework when the adapter hasn't been initialized for
+            // checking the checked state of items. See b/33108913
+            if (position < 0 || position >= getCount()) {
+                return View.NO_ID;
+            }
             return getItem(position).getId();
         }
 
