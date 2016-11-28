@@ -148,11 +148,11 @@
     <string name="joinConfirmation_positive_button">Save and Link</string>
 
     <!-- The text to show on on a ProgressDialog indicating we're currently linking
-         contacts [CHAR LIMIT=20]-->
+         contacts [CHAR LIMIT=30]-->
     <string name="contacts_linking_progress_bar">Linking</string>
 
     <!-- The text to show on on a ProgressDialog indicating we're currently unlinking
-     contacts [CHAR LIMIT=20]-->
+     contacts [CHAR LIMIT=30]-->
     <string name="contacts_unlinking_progress_bar">Unlinking</string>
 
     <!-- Menu item that links an aggregate with another aggregate -->
