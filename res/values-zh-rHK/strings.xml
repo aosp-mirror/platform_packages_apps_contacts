@@ -73,8 +73,7 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"已連結聯絡人"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"已刪除<xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"已刪除<xliff:g id="NAME_0">%1$s</xliff:g>和<xliff:g id="NAME_1">%2$s</xliff:g>"</string>
-    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
-    <skip />
+    <string name="contacts_deleted_many_named_toast" msgid="7731565342428031249">"已刪除<xliff:g id="NAME_0">%1$s</xliff:g>、<xliff:g id="NAME_1">%2$s</xliff:g>、<xliff:g id="NAME_2">%3$s</xliff:g>…"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">已刪除聯絡人</item>
       <item quantity="one">已刪除聯絡人</item>
@@ -181,7 +180,9 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"選擇帳戶"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"建立標籤"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"重新命名標籤"</string>
-    <string name="group_name_dialog_hint" msgid="5122118085780669813">"標籤"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"標籤名稱"</string>
+    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"話音通訊"</string>
     <string name="video_chat" msgid="1872255818640336072">"視像通訊"</string>
     <string name="connections" msgid="8098440723172028350">"聯繫"</string>
@@ -208,10 +209,8 @@
     <string name="change_photo" msgid="8530597935483526383">"變更"</string>
     <string name="description_star" msgid="2605854427360036550">"我的最愛"</string>
     <string name="edit_contact" msgid="7529281274005689512">"編輯聯絡人"</string>
-    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
-    <skip />
-    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
-    <skip />
+    <string name="cancel_button_content_description" msgid="1288652456274531846">"取消"</string>
+    <string name="back_arrow_content_description" msgid="4355362760545735065">"返回"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"關閉"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"要將目前的聯絡人連結至已選的聯絡人嗎？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切換至編輯所選聯絡人嗎？您目前已輸入的資訊將會被複製。"</string>
@@ -256,8 +255,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"請花點時間新增帳戶，以便將您的聯絡人備份到 Google。"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"新聯絡人將會儲存至 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>。"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"為新聯絡人選擇預設帳戶："</string>
-    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"建立新聯絡人"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"編輯聯絡人"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"僅供檢視"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"選擇要編輯的聯絡人"</string>
@@ -267,8 +265,7 @@
     <string name="add_account" msgid="8201790677994503186">"新增帳戶"</string>
     <string name="add_new_account" msgid="5748627740680940264">"新增帳戶"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"匯出資料庫檔案"</string>
-    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
-    <skip />
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"建立新聯絡人"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"顯示更多"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"顯示較少"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"近期"</string>
@@ -304,12 +301,9 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"您：<xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"當您在電郵欄或手機欄中輸入個人的 Hangouts 識別碼時，Hangouts 會提供更卓越的服務。"</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"更多欄位"</string>
-    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
-    <skip />
-    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
-    <skip />
-    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
-    <skip />
+    <string name="editor_change_photo_content_description" msgid="820879708069864340">"變更聯絡人相片"</string>
+    <string name="editor_add_photo_content_description" msgid="4194479313465418120">"新增聯絡人相片"</string>
+    <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"聯絡人相片"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"無法打開編輯器。"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"正在儲存至以下帳戶："</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"無法編輯 <xliff:g id="ACCOUNT">%s</xliff:g> 的聯絡人資料"</string>
@@ -481,11 +475,9 @@
     <string name="chat_jabber" msgid="7561444230307829609">"使用 Jabber 進行即時通訊"</string>
     <string name="chat" msgid="9025361898797412245">"即時通訊"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"刪除"</string>
-    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6948274252874552543">"顯示更多姓名欄位"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"收合名稱欄位"</string>
-    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
-    <skip />
+    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"顯示更多姓名拼音欄位"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"收合姓名拼音欄位"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"展開"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"收合"</string>
@@ -643,8 +635,8 @@
       <item quantity="one">已匯入 1 位 SIM 聯絡人</item>
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"無法匯入 SIM 聯絡人"</string>
-    <string name="sim_import_dialog_title" msgid="6699935401502172530">"選取要匯入的聯絡人"</string>
-    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"取消匯入"</string>
+    <string name="sim_import_title" msgid="2511154832820812822">"從 SIM 卡匯入"</string>
+    <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"取消"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"自動同步已關閉。輕按以開啟。"</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"拒絕"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"帳戶同步已關閉。輕按以開啟。"</string>
@@ -653,6 +645,5 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"開啟"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"沒有網絡連線"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
-    <!-- no translation found for show_more_content_description (4277410425912984722) -->
-    <skip />
+    <string name="show_more_content_description" msgid="4277410425912984722">"顯示更多"</string>
 </resources>

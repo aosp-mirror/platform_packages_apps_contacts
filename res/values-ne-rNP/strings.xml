@@ -73,8 +73,7 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"सम्पर्क ठेगानाहरू लिंक गरियो"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> मेटाइयो"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> र <xliff:g id="NAME_1">%2$s</xliff:g> मेटाइयो"</string>
-    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
-    <skip />
+    <string name="contacts_deleted_many_named_toast" msgid="7731565342428031249">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… मेटाइयो"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">सम्पर्क ठेगानाहरू मेटिए</item>
       <item quantity="one"> सम्पर्क ठेगाना मेटियो</item>
@@ -181,7 +180,9 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"खाता छान्नुहोस्"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"लेबल सिर्जना गर्नुहोस्"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"लेबलको पुन:नामाकरण गर्नुहोस्"</string>
-    <string name="group_name_dialog_hint" msgid="5122118085780669813">"लेबल थप्नुहोस्"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"लेबलको नाम"</string>
+    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"भ्वाइस च्याट"</string>
     <string name="video_chat" msgid="1872255818640336072">"भिडियो च्याट"</string>
     <string name="connections" msgid="8098440723172028350">"जडानहरू"</string>
@@ -208,10 +209,8 @@
     <string name="change_photo" msgid="8530597935483526383">"परिवर्तन गर्नुहोस्"</string>
     <string name="description_star" msgid="2605854427360036550">"मनपर्ने"</string>
     <string name="edit_contact" msgid="7529281274005689512">"सम्पर्क सम्पादन गर्नुहोस्"</string>
-    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
-    <skip />
-    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
-    <skip />
+    <string name="cancel_button_content_description" msgid="1288652456274531846">"रद्द गर्नुहोस्"</string>
+    <string name="back_arrow_content_description" msgid="4355362760545735065">"पछाडि"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"बन्द गर्नुहोस्"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"हालको सम्पर्क ठेगानालाई चयन गरिएको सम्पर्क ठेगानासँग लिंक गर्ने हो?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित सम्पर्कको सम्पादन गर्नका लागि स्विच गर्ने हो? तपाईँले अहिलेसम्म प्रविष्टि गरिएका जानकारीहरू प्रतिलिप हुने छन्।"</string>
@@ -256,8 +255,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"एक मिनेट जति लगाएर एउटा खाता थप्नुहोस् जसले तपाईंका सम्पर्कहरूलाई Google मा ब्याक अप गर्ने छ।"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"नयाँ सम्पर्कहरू <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> मा सुरक्षित गरिनेछन्।"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"नयाँ सम्पर्क ठेगानाहरूका लागि पूर्वनिर्धारित खाता छान्‍नुहोस्:"</string>
-    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"नयाँ सम्पर्क बनाउने"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"सम्पर्क सम्पादन"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"अवलोकन मात्र"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"सम्पादन गर्न सम्पर्क छान्नुहोस्"</string>
@@ -267,8 +265,7 @@
     <string name="add_account" msgid="8201790677994503186">"खाता थप्नुहोस्"</string>
     <string name="add_new_account" msgid="5748627740680940264">"नयाँ खाता थप्नुहोस्"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"डेटाबेस फाइलहरू निर्यात गर्नुहोस्"</string>
-    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
-    <skip />
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"नयाँ सम्पर्क सिर्जना गर्नुहोस्"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"थप हेर्नुहोस्"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"कम हेर्नुहोस्"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"हालैको"</string>
@@ -304,12 +301,9 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"तपाईँ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"तपाईंले इमेल क्षेत्र वा फोन क्षेत्रमा व्यक्तिको Hangouts परिचायक प्रविष्ट गर्नु हुँदा Hangouts राम्रो काम गर्दछ।"</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"थप क्षेत्रहरू"</string>
-    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
-    <skip />
-    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
-    <skip />
-    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
-    <skip />
+    <string name="editor_change_photo_content_description" msgid="820879708069864340">"सम्पर्कको तस्बिर बदल्नुहोस्"</string>
+    <string name="editor_add_photo_content_description" msgid="4194479313465418120">"सम्पर्कको तस्बिर थप्नुहोस्"</string>
+    <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"सम्पर्कको तस्बिर"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"सम्पादक खोल्न सकिएन।"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"यसमा सुरक्षित गरिँदै"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> को सम्पर्क सम्बन्धी जानकारी सम्पादन गर्न मिल्दैन"</string>
@@ -481,11 +475,9 @@
     <string name="chat_jabber" msgid="7561444230307829609">"ज्याबरको  प्रयोग गरेर च्याट गर्नुहोस्"</string>
     <string name="chat" msgid="9025361898797412245">"कुराकानी"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"मेटाउनुहोस्"</string>
-    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6948274252874552543">"नामका थप क्षेत्रहरू देखाउनुहोस्"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"नामका क्षेत्रहरू संक्षिप्त गर्नुहोस्"</string>
-    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
-    <skip />
+    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"ध्वनितात्त्विक नामका थप क्षेत्रहरू देखाउनुहोस्"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"ध्वनितात्त्विक नामका क्षेत्रहरू विस्तृत गर्नुहोस्"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"विस्तृत गर्नुहोस्"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"संक्षिप्त गर्नुहोस्"</string>
@@ -643,8 +635,8 @@
       <item quantity="one">SIM को १ सम्पर्क आयात गरियो</item>
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM को सम्पर्कहरू आयात गर्न सकिएन"</string>
-    <string name="sim_import_dialog_title" msgid="6699935401502172530">"आयात गर्न सम्पर्कहरू चयन गर्नुहोस्"</string>
-    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"आयात रद्द गर्नुहोस्"</string>
+    <string name="sim_import_title" msgid="2511154832820812822">"SIM बाट आयात गर्नुहोस्"</string>
+    <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"रद्द गर्नुहोस्"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"स्वत:सिङ्क गर्ने सेवा निष्क्रिय छ। सक्रिय गर्न ट्याप गर्नुहोस्।"</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"खारेज गर्नुहोस्"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"खाता सिङ्क गर्ने सेवा निष्क्रिय छ। सक्रिय पार्न ट्याप गर्नुहोस्।"</string>
@@ -653,6 +645,5 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"खोल्नुहोस्"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"जडान छैन"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
-    <!-- no translation found for show_more_content_description (4277410425912984722) -->
-    <skip />
+    <string name="show_more_content_description" msgid="4277410425912984722">"थप देखाउनुहोस्"</string>
 </resources>
