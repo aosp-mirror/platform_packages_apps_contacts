@@ -41,6 +41,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
 
     private static final String TAG = "EditorSpringBoard";
     private static final String TAG_RAW_CONTACTS_DIALOG = "rawContactsDialog";
+    private static final String KEY_RAW_CONTACTS_METADATA = "rawContactsMetadata";
     private static final int LOADER_RAW_CONTACTS = 1;
 
     public static final String EXTRA_SHOW_READ_ONLY = "showReadOnly";
@@ -268,6 +269,18 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     @Override
     public void onSplitContactCanceled() {
         finish();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_RAW_CONTACTS_METADATA, mResult);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mResult = savedInstanceState.getParcelable(KEY_RAW_CONTACTS_METADATA);
     }
 
     private long[][] getRawContactIds() {
