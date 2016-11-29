@@ -293,7 +293,10 @@ public class SimContactDaoImpl extends SimContactDao {
             final String emails = cursor.getString(colEmails);
 
             final SimContact contact = new SimContact(id, name, number, parseEmails(emails));
-            result.add(contact);
+            // Only include contact if it has some useful data
+            if (contact.hasName() || contact.hasPhone() || contact.hasEmails()) {
+                result.add(contact);
+            }
         }
         return result;
     }
@@ -381,7 +384,7 @@ public class SimContactDaoImpl extends SimContactDao {
     }
 
     private String[] parseEmails(String emails) {
-        return emails != null ? emails.split(",") : null;
+        return !TextUtils.isEmpty(emails) ? emails.split(",") : null;
     }
 
     private boolean hasTelephony() {
