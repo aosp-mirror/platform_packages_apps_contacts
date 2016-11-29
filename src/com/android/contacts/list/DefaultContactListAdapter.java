@@ -31,9 +31,11 @@ import android.provider.ContactsContract.SearchSnippets;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.android.contacts.Experiments;
 import com.android.contacts.compat.ContactsCompat;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferences;
+import com.android.contactsbind.experiments.Flags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +116,13 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 loader.setUri(builder.build());
                 loader.setProjection(getProjection(true));
                 sortOrder = STREQUENT_SORT;
+                if (Flags.getInstance().getBoolean(Experiments.SEARCH_YENTA)
+                        && loader instanceof FavoritesAndContactsLoader
+                        && directoryId == Directory.DEFAULT) {
+                    final FavoritesAndContactsLoader favoritesAndContactsLoader =
+                            (FavoritesAndContactsLoader) loader;
+                    favoritesAndContactsLoader.setAutocompleteQuery(query);
+                }
             }
         } else {
             final ContactListFilter filter = getFilter();

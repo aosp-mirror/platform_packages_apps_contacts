@@ -20,6 +20,7 @@ import android.net.Uri;
 
 import com.android.contacts.logging.Logger;
 import com.android.contacts.util.DeviceLocalAccountTypeFactory;
+import com.android.contactsbind.search.AutocompleteHelper;
 
 /**
  * Creates default bindings for overlays.
@@ -27,6 +28,10 @@ import com.android.contacts.util.DeviceLocalAccountTypeFactory;
 public class ObjectFactory {
 
     public static Logger getLogger() {
+        return null;
+    }
+
+    public static AutocompleteHelper getAutocompleteHelper(Context context) {
         return null;
     }
 
