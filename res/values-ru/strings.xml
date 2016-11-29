@@ -73,8 +73,7 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Контакты связаны"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Контакт <xliff:g id="NAME">%1$s</xliff:g> удален"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Контакты <xliff:g id="NAME_0">%1$s</xliff:g> и <xliff:g id="NAME_1">%2$s</xliff:g> удалены"</string>
-    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
-    <skip />
+    <string name="contacts_deleted_many_named_toast" msgid="7731565342428031249">"Контакты <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… удалены"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="one">Контакты удалены</item>
       <item quantity="few">Контакты удалены</item>
@@ -195,7 +194,9 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Выберите аккаунт"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Создание группы"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Изменение названия группы"</string>
-    <string name="group_name_dialog_hint" msgid="5122118085780669813">"Ярлык"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Название группы"</string>
+    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"Голосовой чат"</string>
     <string name="video_chat" msgid="1872255818640336072">"Видеочат"</string>
     <string name="connections" msgid="8098440723172028350">"Соцсети"</string>
@@ -222,10 +223,8 @@
     <string name="change_photo" msgid="8530597935483526383">"Изменить"</string>
     <string name="description_star" msgid="2605854427360036550">"избранное"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Изменить контакт"</string>
-    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
-    <skip />
-    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
-    <skip />
+    <string name="cancel_button_content_description" msgid="1288652456274531846">"Отмена"</string>
+    <string name="back_arrow_content_description" msgid="4355362760545735065">"Назад"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"закрыть"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Связать текущий контакт с выбранным?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Переключиться на редактирование выбранного контакта? Введенная информация будет скопирована."</string>
@@ -270,8 +269,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Добавьте аккаунт, чтобы сохранить свои контакты в Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Новые контакты будут сохранены в аккаунте <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Выберите аккаунт по умолчанию для новых контактов:"</string>
-    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Создать контакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Изменить контакт"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Только просмотр"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Выбор контакта"</string>
@@ -281,8 +279,7 @@
     <string name="add_account" msgid="8201790677994503186">"Добавить аккаунт"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Добавить аккаунт"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Экспорт файлов базы данных"</string>
-    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
-    <skip />
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Создать контакт"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Ещё"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Свернуть"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Недавние"</string>
@@ -318,12 +315,9 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Вы: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Чтобы обеспечить надежную работу Hangouts, указывайте вместо адреса электронной почты или номера телефона идентификатор пользователя в Hangouts."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Показать другие поля"</string>
-    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
-    <skip />
-    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
-    <skip />
-    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
-    <skip />
+    <string name="editor_change_photo_content_description" msgid="820879708069864340">"Сменить фото контакта"</string>
+    <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Добавить фото контакта"</string>
+    <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Фотография контакта"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Не удалось открыть редактор"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Сохранение:"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Данные контактов из аккаунта <xliff:g id="ACCOUNT">%s</xliff:g> нельзя изменять"</string>
@@ -503,11 +497,9 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Чат через Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"Чат"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"удалить"</string>
-    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6948274252874552543">"Показать дополнительные поля"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"Скрыть дополнительные поля"</string>
-    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
-    <skip />
+    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"Показать дополнительные поля с транскрипцией имени"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Скрыть поля с транскрипцией имени"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"Показать"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"Скрыть"</string>
@@ -673,8 +665,8 @@
       <item quantity="other">Импортировано <xliff:g id="COUNT">%d</xliff:g> контакта с SIM-карты</item>
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"Не удалось импортировать контакты с SIM-карты"</string>
-    <string name="sim_import_dialog_title" msgid="6699935401502172530">"Выберите контакты для импорта"</string>
-    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"Отменить импорт"</string>
+    <string name="sim_import_title" msgid="2511154832820812822">"Импорт с SIM-карты"</string>
+    <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"Отмена"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"Автосинхронизация отключена. Нажмите, чтобы ее включить."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Закрыть"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Синхронизация аккаунта отключена. Нажмите, чтобы ее включить."</string>
@@ -683,6 +675,5 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Включить"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Нет соединения"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM-карта"</string>
-    <!-- no translation found for show_more_content_description (4277410425912984722) -->
-    <skip />
+    <string name="show_more_content_description" msgid="4277410425912984722">"Показать ещё"</string>
 </resources>

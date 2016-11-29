@@ -73,8 +73,7 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Kontaktlar əlaqələndirildi"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"<xliff:g id="NAME">%1$s</xliff:g> silindi"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"<xliff:g id="NAME_0">%1$s</xliff:g> və <xliff:g id="NAME_1">%2$s</xliff:g> silindi"</string>
-    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
-    <skip />
+    <string name="contacts_deleted_many_named_toast" msgid="7731565342428031249">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… silindi"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">Kontakt silindi</item>
       <item quantity="one">Kontakt silindi</item>
@@ -181,7 +180,9 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Hesab seçin"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Etiket yaradın"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Etiketin adını dəyişin"</string>
-    <string name="group_name_dialog_hint" msgid="5122118085780669813">"Etiket"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Etiket adı"</string>
+    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"Səsli çat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Video çat"</string>
     <string name="connections" msgid="8098440723172028350">"Əlaqələr"</string>
@@ -208,10 +209,8 @@
     <string name="change_photo" msgid="8530597935483526383">"Dəyişdir"</string>
     <string name="description_star" msgid="2605854427360036550">"sevimli"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Kontaktı redaktə edin"</string>
-    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
-    <skip />
-    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
-    <skip />
+    <string name="cancel_button_content_description" msgid="1288652456274531846">"Ləğv edin"</string>
+    <string name="back_arrow_content_description" msgid="4355362760545735065">"Geri"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"qapadın"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Cari kontakt seçilmiş kontaktla əlaqələndirilsin?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Seçilmiş kontaktın redaktəsinə keçirilsin? Hazırda daxil etdiyiniz informasiya kopyalanacaq."</string>
@@ -256,8 +255,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Kontaktlarınızı Google\'a yedəkləyən hesabı əlavə etmək üçün bir dəqiqənizi ayırın."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Yeni kontaktlar <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> hesabında yadda saxlanacaq."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Yeni kontaktlar üçün defolt hesab seçin:"</string>
-    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Yeni kontakt yaradın"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Kontakta düzəliş edin"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Yalnız görüntü"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Redaktə etmək üçün kontakt seçin"</string>
@@ -267,8 +265,7 @@
     <string name="add_account" msgid="8201790677994503186">"Hesab əlavə edin"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Yeni hesab əlavə edin"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Data baza fayllarını eksport edin"</string>
-    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
-    <skip />
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Yeni kontakt yaradın"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Daha çoxunu görün"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Baxışı kiçildin"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Son"</string>
@@ -304,12 +301,9 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Siz: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Siz hər hansı bir şəxsin Görüşlə bağlı identifikatorlarını e-poçt sahəsi və ya telefon sahəsinə daxil edəndə, Görüş yerləri daha yaxşı işləyir."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Daha çox sahə"</string>
-    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
-    <skip />
-    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
-    <skip />
-    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
-    <skip />
+    <string name="editor_change_photo_content_description" msgid="820879708069864340">"Kontakt fotosunu dəyişin"</string>
+    <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Kontakt fotosu əlavə edin"</string>
+    <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Kontakt fotosu"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Redaktoru açmaq uğursuz oldu."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Hesabda yadda saxlanır"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> hesabından olan kontakt məlumatı redaktə olunmur"</string>
@@ -481,11 +475,9 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber üzərindən çat"</string>
     <string name="chat" msgid="9025361898797412245">"Çat"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"sil"</string>
-    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6948274252874552543">"Daha çox ad sahələri göstərin"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"Ad sahələrini yığcamlaşdırın"</string>
-    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
-    <skip />
+    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"Daha çox fonetik ad sahələri göstərin"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Fonetik ad sahələrini yığcamlaşdırın"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"Genişləndirin"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"Yığcamlaşdırın"</string>
@@ -643,8 +635,8 @@
       <item quantity="one">1 SIM kontakt</item>
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM kontaktları import etmək olmadı"</string>
-    <string name="sim_import_dialog_title" msgid="6699935401502172530">"İmport üçün kontaktlar seçin"</string>
-    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"İmportu ləğv edin"</string>
+    <string name="sim_import_title" msgid="2511154832820812822">"SIM kartdan import edin"</string>
+    <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"Ləğv edin"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"Avto-sinxronizasiya deaktivdir. Aktiv etmək üçün toxunun."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Yığışdırın"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Avto-sinxronizasiya deaktivdir. Aktiv etmək üçün toxunun."</string>
@@ -653,6 +645,5 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Aktiv edin"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Bağlantı yoxdur"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
-    <!-- no translation found for show_more_content_description (4277410425912984722) -->
-    <skip />
+    <string name="show_more_content_description" msgid="4277410425912984722">"Daha çox göstərin"</string>
 </resources>

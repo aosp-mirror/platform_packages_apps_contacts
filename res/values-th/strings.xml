@@ -73,8 +73,7 @@
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ลิงก์รายชื่อติดต่อแล้ว"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"ลบ <xliff:g id="NAME">%1$s</xliff:g> แล้ว"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"ลบ <xliff:g id="NAME_0">%1$s</xliff:g> และ <xliff:g id="NAME_1">%2$s</xliff:g> แล้ว"</string>
-    <!-- no translation found for contacts_deleted_many_named_toast (7731565342428031249) -->
-    <skip />
+    <string name="contacts_deleted_many_named_toast" msgid="7731565342428031249">"ลบ <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… แล้ว"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
       <item quantity="other">รายชื่อติดต่อที่ลบแล้ว</item>
       <item quantity="one">รายชื่อติดต่อที่ลบแล้ว</item>
@@ -181,7 +180,9 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"เลือกบัญชี"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"สร้างป้ายกำกับ"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"เปลี่ยนชื่อป้ายกำกับ"</string>
-    <string name="group_name_dialog_hint" msgid="5122118085780669813">"ป้ายกำกับ"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"ชื่อป้ายกำกับ"</string>
+    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
+    <skip />
     <string name="audio_chat" msgid="2535716629358298691">"แชทด้วยเสียง"</string>
     <string name="video_chat" msgid="1872255818640336072">"วิดีโอแชท"</string>
     <string name="connections" msgid="8098440723172028350">"การเชื่อมต่อ"</string>
@@ -208,10 +209,8 @@
     <string name="change_photo" msgid="8530597935483526383">"เปลี่ยน"</string>
     <string name="description_star" msgid="2605854427360036550">"รายการโปรด"</string>
     <string name="edit_contact" msgid="7529281274005689512">"แก้ไขรายชื่อติดต่อ"</string>
-    <!-- no translation found for cancel_button_content_description (1288652456274531846) -->
-    <skip />
-    <!-- no translation found for back_arrow_content_description (4355362760545735065) -->
-    <skip />
+    <string name="cancel_button_content_description" msgid="1288652456274531846">"ยกเลิก"</string>
+    <string name="back_arrow_content_description" msgid="4355362760545735065">"กลับ"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"ปิด"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"ลิงก์รายชื่อติดต่อปัจจุบันกับรายชื่อติดต่อที่เลือกใช่ไหม"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"เปลี่ยนไปแก้ไขรายชื่อติดต่อที่เลือกหรือไม่ ข้อมูลที่คุณป้อนไว้จนถึงขณะนี้จะถูกคัดลอก"</string>
@@ -256,8 +255,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"เพิ่มบัญชีที่จะใช้สำรองข้อมูลรายชื่อติดต่อไปยัง Google"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"รายชื่อติดต่อใหม่จะบันทึกไว้ใน <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"เลือกบัญชีเริ่มต้นสำหรับรายชื่อติดต่อใหม่:"</string>
-    <!-- no translation found for contact_editor_title_new_contact (3042788718983070111) -->
-    <skip />
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"สร้างรายชื่อติดต่อใหม่"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"แก้ไขรายชื่อติดต่อ"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"ดูอย่างเดียว"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"เลือกผู้ติดต่อเพื่อแก้ไข"</string>
@@ -267,8 +265,7 @@
     <string name="add_account" msgid="8201790677994503186">"เพิ่มบัญชี"</string>
     <string name="add_new_account" msgid="5748627740680940264">"เพิ่มบัญชีใหม่"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ส่งออกไฟล์ฐานข้อมูล"</string>
-    <!-- no translation found for action_menu_add_new_contact_button (5506832825256203208) -->
-    <skip />
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"สร้างรายชื่อติดต่อใหม่"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"ดูเพิ่มเติม"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"ดูน้อยลง"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"ล่าสุด"</string>
@@ -304,12 +301,9 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"คุณ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"แฮงเอาท์ทำงานได้ดียิ่งขึ้นเมื่อคุณป้อนตัวระบุแฮงเอาท์ของบุคคลที่ต้องการลงในช่องอีเมลหรือช่องโทรศัพท์"</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"ช่องอื่นๆ"</string>
-    <!-- no translation found for editor_change_photo_content_description (820879708069864340) -->
-    <skip />
-    <!-- no translation found for editor_add_photo_content_description (4194479313465418120) -->
-    <skip />
-    <!-- no translation found for editor_contact_photo_content_description (8571975622926162369) -->
-    <skip />
+    <string name="editor_change_photo_content_description" msgid="820879708069864340">"เปลี่ยนรูปภาพรายชื่อติดต่อ"</string>
+    <string name="editor_add_photo_content_description" msgid="4194479313465418120">"เพิ่มรูปภาพรายชื่อติดต่อ"</string>
+    <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"รูปภาพรายชื่อติดต่อ"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"ไม่สามารถเปิดตัวแก้ไข"</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"บันทึกลงใน"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"ข้อมูลติดต่อจาก <xliff:g id="ACCOUNT">%s</xliff:g> ไม่สามารถแก้ไขได้"</string>
@@ -481,11 +475,9 @@
     <string name="chat_jabber" msgid="7561444230307829609">"แชทโดยใช้ Jabber"</string>
     <string name="chat" msgid="9025361898797412245">"แชท"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"ลบ"</string>
-    <!-- no translation found for expand_name_fields_description (6948274252874552543) -->
-    <skip />
+    <string name="expand_name_fields_description" msgid="6948274252874552543">"แสดงช่องชื่อเพิ่ม"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"ยุบช่องชื่อ"</string>
-    <!-- no translation found for expand_phonetic_name_fields_description (9133052674087187927) -->
-    <skip />
+    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"แสดงช่องคำอ่านชื่อเพิ่ม"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"ยุบช่องคำอ่านชื่อ"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"ขยาย"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"ยุบ"</string>
@@ -620,7 +612,7 @@
     <string name="about_build_version" msgid="1765533099416999801">"เวอร์ชันบิวด์"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"สัญญาอนุญาตโอเพนซอร์ส"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"รายละเอียดสัญญาอนุญาตสำหรับซอฟต์แวร์โอเพนซอร์ส"</string>
-    <string name="about_privacy_policy" msgid="3705518622499152626">"นโยบายส่วนบุคคล"</string>
+    <string name="about_privacy_policy" msgid="3705518622499152626">"นโยบายความเป็นส่วนตัว"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"ข้อกำหนดในการให้บริการ"</string>
     <string name="activity_title_licenses" msgid="5467767062737708066">"สัญญาอนุญาตโอเพนซอร์ส"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"เปิด URL ไม่สำเร็จ"</string>
@@ -643,8 +635,8 @@
       <item quantity="one">นำเข้าผู้ติดต่อ 1 รายจากซิมแล้ว</item>
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"นำเข้าผู้ติดต่อจากซิมไม่สำเร็จ"</string>
-    <string name="sim_import_dialog_title" msgid="6699935401502172530">"เลือกผู้ติดต่อที่จะนำเข้า"</string>
-    <string name="sim_import_cancel_content_description" msgid="2388362519166414488">"ยกเลิกการนำเข้า"</string>
+    <string name="sim_import_title" msgid="2511154832820812822">"นำเข้าจากซิมการ์ด"</string>
+    <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"ยกเลิก"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"ซิงค์อัตโนมัติปิดอยู่ แตะเพื่อเปิด"</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"ปิด"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"ซิงค์บัญชีปิดอยู่ แตะเพื่อเปิด"</string>
@@ -653,6 +645,5 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"เปิด"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"ไม่มีการเชื่อมต่อ"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"ซิม"</string>
-    <!-- no translation found for show_more_content_description (4277410425912984722) -->
-    <skip />
+    <string name="show_more_content_description" msgid="4277410425912984722">"แสดงเพิ่มเติม"</string>
 </resources>
