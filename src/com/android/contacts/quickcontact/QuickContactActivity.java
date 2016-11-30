@@ -2560,6 +2560,7 @@ public class QuickContactActivity extends ContactsActivity {
 
     @Override
     public void onDestroy() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mListener);
         super.onDestroy();
     }
 
