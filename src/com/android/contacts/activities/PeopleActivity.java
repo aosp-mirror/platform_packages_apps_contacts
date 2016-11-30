@@ -739,7 +739,9 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
         final AccessibilityManager am =
                 (AccessibilityManager) getSystemService(Context.ACCESSIBILITY_SERVICE);
-        final int length = am.isEnabled() ? Snackbar.LENGTH_INDEFINITE : Snackbar.LENGTH_LONG;
+        //TODO set to INDEFINITE and track user interaction to dismiss b/33208886
+        final int accessibilityLength = 15000;
+        final int length = am.isEnabled() ? accessibilityLength : Snackbar.LENGTH_LONG;
         final String message = getString(R.string.groupDeletedToast);
 
         final Snackbar snackbar = Snackbar.make(mLayoutRoot, message, length)
