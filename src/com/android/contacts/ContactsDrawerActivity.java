@@ -438,7 +438,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
                     }
                 });
 
-                updateMenuContentDescription(menuItem, getString(R.string.group_name_dialog_hint));
+                updateMenuContentDescription(menuItem,
+                        getString(R.string.group_edit_field_hint_text));
             }
         }
 
