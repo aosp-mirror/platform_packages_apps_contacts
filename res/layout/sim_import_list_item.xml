@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="?android:listPreferredItemHeight"
     android:checkMark="?android:listChoiceIndicatorMultiple"
-    android:duplicateParentState="true"
     android:gravity="center_vertical"
     android:paddingEnd="@dimen/activity_horizontal_margin"
     android:paddingStart="@dimen/activity_horizontal_margin"
