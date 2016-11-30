@@ -181,30 +181,33 @@ public class PickRawContactDialogFragment extends DialogFragment {
         mAdapter = new RawContactAccountListAdapter(getContext(), metadata);
         if (metadata.showReadOnly) {
             builder.setTitle(R.string.contact_editor_pick_linked_contact_dialog_title);
-            builder.setPositiveButton(R.string.contact_editor_add_linked_contact,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            mShouldFinishActivity = false;
-                            final Intent intent = new Intent(getActivity(),
-                                    ContactSelectionActivity.class);
-                            intent.setAction(UiIntentActions.PICK_JOIN_CONTACT_ACTION);
-                            intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY,
-                                    metadata.contactId);
-                            getActivity().startActivityForResult(intent, REQUEST_CODE_JOIN);
-                        }
-                    });
-            builder.setNegativeButton(R.string.contact_editor_unlink_contacts,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            mShouldFinishActivity = false;
-                            final SplitContactConfirmationDialogFragment splitDialog = new
-                                    SplitContactConfirmationDialogFragment();
-                            splitDialog.show(getActivity().getFragmentManager(),
-                                    SplitContactConfirmationDialogFragment.TAG);
-                        }
-                    });
+            // Only provide link editing options for non-user profile contacts.
+            if (!metadata.isUserProfile) {
+                builder.setPositiveButton(R.string.contact_editor_add_linked_contact,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mShouldFinishActivity = false;
+                                final Intent intent = new Intent(getActivity(),
+                                        ContactSelectionActivity.class);
+                                intent.setAction(UiIntentActions.PICK_JOIN_CONTACT_ACTION);
+                                intent.putExtra(UiIntentActions.TARGET_CONTACT_ID_EXTRA_KEY,
+                                        metadata.contactId);
+                                getActivity().startActivityForResult(intent, REQUEST_CODE_JOIN);
+                            }
+                        });
+                builder.setNegativeButton(R.string.contact_editor_unlink_contacts,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mShouldFinishActivity = false;
+                                final SplitContactConfirmationDialogFragment splitDialog = new
+                                        SplitContactConfirmationDialogFragment();
+                                splitDialog.show(getActivity().getFragmentManager(),
+                                        SplitContactConfirmationDialogFragment.TAG);
+                            }
+                        });
+            }
         } else {
             builder.setTitle(R.string.contact_editor_pick_raw_contact_to_edit_dialog_title);
         }
