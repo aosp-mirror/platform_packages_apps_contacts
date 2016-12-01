@@ -448,22 +448,24 @@ public class ActionBarAdapter implements OnCloseListener {
                         final ArrayList<View> outViews = new ArrayList<>();
                         decorView.findViewsWithText(outViews, overflowDescription,
                                 View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
-                        if (outViews.isEmpty()) {
-                            return;
-                        }
-                        final ImageView overflow = (ImageView) outViews.get(0);
-                        overflow.setImageResource(R.drawable.ic_more_vert);
 
-                        // Update the overflow image color.
-                        final int iconColor;
-                        if (mSelectionMode) {
-                            iconColor = mActivity.getResources().getColor(
-                                    R.color.actionbar_color_grey_solid);
-                        } else {
-                            iconColor = mActivity.getResources().getColor(
-                                    R.color.actionbar_text_color);
+                        for (View view : outViews) {
+                            if (!(view instanceof ImageView)) {
+                                continue;
+                            }
+                            final ImageView overflow = (ImageView) view;
+
+                            // Update the overflow image color.
+                            final int iconColor;
+                            if (mSelectionMode) {
+                                iconColor = mActivity.getResources().getColor(
+                                        R.color.actionbar_color_grey_solid);
+                            } else {
+                                iconColor = mActivity.getResources().getColor(
+                                        R.color.actionbar_text_color);
+                            }
+                            overflow.setImageTintList(ColorStateList.valueOf(iconColor));
                         }
-                        overflow.setImageTintList(ColorStateList.valueOf(iconColor));
 
                         // We're done, remove the listener.
                         decorView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
