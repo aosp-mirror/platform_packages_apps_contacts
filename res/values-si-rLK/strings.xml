@@ -167,8 +167,8 @@
     <string name="search_settings_description" msgid="2675223022992445813">"ඔබගේ සම්බන්ධතා වල නම්"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"මෙම ක්‍රියාව හැසිරවීමට යෙදුමක් සොයාගත්තේ නැත"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"පෙර තිරයට යෑම ආපසු යෑම ක්ලික් කරන්න"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"දුරකථන අංකයක් එකතු කරන්න"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"ඊ-තැපෑලක් එකතු කරන්න"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"දුරකථන අංකයක් එක් කරන්න"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"ඊ-තැපෑලක් එක් කරන්න"</string>
     <string name="missing_app" msgid="1466111003546611387">"මෙම ක්‍රියාව හැසිරවීමට යෙදුමක් සොයාගත්තේ නැත"</string>
     <string name="menu_share" msgid="943789700636542260">"බෙදාගන්න"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"සම්බන්ධතා වලට එක් කරන්න"</string>
@@ -527,7 +527,7 @@
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"මෙම ආකෘතිය වෙත සහාය නොදක්වයි."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"ලබාදුන් vCard ගොනු(ව) වල පාර දත්ත එකතු කළ නොහැකි විය."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"ගොනු එකක් හෝ කිහිපයක් ආයාත කිරීමට නොහැකි විය (%s)."</string>
-    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> නිර්යාත කිරීම සම්පූර්ණ කෙරුණි."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> නිර්යාත කිරීම අවසන් කෙරුණි."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"සම්බන්ධතා නිර්යාත කිරීම සම්පූර්ණ කරන ලදී."</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"සම්බන්ධතා නිර්යාත කිරීම අවසන්ය, සම්බන්ධතා බෙදා ගැනීමට දැනුම්දීම ක්ලික් කරන්න."</string>
     <string name="touch_to_share_contacts" msgid="4882485525268469736">"සම්බන්ධතා බෙදා ගැනීමට තට්ටු කරන්න."</string>
@@ -542,7 +542,7 @@
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> ආයාත කරමින්"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard දත්ත කියවිය නොහැක"</string>
     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"vCard දත්ත කියවීම අවලංගු කෙරුණි"</string>
-    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> ආයාත කිරීම සම්පූර්ණ විය"</string>
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> ආයාත කිරීම අවසන් විය"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g> ආයාත කිරීම අවලංගු කෙරුණි"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> කෙටි වේලාවකින් ආයාත වනු ඇත."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"ගොනුව කෙටි වේලාවකින් ආයාත කරනු ඇත."</string>
