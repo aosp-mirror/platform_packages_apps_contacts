@@ -427,7 +427,7 @@
     <string name="name_family" msgid="7466985689626017037">"आडनाव"</string>
     <string name="name_prefix" msgid="59756378548779822">"नाव प्रत्यय"</string>
     <string name="name_middle" msgid="8467433655992690326">"मधले नाव"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"नाव प्रत्यय"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"नाव"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"ध्वन्यात्मक नाव"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"ध्वन्यात्मक नाव"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"ध्वन्यात्मक मधले नाव"</string>
@@ -589,7 +589,7 @@
     <string name="menu_clear_frequents" msgid="7688250191932838833">"वारंवारता साफ करा"</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"सिम कार्ड निवडा"</string>
     <string name="menu_accounts" msgid="1424330057450189074">"खाती व्यवस्थापित करा"</string>
-    <string name="menu_import" msgid="6107961135813836467">"आयात"</string>
+    <string name="menu_import" msgid="6107961135813836467">"आयात करा"</string>
     <string name="menu_export" msgid="2658783911863503902">"निर्यात"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"अवरोधित केलेले नंबर"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> द्वारे"</string>
@@ -626,7 +626,7 @@
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> ता. <xliff:g id="MINUTES_1">%s</xliff:g> मि. <xliff:g id="SECONDS">%s</xliff:g> सेकंद"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"हा शॉर्टकट अक्षम केला गेला आहे"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"संपर्क काढला होता"</string>
-    <string name="sim_import_button_text" msgid="4270841592496619317">"आयात"</string>
+    <string name="sim_import_button_text" msgid="4270841592496619317">"आयात करा"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"संपर्क निवडा"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"आपल्‍या सिम कार्डवर कोणतेही संपर्क नाहीत"</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"संपर्क आधीपासून आपल्या सूचीमध्ये विद्यमान आहे"</string>
