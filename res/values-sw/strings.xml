@@ -497,7 +497,7 @@
     <string name="menu_done" msgid="796017761764190697">"Kwisha"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Ghairi"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Mwonekano maalum"</string>
-    <string name="dialog_new_contact_account" msgid="4969619718062454756">"Hifadhi anwani zinazoingizwa kwenye:"</string>
+    <string name="dialog_new_contact_account" msgid="4969619718062454756">"Hifadhi anwani zinazoletwa kwenye:"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"SIM kadi"</string>
     <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM ya <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
@@ -544,7 +544,7 @@
     <string name="importing_vcard_description" msgid="4245275224298571351">"Inaingiza <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Haikuweza kusoma data ya vKadi"</string>
     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Kusoma data ya VCard kumeghairiwa"</string>
-    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Imemaliza kuingiza vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Imemaliza kuleta vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Kuingiza <xliff:g id="FILENAME">%s</xliff:g> kumeghairiwa"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> italetwa hivi karibuni."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Faili italetwa hivi karibuni."</string>

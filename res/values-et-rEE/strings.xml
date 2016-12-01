@@ -29,7 +29,7 @@
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Valimine"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Loo uus kontakt"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Kontakti üksikasjad"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Teave"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Teave:"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Värskendused"</string>
     <string name="searchHint" msgid="8482945356247760701">"Otsige kontakte"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Kuva kontakt"</string>
@@ -139,8 +139,8 @@
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"See silt on juba olemas"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Mõnel kontaktil pole e-posti aadressi."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Mõnel kontaktil pole telefoninumbrit."</string>
-    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Meili saatmine"</string>
-    <string name="menu_sendMessageOption" msgid="8850168125274916426">"Sõnumi saatmine"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Saada meil"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"Saada sõnum"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Kontaktide valimine"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Saada"</string>
     <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
@@ -187,7 +187,7 @@
     <string name="video_chat" msgid="1872255818640336072">"Videovestlus"</string>
     <string name="connections" msgid="8098440723172028350">"Ühendused"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Lisa ühendus"</string>
-    <string name="recent" msgid="2659189233141493004">"Hiljutine"</string>
+    <string name="recent" msgid="2659189233141493004">"Hiljutised"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Uusimad värskendused"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakt"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Teenuse <xliff:g id="SOURCE">%1$s</xliff:g> konto"</string>
@@ -227,11 +227,11 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Kontaktile lisamine"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Sule"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7122002148518724139">"Lisa aasta"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"Kaasa aasta"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Laadimine ..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Loo uus kontakt"</string>
-    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Lisa konto"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Konto lisamine"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Importimine"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Uue loomine …"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Kas kustutada silt „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”? (Kontakte ei kustutata.)"</string>
@@ -262,7 +262,7 @@
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Lingitud kontaktid"</string>
     <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"Lisamine"</string>
     <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Link. tühistam."</string>
-    <string name="add_account" msgid="8201790677994503186">"Lisa konto"</string>
+    <string name="add_account" msgid="8201790677994503186">"Konto lisamine"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Lisa uus konto"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Andmebaasi failide eksportimine"</string>
     <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Loo uus kontakt"</string>
@@ -348,7 +348,7 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Sule navigeerimissahtel"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Sildid"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Kontod"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Vaadake oma ajalugu koos"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Ajaloo koos kuvamine"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Sündmused ja sõnumid"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Sündmused"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Sõnumid"</string>
@@ -497,7 +497,7 @@
     <string name="menu_done" msgid="796017761764190697">"Valmis"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Tühista"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Kohandatud vaade"</string>
-    <string name="dialog_new_contact_account" msgid="4969619718062454756">"Salvestage imporditud kontaktid kontole:"</string>
+    <string name="dialog_new_contact_account" msgid="4969619718062454756">"Imporditud kontaktid salvestatakse kontole:"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"SIM-kaart"</string>
     <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"SIM-kaart <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
@@ -610,11 +610,11 @@
       <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> lugemata üksus. </item>
     </plurals>
     <string name="about_build_version" msgid="1765533099416999801">"Järguversioon"</string>
-    <string name="about_open_source_licenses" msgid="6479990452352919641">"Avatud lähtekoodiga litsentsid"</string>
+    <string name="about_open_source_licenses" msgid="6479990452352919641">"Avatud lähtekoodi litsentsid"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Avatud lähtekoodiga tarkvara litsentsi üksikasjad"</string>
     <string name="about_privacy_policy" msgid="3705518622499152626">"Privaatsuseeskirjad"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"Teenusetingimused"</string>
-    <string name="activity_title_licenses" msgid="5467767062737708066">"Avatud lähtekoodiga litsentsid"</string>
+    <string name="activity_title_licenses" msgid="5467767062737708066">"Avatud lähtekoodi litsentsid"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"URL-i avamine ebaõnnestus."</string>
     <string name="account_filter_view_checked" msgid="6696859503887762213">"Üksus <xliff:g id="ACCOUNT_INFO">%s</xliff:g> on märgitud"</string>
     <string name="account_filter_view_not_checked" msgid="2248684521205038389">"Üksus <xliff:g id="ACCOUNT_INFO">%s</xliff:g> pole märgitud"</string>
