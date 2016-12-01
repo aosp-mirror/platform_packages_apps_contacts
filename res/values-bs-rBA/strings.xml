@@ -234,7 +234,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Dodaj u kontakt"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Zatvori"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7122002148518724139">"Uključi godine"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"Prikaži godinu"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Učitavanje…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Napravi novi kontakt"</string>
@@ -259,7 +259,7 @@
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Prikazuju se svi kontakti"</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Očuvajte sigurnost svojih kontakata čak i ako izgubite telefon: sinhronizirajte ih s mrežnom uslugom."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Dodajte račun"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Odvojite trenutak da dodate račun putem kojeg će se kontakti sigurnosno kopirati na Google."</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Odvojite malo vremena da dodate račun putem kojeg će se kontakti sigurnosno kopirati na Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Novi kontakti će biti sačuvani na račun <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Izaberite zadani račun za nove kontakte:"</string>
     <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Napravi novi kontakt"</string>
@@ -290,7 +290,7 @@
     <string name="header_organization_entry" msgid="8515394955666265406">"Organizacija"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Nadimak"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"Bilješka"</string>
-    <string name="header_website_entry" msgid="1411467850000824745">"Web stranica"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"Web lokacija"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Događaj"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Odnos"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"Račun"</string>
@@ -436,14 +436,14 @@
     <string name="full_name" msgid="6602579550613988977">"Ime"</string>
     <string name="name_given" msgid="4280790853455320619">"Ime"</string>
     <string name="name_family" msgid="7466985689626017037">"Prezime"</string>
-    <string name="name_prefix" msgid="59756378548779822">"Prefiks imena"</string>
+    <string name="name_prefix" msgid="59756378548779822">"Titula ispred imena"</string>
     <string name="name_middle" msgid="8467433655992690326">"Srednje ime"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Sufiks imena"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"Titula iza imena"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Fonetsko ime"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Fonetsko ime"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Fonetsko srednje ime"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Fonetsko prezime"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefoniraj"</string>
+    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-pošta"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Adresa"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
@@ -457,7 +457,7 @@
     <string name="label_notes" msgid="8337354953278341042">"Bilješke"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"Prilagođeno"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Web stranica"</string>
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Web lokacija"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"Oznake"</string>
     <string name="email_home" msgid="8573740658148184279">"Pošalji poruku e-pošte na kućnu adresu e-pošte"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Mobilna e-pošta"</string>
@@ -572,7 +572,7 @@
     <string name="caching_vcard_title" msgid="1226272312940516605">"Spremanje u privremenu pohranu u toku"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Uvozi se <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Izvezi u .vcf fajl"</string>
-    <string name="display_options_sort_list_by" msgid="7028809117272018712">"Poredaj po"</string>
+    <string name="display_options_sort_list_by" msgid="7028809117272018712">"Poredano po"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Ime"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Prezime"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Format imena"</string>
