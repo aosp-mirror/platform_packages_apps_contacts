@@ -98,13 +98,13 @@
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Ջնջե՞լ ընտրված կոնտակտները:"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Ձեր միայն կարդալու հաշիվների կոնտակտները չեն կարող ջնջվել, սակայն կարող են թաքցվել:"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Ջնջվող կոնտակտները պարունակում են տվյալներ մի քանի հաշիվներից: Միայն կարդալու հաշիվների տվյալները կթաքցվեն, սակայն չեն ջնջվի:"</string>
-    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Եթե ջնջեք այս կոնտակտը, կջնջվեն մի քանի հաշիվների տվյալներ:"</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Եթե ջնջեք այս կոնտակտը, կջնջվեն տվյալներ մի քանի հաշիվներից։"</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Ջնջե՞լ այս կոնտակտը:"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Ջնջել"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Հրաժարվել փոփոխություններից"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Կոնտակտը գոյություն չունի:"</string>
-    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Կոնտակտն ավելացվեց Հիմնական էկրանում:"</string>
-    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> կոնտակտն ավելացվեց Հիմնական էկրանում:"</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Կոնտակտն ավելացվեց հիմնական էկրանին:"</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> կոնտակտն ավելացվեց հիմնական էկրանին:"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Ստեղծել նոր կոնտակտ"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Ստեղծել նոր կոնտակտ"</string>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Պլանշետի վրա հասանելի նկարներ չկան:"</string>
@@ -181,8 +181,7 @@
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Պիտակի ստեղծում"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Պիտակի վերանվանում"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"Պիտակի անունը"</string>
-    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
-    <skip />
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"Պիտակի անունը"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Ձայնային զրույց"</string>
     <string name="video_chat" msgid="1872255818640336072">"Տեսազրույց"</string>
     <string name="connections" msgid="8098440723172028350">"Կապեր"</string>
@@ -246,7 +245,7 @@
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Չեղարկե՞լ փոփոխությունները:"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Որոնեք կոնտակտներ"</string>
-    <string name="title_edit_group" msgid="8602752287270586734">"Կոնտակտների հեռացում"</string>
+    <string name="title_edit_group" msgid="8602752287270586734">"Կոնտակտների ջնջում"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Իմ տեղային պրոֆիլը"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Իմ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> պրոֆիլը"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ցուցադրվում են բոլոր կոնտակտները"</string>
@@ -348,7 +347,7 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Փակել նավարկման դարակը"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Պիտակներ"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Հաշիվներ"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Ցուցադրել միասնական պատմություն"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Ցուցադրել միավորված պատմությունը"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Իրադարձություններ և հաղորդագրություններ"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Իրադարձություններ"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Հաղորդագրություններ"</string>
@@ -432,7 +431,7 @@
     <string name="name_phonetic_given" msgid="8723179018384187631">"Անունը՝ տառադարձված"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Հնչյունաբանական հայրանունը"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Ազգանունը՝ տառադարձված"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Հեռախոսը"</string>
+    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Հեռախոս"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Էլփոստ"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Հասցե"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
@@ -496,7 +495,7 @@
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Ցուցադրման ընտրանքները պահվում են..."</string>
     <string name="menu_done" msgid="796017761764190697">"Պատրաստ է"</string>
     <string name="menu_doNotSave" msgid="58593876893538465">"Չեղարկել"</string>
-    <string name="listCustomView" msgid="1840624396582117590">"Անհատական դիտակերպ"</string>
+    <string name="listCustomView" msgid="1840624396582117590">"Անհատականացված դիտակերպ"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Պահել ներմուծված կոնտակտներն այստեղ՝"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"SIM քարտից"</string>
     <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM-ից"</string>
@@ -527,8 +526,8 @@
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Ձևաչափը չի աջակցվում:"</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Հնարավոր չէ հավաքագրել տվյալ vCard ֆայլի(երի) մետա տեղեկատվությունը:"</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Հնարավոր չէ ներմուծել մեկ կամ ավելի ֆայլեր (%s):"</string>
-    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g>-ի արտահանումը ավարտվեց"</string>
-    <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Կոնտակտների արտահանումը ավարտվեց:"</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g>-ի արտահանումն ավարտվեց"</string>
+    <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Կոնտակտների արտահանումն ավարտվեց:"</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"Կոնտակտներն արտահանվեցին: Սեղմեք ծանուցումը՝ դրանցով կիսվելու համար:"</string>
     <string name="touch_to_share_contacts" msgid="4882485525268469736">"Հպեք՝ կոնտակտներով կիսվելու համար:"</string>
     <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"<xliff:g id="FILENAME">%s</xliff:g>-ի արտահանումը չեղարկվեց:"</string>
@@ -544,8 +543,8 @@
     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"vCard-ի տվյալների ընթերցումը չեղարկվեց"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"<xliff:g id="FILENAME">%s</xliff:g>-ի ներմուծումը vCard ավարտվեց"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g>-ի ներմուծումը չեղարկվեց"</string>
-    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g>-ը կներմուծվի շուտով:"</string>
-    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Ֆայլը կներմուծվի շուտով:"</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g>-ը շուտով կներմուծվի:"</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Ֆայլը շուտով կներմուծվի:"</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"vCard-ի ներմուծման հայցը մերժվեց: Փորձեք կրկին ավելի ուշ:"</string>
     <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g>-ը կարտահանվի շուտով:"</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6553826997490909749">"Ֆայլը շուտով կարտահանվի:"</string>
@@ -560,13 +559,13 @@
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> / <xliff:g id="TOTAL_NUMBER">%s</xliff:g> : <xliff:g id="NAME">%s</xliff:g>-ի ներմուծում"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Արտահանել .vcf ֆայլ"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Դասավորել ըստ"</string>
-    <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Անունի"</string>
-    <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Ազգանունի"</string>
+    <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Անվան"</string>
+    <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Ազգանվան"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Անվան ձևաչափ"</string>
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Սկզբում՝ անունը"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Սկզբում՝ ազգանունը"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Հաշիվներ"</string>
-    <string name="default_editor_account" msgid="699591683362420991">"Կանխադրված հաշիվ նոր կոնտակտների համար"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"Ստանդարտ հաշիվ նոր կոնտակտների համար"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"Իմ մասին"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Կարգավորել պրոֆիլը"</string>
     <string name="setting_about" msgid="7014388749752042863">"Կոնտակտների մասին"</string>
@@ -579,9 +578,9 @@
     <string name="dialog_import" msgid="2423592905927819672">"Կոնտակտների ներմուծում"</string>
     <string name="share_error" msgid="948429331673358107">"Չհաջողվեց կիսվել կոնտակտով:"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Հասանելի կոնտակտներ չկան։"</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Ցուցադրվող կոնտակտները"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Ցուցադրման կոնտակտները"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Տեսքի անհատականացում"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Կոնտակտների զտիչ"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Կոնտակտների զտիչ"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"Կարգավորել տեսքը"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Պահել"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Կոնտակտների որոնում"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Ընտրյալներ"</string>

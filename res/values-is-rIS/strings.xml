@@ -110,7 +110,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Engar myndir eru tiltækar í spjaldtölvunni."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Engar myndir eru tiltækar í símanum."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Mynd tengiliðar"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Sérsniðin merking"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Sérsniðinn flokkur"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Senda símtöl beint í talhólfið"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fjarlægja mynd"</string>
     <string name="noContacts" msgid="2228592924476426108">"Listinn yfir tengiliði er tómur"</string>
@@ -119,7 +119,7 @@
     <string name="emptyGroup" msgid="5102411903247859575">"Engir tengiliðir í þessum flokki"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"Engir tengiliðir á þessum reikningi"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Listinn yfir tengiliði er tómur"</string>
-    <string name="contactSavedNamedToast" msgid="895136068894549611">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> vistuð/vistaður"</string>
+    <string name="contactSavedNamedToast" msgid="895136068894549611">"Búið að vista <xliff:g id="DISPLAY_NAME">%s</xliff:g>"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Tengiliður vistaður"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Tengiliðir aðskildir"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"Ekki tókst að vista breytingar á tengiliðnum"</string>
@@ -304,7 +304,7 @@
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Setja inn mynd tengiliðar"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Mynd tengiliðar"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Mistókst að opna ritilinn."</string>
-    <string name="editor_account_selector_title" msgid="4426337993307015833">"Vistar í"</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Vista í"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Ekki er hægt að breyta tengiliðaupplýsingum af <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Vistar núna á <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Ýttu tvisvar til að velja annan reikning."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
@@ -345,7 +345,7 @@
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nýtt"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Opna yfirlitsskúffu"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Loka yfirlitsskúffu"</string>
-    <string name="menu_title_groups" msgid="8356921831150278868">"Skýringar"</string>
+    <string name="menu_title_groups" msgid="8356921831150278868">"Flokkar"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Reikningar"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"Sjá sameiginlegan feril ykkar"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Viðburðir og skilaboð"</string>
@@ -580,7 +580,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Engir tengiliðir til að deila."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Tengiliðir til að birta"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Tengiliðir til að birta"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Skilgreina sérsniðið yfirlit"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"Stilla sérsniðið yfirlit"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Vista"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Leita að tengiliðum"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Uppáhald"</string>

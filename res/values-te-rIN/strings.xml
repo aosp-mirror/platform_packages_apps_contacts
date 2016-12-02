@@ -181,8 +181,7 @@
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"లేబుల్‌ను సృష్టించండి"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"లేబుల్ పేరును మార్చండి"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"లేబుల్ పేరు"</string>
-    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
-    <skip />
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"లేబుల్ పేరు"</string>
     <string name="audio_chat" msgid="2535716629358298691">"వాయిస్ చాట్"</string>
     <string name="video_chat" msgid="1872255818640336072">"వీడియో చాట్"</string>
     <string name="connections" msgid="8098440723172028350">"కనెక్షన్‌లు"</string>

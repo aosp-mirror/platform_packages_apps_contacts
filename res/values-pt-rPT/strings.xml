@@ -19,11 +19,11 @@
     <string name="applicationLabel" msgid="3906689777043645443">"Contactos"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"Marcação directa"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensagem directa"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Seleccionar um atalho de contacto"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Seleccionar um número a marcar"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Seleccionar um número para enviar mensagem"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"Marcação direta"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensagem direta"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Selec. um atalho de contacto"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Selec. número a marcar"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Selec. n.º a enviar mensagem"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Adicionar ao contacto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Escolher um contacto"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Selecionar"</string>
@@ -61,15 +61,15 @@
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Guardar e associar"</string>
     <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"A associar..."</string>
     <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"A desassociar..."</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Ligar"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Associar"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"Ver contactos associados"</string>
     <string name="menu_save" msgid="1727844363591825909">"Guardar"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Ligar contactos"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Escolha o contacto que pretende ligar a <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Associar contactos"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Escolha o contacto que pretende associar a <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos os contactos"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contactos"</string>
-    <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"Ligados por <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"Contacto associado: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"Contacts linked"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Contacto <xliff:g id="NAME">%1$s</xliff:g> eliminado"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Contactos <xliff:g id="NAME_0">%1$s</xliff:g> e <xliff:g id="NAME_1">%2$s</xliff:g> eliminados"</string>
@@ -313,7 +313,7 @@
     </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> contactos ligados"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LIGAR CONTACTOS"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ASSOCIAR CONTACTOS"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"CANCELAR"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> possíveis duplicados</item>
@@ -331,7 +331,7 @@
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Este contacto"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Possíveis duplicados"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Estes contactos podem ser da mesma pessoa. Pode associá-los num único contacto."</string>
-    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"Contactos ligados"</string>
+    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"Contactos associados"</string>
     <string name="from_your_accounts" msgid="1746293107836889912">"Das suas contas"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Escolher foto"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"De <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
@@ -620,7 +620,7 @@
     <string name="description_search_video_call" msgid="5841525580339803272">"Efetuar videochamada"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"Eliminar"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"Reticências"</string>
-    <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> seg"</string>
+    <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> s"</string>
     <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> seg"</string>
     <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> h <xliff:g id="MINUTES_1">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> seg"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Este atalho foi desativado"</string>

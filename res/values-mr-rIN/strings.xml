@@ -119,7 +119,7 @@
     <string name="emptyGroup" msgid="5102411903247859575">"या लेबलसह कोणतेही संपर्क नाहीत"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"या खात्यामध्ये कोणतेही संपर्क नाहीत"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"आपली संपर्क सूची रिक्त आहे"</string>
-    <string name="contactSavedNamedToast" msgid="895136068894549611">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> जतन केला"</string>
+    <string name="contactSavedNamedToast" msgid="895136068894549611">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> जतन केले"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"संपर्क जतन केला"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"संपर्कांचा दुवा रद्द केला"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"संपर्क बदल जतन करणे शक्य झाले नाही"</string>
@@ -181,8 +181,7 @@
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"लेबल बनवा"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"लेबल पुनर्नामित करा"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"लेबल नाव"</string>
-    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
-    <skip />
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"लेबल नाव"</string>
     <string name="audio_chat" msgid="2535716629358298691">"व्हॉइस चॅट"</string>
     <string name="video_chat" msgid="1872255818640336072">"व्हिडिओ चॅट"</string>
     <string name="connections" msgid="8098440723172028350">"कनेक्शन"</string>
