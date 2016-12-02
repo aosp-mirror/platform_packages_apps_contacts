@@ -209,8 +209,8 @@
 
     <!-- List header indicating the number of contacts and account name in the list [CHAR LIMIT=30] -->
     <plurals name="contacts_count_with_account">
-        <item quantity="one"><xliff:g id="count">%d</xliff:g> contact · <xliff:g id="account">%s</xliff:g></item>
-        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts · <xliff:g id="account">%s</xliff:g></item>
+        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> contact · <xliff:g id="account">%2$s</xliff:g></item>
+        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> contacts · <xliff:g id="account">%2$s</xliff:g></item>
     </plurals>
 
     <!-- Activity title indicating contacts are from a Google account [CHAR LIMIT=30] -->
@@ -437,9 +437,6 @@
          Used by AccessibilityService to announce the purpose of the button.
     -->
     <string name="description_plus_button">plus</string>
-
-    <!-- Message in progress bar while exporting contact list to a file "(current number) of (total number) contacts" The order of "current number" and "total number" cannot be changed (like "total: (total number), current: (current number)")-->
-    <string name="exporting_contact_list_progress"><xliff:g id="current_number">%s</xliff:g> of <xliff:g id="total_number">%s</xliff:g> contacts</string>
 
     <!-- The string used to describe Contacts as a searchable item within system search settings. -->
     <string name="search_settings_description">Names of your contacts</string>
@@ -798,7 +795,7 @@
     <string name="tomorrow_at_time_fmt">"Tomorrow at <xliff:g id="time_interval">%s</xliff:g>"</string>
     <!-- Format string for a date and time description.  For ex:
          "April 19, 2012, 3:00pm - 4:00pm" [CHAR LIMIT=NONE] -->
-    <string name="date_time_fmt">"<xliff:g id="date">%s</xliff:g>, <xliff:g id="time_interval">%s</xliff:g>"</string>
+    <string name="date_time_fmt">"<xliff:g id="date">%1$s</xliff:g>, <xliff:g id="time_interval">%2$s</xliff:g>"</string>
     <!-- Title for untitled calendar interactions [CHAR LIMIT=40] -->
     <string name="untitled_event">(Untitled event)</string>
 
@@ -837,7 +834,7 @@
     <string name="content_description_directions">directions to location</string>
 
     <!-- Content description for recent sms interaction [CHAR LIMIT=NONE] -->
-    <string name="content_description_recent_sms">recent sms. <xliff:g id="message_body">%s</xliff:g>. <xliff:g id="phone_number">%s</xliff:g>. <xliff:g id="date">%s</xliff:g>. click to respond</string>
+    <string name="content_description_recent_sms">recent sms. <xliff:g id="message_body">%1$s</xliff:g>. <xliff:g id="phone_number">%2$s</xliff:g>. <xliff:g id="date">%3$s</xliff:g>. click to respond</string>
 
     <!-- Header for the Relation entry [CHAR LIMIT=NONE] -->
     <string name="content_description_recent_call_type_incoming">incoming</string>
@@ -847,7 +844,7 @@
     <string name="content_description_recent_call_type_missed">missed</string>
 
     <!-- Content description for recent sms interaction [CHAR LIMIT=NONE] -->
-    <string name="content_description_recent_call">recent call. <xliff:g id="call_type">%s</xliff:g>. <xliff:g id="phone_number">%s</xliff:g>. <xliff:g id="date">%s</xliff:g>. click to call back</string>
+    <string name="content_description_recent_call">recent call. <xliff:g id="call_type">%1$s</xliff:g>. <xliff:g id="phone_number">%2$s</xliff:g>. <xliff:g id="date">%3$s</xliff:g>. click to call back</string>
 
     <!-- Prefix for messages that you sent [CHAR LIMIT=40] -->
     <string name="message_from_you_prefix">You: <xliff:g id="sms_body">%s</xliff:g></string>
@@ -888,9 +885,6 @@
     <!-- Number of linked contacts of the current contact, only shown when there are more than 2 linked contacts (plural only!!!) [CHAR LIMIT=60] -->
     <string name="quickcontact_contacts_number"><xliff:g id="count">%d</xliff:g> linked contacts</string>
 
-    <!-- Quick contact display name with phonetic name -->
-    <string name="quick_contact_display_name_with_phonetic"><xliff:g id="display_name">%s</xliff:g> (<xliff:g id="phonetic_name">%s</xliff:g>)</string>
-
     <!-- Button used in quick contact suggestion card to link selected contacts. [CHAR LIMIT=30]-->
     <string name="quickcontact_suggestion_link_button">LINK CONTACTS</string>
 
@@ -915,9 +909,6 @@
         <item quantity="other">(<xliff:g id="count">%d</xliff:g>)</item>
     </plurals>
 
-    <!-- Account type with number in quick contact suggestion card [CHAR LIMIT=30]-->
-    <string name="quickcontact_suggestion_account_type"><xliff:g id="account_type">%s</xliff:g><xliff:g id="account_type_number">%s</xliff:g></string>
-
     <!-- "This contact" title showing in suggestion card in Quick contact. [CHAR LIMIT=30]-->
     <string name="suggestion_card_this_contact_title">This contact</string>
 
@@ -941,19 +932,11 @@
 
     <!-- Content description of delete button to the right of each section in editor, including
     data type. For example: Delete Home Phone, Delete Work Email, etc [CHAR LIMIT=30]-->
-    <string name="editor_delete_view_description">Delete <xliff:g id="data_type">%s </xliff:g><xliff:g id="data_kind">%s</xliff:g></string>
+    <string name="editor_delete_view_description">Delete <xliff:g id="data_type">%1$s </xliff:g><xliff:g id="data_kind">%2$s</xliff:g></string>
 
     <!-- Content description of delete button to the right of each section in editor, without data
     type. For example: Delete Website, Delete SIP, etc [CHAR LIMIT=30]-->
     <string name="editor_delete_view_description_short">Delete <xliff:g id="data_kind">%s</xliff:g></string>
-
-    <!-- Content description of photo in photo picker indicating a photo from a specific account is *not* selected.
-         For example: Photo from Google abc@gmail.com not checked. [CHAR LIMIT=60]-->
-    <string name="photo_view_description_not_checked">Photo from <xliff:g id="account_type">%s </xliff:g><xliff:g id="user_name">%s </xliff:g>not checked</string>
-
-    <!-- Content description of photo in photo picker indicating a photo from a specific account is selected.
-         For example: Photo from Google abc@gmail.com checked. [CHAR LIMIT=60]-->
-    <string name="photo_view_description_checked">Photo from <xliff:g id="account_type">%s </xliff:g><xliff:g id="user_name">%s </xliff:g>checked</string>
 
     <!-- Content description of photo in photo picker indicating a photo from unknown account is *not* selected.-->
     <string name="photo_view_description_not_checked_no_info">Photo from unknown account not checked</string>
@@ -1462,7 +1445,7 @@
 
     <!-- The failed reason shown when vCard importer/exporter could not open the file
          specified by a user. The file name should be in the message. [CHAR LIMIT=NONE] -->
-    <string name="fail_reason_could_not_open_file">Couldn\'t open \"<xliff:g id="file_name">%s</xliff:g>\": <xliff:g id="exact_reason">%s</xliff:g>.</string>
+    <string name="fail_reason_could_not_open_file">Couldn\'t open \"<xliff:g id="file_name">%1$s</xliff:g>\": <xliff:g id="exact_reason">%2$s</xliff:g>.</string>
 
     <!-- The failed reason shown when contacts exporter fails to be initialized.
          Some exact reason must follow this. [CHAR LIMIT=NONE]-->
@@ -1626,7 +1609,7 @@
          Second argument is the total number of contacts.
          Third argument is the name of a contact which is being read.
          [CHAR LIMIT=20] -->
-    <string name="progress_notifier_message">Importing <xliff:g id="current_number">%s</xliff:g>/<xliff:g id="total_number">%s</xliff:g>: <xliff:g id="name" example="Joe Due">%s</xliff:g></string>
+    <string name="progress_notifier_message">Importing <xliff:g id="current_number">%1$s</xliff:g>/<xliff:g id="total_number">%2$s</xliff:g>: <xliff:g id="name" example="Joe Due">%3$s</xliff:g></string>
 
     <!-- Action that exports all contacts to a user selected destination. [CHAR LIMIT=25] -->
     <string name="export_to_vcf_file" product="default">Export to .vcf file</string>
@@ -1849,10 +1832,10 @@
     <string name="callDurationSecondFormat"><xliff:g id="seconds">%s</xliff:g> sec</string>
 
     <!-- Formatted call duration displayed in recent card in QuickContact, for duration less than 1 hour -->
-    <string name="callDurationMinuteFormat"><xliff:g id="minutes">%s</xliff:g> min <xliff:g id="seconds">%s</xliff:g> sec</string>
+    <string name="callDurationMinuteFormat"><xliff:g id="minutes">%1$s</xliff:g> min <xliff:g id="seconds">%2$s</xliff:g> sec</string>
 
     <!-- Formatted call duration displayed in recent card in QuickContact, for duration more than 1 hour -->
-    <string name="callDurationHourFormat"><xliff:g id="minutes">%s</xliff:g> hr <xliff:g id="minutes">%s</xliff:g> min <xliff:g id="seconds">%s</xliff:g> sec</string>
+    <string name="callDurationHourFormat"><xliff:g id="minutes">%1$s</xliff:g> hr <xliff:g id="minutes">%2$s</xliff:g> min <xliff:g id="seconds">%3$s</xliff:g> sec</string>
 
     <!-- Toast shown when a dynamic shortcut is tapped after being disabled because the experiment was turned off on the device -->
     <string name="dynamic_shortcut_disabled_message">This shortcut has been disabled</string>
