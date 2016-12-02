@@ -43,7 +43,7 @@
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Snelkoppeling maken"</string>
     <string name="menu_call" msgid="3992595586042260618">"Contact bellen"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Sms\'en naar contact"</string>
-    <string name="menu_splitAggregate" msgid="2627252205317945563">"Loskoppelen"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Link verwijderen"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"Contacten verwijderen"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Label hernoemen"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Label verwijderen"</string>
@@ -242,7 +242,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Wijzigingen annuleren?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Weggooien"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Annuleren"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Wijzigingen niet opslaan?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Wijzigingen opslaan?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Contacten zoeken"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Contacten verwijderen"</string>
@@ -580,7 +580,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Er zijn geen contacten om te delen."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Zichtbare contacten"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Zichtbare contacten"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Aangepaste weergave definiëren"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"Weergave aanpassen"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Opslaan"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Contacten zoeken"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoriet"</string>

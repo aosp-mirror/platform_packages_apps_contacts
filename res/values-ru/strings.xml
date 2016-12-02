@@ -21,12 +21,12 @@
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Быстрый звонок"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Быстрое SMS"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Выбрать контакт для быстрого вызова"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Выберите номер для вызова"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выбрать номер для отправки сообщения"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Выбрать контакт"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Выберите номер"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выбрать номер для SMS"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Добавление данных"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Выбор контакта"</string>
-    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Выбор"</string>
+    <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Выбрать"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Создать контакт"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Сведения о контакте"</string>
     <string name="contactDetailAbout" msgid="5430408883907061400">"Контактные данные"</string>
@@ -45,12 +45,12 @@
     <string name="menu_sendSMS" msgid="5535886767547006515">"Отправить SMS/MMS"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Отменить связь"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"Удалить контакты"</string>
-    <string name="menu_renameGroup" msgid="7169512355179757182">"Переименовать группу"</string>
-    <string name="menu_deleteGroup" msgid="1126469629233412249">"Удалить группу"</string>
+    <string name="menu_renameGroup" msgid="7169512355179757182">"Переименовать ярлык"</string>
+    <string name="menu_deleteGroup" msgid="1126469629233412249">"Удалить ярлык"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Добавить контакт"</string>
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Выбрать контакты"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Добавить контакты"</string>
-    <string name="menu_removeFromGroup" msgid="6720354305399961978">"Удалить из группы"</string>
+    <string name="menu_removeFromGroup" msgid="6720354305399961978">"Снять ярлык"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Добавить контакт"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Создать…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Разделить этот контакт?"</string>
@@ -135,14 +135,14 @@
     <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Не удалось сохранить изменения"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Не удалось загрузить ярлык"</string>
     <string name="groupSavedToast" msgid="6491495462357722285">"Ярлык сохранен"</string>
-    <string name="groupDeletedToast" msgid="520896687873262027">"Группа удалена"</string>
+    <string name="groupDeletedToast" msgid="520896687873262027">"Ярлык удален"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Ярлык создан"</string>
     <string name="groupCreateFailedToast" msgid="4359093891863474299">"Не удалось создать группу"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Ярлык обновлен"</string>
-    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Контакты удалены из группы"</string>
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Ярлык снят"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Добавлено"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Не удалось сохранить изменения"</string>
-    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Такая группа уже существует"</string>
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Такой ярлык уже существует"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"У некоторых контактов не указаны адреса эл. почты"</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"У некоторых контактов не указаны номера телефонов"</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"Отправить письмо"</string>
@@ -192,11 +192,10 @@
       <item quantity="other">Выберите способ отправки</item>
     </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Выберите аккаунт"</string>
-    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Создание группы"</string>
-    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Изменение названия группы"</string>
+    <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Создание ярлыка"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Изменение названия ярлыка"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"Название группы"</string>
-    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
-    <skip />
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"Название группы"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Голосовой чат"</string>
     <string name="video_chat" msgid="1872255818640336072">"Видеочат"</string>
     <string name="connections" msgid="8098440723172028350">"Соцсети"</string>
@@ -463,7 +462,7 @@
     <string name="eventLabelsGroup" msgid="7960408705307831289">"Определенная дата"</string>
     <string name="sms" msgid="1756857139634224222">"Текстовое сообщение"</string>
     <string name="postal_address" msgid="8765560217149624536">"Адрес"</string>
-    <string name="ghostData_company" msgid="5414421120553765775">"Название"</string>
+    <string name="ghostData_company" msgid="5414421120553765775">"Компания"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Должность"</string>
     <string name="label_notes" msgid="8337354953278341042">"Примечания"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"Другое"</string>
@@ -607,7 +606,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Видимых контактов нет"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Фильтр контактов"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Фильтр контактов"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Настроить пользовательский режим просмотра"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"Настроить просмотр"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Сохранить"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Поиск в контактах"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Избранное"</string>
@@ -638,11 +637,11 @@
       <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> непрочитанных элемента. </item>
     </plurals>
     <string name="about_build_version" msgid="1765533099416999801">"Версия сборки"</string>
-    <string name="about_open_source_licenses" msgid="6479990452352919641">"Лицензии ПО с открытым исходным кодом"</string>
+    <string name="about_open_source_licenses" msgid="6479990452352919641">"Лицензии открытого ПО"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Сведения о лицензиях на ПО с открытым исходным кодом"</string>
     <string name="about_privacy_policy" msgid="3705518622499152626">"Политика конфиденциальности"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"Условия использования"</string>
-    <string name="activity_title_licenses" msgid="5467767062737708066">"Лицензии ПО с открытым исходным кодом"</string>
+    <string name="activity_title_licenses" msgid="5467767062737708066">"Лицензии открытого ПО"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"Не удалось открыть URL"</string>
     <string name="account_filter_view_checked" msgid="6696859503887762213">"Аккаунт <xliff:g id="ACCOUNT_INFO">%s</xliff:g>, выбран"</string>
     <string name="account_filter_view_not_checked" msgid="2248684521205038389">"Аккаунт <xliff:g id="ACCOUNT_INFO">%s</xliff:g>, не выбран"</string>

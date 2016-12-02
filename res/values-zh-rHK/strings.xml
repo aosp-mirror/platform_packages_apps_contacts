@@ -53,7 +53,7 @@
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"從標籤中移除"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"新增聯絡人"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"建立新…"</string>
-    <string name="splitConfirmation" msgid="7342030840130187290">"要解除連結此聯絡人為多個聯絡人嗎？"</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"要解除連結，並設為多個聯絡人嗎？"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"解除連結"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"您要儲存變更，並解除連結此聯絡人為多個聯絡人嗎？"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"儲存並解除連結"</string>
@@ -239,7 +239,7 @@
     <string name="set_default" msgid="4417505153468300351">"設為預設"</string>
     <string name="clear_default" msgid="7193185801596678067">"清除預設值"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"文字已複製"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"丟棄變更？"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"捨棄變更？"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"捨棄"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"取消"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"要捨棄自訂內容嗎？"</string>
@@ -267,7 +267,7 @@
     <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"建立新聯絡人"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"顯示更多"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"顯示較少"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"近期"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"近期活動"</string>
     <string name="about_card_title" msgid="2920942314212825637">"關於"</string>
     <string name="send_message" msgid="8938418965550543196">"傳送訊息"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"正在建立個人副本…"</string>
@@ -304,7 +304,7 @@
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"新增聯絡人相片"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"聯絡人相片"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"無法打開編輯器。"</string>
-    <string name="editor_account_selector_title" msgid="4426337993307015833">"正在儲存至以下帳戶："</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"儲存至："</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"無法編輯 <xliff:g id="ACCOUNT">%s</xliff:g> 的聯絡人資料"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"目前儲存至 <xliff:g id="ACCOUNT_NAME">%s</xliff:g>。連按兩下即可選擇另一個帳戶。"</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">

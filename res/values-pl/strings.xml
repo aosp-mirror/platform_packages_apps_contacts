@@ -22,8 +22,8 @@
     <string name="shortcutDialContact" msgid="746622101599186779">"Telefon do osoby"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"SMS do osoby"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Wybierz skrót kontaktu"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Wybierz numer, aby nawiązać połączenie"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Wybierz numer, aby wysłać wiadomość"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Wybierz numer"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Wybierz numer"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Dodaj do kontaktu"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Wybierz kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Wybierz"</string>
@@ -127,7 +127,7 @@
     <string name="emptyMainList" msgid="2772242747899664460">"Twoja lista kontaktów jest pusta"</string>
     <string name="contactSavedNamedToast" msgid="895136068894549611">"Kontakt <xliff:g id="DISPLAY_NAME">%s</xliff:g> został zapisany"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt został zapisany"</string>
-    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontakty zostały odłączone"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontakty zostały rozłączone"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"Nie udało się zapisać zmian kontaktu"</string>
     <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"Nie udało się odłączyć kontaktu"</string>
     <string name="contactJoinErrorToast" msgid="5735129234573327701">"Nie udało się połączyć kontaktu"</string>
@@ -449,10 +449,10 @@
     <string name="name_prefix" msgid="59756378548779822">"Przedrostek nazwiska"</string>
     <string name="name_middle" msgid="8467433655992690326">"Drugie imię"</string>
     <string name="name_suffix" msgid="3855278445375651441">"Przyrostek nazwiska"</string>
-    <string name="name_phonetic" msgid="4259595234312430484">"Nazwisko (fonetycznie)"</string>
-    <string name="name_phonetic_given" msgid="8723179018384187631">"Imię fonetycznie"</string>
+    <string name="name_phonetic" msgid="4259595234312430484">"Nazwa (fonetycznie)"</string>
+    <string name="name_phonetic_given" msgid="8723179018384187631">"Imię (fonetycznie)"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Drugie imię (fonetycznie)"</string>
-    <string name="name_phonetic_family" msgid="2640133663656011626">"Nazwisko fonetycznie"</string>
+    <string name="name_phonetic_family" msgid="2640133663656011626">"Nazwisko (fonetycznie)"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Adres"</string>
@@ -499,7 +499,7 @@
     <string name="expand_name_fields_description" msgid="6948274252874552543">"Pokaż więcej pól nazw"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"Zwiń pola imion i nazwisk"</string>
     <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"Pokaż więcej pól nazw zapisanych fonetycznie"</string>
-    <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Zwiń pola imion i nazwisk zapisanych fonetycznie"</string>
+    <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Zwiń pola imion i nazw zapisanych fonetycznie"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"Rozwiń"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"Zwiń"</string>
     <string name="announce_expanded_fields" msgid="1075947220478530622">"Rozwinięto"</string>
@@ -606,7 +606,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Brak kontaktów do udostępnienia."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty do wyświetlenia"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakty do wyświetlenia"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Zdefiniuj widok niestandardowy"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"Dostosuj widok"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Zapisz"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Wyszukaj kontakty"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Ulubione"</string>

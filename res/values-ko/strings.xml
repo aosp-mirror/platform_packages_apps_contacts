@@ -101,7 +101,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"이 연락처를 삭제하면 여러 계정의 세부정보가 삭제됩니다."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"이 연락처를 삭제하시겠습니까?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"삭제"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"변경사항 취소"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"변경사항 삭제"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"연락처가 없습니다."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"연락처가 메인 스크린에 추가되었습니다."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g>님이 메인 스크린에 추가되었습니다."</string>
@@ -181,8 +181,7 @@
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"라벨 만들기"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"라벨 이름 바꾸기"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"라벨 이름"</string>
-    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
-    <skip />
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"라벨 이름"</string>
     <string name="audio_chat" msgid="2535716629358298691">"음성채팅"</string>
     <string name="video_chat" msgid="1872255818640336072">"영상 채팅"</string>
     <string name="connections" msgid="8098440723172028350">"연결"</string>
@@ -240,8 +239,8 @@
     <string name="set_default" msgid="4417505153468300351">"기본으로 설정"</string>
     <string name="clear_default" msgid="7193185801596678067">"기본 설정 지우기"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"텍스트 복사됨"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"변경사항을 취소하시겠습니까?"</string>
-    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"취소"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"변경사항을 삭제하시겠습니까?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"삭제"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"취소"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"맞춤설정을 취소하시겠습니까?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>

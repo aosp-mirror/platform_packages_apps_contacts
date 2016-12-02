@@ -21,9 +21,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Persoană din Agendă"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Apel direct"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mesaj direct"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Alegeți o persoană din agendă pentru a crea o comandă rapidă"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Alegeți un număr pentru apelare"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Alegeți un număr pentru trimiterea mesajului"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Alegeți o pers. din agendă"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Alegeți un nr. pentru apel"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Alegeți un nr. pentru mesaj"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Adăugați pentru persoană"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Alegeți o persoană de contact"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Selectați"</string>
@@ -176,7 +176,7 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Adăugați un număr de telefon"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Adăugați o adresă de e-mail"</string>
     <string name="missing_app" msgid="1466111003546611387">"Nu s-a găsit o aplicație care să îndeplinească această acțiune."</string>
-    <string name="menu_share" msgid="943789700636542260">"Trimiteți"</string>
+    <string name="menu_share" msgid="943789700636542260">"Distribuiți"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Adăugați în agendă"</string>
     <string name="menu_add_contacts" msgid="4465646512002163011">"Adăugați"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
@@ -188,8 +188,7 @@
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Creați o etichetă"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Redenumiți eticheta"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"Numele etichetei"</string>
-    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
-    <skip />
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"Nume etichetă"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Chat vocal"</string>
     <string name="video_chat" msgid="1872255818640336072">"Chat video"</string>
     <string name="connections" msgid="8098440723172028350">"Conexiuni"</string>
@@ -213,7 +212,7 @@
     <string name="add_organization" msgid="7311893231158291197">"Adăugați o organizație"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Dată"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Etichetă"</string>
-    <string name="change_photo" msgid="8530597935483526383">"Modificați"</string>
+    <string name="change_photo" msgid="8530597935483526383">"Schimbați"</string>
     <string name="description_star" msgid="2605854427360036550">"preferate"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Editați informațiile despre persoana din agendă"</string>
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Anulați"</string>
@@ -234,7 +233,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Adăug. la pers. din ag."</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Închideți"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7122002148518724139">"Includeți un an"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"Includeți anul"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Persoană din agendă"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Se încarcă..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Creați o intrare nouă în Agendă"</string>
@@ -268,7 +267,7 @@
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Alegeți persoana de contact pentru a o edita"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Persoane de contact asociate"</string>
     <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"Adăugați"</string>
-    <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Deconectați"</string>
+    <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Disociați"</string>
     <string name="add_account" msgid="8201790677994503186">"Adăugați un cont"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Adăugați un cont nou"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportați fișierele bazei de date"</string>
@@ -542,7 +541,7 @@
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Unul sau mai multe fișiere nu s-au putut importa (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"S-a finalizat exportul fișierului <xliff:g id="FILENAME">%s</xliff:g>."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Persoanele de contact au fost exportate."</string>
-    <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"S-a încheiat exportul persoanelor de contact. Dați clic pe notificare pentru a trimite persoanele de contact."</string>
+    <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"S-a încheiat exportul persoanelor de contact. Dați clic pe notificare pentru a distribui persoanele de contact."</string>
     <string name="touch_to_share_contacts" msgid="4882485525268469736">"Atingeți pentru a trimite persoanele de contact."</string>
     <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Exportul fișierului <xliff:g id="FILENAME">%s</xliff:g> a fost anulat."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Se exportă datele persoanelor din agendă"</string>
