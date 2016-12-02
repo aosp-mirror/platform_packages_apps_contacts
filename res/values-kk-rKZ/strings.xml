@@ -29,7 +29,7 @@
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Таңдау"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Жаңа контакт жасау"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Контакт егжей-тегжейі"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Туралы"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Контакт:"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Жаңартулар"</string>
     <string name="searchHint" msgid="8482945356247760701">"Контактілерді іздеу"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Контактіні көру"</string>

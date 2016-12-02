@@ -21,15 +21,15 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Llamada directa"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensaje directo"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Elegir un acceso directo para el contacto"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Elegir un número para la llamada"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Elegir acceso directo contacto"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Elegir número para llamar"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Elegir un número para el mensaje"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Añadir al contacto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Elige un contacto"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Seleccionar"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crear nuevo contacto"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Detalles del contacto"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Información"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Información de"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Actividad"</string>
     <string name="searchHint" msgid="8482945356247760701">"Buscar contactos"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Ver contacto"</string>
@@ -133,7 +133,7 @@
     <string name="groupCreatedToast" msgid="1924195126172834870">"Etiqueta creada"</string>
     <string name="groupCreateFailedToast" msgid="4359093891863474299">"No se puede crear la etiqueta"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Etiqueta actualizada"</string>
-    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Eliminados de la etiqueta"</string>
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Eliminado(s) de la etiqueta"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Añadido a la etiqueta"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"No se han podido guardar los cambios en la etiqueta"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Esta etiqueta ya existe"</string>
@@ -423,7 +423,7 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Seudónimo"</string>
     <string name="full_name" msgid="6602579550613988977">"Nombre"</string>
     <string name="name_given" msgid="4280790853455320619">"Nombre"</string>
-    <string name="name_family" msgid="7466985689626017037">"Apellido"</string>
+    <string name="name_family" msgid="7466985689626017037">"Apellidos"</string>
     <string name="name_prefix" msgid="59756378548779822">"Prefijo del nombre"</string>
     <string name="name_middle" msgid="8467433655992690326">"Segundo nombre"</string>
     <string name="name_suffix" msgid="3855278445375651441">"Sufijo del nombre"</string>
@@ -432,7 +432,7 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Segundo nombre fonético"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Apellido fonético"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Teléfono"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"Correo"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"Correo electrónico"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Dirección"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Chat"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organización"</string>
@@ -452,7 +452,7 @@
     <string name="email_work" msgid="2807430017302722689">"Enviar correo al trabajo"</string>
     <string name="email_other" msgid="3454004077967657109">"Enviar correo"</string>
     <string name="email_custom" msgid="5536404237099078802">"Enviar un correo a: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"Correo"</string>
+    <string name="email" msgid="5668400997660065897">"Correo electrónico"</string>
     <string name="postal_street" msgid="8133143961580058972">"Calle"</string>
     <string name="postal_pobox" msgid="4431938829180269821">"Apartado postal"</string>
     <string name="postal_neighborhood" msgid="1450783874558956739">"Vecindario"</string>
@@ -560,7 +560,7 @@
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Exportar a archivo .vcf"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Ordenar por"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Nombre"</string>
-    <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Apellido"</string>
+    <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Apellidos"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Formato de nombre"</string>
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Nombre primero"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Apellido primero"</string>
@@ -580,7 +580,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"No hay contactos que compartir."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contactos que mostrar"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contactos que mostrar"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Definir la vista personalizada"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"Definir vista personalizada"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Guardar"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Buscar contactos"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritos"</string>

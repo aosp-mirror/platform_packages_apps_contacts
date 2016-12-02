@@ -282,7 +282,7 @@
     <string name="header_organization_entry" msgid="8515394955666265406">"Организација"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Прекар"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"Белешка"</string>
-    <string name="header_website_entry" msgid="1411467850000824745">"Веб-локација"</string>
+    <string name="header_website_entry" msgid="1411467850000824745">"Вебсајт"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Настан"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Врска"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"Сметка"</string>
@@ -347,7 +347,7 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Затворете фиока за навигација"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Етикети"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Сметки"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Видете ја историјата заедно"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Видете ја заедничката историја"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Настани и пораки"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Настани"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Пораки"</string>

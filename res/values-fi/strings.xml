@@ -49,7 +49,7 @@
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Poista tunniste"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Lisää yhteystieto"</string>
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Kontaktien valitseminen"</string>
-    <string name="menu_addContactsToGroup" msgid="655196688840626483">"Kontaktien lisääminen"</string>
+    <string name="menu_addContactsToGroup" msgid="655196688840626483">"Lisää yhteystietoja"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Poista tunnisteesta"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Lisää yhteystieto"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Luo uusi…"</string>
@@ -64,8 +64,8 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Linkitä"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"Näytä linkitetyt yhteystiedot"</string>
     <string name="menu_save" msgid="1727844363591825909">"Tallenna"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Yhdistä kontaktit"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Valitse kontakti, jonka haluat yhdistää kontaktiin <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Linkitä yhteystiedot"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Valitse yhteystieto, jonka haluat yhdistää yhteystietoon <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Näytä kaikki yhteystiedot"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Ehdotetut yhteystiedot"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Kaikki yhteystiedot"</string>
@@ -181,8 +181,7 @@
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Luo tunniste"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Nimeä tunniste uudelleen"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"Tunnisteen nimi"</string>
-    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
-    <skip />
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"Tunnisteen nimi"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Äänikeskustelu"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videokeskustelu"</string>
     <string name="connections" msgid="8098440723172028350">"Yhteydet"</string>
@@ -314,7 +313,7 @@
     </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> yhdistettyä kontaktia"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"YHDISTÄ KONTAKTIT"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LINKITÄ YHTEYSTIEDOT"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"PERUUTA"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> mahdollista kaksoiskappaletta</item>
@@ -348,7 +347,7 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Sulje navigoinnin vetopaneeli"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Tunnisteet"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Tilit"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Näytä historiatiedot yhdessä"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Näytä yhteiset historiatiedot"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Tapahtumat ja viestit"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Tapahtumat"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Viestit"</string>
@@ -530,7 +529,7 @@
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Kohteen <xliff:g id="FILENAME">%s</xliff:g> vienti valmis."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Yhteystiedot vietiin"</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"Yhteystiedot vietiin. Jaa yhteystiedot klikkaamalla ilmoitusta."</string>
-    <string name="touch_to_share_contacts" msgid="4882485525268469736">"Jaa yhteystiedot koskettamalla."</string>
+    <string name="touch_to_share_contacts" msgid="4882485525268469736">"Jaa yhteystiedot napauttamalla."</string>
     <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"Kohteen <xliff:g id="FILENAME">%s</xliff:g> vienti peruutettu."</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Viedään yhteystietoja"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Yhteystietoja viedään."</string>

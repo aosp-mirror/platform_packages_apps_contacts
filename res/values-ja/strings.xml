@@ -21,7 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"連絡先"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接発信"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"直接メッセージを送る"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"連絡先ショートカットを選択"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ショートカットを選択"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"発信する番号の選択"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"メッセージを送る番号の選択"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"連絡先に追加"</string>
@@ -110,7 +110,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"タブレット内に写真がありません。"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"画像がありません。"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"連絡先の写真"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"新しいラベル名"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"カスタムラベル名"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ボイスメールに自動転送する"</string>
     <string name="removePhoto" msgid="4898105274130284565">"写真を削除"</string>
     <string name="noContacts" msgid="2228592924476426108">"連絡先リストが空です"</string>

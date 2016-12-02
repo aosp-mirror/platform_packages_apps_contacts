@@ -20,7 +20,7 @@
     <string name="contactsList" msgid="8661624236494819731">"Kişiler"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kişi"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Doğrudan çevirme"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"Doğrudan ileti"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"Doğrudan mesaj"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Bir kişi kısayolu seçin"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Aranacak numarayı seçin"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"İleti gönderilecek bir numara seçin"</string>
@@ -41,7 +41,7 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Sil"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Fotoğrafı değiştir"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Kısayol oluştur"</string>
-    <string name="menu_call" msgid="3992595586042260618">"Çağrı yap"</string>
+    <string name="menu_call" msgid="3992595586042260618">"Ara"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Kısa mesaj gönder"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Bağlantıyı kaldır"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"Kişileri kaldır"</string>
@@ -239,7 +239,7 @@
     <string name="set_default" msgid="4417505153468300351">"Varsayılan olarak ayarla"</string>
     <string name="clear_default" msgid="7193185801596678067">"Varsayılanları temizle"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Metin kopyalandı"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Değişiklikler iptal edilsin mi?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Değişiklikler yok sayılsın mı?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Yok say"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"İptal"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Özelleştirmeler silinsin mi?"</string>
@@ -362,17 +362,17 @@
     <string name="call_fax_home" msgid="8342175628887571876">"Çağrı yap (ev faksı)"</string>
     <string name="call_pager" msgid="9003902812293983281">"Çağrı yap (çağrı cihazı)"</string>
     <string name="call_other" msgid="8563753966926932052">"Ara"</string>
-    <string name="call_callback" msgid="1910165691349426858">"Çağrı yap (geri arama)"</string>
+    <string name="call_callback" msgid="1910165691349426858">"Geri aramayı ara"</string>
     <string name="call_car" msgid="3280537320306436445">"Çağrı yap (araç)"</string>
     <string name="call_company_main" msgid="6105120947138711257">"Çağrı yap (şirket ana hattı)"</string>
-    <string name="call_isdn" msgid="1541590690193403411">"Çağrı yap (ISDN)"</string>
+    <string name="call_isdn" msgid="1541590690193403411">"Ara (ISDN)"</string>
     <string name="call_main" msgid="6082900571803441339">"Çağrı yap (ana hat)"</string>
     <string name="call_other_fax" msgid="5745314124619636674">"Faksı çağrı yap"</string>
     <string name="call_radio" msgid="8296755876398357063">"Çağrı yap (telsiz)"</string>
-    <string name="call_telex" msgid="2223170774548648114">"Çağrı yap (teleks)"</string>
-    <string name="call_tty_tdd" msgid="8951266948204379604">"Çağrı yap (TTY/TDD)"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"Çağrı yap (iş cep telefonu)"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Çağrı yap (iş çağrı cihazı)"</string>
+    <string name="call_telex" msgid="2223170774548648114">"Teleksi ara"</string>
+    <string name="call_tty_tdd" msgid="8951266948204379604">"Ara (TTY/TDD)"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"Ara (iş mobil)"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"İş çağrı cihazını ara"</string>
     <string name="call_assistant" msgid="670941612175068337">"Telefon et: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"Çağrı yap (MMS)"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Telefon et)"</string>
@@ -393,7 +393,7 @@
     <string name="sms_radio" msgid="3329166673433967820">"SMS gönder (telsiz)"</string>
     <string name="sms_telex" msgid="9034802430065267848">"SMS Gönder (teleks)"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"SMS Gönder (TTY/TDD)"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"SMS Gönder (iş yeri cep telefonu)"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"SMS Gönder (iş mobil)"</string>
     <string name="sms_work_pager" msgid="5566924423316960597">"SMS Gönder (iş yeri çağrı cihazı)"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"SMS Gönder (<xliff:g id="ASSISTANT">%s</xliff:g>)"</string>
     <string name="sms_mms" msgid="4069352461380762677">"SMS gönder (MMS)"</string>
@@ -541,7 +541,7 @@
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> içe aktarılıyor"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard verileri okunamadı"</string>
     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"vCard verilerini okuma işlemi iptal edildi"</string>
-    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> dosysn içe aktarma tamamlandı"</string>
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> dosyasından aktarım tamamlandı"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g> dosyasını içe aktarma iptal edildi"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> kısa bir süre içinde içe aktarılacak."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Dosya kısa bir süre sonra içe aktarılacaktır."</string>
