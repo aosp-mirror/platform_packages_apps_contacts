@@ -394,6 +394,11 @@
             android:name=".ContactSaveService"
             android:exported="false" />
 
+         <!-- Service to import contacts from the SIM card -->
+         <service
+             android:name=".SimImportService"
+             android:exported="false" />
+
         <!-- Attaches a photo to a contact. Started from external applications -->
         <activity android:name=".activities.AttachPhotoActivity"
             android:label="@string/attach_photo_dialog_title"

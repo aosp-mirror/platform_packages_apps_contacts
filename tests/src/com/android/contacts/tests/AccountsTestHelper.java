@@ -17,6 +17,7 @@ package com.android.contacts.tests;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Build;
@@ -26,6 +27,11 @@ import android.support.annotation.RequiresApi;
 import android.support.test.InstrumentationRegistry;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
+
+import org.junit.runner.RunWith;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
@@ -80,12 +86,27 @@ public class AccountsTestHelper {
         mAccountManager.removeAccountExplicitly(remove);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    public void removeTestAccount(String accountName) {
+        final Account remove = new Account(accountName, TEST_ACCOUNT_TYPE);
+        mAccountManager.removeAccountExplicitly(remove);
+    }
+
+    public boolean hasTestAccount(String name) {
+        final List<Account> accounts = Arrays.asList(
+                mAccountManager.getAccountsByType(TEST_ACCOUNT_TYPE));
+        return accounts.contains(new Account(name, TEST_ACCOUNT_TYPE));
+    }
+
     public void removeContactsForAccount() {
-        // Not sure if this is necessary or if contacts are automatically cleaned up when the
-        // account is removed.
+        removeContactsForAccount(
+                new AccountWithDataSet(mTestAccount.name, mTestAccount.type, null));
+    }
+
+    public void removeContactsForAccount(AccountWithDataSet account) {
         mResolver.delete(RawContacts.CONTENT_URI,
                 RawContacts.ACCOUNT_NAME + "=? AND " + RawContacts.ACCOUNT_TYPE + "=?",
-                new String[] { mTestAccount.name, mTestAccount.type });
+                new String[] { account.name, account.type });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
