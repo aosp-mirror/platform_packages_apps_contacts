@@ -21,7 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"পরিচিতি"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"সরাসরি ডায়াল"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"সরাসরি বার্তা"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"শর্টকার্ট করতে একটি পরিচিতি বেছে নিন"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"একটি পরিচিতি শর্টকার্ট বাছুন"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"কল করার জন্য একটি নম্বর বেছে নিন"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"বার্তা পাঠানোর জন্য একটি নম্বর বেছে নিন"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"পরিচিতিতে যোগ করুন"</string>
@@ -371,8 +371,8 @@
     <string name="call_radio" msgid="8296755876398357063">"রেডিওর ফোন নম্বরে কল করুন"</string>
     <string name="call_telex" msgid="2223170774548648114">"টেলেক্স নম্বরে কল করুন"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"TTY/TDD নম্বরে কল করুন"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"কর্মক্ষেত্রের মোবাইল নম্বরে কল করুন"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"কর্মক্ষেত্রের পেজার নম্বরে কল করুন"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"অফিসের মোবাইল নম্বরে কল করুন"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"অফিসের পেজার নম্বরে কল করুন"</string>
     <string name="call_assistant" msgid="670941612175068337">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> নম্বরে কল করুন"</string>
     <string name="call_mms" msgid="6274041545876221437">"MMS নম্বরে কল করুন"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (কল)"</string>
@@ -580,7 +580,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"শেয়ার করার জন্য কোনো পরিচিতি নেই৷"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"দেখানোর জন্য পরিচিতিগুলি"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"দেখানোর জন্য পরিচিতিগুলি"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"কাস্টমাইজ করা দৃশ্য নির্ধারণ করুন"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"কাস্টমাইজ দৃশ্য নির্ধারণ"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"সংরক্ষণ"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"পরিচিতিগুলি খুঁজুন"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"পছন্দসইগুলি"</string>

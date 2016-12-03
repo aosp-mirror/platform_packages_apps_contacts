@@ -112,7 +112,7 @@
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacte"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nom de camp personalitzat"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Envia les trucades directament a la bústia de veu"</string>
-    <string name="removePhoto" msgid="4898105274130284565">"Elimina la foto"</string>
+    <string name="removePhoto" msgid="4898105274130284565">"Suprimeix la foto"</string>
     <string name="noContacts" msgid="2228592924476426108">"La llista de contactes està buida"</string>
     <string name="noGroups" msgid="4607906327968232225">"No hi ha cap etiqueta."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Per crear grups necessites un compte."</string>

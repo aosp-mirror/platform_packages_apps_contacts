@@ -22,8 +22,8 @@
     <string name="shortcutDialContact" msgid="746622101599186779">"Direktval"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Direktmeddelande"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Välj genväg till kontakten"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Välj ett nummer som du vill ringa"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Välj ett nummer för meddelandet"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Välj ett nummer att ringa"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Välj ett nummer för sms"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Lägg till kontakt"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Välj en kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Välj"</string>
@@ -90,7 +90,7 @@
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Från: <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ställ in ringsignal"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Dirigera till röstbrevlåda"</string>
-    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Sluta dir. till röstbrevlåda"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Sluta dirigera till röstbrevl."</string>
     <string name="readOnlyContactWarning" msgid="7514475664695089411">"Den här kontakten är skrivskyddad. Den går inte att ta bort, men går att dölja."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Dölj kontakt"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"Skrivskyddade konton för den här kontakten döljs och raderas inte."</string>
@@ -132,7 +132,7 @@
     <string name="groupDeletedToast" msgid="520896687873262027">"Etiketten raderad"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Etikett skapad"</string>
     <string name="groupCreateFailedToast" msgid="4359093891863474299">"Det går inte att skapa etikett"</string>
-    <string name="groupUpdatedToast" msgid="3667977658676267687">"En etikett uppdaterad"</string>
+    <string name="groupUpdatedToast" msgid="3667977658676267687">"Etiketten uppdaterad"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Borttagen från etikett"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Tillagt till etikett"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Det gick inte att spara etikettändringarna"</string>

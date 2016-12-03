@@ -21,9 +21,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Kontaktua"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Markatze zuzena"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mezu zuzena"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Aukeratu kontakturako lasterbidea"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Aukeratu lasterbidea"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Aukeratu deitzeko zenbaki bat"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Aukeratu testu-mezua bidaltzeko zenbaki bat"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Aukeratu mezua bidaltzeko zenbaki bat"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Gehitu kontaktu batean"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Aukeratu kontaktu bat"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Hautatu"</string>
@@ -89,7 +89,7 @@
     <string name="title_from_google" msgid="4664084747121207202">"Google-koak"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> kontukoak"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Ezarri tonua"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Birbideratu erantzungailura"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Desbideratu erantzungailura"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Ez desbideratu erantzungailura"</string>
     <string name="readOnlyContactWarning" msgid="7514475664695089411">"Soilik irakurtzekoa da kontaktu hau. Ezin da ezabatu, baina ezkutatu egin dezakezu."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Ezkutatu kontaktua"</string>
@@ -121,7 +121,7 @@
     <string name="emptyMainList" msgid="2772242747899664460">"Hutsik dago kontaktuen zerrenda"</string>
     <string name="contactSavedNamedToast" msgid="895136068894549611">"Gorde da <xliff:g id="DISPLAY_NAME">%s</xliff:g>"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Gorde da kontaktua"</string>
-    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kendu da kontaktuen lotura"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kendu dira kontaktuaren loturak"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"Ezin izan dira gorde kontaktuari egindako aldaketak"</string>
     <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"Ezin izan da kendu kontaktuaren lotura"</string>
     <string name="contactJoinErrorToast" msgid="5735129234573327701">"Ezin izan da lotu kontaktua"</string>
@@ -133,8 +133,8 @@
     <string name="groupCreatedToast" msgid="1924195126172834870">"Sortu da etiketa"</string>
     <string name="groupCreateFailedToast" msgid="4359093891863474299">"Ezin da sortu etiketa"</string>
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Eguneratu da etiketa"</string>
-    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Kendu dira etiketatik"</string>
-    <string name="groupMembersAddedToast" msgid="4824834898718972768">"Gehitu d(ir)a etiketan"</string>
+    <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Kendu zaie etiketa"</string>
+    <string name="groupMembersAddedToast" msgid="4824834898718972768">"Gehitu zaie etiketa"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Ezin izan dira gorde etiketen aldaketak"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Badago etiketa"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Kontaktu batzuek ez dute helbide elektronikorik."</string>
@@ -195,7 +195,7 @@
     <string name="take_photo" msgid="7496128293167402354">"Atera argazkia"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Atera beste argazki bat"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Aukeratu argazkia"</string>
-    <string name="pick_new_photo" msgid="9122450996263688237">"Hautatu argazki berria"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"Hautatu beste argazki bat"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Bilatzen…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Erakutsi hautatutakoak"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Erakutsi guztiak"</string>
@@ -233,7 +233,7 @@
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Gehitu kontua"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Inportatu"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Sortu…"</string>
-    <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" taldea ezabatu nahi duzu? (Ez dira ezabatuko kontaktuak.)"</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" taldea ezabatu nahi duzu? (Ez dira kontaktuak ezabatuko.)"</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Beste batekin lotu aurretik, idatzi kontaktuaren izena."</string>
     <string name="copy_text" msgid="3257145021583508761">"Kopiatu arbelean"</string>
     <string name="set_default" msgid="4417505153468300351">"Ezarri lehenetsi gisa"</string>
@@ -304,7 +304,7 @@
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Gehitu kontaktuaren argazkia"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Kontaktuaren argazkia"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Ezin izan da ireki editorea."</string>
-    <string name="editor_account_selector_title" msgid="4426337993307015833">"Gorde hemen:"</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Hemen gordeko da:"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Ezin da editatu <xliff:g id="ACCOUNT">%s</xliff:g> kontuko kontaktuaren informazioa"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> kontuan gordetzen dira kontaktuak. Beste kontu bat hautatzeko, sakatu birritan."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
@@ -526,7 +526,7 @@
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Formatua ez da bateragarria."</string>
     <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Ezin izan da emandako vCard txartelaren fitxategien meta-informazioa bildu."</string>
     <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Ezin izan da fitxategi bat edo gehiago inportatu (%s)."</string>
-    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Amaitu <xliff:g id="FILENAME">%s</xliff:g> esportatzen."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Amaitu da <xliff:g id="FILENAME">%s</xliff:g> esportatzen."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Esportatu dira kontaktuak."</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"Esportatu dira kontaktuak. Haiek partekatzeko, egin klik jakinarazpenean."</string>
     <string name="touch_to_share_contacts" msgid="4882485525268469736">"Sakatu kontaktuak partekatzeko."</string>
@@ -578,9 +578,9 @@
     <string name="dialog_import" msgid="2423592905927819672">"Inportatu kontaktuak hemendik:"</string>
     <string name="share_error" msgid="948429331673358107">"Ezin da kontaktua partekatu."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Ez dago parteka daitekeen kontakturik."</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Bistaratzeko kontaktuak"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Bistaratzeko kontaktuak"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Zehaztu ikuspegi pertsonalizatua"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Bistaratu beharreko kontaktuak"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Bistaratu beharrekoak"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"Ikuspegi pertsonalizatua"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Gorde"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Bilatu kontaktuetan"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Gogokoak"</string>

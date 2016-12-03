@@ -21,8 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contact"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Raccourci appel"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Raccourci message"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Choisir un contact pour le raccourci"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Choisissez le numéro à appeler"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Choisir un contact"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Choisissez le numéro"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Choisissez le numéro auquel envoyer le message"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Ajouter au contact"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Sélectionner un contact"</string>
@@ -90,7 +90,7 @@
     <string name="title_from_other_accounts" msgid="8307885412426754288">"De <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Régler sonnerie"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Diriger vers messagerie vocale"</string>
-    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Détourner vers messagerie vocale"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Ne plus rediriger"</string>
     <string name="readOnlyContactWarning" msgid="7514475664695089411">"Ce contact est en lecture seule. Il ne peut pas être supprimé, mais vous pouvez le masquer."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Masquer le contact"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"Les comptes en lecture seule de ce contact seront masqués, mais non supprimés."</string>
@@ -196,7 +196,7 @@
     <string name="take_new_photo" msgid="7341354729436576304">"Prendre une autre photo"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Choisir une photo"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Sélectionner une nouvelle photo"</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"Recherche en cours..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Recherche…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Afficher la sélection"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Tout afficher"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Tout sélectionner"</string>
@@ -347,7 +347,7 @@
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Fermer le panneau de navigation"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Étiquettes"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Comptes"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Consultez votre historique ensemble"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Consultez votre historique en commun"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Événements et messages"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Événements"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Messages"</string>
@@ -565,7 +565,7 @@
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Prénom en premier"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Nom de famille en premier"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Comptes"</string>
-    <string name="default_editor_account" msgid="699591683362420991">"Compte par défaut pour les nouveaux contacts"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"Compte par défaut pour nouveaux contacts"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"Mon profil"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Configurer votre profil"</string>
     <string name="setting_about" msgid="7014388749752042863">"À propos de Contacts"</string>
@@ -580,7 +580,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Il n\'y a aucun contact à partager."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contacts à afficher"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contacts à afficher"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Définir l\'affichage personnalisé"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"Affichage personnalisé"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Enregistrer"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Rechercher dans les contacts"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoris"</string>

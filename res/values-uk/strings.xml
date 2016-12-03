@@ -19,11 +19,11 @@
     <string name="applicationLabel" msgid="3906689777043645443">"Контакти"</string>
     <string name="contactsList" msgid="8661624236494819731">"Контакти"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"Прямий набір"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"Пряме повідомл."</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"Швидкий набір"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"Швидке повідомл."</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Вибрати ярлик контакту"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Вибір номера для виклику"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Вибір номера для надс. повід."</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Вибрати номера для SMS"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Додати в контактні дані"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Вибрати контакт"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Вибрати"</string>
@@ -240,7 +240,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Додати до контакта"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Закрити"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7122002148518724139">"Включити рік"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"Вказати рік"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Контакт"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Завантаження..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Створити новий контакт"</string>
@@ -282,7 +282,7 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Показати більше"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Показати менше"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Нещодавні"</string>
-    <string name="about_card_title" msgid="2920942314212825637">"Інформація"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Ім\'я контакту:"</string>
     <string name="send_message" msgid="8938418965550543196">"Надіслати повідомлення"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Створення особистої копії..."</string>
     <string name="tomorrow" msgid="6241969467795308581">"Завтра"</string>
@@ -453,8 +453,8 @@
     <string name="name_phonetic_given" msgid="8723179018384187631">"Вимова імені"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Вимова по-батькові"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Вимова прізвища"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телеф."</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"Ел.адр."</string>
+    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телефон"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"Електронна адреса"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Адреса"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Чат"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Організація"</string>
@@ -591,7 +591,7 @@
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Ім’я спочатку"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Прізвище спочатку"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Облікові записи"</string>
-    <string name="default_editor_account" msgid="699591683362420991">"Обліковий запис за умовчанням для нових контактів"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"Обл. запис за умовчанням для нових контактів"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"Мої дані"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Налаштування профілю"</string>
     <string name="setting_about" msgid="7014388749752042863">"Про додаток Контакти"</string>

@@ -254,7 +254,7 @@
     <string name="clear_default" msgid="7193185801596678067">"Vymazat výchozí nastavení"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Text zkopírován"</string>
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Zahodit změny?"</string>
-    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Zrušit"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Zahodit"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Zrušit"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Zahodit vlastní úpravy?"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
@@ -567,7 +567,7 @@
     <string name="importing_vcard_description" msgid="4245275224298571351">"Probíhá import: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Nepodařilo se přečíst údaje vizitky vCard."</string>
     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Čtení dat souboru vCard bylo zrušeno"</string>
-    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Import souboru vCard byl dokončen <xliff:g id="FILENAME">%s</xliff:g>"</string>
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Import souboru vCard (<xliff:g id="FILENAME">%s</xliff:g>) byl dokončen"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Import souboru <xliff:g id="FILENAME">%s</xliff:g> byl zrušen."</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Soubor <xliff:g id="FILENAME">%s</xliff:g> bude za okamžik importován."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Soubor bude zakrátko importován."</string>

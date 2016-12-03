@@ -90,7 +90,7 @@
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Dari <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Setel nada dering"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Rute ke pesan suara"</string>
-    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Batalkan rute ke pesan suara"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Pindahkan rute ke pesan suara"</string>
     <string name="readOnlyContactWarning" msgid="7514475664695089411">"Kontak ini adalah hanya baca. Kontak tidak dapat dihapus, namun dapat disembunyikan."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Sembunyikan Kontak"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"Akun hanya baca di kontak ini akan disembunyikan, bukan dihapus."</string>
@@ -441,7 +441,7 @@
     <string name="sms" msgid="1756857139634224222">"Pesan teks"</string>
     <string name="postal_address" msgid="8765560217149624536">"Alamat"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Perusahaan"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"Judul"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"Jabatan"</string>
     <string name="label_notes" msgid="8337354953278341042">"Catatan"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"Khusus"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>

@@ -19,11 +19,11 @@
     <string name="applicationLabel" msgid="3906689777043645443">"सम्पर्कहरू"</string>
     <string name="contactsList" msgid="8661624236494819731">"सम्पर्क"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ठेगाना"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"सिधा डायल गर्नुहोस्"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"सिधा सन्देश"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"सम्पर्क सर्टकट छान्नुहोस्"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"सीधा डायल गर्नुहोस्"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"सीधा सन्देश"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"सम्पर्कको सर्टकट छान्नुहोस्"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"कल गर्नका लागि एउटा नम्बर छान्नुहोस्"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"सन्देश पठाउनका लागि एउटा नम्बर छान्नुहोस्"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"सन्देश पठाउन नम्बर छान्नुहोस्"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"सम्पर्कमा थप्नुहोस्"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"एउटा सम्पर्क छान्नुहोस्"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"चयन गर्नुहोस्"</string>
@@ -53,9 +53,9 @@
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"लेबलबाट हटाउनुहोस्"</string>
     <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"सम्पर्क थप्नुहोस्"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"नयाँ लेबल सिर्जना गर्नुहोस्..."</string>
-    <string name="splitConfirmation" msgid="7342030840130187290">"यस सम्पर्क बहु सम्पर्कमा अनलिंक गर्न चाहनुहुन्छ?"</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"यस सम्पर्कलाई बहु सम्पर्कमा अनलिंक गर्न चाहनुहुन्छ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"अनलिकं गर्नुहोस्"</string>
-    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"तपाईँले पहिल्यै गरेका परिवर्तनहरू सुरक्षित गर्न र यस सम्पर्क बहु सम्पर्कहरूमा अनलिंक गर्न चाहनुहुन्छ?"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"तपाईँले पहिल्यै गरेका परिवर्तनहरू सुरक्षित गर्न र यस सम्पर्कलाई बहु सम्पर्कहरूमा अनलिंक गर्न चाहनुहुन्छ?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"सुरक्षित गरी अनलिकं गर्नुहोस्"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"तपाईँले पहिलेनै गरिएका परिवर्तनहरूलाई तपाईँले चयन गरेका सम्पर्क ठेगाना सँग सुरक्षित गरी लिंक गर्न चाहनुहुन्छ?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"सुरक्षित गर्नुहोस् र लिंक गर्नुहोस्"</string>
@@ -110,7 +110,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ट्याब्लेटमा कुनै पनि तस्वीरहरू उपलव्ध छैनन्।"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"कुनै पनि चित्रहरू फोनमा उपलब्ध छैनन्।"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"सम्पर्क तस्बिर"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"कस्टम लेबल नाम"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"आफू अनुकूल पारिएको लेबलको नाम"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"कलहरू सिधै भ्वाइसमेलमा पठाउनुहोस्"</string>
     <string name="removePhoto" msgid="4898105274130284565">"तस्बिर मेट्नुहोस्"</string>
     <string name="noContacts" msgid="2228592924476426108">"तपाईंको सम्पर्क ठेगानाहरूको सूची खाली छ"</string>
@@ -181,8 +181,7 @@
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"लेबल सिर्जना गर्नुहोस्"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"लेबलको पुन:नामाकरण गर्नुहोस्"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"लेबलको नाम"</string>
-    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
-    <skip />
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"लेबलको नाम"</string>
     <string name="audio_chat" msgid="2535716629358298691">"भ्वाइस च्याट"</string>
     <string name="video_chat" msgid="1872255818640336072">"भिडियो च्याट"</string>
     <string name="connections" msgid="8098440723172028350">"जडानहरू"</string>
@@ -430,8 +429,8 @@
     <string name="name_suffix" msgid="3855278445375651441">"नाम प्रत्यय"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"फोनेटिक नाम"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"ध्वनितात्त्विक नाम"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"बिच फोनेटिक नाम"</string>
-    <string name="name_phonetic_family" msgid="2640133663656011626">"ध्वनितात्त्विक थर"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"बीचको फोनेटिक नाम"</string>
+    <string name="name_phonetic_family" msgid="2640133663656011626">"फोनेटिक थर"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"फोन"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"इमेल"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"ठेगाना"</string>
@@ -444,7 +443,7 @@
     <string name="ghostData_company" msgid="5414421120553765775">"कम्पनी"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"शीर्षक"</string>
     <string name="label_notes" msgid="8337354953278341042">"टिप्पणीहरू"</string>
-    <string name="label_custom_field" msgid="1994056912242214426">"अनुकूलन"</string>
+    <string name="label_custom_field" msgid="1994056912242214426">"आफू अनुकूल"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"वेबसाइट"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"लेबलहरू"</string>
@@ -485,7 +484,7 @@
     <string name="announce_collapsed_fields" msgid="6414231530177338704">"संक्षिप्त गरियो"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"सबै सम्पर्कहरू"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"ताराङ्कित"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"व्यक्तिगत् बनाउनुहोस्"</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"आफू अनुकूल बनाउनुहोस्"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"ठेगाना"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"अन्य सबै सम्पर्कहरू"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"सबै सम्पर्कहरू"</string>
@@ -581,7 +580,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"आदान-प्रदान गर्न कुनै सम्पर्क ठेगानाहरू छैनन्।"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"प्रदर्शन गर्नका लागि सम्पर्क"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"प्रदर्शन गर्नका लागि सम्पर्क"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"आफू अनुकूल पारिएका दृश्यलाई परिभाषित गर्नुहोस्"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"अनुकूलित दृश्यको परिभाषा ..."</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"सुरक्षित गर्ने"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"सम्पर्क ठेगानाहरू खोज्नुहोस्"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"मनपर्ने"</string>
@@ -591,7 +590,7 @@
     <string name="menu_accounts" msgid="1424330057450189074">"खाताहरू व्यवस्थापन गर्नुहोस्"</string>
     <string name="menu_import" msgid="6107961135813836467">"आयात गर्नुहोस्"</string>
     <string name="menu_export" msgid="2658783911863503902">"निर्यात गर्नुहोस्"</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"रोकिएका नम्बरहरू"</string>
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"रोक लगाइएका नम्बरहरू"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g>मार्फत"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> मार्फत <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="8793348588949233348">"खोजी गर्न रोक्नुहोस्"</string>
@@ -612,7 +611,7 @@
     <string name="about_build_version" msgid="1765533099416999801">"बिल्ड संस्करण"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"खुला स्रोतका इजाजतपत्रहरू"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"खुला स्रोतको सफ्टवेयरका लागि इजाजतपत्रका विवरणहरू"</string>
-    <string name="about_privacy_policy" msgid="3705518622499152626">"गोपनीय नीति"</string>
+    <string name="about_privacy_policy" msgid="3705518622499152626">"गोपनीयता नीति"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"सेवा सर्तहरू"</string>
     <string name="activity_title_licenses" msgid="5467767062737708066">"खुला स्रोतका इजाजतपत्रहरू"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"url खोल्न सकिएन।"</string>
