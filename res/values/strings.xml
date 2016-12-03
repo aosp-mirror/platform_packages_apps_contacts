@@ -1904,4 +1904,13 @@
          [CHAR LIMIT=NONE] -->
     <string name="show_more_content_description">Show more</string>
 
+    <!-- The notification title shown when importing a SIM card finishes [CHAR LIMIT=40] -->
+    <string name="importing_sim_finished_title">Finished importing SIM card</string>
+
+    <!-- Notification title shown when importing SIM contacts failed [CHAR LIMIT=40] -->
+    <string name="importing_sim_failed_title">Couldn\'t import SIM card</string>
+
+    <!-- The notification title shown while SIM contacts are being imported [CHAR LIMIT=40] -->
+    <string name="importing_sim_in_progress_title">Importing SIM</string>
+
 </resources>

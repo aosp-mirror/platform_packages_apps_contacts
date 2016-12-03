@@ -16,8 +16,10 @@
 package com.android.contacts.tests;
 
 import android.content.Context;
+import android.content.OperationApplicationException;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.support.annotation.RequiresApi;
 import android.support.test.InstrumentationRegistry;
 import android.util.Log;
@@ -83,6 +85,11 @@ public class AdbHelpers {
     public static void dumpPreferences(Context context) {
         Log.d(TAG, "preferences=" + getAppContext().getSharedPreferences(
                 getAppContext().getPackageName(), Context.MODE_PRIVATE).getAll());
+    }
+
+    public static void clearSimCard(Context context)
+            throws RemoteException, OperationApplicationException {
+        new SimContactsTestHelper(context).deleteAllSimContacts();
     }
 
     private static Context getAppContext() {
