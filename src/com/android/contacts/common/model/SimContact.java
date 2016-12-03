@@ -24,6 +24,7 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.text.TextUtils;
 
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.google.common.collect.ComparisonChain;
@@ -45,11 +46,19 @@ public class SimContact implements Parcelable {
     private final String mPhone;
     private final String[] mEmails;
 
+    public SimContact(long id, String name, String phone) {
+        this(id, name, phone, null);
+    }
+
     public SimContact(long id, String name, String phone, String[] emails) {
         mId = id;
         mName = name;
         mPhone = phone == null ? "" : phone.trim();
         mEmails = emails;
+    }
+
+    public SimContact(SimContact other) {
+        this(other.mId, other.mName, other.mPhone, other.mEmails);
     }
 
     public long getId() {
@@ -112,7 +121,7 @@ public class SimContact implements Parcelable {
     }
 
     public boolean hasName() {
-        return mName != null;
+        return !TextUtils.isEmpty(mName);
     }
 
     public boolean hasPhone() {

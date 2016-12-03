@@ -16,8 +16,6 @@
 
 package com.android.contacts;
 
-import static android.Manifest.permission.WRITE_CONTACTS;
-
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
@@ -49,7 +47,6 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.RawContactsEntity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.os.ResultReceiver;
-import android.telephony.SubscriptionInfo;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -63,8 +60,6 @@ import com.android.contacts.common.model.CPOWrapper;
 import com.android.contacts.common.model.RawContactDelta;
 import com.android.contacts.common.model.RawContactDeltaList;
 import com.android.contacts.common.model.RawContactModifier;
-import com.android.contacts.common.model.SimCard;
-import com.android.contacts.common.model.SimContact;
 import com.android.contacts.common.model.account.AccountWithDataSet;
 import com.android.contacts.common.preference.ContactsPreferences;
 import com.android.contacts.common.util.ContactDisplayUtils;
@@ -72,7 +67,6 @@ import com.android.contacts.common.util.PermissionsUtil;
 import com.android.contacts.compat.PinnedPositionsCompat;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contactsbind.FeedbackHelper;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -81,6 +75,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import static android.Manifest.permission.WRITE_CONTACTS;
 
 /**
  * A service responsible for saving changes to the content provider.
@@ -149,16 +145,11 @@ public class ContactSaveService extends IntentService {
     public static final String EXTRA_UNDO_ACTION = "undoAction";
     public static final String EXTRA_UNDO_DATA = "undoData";
 
-    public static final String ACTION_IMPORT_FROM_SIM = "importFromSim";
-    public static final String EXTRA_SIM_CONTACTS = "simContacts";
-    public static final String EXTRA_SIM_SUBSCRIPTION_ID = "simSubscriptionId";
-
     // For debugging and testing what happens when requests are queued up.
     public static final String ACTION_SLEEP = "sleep";
     public static final String EXTRA_SLEEP_DURATION = "sleepDuration";
 
     public static final String BROADCAST_GROUP_DELETED = "groupDeleted";
-    public static final String BROADCAST_SIM_IMPORT_COMPLETE = "simImportComplete";
     public static final String BROADCAST_LINK_COMPLETE = "linkComplete";
     public static final String BROADCAST_UNLINK_COMPLETE = "unlinkComplete";
 
@@ -166,7 +157,6 @@ public class ContactSaveService extends IntentService {
 
     public static final String EXTRA_RESULT_CODE = "resultCode";
     public static final String EXTRA_RESULT_COUNT = "count";
-    public static final String EXTRA_OPERATION_REQUESTED_AT_TIME = "requestedTime";
 
     public static final int CP2_ERROR = 0;
     public static final int CONTACTS_LINKED = 1;
@@ -361,8 +351,6 @@ public class ContactSaveService extends IntentService {
             setRingtone(intent);
         } else if (ACTION_UNDO.equals(action)) {
             undo(intent);
-        } else if (ACTION_IMPORT_FROM_SIM.equals(action)) {
-            importFromSim(intent);
         } else if (ACTION_SLEEP.equals(action)) {
             sleepForDebugging(intent);
         }
@@ -1749,58 +1737,6 @@ public class ContactSaveService extends IntentService {
         builder.withValue(AggregationExceptions.RAW_CONTACT_ID1, rawContactId1);
         builder.withValue(AggregationExceptions.RAW_CONTACT_ID2, rawContactId2);
         operations.add(builder.build());
-    }
-
-    /**
-     * Returns an intent that can be used to import the contacts into targetAccount.
-     *
-     * @param context context to use for creating the intent
-     * @param subscriptionId the subscriptionId of the SIM card that is being imported. See
-     *                       {@link SubscriptionInfo#getSubscriptionId()}. Upon completion the
-     *                       SIM for that subscription ID will be marked as imported
-     * @param contacts the contacts to import
-     * @param targetAccount the account import the contacts into
-     */
-    public static Intent createImportFromSimIntent(Context context, int subscriptionId,
-            ArrayList<SimContact> contacts, AccountWithDataSet targetAccount) {
-        return new Intent(context, ContactSaveService.class)
-                .setAction(ACTION_IMPORT_FROM_SIM)
-                .putExtra(EXTRA_SIM_CONTACTS, contacts)
-                .putExtra(EXTRA_SIM_SUBSCRIPTION_ID, subscriptionId)
-                .putExtra(EXTRA_ACCOUNT, targetAccount);
-    }
-
-    private void importFromSim(Intent intent) {
-        final Intent result = new Intent(BROADCAST_SIM_IMPORT_COMPLETE)
-                .putExtra(EXTRA_OPERATION_REQUESTED_AT_TIME, System.currentTimeMillis());
-        final int subscriptionId = intent.getIntExtra(EXTRA_SIM_SUBSCRIPTION_ID,
-                SimCard.NO_SUBSCRIPTION_ID);
-        try {
-            final AccountWithDataSet targetAccount = intent.getParcelableExtra(EXTRA_ACCOUNT);
-            final ArrayList<SimContact> contacts =
-                    intent.getParcelableArrayListExtra(EXTRA_SIM_CONTACTS);
-            mSimContactDao.importContacts(contacts, targetAccount);
-
-            // Update the imported state of the SIM card that was imported
-            final SimCard sim = mSimContactDao.getSimBySubscriptionId(subscriptionId);
-            if (sim != null) {
-                mSimContactDao.persistSimState(sim.withImportedState(true));
-            }
-
-            // notify success
-            LocalBroadcastManager.getInstance(this).sendBroadcast(result
-                    .putExtra(EXTRA_RESULT_COUNT, contacts.size())
-                    .putExtra(EXTRA_RESULT_CODE, RESULT_SUCCESS)
-                    .putExtra(EXTRA_SIM_SUBSCRIPTION_ID, subscriptionId));
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "importFromSim completed successfully");
-            }
-        } catch (RemoteException|OperationApplicationException e) {
-            FeedbackHelper.sendFeedback(this, TAG, "Failed to import contacts from SIM card", e);
-            LocalBroadcastManager.getInstance(this).sendBroadcast(result
-                    .putExtra(EXTRA_RESULT_CODE, RESULT_FAILURE)
-                    .putExtra(EXTRA_SIM_SUBSCRIPTION_ID, subscriptionId));
-        }
     }
 
     /**

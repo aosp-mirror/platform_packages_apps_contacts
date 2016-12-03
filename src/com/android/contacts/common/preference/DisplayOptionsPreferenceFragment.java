@@ -43,8 +43,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
+import com.android.contacts.SimImportService;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.compat.TelecomManagerUtil;
 import com.android.contacts.common.compat.TelephonyManagerCompat;
@@ -192,7 +192,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         mSaveServiceListener = new SaveServiceResultListener();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
                 mSaveServiceListener,
-                new IntentFilter(ContactSaveService.BROADCAST_SIM_IMPORT_COMPLETE));
+                new IntentFilter(SimImportService.BROADCAST_SIM_IMPORT_COMPLETE));
     }
 
     @Override
@@ -401,20 +401,20 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         public void onReceive(Context context, Intent intent) {
             final long now = System.currentTimeMillis();
             final long opStart = intent.getLongExtra(
-                    ContactSaveService.EXTRA_OPERATION_REQUESTED_AT_TIME, now);
+                    SimImportService.EXTRA_OPERATION_REQUESTED_AT_TIME, now);
 
             // If it's been over 30 seconds the user is likely in a different context so suppress
             // the toast message.
             if (now - opStart > 30*1000) return;
 
-            final int code = intent.getIntExtra(ContactSaveService.EXTRA_RESULT_CODE,
-                    ContactSaveService.RESULT_UNKNOWN);
-            final int count = intent.getIntExtra(ContactSaveService.EXTRA_RESULT_COUNT, -1);
-            if (code == ContactSaveService.RESULT_SUCCESS && count > 0) {
+            final int code = intent.getIntExtra(SimImportService.EXTRA_RESULT_CODE,
+                    SimImportService.RESULT_UNKNOWN);
+            final int count = intent.getIntExtra(SimImportService.EXTRA_RESULT_COUNT, -1);
+            if (code == SimImportService.RESULT_SUCCESS && count > 0) {
                 Snackbar.make(mRootView, getResources().getQuantityString(
                         R.plurals.sim_import_success_toast_fmt, count, count),
                         Snackbar.LENGTH_LONG).show();
-            } else if (code == ContactSaveService.RESULT_FAILURE) {
+            } else if (code == SimImportService.RESULT_FAILURE) {
                 Snackbar.make(mRootView, R.string.sim_import_failed_toast,
                         Snackbar.LENGTH_LONG).show();
             }

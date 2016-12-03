@@ -17,6 +17,7 @@
 package com.android.contacts.common.model.account;
 
 import android.accounts.Account;
+import android.content.ContentProviderOperation;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -188,6 +189,20 @@ public class AccountWithDataSet implements Parcelable {
      */
     public String stringify() {
         return addStringified(new StringBuilder(), this).toString();
+    }
+
+    /**
+     * Returns a {@link ContentProviderOperation} that will create a RawContact in this account
+     */
+    public ContentProviderOperation newRawContactOperation() {
+        final ContentProviderOperation.Builder builder =
+                ContentProviderOperation.newInsert(RawContacts.CONTENT_URI)
+                        .withValue(RawContacts.ACCOUNT_NAME, name)
+                        .withValue(RawContacts.ACCOUNT_TYPE, type);
+        if (dataSet != null) {
+            builder.withValue(RawContacts.DATA_SET, dataSet);
+        }
+        return builder.build();
     }
 
     /**
