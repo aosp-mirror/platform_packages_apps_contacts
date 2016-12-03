@@ -181,8 +181,7 @@
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"建立標籤"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"重新命名標籤"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"標籤名稱"</string>
-    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
-    <skip />
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"標籤名稱"</string>
     <string name="audio_chat" msgid="2535716629358298691">"語音通訊"</string>
     <string name="video_chat" msgid="1872255818640336072">"語音通訊"</string>
     <string name="connections" msgid="8098440723172028350">"聯絡方式"</string>
@@ -268,7 +267,7 @@
     <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"建立新聯絡人"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"顯示更多"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"顯示較少"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"近期"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"近期活動"</string>
     <string name="about_card_title" msgid="2920942314212825637">"關於"</string>
     <string name="send_message" msgid="8938418965550543196">"傳送簡訊"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"正在建立個人副本…"</string>
@@ -372,7 +371,7 @@
     <string name="call_radio" msgid="8296755876398357063">"去電無線電"</string>
     <string name="call_telex" msgid="2223170774548648114">"去電 Telex"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"去電 TTY/TDD"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"去電公司行動電話"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"去電公司手機"</string>
     <string name="call_work_pager" msgid="3419348514157949008">"去電公司呼叫器"</string>
     <string name="call_assistant" msgid="670941612175068337">"撥打<xliff:g id="CUSTOM_LABEL">%s</xliff:g>電話號碼"</string>
     <string name="call_mms" msgid="6274041545876221437">"去電 MMS"</string>
@@ -394,7 +393,7 @@
     <string name="sms_radio" msgid="3329166673433967820">"傳送簡訊至無線電"</string>
     <string name="sms_telex" msgid="9034802430065267848">"傳送簡訊至 Telex"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"傳送簡訊至 TTY/TDD"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"傳送簡訊至公司行動電話"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"傳送簡訊至公司手機"</string>
     <string name="sms_work_pager" msgid="5566924423316960597">"傳送簡訊至公司呼叫器"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"傳送簡訊至<xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"向多媒體訊息電話號碼傳送文字簡訊"</string>

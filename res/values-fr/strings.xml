@@ -21,9 +21,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contact"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Raccourci appel"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Raccourci message"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Choisissez un contact pour le raccourci"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Choisissez un contact"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Choisissez le numéro à appeler"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Choisissez le numéro auquel envoyer le message"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Choisissez un numéro"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Ajouter au contact"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Sélectionner un contact"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Sélectionner"</string>
@@ -89,7 +89,7 @@
     <string name="title_from_google" msgid="4664084747121207202">"Contacts Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Contacts de <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Régler sonnerie"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Vers la messagerie vocale"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Rediriger vers la messagerie"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Ne plus rediriger"</string>
     <string name="readOnlyContactWarning" msgid="7514475664695089411">"Ce contact est en lecture seule. Il ne peut pas être supprimé, mais vous pouvez le masquer."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Masquer le contact"</string>
@@ -181,8 +181,7 @@
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Créer un libellé"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Renommer un libellé"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"Nom du libellé"</string>
-    <!-- no translation found for label_name_dialog_hint (1276051790427638142) -->
-    <skip />
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"Nom du libellé"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Chat audio"</string>
     <string name="video_chat" msgid="1872255818640336072">"Chat vidéo"</string>
     <string name="connections" msgid="8098440723172028350">"Contacts"</string>
@@ -430,7 +429,7 @@
     <string name="name_suffix" msgid="3855278445375651441">"Suffixe"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nom phonétique"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Prénom phonétique"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"Phonétique 2e prénom"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"2e prénom phonétique"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Nom phonétique"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Téléphone"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
@@ -581,7 +580,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Aucun contact à partager."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contacts à afficher"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contacts à afficher"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Définir la vue personnalisée"</string>
+    <string name="custom_list_filter" msgid="2105275443109077687">"Vue personnalisée"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Enregistrer"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Rechercher dans vos contacts"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoris"</string>
