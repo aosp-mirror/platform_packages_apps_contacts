@@ -40,7 +40,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestImportVCardPermissionsActivity;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountWithDataSet;

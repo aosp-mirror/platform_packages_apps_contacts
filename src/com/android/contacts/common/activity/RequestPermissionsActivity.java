@@ -16,7 +16,7 @@
 
 package com.android.contacts.common.activity;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 
 import android.Manifest.permission;
 import android.app.Activity;

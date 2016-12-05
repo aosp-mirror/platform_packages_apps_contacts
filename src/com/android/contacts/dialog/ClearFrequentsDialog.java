@@ -28,7 +28,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.util.PermissionsUtil;
 
 /**

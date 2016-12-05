@@ -28,7 +28,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 
 /**
  * The Activity for canceling vCard import/export.

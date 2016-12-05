@@ -33,7 +33,7 @@ import com.android.contacts.common.ContactPresenceIconUtil;
 import com.android.contacts.common.ContactStatusUtil;
 import com.android.contacts.common.ContactTileLoaderFactory;
 import com.android.contacts.common.MoreContactUtils;
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.util.ViewUtil;
 
 import java.util.ArrayList;

@@ -49,7 +49,7 @@ public class AccountTypeTest extends InstrumentationTestCase {
                 AccountType.getResourceText(c, packageName, externalResID, DEFAULT));
 
         // Load from the contacts package itself.
-        final int internalResId = com.android.contacts.common.R.string.contactsList;
+        final int internalResId = com.android.contacts.R.string.contactsList;
         assertEquals(c.getString(internalResId),
                 AccountType.getResourceText(c, null, internalResId, DEFAULT));
     }

@@ -27,7 +27,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.widget.Toast;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.common.activity.LicenseActivity;
 
 /**

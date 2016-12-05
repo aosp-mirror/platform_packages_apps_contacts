@@ -22,7 +22,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;

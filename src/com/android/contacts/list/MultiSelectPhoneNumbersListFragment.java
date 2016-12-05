@@ -122,6 +122,6 @@ public class MultiSelectPhoneNumbersListFragment
 
     @Override
     protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(com.android.contacts.common.R.layout.contact_list_content, null);
+        return inflater.inflate(com.android.contacts.R.layout.contact_list_content, null);
     }
 }

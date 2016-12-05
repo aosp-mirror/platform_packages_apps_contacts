@@ -30,7 +30,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.CommonDateUtils;
 import com.android.contactsbind.FeedbackHelper;

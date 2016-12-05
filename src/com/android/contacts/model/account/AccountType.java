@@ -28,7 +28,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.model.dataitem.DataKind;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;

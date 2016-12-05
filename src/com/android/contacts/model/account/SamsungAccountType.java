@@ -18,7 +18,7 @@ package com.android.contacts.model.account;
 
 import com.google.common.collect.Lists;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.CommonDateUtils;
 import com.android.contactsbind.FeedbackHelper;

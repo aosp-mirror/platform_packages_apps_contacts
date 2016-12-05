@@ -39,7 +39,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.model.dataitem.CustomDataItem;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.CommonDateUtils;

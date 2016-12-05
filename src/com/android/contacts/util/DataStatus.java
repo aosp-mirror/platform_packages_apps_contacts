@@ -24,7 +24,7 @@ import android.provider.ContactsContract.Data;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 
 /**
  * Storage for a social status update. Holds a single update, but can use

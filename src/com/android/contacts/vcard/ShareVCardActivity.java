@@ -21,7 +21,7 @@ import android.os.IBinder;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contactsbind.FeedbackHelper;
 
 import java.io.File;

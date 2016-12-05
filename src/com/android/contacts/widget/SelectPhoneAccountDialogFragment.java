@@ -39,7 +39,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.compat.PhoneAccountCompat;
 import com.android.contacts.compat.PhoneNumberUtilsCompat;
 

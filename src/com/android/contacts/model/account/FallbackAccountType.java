@@ -19,7 +19,7 @@ package com.android.contacts.model.account;
 import android.accounts.AuthenticatorDescription;
 import android.content.Context;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contactsbind.FeedbackHelper;
 

@@ -27,7 +27,7 @@ import android.provider.ContactsContract.Directory;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.compat.DirectoryCompat;
 
 /**

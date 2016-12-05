@@ -20,7 +20,7 @@ import android.content.Context;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.model.dataitem.DataKind;
 
 import com.google.common.collect.Lists;
