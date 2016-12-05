@@ -19,9 +19,6 @@ import android.accounts.Account;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Tests for SyncUtil.
  */

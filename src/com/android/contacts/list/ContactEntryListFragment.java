@@ -47,7 +47,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 
 import com.android.common.widget.CompositeCursorAdapter.Partition;
-import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.logging.ListEvent.ActionType;
 import com.android.contacts.logging.Logger;
 import com.android.contacts.preference.ContactsPreferences;

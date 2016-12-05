@@ -14,10 +14,7 @@
 
 package com.android.contactsbind.analytics;
 
-import android.app.Activity;
 import android.app.Application;
-import android.app.Fragment;
-import android.text.TextUtils;
 
 public class AnalyticsUtil {
 

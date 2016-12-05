@@ -47,9 +47,7 @@ import android.support.annotation.VisibleForTesting;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.Experiments;
-import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.activities.RequestPermissionsActivity;
 import com.android.contacts.compat.CompatUtils;
 import com.android.contacts.util.BitmapUtil;
 import com.android.contacts.util.ImplicitIntentsUtil;

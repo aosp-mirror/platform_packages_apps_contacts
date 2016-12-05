@@ -16,6 +16,8 @@
 
 package com.android.contacts;
 
+import static android.Manifest.permission.WRITE_CONTACTS;
+
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
@@ -53,6 +55,7 @@ import android.widget.Toast;
 
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.compat.PinnedPositionsCompat;
 import com.android.contacts.database.ContactUpdateUtils;
 import com.android.contacts.database.SimContactDao;
 import com.android.contacts.model.AccountTypeManager;
@@ -63,10 +66,10 @@ import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactDisplayUtils;
-import com.android.contacts.util.PermissionsUtil;
-import com.android.contacts.compat.PinnedPositionsCompat;
 import com.android.contacts.util.ContactPhotoUtils;
+import com.android.contacts.util.PermissionsUtil;
 import com.android.contactsbind.FeedbackHelper;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -75,8 +78,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import static android.Manifest.permission.WRITE_CONTACTS;
 
 /**
  * A service responsible for saving changes to the content provider.

@@ -20,7 +20,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 
-import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.ContactsUtils;
 
 /**
  * Compatibility class for {@link ContactsContract.Contacts}

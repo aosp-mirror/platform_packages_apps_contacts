@@ -1,16 +1,5 @@
 package com.android.contacts.interactions;
 
-import com.google.common.base.Preconditions;
-
-import com.android.contacts.util.PermissionsUtil;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import android.Manifest.permission;
 import android.content.AsyncTaskLoader;
 import android.content.ContentValues;
@@ -20,6 +9,17 @@ import android.database.DatabaseUtils;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Calendars;
 import android.util.Log;
+
+import com.android.contacts.util.PermissionsUtil;
+
+import com.google.common.base.Preconditions;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 /**

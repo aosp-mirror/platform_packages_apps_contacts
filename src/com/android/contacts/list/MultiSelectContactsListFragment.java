@@ -35,6 +35,7 @@ import android.widget.TextView;
 
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
+import com.android.contacts.group.GroupMembersFragment;
 import com.android.contacts.list.MultiSelectEntryContactListAdapter.SelectedContactsListener;
 import com.android.contacts.logging.ListEvent.ActionType;
 import com.android.contacts.logging.Logger;
@@ -43,7 +44,6 @@ import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
-import com.android.contacts.group.GroupMembersFragment;
 
 import java.util.ArrayList;
 import java.util.List;

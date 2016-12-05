@@ -17,7 +17,7 @@ package com.android.contacts.model;
 
 import android.content.Context;
 
-import com.android.contacts.common.Experiments;
+import com.android.contacts.Experiments;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contactsbind.ObjectFactory;
 import com.android.contactsbind.experiments.Flags;

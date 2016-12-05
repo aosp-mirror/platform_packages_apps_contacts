@@ -46,7 +46,7 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
 
-import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountType.EditField;
 import com.android.contacts.model.account.AccountType.EditType;

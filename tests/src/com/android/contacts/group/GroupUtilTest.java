@@ -16,13 +16,13 @@
 
 package com.android.contacts.group;
 
-import com.android.contacts.list.ContactsSectionIndexer;
-
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.test.AndroidTestCase;
 import android.test.MoreAsserts;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import com.android.contacts.list.ContactsSectionIndexer;
 
 import java.util.Arrays;
 import java.util.List;

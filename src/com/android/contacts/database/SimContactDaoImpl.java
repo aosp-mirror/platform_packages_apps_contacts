@@ -48,6 +48,7 @@ import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.PermissionsUtil;
 import com.android.contacts.util.SharedPreferenceUtil;
+
 import com.google.common.base.Joiner;
 
 import java.util.ArrayList;

@@ -32,15 +32,14 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.DynamicShortcuts;
 import com.android.contacts.R;
-import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.model.RawContactDeltaList;
-import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contacts.detail.PhotoSelectionHandler;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.editor.PhotoSourceDialogFragment;
 import com.android.contacts.interactions.ContactDeletionInteraction;
+import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.util.DialogManager;
+import com.android.contacts.util.ImplicitIntentsUtil;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

@@ -29,9 +29,9 @@ import android.test.mock.MockContentResolver;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.model.account.AccountWithDataSet;
-import com.android.contacts.common.test.mocks.MockContentProvider;
-import com.android.contacts.util.DeviceLocalAccountTypeFactory;
+import com.android.contacts.test.mocks.MockContentProvider;
 import com.android.contacts.tests.FakeDeviceAccountTypeFactory;
+import com.android.contacts.util.DeviceLocalAccountTypeFactory;
 
 import java.util.Arrays;
 import java.util.Collections;

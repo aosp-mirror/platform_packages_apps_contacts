@@ -30,6 +30,7 @@ import android.text.TextUtils;
 
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.preference.ContactsPreferences;
+
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 

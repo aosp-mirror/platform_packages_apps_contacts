@@ -219,7 +219,7 @@
             android:launchMode="singleTop"
             android:exported="false"/>
 
-        <activity android:name=".common.activity.LicenseActivity"
+        <activity android:name=".activities.LicenseActivity"
             android:label="@string/activity_title_licenses"
             android:theme="@style/ContactsPreferencesTheme"
             android:exported="true" />
@@ -237,17 +237,17 @@
             android:theme="@style/ContactListFilterTheme" />
 
         <activity
-            android:name=".common.activity.RequestPermissionsActivity"
+            android:name=".activities.RequestPermissionsActivity"
             android:theme="@style/PeopleTheme"
             android:exported="false"/>
 
         <activity
-            android:name=".common.activity.RequestDesiredPermissionsActivity"
+            android:name=".activities.RequestDesiredPermissionsActivity"
             android:theme="@style/PeopleTheme"
             android:exported="false"/>
 
         <activity
-            android:name=".common.activity.RequestImportVCardPermissionsActivity"
+            android:name=".activities.RequestImportVCardPermissionsActivity"
             android:theme="@style/PeopleTheme"
             android:exported="false"/>
 
@@ -377,7 +377,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".common.test.FragmentTestActivity">
+        <activity android:name=".test.FragmentTestActivity">
             <intent-filter>
                 <category android:name="android.intent.category.TEST" />
             </intent-filter>

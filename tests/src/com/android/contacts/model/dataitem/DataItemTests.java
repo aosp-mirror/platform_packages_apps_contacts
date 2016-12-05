@@ -33,12 +33,11 @@ import android.provider.ContactsContract.Contacts.Entity;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.common.Collapser;
+import com.android.contacts.Collapser;
 import com.android.contacts.model.account.AccountType.EditType;
 import com.android.contacts.model.account.BaseAccountType;
 import com.android.contacts.model.account.GoogleAccountType;
 
-import java.lang.Math;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -26,7 +26,9 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.TextUtils;
 
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.model.account.AccountWithDataSet;
+
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
 
@@ -134,7 +136,7 @@ public class SimContact implements Parcelable {
 
     /**
      * Generate a "fake" lookup key. This is needed because
-     * {@link com.android.contacts.common.ContactPhotoManager} will only generate a letter avatar
+     * {@link ContactPhotoManager} will only generate a letter avatar
      * if the contact has a lookup key.
      */
     private String getLookupKey() {
