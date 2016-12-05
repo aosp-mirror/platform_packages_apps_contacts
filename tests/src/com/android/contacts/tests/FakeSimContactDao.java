@@ -78,6 +78,9 @@ public class FakeSimContactDao extends SimContactDao {
 
     @Override
     public SimCard getSimBySubscriptionId(int subscriptionId) {
+        if (subscriptionId == SimCard.NO_SUBSCRIPTION_ID) {
+            return simCards.get(0);
+        }
         for (SimCard sim : simCards) {
             if (sim.getSubscriptionId() == subscriptionId) {
                 return sim;
