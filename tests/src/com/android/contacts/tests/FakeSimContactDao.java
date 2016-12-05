@@ -19,10 +19,10 @@ import android.content.ContentProviderResult;
 import android.content.OperationApplicationException;
 import android.os.RemoteException;
 
-import com.android.contacts.common.database.SimContactDao;
-import com.android.contacts.common.model.SimCard;
-import com.android.contacts.common.model.SimContact;
-import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.database.SimContactDao;
+import com.android.contacts.model.SimCard;
+import com.android.contacts.model.SimContact;
+import com.android.contacts.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;
 import java.util.Arrays;

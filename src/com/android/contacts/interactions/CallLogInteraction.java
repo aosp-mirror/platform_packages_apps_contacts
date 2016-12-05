@@ -17,9 +17,9 @@ package com.android.contacts.interactions;
 
 import com.android.contacts.R;
 import com.android.contacts.common.GeoUtil;
-import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
-import com.android.contacts.common.util.BitmapUtil;
-import com.android.contacts.common.util.ContactDisplayUtils;
+import com.android.contacts.compat.PhoneNumberUtilsCompat;
+import com.android.contacts.util.BitmapUtil;
+import com.android.contacts.util.ContactDisplayUtils;
 
 import android.content.ContentValues;
 import android.content.Context;

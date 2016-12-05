@@ -22,9 +22,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.ContactsContract;
 
-import com.android.contacts.common.model.account.GoogleAccountType;
-
-import java.util.List;
+import com.android.contacts.model.account.GoogleAccountType;
 
 /**
  * Utilities related to sync.

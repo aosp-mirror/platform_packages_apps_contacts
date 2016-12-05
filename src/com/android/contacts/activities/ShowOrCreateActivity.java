@@ -38,7 +38,7 @@ import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contacts.util.NotifyingAsyncQueryHandler;
 
 /**

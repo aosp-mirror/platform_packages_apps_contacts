@@ -15,8 +15,8 @@
  */
 package com.android.contacts.tests;
 
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.util.DeviceLocalAccountTypeFactory;
 
 import java.util.HashMap;
 import java.util.Map;

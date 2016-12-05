@@ -17,11 +17,11 @@ package com.android.contacts.common.test.mocks;
 
 import android.accounts.Account;
 
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountTypeWithDataSet;
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.account.BaseAccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountTypeWithDataSet;
+import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.BaseAccountType;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;

@@ -16,7 +16,7 @@
 
 package com.android.contacts.group;
 
-import com.android.contacts.common.list.ContactsSectionIndexer;
+import com.android.contacts.list.ContactsSectionIndexer;
 
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;

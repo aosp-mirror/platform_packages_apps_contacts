@@ -24,7 +24,7 @@ import android.database.DatabaseUtils;
 import android.provider.Telephony;
 import android.util.Log;
 
-import com.android.contacts.common.compat.TelephonyThreadsCompat;
+import com.android.contacts.compat.TelephonyThreadsCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -39,13 +39,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.database.SimContactDao;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.SimCard;
-import com.android.contacts.common.model.SimContact;
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.database.SimContactDao;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.SimCard;
+import com.android.contacts.model.SimContact;
+import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.editor.AccountHeaderPresenter;
 
 import java.util.ArrayList;

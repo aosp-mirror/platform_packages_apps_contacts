@@ -55,11 +55,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.android.contacts.common.lettertiles.LetterTileDrawable;
-import com.android.contacts.common.util.BitmapUtil;
-import com.android.contacts.common.util.PermissionsUtil;
-import com.android.contacts.common.util.TrafficStatsTags;
-import com.android.contacts.common.util.UriUtils;
+import com.android.contacts.lettertiles.LetterTileDrawable;
+import com.android.contacts.util.BitmapUtil;
+import com.android.contacts.util.PermissionsUtil;
+import com.android.contacts.util.TrafficStatsTags;
+import com.android.contacts.util.UriUtils;
 import com.android.contactsbind.util.UserAgentGenerator;
 
 import com.google.common.annotations.VisibleForTesting;

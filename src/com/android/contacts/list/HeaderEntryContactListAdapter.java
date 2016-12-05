@@ -16,8 +16,6 @@
 package com.android.contacts.list;
 
 import com.android.contacts.R;
-import com.android.contacts.common.list.ContactListItemView;
-import com.android.contacts.common.list.DefaultContactListAdapter;
 
 import android.content.Context;
 import android.database.Cursor;

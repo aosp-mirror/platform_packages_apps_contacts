@@ -32,7 +32,7 @@ import android.provider.ContactsContract.Data;
 import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 
-import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;
 import java.util.List;

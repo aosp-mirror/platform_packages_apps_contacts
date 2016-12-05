@@ -16,8 +16,8 @@
 
 package com.android.contacts.common.activity;
 
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.util.PermissionsUtil;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.util.PermissionsUtil;
 
 import android.app.Activity;
 import android.content.Context;

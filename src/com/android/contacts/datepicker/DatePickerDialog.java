@@ -28,7 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.android.contacts.R;
-import com.android.contacts.common.util.DateUtils;
+import com.android.contacts.util.DateUtils;
 import com.android.contacts.datepicker.DatePicker.OnDateChangedListener;
 
 import java.text.DateFormat;

@@ -16,10 +16,10 @@
 
 package com.android.contacts.editor;
 
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.RawContactDelta;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.GoogleAccountType;
 
 import android.content.Context;
 import android.provider.ContactsContract.RawContacts;

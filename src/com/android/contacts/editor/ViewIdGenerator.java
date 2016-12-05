@@ -20,9 +20,9 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.android.contacts.common.model.RawContactDelta;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.dataitem.DataKind;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.model.dataitem.DataKind;
 
 /**
  * A class that provides unique view ids for {@link ContentEditorView},

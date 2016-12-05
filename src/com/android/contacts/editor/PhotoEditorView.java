@@ -31,8 +31,8 @@ import android.widget.RelativeLayout;
 
 import com.android.contacts.R;
 import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
+import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.util.SchedulingUtils;
 import com.android.contacts.widget.QuickContactImageView;
 

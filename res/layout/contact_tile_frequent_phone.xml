@@ -18,7 +18,7 @@
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contact_tile_frequent_phone"
-    class="com.android.contacts.common.list.ContactTilePhoneFrequentView"
+    class="com.android.contacts.list.ContactTilePhoneFrequentView"
     android:focusable="true"
     android:background="?android:attr/selectableItemBackground"
     android:nextFocusLeft="@+id/contact_tile_quick">
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.android.contacts.common.widget.LayoutSuppressingQuickContactBadge
+        <com.android.contacts.widget.LayoutSuppressingQuickContactBadge
             android:id="@id/contact_tile_quick"
             android:layout_width="64dip"
             android:layout_height="64dip"
