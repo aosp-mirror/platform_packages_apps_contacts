@@ -873,7 +873,7 @@
     <!-- Label for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=30] -->
     <string name="editor_account_selector_title">Saving to</string>
 
-    <!-- Label for the account selector to indicate the current information comes from a read-only account. [CHAR LIMIT=50] -->
+    <!-- Label for the account selector to indicate the current information (name, phone number, email etc.) about the contact comes from a read-only account. [CHAR LIMIT=55] -->
     <string name="editor_account_selector_read_only_title">Contact info from <xliff:g id="account">%s</xliff:g> is not editable</string>
 
     <!-- Content description for the account selector to indicate which account a contact will be saved to. [CHAR LIMIT=NONE] -->
