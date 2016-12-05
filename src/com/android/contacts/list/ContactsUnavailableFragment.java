@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.provider.ContactsContract.ProviderStatus;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -35,9 +34,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.common.compat.ProviderStatusCompat;
-import com.android.contacts.common.interactions.ImportDialogFragment;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.compat.ProviderStatusCompat;
+import com.android.contacts.interactions.ImportDialogFragment;
+import com.android.contacts.util.ImplicitIntentsUtil;
 
 /**
  * Fragment shown when contacts are unavailable. It contains provider status

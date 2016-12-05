@@ -31,8 +31,8 @@ import android.text.TextUtils;
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.list.ContactsSectionIndexer;
-import com.android.contacts.common.model.account.GoogleAccountType;
+import com.android.contacts.list.ContactsSectionIndexer;
+import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.list.UiIntentActions;
 
 import java.util.ArrayList;

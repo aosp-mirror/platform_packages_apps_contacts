@@ -26,11 +26,11 @@ import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountDisplayInfo;
-import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.util.AccountsListAdapter;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountDisplayInfo;
+import com.android.contacts.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.UiClosables;
 
 import java.util.List;

@@ -29,7 +29,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.model.account.AccountType;
 
 /**
  * Shared static contact utility methods.

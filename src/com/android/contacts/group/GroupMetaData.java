@@ -25,8 +25,8 @@ import android.provider.ContactsContract;
 import android.text.TextUtils;
 
 import com.android.contacts.GroupMetaDataLoader;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountType;
 
 import com.google.common.base.MoreObjects;
 

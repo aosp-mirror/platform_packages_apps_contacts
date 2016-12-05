@@ -22,13 +22,12 @@ import android.graphics.drawable.Drawable;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountDisplayInfo;
-import com.android.contacts.common.model.account.AccountDisplayInfoFactory;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountDisplayInfo;
+import com.android.contacts.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.common.test.mocks.MockAccountTypeManager;
-import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
 import com.android.contacts.tests.FakeAccountType;
 import com.android.contacts.tests.FakeDeviceAccountTypeFactory;
 

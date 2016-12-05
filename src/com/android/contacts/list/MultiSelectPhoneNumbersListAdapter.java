@@ -29,10 +29,7 @@ import android.view.ViewGroup;
 
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
-import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.list.ContactListItemView;
-import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
-import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.group.GroupUtil;
 
 /** Phone Numbers multi-select cursor adapter. */

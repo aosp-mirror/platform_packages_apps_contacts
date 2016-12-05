@@ -27,11 +27,10 @@ import android.provider.ContactsContract.Directory;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.R;
-import com.android.contacts.common.list.ContactListItemView;
-import com.android.contacts.common.list.MultiSelectEntryContactListAdapter;
-import com.android.contacts.common.preference.ContactsPreferences;
+import com.android.contacts.list.ContactListItemView;
+import com.android.contacts.list.MultiSelectEntryContactListAdapter;
+import com.android.contacts.preference.ContactsPreferences;
 
 /** Group members cursor adapter. */
 public class GroupMembersAdapter extends MultiSelectEntryContactListAdapter {

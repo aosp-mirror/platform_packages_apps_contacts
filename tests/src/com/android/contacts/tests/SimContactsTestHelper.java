@@ -28,10 +28,10 @@ import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
 import android.telephony.TelephonyManager;
 
-import com.android.contacts.common.database.SimContactDaoImpl;
-import com.android.contacts.common.model.SimCard;
-import com.android.contacts.common.model.SimContact;
-import com.android.contacts.common.database.SimContactDao;
+import com.android.contacts.database.SimContactDaoImpl;
+import com.android.contacts.model.SimCard;
+import com.android.contacts.model.SimContact;
+import com.android.contacts.database.SimContactDao;
 
 import java.util.ArrayList;
 import java.util.List;

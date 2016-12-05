@@ -18,7 +18,7 @@ package com.android.contacts.list;
 
 import android.net.Uri;
 
-import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;
 

@@ -109,46 +109,46 @@ import com.android.contacts.common.Collapser;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.activity.RequestDesiredPermissionsActivity;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.compat.EventCompat;
-import com.android.contacts.common.compat.MultiWindowCompat;
-import com.android.contacts.common.dialog.CallSubjectDialog;
-import com.android.contacts.common.interactions.TouchPointManager;
-import com.android.contacts.common.lettertiles.LetterTileDrawable;
-import com.android.contacts.common.list.ShortcutIntentBuilder;
-import com.android.contacts.common.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
-import com.android.contacts.common.logging.Logger;
-import com.android.contacts.common.logging.QuickContactEvent.ActionType;
-import com.android.contacts.common.logging.QuickContactEvent.CardType;
-import com.android.contacts.common.logging.QuickContactEvent.ContactType;
-import com.android.contacts.common.logging.ScreenEvent.ScreenType;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.Contact;
-import com.android.contacts.common.model.ContactLoader;
-import com.android.contacts.common.model.RawContact;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.model.dataitem.CustomDataItem;
-import com.android.contacts.common.model.dataitem.DataItem;
-import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.common.model.dataitem.EmailDataItem;
-import com.android.contacts.common.model.dataitem.EventDataItem;
-import com.android.contacts.common.model.dataitem.ImDataItem;
-import com.android.contacts.common.model.dataitem.NicknameDataItem;
-import com.android.contacts.common.model.dataitem.NoteDataItem;
-import com.android.contacts.common.model.dataitem.OrganizationDataItem;
-import com.android.contacts.common.model.dataitem.PhoneDataItem;
-import com.android.contacts.common.model.dataitem.RelationDataItem;
-import com.android.contacts.common.model.dataitem.SipAddressDataItem;
-import com.android.contacts.common.model.dataitem.StructuredNameDataItem;
-import com.android.contacts.common.model.dataitem.StructuredPostalDataItem;
-import com.android.contacts.common.model.dataitem.WebsiteDataItem;
-import com.android.contacts.common.util.DateUtils;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.common.util.MaterialColorMapUtils;
-import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
-import com.android.contacts.common.util.PermissionsUtil;
-import com.android.contacts.common.util.UriUtils;
-import com.android.contacts.common.util.ViewUtil;
+import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.compat.EventCompat;
+import com.android.contacts.compat.MultiWindowCompat;
+import com.android.contacts.dialog.CallSubjectDialog;
+import com.android.contacts.interactions.TouchPointManager;
+import com.android.contacts.lettertiles.LetterTileDrawable;
+import com.android.contacts.list.ShortcutIntentBuilder;
+import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
+import com.android.contacts.logging.Logger;
+import com.android.contacts.logging.QuickContactEvent.ActionType;
+import com.android.contacts.logging.QuickContactEvent.CardType;
+import com.android.contacts.logging.QuickContactEvent.ContactType;
+import com.android.contacts.logging.ScreenEvent.ScreenType;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.ContactLoader;
+import com.android.contacts.model.RawContact;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.dataitem.CustomDataItem;
+import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.model.dataitem.EmailDataItem;
+import com.android.contacts.model.dataitem.EventDataItem;
+import com.android.contacts.model.dataitem.ImDataItem;
+import com.android.contacts.model.dataitem.NicknameDataItem;
+import com.android.contacts.model.dataitem.NoteDataItem;
+import com.android.contacts.model.dataitem.OrganizationDataItem;
+import com.android.contacts.model.dataitem.PhoneDataItem;
+import com.android.contacts.model.dataitem.RelationDataItem;
+import com.android.contacts.model.dataitem.SipAddressDataItem;
+import com.android.contacts.model.dataitem.StructuredNameDataItem;
+import com.android.contacts.model.dataitem.StructuredPostalDataItem;
+import com.android.contacts.model.dataitem.WebsiteDataItem;
+import com.android.contacts.util.DateUtils;
+import com.android.contacts.util.ImplicitIntentsUtil;
+import com.android.contacts.util.MaterialColorMapUtils;
+import com.android.contacts.util.MaterialColorMapUtils.MaterialPalette;
+import com.android.contacts.util.PermissionsUtil;
+import com.android.contacts.util.UriUtils;
+import com.android.contacts.util.ViewUtil;
 import com.android.contacts.detail.ContactDisplayUtils;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
@@ -1723,7 +1723,7 @@ public class QuickContactActivity extends ContactsActivity {
                     }
                 }
                 primaryContentDescription.append(header);
-                phoneContentDescription = com.android.contacts.common.util.ContactDisplayUtils
+                phoneContentDescription = com.android.contacts.util.ContactDisplayUtils
                         .getTelephoneTtsSpannable(primaryContentDescription.toString(), header);
                 icon = res.getDrawable(R.drawable.ic_phone_24dp);
                 iconResourceId = R.drawable.ic_phone_24dp;
@@ -1737,7 +1737,7 @@ public class QuickContactActivity extends ContactsActivity {
 
                 alternateIcon = res.getDrawable(R.drawable.ic_message_24dp_mirrored);
                 alternateContentDescription.append(res.getString(R.string.sms_custom, header));
-                smsContentDescription = com.android.contacts.common.util.ContactDisplayUtils
+                smsContentDescription = com.android.contacts.util.ContactDisplayUtils
                         .getTelephoneTtsSpannable(alternateContentDescription.toString(), header);
 
                 int videoCapability = CallUtil.getVideoCallingAvailability(context);

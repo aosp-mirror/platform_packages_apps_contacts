@@ -213,7 +213,7 @@
 
         <!-- Used to set options -->
         <activity
-            android:name=".common.preference.ContactsPreferenceActivity"
+            android:name=".preference.ContactsPreferenceActivity"
             android:label="@string/activity_title_settings"
             android:theme="@style/ContactsPreferencesTheme"
             android:launchMode="singleTop"
@@ -226,13 +226,13 @@
 
         <!-- Used to filter contacts list by account -->
         <activity
-            android:name=".common.list.AccountFilterActivity"
+            android:name=".list.AccountFilterActivity"
             android:label="@string/activity_title_contacts_filter"
             android:theme="@style/ContactListFilterTheme" />
 
         <!-- Used to select display and sync groups -->
         <activity
-            android:name=".common.list.CustomContactListFilterActivity"
+            android:name=".list.CustomContactListFilterActivity"
             android:label="@string/custom_list_filter"
             android:theme="@style/ContactListFilterTheme" />
 
@@ -386,7 +386,7 @@
         <!-- Stub service used to keep our process alive long enough for
              background threads to finish their operations. -->
         <service
-            android:name=".common.util.EmptyService"
+            android:name=".util.EmptyService"
             android:exported="false" />
 
         <!-- Service to save a contact -->
@@ -411,7 +411,7 @@
         </activity>
 
         <!-- vCard related -->
-        <activity android:name=".common.vcard.ImportVCardActivity"
+        <activity android:name=".vcard.ImportVCardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
@@ -423,7 +423,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".common.vcard.NfcImportVCardActivity"
+        <activity android:name=".vcard.NfcImportVCardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
@@ -434,16 +434,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".common.vcard.CancelActivity"
+        <activity android:name=".vcard.CancelActivity"
             android:theme="@style/BackgroundOnlyTheme" />
 
-        <activity android:name=".common.vcard.SelectAccountActivity"
+        <activity android:name=".vcard.SelectAccountActivity"
             android:theme="@style/BackgroundOnlyTheme" />
 
-        <activity android:name=".common.vcard.ExportVCardActivity"
+        <activity android:name=".vcard.ExportVCardActivity"
             android:theme="@style/BackgroundOnlyTheme" />
 
-        <activity android:name=".common.vcard.ShareVCardActivity"
+        <activity android:name=".vcard.ShareVCardActivity"
                   android:theme="@style/BackgroundOnlyTheme" />
 
          <activity android:name=".activities.SimImportActivity"
@@ -452,7 +452,7 @@
 
 
         <service
-            android:name=".common.vcard.VCardService"
+            android:name=".vcard.VCardService"
             android:exported="false" />
         <!-- end vCard related -->
 
@@ -483,7 +483,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.android.contacts.common.dialog.CallSubjectDialog"
+        <activity android:name="com.android.contacts.dialog.CallSubjectDialog"
                   android:theme="@style/Theme.CallSubjectDialogTheme"
                   android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>

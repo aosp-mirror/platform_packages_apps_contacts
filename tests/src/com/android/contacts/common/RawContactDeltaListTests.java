@@ -30,14 +30,14 @@ import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.LargeTest;
 
 import com.android.contacts.common.RawContactModifierTests.MockContactsSource;
-import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.model.CPOWrapper;
-import com.android.contacts.common.model.RawContact;
-import com.android.contacts.common.model.RawContactDelta;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.RawContactDeltaList;
-import com.android.contacts.common.model.RawContactModifier;
-import com.android.contacts.common.model.account.AccountType;
+import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.model.CPOWrapper;
+import com.android.contacts.model.RawContact;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.model.RawContactDeltaList;
+import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.account.AccountType;
 import com.google.common.collect.Lists;
 
 

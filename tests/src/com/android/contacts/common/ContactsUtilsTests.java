@@ -25,10 +25,9 @@ import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Pair;
 
-import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.model.dataitem.DataItem;
-import com.android.contacts.common.model.dataitem.EmailDataItem;
-import com.android.contacts.common.model.dataitem.ImDataItem;
+import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.model.dataitem.EmailDataItem;
+import com.android.contacts.model.dataitem.ImDataItem;
 
 /**
  * Tests for {@link ContactsUtils}.

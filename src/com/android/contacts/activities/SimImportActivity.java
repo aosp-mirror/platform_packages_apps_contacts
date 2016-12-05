@@ -22,7 +22,7 @@ import android.os.Bundle;
 import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.R;
 import com.android.contacts.SimImportFragment;
-import com.android.contacts.common.model.SimCard;
+import com.android.contacts.model.SimCard;
 
 /**
  * Host activity for SimImportFragment

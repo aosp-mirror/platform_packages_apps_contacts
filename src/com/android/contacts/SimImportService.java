@@ -31,11 +31,10 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.TimingLogger;
 
 import com.android.contacts.activities.PeopleActivity;
-import com.android.contacts.common.database.SimContactDao;
-import com.android.contacts.common.database.SimContactDaoImpl;
-import com.android.contacts.common.model.SimCard;
-import com.android.contacts.common.model.SimContact;
-import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.database.SimContactDao;
+import com.android.contacts.model.SimCard;
+import com.android.contacts.model.SimContact;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contactsbind.FeedbackHelper;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.android.contacts.widget;
 
-import com.android.contacts.common.lettertiles.LetterTileDrawable;
+import com.android.contacts.lettertiles.LetterTileDrawable;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
