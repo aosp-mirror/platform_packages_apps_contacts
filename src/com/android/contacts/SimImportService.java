@@ -203,8 +203,9 @@ public class SimImportService extends Service {
         builder.setOngoing(false)
                 .setAutoCancel(true)
                 .setContentTitle(this.getString(R.string.importing_sim_failed_title))
+                .setContentText(this.getString(R.string.importing_sim_failed_message))
                 .setColor(this.getResources().getColor(R.color.dialtacts_theme_color))
-                .setSmallIcon(R.drawable.ic_check_mark)
+                .setSmallIcon(R.drawable.ic_error_black_24dp)
                 .setContentIntent(PendingIntent.getActivity(this, 0, intent, 0));
         return builder.build();
     }
