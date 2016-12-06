@@ -46,8 +46,8 @@ import android.widget.TextView;
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
-import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.util.MaterialColorMapUtils;
+import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.util.MaterialColorMapUtils;
 import com.android.contacts.list.ContactsRequest;
 
 import java.util.ArrayList;

@@ -34,7 +34,7 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.group.GroupUtil;
 
 /**

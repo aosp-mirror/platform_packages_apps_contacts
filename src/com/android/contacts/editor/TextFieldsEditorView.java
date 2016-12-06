@@ -41,12 +41,12 @@ import android.widget.LinearLayout;
 
 import com.android.contacts.R;
 import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
-import com.android.contacts.common.model.RawContactDelta;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.account.AccountType.EditField;
-import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.common.util.PhoneNumberFormatter;
+import com.android.contacts.compat.PhoneNumberUtilsCompat;
+import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.model.account.AccountType.EditField;
+import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.util.PhoneNumberFormatter;
 
 /**
  * Simple editor that handles labels and any {@link EditField} defined for the

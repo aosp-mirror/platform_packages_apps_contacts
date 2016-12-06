@@ -19,7 +19,7 @@ package com.android.contacts.common;
 import android.app.Application;
 import android.content.Context;
 
-import com.android.contacts.common.location.CountryDetector;
+import com.android.contacts.location.CountryDetector;
 
 import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder;
 import com.google.i18n.phonenumbers.NumberParseException;

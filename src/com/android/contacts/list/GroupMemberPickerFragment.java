@@ -31,11 +31,8 @@ import android.view.ViewGroup;
 
 import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.common.R;
-import com.android.contacts.common.list.ContactListAdapter.ContactQuery;
-import com.android.contacts.common.list.ContactListFilter;
-import com.android.contacts.common.list.ContactsSectionIndexer;
-import com.android.contacts.common.list.DefaultContactListAdapter;
-import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.list.ContactListAdapter.ContactQuery;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.group.GroupUtil;
 
 import java.util.ArrayList;

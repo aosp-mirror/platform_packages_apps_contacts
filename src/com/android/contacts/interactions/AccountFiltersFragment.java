@@ -21,8 +21,8 @@ import android.app.LoaderManager;
 import android.content.Loader;
 import android.os.Bundle;
 
-import com.android.contacts.common.list.ContactListFilter;
-import com.android.contacts.common.util.AccountFilterUtil;
+import com.android.contacts.list.ContactListFilter;
+import com.android.contacts.util.AccountFilterUtil;
 
 import java.util.List;
 

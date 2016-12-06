@@ -16,7 +16,7 @@
 
 package com.android.contacts.quickcontact;
 
-import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.util.ImplicitIntentsUtil;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

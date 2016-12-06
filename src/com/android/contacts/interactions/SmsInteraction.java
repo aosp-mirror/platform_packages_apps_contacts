@@ -16,7 +16,7 @@
 package com.android.contacts.interactions;
 
 import com.android.contacts.R;
-import com.android.contacts.common.util.ContactDisplayUtils;
+import com.android.contacts.util.ContactDisplayUtils;
 
 import android.content.ContentValues;
 import android.content.Context;

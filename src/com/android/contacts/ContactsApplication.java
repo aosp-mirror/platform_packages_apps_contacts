@@ -29,8 +29,8 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 
-import com.android.contacts.common.testing.InjectedServices;
-import com.android.contacts.common.util.Constants;
+import com.android.contacts.testing.InjectedServices;
+import com.android.contacts.util.Constants;
 import com.android.contactsbind.analytics.AnalyticsUtil;
 
 import com.google.common.annotations.VisibleForTesting;

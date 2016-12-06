@@ -2,7 +2,7 @@ package com.android.contacts.interactions;
 
 import com.google.common.base.Preconditions;
 
-import com.android.contacts.common.util.PermissionsUtil;
+import com.android.contacts.util.PermissionsUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;

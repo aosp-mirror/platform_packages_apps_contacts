@@ -43,10 +43,10 @@ import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageProvider;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.model.ValuesDelta;
-import com.android.contacts.common.model.dataitem.DataKind;
-import com.android.contacts.common.util.MaterialColorMapUtils.MaterialPalette;
-import com.android.contacts.common.model.account.AccountDisplayInfo;
+import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.util.MaterialColorMapUtils.MaterialPalette;
+import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.widget.QuickContactImageView;
 import com.google.common.collect.Maps;
@@ -56,7 +56,7 @@ import java.util.HashMap;
 
 import static android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import static android.provider.ContactsContract.CommonDataKinds.StructuredName;
-import static com.android.contacts.common.util.MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors;
+import static com.android.contacts.util.MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors;
 
 /**
  * Utility methods for creating contact editor.

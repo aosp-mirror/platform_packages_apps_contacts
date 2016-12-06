@@ -47,12 +47,11 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.common.dialog.CallSubjectDialog;
+import com.android.contacts.dialog.CallSubjectDialog;
 
 import java.util.ArrayList;
 import java.util.List;

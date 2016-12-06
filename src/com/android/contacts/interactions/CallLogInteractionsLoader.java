@@ -28,8 +28,8 @@ import android.util.Log;
 
 import com.google.common.annotations.VisibleForTesting;
 
-import com.android.contacts.common.compat.PhoneNumberUtilsCompat;
-import com.android.contacts.common.util.PermissionsUtil;
+import com.android.contacts.compat.PhoneNumberUtilsCompat;
+import com.android.contacts.util.PermissionsUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;

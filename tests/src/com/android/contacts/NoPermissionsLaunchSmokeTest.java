@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static com.android.contacts.common.util.PermissionsUtil.hasPermission;
+import static com.android.contacts.util.PermissionsUtil.hasPermission;
 import static org.junit.Assume.assumeTrue;
 
 /**

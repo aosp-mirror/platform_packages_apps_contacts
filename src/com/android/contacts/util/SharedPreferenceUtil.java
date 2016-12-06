@@ -19,7 +19,7 @@ package com.android.contacts.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.android.contacts.common.model.SimCard;
+import com.android.contacts.model.SimCard;
 
 import java.util.ArrayList;
 import java.util.Collection;

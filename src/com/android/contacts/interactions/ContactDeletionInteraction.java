@@ -38,10 +38,10 @@ import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
-import com.android.contacts.common.model.AccountTypeManager;
-import com.android.contacts.common.model.account.AccountType;
-import com.android.contacts.common.preference.ContactsPreferences;
-import com.android.contacts.common.util.ContactDisplayUtils;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.preference.ContactsPreferences;
+import com.android.contacts.util.ContactDisplayUtils;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
 

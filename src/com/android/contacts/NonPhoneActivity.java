@@ -17,7 +17,7 @@
 package com.android.contacts;
 
 import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
+import com.android.contacts.util.ImplicitIntentsUtil;
 
 import android.app.Activity;
 import android.app.AlertDialog;

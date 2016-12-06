@@ -26,7 +26,7 @@
         android:title="@string/settings_accounts">
     </Preference>
 
-    <com.android.contacts.common.preference.DefaultAccountPreference
+    <com.android.contacts.preference.DefaultAccountPreference
         android:icon="@null"
         android:key="defaultAccount"
         android:title="@string/default_editor_account"
@@ -37,13 +37,13 @@
         android:key="customContactsFilter"
         android:title="@string/menu_contacts_filter"/>
 
-    <com.android.contacts.common.preference.SortOrderPreference
+    <com.android.contacts.preference.SortOrderPreference
         android:icon="@null"
         android:key="sortOrder"
         android:title="@string/display_options_sort_list_by"
         android:dialogTitle="@string/display_options_sort_list_by" />
 
-    <com.android.contacts.common.preference.DisplayOrderPreference
+    <com.android.contacts.preference.DisplayOrderPreference
         android:icon="@null"
         android:key="displayOrder"
         android:title="@string/display_options_view_names_as"

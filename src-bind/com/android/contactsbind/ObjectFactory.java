@@ -13,8 +13,8 @@
  */
 package com.android.contactsbind;
 
-import com.android.contacts.common.logging.Logger;
-import com.android.contacts.common.util.DeviceLocalAccountTypeFactory;
+import com.android.contacts.logging.Logger;
+import com.android.contacts.util.DeviceLocalAccountTypeFactory;
 
 import android.app.Fragment;
 import android.content.Context;

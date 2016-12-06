@@ -41,7 +41,7 @@ import android.widget.TextView;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
-import com.android.contacts.common.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.google.common.base.Strings;
 
 import java.util.Collections;

@@ -23,7 +23,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.android.contacts.R;
-import com.android.contacts.common.list.ContactListFilter;
 
 /**
  * Confirmation dialog for turning global auto-sync setting on.

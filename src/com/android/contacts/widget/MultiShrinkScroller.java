@@ -1,7 +1,7 @@
 package com.android.contacts.widget;
 
 import com.android.contacts.R;
-import com.android.contacts.common.compat.CompatUtils;
+import com.android.contacts.compat.CompatUtils;
 import com.android.contacts.compat.EdgeEffectCompat;
 import com.android.contacts.quickcontact.ExpandingEntryCardView;
 import com.android.contacts.test.NeededForReflection;

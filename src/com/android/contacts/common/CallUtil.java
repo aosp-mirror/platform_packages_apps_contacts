@@ -16,10 +16,10 @@
 
 package com.android.contacts.common;
 
-import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.compat.PhoneAccountSdkCompat;
-import com.android.contacts.common.util.PermissionsUtil;
-import com.android.contacts.common.util.PhoneNumberHelper;
+import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.compat.PhoneAccountSdkCompat;
+import com.android.contacts.util.PermissionsUtil;
+import com.android.contacts.util.PhoneNumberHelper;
 import com.android.contactsbind.FeedbackHelper;
 import com.android.phone.common.PhoneConstants;
 

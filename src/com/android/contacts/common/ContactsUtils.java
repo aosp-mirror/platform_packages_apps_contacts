@@ -27,11 +27,11 @@ import android.provider.ContactsContract.DisplayPhoto;
 import android.text.TextUtils;
 import android.util.Pair;
 
-import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.model.dataitem.ImDataItem;
-import com.android.contacts.common.compat.ContactsCompat;
-import com.android.contacts.common.compat.DirectoryCompat;
-import com.android.contacts.common.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.dataitem.ImDataItem;
+import com.android.contacts.compat.ContactsCompat;
+import com.android.contacts.compat.DirectoryCompat;
+import com.android.contacts.model.AccountTypeManager;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -50,10 +50,10 @@ import android.util.Log;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.Experiments;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.common.compat.CompatUtils;
-import com.android.contacts.common.util.BitmapUtil;
-import com.android.contacts.common.util.ImplicitIntentsUtil;
-import com.android.contacts.common.util.PermissionsUtil;
+import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.util.BitmapUtil;
+import com.android.contacts.util.ImplicitIntentsUtil;
+import com.android.contacts.util.PermissionsUtil;
 import com.android.contactsbind.experiments.Flags;
 
 import java.io.IOException;
