@@ -16,6 +16,8 @@
 
 package com.android.contacts.util;
 
+import static com.android.contacts.list.ShortcutIntentBuilder.INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +30,7 @@ import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import com.android.contacts.common.Experiments;
+import com.android.contacts.Experiments;
 import com.android.contacts.logging.ScreenEvent.ScreenType;
 import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.quickcontact.QuickContactActivity;
@@ -36,8 +38,6 @@ import com.android.contactsbind.ObjectFactory;
 import com.android.contactsbind.experiments.Flags;
 
 import java.util.List;
-
-import static com.android.contacts.list.ShortcutIntentBuilder.INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION;
 
 /**
  * Utility for forcing intents to be started inside the current app. This is useful for avoiding

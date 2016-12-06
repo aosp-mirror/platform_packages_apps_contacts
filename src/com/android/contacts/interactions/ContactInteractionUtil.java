@@ -15,16 +15,15 @@
  */
 package com.android.contacts.interactions;
 
-import com.google.common.base.Preconditions;
-
 import android.content.Context;
 import android.text.format.DateUtils;
 
-import java.text.DateFormat;
-
-import java.util.Calendar;
-
 import com.android.contacts.R;
+
+import com.google.common.base.Preconditions;
+
+import java.text.DateFormat;
+import java.util.Calendar;
 
 /**
  * Utility methods for interactions and their loaders

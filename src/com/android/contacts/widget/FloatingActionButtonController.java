@@ -19,13 +19,13 @@ package com.android.contacts.widget;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
-import android.view.View;
 import android.widget.ImageButton;
 
-import com.android.contacts.util.ViewUtil;
 import com.android.contacts.R;
+import com.android.contacts.util.ViewUtil;
 import com.android.phone.common.animation.AnimUtils;
 
 /**

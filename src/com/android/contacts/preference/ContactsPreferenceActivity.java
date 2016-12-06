@@ -34,13 +34,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.R;
+import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.interactions.ImportDialogFragment;
 import com.android.contacts.list.ProviderStatusWatcher;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment.ProfileListener;
 import com.android.contacts.preference.DisplayOptionsPreferenceFragment.ProfileQuery;
 import com.android.contacts.util.AccountSelectionUtil;
-import com.android.contacts.editor.SelectAccountDialogFragment;
 
 /**
  * Contacts settings.

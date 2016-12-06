@@ -26,10 +26,10 @@ import android.provider.CallLog.Calls;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.common.annotations.VisibleForTesting;
-
 import com.android.contacts.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.util.PermissionsUtil;
+
+import com.google.common.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
 import java.util.Collections;

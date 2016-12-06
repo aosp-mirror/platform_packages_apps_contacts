@@ -29,8 +29,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
-import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.model.ValuesDelta;
 import com.android.contacts.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.util.SchedulingUtils;

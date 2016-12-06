@@ -28,12 +28,12 @@ import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.BaseAccountType;
-import com.android.contacts.common.test.FragmentTestActivity;
-import com.android.contacts.common.test.IntegrationTestUtils;
-import com.android.contacts.common.test.mocks.ContactsMockContext;
-import com.android.contacts.common.test.mocks.MockAccountTypeManager;
-import com.android.contacts.common.test.mocks.MockContentProvider;
-import com.android.contacts.common.test.mocks.MockContentProvider.Query;
+import com.android.contacts.test.FragmentTestActivity;
+import com.android.contacts.test.IntegrationTestUtils;
+import com.android.contacts.test.mocks.ContactsMockContext;
+import com.android.contacts.test.mocks.MockAccountTypeManager;
+import com.android.contacts.test.mocks.MockContentProvider;
+import com.android.contacts.test.mocks.MockContentProvider.Query;
 import com.android.contacts.testing.InjectedServices;
 
 /**

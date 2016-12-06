@@ -29,6 +29,7 @@ import android.provider.ContactsContract.RawContacts;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.dataitem.DataItem;
+
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 

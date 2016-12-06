@@ -46,24 +46,25 @@ import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsDrawerActivity;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
-import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.group.GroupMembersAdapter.GroupMembersQuery;
+import com.android.contacts.interactions.GroupDeletionDialogFragment;
+import com.android.contacts.list.ContactsRequest;
 import com.android.contacts.list.ContactsSectionIndexer;
+import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.list.MultiSelectEntryContactListAdapter.DeleteContactListener;
+import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.logging.ListEvent;
 import com.android.contacts.logging.ListEvent.ListType;
 import com.android.contacts.logging.Logger;
 import com.android.contacts.logging.ScreenEvent;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.ImplicitIntentsUtil;
-import com.android.contacts.group.GroupMembersAdapter.GroupMembersQuery;
-import com.android.contacts.interactions.GroupDeletionDialogFragment;
-import com.android.contacts.list.ContactsRequest;
-import com.android.contacts.list.MultiSelectContactsListFragment;
-import com.android.contacts.list.UiIntentActions;
 import com.android.contactsbind.FeedbackHelper;
+
 import com.google.common.primitives.Longs;
 
 import java.util.ArrayList;

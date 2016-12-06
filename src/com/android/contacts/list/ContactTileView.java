@@ -27,9 +27,9 @@ import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
-import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
-import com.android.contacts.common.MoreContactUtils;
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.MoreContactUtils;
 import com.android.contacts.R;
 
 /**

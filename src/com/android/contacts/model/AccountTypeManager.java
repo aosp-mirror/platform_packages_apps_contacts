@@ -16,6 +16,8 @@
 
 package com.android.contacts.model;
 
+import static com.android.contacts.util.DeviceLocalAccountTypeFactory.Util.isLocalAccountType;
+
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
@@ -44,9 +46,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.TimingLogger;
 
+import com.android.contacts.Experiments;
+import com.android.contacts.MoreContactUtils;
 import com.android.contacts.R;
-import com.android.contacts.common.Experiments;
-import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountTypeWithDataSet;
@@ -61,6 +63,7 @@ import com.android.contacts.util.Constants;
 import com.android.contacts.util.DeviceLocalAccountTypeFactory;
 import com.android.contactsbind.ObjectFactory;
 import com.android.contactsbind.experiments.Flags;
+
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
@@ -81,8 +84,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.annotation.Nullable;
-
-import static com.android.contacts.util.DeviceLocalAccountTypeFactory.Util.isLocalAccountType;
 
 /**
  * Singleton holder for all parsed {@link AccountType} available on the

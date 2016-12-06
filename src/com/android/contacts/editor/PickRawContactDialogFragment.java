@@ -16,9 +16,12 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactSelectionActivity;
-import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.editor.PickRawContactLoader.RawContact;
+import com.android.contacts.editor.PickRawContactLoader.RawContactsMetadata;
+import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.logging.EditorEvent;
 import com.android.contacts.logging.Logger;
 import com.android.contacts.model.AccountTypeManager;
@@ -28,9 +31,6 @@ import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.preference.ContactsPreferences;
-import com.android.contacts.editor.PickRawContactLoader.RawContact;
-import com.android.contacts.editor.PickRawContactLoader.RawContactsMetadata;
-import com.android.contacts.list.UiIntentActions;
 
 /**
  * Should only be started from an activity that implements {@link PickRawContactListener}.

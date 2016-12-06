@@ -26,8 +26,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.R;
-import com.android.contacts.logging.ListEvent;
 import com.android.contacts.group.GroupUtil;
+import com.android.contacts.logging.ListEvent;
 
 import java.util.List;
 import java.util.TreeSet;

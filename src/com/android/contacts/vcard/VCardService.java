@@ -25,8 +25,6 @@ import android.os.IBinder;
 import android.util.Log;
 import android.util.SparseArray;
 
-import com.android.contacts.R;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

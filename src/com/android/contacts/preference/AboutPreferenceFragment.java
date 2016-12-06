@@ -28,7 +28,7 @@ import android.preference.PreferenceFragment;
 import android.widget.Toast;
 
 import com.android.contacts.R;
-import com.android.contacts.common.activity.LicenseActivity;
+import com.android.contacts.activities.LicenseActivity;
 
 /**
  * This fragment shows the preferences for "about".

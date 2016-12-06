@@ -43,9 +43,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.SimImportService;
-import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.compat.TelecomManagerUtil;
 import com.android.contacts.compat.TelephonyManagerCompat;
 import com.android.contacts.interactions.ExportDialogFragment;

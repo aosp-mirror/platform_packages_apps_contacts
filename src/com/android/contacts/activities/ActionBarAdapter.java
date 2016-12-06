@@ -31,24 +31,24 @@ import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.SearchView.OnCloseListener;
-import android.view.View.OnClickListener;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter.Listener.Action;
 import com.android.contacts.compat.CompatUtils;
-import com.android.contacts.util.MaterialColorMapUtils;
 import com.android.contacts.list.ContactsRequest;
+import com.android.contacts.util.MaterialColorMapUtils;
 
 import java.util.ArrayList;
 

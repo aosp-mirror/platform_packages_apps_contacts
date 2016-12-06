@@ -27,7 +27,7 @@ import android.provider.ContactsContract.Data;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.preference.ContactsPreferences;
 
 /**

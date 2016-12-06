@@ -29,10 +29,10 @@ import android.telecom.PhoneAccount;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.contacts.CallUtil;
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.MoreContactUtils;
 import com.android.contacts.R;
-import com.android.contacts.common.CallUtil;
-import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.model.account.AccountType.EditType;
 import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.model.dataitem.DataKind;

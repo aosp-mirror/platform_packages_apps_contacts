@@ -1,5 +1,9 @@
 package com.android.contacts;
 
+import static com.android.contacts.util.PermissionsUtil.hasPermission;
+
+import static org.junit.Assume.assumeTrue;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -16,9 +20,6 @@ import android.support.test.uiautomator.Until;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static com.android.contacts.util.PermissionsUtil.hasPermission;
-import static org.junit.Assume.assumeTrue;
 
 /**
  * Make sure the app doesn't crash when it is started without permissions. Note: this won't

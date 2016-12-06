@@ -39,13 +39,14 @@ import android.widget.TextView;
 
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
-import com.android.contacts.model.account.AccountWithDataSet;
-import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.group.GroupNameEditDialogFragment;
 import com.android.contacts.model.RawContactDelta;
-import com.android.contacts.model.ValuesDelta;
 import com.android.contacts.model.RawContactModifier;
+import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.UiClosables;
+
 import com.google.common.base.Objects;
 
 import java.util.ArrayList;

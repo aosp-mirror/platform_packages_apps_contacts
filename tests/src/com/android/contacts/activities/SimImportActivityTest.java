@@ -1,5 +1,13 @@
 package com.android.contacts.activities;
 
+import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasMimeType;
+import static com.android.contacts.tests.ContactsMatchers.hasRowMatching;
+import static com.android.contacts.tests.ContactsMatchers.hasValueForColumn;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.allOf;
+import static org.junit.Assert.assertTrue;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -29,6 +37,7 @@ import com.android.contacts.tests.AccountsTestHelper;
 import com.android.contacts.tests.ContactsMatchers;
 import com.android.contacts.tests.FakeSimContactDao;
 import com.android.contacts.tests.StringableCursor;
+
 import com.google.common.base.Functions;
 
 import org.hamcrest.BaseMatcher;
@@ -38,13 +47,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasMimeType;
-import static com.android.contacts.tests.ContactsMatchers.hasRowMatching;
-import static com.android.contacts.tests.ContactsMatchers.hasValueForColumn;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.allOf;
-import static org.junit.Assert.assertTrue;
 
 /**
  * UI Tests for {@link SimImportActivity}

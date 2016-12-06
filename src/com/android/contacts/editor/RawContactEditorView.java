@@ -50,8 +50,8 @@ import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
+import com.android.contacts.GeoUtil;
 import com.android.contacts.R;
-import com.android.contacts.common.GeoUtil;
 import com.android.contacts.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.RawContactDelta;

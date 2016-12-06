@@ -16,16 +16,6 @@
 
 package com.android.contacts.detail;
 
-import com.google.common.collect.Iterables;
-
-import com.android.contacts.R;
-import com.android.contacts.model.Contact;
-import com.android.contacts.model.RawContact;
-import com.android.contacts.model.dataitem.DataItem;
-import com.android.contacts.model.dataitem.OrganizationDataItem;
-import com.android.contacts.preference.ContactsPreferences;
-import com.android.contacts.util.MoreMath;
-
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -44,6 +34,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.contacts.R;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.RawContact;
+import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.model.dataitem.OrganizationDataItem;
+import com.android.contacts.preference.ContactsPreferences;
+import com.android.contacts.util.MoreMath;
+
+import com.google.common.collect.Iterables;
 
 import java.util.List;
 

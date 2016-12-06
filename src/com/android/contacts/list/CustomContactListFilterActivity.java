@@ -56,17 +56,18 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.TextView;
 
-import com.android.contacts.model.account.AccountDisplayInfo;
-import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.model.account.AccountDisplayInfo;
+import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.LocalizedNameResolver;
 import com.android.contacts.util.WeakAsyncTask;
+
 import com.google.common.collect.Lists;
 
 import java.util.ArrayList;

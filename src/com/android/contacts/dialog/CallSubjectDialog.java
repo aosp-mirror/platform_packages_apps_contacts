@@ -44,8 +44,8 @@ import android.widget.ListView;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
-import com.android.contacts.common.CallUtil;
-import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.CallUtil;
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.R;
 import com.android.contacts.compat.CompatUtils;
 import com.android.contacts.compat.PhoneAccountSdkCompat;

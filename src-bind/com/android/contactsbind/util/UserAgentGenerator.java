@@ -17,8 +17,6 @@
 package com.android.contactsbind.util;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
 
 /**
  * Generates a user agent string for the application.

@@ -15,6 +15,8 @@
  */
 package com.android.contacts.util;
 
+import static java.lang.annotation.RetentionPolicy.SOURCE;
+
 import android.content.Context;
 import android.support.annotation.IntDef;
 
@@ -22,8 +24,6 @@ import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.DeviceLocalAccountType;
 
 import java.lang.annotation.Retention;
-
-import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
  * Reports whether a value from RawContacts.ACCOUNT_TYPE should be considered a "Device"

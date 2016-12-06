@@ -41,12 +41,12 @@ import android.widget.TextView;
 
 import com.android.contacts.compat.CompatUtils;
 import com.android.contacts.database.SimContactDao;
+import com.android.contacts.editor.AccountHeaderPresenter;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferences;
-import com.android.contacts.editor.AccountHeaderPresenter;
 
 import java.util.ArrayList;
 import java.util.Arrays;

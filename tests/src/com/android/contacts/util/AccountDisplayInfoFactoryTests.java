@@ -27,7 +27,7 @@ import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
-import com.android.contacts.common.test.mocks.MockAccountTypeManager;
+import com.android.contacts.test.mocks.MockAccountTypeManager;
 import com.android.contacts.tests.FakeAccountType;
 import com.android.contacts.tests.FakeDeviceAccountTypeFactory;
 

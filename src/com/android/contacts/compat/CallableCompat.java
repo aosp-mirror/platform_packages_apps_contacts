@@ -19,7 +19,7 @@ package com.android.contacts.compat;
 import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Callable;
 
-import com.android.contacts.common.ContactsUtils;
+import com.android.contacts.ContactsUtils;
 
 public class CallableCompat {
 

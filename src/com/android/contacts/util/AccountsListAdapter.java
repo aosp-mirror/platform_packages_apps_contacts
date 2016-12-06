@@ -24,10 +24,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.contacts.model.account.AccountDisplayInfo;
-import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountDisplayInfo;
+import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;

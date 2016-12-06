@@ -34,18 +34,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.android.contacts.activities.SimImportActivity;
 import com.android.contacts.R;
+import com.android.contacts.activities.SimImportActivity;
 import com.android.contacts.compat.CompatUtils;
 import com.android.contacts.compat.PhoneNumberUtilsCompat;
 import com.android.contacts.database.SimContactDao;
+import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
-import com.android.contacts.editor.SelectAccountDialogFragment;
 
 import java.util.List;
 

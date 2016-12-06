@@ -39,18 +39,17 @@ import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.common.activity.RequestPermissionsActivity;
+import com.android.contacts.editor.ContactEditorUtils;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.ContactLoader;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.model.RawContactModifier;
-import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
-import com.android.contacts.editor.ContactEditorUtils;
 import com.android.contacts.util.ContactPhotoUtils;
 
 import java.io.FileNotFoundException;

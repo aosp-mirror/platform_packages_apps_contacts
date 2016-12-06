@@ -21,7 +21,7 @@ import android.os.AsyncTask;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.widget.TextView;
 
-import com.android.contacts.common.GeoUtil;
+import com.android.contacts.GeoUtil;
 import com.android.contacts.compat.PhoneNumberFormattingTextWatcherCompat;
 
 public final class PhoneNumberFormatter {

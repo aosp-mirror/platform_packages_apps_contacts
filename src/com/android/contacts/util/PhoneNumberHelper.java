@@ -18,11 +18,6 @@ package com.android.contacts.util;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
-import com.google.i18n.phonenumbers.ShortNumberInfo;
-
 /**
  * This class wraps several PhoneNumberUtil calls and TelephonyManager calls. Some of them are
  * the same as the ones in the framework's code base. We can remove those once they are part of

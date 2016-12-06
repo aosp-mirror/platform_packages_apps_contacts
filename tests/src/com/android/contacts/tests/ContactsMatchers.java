@@ -15,6 +15,8 @@
  */
 package com.android.contacts.tests;
 
+import static org.hamcrest.Matchers.allOf;
+
 import android.database.Cursor;
 import android.provider.ContactsContract;
 
@@ -23,8 +25,6 @@ import com.android.contacts.model.SimContact;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-
-import static org.hamcrest.Matchers.allOf;
 
 
 /**

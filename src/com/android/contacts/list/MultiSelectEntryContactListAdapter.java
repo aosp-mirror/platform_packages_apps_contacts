@@ -22,7 +22,7 @@ import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.CheckBox;
 
-import com.android.contacts.common.ContactPhotoManager;
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.group.GroupUtil;
 
 import java.util.TreeSet;
