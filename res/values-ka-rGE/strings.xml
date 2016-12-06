@@ -83,8 +83,8 @@
       <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> კონტაქტი</item>
     </plurals>
     <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
-      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> კონტაქტი · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> კონტაქტი · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> კონტაქტი · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> კონტაქტი · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Google-იდან"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g>-იდან"</string>
@@ -163,7 +163,6 @@
     <string name="returnCall" msgid="8171961914203617813">"გადარეკვა"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"„<xliff:g id="EMAIL">%s</xliff:g>“ დაემატოს კონტაქტებს?"</string>
     <string name="description_plus_button" msgid="515164827856229880">"პლუსი"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> (სულ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> კონტაქტიდან)"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"თქვენი კონტაქტების სახელები"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ამ მოქმედების შესასრულებლად აპი ვერ მოიძებნა."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"დააწკაპუნეთ წინა ეკრანზე დასაბრუნებლად"</string>
@@ -275,7 +274,7 @@
     <string name="today" msgid="8041090779381781781">"დღეს"</string>
     <string name="today_at_time_fmt" msgid="605665249491030460">"დღეს <xliff:g id="TIME_INTERVAL">%s</xliff:g>-ზე"</string>
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"ხვალ <xliff:g id="TIME_INTERVAL">%s</xliff:g>-ზე"</string>
-    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%1$s</xliff:g>, <xliff:g id="TIME_INTERVAL">%2$s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(უსათაურო მოვლენა)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"დაყენება"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
@@ -292,11 +291,11 @@
     <string name="content_description_expand_editor" msgid="1111381475901897470">"კონტაქტების რედაქტირების გაფართოებისათვის, დააჭირეთ."</string>
     <string name="content_description_collapse_editor" msgid="7598061318022977825">"კონტაქტების რედაქტირების შეკუმშვისათვის, დააჭირეთ."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"მიმართულებები მდებარეობამდე"</string>
-    <string name="content_description_recent_sms" msgid="1666389577263317445">"ბოლო sms. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. დააწკაპუნეთ საპასუხოდ"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"ბოლო sms. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. დააწკაპუნეთ საპასუხოდ"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"შემომავალი"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"გამავალი"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"გამოტოვებული"</string>
-    <string name="content_description_recent_call" msgid="5183800406316723676">"ბოლო ზარი. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. დააწკაპუნეთ გადასარეკად"</string>
+    <string name="content_description_recent_call" msgid="5183800406316723676">"ბოლო ზარი. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. დააწკაპუნეთ გადასარეკად"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"თქვენ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangout უკეთესად იმუშავებს იმ შემთხვევაში, თუ ტელეფონის ან ელფოსტის ველში პიროვნების Hangout-ის ინდენტიფიკატორს შეიყვანთ."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"სხვა ველები"</string>
@@ -312,7 +311,6 @@
       <item quantity="one">დაკავშირებული კონტაქტი</item>
     </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> მიბმული კონტაქტი"</string>
-    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"კონტაქტების მიბმა"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"გაუქმება"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
@@ -327,7 +325,6 @@
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
-    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ეს კონტაქტი"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"შესაძლო დუბლიკატები"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"ეს კონტაქტები შეიძლება ერთი და იგივე პიროვნება იყოს. შეგიძლიათ მიბმის მეშვეობით მათი ერთ კონტაქტად გაერთიანება."</string>
@@ -335,10 +332,8 @@
     <string name="from_your_accounts" msgid="1746293107836889912">"თქვენი ანგარიშებიდან"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"აირჩიეთ ფოტო"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g>-დან"</string>
-    <string name="editor_delete_view_description" msgid="8583095381562991959">"წაიშალოს <xliff:g id="DATA_KIND">%s</xliff:g> (<xliff:g id="DATA_TYPE">%s </xliff:g>)"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"წაიშალოს <xliff:g id="DATA_KIND">%2$s</xliff:g> (<xliff:g id="DATA_TYPE">%1$s </xliff:g>)"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"წაიშალოს <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
-    <string name="photo_view_description_not_checked" msgid="8876314195990885177">"ფოტო <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>-დან არ არის მონიშნული"</string>
-    <string name="photo_view_description_checked" msgid="3906597168607472795">"ფოტო <xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>-დან მონიშნულია"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ფოტო უცნობი ანგარიშიდან არ არის მონიშნული"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ფოტო უცნობი ანგარიშიდან მონიშნულია"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"შეთავაზებები"</string>
@@ -514,7 +509,7 @@
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"გსურთ <xliff:g id="FILENAME">%s</xliff:g>-ის ექსპორტის გაუქმება?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard-ის იმპორტი/ექსპორტი ვერ მოხერხდა"</string>
     <string name="fail_reason_unknown" msgid="1714092345030570863">"უცნობი შეცდომა."</string>
-    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"„<xliff:g id="FILE_NAME">%s</xliff:g>“ ვერ გაიხსნა: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"„<xliff:g id="FILE_NAME">%1$s</xliff:g>“ ვერ გაიხსნა: <xliff:g id="EXACT_REASON">%2$s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"ექსპორტერის გაშვება ვერ მოხერხდა: „<xliff:g id="EXACT_REASON">%s</xliff:g>“."</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"ექსპორტირებადი კონტაქტი არ არსებობს."</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"თქვენ გათიშული გაქვთ მოთხოვნილი ნებართვა."</string>
@@ -556,7 +551,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"კონტაქტი NFC-ით"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"გსურთ კონტაქტების ექსპორტი?"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"ქეშირება"</string>
-    <string name="progress_notifier_message" msgid="2311011466908220528">"მიმდინარეობს იმპორტი <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"მიმდინარეობს იმპორტი <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"ექსპორტი .vcf ფაილში"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"დალაგება:"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"სახელით"</string>
@@ -621,8 +616,8 @@
     <string name="description_delete_contact" msgid="53835657343783663">"წაშლა"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"სამწერტილი"</string>
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> წმ."</string>
-    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> წთ. და <xliff:g id="SECONDS">%s</xliff:g> წმ."</string>
-    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> სთ. <xliff:g id="MINUTES_1">%s</xliff:g> წთ. <xliff:g id="SECONDS">%s</xliff:g> წმ."</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%1$s</xliff:g> წთ. და <xliff:g id="SECONDS">%2$s</xliff:g> წმ."</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%1$s</xliff:g> სთ. <xliff:g id="MINUTES_1">%2$s</xliff:g> წთ. <xliff:g id="SECONDS">%3$s</xliff:g> წმ."</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"ეს მალსახმობი გათიშულია"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"კონტაქტი წაშლილია"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"იმპორტი"</string>
@@ -645,4 +640,7 @@
     <string name="connection_error_message" msgid="7046408921529247089">"კავშირი არ არის"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"მეტის ჩვენება"</string>
+    <string name="importing_sim_finished_title" msgid="5196369441294050721">"SIM ბარათის იმპორტი დასრულდა"</string>
+    <string name="importing_sim_failed_title" msgid="3864137973400578707">"SIM ბარათის იმპორტი ვერ მოხერხდა"</string>
+    <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"მიმდინარეობს SIM-ის იმპორტი"</string>
 </resources>
