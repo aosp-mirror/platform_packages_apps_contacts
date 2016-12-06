@@ -16,6 +16,7 @@
 
 package com.android.contacts.util;
 
+import android.app.backup.BackupManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -36,13 +37,13 @@ public class SharedPreferenceUtil {
     public static final String PREFERENCE_KEY_GLOBAL_SYNC_OFF_DISMISSES =
             "num-of-dismisses-auto-sync-off";
 
-    private static final String PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED =
+    public static final String PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED =
             "hamburgerPromoDisplayed";
 
-    private static final String PREFERENCE_KEY_HAMBURGER_MENU_CLICKED =
+    public static final String PREFERENCE_KEY_HAMBURGER_MENU_CLICKED =
             "hamburgerMenuClicked";
 
-    private static final String PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED =
+    public static final String PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED =
             "hamburgerPromoTriggerActionHappened";
 
     private static final String PREFERENCE_KEY_IMPORTED_SIM_CARDS =
@@ -69,6 +70,7 @@ public class SharedPreferenceUtil {
         getSharedPreferences(context).edit()
                 .putBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_DISPLAYED, true)
                 .apply();
+        new BackupManager(context).dataChanged();
     }
 
     public static boolean getHamburgerMenuClickedBefore(Context context) {
@@ -80,6 +82,7 @@ public class SharedPreferenceUtil {
         getSharedPreferences(context).edit()
                 .putBoolean(PREFERENCE_KEY_HAMBURGER_MENU_CLICKED, true)
                 .apply();
+        new BackupManager(context).dataChanged();
     }
 
     public static boolean getHamburgerPromoTriggerActionHappenedBefore(Context context) {
@@ -91,6 +94,7 @@ public class SharedPreferenceUtil {
         getSharedPreferences(context).edit()
                 .putBoolean(PREFERENCE_KEY_HAMBURGER_PROMO_TRIGGER_ACTION_HAPPENED, true)
                 .apply();
+        new BackupManager(context).dataChanged();
     }
 
     /**
@@ -109,7 +113,12 @@ public class SharedPreferenceUtil {
     }
 
     protected static SharedPreferences getSharedPreferences(Context context) {
-        return context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        return context.getSharedPreferences(getSharedPreferencesFilename(context),
+                Context.MODE_PRIVATE);
+    }
+
+    public static String getSharedPreferencesFilename(Context context) {
+        return context.getPackageName();
     }
 
     public static int getNumOfDismissesForAutoSyncOff(Context context) {
@@ -244,9 +253,11 @@ public class SharedPreferenceUtil {
     public static void setWelcomeCardDismissed(Context context, boolean isDismissed) {
         getSharedPreferences(context).edit().putBoolean(PREFERENCE_WELCOME_CARD_DISMISSED,
                 isDismissed).apply();
+        new BackupManager(context).dataChanged();
     }
 
     public static void clear(Context context) {
         getSharedPreferences(context).edit().clear().commit();
+        new BackupManager(context).dataChanged();
     }
 }

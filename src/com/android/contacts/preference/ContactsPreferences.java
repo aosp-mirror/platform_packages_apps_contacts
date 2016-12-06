@@ -16,6 +16,8 @@
 
 package com.android.contacts.preference;
 
+import android.app.backup.BackupAgent;
+import android.app.backup.BackupManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -79,6 +81,7 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
     private ChangeListener mListener = null;
     private Handler mHandler;
     private final SharedPreferences mPreferences;
+    private final BackupManager mBackupManager;
     private final boolean mIsDefaultAccountUserChangeable;
     private String mDefaultAccountKey;
 
@@ -91,6 +94,8 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
     ContactsPreferences(Context context, boolean isDefaultAccountUserChangeable) {
         mContext = context;
         mIsDefaultAccountUserChangeable = isDefaultAccountUserChangeable;
+
+        mBackupManager = new BackupManager(mContext);
 
         mHandler = new Handler(Looper.getMainLooper());
         mPreferences = mContext.getSharedPreferences(context.getPackageName(),
@@ -127,6 +132,7 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         final Editor editor = mPreferences.edit();
         editor.putInt(SORT_ORDER_KEY, sortOrder);
         editor.commit();
+        mBackupManager.dataChanged();
     }
 
     public boolean isDisplayOrderUserChangeable() {
@@ -156,6 +162,7 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         final Editor editor = mPreferences.edit();
         editor.putInt(DISPLAY_ORDER_KEY, displayOrder);
         editor.commit();
+        mBackupManager.dataChanged();
     }
 
     public boolean isDefaultAccountUserChangeable() {
