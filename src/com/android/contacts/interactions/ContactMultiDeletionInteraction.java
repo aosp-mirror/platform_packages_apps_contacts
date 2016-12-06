@@ -16,15 +16,6 @@
 
 package com.android.contacts.interactions;
 
-import com.android.contacts.preference.ContactsPreferences;
-import com.android.contacts.util.ContactDisplayUtils;
-import com.google.common.collect.Sets;
-
-import com.android.contacts.ContactSaveService;
-import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountType;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -40,6 +31,15 @@ import android.os.Bundle;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.android.contacts.ContactSaveService;
+import com.android.contacts.R;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountType;
+import com.android.contacts.preference.ContactsPreferences;
+import com.android.contacts.util.ContactDisplayUtils;
+
+import com.google.common.collect.Sets;
 
 import java.util.HashSet;
 import java.util.TreeSet;

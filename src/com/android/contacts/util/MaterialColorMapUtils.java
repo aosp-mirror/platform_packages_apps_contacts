@@ -16,9 +16,6 @@
 
 package com.android.contacts.util;
 
-import com.android.contacts.ContactsDrawerActivity;
-import com.android.contacts.R;
-
 import android.app.Activity;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -26,6 +23,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Trace;
 import android.support.v4.content.ContextCompat;
+
+import com.android.contacts.ContactsDrawerActivity;
+import com.android.contacts.R;
 
 public class MaterialColorMapUtils {
     private final TypedArray sPrimaryColors;

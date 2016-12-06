@@ -32,8 +32,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.logging.ListEvent;
 import com.android.contacts.list.JoinContactLoader.JoinContactLoaderResult;
+import com.android.contacts.logging.ListEvent;
 
 /**
  * Fragment for the Join Contact list.

@@ -39,11 +39,11 @@ import android.widget.Toast;
 import com.android.contacts.R;
 import com.android.contacts.editor.PhotoActionPopup;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.RawContactDelta;
+import com.android.contacts.model.RawContactDeltaList;
+import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.ValuesDelta;
 import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.UiClosables;
 

@@ -19,7 +19,6 @@ package com.android.contacts.model.account;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
-import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.CommonDataKinds.BaseTypes;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
@@ -35,6 +34,7 @@ import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.provider.ContactsContract.Data;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
@@ -44,6 +44,7 @@ import com.android.contacts.model.dataitem.CustomDataItem;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.CommonDateUtils;
 import com.android.contacts.util.ContactDisplayUtils;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 

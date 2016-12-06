@@ -51,8 +51,8 @@ import android.widget.ImageView.ScaleType;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
-import com.android.contacts.common.ContactPresenceIconUtil;
-import com.android.contacts.common.ContactStatusUtil;
+import com.android.contacts.ContactPresenceIconUtil;
+import com.android.contacts.ContactStatusUtil;
 import com.android.contacts.R;
 import com.android.contacts.compat.CompatUtils;
 import com.android.contacts.compat.PhoneNumberUtilsCompat;

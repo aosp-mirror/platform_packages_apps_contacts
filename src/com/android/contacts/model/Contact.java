@@ -24,10 +24,10 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 
+import com.android.contacts.group.GroupMetaData;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.SimAccountType;
 import com.android.contacts.util.DataStatus;
-import com.android.contacts.group.GroupMetaData;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;

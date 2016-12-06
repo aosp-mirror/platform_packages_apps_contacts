@@ -15,6 +15,10 @@
  */
 package com.android.contacts.tests;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assume.assumeThat;
+import static org.junit.Assume.assumeTrue;
+
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
@@ -35,10 +39,6 @@ import com.android.contacts.model.SimContact;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assume.assumeThat;
-import static org.junit.Assume.assumeTrue;
 
 public class SimContactsTestHelper {
 

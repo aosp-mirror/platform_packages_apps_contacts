@@ -24,8 +24,8 @@ import android.provider.Settings;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.R;
+import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 

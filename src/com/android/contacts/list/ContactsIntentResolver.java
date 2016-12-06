@@ -34,8 +34,8 @@ import android.provider.ContactsContract.Intents.Insert;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.group.GroupUtil;
+import com.android.contacts.model.account.AccountWithDataSet;
 
 /**
  * Parses a Contacts intent, extracting all relevant parts and packaging them

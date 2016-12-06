@@ -42,9 +42,9 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 
-import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.util.ImplicitIntentsUtil;
 

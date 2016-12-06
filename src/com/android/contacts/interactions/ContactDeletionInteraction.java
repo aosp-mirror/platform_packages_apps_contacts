@@ -42,6 +42,7 @@ import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.ContactDisplayUtils;
+
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
 

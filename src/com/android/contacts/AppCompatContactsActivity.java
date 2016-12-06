@@ -25,7 +25,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
-import com.android.contacts.common.activity.AppCompatTransactionSafeActivity;
+import com.android.contacts.activities.AppCompatTransactionSafeActivity;
 import com.android.contacts.testing.InjectedServices;
 
 /**

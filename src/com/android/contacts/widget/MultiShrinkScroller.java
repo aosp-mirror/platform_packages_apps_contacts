@@ -1,12 +1,5 @@
 package com.android.contacts.widget;
 
-import com.android.contacts.R;
-import com.android.contacts.compat.CompatUtils;
-import com.android.contacts.compat.EdgeEffectCompat;
-import com.android.contacts.quickcontact.ExpandingEntryCardView;
-import com.android.contacts.test.NeededForReflection;
-import com.android.contacts.util.SchedulingUtils;
-
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorListenerAdapter;
@@ -31,17 +24,24 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.EdgeEffect;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.Scroller;
 import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toolbar;
+
+import com.android.contacts.R;
+import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.compat.EdgeEffectCompat;
+import com.android.contacts.quickcontact.ExpandingEntryCardView;
+import com.android.contacts.test.NeededForReflection;
+import com.android.contacts.util.SchedulingUtils;
 
 /**
  * A custom {@link ViewGroup} that operates similarly to a {@link ScrollView}, except with multiple

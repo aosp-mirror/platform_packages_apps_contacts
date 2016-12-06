@@ -24,6 +24,7 @@ import android.support.annotation.VisibleForTesting;
 import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
+
 import com.google.common.base.Function;
 
 import java.util.ArrayList;

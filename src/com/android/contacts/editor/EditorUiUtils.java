@@ -16,6 +16,11 @@
 
 package com.android.contacts.editor;
 
+import static android.provider.ContactsContract.CommonDataKinds.GroupMembership;
+import static android.provider.ContactsContract.CommonDataKinds.StructuredName;
+
+import static com.android.contacts.util.MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -38,25 +43,22 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
+import com.android.contacts.ContactPhotoManager;
+import com.android.contacts.ContactPhotoManager.DefaultImageProvider;
+import com.android.contacts.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
-import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.ContactPhotoManager.DefaultImageProvider;
-import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
-import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.model.ValuesDelta;
-import com.android.contacts.model.dataitem.DataKind;
-import com.android.contacts.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.model.account.AccountDisplayInfo;
+import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.ContactPhotoUtils;
+import com.android.contacts.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.widget.QuickContactImageView;
+
 import com.google.common.collect.Maps;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-
-import static android.provider.ContactsContract.CommonDataKinds.GroupMembership;
-import static android.provider.ContactsContract.CommonDataKinds.StructuredName;
-import static com.android.contacts.util.MaterialColorMapUtils.getDefaultPrimaryAndSecondaryColors;
 
 /**
  * Utility methods for creating contact editor.

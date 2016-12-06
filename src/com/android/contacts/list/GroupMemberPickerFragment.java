@@ -29,11 +29,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.R;
+import com.android.contacts.activities.ContactSelectionActivity;
+import com.android.contacts.group.GroupUtil;
 import com.android.contacts.list.ContactListAdapter.ContactQuery;
 import com.android.contacts.model.account.AccountWithDataSet;
-import com.android.contacts.group.GroupUtil;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 
 import com.android.contacts.ContactSaveService;
+import com.android.contacts.group.GroupMetaData;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.RawContact;
@@ -17,7 +18,6 @@ import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.model.dataitem.GroupMembershipDataItem;
-import com.android.contacts.group.GroupMetaData;
 
 import com.google.common.collect.Iterables;
 

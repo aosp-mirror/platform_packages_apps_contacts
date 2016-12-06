@@ -15,12 +15,12 @@
  */
 package com.android.contacts.list;
 
-import com.android.contacts.R;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.contacts.R;
 
 /**
  * Equivalent to DefaultContactListAdapter, except with an optional header entry that has the same

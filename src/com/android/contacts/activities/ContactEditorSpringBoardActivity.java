@@ -16,19 +16,18 @@ import android.widget.Toast;
 import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
-import com.android.contacts.common.activity.RequestPermissionsActivity;
-import com.android.contacts.logging.EditorEvent;
-import com.android.contacts.logging.Logger;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.util.ImplicitIntentsUtil;
-import com.android.contacts.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.EditorIntents;
 import com.android.contacts.editor.PickRawContactDialogFragment;
 import com.android.contacts.editor.PickRawContactLoader;
 import com.android.contacts.editor.PickRawContactLoader.RawContactsMetadata;
 import com.android.contacts.editor.SplitContactConfirmationDialogFragment;
+import com.android.contacts.logging.EditorEvent;
+import com.android.contacts.logging.Logger;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.quickcontact.QuickContactActivity;
+import com.android.contacts.util.ImplicitIntentsUtil;
+import com.android.contacts.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contactsbind.FeedbackHelper;
 
 /**

@@ -28,12 +28,12 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Groups;
 import android.text.TextUtils;
 
+import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.activities.ContactSelectionActivity;
-import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.list.ContactsSectionIndexer;
-import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.list.UiIntentActions;
+import com.android.contacts.model.account.GoogleAccountType;
 
 import java.util.ArrayList;
 import java.util.Arrays;

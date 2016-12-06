@@ -33,10 +33,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.contacts.common.CallUtil;
-import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
-import com.android.contacts.common.ContactsUtils;
-import com.android.contacts.common.GeoUtil;
+import com.android.contacts.CallUtil;
+import com.android.contacts.ContactPhotoManager.DefaultImageRequest;
+import com.android.contacts.ContactsUtils;
+import com.android.contacts.GeoUtil;
 import com.android.contacts.R;
 import com.android.contacts.compat.CallableCompat;
 import com.android.contacts.compat.CompatUtils;

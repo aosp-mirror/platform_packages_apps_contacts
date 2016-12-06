@@ -38,9 +38,9 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
+import com.android.contacts.compat.AggregationSuggestionsCompat;
 import com.android.contacts.model.ValuesDelta;
 import com.android.contacts.model.account.AccountWithDataSet;
-import com.android.contacts.compat.AggregationSuggestionsCompat;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;

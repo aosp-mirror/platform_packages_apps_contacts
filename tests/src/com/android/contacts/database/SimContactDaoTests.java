@@ -15,6 +15,20 @@
  */
 package com.android.contacts.database;
 
+import static android.os.Build.VERSION_CODES;
+
+import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasEmail;
+import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasName;
+import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasPhone;
+import static com.android.contacts.tests.ContactsMatchers.isSimContactWithNameAndPhone;
+
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -39,11 +53,12 @@ import android.test.mock.MockContext;
 import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
-import com.android.contacts.common.test.mocks.MockContentProvider;
+import com.android.contacts.test.mocks.MockContentProvider;
 import com.android.contacts.tests.AccountsTestHelper;
 import com.android.contacts.tests.ContactsMatchers;
 import com.android.contacts.tests.SimContactsTestHelper;
 import com.android.contacts.tests.StringableCursor;
+
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
@@ -63,18 +78,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-
-import static android.os.Build.VERSION_CODES;
-import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasEmail;
-import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasName;
-import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasPhone;
-import static com.android.contacts.tests.ContactsMatchers.isSimContactWithNameAndPhone;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @RunWith(Enclosed.class)
 public class SimContactDaoTests {

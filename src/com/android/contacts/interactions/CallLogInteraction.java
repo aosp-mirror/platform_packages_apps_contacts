@@ -15,12 +15,6 @@
  */
 package com.android.contacts.interactions;
 
-import com.android.contacts.R;
-import com.android.contacts.common.GeoUtil;
-import com.android.contacts.compat.PhoneNumberUtilsCompat;
-import com.android.contacts.util.BitmapUtil;
-import com.android.contacts.util.ContactDisplayUtils;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +27,12 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.BidiFormatter;
 import android.text.Spannable;
 import android.text.TextDirectionHeuristics;
+
+import com.android.contacts.GeoUtil;
+import com.android.contacts.R;
+import com.android.contacts.compat.PhoneNumberUtilsCompat;
+import com.android.contacts.util.BitmapUtil;
+import com.android.contacts.util.ContactDisplayUtils;
 
 /**
  * Represents a call log event interaction, wrapping the columns in

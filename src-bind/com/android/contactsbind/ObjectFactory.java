@@ -13,13 +13,13 @@
  */
 package com.android.contactsbind;
 
-import com.android.contacts.logging.Logger;
-import com.android.contacts.util.DeviceLocalAccountTypeFactory;
-
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+
+import com.android.contacts.logging.Logger;
+import com.android.contacts.util.DeviceLocalAccountTypeFactory;
 
 /**
  * Creates default bindings for overlays.

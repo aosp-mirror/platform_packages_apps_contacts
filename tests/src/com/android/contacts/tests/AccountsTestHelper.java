@@ -15,11 +15,13 @@
  */
 package com.android.contacts.tests;
 
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
+
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.os.Binder;
 import android.os.Build;
 import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.NonNull;
@@ -31,9 +33,6 @@ import com.android.contacts.model.account.AccountWithDataSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertTrue;
 
 @SuppressWarnings("MissingPermission")
 public class AccountsTestHelper {

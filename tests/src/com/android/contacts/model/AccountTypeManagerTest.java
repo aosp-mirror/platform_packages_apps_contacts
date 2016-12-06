@@ -16,6 +16,8 @@
 
 package com.android.contacts.model;
 
+import static org.mockito.Mockito.when;
+
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
@@ -27,14 +29,13 @@ import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountTypeWithDataSet;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import static org.mockito.Mockito.when;
 
 import java.util.Collection;
 import java.util.HashMap;

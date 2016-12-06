@@ -38,19 +38,19 @@ import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.contacts.GeoUtil;
 import com.android.contacts.GroupMetaDataLoader;
-import com.android.contacts.common.GeoUtil;
 import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.group.GroupMetaData;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountTypeWithDataSet;
+import com.android.contacts.model.dataitem.DataItem;
+import com.android.contacts.model.dataitem.PhoneDataItem;
+import com.android.contacts.model.dataitem.PhotoDataItem;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.ContactLoaderUtils;
 import com.android.contacts.util.DataStatus;
 import com.android.contacts.util.UriUtils;
-import com.android.contacts.model.dataitem.DataItem;
-import com.android.contacts.model.dataitem.PhoneDataItem;
-import com.android.contacts.model.dataitem.PhotoDataItem;
-import com.android.contacts.group.GroupMetaData;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;

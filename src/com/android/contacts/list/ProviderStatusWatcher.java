@@ -25,7 +25,6 @@ import android.provider.ContactsContract.ProviderStatus;
 import android.util.Log;
 
 import com.android.contacts.compat.ProviderStatusCompat;
-
 import com.android.contactsbind.FeedbackHelper;
 
 import com.google.common.collect.Lists;

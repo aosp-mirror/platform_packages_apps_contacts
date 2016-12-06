@@ -36,8 +36,8 @@ import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts.Data;
 import android.provider.ContactsContract.Contacts.Entity;
 
-import com.android.contacts.common.Collapser;
-import com.android.contacts.common.MoreContactUtils;
+import com.android.contacts.Collapser;
+import com.android.contacts.MoreContactUtils;
 import com.android.contacts.model.RawContactModifier;
 
 /**

@@ -23,14 +23,13 @@ import android.net.Uri;
 import android.net.Uri.Builder;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-
-import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.group.GroupUtil;
+import com.android.contacts.preference.ContactsPreferences;
 
 /** Phone Numbers multi-select cursor adapter. */
 public class MultiSelectPhoneNumbersListAdapter extends MultiSelectEntryContactListAdapter {

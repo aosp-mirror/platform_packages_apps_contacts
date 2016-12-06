@@ -15,6 +15,14 @@
  */
 package com.android.contacts;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import android.annotation.TargetApi;
 import android.app.job.JobScheduler;
 import android.content.ContentProvider;
@@ -32,9 +40,8 @@ import android.support.test.filters.SdkSuppress;
 import android.test.AndroidTestCase;
 import android.test.mock.MockContentResolver;
 import android.test.suitebuilder.annotation.SmallTest;
-import android.test.suitebuilder.annotation.Suppress;
 
-import com.android.contacts.common.test.mocks.MockContentProvider;
+import com.android.contacts.test.mocks.MockContentProvider;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
@@ -45,15 +52,6 @@ import org.mockito.ArgumentCaptor;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 @TargetApi(Build.VERSION_CODES.N_MR1)
 @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N_MR1)

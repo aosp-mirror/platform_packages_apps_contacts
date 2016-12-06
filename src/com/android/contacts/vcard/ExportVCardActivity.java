@@ -35,7 +35,7 @@ import android.text.TextDirectionHeuristics;
 import android.util.Log;
 
 import com.android.contacts.R;
-import com.android.contacts.common.activity.RequestImportVCardPermissionsActivity;
+import com.android.contacts.activities.RequestImportVCardPermissionsActivity;
 
 import java.util.List;
 

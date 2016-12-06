@@ -27,20 +27,19 @@ import android.provider.ContactsContract.ProviderStatus;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.SmallTest;
 
+import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactsApplication;
-import com.android.contacts.R;
-import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.testing.InjectedServices;
-import com.android.contacts.common.test.mocks.ContactsMockContext;
-import com.android.contacts.common.test.mocks.MockContentProvider;
-import com.android.contacts.common.test.mocks.MockContentProvider.Query;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.BaseAccountType;
-import com.android.contacts.common.test.mocks.MockAccountTypeManager;
-import com.android.contacts.common.test.mocks.MockContactPhotoManager;
-import com.android.contacts.common.test.mocks.MockSharedPreferences;
+import com.android.contacts.test.mocks.ContactsMockContext;
+import com.android.contacts.test.mocks.MockAccountTypeManager;
+import com.android.contacts.test.mocks.MockContactPhotoManager;
+import com.android.contacts.test.mocks.MockContentProvider;
+import com.android.contacts.test.mocks.MockContentProvider.Query;
+import com.android.contacts.test.mocks.MockSharedPreferences;
+import com.android.contacts.testing.InjectedServices;
 
 /**
  * This test is so outdated that it's disabled temporarily.  TODO Update the test and re-enable it.
