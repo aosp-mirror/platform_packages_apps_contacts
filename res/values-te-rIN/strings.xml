@@ -83,8 +83,8 @@
       <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> పరిచయం</item>
     </plurals>
     <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
-      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> పరిచయాలు · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> పరిచయం · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> పరిచయాలు · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> పరిచయం · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Google అందించినవి"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> అందించినవి"</string>
@@ -163,7 +163,6 @@
     <string name="returnCall" msgid="8171961914203617813">"కాల్‌ను తిరిగి చేయి"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\"ని పరిచయాలకు జోడించాలా?"</string>
     <string name="description_plus_button" msgid="515164827856229880">"ప్లస్"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g> పరిచయాల్లో <xliff:g id="CURRENT_NUMBER">%s</xliff:g>"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"మీ పరిచయాల యొక్క పేర్లు"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ఈ చర్యను నిర్వహించడానికి అనువర్తనం ఏదీ కనుగొనబడలేదు."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"మునుపటి స్క్రీన్‌కి తిరిగి రావడానికి క్లిక్ చేయండి"</string>
@@ -275,7 +274,7 @@
     <string name="today" msgid="8041090779381781781">"ఈ రోజు"</string>
     <string name="today_at_time_fmt" msgid="605665249491030460">"ఈ రోజు <xliff:g id="TIME_INTERVAL">%s</xliff:g>కి"</string>
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"రేపు <xliff:g id="TIME_INTERVAL">%s</xliff:g>కి"</string>
-    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%1$s</xliff:g>, <xliff:g id="TIME_INTERVAL">%2$s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(శీర్షిక లేని ఈవెంట్)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"సెట్ చేయి"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
@@ -292,11 +291,11 @@
     <string name="content_description_expand_editor" msgid="1111381475901897470">"పరిచయ ఎడిటర్‌ని విస్తరింపజేయడానికి క్లిక్ చేయండి."</string>
     <string name="content_description_collapse_editor" msgid="7598061318022977825">"పరిచయ ఎడిటర్‌ని కుదించడానికి క్లిక్ చేయండి."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"స్థానానికి వెళ్లడానికి దిశలు"</string>
-    <string name="content_description_recent_sms" msgid="1666389577263317445">"ఇటీవలి sms. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. ప్రతిస్పందించడానికి క్లిక్ చేయండి"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"ఇటీవలి sms. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. ప్రతిస్పందించడానికి క్లిక్ చేయండి"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"ఇన్‌కమింగ్"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"అవుట్‌గోయింగ్"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"మిస్డ్"</string>
-    <string name="content_description_recent_call" msgid="5183800406316723676">"ఇటీవలి కాల్. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. తిరిగి కాల్ చేయడానికి క్లిక్ చేయండి"</string>
+    <string name="content_description_recent_call" msgid="5183800406316723676">"ఇటీవలి కాల్. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. తిరిగి కాల్ చేయడానికి క్లిక్ చేయండి"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"మీరు: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"మీరు ఇమెయిల్ ఫీల్డ్ లేదా ఫోన్ ఫీల్డ్‌లో వ్యక్తి యొక్క Hangouts ఐడెంటిఫైయర్‌ని నమోదు చేసినప్పుడు Hangouts ఉత్తమంగా పని చేస్తాయి."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"మరిన్ని ఫీల్డ్‌లు"</string>
@@ -312,7 +311,6 @@
       <item quantity="one">లింక్ చేయబడిన పరిచయం</item>
     </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> లింక్ చేయబడిన పరిచయాలు"</string>
-    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"పరిచయాలను లింక్ చేయి"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"రద్దు చేయి"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
@@ -327,7 +325,6 @@
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
-    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ఈ పరిచయం"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"సంభావ్య నకిలీలు"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"ఈ పరిచయాలు ఒకే వ్యక్తికి సంబంధించినవి అయ్యి ఉండవచ్చు. మీరు వాటిని ఒకే పరిచయంగా లింక్ చేయవచ్చు."</string>
@@ -335,10 +332,8 @@
     <string name="from_your_accounts" msgid="1746293107836889912">"మీ ఖాతాల నుండి"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ఫోటోను ఎంచుకోండి"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> నుండి"</string>
-    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>ని తొలగిస్తుంది"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g>ని తొలగిస్తుంది"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g>ని తొలగిస్తుంది"</string>
-    <string name="photo_view_description_not_checked" msgid="8876314195990885177">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>లోని ఫోటో ఎంచుకోబడలేదు"</string>
-    <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>లోని ఫోటో ఎంచుకోబడింది"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"తెలియని ఖాతా నుండి అందించబడిన ఫోటో ఎంచుకోబడలేదు"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"తెలియని ఖాతా నుండి అందించబడిన ఫోటో ఎంచుకోబడింది"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"సూచనలు"</string>
@@ -514,7 +509,7 @@
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క ఎగుమతిని రద్దు చేయాలా?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard దిగుమతి/ఎగుమతిని రద్దు చేయడం సాధ్యపడలేదు"</string>
     <string name="fail_reason_unknown" msgid="1714092345030570863">"తెలియని లోపం."</string>
-    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\"ని తెరవడం సాధ్యపడలేదు: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%1$s</xliff:g>\"ని తెరవడం సాధ్యపడలేదు: <xliff:g id="EXACT_REASON">%2$s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"ఎక్స్‌పోర్టర్‌ను ప్రారంభించడం సాధ్యపడలేదు: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"ఎగమతి చేయగల పరిచయం లేదు."</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"మీరు అవసరమైన అనుమతిని నిలిపివేసారు."</string>
@@ -556,7 +551,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"పరిచయం NFC ద్వారా స్వీకరించబడింది"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"పరిచయాలను ఎగుమతి చేయాలా?"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"కాష్ చేస్తోంది"</string>
-    <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="TOTAL_NUMBER">%s</xliff:g>లో <xliff:g id="CURRENT_NUMBER">%s</xliff:g> దిగుమతి చేయబడుతోంది: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>లో <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> దిగుమతి చేయబడుతోంది: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">".vcf ఫైల్‌కు ఎగుమతి చేయి"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"ఇలా క్రమబద్ధీకరించు"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"మొదటి పేరు"</string>
@@ -621,8 +616,8 @@
     <string name="description_delete_contact" msgid="53835657343783663">"తొలగిస్తుంది"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"అధ్యాహారం"</string>
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> సెక"</string>
-    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> నిమి <xliff:g id="SECONDS">%s</xliff:g> సెక"</string>
-    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> గం <xliff:g id="MINUTES_1">%s</xliff:g> నిమి <xliff:g id="SECONDS">%s</xliff:g> సెక"</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%1$s</xliff:g> నిమి <xliff:g id="SECONDS">%2$s</xliff:g> సెక"</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%1$s</xliff:g> గం <xliff:g id="MINUTES_1">%2$s</xliff:g> నిమి <xliff:g id="SECONDS">%3$s</xliff:g> సెక"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"ఈ సత్వరమార్గం నిలిపివేయబడింది"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"పరిచయం తీసివేయబడింది"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"దిగుమతి చేయి"</string>
@@ -645,4 +640,7 @@
     <string name="connection_error_message" msgid="7046408921529247089">"కనెక్షన్ లేదు"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"మరిన్ని చూపుతుంది"</string>
+    <string name="importing_sim_finished_title" msgid="5196369441294050721">"SIM కార్డ్ దిగుమతి ముగిసింది"</string>
+    <string name="importing_sim_failed_title" msgid="3864137973400578707">"SIM కార్డ్‌ను దిగుమతి చేయడం సాధ్యపడలేదు"</string>
+    <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIMను దిగుమతి చేస్తోంది"</string>
 </resources>

@@ -85,9 +85,9 @@
       <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> kontakata</item>
     </plurals>
     <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
-      <item quantity="one"><xliff:g id="COUNT_2">%d</xliff:g> kontakt · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
-      <item quantity="few"><xliff:g id="COUNT_2">%d</xliff:g> kontakta · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> kontakata · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> kontakt · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="few"><xliff:g id="COUNT_2">%1$d</xliff:g> kontakta · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> kontakata · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Sa Google-a"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Sa <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
@@ -169,7 +169,6 @@
     <string name="returnCall" msgid="8171961914203617813">"Uzvrati poziv"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Želite li da dodate imejl adresu „<xliff:g id="EMAIL">%s</xliff:g>“ u kontakte?"</string>
     <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> od <xliff:g id="TOTAL_NUMBER">%s</xliff:g> kontak(a)ta"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Imena kontakata"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"Nije pronađena nijedna aplikacija koja bi mogla da izvrši ovu radnju."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Kliknite da biste se vratili na prethodni ekran"</string>
@@ -282,7 +281,7 @@
     <string name="today" msgid="8041090779381781781">"Danas"</string>
     <string name="today_at_time_fmt" msgid="605665249491030460">"Danas u <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"Sutra u <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
-    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%1$s</xliff:g>, <xliff:g id="TIME_INTERVAL">%2$s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Nenaslovljeni događaj)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"Podesi"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"Razmena trenutnih poruka"</string>
@@ -299,11 +298,11 @@
     <string name="content_description_expand_editor" msgid="1111381475901897470">"Kliknite da biste proširili uređivač kontakata."</string>
     <string name="content_description_collapse_editor" msgid="7598061318022977825">"Kliknite da biste skupili uređivač kontakata."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"uputstva do lokacije"</string>
-    <string name="content_description_recent_sms" msgid="1666389577263317445">"Nedavni SMS. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. Kliknite za odgovor"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"Nedavni SMS. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. Kliknite za odgovor"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"dolazni"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"odlazni"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"propušteni"</string>
-    <string name="content_description_recent_call" msgid="5183800406316723676">"Nedavni poziv. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. Kliknite za povratni poziv"</string>
+    <string name="content_description_recent_call" msgid="5183800406316723676">"Nedavni poziv. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. Kliknite za povratni poziv"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vi: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts radi bolje kad unesete Hangouts identifikator osobe u polje za imejl adresu ili broj telefona."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Još polja"</string>
@@ -320,7 +319,6 @@
       <item quantity="other">Objedinjeni kontakti (<xliff:g id="COUNT">%d</xliff:g>)</item>
     </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"Objedinjenih kontakata: <xliff:g id="COUNT">%d</xliff:g>"</string>
-    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"OBJEDINI KONTAKTE"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"OTKAŽI"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
@@ -338,7 +336,6 @@
       <item quantity="few">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
     </plurals>
-    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Ovaj kontakt"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Mogući duplikati"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Izgleda da su ovi kontakti ista osoba. Možete da ih objedinite u jedan kontakt."</string>
@@ -346,10 +343,8 @@
     <string name="from_your_accounts" msgid="1746293107836889912">"Sa vaših naloga"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"Izaberite sliku"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"Sa <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
-    <string name="editor_delete_view_description" msgid="8583095381562991959">"Izbriši <xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g>"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"Izbriši <xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g>"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Izbriši <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
-    <string name="photo_view_description_not_checked" msgid="8876314195990885177">"Slika sa <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> naloga <xliff:g id="USER_NAME">%s </xliff:g> nije označena"</string>
-    <string name="photo_view_description_checked" msgid="3906597168607472795">"Slika sa <xliff:g id="ACCOUNT_TYPE">%s </xliff:g> naloga <xliff:g id="USER_NAME">%s </xliff:g> je označena"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Slika sa nepoznatog naloga nije označena"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Slika sa nepoznatog naloga je označena"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"Predlozi"</string>
@@ -527,7 +522,7 @@
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Želite li da otkažete izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Nije moguće otkazati vCard uvoz/izvoz"</string>
     <string name="fail_reason_unknown" msgid="1714092345030570863">"Nepoznata greška."</string>
-    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Nije moguće otvoriti datoteku „<xliff:g id="FILE_NAME">%s</xliff:g>“: <xliff:g id="EXACT_REASON">%s</xliff:g>"</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Nije moguće otvoriti datoteku „<xliff:g id="FILE_NAME">%1$s</xliff:g>“: <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Nije moguće pokrenuti program za izvoz: „<xliff:g id="EXACT_REASON">%s</xliff:g>“"</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Nema kontakata za izvoz."</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"Onemogućili ste obaveznu dozvolu."</string>
@@ -569,7 +564,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt preko NFC-a"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"Želite li da izvezete kontakte?"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Keširanje..."</string>
-    <string name="progress_notifier_message" msgid="2311011466908220528">"Uvoz <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g>: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"Uvoz <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Izvezi u .vcf datoteku"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Sortiraj prema"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Ime"</string>
@@ -635,8 +630,8 @@
     <string name="description_delete_contact" msgid="53835657343783663">"Izbrišite"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"Tri tačke"</string>
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> sek"</string>
-    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sek"</string>
-    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> s <xliff:g id="MINUTES_1">%s</xliff:g> min <xliff:g id="SECONDS">%s</xliff:g> sek"</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%1$s</xliff:g> min <xliff:g id="SECONDS">%2$s</xliff:g> sek"</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%1$s</xliff:g> s <xliff:g id="MINUTES_1">%2$s</xliff:g> min <xliff:g id="SECONDS">%3$s</xliff:g> sek"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Ova prečica je onemogućena"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Kontakt je uklonjen"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"Uvezi"</string>
@@ -660,4 +655,7 @@
     <string name="connection_error_message" msgid="7046408921529247089">"Veza nije uspostavljena"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"Prikaži više"</string>
+    <string name="importing_sim_finished_title" msgid="5196369441294050721">"Uvoz sa SIM kartice je završen"</string>
+    <string name="importing_sim_failed_title" msgid="3864137973400578707">"Uvoz sa SIM kartice nije uspeo"</string>
+    <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Uvozi se sa SIM-a"</string>
 </resources>
