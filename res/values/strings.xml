@@ -1667,7 +1667,7 @@
     <!-- Dialog title when selecting the bulk operation to perform from a list. [CHAR LIMIT=36] -->
     <string name="dialog_export">Export contacts</string>
 
-    <!-- Dialog title when importing contacts from an external source. [CHAR LIMIT=36] -->
+    <!-- Dialog title when importing contacts from an external source such as SIM card or a vcf file. [CHAR LIMIT=36] -->
     <string name="dialog_import">Import contacts from</string>
 
     <!-- Toast indicating that sharing a contact has failed. [CHAR LIMIT=NONE]  -->
@@ -1908,7 +1908,10 @@
     <string name="importing_sim_finished_title">Finished importing SIM card</string>
 
     <!-- Notification title shown when importing SIM contacts failed [CHAR LIMIT=40] -->
-    <string name="importing_sim_failed_title">Couldn\'t import SIM card</string>
+    <string name="importing_sim_failed_title">Import failed</string>
+
+    <!-- Notification message shown when importing SIM contacts failed [CHAR LIMIT=NONE] -->
+    <string name="importing_sim_failed_message">Couldn\'t import contacts from SIM card</string>
 
     <!-- The notification title shown while SIM contacts are being imported [CHAR LIMIT=40] -->
     <string name="importing_sim_in_progress_title">Importing SIM</string>
