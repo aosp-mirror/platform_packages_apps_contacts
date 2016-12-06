@@ -20,8 +20,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
-import android.database.CursorWrapper;
-import android.database.DatabaseUtils;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -43,13 +41,12 @@ import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.common.test.mocks.MockContentProvider;
 import com.android.contacts.tests.AccountsTestHelper;
+import com.android.contacts.tests.ContactsMatchers;
 import com.android.contacts.tests.SimContactsTestHelper;
+import com.android.contacts.tests.StringableCursor;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -68,6 +65,10 @@ import java.util.Random;
 import java.util.Set;
 
 import static android.os.Build.VERSION_CODES;
+import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasEmail;
+import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasName;
+import static com.android.contacts.tests.ContactsMatchers.DataCursor.hasPhone;
+import static com.android.contacts.tests.ContactsMatchers.isSimContactWithNameAndPhone;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -127,19 +128,19 @@ public class SimContactDaoTests {
             ), mAccount);
 
             Cursor cursor = queryContactWithName("Test One");
-            assertThat(cursor, hasCount(2));
+            assertThat(cursor, ContactsMatchers.hasCount(2));
             assertThat(cursor, hasName("Test One"));
             assertThat(cursor, hasPhone("15095550101"));
             cursor.close();
 
             cursor = queryContactWithName("Test Two");
-            assertThat(cursor, hasCount(2));
+            assertThat(cursor, ContactsMatchers.hasCount(2));
             assertThat(cursor, hasName("Test Two"));
             assertThat(cursor, hasPhone("15095550102"));
             cursor.close();
 
             cursor = queryContactWithName("Test Three");
-            assertThat(cursor, hasCount(4));
+            assertThat(cursor, ContactsMatchers.hasCount(4));
             assertThat(cursor, hasName("Test Three"));
             assertThat(cursor, hasPhone("15095550103"));
             assertThat(cursor, allOf(hasEmail("user@example.com"), hasEmail("user2@example.com")));
@@ -156,7 +157,7 @@ public class SimContactDaoTests {
 
             Cursor cursor = queryAllDataInAccount();
 
-            assertThat(cursor, hasCount(1));
+            assertThat(cursor, ContactsMatchers.hasCount(1));
             assertThat(cursor, hasName("Test importJustName"));
             cursor.close();
         }
@@ -171,7 +172,7 @@ public class SimContactDaoTests {
 
             Cursor cursor = queryAllDataInAccount();
 
-            assertThat(cursor, hasCount(1));
+            assertThat(cursor, ContactsMatchers.hasCount(1));
             assertThat(cursor, hasPhone("15095550111"));
             cursor.close();
         }
@@ -190,11 +191,11 @@ public class SimContactDaoTests {
             ), mAccount);
 
             final Cursor contactsCursor = queryAllRawContactsInAccount();
-            assertThat(contactsCursor, hasCount(1));
+            assertThat(contactsCursor, ContactsMatchers.hasCount(1));
             contactsCursor.close();
 
             final Cursor dataCursor = queryAllDataInAccount();
-            assertThat(dataCursor, hasCount(1));
+            assertThat(dataCursor, ContactsMatchers.hasCount(1));
 
             dataCursor.close();
         }
@@ -218,12 +219,12 @@ public class SimContactDaoTests {
             sut.importContacts(contacts, mAccount);
 
             final Cursor contactsCursor = queryAllRawContactsInAccount();
-            assertThat(contactsCursor, hasCount(MAX_SIM_CONTACTS));
+            assertThat(contactsCursor, ContactsMatchers.hasCount(MAX_SIM_CONTACTS));
             contactsCursor.close();
 
             final Cursor dataCursor = queryAllDataInAccount();
             // Each contact has one data row for each of name, phone and email
-            assertThat(dataCursor, hasCount(MAX_SIM_CONTACTS * 3));
+            assertThat(dataCursor, ContactsMatchers.hasCount(MAX_SIM_CONTACTS * 3));
 
             dataCursor.close();
         }
@@ -737,126 +738,6 @@ public class SimContactDaoTests {
             assertThat(contacts.get(1), isSimContactWithNameAndPhone("Test Simtwo", "15095550102"));
             assertThat(contacts.get(2),
                     isSimContactWithNameAndPhone("Test Simthree", "15095550103"));
-        }
-    }
-
-    private static Matcher<SimContact> isSimContactWithNameAndPhone(final String name,
-            final String phone) {
-        return new BaseMatcher<SimContact>() {
-            @Override
-            public boolean matches(Object o) {
-                if (!(o instanceof SimContact))  return false;
-
-                SimContact other = (SimContact) o;
-
-                return name.equals(other.getName())
-                        && phone.equals(other.getPhone());
-            }
-
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("SimContact with name=" + name + " and phone=" +
-                        phone);
-            }
-        };
-    }
-
-    private static Matcher<Cursor> hasCount(final int count) {
-        return new BaseMatcher<Cursor>() {
-            @Override
-            public boolean matches(Object o) {
-                if (!(o instanceof Cursor)) return false;
-                return ((Cursor)o).getCount() == count;
-            }
-
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Cursor with " + count + " rows");
-            }
-        };
-    }
-
-    private static Matcher<Cursor> hasMimeType(String type) {
-        return hasValueForColumn(Data.MIMETYPE, type);
-    }
-
-    private static Matcher<Cursor> hasValueForColumn(final String column, final String value) {
-        return new BaseMatcher<Cursor>() {
-
-            @Override
-            public boolean matches(Object o) {
-                if (!(o instanceof Cursor)) return false;
-                final Cursor cursor = (Cursor)o;
-
-                final int index = cursor.getColumnIndexOrThrow(column);
-                return value.equals(cursor.getString(index));
-            }
-
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Cursor with " + column + "=" + value);
-            }
-        };
-    }
-
-    private static Matcher<Cursor> hasRowMatching(final Matcher<Cursor> rowMatcher) {
-        return new BaseMatcher<Cursor>() {
-            @Override
-            public boolean matches(Object o) {
-                if (!(o instanceof Cursor)) return false;
-                final Cursor cursor = (Cursor)o;
-
-                cursor.moveToPosition(-1);
-                while (cursor.moveToNext()) {
-                    if (rowMatcher.matches(cursor)) return true;
-                }
-
-                return false;
-            }
-
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Cursor with row matching ");
-                rowMatcher.describeTo(description);
-            }
-        };
-    }
-
-    private static Matcher<Cursor> hasName(final String name) {
-        return hasRowMatching(allOf(
-                hasMimeType(StructuredName.CONTENT_ITEM_TYPE),
-                hasValueForColumn(
-                        StructuredName.DISPLAY_NAME, name)));
-    }
-
-    private static Matcher<Cursor> hasPhone(final String phone) {
-        return hasRowMatching(allOf(
-                hasMimeType(Phone.CONTENT_ITEM_TYPE),
-                hasValueForColumn(
-                        Phone.NUMBER, phone)));
-    }
-
-    private static Matcher<Cursor> hasEmail(final String email) {
-        return hasRowMatching(allOf(
-                hasMimeType(Email.CONTENT_ITEM_TYPE),
-                hasValueForColumn(
-                        Email.ADDRESS, email)));
-    }
-
-    static class StringableCursor extends CursorWrapper {
-        public StringableCursor(Cursor cursor) {
-            super(cursor);
-        }
-
-        @Override
-        public String toString() {
-            final Cursor wrapped = getWrappedCursor();
-
-            if (wrapped.getCount() == 0) {
-                return "Empty Cursor";
-            }
-
-            return DatabaseUtils.dumpCursorToString(wrapped);
         }
     }
 
