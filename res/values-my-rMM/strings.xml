@@ -83,8 +83,8 @@
       <item quantity="one">အဆက်အသွယ် <xliff:g id="COUNT_0">%d</xliff:g> ခု</item>
     </plurals>
     <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
-      <item quantity="other">အဆက်အသွယ် <xliff:g id="COUNT_2">%d</xliff:g> ခု · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
-      <item quantity="one">အဆက်အသွယ် <xliff:g id="COUNT_0">%d</xliff:g> ခု · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
+      <item quantity="other">အဆက်အသွယ် <xliff:g id="COUNT_2">%1$d</xliff:g> ခု · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="one">အဆက်အသွယ် <xliff:g id="COUNT_0">%1$d</xliff:g> ခု · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Google မှ"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> မှ"</string>
@@ -163,7 +163,6 @@
     <string name="returnCall" msgid="8171961914203617813">"ဖုန်းပြန်ခေါ်ရန်"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" ကို လိပ်စာထဲ ထည့်မလား?"</string>
     <string name="description_plus_button" msgid="515164827856229880">"အပေါင်း"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> ၏ <xliff:g id="TOTAL_NUMBER">%s</xliff:g> လိပ်စာ"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"အဆက်အသွယ်များ၏နာမည်များ"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ဤလုပ်ဆောင်ချက်ကို ပြုလုပ်ပေးမည့် အက်ပ်မရှိပါ။"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ယခင် မျက်နှာပြင်သို့ ပြန်ရန် ကလစ်ပါ"</string>
@@ -275,7 +274,7 @@
     <string name="today" msgid="8041090779381781781">"ယနေ့"</string>
     <string name="today_at_time_fmt" msgid="605665249491030460">"ယနေ့ <xliff:g id="TIME_INTERVAL">%s</xliff:g> တွင်"</string>
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"နက်ဖြန်<xliff:g id="TIME_INTERVAL">%s</xliff:g>တွင်"</string>
-    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%1$s</xliff:g>, <xliff:g id="TIME_INTERVAL">%2$s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(ခေါင်းစဉ်မဲ့ ဖြစ်ရပ်)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"လက်ခံရန်"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
@@ -292,11 +291,11 @@
     <string name="content_description_expand_editor" msgid="1111381475901897470">"အဆက်အသွယ် အယ်ဒီတာအား ချဲ့ရန် ကလစ်နှိပ်ပါ။"</string>
     <string name="content_description_collapse_editor" msgid="7598061318022977825">"အဆက်အသွယ် အယ်ဒီတာအား ခေါက်ချရန် ကလစ်နှိပ်ပါ။"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"တည်နေရာများသို့ လမ်းညွှန်ချက်"</string>
-    <string name="content_description_recent_sms" msgid="1666389577263317445">"မကြာမီက စာတို။ <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. တုံ့ပြန်ရန် ကလစ်ပါ"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"မကြာမီက စာတို။ <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. တုံ့ပြန်ရန် ကလစ်ပါ"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"အဝင်"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"အထွက်"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"လွတ်သွား"</string>
-    <string name="content_description_recent_call" msgid="5183800406316723676">"မကြာမီက ခေါ်ဆိုမှု။ <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. ပြန်ခေါ်ရန် ကလစ်ပါ"</string>
+    <string name="content_description_recent_call" msgid="5183800406316723676">"မကြာမီက ခေါ်ဆိုမှု။ <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. ပြန်ခေါ်ရန် ကလစ်ပါ"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"သင်: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"အီးမေးအကွက် သို့မဟုတ် ဖုန်းနံပါတ် အကွက်တွင် တစ်ခြားသူ၏ Hangouts  အမှတ်သညာအား သင်ရိုက်ထည့်သည့်အခါ Hangouts ပိုမိုလွယ်ကူကောင်းမွန်စွာ အလုပ်လုပ်သည်။"</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"နောက်ထပ်အကွက်များ"</string>
@@ -312,7 +311,6 @@
       <item quantity="one">လင့်ခ်ချိတ်ထားသောအဆက်အသွယ်</item>
     </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"ကွင်းဆက်ချိတ်ထားသည့် အကောင့် <xliff:g id="COUNT">%d</xliff:g> ခု"</string>
-    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"အဆက်အသွယ်များ ချိတ်ဆက်ပါ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"မလုပ်တော့"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
@@ -327,7 +325,6 @@
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
-    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ဤအဆက်အသွယ်"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"ဖြစ်နိုင်သည့် မိတ္တုပွားများ"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"ယင်းအဆက်အသွယ်များ လူတစ်ဦးတည်း ဖြစ်နိုင်ပါသည်။ ၎င်းတို့ကို တစ်ခုတည်းသော အဆက်အသွယ် အဖြစ် ချိတ်ဆက်ပေးနိုင်ပါသည်။"</string>
@@ -335,10 +332,8 @@
     <string name="from_your_accounts" msgid="1746293107836889912">"သင့်အကောင့်များမှ"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ဓာတ်ပုံ ရွေးပါ"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> မှ"</string>
-    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> ကိုဖျက်ပါ"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g> ကိုဖျက်ပါ"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> ကိုဖျက်ပါ"</string>
-    <string name="photo_view_description_not_checked" msgid="8876314195990885177">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>ထံမှ ဓာတ်ပုံကို မစစ်ကြည့်ရသေးပါ"</string>
-    <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g>ထံမှ ဓာတ်ပုံကို စစ်ကြည့်ပြီးပြီ"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"အမည်မသိအကောင့်မှ ဓာတ်ပုံဓာတ်ပုံ မစစ်ဆေးရသေးပါ"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"အမည်မသိအကောင့်မှ ဓာတ်ပုံ စစ်ဆေးပြီးပါပြီ"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"အကြံပြုချက်များ"</string>
@@ -514,7 +509,7 @@
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> တင်ပို့ခြင်းကို မလုပ်တော့ဘူးလား။"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"လိပ်စာကဒ် တင်သွင်း/ပို့ခြင်း ဖျက်မရပါ"</string>
     <string name="fail_reason_unknown" msgid="1714092345030570863">"မသိရသောအမှားအယွင်း"</string>
-    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" ကို ဖွင့်၍မရပါ - <xliff:g id="EXACT_REASON">%s</xliff:g>။"</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%1$s</xliff:g>\" ကို ဖွင့်၍မရပါ - <xliff:g id="EXACT_REASON">%2$s</xliff:g>။"</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"တင်ပို့ရေးစတင်၍ မရပါ - \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"။"</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"တင်ပို့နိုင်သောအဆက်အသွယ် မရှိပါ။"</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"လိုအပ်သောခွင့်ပြုချက်ကို သင်ပိတ်ထားသည်။"</string>
@@ -556,7 +551,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC မှ အဆက်အသွယ်ရရှိပါသည်။"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"အဆက်အသွယ်များးကို တင်ပို့မလား။"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"ယာယီသိမ်းနေသည်"</string>
-    <string name="progress_notifier_message" msgid="2311011466908220528">"တင်သွင်းနေသည် <xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> - <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"တင်သွင်းနေသည် <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> - <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">".vcf ဖိုင်သို့ တင်ပို့ရန်"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"အောက်ပါအတိုင်းစီရန်"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"ရှေ့အမည်"</string>
@@ -621,8 +616,8 @@
     <string name="description_delete_contact" msgid="53835657343783663">"ဖျက်ရန်"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"အစက်သုံးစက်"</string>
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> စက္ကန့်"</string>
-    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> မိနစ် <xliff:g id="SECONDS">%s</xliff:g> စက္ကန့်"</string>
-    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> နာရီ <xliff:g id="MINUTES_1">%s</xliff:g> မိနစ် <xliff:g id="SECONDS">%s</xliff:g> စက္ကန့်"</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%1$s</xliff:g> မိနစ် <xliff:g id="SECONDS">%2$s</xliff:g> စက္ကန့်"</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%1$s</xliff:g> နာရီ <xliff:g id="MINUTES_1">%2$s</xliff:g> မိနစ် <xliff:g id="SECONDS">%3$s</xliff:g> စက္ကန့်"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"ဤဖြတ်လမ်းလင့်ခ်ကို ပိတ်ထားပါသည်"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"အဆက်အသွယ်ကို ဖယ်ရှားခဲ့ပါသည်"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"တင်သွင်းရန်"</string>
@@ -645,4 +640,7 @@
     <string name="connection_error_message" msgid="7046408921529247089">"ချိတ်ဆက်မှုမရှိပါ"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"ဆင်းမ်ကဒ်"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"နောက်ထပ်ပြရန်"</string>
+    <string name="importing_sim_finished_title" msgid="5196369441294050721">"ဆင်းမ်ကဒ်ကို တင်သွင်းပြီးပါပြီ"</string>
+    <string name="importing_sim_failed_title" msgid="3864137973400578707">"ဆင်းမ်ကဒ်ကို တင်သွင်း၍မရပါ"</string>
+    <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"ဆင်းမ်ကဒ်ကို တင်သွင်းနေသည်"</string>
 </resources>

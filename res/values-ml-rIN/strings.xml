@@ -83,8 +83,8 @@
       <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> കോൺടാക്റ്റ്</item>
     </plurals>
     <plurals name="contacts_count_with_account" formatted="false" msgid="7402583111980220575">
-      <item quantity="other"><xliff:g id="COUNT_2">%d</xliff:g> കോൺടാക്‌റ്റുകൾ · <xliff:g id="ACCOUNT_3">%s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> കോൺടാക്‌റ്റ് · <xliff:g id="ACCOUNT_1">%s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> കോൺടാക്‌റ്റുകൾ · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> കോൺടാക്‌റ്റ് · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Google-ൽ നിന്നുള്ളവ"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"<xliff:g id="ACCOUNT">%s</xliff:g> അക്കൗണ്ടിൽ നിന്നുള്ളവ"</string>
@@ -163,7 +163,6 @@
     <string name="returnCall" msgid="8171961914203617813">"കോളിലേക്ക് മടങ്ങുക"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"കോൺടാക്റ്റുകളിലേക്ക് \"<xliff:g id="EMAIL">%s</xliff:g>\" ചേർക്കണോ?"</string>
     <string name="description_plus_button" msgid="515164827856229880">"പ്ലസ്"</string>
-    <string name="exporting_contact_list_progress" msgid="560522409559101193">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g> / <xliff:g id="TOTAL_NUMBER">%s</xliff:g> കോൺടാക്റ്റുകൾ"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"നിങ്ങളുടെ കോൺടാക്റ്റുകളുടെ പേരുകൾ"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"ഈ പ്രവർത്തനം കൈകാര്യം ചെയ്യാൻ അപ്ലിക്കേഷനുകളൊന്നും കണ്ടെത്തിയില്ല."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"മുമ്പത്തെ സ്‌ക്രീനിലേക്ക് മടങ്ങാൻ ക്ലിക്കുചെയ്യുക"</string>
@@ -275,7 +274,7 @@
     <string name="today" msgid="8041090779381781781">"ഇന്ന്"</string>
     <string name="today_at_time_fmt" msgid="605665249491030460">"ഇന്ന് <xliff:g id="TIME_INTERVAL">%s</xliff:g> മണിയ്‌ക്ക്"</string>
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"നാളെ <xliff:g id="TIME_INTERVAL">%s</xliff:g> മണിയ്‌ക്ക്"</string>
-    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%1$s</xliff:g>, <xliff:g id="TIME_INTERVAL">%2$s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(ശീർഷകമില്ലാത്ത ഇവന്റ്)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"സജ്ജമാക്കുക"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
@@ -292,11 +291,11 @@
     <string name="content_description_expand_editor" msgid="1111381475901897470">"കോൺടാക്‌റ്റ് എഡിറ്റർ വിപുലീകരിക്കാൻ ക്ലിക്കുചെയ്യുക."</string>
     <string name="content_description_collapse_editor" msgid="7598061318022977825">"കോൺടാക്‌റ്റ് എഡിറ്റർ ചുരുക്കാൻ ക്ലിക്കുചെയ്യുക."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"ലൊക്കേഷനിലേക്കുള്ള വഴികൾ"</string>
-    <string name="content_description_recent_sms" msgid="1666389577263317445">"പുതിയ sms. <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. മറുപടി നൽകാൻ ക്ലിക്കുചെയ്യുക"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"പുതിയ sms. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. മറുപടി നൽകാൻ ക്ലിക്കുചെയ്യുക"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"ഇൻകമിംഗ്"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"ഔട്ട്‌ഗോയിംഗ്"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"മിസ്‌ഡ് കോളുകൾ"</string>
-    <string name="content_description_recent_call" msgid="5183800406316723676">"പുതിയ കോൾ. <xliff:g id="CALL_TYPE">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. തിരികെ വിളിക്കാൻ ക്ലിക്കുചെയ്യുക"</string>
+    <string name="content_description_recent_call" msgid="5183800406316723676">"പുതിയ കോൾ. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. തിരികെ വിളിക്കാൻ ക്ലിക്കുചെയ്യുക"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"നിങ്ങൾ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ഇമെയിൽ ഫീൽഡിലോ ഫോൺ ഫീൽഡിലോ വ്യക്തിയുടെ Hangouts ഐഡന്റിഫയർ നൽകുമ്പോൾ, Hangouts മികച്ചതായി പ്രവർത്തിക്കുന്നു."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"കൂടുതൽ ഫീൽഡുകൾ"</string>
@@ -312,7 +311,6 @@
       <item quantity="one">ലിങ്കുചെയ്ത കോൺടാക്റ്റ്</item>
     </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"ലിങ്കുചെയ്ത <xliff:g id="COUNT">%d</xliff:g> കോൺടാക്റ്റുകൾ"</string>
-    <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"കോണ്ടാക്റ്റുകൾ ലിങ്കുചെയ്യൂ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"റദ്ദാക്കുക"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
@@ -327,7 +325,6 @@
       <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one"></item>
     </plurals>
-    <string name="quickcontact_suggestion_account_type" msgid="5878263654735376962">"<xliff:g id="ACCOUNT_TYPE_0">%s</xliff:g><xliff:g id="ACCOUNT_TYPE_NUMBER">%s</xliff:g>"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ഈ കോൺടാക്റ്റ്"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"സാധ്യതയുള്ള ഡ്യൂപ്ലിക്കേറ്റുകൾ"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"ഈ കോൺടാക്റ്റുകൾ, ഒരേ വ്യക്തി ആയേക്കാം, ഒരൊറ്റ കോൺടാക്റ്റായി നിങ്ങൾക്കിവ ലിങ്കുചെയ്യാവുന്നതാണ്."</string>
@@ -335,10 +332,8 @@
     <string name="from_your_accounts" msgid="1746293107836889912">"നിങ്ങളുടെ അക്കൗണ്ടുകളിൽ നിന്നും"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ഫോട്ടോ തിരഞ്ഞെടുക്കുക"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> എന്നതിൽ നിന്ന്"</string>
-    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> ഇല്ലാതാക്കുക"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g> ഇല്ലാതാക്കുക"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> ഇല്ലാതാക്കുക"</string>
-    <string name="photo_view_description_not_checked" msgid="8876314195990885177">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> എന്നതിൽ നിന്നുള്ള ഫോട്ടോ ചെക്കുചെയ്തില്ല"</string>
-    <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="ACCOUNT_TYPE">%s </xliff:g><xliff:g id="USER_NAME">%s </xliff:g> എന്നതിൽ നിന്നുള്ള ഫോട്ടോ ചെക്കുചെയ്തു"</string>
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തിട്ടില്ല"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"തിരിച്ചറിയാനാകാത്ത അക്കൗണ്ടിൽ നിന്നുള്ള ഫോട്ടോ തിരഞ്ഞെടുത്തു"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"നിര്‍ദ്ദേശങ്ങള്‍"</string>
@@ -514,7 +509,7 @@
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> എന്നത് എക്‌സ്‌പോർട്ടുചെയ്യുന്നത് റദ്ദാക്കണോ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard ഇമ്പോർട്ടുചെയ്യൽ/എക്‌സ്‌പോർട്ടുചെയ്യൽ റദ്ദാക്കാനായില്ല"</string>
     <string name="fail_reason_unknown" msgid="1714092345030570863">"അജ്ഞാത പിശക്."</string>
-    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%s</xliff:g>\" തുറക്കാനായില്ല: <xliff:g id="EXACT_REASON">%s</xliff:g>."</string>
+    <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%1$s</xliff:g>\" തുറക്കാനായില്ല: <xliff:g id="EXACT_REASON">%2$s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"എക്‌സ്‌പോർട്ടർ ആരംഭിക്കാനായില്ല: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"എക്‌സ്‌പോർട്ടുചെയ്യാനാകുന്ന കോൺടാക്റ്റ് ഒന്നുമില്ല."</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"ആവശ്യമായ ഒരു അനുമതി നിങ്ങൾ പ്രവർത്തനരഹിതമാക്കി."</string>
@@ -556,7 +551,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC മുഖേന ലഭിച്ച കോൺടാക്റ്റ്"</string>
     <string name="confirm_export_title" msgid="6834385377255286349">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യണോ?"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"കാഷെ ചെയ്യൽ"</string>
-    <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%s</xliff:g> ഇമ്പോർട്ടുചെയ്യുന്നു: <xliff:g id="NAME">%s</xliff:g>"</string>
+    <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> ഇമ്പോർട്ടുചെയ്യുന്നു: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">".vcf ഫയലിലേക്ക് എക്സ്പോർട്ട് ചെയ്യൂ"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"ഇപ്രകാരം അടുക്കുക"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"ഫസ്റ്റ് നെയിം"</string>
@@ -621,8 +616,8 @@
     <string name="description_delete_contact" msgid="53835657343783663">"ഇല്ലാതാക്കുക"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"എല്ലിപ്‌സിസ്"</string>
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> സെ."</string>
-    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%s</xliff:g> മി <xliff:g id="SECONDS">%s</xliff:g> സെ"</string>
-    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%s</xliff:g> മണിക്കൂർ <xliff:g id="MINUTES_1">%s</xliff:g> മിനിറ്റ് <xliff:g id="SECONDS">%s</xliff:g> സെക്കൻഡ്"</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%1$s</xliff:g> മി <xliff:g id="SECONDS">%2$s</xliff:g> സെ"</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%1$s</xliff:g> മണിക്കൂർ <xliff:g id="MINUTES_1">%2$s</xliff:g> മിനിറ്റ് <xliff:g id="SECONDS">%3$s</xliff:g> സെക്കൻഡ്"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"ഈ കുറുക്കുവഴി പ്രവർത്തനരഹിതമാക്കി"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"കോൺടാക്‌റ്റ് നീക്കംചെയ്‌തു"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"ഇമ്പോർട്ടുചെയ്യുക"</string>
@@ -645,4 +640,7 @@
     <string name="connection_error_message" msgid="7046408921529247089">"കണക്ഷനൊന്നുമില്ല"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"സിം"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"കൂടുതൽ കാണിക്കൂ"</string>
+    <string name="importing_sim_finished_title" msgid="5196369441294050721">"സിം കാർഡ് ഇമ്പോർട്ടുചെയ്‌തു"</string>
+    <string name="importing_sim_failed_title" msgid="3864137973400578707">"സിം കാർഡ് ഇമ്പോർട്ടുചെയ്യാനായില്ല"</string>
+    <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"സിം കോൺടാക്റ്റുകൾ ഇമ്പോർട്ടുചെയ്യുന്നു"</string>
 </resources>
