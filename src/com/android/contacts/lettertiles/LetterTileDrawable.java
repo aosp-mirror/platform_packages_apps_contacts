@@ -29,7 +29,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 
 import junit.framework.Assert;
 

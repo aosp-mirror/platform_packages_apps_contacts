@@ -29,7 +29,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.model.account.AccountWithDataSet;
 
 import java.util.List;

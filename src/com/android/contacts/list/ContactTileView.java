@@ -30,7 +30,7 @@ import android.widget.TextView;
 import com.android.contacts.common.ContactPhotoManager;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.MoreContactUtils;
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 
 /**
  * A ContactTile displays a contact's picture and name

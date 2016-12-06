@@ -22,7 +22,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 
 /**
  * Layout that calculates its height based on its width, or vice versa (depending on the set

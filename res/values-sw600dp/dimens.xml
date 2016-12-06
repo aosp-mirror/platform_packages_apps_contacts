@@ -60,7 +60,6 @@
 
     <dimen name="contact_browser_list_header_left_margin">@dimen/list_visible_scrollbar_padding</dimen>
     <dimen name="contact_browser_list_header_right_margin">24dip</dimen>
-    <dimen name="contact_browser_list_top_margin">16dip</dimen>
 
     <!-- End margin of the account filter header icon -->
     <dimen name="contact_browser_list_header_icon_right_margin">22dp</dimen>

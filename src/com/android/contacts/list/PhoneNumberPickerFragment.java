@@ -27,7 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 
 /**

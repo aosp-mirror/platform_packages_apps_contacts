@@ -38,7 +38,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contacts.vcard.ExportVCardActivity;
 import com.android.contacts.vcard.ShareVCardActivity;

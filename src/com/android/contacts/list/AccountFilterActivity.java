@@ -29,7 +29,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 
 import java.util.ArrayList;

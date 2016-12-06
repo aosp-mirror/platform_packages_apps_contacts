@@ -15,7 +15,7 @@
  */
 package com.android.contacts.common.activity;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;

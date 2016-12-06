@@ -34,7 +34,7 @@ import android.text.BidiFormatter;
 import android.text.TextDirectionHeuristics;
 import android.util.Log;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestImportVCardPermissionsActivity;
 
 import java.util.List;

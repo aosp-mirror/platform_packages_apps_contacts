@@ -25,7 +25,7 @@ import android.view.View;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 
 /**
  * A custom view for the pinned section header shown at the top of the contact list.

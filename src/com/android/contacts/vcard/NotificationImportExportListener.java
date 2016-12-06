@@ -31,7 +31,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.vcard.VCardEntry;
 
 import java.text.NumberFormat;

@@ -46,7 +46,7 @@ import android.widget.TextView;
 
 import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ContactPhotoManager;
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.compat.CompatUtils;
 import com.android.contacts.compat.PhoneAccountSdkCompat;
 import com.android.contacts.compat.telecom.TelecomManagerCompat;

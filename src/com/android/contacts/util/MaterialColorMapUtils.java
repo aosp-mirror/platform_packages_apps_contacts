@@ -33,9 +33,9 @@ public class MaterialColorMapUtils {
 
     public MaterialColorMapUtils(Resources resources) {
         sPrimaryColors = resources.obtainTypedArray(
-                com.android.contacts.common.R.array.letter_tile_colors);
+                com.android.contacts.R.array.letter_tile_colors);
         sSecondaryColors = resources.obtainTypedArray(
-                com.android.contacts.common.R.array.letter_tile_colors_dark);
+                com.android.contacts.R.array.letter_tile_colors_dark);
     }
 
     public static class MaterialPalette implements Parcelable {

@@ -28,7 +28,7 @@ import android.content.res.XmlResourceParser;
 import android.util.AttributeSet;
 import android.util.Xml;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.model.account.ExternalAccountType;
 
 import org.xmlpull.v1.XmlPullParser;

@@ -37,7 +37,7 @@ import com.android.contacts.common.CallUtil;
 import com.android.contacts.common.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.common.ContactsUtils;
 import com.android.contacts.common.GeoUtil;
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.compat.CallableCompat;
 import com.android.contacts.compat.CompatUtils;
 import com.android.contacts.compat.DirectoryCompat;

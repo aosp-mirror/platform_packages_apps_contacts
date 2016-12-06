@@ -7,7 +7,7 @@ LOCAL_CERTIFICATE := shared
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
-res_dirs := res ../res-icons
+res_dirs := res
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs))
 
 LOCAL_PACKAGE_NAME := ContactsTests

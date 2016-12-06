@@ -21,7 +21,7 @@ import static android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.common.R;
+import com.android.contacts.R;
 import com.android.contacts.preference.ContactsPreferences;
 
 import org.mockito.Mock;
