@@ -19,10 +19,12 @@ import android.content.ContentProviderResult;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.os.RemoteException;
+import android.support.annotation.VisibleForTesting;
 
 import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
+import com.google.common.base.Function;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,27 +42,48 @@ public abstract class SimContactDao {
     // DO NOT SUBMIT if set to true
     private static final boolean USE_FAKE_INSTANCE = false;
 
-    public static SimContactDao create(Context context) {
-        if (USE_FAKE_INSTANCE) {
-            return new SimContactDaoImpl.DebugImpl(context)
-                    .addSimCard(new SimCard("fake-sim-id1", 1, "Fake Carrier",
-                            "Card 1", "15095550101", "us").withContacts(
-                            new SimContact(1, "Sim One", "15095550111", null),
-                            new SimContact(2, "Sim Two", "15095550112", null),
-                            new SimContact(3, "Sim Three", "15095550113", null),
-                            new SimContact(4, "Sim Four", "15095550114", null),
-                            new SimContact(5, "411 & more", "411", null)
-                    ))
-                    .addSimCard(new SimCard("fake-sim-id2", 2, "Carrier Two",
-                            "Card 2", "15095550102", "us").withContacts(
-                            new SimContact(1, "John Sim", "15095550121", null),
-                            new SimContact(2, "Bob Sim", "15095550122", null),
-                            new SimContact(3, "Mary Sim", "15095550123", null),
-                            new SimContact(4, "Alice Sim", "15095550124", null),
-                            new SimContact(5, "Sim Duplicate", "15095550121", null)
-                    ));
-        }
-        return new SimContactDaoImpl(context);
+    public static final Function<Context, SimContactDao> DEFAULT_FACTORY =
+            new Function<Context, SimContactDao>() {
+                @Override
+                public SimContactDao apply(Context context) {
+                    return USE_FAKE_INSTANCE ?
+                            createDebugInstance(context) :
+                            new SimContactDaoImpl(context);
+                }
+            };
+    private static Function<? super Context, SimContactDao> sInstanceFactory = DEFAULT_FACTORY;
+
+    private static SimContactDao createDebugInstance(Context context) {
+        return new SimContactDaoImpl.DebugImpl(context)
+                .addSimCard(new SimCard("fake-sim-id1", 1, "Fake Carrier",
+                        "Card 1", "15095550101", "us").withContacts(
+                        new SimContact(1, "Sim One", "15095550111", null),
+                        new SimContact(2, "Sim Two", "15095550112", null),
+                        new SimContact(3, "Sim Three", "15095550113", null),
+                        new SimContact(4, "Sim Four", "15095550114", null),
+                        new SimContact(5, "411 & more", "411", null)
+                ))
+                .addSimCard(new SimCard("fake-sim-id2", 2, "Carrier Two",
+                        "Card 2", "15095550102", "us").withContacts(
+                        new SimContact(1, "John Sim", "15095550121", null),
+                        new SimContact(2, "Bob Sim", "15095550122", null),
+                        new SimContact(3, "Mary Sim", "15095550123", null),
+                        new SimContact(4, "Alice Sim", "15095550124", null),
+                        new SimContact(5, "Sim Duplicate", "15095550121", null)
+                ));
+    }
+
+    public static synchronized SimContactDao create(Context context) {
+        return sInstanceFactory.apply(context);
+    }
+
+    /**
+     * Sets the factory function used by {@link SimContactDao#create}
+     */
+    @VisibleForTesting
+    public static synchronized void setFactoryForTest(
+            Function<? super Context, SimContactDao> factory) {
+        sInstanceFactory = factory;
     }
 
     public abstract boolean canReadSimContacts();
