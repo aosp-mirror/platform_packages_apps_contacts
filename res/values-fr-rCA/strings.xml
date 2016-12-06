@@ -254,8 +254,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Prenez une minute pour ajouter un compte qui sauvegardera vos contacts sur Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Les nouveaux contacts seront enregistrés dans le compte <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Choisissez un compte par défaut pour les nouveaux contacts :"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Créer un contact"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier un contact"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Contact"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Lecture seule"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Choisissez le contact à modifier"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Contacts associés"</string>
@@ -264,7 +264,7 @@
     <string name="add_account" msgid="8201790677994503186">"Ajouter un compte"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ajouter un nouveau compte"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exporter les fichiers de la base de données"</string>
-    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Créer un nouveau contact"</string>
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Créer un contact"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"En voir plus"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"En voir moins"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Récents"</string>

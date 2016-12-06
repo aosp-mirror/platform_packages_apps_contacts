@@ -360,7 +360,7 @@
     <string name="call_work" msgid="5328785911463744028">"Chamar ao traballo"</string>
     <string name="call_fax_work" msgid="7467763592359059243">"Chamar ao número de fax do traballo"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Chamar ao número de fax da casa"</string>
-    <string name="call_pager" msgid="9003902812293983281">"Chamar ao busca"</string>
+    <string name="call_pager" msgid="9003902812293983281">"Chamar ao buscapersoas"</string>
     <string name="call_other" msgid="8563753966926932052">"Chamar"</string>
     <string name="call_callback" msgid="1910165691349426858">"Chamar ao número de devolución de chamada"</string>
     <string name="call_car" msgid="3280537320306436445">"Chamar ao coche"</string>
@@ -372,7 +372,7 @@
     <string name="call_telex" msgid="2223170774548648114">"Chamar ao télex"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"Chamar ao número de TTY/TDD"</string>
     <string name="call_work_mobile" msgid="8707874281430105394">"Chamar ao móbil do traballo"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"Chamar ao busca do traballo"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"Chamar ao buscapersoas do traballo"</string>
     <string name="call_assistant" msgid="670941612175068337">"Chamar a: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"Chamar ao número de teléfono de MMS"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (chamar)"</string>
@@ -382,7 +382,7 @@
     <string name="sms_work" msgid="2269624156655267740">"Enviar unha mensaxe ao traballo"</string>
     <string name="sms_fax_work" msgid="8028189067816907075">"Enviar unha mensaxe ao fax do traballo"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"Enviar unha mensaxe ao fax da casa"</string>
-    <string name="sms_pager" msgid="7730404569637015192">"Enviar unha mensaxe ao busca"</string>
+    <string name="sms_pager" msgid="7730404569637015192">"Enviar unha mensaxe ao buscapersoas"</string>
     <string name="sms_other" msgid="806127844607642331">"Enviar unha mensaxe"</string>
     <string name="sms_callback" msgid="5004824430094288752">"Enviar unha mensaxe ao número de devolución da chamada"</string>
     <string name="sms_car" msgid="7444227058437359641">"Enviar unha mensaxe ao coche"</string>
@@ -394,7 +394,7 @@
     <string name="sms_telex" msgid="9034802430065267848">"Enviar unha mensaxe ao télex"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"Enviar unha mensaxe ao TTY/TDD"</string>
     <string name="sms_work_mobile" msgid="2459939960512702560">"Enviar unha mensaxe ao móbil do traballo"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"Enviar unha mensaxe ao busca do traballo"</string>
+    <string name="sms_work_pager" msgid="5566924423316960597">"Enviar unha mensaxe ao buscapersoas do traballo"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"Enviar unha mensaxe a <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Enviar unha mensaxe ao MMS"</string>
     <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (enviar mensaxe)"</string>

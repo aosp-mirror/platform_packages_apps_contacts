@@ -667,7 +667,7 @@
     <string name="sim_import_title" msgid="2511154832820812822">"‏ייבוא מכרטיס SIM"</string>
     <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"ביטול"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"הסינכרון האוטומטי מושבת. הקש כדי להפעיל אותו."</string>
-    <string name="dismiss_sync_alert" msgid="8941131776605093596">"סגירה"</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"ביטול"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"סנכרון החשבון מושבת. הקש כדי להפעיל אותו."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"האם להשבית את הסנכרון האוטומטי?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"‏השינויים שתבצע בכל האפליקציות והחשבונות, לא רק באנשי הקשר מחשבון Google, יסונכרנו בין האינטרנט לבין המכשירים שלך."</string>

@@ -395,7 +395,7 @@
     <string name="sms_tty_tdd" msgid="6782284969132531532">"TTY/TDD телефонго SMS жөнөтүү"</string>
     <string name="sms_work_mobile" msgid="2459939960512702560">"Жумуштун мобилдик телефонуна SMS жөнөтүү"</string>
     <string name="sms_work_pager" msgid="5566924423316960597">"Жумуштун пейжерине SMS жөнөтүү"</string>
-    <string name="sms_assistant" msgid="2773424339923116234">"<xliff:g id="ASSISTANT">%s</xliff:g> дегенге SMS билдирүү жөнөтүү"</string>
+    <string name="sms_assistant" msgid="2773424339923116234">"<xliff:g id="ASSISTANT">%s</xliff:g> номерине SMS билдирүү жөнөтүү"</string>
     <string name="sms_mms" msgid="4069352461380762677">"MMS телефонго SMS жөнөтүү"</string>
     <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Билдирүү жөнөтүү)"</string>
     <string name="description_video_call" msgid="7120921378651700947">"Видео чалуу"</string>
@@ -454,8 +454,8 @@
     <string name="email_custom" msgid="5536404237099078802">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> электрондук кат жөнөтүү"</string>
     <string name="email" msgid="5668400997660065897">"Электрондук почта"</string>
     <string name="postal_street" msgid="8133143961580058972">"Көчөсү"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"Абоненттик кутусу"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Айлана-тегерек"</string>
+    <string name="postal_pobox" msgid="4431938829180269821">"Абоненттик почта кутусу"</string>
+    <string name="postal_neighborhood" msgid="1450783874558956739">"Району"</string>
     <string name="postal_city" msgid="6597491300084895548">"Шаары"</string>
     <string name="postal_region" msgid="6045263193478437672">"Штаты"</string>
     <string name="postal_postcode" msgid="572136414136673751">"ZIP коду"</string>
@@ -483,18 +483,18 @@
     <string name="announce_expanded_fields" msgid="1075947220478530622">"Жайылып көрсөтүлдү"</string>
     <string name="announce_collapsed_fields" msgid="6414231530177338704">"Жыйыштырылды"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Бардык байланыштар"</string>
-    <string name="list_filter_all_starred" msgid="5031734941601931356">"Жылдызчаланган"</string>
+    <string name="list_filter_all_starred" msgid="5031734941601931356">"Белгиленген байланыштар"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"Ыңгайлаштыруу"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Байланыш"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"Бардык башка байланыштар"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Бардык байланыштар"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"Шайкештирүү тобун жоюу"</string>
+    <string name="menu_sync_remove" msgid="3266725887008450161">"Шайкештирүү тобун өчүрүү"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Шайкештирүү тобуна кошуу"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Дагы топтор…"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"\"<xliff:g id="GROUP">%s</xliff:g>\" тобун шайкештирүүдөн алып салуу топко кирбеген башка байланыштарды дагы шайкештирүүдөн чыгарып салат."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Көрсөтүү параметрлери сакталууда…"</string>
     <string name="menu_done" msgid="796017761764190697">"Бүттү"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Жокко чыгар"</string>
+    <string name="menu_doNotSave" msgid="58593876893538465">"Баш тартуу"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Ылайыкташтырылган көрүнүш"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Өткөрүлүп алынган байланыштар төмөнкүгө сакталсын:"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"SIM-карта"</string>
@@ -543,10 +543,10 @@
     <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"vCard файлдарынын дайындарын окуу токтотулду"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"<xliff:g id="FILENAME">%s</xliff:g> vCard импорттолуп бүттү"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g> файлын импорттоо токтотулду"</string>
-    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> жакынкы убакытта өткөрүлүп алынат."</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> бир аздан кийин өткөрүлүп алынат."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Файл бир аздан кийин өткөрүлүп алынат."</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"vCard файлдарынын өткөрүп берүү талабы четке кагылды. Кийинчерээк кайра аракет кылып көрүңүз."</string>
-    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> жакынкы убакытта өткөрүлүп берилет."</string>
+    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> бир аздан кийин өткөрүлүп берилет."</string>
     <string name="vcard_export_will_start_message_fallback" msgid="6553826997490909749">"Файл бир аздан кийин өткөрүлүп берилет."</string>
     <string name="contacts_export_will_start_message" msgid="8538705791417534431">"Байланыштар жакында өткөрүлүп берилет."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"vCard файлдарын өткөрүп берүү талабы четке кагылды. Кийинчерээк кайра аракет кылып көрүңүз."</string>
