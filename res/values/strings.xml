@@ -242,10 +242,6 @@
     <!-- Message with name displayed in a toast after you create a contact shortcut in the launcher [CHAR LIMIT=NONE]-->
     <string name="createContactShortcutSuccessful"><xliff:g id="name">%s</xliff:g> added to Home screen.</string>
 
-    <!-- When picking a contact from a list of all contacts there is an entry at the top of the
-         list that allows the user to create a new contact, which this string is used for -->
-    <string name="pickerNewContactHeader">Create new contact</string>
-
     <!-- The order of the items below is important, don't reorder without changing EditContactActivity.java -->
     <skip/>
 
@@ -1239,7 +1235,7 @@
     <!-- This error message shown when the user actually have no contact
          (e.g. just after data-wiping), or, data providers of the contact list prohibits their
          contacts from being exported to outside world via vcard exporter, etc. [CHAR LIMIT=NONE] -->
-    <string name="composer_has_no_exportable_contact">There are no exportable contacts. If you do have contacts on your phone, some data providers may not allow the contacts to be exported from the phone.</string>
+    <string name="composer_has_no_exportable_contact">There are no exportable contacts.</string>
 
     <!-- The error reason the vCard composer may emit when vCard composer is not initialized
          even when needed.
