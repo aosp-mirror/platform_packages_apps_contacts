@@ -15,10 +15,6 @@
 -->
 <resources>
 
-    <style name="DetailActivityTheme" parent="@android:Theme.Dialog">
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
     <style name="DirectoryHeader" parent="PeopleTheme">
         <item name="android:paddingTop">0dip</item>
 
