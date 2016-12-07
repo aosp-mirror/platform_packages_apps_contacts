@@ -14,20 +14,11 @@
      limitations under the License.
 -->
 <resources>
-    <dimen name="editor_padding_top">32dip</dimen>
     <dimen name="editor_type_label_width">122dip</dimen>
-    <dimen name="editor_add_field_label_left_padding">16dip</dimen>
-    <dimen name="detail_item_vertical_margin">16dip</dimen>
-    <dimen name="detail_item_icon_margin">8dip</dimen>
     <dimen name="shortcut_icon_size">64dip</dimen>
-    <dimen name="group_detail_border_padding">16dip</dimen>
-    <dimen name="search_view_width">400dip</dimen>
     <dimen name="contact_browser_list_item_text_size">18sp</dimen>
     <dimen name="contact_browser_list_item_gap_between_image_and_text">25dp</dimen>
     <dimen name="contact_browser_list_item_gap_between_indexer_and_image">25dp</dimen>
-    <dimen name="contact_browser_list_top_margin">18dp</dimen>
-
-    <dimen name="quick_contact_photo_container_height">360dip</dimen>
 
     <!-- Because the "join" screen has the vertical scroll bar on right,
       we cannot use @dimen/contact_browser_list_header_left_margin as is. -->
@@ -36,9 +27,6 @@
     <dimen name="join_header_top_margin">16dip</dimen>
     <dimen name="join_header_bottom_margin">16dip</dimen>
 
-    <!-- Account title left padding -->
-    <dimen name="account_container_left_padding">16dip</dimen>
-    <dimen name="contact_detail_list_top_padding">8dip</dimen>
     <dimen name="frequently_contacted_title_text_size">24sp</dimen>
 
     <!-- End margin of edit group title -->
@@ -55,8 +43,6 @@
 
     <!-- Margin offset b/w the image top and app bar bottom for no account empty view -->
     <dimen name="contacts_no_account_empty_image_offset">238dp</dimen>
-
-    <dimen name="detail_item_side_margin">0dip</dimen>
 
     <dimen name="contact_browser_list_header_left_margin">@dimen/list_visible_scrollbar_padding</dimen>
     <dimen name="contact_browser_list_header_right_margin">24dip</dimen>

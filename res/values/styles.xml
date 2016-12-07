@@ -23,9 +23,6 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="Theme">
-    </style>
-
     <style name="Theme.QuickContact" parent="@style/PeopleTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
@@ -196,9 +193,6 @@
         <item name="android:color">@android:color/white</item>
     </style>
 
-    <style name="ContactsUnavailableButtonStyle" parent="@style/Widget.AppCompat.Button.Colored">
-    </style>
-
     <!-- Use the non-light style so that the up button & icons aren't black. If we use the
          Light style, then it is impossible to tint the homeAsUp icon anything other than black -->
     <style name="ContactsActionBarStyle" parent="@android:style/Widget.Material.ActionBar">
@@ -314,26 +308,8 @@
         <item name="android:colorAccent">@color/primary_color</item>
     </style>
 
-    <style name="SectionDivider">
-        <item name="android:background">#7e7e87</item>
-        <item name="android:layout_height">1dip</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
-
     <style name="SelectableItem" parent="@android:style/Theme.Material.Light">
         <item name="android:background">?android:attr/selectableItemBackground</item>
-    </style>
-
-    <style name="QuickContactListItemTextWrapperStyle">
-        <item name="android:layout_width">0dip</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:paddingLeft">16dip</item>
-        <item name="android:paddingRight">16dip</item>
-        <item name="android:paddingStart">16dip</item>
-        <item name="android:paddingEnd">16dip</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:orientation">vertical</item>
     </style>
 
     <style name="GroupMembershipSizeTextAppearance" parent="@android:style/TextAppearance.Small"/>
