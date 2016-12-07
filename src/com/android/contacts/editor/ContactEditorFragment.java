@@ -304,7 +304,6 @@ public class ContactEditorFragment extends Fragment implements
     // Views
     //
     protected LinearLayout mContent;
-    protected View mAggregationSuggestionView;
     protected ListPopupWindow mAggregationSuggestionPopup;
 
     //
@@ -1180,16 +1179,6 @@ public class ContactEditorFragment extends Fragment implements
                 }
             }
 
-            // Enable/disable aggregation suggestion vies
-            if (mAggregationSuggestionView != null) {
-                LinearLayout itemList = (LinearLayout) mAggregationSuggestionView.findViewById(
-                        R.id.aggregation_suggestions);
-                int count = itemList.getChildCount();
-                for (int i = 0; i < count; i++) {
-                    itemList.getChildAt(i).setEnabled(enabled);
-                }
-            }
-
             // Maybe invalidate the options menu
             final Activity activity = getActivity();
             if (activity != null) activity.invalidateOptionsMenu();
@@ -1513,13 +1502,6 @@ public class ContactEditorFragment extends Fragment implements
      */
     protected void acquireAggregationSuggestions(Context context,
             long rawContactId, ValuesDelta valuesDelta) {
-        if (mAggregationSuggestionsRawContactId != rawContactId
-                && mAggregationSuggestionView != null) {
-            mAggregationSuggestionView.setVisibility(View.GONE);
-            mAggregationSuggestionView = null;
-            mAggregationSuggestionEngine.reset();
-        }
-
         mAggregationSuggestionsRawContactId = rawContactId;
 
         if (mAggregationSuggestionEngine == null) {
