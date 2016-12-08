@@ -250,6 +250,9 @@
     <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
     <string name="photoPickerNotFoundText" product="default">No pictures are available on the phone.</string>
 
+    <!-- Description used in the attach photo Intent from third party apps [CHAR LIMIT=50] -->
+    <string name="attach_photo_dialog_title">Contact photo</string>
+
     <!-- Title of the dialog used to set a custom label for a contact detail, like a phone number or email address.
          For example, this may be used to set a phone number's label to "Vaction house" -->
     <string name="customLabelPickerTitle">Custom label name</string>
@@ -1369,6 +1372,12 @@
 
     <!-- The menu item to filter the list of contacts displayed -->
     <string name="menu_contacts_filter">Contacts to display</string>
+
+    <!-- Title of the activity that allows the uesr to filter the list of contacts displayed according to account [CHAR LIMIT=25] -->
+    <string name="activity_title_contacts_filter">Contacts to display</string>
+
+    <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
+    <string name="custom_list_filter">Define customized view</string>
 
     <!-- Menu item to save changes to custom filter. [CHAR LIMIT=15] -->
     <string name="menu_custom_filter_save">Save</string>
