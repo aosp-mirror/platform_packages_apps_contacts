@@ -89,7 +89,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
     private final Uri mRequestedUri;
     private Uri mLookupUri;
     private boolean mLoadGroupMetaData;
-    private boolean mLoadInvitableAccountTypes;
     private boolean mPostViewNotification;
     private boolean mComputeFormattedPhoneNumber;
     private Contact mContact;
@@ -97,22 +96,20 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
     private final Set<Long> mNotifiedRawContactIds = Sets.newHashSet();
 
     public ContactLoader(Context context, Uri lookupUri, boolean postViewNotification) {
-        this(context, lookupUri, false, false, postViewNotification, false);
+        this(context, lookupUri, false, postViewNotification, false);
     }
 
     public ContactLoader(Context context, Uri lookupUri, boolean postViewNotification,
             boolean loadGroupMetaData) {
-        this(context, lookupUri, loadGroupMetaData, false, postViewNotification, false);
+        this(context, lookupUri, loadGroupMetaData, postViewNotification, false);
     }
 
     public ContactLoader(Context context, Uri lookupUri, boolean loadGroupMetaData,
-            boolean loadInvitableAccountTypes,
             boolean postViewNotification, boolean computeFormattedPhoneNumber) {
         super(context);
         mLookupUri = lookupUri;
         mRequestedUri = lookupUri;
         mLoadGroupMetaData = loadGroupMetaData;
-        mLoadInvitableAccountTypes = loadInvitableAccountTypes;
         mPostViewNotification = postViewNotification;
         mComputeFormattedPhoneNumber = computeFormattedPhoneNumber;
     }
@@ -344,10 +341,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 }
                 if (!resultIsCached) loadPhotoBinaryData(result);
 
-                // Note ME profile should never have "Add connection"
-                if (mLoadInvitableAccountTypes && result.getInvitableAccountTypes() == null) {
-                    loadInvitableAccountTypes(result);
-                }
             }
             return result;
         } catch (Exception e) {
@@ -588,35 +581,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 }
             }
         }
-    }
-
-    /**
-     * Sets the "invitable" account types to {@link Contact#mInvitableAccountTypes}.
-     */
-    private void loadInvitableAccountTypes(Contact contactData) {
-        final ImmutableList.Builder<AccountType> resultListBuilder =
-                new ImmutableList.Builder<AccountType>();
-        if (!contactData.isUserProfile()) {
-            Map<AccountTypeWithDataSet, AccountType> invitables =
-                    AccountTypeManager.getInstance(getContext()).getUsableInvitableAccountTypes();
-            if (!invitables.isEmpty()) {
-                final Map<AccountTypeWithDataSet, AccountType> resultMap =
-                        Maps.newHashMap(invitables);
-
-                // Remove the ones that already have a raw contact in the current contact
-                for (RawContact rawContact : contactData.getRawContacts()) {
-                    final AccountTypeWithDataSet type = AccountTypeWithDataSet.get(
-                            rawContact.getAccountTypeString(),
-                            rawContact.getDataSet());
-                    resultMap.remove(type);
-                }
-
-                resultListBuilder.addAll(resultMap.values());
-            }
-        }
-
-        // Set to mInvitableAccountTypes
-        contactData.setInvitableAccountTypes(resultListBuilder.build());
     }
 
     /**
@@ -952,28 +916,6 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
             getContext().getContentResolver().unregisterContentObserver(mObserver);
             mObserver = null;
         }
-    }
-
-    /**
-     * Fully upgrades this ContactLoader to one with all lists fully loaded. When done, the
-     * new result will be delivered
-     */
-    public void upgradeToFullContact() {
-        // Everything requested already? Nothing to do, so let's bail out
-        if (mLoadGroupMetaData && mLoadInvitableAccountTypes
-                && mPostViewNotification && mComputeFormattedPhoneNumber) return;
-
-        mLoadGroupMetaData = true;
-        mLoadInvitableAccountTypes = true;
-        mPostViewNotification = true;
-        mComputeFormattedPhoneNumber = true;
-
-        // Cache the current result, so that we only load the "missing" parts of the contact.
-        cacheResult();
-
-        // Our load parameters have changed, so let's pretend the data has changed. Its the same
-        // thing, essentially.
-        onContentChanged();
     }
 
     public Uri getLookupUri() {
