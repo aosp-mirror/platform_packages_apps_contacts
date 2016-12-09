@@ -342,7 +342,7 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Der er ikke markeret et billede fra en ukendt konto"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Et billede fra en ukendt konto er markeret"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"Forslag"</string>
-    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Ny"</string>
+    <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nyt"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Åbn navigationsskuffen"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Luk navigationsskuffen"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Etiketter"</string>
@@ -583,7 +583,7 @@
     <string name="custom_list_filter" msgid="2105275443109077687">"Angiv tilpasset visning"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Gem"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Søg efter kontaktpersoner"</string>
-    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favorit"</string>
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Foretrukne"</string>
     <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Ingen kontaktpersoner."</string>
     <string name="menu_clear_frequents" msgid="7688250191932838833">"Ryd hyppige"</string>
     <string name="menu_select_sim" msgid="3603578201960504010">"Vælg SIM-kort"</string>

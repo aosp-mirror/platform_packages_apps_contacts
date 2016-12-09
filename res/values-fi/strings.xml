@@ -21,7 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"Yhteystieto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Puhelu"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Tekstiviesti"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Valitse pikakuvakkeen yhteystieto"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Valitse kuvakkeen yhteystieto"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Valitse vastaanottajan numero"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Valitse vastaanottajan numero"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Lisää yhteystietoon"</string>
@@ -152,7 +152,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> löytyi</item>
       <item quantity="one">1 löytyi</item>
     </plurals>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Ei kontakteja"</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Ei yhteystietoja"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> löytyi</item>
       <item quantity="one">1 löytyi</item>
@@ -207,7 +207,7 @@
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Tunniste"</string>
     <string name="change_photo" msgid="8530597935483526383">"Muuta"</string>
     <string name="description_star" msgid="2605854427360036550">"lisää suosikkeihin"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Muokkaa yhteystietoa"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Muokkaa kontaktia"</string>
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Peruuta"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Takaisin"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"sulje"</string>
@@ -255,7 +255,7 @@
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Uudet yhteystiedot tallennetaan tilille <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Valitse uusien yhteystietojen oletustili:"</string>
     <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Luo uusi yhteystieto"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Muokkaa yhteystietoa"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Muokkaa kontaktia"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Vain lukuoikeus"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Valitse muokattava yhteystieto"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Linkitetyt yhteystiedot"</string>
