@@ -28,11 +28,6 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Pilih kenalan"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Pilih"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Buat kenalan baharu"</string>
-    <string name="viewContactTitle" msgid="7989394521836644384">"Butiran kenalan"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Perihal"</string>
-    <string name="contactDetailUpdates" msgid="3780588624763446941">"Kemas kini"</string>
-    <string name="searchHint" msgid="8482945356247760701">"Cari dalam kenalan"</string>
-    <string name="menu_viewContact" msgid="2795575601596468581">"Papar kenalan"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Tambah ke kegemaran"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Alih keluar daripada kegemaran"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Dialih keluar daripada kegemaran"</string>
@@ -41,8 +36,6 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Padam"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Tukar foto"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Buat pintasan"</string>
-    <string name="menu_call" msgid="3992595586042260618">"Panggil kenalan"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"SMS kepada kenalan"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Nyahpaut"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"Alih keluar kenalan"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Namakan semula label"</string>
@@ -51,7 +44,6 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Pilih kenalan"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Tambahkan kenalan"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Alih keluar daripada label"</string>
-    <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Tambahkan kenalan"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Buat baharu…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Nyahpaut kenalan ini menjadi beberapa kenalan?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Nyahpaut"</string>
@@ -66,7 +58,6 @@
     <string name="menu_save" msgid="1727844363591825909">"Simpan"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Paut kenalan"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Pilih kenalan yang anda mahu pautkan dengan <xliff:g id="NAME">%s</xliff:g>:"</string>
-    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Tunjukkan semua kenalan"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Kenalan cadangan"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Semua kenalan"</string>
     <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> dipaut"</string>
@@ -101,21 +92,15 @@
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Memadamkan kenalan ini akan memadamkan butiran daripada berbilang akaun."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Padam kenalan ini?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Padam"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Buang perubahan"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kenalan tidak wujud."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kenalan ditambahkan pada Skrin utama."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ditambahkan pada Skrin utama."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Buat kenalan baharu"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"Buat kenalan baharu"</string>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Tiada gambar yang tersedia pada tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Tidak ada gambar yang tersedia pada telefon."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto kenalan"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nama label peribadi"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Hantar panggilan terus ke peti suara"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Alih keluar foto"</string>
     <string name="noContacts" msgid="2228592924476426108">"Senarai kenalan anda kosong"</string>
-    <string name="noGroups" msgid="4607906327968232225">"Tiada label."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Anda memerlukan akaun untuk membuat kumpulan."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Tiada kenalan dengan label ini"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"Tiada kenalan dalam akaun ini"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Senarai kenalan anda kosong"</string>
@@ -128,7 +113,6 @@
     <string name="contactGenericErrorToast" msgid="3885457515665783976">"Ralat menyimpan kenalan"</string>
     <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Tidak dapat menyimpan perubahan foto kenalan"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Gagal memuatkan label"</string>
-    <string name="groupSavedToast" msgid="6491495462357722285">"Label disimpan"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Label dipadamkan"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Label dibuat"</string>
     <string name="groupCreateFailedToast" msgid="4359093891863474299">"Tidak dapat membuat label"</string>
@@ -143,28 +127,8 @@
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Hantar mesej"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Pilih Kenalan"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Hantar"</string>
-    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kenalan dengan nombor telefon</item>
-      <item quantity="one">1 kenalan dengan nombor telefon</item>
-    </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Tiada kenalan dengan nombor telefon"</string>
-    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ditemui</item>
-      <item quantity="one">1 ditemui</item>
-    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Tiada kenalan"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ditemui</item>
-      <item quantity="one">1 ditemui</item>
-    </plurals>
-    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Semua"</string>
-    <string name="callBack" msgid="5498224409038809224">"Panggil balik"</string>
-    <string name="callAgain" msgid="3197312117049874778">"Panggil semula"</string>
-    <string name="returnCall" msgid="8171961914203617813">"Balas panggilan"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Tambah \"<xliff:g id="EMAIL">%s</xliff:g>\" kepada kenalan?"</string>
-    <string name="description_plus_button" msgid="515164827856229880">"tambah"</string>
-    <string name="search_settings_description" msgid="2675223022992445813">"Nama kenalan anda"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"Tiada aplikasi ditemui untuk mengendalikan tindakan ini."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klik untuk kembali ke skrin sebelumnya"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Tambah nombor telefon"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Tambah e-mel"</string>
@@ -183,52 +147,29 @@
     <string name="label_name_dialog_hint" msgid="1276051790427638142">"Nama label"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Sembang suara"</string>
     <string name="video_chat" msgid="1872255818640336072">"Sembang video"</string>
-    <string name="connections" msgid="8098440723172028350">"Sambungan"</string>
-    <string name="add_connection_button" msgid="4861308615789601727">"Tambah sambungan"</string>
-    <string name="recent" msgid="2659189233141493004">"Terbaru"</string>
-    <string name="recent_updates" msgid="4267258535615860710">"Kemas kini terbaru"</string>
     <string name="account_type_format" msgid="718948015590343010">"Kenalan <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Akaun <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <!-- no translation found for from_account_format (4469138575127580203) -->
-    <skip />
     <string name="take_photo" msgid="7496128293167402354">"Ambil foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Ambil foto baru"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Pilih foto"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Pilih foto baharu"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Mencari..."</string>
-    <string name="menu_display_selected" msgid="6470001164297969034">"Tunjukkan pilihan"</string>
-    <string name="menu_display_all" msgid="8887488642609786198">"Tunjukkan semua"</string>
-    <string name="menu_select_all" msgid="621719255150713545">"Pilih semua"</string>
-    <string name="menu_select_none" msgid="7093222469852132345">"Nyahpilih semua"</string>
-    <string name="add_new_entry_for_section" msgid="5223080690667565044">"Tambah baru"</string>
-    <string name="add_organization" msgid="7311893231158291197">"Tambah organisasi"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Tarikh"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Label"</string>
-    <string name="change_photo" msgid="8530597935483526383">"Tukar"</string>
-    <string name="description_star" msgid="2605854427360036550">"kegemaran"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Edit kenalan"</string>
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Batal"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Kembali"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"tutup"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Pautkan kenalan semasa dengan kenalan pilihan?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Bertukar kepada mengedit kenalan pilihan? Maklumat yang anda masukkan setakat ini akan disalin."</string>
-    <string name="menu_copyContact" msgid="1573960845106822639">"Salin ke Kenalan Saya"</string>
-    <string name="add_to_my_contacts" msgid="1068274916793627723">"Tambahkan pada Kenalan Saya"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Direktori <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Tetapan"</string>
     <string name="menu_settings" msgid="377929915873428211">"Tetapan"</string>
     <string name="menu_help" msgid="1680178646764069976">"Bantuan &amp; maklum balas"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"Pilihan paparan"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Nombor telefon"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Tambah ke kenalan"</string>
-    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Tambah ke kenalan"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Tutup"</string>
-    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"Termasuk tahun"</string>
-    <string name="social_widget_label" msgid="6378905543028924592">"Kenalan"</string>
-    <string name="social_widget_loading" msgid="5327336597364074608">"Memuatkan…"</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Buat kenalan baharu"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Tambahkan akaun"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Import"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Buat baharu…"</string>
@@ -242,14 +183,10 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Buang"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Batal"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Buang penyesuaian?"</string>
-    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Cari dalam kenalan"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Alih keluar kenalan"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Profil setempat saya"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> saya"</string>
-    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Memaparkan semua kenalan"</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Pastikan kenalan anda selamat walaupun jika anda kehilangan telefon anda: segerakkan dengan perkhidmatan dalam talian."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Tambah akaun"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Luangkan sedikit masa untuk menambah akaun yang akan menyandarkan kenalan anda ke Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Kenalan baharu akan disimpan ke <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Pilih akaun lalai untuk kenalan baharu:"</string>
@@ -268,7 +205,6 @@
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Lihat kurang"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Terbaharu"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Mengenai"</string>
-    <string name="send_message" msgid="8938418965550543196">"Hantar mesej"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Membuat salinan peribadi..."</string>
     <string name="tomorrow" msgid="6241969467795308581">"Esok"</string>
     <string name="today" msgid="8041090779381781781">"Hari ini"</string>
@@ -284,12 +220,9 @@
     <string name="header_website_entry" msgid="1411467850000824745">"Tapak web"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Acara"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Hubungan"</string>
-    <string name="header_account_entry" msgid="2684318506427891827">"Akaun"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"Nama"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"E-mel"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Telefon"</string>
-    <string name="content_description_expand_editor" msgid="1111381475901897470">"Klik untuk kembangkan editor kenalan."</string>
-    <string name="content_description_collapse_editor" msgid="7598061318022977825">"Klik untuk runtuhkan editor kenalan."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"arah ke lokasi"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"sms terbaharu. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. klik untuk membalas"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"masuk"</string>
@@ -297,7 +230,6 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"tidak dijawab"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"panggilan terbaharu. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. klik untuk memanggil balik"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Anda: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts berfungsi lebih baik apabila anda memasukkan pengecam Hangouts individu itu ke dalam medan e-mel atau telefon."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Lebih banyak medan"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"Tukar foto kenalan"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Tambahkan foto kenalan"</string>
@@ -305,37 +237,13 @@
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Gagal membuka editor."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Menyimpan ke"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Maklumat kenalan daripada <xliff:g id="ACCOUNT">%s</xliff:g> tidak boleh diedit"</string>
-    <string name="editor_account_selector_description" msgid="3324358600570627740">"Sedang disimpan pada <xliff:g id="ACCOUNT_NAME">%s</xliff:g> pada masa ini. Ketik dua kali untuk memilih akaun yang lain."</string>
-    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
-      <item quantity="other">Kenalan dipautkan (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one">Kenalan dipautkan</item>
-    </plurals>
-    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> kenalan dipaut"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"PAUT KENALAN"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"BATAL"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Pendua berkemungkinan</item>
-      <item quantity="one">1 Pendua berkemungkinan</item>
-    </plurals>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kenalan dipaut</item>
-      <item quantity="one">1 kenalan dipaut</item>
-    </plurals>
-    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
-      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one"></item>
-    </plurals>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Kenalan ini"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Pendua berkemungkinan"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Kenalan ini mungkin orang yang sama. Anda boleh memautnya bersama sebagai satu kenalan."</string>
-    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"Kenalan dipautkan"</string>
-    <string name="from_your_accounts" msgid="1746293107836889912">"Daripada akaun anda"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Pilih foto"</string>
-    <string name="contact_from_account_name" msgid="2078526819634079406">"Daripada <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"Padamkan <xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g>"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Padamkan <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
-    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto daripada akaun yang tidak diketahui tidak ditandai"</string>
-    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto daripada akaun yang tidak diketahui ditandai"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"Cadangan"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Baharu"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Buka laci navigasi"</string>
@@ -404,11 +312,9 @@
     <string name="directory_search_label" msgid="1887759056597975053">"Direktori"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"Direktori kerja"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Semua kenalan"</string>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"lebih daripada <xliff:g id="COUNT">%d</xliff:g> ditemui."</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"Kenalan cepat untuk <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="8745511583852904385">"(Tiada nama)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Kerap dihubungi"</string>
-    <string name="description_view_contact_detail" msgid="9133251213656414807">"Lihat kenalan"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Semua kenalan dengan nombor telefon"</string>
     <string name="list_filter_phones_work" msgid="1470173699551475015">"Kenalan profil kerja"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Lihat kemas kini"</string>
@@ -416,7 +322,6 @@
     <string name="account_sim" msgid="6519016427905087952">"SIM"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nama"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Nama panggilan"</string>
-    <string name="full_name" msgid="6602579550613988977">"Nama"</string>
     <string name="name_given" msgid="4280790853455320619">"Nama pertama"</string>
     <string name="name_family" msgid="7466985689626017037">"Nama keluarga"</string>
     <string name="name_prefix" msgid="59756378548779822">"Awalan nama"</string>
@@ -449,8 +354,6 @@
     <string name="email_custom" msgid="5536404237099078802">"E-mel <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"E-mel"</string>
     <string name="postal_street" msgid="8133143961580058972">"Jalan"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"Peti Surat"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Kawasan kejiranan"</string>
     <string name="postal_city" msgid="6597491300084895548">"Bandar"</string>
     <string name="postal_region" msgid="6045263193478437672">"Negeri"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Poskod"</string>
@@ -488,8 +391,6 @@
     <string name="display_more_groups" msgid="2682547080423434170">"Lagi kumpulan..."</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Mengalih keluar \"<xliff:g id="GROUP">%s</xliff:g>\" daripada penyegerakan juga akan turut mengalih keluar sebarang kenalan tanpa kumpulan dari penyegerakan."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Menyimpan pilihan paparan..."</string>
-    <string name="menu_done" msgid="796017761764190697">"Selesai"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Batal"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Paparan yang disesuaikan"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Simpan kenalan yang diimport ke:"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"Kad SIM"</string>
@@ -514,15 +415,9 @@
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Tiada kenalan yang boleh dieksport."</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"Anda telah melumpuhkan kebenaran yang diperlukan."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Ralat berlaku semasa pengeksportan: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
-    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Nama fail yang diperlukan terlalu panjang (\"<xliff:g id="FILENAME">%s</xliff:g>\")"</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"Ralat I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Tidak cukup memori. Fail itu mungkin terlalu besar."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Tidak dapat menghurai vCard atas sebab-sebab yang tidak dijangka."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Format tidak disokong."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Tidak boleh mengumpul maklumat meta fail Vcard yang tertentu."</string>
-    <!-- String.format failed for translation -->
-    <!-- no translation found for fail_reason_failed_to_read_files (5823434810622484922) -->
-    <skip />
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Selesai mengeksport <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Selesai mengeksport kenalan."</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"Selesai mengeksport kenalan, klik pemberitahuan untuk berkongsi kenalan."</string>
@@ -531,27 +426,24 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Mengeksport data kenalan"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Data kenalan sedang dieksport."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Tidak boleh mendapatkan maklumat pangkalan data."</string>
-    <string name="composer_has_no_exportable_contact" msgid="3296493229040294335">"Tiada kenalan boleh dieksport. Jika anda mempunyai kenalan pada telefon anda, sesetengah pembekal data tidak boleh membenarkan kenalan dieksport dari telefon."</string>
+    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
+    <skip />
     <string name="composer_not_initialized" msgid="2321648986367005254">"Komposer vCard tidak bermula dengan betul."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Tidak boleh mengeksport"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Data kenalan tidak dieksport.\nAlasan: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Mengimport <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Tidak dapat membaca data vCard"</string>
-    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Membaca data vCard dibatalkan"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Selesai mengimport vCard <xliff:g id="FILENAME">%s</xliff:g>"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Pengimportan <xliff:g id="FILENAME">%s</xliff:g> dibatalkan"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> akan diimport sebentar lagi."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Fail akan diimport sebentar lagi."</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Permintaan import vCard telah ditolak. Cuba lagi nanti."</string>
-    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> akan dieksport sebentar lagi."</string>
-    <string name="vcard_export_will_start_message_fallback" msgid="6553826997490909749">"Fail akan dieksport sebentar lagi."</string>
     <string name="contacts_export_will_start_message" msgid="8538705791417534431">"Kenalan akan dieksport sebentar lagi."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Permintaan eksport vCard telah ditolak. Cuba lagi nanti."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kenalan"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"Membuat cache vCard ke storan sementara tempatan. Pengimportan sebenar akan bermula tidak lama lagi."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"Tidak dapat mengimport vCard."</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Knln melalui NFC"</string>
-    <string name="confirm_export_title" msgid="6834385377255286349">"Eksport kenalan?"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Mengcache..."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Mengimport <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Eksport ke fail .vcf"</string>
@@ -566,8 +458,6 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"Maklumat saya"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Sediakan profil anda"</string>
     <string name="setting_about" msgid="7014388749752042863">"Perihal Kenalan"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"Kongsi kenalan yang kelihatan"</string>
-    <string name="share_visible_contacts_failure" msgid="7324717548166915560">"Gagal berkongsi kenalan yang kelihatan."</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Kongsi kenalan kegemaran"</string>
     <string name="share_contacts" msgid="8109287987498711664">"Kongsi semua kenalan"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Gagal berkongsi kenalan."</string>
@@ -581,10 +471,6 @@
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Simpan"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Cari kenalan"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Kegemaran"</string>
-    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Tiada kenalan."</string>
-    <string name="menu_clear_frequents" msgid="7688250191932838833">"Padam bersih kerap dihubungi"</string>
-    <string name="menu_select_sim" msgid="3603578201960504010">"Pilih kad SIM"</string>
-    <string name="menu_accounts" msgid="1424330057450189074">"Urus akaun"</string>
     <string name="menu_import" msgid="6107961135813836467">"Import"</string>
     <string name="menu_export" msgid="2658783911863503902">"Eksport"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Nombor yang disekat"</string>
@@ -592,19 +478,13 @@
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> melalui <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="8793348588949233348">"berhenti mencari"</string>
     <string name="description_clear_search" msgid="688023606766232904">"Kosongkan carian"</string>
-    <string name="settings_contact_display_options_title" msgid="4890258244494248687">"Pilihan paparan kenalan"</string>
     <string name="select_account_dialog_title" msgid="5478489655696599219">"Akaun"</string>
     <string name="set_default_account" msgid="4311613760725609801">"Sentiasa gunakan ini utk panggilan"</string>
-    <string name="select_phone_account_for_calls" msgid="3810607744451014540">"Panggil dengan"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"Panggilan dengan nota"</string>
     <string name="call_subject_hint" msgid="3043028982108363572">"Taip nota untuk dihantar dengan panggilan…"</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"HANTAR &amp; PANGGIL"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
-    <plurals name="tab_title_with_unread_items" formatted="false" msgid="7682024005130747825">
-      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> item belum dibaca. </item>
-      <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> item belum dibaca. </item>
-    </plurals>
     <string name="about_build_version" msgid="1765533099416999801">"Versi binaan"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"Lesen sumber terbuka"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Butiran lesen untuk perisian sumber terbuka"</string>
@@ -643,6 +523,7 @@
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"Tunjukkan lagi"</string>
     <string name="importing_sim_finished_title" msgid="5196369441294050721">"Selesai mengimport kad SIM"</string>
-    <string name="importing_sim_failed_title" msgid="3864137973400578707">"Tidak dapat mengimport kad SIM"</string>
+    <string name="importing_sim_failed_title" msgid="39706901030537985">"Pengimportan gagal"</string>
+    <string name="importing_sim_failed_message" msgid="3345258302998021066">"Tidak dapat mengimport kenalan daripada kad SIM"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Mengimport SIM"</string>
 </resources>

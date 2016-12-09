@@ -28,11 +28,6 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Een contact kiezen"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Selecteren"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Nieuw contact maken"</string>
-    <string name="viewContactTitle" msgid="7989394521836644384">"Details van contact"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Over"</string>
-    <string name="contactDetailUpdates" msgid="3780588624763446941">"Updates"</string>
-    <string name="searchHint" msgid="8482945356247760701">"Contacten zoeken"</string>
-    <string name="menu_viewContact" msgid="2795575601596468581">"Contact weergeven"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Toevoegen aan favorieten"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Uit favorieten verwijderen"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Verwijderd uit favorieten"</string>
@@ -41,8 +36,6 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Verwijderen"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Foto wijzigen"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Snelkoppeling maken"</string>
-    <string name="menu_call" msgid="3992595586042260618">"Contact bellen"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"Sms\'en naar contact"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Link verwijderen"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"Contacten verwijderen"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Label hernoemen"</string>
@@ -51,7 +44,6 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Contacten selecteren"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Contacten toevoegen"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Verwijderen uit label"</string>
-    <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Contact toevoegen"</string>
     <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Nieuwe maken…"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Dit contact loskoppelen tot meerdere contacten?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Loskoppelen"</string>
@@ -66,7 +58,6 @@
     <string name="menu_save" msgid="1727844363591825909">"Opslaan"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Contacten linken"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Kies het contact dat je wilt linken met <xliff:g id="NAME">%s</xliff:g>:"</string>
-    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Alle contacten weergeven"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Mogelijke contacten"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle contacten"</string>
     <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> gelinkt"</string>
@@ -101,21 +92,15 @@
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Als je dit contact verwijdert, worden gegevens van meerdere accounts verwijderd."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Dit contact verwijderen?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Verwijderen"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Wijzigingen niet opslaan"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Het contact bestaat niet."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Contact is toegevoegd aan het startscherm."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> is toegevoegd aan het startscherm."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Nieuw contact maken"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"Nieuw contact maken"</string>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Er zijn geen foto\'s beschikbaar op de tablet."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Er zijn geen foto\'s beschikbaar op de telefoon."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Contactfoto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Aangepaste labelnaam"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Oproepen rechtstreeks naar voicemail verzenden"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Foto verwijderen"</string>
     <string name="noContacts" msgid="2228592924476426108">"Je contactenlijst is leeg"</string>
-    <string name="noGroups" msgid="4607906327968232225">"Geen labels."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Je hebt een account nodig om groepen te maken."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Geen contacten met dit label"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"Geen contacten in dit account"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Je contactenlijst is leeg"</string>
@@ -128,7 +113,6 @@
     <string name="contactGenericErrorToast" msgid="3885457515665783976">"Fout bij opslaan van contact"</string>
     <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Kan wijzigingen in contactfoto niet opslaan"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Kan label niet laden"</string>
-    <string name="groupSavedToast" msgid="6491495462357722285">"Label opgeslagen"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Label verwijderd"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Label gemaakt"</string>
     <string name="groupCreateFailedToast" msgid="4359093891863474299">"Kan label niet maken"</string>
@@ -143,28 +127,8 @@
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Bericht verzenden"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Contacten kiezen"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Verzenden"</string>
-    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacten met telefoonnummers</item>
-      <item quantity="one">1 contact met telefoonnummer</item>
-    </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Geen contacten met telefoonnummers"</string>
-    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> gevonden</item>
-      <item quantity="one">1 gevonden</item>
-    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Geen contacten"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> gevonden</item>
-      <item quantity="one">1 gevonden</item>
-    </plurals>
-    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Alle"</string>
-    <string name="callBack" msgid="5498224409038809224">"Terugbellen"</string>
-    <string name="callAgain" msgid="3197312117049874778">"Opnieuw bellen"</string>
-    <string name="returnCall" msgid="8171961914203617813">"Terugbellen"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Voeg \"<xliff:g id="EMAIL">%s</xliff:g>\" toe aan contactpersonen?"</string>
-    <string name="description_plus_button" msgid="515164827856229880">"plus"</string>
-    <string name="search_settings_description" msgid="2675223022992445813">"Namen van je contacten"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"Er is geen app gevonden om deze actie uit te voeren."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klik om terug te keren naar het vorige scherm"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Telefoonnummer toevoegen"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"E-mailadres toevoegen"</string>
@@ -183,52 +147,29 @@
     <string name="label_name_dialog_hint" msgid="1276051790427638142">"Labelnaam"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Voicechat"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videochat"</string>
-    <string name="connections" msgid="8098440723172028350">"Connecties"</string>
-    <string name="add_connection_button" msgid="4861308615789601727">"Connectie toevoegen"</string>
-    <string name="recent" msgid="2659189233141493004">"Recent"</string>
-    <string name="recent_updates" msgid="4267258535615860710">"Recente updates"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-contact"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-account"</string>
-    <!-- no translation found for from_account_format (4469138575127580203) -->
-    <skip />
     <string name="take_photo" msgid="7496128293167402354">"Foto maken"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Nieuwe foto nemen"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Foto kiezen"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Nieuwe foto selecteren"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Zoeken..."</string>
-    <string name="menu_display_selected" msgid="6470001164297969034">"Selectie weergeven"</string>
-    <string name="menu_display_all" msgid="8887488642609786198">"Alles weergeven"</string>
-    <string name="menu_select_all" msgid="621719255150713545">"Alles selecteren"</string>
-    <string name="menu_select_none" msgid="7093222469852132345">"Selectie ongedaan maken"</string>
-    <string name="add_new_entry_for_section" msgid="5223080690667565044">"Nieuw toevoegen"</string>
-    <string name="add_organization" msgid="7311893231158291197">"Organisatie toevoegen"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Datum"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Labelen"</string>
-    <string name="change_photo" msgid="8530597935483526383">"Wijzigen"</string>
-    <string name="description_star" msgid="2605854427360036550">"favoriet"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Contact bewerken"</string>
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Annuleren"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Terug"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"sluiten"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Wil je het huidige contact linken met het geselecteerde contact?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Wil je overschakelen naar het bewerken van het geselecteerde contact? Gegevens die je tot nu toe hebt ingevoerd, worden gekopieerd."</string>
-    <string name="menu_copyContact" msgid="1573960845106822639">"Kopiëren naar mijn contacten"</string>
-    <string name="add_to_my_contacts" msgid="1068274916793627723">"Toevoegen aan Mijn contacten"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directory <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Instellingen"</string>
     <string name="menu_settings" msgid="377929915873428211">"Instellingen"</string>
     <string name="menu_help" msgid="1680178646764069976">"Help en feedback"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"Weergaveopties"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefoonnummer"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Toevoegen aan contacten"</string>
-    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Aan contact toevoegen"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Sluiten"</string>
-    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"Inclusief jaar"</string>
-    <string name="social_widget_label" msgid="6378905543028924592">"Contacten"</string>
-    <string name="social_widget_loading" msgid="5327336597364074608">"Laden..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Een nieuw contact maken"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Account toevoegen"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Importeren"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Nieuwe maken…"</string>
@@ -242,14 +183,10 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Weggooien"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Annuleren"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Wijzigingen opslaan?"</string>
-    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Contacten zoeken"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Contacten verwijderen"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mijn lokale profiel"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mijn <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profiel"</string>
-    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Alle contacten worden weergegeven"</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Zorg dat je contacten veilig zijn, zelfs wanneer je je telefoon verliest: synchroniseer met een online service."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Account toevoegen"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Voeg snel een account toe om een back-up van je contacten te maken op Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Nieuwe contacten worden opgeslagen in <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Kies een standaardaccount voor nieuwe contacten"</string>
@@ -268,7 +205,6 @@
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Minder weergeven"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Recent"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Over"</string>
-    <string name="send_message" msgid="8938418965550543196">"Bericht verzenden"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Een persoonlijke kopie maken..."</string>
     <string name="tomorrow" msgid="6241969467795308581">"Morgen"</string>
     <string name="today" msgid="8041090779381781781">"Vandaag"</string>
@@ -284,12 +220,9 @@
     <string name="header_website_entry" msgid="1411467850000824745">"Website"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Evenement"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Relatie"</string>
-    <string name="header_account_entry" msgid="2684318506427891827">"Account"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"Naam"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"E-mail"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Telefoon"</string>
-    <string name="content_description_expand_editor" msgid="1111381475901897470">"Klik om contacteditor uit te vouwen."</string>
-    <string name="content_description_collapse_editor" msgid="7598061318022977825">"Klik om contacteditor samen te vouwen."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"routebeschrijving naar locatie"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"recente sms. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. klik om te reageren"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"binnenkomend"</string>
@@ -297,7 +230,6 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"gemist"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"recente oproep. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. klik om terug te bellen"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Jij: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts werkt beter wanneer je de Hangouts-ID van de betreffende persoon in het veld \'E-mail\' of \'Telefoon\' opgeeft."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Meer velden"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"Contactfoto wijzigen"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Contactfoto toevoegen"</string>
@@ -305,37 +237,13 @@
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Kan editor niet openen."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Opslaan in"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Contactgegevens van <xliff:g id="ACCOUNT">%s</xliff:g> kunnen niet worden bewerkt"</string>
-    <string name="editor_account_selector_description" msgid="3324358600570627740">"Wordt momenteel opgeslagen in <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Dubbeltik om een ander account te kiezen."</string>
-    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
-      <item quantity="other">Gelinkte contacten (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one">Gelinkt contact</item>
-    </plurals>
-    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> gelinkte contacten"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"CONTACTEN LINKEN"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ANNULEREN"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> mogelijke duplicaten</item>
-      <item quantity="one">1 mogelijk duplicaat</item>
-    </plurals>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> gelinkte contacten</item>
-      <item quantity="one">1 gelinkt contact</item>
-    </plurals>
-    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
-      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one"></item>
-    </plurals>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Dit contact"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Mogelijke duplicaten"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Deze contacten zijn mogelijk dezelfde persoon. Je kunt ze linken tot één contact."</string>
-    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"Gelinkte contacten"</string>
-    <string name="from_your_accounts" msgid="1746293107836889912">"Vanuit je accounts"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Foto kiezen"</string>
-    <string name="contact_from_account_name" msgid="2078526819634079406">"Van <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g> verwijderen"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> verwijderen"</string>
-    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Foto uit onbekend account niet aangevinkt"</string>
-    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Foto uit onbekend account aangevinkt"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"Suggesties"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nieuw"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Zijmenu openen"</string>
@@ -404,11 +312,9 @@
     <string name="directory_search_label" msgid="1887759056597975053">"Directory"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"Zakelijke contactenlijst"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Alle contacten"</string>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"Meer dan <xliff:g id="COUNT">%d</xliff:g> gevonden."</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"Snelcontact voor <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="8745511583852904385">"(Geen naam)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Regelmatig contact"</string>
-    <string name="description_view_contact_detail" msgid="9133251213656414807">"Contact weergeven"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Alle contacten met telefoonnummers"</string>
     <string name="list_filter_phones_work" msgid="1470173699551475015">"Contacten uit werkprofiel"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Updates bekijken"</string>
@@ -416,7 +322,6 @@
     <string name="account_sim" msgid="6519016427905087952">"Simkaart"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Naam"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Bijnaam"</string>
-    <string name="full_name" msgid="6602579550613988977">"Naam"</string>
     <string name="name_given" msgid="4280790853455320619">"Voornaam"</string>
     <string name="name_family" msgid="7466985689626017037">"Achternaam"</string>
     <string name="name_prefix" msgid="59756378548779822">"Voorvoegsel"</string>
@@ -449,8 +354,6 @@
     <string name="email_custom" msgid="5536404237099078802">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> e-mailen"</string>
     <string name="email" msgid="5668400997660065897">"E-mail"</string>
     <string name="postal_street" msgid="8133143961580058972">"Straat"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"Postbus"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Wijk"</string>
     <string name="postal_city" msgid="6597491300084895548">"Plaats"</string>
     <string name="postal_region" msgid="6045263193478437672">"Staat"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Postcode"</string>
@@ -488,8 +391,6 @@
     <string name="display_more_groups" msgid="2682547080423434170">"Meer groepen…"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Als je \'<xliff:g id="GROUP">%s</xliff:g>\' verwijdert uit de synchronisatie, worden ook contacten die niet bij een groep horen uit de synchronisatie verwijderd."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Weergaveopties opslaan..."</string>
-    <string name="menu_done" msgid="796017761764190697">"Gereed"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Annuleren"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Aangepaste weergave"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Geïmporteerde contacten opslaan in:"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"Simkaart"</string>
@@ -514,13 +415,9 @@
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Er is geen contact dat kan worden geëxporteerd."</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"Je hebt een vereist recht uitgeschakeld."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Er is een fout opgetreden tijdens het exporteren: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'."</string>
-    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Vereiste bestandsnaam is te lang (\'<xliff:g id="FILENAME">%s</xliff:g>\')."</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O-fout"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Onvoldoende geheugen. Het bestand is mogelijk te groot."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Kan vCard om onverwachte reden niet parseren."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"De indeling wordt niet ondersteund."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Kan metagegevens niet verzamelen uit vCard-bestand(en)."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Kan een of meer bestanden niet importeren (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Exporteren van <xliff:g id="FILENAME">%s</xliff:g> voltooid."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Contacten geëxporteerd."</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"De contacten zijn geëxporteerd. Klik op de melding om contacten te delen."</string>
@@ -529,27 +426,24 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Contactgegevens exporteren"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Contactgegevens worden geëxporteerd."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Kan databasegegevens niet ophalen."</string>
-    <string name="composer_has_no_exportable_contact" msgid="3296493229040294335">"Er zijn geen exporteerbare contacten. Als je wel contacten op je telefoon hebt opgeslagen, staat je gegevensprovider het exporteren van contacten van de telefoon mogelijk niet toe."</string>
+    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
+    <skip />
     <string name="composer_not_initialized" msgid="2321648986367005254">"De vCard-editor is niet correct gestart."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Kan niet exporteren"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"De contactgegevens zijn niet geëxporteerd.\nReden: \'<xliff:g id="FAIL_REASON">%s</xliff:g>\'"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> importeren"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"Kan vCard-gegevens niet lezen"</string>
-    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"Lezen van vCard-gegevens geannuleerd"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"Importeren van vCard <xliff:g id="FILENAME">%s</xliff:g> voltooid"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Importeren van <xliff:g id="FILENAME">%s</xliff:g> geannuleerd"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> wordt binnenkort geïmporteerd."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Het bestand wordt binnenkort geïmporteerd."</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"Verzoek voor vCard-import is geweigerd. Probeer het later opnieuw."</string>
-    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> wordt binnenkort geëxporteerd."</string>
-    <string name="vcard_export_will_start_message_fallback" msgid="6553826997490909749">"Dit bestand wordt binnenkort geëxporteerd."</string>
     <string name="contacts_export_will_start_message" msgid="8538705791417534431">"Contacten worden binnenkort geëxporteerd."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"Verzoek voor vCard-export is geweigerd. Probeer het later opnieuw."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"contact"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"Bezig met opslaan van vCard(s) in de lokale tijdelijke opslag. Het daadwerkelijke importeren begint binnenkort."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"Kan vCard niet importeren."</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Contact via NFC"</string>
-    <string name="confirm_export_title" msgid="6834385377255286349">"Contacten export.?"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"In cachegeheugen opslaan"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importeren <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Exporteren naar VCF"</string>
@@ -564,8 +458,6 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"Mijn info"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Je profiel instellen"</string>
     <string name="setting_about" msgid="7014388749752042863">"Over Contacten"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"Zichtbare contacten delen"</string>
-    <string name="share_visible_contacts_failure" msgid="7324717548166915560">"Kan zichtbare contacten niet delen."</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Favoriete contacten delen"</string>
     <string name="share_contacts" msgid="8109287987498711664">"Alle contacten delen"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Kan contacten niet delen."</string>
@@ -579,10 +471,6 @@
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Opslaan"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Contacten zoeken"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoriet"</string>
-    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Geen contacten"</string>
-    <string name="menu_clear_frequents" msgid="7688250191932838833">"Regelmatige contacten wissen"</string>
-    <string name="menu_select_sim" msgid="3603578201960504010">"Simkaart selecteren"</string>
-    <string name="menu_accounts" msgid="1424330057450189074">"Accounts beheren"</string>
     <string name="menu_import" msgid="6107961135813836467">"Importeren"</string>
     <string name="menu_export" msgid="2658783911863503902">"Exporteren"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Geblokkeerde nummers"</string>
@@ -590,19 +478,13 @@
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> via <xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="8793348588949233348">"stoppen met zoeken"</string>
     <string name="description_clear_search" msgid="688023606766232904">"Zoekopdracht wissen"</string>
-    <string name="settings_contact_display_options_title" msgid="4890258244494248687">"Weegaveopties voor contacten"</string>
     <string name="select_account_dialog_title" msgid="5478489655696599219">"Account"</string>
     <string name="set_default_account" msgid="4311613760725609801">"Altijd gebruiken voor oproepen"</string>
-    <string name="select_phone_account_for_calls" msgid="3810607744451014540">"Bellen met"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"Oproep met een notitie"</string>
     <string name="call_subject_hint" msgid="3043028982108363572">"Typ een notitie om te verzenden met de oproep…"</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"VERZENDEN EN BELLEN"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
-    <plurals name="tab_title_with_unread_items" formatted="false" msgid="7682024005130747825">
-      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> ongelezen items. </item>
-      <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> ongelezen item. </item>
-    </plurals>
     <string name="about_build_version" msgid="1765533099416999801">"Buildversie"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"Open-sourcelicenties"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Licentiedetails voor open-sourcesoftware"</string>
@@ -641,6 +523,7 @@
     <string name="single_sim_display_label" msgid="6985770499439371497">"Simkaart"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"Meer weergeven"</string>
     <string name="importing_sim_finished_title" msgid="5196369441294050721">"Importeren van simkaart voltooid"</string>
-    <string name="importing_sim_failed_title" msgid="3864137973400578707">"Kan simkaart niet importeren"</string>
+    <string name="importing_sim_failed_title" msgid="39706901030537985">"Importeren mislukt"</string>
+    <string name="importing_sim_failed_message" msgid="3345258302998021066">"Kan geen contacten importeren van de simkaart"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Sim importeren"</string>
 </resources>
