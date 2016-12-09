@@ -99,6 +99,11 @@ public class PickRawContactLoader extends
             return null;
         }
 
+        if (rawContactCursor.getCount() < 1) {
+            rawContactCursor.close();
+            return null;
+        }
+
         rawContactCursor.moveToPosition(-1);
         final StringBuilder photoSelection = new StringBuilder(PHOTO_SELECTION_PREFIX);
         final Map<Long, RawContact> rawContactMap = new HashMap<>();
