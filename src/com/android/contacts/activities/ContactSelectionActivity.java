@@ -234,11 +234,11 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
                 break;
             }
             case ContactsRequest.ACTION_CREATE_SHORTCUT_CALL: {
-                titleResId = R.string.callShortcutActivityTitle;
+                titleResId = R.string.shortcutActivityTitle;
                 break;
             }
             case ContactsRequest.ACTION_CREATE_SHORTCUT_SMS: {
-                titleResId = R.string.messageShortcutActivityTitle;
+                titleResId = R.string.shortcutActivityTitle;
                 break;
             }
             case ContactsRequest.ACTION_PICK_POSTAL: {

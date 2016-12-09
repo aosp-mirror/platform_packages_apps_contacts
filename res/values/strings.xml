@@ -35,13 +35,7 @@
     <string name="shortcutMessageContact">Direct message</string>
 
     <!-- Activity title when the user is selecting a contact for a shortcut. -->
-    <string name="shortcutActivityTitle">Choose a contact shortcut</string>
-
-    <!-- Activity title when the user is selecting a contact for a direct dial shortcut. -->
-    <string name="callShortcutActivityTitle">Choose a number to call</string>
-
-    <!-- Activity title when the user is selecting a contact for a direct message shortcut. -->
-    <string name="messageShortcutActivityTitle">Choose a number to message</string>
+    <string name="shortcutActivityTitle">Choose contact</string>
 
     <!-- Activity title when the user is inserting into an existing contact, or creating a new one.  [CHAR LIMIT=128] -->
     <string name="contactInsertOrEditActivityTitle">Add to contact</string>
@@ -103,7 +97,7 @@
     <string name="menu_removeFromGroup">Remove from label</string>
 
     <!-- Menu item (in the action bar) that creates a new label [CHAR LIMIT=30] -->
-    <string name="menu_new_group_action_bar">Create new&#8230;</string>
+    <string name="menu_new_group_action_bar">Create label</string>
 
     <!-- Confirmation dialog for unlinking contacts into multiple instances [CHAR LIMIT=NONE] -->
     <string name="splitConfirmation">Unlink this contact into multiple contacts?</string>
@@ -1377,7 +1371,7 @@
     <string name="activity_title_contacts_filter">Contacts to display</string>
 
     <!-- Title of the activity that allows the user to customize filtering of contact list [CHAR LIMIT=128] -->
-    <string name="custom_list_filter">Define customized view</string>
+    <string name="custom_list_filter">Customize view</string>
 
     <!-- Menu item to save changes to custom filter. [CHAR LIMIT=15] -->
     <string name="menu_custom_filter_save">Save</string>
