@@ -58,6 +58,7 @@ public class AccountHeaderPresenter {
     private final Context mContext;
     private AccountDisplayInfoFactory mAccountDisplayInfoFactory;
 
+    private List<AccountWithDataSet> mAccounts;
     private AccountWithDataSet mCurrentAccount;
 
     // Account header
@@ -82,8 +83,6 @@ public class AccountHeaderPresenter {
         mAccountHeaderName = (TextView) container.findViewById(R.id.account_name);
         mAccountHeaderIcon = (ImageView) container.findViewById(R.id.account_type_icon);
         mAccountHeaderExpanderIcon = (ImageView) container.findViewById(R.id.account_expander_icon);
-
-        mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forWritableAccounts(mContext);
     }
 
     public void setObserver(Observer observer) {
@@ -96,6 +95,17 @@ public class AccountHeaderPresenter {
         }
         mCurrentAccount = account;
         if (mObserver != null) {
+            mObserver.onChange(this);
+        }
+        updateDisplayedAccount();
+    }
+
+    public void setAccounts(List<AccountWithDataSet> accounts) {
+        mAccounts = accounts;
+        mAccountDisplayInfoFactory = new AccountDisplayInfoFactory(mContext, accounts);
+        // If the current account was removed just switch to the next one in the list.
+        if (mCurrentAccount != null && !mAccounts.contains(mCurrentAccount)) {
+            mCurrentAccount = mAccounts.isEmpty() ? null : accounts.get(0);
             mObserver.onChange(this);
         }
         updateDisplayedAccount();
@@ -120,6 +130,7 @@ public class AccountHeaderPresenter {
     private void updateDisplayedAccount() {
         mAccountHeaderContainer.setVisibility(View.GONE);
         if (mCurrentAccount == null) return;
+        if (mAccounts == null) return;
 
         final AccountDisplayInfo account =
                 mAccountDisplayInfoFactory.getAccountDisplayInfo(mCurrentAccount);
