@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"పరిచయం"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"నేరుగా డయల్"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"నేరుగా సందేశం"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"పరిచయం యొక్క సత్వరమార్గాన్ని ఎంచుకోండి"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"కాల్ చేయాల్సిన నంబర్‌ను ఎంచుకోండి"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"సందేశం పంపడానికి నంబర్‌ను ఎంచుకోండి"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"పరిచయానికి జోడించండి"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"పరిచయాన్ని ఎంచుకోండి"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ఎంచుకోండి"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"పరిచయాలను ఎంచుకోండి"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"పరిచయాలను జోడించు"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"లేబుల్ నుండి తీసివేయి"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"కొత్తది సృష్టించు…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"ఈ పరిచయాన్ని పలు పరిచయాలుగా వేరు చేయాలా?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"వేరు చేయి"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"మీరు ఇప్పటికే చేసిన మార్పులను సేవ్ చేసి, ఈ పరిచయాన్ని పలు పరిచయాలుగా వేరు చేయాలనుకుంటున్నారా?"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"పరిచయ డేటాను ఎగుమతి చేస్తోంది"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"పరిచయ డేటా ఎగుమతి చేయబడుతోంది."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"డేటాబేస్ సమాచారాన్ని పొందడం సాధ్యపడలేదు."</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"ఎగుమతి చేయదగిన పరిచయాలు ఏవీ లేవు."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard కంపోజర్ సరిగ్గా ప్రారంభించబడలేదు."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"ఎగుమతి చేయడం సాధ్యపడలేదు"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"పరిచయ డేటా ఎగుమతి చేయబడలేదు.\nకారణం: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"భాగస్వామ్యం చేయడానికి పరిచయాలు ఏవీ లేవు."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"అనుకూలీకృత వీక్షణను నిర్వచించండి"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"సేవ్ చేయి"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"పరిచయాలను శోధించండి"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"ఇష్టమైనవి"</string>

@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contatto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Composizione diretta"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Messaggio diretto"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Scegli una scorciatoia contatto"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Scegli un numero da chiamare"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Scegli un numero a cui inviare il messaggio"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Aggiungi al contatto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Scegli un contatto"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Seleziona"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Seleziona contatti"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Aggiungi contatti"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Rimuovi da etichetta"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Crea nuova…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"Scollegare questo contatto in diversi contatti?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Scollega"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Vuoi salvare le modifiche già apportate e scollegare il contatto in diversi contatti?"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Esportazione dati di contatto"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Esportazione dei dati dei contatti in corso."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Recupero informazioni database non riuscito."</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"Non ci sono contatti esportabili."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"Il compositore di vCard non si è avviato correttamente."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Impossibile esportare"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"I dati dei contatti non sono stati esportati.\nMotivo: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Nessun contatto da condividere."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contatti da visualizzare"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contatti da visualizzare"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Def. visualizz. personalizzata"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Salva"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Cerca contatti"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Preferiti"</string>

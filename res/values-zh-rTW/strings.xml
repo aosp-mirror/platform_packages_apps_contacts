@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"聯絡人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接撥號"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"直接傳訊"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"選擇聯絡人捷徑"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"選擇去電號碼"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"選擇傳訊號碼"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"加入聯絡人"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"選擇聯絡人"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"選取"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"選取聯絡人"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"新增聯絡人"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"從標籤中移除"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"新建..."</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"確定要將這個聯絡人的連結取消，還原為多筆聯絡人資料嗎？"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"取消連結"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"您要儲存目前所做變更，並將這個聯絡人的連結取消，還原為多筆聯絡人資料嗎？"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"正在匯出聯絡人資料"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"正在匯出聯絡人資料。"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"無法取得資料庫資訊。"</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"沒有聯絡人資料可供匯出。"</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard 編輯器並未正確啟動。"</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"無法匯出"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"聯絡人資料未匯出。\n原因：<xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"沒有任何聯絡人資料可分享。"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"要顯示的聯絡人"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"要顯示的聯絡人"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"定義自訂檢視"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"儲存"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"搜尋聯絡人"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"我的收藏"</string>

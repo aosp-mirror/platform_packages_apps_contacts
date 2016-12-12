@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Ring"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Send melding"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Velg en kontaktsnarvei"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Velg et nummer å ringe"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Velg et nummer for SMS"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Legg til kontakt"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Velg en kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Velg"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Velg kontakter"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Legg til kontakter"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Fjern fra etiketten"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Opprett ny…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"Vil du dele denne kontakten opp i flere kontakter?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Del opp"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Vil du lagre endringene du allerede har gjort, og dele opp denne kontakten i flere kontakter?"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Eksporterer kontaktdata"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Kontaktdataene eksporteres."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Kunne ikke hente databaseinformasjon."</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"Ingen kontakter kan eksporteres."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard-oppretteren startet ikke som den skulle."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Eksport mislyktes"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Kontaktdataene ble ikke eksportert.\nGrunn: <xliff:g id="FAIL_REASON">%s</xliff:g>"</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Det finnes ingen kontakter å dele."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakter i visning"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakter i visning"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Definer tilpasset visning"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Lagre"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Søk i kontakter"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritter"</string>

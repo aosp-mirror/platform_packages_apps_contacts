@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Կոնտակտ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Ուղիղ համարհավաքում"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Ուղիղ հաղորդագրություն"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Ընտրեք կոնտակտ"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Ընտրել զանգելու համարը"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Ընտրել համարը՝ հաղորդագրելու համար"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Ավելացնել կոնտակտին"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Ընտրել կոնտակտ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Ընտրել"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Ընտրեք կոնտակտներ"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Ավելացնել կոնտակտներ"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Հեռացնել պիտակից"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Ստեղծել նոր…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"Տրոհե՞լ այս կոնտակտը մի քանի կոնտակտների:"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Տրոհել"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Պահե՞լ արդեն իսկ կատարված փոփոխությունները և տրոհել այս կոնտակտը մի քանի կոնտակտների:"</string>
@@ -53,7 +53,7 @@
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Պահել և միակցել"</string>
     <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"Կցում"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"Ապակցում"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Միավորել"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Միակցել"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"Դիտել կցած կոնտակտները"</string>
     <string name="menu_save" msgid="1727844363591825909">"Պահել"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Միակցել կոնտակտները"</string>
@@ -106,7 +106,7 @@
     <string name="emptyMainList" msgid="2772242747899664460">"Կոնտակտների ցանկը դատարկ է"</string>
     <string name="contactSavedNamedToast" msgid="895136068894549611">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> կոնտակտը պահվեց"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Կոնտակտը պահվեց"</string>
-    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Կոնտակտներն անջատվեցին"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Կոնտակտները ապակցվեցին"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"Չհաջողվեց պահել կոնտակտի տվյալների փոփոխությունները"</string>
     <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"Չհաջողվեց անջատել կոնտակտը"</string>
     <string name="contactJoinErrorToast" msgid="5735129234573327701">"Չհաջողվեց կապել կոնտակտը"</string>
@@ -120,7 +120,7 @@
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Հեռացվել է պիտակից"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Ավելացվեց պիտակին"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Չհաջողվեց պահել պիտակի փոփոխությունները"</string>
-    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Այս անունով խումբ արդեն գոյություն ունի"</string>
+    <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Այս անունով խումբ արդեն կա"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Որոշ կոնտակտներ էլփոստի հասցե չունեն:"</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Որոշ կոնտակտներ հեռախոսահամար չունեն:"</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"Ուղարկել նամակ"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Կոնտակտային տվյալների արտահանում"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Կոնտակտային տվյալներն արտահանվում են:"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Հնարավոր չէ ստանալ տվյալների շտեմարանի տեղեկատվությունը:"</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"Արտահանելու կոնտակտներ չկան:"</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard-ի կազմիչը ճիշտ չէ մեկնարկել:"</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Հնարավոր չէ արտահանել"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Կոնտակտային տվյալները չեն արտահանվել:\nՊատճառը՝ «<xliff:g id="FAIL_REASON">%s</xliff:g>»"</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Հասանելի կոնտակտներ չկան։"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Կոնտակտների զտիչ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Կոնտակտների զտիչ"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Կարգավորել տեսքը"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Պահել"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Կոնտակտների որոնում"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Ընտրյալներ"</string>
@@ -507,7 +507,7 @@
     <string name="sim_import_empty_message" msgid="7743815244380189651">"Ձեր SIM քարտում կոնտակտներ չկան"</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Կոնտակտն արդեն առկա է ձեր ցանկում"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> SIM contacts imported</item>
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> կոնտակտ SIM քարտից ներմուծվեց</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> կոնտակտ SIM քարտից ներմուծվեց</item>
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM քարտից չհաջողվեց ներմուծել կոնտակտները"</string>
