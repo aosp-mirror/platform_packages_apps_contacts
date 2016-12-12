@@ -21,11 +21,14 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.AsyncTaskLoader;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -36,17 +39,26 @@ import com.android.contacts.list.AccountFilterActivity;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.Contact;
 import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferences;
+import com.android.contacts.util.concurrent.ContactsExecutors;
+import com.android.contacts.util.concurrent.ListenableFutureLoader;
 import com.android.contactsbind.ObjectFactory;
 
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * Utility class for account filter manipulation.
@@ -98,65 +110,78 @@ public class AccountFilterUtil {
     /**
      * Loads a list of contact list filters
      */
-    public static class FilterLoader extends AsyncTaskLoader<List<ContactListFilter>> {
-        private Context mContext;
+    public static class FilterLoader extends ListenableFutureLoader<List<ContactListFilter>> {
+        private AccountTypeManager mAccountTypeManager;
         private DeviceLocalAccountTypeFactory mDeviceLocalFactory;
+        private LocalBroadcastManager mLocalBroadcastManager;
+        private BroadcastReceiver mReceiver;
 
         public FilterLoader(Context context) {
             super(context);
-            mContext = context;
+            mAccountTypeManager = AccountTypeManager.getInstance(context);
             mDeviceLocalFactory = ObjectFactory.getDeviceLocalAccountTypeFactory(context);
-        }
-
-        @Override
-        public List<ContactListFilter> loadInBackground() {
-            return loadAccountFilters(mContext, mDeviceLocalFactory);
+            mLocalBroadcastManager = LocalBroadcastManager.getInstance(context);
         }
 
         @Override
         protected void onStartLoading() {
-            forceLoad();
-        }
-
-        @Override
-        protected void onStopLoading() {
-            cancelLoad();
+            super.onStartLoading();
+            if (mReceiver == null) {
+                mReceiver = new ForceLoadReceiver();
+                mLocalBroadcastManager.registerReceiver(mReceiver,
+                        new IntentFilter(AccountTypeManager.BROADCAST_ACCOUNTS_CHANGED));
+            }
         }
 
         @Override
         protected void onReset() {
-            onStopLoading();
-        }
-    }
-
-    private static List<ContactListFilter> loadAccountFilters(Context context,
-            DeviceLocalAccountTypeFactory deviceAccountTypeFactory) {
-        final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
-        final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(true);
-        AccountTypeManager.sortAccounts(getDefaultAccount(context), accounts);
-
-        for (AccountWithDataSet account : accounts) {
-            final AccountType accountType =
-                    accountTypeManager.getAccountType(account.type, account.dataSet);
-            if ((accountType.isExtension() || DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
-                    deviceAccountTypeFactory, account.type)) && !account.hasData(context)) {
-                // Hide extensions and device accounts with no raw_contacts.
-                continue;
-            }
-            final Drawable icon = accountType != null ? accountType.getDisplayIcon(context) : null;
-            if (DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
-                    deviceAccountTypeFactory, account.type)) {
-                accountFilters.add(ContactListFilter.createDeviceContactsFilter(icon, account));
-            } else {
-                accountFilters.add(ContactListFilter.createAccountFilter(
-                        account.type, account.name, account.dataSet, icon));
+            super.onReset();
+            if (mReceiver != null) {
+                mLocalBroadcastManager.unregisterReceiver(mReceiver);
             }
         }
 
-        final ArrayList<ContactListFilter> result = Lists.newArrayList();
-        result.addAll(accountFilters);
-        return result;
+        @Override
+        protected ListenableFuture<List<ContactListFilter>> loadData() {
+            return Futures.transform(mAccountTypeManager.filterAccountsByTypeAsync(
+                    AccountTypeManager.writableFilter()),
+                    new Function<List<AccountWithDataSet>, List<ContactListFilter>>() {
+                        @Override
+                        public List<ContactListFilter> apply(List<AccountWithDataSet> input) {
+                            return getFiltersForAccounts(input);
+                        }
+                    }, ContactsExecutors.getDefaultThreadPoolExecutor());
+        }
+
+        private List<ContactListFilter> getFiltersForAccounts(List<AccountWithDataSet> accounts) {
+            final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
+            AccountTypeManager.sortAccounts(getDefaultAccount(getContext()), accounts);
+
+            for (AccountWithDataSet account : accounts) {
+                final AccountType accountType =
+                        mAccountTypeManager.getAccountType(account.type, account.dataSet);
+                if ((accountType.isExtension() ||
+                        DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
+                                mDeviceLocalFactory, account.type)) &&
+                        !account.hasData(getContext())) {
+                    // Hide extensions and device accounts with no raw_contacts.
+                    continue;
+                }
+                final Drawable icon = accountType != null ?
+                        accountType.getDisplayIcon(getContext()) : null;
+                if (DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
+                        mDeviceLocalFactory, account.type)) {
+                    accountFilters.add(ContactListFilter.createDeviceContactsFilter(icon, account));
+                } else {
+                    accountFilters.add(ContactListFilter.createAccountFilter(
+                            account.type, account.name, account.dataSet, icon));
+                }
+            }
+
+            final ArrayList<ContactListFilter> result = Lists.newArrayList();
+            result.addAll(accountFilters);
+            return result;
+        }
     }
 
     private static AccountWithDataSet getDefaultAccount(Context context) {
