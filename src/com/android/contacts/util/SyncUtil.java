@@ -22,7 +22,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.ContactsContract;
 
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
+
+import java.util.List;
 
 /**
  * Utilities related to sync.
@@ -43,6 +46,19 @@ public final class SyncUtil {
         }
         return ContentResolver.isSyncPending(account, ContactsContract.AUTHORITY)
                 || ContentResolver.isSyncActive(account, ContactsContract.AUTHORITY);
+    }
+
+    /**
+     * Returns true {@link ContentResolver#isSyncPending(Account, String)} or
+     * {@link ContentResolver#isSyncActive(Account, String)} is true for any account in accounts
+     */
+    public static final boolean isAnySyncing(List<AccountWithDataSet> accounts) {
+        for (AccountWithDataSet accountWithDataSet : accounts) {
+            if (isSyncStatusPendingOrActive(accountWithDataSet.getAccountOrNull())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

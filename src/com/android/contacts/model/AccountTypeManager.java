@@ -178,6 +178,39 @@ public abstract class AccountTypeManager {
      */
     public abstract Account getDefaultGoogleAccount();
 
+    /**
+     * Returns the Google Accounts.
+     *
+     * <p>This method exists in addition to filterAccountsByTypeAsync because it should be safe
+     * to call synchronously.
+     * </p>
+     */
+    public List<AccountWithDataSet> getWritableGoogleAccounts() {
+        // This implementation may block and should be overridden by the Impl class
+        return Futures.getUnchecked(filterAccountsByTypeAsync(new Predicate<AccountType>() {
+            @Override
+            public boolean apply(@Nullable AccountType input) {
+                return  input.areContactsWritable() &&
+                        GoogleAccountType.ACCOUNT_TYPE.equals(input.accountType);
+
+            }
+        }));
+    }
+
+    /**
+     * Returns true if there are real accounts (not "local" account) in the list of accounts.
+     */
+    public boolean hasNonLocalAccount() {
+        final List<AccountWithDataSet> allAccounts = getAccounts(/* contactWritableOnly */ false);
+        if (allAccounts == null || allAccounts.size() == 0) {
+            return false;
+        }
+        if (allAccounts.size() > 1) {
+            return true;
+        }
+        return !allAccounts.get(0).isNullAccount();
+    }
+
     static Account getDefaultGoogleAccount(AccountManager accountManager,
             SharedPreferences prefs, String defaultAccountKey) {
         // Get all the google accounts on the device
@@ -560,12 +593,29 @@ class AccountTypeManagerImpl extends AccountTypeManager
      */
     @Override
     public Account getDefaultGoogleAccount() {
-        final AccountManager accountManager = AccountManager.get(mContext);
         final SharedPreferences sharedPreferences =
                 mContext.getSharedPreferences(mContext.getPackageName(), Context.MODE_PRIVATE);
         final String defaultAccountKey =
                 mContext.getResources().getString(R.string.contact_editor_default_account_key);
-        return getDefaultGoogleAccount(accountManager, sharedPreferences, defaultAccountKey);
+        return getDefaultGoogleAccount(mAccountManager, sharedPreferences, defaultAccountKey);
+    }
+
+    @Override
+    public List<AccountWithDataSet> getWritableGoogleAccounts() {
+        final Account[] googleAccounts =
+                mAccountManager.getAccountsByType(GoogleAccountType.ACCOUNT_TYPE);
+        final List<AccountWithDataSet> result = new ArrayList<>();
+        for (Account account : googleAccounts) {
+            // Accounts with a dataSet (e.g. Google plus accounts) are not writable.
+            result.add(new AccountWithDataSet(account.name, account.type, null));
+        }
+        return result;
+    }
+
+    @Override
+    public boolean hasNonLocalAccount() {
+        final Account[] accounts = mAccountManager.getAccounts();
+        return accounts != null && accounts.length > 0;
     }
 
     /**
