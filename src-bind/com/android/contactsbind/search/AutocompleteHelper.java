@@ -25,7 +25,7 @@ public final class AutocompleteHelper {
         void onAutocompletesAvailable(Cursor cursor);
     }
 
-    private AutocompleteHelper() {
+    public AutocompleteHelper() {
     }
 
     public void setListener(Listener listener) {
