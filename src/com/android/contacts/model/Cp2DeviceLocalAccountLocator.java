@@ -60,14 +60,10 @@ public class Cp2DeviceLocalAccountLocator extends DeviceLocalAccountLocator {
 
     public Cp2DeviceLocalAccountLocator(ContentResolver contentResolver,
             DeviceLocalAccountTypeFactory factory,
-            List<AccountWithDataSet> knownAccounts) {
+            Set<String> knownAccountTypes) {
         mResolver = contentResolver;
         mAccountTypeFactory = factory;
 
-        final Set<String> knownAccountTypes = new HashSet<>();
-        for (AccountWithDataSet account : knownAccounts) {
-            knownAccountTypes.add(account.type);
-        }
         mSelection = getSelection(knownAccountTypes);
         mSelectionArgs = getSelectionArgs(knownAccountTypes);
     }

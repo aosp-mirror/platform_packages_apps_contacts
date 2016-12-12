@@ -25,9 +25,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;
@@ -39,30 +41,53 @@ import java.util.List;
 public final class AccountsListAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
     private final List<AccountDisplayInfo> mAccountDisplayInfoList;
+    private final List<AccountWithDataSet> mAccounts;
     private final Context mContext;
     private int mCustomLayout = -1;
 
-    /**
-     * Filters that affect the list of accounts that is displayed by this adapter.
-     */
     public enum AccountListFilter {
-        ALL_ACCOUNTS,                   // All read-only and writable accounts
-        ACCOUNTS_CONTACT_WRITABLE,      // Only where the account type is contact writable
-        ACCOUNTS_GROUP_WRITABLE         // Only accounts where the account type is group writable
+        ALL_ACCOUNTS {
+            @Override
+            public List<AccountWithDataSet> getAccounts(Context context) {
+                return AccountTypeManager.getInstance(context).getAccounts(false);
+            }
+        },
+        ACCOUNTS_CONTACT_WRITABLE {
+            @Override
+            public List<AccountWithDataSet> getAccounts(Context context) {
+                return AccountTypeManager.getInstance(context).getAccounts(true);
+            }
+        },
+        ACCOUNTS_GROUP_WRITABLE {
+            @Override
+            public List<AccountWithDataSet> getAccounts(Context context) {
+                return AccountTypeManager.getInstance(context).getGroupWritableAccounts();
+            }
+        };
+
+        public abstract List<AccountWithDataSet> getAccounts(Context context);
     }
 
-    public AccountsListAdapter(Context context, AccountListFilter accountListFilter) {
-        this(context, accountListFilter, null);
+    public AccountsListAdapter(Context context, AccountListFilter filter) {
+        this(context, filter.getAccounts(context), null);
+    }
+
+    public AccountsListAdapter(Context context, AccountListFilter filter,
+            AccountWithDataSet currentAccount) {
+        this(context, filter.getAccounts(context), currentAccount);
+    }
+
+    public AccountsListAdapter(Context context, List<AccountWithDataSet> accounts) {
+        this(context, accounts, null);
     }
 
     /**
      * @param currentAccount the Account currently selected by the user, which should come
      * first in the list. Can be null.
      */
-    public AccountsListAdapter(Context context, AccountListFilter accountListFilter,
+    public AccountsListAdapter(Context context, List<AccountWithDataSet> accounts,
             AccountWithDataSet currentAccount) {
         mContext = context;
-        final List<AccountWithDataSet> accounts = getAccounts(accountListFilter);
         if (currentAccount != null
                 && !accounts.isEmpty()
                 && !accounts.get(0).equals(currentAccount)
@@ -77,15 +102,8 @@ public final class AccountsListAdapter extends BaseAdapter {
             mAccountDisplayInfoList.add(factory.getAccountDisplayInfo(account));
         }
         mInflater = LayoutInflater.from(context);
-    }
 
-    private List<AccountWithDataSet> getAccounts(AccountListFilter accountListFilter) {
-        final AccountTypeManager typeManager = AccountTypeManager.getInstance(mContext);
-        if (accountListFilter == AccountListFilter.ACCOUNTS_GROUP_WRITABLE) {
-            return new ArrayList<AccountWithDataSet>(typeManager.getGroupWritableAccounts());
-        }
-        return new ArrayList<AccountWithDataSet>(typeManager.getAccounts(
-                accountListFilter == AccountListFilter.ACCOUNTS_CONTACT_WRITABLE));
+        mAccounts = accounts;
     }
 
     public void setCustomLayout(int customLayout) {
