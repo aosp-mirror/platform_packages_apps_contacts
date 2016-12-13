@@ -428,7 +428,8 @@ public class DynamicShortcuts {
             final Flags flags = Flags.getInstance();
             Log.d(TAG, "DyanmicShortcuts.initialize\nVERSION >= N_MR1? " +
                     (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) +
-                    "\nisJobScheduled? " + isJobScheduled(context) +
+                    "\nisJobScheduled? " +
+                    (CompatUtils.isLauncherShortcutCompatible() && isJobScheduled(context)) +
                     "\nminDelay=" +
                     flags.getInteger(Experiments.DYNAMIC_MIN_CONTENT_CHANGE_UPDATE_DELAY_MILLIS) +
                     "\nmaxDelay=" +
