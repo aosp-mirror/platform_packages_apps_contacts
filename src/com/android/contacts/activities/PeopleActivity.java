@@ -68,6 +68,7 @@ import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.logging.Logger;
 import com.android.contacts.logging.ScreenEvent.ScreenType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountFilterUtil;
@@ -172,7 +173,8 @@ public class PeopleActivity extends ContactsDrawerActivity {
                 accounts = Collections.singletonList(new AccountWithDataSet(filter.accountName,
                         filter.accountType, null));
             } else if (filter.shouldShowSyncState()) {
-                accounts = mAccountTypeManager.getWritableGoogleAccounts();
+                accounts = AccountInfo.extractAccounts(
+                        mAccountTypeManager.getWritableGoogleAccounts());
             } else {
                 accounts = Collections.emptyList();
             }

@@ -25,11 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountDisplayInfo;
-import com.android.contacts.model.account.AccountDisplayInfoFactory;
-import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;
@@ -40,32 +37,41 @@ import java.util.List;
  */
 public final class AccountsListAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
-    private final List<AccountDisplayInfo> mAccountDisplayInfoList;
-    private final List<AccountWithDataSet> mAccounts;
+    private final List<AccountInfo> mAccounts;
     private final Context mContext;
     private int mCustomLayout = -1;
 
     public enum AccountListFilter {
         ALL_ACCOUNTS {
             @Override
-            public List<AccountWithDataSet> getAccounts(Context context) {
+            public List<AccountWithDataSet> getSourceAccounts(Context context) {
                 return AccountTypeManager.getInstance(context).getAccounts(false);
             }
         },
         ACCOUNTS_CONTACT_WRITABLE {
             @Override
-            public List<AccountWithDataSet> getAccounts(Context context) {
+            public List<AccountWithDataSet> getSourceAccounts(Context context) {
                 return AccountTypeManager.getInstance(context).getAccounts(true);
             }
         },
         ACCOUNTS_GROUP_WRITABLE {
             @Override
-            public List<AccountWithDataSet> getAccounts(Context context) {
+            public List<AccountWithDataSet> getSourceAccounts(Context context) {
                 return AccountTypeManager.getInstance(context).getGroupWritableAccounts();
             }
         };
 
-        public abstract List<AccountWithDataSet> getAccounts(Context context);
+        private List<AccountInfo> getAccounts(Context context) {
+            final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
+            final List<AccountInfo> result = new ArrayList<>();
+            final List<AccountWithDataSet> sourceAccounts = getSourceAccounts(context);
+            for (AccountWithDataSet account : sourceAccounts) {
+                result.add(accountTypeManager.getAccountInfoForAccount(account));
+            }
+            return result;
+        }
+
+        public abstract List<AccountWithDataSet> getSourceAccounts(Context context);
     }
 
     public AccountsListAdapter(Context context, AccountListFilter filter) {
@@ -77,7 +83,7 @@ public final class AccountsListAdapter extends BaseAdapter {
         this(context, filter.getAccounts(context), currentAccount);
     }
 
-    public AccountsListAdapter(Context context, List<AccountWithDataSet> accounts) {
+    public AccountsListAdapter(Context context, List<AccountInfo> accounts) {
         this(context, accounts, null);
     }
 
@@ -85,22 +91,18 @@ public final class AccountsListAdapter extends BaseAdapter {
      * @param currentAccount the Account currently selected by the user, which should come
      * first in the list. Can be null.
      */
-    public AccountsListAdapter(Context context, List<AccountWithDataSet> accounts,
+    public AccountsListAdapter(Context context, List<AccountInfo> accounts,
             AccountWithDataSet currentAccount) {
         mContext = context;
-        if (currentAccount != null
+
+        final AccountInfo currentInfo = AccountInfo.getAccount(accounts, currentAccount);
+        if (currentInfo != null
                 && !accounts.isEmpty()
-                && !accounts.get(0).equals(currentAccount)
-                && accounts.remove(currentAccount)) {
-            accounts.add(0, currentAccount);
+                && !accounts.get(0).sameAccount(currentAccount)
+                && accounts.remove(currentInfo)) {
+            accounts.add(0, currentInfo);
         }
 
-        final AccountDisplayInfoFactory factory = new AccountDisplayInfoFactory(context,
-                accounts);
-        mAccountDisplayInfoList = new ArrayList<>(accounts.size());
-        for (AccountWithDataSet account : accounts) {
-            mAccountDisplayInfoList.add(factory.getAccountDisplayInfo(account));
-        }
         mInflater = LayoutInflater.from(context);
 
         mAccounts = accounts;
@@ -120,22 +122,22 @@ public final class AccountsListAdapter extends BaseAdapter {
         final TextView text2 = (TextView) resultView.findViewById(android.R.id.text2);
         final ImageView icon = (ImageView) resultView.findViewById(android.R.id.icon);
 
-        text1.setText(mAccountDisplayInfoList.get(position).getTypeLabel());
-        text2.setText(mAccountDisplayInfoList.get(position).getNameLabel());
+        text1.setText(mAccounts.get(position).getTypeLabel());
+        text2.setText(mAccounts.get(position).getNameLabel());
 
-        icon.setImageDrawable(mAccountDisplayInfoList.get(position).getIcon());
+        icon.setImageDrawable(mAccounts.get(position).getIcon());
 
         return resultView;
     }
 
     @Override
     public int getCount() {
-        return mAccountDisplayInfoList.size();
+        return mAccounts.size();
     }
 
     @Override
     public AccountWithDataSet getItem(int position) {
-        return mAccountDisplayInfoList.get(position).getSource();
+        return mAccounts.get(position).getAccount();
     }
 
     @Override
