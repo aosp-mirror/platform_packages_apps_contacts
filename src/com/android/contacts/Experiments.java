@@ -21,6 +21,21 @@ package com.android.contacts;
 public final class Experiments {
 
     /**
+     * The maximum time to wait before showing initial results in the assistants view.
+     *
+     * Default value is 2 seconds.
+     */
+    public static final String ASSISTANT_DISPLAY_INITIAL_RESULTS_TIMEOUT =
+            "Assistant__display_initial_results_timeout";
+
+    /**
+     * The maximum time to wait before timing out non-responsive assistants
+     *
+     * Default value is 10 seconds.
+     */
+    public static final String ASSISTANT_MAXIMUM_TIMEOUT = "Assistant__maximum_timeout";
+
+    /**
      * Whether to open contact sheet (aka smart profile) instead of our own QuickContact.
      */
     public static final String CONTACT_SHEET = "QuickContact__contact_sheet";
