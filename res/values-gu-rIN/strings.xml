@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"સંપર્ક"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"સીધું જ ડાયલ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"સીધો જ સંદેશ"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"સંપર્ક શોર્ટકટ પસંદ કરો"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"કૉલ કરવા માટે નંબર પસંદ કરો"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"સંદેશ કરવા માટે નંબર પસંદ કરો"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"સંપર્કમાં ઉમેરો"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"સંપર્ક પસંદ કરો"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"પસંદ કરો"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"સંપર્કો પસંદ કરો"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"સંપર્કો ઉમેરો"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"લેબલમાંથી દૂર કરો"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"નવું બનાવો…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"આ સંપર્કને બહુવિધ સંપર્કોમાં અનલિંક કરીએ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"અનલિંક કરો"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"તમે પહેલેથી કરેલા ફેરફારોને સાચવવા અને આ સંપર્કને બહુવિધ સંપર્કોમાં અનલિંક કરવા ઈચ્છો છો?"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"સંપર્ક ડેટા નિકાસ કરી રહ્યાં છે"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"સંપર્ક ડેટાનો નિકાસ કરવામાં આવી રહ્યો છે."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"ડેટાબેઝ માહિતી મેળવી શક્યાં નથી."</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"કોઇ નિકાસયોગ્ય સંપર્કો નથી."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard કમ્પોઝર ઠીકથી પ્રારંભ થયું નથી."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"નિકાસ કરી શક્યાં નથી"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"સંપર્ક ડેટા નિકાસ કર્યો નહોતો.\nકારણ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"શેર કરવા માટે કોઇ સંપર્કો નથી"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"પ્રદર્શિત કરવાના સંપર્કો"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"પ્રદર્શિત કરવાના સંપર્કો"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"કસ્ટમાઇઝ કરેલ દૃશ્ય નિર્ધારિત કરો"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"સાચવો"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"સંપર્કો શોધો"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"મનપસંદ"</string>

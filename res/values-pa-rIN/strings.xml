@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"ਸੰਪਰਕ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ਸਿੱਧਾ ਡਾਇਲ ਕਰੋ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ਸਿੱਧਾ ਸੁਨੇਹਾ"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ਇੱਕ ਸੰਪਰਕ ਸ਼ਾਰਟਕੱਟ ਚੁਣੋ"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ਕਾਲ ਕਰਨ ਲਈ ਇੱਕ ਨੰਬਰ ਚੁਣੋ"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ਸੁਨੇਹੇ ਲਈ ਇੱਕ ਨੰਬਰ ਚੁਣੋ"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ਸੰਪਰਕ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ਇੱਕ ਸੰਪਰਕ ਚੁਣੋ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ਚੁਣੋ"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"ਸੰਪਰਕ ਚੁਣੋ"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"ਸੰਪਰਕ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"ਲੇਬਲ ਤੋਂ ਹਟਾਓ"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"ਨਵਾਂ ਬਣਾਓ…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"ਕੀ ਇਸ ਸੰਪਰਕ ਨੂੰ ਇੱਕ ਤੋਂ ਜ਼ਿਆਦਾ ਸੰਪਰਕਾਂ ਵਿੱਚ ਅਣਲਿੰਕ ਕਰਨਾ ਹੈ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ਅਣਲਿੰਕ ਕਰੋ"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ਕੀ ਤੁਸੀਂ ਤੁਹਾਡੇ ਵੱਲੋਂ ਪਹਿਲਾਂ ਤੋਂ ਕੀਤੇ ਬਦਲਾਵਾਂ ਨੂੰ ਰੱਖਿਅਤ ਕਰਨਾ ਅਤੇ ਇਸ ਸੰਪਰਕ ਨੂੰ ਇੱਕ ਤੋਂ ਜ਼ਿਆਦਾ ਸੰਪਰਕਾਂ ਵਿੱਚ ਅਣਲਿੰਕ ਕਰਨਾ ਚਾਹੋਗੇ?"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"ਸੰਪਰਕ ਡੈਟਾ ਨਿਰਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"ਸੰਪਰਕ ਡੈਟੇ ਨੂੰ ਨਿਰਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"ਡੈਟਾਬੇਸ ਜਾਣਕਾਰੀ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।"</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"ਨਿਰਯਾਤ ਕਰਨ ਯੋਗ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ।"</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard ਕੰਪੋਜ਼ਰ ਸਹੀ ਢੰਗ ਨਾਲ ਚਾਲੂ ਨਹੀਂ ਹੋਇਆ।"</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"ਨਿਰਯਾਤ ਨਹੀਂ ਹੋ ਸਕਿਆ"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"ਸੰਪਰਕ ਡੈਟਾ ਨਿਰਯਾਤ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਸੀ।\nਕਾਰਨ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"ਸਾਂਝਾ ਕਰਨ ਲਈ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ।"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਸੰਪਰਕ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਸੰਪਰਕ"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"ਵਿਸ਼ੇਸ਼-ਵਿਉਂਤਬੱਧ ਕੀਤੇ ਦ੍ਰਿਸ਼ ਨੂੰ ਪ੍ਰਭਾਸ਼ਿਤ ਕਰੋ"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"ਰੱਖਿਅਤ ਕਰੋ"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"ਸੰਪਰਕ ਖੋਜੋ"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"ਮਨਪਸੰਦ"</string>

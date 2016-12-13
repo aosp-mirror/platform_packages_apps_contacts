@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"ಸಂಪರ್ಕ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ನೇರ ಡಯಲ್"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ನೇರ ಸಂದೇಶ"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ಸಂಪರ್ಕದ ಶಾರ್ಟ್‌ಕಟ್‌‌ ಆರಿಸಿ"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ಕರೆಮಾಡಲು ಸಂಖ್ಯೆ ಆಯ್ಕೆ ಮಾಡಿ"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ಸಂದೇಶಕ್ಕಾಗಿ ಸಂಖ್ಯೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ಸಂಪರ್ಕಕ್ಕೆ ಸೇರಿಸು"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ಸಂಪರ್ಕ ಆಯ್ಕೆ ಮಾಡಿ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ಆಯ್ಕೆಮಾಡಿ"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"ಸಂಪರ್ಕಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"ಸಂಪರ್ಕಗಳನ್ನು ಸೇರಿಸಿ"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"ಲೇಬಲ್‌ನಿಂದ ತೆಗೆದುಹಾಕಿ"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"ಹೊಸದನ್ನು ರಚಿಸಿ…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡುವುದೇ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ಅನ್‌ಲಿಂಕ್‌"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ರಫ್ತುಮಾಡಲಾಗುತ್ತಿದೆ"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"ಡೇಟಾಬೇಸ್ ಮಾಹಿತಿಯನ್ನು ಪಡೆಯಲಾಗಲಿಲ್ಲ."</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"ಯಾವುದೇ ರಫ್ತುಮಾಡಬಹುದಾದ ಸಂಪರ್ಕಗಳು ಇಲ್ಲ."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard ಸಂಯೋಜಕ ಸರಿಯಾಗಿ ಪ್ರಾರಂಭವಾಗಿಲ್ಲ."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"ರಫ್ತು ಮಾಡಲಾಗುವುದಿಲ್ಲ"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ರಫ್ತು ಮಾಡಲಾಗಿಲ್ಲ.\nಕಾರಣ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"ಹಂಚಿಕೊಳ್ಳಲು ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ಪ್ರದರ್ಶಿಸಲು ಸಂಪರ್ಕಗಳು"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ಪ್ರದರ್ಶಿಸಲು ಸಂಪರ್ಕಗಳು"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"ಕಸ್ಟಮೈಸ್ ವೀಕ್ಷಣೆ ವಿವರಿಸಿ"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"ಉಳಿಸು"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"ಮೆಚ್ಚಿನವುಗಳು"</string>

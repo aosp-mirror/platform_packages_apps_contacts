@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Anwani"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Upigaji wa moja kwa moja"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Ujumbe wa moja kwa moja"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Chagua njia ya mkato ya anwani"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Chagua nambari ya kupiga"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Chagua nambari ya kutumia ujumbe"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Ongeza kwenye anwani"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Chagua anwani"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Teua"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Chagua unaowasiliana nao"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Ongeza anwani"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Ondoa kutoka kwenye lebo"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Unda mpya…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"Je, unataka kutenganisha anwani hii kuwa anwani nyingi?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Tenganisha"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Je, ungetaka kuhifadhi mabadiliko uliyoyafanya na utenganishe anwani hii kuwa anwani nyingi?"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Inahamisha data ya anwani"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Data ya anwani inahamishwa."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Haikupata maelezo ya hifadhidata."</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"Hakuna anwani zinazoweza kuhamishwa."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"Kitunzi cha vCard hakikuanza vizuri."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Imeshindwa kuhamisha"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Data ya mwasiliani haikuhamishwa.\nSababu: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Hakuna anwani za kushiriki."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Anwani za kuonyesha"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Anwani za uonyesha"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Bainisha mwonekano maalum"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Hifadhi"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Tafuta anwani"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Vipendwa"</string>

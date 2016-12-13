@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Persoană din Agendă"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Apel direct"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mesaj direct"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Alegeți o pers. din agendă"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Alegeți un nr. pentru apel"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Alegeți un nr. pentru mesaj"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Adăugați pentru persoană"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Alegeți o persoană de contact"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Selectați"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Selectați persoane"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Adăugați persoanele"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Eliminați din etichetă"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Creați o etichetă nouă…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"Separați această persoană de contact în mai multe persoane de contact?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Disociați"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Doriți să salvați modificările pe care le-ați făcut deja și să separați această persoană de contact în mai multe persoane de contact?"</string>
@@ -432,8 +432,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Se exportă datele persoanelor din agendă"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Se exportă datele privind persoanele de contact."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Nu s-au putut obține informații din baza de date."</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"Nicio persoană de contact exportabilă."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"Compozitorul vCard nu a pornit în mod corespunzător."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Nu s-a putut exporta"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Datele de contact nu au fost exportate.\nMotivul: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
@@ -473,7 +472,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Nu există persoane de contact de trimis."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Persoane de contact de afişat"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Pers. din agendă de afiş."</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Definiți afișarea personalizată"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Salvați"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Căutați persoane de contact"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favorite"</string>

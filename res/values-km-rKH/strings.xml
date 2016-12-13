@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"ទំនាក់ទំនង"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ហៅ​ដោយ​ផ្ទាល់"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ផ្ញើ​សារ​ដោយ​ផ្ទាល់"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ជ្រើសរើស​ផ្លូវកាត់​ទំនាក់ទំនង"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ជ្រើស​រើសលេខ​ដើម្បី​ហៅ"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ជ្រើស​រើសលេខ​ដើម្បី​ផ្ញើ​សារ"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"បញ្ចូល​​ទៅ​ទំនាក់ទំនង"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ជ្រើសរើស​ទំនាក់ទំនង"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ជ្រើស"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"ជ្រើស​រើសទំនាក់ទំនង"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"បញ្ចូល​​ទំនាក់ទំនង"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"លុប​ចេញ​ពី​ស្លាក"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"បង្កើត​ថ្មី..."</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"ផ្តាច់ទំនាក់ទំនងនេះទៅជាទំនាក់ទំនងច្រើន?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ផ្តាច់"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"តើអ្នកចង់រក្សាទុកការផ្លាស់ប្តូរដែលអ្នកបានធ្វើឡើង និងផ្តាច់ទំនាក់ទំនងនេះទៅជាទំនាក់ទំនងច្រើនដែរទេ?"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"កំពុង​នាំចេញ​ព័ត៌មាន​ទំនាក់ទំនង"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"ទិន្នន័យចំណាំកំពុងត្រូវបាននាំចេញ"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"មិន​អាច​យក​ព័ត៌មាន​មូលដ្ឋាន​ទិន្នន័យ។"</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"មិន​មាន​ទំនាក់ទំនង​ដែល​អាច​នាំចេញ​ទេ។"</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"មិន​បាន​ចាប់ផ្ដើម​កម្មវិធី​តែង vCard ដោយ​​ត្រឹមត្រូវ។"</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"មិន​អាច​នាំចេញ"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"មិន​បាន​នាំចេញ​ទិន្នន័យ​ទំនាក់ទំនង។\nមូលហេតុ៖ \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"មិនមានទំនាក់ទំនងដើម្បីចែករំលែកទេ។"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ទំនាក់ទំនង​ដែល​ត្រូវ​បង្ហាញ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ទំនាក់ទំនង​ដែល​ត្រូវ​បង្ហាញ"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"កំណត់ទិដ្ឋភាពផ្ទាល់ខ្លួន"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"រក្សាទុក"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"ស្វែងរកទំនាក់ទំនង"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"សំណព្វ"</string>

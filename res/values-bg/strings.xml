@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Директно набиране"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Директно съобщение"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Избор на пряк път до контакт"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Избор на номер за обаждане"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Избор на номер за изпращане на съобщение"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Добавяне към контакта"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Избор на контакт"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Избиране"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Избор на контакти"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Добавяне на контакти"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Премахване от етикета"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Създаване на ново…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"Искате ли да разделите този контакт на няколко?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Разделяне"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Искате ли да запазите вече направените от вас промени и да разделите този контакт на няколко?"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Експортиране на данни за контакти"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Данните за контактите се експортират."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Информацията за базата от данни не можа да бъде получена."</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"Няма контакти, позволяващи експортиране."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"Създателят на vCard не се стартира правилно."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Не се експортира"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Данните за контакта не бяха експортирани.\nПричина: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Няма контакти за споделяне."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Контакти за показване"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Контакти за показване"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Определяне на персонализирания изглед"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Запазване"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Търсете контакти"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Любими"</string>

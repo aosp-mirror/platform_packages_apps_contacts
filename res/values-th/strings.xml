@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"สมุดโทรศัพท์"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"สายตรง"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ข้อความส่วนตัว"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"เลือกทางลัดของสมุดโทรศัพท์"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"เลือกหมายเลขที่จะโทร"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"เลือกหมายเลขที่จะส่งข้อความ"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"เพิ่มลงในรายชื่อติดต่อ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"เลือกรายชื่อติดต่อ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"เลือก"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"เลือกรายชื่อติดต่อ"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"เพิ่มรายชื่อติดต่อ"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"นำออกจากป้ายกำกับ"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"สร้างใหม่…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"ยกเลิกการลิงก์รายชื่อติดต่อนี้กับรายชื่อติดต่อหลายรายการไหม"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ยกเลิกการลิงก์"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"คุณต้องการบันทึกการเปลี่ยนแปลงที่ได้ทำไปแล้วและยกเลิกการลิงก์รายชื่อติดต่อนี้กับรายชื่อติดต่อหลายรายการไหม"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"กำลังส่งออกข้อมูลสมุดโทรศัพท์"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"กำลังส่งออกข้อมูลรายชื่อติดต่อ"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"ไม่สามารถดึงข้อมูลจากฐานข้อมูล"</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"ไม่มีรายชื่อติดต่อที่สามารถส่งออกได้"</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"โปรแกรมเขียนข้อความ vCard เริ่มการทำงานไม่ถูกต้อง"</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"ไม่สามารถส่งออก"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"ไม่ได้ส่งออกข้อมูลรายชื่อติดต่อ\nสาเหตุ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"ไม่มีรายชื่อติดต่อที่จะแชร์"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"รายชื่อติดต่อที่จะแสดง"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"รายชื่อติดต่อที่จะแสดง"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"กำหนดมุมมองที่กำหนดเอง"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"บันทึก"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"ค้นหารายชื่อติดต่อ"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"รายการโปรด"</string>

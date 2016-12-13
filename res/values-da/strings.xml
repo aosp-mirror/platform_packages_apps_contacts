@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Direkte opkald"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Direkte besked"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Vælg en kontaktgenvej"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Vælg et nummer at ringe til"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Vælg et nummer"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Føj til kontaktperson"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Vælg en kontaktperson"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Vælg"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Vælg kontaktpersoner"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Tilføj kontaktpersoner"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Fjern fra etiket"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Opret ny…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"Vil du ophæve sammenfletningen og opdele denne kontaktperson i flere kontaktpersoner?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Ophæv sammenfletningen"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Vil du gemme de ændringer, du allerede har foretaget, og ophæve sammenfletningen og opdele kontaktpersonen i flere kontaktpersoner?"</string>
@@ -169,7 +169,7 @@
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefonnummer"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Føj til kontaktpersoner"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Luk"</string>
-    <string name="date_year_toggle" msgid="7122002148518724139">"Medtag år"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"Inkluder år"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Tilføj konto"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Importér"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Opret ny…"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Eksporterer kontaktdata"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Eksporterer kontaktoplysningerne."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Databaseoplysningerne kunne ikke hentes."</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"Der er ingen kontaktpersoner, der kan eksporteres."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"Oprettelsen af vCard startede ikke korrekt."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Eksport ikke mulig"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Kontaktpersondataene blev ikke eksporteret.\nÅrsag: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Der er ingen kontaktpersoner, der kan deles."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontaktpersoner, der vises"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Viste kontaktpersoner"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Angiv tilpasset visning"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Gem"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Søg efter kontaktpersoner"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Foretrukne"</string>

@@ -21,9 +21,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Тікелей теру"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Тікелей хабар"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Контакт төте пернесін таңдау"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Қоңырау шалатын нөмірді таңдау"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Хабар жіберетін нөмірді таңдау"</string>
+    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
+    <skip />
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Контактілерге қосу"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Контакт таңдау"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Таңдау"</string>
@@ -44,7 +43,8 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Контактілер таңдау"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Контактілерді қосу"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Белгіден алып тастау"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Жаңасын жасау…"</string>
+    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
+    <skip />
     <string name="splitConfirmation" msgid="7342030840130187290">"Осы контакт байланысын жойып, бірнеше контактіге бөлу керек пе?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Байланысты жою"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Енгізіп қойған өзгертулерді сақтау және осы контакт байланысын жойып, бірнеше контактіге бөлу керек пе?"</string>
@@ -426,8 +426,7 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Контакт деректері экспортталуда"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Контактінің деректері экспортталуда."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Дерекқор ақпаратын ала алмады."</string>
-    <!-- no translation found for composer_has_no_exportable_contact (5712531702823346549) -->
-    <skip />
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"Экспортталатын контактілер жоқ."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard редакторы дұрыс қосылмады."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Экспорттай алмады"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Контакт деректері экспортталмады. \nСебебі: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
@@ -467,7 +466,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Бөлісетін контактілер жоқ."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Көрсетілетін контактілер"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Көрсетілетін контактілер"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Реттелген көріністі анықтау"</string>
+    <!-- no translation found for custom_list_filter (9048525797111024204) -->
+    <skip />
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Сақтау"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Контактілерді іздеу"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Таңдаулылар"</string>
