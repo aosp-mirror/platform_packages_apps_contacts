@@ -49,11 +49,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
+import com.android.contacts.activities.PeopleActivity;
 import com.android.contacts.group.GroupMembersAdapter.GroupMembersQuery;
 import com.android.contacts.interactions.GroupDeletionDialogFragment;
 import com.android.contacts.list.ContactsRequest;
@@ -220,7 +220,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
 
     private ActionBarAdapter mActionBarAdapter;
 
-    private ContactsDrawerActivity mActivity;
+    private PeopleActivity mActivity;
 
     private Uri mGroupUri;
 
@@ -614,7 +614,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mActivity = (ContactsDrawerActivity) getActivity();
+        mActivity = (PeopleActivity) getActivity();
         mActionBarAdapter = new ActionBarAdapter(mActivity, mActionBarListener,
                 mActivity.getSupportActionBar(), mActivity.getToolbar(),
                         R.string.enter_contact_name);
