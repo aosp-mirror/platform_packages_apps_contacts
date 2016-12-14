@@ -16,8 +16,6 @@
 
 package com.android.contacts.model;
 
-import static com.android.contacts.util.DeviceLocalAccountTypeFactory.Util.isLocalAccountType;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
@@ -31,10 +29,8 @@ import android.content.SharedPreferences;
 import android.content.SyncAdapterType;
 import android.content.SyncStatusObserver;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.database.ContentObserver;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -47,7 +43,6 @@ import android.util.Log;
 import android.util.TimingLogger;
 
 import com.android.contacts.Experiments;
-import com.android.contacts.MoreContactUtils;
 import com.android.contacts.R;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.model.account.AccountType;
@@ -63,8 +58,6 @@ import com.android.contacts.util.Constants;
 import com.android.contacts.util.DeviceLocalAccountTypeFactory;
 import com.android.contactsbind.ObjectFactory;
 import com.android.contactsbind.experiments.Flags;
-
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
@@ -73,17 +66,16 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.annotation.Nullable;
+
+import static com.android.contacts.util.DeviceLocalAccountTypeFactory.Util.isLocalAccountType;
 
 /**
  * Singleton holder for all parsed {@link AccountType} available on the
@@ -150,24 +142,8 @@ public abstract class AccountTypeManager {
         }
 
         @Override
-        public List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
-                boolean contactWritableOnly) {
-            return Collections.emptyList();
-        }
-
-        @Override
         public AccountType getAccountType(AccountTypeWithDataSet accountTypeWithDataSet) {
             return null;
-        }
-
-        @Override
-        public Map<AccountTypeWithDataSet, AccountType> getUsableInvitableAccountTypes() {
-            return null;
-        }
-
-        @Override
-        public List<AccountType> getAccountTypes(boolean contactWritableOnly) {
-            return Collections.emptyList();
         }
     };
 
@@ -179,9 +155,6 @@ public abstract class AccountTypeManager {
     public abstract List<AccountWithDataSet> getAccounts(boolean contactWritableOnly);
 
     public abstract List<AccountWithDataSet> getAccounts(Predicate<AccountWithDataSet> filter);
-
-    public abstract List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
-            boolean contactWritableOnly);
 
     /**
      * Returns the list of accounts that are group writable.
@@ -235,21 +208,6 @@ public abstract class AccountTypeManager {
     }
 
     /**
-     * @return Unmodifiable map from {@link AccountTypeWithDataSet}s to {@link AccountType}s
-     * which support the "invite" feature and have one or more account.
-     *
-     * This is a filtered down and more "usable" list compared to
-     * {@link #getAllInvitableAccountTypes}, where usable is defined as:
-     * (1) making sure that the app that contributed the account type is not disabled
-     * (in order to avoid presenting the user with an option that does nothing), and
-     * (2) that there is at least one raw contact with that account type in the database
-     * (assuming that the user probably doesn't use that account type).
-     *
-     * Warning: Don't use on the UI thread because this can scan the database.
-     */
-    public abstract Map<AccountTypeWithDataSet, AccountType> getUsableInvitableAccountTypes();
-
-    /**
      * Find the best {@link DataKind} matching the requested
      * {@link AccountType#accountType}, {@link AccountType#dataSet}, and {@link DataKind#mimeType}.
      * If no direct match found, we try searching {@link FallbackAccountType}.
@@ -257,13 +215,6 @@ public abstract class AccountTypeManager {
     public DataKind getKindOrFallback(AccountType type, String mimeType) {
         return type == null ? null : type.getKindForMimetype(mimeType);
     }
-
-    /**
-     * Returns all registered {@link AccountType}s, including extension ones.
-     *
-     * @param contactWritableOnly if true, it only returns ones that support writing contacts.
-     */
-    public abstract List<AccountType> getAccountTypes(boolean contactWritableOnly);
 
     /**
      * @param contactWritableOnly if true, it only returns ones that support writing contacts.
@@ -280,6 +231,15 @@ public abstract class AccountTypeManager {
 
     public boolean hasGoogleAccount() {
         return getDefaultGoogleAccount() != null;
+    }
+
+    /**
+     * Sorts the accounts in-place such that defaultAccount is first in the list and the rest
+     * of the accounts are ordered in manner that is useful for display purposes
+     */
+    public static void sortAccounts(AccountWithDataSet defaultAccount,
+            List<AccountWithDataSet> accounts) {
+        Collections.sort(accounts, new AccountComparator(defaultAccount));
     }
 
     private static boolean hasRequiredPermissions(Context context) {
@@ -351,19 +311,6 @@ class AccountComparator implements Comparator<AccountWithDataSet> {
 class AccountTypeManagerImpl extends AccountTypeManager
         implements OnAccountsUpdateListener, SyncStatusObserver {
 
-    private static final Map<AccountTypeWithDataSet, AccountType>
-            EMPTY_UNMODIFIABLE_ACCOUNT_TYPE_MAP =
-            Collections.unmodifiableMap(new HashMap<AccountTypeWithDataSet, AccountType>());
-
-    /**
-     * A sample contact URI used to test whether any activities will respond to an
-     * invitable intent with the given URI as the intent data. This doesn't need to be
-     * specific to a real contact because an app that intercepts the intent should probably do so
-     * for all types of contact URIs.
-     */
-    private static final Uri SAMPLE_CONTACT_URI = ContactsContract.Contacts.getLookupUri(
-            1, "xxx");
-
     private Context mContext;
     private AccountManager mAccountManager;
     private DeviceLocalAccountTypeFactory mDeviceLocalAccountTypeFactory;
@@ -374,22 +321,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
     private List<AccountWithDataSet> mContactWritableAccounts = Lists.newArrayList();
     private List<AccountWithDataSet> mGroupWritableAccounts = Lists.newArrayList();
     private Map<AccountTypeWithDataSet, AccountType> mAccountTypesWithDataSets = Maps.newHashMap();
-    private Map<AccountTypeWithDataSet, AccountType> mInvitableAccountTypes =
-            EMPTY_UNMODIFIABLE_ACCOUNT_TYPE_MAP;
-
-    private final InvitableAccountTypeCache mInvitableAccountTypeCache;
-
-    /**
-     * The boolean value is equal to true if the {@link InvitableAccountTypeCache} has been
-     * initialized. False otherwise.
-     */
-    private final AtomicBoolean mInvitablesCacheIsInitialized = new AtomicBoolean(false);
-
-    /**
-     * The boolean value is equal to true if the {@link FindInvitablesTask} is still executing.
-     * False otherwise.
-     */
-    private final AtomicBoolean mInvitablesTaskIsRunning = new AtomicBoolean(false);
 
     private static final int MESSAGE_LOAD_DATA = 0;
     private static final int MESSAGE_PROCESS_BROADCAST_INTENT = 1;
@@ -444,8 +375,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 }
             }
         };
-
-        mInvitableAccountTypeCache = new InvitableAccountTypeCache();
 
         // Request updates when packages or accounts change
         IntentFilter filter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
@@ -721,8 +650,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
             mAccounts = allAccounts;
             mContactWritableAccounts = contactWritableAccounts;
             mGroupWritableAccounts = groupWritableAccounts;
-            mInvitableAccountTypes = findAllInvitableAccountTypes(
-                    mContext, allAccounts, accountTypesByTypeAndDataSet);
         }
 
         timings.dumpToLog();
@@ -789,21 +716,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
     }
 
     /**
-     * Return list of all known or contact writable {@link AccountWithDataSet}'s sorted by
-     * {@code defaultAccount}.
-     * {@param defaultAccount} account to sort by
-     * {@param contactWritableOnly} whether to restrict to contact writable accounts only
-     */
-    @Override
-    public List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
-            boolean contactWritableOnly) {
-        final AccountComparator comparator = new AccountComparator(defaultAccount);
-        final List<AccountWithDataSet> accounts = getAccounts(contactWritableOnly);
-        Collections.sort(accounts, comparator);
-        return accounts;
-    }
-
-    /**
      * Return the list of all known, group writable {@link AccountWithDataSet}'s.
      */
     public List<AccountWithDataSet> getGroupWritableAccounts() {
@@ -863,197 +775,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
         synchronized (this) {
             AccountType type = mAccountTypesWithDataSets.get(accountTypeWithDataSet);
             return type != null ? type : mFallbackAccountType;
-        }
-    }
-
-    /**
-     * @return Unmodifiable map from {@link AccountTypeWithDataSet}s to {@link AccountType}s
-     * which support the "invite" feature and have one or more account. This is an unfiltered
-     * list. See {@link #getUsableInvitableAccountTypes()}.
-     */
-    private Map<AccountTypeWithDataSet, AccountType> getAllInvitableAccountTypes() {
-        ensureAccountsLoaded();
-        return mInvitableAccountTypes;
-    }
-
-    @Override
-    public Map<AccountTypeWithDataSet, AccountType> getUsableInvitableAccountTypes() {
-        ensureAccountsLoaded();
-        // Since this method is not thread-safe, it's possible for multiple threads to encounter
-        // the situation where (1) the cache has not been initialized yet or
-        // (2) an async task to refresh the account type list in the cache has already been
-        // started. Hence we use {@link AtomicBoolean}s and return cached values immediately
-        // while we compute the actual result in the background. We use this approach instead of
-        // using "synchronized" because computing the account type list involves a DB read, and
-        // can potentially cause a deadlock situation if this method is called from code which
-        // holds the DB lock. The trade-off of potentially having an incorrect list of invitable
-        // account types for a short period of time seems more manageable than enforcing the
-        // context in which this method is called.
-
-        // Computing the list of usable invitable account types is done on the fly as requested.
-        // If this method has never been called before, then block until the list has been computed.
-        if (!mInvitablesCacheIsInitialized.get()) {
-            mInvitableAccountTypeCache.setCachedValue(findUsableInvitableAccountTypes(mContext));
-            mInvitablesCacheIsInitialized.set(true);
-        } else {
-            // Otherwise, there is a value in the cache. If the value has expired and
-            // an async task has not already been started by another thread, then kick off a new
-            // async task to compute the list.
-            if (mInvitableAccountTypeCache.isExpired() &&
-                    mInvitablesTaskIsRunning.compareAndSet(false, true)) {
-                new FindInvitablesTask().execute();
-            }
-        }
-
-        return mInvitableAccountTypeCache.getCachedValue();
-    }
-
-    /**
-     * Return all {@link AccountType}s with at least one account which supports "invite", i.e.
-     * its {@link AccountType#getInviteContactActivityClassName()} is not empty.
-     */
-    @VisibleForTesting
-    static Map<AccountTypeWithDataSet, AccountType> findAllInvitableAccountTypes(Context context,
-            Collection<AccountWithDataSet> accounts,
-            Map<AccountTypeWithDataSet, AccountType> accountTypesByTypeAndDataSet) {
-        HashMap<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap();
-        for (AccountWithDataSet account : accounts) {
-            AccountTypeWithDataSet accountTypeWithDataSet = account.getAccountTypeWithDataSet();
-            AccountType type = accountTypesByTypeAndDataSet.get(accountTypeWithDataSet);
-            if (type == null) continue; // just in case
-            if (result.containsKey(accountTypeWithDataSet)) continue;
-
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "Type " + accountTypeWithDataSet
-                        + " inviteClass=" + type.getInviteContactActivityClassName());
-            }
-            if (!TextUtils.isEmpty(type.getInviteContactActivityClassName())) {
-                result.put(accountTypeWithDataSet, type);
-            }
-        }
-        return Collections.unmodifiableMap(result);
-    }
-
-    /**
-     * Return all usable {@link AccountType}s that support the "invite" feature from the
-     * list of all potential invitable account types (retrieved from
-     * {@link #getAllInvitableAccountTypes}). A usable invitable account type means:
-     * (1) there is at least 1 raw contact in the database with that account type, and
-     * (2) the app contributing the account type is not disabled.
-     *
-     * Warning: Don't use on the UI thread because this can scan the database.
-     */
-    private Map<AccountTypeWithDataSet, AccountType> findUsableInvitableAccountTypes(
-            Context context) {
-        Map<AccountTypeWithDataSet, AccountType> allInvitables = getAllInvitableAccountTypes();
-        if (allInvitables.isEmpty()) {
-            return EMPTY_UNMODIFIABLE_ACCOUNT_TYPE_MAP;
-        }
-
-        final HashMap<AccountTypeWithDataSet, AccountType> result = Maps.newHashMap();
-        result.putAll(allInvitables);
-
-        final PackageManager packageManager = context.getPackageManager();
-        for (AccountTypeWithDataSet accountTypeWithDataSet : allInvitables.keySet()) {
-            AccountType accountType = allInvitables.get(accountTypeWithDataSet);
-
-            // Make sure that account types don't come from apps that are disabled.
-            Intent invitableIntent = MoreContactUtils.getInvitableIntent(accountType,
-                    SAMPLE_CONTACT_URI);
-            if (invitableIntent == null) {
-                result.remove(accountTypeWithDataSet);
-                continue;
-            }
-            ResolveInfo resolveInfo = packageManager.resolveActivity(invitableIntent,
-                    PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfo == null) {
-                // If we can't find an activity to start for this intent, then there's no point in
-                // showing this option to the user.
-                result.remove(accountTypeWithDataSet);
-                continue;
-            }
-
-            // Make sure that there is at least 1 raw contact with this account type. This check
-            // is non-trivial and should not be done on the UI thread.
-            if (!accountTypeWithDataSet.hasData(context)) {
-                result.remove(accountTypeWithDataSet);
-            }
-        }
-
-        return Collections.unmodifiableMap(result);
-    }
-
-    @Override
-    public List<AccountType> getAccountTypes(boolean contactWritableOnly) {
-        ensureAccountsLoaded();
-        final List<AccountType> accountTypes = Lists.newArrayList();
-        synchronized (this) {
-            for (AccountType type : mAccountTypesWithDataSets.values()) {
-                if (!contactWritableOnly || type.areContactsWritable()) {
-                    accountTypes.add(type);
-                }
-            }
-        }
-        return accountTypes;
-    }
-
-    /**
-     * Background task to find all usable {@link AccountType}s that support the "invite" feature
-     * from the list of all potential invitable account types. Once the work is completed,
-     * the list of account types is stored in the {@link AccountTypeManager}'s
-     * {@link InvitableAccountTypeCache}.
-     */
-    private class FindInvitablesTask extends AsyncTask<Void, Void,
-            Map<AccountTypeWithDataSet, AccountType>> {
-
-        @Override
-        protected Map<AccountTypeWithDataSet, AccountType> doInBackground(Void... params) {
-            return findUsableInvitableAccountTypes(mContext);
-        }
-
-        @Override
-        protected void onPostExecute(Map<AccountTypeWithDataSet, AccountType> accountTypes) {
-            mInvitableAccountTypeCache.setCachedValue(accountTypes);
-            mInvitablesTaskIsRunning.set(false);
-        }
-    }
-
-    /**
-     * This cache holds a list of invitable {@link AccountTypeWithDataSet}s, in the form of a
-     * {@link Map<AccountTypeWithDataSet, AccountType>}. Note that the cached value is valid only
-     * for {@link #TIME_TO_LIVE} milliseconds.
-     */
-    private static final class InvitableAccountTypeCache {
-
-        /**
-         * The cached {@link #mInvitableAccountTypes} list expires after this number of milliseconds
-         * has elapsed.
-         */
-        private static final long TIME_TO_LIVE = 60000;
-
-        private Map<AccountTypeWithDataSet, AccountType> mInvitableAccountTypes;
-
-        private long mTimeLastSet;
-
-        /**
-         * Returns true if the data in this cache is stale and needs to be refreshed. Returns false
-         * otherwise.
-         */
-        public boolean isExpired() {
-             return SystemClock.elapsedRealtime() - mTimeLastSet > TIME_TO_LIVE;
-        }
-
-        /**
-         * Returns the cached value. Note that the caller is responsible for checking
-         * {@link #isExpired()} to ensure that the value is not stale.
-         */
-        public Map<AccountTypeWithDataSet, AccountType> getCachedValue() {
-            return mInvitableAccountTypes;
-        }
-
-        public void setCachedValue(Map<AccountTypeWithDataSet, AccountType> map) {
-            mInvitableAccountTypes = map;
-            mTimeLastSet = SystemClock.elapsedRealtime();
         }
     }
 }

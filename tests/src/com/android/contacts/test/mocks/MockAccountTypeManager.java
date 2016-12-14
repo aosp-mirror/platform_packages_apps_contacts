@@ -76,12 +76,6 @@ public class MockAccountTypeManager extends AccountTypeManager {
     }
 
     @Override
-    public List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet account,
-            boolean writableOnly) {
-        return Arrays.asList(mAccounts);
-    }
-
-    @Override
     public List<AccountWithDataSet> getGroupWritableAccounts() {
         return Arrays.asList(mAccounts);
     }
@@ -89,23 +83,5 @@ public class MockAccountTypeManager extends AccountTypeManager {
     @Override
     public Account getDefaultGoogleAccount() {
         return null;
-    }
-
-    @Override
-    public Map<AccountTypeWithDataSet, AccountType> getUsableInvitableAccountTypes() {
-        return Maps.newHashMap(); // Always returns empty
-    }
-
-    @Override
-    public List<AccountType> getAccountTypes(boolean writableOnly) {
-        final List<AccountType> ret = Lists.newArrayList();
-        synchronized (this) {
-            for (AccountType type : mTypes) {
-                if (!writableOnly || type.areContactsWritable()) {
-                    ret.add(type);
-                }
-            }
-        }
-        return ret;
     }
 }

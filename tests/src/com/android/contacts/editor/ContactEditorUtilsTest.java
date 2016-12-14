@@ -79,37 +79,6 @@ public class ContactEditorUtilsTest extends AndroidTestCase {
         mAccountTypes.mAccounts = accounts;
     }
 
-    public void testGetWritableAccountTypeStrings() {
-        String[] types;
-
-        // 0 writable types
-        setAccountTypes();
-
-        types = mTarget.getWritableAccountTypeStrings();
-        MoreAsserts.assertEquals(types, new String[0]);
-
-        // 1 writable type
-        setAccountTypes(TYPE1);
-
-        types = mTarget.getWritableAccountTypeStrings();
-        MoreAsserts.assertEquals(Sets.newHashSet(TYPE1.accountType), Sets.newHashSet(types));
-
-        // 2 writable types
-        setAccountTypes(TYPE1, TYPE2EX);
-
-        types = mTarget.getWritableAccountTypeStrings();
-        MoreAsserts.assertEquals(Sets.newHashSet(TYPE1.accountType, TYPE2EX.accountType),
-                Sets.newHashSet(types));
-
-        // 3 writable types + 1 readonly type
-        setAccountTypes(TYPE1, TYPE2, TYPE2EX, TYPE3);
-
-        types = mTarget.getWritableAccountTypeStrings();
-        MoreAsserts.assertEquals(
-                Sets.newHashSet(TYPE1.accountType, TYPE2.accountType, TYPE2EX.accountType),
-                Sets.newHashSet(types));
-    }
-
     /**
      * Test for
      * - {@link ContactEditorUtils#saveDefaultAccount}
