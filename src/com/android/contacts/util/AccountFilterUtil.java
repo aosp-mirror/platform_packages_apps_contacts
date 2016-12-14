@@ -133,8 +133,8 @@ public class AccountFilterUtil {
             DeviceLocalAccountTypeFactory deviceAccountTypeFactory) {
         final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
-        final List<AccountWithDataSet> accounts = accountTypeManager.getSortedAccounts(
-                /* defaultAccount */ getDefaultAccount(context), /* contactWritableOnly */ true);
+        final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(true);
+        AccountTypeManager.sortAccounts(getDefaultAccount(context), accounts);
 
         for (AccountWithDataSet account : accounts) {
             final AccountType accountType =

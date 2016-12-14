@@ -150,12 +150,6 @@ public abstract class AccountTypeManager {
         }
 
         @Override
-        public List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
-                boolean contactWritableOnly) {
-            return Collections.emptyList();
-        }
-
-        @Override
         public AccountType getAccountType(AccountTypeWithDataSet accountTypeWithDataSet) {
             return null;
         }
@@ -165,10 +159,6 @@ public abstract class AccountTypeManager {
             return null;
         }
 
-        @Override
-        public List<AccountType> getAccountTypes(boolean contactWritableOnly) {
-            return Collections.emptyList();
-        }
     };
 
     /**
@@ -179,9 +169,6 @@ public abstract class AccountTypeManager {
     public abstract List<AccountWithDataSet> getAccounts(boolean contactWritableOnly);
 
     public abstract List<AccountWithDataSet> getAccounts(Predicate<AccountWithDataSet> filter);
-
-    public abstract List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
-            boolean contactWritableOnly);
 
     /**
      * Returns the list of accounts that are group writable.
@@ -259,13 +246,6 @@ public abstract class AccountTypeManager {
     }
 
     /**
-     * Returns all registered {@link AccountType}s, including extension ones.
-     *
-     * @param contactWritableOnly if true, it only returns ones that support writing contacts.
-     */
-    public abstract List<AccountType> getAccountTypes(boolean contactWritableOnly);
-
-    /**
      * @param contactWritableOnly if true, it only returns ones that support writing contacts.
      * @return true when this instance contains the given account.
      */
@@ -280,6 +260,15 @@ public abstract class AccountTypeManager {
 
     public boolean hasGoogleAccount() {
         return getDefaultGoogleAccount() != null;
+    }
+
+    /**
+     * Sorts the accounts in-place such that defaultAccount is first in the list and the rest
+     * of the accounts are ordered in manner that is useful for display purposes
+     */
+    public static void sortAccounts(AccountWithDataSet defaultAccount,
+            List<AccountWithDataSet> accounts) {
+        Collections.sort(accounts, new AccountComparator(defaultAccount));
     }
 
     private static boolean hasRequiredPermissions(Context context) {
@@ -789,21 +778,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
     }
 
     /**
-     * Return list of all known or contact writable {@link AccountWithDataSet}'s sorted by
-     * {@code defaultAccount}.
-     * {@param defaultAccount} account to sort by
-     * {@param contactWritableOnly} whether to restrict to contact writable accounts only
-     */
-    @Override
-    public List<AccountWithDataSet> getSortedAccounts(AccountWithDataSet defaultAccount,
-            boolean contactWritableOnly) {
-        final AccountComparator comparator = new AccountComparator(defaultAccount);
-        final List<AccountWithDataSet> accounts = getAccounts(contactWritableOnly);
-        Collections.sort(accounts, comparator);
-        return accounts;
-    }
-
-    /**
      * Return the list of all known, group writable {@link AccountWithDataSet}'s.
      */
     public List<AccountWithDataSet> getGroupWritableAccounts() {
@@ -981,20 +955,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
         }
 
         return Collections.unmodifiableMap(result);
-    }
-
-    @Override
-    public List<AccountType> getAccountTypes(boolean contactWritableOnly) {
-        ensureAccountsLoaded();
-        final List<AccountType> accountTypes = Lists.newArrayList();
-        synchronized (this) {
-            for (AccountType type : mAccountTypesWithDataSets.values()) {
-                if (!contactWritableOnly || type.areContactsWritable()) {
-                    accountTypes.add(type);
-                }
-            }
-        }
-        return accountTypes;
     }
 
     /**

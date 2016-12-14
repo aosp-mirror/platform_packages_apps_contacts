@@ -23,6 +23,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 
@@ -147,46 +148,20 @@ public class ContactEditorUtils {
         }
     }
 
-    @VisibleForTesting
-    String[] getWritableAccountTypeStrings() {
-        final Set<String> types = Sets.newHashSet();
-        for (AccountType type : mAccountTypes.getAccountTypes(true)) {
-            types.add(type.accountType);
-        }
-        return types.toArray(new String[types.size()]);
-    }
-
     /**
-     * Create an {@link Intent} to start "add new account" setup wizard.  Selectable account
-     * types will be limited to ones that supports editing contacts.
+     * Parses a result from {@link AccountManager#newChooseAccountIntent(Account, List, String[],
+     *     String, String, String[], Bundle)} and returns the created {@link Account}, or null if
+     * the user has canceled the wizard.
      *
-     * Use {@link Activity#startActivityForResult} or
-     * {@link android.app.Fragment#startActivityForResult} to start the wizard, and
-     * {@link Activity#onActivityResult} or {@link android.app.Fragment#onActivityResult} to
-     * get the result.
-     */
-    public Intent createAddWritableAccountIntent() {
-        return AccountManager.newChooseAccountIntent(
-                null, // selectedAccount
-                new ArrayList<Account>(), // allowableAccounts
-                getWritableAccountTypeStrings(), // allowableAccountTypes
-                false, // alwaysPromptForAccount
-                null, // descriptionOverrideText
-                null, // addAccountAuthTokenType
-                null, // addAccountRequiredFeatures
-                null // addAccountOptions
-                );
-    }
-
-    /**
-     * Parses a result from {@link #createAddWritableAccountIntent} and returns the created
-     * {@link Account}, or null if the user has canceled the wizard.  Pass the {@code resultCode}
-     * and {@code data} parameters passed to {@link Activity#onActivityResult} or
-     * {@link android.app.Fragment#onActivityResult}.
+     * <p>Pass the {@code resultCode} and {@code data} parameters passed to
+     * {@link Activity#onActivityResult} or {@link android.app.Fragment#onActivityResult}.
+     * </p>
      *
+     * <p>
      * Note although the return type is {@link AccountWithDataSet}, return values from this method
      * will never have {@link AccountWithDataSet#dataSet} set, as there's no way to create an
      * extension package account from setup wizard.
+     * </p>
      */
     public AccountWithDataSet getCreatedAccount(int resultCode, Intent resultData) {
         // Javadoc doesn't say anything about resultCode but that the data intent will be non null
