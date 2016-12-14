@@ -15,14 +15,6 @@
  */
 package com.android.contacts;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import android.annotation.TargetApi;
 import android.app.job.JobScheduler;
 import android.content.ContentProvider;
@@ -49,9 +41,18 @@ import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.mockito.ArgumentCaptor;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @TargetApi(Build.VERSION_CODES.N_MR1)
 @SdkSuppress(minSdkVersion = Build.VERSION_CODES.N_MR1)
@@ -118,10 +119,10 @@ public class DynamicShortcutsTests extends AndroidTestCase {
         assertEquals("123456789…", shortcut.getLongLabel());
     }
 
-    public void test_updatePinned_disablesShortcutsForRemovedContacts() {
+    public void test_updatePinned_disablesShortcutsForRemovedContacts() throws Exception {
         final ShortcutManager mockShortcutManager = mock(ShortcutManager.class);
         when(mockShortcutManager.getPinnedShortcuts()).thenReturn(
-                Collections.singletonList(shortcutFor(1l, "key1", "name1")));
+                Collections.singletonList(makeDynamic(shortcutFor(1l, "key1", "name1"))));
 
         final DynamicShortcuts sut = createDynamicShortcuts(emptyResolver(), mockShortcutManager);
 
@@ -131,13 +132,13 @@ public class DynamicShortcutsTests extends AndroidTestCase {
                 eq(Collections.singletonList("key1")), anyString());
     }
 
-    public void test_updatePinned_updatesExistingShortcutsWithMatchingKeys() {
+    public void test_updatePinned_updatesExistingShortcutsWithMatchingKeys() throws Exception {
         final ShortcutManager mockShortcutManager = mock(ShortcutManager.class);
         when(mockShortcutManager.getPinnedShortcuts()).thenReturn(
                 Arrays.asList(
-                        shortcutFor(1l, "key1", "name1"),
-                        shortcutFor(2l, "key2", "name2"),
-                        shortcutFor(3l, "key3", "name3")
+                        makeDynamic(shortcutFor(1l, "key1", "name1")),
+                        makeDynamic(shortcutFor(2l, "key2", "name2")),
+                        makeDynamic(shortcutFor(3l, "key3", "name3"))
                 ));
 
         final DynamicShortcuts sut = createDynamicShortcuts(resolverWithExpectedQueries(
@@ -346,6 +347,15 @@ public class DynamicShortcutsTests extends AndroidTestCase {
 
     private Cursor queryResult(Object... values) {
         return queryResult(DynamicShortcuts.PROJECTION, values);
+    }
+
+    // Ugly hack because the API is hidden. Alternative is to actually set the shortcut on the real
+    // ShortcutManager but this seems simpler for now.
+    private ShortcutInfo makeDynamic(ShortcutInfo shortcutInfo) throws Exception {
+        final Method addFlagsMethod = ShortcutInfo.class.getMethod("addFlags", int.class);
+        // 1 = FLAG_DYNAMIC
+        addFlagsMethod.invoke(shortcutInfo, 1);
+        return shortcutInfo;
     }
 
     private Cursor queryResult(String[] columns, Object... values) {
