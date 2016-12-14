@@ -57,7 +57,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.Experiments;
 import com.android.contacts.R;
 import com.android.contacts.activities.ActionBarAdapter;
@@ -151,7 +150,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private boolean mDisableOptionItemSelected;
 
     private ActionBarAdapter mActionBarAdapter;
-    private ContactsDrawerActivity mActivity;
+    private PeopleActivity mActivity;
     private ContactsRequest mContactsRequest;
     private ContactListFilterController mContactListFilterController;
 
@@ -637,7 +636,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mActivity = (ContactsDrawerActivity) getActivity();
+        mActivity = (PeopleActivity) getActivity();
         mActionBarAdapter = new ActionBarAdapter(mActivity, mActionBarListener,
                 mActivity.getSupportActionBar(), mActivity.getToolbar(),
                 R.string.enter_contact_name);
