@@ -16,11 +16,8 @@
 
 package com.android.contacts.model;
 
-import static org.mockito.Mockito.when;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
@@ -29,7 +26,6 @@ import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountTypeWithDataSet;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -41,6 +37,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.mockito.Mockito.when;
 
 /**
  * Test case for {@link com.android.contacts.model.AccountTypeManager}.
@@ -65,93 +63,6 @@ public class AccountTypeManagerTest extends AndroidTestCase {
         super.setUp();
         System.setProperty("dexmaker.dexcache", getContext().getCacheDir().getPath());
         MockitoAnnotations.initMocks(this);
-    }
-
-    public void testFindAllInvitableAccountTypes() {
-        final Context c = getContext();
-
-        // Define account types.
-        final AccountType typeA = new MockAccountType("type1", null, null);
-        final AccountType typeB = new MockAccountType("type1", "minus", null);
-        final AccountType typeC = new MockAccountType("type2", null, "c");
-        final AccountType typeD = new MockAccountType("type2", "minus", "d");
-
-        // Define users
-        final AccountWithDataSet accountA1 = createAccountWithDataSet("a1", typeA);
-        final AccountWithDataSet accountC1 = createAccountWithDataSet("c1", typeC);
-        final AccountWithDataSet accountC2 = createAccountWithDataSet("c2", typeC);
-        final AccountWithDataSet accountD1 = createAccountWithDataSet("d1", typeD);
-
-        // empty - empty
-        Map<AccountTypeWithDataSet, AccountType> types =
-                AccountTypeManagerImpl.findAllInvitableAccountTypes(c,
-                        buildAccounts(), buildAccountTypes());
-        assertEquals(0, types.size());
-        try {
-            types.clear();
-            fail("Returned Map should be unmodifiable.");
-        } catch (UnsupportedOperationException ok) {
-        }
-
-        // No invite support, no accounts
-        verifyAccountTypes(
-                buildAccounts(),
-                buildAccountTypes(typeA, typeB)
-                /* empty */
-                );
-
-        // No invite support, with accounts
-        verifyAccountTypes(
-                buildAccounts(accountA1),
-                buildAccountTypes(typeA)
-                /* empty */
-                );
-
-        // With invite support, no accounts
-        verifyAccountTypes(
-                buildAccounts(),
-                buildAccountTypes(typeC)
-                /* empty */
-                );
-
-        // With invite support, 1 account
-        verifyAccountTypes(
-                buildAccounts(accountC1),
-                buildAccountTypes(typeC),
-                typeC
-                );
-
-        // With invite support, 2 account
-        verifyAccountTypes(
-                buildAccounts(accountC1, accountC2),
-                buildAccountTypes(typeC),
-                typeC
-                );
-
-        // Combinations...
-        verifyAccountTypes(
-                buildAccounts(accountA1),
-                buildAccountTypes(typeA, typeC)
-                /* empty */
-                );
-
-        verifyAccountTypes(
-                buildAccounts(accountC1, accountA1),
-                buildAccountTypes(typeA, typeC),
-                typeC
-                );
-
-        verifyAccountTypes(
-                buildAccounts(accountC1, accountA1),
-                buildAccountTypes(typeD, typeA, typeC),
-                typeC
-                );
-
-        verifyAccountTypes(
-                buildAccounts(accountC1, accountA1, accountD1),
-                buildAccountTypes(typeD, typeA, typeC, typeB),
-                typeC, typeD
-                );
     }
 
     private static AccountWithDataSet createAccountWithDataSet(String name, AccountType type) {
@@ -179,51 +90,6 @@ public class AccountTypeManagerTest extends AndroidTestCase {
         }
         return result;
     }
-
-    /**
-     * Executes {@link AccountTypeManagerImpl#findInvitableAccountTypes} and verifies the
-     * result.
-     */
-    private void verifyAccountTypes(
-            Collection<AccountWithDataSet> accounts,
-            Map<AccountTypeWithDataSet, AccountType> types,
-            AccountType... expectedInvitableTypes
-            ) {
-        Map<AccountTypeWithDataSet, AccountType> result =
-                AccountTypeManagerImpl.findAllInvitableAccountTypes(getContext(), accounts, types);
-        for (AccountType type : expectedInvitableTypes) {
-            assertTrue("Result doesn't contain type=" + type.getAccountTypeAndDataSet(),
-                    result.containsKey(type.getAccountTypeAndDataSet()));
-        }
-        final int numExcessTypes = result.size() - expectedInvitableTypes.length;
-        assertEquals("Result contains " + numExcessTypes + " excess type(s)", 0, numExcessTypes);
-    }
-
-    private static class MockAccountType extends AccountType {
-        private final String mInviteContactActivityClassName;
-
-        public MockAccountType(String type, String dataSet, String inviteContactActivityClassName) {
-            accountType = type;
-            this.dataSet = dataSet;
-            mInviteContactActivityClassName = inviteContactActivityClassName;
-        }
-
-        @Override
-        public String getInviteContactActivityClassName() {
-            return mInviteContactActivityClassName;
-        }
-
-        @Override
-        public boolean isGroupMembershipEditable() {
-            return false;
-        }
-
-        @Override
-        public boolean areContactsWritable() {
-            return false;
-        }
-    }
-
 
     public void testGetDefaultAccount_NoAccounts() {
         assertNull(getDefaultGoogleAccountName());

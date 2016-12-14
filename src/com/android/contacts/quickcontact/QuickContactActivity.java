@@ -2318,8 +2318,8 @@ public class QuickContactActivity extends ContactsActivity {
             // Load all contact data. We need loadGroupMetaData=true to determine whether the
             // contact is invisible. If it is, we need to display an "Add to Contacts" MenuItem.
             return new ContactLoader(getApplicationContext(), mLookupUri,
-                    true /*loadGroupMetaData*/, false /*loadInvitableAccountTypes*/,
-                    true /*postViewNotification*/, true /*computeFormattedPhoneNumber*/);
+                    true /*loadGroupMetaData*/, true /*postViewNotification*/,
+                    true /*computeFormattedPhoneNumber*/);
         }
     };
 

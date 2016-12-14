@@ -84,9 +84,4 @@ public class MockAccountTypeManager extends AccountTypeManager {
     public Account getDefaultGoogleAccount() {
         return null;
     }
-
-    @Override
-    public Map<AccountTypeWithDataSet, AccountType> getUsableInvitableAccountTypes() {
-        return Maps.newHashMap(); // Always returns empty
-    }
 }

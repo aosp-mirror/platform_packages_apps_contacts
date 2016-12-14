@@ -74,7 +74,6 @@ public class Contact {
     private final Integer mPresence;
     private ImmutableList<RawContact> mRawContacts;
     private ImmutableMap<Long,DataStatus> mStatuses;
-    private ImmutableList<AccountType> mInvitableAccountTypes;
 
     private String mDirectoryDisplayName;
     private String mDirectoryType;
@@ -123,7 +122,6 @@ public class Contact {
         mPhoneticName = null;
         mStarred = false;
         mPresence = null;
-        mInvitableAccountTypes = null;
         mSendToVoicemail = false;
         mCustomRingtone = null;
         mIsUserProfile = false;
@@ -164,7 +162,6 @@ public class Contact {
         mPhoneticName = phoneticName;
         mStarred = starred;
         mPresence = presence;
-        mInvitableAccountTypes = null;
         mSendToVoicemail = sendToVoicemail;
         mCustomRingtone = customRingtone;
         mIsUserProfile = isUserProfile;
@@ -191,7 +188,6 @@ public class Contact {
         mPresence = from.mPresence;
         mRawContacts = from.mRawContacts;
         mStatuses = from.mStatuses;
-        mInvitableAccountTypes = from.mInvitableAccountTypes;
 
         mDirectoryDisplayName = from.mDirectoryDisplayName;
         mDirectoryType = from.mDirectoryType;
@@ -349,15 +345,6 @@ public class Contact {
         return mPresence;
     }
 
-    /**
-     * This can return non-null invitable account types only if the {@link ContactLoader} was
-     * configured to load invitable account types in its constructor.
-     * @return
-     */
-    public ImmutableList<AccountType> getInvitableAccountTypes() {
-        return mInvitableAccountTypes;
-    }
-
     public ImmutableList<RawContact> getRawContacts() {
         return mRawContacts;
     }
@@ -501,10 +488,6 @@ public class Contact {
 
     /* package */ void setStatuses(ImmutableMap<Long, DataStatus> statuses) {
         mStatuses = statuses;
-    }
-
-    /* package */ void setInvitableAccountTypes(ImmutableList<AccountType> accountTypes) {
-        mInvitableAccountTypes = accountTypes;
     }
 
     /* package */ void setGroupMetaData(ImmutableList<GroupMetaData> groups) {
