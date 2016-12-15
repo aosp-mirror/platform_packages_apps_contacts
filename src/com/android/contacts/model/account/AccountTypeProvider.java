@@ -33,6 +33,7 @@ import com.google.common.collect.ImmutableMap;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -69,21 +70,7 @@ public class AccountTypeProvider {
         mContext = context;
         mLocalAccountTypeFactory = localTypeFactory;
 
-        final Set<String> mContactSyncableTypes = new ArraySet<>();
-        for (SyncAdapterType type : syncAdapterTypes) {
-            if (type.authority.equals(ContactsContract.AUTHORITY)) {
-                mContactSyncableTypes.add(type.accountType);
-            }
-        }
-
-        final ImmutableMap.Builder<String, AuthenticatorDescription> builder =
-                ImmutableMap.builder();
-        for (AuthenticatorDescription auth : authenticatorDescriptions) {
-            if (mContactSyncableTypes.contains(auth.type)) {
-                builder.put(auth.type, auth);
-            }
-        }
-        mAuthTypes = builder.build();
+        mAuthTypes = onlyContactSyncable(authenticatorDescriptions, syncAdapterTypes);
     }
 
     /**
@@ -148,6 +135,19 @@ public class AccountTypeProvider {
      */
     public AccountType getTypeForAccount(AccountWithDataSet account) {
         return getType(account.type, account.dataSet);
+    }
+
+    public boolean shouldUpdate(AuthenticatorDescription[] auths, SyncAdapterType[] syncTypes) {
+        Map<String, AuthenticatorDescription> contactsAuths = onlyContactSyncable(auths, syncTypes);
+        if (!contactsAuths.keySet().equals(mAuthTypes.keySet())) {
+            return false;
+        }
+        for (AuthenticatorDescription auth : contactsAuths.values()) {
+            if (!deepEquals(mAuthTypes.get(auth.type), auth)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private List<AccountType> loadTypes(String type) {
@@ -218,6 +218,40 @@ public class AccountTypeProvider {
             result.add(extensionType);
         }
         return result.build();
+    }
+
+    private static ImmutableMap<String, AuthenticatorDescription> onlyContactSyncable(
+            AuthenticatorDescription[] auths, SyncAdapterType[] syncTypes) {
+        final Set<String> mContactSyncableTypes = new ArraySet<>();
+        for (SyncAdapterType type : syncTypes) {
+            if (type.authority.equals(ContactsContract.AUTHORITY)) {
+                mContactSyncableTypes.add(type.accountType);
+            }
+        }
+
+        final ImmutableMap.Builder<String, AuthenticatorDescription> builder =
+                ImmutableMap.builder();
+        for (AuthenticatorDescription auth : auths) {
+            if (mContactSyncableTypes.contains(auth.type)) {
+                builder.put(auth.type, auth);
+            }
+        }
+        return builder.build();
+    }
+
+    /**
+     * Compares all fields in auth1 and auth2
+     *
+     * <p>By default {@link AuthenticatorDescription#equals(Object)} only checks the type</p>
+     */
+    private boolean deepEquals(AuthenticatorDescription auth1, AuthenticatorDescription auth2) {
+        return Objects.equal(auth1, auth2) &&
+                Objects.equal(auth1.packageName, auth2.packageName) &&
+                auth1.labelId == auth2.labelId &&
+                auth1.iconId == auth2.iconId &&
+                auth1.smallIconId == auth2.smallIconId &&
+                auth1.accountPreferencesId == auth2.accountPreferencesId &&
+                auth1.customTokens == auth2.customTokens;
     }
 
 }
