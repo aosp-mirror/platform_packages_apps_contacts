@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Llamada directa"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensaje directo"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"Elegir contacto"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Añadir al contacto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Elige un contacto"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Seleccionar"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Seleccionar contactos"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Añadir contactos"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Eliminar de la etiqueta"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"Crear etiqueta"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"¿Desvincular este contacto en varios contactos?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Desvincular"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"¿Quieres guardar los cambios que has hecho y desvincular este contacto en varios contactos?"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"No hay contactos que compartir."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contactos que mostrar"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contactos que mostrar"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"Personalizar vista"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Guardar"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Buscar contactos"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritos"</string>

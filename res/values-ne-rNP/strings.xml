@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"ठेगाना"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"सीधा डायल गर्नुहोस्"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"सीधा सन्देश"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"सम्पर्क छनौट गर्नुहोस्"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"सम्पर्कमा थप्नुहोस्"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"एउटा सम्पर्क छान्नुहोस्"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"चयन गर्नुहोस्"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"सम्पर्कहरू चयन गर्नुहोस्"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"सम्पर्कहरू थप्नुहोस्"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"लेबलबाट हटाउनुहोस्"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"लेबल सिर्जना गर्नुहोस्"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"यस सम्पर्कलाई बहु सम्पर्कमा अनलिंक गर्न चाहनुहुन्छ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"अनलिकं गर्नुहोस्"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"तपाईँले पहिल्यै गरेका परिवर्तनहरू सुरक्षित गर्न र यस सम्पर्कलाई बहु सम्पर्कहरूमा अनलिंक गर्न चाहनुहुन्छ?"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"आदान-प्रदान गर्न कुनै सम्पर्क ठेगानाहरू छैनन्।"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"प्रदर्शन गर्नका लागि सम्पर्क"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"प्रदर्शन गर्नका लागि सम्पर्क"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"दृश्यलाई आफू अनुकूल पार्नुहोस्"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"सुरक्षित गर्ने"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"सम्पर्क ठेगानाहरू खोज्नुहोस्"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"मनपर्ने"</string>

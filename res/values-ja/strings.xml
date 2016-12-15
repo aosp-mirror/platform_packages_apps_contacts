@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"連絡先"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接発信"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"直接メッセージを送る"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"連絡先を選択"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"連絡先に追加"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"連絡先を選択"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"選択"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"連絡先を選択"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"連絡先を追加"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"ラベルから削除"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"ラベルを作成"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"この連絡先を複数の連絡先にリンク解除しますか？"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"リンク解除"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ここまでの変更を保存してこの連絡先を複数の連絡先にリンク解除しますか？"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"共有する連絡先がありません。"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"表示する連絡先"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"表示する連絡先"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"ビューをカスタマイズ"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"保存"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"連絡先を検索"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"お気入り"</string>

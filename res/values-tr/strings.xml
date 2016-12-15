@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"Kişi"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Doğrudan çevirme"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Doğrudan mesaj"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"Kişi seçin"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Kişiye ekle"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Bir kişi seçin"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Seç"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Kişileri seç"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Kişileri ekle"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Etiketten kaldır"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"Etiket oluştur"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Bu kişinin bağlantısı kaldırılarak birden çok kişiye dönüştürülsün mü?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Bağlantıyı Kaldır"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Yapmış olduğunuz değişiklikleri kaydetmek ve bu kişinin bağlantısını kaldırıp birden çok kişiye dönüştürmek istiyor musunuz?"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Paylaşılacak kişi yok."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Görüntülenecek kişiler"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Görüntülenecek kişiler"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"Görünümü özelleştirin"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Kaydet"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Kişilerde arayın"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Sık Kullanılanlar"</string>

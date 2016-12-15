@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"연락처"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"바로 전화 걸기"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"바로 메시지 보내기"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"연락처 선택"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"연락처에 추가"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"연락처 선택"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"선택"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"연락처 선택"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"연락처 추가"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"라벨에서 삭제"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"라벨 만들기"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"이 연락처를 여러 연락처로 연결 해제하시겠습니까?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"연결 해제"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"이미 변경한 내용을 저장하고 이 연락처를 여러 연락처로 연결 해제하시겠습니까?"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"공유할 연락처가 없습니다."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"표시할 연락처"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"표시할 연락처"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"보기 맞춤설정"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"저장"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"연락처 검색"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"즐겨찾기"</string>

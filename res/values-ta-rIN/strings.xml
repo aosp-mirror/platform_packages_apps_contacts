@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"தொடர்பு"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"நேரடி டயல்"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"நேரடி செய்தி"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"தொடர்பைத் தேர்வுசெய்க"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"தொடர்பில் சேர்"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"தொடர்பைத் தேர்வுசெய்யவும்"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"தேர்ந்தெடுக்கவும்"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"தொடர்புகளைத் தேர்ந்தெடு"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"தொடர்புகளைச் சேர்"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"லேபிளிலிருந்து அகற்று"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"லேபிளை உருவாக்கு"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"பல தொடர்புகளிலிருந்து இந்தத் தொடர்பை அகற்றவா?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"தொடர்பை அகற்று"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"நீங்கள் ஏற்கனவே செய்த மாற்றங்களைச் சேமித்து, பல தொடர்புகளிலிருந்து இந்தத் தொடர்பை அகற்றவா?"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"பகிர, தொடர்புகள் இல்லை."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"காட்ட வேண்டிய தொடர்புகள்"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"காட்ட வேண்டிய தொடர்புகள்"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"காட்சியைத் தனிப்பயனாக்குக"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"சேமி"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"தொடர்புகளில் தேடுக"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"விருப்பமானவை"</string>

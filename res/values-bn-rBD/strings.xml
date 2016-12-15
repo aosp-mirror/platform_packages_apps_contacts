@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"পরিচিতি"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"সরাসরি ডায়াল"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"সরাসরি বার্তা"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"পরিচিতি বেছে নিন"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"পরিচিতিতে যোগ করুন"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"একটি পরিচিতি বেছে নিন"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"নির্বাচন"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"পরিচিতিগুলিকে নির্বাচন করুন"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"পরিচিতিগুলি যোগ করুন"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"লেবেল থেকে সরান"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"লেবেল তৈরি করুন"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"এই পরিচিতিটিকে একাধিক পরিচিতি থেকে লিঙ্কমুক্ত করবেন?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"লিঙ্কমুক্ত করুন"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"আপনি কি আপনার ইতিমধ্যে করা পরিবর্তনগুলি সংরক্ষণ এবং এই পরিচিতিটিকে একাধিক পরিচিতি থেকে লিঙ্কমুক্ত করতে চান?"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"শেয়ার করার জন্য কোনো পরিচিতি নেই৷"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"দেখানোর জন্য পরিচিতিগুলি"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"দেখানোর জন্য পরিচিতিগুলি"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"দর্শন কাস্টমাইজ করুন"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"সংরক্ষণ"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"পরিচিতিগুলি খুঁজুন"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"পছন্দসইগুলি"</string>

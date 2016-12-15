@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Ring"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Send melding"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"Velg en kontakt"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Legg til kontakt"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Velg en kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Velg"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Velg kontakter"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Legg til kontakter"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Fjern fra etiketten"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"Opprett en etikett"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Vil du dele denne kontakten opp i flere kontakter?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Del opp"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Vil du lagre endringene du allerede har gjort, og dele opp denne kontakten i flere kontakter?"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Det finnes ingen kontakter å dele."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakter i visning"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakter i visning"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"Tilpass visningen"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Lagre"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Søk i kontakter"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritter"</string>
