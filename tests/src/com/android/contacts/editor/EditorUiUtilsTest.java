@@ -26,8 +26,11 @@ import android.test.suitebuilder.annotation.SmallTest;
 
 import com.android.contacts.R;
 import com.android.contacts.model.account.AccountDisplayInfo;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.DeviceLocalAccountType;
+import com.android.contacts.tests.FakeAccountType;
 
 /**
  * Tests {@link EditorUiUtils}.
@@ -73,8 +76,9 @@ public class EditorUiUtilsTest extends AndroidTestCase {
     }
 
     public void testGetProfileAccountInfo_NonLocalAccount() {
-        final AccountDisplayInfo account = new AccountDisplayInfo(ACCOUNT, ACCOUNT_NAME,
-                DISPLAY_LABEL, /*icon*/ null, /*isDeviceAccount*/ false);
+        final AccountInfo account = new AccountInfo(new AccountDisplayInfo(ACCOUNT, ACCOUNT_NAME,
+                DISPLAY_LABEL, null, /* isDeviceAccount */ false),
+                new FakeAccountType("com.example.account"));
 
         final String label = EditorUiUtils.getAccountHeaderLabelForMyProfile(getContext(),
                 account);
@@ -87,8 +91,8 @@ public class EditorUiUtilsTest extends AndroidTestCase {
 
 
     public void testGetProfileAccountInfo_DeviceLocalAccount() {
-        final AccountDisplayInfo account = new AccountDisplayInfo(ACCOUNT, "Device",
-                "Device", null, true);
+        final AccountInfo account = new AccountInfo(new AccountDisplayInfo(ACCOUNT, "Device",
+                "Device", null, true), new DeviceLocalAccountType(mContext));
 
         final String label = EditorUiUtils.getAccountHeaderLabelForMyProfile(getContext(),
                 account);

@@ -50,6 +50,7 @@ import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.model.ValuesDelta;
 import com.android.contacts.model.account.AccountDisplayInfo;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.MaterialColorMapUtils.MaterialPalette;
@@ -112,12 +113,12 @@ public class EditorUiUtils {
 
 
     public static String getAccountHeaderLabelForMyProfile(Context context,
-            AccountDisplayInfo displayableAccount) {
-        if (displayableAccount.isDeviceAccount()) {
+            AccountInfo accountInfo) {
+        if (accountInfo.isDeviceAccount()) {
             return context.getString(R.string.local_profile_title);
         } else {
             return context.getString(R.string.external_profile_title,
-                    displayableAccount.getTypeLabel());
+                    accountInfo.getTypeLabel());
         }
     }
 

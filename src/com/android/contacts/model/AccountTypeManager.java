@@ -599,6 +599,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     @Override
     public AccountInfo getAccountInfoForAccount(AccountWithDataSet account) {
+        if (account == null) {
+            return null;
+        }
         final AccountType type = mTypeProvider.getTypeForAccount(account);
         if (type == null) {
             return null;

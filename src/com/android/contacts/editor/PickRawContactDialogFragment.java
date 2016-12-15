@@ -27,6 +27,7 @@ import com.android.contacts.logging.Logger;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
@@ -114,12 +115,12 @@ public class PickRawContactDialogFragment extends DialogFragment {
 
             // Use the same string as editor if it's an editable user profile raw contact.
             if (mRawContactsMetadata.isUserProfile && account.areContactsWritable()) {
-                final AccountDisplayInfo displayInfo =
-                        mAccountDisplayInfoFactory.getAccountDisplayInfo(
+                final AccountInfo accountInfo =
+                        AccountTypeManager.getInstance(getContext()).getAccountInfoForAccount(
                                 new AccountWithDataSet(rawContact.accountName,
                                         rawContact.accountType, rawContact.accountDataSet));
                 accountDisplayLabel = EditorUiUtils.getAccountHeaderLabelForMyProfile(mContext,
-                        displayInfo);
+                        accountInfo);
             } else if (GoogleAccountType.ACCOUNT_TYPE.equals(rawContact.accountType)
                     && account.dataSet == null) {
                 // Focus Google accounts have the account name shown

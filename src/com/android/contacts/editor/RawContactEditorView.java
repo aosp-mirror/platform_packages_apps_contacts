@@ -60,6 +60,7 @@ import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.ValuesDelta;
 import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.dataitem.CustomDataItem;
@@ -71,6 +72,7 @@ import com.android.contacts.util.UiClosables;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -196,7 +198,6 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
     private RawContactEditorView.Listener mListener;
 
     private AccountTypeManager mAccountTypeManager;
-    private AccountDisplayInfoFactory mAccountDisplayInfoFactory;
     private LayoutInflater mLayoutInflater;
 
     private ViewIdGenerator mViewIdGenerator;
@@ -204,6 +205,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
     private boolean mHasNewContact;
     private boolean mIsUserProfile;
     private AccountWithDataSet mPrimaryAccount;
+    private List<AccountInfo> mAccounts = new ArrayList<>();
     private RawContactDeltaList mRawContactDeltas;
     private RawContactDelta mCurrentRawContactDelta;
     private long mRawContactIdToDisplayAlone = -1;
@@ -248,7 +250,6 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         super.onFinishInflate();
 
         mAccountTypeManager = AccountTypeManager.getInstance(getContext());
-        mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forWritableAccounts(getContext());
         mLayoutInflater = (LayoutInflater)
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -499,6 +500,13 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         if (mListener != null) mListener.onEditorsBound();
     }
 
+    public void setAccounts(List<AccountInfo> accounts) {
+        mAccounts.clear();
+        mAccounts.addAll(accounts);
+        // Update the account header
+        setAccountInfo();
+    }
+
     private void setupEditorNormally() {
         addKindSectionViews();
 
@@ -711,8 +719,19 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
     }
 
     private void setAccountInfo() {
-        final AccountDisplayInfo account =
-                mAccountDisplayInfoFactory.getAccountDisplayInfoFor(mCurrentRawContactDelta);
+        if (mCurrentRawContactDelta == null && mPrimaryAccount == null) {
+            return;
+        }
+        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(getContext());
+        final AccountInfo account = mCurrentRawContactDelta != null
+                ? accountTypeManager.getAccountInfoForAccount(
+                mCurrentRawContactDelta.getAccountWithDataSet())
+                : accountTypeManager.getAccountInfoForAccount(mPrimaryAccount);
+
+        // Accounts haven't loaded yet or we are editing.
+        if (mAccounts.isEmpty()) {
+            mAccounts.add(account);
+        }
 
         // Get the account information for the primary raw contact delta
         if (isReadOnlyRawContact()) {
@@ -729,9 +748,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         }
 
         // If we're saving a new contact and there are multiple accounts, add the account selector.
-        final List<AccountWithDataSet> accounts =
-                AccountTypeManager.getInstance(getContext()).getAccounts(true);
-        if (mHasNewContact && !mIsUserProfile && accounts.size() > 1) {
+        if (mHasNewContact && !mIsUserProfile && mAccounts.size() > 1) {
             addAccountSelector(mCurrentRawContactDelta);
         }
     }
@@ -756,11 +773,11 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         final OnClickListener clickListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
+                final AccountWithDataSet current = rawContactDelta.getAccountWithDataSet();
+                AccountInfo.sortAccounts(current, mAccounts);
                 final ListPopupWindow popup = new ListPopupWindow(getContext(), null);
                 final AccountsListAdapter adapter =
-                        new AccountsListAdapter(getContext(),
-                                AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE,
-                                mPrimaryAccount);
+                        new AccountsListAdapter(getContext(), mAccounts, current);
                 popup.setWidth(mAccountHeaderContainer.getWidth());
                 popup.setAnchorView(mAccountHeaderContainer);
                 popup.setAdapter(adapter);
