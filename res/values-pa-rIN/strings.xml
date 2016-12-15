@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"ਸੰਪਰਕ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ਸਿੱਧਾ ਡਾਇਲ ਕਰੋ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ਸਿੱਧਾ ਸੁਨੇਹਾ"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"ਸੰਪਰਕ ਚੁਣੋ"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ਸੰਪਰਕ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ਇੱਕ ਸੰਪਰਕ ਚੁਣੋ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ਚੁਣੋ"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"ਸੰਪਰਕ ਚੁਣੋ"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"ਸੰਪਰਕ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"ਲੇਬਲ ਤੋਂ ਹਟਾਓ"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"ਲੇਬਲ ਬਣਾਓ"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"ਕੀ ਇਸ ਸੰਪਰਕ ਨੂੰ ਇੱਕ ਤੋਂ ਜ਼ਿਆਦਾ ਸੰਪਰਕਾਂ ਵਿੱਚ ਅਣਲਿੰਕ ਕਰਨਾ ਹੈ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ਅਣਲਿੰਕ ਕਰੋ"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ਕੀ ਤੁਸੀਂ ਤੁਹਾਡੇ ਵੱਲੋਂ ਪਹਿਲਾਂ ਤੋਂ ਕੀਤੇ ਬਦਲਾਵਾਂ ਨੂੰ ਰੱਖਿਅਤ ਕਰਨਾ ਅਤੇ ਇਸ ਸੰਪਰਕ ਨੂੰ ਇੱਕ ਤੋਂ ਜ਼ਿਆਦਾ ਸੰਪਰਕਾਂ ਵਿੱਚ ਅਣਲਿੰਕ ਕਰਨਾ ਚਾਹੋਗੇ?"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"ਸਾਂਝਾ ਕਰਨ ਲਈ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ।"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਸੰਪਰਕ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਸੰਪਰਕ"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"ਦ੍ਰਿਸ਼ ਨੂੰ ਵਿਸ਼ੇਸ਼-ਵਿਉਂਤਬੱਧ ਕਰੋ"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"ਰੱਖਿਅਤ ਕਰੋ"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"ਸੰਪਰਕ ਖੋਜੋ"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"ਮਨਪਸੰਦ"</string>

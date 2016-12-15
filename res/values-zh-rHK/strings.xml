@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"聯絡人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接撥號"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"私人訊息"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"選擇聯絡人"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"新增至通訊錄"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"選擇聯絡人"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"選取"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"選取聯絡人"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"新增聯絡人"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"從標籤中移除"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"建立標籤"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"要解除連結，並設為多個聯絡人嗎？"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"解除連結"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"您要儲存變更，並解除連結此聯絡人為多個聯絡人嗎？"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"沒有聯絡人可供分享。"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"要顯示的聯絡人"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"要顯示的聯絡人"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"自訂檢視"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"儲存"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"搜尋聯絡人"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"我的最愛"</string>

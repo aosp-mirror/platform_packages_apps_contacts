@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"အဆက်အသွယ်"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"တိုက်ရိုက်ခေါ်ဆိုခြင်း"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"တိုက်ရိုက်စာပို့ခြင်း"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"အဆက်အသွယ်ကို ရွေးချယ်ပါ"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"လိပ်စာသို့ထည့်ပါ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"လိပ်စာတစ်ခုရွေးပါ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ရွေးရန်"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"အဆက်အသွယ်များရွေးရန်"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"အဆက်အသွယ်များထည့်ရန်"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"အညွှန်းမှဖယ်ရှားပါ"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"အညွှန်း ဖန်တီးရန်"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"ဤအဆက်အသွယ်အား ချိတ်ဆက်ထားမှုကို ဖျက်လျက် အဆက်အသွယ် အများအပြားအဖြစ် ခွဲပစ်ရမလား။"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ချိတ်ဆက်မှုဖြုတ်ပါ"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"သင် ပြုလုပ်ခဲ့သည့် အပြောင်းအလဲများကို သိမ်းဆည်းလျက် ဤအဆက်အသွယ်အား ချိတ်ဆက်ထားမှုကို ဖျက်လိုက်ကာ အဆက်အသွယ် အများအပြားအဖြစ် ခွဲပစ်ရမလား။"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"မျှဝေရန်အဆက်အသွယ် မရှိပါ။"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ပြရန်အဆက်အသွယ်များ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ပြသပေးရန်အဆက်အသွယ်များ"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"မြင်ကွင်းကို စိတ်ကြိုက်ပြုလုပ်ပါ"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"သိမ်းရန်"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"အဆက်အသွယ်များရှာပါ"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"အကြိုက်ဆုံးများ"</string>

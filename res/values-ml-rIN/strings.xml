@@ -21,8 +21,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"കോൺടാക്റ്റ്"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"നേരിട്ടുള്ള ഡയൽ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"സന്ദേശങ്ങൾ നേരിട്ട്"</string>
-    <!-- no translation found for shortcutActivityTitle (1504383567778497348) -->
-    <skip />
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"കോൺടാക്‌റ്റ് തിരഞ്ഞെടുക്കുക"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"കോണ്‍‌ടാക്റ്റിലേക്ക് ചേര്‍ക്കുക"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കൂ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"തിരഞ്ഞെടുക്കുക"</string>
@@ -43,8 +42,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"കോണ്‍‌ടാക്റ്റുകൾ തിരഞ്ഞെടുക്കുക"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"കോൺടാക്റ്റുകൾ ചേർക്കുക"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"ലേബ‌ലിൽ നിന്ന് നീക്കംചെയ്യുക"</string>
-    <!-- no translation found for menu_new_group_action_bar (3127059073617415221) -->
-    <skip />
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"ലേബല്‍ സൃഷ്ടിക്കുക"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"ഈ കോൺടാക്റ്റ് ഒന്നിലധികം കോൺടാക്റ്റുകളായി അൺലിങ്കുചെയ്യണോ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"അൺലിങ്കുചെയ്യുക"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"നിങ്ങൾ ഇതിനകം വരുത്തിയിട്ടുള്ള മാറ്റങ്ങൾ സംരക്ഷിക്കാനും ഒന്നിലധികം കോൺടാക്റ്റുകളായി ഈ കോൺടാക്റ്റ് അൺലിങ്കുചെയ്യാനും താൽപ്പര്യപ്പെടുന്നുണ്ടോ?"</string>
@@ -466,8 +464,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"പങ്കിടാൻ കോൺടാക്റ്റുകളൊന്നും ഇല്ല."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ദൃശ്യമാക്കേണ്ട കോൺടാക്റ്റുകൾ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ദൃശ്യമാക്കേണ്ട കോൺടാക്റ്റുകൾ"</string>
-    <!-- no translation found for custom_list_filter (9048525797111024204) -->
-    <skip />
+    <string name="custom_list_filter" msgid="9048525797111024204">"കാഴ്‌ച ഇഷ്‌ടാനുസൃതമാക്കുക"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"സംരക്ഷിക്കുക"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"പ്രിയപ്പെട്ടവ"</string>
