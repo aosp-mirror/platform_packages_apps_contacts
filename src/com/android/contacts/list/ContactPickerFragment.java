@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.android.contacts.R;
 import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
@@ -87,6 +88,15 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
     }
 
     @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (position == 0 && mCreateContactEnabled && mListener != null) {
+            mListener.onCreateNewContactAction();
+        } else {
+            super.onItemClick(parent, view, position, id);
+        }
+    }
+
+    @Override
     protected void onItemClick(int position, long id) {
         Uri uri;
         if (isLegacyCompatibilityMode()) {
@@ -137,15 +147,6 @@ public class ContactPickerFragment extends ContactEntryListFragment<ContactEntry
             adapter.setDisplayPhotos(false);
             return adapter;
         }
-    }
-
-    @Override
-    protected void configureAdapter() {
-        super.configureAdapter();
-
-        ContactEntryListAdapter adapter = getAdapter();
-
-        adapter.setEmptyListEnabled(true);
     }
 
     @Override
