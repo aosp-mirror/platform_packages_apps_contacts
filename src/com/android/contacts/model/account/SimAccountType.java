@@ -34,7 +34,7 @@ public class SimAccountType extends BaseAccountType {
 
     public SimAccountType(Context context) {
         this.titleRes = R.string.account_sim;
-        this.iconRes = R.drawable.ic_sim_card_tinted_24dp;
+        this.iconRes = R.drawable.quantum_ic_sim_card_vd_theme_24;
 
         try {
             addDataKindStructuredName(context);

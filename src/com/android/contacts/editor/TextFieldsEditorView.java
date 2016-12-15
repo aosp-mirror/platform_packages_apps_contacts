@@ -182,8 +182,8 @@ public class TextFieldsEditorView extends LabeledEditorView {
      */
     private void setupExpansionView(boolean shouldExist, boolean collapsed) {
         final Drawable expandIcon = getContext().getDrawable(collapsed
-                ? R.drawable.ic_menu_expand_minimized_24dp
-                : R.drawable.ic_menu_expand_maximized_24dp);
+                ? R.drawable.quantum_ic_expand_more_vd_theme_24
+                : R.drawable.quantum_ic_expand_less_vd_theme_24);
         mExpansionView.setImageDrawable(expandIcon);
         mExpansionView.setContentDescription(collapsed ? mExpandButtonDescription
                 : mCollapseButtonDescription);

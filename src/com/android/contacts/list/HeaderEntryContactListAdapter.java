@@ -64,7 +64,7 @@ public class HeaderEntryContactListAdapter extends DefaultContactListAdapter {
             } else {
                 itemView = (ContactListItemView) convertView;
             }
-            itemView.setDrawableResource(R.drawable.ic_search_add_contact);
+            itemView.setDrawableResource(R.drawable.quantum_ic_person_add_vd_theme_24);
             itemView.setDisplayName(getContext().getResources().getString(
                     R.string.header_entry_contact_list_adapter_header_title));
             return itemView;

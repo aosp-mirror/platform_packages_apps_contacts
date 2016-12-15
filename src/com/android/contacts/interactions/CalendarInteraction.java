@@ -20,7 +20,7 @@ import com.android.contacts.R;
 public class CalendarInteraction implements ContactInteraction {
     private static final String TAG = CalendarInteraction.class.getSimpleName();
 
-    private static final int CALENDAR_ICON_RES = R.drawable.ic_event_24dp;
+    private static final int CALENDAR_ICON_RES = R.drawable.quantum_ic_event_vd_theme_24;
 
     private ContentValues mValues;
 

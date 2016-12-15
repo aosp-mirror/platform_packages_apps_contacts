@@ -22,12 +22,12 @@
     <group android:id="@+id/nav_utilities">
         <item
             android:id="@+id/nav_all_contacts"
-            android:icon="@drawable/ic_menu_filter"
+            android:icon="@drawable/quantum_ic_account_circle_vd_theme_24"
             android:title="@string/contactsList" />
         <item
             android:id="@+id/nav_assistant"
             app:actionViewClass="android.widget.LinearLayout"
-            android:icon="@drawable/ic_assistant"
+            android:icon="@drawable/quantum_ic_assistant_vd_theme_24"
             android:title="@string/menu_assistant"/>
     </group>
 
@@ -50,11 +50,11 @@
     <group android:id="@+id/nav_misc">
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_settings"
+            android:icon="@drawable/quantum_ic_settings_vd_theme_24"
             android:title="@string/menu_settings"/>
         <item
             android:id="@+id/nav_help"
-            android:icon="@drawable/ic_menu_help"
+            android:icon="@drawable/quantum_ic_help_vd_theme_24"
             android:title="@string/menu_help"/>
     </group>
 

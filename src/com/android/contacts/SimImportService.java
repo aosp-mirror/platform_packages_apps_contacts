@@ -192,7 +192,7 @@ public class SimImportService extends Service {
                 .setAutoCancel(true)
                 .setContentTitle(this.getString(R.string.importing_sim_finished_title))
                 .setColor(this.getResources().getColor(R.color.dialtacts_theme_color))
-                .setSmallIcon(R.drawable.ic_check_mark)
+                .setSmallIcon(R.drawable.quantum_ic_done_vd_theme_24)
                 .setContentIntent(PendingIntent.getActivity(this, 0, intent, 0));
         return builder.build();
     }
@@ -205,7 +205,7 @@ public class SimImportService extends Service {
                 .setContentTitle(this.getString(R.string.importing_sim_failed_title))
                 .setContentText(this.getString(R.string.importing_sim_failed_message))
                 .setColor(this.getResources().getColor(R.color.dialtacts_theme_color))
-                .setSmallIcon(R.drawable.ic_error_black_24dp)
+                .setSmallIcon(R.drawable.quantum_ic_error_vd_theme_24)
                 .setContentIntent(PendingIntent.getActivity(this, 0, intent, 0));
         return builder.build();
     }

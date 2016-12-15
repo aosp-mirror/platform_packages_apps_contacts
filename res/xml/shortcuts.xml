@@ -19,7 +19,7 @@
         android:enabled="true"
         android:icon="@drawable/ic_add_circle_24dp"
         android:shortcutId="shortcut-add-contact"
-        android:shortcutShortLabel="@string/menu_new_contact_action_bar">
+        android:shortcutShortLabel="@string/shortcut_add_contact">
         <intent
             android:action="android.intent.action.INSERT"
             android:data="content://com.android.contacts/contacts"

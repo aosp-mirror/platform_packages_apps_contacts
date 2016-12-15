@@ -40,13 +40,11 @@
         </item>
     </style>
 
-    <style name="PeopleTheme" parent="@android:style/Theme.Material.Light">
+    <style name="PeopleTheme" parent="@android:style/Theme.Material.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
-        <!--  Drawable for the back button -->
-        <item name="android:homeAsUpIndicator">@drawable/ic_back_arrow</item>
         <!-- Style for the overflow button in the actionbar. -->
         <item name="android:actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
-        <item name="android:actionModeCloseDrawable">@drawable/ic_close_lt</item>
+        <item name="android:actionModeCloseDrawable">@drawable/quantum_ic_close_vd_theme_24</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
         <item name="android:icon">@android:color/transparent</item>
@@ -100,20 +98,17 @@
         <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
-    <style name="PeopleThemeAppCompat" parent="Theme.AppCompat.Light">
+    <style name="PeopleThemeAppCompat" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Styles that require AppCompat compatibility, remember to update both sets -->
         <item name="android:actionBarStyle">@style/ContactsActionBarStyleAppCompat</item>
         <item name="actionBarStyle">@style/ContactsActionBarStyleAppCompat</item>
         <item name="android:actionButtonStyle">@style/ContactsActionButtonStyle</item>
         <item name="actionButtonStyle">@style/ContactsActionButtonStyle</item>
-        <!--  Drawable for the back button -->
-        <item name="android:homeAsUpIndicator">@drawable/ic_back_arrow</item>
-        <item name="homeAsUpIndicator">@drawable/ic_back_arrow</item>
         <!-- Style for the overflow button in the actionbar. -->
         <item name="android:actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
         <item name="actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
         <item name="toolbarNavigationButtonStyle">@style/ContactToolbarNavigationButtonStyle</item>
-        <item name="android:actionModeCloseDrawable">@drawable/ic_close_lt</item>
+        <item name="android:actionModeCloseDrawable">@drawable/quantum_ic_close_vd_theme_24</item>
         <item name="android:textColorPrimary">@color/primary_text_color</item>
         <item name="android:textColorSecondary">@color/secondary_text_color</item>
         <item name="android:icon">@android:color/transparent</item>
@@ -200,7 +195,7 @@
     </style>
 
     <style name="ContactsActionBarStyleAppCompat"
-        parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        parent="@style/Widget.AppCompat.ActionBar.Solid">
         <!-- Styles that require AppCompat compatibility, remember to update both sets -->
         <item name="android:background">@color/actionbar_background_color</item>
         <item name="background">@color/actionbar_background_color</item>
@@ -261,7 +256,7 @@
     <!-- Action bar overflow menu icon. -->
     <style name="ContactsActionBarOverflowQP"
         parent="Widget.AppCompat.Light.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_more_vert</item>
+        <item name="android:src">@drawable/quantum_ic_more_vert_vd_theme_24</item>
         <item name="android:tint">@color/action_bar_button_text_color</item>
     </style>
 

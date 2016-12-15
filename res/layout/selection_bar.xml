@@ -28,7 +28,7 @@
         android:tint="@color/quantum_black_secondary_text"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_menu_back_from_edit_select"
-        android:src="@drawable/ic_close_24dp"/>
+        android:src="@drawable/quantum_ic_close_vd_theme_24"/>
 
     <TextView
         android:id="@+id/selection_count_text"

@@ -278,7 +278,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
         return new NotificationCompat.Builder(context)
                 .setAutoCancel(true)
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
-                .setSmallIcon(R.drawable.ic_check_mark)
+                .setSmallIcon(R.drawable.quantum_ic_done_vd_theme_24)
                 .setContentTitle(title)
                 .setContentText(description)
                 // If no intent provided, include an intent that won't resolve to anything.

@@ -22,6 +22,9 @@
     <!-- Directory partition name -->
     <string name="contactsList">Contacts</string>
 
+    <!-- Name of the dynamic shortcut that creates a new contact [CHAR LIMIT=30] -->
+    <string name="shortcut_add_contact">Add contact</string>
+
     <!-- Name of activity that allows users to create shortcuts on the home screen to a contact.
          This shows up in a list of things like bookmark, folder, music playlist, etc -->
     <string name="shortcutContact">Contact</string>

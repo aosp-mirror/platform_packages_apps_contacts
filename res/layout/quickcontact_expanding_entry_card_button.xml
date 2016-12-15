@@ -32,7 +32,7 @@
 
         <ImageView
             android:id="@+id/arrow"
-            android:src="@drawable/expanding_entry_card_expand_white_24"
+            android:src="@drawable/quantum_ic_expand_more_vd_theme_24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/expanding_entry_card_item_padding_start"

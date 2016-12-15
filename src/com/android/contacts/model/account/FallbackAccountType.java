@@ -18,6 +18,9 @@ package com.android.contacts.model.account;
 
 import android.accounts.AuthenticatorDescription;
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 
 import com.android.contacts.R;
 import com.android.contacts.model.dataitem.DataKind;
@@ -30,7 +33,7 @@ public class FallbackAccountType extends BaseAccountType {
         this.accountType = null;
         this.dataSet = null;
         this.titleRes = R.string.account_phone;
-        this.iconRes = R.drawable.ic_device;
+        this.iconRes = R.drawable.quantum_ic_smartphone_vd_theme_24;
 
         // Note those are only set for unit tests.
         this.resourcePackageName = resPackageName;
@@ -56,6 +59,14 @@ public class FallbackAccountType extends BaseAccountType {
         } catch (DefinitionException e) {
             FeedbackHelper.sendFeedback(context, TAG, "Failed to build fallback account type", e);
         }
+    }
+
+    @Override
+    public Drawable getDisplayIcon(Context context) {
+        final Drawable icon = context.getResources().getDrawable(iconRes);
+        icon.mutate().setColorFilter(ContextCompat.getColor(context,
+                R.color.actionbar_icon_color_grey), PorterDuff.Mode.SRC_ATOP);
+        return icon;
     }
 
     public FallbackAccountType(Context context) {

@@ -18,17 +18,21 @@ package com.android.contacts.group;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.database.CursorWrapper;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -64,7 +68,6 @@ import com.android.contacts.logging.ScreenEvent;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contactsbind.FeedbackHelper;
-
 import com.google.common.primitives.Longs;
 
 import java.util.ArrayList;
@@ -267,25 +270,33 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         final boolean isGroupEditable = mGroupMetaData != null && mGroupMetaData.editable;
         final boolean isGroupReadOnly = mGroupMetaData != null && mGroupMetaData.readOnly;
 
-        setVisible(menu, R.id.menu_multi_send_email, !mIsEditMode && !isGroupEmpty());
-        setVisible(menu, R.id.menu_multi_send_message, !mIsEditMode && !isGroupEmpty());
-        setVisible(menu, R.id.menu_add, isGroupEditable && !isSelectionMode);
-        setVisible(menu, R.id.menu_rename_group, !isGroupReadOnly && !isSelectionMode);
-        setVisible(menu, R.id.menu_delete_group, !isGroupReadOnly && !isSelectionMode);
-        setVisible(menu, R.id.menu_edit_group, isGroupEditable && !mIsEditMode && !isSelectionMode
-                && !isGroupEmpty());
-        setVisible(menu, R.id.menu_remove_from_group, isGroupEditable && isSelectionMode &&
-                !mIsEditMode);
+        setVisible(getContext(), menu, R.id.menu_multi_send_email, !mIsEditMode && !isGroupEmpty());
+        setVisible(getContext(), menu, R.id.menu_multi_send_message,
+                !mIsEditMode && !isGroupEmpty());
+        setVisible(getContext(), menu, R.id.menu_add, isGroupEditable && !isSelectionMode);
+        setVisible(getContext(), menu, R.id.menu_rename_group,
+                !isGroupReadOnly && !isSelectionMode);
+        setVisible(getContext(), menu, R.id.menu_delete_group,
+                !isGroupReadOnly && !isSelectionMode);
+        setVisible(getContext(), menu, R.id.menu_edit_group,
+                isGroupEditable && !mIsEditMode && !isSelectionMode && !isGroupEmpty());
+        setVisible(getContext(), menu, R.id.menu_remove_from_group,
+                isGroupEditable && isSelectionMode && !mIsEditMode);
     }
 
     private boolean isGroupEmpty() {
         return getAdapter() != null && getAdapter().isEmpty();
     }
 
-    private static void setVisible(Menu menu, int id, boolean visible) {
+    private static void setVisible(Context context, Menu menu, int id, boolean visible) {
         final MenuItem menuItem = menu.findItem(id);
         if (menuItem != null) {
             menuItem.setVisible(visible);
+            final Drawable icon = menuItem.getIcon();
+            if (icon != null) {
+                icon.mutate().setColorFilter(ContextCompat.getColor(context,
+                        R.color.actionbar_icon_color), PorterDuff.Mode.SRC_ATOP);
+            }
         }
     }
 

@@ -1241,8 +1241,9 @@ public class ContactEditorFragment extends Fragment implements
                 toolbar.setTitle(R.string.contact_editor_title_read_only_contact);
                 // Set activity title for Talkback
                 getEditorActivity().setTitle(R.string.contact_editor_title_read_only_contact);
-                toolbar.setNavigationIcon(R.drawable.ic_back_arrow);
+                toolbar.setNavigationIcon(R.drawable.quantum_ic_arrow_back_vd_theme_24);
                 toolbar.setNavigationContentDescription(R.string.back_arrow_content_description);
+                toolbar.getNavigationIcon().setAutoMirrored(true);
             }
         }
 
