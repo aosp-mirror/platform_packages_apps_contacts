@@ -58,6 +58,7 @@ public class AccountHeaderPresenter {
     private final Context mContext;
     private AccountDisplayInfoFactory mAccountDisplayInfoFactory;
 
+    private List<AccountWithDataSet> mAccounts;
     private AccountWithDataSet mCurrentAccount;
 
     // Account header
@@ -82,8 +83,6 @@ public class AccountHeaderPresenter {
         mAccountHeaderName = (TextView) container.findViewById(R.id.account_name);
         mAccountHeaderIcon = (ImageView) container.findViewById(R.id.account_type_icon);
         mAccountHeaderExpanderIcon = (ImageView) container.findViewById(R.id.account_expander_icon);
-
-        mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forWritableAccounts(mContext);
     }
 
     public void setObserver(Observer observer) {
@@ -96,6 +95,17 @@ public class AccountHeaderPresenter {
         }
         mCurrentAccount = account;
         if (mObserver != null) {
+            mObserver.onChange(this);
+        }
+        updateDisplayedAccount();
+    }
+
+    public void setAccounts(List<AccountWithDataSet> accounts) {
+        mAccounts = accounts;
+        mAccountDisplayInfoFactory = new AccountDisplayInfoFactory(mContext, accounts);
+        // If the current account was removed just switch to the next one in the list.
+        if (mCurrentAccount != null && !mAccounts.contains(mCurrentAccount)) {
+            mCurrentAccount = mAccounts.isEmpty() ? null : accounts.get(0);
             mObserver.onChange(this);
         }
         updateDisplayedAccount();
@@ -120,17 +130,14 @@ public class AccountHeaderPresenter {
     private void updateDisplayedAccount() {
         mAccountHeaderContainer.setVisibility(View.GONE);
         if (mCurrentAccount == null) return;
+        if (mAccounts == null) return;
 
         final AccountDisplayInfo account =
                 mAccountDisplayInfoFactory.getAccountDisplayInfo(mCurrentAccount);
 
         final String accountLabel = getAccountLabel(account);
 
-        // Either the account header or selector should be shown, not both.
-        final List<AccountWithDataSet> accounts =
-                AccountTypeManager.getInstance(mContext).getAccounts(true);
-
-        if (accounts.size() > 1) {
+        if (mAccounts.size() > 1) {
             addAccountSelector(accountLabel);
         } else {
             addAccountHeader(accountLabel);
@@ -174,9 +181,7 @@ public class AccountHeaderPresenter {
     private void showPopup() {
         final ListPopupWindow popup = new ListPopupWindow(mContext);
         final AccountsListAdapter adapter =
-                new AccountsListAdapter(mContext,
-                        AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE,
-                        mCurrentAccount);
+                new AccountsListAdapter(mContext, mAccounts, mCurrentAccount);
         popup.setWidth(mAccountHeaderContainer.getWidth());
         popup.setAnchorView(mAccountHeaderContainer);
         popup.setAdapter(adapter);

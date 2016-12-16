@@ -15,6 +15,8 @@
  */
 package com.android.contacts.model;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Context;
 
 import com.android.contacts.Experiments;
@@ -23,7 +25,9 @@ import com.android.contactsbind.ObjectFactory;
 import com.android.contactsbind.experiments.Flags;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Attempts to detect accounts for device contacts
@@ -45,10 +49,24 @@ public abstract class DeviceLocalAccountLocator {
     };
 
     public static DeviceLocalAccountLocator create(Context context,
-            List<AccountWithDataSet> knownAccounts) {
+            Set<String> knownAccountTypes) {
         if (Flags.getInstance().getBoolean(Experiments.OEM_CP2_DEVICE_ACCOUNT_DETECTION_ENABLED)) {
             return new Cp2DeviceLocalAccountLocator(context.getContentResolver(),
-                    ObjectFactory.getDeviceLocalAccountTypeFactory(context), knownAccounts);
+                    ObjectFactory.getDeviceLocalAccountTypeFactory(context), knownAccountTypes);
+        }
+        return NULL_ONLY;
+    }
+
+    public static DeviceLocalAccountLocator create(Context context) {
+        final AccountManager accountManager =
+                (AccountManager) context.getSystemService(Context.ACCOUNT_SERVICE);
+        final Set<String> knownTypes = new HashSet<>();
+        for (Account account : accountManager.getAccounts()) {
+            knownTypes.add(account.type);
+        }
+        if (Flags.getInstance().getBoolean(Experiments.OEM_CP2_DEVICE_ACCOUNT_DETECTION_ENABLED)) {
+            return new Cp2DeviceLocalAccountLocator(context.getContentResolver(),
+                    ObjectFactory.getDeviceLocalAccountTypeFactory(context), knownTypes);
         }
         return NULL_ONLY;
     }

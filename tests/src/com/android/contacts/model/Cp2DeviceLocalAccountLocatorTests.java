@@ -24,6 +24,7 @@ import android.os.CancellationSignal;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.Nullable;
+import android.support.v4.util.ArraySet;
 import android.test.AndroidTestCase;
 import android.test.mock.MockContentResolver;
 import android.test.suitebuilder.annotation.SmallTest;
@@ -48,7 +49,7 @@ public class Cp2DeviceLocalAccountLocatorTests extends AndroidTestCase {
         final DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
                 getContext().getContentResolver(),
                 new DeviceLocalAccountTypeFactory.Default(getContext()),
-                Collections.<AccountWithDataSet>emptyList());
+                Collections.<String>emptySet());
         sut.getDeviceLocalAccounts();
         // We didn't throw so it passed
     }
@@ -80,31 +81,29 @@ public class Cp2DeviceLocalAccountLocatorTests extends AndroidTestCase {
         final DeviceLocalAccountTypeFactory stubFactory = new FakeDeviceAccountTypeFactory()
                 .withDeviceTypes(null, "vnd.sec.contact.phone")
                 .withSimTypes("vnd.sec.contact.sim");
-        final DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
-                createStubResolverWithContentQueryResult(queryResult(
-                        "user", "com.example",
-                        "user", "com.example",
-                        "phone_account", "vnd.sec.contact.phone",
-                        null, null,
-                        "phone_account", "vnd.sec.contact.phone",
-                        "user", "com.example",
-                        null, null,
-                        "sim_account", "vnd.sec.contact.sim",
-                        "sim_account_2", "vnd.sec.contact.sim"
-                )), stubFactory,
-                Collections.<AccountWithDataSet>emptyList());
+        final DeviceLocalAccountLocator sut = createLocator(queryResult(
+                "user", "com.example",
+                "user", "com.example",
+                "phone_account", "vnd.sec.contact.phone",
+                null, null,
+                "phone_account", "vnd.sec.contact.phone",
+                "user", "com.example",
+                null, null,
+                "sim_account", "vnd.sec.contact.sim",
+                "sim_account_2", "vnd.sec.contact.sim"
+        ), stubFactory);
+
 
         assertEquals(4, sut.getDeviceLocalAccounts().size());
     }
 
-    public void test_getDeviceLocalAccounts_doesNotContainItemsForKnownAccounts() {
+    public void test_getDeviceLocalAccounts_doesNotContainItemsForKnownAccountTypes() {
         final Cp2DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
                 getContext().getContentResolver(), new FakeDeviceAccountTypeFactory(),
-                Arrays.asList(new AccountWithDataSet("user", "com.example", null),
-                        new AccountWithDataSet("user1", "com.example", null),
-                        new AccountWithDataSet("user", "com.example.1", null)));
+                new ArraySet<>(Arrays.asList("com.example", "com.example.1")));
 
-        assertTrue("Selection should filter known accounts", sut.getSelection().contains("NOT IN (?,?)"));
+        assertTrue("Selection should filter known accounts",
+                sut.getSelection().contains("NOT IN (?,?)"));
 
         final List<String> args = Arrays.asList(sut.getSelectionArgs());
         assertEquals(2, args.size());
@@ -116,12 +115,11 @@ public class Cp2DeviceLocalAccountLocatorTests extends AndroidTestCase {
         final DeviceLocalAccountTypeFactory stubFactory = new FakeDeviceAccountTypeFactory()
                 .withDeviceTypes(null, "vnd.sec.contact.phone")
                 .withSimTypes("vnd.sec.contact.sim");
-        final DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
-                createContentResolverWithProvider(new FakeContactsProvider()
-                        .withQueryResult(ContactsContract.Settings.CONTENT_URI, queryResult(
-                                "phone_account", "vnd.sec.contact.phone",
-                                "sim_account", "vnd.sec.contact.sim"
-                ))), stubFactory, Collections.<AccountWithDataSet>emptyList());
+        final DeviceLocalAccountLocator sut = createLocator(new FakeContactsProvider()
+                .withQueryResult(ContactsContract.Settings.CONTENT_URI, queryResult(
+                        "phone_account", "vnd.sec.contact.phone",
+                        "sim_account", "vnd.sec.contact.sim"
+                )), stubFactory);
 
         assertEquals(2, sut.getDeviceLocalAccounts().size());
     }
@@ -130,22 +128,34 @@ public class Cp2DeviceLocalAccountLocatorTests extends AndroidTestCase {
         final DeviceLocalAccountTypeFactory stubFactory = new FakeDeviceAccountTypeFactory()
                 .withDeviceTypes(null, "vnd.sec.contact.phone")
                 .withSimTypes("vnd.sec.contact.sim");
-        final DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
-                createContentResolverWithProvider(new FakeContactsProvider()
-                        .withQueryResult(ContactsContract.Groups.CONTENT_URI, queryResult(
-                                "phone_account", "vnd.sec.contact.phone",
-                                "sim_account", "vnd.sec.contact.sim"
-                        ))), stubFactory, Collections.<AccountWithDataSet>emptyList());
+        final DeviceLocalAccountLocator sut = createLocator(new FakeContactsProvider()
+                .withQueryResult(ContactsContract.Groups.CONTENT_URI, queryResult(
+                        "phone_account", "vnd.sec.contact.phone",
+                        "sim_account", "vnd.sec.contact.sim"
+                )), stubFactory);
 
         assertEquals(2, sut.getDeviceLocalAccounts().size());
     }
 
     private DeviceLocalAccountLocator createWithQueryResult(
             Cursor cursor) {
+        return createLocator(cursor, new DeviceLocalAccountTypeFactory.Default(mContext));
+    }
+
+    private DeviceLocalAccountLocator createLocator(ContentProvider contactsProvider,
+            DeviceLocalAccountTypeFactory localAccountTypeFactory) {
+        final DeviceLocalAccountLocator locator = new Cp2DeviceLocalAccountLocator(
+                createContentResolverWithProvider(contactsProvider),
+                localAccountTypeFactory, Collections.<String>emptySet());
+        return locator;
+    }
+
+    private DeviceLocalAccountLocator createLocator(Cursor cursor,
+            DeviceLocalAccountTypeFactory localAccountTypeFactory) {
         final DeviceLocalAccountLocator locator = new Cp2DeviceLocalAccountLocator(
                 createStubResolverWithContentQueryResult(cursor),
-                new DeviceLocalAccountTypeFactory.Default(getContext()),
-                Collections.<AccountWithDataSet>emptyList());
+                localAccountTypeFactory,
+                Collections.<String>emptySet());
         return locator;
     }
 
@@ -154,7 +164,6 @@ public class Cp2DeviceLocalAccountLocatorTests extends AndroidTestCase {
         resolver.addProvider(ContactsContract.AUTHORITY, contactsProvider);
         return resolver;
     }
-
 
     private ContentResolver createStubResolverWithContentQueryResult(Cursor cursor) {
         final MockContentResolver resolver = new MockContentResolver();

@@ -68,6 +68,7 @@ import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.logging.Logger;
 import com.android.contacts.logging.ScreenEvent.ScreenType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.Constants;
@@ -77,6 +78,7 @@ import com.android.contacts.widget.FloatingActionButtonController;
 import com.android.contactsbind.FeatureHighlightHelper;
 import com.android.contactsbind.ObjectFactory;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -100,6 +102,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
     private ContactsIntentResolver mIntentResolver;
     private ContactsRequest mRequest;
+    private AccountTypeManager mAccountTypeManager;
 
     private FloatingActionButtonController mFloatingActionButtonController;
     private View mFloatingActionButtonContainer;
@@ -163,17 +166,18 @@ public class PeopleActivity extends ContactsDrawerActivity {
                 return;
             }
 
-            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
-                    .getAccounts(/* contactsWritableOnly */ true);
-            final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
-            // If one of the accounts is active or pending, use spinning circle to indicate one of
-            // the syncs is in progress.
-            if (syncableAccounts != null && syncableAccounts.size() > 0) {
-                for (Account account: syncableAccounts) {
-                    if (SyncUtil.isSyncStatusPendingOrActive(account)) {
-                        return;
-                    }
-                }
+            final List<AccountWithDataSet> accounts;
+            if (filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT &&
+                    filter.isGoogleAccountType()) {
+                accounts = Collections.singletonList(new AccountWithDataSet(filter.accountName,
+                        filter.accountType, null));
+            } else if (filter.shouldShowSyncState()) {
+                accounts = mAccountTypeManager.getWritableGoogleAccounts();
+            } else {
+                accounts = Collections.emptyList();
+            }
+            if (SyncUtil.isAnySyncing(accounts)) {
+                return;
             }
             swipeRefreshLayout.setRefreshing(false);
         }
@@ -222,6 +226,7 @@ public class PeopleActivity extends ContactsDrawerActivity {
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate start");
         }
         super.onCreate(savedState);
+        mAccountTypeManager = AccountTypeManager.getInstance(this);
 
         if (RequestPermissionsActivity.startPermissionActivity(this)) {
             return;
@@ -573,21 +578,9 @@ public class PeopleActivity extends ContactsDrawerActivity {
 
     private boolean shouldShowList() {
         return mProviderStatus != null
-                && ((mProviderStatus.equals(ProviderStatus.STATUS_EMPTY) && hasNonLocalAccount())
-                        || mProviderStatus.equals(ProviderStatus.STATUS_NORMAL));
-    }
-
-    // Returns true if there are real accounts (not "local" account) in the list of accounts.
-    private boolean hasNonLocalAccount() {
-        final List<AccountWithDataSet> allAccounts =
-                AccountTypeManager.getInstance(this).getAccounts(/* contactWritableOnly */ false);
-        if (allAccounts == null || allAccounts.size() == 0) {
-            return false;
-        }
-        if (allAccounts.size() > 1) {
-            return true;
-        }
-        return !allAccounts.get(0).isNullAccount();
+                && ((mProviderStatus.equals(ProviderStatus.STATUS_EMPTY)
+                && mAccountTypeManager.hasNonLocalAccount())
+                || mProviderStatus.equals(ProviderStatus.STATUS_NORMAL));
     }
 
     private void invalidateOptionsMenuIfNeeded() {
