@@ -15,7 +15,9 @@
  */
 package com.android.contacts.util.concurrent;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
 import android.util.Log;
 
@@ -70,6 +72,7 @@ public abstract class ListenableFutureLoader<D> extends Loader<D> {
 
     @Override
     protected void onForceLoad() {
+        mFuture = loadData();
         Futures.addCallback(mFuture, new FutureCallback<D>() {
             @Override
             public void onSuccess(D result) {
@@ -98,5 +101,18 @@ public abstract class ListenableFutureLoader<D> extends Loader<D> {
         }
     }
 
+    @Override
+    protected void onReset() {
+        mFuture = null;
+        mLoadedData = null;
+    }
+
     protected abstract ListenableFuture<D> loadData();
+
+    public class ForceLoadReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            onContentChanged();
+        }
+    }
 }

@@ -18,13 +18,15 @@ package com.android.contacts;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
-import android.content.AsyncTaskLoader;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.Loader;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
@@ -47,6 +49,11 @@ import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferences;
+import com.android.contacts.util.concurrent.ContactsExecutors;
+import com.android.contacts.util.concurrent.ListenableFutureLoader;
+import com.google.common.base.Function;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +61,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Callable;
 
 /**
  * Dialog that presents a list of contacts from a SIM card that can be imported into a selected
@@ -77,6 +85,8 @@ public class SimImportFragment extends Fragment
     private ListView mListView;
     private View mImportButton;
 
+    private Bundle mSavedInstanceState;
+
     private final Map<AccountWithDataSet, long[]> mPerAccountCheckedIds = new ArrayMap<>();
 
     private int mSubscriptionId;
@@ -85,6 +95,7 @@ public class SimImportFragment extends Fragment
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mSavedInstanceState = savedInstanceState;
         mPreferences = new ContactsPreferences(getContext());
         mAccountTypeManager = AccountTypeManager.getInstance(getActivity());
         mAdapter = new SimContactAdapter(getActivity());
@@ -128,7 +139,6 @@ public class SimImportFragment extends Fragment
             }
         });
         mAdapter.setAccount(mAccountHeaderPresenter.getCurrentAccount());
-        restoreAdapterSelectedStates(savedInstanceState);
 
         mListView = (ListView) view.findViewById(R.id.list);
         mListView.setOnScrollListener(this);
@@ -224,7 +234,7 @@ public class SimImportFragment extends Fragment
     }
 
     @Override
-    public SimContactLoader onCreateLoader(int id, Bundle args) {
+    public Loader<LoaderResult> onCreateLoader(int id, Bundle args) {
         return new SimContactLoader(getContext(), mSubscriptionId);
     }
 
@@ -235,6 +245,8 @@ public class SimImportFragment extends Fragment
         if (data == null) {
             return;
         }
+        mAccountHeaderPresenter.setAccounts(data.accounts);
+        restoreAdapterSelectedStates(data.accounts);
         mAdapter.setData(data);
         mListView.setEmptyView(getView().findViewById(R.id.empty_message));
 
@@ -246,17 +258,17 @@ public class SimImportFragment extends Fragment
     public void onLoaderReset(Loader<LoaderResult> loader) {
     }
 
-    private void restoreAdapterSelectedStates(Bundle savedInstanceState) {
-        if (savedInstanceState == null) {
+    private void restoreAdapterSelectedStates(List<AccountWithDataSet> accounts) {
+        if (mSavedInstanceState == null) {
             return;
         }
 
-        final List<AccountWithDataSet> accounts = mAccountTypeManager.getAccounts(true);
         for (AccountWithDataSet account : accounts) {
-            final long[] selections = savedInstanceState.getLongArray(
+            final long[] selections = mSavedInstanceState.getLongArray(
                     account.stringify() + KEY_SUFFIX_SELECTED_IDS);
             mPerAccountCheckedIds.put(account, selections);
         }
+        mSavedInstanceState = null;
     }
 
     private void saveAdapterSelectedStates(Bundle outState) {
@@ -429,34 +441,44 @@ public class SimImportFragment extends Fragment
     }
 
 
-    private static class SimContactLoader extends AsyncTaskLoader<LoaderResult> {
+    private static class SimContactLoader extends ListenableFutureLoader<LoaderResult> {
         private SimContactDao mDao;
+        private AccountTypeManager mAccountTypeManager;
         private final int mSubscriptionId;
-        LoaderResult mResult;
+
+        private BroadcastReceiver mReceiver;
 
         public SimContactLoader(Context context, int subscriptionId) {
             super(context);
             mDao = SimContactDao.create(context);
+            mAccountTypeManager = AccountTypeManager.getInstance(getContext());
             mSubscriptionId = subscriptionId;
         }
 
         @Override
-        protected void onStartLoading() {
-            if (mResult != null) {
-                deliverResult(mResult);
-            } else {
-                forceLoad();
-            }
+        protected ListenableFuture<LoaderResult> loadData() {
+            final ListenableFuture<List<Object>> future = Futures.<Object>allAsList(
+                    mAccountTypeManager
+                            .filterAccountsByTypeAsync(AccountTypeManager.writableFilter()),
+                    ContactsExecutors.getSimReadExecutor().<Object>submit(
+                            new Callable<Object>() {
+                        @Override
+                        public LoaderResult call() throws Exception {
+                            return loadFromSim();
+                        }
+                    }));
+            return Futures.transform(future, new Function<List<Object>, LoaderResult>() {
+                @Override
+                public LoaderResult apply(List<Object> input) {
+                    final List<AccountWithDataSet> accounts = (List<AccountWithDataSet>) input.get(0);
+                    final LoaderResult simLoadResult = (LoaderResult) input.get(1);
+                    simLoadResult.accounts = accounts;
+                    return simLoadResult;
+                }
+            });
         }
 
-        @Override
-        public void deliverResult(LoaderResult result) {
-            mResult = result;
-            super.deliverResult(result);
-        }
-
-        @Override
-        public LoaderResult loadInBackground() {
+        private LoaderResult loadFromSim() {
             final SimCard sim = mDao.getSimBySubscriptionId(mSubscriptionId);
             LoaderResult result = new LoaderResult();
             if (sim == null) {
@@ -470,13 +492,24 @@ public class SimImportFragment extends Fragment
         }
 
         @Override
-        protected void onReset() {
-            mResult = null;
+        protected void onStartLoading() {
+            super.onStartLoading();
+            if (mReceiver == null) {
+                mReceiver = new ForceLoadReceiver();
+                LocalBroadcastManager.getInstance(getContext()).registerReceiver(mReceiver,
+                        new IntentFilter(AccountTypeManager.BROADCAST_ACCOUNTS_CHANGED));
+            }
         }
 
+        @Override
+        protected void onReset() {
+            super.onReset();
+            LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mReceiver);
+        }
     }
 
     public static class LoaderResult {
+        public List<AccountWithDataSet> accounts;
         public ArrayList<SimContact> contacts;
         public Map<AccountWithDataSet, Set<SimContact>> accountsMap;
     }

@@ -80,6 +80,12 @@ public class MockAccountTypeManager extends AccountTypeManager {
     }
 
     @Override
+    public ListenableFuture<List<AccountWithDataSet>> filterAccountsByTypeAsync(
+            Predicate<AccountType> type) {
+        return Futures.immediateFuture(Arrays.asList(mAccounts));
+    }
+
+    @Override
     public List<AccountWithDataSet> getGroupWritableAccounts() {
         return Arrays.asList(mAccounts);
     }
