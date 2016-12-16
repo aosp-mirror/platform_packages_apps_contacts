@@ -127,17 +127,16 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
             switch (requestCode) {
                 // Cropped photo was returned
                 case REQUEST_CROP_PHOTO: {
-                    final Uri uri;
                     if (data != null && data.getData() != null) {
-                        uri = data.getData();
-                    } else {
-                        uri = mCroppedPhotoUri;
+                        final Uri croppedUri = data.getData();
+                        ContactPhotoUtils.savePhotoFromUriToUri(mContext, croppedUri,
+                                mCroppedPhotoUri, /* deleteAfterSave */ false);
                     }
 
                     try {
                         // delete the original temporary photo if it exists
                         mContext.getContentResolver().delete(mTempPhotoUri, null, null);
-                        listener.onPhotoSelected(uri);
+                        listener.onPhotoSelected(mCroppedPhotoUri);
                         return true;
                     } catch (FileNotFoundException e) {
                         return false;
